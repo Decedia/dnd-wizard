@@ -31,13 +31,13 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
               className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2"
             >
               <label className="flex items-center gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={isProficient}
-                onChange={(e) => onChange({ skills: { ...character.skills, [name]: e.target.checked } })}
-                onBlur={onFieldBlur}
-                className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
-              />
+                <input
+                  type="checkbox"
+                  checked={isProficient}
+                  onChange={(e) => onChange({ skills: { ...character.skills, [name]: e.target.checked } })}
+                  onBlur={onFieldBlur}
+                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+                />
                 <span className="text-sm text-parchment/80">{name}</span>
               </label>
               <div className="flex items-center gap-2">
@@ -52,9 +52,13 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
                 >
                   <InfoIcon className="h-4 w-4" />
                 </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      <div className="mt-3">
+      <div className="mt-3 flex justify-end">
         <Field label="Passive Wisdom (Perception)">
           <input
             type="number"
@@ -64,10 +68,6 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
             className="input max-w-[120px]"
           />
         </Field>
-      </div>
-            </div>
-          );
-        })}
       </div>
 
       {tooltip && (
