@@ -4,6 +4,7 @@ import { useState } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { spells as srdSpells } from "@/data/srd";
+import { getClassData } from "@/data/srd";
 
 interface StepSpellsProps {
   data: Character;
@@ -56,11 +57,24 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
     });
   };
 
+  const classData = data.class ? getClassData(data.class) : null;
+
   return (
     <StepCard title="Spells">
       <p className="text-xs text-parchment/50 mb-3">
         Skip if your class does not cast spells.
       </p>
+      {classData?.spellcastingAbility && (
+        <div className="mb-3">
+          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Spellcasting Ability</span>
+          <input
+            type="text"
+            value={classData.spellcastingAbility}
+            readOnly
+            className="input bg-charcoal/60 mt-1"
+          />
+        </div>
+      )}
       <div className="space-y-2">
         {data.spells.map((spell) => {
           const srdData = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName) : undefined;

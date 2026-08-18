@@ -63,9 +63,8 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
           <input
             type="number"
             value={character.passivePerception}
-            onChange={(e) => onChange({ passivePerception: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input max-w-[120px]"
+            readOnly
+            className="input max-w-[120px] bg-charcoal/60"
           />
         </Field>
       </div>

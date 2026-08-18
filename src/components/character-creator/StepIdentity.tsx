@@ -2,18 +2,22 @@
 
 import { useCallback } from "react";
 import { StepCard } from "./StepCard";
-import { ALIGNMENTS } from "@/lib/storage";
+import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
 import { useLevelUp } from "@/hooks/useLevelUp";
 import { LevelUpModal } from "@/components/level-up/LevelUpModal";
 import type { LevelUpResult } from "@/lib/level-up";
+import { languageNames } from "@/data/srd";
 
 interface StepIdentityProps {
   data: {
     name: string;
     playerName: string;
-    alignment: string;
-    level: number;
+    race: string;
     class: string;
+    level: number;
+    background: string;
+    alignment: string;
+    experiencePoints: number;
     str: number;
     dex: number;
     con: number;
@@ -22,8 +26,9 @@ interface StepIdentityProps {
     cha: number;
     features: { id: string; name: string; description: string }[];
     spellSlots: Record<number, number>;
+    languages: string[];
   };
-  onChange: (data: Partial<StepIdentityProps["data"]>) => void;
+  onChange: (patch: Partial<StepIdentityProps["data"]>) => void;
 }
 
 export function StepIdentity({ data, onChange }: StepIdentityProps) {
@@ -65,6 +70,14 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
     onLevelChange: handleLevelChange,
   });
 
+  const toggleLanguage = (lang: string) => {
+    const current = data.languages || [];
+    const next = current.includes(lang)
+      ? current.filter((l) => l !== lang)
+      : [...current, lang];
+    onChange({ languages: next });
+  };
+
   return (
     <StepCard title="Identity">
       <div className="space-y-4">
@@ -99,6 +112,50 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
             className="input"
           />
         </Field>
+        <Field label="Proficiency Bonus">
+          <input
+            type="number"
+            value={getProficiencyBonus(data.level)}
+            readOnly
+            className="input bg-charcoal/60"
+          />
+        </Field>
+        <Field label="Experience Points">
+          <input
+            type="number"
+            min={0}
+            value={data.experiencePoints}
+            onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+            onBlur={() => {}}
+            className="input"
+          />
+        </Field>
+        <Field label="Race">
+          <select
+            value={data.race}
+            onChange={(e) => onChange({ race: e.target.value })}
+            onBlur={() => {}}
+            className="input"
+          >
+            <option value="">Select race</option>
+            {["Human", "Elf", "Dwarf", "Halfling"].map((r) => (
+              <option key={r} value={r}>{r}</option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Class">
+          <select
+            value={data.class}
+            onChange={(e) => onChange({ class: e.target.value })}
+            onBlur={() => {}}
+            className="input"
+          >
+            <option value="">Select class</option>
+            {["Fighter", "Wizard", "Rogue"].map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </Field>
         <Field label="Alignment">
           <select
             value={data.alignment}
@@ -112,6 +169,32 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
             ))}
           </select>
         </Field>
+        <Field label="Languages">
+          <div className="grid grid-cols-2 gap-2">
+            {languageNames.map((lang) => (
+              <label key={lang} className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={data.languages.includes(lang)}
+                  onChange={() => toggleLanguage(lang)}
+                  onBlur={() => {}}
+                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+                />
+                <span className="text-sm text-parchment/80">{lang}</span>
+              </label>
+            ))}
+          </div>
+        </Field>
+        <Field label="Background">
+          <input
+            type="text"
+            value={data.background}
+            onChange={(e) => onChange({ background: e.target.value })}
+            onBlur={() => {}}
+            className="input"
+            placeholder="e.g. Folk Hero"
+          />
+        </Field>
       </div>
 
       <LevelUpModal
@@ -119,12 +202,12 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
         open={!!pendingLevelUp}
         levelUpResult={pendingLevelUp?.result ?? null}
         currentAbilityScores={{
-          str: (data as any).str || 10,
-          dex: (data as any).dex || 10,
-          con: (data as any).con || 10,
-          int: (data as any).int || 10,
-          wis: (data as any).wis || 10,
-          cha: (data as any).cha || 10,
+          str: data.str,
+          dex: data.dex,
+          con: data.con,
+          int: data.int,
+          wis: data.wis,
+          cha: data.cha,
         }}
         onConfirm={confirmLevelUp}
         onCancel={cancelLevelUp}

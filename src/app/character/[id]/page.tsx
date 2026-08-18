@@ -5,7 +5,6 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacter, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
-import { exportCharacterToPdf, importCharacterFromPdf } from "@/lib/pdf";
 import { StickyMiniHeader } from "@/components/character-sheet/StickyMiniHeader";
 import { SectionNav } from "@/components/character-sheet/SectionNav";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
@@ -20,6 +19,7 @@ import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { Trash2, Download, Upload } from "lucide-react";
+import { exportCharacterToPdf, importCharacterFromPdf } from "@/lib/pdf";
 
 export default function CharacterView() {
   const params = useParams();
@@ -105,7 +105,10 @@ export default function CharacterView() {
   const handleChange = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
       if (!prev) return prev;
-      return { ...prev, ...patch };
+      const next = { ...prev, ...patch };
+      const { computeDerivedStats } = require("@/lib/storage");
+      const derived = computeDerivedStats(next);
+      return { ...next, ...derived };
     });
   }, []);
 

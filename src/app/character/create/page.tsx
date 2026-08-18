@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
@@ -33,7 +33,12 @@ export default function CharacterCreate() {
   const [character, setCharacter] = useState<Character>(createEmptyCharacter);
 
   const update = useCallback((patch: Partial<Character>) => {
-    setCharacter((prev) => ({ ...prev, ...patch }));
+    setCharacter((prev) => {
+      const next = { ...prev, ...patch };
+      const { computeDerivedStats } = require("@/lib/storage");
+      const derived = computeDerivedStats(next);
+      return { ...next, ...derived };
+    });
   }, []);
 
   const isWizard = character.class === "Wizard";
@@ -90,9 +95,12 @@ export default function CharacterCreate() {
             data={{
               name: character.name,
               playerName: character.playerName,
-              alignment: character.alignment,
-              level: character.level,
+              race: character.race,
               class: character.class,
+              level: character.level,
+              background: character.background,
+              alignment: character.alignment,
+              experiencePoints: character.experiencePoints,
               str: character.str,
               dex: character.dex,
               con: character.con,
@@ -101,6 +109,7 @@ export default function CharacterCreate() {
               cha: character.cha,
               features: character.features,
               spellSlots: character.spellSlots,
+              languages: character.languages,
             }}
             onChange={(patch) => update(patch)}
           />
@@ -133,6 +142,10 @@ export default function CharacterCreate() {
               },
               abilityMethod: "standard",
               race: character.race,
+              class: character.class,
+              savingThrows: character.savingThrows,
+              proficiencyBonus: character.proficiencyBonus,
+              initiative: character.initiative,
             }}
             onChange={(patch) => {
               if (patch.abilityScores) {

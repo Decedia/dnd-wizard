@@ -21,6 +21,7 @@ export interface SRDClass {
   flavorText: string;
   features: { name: string; description: string }[];
   levels: SRDClassLevel[];
+  spellcastingAbility?: string;
 }
 
 export interface SRDSkill {
@@ -45,6 +46,11 @@ export interface SRDEquipment {
   baseAC?: number;
   armorType?: "light" | "medium" | "heavy" | "shield";
   maxDexBonus?: number | null;
+}
+
+export interface SRDLanguage {
+  name: string;
+  description?: string;
 }
 
 export const races: SRDRace[] = [
@@ -143,6 +149,7 @@ export const classes: SRDClass[] = [
       { features: [], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 3, 5: 1 } },
       { features: [{ name: "Arcane Tradition feature", description: "You gain a feature from your chosen Arcane Tradition." }], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 3, 5: 2 } },
     ],
+    spellcastingAbility: "int",
   },
   {
     name: "Rogue",
@@ -214,11 +221,23 @@ export const equipment: SRDEquipment[] = [
   { name: "Potion of Healing", description: "Restores 2d4+2 hit points when consumed.", type: "item" },
 ];
 
+export const languages: SRDLanguage[] = [
+  { name: "Common" },
+  { name: "Dwarvish" },
+  { name: "Elvish" },
+  { name: "Giant" },
+  { name: "Gnomish" },
+  { name: "Goblin" },
+  { name: "Halfling" },
+  { name: "Orc" },
+];
+
 export const raceNames = races.map((r) => r.name);
 export const classNames = classes.map((c) => c.name);
 export const skillNames = skills.map((s) => s.name);
 export const spellNames = spells.map((s) => s.name);
 export const equipmentNames = equipment.map((e) => e.name);
+export const languageNames = languages.map((l) => l.name);
 
 export function getRaceData(name: string): SRDRace | undefined {
   return races.find((r) => r.name === name);
@@ -238,4 +257,8 @@ export function getSpellData(name: string): SRDSpell | undefined {
 
 export function getEquipmentData(name: string): SRDEquipment | undefined {
   return equipment.find((e) => e.name === name);
+}
+
+export function getLanguageData(name: string): SRDLanguage | undefined {
+  return languages.find((l) => l.name === name);
 }

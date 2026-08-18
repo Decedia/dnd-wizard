@@ -70,18 +70,16 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
           <input
             type="number"
             value={character.proficiencyBonus}
-            onChange={(e) => onChange({ proficiencyBonus: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input"
+            readOnly
+            className="input bg-charcoal/60"
           />
         </Field>
         <Field label="Initiative">
           <input
             type="number"
             value={character.initiative}
-            onChange={(e) => onChange({ initiative: parseInt(e.target.value || "0", 10) })}
-            onBlur={onFieldBlur}
-            className="input"
+            readOnly
+            className="input bg-charcoal/60"
           />
         </Field>
       </div>
@@ -203,24 +201,17 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             return (
-              <div key={key} className="flex items-center gap-3 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                <label className="flex items-center gap-2 cursor-pointer">
+              <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+                <span className="text-sm text-parchment/80 w-10">{key.toUpperCase()}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-parchment/50">{st.proficient ? "Proficient" : ""}</span>
                   <input
-                    type="checkbox"
-                    checked={st.proficient}
-                    onChange={(e) => updateSavingThrow(key, { proficient: e.target.checked })}
-                    onBlur={onFieldBlur}
-                    className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+                    type="number"
+                    value={st.value}
+                    readOnly
+                    className="input w-20 text-center bg-charcoal/60"
                   />
-                  <span className="text-sm text-parchment/80 w-10">{key.toUpperCase()}</span>
-                </label>
-                <input
-                  type="number"
-                  value={st.value}
-                  onChange={(e) => updateSavingThrow(key, { value: parseInt(e.target.value || "0", 10) })}
-                  onBlur={onFieldBlur}
-                  className="input w-20 text-center"
-                />
+                </div>
               </div>
             );
           })}

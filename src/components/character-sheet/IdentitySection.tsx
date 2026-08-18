@@ -3,8 +3,8 @@
 import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { raceNames, classNames } from "@/data/srd";
-import { ALIGNMENTS } from "@/lib/storage";
+import { raceNames, classNames, languageNames } from "@/data/srd";
+import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
 import { useLevelUp } from "@/hooks/useLevelUp";
 import { LevelUpModal } from "@/components/level-up/LevelUpModal";
 import type { LevelUpResult } from "@/lib/level-up";
@@ -27,6 +27,7 @@ interface IdentitySectionProps {
     cha: number;
     features: { id: string; name: string; description: string }[];
     spellSlots: Record<number, number>;
+    languages: string[];
   };
   onChange: (patch: Partial<IdentitySectionProps["character"]>) => void;
 }
@@ -71,6 +72,14 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
     className: character.class,
     onLevelChange: handleLevelChange,
   });
+
+  const toggleLanguage = (lang: string) => {
+    const current = character.languages || [];
+    const next = current.includes(lang)
+      ? current.filter((l) => l !== lang)
+      : [...current, lang];
+    onChange({ languages: next });
+  };
 
   return (
     <SectionCard id="identity" title="Identity" icon={<UserIcon className="h-5 w-5" />}>
@@ -123,13 +132,33 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
             </select>
           </Field>
         </div>
-        <Field label="Level">
+        <div className="grid grid-cols-2 gap-4">
+          <Field label="Level">
+            <input
+              type="number"
+              min={1}
+              max={20}
+              value={character.level}
+              onChange={(e) => handleLevelChangeHook(Math.max(1, parseInt(e.target.value || "1", 10)))}
+              onBlur={() => {}}
+              className="input"
+            />
+          </Field>
+          <Field label="Proficiency Bonus">
+            <input
+              type="number"
+              value={getProficiencyBonus(character.level)}
+              readOnly
+              className="input bg-charcoal/60"
+            />
+          </Field>
+        </div>
+        <Field label="Experience Points">
           <input
             type="number"
-            min={1}
-            max={20}
-            value={character.level}
-            onChange={(e) => handleLevelChangeHook(Math.max(1, parseInt(e.target.value || "1", 10)))}
+            min={0}
+            value={character.experiencePoints}
+            onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
             onBlur={() => {}}
             className="input"
           />
@@ -157,15 +186,21 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
             ))}
           </select>
         </Field>
-        <Field label="Experience Points">
-          <input
-            type="number"
-            min={0}
-            value={character.experiencePoints}
-            onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={() => {}}
-            className="input"
-          />
+        <Field label="Languages">
+          <div className="grid grid-cols-2 gap-2">
+            {languageNames.map((lang) => (
+              <label key={lang} className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={character.languages.includes(lang)}
+                  onChange={() => toggleLanguage(lang)}
+                  onBlur={() => {}}
+                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+                />
+                <span className="text-sm text-parchment/80">{lang}</span>
+              </label>
+            ))}
+          </div>
         </Field>
       </div>
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { StepCard } from "./StepCard";
 import { getModifier, getRaceData } from "@/lib/storage";
+import { getClassData } from "@/data/srd";
 
 interface StepAbilityScoresProps {
   data: {
@@ -16,6 +17,10 @@ interface StepAbilityScoresProps {
     };
     abilityMethod: "standard" | "pointbuy" | "manual";
     race?: string;
+    class?: string;
+    savingThrows: Record<string, { proficient: boolean; value: number }>;
+    proficiencyBonus: number;
+    initiative: number;
   };
   onChange: (data: Partial<StepAbilityScoresProps["data"]>) => void;
 }
@@ -81,6 +86,9 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
     }
   };
 
+  const classData = data.class ? getClassData(data.class) : null;
+  const savingThrowProfs = classData?.savingThrows || [];
+
   return (
     <StepCard title="Ability Scores">
       <div className="mb-4 flex rounded-lg border border-parchment/10 bg-charcoal/40 p-1">
@@ -113,6 +121,41 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
       {method === "manual" && (
         <ManualEntry scores={data.abilityScores} onChange={onChange} race={data.race} />
       )}
+
+      <div className="mt-4">
+        <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Saving Throws</span>
+        <div className="mt-2 space-y-2">
+          {ABILITIES.map(({ key, label }) => {
+            const st = data.savingThrows[key] ?? { proficient: false, value: 0 };
+            const isProficient = savingThrowProfs.includes(key);
+            return (
+              <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+                <span className="text-sm text-parchment/80 w-12">{label}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-parchment/50">{isProficient ? "Proficient" : ""}</span>
+                  <input
+                    type="number"
+                    value={st.value}
+                    readOnly
+                    className="input w-20 text-center bg-charcoal/60"
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <Field label="Initiative">
+          <input
+            type="number"
+            value={data.initiative}
+            readOnly
+            className="input bg-charcoal/60"
+          />
+        </Field>
+      </div>
     </StepCard>
   );
 }
@@ -286,5 +329,14 @@ function ManualEntry({
         );
       })}
     </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+      {children}
+    </label>
   );
 }

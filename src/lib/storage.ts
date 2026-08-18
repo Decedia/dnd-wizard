@@ -39,6 +39,7 @@ export interface Character {
   inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null }[];
   attacks: { id: string; name: string; attackBonus: number; damageType: string }[];
   otherProficiencies: string;
+  languages: string[];
   spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string }[];
   spellcastingAbility: string;
   spellSaveDc: number;
@@ -151,6 +152,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     inventory: [],
     attacks: [],
     otherProficiencies: "",
+    languages: [],
     spells: [],
     spellcastingAbility: "",
     spellSaveDc: 0,
@@ -269,12 +271,11 @@ export function getRaceData(name: string): { abilityScoreIncreases: Record<strin
 
 export function computeEquippedEffects(character: Character): { ac: number; attacks: Character["attacks"] } {
   const equippedWeapons = character.inventory.filter((item) => item.equipped && item.itemType === "weapon");
-  const equippedArmor = character.inventory.filter((item) => item.equipped && item.itemType === "armor");
   const equippedShields = character.inventory.filter((item) => item.equipped && item.armorType === "shield");
 
   let ac = 10 + getModifier(character.dex);
 
-  const bodyArmor = equippedArmor.find((a) => a.armorType !== "shield");
+  const bodyArmor = character.inventory.find((item) => item.equipped && item.itemType === "armor" && item.armorType !== "shield");
   if (bodyArmor && bodyArmor.baseAC !== undefined) {
     const maxDex = bodyArmor.maxDexBonus ?? null;
     const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
@@ -296,4 +297,42 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
   });
 
   return { ac, attacks };
+}
+
+import { getClassData } from "@/data/srd";
+
+export function computeDerivedStats(character: Character): Partial<Character> {
+  const profBonus = getProficiencyBonus(character.level);
+  const classData = character.class ? (getClassData(character.class) as any) : null;
+  const savingThrowProfs = classData?.savingThrows || [];
+
+  const savingThrows: Record<string, { proficient: boolean; value: number }> = {};
+  for (const key of ["str", "dex", "con", "int", "wis", "cha"]) {
+    const isProficient = savingThrowProfs.includes(key);
+    const abilityMod = getModifier(character[key as keyof Character] as number);
+    savingThrows[key] = {
+      proficient: isProficient,
+      value: isProficient ? abilityMod + profBonus : abilityMod,
+    };
+  }
+
+  const initiative = getModifier(character.dex);
+
+  const perceptionProficient = character.skills["Perception"] ?? false;
+  const passivePerception = 10 + getModifier(character.wis) + (perceptionProficient ? profBonus : 0);
+
+  const spellcastingAbility = classData?.spellcastingAbility || "";
+  const spellcastingAbilityMod = spellcastingAbility ? getModifier(character[spellcastingAbility as keyof Character] as number) : 0;
+  const spellSaveDc = 8 + profBonus + spellcastingAbilityMod;
+  const spellAttackBonus = profBonus + spellcastingAbilityMod;
+
+  return {
+    proficiencyBonus: profBonus,
+    savingThrows,
+    initiative,
+    passivePerception,
+    spellcastingAbility,
+    spellSaveDc,
+    spellAttackBonus,
+  };
 }

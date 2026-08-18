@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
@@ -52,10 +51,8 @@ export function SpellcastingStatsSection({ character, onChange }: SpellcastingSt
           <input
             type="text"
             value={character.spellcastingAbility}
-            onChange={(e) => onChange({ spellcastingAbility: e.target.value })}
-            onBlur={onFieldBlur}
-            className="input"
-            placeholder="e.g. Intelligence, Wisdom, Charisma"
+            readOnly
+            className="input bg-charcoal/60"
           />
         </Field>
         <div className="grid grid-cols-2 gap-3">
@@ -63,18 +60,16 @@ export function SpellcastingStatsSection({ character, onChange }: SpellcastingSt
             <input
               type="number"
               value={character.spellSaveDc}
-              onChange={(e) => onChange({ spellSaveDc: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-              onBlur={onFieldBlur}
-              className="input"
+              readOnly
+              className="input bg-charcoal/60"
             />
           </Field>
           <Field label="Spell Attack Bonus">
             <input
               type="number"
               value={character.spellAttackBonus}
-              onChange={(e) => onChange({ spellAttackBonus: parseInt(e.target.value || "0", 10) })}
-              onBlur={onFieldBlur}
-              className="input"
+              readOnly
+              className="input bg-charcoal/60"
             />
           </Field>
         </div>
