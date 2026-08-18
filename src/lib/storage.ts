@@ -36,17 +36,17 @@ export interface Character {
   skills: Record<string, boolean>;
   passivePerception: number;
   features: { id: string; name: string; description: string }[];
-  inventory: { id: string; name: string; quantity: number }[];
-  currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
+  inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null }[];
   attacks: { id: string; name: string; attackBonus: number; damageType: string }[];
   otherProficiencies: string;
-  spells: { id: string; name: string; level: number }[];
+  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string }[];
   spellcastingAbility: string;
   spellSaveDc: number;
   spellAttackBonus: number;
   cantrips: { id: string; name: string }[];
   spellSlots: Record<number, number>;
   spellSlotsExpended: Record<number, number>;
+  currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
     age: string;
     height: string;
@@ -149,7 +149,6 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     passivePerception: 10,
     features: [],
     inventory: [],
-    currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
     attacks: [],
     otherProficiencies: "",
     spells: [],
@@ -159,6 +158,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     cantrips: [],
     spellSlots: {},
     spellSlotsExpended: {},
+    currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
     appearance: {
       age: "",
       height: "",
@@ -200,20 +200,32 @@ function normalizeCharacter(c: Character): Character {
     ...c,
     currency: {
       ...defaults.currency,
-      ...(c.currency ?? {}),
+      ...(c as any).currency,
     },
     appearance: {
       ...defaults.appearance,
-      ...(c.appearance ?? {}),
+      ...(c as any).appearance,
     },
     savingThrows: {
       ...defaults.savingThrows,
-      ...(c.savingThrows ?? {}),
+      ...(c as any).savingThrows,
     },
     spellSlots: {
       ...defaults.spellSlots,
-      ...(c.spellSlots ?? {}),
+      ...(c as any).spellSlots,
     },
+    spellSlotsExpended: {
+      ...defaults.spellSlotsExpended,
+      ...(c as any).spellSlotsExpended,
+    },
+    inventory: (c.inventory || []).map((item) => ({
+      ...defaults.inventory[0],
+      ...item,
+    })),
+    spells: (c.spells || []).map((spell) => ({
+      ...defaults.spells[0],
+      ...spell,
+    })),
   };
 }
 
@@ -253,4 +265,35 @@ export function getRaceData(name: string): { abilityScoreIncreases: Record<strin
   const increases = raceMap[name];
   if (!increases) return undefined;
   return { abilityScoreIncreases: increases };
+}
+
+export function computeEquippedEffects(character: Character): { ac: number; attacks: Character["attacks"] } {
+  const equippedWeapons = character.inventory.filter((item) => item.equipped && item.itemType === "weapon");
+  const equippedArmor = character.inventory.filter((item) => item.equipped && item.itemType === "armor");
+  const equippedShields = character.inventory.filter((item) => item.equipped && item.armorType === "shield");
+
+  let ac = 10 + getModifier(character.dex);
+
+  const bodyArmor = equippedArmor.find((a) => a.armorType !== "shield");
+  if (bodyArmor && bodyArmor.baseAC !== undefined) {
+    const maxDex = bodyArmor.maxDexBonus ?? null;
+    const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
+    ac = bodyArmor.baseAC + dexMod;
+  }
+
+  ac += equippedShields.length * 2;
+
+  const attacks: Character["attacks"] = equippedWeapons.map((weapon) => {
+    const abilityKey = weapon.category === "ranged" ? "dex" : "str";
+    const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
+    const profBonus = character.proficiencyBonus;
+    return {
+      id: weapon.id,
+      name: weapon.name,
+      attackBonus: abilityMod + profBonus,
+      damageType: [weapon.damageDice, weapon.damageType].filter(Boolean).join(" "),
+    };
+  });
+
+  return { ac, attacks };
 }

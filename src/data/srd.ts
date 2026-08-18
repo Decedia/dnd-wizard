@@ -35,6 +35,18 @@ export interface SRDSpell {
   description: string;
 }
 
+export interface SRDEquipment {
+  name: string;
+  description: string;
+  type: "weapon" | "armor" | "item";
+  category?: "melee" | "ranged";
+  damageDice?: string;
+  damageType?: string;
+  baseAC?: number;
+  armorType?: "light" | "medium" | "heavy" | "shield";
+  maxDexBonus?: number | null;
+}
+
 export const races: SRDRace[] = [
   {
     name: "Human",
@@ -192,9 +204,21 @@ export const spells: SRDSpell[] = [
   { name: "Magic Weapon", level: 1, description: "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls." },
 ];
 
+export const equipment: SRDEquipment[] = [
+  { name: "Longsword", description: "A versatile martial weapon, effective in slashing and thrusting attacks.", type: "weapon", category: "melee", damageDice: "1d8", damageType: "slashing" },
+  { name: "Shortbow", description: "A ranged weapon favored by rogues and rangers for its mobility.", type: "weapon", category: "ranged", damageDice: "1d6", damageType: "piercing" },
+  { name: "Leather Armor", description: "Light armor made from tough but flexible leather, offering basic protection.", type: "armor", baseAC: 11, armorType: "light", maxDexBonus: null },
+  { name: "Chain Shirt", description: "Medium armor made of interlocking metal rings, balancing protection and mobility.", type: "armor", baseAC: 13, armorType: "medium", maxDexBonus: 2 },
+  { name: "Dagger", description: "A simple, lightweight weapon that can be used in melee or thrown.", type: "weapon", category: "melee", damageDice: "1d4", damageType: "piercing" },
+  { name: "Shield", description: "A defensive tool that increases your Armor Class when wielded.", type: "armor", baseAC: 2, armorType: "shield" },
+  { name: "Potion of Healing", description: "Restores 2d4+2 hit points when consumed.", type: "item" },
+];
+
 export const raceNames = races.map((r) => r.name);
 export const classNames = classes.map((c) => c.name);
 export const skillNames = skills.map((s) => s.name);
+export const spellNames = spells.map((s) => s.name);
+export const equipmentNames = equipment.map((e) => e.name);
 
 export function getRaceData(name: string): SRDRace | undefined {
   return races.find((r) => r.name === name);
@@ -210,4 +234,8 @@ export function getSkillData(name: string): SRDSkill | undefined {
 
 export function getSpellData(name: string): SRDSpell | undefined {
   return spells.find((s) => s.name === name);
+}
+
+export function getEquipmentData(name: string): SRDEquipment | undefined {
+  return equipment.find((e) => e.name === name);
 }

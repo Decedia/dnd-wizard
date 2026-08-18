@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { spells as srdSpells, getSpellData } from "@/data/srd";
+import { spells as srdSpells } from "@/data/srd";
 import type { Character } from "@/lib/storage";
 
 interface SpellsSectionProps {
@@ -25,18 +25,38 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
     });
   };
 
-  const addItem = () => {
+  const addItem = (srdSpellName?: string) => {
+    const srdSpell = srdSpellName ? srdSpells.find((s) => s.name === srdSpellName) : undefined;
+    const newSpell: Character["spells"][number] = {
+      id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      name: srdSpell?.name ?? "",
+      level: srdSpell?.level ?? 0,
+      source: srdSpell ? "srd" : "custom",
+      srdSpellName: srdSpell?.name,
+    };
     onChange({
-      spells: [
-        ...character.spells,
-        { id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`, name: "", level: 0 },
-      ],
+      spells: [...character.spells, newSpell],
     });
   };
 
   const removeItem = (id: string) => {
     onChange({
       spells: character.spells.filter((s) => s.id !== id),
+    });
+  };
+
+  const handleSrdSelect = (spellId: string, srdName: string) => {
+    const srdSpell = srdSpells.find((s) => s.name === srdName);
+    if (!srdSpell) return;
+    const updated = {
+      ...character.spells.find((s) => s.id === spellId)!,
+      name: srdSpell.name,
+      level: srdSpell.level,
+      source: "srd" as const,
+      srdSpellName: srdSpell.name,
+    };
+    onChange({
+      spells: character.spells.map((s) => (s.id === spellId ? updated : s)),
     });
   };
 
@@ -56,27 +76,45 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
         <>
           <div className="mt-3 space-y-2">
             {character.spells.map((spell) => {
-              const description = getSpellData(spell.name)?.description;
+              const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
               return (
                 <div key={spell.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                  <input
-                    type="text"
-                    value={spell.name}
-                    onChange={(e) => updateItem(spell.id, { name: e.target.value })}
+                  <select
+                    value={spell.srdSpellName || (spell.source === "custom" ? "Custom Spell" : "")}
+                    onChange={(e) => {
+                      if (e.target.value === "Custom Spell") {
+                        updateItem(spell.id, { source: "custom", srdSpellName: undefined });
+                      } else if (e.target.value) {
+                        handleSrdSelect(spell.id, e.target.value);
+                      }
+                    }}
                     onBlur={onFieldBlur}
                     className="input flex-1"
-                    placeholder="Spell name"
-                    list="srd-spells"
-                  />
-                  <input
-                    type="number"
-                    min={0}
-                    max={9}
-                    value={spell.level}
-                    onChange={(e) => updateItem(spell.id, { level: Math.max(0, Math.min(9, parseInt(e.target.value || "0", 10))) })}
-                    onBlur={onFieldBlur}
-                    className="input w-16 text-center"
-                  />
+                  >
+                    <option value="">Select spell...</option>
+                    {srdSpells.map((s) => (
+                      <option key={s.name} value={s.name}>{s.name}</option>
+                    ))}
+                    <option value="Custom Spell">Custom Spell</option>
+                  </select>
+                  {spell.source === "custom" ? (
+                    <input
+                      type="number"
+                      min={0}
+                      max={9}
+                      value={spell.level}
+                      onChange={(e) => updateItem(spell.id, { level: Math.max(0, Math.min(9, parseInt(e.target.value || "0", 10))) })}
+                      onBlur={onFieldBlur}
+                      className="input w-16 text-center"
+                    />
+                  ) : (
+                    <input
+                      type="number"
+                      value={spell.level}
+                      readOnly
+                      className="input w-16 text-center bg-charcoal/60"
+                    />
+                  )}
                   {description && (
                     <button
                       type="button"
@@ -99,14 +137,9 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
               );
             })}
           </div>
-          <datalist id="srd-spells">
-            {srdSpells.map((spell) => (
-              <option key={spell.name} value={spell.name} />
-            ))}
-          </datalist>
           <button
             type="button"
-            onClick={addItem}
+            onClick={() => addItem()}
             className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
           >
             + Add Spell

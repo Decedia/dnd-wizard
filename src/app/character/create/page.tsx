@@ -165,14 +165,14 @@ export default function CharacterCreate() {
       case 7:
         return (
           <StepEquipment
-            data={{ inventory: character.inventory }}
+            data={character}
             onChange={(patch) => update(patch)}
           />
         );
       case 8:
         return (
           <StepSpells
-            data={{ spells: character.spells }}
+            data={character}
             onChange={(patch) => update(patch)}
           />
         );

@@ -3,6 +3,9 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
+import { computeEquippedEffects } from "@/lib/storage";
+import { getEquipmentData } from "@/data/srd";
+import { equipment as srdEquipment } from "@/data/srd";
 
 interface InventorySectionProps {
   character: Character;
@@ -11,27 +14,28 @@ interface InventorySectionProps {
 
 export function InventorySection({ character, onChange }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+
   const updateItem = (id: string, patch: Partial<Character["inventory"][number]>) => {
-    onChange({
-      inventory: character.inventory.map((item) =>
-        item.id === id ? { ...item, ...patch } : item
-      ),
-    });
+    const nextInventory = character.inventory.map((item) =>
+      item.id === id ? { ...item, ...patch } : item
+    );
+    const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+    onChange({ inventory: nextInventory, ac, attacks });
   };
 
   const addItem = () => {
     onChange({
       inventory: [
         ...character.inventory,
-        { id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`, name: "", quantity: 1 },
+        { id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`, name: "", quantity: 1, equipped: false, source: "custom" },
       ],
     });
   };
 
   const removeItem = (id: string) => {
-    onChange({
-      inventory: character.inventory.filter((item) => item.id !== id),
-    });
+    const nextInventory = character.inventory.filter((item) => item.id !== id);
+    const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+    onChange({ inventory: nextInventory, ac, attacks });
   };
 
   const updateCurrency = (field: "copper" | "silver" | "electrum" | "gold" | "platinum", value: number) => {
@@ -44,31 +48,82 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     <SectionCard id="inventory" title="Inventory" icon={<InventoryIcon className="h-5 w-5" />}>
       <div className="space-y-2">
         {character.inventory.map((item) => (
-          <div key={item.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-            <input
-              type="text"
-              value={item.name}
-              onChange={(e) => updateItem(item.id, { name: e.target.value })}
-              onBlur={onFieldBlur}
-              className="input flex-1"
-              placeholder="Item name"
-            />
-            <input
-              type="number"
-              min={1}
-              value={item.quantity}
-              onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
-              onBlur={onFieldBlur}
-              className="input w-16 text-center"
-            />
-            <button
-              type="button"
-              onClick={() => removeItem(item.id)}
-              className="text-parchment/40 hover:text-parchment"
-              aria-label="Remove item"
-            >
-              <XIcon className="h-4 w-4" />
-            </button>
+          <div key={item.id} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
+            <div className="flex items-center gap-2 mb-2">
+              <select
+                value={item.srdItemName || (item.source === "custom" ? "Custom Item" : "")}
+                onChange={(e) => {
+                  if (e.target.value === "Custom Item") {
+                    updateItem(item.id, { source: "custom", srdItemName: undefined });
+                  } else if (e.target.value) {
+                    const srdItem = getEquipmentData(e.target.value);
+                    if (srdItem) {
+                      updateItem(item.id, {
+                        name: srdItem.name,
+                        source: "srd",
+                        srdItemName: srdItem.name,
+                        itemType: srdItem.type,
+                        category: srdItem.category,
+                        damageDice: srdItem.damageDice,
+                        damageType: srdItem.damageType,
+                        baseAC: srdItem.baseAC,
+                        armorType: srdItem.armorType,
+                        maxDexBonus: srdItem.maxDexBonus,
+                      });
+                    }
+                  }
+                }}
+                onBlur={onFieldBlur}
+                className="input flex-1"
+              >
+                <option value="">Select item...</option>
+                {srdEquipment.map((eq) => (
+                  <option key={eq.name} value={eq.name}>{eq.name}</option>
+                ))}
+                <option value="Custom Item">Custom Item</option>
+              </select>
+              <input
+                type="number"
+                min={1}
+                value={item.quantity}
+                onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
+                onBlur={onFieldBlur}
+                className="input w-16 text-center"
+              />
+              <button
+                type="button"
+                onClick={() => removeItem(item.id)}
+                className="text-parchment/40 hover:text-parchment"
+                aria-label="Remove item"
+              >
+                <XIcon className="h-4 w-4" />
+              </button>
+            </div>
+            {item.source === "custom" && (
+              <input
+                type="text"
+                value={item.name}
+                onChange={(e) => updateItem(item.id, { name: e.target.value })}
+                onBlur={onFieldBlur}
+                className="input mb-2"
+                placeholder="Custom item name"
+              />
+            )}
+            {item.itemType && item.itemType !== "item" && (
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={item.equipped}
+                  onChange={(e) => updateItem(item.id, { equipped: e.target.checked })}
+                  onBlur={onFieldBlur}
+                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+                />
+                <span className="text-sm text-parchment/80">Equipped</span>
+              </label>
+            )}
+            {item.srdItemName && getEquipmentData(item.srdItemName)?.description && (
+              <p className="text-xs text-parchment/50 mt-1">{getEquipmentData(item.srdItemName)!.description}</p>
+            )}
           </div>
         ))}
       </div>
