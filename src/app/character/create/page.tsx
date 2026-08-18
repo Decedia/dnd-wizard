@@ -87,7 +87,21 @@ export default function CharacterCreate() {
       case 1:
         return (
           <StepIdentity
-            data={{ name: character.name, playerName: character.playerName, alignment: character.alignment }}
+            data={{
+              name: character.name,
+              playerName: character.playerName,
+              alignment: character.alignment,
+              level: character.level,
+              class: character.class,
+              str: character.str,
+              dex: character.dex,
+              con: character.con,
+              int: character.int,
+              wis: character.wis,
+              cha: character.cha,
+              features: character.features,
+              spellSlots: character.spellSlots,
+            }}
             onChange={(patch) => update(patch)}
           />
         );

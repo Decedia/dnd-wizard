@@ -28,6 +28,7 @@ export interface Character {
   inventory: { id: string; name: string; quantity: number }[];
   currency: { gold: number; silver: number; copper: number };
   spells: { id: string; name: string; level: number }[];
+  spellSlots: Record<number, number>;
   appearance: {
     age: string;
     height: string;
@@ -117,6 +118,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     inventory: [],
     currency: { gold: 0, silver: 0, copper: 0 },
     spells: [],
+    spellSlots: {},
     appearance: {
       age: "",
       height: "",

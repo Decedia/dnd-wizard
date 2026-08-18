@@ -7,6 +7,12 @@ export interface SRDRace {
   traits: { name: string; description: string }[];
 }
 
+export interface SRDClassLevel {
+  features: { name: string; description: string }[];
+  asi: boolean;
+  spellSlots?: Record<number, number>;
+}
+
 export interface SRDClass {
   name: string;
   hitDie: number;
@@ -14,6 +20,7 @@ export interface SRDClass {
   savingThrows: string[];
   flavorText: string;
   features: { name: string; description: string }[];
+  levels: SRDClassLevel[];
 }
 
 export interface SRDSkill {
@@ -86,8 +93,20 @@ export const classes: SRDClass[] = [
     savingThrows: ["str", "con"],
     flavorText: "A master of martial combat, skilled with weapons and armor.",
     features: [
-      { name: "Fighting Style", description: "You adopt a particular style of fighting as your specialty. Choose one of the options in the Player's Handbook or another approved style." },
-      { name: "Second Wind", description: "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level." },
+      { name: "Fighting Style", description: "You adopt a particular style of fighting as your specialty." },
+      { name: "Second Wind", description: "Regain hit points equal to 1d10 + your fighter level as a bonus action." },
+    ],
+    levels: [
+      { features: [{ name: "Fighting Style", description: "You adopt a particular style of fighting as your specialty." }, { name: "Second Wind", description: "Regain hit points equal to 1d10 + your fighter level as a bonus action." }], asi: false },
+      { features: [{ name: "Action Surge", description: "Take one additional action on your turn, once per short rest." }], asi: false },
+      { features: [{ name: "Martial Archetype", description: "Choose a martial archetype: Champion, Battle Master, or Eldritch Knight." }], asi: false },
+      { features: [], asi: true },
+      { features: [{ name: "Extra Attack", description: "Attack twice whenever you take the Attack action on your turn." }], asi: false },
+      { features: [], asi: false },
+      { features: [{ name: "Martial Archetype feature", description: "You gain a feature from your chosen Martial Archetype." }], asi: false },
+      { features: [], asi: true },
+      { features: [{ name: "Indomitable", description: "Reroll a failed saving throw, once per long rest." }], asi: false },
+      { features: [{ name: "Extra Indomitable use", description: "You can now use Indomitable twice between long rests." }], asi: false },
     ],
   },
   {
@@ -97,8 +116,20 @@ export const classes: SRDClass[] = [
     savingThrows: ["int", "wis"],
     flavorText: "A scholarly spellcaster who wields magic through study and arcane knowledge.",
     features: [
-      { name: "Spellcasting", description: "You can cast spells using an arcane focus. See the Player's Handbook for your spell list and spellcasting rules." },
-      { name: "Arcane Recovery", description: "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can recover spell slots with a combined level equal to half your wizard level (rounded up)." },
+      { name: "Spellcasting", description: "You can cast spells using an arcane focus and your spellbook." },
+      { name: "Arcane Recovery", description: "Recover spell slots once per day during a short rest." },
+    ],
+    levels: [
+      { features: [{ name: "Spellcasting", description: "You can cast spells using an arcane focus and your spellbook." }, { name: "Arcane Recovery", description: "Recover spell slots once per day during a short rest." }], asi: false, spellSlots: { 1: 2 } },
+      { features: [{ name: "Arcane Tradition", description: "Choose an arcane tradition: School of Evocation, etc." }], asi: false, spellSlots: { 1: 3 } },
+      { features: [], asi: false, spellSlots: { 1: 4, 2: 2 } },
+      { features: [], asi: true, spellSlots: { 1: 4, 2: 3 } },
+      { features: [], asi: false, spellSlots: { 1: 4, 2: 3, 3: 2 } },
+      { features: [{ name: "Arcane Tradition feature", description: "You gain a feature from your chosen Arcane Tradition." }], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3 } },
+      { features: [], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 1 } },
+      { features: [], asi: true, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 2 } },
+      { features: [], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 3, 5: 1 } },
+      { features: [{ name: "Arcane Tradition feature", description: "You gain a feature from your chosen Arcane Tradition." }], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 3, 5: 2 } },
     ],
   },
   {
@@ -108,9 +139,21 @@ export const classes: SRDClass[] = [
     savingThrows: ["dex", "int"],
     flavorText: "A stealthy trickster who excels at skills, stealth, and striking from the shadows.",
     features: [
-      { name: "Expertise", description: "Choose two of your skill proficiencies, or one skill and thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies." },
-      { name: "Sneak Attack", description: "You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal extra damage to one creature you hit with an attack if you have advantage on the attack roll." },
-      { name: "Thieves' Cant", description: "You know thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation." },
+      { name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools." },
+      { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll." },
+      { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues." },
+    ],
+    levels: [
+      { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools." }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll." }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues." }], asi: false },
+      { features: [{ name: "Cunning Action", description: "Use a bonus action to Dash, Disengage, or Hide." }], asi: false },
+      { features: [{ name: "Roguish Archetype", description: "Choose a roguish archetype: Thief, Assassin, or Arcane Trickster." }], asi: false },
+      { features: [], asi: true },
+      { features: [{ name: "Uncanny Dodge", description: "Use your reaction to halve the damage from an attack that hits you." }], asi: false },
+      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype." }], asi: false },
+      { features: [{ name: "Evasion", description: "Dodge out of the way of area effects on a successful Dexterity saving throw." }], asi: false },
+      { features: [], asi: true },
+      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype." }], asi: false },
+      { features: [{ name: "Stroke of Luck", description: "Turn a missed attack into a hit or a failed ability check into a success." }], asi: false },
     ],
   },
 ];

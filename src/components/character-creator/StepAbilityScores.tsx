@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { StepCard } from "./StepCard";
 import { getModifier, getRaceData } from "@/lib/storage";
-import { races } from "@/data/srd";
 
 interface StepAbilityScoresProps {
   data: {
