@@ -2,9 +2,9 @@
 
 ## Current State
 
-**App Status**: ✅ Character creation wizard complete with SRD data
+**App Status**: ✅ Level Up system complete
 
-The character creation wizard is fully wired and uses real 5e SRD data from a single shared source (`src/data/srd.ts`). Racial ability score bonuses auto-apply during the Ability Scores step. Non-Wizard classes (Fighter/Rogue) skip the Spells step. The character sheet also pulls race/class/skill/spell hints from the same SRD data file.
+The character creation wizard and character sheet both support a Level Up system. When the level field increases, a modal opens showing cumulative new class features, an ASI picker with +/- controls, and Wizard spell slot summaries. The SRD data now includes levels 1-10 for each class with features, ASI markers (levels 4 and 8), and Wizard spell slot progression.
 
 ## Recently Completed
 
@@ -33,6 +33,11 @@ The character creation wizard is fully wired and uses real 5e SRD data from a si
 - [x] Skip Spells step for non-Wizard classes (Fighter/Rogue auto-skip to Final Touches)
 - [x] Fix StepBackground persistence bug (was passing empty strings instead of character state)
 - [x] Update Character Sheet IdentitySection, SkillsSection, SpellsSection to pull from SRD data
+- [x] Expand SRD class data with levels 1-10 arrays (features, ASI, spell slots)
+- [x] Create reusable LevelUpModal component with features list, ASI picker, spell slots summary
+- [x] Create useLevelUp hook for detecting level increases and computing cumulative level data
+- [x] Wire level-up modal into Character Sheet IdentitySection and Creation Flow StepIdentity
+- [x] Add spellSlots field to Character type for Wizard spell slot tracking
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
@@ -47,7 +52,10 @@ The character creation wizard is fully wired and uses real 5e SRD data from a si
 | `src/components/BottomNav.tsx` | Floating bottom nav with dragon hero | ✅ Ready |
 | `src/components/AppHeader.tsx` | App header with dragon logo | ✅ Ready |
 | `src/lib/storage.ts` | LocalStorage CRUD + Character type + helpers | ✅ Ready |
-| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells) | ✅ Ready |
+| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells, levels 1-10) | ✅ Ready |
+| `src/lib/level-up.ts` | Level-up computation helpers | ✅ Ready |
+| `src/hooks/useLevelUp.ts` | Reusable level-up state hook | ✅ Ready |
+| `src/components/level-up/LevelUpModal.tsx` | Reusable level-up modal component | ✅ Ready |
 | `src/components/character-creator/StepRace.tsx` | Race selection with SRD traits | ✅ Ready |
 | `src/components/character-creator/StepClass.tsx` | Class selection with SRD features | ✅ Ready |
 | `src/components/character-creator/StepAbilityScores.tsx` | Ability scores with racial auto-bonuses | ✅ Ready |
@@ -68,7 +76,7 @@ The character creation wizard is fully wired and uses real 5e SRD data from a si
 
 ## Current Focus
 
-Character sheet and creation wizard are complete with SRD data integration. Next steps:
+Level Up system is complete. Next steps:
 1. Add character deletion from home screen
 2. Implement PDF export/import
 3. Add database persistence (via add-database recipe)
@@ -87,3 +95,4 @@ Character sheet and creation wizard are complete with SRD data integration. Next
 | 2026-08-18 | Replaced nav demo with DND Wizard app scaffold |
 | 2026-08-18 | Built full character sheet screen with 7 sections, auto-save, sticky header, section nav |
 | 2026-08-18 | Replaced all placeholder data with real 5e SRD data, added racial bonus auto-calculation, auto-skip Spells for non-Wizards |
+| 2026-08-18 | Added Level Up system with reusable modal, SRD levels 1-10 data, ASI picker, and Wizard spell slot summaries |
