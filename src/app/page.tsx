@@ -14,7 +14,7 @@ export default function Home() {
       <main className="px-4 py-6 pb-28">
         <div className="mb-6">
           <Link
-            href="/character/new"
+            href="/character/create"
             className="flex items-center justify-center gap-2 rounded-xl bg-burgundy px-6 py-4 text-lg font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98]"
           >
             <span className="text-2xl leading-none">🐉</span>
