@@ -49,7 +49,7 @@ export default function CharacterCreate() {
 
   const handleNext = () => {
     if (!canProceed()) return;
-    if (step < effectiveTotalSteps) {
+    if (effectiveStep < effectiveTotalSteps) {
       if (!isWizard && step === 7) {
         setStep(9);
       } else {
@@ -210,11 +210,11 @@ export default function CharacterCreate() {
             </button>
           )}
           <button
-            onClick={step === effectiveTotalSteps ? handleFinish : handleNext}
+            onClick={effectiveStep === effectiveTotalSteps ? handleFinish : handleNext}
             disabled={!canProceed()}
             className="flex-1 rounded-xl bg-burgundy px-6 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
           >
-            {step === effectiveTotalSteps ? "Finish & Save" : "Next"}
+            {effectiveStep === effectiveTotalSteps ? "Finish & Save" : "Next"}
           </button>
         </div>
       </div>
