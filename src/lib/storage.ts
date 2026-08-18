@@ -7,6 +7,12 @@ export interface Character {
   level: number;
   background: string;
   alignment: string;
+  personalityTrait1: string;
+  personalityTrait2: string;
+  ideal: string;
+  bond: string;
+  flaw: string;
+  abilityMethod: "standard" | "pointbuy" | "manual";
   str: number;
   dex: number;
   con: number;
@@ -90,6 +96,12 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     level: 1,
     background: "",
     alignment: "",
+    personalityTrait1: "",
+    personalityTrait2: "",
+    ideal: "",
+    bond: "",
+    flaw: "",
+    abilityMethod: "standard",
     str: 10,
     dex: 10,
     con: 10,

@@ -11,7 +11,7 @@ const navItems = [
   },
   {
     name: "New Character",
-    href: "/character/new",
+    href: "/character/create",
     icon: DragonIcon,
     isHero: true,
   },
