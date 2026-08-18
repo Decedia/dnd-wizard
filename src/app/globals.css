@@ -25,6 +25,15 @@
   }
 }
 
+@layer components {
+  .input {
+    @apply rounded-lg border border-parchment/15 bg-charcoal px-3 py-2 text-sm text-parchment outline-none transition-colors placeholder:text-parchment/30 focus:border-gold/50 focus:ring-1 focus:ring-gold/50;
+  }
+  textarea.input {
+    @apply resize-y;
+  }
+}
+
 @layer utilities {
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom, 16px);

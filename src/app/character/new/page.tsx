@@ -1,24 +1,21 @@
 "use client";
 
-import { AppHeader } from "@/components/AppHeader";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { createEmptyCharacter, saveCharacter } from "@/lib/storage";
 
-export default function CharacterCreator() {
+export default function NewCharacter() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const character = createEmptyCharacter();
+    saveCharacter(character);
+    router.replace(`/character/${character.id}`);
+  }, [router]);
+
   return (
-    <div className="min-h-screen bg-charcoal">
-      <AppHeader title="Character Creator" subtitle="Step-by-step creation" />
-
-      <main className="px-4 py-6 pb-28">
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
-          <div className="mb-4 text-5xl opacity-40">🐉</div>
-          <h2 className="font-display text-xl font-semibold text-parchment mb-2">
-            Character Creator
-          </h2>
-          <p className="text-sm text-parchment/50 max-w-xs">
-            The creation flow will guide you through building your D&D 5e hero.
-            Coming soon.
-          </p>
-        </div>
-      </main>
+    <div className="flex items-center justify-center min-h-screen bg-charcoal">
+      <div className="text-parchment/50">Creating new character...</div>
     </div>
   );
 }

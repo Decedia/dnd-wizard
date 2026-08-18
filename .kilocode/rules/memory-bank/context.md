@@ -2,45 +2,62 @@
 
 ## Current State
 
-**App Status**: ✅ Foundation scaffold complete
+**App Status**: ✅ Character sheet screen complete
 
-The "DND Wizard" mobile-first D&D 5e character creator shell is in place with dark fantasy theme, persistent local storage, bottom navigation, and placeholder screens for the character creation flow.
+The character sheet screen is built with all 7 sections, sticky mini-header, floating vertical section navigation with scroll-spy, auto-save on blur (debounced), and manual save with confirmation.
 
 ## Recently Completed
 
-- [x] Project scaffold with Next.js 16 + TypeScript + Tailwind CSS 4
-- [x] Dark fantasy theme: deep charcoal background, parchment cards, burgundy accent, gold highlights
-- [x] Custom typography: Cinzel (display/title), Geist (body)
-- [x] Floating bottom navigation (pill shape, dragon icon hero button for New Character)
-- [x] Home screen with "My Characters" list and empty state
-- [x] Character Creation placeholder (`/character/new`)
-- [x] Character View placeholder (`/character/[id]`)
-- [x] Local storage utilities for character persistence
-- [x] Mobile-first layout with max-width container, large tap targets
-- [x] Lint and typecheck passing
-- [x] Production build verified
+- [x] Extended `Character` type with full sheet fields (identity, stats, skills, features, inventory, spells, appearance)
+- [x] Local storage utilities for character CRUD + empty character factory
+- [x] `SectionCard` base component with header and divider
+- [x] `IdentitySection` - name, race, class, level, background, alignment
+- [x] `StatsSection` - 6 ability scores with auto-modifiers, AC, HP, speed
+- [x] `SkillsSection` - 18 standard 5e skills with proficiency checkboxes and auto-calculated totals
+- [x] `FeaturesTraitsSection` - repeatable name/description list with add/remove
+- [x] `InventorySection` - repeatable item/quantity list with currency row
+- [x] `SpellsSection` - repeatable spell name/level list with collapse toggle
+- [x] `AppearanceBioSection` - age, height, weight, eyes, skin, hair, personality, backstory
+- [x] `StickyMiniHeader` - shows character name + class/level while scrolling
+- [x] `SectionNav` - floating vertical pill nav with scroll-spy (desktop)
+- [x] `CharacterSheetContext` - provides debounced auto-save to all section inputs
+- [x] Character view page (`/character/[id]`) with manual save + confirmation toast
+- [x] `/character/new` creates empty character and redirects to its sheet
+- [x] All icons updated to flat SVG design
+- [x] Lint, typecheck, and build verified
 
 ## Current Structure
 
 | File/Directory | Purpose | Status |
 |----------------|---------|--------|
-| `src/app/globals.css` | Dark fantasy theme, custom colors, fonts | ✅ Ready |
+| `src/app/globals.css` | Dark fantasy theme, `.input` styles | ✅ Ready |
 | `src/app/layout.tsx` | Root layout with fonts + bottom nav | ✅ Ready |
-| `src/app/page.tsx` | Home screen (My Characters list, empty state) | ✅ Ready |
-| `src/app/character/new/page.tsx` | Character Creator placeholder | ✅ Ready |
-| `src/app/character/[id]/page.tsx` | Character View placeholder | ✅ Ready |
-| `src/components/BottomNav.tsx` | Floating bottom nav with dragon hero button | ✅ Ready |
-| `src/components/AppHeader.tsx` | App header with dragon logo + title | ✅ Ready |
-| `src/lib/storage.ts` | LocalStorage CRUD for characters | ✅ Ready |
+| `src/app/page.tsx` | Home screen (My Characters list) | ✅ Ready |
+| `src/app/character/new/page.tsx` | Creates empty character and redirects | ✅ Ready |
+| `src/app/character/[id]/page.tsx` | Full character sheet page | ✅ Ready |
+| `src/components/BottomNav.tsx` | Floating bottom nav with dragon hero | ✅ Ready |
+| `src/components/AppHeader.tsx` | App header with dragon logo | ✅ Ready |
+| `src/lib/storage.ts` | LocalStorage CRUD + Character type + helpers | ✅ Ready |
+| `src/components/character-sheet/SectionCard.tsx` | Base card component | ✅ Ready |
+| `src/components/character-sheet/StickyMiniHeader.tsx` | Sticky scroll header | ✅ Ready |
+| `src/components/character-sheet/SectionNav.tsx` | Floating vertical section nav with scroll-spy | ✅ Ready |
+| `src/components/character-sheet/CharacterSheetContext.tsx` | Context for auto-save blur handler | ✅ Ready |
+| `src/components/character-sheet/IdentitySection.tsx` | Identity fields | ✅ Ready |
+| `src/components/character-sheet/StatsSection.tsx` | Stats with auto-modifiers | ✅ Ready |
+| `src/components/character-sheet/SkillsSection.tsx` | 18 skills with proficiency checkboxes | ✅ Ready |
+| `src/components/character-sheet/FeaturesTraitsSection.tsx` | Repeatable features/traits | ✅ Ready |
+| `src/components/character-sheet/InventorySection.tsx` | Repeatable inventory + currency | ✅ Ready |
+| `src/components/character-sheet/SpellsSection.tsx` | Repeatable spells with collapse toggle | ✅ Ready |
+| `src/components/character-sheet/AppearanceBioSection.tsx` | Appearance & backstory | ✅ Ready |
 
 ## Current Focus
 
-Foundation is complete. Next steps:
+Character sheet is complete. Next steps:
 
-1. Implement race/class selection steps in `/character/new`
-2. Build character sheet sections (ability scores, skills, equipment)
-3. Add stat calculations and validation
-4. Expand bottom nav or add character deletion
+1. Implement step-by-step Character Creator flow (`/character/new`)
+2. Add PDF export/import
+3. Wire in real SRD race/class/spell data
+4. Add character deletion from home screen
 
 ## Available Recipes
 
@@ -54,3 +71,4 @@ Foundation is complete. Next steps:
 |------|---------|
 | Initial | Template created with base setup |
 | 2026-08-18 | Replaced nav demo with DND Wizard app scaffold |
+| 2026-08-18 | Built full character sheet screen with 7 sections, auto-save, sticky header, section nav |
