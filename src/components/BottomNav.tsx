@@ -26,8 +26,8 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-md safe-bottom">
-      <div className="flex items-center justify-around rounded-full border border-gold/20 bg-charcoal-light/90 px-2 py-2 shadow-2xl backdrop-blur-xl">
+    <nav className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-xs safe-bottom">
+      <div className="flex items-center justify-around rounded-full border border-gold/20 bg-charcoal-light/90 px-2 py-1.5 shadow-2xl backdrop-blur-xl">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = item.isHero
@@ -40,14 +40,14 @@ export function BottomNav() {
               className={`
                 flex flex-col items-center gap-0.5 rounded-full transition-all duration-200
                 ${item.isHero
-                  ? "relative -top-2 bg-burgundy p-3 shadow-lg shadow-burgundy/30"
-                  : "px-3 py-1.5"
+                  ? "relative -top-1.5 bg-burgundy px-3 py-1.5 shadow-lg shadow-burgundy/30"
+                  : "px-2.5 py-1"
                 }
                 ${isActive && !item.isHero ? "text-gold" : "text-parchment/60 hover:text-parchment"}
               `}
               aria-current={isActive ? "page" : undefined}
             >
-              <Icon className={`${item.isHero ? "h-7 w-7" : "h-5 w-5"}`} />
+              <Icon className={`${item.isHero ? "text-lg" : "text-sm"}`} />
               <span className={`font-medium ${item.isHero ? "text-[10px]" : "text-[10px]"}`}>
                 {item.name}
               </span>
@@ -60,22 +60,13 @@ export function BottomNav() {
 }
 
 function HomeIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-    </svg>
-  );
+  return <i className={`fa-solid fa-house ${className ?? ""}`} />;
 }
 
 function DragonIcon({ className }: { className?: string }) {
-  return <i className={`fa-solid fa-dragon ${className ?? ""}`} />;
+  return <i className={`fa-solid fa-hat-wizard ${className ?? ""}`} />;
 }
 
 function ScrollIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M8 21h12a2 2 0 002-2v-2H10v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2v2h8v-2a2 2 0 00-2-2H8z" />
-      <path d="M4 5h16v12H4z" />
-    </svg>
-  );
+  return <i className={`fa-solid fa-scroll ${className ?? ""}`} />;
 }

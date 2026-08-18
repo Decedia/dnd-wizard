@@ -13,7 +13,7 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
       <div className="mx-auto max-w-lg px-4 py-4">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-burgundy shadow-md shadow-burgundy/20 transition-transform group-hover:scale-105">
-            <i className="fa-solid fa-dragon h-6 w-6 text-gold flex items-center justify-center" />
+            <i className="fa-solid fa-hat-wizard text-2xl text-gold" />
           </div>
           <div className="flex flex-col">
             <h1 className="font-display text-xl font-bold tracking-wide text-gold">
