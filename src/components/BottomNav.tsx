@@ -28,7 +28,7 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-sm safe-bottom">
-      <div className="flex items-center justify-around rounded-full border border-gold/20 bg-charcoal-light/90 px-4 py-2.5 shadow-2xl backdrop-blur-xl">
+      <div className="flex items-center rounded-full border border-gold/20 bg-charcoal-light/90 shadow-2xl backdrop-blur-xl overflow-hidden">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = item.isHero
@@ -39,10 +39,10 @@ export function BottomNav() {
               key={item.name}
               href={item.href}
               className={`
-                flex flex-col items-center gap-1 rounded-full transition-all duration-200
+                flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200
                 ${item.isHero
-                  ? "relative -top-2 bg-burgundy px-4 py-2 shadow-lg shadow-burgundy/30"
-                  : "px-4 py-1.5"
+                  ? "bg-burgundy shadow-lg shadow-burgundy/30"
+                  : ""
                 }
                 ${isActive && !item.isHero ? "text-gold" : "text-parchment/60 hover:text-parchment"}
               `}
