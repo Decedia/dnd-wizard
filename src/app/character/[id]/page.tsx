@@ -1,10 +1,10 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
-import { getCharacter, saveCharacter, type Character } from "@/lib/storage";
+import { getCharacter, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { StickyMiniHeader } from "@/components/character-sheet/StickyMiniHeader";
 import { SectionNav } from "@/components/character-sheet/SectionNav";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
@@ -18,6 +18,7 @@ import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBio
 
 export default function CharacterView() {
   const params = useParams();
+  const router = useRouter();
   const id = params.id as string;
 
   const [character, setCharacter] = useState<Character | null>(() => {
@@ -49,6 +50,13 @@ export default function CharacterView() {
       saveCharacter(character);
       setSavedAt(Date.now());
       setTimeout(() => setSavedAt(null), 2000);
+    }
+  };
+
+  const handleDelete = () => {
+    if (character && window.confirm(`Are you sure you want to delete ${character.name || "this character"}? This action cannot be undone.`)) {
+      deleteCharacter(character.id);
+      router.push("/");
     }
   };
 
@@ -120,6 +128,15 @@ export default function CharacterView() {
                 Saved
               </div>
             )}
+          </div>
+          <div className="mx-auto max-w-lg mb-4">
+            <button
+              onClick={handleDelete}
+              className="w-full rounded-xl border border-red-500/30 bg-red-500/10 px-6 py-3 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98]"
+            >
+              <i className="fa-solid fa-trash mr-2" />
+              Delete Character
+            </button>
           </div>
         </main>
       </CharacterSheetProvider>

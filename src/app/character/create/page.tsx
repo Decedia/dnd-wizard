@@ -199,7 +199,7 @@ export default function CharacterCreate() {
         </div>
       </main>
 
-      <div className="fixed bottom-16 left-0 right-0 z-40 bg-gradient-to-t from-charcoal via-charcoal to-transparent pt-6 pb-4">
+      <div className="fixed bottom-24 left-0 right-0 z-50 bg-gradient-to-t from-charcoal via-charcoal to-transparent pt-6 pb-4">
         <div className="mx-auto max-w-lg px-4 flex items-center gap-3">
           {step > 1 && (
             <button
