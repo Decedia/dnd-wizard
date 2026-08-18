@@ -2,9 +2,9 @@
 
 ## Current State
 
-**App Status**: ✅ Character sheet screen complete
+**App Status**: ✅ Character creation wizard complete with SRD data
 
-The character sheet screen is built with all 7 sections, sticky mini-header, floating vertical section navigation with scroll-spy, auto-save on blur (debounced), and manual save with confirmation.
+The character creation wizard is fully wired and uses real 5e SRD data from a single shared source (`src/data/srd.ts`). Racial ability score bonuses auto-apply during the Ability Scores step. Non-Wizard classes (Fighter/Rogue) skip the Spells step. The character sheet also pulls race/class/skill/spell hints from the same SRD data file.
 
 ## Recently Completed
 
@@ -24,6 +24,15 @@ The character sheet screen is built with all 7 sections, sticky mini-header, flo
 - [x] Character view page (`/character/[id]`) with manual save + confirmation toast
 - [x] `/character/new` creates empty character and redirects to its sheet
 - [x] All icons updated to flat SVG design
+- [x] Wire create button to step-by-step character creation wizard (`/character/create`)
+- [x] Create `src/data/srd.ts` with real 5e SRD data (races, classes, skills, spells)
+- [x] Update Race and Class steps to use SRD data with expandable traits/features
+- [x] Update Ability Scores step to auto-apply racial bonuses and show base + final scores
+- [x] Update Skills step hints to use real SRD descriptions
+- [x] Update Spells step to use real SRD spell list and descriptions
+- [x] Skip Spells step for non-Wizard classes (Fighter/Rogue auto-skip to Final Touches)
+- [x] Fix StepBackground persistence bug (was passing empty strings instead of character state)
+- [x] Update Character Sheet IdentitySection, SkillsSection, SpellsSection to pull from SRD data
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
@@ -38,6 +47,13 @@ The character sheet screen is built with all 7 sections, sticky mini-header, flo
 | `src/components/BottomNav.tsx` | Floating bottom nav with dragon hero | ✅ Ready |
 | `src/components/AppHeader.tsx` | App header with dragon logo | ✅ Ready |
 | `src/lib/storage.ts` | LocalStorage CRUD + Character type + helpers | ✅ Ready |
+| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells) | ✅ Ready |
+| `src/components/character-creator/StepRace.tsx` | Race selection with SRD traits | ✅ Ready |
+| `src/components/character-creator/StepClass.tsx` | Class selection with SRD features | ✅ Ready |
+| `src/components/character-creator/StepAbilityScores.tsx` | Ability scores with racial auto-bonuses | ✅ Ready |
+| `src/components/character-creator/StepSkills.tsx` | Skill selection with SRD descriptions | ✅ Ready |
+| `src/components/character-creator/StepSpells.tsx` | Spell picker with SRD data (Wizard only) | ✅ Ready |
+| `src/components/character-creator/StepFinalTouches.tsx` | Appearance and backstory | ✅ Ready |
 | `src/components/character-sheet/SectionCard.tsx` | Base card component | ✅ Ready |
 | `src/components/character-sheet/StickyMiniHeader.tsx` | Sticky scroll header | ✅ Ready |
 | `src/components/character-sheet/SectionNav.tsx` | Floating vertical section nav with scroll-spy | ✅ Ready |
@@ -52,12 +68,10 @@ The character sheet screen is built with all 7 sections, sticky mini-header, flo
 
 ## Current Focus
 
-Character sheet is complete. Next steps:
-
-1. Implement step-by-step Character Creator flow (`/character/new`)
-2. Add PDF export/import
-3. Wire in real SRD race/class/spell data
-4. Add character deletion from home screen
+Character sheet and creation wizard are complete with SRD data integration. Next steps:
+1. Add character deletion from home screen
+2. Implement PDF export/import
+3. Add database persistence (via add-database recipe)
 
 ## Available Recipes
 
@@ -72,3 +86,4 @@ Character sheet is complete. Next steps:
 | Initial | Template created with base setup |
 | 2026-08-18 | Replaced nav demo with DND Wizard app scaffold |
 | 2026-08-18 | Built full character sheet screen with 7 sections, auto-save, sticky header, section nav |
+| 2026-08-18 | Replaced all placeholder data with real 5e SRD data, added racial bonus auto-calculation, auto-skip Spells for non-Wizards |
