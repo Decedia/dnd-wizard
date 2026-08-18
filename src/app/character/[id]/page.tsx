@@ -12,8 +12,11 @@ import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
 import { SkillsSection } from "@/components/character-sheet/SkillsSection";
 import { FeaturesTraitsSection } from "@/components/character-sheet/FeaturesTraitsSection";
+import { AttacksAndSpellcastingSection } from "@/components/character-sheet/AttacksAndSpellcastingSection";
 import { InventorySection } from "@/components/character-sheet/InventorySection";
+import { OtherProficienciesSection } from "@/components/character-sheet/OtherProficienciesSection";
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
+import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { Trash2 } from "lucide-react";
 
@@ -106,13 +109,16 @@ export default function CharacterView() {
             <StatsSection character={character} onChange={handleChange} />
             <SkillsSection character={character} onChange={handleChange} />
             <FeaturesTraitsSection character={character} onChange={handleChange} />
+            <AttacksAndSpellcastingSection character={character} onChange={handleChange} />
             <InventorySection character={character} onChange={handleChange} />
+            <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} />
             <SpellsSection
               character={character}
               onChange={handleChange}
               collapsed={spellsCollapsed}
               onToggleCollapse={() => setSpellsCollapsed((c) => !c)}
             />
+            <SpellcastingStatsSection character={character} onChange={handleChange} />
             <AppearanceBioSection character={character} onChange={handleChange} />
           </div>
 

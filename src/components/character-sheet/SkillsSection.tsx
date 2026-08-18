@@ -7,8 +7,8 @@ import { skills as srdSkills } from "@/data/srd";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 
 interface SkillsSectionProps {
-  character: Character;
-  onChange: (patch: Partial<Character>) => void;
+  character: Character & { passivePerception: number };
+  onChange: (patch: Partial<Character & { passivePerception: number }>) => void;
 }
 
 export function SkillsSection({ character, onChange }: SkillsSectionProps) {
@@ -52,7 +52,19 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
                 >
                   <InfoIcon className="h-4 w-4" />
                 </button>
-              </div>
+      </div>
+
+      <div className="mt-3">
+        <Field label="Passive Wisdom (Perception)">
+          <input
+            type="number"
+            value={character.passivePerception}
+            onChange={(e) => onChange({ passivePerception: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+            onBlur={onFieldBlur}
+            className="input max-w-[120px]"
+          />
+        </Field>
+      </div>
             </div>
           );
         })}
@@ -99,5 +111,14 @@ function SkillsIcon({ className }: { className?: string }) {
       <path d="M9 11l3 3L22 4" />
       <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
     </svg>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+      {children}
+    </label>
   );
 }

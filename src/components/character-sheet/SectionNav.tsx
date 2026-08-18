@@ -7,8 +7,11 @@ const sections = [
   { id: "stats", label: "Stats", Icon: StatsIcon },
   { id: "skills", label: "Skills", Icon: SkillsIcon },
   { id: "features", label: "Features", Icon: FeaturesIcon },
+  { id: "attacks", label: "Attacks", Icon: AttacksIcon },
   { id: "inventory", label: "Inventory", Icon: InventoryIcon },
+  { id: "proficiencies", label: "Proficiencies", Icon: ProficienciesIcon },
   { id: "spells", label: "Spells", Icon: SpellsIcon },
+  { id: "spellcasting", label: "Spellcasting", Icon: SpellcastingIcon },
   { id: "appearance", label: "Appearance", Icon: AppearanceIcon },
 ];
 
@@ -109,6 +112,34 @@ function InventoryIcon({ className }: { className?: string }) {
 }
 
 function SpellsIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  );
+}
+
+function AttacksIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.5 17.5L3 6V3h3l11.5 11.5" />
+      <path d="M13 19l6-6" />
+      <path d="M16 16l4 4" />
+      <path d="M19 21l2-2" />
+    </svg>
+  );
+}
+
+function ProficienciesIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+    </svg>
+  );
+}
+
+function SpellcastingIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />

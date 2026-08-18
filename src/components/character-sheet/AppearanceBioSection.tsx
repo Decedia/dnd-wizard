@@ -5,8 +5,23 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 
 interface AppearanceBioSectionProps {
-  character: Character;
-  onChange: (patch: Partial<Character>) => void;
+  character: Character & {
+    appearance: {
+      age: string;
+      height: string;
+      weight: string;
+      eyes: string;
+      skin: string;
+      hair: string;
+      characterAppearance: string;
+      personality: string;
+      backstory: string;
+      alliesOrganizations: string;
+      additionalFeaturesTraits: string;
+      treasure: string;
+    };
+  };
+  onChange: (patch: Partial<Character & { appearance: Character["appearance"] }>) => void;
 }
 
 export function AppearanceBioSection({ character, onChange }: AppearanceBioSectionProps) {
@@ -83,6 +98,15 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-4">
+        <Field label="Character Appearance">
+          <textarea
+            value={character.appearance.characterAppearance}
+            onChange={(e) => updateField("characterAppearance", e.target.value)}
+            onBlur={onFieldBlur}
+            className="input min-h-[80px]"
+            placeholder="Describe your character's physical appearance..."
+          />
+        </Field>
         <Field label="Personality">
           <textarea
             value={character.appearance.personality}
@@ -99,6 +123,33 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
             onBlur={onFieldBlur}
             className="input min-h-[120px]"
             placeholder="Where did your character come from? What drives them?"
+          />
+        </Field>
+        <Field label="Allies & Organizations">
+          <textarea
+            value={character.appearance.alliesOrganizations}
+            onChange={(e) => updateField("alliesOrganizations", e.target.value)}
+            onBlur={onFieldBlur}
+            className="input min-h-[80px]"
+            placeholder="List allies, organizations, or contacts..."
+          />
+        </Field>
+        <Field label="Additional Features & Traits">
+          <textarea
+            value={character.appearance.additionalFeaturesTraits}
+            onChange={(e) => updateField("additionalFeaturesTraits", e.target.value)}
+            onBlur={onFieldBlur}
+            className="input min-h-[80px]"
+            placeholder="Any additional features or traits not listed elsewhere..."
+          />
+        </Field>
+        <Field label="Treasure">
+          <textarea
+            value={character.appearance.treasure}
+            onChange={(e) => updateField("treasure", e.target.value)}
+            onBlur={onFieldBlur}
+            className="input min-h-[80px]"
+            placeholder="Notable treasure, magic items, or valuables..."
           />
         </Field>
       </div>

@@ -7,6 +7,7 @@ export interface Character {
   level: number;
   background: string;
   alignment: string;
+  experiencePoints: number;
   personalityTrait1: string;
   personalityTrait2: string;
   ideal: string;
@@ -19,16 +20,33 @@ export interface Character {
   int: number;
   wis: number;
   cha: number;
+  inspiration: boolean;
+  proficiencyBonus: number;
   ac: number;
   currentHp: number;
   maxHp: number;
+  temporaryHp: number;
+  hitDiceTotal: string;
+  hitDiceRemaining: number;
+  deathSaveSuccesses: number;
+  deathSaveFailures: number;
+  initiative: number;
   speed: number;
+  savingThrows: Record<string, { proficient: boolean; value: number }>;
   skills: Record<string, boolean>;
+  passivePerception: number;
   features: { id: string; name: string; description: string }[];
   inventory: { id: string; name: string; quantity: number }[];
-  currency: { gold: number; silver: number; copper: number };
+  currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
+  attacks: { id: string; name: string; attackBonus: number; damageType: string }[];
+  otherProficiencies: string;
   spells: { id: string; name: string; level: number }[];
+  spellcastingAbility: string;
+  spellSaveDc: number;
+  spellAttackBonus: number;
+  cantrips: { id: string; name: string }[];
   spellSlots: Record<number, number>;
+  spellSlotsExpended: Record<number, number>;
   appearance: {
     age: string;
     height: string;
@@ -36,8 +54,12 @@ export interface Character {
     eyes: string;
     skin: string;
     hair: string;
+    characterAppearance: string;
     personality: string;
     backstory: string;
+    alliesOrganizations: string;
+    additionalFeaturesTraits: string;
+    treasure: string;
   };
   createdAt: number;
   updatedAt: number;
@@ -97,6 +119,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     level: 1,
     background: "",
     alignment: "",
+    experiencePoints: 0,
     personalityTrait1: "",
     personalityTrait2: "",
     ideal: "",
@@ -109,16 +132,33 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     int: 10,
     wis: 10,
     cha: 10,
+    inspiration: false,
+    proficiencyBonus: 2,
     ac: 10,
     currentHp: 10,
     maxHp: 10,
+    temporaryHp: 0,
+    hitDiceTotal: "",
+    hitDiceRemaining: 0,
+    deathSaveSuccesses: 0,
+    deathSaveFailures: 0,
+    initiative: 0,
     speed: 30,
+    savingThrows: {},
     skills: {},
+    passivePerception: 10,
     features: [],
     inventory: [],
-    currency: { gold: 0, silver: 0, copper: 0 },
+    currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
+    attacks: [],
+    otherProficiencies: "",
     spells: [],
+    spellcastingAbility: "",
+    spellSaveDc: 0,
+    spellAttackBonus: 0,
+    cantrips: [],
     spellSlots: {},
+    spellSlotsExpended: {},
     appearance: {
       age: "",
       height: "",
@@ -126,8 +166,12 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
       eyes: "",
       skin: "",
       hair: "",
+      characterAppearance: "",
       personality: "",
       backstory: "",
+      alliesOrganizations: "",
+      additionalFeaturesTraits: "",
+      treasure: "",
     },
     createdAt: Date.now(),
     updatedAt: Date.now(),
@@ -142,10 +186,35 @@ export function getCharacters(): Character[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
-    return JSON.parse(raw) as Character[];
+    const parsed = JSON.parse(raw) as Character[];
+    return parsed.map((c) => normalizeCharacter(c));
   } catch {
     return [];
   }
+}
+
+function normalizeCharacter(c: Character): Character {
+  const defaults = createEmptyCharacter();
+  return {
+    ...defaults,
+    ...c,
+    currency: {
+      ...defaults.currency,
+      ...(c.currency ?? {}),
+    },
+    appearance: {
+      ...defaults.appearance,
+      ...(c.appearance ?? {}),
+    },
+    savingThrows: {
+      ...defaults.savingThrows,
+      ...(c.savingThrows ?? {}),
+    },
+    spellSlots: {
+      ...defaults.spellSlots,
+      ...(c.spellSlots ?? {}),
+    },
+  };
 }
 
 export function getCharacter(id: string): Character | undefined {

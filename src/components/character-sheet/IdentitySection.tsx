@@ -18,6 +18,7 @@ interface IdentitySectionProps {
     level: number;
     background: string;
     alignment: string;
+    experiencePoints: number;
     str: number;
     dex: number;
     con: number;
@@ -155,6 +156,16 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
               <option key={a} value={a}>{a}</option>
             ))}
           </select>
+        </Field>
+        <Field label="Experience Points">
+          <input
+            type="number"
+            min={0}
+            value={character.experiencePoints}
+            onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+            onBlur={() => {}}
+            className="input"
+          />
         </Field>
       </div>
 

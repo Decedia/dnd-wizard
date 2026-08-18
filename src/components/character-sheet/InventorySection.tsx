@@ -34,7 +34,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     });
   };
 
-  const updateCurrency = (field: "gold" | "silver" | "copper", value: number) => {
+  const updateCurrency = (field: "copper" | "silver" | "electrum" | "gold" | "platinum", value: number) => {
     onChange({
       currency: { ...character.currency, [field]: Math.max(0, value) },
     });
@@ -80,40 +80,58 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         + Add Item
       </button>
 
-      <div className="mt-4 flex items-center gap-3 border-t border-parchment/10 pt-3">
-        <span className="text-xs font-medium text-parchment/60 uppercase tracking-wider">Currency</span>
-        <div className="flex items-center gap-2">
-          <Field label="Gold">
-            <input
-              type="number"
-              min={0}
-              value={character.currency.gold}
-              onChange={(e) => updateCurrency("gold", parseInt(e.target.value || "0", 10))}
-              onBlur={onFieldBlur}
-              className="input w-20 text-center"
-            />
-          </Field>
-          <Field label="Silver">
-            <input
-              type="number"
-              min={0}
-              value={character.currency.silver}
-              onChange={(e) => updateCurrency("silver", parseInt(e.target.value || "0", 10))}
-              onBlur={onFieldBlur}
-              className="input w-20 text-center"
-            />
-          </Field>
-          <Field label="Copper">
-            <input
-              type="number"
-              min={0}
-              value={character.currency.copper}
-              onChange={(e) => updateCurrency("copper", parseInt(e.target.value || "0", 10))}
-              onBlur={onFieldBlur}
-              className="input w-20 text-center"
-            />
-          </Field>
-        </div>
+      <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-parchment/10 pt-3">
+        <span className="text-xs font-medium text-parchment/60 uppercase tracking-wider w-full mb-1">Currency</span>
+        <Field label="CP">
+          <input
+            type="number"
+            min={0}
+            value={character.currency.copper}
+            onChange={(e) => updateCurrency("copper", parseInt(e.target.value || "0", 10))}
+            onBlur={onFieldBlur}
+            className="input w-20 text-center"
+          />
+        </Field>
+        <Field label="SP">
+          <input
+            type="number"
+            min={0}
+            value={character.currency.silver}
+            onChange={(e) => updateCurrency("silver", parseInt(e.target.value || "0", 10))}
+            onBlur={onFieldBlur}
+            className="input w-20 text-center"
+          />
+        </Field>
+        <Field label="EP">
+          <input
+            type="number"
+            min={0}
+            value={character.currency.electrum}
+            onChange={(e) => updateCurrency("electrum", parseInt(e.target.value || "0", 10))}
+            onBlur={onFieldBlur}
+            className="input w-20 text-center"
+          />
+        </Field>
+        <Field label="GP">
+          <input
+            type="number"
+            min={0}
+            value={character.currency.gold}
+            onChange={(e) => updateCurrency("gold", parseInt(e.target.value || "0", 10))}
+            onBlur={onFieldBlur}
+            className="input w-20 text-center"
+          />
+        </Field>
+        <Field label="PP">
+          <input
+            type="number"
+            min={0}
+            value={character.currency.platinum}
+            onChange={(e) => updateCurrency("platinum", parseInt(e.target.value || "0", 10))}
+            onBlur={onFieldBlur}
+            className="input w-20 text-center"
+          />
+        </Field>
       </div>
     </SectionCard>
   );
