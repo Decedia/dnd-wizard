@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { SKILLS, getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
+import { skills as srdSkills } from "@/data/srd";
+import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 
 interface SkillsSectionProps {
   character: Character;
@@ -12,11 +14,12 @@ interface SkillsSectionProps {
 export function SkillsSection({ character, onChange }: SkillsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const profBonus = getProficiencyBonus(character.level);
+  const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
 
   return (
     <SectionCard id="skills" title="Skills" icon={<SkillsIcon className="h-5 w-5" />}>
       <div className="space-y-2">
-        {SKILLS.map(({ name, ability }) => {
+        {srdSkills.map(({ name, ability, description }) => {
           const score = character[ability as keyof Character] as number;
           const mod = getModifier(score);
           const isProficient = character.skills[name] ?? false;
@@ -37,14 +40,56 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
               />
                 <span className="text-sm text-parchment/80">{name}</span>
               </label>
-              <span className="text-sm font-semibold text-parchment/70">
-                {total >= 0 ? `+${total}` : total}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-semibold text-parchment/70">
+                  {total >= 0 ? `+${total}` : total}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setTooltip({ name, description })}
+                  className="text-parchment/40 hover:text-parchment"
+                  aria-label={`Info about ${name}`}
+                >
+                  <InfoIcon className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           );
         })}
       </div>
+
+      {tooltip && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80" onClick={() => setTooltip(null)}>
+          <div className="max-w-sm rounded-xl border border-parchment/20 bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-display font-semibold text-gold">{tooltip.name}</h3>
+              <button onClick={() => setTooltip(null)} className="text-parchment/40 hover:text-parchment">
+                <XIcon className="h-4 w-4" />
+              </button>
+            </div>
+            <p className="text-sm text-parchment/70">{tooltip.description}</p>
+          </div>
+        </div>
+      )}
     </SectionCard>
+  );
+}
+
+function InfoIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 16v-4" />
+      <path d="M12 8h.01" />
+    </svg>
+  );
+}
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 6L6 18M6 6l12 12" />
+    </svg>
   );
 }
 

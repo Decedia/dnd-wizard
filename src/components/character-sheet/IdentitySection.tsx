@@ -2,7 +2,8 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { RACES, CLASSES, ALIGNMENTS } from "@/lib/storage";
+import { raceNames, classNames } from "@/data/srd";
+import { ALIGNMENTS } from "@/lib/storage";
 
 interface IdentitySectionProps {
   character: {
@@ -51,7 +52,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
               className="input"
             >
               <option value="">Select race</option>
-              {RACES.map((r) => (
+              {raceNames.map((r) => (
                 <option key={r} value={r}>{r}</option>
               ))}
             </select>
@@ -64,7 +65,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
               className="input"
             >
               <option value="">Select class</option>
-              {CLASSES.map((c) => (
+              {classNames.map((c) => (
                 <option key={c} value={c}>{c}</option>
               ))}
             </select>

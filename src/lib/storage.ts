@@ -171,3 +171,15 @@ export function deleteCharacter(id: string): void {
 export function generateId(): string {
   return crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
+
+export function getRaceData(name: string): { abilityScoreIncreases: Record<string, number> } | undefined {
+  const raceMap: Record<string, Record<string, number>> = {
+    Human: { str: 1, dex: 1, con: 1, int: 1, wis: 1, cha: 1 },
+    Elf: { dex: 2 },
+    Dwarf: { con: 2 },
+    Halfling: { dex: 2 },
+  };
+  const increases = raceMap[name];
+  if (!increases) return undefined;
+  return { abilityScoreIncreases: increases };
+}

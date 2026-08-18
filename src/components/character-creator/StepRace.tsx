@@ -1,37 +1,44 @@
 "use client";
 
 import { StepCard } from "./StepCard";
-import { RACES } from "@/lib/storage";
+import { races } from "@/data/srd";
 
 interface StepRaceProps {
   data: { race: string };
   onChange: (data: Partial<StepRaceProps["data"]>) => void;
 }
 
-const RACE_DESCRIPTIONS: Record<string, string> = {
-  Human: "Versatile and ambitious, humans are the most adaptable of all races.",
-  Elf: "Graceful and long-lived, elves are attuned to nature and magic.",
-  Dwarf: "Stout and resilient, dwarves are master craftsmen and miners.",
-  Halfling: "Small but brave, halflings are nimble and surprisingly lucky.",
-};
-
 export function StepRace({ data, onChange }: StepRaceProps) {
   return (
     <StepCard title="Race">
-      <div className="grid grid-cols-1 gap-3">
-        {RACES.map((race) => (
+      <div className="space-y-3">
+        {races.map((race) => (
           <button
-            key={race}
+            key={race.name}
             type="button"
-            onClick={() => onChange({ race })}
-            className={`rounded-xl border p-4 text-left transition-all ${
-              data.race === race
+            onClick={() => onChange({ race: race.name })}
+            className={`w-full rounded-xl border p-4 text-left transition-all ${
+              data.race === race.name
                 ? "border-gold bg-gold/10"
                 : "border-parchment/10 bg-charcoal/40 hover:border-gold/30"
             }`}
           >
-            <span className="font-display font-semibold text-parchment">{race}</span>
-            <p className="mt-1 text-xs text-parchment/50">{RACE_DESCRIPTIONS[race]}</p>
+            <div className="flex items-center justify-between">
+              <span className="font-display font-semibold text-parchment">{race.name}</span>
+              <span className="text-xs text-parchment/40">{race.size} / Speed {race.speed} ft</span>
+            </div>
+            <p className="mt-1 text-xs text-parchment/50">
+              {Object.entries(race.abilityScoreIncreases)
+                .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
+                .join(", ")}
+            </p>
+            <div className="mt-2 space-y-1">
+              {race.traits.map((trait) => (
+                <div key={trait.name} className="text-xs text-parchment/60">
+                  <span className="font-medium text-gold/80">{trait.name}:</span> {trait.description}
+                </div>
+              ))}
+            </div>
           </button>
         ))}
       </div>

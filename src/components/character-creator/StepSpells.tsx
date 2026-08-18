@@ -3,18 +3,12 @@
 import { useState } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
+import { spells as srdSpells } from "@/data/srd";
 
 interface StepSpellsProps {
   data: Pick<Character, "spells">;
   onChange: (data: Partial<StepSpellsProps["data"]>) => void;
 }
-
-const SPELL_HINTS: Record<string, string> = {
-  "Fire Bolt": "A ranged spell attack that deals fire damage. Deals extra damage to flammable objects.",
-  "Magic Missile": "Creates glowing darts of magical force that automatically hit their target.",
-  "Cure Wounds": "Restores hit points to a creature you touch.",
-  Shield: "An invisible barrier appears, giving you +5 AC until the start of your next turn.",
-};
 
 export function StepSpells({ data, onChange }: StepSpellsProps) {
   const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
@@ -42,52 +36,65 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
     });
   };
 
+  const getSpellDescription = (name: string): string | undefined => {
+    return srdSpells.find((s) => s.name === name)?.description;
+  };
+
   return (
     <StepCard title="Spells">
       <p className="text-xs text-parchment/50 mb-3">
         Skip if your class does not cast spells.
       </p>
       <div className="space-y-2">
-        {data.spells.map((spell) => (
-          <div key={spell.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-            <input
-              type="text"
-              value={spell.name}
-              onChange={(e) => updateItem(spell.id, { name: e.target.value })}
-              onBlur={() => {}}
-              className="input flex-1"
-              placeholder="Spell name"
-            />
-            <input
-              type="number"
-              min={0}
-              max={9}
-              value={spell.level}
-              onChange={(e) => updateItem(spell.id, { level: Math.max(0, Math.min(9, parseInt(e.target.value || "0", 10))) })}
-              onBlur={() => {}}
-              className="input w-16 text-center"
-            />
-            {SPELL_HINTS[spell.name] && (
+        {data.spells.map((spell) => {
+          const description = getSpellDescription(spell.name);
+          return (
+            <div key={spell.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+              <input
+                type="text"
+                value={spell.name}
+                onChange={(e) => updateItem(spell.id, { name: e.target.value })}
+                onBlur={() => {}}
+                className="input flex-1"
+                placeholder="Spell name"
+                list="srd-spells"
+              />
+              <input
+                type="number"
+                min={0}
+                max={9}
+                value={spell.level}
+                onChange={(e) => updateItem(spell.id, { level: Math.max(0, Math.min(9, parseInt(e.target.value || "0", 10))) })}
+                onBlur={() => {}}
+                className="input w-16 text-center"
+              />
+              {description && (
+                <button
+                  type="button"
+                  onClick={() => setTooltip({ name: spell.name, description })}
+                  className="text-parchment/40 hover:text-gold"
+                  aria-label={`Info about ${spell.name}`}
+                >
+                  <InfoIcon className="h-4 w-4" />
+                </button>
+              )}
               <button
                 type="button"
-                onClick={() => setTooltip({ name: spell.name, description: SPELL_HINTS[spell.name] })}
-                className="text-parchment/40 hover:text-gold"
-                aria-label={`Info about ${spell.name}`}
+                onClick={() => removeItem(spell.id)}
+                className="text-parchment/40 hover:text-parchment"
+                aria-label="Remove spell"
               >
-                <InfoIcon className="h-4 w-4" />
+                <XIcon className="h-4 w-4" />
               </button>
-            )}
-            <button
-              type="button"
-              onClick={() => removeItem(spell.id)}
-              className="text-parchment/40 hover:text-parchment"
-              aria-label="Remove spell"
-            >
-              <XIcon className="h-4 w-4" />
-            </button>
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
+      <datalist id="srd-spells">
+        {srdSpells.map((spell) => (
+          <option key={spell.name} value={spell.name} />
+        ))}
+      </datalist>
       <button
         type="button"
         onClick={addItem}

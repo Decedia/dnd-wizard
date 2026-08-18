@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { StepCard } from "./StepCard";
-import { getModifier } from "@/lib/storage";
+import { getModifier, getRaceData } from "@/lib/storage";
+import { races } from "@/data/srd";
 
 interface StepAbilityScoresProps {
   data: {
@@ -15,6 +16,7 @@ interface StepAbilityScoresProps {
       cha: number;
     };
     abilityMethod: "standard" | "pointbuy" | "manual";
+    race?: string;
   };
   onChange: (data: Partial<StepAbilityScoresProps["data"]>) => void;
 }
@@ -38,6 +40,16 @@ const POINT_BUY_COSTS: Record<number, number> = {
   14: 7,
   15: 9,
 };
+
+function getRacialBonus(race: string | undefined, ability: string): number {
+  if (!race) return 0;
+  const raceData = getRaceData(race);
+  return raceData?.abilityScoreIncreases[ability] ?? 0;
+}
+
+function getFinalScore(baseScore: number, race: string | undefined, ability: string): number {
+  return baseScore + getRacialBonus(race, ability);
+}
 
 export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
   const [method, setMethod] = useState<"standard" | "pointbuy" | "manual">(data.abilityMethod || "standard");
@@ -94,13 +106,13 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
       </div>
 
       {method === "standard" && (
-        <StandardArray scores={data.abilityScores} onChange={onChange} />
+        <StandardArray scores={data.abilityScores} onChange={onChange} race={data.race} />
       )}
       {method === "pointbuy" && (
-        <PointBuy scores={data.abilityScores} onChange={onChange} />
+        <PointBuy scores={data.abilityScores} onChange={onChange} race={data.race} />
       )}
       {method === "manual" && (
-        <ManualEntry scores={data.abilityScores} onChange={onChange} />
+        <ManualEntry scores={data.abilityScores} onChange={onChange} race={data.race} />
       )}
     </StepCard>
   );
@@ -109,34 +121,48 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
 function StandardArray({
   scores,
   onChange,
+  race,
 }: {
   scores: StepAbilityScoresProps["data"]["abilityScores"];
   onChange: StepAbilityScoresProps["onChange"];
+  race?: string;
 }) {
   const usedValues = new Set(Object.values(scores).filter(Boolean));
   const availableValues = STANDARD_ARRAY.filter((v) => !usedValues.has(v));
 
   return (
     <div className="space-y-3">
-      {ABILITIES.map(({ key, label }) => (
-        <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-          <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
-          <select
-            value={scores[key] || ""}
-            onChange={(e) => onChange({ abilityScores: { ...scores, [key]: parseInt(e.target.value) || 0 } })}
-            onBlur={() => {}}
-            className="input w-20 text-center"
-          >
-            <option value="">-</option>
-            {STANDARD_ARRAY.map((val) => (
-              <option key={val} value={val}>{val}</option>
-            ))}
-          </select>
-          <span className="text-sm font-semibold text-gold w-8 text-right">
-            {scores[key] ? `${getModifier(scores[key]) >= 0 ? "+" : ""}${getModifier(scores[key])}` : "-"}
-          </span>
-        </div>
-      ))}
+      {ABILITIES.map(({ key, label }) => {
+        const baseScore = scores[key] || 0;
+        const racialBonus = getRacialBonus(race, key);
+        const finalScore = getFinalScore(baseScore, race, key);
+        const finalMod = getModifier(finalScore);
+        const baseMod = getModifier(baseScore);
+        return (
+          <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+            <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
+            <select
+              value={baseScore || ""}
+              onChange={(e) => onChange({ abilityScores: { ...scores, [key]: parseInt(e.target.value) || 0 } })}
+              onBlur={() => {}}
+              className="input w-20 text-center"
+            >
+              <option value="">-</option>
+              {STANDARD_ARRAY.map((val) => (
+                <option key={val} value={val}>{val}</option>
+              ))}
+            </select>
+            <div className="flex flex-col items-end gap-0.5 w-16">
+              {racialBonus > 0 && (
+                <span className="text-[10px] text-parchment/40">+{racialBonus} racial</span>
+              )}
+              <span className="text-sm font-semibold text-gold">
+                {finalScore > 0 ? `${finalMod >= 0 ? "+" : ""}${finalMod}` : "-"}
+              </span>
+            </div>
+          </div>
+        );
+      })}
       <p className="text-xs text-parchment/40 mt-2">
         Available values: {availableValues.length > 0 ? availableValues.join(", ") : "None (clear a field to free a value)"}
       </p>
@@ -147,9 +173,11 @@ function StandardArray({
 function PointBuy({
   scores,
   onChange,
+  race,
 }: {
   scores: StepAbilityScoresProps["data"]["abilityScores"];
   onChange: StepAbilityScoresProps["onChange"];
+  race?: string;
 }) {
   const POINTS_TOTAL = 27;
   const usedPoints = ABILITIES.reduce((sum, { key }) => {
@@ -178,7 +206,9 @@ function PointBuy({
       </div>
       {ABILITIES.map(({ key, label }) => {
         const score = scores[key] || 8;
-        const cost = POINT_BUY_COSTS[score] || 0;
+        const finalScore = getFinalScore(score, race, key);
+        const finalMod = getModifier(finalScore);
+        const racialBonus = getRacialBonus(race, key);
         return (
           <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
             <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
@@ -195,15 +225,20 @@ function PointBuy({
               <button
                 type="button"
                 onClick={() => adjustScore(key, 1)}
-                disabled={score >= 15 || cost >= remaining}
+                disabled={score >= 15 || (POINT_BUY_COSTS[score] || 0) >= remaining}
                 className="flex h-7 w-7 items-center justify-center rounded-md border border-parchment/20 text-parchment/60 disabled:opacity-30"
               >
                 +
               </button>
             </div>
-            <span className="text-sm font-semibold text-gold w-8 text-right">
-              {getModifier(score) >= 0 ? `+${getModifier(score)}` : getModifier(score)}
-            </span>
+            <div className="flex flex-col items-end gap-0.5 w-16">
+              {racialBonus > 0 && (
+                <span className="text-[10px] text-parchment/40">+{racialBonus}</span>
+              )}
+              <span className="text-sm font-semibold text-gold">
+                {finalScore > 0 ? `${finalMod >= 0 ? "+" : ""}${finalMod}` : "-"}
+              </span>
+            </div>
           </div>
         );
       })}
@@ -214,30 +249,43 @@ function PointBuy({
 function ManualEntry({
   scores,
   onChange,
+  race,
 }: {
   scores: StepAbilityScoresProps["data"]["abilityScores"];
   onChange: StepAbilityScoresProps["onChange"];
+  race?: string;
 }) {
   return (
     <div className="grid grid-cols-2 gap-3">
-      {ABILITIES.map(({ key, label }) => (
-        <div key={key} className="rounded-lg border border-parchment/10 bg-charcoal/40 p-3">
-          <span className="text-[10px] font-medium text-parchment/50 uppercase tracking-wider">{label}</span>
-          <div className="mt-1 flex items-center gap-2">
-            <input
-              type="number"
-              value={scores[key] || ""}
-              onChange={(e) => onChange({ abilityScores: { ...scores, [key]: parseInt(e.target.value) || 0 } })}
-              onBlur={() => {}}
-              className="input w-16 text-center"
-              placeholder="0"
-            />
-            <span className="text-xs font-semibold text-gold">
-              {scores[key] ? `${getModifier(scores[key]) >= 0 ? "+" : ""}${getModifier(scores[key])}` : "-"}
-            </span>
+      {ABILITIES.map(({ key, label }) => {
+        const baseScore = scores[key] || 0;
+        const racialBonus = getRacialBonus(race, key);
+        const finalScore = getFinalScore(baseScore, race, key);
+        const finalMod = getModifier(finalScore);
+        return (
+          <div key={key} className="rounded-lg border border-parchment/10 bg-charcoal/40 p-3">
+            <span className="text-[10px] font-medium text-parchment/50 uppercase tracking-wider">{label}</span>
+            <div className="mt-1 flex items-center gap-2">
+              <input
+                type="number"
+                value={baseScore || ""}
+                onChange={(e) => onChange({ abilityScores: { ...scores, [key]: parseInt(e.target.value) || 0 } })}
+                onBlur={() => {}}
+                className="input w-16 text-center"
+                placeholder="0"
+              />
+              <div className="flex flex-col">
+                {racialBonus > 0 && (
+                  <span className="text-[10px] text-parchment/40">+{racialBonus}</span>
+                )}
+                <span className="text-xs font-semibold text-gold">
+                  {finalScore > 0 ? `${finalMod >= 0 ? "+" : ""}${finalMod}` : "-"}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
