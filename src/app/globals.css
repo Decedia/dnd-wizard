@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+@theme {
+  --color-parchment: #f4f1ea;
+  --color-parchment-dark: #e8e4d9;
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-light: #2a2a2a;
+  --color-charcoal-lighter: #3a3a3a;
+  --color-burgundy: #722f37;
+  --color-burgundy-light: #8b3a44;
+  --color-gold: #c5a059;
+  --color-gold-light: #d4b068;
+  --color-gold-dark: #a88845;
+  --font-display: "Cinzel", serif;
+  --font-body: "Geist", sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-charcoal text-parchment font-body antialiased;
+    min-height: 100dvh;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+}
