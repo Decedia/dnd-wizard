@@ -15,6 +15,7 @@ import { FeaturesTraitsSection } from "@/components/character-sheet/FeaturesTrai
 import { InventorySection } from "@/components/character-sheet/InventorySection";
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
+import { Trash2 } from "lucide-react";
 
 export default function CharacterView() {
   const params = useParams();
@@ -134,7 +135,7 @@ export default function CharacterView() {
               onClick={handleDelete}
               className="w-full rounded-xl border border-red-500/30 bg-red-500/10 px-6 py-3 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98]"
             >
-              <i className="fa-solid fa-trash mr-2" />
+              <Trash2 className="h-4 w-4 mr-2" />
               Delete Character
             </button>
           </div>
