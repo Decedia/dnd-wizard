@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacter, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
+import { exportCharacterToPdf, importCharacterFromPdf } from "@/lib/pdf";
 import { StickyMiniHeader } from "@/components/character-sheet/StickyMiniHeader";
 import { SectionNav } from "@/components/character-sheet/SectionNav";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
@@ -18,7 +19,7 @@ import { OtherProficienciesSection } from "@/components/character-sheet/OtherPro
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
-import { Trash2 } from "lucide-react";
+import { Trash2, Download, Upload } from "lucide-react";
 
 export default function CharacterView() {
   const params = useParams();
@@ -34,6 +35,9 @@ export default function CharacterView() {
 
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [spellsCollapsed, setSpellsCollapsed] = useState(true);
+  const [importError, setImportError] = useState<string | null>(null);
+  const [importSuccess, setImportSuccess] = useState<string | null>(null);
+  const importInputRef = useRef<HTMLInputElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const debouncedSave = useCallback(() => {
@@ -49,6 +53,13 @@ export default function CharacterView() {
     return () => clearTimeout(timeoutRef.current ?? undefined);
   }, []);
 
+  useEffect(() => {
+    if (importSuccess) {
+      timeoutRef.current = setTimeout(() => setImportSuccess(null), 4000);
+      return () => clearTimeout(timeoutRef.current ?? undefined);
+    }
+  }, [importSuccess]);
+
   const handleSave = () => {
     if (character) {
       saveCharacter(character);
@@ -61,6 +72,33 @@ export default function CharacterView() {
     if (character && window.confirm(`Are you sure you want to delete ${character.name || "this character"}? This action cannot be undone.`)) {
       deleteCharacter(character.id);
       router.push("/");
+    }
+  };
+
+  const handleExport = () => {
+    if (character) {
+      exportCharacterToPdf(character);
+    }
+  };
+
+  const handleImportClick = () => {
+    importInputRef.current?.click();
+  };
+
+  const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImportError(null);
+    setImportSuccess(null);
+    try {
+      const imported = await importCharacterFromPdf(file);
+      saveCharacter(imported);
+      setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      router.push(`/character/${imported.id}`);
+    } catch (err) {
+      setImportError("This PDF doesn't contain DND Wizard character data.");
+    } finally {
+      e.target.value = "";
     }
   };
 
@@ -136,12 +174,45 @@ export default function CharacterView() {
               </div>
             )}
           </div>
+          <div className="mx-auto max-w-lg mb-4 flex items-center gap-3">
+            <button
+              onClick={handleExport}
+              className="flex-1 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98]"
+            >
+              <Download className="h-4 w-4 mr-2 inline" />
+              Export to PDF
+            </button>
+            <button
+              onClick={handleImportClick}
+              className="flex-1 rounded-xl border border-parchment/20 bg-parchment/5 px-6 py-3 text-sm font-semibold text-parchment transition-all hover:border-parchment/40 hover:bg-parchment/10 active:scale-[0.98]"
+            >
+              <Upload className="h-4 w-4 mr-2 inline" />
+              Import from PDF
+            </button>
+            <input
+              ref={importInputRef}
+              type="file"
+              accept="application/pdf"
+              onChange={handleImportFile}
+              className="hidden"
+            />
+          </div>
+          {importError && (
+            <div className="mx-auto max-w-lg mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+              {importError}
+            </div>
+          )}
+          {importSuccess && (
+            <div className="mx-auto max-w-lg mb-4 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-400">
+              {importSuccess}
+            </div>
+          )}
           <div className="mx-auto max-w-lg mb-4">
             <button
               onClick={handleDelete}
               className="w-full rounded-xl border border-red-500/30 bg-red-500/10 px-6 py-3 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98]"
             >
-              <Trash2 className="h-4 w-4 mr-2" />
+              <Trash2 className="h-4 w-4 mr-2 inline" />
               Delete Character
             </button>
           </div>
