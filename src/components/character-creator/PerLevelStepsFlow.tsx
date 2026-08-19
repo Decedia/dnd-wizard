@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { Dice, DiceType } from "@/components/Dice";
-import { generateLevelUpSteps, type LevelUpStep, type LevelUpChanges } from "@/lib/level-up";
+import { generateLevelUpSteps, type LevelUpStep, type LevelUpChanges, type LevelUpStepSection } from "@/lib/level-up";
 import { getClassData, getSpellData, spells as srdSpells } from "@/data/srd";
 import { getModifier, getProficiencyBonus } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
@@ -99,33 +99,56 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
 
   const currentStep = steps[currentStepIndex];
   const isLastStep = currentStepIndex === steps.length - 1;
+  const sections = currentStep.sections || [];
 
   const canProceed = (): boolean => {
-    switch (currentStep.type) {
-      case "hp":
-        return hpResolved[currentStep.level] === true;
-      case "asi":
-        return (asiChoices[currentStep.level]?.length || 0) > 0;
-      case "subclass":
-        return subclassChoice !== null;
-      case "expertise":
-        return (expertiseChoices[currentStep.level]?.length || 0) === (currentStep.expertiseCount || 0);
-      case "spellSelection": {
-        const spellKey = `level-${currentStep.level}`;
-        const needed = currentStep.spellSelectionCount || 0;
-        return (selectedSpells[spellKey]?.length || 0) >= needed;
+    for (const section of sections) {
+      switch (section.type) {
+        case "hp":
+          if (!hpResolved[currentStep.level]) return false;
+          break;
+        case "asi":
+          if ((asiChoices[currentStep.level]?.length || 0) === 0) return false;
+          break;
+        case "subclass":
+          if (subclassChoice === null) return false;
+          break;
+        case "expertise":
+          if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
+          break;
+        case "spellSelection": {
+          const spellKey = `level-${currentStep.level}`;
+          if ((selectedSpells[spellKey]?.length || 0) < (section.spellSelectionCount || 0)) return false;
+          break;
+        }
+        default:
+          break;
       }
-      default:
-        return true;
     }
+    return true;
   };
 
   const renderStepContent = () => {
-    switch (currentStep.type) {
+    return (
+      <div className="space-y-5">
+        {sections.map((section, idx) => (
+          <div key={idx} className={idx > 0 ? "border-t border-parchment/10 pt-4" : ""}>
+            {section.description && (
+              <p className="text-xs text-parchment/60 mb-3">{section.description}</p>
+            )}
+            {renderSection(section)}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderSection = (section: LevelUpStepSection) => {
+    switch (section.type) {
       case "hp":
         return (
           <HpStepInline
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             className={character.class}
             conMod={getModifier(character.con)}
             onResolve={handleHpResolve}
@@ -133,15 +156,19 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           />
         );
       case "features":
-        return <FeaturesStepInline step={currentStep} />;
+        return <FeaturesStepInline step={{ ...section, level: currentStep.level } as any} />;
       case "subclass":
         return (
-          <SubclassStepInline step={currentStep} selected={subclassChoice} onSelect={setSubclassChoice} />
+          <SubclassStepInline
+            step={{ ...section, level: currentStep.level } as any}
+            selected={subclassChoice}
+            onSelect={setSubclassChoice}
+          />
         );
       case "asi":
         return (
           <AsiStepInline
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             abilityScores={{
               str: character.str,
               dex: character.dex,
@@ -157,7 +184,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
       case "expertise":
         return (
           <ExpertiseStepInline
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             className={character.class}
             currentExpertise={character.expertise || []}
             currentSkills={character.skills || {}}
@@ -166,11 +193,11 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           />
         );
       case "spellSlots":
-        return <SpellSlotsStepInline step={currentStep} />;
+        return <SpellSlotsStepInline step={{ ...section, level: currentStep.level } as any} />;
       case "spellSelection":
         return (
           <SpellSelectionStepInline
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             character={character}
             selected={selectedSpells[`level-${currentStep.level}`] || []}
             onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [`level-${currentStep.level}`]: names }))}
@@ -213,7 +240,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   );
 }
 
-function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: LevelUpStep; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
+function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: LevelUpStepSection; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
   const classData = getClassData(className);
   const hitDie = classData?.hitDie || 10;
   const average = Math.floor(hitDie / 2) + 1;
@@ -225,12 +252,12 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
       <p className="text-xs text-parchment/60">{step.description}</p>
       <div className="flex items-center justify-center gap-6">
         <div className="flex flex-col items-center gap-2">
-          <Dice type={diceType} size={80} onRoll={() => onResolve(step.level)} />
+          <Dice type={diceType} size={80} onRoll={() => onResolve(step.level!)} />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
         <button
           type="button"
-          onClick={() => onResolve(step.level)}
+          onClick={() => onResolve(step.level!)}
           disabled={resolved}
           className="rounded-lg border border-parchment/20 bg-charcoal/40 px-4 py-2 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40 disabled:opacity-40"
         >
@@ -246,7 +273,7 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
   );
 }
 
-function FeaturesStepInline({ step }: { step: LevelUpStep }) {
+function FeaturesStepInline({ step }: { step: LevelUpStepSection }) {
   return (
     <div className="space-y-2">
       {step.features?.map((feature, idx) => (
@@ -260,7 +287,7 @@ function FeaturesStepInline({ step }: { step: LevelUpStep }) {
   );
 }
 
-function SubclassStepInline({ step, selected, onSelect }: { step: LevelUpStep; selected: string | null; onSelect: (name: string) => void }) {
+function SubclassStepInline({ step, selected, onSelect }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void }) {
   return (
     <div className="space-y-3">
       {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
@@ -307,7 +334,7 @@ function AsiStepInline({
   choices,
   onChange,
 }: {
-  step: LevelUpStep;
+  step: LevelUpStepSection;
   abilityScores: { str: number; dex: number; con: number; int: number; wis: number; cha: number };
   choices: { ability: string; delta: number }[];
   onChange: (ability: string, delta: number) => void;
@@ -326,7 +353,7 @@ function AsiStepInline({
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-parchment/60">{step.description}</p>
+      {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
       <p className="text-xs text-parchment/50">Points remaining: {maxPoints - totalAllocated}</p>
       <div className="space-y-2">
         {abilities.map(({ key, label }) => {
@@ -375,7 +402,7 @@ function ExpertiseStepInline({
   selected,
   onSelect,
 }: {
-  step: LevelUpStep;
+  step: LevelUpStepSection;
   className: string;
   currentExpertise: string[];
   currentSkills: Record<string, boolean>;
@@ -401,7 +428,7 @@ function ExpertiseStepInline({
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-parchment/60">{step.description}</p>
+      {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
       <div className="space-y-2">
         {options.map((name) => {
           const isSelected = selected.includes(name);
@@ -436,7 +463,7 @@ function ExpertiseStepInline({
   );
 }
 
-function SpellSlotsStepInline({ step }: { step: LevelUpStep }) {
+function SpellSlotsStepInline({ step }: { step: LevelUpStepSection }) {
   return (
     <div className="space-y-2">
       <p className="text-xs text-parchment/60">Your spell slots have been updated.</p>
@@ -458,7 +485,7 @@ function SpellSelectionStepInline({
   selected,
   onSelect,
 }: {
-  step: LevelUpStep;
+  step: LevelUpStepSection;
   character: Character;
   selected: string[];
   onSelect: (names: string[]) => void;

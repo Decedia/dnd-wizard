@@ -62,6 +62,7 @@
 - [x] Created PerLevelStepsFlow component for inline per-level steps
 - [x] Added spell selection tabbed UI to both PerLevelStepsFlow and LevelUpFlow
 - [x] Unified Level Up logic between creation and post-creation via `generateLevelUpSteps`
+- [x] Consolidated per-level steps: each level now produces one step with multiple sections (hp, features, subclass, asi, expertise, spellSlots, spellSelection)
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
@@ -81,8 +82,8 @@
 | `src/components/character-creator/PerLevelStepsFlow.tsx` | Inline per-level step sequence with spell selection | ✅ Ready |
 | `src/data/srd.ts` | 5e SRD data with type tags, expanded spells, backgrounds | ✅ Ready |
 | `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
-| `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with spellSelection | ✅ Ready |
-| `src/components/level-up/LevelUpFlow.tsx` | Multi-step level-up modal with spell selection | ✅ Ready |
+| `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with sections consolidation | ✅ Ready |
+| `src/components/level-up/LevelUpFlow.tsx` | Multi-step level-up modal with sections rendering | ✅ Ready |
 | `src/components/character-sheet/FeaturesTraitsSection.tsx` | Locked feature rendering with "default" tag | ✅ Ready |
 | `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Class-granted attack rendering with "class-granted" tag | ✅ Ready |
 
@@ -113,3 +114,4 @@ Wizard restructure complete. Next steps:
 | 2026-08-19 | Wired SRD data into UI and calculations: HP auto-calc, skills restricted list + count, equipment choice packages, sneak attack numeric effect, expertise picker for Rogue |
 | 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |
 | 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |
+| 2026-08-19 | Consolidated per-level steps: each level produces one step with multiple sections (hp/features/subclass/asi/expertise/spellSlots/spellSelection); updated LevelUpStep type and both PerLevelStepsFlow and LevelUpFlow to render sections |

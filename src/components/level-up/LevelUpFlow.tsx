@@ -5,7 +5,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepCard } from "@/components/character-creator/StepCard";
 import { Dice, DiceType } from "@/components/Dice";
-import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep } from "@/lib/level-up";
+import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection } from "@/lib/level-up";
 import { getClassData, spells } from "@/data/srd";
 import { getModifier } from "@/lib/storage";
 
@@ -128,46 +128,69 @@ export function LevelUpFlow({
 
   const currentStep = steps[currentStepIndex];
   const isLastStep = currentStepIndex === steps.length - 1;
+  const sections = currentStep.sections || [];
 
   const canProceed = (): boolean => {
-    switch (currentStep.type) {
-      case "hp":
-        return hpResolved[currentStep.level] === true;
-      case "asi":
-        return (asiChoices[currentStep.level]?.length || 0) > 0;
-      case "subclass":
-        return subclassChoice !== null;
-      case "expertise":
-        return (expertiseChoices[currentStep.level]?.length || 0) === (currentStep.expertiseCount || 0);
-      case "spellSelection": {
-        const spellKey = currentStep.level;
-        const needed = currentStep.spellSelectionCount || 0;
-        return (selectedSpells[spellKey]?.length || 0) >= needed;
+    for (const section of sections) {
+      switch (section.type) {
+        case "hp":
+          if (!hpResolved[currentStep.level]) return false;
+          break;
+        case "asi":
+          if ((asiChoices[currentStep.level]?.length || 0) === 0) return false;
+          break;
+        case "subclass":
+          if (subclassChoice === null) return false;
+          break;
+        case "expertise":
+          if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
+          break;
+        case "spellSelection": {
+          const spellKey = currentStep.level;
+          if ((selectedSpells[spellKey]?.length || 0) < (section.spellSelectionCount || 0)) return false;
+          break;
+        }
+        default:
+          break;
       }
-      default:
-        return true;
     }
+    return true;
   };
 
   const renderStepContent = () => {
-    switch (currentStep.type) {
+    return (
+      <div className="space-y-5">
+        {sections.map((section, idx) => (
+          <div key={idx} className={idx > 0 ? "border-t border-parchment/10 pt-4" : ""}>
+            {section.description && (
+              <p className="text-xs text-parchment/60 mb-3">{section.description}</p>
+            )}
+            {renderSection(section)}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderSection = (section: any) => {
+    switch (section.type) {
       case "hp":
         return (
           <HpStep
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             className={className}
             onResolve={handleHpResolve}
             resolved={hpResolved[currentStep.level] === true}
           />
         );
       case "features":
-        return <FeaturesStep step={currentStep} />;
+        return <FeaturesStep step={{ ...section, level: currentStep.level } as any} />;
       case "subclass":
-        return <SubclassStep step={currentStep} selected={subclassChoice} onSelect={setSubclassChoice} />;
+        return <SubclassStep step={{ ...section, level: currentStep.level } as any} selected={subclassChoice} onSelect={setSubclassChoice} />;
       case "asi":
         return (
           <AsiStep
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             abilityScores={currentAbilityScores}
             choices={asiChoices[currentStep.level] || []}
             onChange={(ability, delta) => handleAsiChange(currentStep.level, ability, delta)}
@@ -176,7 +199,7 @@ export function LevelUpFlow({
       case "expertise":
         return (
           <ExpertiseStep
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             className={className}
             currentExpertise={currentExpertise}
             currentSkills={currentSkills}
@@ -185,11 +208,11 @@ export function LevelUpFlow({
           />
         );
       case "spellSlots":
-        return <SpellSlotsStep step={currentStep} />;
+        return <SpellSlotsStep step={{ ...section, level: currentStep.level } as any} />;
       case "spellSelection":
         return (
           <SpellSelectionStep
-            step={currentStep}
+            step={{ ...section, level: currentStep.level } as any}
             character={{ class: className, level: newLevel, ...currentAbilityScores } as any}
             selected={selectedSpells[currentStep.level] || []}
             onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [currentStep.level]: names }))}
@@ -267,7 +290,7 @@ function HpStep({ step, className, onResolve, resolved }: { step: LevelUpStep; c
   );
 }
 
-function FeaturesStep({ step }: { step: LevelUpStep }) {
+function FeaturesStep({ step }: { step: LevelUpStepSection }) {
   return (
     <div className="space-y-2">
       {step.features?.map((feature, idx) => (
@@ -280,7 +303,7 @@ function FeaturesStep({ step }: { step: LevelUpStep }) {
   );
 }
 
-function SubclassStep({ step, selected, onSelect }: { step: LevelUpStep; selected: string | null; onSelect: (name: string) => void }) {
+function SubclassStep({ step, selected, onSelect }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void }) {
   return (
     <div className="space-y-3">
       {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
@@ -327,7 +350,7 @@ function AsiStep({
   choices,
   onChange,
 }: {
-  step: LevelUpStep;
+  step: LevelUpStepSection;
   abilityScores: LevelUpFlowProps["currentAbilityScores"];
   choices: { ability: string; delta: number }[];
   onChange: (ability: string, delta: number) => void;
@@ -395,7 +418,7 @@ function ExpertiseStep({
   selected,
   onSelect,
 }: {
-  step: LevelUpStep;
+  step: LevelUpStepSection;
   className: string;
   currentExpertise: string[];
   currentSkills: Record<string, boolean>;
@@ -456,7 +479,7 @@ function ExpertiseStep({
   );
 }
 
-function SpellSlotsStep({ step }: { step: LevelUpStep }) {
+function SpellSlotsStep({ step }: { step: LevelUpStepSection }) {
   return (
     <div className="space-y-2">
       <p className="text-xs text-parchment/60">Your spell slots have been updated.</p>
@@ -478,7 +501,7 @@ function SpellSelectionStep({
   selected,
   onSelect,
 }: {
-  step: LevelUpStep;
+  step: LevelUpStepSection;
   character: { class: string; level: number; con: number; str: number; dex: number; int: number; wis: number; cha: number };
   selected: string[];
   onSelect: (names: string[]) => void;

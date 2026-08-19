@@ -17,11 +17,8 @@ export interface AbilityScoreChange {
   delta: number;
 }
 
-export interface LevelUpStep {
-  id: string;
-  level: number;
+export interface LevelUpStepSection {
   type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection";
-  title: string;
   description?: string;
   features?: { name: string; description: string }[];
   subclassOptions?: {
@@ -34,6 +31,15 @@ export interface LevelUpStep {
   spellSlots?: Record<number, number>;
   spellSelectionCount?: number;
   spellSelectionLevel?: number;
+  level?: number;
+}
+
+export interface LevelUpStep {
+  id: string;
+  level: number;
+  title: string;
+  description?: string;
+  sections: LevelUpStepSection[];
 }
 
 export interface LevelUpChanges {
@@ -105,43 +111,31 @@ export function generateLevelUpSteps(
 
   for (let level = oldLevel + 1; level <= newLevel; level++) {
     const levelData = classData.levels[level - 1];
-    const conMod = getModifier(currentSkills || {} ? 10 : 10);
+    const sections: LevelUpStepSection[] = [];
 
-    steps.push({
-      id: `hp-${level}`,
-      level,
+    sections.push({
       type: "hp",
-      title: `Level ${level} - Hit Points`,
       description: `Roll or take average for your ${classData.hitDie}-sided hit die.`,
     });
 
     if (levelData?.features?.length > 0) {
-      steps.push({
-        id: `features-${level}`,
-        level,
+      sections.push({
         type: "features",
-        title: `Level ${level} - New Features`,
         features: levelData.features,
       });
     }
 
     if (level === classData.subclassLevel && classData.subclasses && classData.subclasses.length > 0) {
-      steps.push({
-        id: `subclass-${level}`,
-        level,
+      sections.push({
         type: "subclass",
-        title: `Level ${level} - Choose Subclass`,
         description: `Choose your ${classData.name} subclass.`,
         subclassOptions: classData.subclasses,
       });
     }
 
     if (levelData?.asi) {
-      steps.push({
-        id: `asi-${level}`,
-        level,
+      sections.push({
         type: "asi",
-        title: `Level ${level} - Ability Score Improvement`,
         description: "Distribute 2 points among your abilities (max 20).",
         asiCount: 2,
       });
@@ -152,11 +146,8 @@ export function generateLevelUpSteps(
       const totalCount = expertiseScaling?.values[level] || 0;
       const currentCount = currentExpertise.length;
       if (totalCount > currentCount) {
-        steps.push({
-          id: `expertise-${level}`,
-          level,
+        sections.push({
           type: "expertise",
-          title: `Level ${level} - Expertise`,
           description: `Choose ${totalCount - currentCount} skill${totalCount - currentCount !== 1 ? "s" : ""} to double your proficiency bonus.`,
           expertiseCount: totalCount - currentCount,
         });
@@ -164,11 +155,8 @@ export function generateLevelUpSteps(
     }
 
     if (levelData?.spellSlots) {
-      steps.push({
-        id: `spellSlots-${level}`,
-        level,
+      sections.push({
         type: "spellSlots",
-        title: `Level ${level} - Spell Slots`,
         spellSlots: levelData.spellSlots,
       });
     }
@@ -182,11 +170,8 @@ export function generateLevelUpSteps(
         Object.entries(levelData.spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v);
       const cantripsChanged = cantripsKnown > prevCantripsKnown;
       if (slotsChanged || cantripsChanged) {
-        steps.push({
-          id: `spellSelection-${level}`,
-          level,
+        sections.push({
           type: "spellSelection",
-          title: `Level ${level} - Spell Selection`,
           description: `Choose your spells for the spell levels you now have access to.`,
           spellSlots: levelData.spellSlots,
           spellSelectionCount: Object.values(levelData.spellSlots).reduce((a, b) => a + b, 0),
@@ -194,7 +179,41 @@ export function generateLevelUpSteps(
         });
       }
     }
+
+    const levelTitle =
+      sections.length === 1
+        ? `Level ${level} - ${sectionLabel(sections[0].type, className)}`
+        : `Level ${level}`;
+
+    steps.push({
+      id: `level-${level}`,
+      level,
+      title: levelTitle,
+      description: sections[0]?.description,
+      sections,
+    });
   }
 
   return steps;
+}
+
+function sectionLabel(type: LevelUpStepSection["type"], className: string): string {
+  switch (type) {
+    case "hp":
+      return "Hit Points";
+    case "features":
+      return "New Features";
+    case "subclass":
+      return "Choose Subclass";
+    case "asi":
+      return "Ability Score Improvement";
+    case "expertise":
+      return "Expertise";
+    case "spellSlots":
+      return "Spell Slots";
+    case "spellSelection":
+      return "Spell Selection";
+    default:
+      return "";
+  }
 }
