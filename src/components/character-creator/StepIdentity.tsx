@@ -103,16 +103,31 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
         </Field>
         <Field label={`Level: ${data.level}`}>
           <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => handleLevelChangeHook(Math.max(1, data.level - 1))}
+              disabled={data.level <= 1}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
+            >
+              -
+            </button>
             <input
               type="range"
               min={1}
               max={10}
               value={data.level}
-              onChange={(e) => handleLevelChangeHook(parseInt(e.target.value, 10))}
-              onBlur={() => {}}
-              className="flex-1 accent-gold"
+              disabled
+              className="flex-1 accent-gold disabled:opacity-60"
             />
-            <span className="text-sm font-semibold text-gold w-8 text-center">{data.level}</span>
+            <button
+              type="button"
+              onClick={() => handleLevelChangeHook(Math.min(10, data.level + 1))}
+              disabled={data.level >= 10}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
+            >
+              +
+            </button>
+            <span className="text-sm font-semibold text-gold w-6 text-center">{data.level}</span>
           </div>
         </Field>
         <Field label="Proficiency Bonus">
