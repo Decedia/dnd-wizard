@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepIdentity } from "@/components/character-creator/StepIdentity";
@@ -12,39 +11,49 @@ import { StepAbilityScores } from "@/components/character-creator/StepAbilitySco
 import { StepBackground } from "@/components/character-creator/StepBackground";
 import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
-import { StepSpells } from "@/components/character-creator/StepSpells";
-import { StepFinalTouches } from "@/components/character-creator/StepFinalTouches";
-import { createEmptyCharacter, saveCharacter, getRaceData, getMaxExpertiseCount, type Character } from "@/lib/storage";
+import { StepLooksAppearances } from "@/components/character-creator/StepLooksAppearances";
+import { StepLevelHitPoints } from "@/components/character-creator/StepLevelHitPoints";
+import { StepCard } from "@/components/character-creator/StepCard";
+import { PerLevelStepsFlow } from "@/components/character-creator/PerLevelStepsFlow";
+import {
+  createEmptyCharacter,
+  saveCharacter,
+  getMaxExpertiseCount,
+  computeDerivedStats,
+  generateId,
+  type Character,
+} from "@/lib/storage";
+import { getClassData, getRaceData, races } from "@/data/srd";
+import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep } from "@/lib/level-up";
 
-const TOTAL_STEPS = 9;
-
-function getEffectiveStep(actualStep: number, isWizard: boolean): number {
-  if (!isWizard && actualStep === 9) return 8;
-  return actualStep;
-}
-
-function getEffectiveTotalSteps(isWizard: boolean): number {
-  return isWizard ? TOTAL_STEPS : TOTAL_STEPS - 1;
-}
+const BASE_STEPS = 8;
 
 export default function CharacterCreate() {
   const router = useRouter();
   const [step, setStep] = useState(1);
-  const [character, setCharacter] = useState<Character>(createEmptyCharacter);
+  const [character, setCharacter] = useState<Character>(createEmptyCharacter());
   const [showExpertiseModal, setShowExpertiseModal] = useState(false);
+  const perLevelSteps = useMemo(() => {
+    if (character.level <= 1) return [];
+    return generateLevelUpSteps(1, character.level, character.class, character.expertise || [], character.skills || {});
+  }, [character.level, character.class, character.expertise, character.skills]);
+
+  const [pendingChanges, setPendingChanges] = useState<LevelUpChanges | null>(null);
+
+  const totalSteps = useMemo(() => {
+    return BASE_STEPS + 1 + perLevelSteps.length;
+  }, [perLevelSteps.length]);
+
+  const effectiveStep = step <= BASE_STEPS + 1 ? step : BASE_STEPS + 1 + (step - BASE_STEPS - 2);
 
   const update = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
       const next = { ...prev, ...patch };
-      const { computeDerivedStats } = require("@/lib/storage");
       const derived = computeDerivedStats(next);
       return { ...next, ...derived };
     });
   }, []);
 
-  const isWizard = character.class === "Wizard";
-  const effectiveTotalSteps = getEffectiveTotalSteps(isWizard);
-  const effectiveStep = getEffectiveStep(step, isWizard);
   const maxExpertise = character.class === "Rogue" ? getMaxExpertiseCount(character) : 0;
 
   const canProceed = (): boolean => {
@@ -58,29 +67,126 @@ export default function CharacterCreate() {
     return true;
   };
 
+  const addRaceFeatures = useCallback((raceName: string) => {
+    const raceData = getRaceData(raceName);
+    if (!raceData) return;
+    const newFeatures = raceData.traits.map((trait) => ({
+      id: generateId(),
+      name: trait.name,
+      description: trait.description,
+      source: "race" as const,
+      locked: true,
+    }));
+    const existingRaceFeatures = character.features.filter((f) => f.source !== "race");
+    update({ features: [...existingRaceFeatures, ...newFeatures] });
+  }, [character.features, update]);
+
+  const addClassFeatures = useCallback((className: string) => {
+    const classData = getClassData(className);
+    if (!classData) return;
+    const newFeatures = classData.features
+      .filter((f) => f.type === "feature")
+      .map((f) => ({
+        id: generateId(),
+        name: f.name,
+        description: f.description,
+        source: "class" as const,
+        locked: true,
+      }));
+    const existingClassFeatures = character.features.filter((f) => f.source !== "class");
+    const existingAttacks = character.attacks.filter((a) => a.source !== "class");
+    const classAttacks = classData.features
+      .filter((f) => f.type === "attack")
+      .map((f) => ({
+        id: generateId(),
+        name: f.name,
+        attackBonus: 0,
+        damageType: "",
+        sneakAttack: f.name === "Sneak Attack" ? "1d6" : undefined,
+        source: "class" as const,
+        classFeatureName: f.name,
+      }));
+    update({
+      features: [...existingClassFeatures, ...newFeatures],
+      attacks: [...existingAttacks, ...classAttacks],
+    });
+  }, [character.features, character.attacks, update]);
+
+  const handleRaceChange = useCallback((raceName: string) => {
+    update({ race: raceName });
+    addRaceFeatures(raceName);
+  }, [update, addRaceFeatures]);
+
+  const handleClassChange = useCallback((className: string) => {
+    update({ class: className });
+    addClassFeatures(className);
+  }, [update, addClassFeatures]);
+
   const handleNext = () => {
     if (!canProceed()) return;
     if (step === 6 && character.class === "Rogue" && (character.expertise || []).length < maxExpertise) {
       setShowExpertiseModal(true);
       return;
     }
-    if (effectiveStep < effectiveTotalSteps) {
-      if (!isWizard && step === 7) {
-        setStep(9);
-      } else {
-        setStep((s) => s + 1);
+
+    if (step === BASE_STEPS) {
+      setStep(BASE_STEPS + 1);
+      return;
+    }
+
+    if (step === BASE_STEPS + 1) {
+      if (character.level === 1) {
+        handleFinish();
+        return;
       }
+      setStep(BASE_STEPS + 2);
+      return;
+    }
+
+    if (step > BASE_STEPS + 1 && perLevelSteps.length > 0) {
+      const perLevelIndex = step - BASE_STEPS - 2;
+      if (perLevelIndex < perLevelSteps.length - 1) {
+        setStep((s) => s + 1);
+      } else {
+        setPendingChanges({
+          level: character.level,
+          features: [],
+          abilityScoreChanges: [],
+          expertise: [],
+          spellSlots: null,
+        });
+        setStep(totalSteps);
+      }
+      return;
+    }
+
+    if (step < BASE_STEPS) {
+      setStep((s) => s + 1);
     }
   };
 
   const handleBack = () => {
-    if (step > 1) {
-      if (!isWizard && step === 9) {
-        setStep(7);
-      } else {
+    if (step > BASE_STEPS + 1 && perLevelSteps.length > 0) {
+      const perLevelIndex = step - BASE_STEPS - 2;
+      if (perLevelIndex > 0) {
         setStep((s) => s - 1);
+      } else {
+        setStep(BASE_STEPS + 1);
       }
+      return;
     }
+    if (step > 1) {
+      setStep((s) => s - 1);
+    }
+  };
+
+  const handlePerLevelComplete = (changes: LevelUpChanges) => {
+    setPendingChanges(changes);
+    setStep(totalSteps);
+  };
+
+  const handlePerLevelBack = () => {
+    setStep(BASE_STEPS + 1);
   };
 
   const handleFinish = () => {
@@ -93,6 +199,36 @@ export default function CharacterCreate() {
         finalCharacter[key] = character[key] + bonus;
       }
     }
+
+    if (pendingChanges) {
+      const allFeatures = [...character.features];
+      for (const f of pendingChanges.features) {
+        if (!allFeatures.some((ef) => ef.name === f.name)) {
+          allFeatures.push({
+            id: generateId(),
+            name: f.name,
+            description: f.description,
+            source: "class" as const,
+            locked: true,
+          });
+        }
+      }
+      finalCharacter.features = allFeatures;
+      finalCharacter.level = pendingChanges.level;
+
+      if (pendingChanges.abilityScoreChanges.length > 0) {
+        for (const change of pendingChanges.abilityScoreChanges) {
+          (finalCharacter as any)[change.ability] = (finalCharacter as any)[change.ability] + change.delta;
+        }
+      }
+      if (pendingChanges.expertise.length > 0) {
+        finalCharacter.expertise = [...(finalCharacter.expertise || []), ...pendingChanges.expertise];
+      }
+      if (pendingChanges.spellSlots) {
+        finalCharacter.spellSlots = { ...finalCharacter.spellSlots, ...pendingChanges.spellSlots };
+      }
+    }
+
     saveCharacter(finalCharacter);
     router.replace(`/character/${finalCharacter.id}`);
   };
@@ -105,23 +241,9 @@ export default function CharacterCreate() {
             data={{
               name: character.name,
               playerName: character.playerName,
-              race: character.race,
-              class: character.class,
-              level: character.level,
               background: character.background,
               alignment: character.alignment,
-              experiencePoints: character.experiencePoints,
-              str: character.str,
-              dex: character.dex,
-              con: character.con,
-              int: character.int,
-              wis: character.wis,
-              cha: character.cha,
-              features: character.features,
-              spellSlots: character.spellSlots,
               languages: character.languages,
-              skills: character.skills,
-              expertise: character.expertise || [],
             }}
             onChange={(patch) => update(patch)}
           />
@@ -130,14 +252,18 @@ export default function CharacterCreate() {
         return (
           <StepRace
             data={{ race: character.race }}
-            onChange={(patch) => update(patch)}
+            onChange={(patch) => {
+              if (patch.race) handleRaceChange(patch.race);
+            }}
           />
         );
       case 3:
         return (
           <StepClass
             data={{ class: character.class }}
-            onChange={(patch) => update(patch)}
+            onChange={(patch) => {
+              if (patch.class) handleClassChange(patch.class);
+            }}
           />
         );
       case 4:
@@ -152,7 +278,7 @@ export default function CharacterCreate() {
                 wis: character.wis,
                 cha: character.cha,
               },
-              abilityMethod: "standard",
+              abilityMethod: character.abilityMethod,
               race: character.race,
               class: character.class,
               savingThrows: character.savingThrows,
@@ -162,6 +288,9 @@ export default function CharacterCreate() {
             onChange={(patch) => {
               if (patch.abilityScores) {
                 update(patch.abilityScores);
+              }
+              if (patch.abilityMethod) {
+                update({ abilityMethod: patch.abilityMethod });
               }
             }}
           />
@@ -196,55 +325,79 @@ export default function CharacterCreate() {
         );
       case 8:
         return (
-          <StepSpells
-            data={character}
+          <StepLooksAppearances
+            data={{ appearance: character.appearance }}
             onChange={(patch) => update(patch)}
           />
         );
       case 9:
         return (
-          <StepFinalTouches
-            data={{ appearance: character.appearance }}
+          <StepLevelHitPoints
+            data={character}
             onChange={(patch) => update(patch)}
           />
         );
       default:
+        if (step > 9 && perLevelSteps.length > 0) {
+          const perLevelIndex = step - 10;
+          if (perLevelIndex < perLevelSteps.length) {
+            return (
+              <PerLevelStepsFlow
+                character={character}
+                steps={perLevelSteps}
+                onComplete={handlePerLevelComplete}
+                onBack={handlePerLevelBack}
+                overallCurrentStep={step}
+                overallTotalSteps={totalSteps}
+              />
+            );
+          }
+        }
+        if (step >= totalSteps) {
+          return (
+            <StepCard title="Complete">
+              <p className="text-sm text-parchment/70 mb-4">Your character is ready. Click Finish & Save to create your character.</p>
+            </StepCard>
+          );
+        }
         return null;
     }
   };
 
   return (
     <div className="min-h-screen bg-charcoal">
-      <AppHeader title="Character Creator" subtitle={`Step ${effectiveStep} of ${effectiveTotalSteps}`} />
+      <AppHeader title="Character Creator" subtitle={`Step ${effectiveStep} of ${totalSteps}`} />
 
       <main className="px-4 py-6 pb-40">
         <div className="mx-auto max-w-lg">
-          <ProgressIndicator currentStep={effectiveStep} totalSteps={effectiveTotalSteps} />
+          <ProgressIndicator currentStep={effectiveStep} totalSteps={totalSteps} />
           {renderStep()}
         </div>
       </main>
 
-      <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
-        <div className="mx-auto max-w-lg px-4 w-full">
-          <div className="flex items-center gap-3 rounded-xl border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
-            {step > 1 && (
+      {step <= BASE_STEPS + 1 || step >= totalSteps ? (
+        <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
+          <div className="mx-auto max-w-lg px-4 w-full">
+            <div className="flex items-center gap-3 rounded-xl border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
+              {step > 1 && step <= BASE_STEPS + 1 ? (
+                <button
+                  onClick={handleBack}
+                  className="rounded-lg border border-parchment/20 px-5 py-2.5 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
+                >
+                  Back
+                </button>
+              ) : null}
               <button
-                onClick={handleBack}
-                className="rounded-lg border border-parchment/20 px-5 py-2.5 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
+                onClick={handleNext}
+                disabled={!canProceed()}
+                className="flex-1 rounded-lg bg-burgundy px-6 py-2.5 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
               >
-                Back
+                {step >= totalSteps ? "Finish & Save" : "Next"}
               </button>
-            )}
-            <button
-              onClick={handleNext}
-              disabled={!canProceed()}
-              className="flex-1 rounded-lg bg-burgundy px-6 py-2.5 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
-            >
-              {effectiveStep === effectiveTotalSteps ? "Finish & Save" : "Next"}
-            </button>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
 
       {showExpertiseModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80">

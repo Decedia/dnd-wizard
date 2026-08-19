@@ -3,12 +3,12 @@
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 
-interface StepFinalTouchesProps {
+interface StepLooksAppearancesProps {
   data: Pick<Character, "appearance">;
-  onChange: (data: Partial<StepFinalTouchesProps["data"]>) => void;
+  onChange: (data: Partial<StepLooksAppearancesProps["data"]>) => void;
 }
 
-export function StepFinalTouches({ data, onChange }: StepFinalTouchesProps) {
+export function StepLooksAppearances({ data, onChange }: StepLooksAppearancesProps) {
   const updateField = (field: keyof Character["appearance"], value: string) => {
     onChange({
       appearance: { ...data.appearance, [field]: value },
@@ -16,7 +16,7 @@ export function StepFinalTouches({ data, onChange }: StepFinalTouchesProps) {
   };
 
   return (
-    <StepCard title="Final Touches">
+    <StepCard title="Looks / Appearances">
       <div className="grid grid-cols-2 gap-4">
         <Field label="Age">
           <input

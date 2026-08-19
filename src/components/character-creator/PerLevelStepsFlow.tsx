@@ -1,56 +1,29 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { AppHeader } from "@/components/AppHeader";
-import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
-import { StepCard } from "@/components/character-creator/StepCard";
+import { StepCard } from "./StepCard";
 import { Dice, DiceType } from "@/components/Dice";
-import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep } from "@/lib/level-up";
-import { getClassData, spells } from "@/data/srd";
-import { getModifier } from "@/lib/storage";
+import { generateLevelUpSteps, type LevelUpStep, type LevelUpChanges } from "@/lib/level-up";
+import { getClassData, getSpellData, spells as srdSpells } from "@/data/srd";
+import { getModifier, getProficiencyBonus } from "@/lib/storage";
+import type { Character } from "@/lib/storage";
 
-interface LevelUpFlowProps {
-  open: boolean;
-  oldLevel: number;
-  newLevel: number;
-  className: string;
-  currentAbilityScores: {
-    str: number;
-    dex: number;
-    con: number;
-    int: number;
-    wis: number;
-    cha: number;
-  };
-  currentExpertise: string[];
-  currentSkills: Record<string, boolean>;
+interface PerLevelStepsFlowProps {
+  character: Character;
+  steps: LevelUpStep[];
   onComplete: (changes: LevelUpChanges) => void;
-  onCancel: () => void;
+  onBack: () => void;
+  overallCurrentStep: number;
+  overallTotalSteps: number;
 }
 
-export function LevelUpFlow({
-  open,
-  oldLevel,
-  newLevel,
-  className,
-  currentAbilityScores,
-  currentExpertise,
-  currentSkills,
-  onComplete,
-  onCancel,
-}: LevelUpFlowProps) {
+export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overallCurrentStep, overallTotalSteps }: PerLevelStepsFlowProps) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [hpResolved, setHpResolved] = useState<Record<number, boolean>>({});
   const [asiChoices, setAsiChoices] = useState<Record<number, { ability: string; delta: number }[]>>({});
   const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
-
-  const steps = useMemo(
-    () => generateLevelUpSteps(oldLevel, newLevel, className, currentExpertise, currentSkills),
-    [oldLevel, newLevel, className, currentExpertise, currentSkills]
-  );
-
-  const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
+  const [selectedSpells, setSelectedSpells] = useState<Record<string, string[]>>({});
 
   const handleHpResolve = useCallback((level: number) => {
     setHpResolved((prev) => ({ ...prev, [level]: true }));
@@ -73,12 +46,13 @@ export function LevelUpFlow({
   }, []);
 
   const handleFinish = useCallback(() => {
+    const classData = getClassData(character.class);
     const allFeatures: { name: string; description: string }[] = [];
     const allSpellSlots: Record<number, number> = {};
     let finalSpellSlots: Record<number, number> | null = null;
 
-    for (let level = oldLevel + 1; level <= newLevel; level++) {
-      const levelData = getClassData(className)?.levels[level - 1];
+    for (let level = 2; level <= character.level; level++) {
+      const levelData = classData?.levels[level - 1];
       if (levelData?.features) {
         allFeatures.push(...levelData.features);
       }
@@ -89,24 +63,24 @@ export function LevelUpFlow({
     }
 
     const allAsi: { ability: string; delta: number }[] = [];
-    for (let level = oldLevel + 1; level <= newLevel; level++) {
+    for (let level = 2; level <= character.level; level++) {
       allAsi.push(...(asiChoices[level] || []));
     }
 
     const allExpertise: string[] = [];
-    for (let level = oldLevel + 1; level <= newLevel; level++) {
+    for (let level = 2; level <= character.level; level++) {
       allExpertise.push(...(expertiseChoices[level] || []));
     }
 
     onComplete({
-      level: newLevel,
+      level: character.level,
       features: allFeatures,
       ...(subclassChoice ? { subclass: subclassChoice } : {}),
       abilityScoreChanges: allAsi,
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
     });
-  }, [oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, onComplete]);
+  }, [character.level, character.class, subclassChoice, asiChoices, expertiseChoices, onComplete]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -120,11 +94,9 @@ export function LevelUpFlow({
     if (currentStepIndex > 0) {
       setCurrentStepIndex((prev) => prev - 1);
     } else {
-      onCancel();
+      onBack();
     }
-  }, [currentStepIndex, onCancel]);
-
-  if (!open || steps.length === 0) return null;
+  }, [currentStepIndex, onBack]);
 
   const currentStep = steps[currentStepIndex];
   const isLastStep = currentStepIndex === steps.length - 1;
@@ -140,7 +112,7 @@ export function LevelUpFlow({
       case "expertise":
         return (expertiseChoices[currentStep.level]?.length || 0) === (currentStep.expertiseCount || 0);
       case "spellSelection": {
-        const spellKey = currentStep.level;
+        const spellKey = `level-${currentStep.level}`;
         const needed = currentStep.spellSelectionCount || 0;
         return (selectedSpells[spellKey]?.length || 0) >= needed;
       }
@@ -153,46 +125,56 @@ export function LevelUpFlow({
     switch (currentStep.type) {
       case "hp":
         return (
-          <HpStep
+          <HpStepInline
             step={currentStep}
-            className={className}
+            className={character.class}
+            conMod={getModifier(character.con)}
             onResolve={handleHpResolve}
             resolved={hpResolved[currentStep.level] === true}
           />
         );
       case "features":
-        return <FeaturesStep step={currentStep} />;
+        return <FeaturesStepInline step={currentStep} />;
       case "subclass":
-        return <SubclassStep step={currentStep} selected={subclassChoice} onSelect={setSubclassChoice} />;
+        return (
+          <SubclassStepInline step={currentStep} selected={subclassChoice} onSelect={setSubclassChoice} />
+        );
       case "asi":
         return (
-          <AsiStep
+          <AsiStepInline
             step={currentStep}
-            abilityScores={currentAbilityScores}
+            abilityScores={{
+              str: character.str,
+              dex: character.dex,
+              con: character.con,
+              int: character.int,
+              wis: character.wis,
+              cha: character.cha,
+            }}
             choices={asiChoices[currentStep.level] || []}
             onChange={(ability, delta) => handleAsiChange(currentStep.level, ability, delta)}
           />
         );
       case "expertise":
         return (
-          <ExpertiseStep
+          <ExpertiseStepInline
             step={currentStep}
-            className={className}
-            currentExpertise={currentExpertise}
-            currentSkills={currentSkills}
+            className={character.class}
+            currentExpertise={character.expertise || []}
+            currentSkills={character.skills || {}}
             selected={expertiseChoices[currentStep.level] || []}
             onSelect={(names) => setExpertiseChoices((prev) => ({ ...prev, [currentStep.level]: names }))}
           />
         );
       case "spellSlots":
-        return <SpellSlotsStep step={currentStep} />;
+        return <SpellSlotsStepInline step={currentStep} />;
       case "spellSelection":
         return (
-          <SpellSelectionStep
+          <SpellSelectionStepInline
             step={currentStep}
-            character={{ class: className, level: newLevel, ...currentAbilityScores } as any}
-            selected={selectedSpells[currentStep.level] || []}
-            onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [currentStep.level]: names }))}
+            character={character}
+            selected={selectedSpells[`level-${currentStep.level}`] || []}
+            onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [`level-${currentStep.level}`]: names }))}
           />
         );
       default:
@@ -201,45 +183,40 @@ export function LevelUpFlow({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal">
-      <AppHeader title="Level Up!" subtitle={`Step ${currentStepIndex + 1} of ${steps.length}`} />
-      <main className="px-4 py-6 pb-28">
-        <div className="mx-auto max-w-lg">
-          <ProgressIndicator currentStep={currentStepIndex + 1} totalSteps={steps.length} />
-          <StepCard title={currentStep.title}>{renderStepContent()}</StepCard>
-        </div>
-      </main>
-      <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
-        <div className="mx-auto max-w-lg px-4 w-full">
-          <div className="flex items-center gap-3 rounded-xl border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
-            <button
-              type="button"
-              onClick={handleBack}
-              className="flex-1 rounded-lg border border-parchment/20 px-4 py-2.5 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
-            >
-              Back
-            </button>
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={!canProceed()}
-              className="flex-1 rounded-lg bg-burgundy px-4 py-2.5 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
-            >
-              {isLastStep ? "Finish Level Up" : "Next"}
-            </button>
-          </div>
-        </div>
+    <div className="space-y-4">
+      <div className="text-xs text-parchment/50 text-center">
+        Step {overallCurrentStep} of {overallTotalSteps}
+      </div>
+      <StepCard title={currentStep.title}>
+        {renderStepContent()}
+      </StepCard>
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={handleBack}
+          className="flex-1 rounded-lg border border-parchment/20 px-4 py-2.5 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          onClick={handleNext}
+          disabled={!canProceed()}
+          className="flex-1 rounded-lg bg-burgundy px-6 py-2.5 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
+        >
+          {isLastStep ? "Finish" : "Next"}
+        </button>
       </div>
     </div>
   );
 }
 
-function HpStep({ step, className, onResolve, resolved }: { step: LevelUpStep; className: string; onResolve: (level: number) => void; resolved: boolean }) {
+function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: LevelUpStep; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
   const classData = getClassData(className);
   const hitDie = classData?.hitDie || 10;
-  const conMod = getModifier(10);
   const average = Math.floor(hitDie / 2) + 1;
   const diceType = `d${hitDie}` as DiceType;
+  const totalGain = average + conMod;
 
   return (
     <div className="space-y-4">
@@ -255,7 +232,7 @@ function HpStep({ step, className, onResolve, resolved }: { step: LevelUpStep; c
           disabled={resolved}
           className="rounded-lg border border-parchment/20 bg-charcoal/40 px-4 py-2 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40 disabled:opacity-40"
         >
-          Take Average ({average + conMod})
+          Take Average ({totalGain})
         </button>
       </div>
       {resolved && (
@@ -267,7 +244,7 @@ function HpStep({ step, className, onResolve, resolved }: { step: LevelUpStep; c
   );
 }
 
-function FeaturesStep({ step }: { step: LevelUpStep }) {
+function FeaturesStepInline({ step }: { step: LevelUpStep }) {
   return (
     <div className="space-y-2">
       {step.features?.map((feature, idx) => (
@@ -276,11 +253,12 @@ function FeaturesStep({ step }: { step: LevelUpStep }) {
           <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
         </div>
       ))}
+      <p className="text-xs text-parchment/50 mt-2">These features have been added to your character sheet.</p>
     </div>
   );
 }
 
-function SubclassStep({ step, selected, onSelect }: { step: LevelUpStep; selected: string | null; onSelect: (name: string) => void }) {
+function SubclassStepInline({ step, selected, onSelect }: { step: LevelUpStep; selected: string | null; onSelect: (name: string) => void }) {
   return (
     <div className="space-y-3">
       {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
@@ -321,14 +299,14 @@ function SubclassStep({ step, selected, onSelect }: { step: LevelUpStep; selecte
   );
 }
 
-function AsiStep({
+function AsiStepInline({
   step,
   abilityScores,
   choices,
   onChange,
 }: {
   step: LevelUpStep;
-  abilityScores: LevelUpFlowProps["currentAbilityScores"];
+  abilityScores: { str: number; dex: number; con: number; int: number; wis: number; cha: number };
   choices: { ability: string; delta: number }[];
   onChange: (ability: string, delta: number) => void;
 }) {
@@ -387,7 +365,7 @@ function AsiStep({
   );
 }
 
-function ExpertiseStep({
+function ExpertiseStepInline({
   step,
   className,
   currentExpertise,
@@ -456,7 +434,7 @@ function ExpertiseStep({
   );
 }
 
-function SpellSlotsStep({ step }: { step: LevelUpStep }) {
+function SpellSlotsStepInline({ step }: { step: LevelUpStep }) {
   return (
     <div className="space-y-2">
       <p className="text-xs text-parchment/60">Your spell slots have been updated.</p>
@@ -472,19 +450,19 @@ function SpellSlotsStep({ step }: { step: LevelUpStep }) {
   );
 }
 
-function SpellSelectionStep({
+function SpellSelectionStepInline({
   step,
   character,
   selected,
   onSelect,
 }: {
   step: LevelUpStep;
-  character: { class: string; level: number; con: number; str: number; dex: number; int: number; wis: number; cha: number };
+  character: Character;
   selected: string[];
   onSelect: (names: string[]) => void;
 }) {
-  const [activeTab, setActiveTab] = useState<string>("cantrips");
   const classData = getClassData(character.class);
+  const [activeTab, setActiveTab] = useState<string>("cantrips");
 
   const spellLevels = useMemo(() => {
     const levels: { key: string; label: string; level: number; limit: number }[] = [];
@@ -505,9 +483,9 @@ function SpellSelectionStep({
   const tabSpells = useMemo(() => {
     if (!currentTab) return [];
     if (currentTab.level === 0) {
-      return spells.filter((s) => s.level === 0);
+      return srdSpells.filter((s) => s.level === 0);
     }
-    return spells.filter((s) => s.level === currentTab!.level);
+    return srdSpells.filter((s) => s.level === currentTab!.level);
   }, [currentTab]);
 
   const toggleSpell = (spellName: string) => {

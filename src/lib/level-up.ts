@@ -20,7 +20,7 @@ export interface AbilityScoreChange {
 export interface LevelUpStep {
   id: string;
   level: number;
-  type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots";
+  type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection";
   title: string;
   description?: string;
   features?: { name: string; description: string }[];
@@ -32,6 +32,8 @@ export interface LevelUpStep {
   asiCount?: number;
   expertiseCount?: number;
   spellSlots?: Record<number, number>;
+  spellSelectionCount?: number;
+  spellSelectionLevel?: number;
 }
 
 export interface LevelUpChanges {
@@ -146,7 +148,7 @@ export function generateLevelUpSteps(
     }
 
     if (className === "Rogue" && (level === 1 || level === 6)) {
-      const expertiseScaling = classData.scalingFeatures?.find((f) => f.type === "expertise");
+      const expertiseScaling = classData.scalingFeatures?.find((f) => f.type === "feature" && f.name === "Expertise");
       const totalCount = expertiseScaling?.values[level] || 0;
       const currentCount = currentExpertise.length;
       if (totalCount > currentCount) {
@@ -169,6 +171,28 @@ export function generateLevelUpSteps(
         title: `Level ${level} - Spell Slots`,
         spellSlots: levelData.spellSlots,
       });
+    }
+
+    if (classData.spellcastingAbility && levelData?.spellSlots) {
+      const prevLevelData = level > oldLevel + 1 ? classData.levels[level - 2] : null;
+      const cantripsKnown = classData.cantripsKnown?.[level] || 0;
+      const prevCantripsKnown = prevLevelData ? (classData.cantripsKnown?.[level - 1] || 0) : 0;
+      const prevSlots = prevLevelData?.spellSlots || {};
+      const slotsChanged = Object.keys(levelData.spellSlots).length !== Object.keys(prevSlots).length ||
+        Object.entries(levelData.spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v);
+      const cantripsChanged = cantripsKnown > prevCantripsKnown;
+      if (slotsChanged || cantripsChanged) {
+        steps.push({
+          id: `spellSelection-${level}`,
+          level,
+          type: "spellSelection",
+          title: `Level ${level} - Spell Selection`,
+          description: `Choose your spells for the spell levels you now have access to.`,
+          spellSlots: levelData.spellSlots,
+          spellSelectionCount: Object.values(levelData.spellSlots).reduce((a, b) => a + b, 0),
+          spellSelectionLevel: level,
+        });
+      }
     }
   }
 

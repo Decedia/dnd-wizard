@@ -37,35 +37,47 @@ export function FeaturesTraitsSection({ character, onChange }: FeaturesTraitsSec
   return (
     <SectionCard id="features" title="Features & Traits" icon={<FeaturesIcon className="h-5 w-5" />}>
       <div className="space-y-3">
-        {character.features.map((feature) => (
-          <div key={feature.id} className="rounded-lg border border-parchment/10 bg-charcoal/40 p-3">
-            <div className="flex items-center justify-between gap-3">
-              <input
-                type="text"
-                value={feature.name}
-                onChange={(e) => updateItem(feature.id, { name: e.target.value })}
-                onBlur={onFieldBlur}
-                className="input flex-1"
-                placeholder="Feature name"
+        {character.features.map((feature) => {
+          const isLocked = feature.locked === true;
+          return (
+            <div key={feature.id} className={`rounded-lg border p-3 ${isLocked ? "border-green-500/20 bg-green-500/5" : "border-parchment/10 bg-charcoal/40"}`}>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 flex-1">
+                  <input
+                    type="text"
+                    value={feature.name}
+                    readOnly={isLocked}
+                    onChange={(e) => !isLocked && updateItem(feature.id, { name: e.target.value })}
+                    onBlur={isLocked ? undefined : onFieldBlur}
+                    className={`input flex-1 ${isLocked ? "bg-charcoal/60" : ""}`}
+                    placeholder="Feature name"
+                  />
+                  {isLocked && (
+                    <span className="text-[10px] font-medium text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded whitespace-nowrap">default</span>
+                  )}
+                </div>
+                {!isLocked && (
+                  <button
+                    type="button"
+                    onClick={() => removeItem(feature.id)}
+                    className="text-parchment/40 hover:text-parchment"
+                    aria-label="Remove feature"
+                  >
+                    <XIcon className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+              <textarea
+                value={feature.description}
+                readOnly={isLocked}
+                onChange={(e) => !isLocked && updateItem(feature.id, { description: e.target.value })}
+                onBlur={isLocked ? undefined : onFieldBlur}
+                className={`input mt-2 min-h-[80px] ${isLocked ? "bg-charcoal/60" : ""}`}
+                placeholder="Description"
               />
-              <button
-                type="button"
-                onClick={() => removeItem(feature.id)}
-                className="text-parchment/40 hover:text-parchment"
-                aria-label="Remove feature"
-              >
-                <XIcon className="h-4 w-4" />
-              </button>
             </div>
-            <textarea
-              value={feature.description}
-              onChange={(e) => updateItem(feature.id, { description: e.target.value })}
-              onBlur={onFieldBlur}
-              className="input mt-2 min-h-[80px]"
-              placeholder="Description"
-            />
-          </div>
-        ))}
+          );
+        })}
       </div>
       <button
         type="button"

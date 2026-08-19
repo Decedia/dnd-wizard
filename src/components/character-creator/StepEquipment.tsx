@@ -121,6 +121,30 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         </div>
       )}
 
+      {(() => {
+        const selectedChoiceItems = data.inventory.filter((item) => item.choiceGroupIndex !== undefined && !item.isGranted);
+        const nonWeaponSelected = selectedChoiceItems.filter((item) => item.itemType !== "weapon");
+        if (nonWeaponSelected.length === 0) return null;
+        return (
+          <div className="mb-4">
+            <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Selected Equipment</span>
+            <div className="space-y-1">
+              {nonWeaponSelected.map((item) => (
+                <div key={item.id} className="flex flex-col gap-0.5 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+                  <span className="text-sm text-parchment/80">
+                    {item.name}
+                    {item.quantity && item.quantity > 1 ? ` (x${item.quantity})` : ""}
+                  </span>
+                  {item.description && (
+                    <span className="text-xs text-parchment/50">{item.description}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       {choiceGroups.length > 0 && (
         <div className="mb-4">
           <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Equipment Choices</span>
@@ -172,34 +196,43 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       )}
 
       <div className="space-y-2">
-        {data.inventory.filter((item) => !item.choiceGroupIndex && !item.isGranted).map((item) => (
-          <div key={item.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-            <input
-              type="text"
-              value={item.name}
-              onChange={(e) => updateItem(item.id, { name: e.target.value })}
-              onBlur={() => {}}
-              className="input flex-1"
-              placeholder="Item name"
-            />
-            <input
-              type="number"
-              min={1}
-              value={item.quantity}
-              onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
-              onBlur={() => {}}
-              className="input w-16 text-center"
-            />
-            <button
-              type="button"
-              onClick={() => removeItem(item.id)}
-              className="text-parchment/40 hover:text-parchment"
-              aria-label="Remove item"
-            >
-              <XIcon className="h-4 w-4" />
-            </button>
-          </div>
-        ))}
+        {data.inventory.filter((item) => !item.choiceGroupIndex && !item.isGranted).map((item) => {
+          const srdData = getEquipmentData(item.srdItemName || item.name);
+          const description = item.description || srdData?.description;
+          return (
+            <div key={item.id} className="flex flex-col gap-1 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={item.name}
+                  onChange={(e) => updateItem(item.id, { name: e.target.value })}
+                  onBlur={() => {}}
+                  className="input flex-1"
+                  placeholder="Item name"
+                />
+                <input
+                  type="number"
+                  min={1}
+                  value={item.quantity}
+                  onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
+                  onBlur={() => {}}
+                  className="input w-16 text-center"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeItem(item.id)}
+                  className="text-parchment/40 hover:text-parchment"
+                  aria-label="Remove item"
+                >
+                  <XIcon className="h-4 w-4" />
+                </button>
+              </div>
+              {description && (
+                <p className="text-xs text-parchment/50">{description}</p>
+              )}
+            </div>
+          );
+        })}
       </div>
       <button
         type="button"

@@ -14,7 +14,7 @@ export interface Character {
   ideal: string;
   bond: string;
   flaw: string;
-  abilityMethod: "standard" | "pointbuy" | "manual";
+  abilityMethod: "standard" | "pointbuy" | "diceroll";
   str: number;
   dex: number;
   con: number;
@@ -37,9 +37,9 @@ export interface Character {
   skills: Record<string, boolean>;
   expertise: string[];
   passivePerception: number;
-  features: { id: string; name: string; description: string }[];
-  inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean }[];
-  attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string }[];
+  features: { id: string; name: string; description: string; source?: "race" | "class" | "custom"; locked?: boolean }[];
+  inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string }[];
+  attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class"; classFeatureName?: string }[];
   otherProficiencies: string;
   languages: string[];
   spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string }[];
@@ -129,7 +129,7 @@ export function getHitDieAverage(hitDie: number): number {
 export function getMaxExpertiseCount(character: Character): number {
   if (character.class !== "Rogue") return 0;
   const classData = getClassData("Rogue");
-  const scaling = classData?.scalingFeatures?.find((f) => f.type === "expertise");
+  const scaling = classData?.scalingFeatures?.find((f) => f.type === "feature" && f.name === "Expertise");
   if (!scaling) return 0;
   let maxCount = 0;
   for (const [level, count] of Object.entries(scaling.values)) {
@@ -316,7 +316,7 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
   ac += equippedShields.length * 2;
 
   const profBonus = getProficiencyBonus(character.level);
-  const attacks: Character["attacks"] = equippedWeapons.map((weapon) => {
+  const weaponAttacks: Character["attacks"] = equippedWeapons.map((weapon) => {
     const abilityKey = weapon.category === "ranged" ? "dex" : "str";
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
@@ -327,19 +327,46 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
       attackBonus: abilityMod + profBonus,
       damageType: [weapon.damageDice, weapon.damageType].filter(Boolean).join(" "),
       sneakAttack: sneakDice,
+      source: "weapon" as const,
     };
   });
 
-  return { ac, attacks };
+  const classAttacks = getClassGrantedAttacks(character);
+
+  return { ac, attacks: [...classAttacks, ...weaponAttacks] };
 }
 
 export function getSneakAttackDice(character: Character): string | undefined {
   if (character.class !== "Rogue") return undefined;
   const classData = getClassData("Rogue");
-  const scaling = classData?.scalingFeatures?.find((f) => f.type === "sneak_attack");
+  const scaling = classData?.scalingFeatures?.find((f) => f.type === "attack");
   if (!scaling) return undefined;
   const diceCount = scaling.values[character.level] ?? 1;
   return `${diceCount}d6`;
+}
+
+export function getClassGrantedAttacks(character: Character): { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source: "class"; classFeatureName: string }[] {
+  const classData = getClassData(character.class);
+  if (!classData) return [];
+  const attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source: "class"; classFeatureName: string }[] = [];
+  const profBonus = getProficiencyBonus(character.level);
+  for (const feature of classData.features) {
+    if (feature.type === "attack") {
+      if (feature.name === "Sneak Attack") {
+        const sneakDice = getSneakAttackDice(character);
+        attacks.push({
+          id: `class-attack-${feature.name.toLowerCase().replace(/\s+/g, "-")}`,
+          name: feature.name,
+          attackBonus: profBonus,
+          damageType: sneakDice ? `${sneakDice} damage` : "",
+          sneakAttack: sneakDice,
+          source: "class",
+          classFeatureName: feature.name,
+        });
+      }
+    }
+  }
+  return attacks;
 }
 
 export function computeDerivedStats(character: Character): Partial<Character> {

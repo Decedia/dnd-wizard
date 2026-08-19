@@ -2,131 +2,98 @@
 
 ## Current State
 
-**App Status**: ✅ Multi-step Level Up flow + Dice Roller complete
+**App Status**: ✅ DND-AN creation wizard fully restructured (Steps 1-9 + per-level sequence)
 
-### Level Up Flow
-- Replaced single `LevelUpModal` with `LevelUpFlow` — a multi-step guided flow using the same `ProgressIndicator` + `StepCard` + Back/Next pattern as the character creation wizard.
-- Triggered when the level slider increases (in both Wizard and Character Sheet). Multiple levels gained at once generate a full step sequence in ascending order.
-- Steps are dynamically generated per class from `srd.json`:
-  - **Hit Points** — always included; integrates the `<Dice/>` component (roll or take average).
-  - **New Class Features** — informational, auto-added to Features list on finish.
-  - **Subclass Selection** — shown at the class's `subclassLevel` (Fighter/Rogue L3, Wizard L2) with radio-button options.
-  - **Ability Score Improvement** — shown on ASI levels with +/- controls.
-  - **Expertise** — shown for Rogue at levels 1 and 6.
-  - **Spell Slot Update** — shown for casters when slots increase.
-- "Finish Level Up" applies all accumulated changes in one write. Backing out or canceling discards everything.
-- `useLevelUp` hook and `LevelUpModal` removed.
+### Creation Wizard Restructure
+- **Step 1 — Identity**: Removed Level/Proficiency/XP; added Background select dropdown; custom language input added below SRD language checkboxes.
+- **Step 2 — Race**: Card-select from SRD races; on selection, race traits auto-added as locked Features & Traits entries (green "default" tag, no delete/edit).
+- **Step 3 — Class**: Card-select from SRD classes; on selection, non-attack features auto-added as locked Features & Traits; attack-type features (Sneak Attack) auto-added as class-granted attacks in Attacks & Spellcasting.
+- **Step 4 — Ability Scores & Saving Throws**: Merged view with one-time info popup; method toggle (Standard Array / Point Buy / Dice Roll); Standard Array pool removal when assigned; Dice Roll uses 4d6 drop-lowest with 1-reroll and manual override per ability; saving throws auto-display from class.
+- **Step 5 — Background**: Unchanged (name + personality traits + ideal + bond + flaw).
+- **Step 6 — Skills**: One-time info popup explaining class-restricted skills and proficiency; existing restricted-list + count-enforced behavior preserved; no Expertise mechanics introduced here.
+- **Step 7 — Equipment**: Choice groups rendered as radio buttons (or-groups); selected weapons auto-populate Attacks via computeEquippedEffects; non-weapon items shown with one-line description always visible.
+- **Step 8 — Looks / Appearances**: Renamed from Final Touches; same fields (age, height, weight, eyes, skin, hair, backstory).
+- **Step 9 — Level & Hit Points**: New step; +/- level selector (1-10); shows Level 1 baseline HP (hit die + CON mod); Next generates per-level step sequence for levels 2 through selected level.
+- **Per-level steps (10+)**: Dynamically generated using `generateLevelUpSteps` (same function used by LevelUpFlow); sequence: HP → Features → Subclass → ASI → Expertise → Spell Selection; progress indicator continues counting (e.g. "Step 11 of 14").
+- **Spell Selection (per-level)**: Tabbed layout (Cantrips, 1st-5th Level); only shows tabs for spell levels the character has slots for; selection limits enforced per tab (cantrips-known / spell-slots-known); selected spells tagged with level learned.
+- **Finish flow**: All accumulated changes applied in one write; racial ability bonuses applied on finish.
 
-### Subclass Data
-- Added `subclassLevel` and `subclasses` to `SRDClass` interface and data in `srd.ts`.
-- Fighter (L3): Champion, Battle Master, Eldritch Knight.
-- Wizard (L2): 8 Arcane Tradition schools.
-- Rogue (L3): Thief, Assassin, Arcane Trickster.
+### SRD Data Updates
+- Added `type: "feature" | "attack"` tags to all class features in `srd.ts` (Fighter, Wizard, Rogue).
+- Rogue `scalingFeatures` type updated from `"sneak_attack" | "expertise"` to `"feature" | "attack"`.
+- Expanded `spells` array from 10 to 28 spells covering Cantrips (0) through Level 5, each with `castingTime`, `range`, `duration`, `effect` fields.
+- Added `backgrounds` array (13 5e backgrounds) to `srd.ts`.
+- Updated `SRDSpell` interface to include casting metadata.
 
-### Dice Roller
-- Reusable `<Dice/>` component supporting d4, d6, d8, d10, d12, d20, d100 with CSS shapes and animations.
-- New `/dice` route with a 2×4 grid, each die independently tappable with last result shown.
-- "Roll All Dice" button with staggered timing.
-- Added Dice entry to `BottomNav` and home screen.
+### Character Type Updates (`storage.ts`)
+- `features` now includes `source?: "race" | "class" | "custom"` and `locked?: boolean`.
+- `attacks` now includes `source?: "weapon" | "class"` and `classFeatureName?: string`.
+- `inventory` items now include `description?: string`.
+- `abilityMethod` type updated from `"manual"` to `"diceroll"`.
+- New `getClassGrantedAttacks()` helper returns class-granted attack entries (e.g. Sneak Attack).
+- `computeEquippedEffects()` now merges class-granted attacks with weapon attacks.
+
+### Sheet Rendering Updates
+- `FeaturesTraitsSection`: Locked features show with green border, "default" tag, read-only fields, no delete button.
+- `AttacksAndSpellcastingSection`: Class-granted attacks shown with gold border, "class-granted" tag, read-only.
+
+### Level Up Flow Updates
+- `generateLevelUpSteps` now generates `spellSelection` steps at levels where spell slots increase or cantrips known increases.
+- `LevelUpStep` type extended with `spellSelection` variant.
+- `LevelUpFlow` modal now includes `SpellSelectionStep` for post-creation level up.
+- `PerLevelStepsFlow` component created for inline per-level steps during character creation.
 
 ## Recently Completed
 
-- [x] Extended `Character` type with full sheet fields (identity, stats, skills, features, inventory, spells, appearance)
-- [x] Local storage utilities for character CRUD + empty character factory
-- [x] `SectionCard` base component with header and divider
-- [x] `IdentitySection` - name, race, class, level, background, alignment
-- [x] `StatsSection` - 6 ability scores with auto-modifiers, AC, HP, speed
-- [x] `SkillsSection` - 18 standard 5e skills with proficiency checkboxes and auto-calculated totals
-- [x] `FeaturesTraitsSection` - repeatable name/description list with add/remove
-- [x] `InventorySection` - repeatable item/quantity list with currency row
-- [x] `SpellsSection` - repeatable spell name/level list with collapse toggle
-- [x] `AppearanceBioSection` - age, height, weight, eyes, skin, hair, personality, backstory
-- [x] `StickyMiniHeader` - shows character name + class/level while scrolling
-- [x] `SectionNav` - floating vertical pill nav with scroll-spy (desktop)
-- [x] `CharacterSheetContext` - provides debounced auto-save to all section inputs
-- [x] Character view page (`/character/[id]`) with manual save + confirmation toast
-- [x] `/character/new` creates empty character and redirects to its sheet
-- [x] All icons updated to flat SVG design
-- [x] Wire create button to step-by-step character creation wizard (`/character/create`)
-- [x] Create `src/data/srd.ts` with real 5e SRD data (races, classes, skills, spells)
-- [x] Update Race and Class steps to use SRD data with expandable traits/features
-- [x] Update Ability Scores step to auto-apply racial bonuses and show base + final scores
-- [x] Update Skills step hints to use real SRD descriptions
-- [x] Update Spells step to use real SRD spell list and descriptions
-- [x] Skip Spells step for non-Wizard classes (Fighter/Rogue auto-skip to Final Touches)
-- [x] Fix StepBackground persistence bug (was passing empty strings instead of character state)
-- [x] Update Character Sheet IdentitySection, SkillsSection, SpellsSection to pull from SRD data
-- [x] Expand SRD class data with levels 1-10 arrays (features, ASI, spell slots)
-- [x] Create reusable LevelUpModal component with features list, ASI picker, spell slots summary
-- [x] Create useLevelUp hook for detecting level increases and computing cumulative level data
-- [x] Wire level-up modal into Character Sheet IdentitySection and Creation Flow StepIdentity
-- [x] Add spellSlots field to Character type for Wizard spell slot tracking
-- [x] Add `hpPerLevel` to SRDClass interface and classes (Fighter=6, Wizard=4, Rogue=5)
-- [x] Rewrite `computeDerivedStats` HP logic to use class `hitDie` (level 1) and `hpPerLevel` (subsequent levels) + CON modifier
-- [x] Add `getClassLevel1Hp`, `getClassPerLevelHp`, `getMaxExpertiseCount` helpers to `storage.ts`
-- [x] Add `hpGain` to `LevelUpResult` in `level-up.ts`
-- [x] Update `LevelUpModal` to display HP gain description and expertise picker for level 6 Rogue
-- [x] Update `AttacksAndSpellcastingSection` to always show Sneak Attack read-only stat for Rogues
-- [x] Create `ExpertisePicker` component for selecting expertise skills
-- [x] Update `SkillsSection` (character sheet) to integrate `ExpertisePicker`
-- [x] Update `StepSkills` (character creator) to accept full `Character` data and show `ExpertisePicker`
-- [x] Update character creator page to show expertise modal after Skills step for Rogues
-- [x] Update character sheet page with Level Up button, HP gain display, and expertise handling
-- [x] Skills not in class allowed list are grayed out, not hidden, in both wizard and sheet
-- [x] Equipment choices render as radio-button groups with granted items shown as non-interactive
-- [x] Replace single `LevelUpModal` with multi-step `LevelUpFlow` component
-- [x] Add `subclassLevel` and `subclasses` to SRDClass for Fighter/Wizard/Rogue
-- [x] Create `/dice` route with Dice Roller screen and `Dice` component
-- [x] Add Dice Roller entry to `BottomNav` and home screen
-- [x] Remove old `LevelUpModal.tsx` and `useLevelUp.ts` hook
+- [x] Restructured DND-AN creation wizard end-to-end (Steps 1-8 fixes + new Steps 9+)
+- [x] Added `type: "feature" | "attack"` tags to all class features in srd.ts
+- [x] Expanded spells to 28 entries with full casting metadata (levels 0-5)
+- [x] Added backgrounds list to srd.ts
+- [x] Updated Character type with source/locked on features, class-granted on attacks
+- [x] Updated FeaturesTraitsSection and AttacksAndSpellcastingSection for locked/class-granted rendering
+- [x] Fixed StepIdentity (removed Level/Proficiency/XP, added Background select, custom language)
+- [x] Updated StepRace to auto-add locked race traits
+- [x] Updated StepClass to auto-add locked class features and route attacks
+- [x] Updated StepAbilityScores with one-time popup, Dice Roll method, Standard Array pool removal
+- [x] Updated StepSkills with one-time info popup
+- [x] Updated StepEquipment with auto-populated Attacks & Inventory descriptions
+- [x] Renamed StepFinalTouches to StepLooksAppearances
+- [x] Created StepLevelHitPoints component
+- [x] Created PerLevelStepsFlow component for inline per-level steps
+- [x] Added spell selection tabbed UI to both PerLevelStepsFlow and LevelUpFlow
+- [x] Unified Level Up logic between creation and post-creation via `generateLevelUpSteps`
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
 
 | File/Directory | Purpose | Status |
 |----------------|---------|--------|
-| `src/app/globals.css` | Dark fantasy theme, `.input` styles, dice CSS | ✅ Ready |
-| `src/app/layout.tsx` | Root layout with fonts + bottom nav | ✅ Ready |
-| `src/app/page.tsx` | Home screen (My Characters list + Dice Roller entry) | ✅ Ready |
-| `src/app/dice/page.tsx` | Dice Roller screen | ✅ Ready |
-| `src/app/character/new/page.tsx` | Creates empty character and redirects | ✅ Ready |
-| `src/app/character/[id]/page.tsx` | Full character sheet page with Level Up button | ✅ Ready |
-| `src/app/character/create/page.tsx` | Character creation wizard with Level Up flow | ✅ Ready |
-| `src/components/BottomNav.tsx` | Floating bottom nav with Dice entry | ✅ Ready |
-| `src/components/AppHeader.tsx` | App header with dragon logo | ✅ Ready |
-| `src/lib/storage.ts` | LocalStorage CRUD + Character type + HP/expertise helpers | ✅ Ready |
-| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells, hpPerLevel, subclassLevel, subclasses, scalingFeatures) | ✅ Ready |
-| `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` | ✅ Ready |
-| `src/components/level-up/LevelUpFlow.tsx` | Multi-step level-up flow with HP (Dice), ASI, subclass, expertise, spell slots | ✅ Ready |
-| `src/components/Dice.tsx` | Reusable animated dice component | ✅ Ready |
-| `src/components/character-creator/StepRace.tsx` | Race selection with SRD traits | ✅ Ready |
-| `src/components/character-creator/StepClass.tsx` | Class selection with SRD features | ✅ Ready |
-| `src/components/character-creator/StepAbilityScores.tsx` | Ability scores with racial auto-bonuses | ✅ Ready |
-| `src/components/character-creator/StepSkills.tsx` | Skill selection with SRD descriptions + expertise picker | ✅ Ready |
-| `src/components/character-creator/StepEquipment.tsx` | Equipment choice packages from SRD | ✅ Ready |
-| `src/components/character-creator/StepSpells.tsx` | Spell picker with SRD data (Wizard only) | ✅ Ready |
-| `src/components/character-creator/StepFinalTouches.tsx` | Appearance and backstory | ✅ Ready |
-| `src/components/character-sheet/SectionCard.tsx` | Base card component | ✅ Ready |
-| `src/components/character-sheet/StickyMiniHeader.tsx` | Sticky scroll header | ✅ Ready |
-| `src/components/character-sheet/SectionNav.tsx` | Floating vertical section nav with scroll-spy | ✅ Ready |
-| `src/components/character-sheet/CharacterSheetContext.tsx` | Context for auto-save blur handler | ✅ Ready |
-| `src/components/character-sheet/IdentitySection.tsx` | Identity fields with Level Up flow | ✅ Ready |
-| `src/components/character-sheet/StatsSection.tsx` | Stats with auto-modifiers, read-only Max HP | ✅ Ready |
-| `src/components/character-sheet/SkillsSection.tsx` | 18 skills with proficiency, expertise tag + ExpertisePicker | ✅ Ready |
-| `src/components/character-sheet/ExpertisePicker.tsx` | Expertise skill selection for Rogues | ✅ Ready |
-| `src/components/character-sheet/FeaturesTraitsSection.tsx` | Repeatable features/traits | ✅ Ready |
-| `src/components/character-sheet/InventorySection.tsx` | Equipment choices + granted items + currency | ✅ Ready |
-| `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Attacks with sneak attack display | ✅ Ready |
-| `src/components/character-sheet/SpellsSection.tsx` | Repeatable spells with collapse toggle | ✅ Ready |
-| `src/components/character-sheet/AppearanceBioSection.tsx` | Appearance & backstory | ✅ Ready |
+| `src/app/character/create/page.tsx` | Character creation wizard orchestrator (9 base + dynamic per-level steps) | ✅ Ready |
+| `src/components/character-creator/StepIdentity.tsx` | Name, player, alignment, languages + custom, background select | ✅ Ready |
+| `src/components/character-creator/StepRace.tsx` | Race card-select with auto-locked traits | ✅ Ready |
+| `src/components/character-creator/StepClass.tsx` | Class card-select with auto-locked features | ✅ Ready |
+| `src/components/character-creator/StepAbilityScores.tsx` | Ability scores with popup, 3 methods, saving throws | ✅ Ready |
+| `src/components/character-creator/StepBackground.tsx` | Background + personality/ideal/bond/flaw | ✅ Ready |
+| `src/components/character-creator/StepSkills.tsx` | Skills with popup, restricted list, expertise picker | ✅ Ready |
+| `src/components/character-creator/StepEquipment.tsx` | Equipment choices, auto-populate attacks/inventory | ✅ Ready |
+| `src/components/character-creator/StepLooksAppearances.tsx` | Age, height, weight, eyes, skin, hair, backstory | ✅ Ready |
+| `src/components/character-creator/StepLevelHitPoints.tsx` | Level selector (1-10), baseline HP display | ✅ Ready |
+| `src/components/character-creator/PerLevelStepsFlow.tsx` | Inline per-level step sequence with spell selection | ✅ Ready |
+| `src/data/srd.ts` | 5e SRD data with type tags, expanded spells, backgrounds | ✅ Ready |
+| `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
+| `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with spellSelection | ✅ Ready |
+| `src/components/level-up/LevelUpFlow.tsx` | Multi-step level-up modal with spell selection | ✅ Ready |
+| `src/components/character-sheet/FeaturesTraitsSection.tsx` | Locked feature rendering with "default" tag | ✅ Ready |
+| `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Class-granted attack rendering with "class-granted" tag | ✅ Ready |
 
 ## Current Focus
 
-Level Up multi-step flow and Dice Roller complete. Next steps:
+Wizard restructure complete. Next steps:
 1. Add character deletion from home screen
 2. Implement PDF export/import
 3. Add database persistence (via add-database recipe)
-4. Future: Fighting Style choice, Action Surge tracker, Arcane Recovery tracker
+4. Future: Refactor shared step rendering between PerLevelStepsFlow and LevelUpFlow to reduce duplication
+5. Future: Fighting Style choice, Action Surge tracker, Arcane Recovery tracker
 
 ## Available Recipes
 
@@ -145,3 +112,4 @@ Level Up multi-step flow and Dice Roller complete. Next steps:
 | 2026-08-18 | Added Level Up system with reusable modal, SRD levels 1-10 data, ASI picker, and Wizard spell slot summaries |
 | 2026-08-19 | Wired SRD data into UI and calculations: HP auto-calc, skills restricted list + count, equipment choice packages, sneak attack numeric effect, expertise picker for Rogue |
 | 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |
+| 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |

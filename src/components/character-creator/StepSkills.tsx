@@ -12,6 +12,17 @@ interface StepSkillsProps {
 }
 
 export function StepSkills({ data, onChange }: StepSkillsProps) {
+  const [showInfo, setShowInfo] = useState(() => {
+    if (typeof window !== "undefined") {
+      const hasSeen = sessionStorage.getItem("skills-info-seen");
+      if (!hasSeen) {
+        sessionStorage.setItem("skills-info-seen", "true");
+      }
+      return !hasSeen;
+    }
+    return false;
+  });
+
   const classData = data.class ? getClassData(data.class) : null;
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
@@ -45,6 +56,24 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
 
   return (
     <StepCard title="Skills">
+      {showInfo && (
+        <div className="mb-4 rounded-lg border border-gold/20 bg-gold/5 p-3">
+          <p className="text-xs text-parchment/70 mb-2">
+            <strong className="text-gold">Why these skills?</strong> Your class determines which skills you can choose from. Each class has a set of skills that reflect its core competencies and training.
+          </p>
+          <p className="text-xs text-parchment/70 mb-3">
+            <strong className="text-gold">Proficiency matters</strong> because it adds your proficiency bonus to the relevant ability check. Being proficient means your character is especially skilled in that area.
+          </p>
+          <button
+            type="button"
+            onClick={() => setShowInfo(false)}
+            className="text-xs text-gold hover:text-gold/80 font-medium"
+          >
+            Got it
+          </button>
+        </div>
+      )}
+
       {skillChoices ? (
         <p className="text-xs text-parchment/50 mb-3">
           Choose {maxSelections} skills from your class list ({currentSelections} of {maxSelections} selected)

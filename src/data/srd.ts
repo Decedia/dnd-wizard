@@ -32,7 +32,7 @@ export interface SRDClassLevel {
 export interface SRDScalingFeature {
   name: string;
   description: string;
-  type: "sneak_attack" | "expertise";
+  type: "feature" | "attack";
   values: Record<number, number>;
 }
 
@@ -72,7 +72,11 @@ export interface SRDSkill {
 export interface SRDSpell {
   name: string;
   level: number;
+  castingTime: string;
+  range: string;
+  duration: string;
   description: string;
+  effect: string;
 }
 
 export interface SRDEquipment {
@@ -213,10 +217,10 @@ export const classes: SRDClass[] = [
         ],
       },
     ],
-    features: [
-      { name: "Fighting Style", description: "You adopt a particular style of fighting as your specialty." },
-      { name: "Second Wind", description: "Regain hit points equal to 1d10 + your fighter level as a bonus action." },
-    ],
+  features: [
+    { name: "Fighting Style", description: "You adopt a particular style of fighting as your specialty.", type: "feature" },
+    { name: "Second Wind", description: "Regain hit points equal to 1d10 + your fighter level as a bonus action.", type: "feature" },
+  ],
     levels: [
       { features: [{ name: "Fighting Style", description: "You adopt a particular style of fighting as your specialty." }, { name: "Second Wind", description: "Regain hit points equal to 1d10 + your fighter level as a bonus action." }], asi: false },
       { features: [{ name: "Action Surge", description: "Take one additional action on your turn, once per short rest." }], asi: false },
@@ -319,8 +323,8 @@ export const classes: SRDClass[] = [
       },
     ],
     features: [
-      { name: "Spellcasting", description: "You can cast spells using an arcane focus and your spellbook." },
-      { name: "Arcane Recovery", description: "Recover spell slots once per day during a short rest." },
+      { name: "Spellcasting", description: "You can cast spells using an arcane focus and your spellbook.", type: "feature" },
+      { name: "Arcane Recovery", description: "Recover spell slots once per day during a short rest.", type: "feature" },
     ],
     levels: [
       { features: [{ name: "Spellcasting", description: "You can cast spells using an arcane focus and your spellbook." }, { name: "Arcane Recovery", description: "Recover spell slots once per day during a short rest." }], asi: false, spellSlots: { 1: 2 } },
@@ -475,33 +479,33 @@ export const classes: SRDClass[] = [
       },
     ],
     features: [
-      { name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "expertise" },
-      { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "sneak_attack" },
-      { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues." },
+      { name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "feature" },
+      { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "attack" },
+      { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues.", type: "feature" },
     ],
     levels: [
-      { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "expertise" }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "sneak_attack" }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues." }], asi: false },
-      { features: [{ name: "Cunning Action", description: "Use a bonus action to Dash, Disengage, or Hide." }], asi: false },
-      { features: [{ name: "Roguish Archetype", description: "Choose a roguish archetype: Thief, Assassin, or Arcane Trickster." }], asi: false },
+      { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "feature" }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "attack" }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues.", type: "feature" }], asi: false },
+      { features: [{ name: "Cunning Action", description: "Use a bonus action to Dash, Disengage, or Hide.", type: "feature" }], asi: false },
+      { features: [{ name: "Roguish Archetype", description: "Choose a roguish archetype: Thief, Assassin, or Arcane Trickster.", type: "feature" }], asi: false },
       { features: [], asi: true },
-      { features: [{ name: "Uncanny Dodge", description: "Use your reaction to halve the damage from an attack that hits you." }], asi: false },
-      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype." }], asi: false },
-      { features: [{ name: "Evasion", description: "Dodge out of the way of area effects on a successful Dexterity saving throw." }], asi: false },
+      { features: [{ name: "Uncanny Dodge", description: "Use your reaction to halve the damage from an attack that hits you.", type: "feature" }], asi: false },
+      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype.", type: "feature" }], asi: false },
+      { features: [{ name: "Evasion", description: "Dodge out of the way of area effects on a successful Dexterity saving throw.", type: "feature" }], asi: false },
       { features: [], asi: true },
-      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype." }], asi: false },
-      { features: [{ name: "Stroke of Luck", description: "Turn a missed attack into a hit or a failed ability check into a success." }], asi: false },
+      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype.", type: "feature" }], asi: false },
+      { features: [{ name: "Stroke of Luck", description: "Turn a missed attack into a hit or a failed ability check into a success.", type: "feature" }], asi: false },
     ],
     scalingFeatures: [
       {
         name: "Sneak Attack",
         description: "Deal extra damage to a creature you hit with advantage on the attack roll.",
-        type: "sneak_attack",
+        type: "attack",
         values: { 1: 1, 2: 1, 3: 2, 4: 2, 5: 3, 6: 3, 7: 4, 8: 4, 9: 5, 10: 5 },
       },
       {
         name: "Expertise",
         description: "Double your proficiency bonus for two chosen skills or thieves' tools.",
-        type: "expertise",
+        type: "feature",
         values: { 1: 2, 3: 2, 6: 4 },
       },
     ],
@@ -557,16 +561,33 @@ export const skills: SRDSkill[] = [
 ];
 
 export const spells: SRDSpell[] = [
-  { name: "Fire Bolt", level: 0, description: "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried." },
-  { name: "Magic Missile", level: 1, description: "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4+1 force damage to its target." },
-  { name: "Shield", level: 1, description: "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile." },
-  { name: "Mage Armor", level: 1, description: "You touch a willing creature who isn't wearing armor, and a magical force field surrounds it until the spell ends. The target's base AC becomes 10 plus its Dexterity modifier." },
-  { name: "Detect Magic", level: 1, description: "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic." },
-  { name: "Burning Hands", level: 1, description: "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much on a successful one." },
-  { name: "Sleep", level: 1, description: "This spell sends creatures into a magical slumber. Roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points." },
-  { name: "Comprehend Languages", level: 1, description: "For the duration, you understand the literal meaning of any spoken language you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written." },
-  { name: "Chromatic Orb", level: 1, description: "You hurl a 4-inch-diameter sphere of energy at a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of a type you choose: acid, cold, fire, lightning, poison, or thunder." },
-  { name: "Magic Weapon", level: 1, description: "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls." },
+  { name: "Fire Bolt", level: 0, castingTime: "1 action", range: "120 feet", duration: "Instantaneous", description: "You hurl a mote of fire at a creature or object within range.", effect: "Make a ranged spell attack. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried." },
+  { name: "Ray of Frost", level: 0, castingTime: "1 action", range: "60 feet", duration: "Instantaneous", description: "A beam of blue-white light streaks toward a creature within range.", effect: "Make a ranged spell attack. On a hit, the target takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn." },
+  { name: "Light", level: 0, castingTime: "1 action", range: "Touch", duration: "1 hour", description: "You touch one object that is no larger than 10 feet in any dimension.", effect: "Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like." },
+  { name: "Mage Hand", level: 0, castingTime: "1 action", range: "30 feet", duration: "1 minute", description: "A spectral, floating hand appears at a point you choose within range.", effect: "The hand lasts for the duration or until you dismiss it. You can use it to manipulate an object, open an unlocked door or container, or stow or retrieve an item from an open container." },
+  { name: "Prestidigitation", level: 0, castingTime: "1 action", range: "10 feet", duration: "Up to 1 hour", description: "You create a minor magical effect within range.", effect: "You can create a harmless sensory effect, light or snuff a small flame, clean or soil an object no larger than 1 cubic foot, chill or warm up to 1 cubic foot of nonliving material, or make a small mark or color appear on an object." },
+  { name: "Magic Missile", level: 1, castingTime: "1 action", range: "120 feet", duration: "Instantaneous", description: "You create three glowing darts of magical force.", effect: "Each dart hits a creature of your choice that you can see within range. A dart deals 1d4+1 force damage to its target. The darts all strike simultaneously, and you can direct them at one creature or several." },
+  { name: "Shield", level: 1, castingTime: "1 reaction, taken when you are hit by an attack or targeted by the magic missile spell", range: "Self", duration: "1 round", description: "An invisible barrier of magical force appears to protect you.", effect: "Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile." },
+  { name: "Mage Armor", level: 1, castingTime: "1 action", range: "Touch", duration: "8 hours", description: "You touch a willing creature who isn't wearing armor.", effect: "A magical force field surrounds the target until the spell ends. The target's base AC becomes 10 plus its Dexterity modifier." },
+  { name: "Detect Magic", level: 1, castingTime: "1 action", range: "Self", duration: "Up to 10 minutes", description: "For the duration, you sense the presence of magic within 30 feet of you.", effect: "If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic. You also learn the school of magic, if any." },
+  { name: "Burning Hands", level: 1, castingTime: "1 action", range: "Self (15-foot cone)", duration: "Instantaneous", description: "A thin sheet of flames shoots forth from your outstretched fingertips.", effect: "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much on a successful one." },
+  { name: "Sleep", level: 1, castingTime: "1 action", range: "90 feet", duration: "1 minute", description: "This spell sends creatures into a magical slumber.", effect: "Roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose are affected in ascending order of their current hit points." },
+  { name: "Comprehend Languages", level: 1, castingTime: "1 action", range: "Self", duration: "1 hour", description: "You understand the literal meaning of any spoken language you hear.", effect: "You also understand any written language that you see, but you must be touching the surface on which the words are written." },
+  { name: "Chromatic Orb", level: 1, castingTime: "1 action", range: "90 feet", duration: "Instantaneous", description: "You hurl a 4-inch-diameter sphere of energy at a creature within range.", effect: "Make a ranged spell attack. On a hit, the target takes 3d8 damage of a type you choose: acid, cold, fire, lightning, poison, or thunder." },
+  { name: "Magic Weapon", level: 1, castingTime: "1 bonus action", range: "Touch", duration: "Up to 1 hour", description: "You touch a nonmagical weapon.", effect: "Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls." },
+  { name: "Misty Step", level: 2, castingTime: "1 bonus action", range: "Self", duration: "Instantaneous", description: "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space you can see.", effect: "You can teleport through barriers as long as you have line of sight to the destination." },
+  { name: "Mirror Image", level: 2, castingTime: "1 action", range: "Self", duration: "1 minute", description: "Three illusory duplicates of yourself appear in your space.", effect: "Until the spell ends, the duplicates move with you and mimic your actions. Whenever a creature targets you with an attack, roll a d20. On a roll of 11 or higher, one of the duplicates takes the hit instead." },
+  { name: "Scorching Ray", level: 2, castingTime: "1 action", range: "120 feet", duration: "Instantaneous", description: "You create three rays of fire and hurl them at targets within range.", effect: "Make a ranged spell attack for each ray. On a hit, the target takes 2d6 fire damage." },
+  { name: "Invisibility", level: 2, castingTime: "1 action", range: "Touch", duration: "Up to 1 hour", description: "A creature you touch becomes invisible until the spell ends.", effect: "Anything the target is wearing or carrying is invisible as long as it is on the target's person. The spell ends for a target that attacks or casts a spell." },
+  { name: "Counterspell", level: 3, castingTime: "1 reaction, taken when you see a creature within 60 feet casting a spell", range: "60 feet", duration: "Instantaneous", description: "You attempt to interrupt a creature in the process of casting a spell.", effect: "If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability." },
+  { name: "Fireball", level: 3, castingTime: "1 action", range: "150 feet", duration: "Instantaneous", description: "A bright streak flashes from your pointing finger to a point you choose within range.", effect: "A 20-foot-radius sphere of fire spreads out from that point. Each creature in that area must make a Dexterity saving throw. A creature takes 8d6 fire damage on a failed save, or half as much on a successful one." },
+  { name: "Lightning Bolt", level: 3, castingTime: "1 action", range: "Self (100-foot line)", duration: "Instantaneous", description: "A stroke of lightning forms a line 100 feet long and 5 feet wide.", effect: "Each creature in the line must make a Dexterity saving throw. A creature takes 8d6 lightning damage on a failed save, or half as much on a successful one." },
+  { name: "Fly", level: 3, castingTime: "1 action", range: "Touch", duration: "Up to 10 minutes", description: "You touch a willing creature.", effect: "The target gains a flying speed of 60 feet for the duration. When the spell ends, the target falls if it is still aloft, unless it can stop the fall." },
+  { name: "Dimension Door", level: 4, castingTime: "1 action", range: "500 feet", duration: "Instantaneous", description: "You teleport yourself from your current location to any other spot within range.", effect: "You can bring along objects as long as their weight doesn't exceed your carrying capacity. You can also bring one willing creature of your size or smaller." },
+  { name: "Greater Invisibility", level: 4, castingTime: "1 action", range: "Touch", duration: "Up to 1 minute", description: "You or a creature you touch becomes invisible until the spell ends.", effect: "Unlike invisibility, this spell does not end if the target attacks or casts a spell." },
+  { name: "Wall of Fire", level: 4, castingTime: "1 action", range: "120 feet", duration: "Up to 1 minute", description: "You create a wall of fire on a solid surface within range.", effect: "When a creature enters the wall's space for the first time on a turn or starts its turn there, it must make a Dexterity saving throw, taking 5d8 fire damage on a failed save, or half as much on a successful one." },
+  { name: "Cloudkill", level: 5, castingTime: "1 action", range: "120 feet", duration: "Up to 10 minutes", description: "You create a 20-foot-radius sphere of poisonous, yellow-green fog centered on a point you choose within range.", effect: "The fog spreads around corners and heavily obscures its area. When a creature enters the area, it must make a Constitution saving throw, taking 5d8 poison damage on a failed save, or half as much on a successful one." },
+  { name: "Scrying", level: 5, castingTime: "10 minutes", range: "Self", duration: "Up to 10 minutes", description: "You can see and hear a particular creature you choose that is on the same plane of existence as you.", effect: "If the target is willing, the scrying succeeds automatically. If unwilling, the target can make a Wisdom saving throw to resist." },
 ];
 
 export const equipment: SRDEquipment[] = [
@@ -604,6 +625,22 @@ export const languages: SRDLanguage[] = [
   { name: "Goblin" },
   { name: "Halfling" },
   { name: "Orc" },
+];
+
+export const backgrounds = [
+  "Acolyte",
+  "Charlatan",
+  "Criminal",
+  "Entertainer",
+  "Folk Hero",
+  "Guild Artisan",
+  "Hermit",
+  "Noble",
+  "Outlander",
+  "Sage",
+  "Sailor",
+  "Soldier",
+  "Urchin",
 ];
 
 export const raceNames = races.map((r) => r.name);
