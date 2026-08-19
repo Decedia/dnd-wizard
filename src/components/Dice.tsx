@@ -51,7 +51,7 @@ const DiceComponent = forwardRef<DiceHandle, DiceProps>(function Dice(
     setResult(finalResult);
 
     let flickerCount = 0;
-    const totalFlickers = 10 + Math.floor(Math.random() * 8);
+    const totalFlickers = 12 + Math.floor(Math.random() * 8);
 
     flickerRef.current = window.setInterval(() => {
       setDisplayNumber(`${Math.floor(Math.random() * sides) + 1}`);
