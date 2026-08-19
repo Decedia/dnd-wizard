@@ -32,8 +32,10 @@ export default function DiceRoller() {
   };
 
   const rollAll = () => {
-    DICE_TYPES.forEach((type) => {
-      diceRefs.current[type]?.roll();
+    DICE_TYPES.forEach((type, index) => {
+      setTimeout(() => {
+        diceRefs.current[type]?.roll();
+      }, index * 80);
     });
   };
 

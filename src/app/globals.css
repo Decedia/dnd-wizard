@@ -106,10 +106,10 @@
 }
 
 @keyframes dice-land {
-  0% { transform: scale(1); }
-  35% { transform: scale(1.12); }
-  65% { transform: scale(0.96); }
-  100% { transform: scale(1); }
+  0% { filter: brightness(1); }
+  35% { filter: brightness(1.25); }
+  65% { filter: brightness(0.95); }
+  100% { filter: brightness(1); }
 }
 
 .dice:not(.rolling) {
@@ -137,20 +137,21 @@
 .dice-face.result {
   animation: dice-land 0.4s ease-out;
   color: #722f37;
-  text-shadow: 0 0 8px rgba(114, 47, 55, 0.3);
 }
 
 .dice-badge {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #722f37;
   color: #f4f1ea;
   font-size: 9px;
   font-weight: 700;
-  padding: 2px 5px;
+  padding: 2px 6px;
   border-radius: 4px;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .dice-result-text {

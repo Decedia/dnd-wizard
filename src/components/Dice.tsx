@@ -77,6 +77,14 @@ const DiceComponent = forwardRef<DiceHandle, DiceProps>(function Dice(
     };
   }, [autoRoll, roll]);
 
+  useEffect(() => {
+    setResult(null);
+    setDisplayNumber("?");
+    setShowResult(false);
+    setIsRolling(false);
+    isRollingRef.current = false;
+  }, [type]);
+
   useImperativeHandle(ref, () => ({ roll }));
 
   const shapeClass = `dice-${type}`;
