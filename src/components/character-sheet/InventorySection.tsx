@@ -82,10 +82,11 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     const choice = group.choices[optionIndex];
     if (!choice) return;
 
-    const globalIndex = startingEquipment.indexOf(choice);
+    const firstChoice = group.choices[0];
+    const groupGlobalIndex = startingEquipment.indexOf(firstChoice);
 
     const nextInventory = character.inventory.filter(
-      (item) => !(item.choiceGroupIndex === globalIndex && !item.isGranted)
+      (item) => !(item.choiceGroupIndex === groupGlobalIndex && !item.isGranted)
     );
 
     const itemsToAdd = choice.items || [];
@@ -106,7 +107,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         armorType: srdData?.armorType,
         maxDexBonus: srdData?.maxDexBonus,
         description: itemRef.description || srdData?.description,
-        choiceGroupIndex: globalIndex,
+        choiceGroupIndex: groupGlobalIndex,
         choiceOptionIndex: optionIndex,
       };
       nextInventory.push(newItem);
@@ -165,8 +166,12 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
           <div className="space-y-4">
             {radioGroups.map((group) => {
               const selectedOption = getSelectedOptionForGroup(group);
+              const groupDescription = group.choices[0]?.description || "";
               return (
                 <div key={group.name} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
+                  {groupDescription && (
+                    <p className="text-[10px] font-medium text-parchment/50 uppercase tracking-wider mb-2">{groupDescription}</p>
+                  )}
                   <div className="space-y-2">
                     {group.choices.map((choice: any, optionIdx: number) => {
                       const isSelected = selectedOption === optionIdx;
@@ -190,9 +195,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                           />
                           <div className="flex-1">
                             <span className="text-sm text-parchment/80">{itemNames}</span>
-                            {choice.description && (
-                              <p className="text-xs text-parchment/50 mt-0.5">{choice.description}</p>
-                            )}
                           </div>
                         </label>
                       );
