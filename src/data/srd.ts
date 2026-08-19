@@ -7,10 +7,27 @@ export interface SRDRace {
   traits: { name: string; description: string }[];
 }
 
+export interface SRDSkillChoice {
+  count: number;
+  options: string[];
+}
+
+export interface SRDEquipmentChoice {
+  description: string;
+  items: { name: string; quantity?: number; description?: string }[];
+}
+
 export interface SRDClassLevel {
-  features: { name: string; description: string }[];
+  features: { name: string; description: string; type?: string }[];
   asi: boolean;
   spellSlots?: Record<number, number>;
+}
+
+export interface SRDScalingFeature {
+  name: string;
+  description: string;
+  type: "sneak_attack" | "expertise";
+  values: Record<number, number>;
 }
 
 export interface SRDClass {
@@ -19,9 +36,18 @@ export interface SRDClass {
   primaryAbility: string;
   savingThrows: string[];
   flavorText: string;
-  features: { name: string; description: string }[];
+  proficiencies: {
+    armor: string[];
+    weapons: string[];
+    tools: string[];
+  };
+  skillChoices: SRDSkillChoice;
+  startingEquipment: (SRDEquipmentChoice | { granted: true; description: string; items: { name: string; quantity?: number; description?: string }[] })[];
+  features: { name: string; description: string; type?: string }[];
   levels: SRDClassLevel[];
   spellcastingAbility?: string;
+  cantripsKnown?: Record<number, number>;
+  scalingFeatures?: SRDScalingFeature[];
 }
 
 export interface SRDSkill {
@@ -110,6 +136,69 @@ export const classes: SRDClass[] = [
     primaryAbility: "str",
     savingThrows: ["str", "con"],
     flavorText: "A master of martial combat, skilled with weapons and armor.",
+    proficiencies: {
+      armor: ["all armor", "shields"],
+      weapons: ["simple weapons", "martial weapons"],
+      tools: [],
+    },
+    skillChoices: {
+      count: 2,
+      options: ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"],
+    },
+    startingEquipment: [
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Chain Mail", description: "Medium armor. AC 16." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Leather Armor", description: "Light armor. AC 11 + Dex modifier." },
+          { name: "Longbow", description: "A ranged weapon (1d8 piercing)." },
+          { name: "Quiver", description: "Contains 20 arrows.", quantity: 20 },
+        ],
+      },
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Martial Weapon", description: "A martial weapon of your choice." },
+          { name: "Shield", description: "Increases AC by +2 while equipped.", quantity: 1 },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Martial Weapon", description: "A martial weapon of your choice.", quantity: 2 },
+        ],
+      },
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Light Crossbow", description: "A ranged weapon (1d8 piercing)." },
+          { name: "Quiver", description: "Contains 20 bolts.", quantity: 20 },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Handaxe", description: "A simple melee weapon (1d6 slashing).", quantity: 2 },
+        ],
+      },
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Dungeoneer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Explorer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+        ],
+      },
+    ],
     features: [
       { name: "Fighting Style", description: "You adopt a particular style of fighting as your specialty." },
       { name: "Second Wind", description: "Regain hit points equal to 1d10 + your fighter level as a bonus action." },
@@ -129,10 +218,64 @@ export const classes: SRDClass[] = [
   },
   {
     name: "Wizard",
-    hitDie: 8,
+    hitDie: 6,
     primaryAbility: "int",
     savingThrows: ["int", "wis"],
     flavorText: "A scholarly spellcaster who wields magic through study and arcane knowledge.",
+    proficiencies: {
+      armor: [],
+      weapons: ["daggers", "darts", "slings", "quarterstaffs", "light crossbows"],
+      tools: [],
+    },
+    skillChoices: {
+      count: 2,
+      options: ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"],
+    },
+    startingEquipment: [
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Quarterstaff", description: "A simple melee weapon (1d6 bludgeoning)." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Dagger", description: "A simple melee weapon (1d4 piercing)." },
+        ],
+      },
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Component Pouch", description: "A small pouch containing arcane components." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Arcane Focus", description: "A focus for casting spells, such as a wand or orb." },
+        ],
+      },
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Scholar's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Explorer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+        ],
+      },
+      {
+        granted: true,
+        description: "Always granted:",
+        items: [
+          { name: "Spellbook", description: "A book containing your starting spells and formulas for casting them.", quantity: 1 },
+        ],
+      },
+    ],
     features: [
       { name: "Spellcasting", description: "You can cast spells using an arcane focus and your spellbook." },
       { name: "Arcane Recovery", description: "Recover spell slots once per day during a short rest." },
@@ -150,6 +293,7 @@ export const classes: SRDClass[] = [
       { features: [{ name: "Arcane Tradition feature", description: "You gain a feature from your chosen Arcane Tradition." }], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 3, 5: 2 } },
     ],
     spellcastingAbility: "int",
+    cantripsKnown: { 1: 3, 4: 4, 10: 5 },
   },
   {
     name: "Rogue",
@@ -157,13 +301,76 @@ export const classes: SRDClass[] = [
     primaryAbility: "dex",
     savingThrows: ["dex", "int"],
     flavorText: "A stealthy trickster who excels at skills, stealth, and striking from the shadows.",
+    proficiencies: {
+      armor: ["light armor"],
+      weapons: ["simple weapons", "hand crossbows", "longswords", "rapiers", "shortswords"],
+      tools: ["thieves' tools"],
+    },
+    skillChoices: {
+      count: 4,
+      options: ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"],
+    },
+    startingEquipment: [
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Rapier", description: "A martial melee weapon (1d8 piercing)." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Shortsword", description: "A martial melee weapon (1d6 piercing)." },
+        ],
+      },
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Shortbow", description: "A ranged weapon (1d6 piercing)." },
+          { name: "Quiver", description: "Contains 20 arrows.", quantity: 20 },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Shortsword", description: "A martial melee weapon (1d6 piercing)." },
+        ],
+      },
+      {
+        description: "Choose one:",
+        items: [
+          { name: "Burglar's Pack", description: "Includes a backpack, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days of rations, a tinderbox, a waterskin, and 50 feet of rope." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Dungeoneer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+        ],
+      },
+      {
+        description: "Or:",
+        items: [
+          { name: "Explorer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+        ],
+      },
+      {
+        granted: true,
+        description: "Always granted:",
+        items: [
+          { name: "Leather Armor", description: "Light armor. AC 11 + Dex modifier.", quantity: 1 },
+          { name: "Dagger", description: "A simple melee weapon (1d4 piercing).", quantity: 2 },
+          { name: "Thieves' Tools", description: "A set of tools for picking locks and disarming traps.", quantity: 1 },
+        ],
+      },
+    ],
     features: [
-      { name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools." },
-      { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll." },
+      { name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "expertise" },
+      { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "sneak_attack" },
       { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues." },
     ],
     levels: [
-      { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools." }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll." }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues." }], asi: false },
+      { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "expertise" }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "sneak_attack" }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues." }], asi: false },
       { features: [{ name: "Cunning Action", description: "Use a bonus action to Dash, Disengage, or Hide." }], asi: false },
       { features: [{ name: "Roguish Archetype", description: "Choose a roguish archetype: Thief, Assassin, or Arcane Trickster." }], asi: false },
       { features: [], asi: true },
@@ -173,6 +380,20 @@ export const classes: SRDClass[] = [
       { features: [], asi: true },
       { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype." }], asi: false },
       { features: [{ name: "Stroke of Luck", description: "Turn a missed attack into a hit or a failed ability check into a success." }], asi: false },
+    ],
+    scalingFeatures: [
+      {
+        name: "Sneak Attack",
+        description: "Deal extra damage to a creature you hit with advantage on the attack roll.",
+        type: "sneak_attack",
+        values: { 1: 1, 2: 1, 3: 2, 4: 2, 5: 3, 6: 3, 7: 4, 8: 4, 9: 5, 10: 5 },
+      },
+      {
+        name: "Expertise",
+        description: "Double your proficiency bonus for two chosen skills or thieves' tools.",
+        type: "expertise",
+        values: { 1: 2, 3: 2, 6: 4 },
+      },
     ],
   },
 ];
@@ -216,9 +437,25 @@ export const equipment: SRDEquipment[] = [
   { name: "Shortbow", description: "A ranged weapon favored by rogues and rangers for its mobility.", type: "weapon", category: "ranged", damageDice: "1d6", damageType: "piercing" },
   { name: "Leather Armor", description: "Light armor made from tough but flexible leather, offering basic protection.", type: "armor", baseAC: 11, armorType: "light", maxDexBonus: null },
   { name: "Chain Shirt", description: "Medium armor made of interlocking metal rings, balancing protection and mobility.", type: "armor", baseAC: 13, armorType: "medium", maxDexBonus: 2 },
+  { name: "Chain Mail", description: "Heavy armor made of interlocking metal rings.", type: "armor", baseAC: 16, armorType: "heavy", maxDexBonus: 0 },
   { name: "Dagger", description: "A simple, lightweight weapon that can be used in melee or thrown.", type: "weapon", category: "melee", damageDice: "1d4", damageType: "piercing" },
+  { name: "Shortsword", description: "A martial weapon favored by rogues.", type: "weapon", category: "melee", damageDice: "1d6", damageType: "piercing" },
+  { name: "Rapier", description: "A slender, sharply pointed martial weapon.", type: "weapon", category: "melee", damageDice: "1d8", damageType: "piercing" },
+  { name: "Longbow", description: "A ranged weapon used for long-distance combat.", type: "weapon", category: "ranged", damageDice: "1d8", damageType: "piercing" },
+  { name: "Light Crossbow", description: "A ranged weapon that fires bolts.", type: "weapon", category: "ranged", damageDice: "1d8", damageType: "piercing" },
+  { name: "Handaxe", description: "A simple melee weapon designed for throwing.", type: "weapon", category: "melee", damageDice: "1d6", damageType: "slashing" },
+  { name: "Quarterstaff", description: "A simple melee weapon made of wood.", type: "weapon", category: "melee", damageDice: "1d6", damageType: "bludgeoning" },
   { name: "Shield", description: "A defensive tool that increases your Armor Class when wielded.", type: "armor", baseAC: 2, armorType: "shield" },
   { name: "Potion of Healing", description: "Restores 2d4+2 hit points when consumed.", type: "item" },
+  { name: "Dungeoneer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin.", type: "item" },
+  { name: "Explorer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin.", type: "item" },
+  { name: "Burglar's Pack", description: "Includes a backpack, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days of rations, a tinderbox, a waterskin, and 50 feet of rope.", type: "item" },
+  { name: "Scholar's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin.", type: "item" },
+  { name: "Component Pouch", description: "A small pouch containing arcane components.", type: "item" },
+  { name: "Arcane Focus", description: "A focus for casting spells, such as a wand or orb.", type: "item" },
+  { name: "Spellbook", description: "A book containing your starting spells and formulas for casting them.", type: "item" },
+  { name: "Quiver", description: "Contains arrows or bolts.", type: "item" },
+  { name: "Thieves' Tools", description: "A set of tools for picking locks and disarming traps.", type: "item" },
 ];
 
 export const languages: SRDLanguage[] = [
