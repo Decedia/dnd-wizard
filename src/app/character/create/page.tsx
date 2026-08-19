@@ -215,30 +215,32 @@ export default function CharacterCreate() {
     <div className="min-h-screen bg-charcoal">
       <AppHeader title="Character Creator" subtitle={`Step ${effectiveStep} of ${effectiveTotalSteps}`} />
 
-      <main className="px-4 py-6 pb-32">
+      <main className="px-4 py-6 pb-40">
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={effectiveStep} totalSteps={effectiveTotalSteps} />
           {renderStep()}
         </div>
       </main>
 
-      <div className="fixed bottom-24 left-0 right-0 z-50 bg-gradient-to-t from-charcoal via-charcoal to-transparent pt-6 pb-4">
-        <div className="mx-auto max-w-lg px-4 flex items-center gap-3">
-          {step > 1 && (
+      <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
+        <div className="mx-auto max-w-lg px-4 w-full">
+          <div className="flex items-center gap-3 rounded-xl border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
+            {step > 1 && (
+              <button
+                onClick={handleBack}
+                className="rounded-lg border border-parchment/20 px-5 py-2.5 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
+              >
+                Back
+              </button>
+            )}
             <button
-              onClick={handleBack}
-              className="rounded-xl border border-parchment/20 px-6 py-3 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
+              onClick={handleNext}
+              disabled={!canProceed()}
+              className="flex-1 rounded-lg bg-burgundy px-6 py-2.5 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
             >
-              Back
+              {effectiveStep === effectiveTotalSteps ? "Finish & Save" : "Next"}
             </button>
-          )}
-          <button
-            onClick={handleNext}
-            disabled={!canProceed()}
-            className="flex-1 rounded-xl bg-burgundy px-6 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
-          >
-            {effectiveStep === effectiveTotalSteps ? "Finish & Save" : "Next"}
-          </button>
+          </div>
         </div>
       </div>
 
