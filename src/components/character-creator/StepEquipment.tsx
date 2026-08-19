@@ -11,6 +11,11 @@ interface StepEquipmentProps {
   onChange: (data: Partial<Character>) => void;
 }
 
+interface EquipmentRadioGroup {
+  name: string;
+  choices: any[];
+}
+
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const updateItem = (id: string, patch: Partial<Character["inventory"][number]>) => {
     const nextInventory = data.inventory.map((item) =>
@@ -26,59 +31,83 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     onChange({ inventory: nextInventory, ac, attacks });
   };
 
-  const handleEquippedToggle = (item: Character["inventory"][number], equipped: boolean) => {
-    const updated = { ...item, equipped };
-    const nextInventory = data.inventory.map((i) => (i.id === item.id ? updated : i));
-    const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
-    onChange({ inventory: nextInventory, ac, attacks });
-  };
-
   const classData = data.class ? getClassData(data.class) : null;
   const startingEquipment = classData?.startingEquipment || [];
   const grantedItems = startingEquipment.filter((g: any) => g.granted);
-  const choiceGroups = startingEquipment.filter((g: any) => !g.granted);
+  const choiceEntries = startingEquipment.filter((g: any) => !g.granted);
 
-  const getSelectedChoiceForGroup = (groupIndex: number): number => {
-    const globalIndex = startingEquipment.findIndex((g: any) => !g.granted) + groupIndex;
-    const item = data.inventory.find((i) => i.choiceGroupIndex === globalIndex);
+  const buildRadioGroups = (entries: any[]): EquipmentRadioGroup[] => {
+    const groups: EquipmentRadioGroup[] = [];
+    let currentChoices: any[] = [];
+    let groupCounter = 0;
+
+    const flush = () => {
+      if (currentChoices.length > 0) {
+        groups.push({
+          name: `equip-choice-${groupCounter++}`,
+          choices: [...currentChoices],
+        });
+        currentChoices = [];
+      }
+    };
+
+    for (const entry of entries) {
+      const desc = (entry.description || "").trim();
+      if (desc.startsWith("Choose one")) {
+        flush();
+        currentChoices = [entry];
+      } else if (desc.startsWith("Or")) {
+        currentChoices.push(entry);
+      }
+    }
+    flush();
+
+    return groups;
+  };
+
+  const radioGroups = buildRadioGroups(choiceEntries);
+
+  const getSelectedOptionForGroup = (group: EquipmentRadioGroup): number => {
+    const firstChoice = group.choices[0];
+    if (!firstChoice) return -1;
+    const globalIndex = startingEquipment.indexOf(firstChoice);
+    const item = data.inventory.find((i) => i.choiceGroupIndex === globalIndex && !i.isGranted);
     return item?.choiceOptionIndex ?? -1;
   };
 
-  const handleChoiceSelect = (groupIndex: number, optionIndex: number) => {
-    const globalIndex = startingEquipment.findIndex((g: any) => !g.granted) + groupIndex;
-    const group = choiceGroups[groupIndex];
-    if (!group) return;
+  const handleChoiceSelect = (group: EquipmentRadioGroup, optionIndex: number) => {
+    const choice = group.choices[optionIndex];
+    if (!choice) return;
+
+    const globalIndex = startingEquipment.indexOf(choice);
 
     const nextInventory = data.inventory.filter(
-      (item) => !(item.choiceGroupIndex === globalIndex)
+      (item) => !(item.choiceGroupIndex === globalIndex && !item.isGranted)
     );
 
-    const selectedOption = (group as any).items[optionIndex];
-    if (selectedOption) {
-      const srdItem = getEquipmentData(selectedOption.name);
-      const itemsToAdd = Array.isArray(selectedOption) ? selectedOption : [selectedOption];
-      itemsToAdd.forEach((itemRef: any) => {
-        const srdData = getEquipmentData(itemRef.name);
-        const newItem: Character["inventory"][number] = {
-          id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-          name: itemRef.name,
-          quantity: itemRef.quantity ?? 1,
-          equipped: false,
-          source: srdData ? "srd" : "custom",
-          srdItemName: srdData?.name,
-          itemType: srdData?.type,
-          category: srdData?.category,
-          damageDice: srdData?.damageDice,
-          damageType: srdData?.damageType,
-          baseAC: srdData?.baseAC,
-          armorType: srdData?.armorType,
-          maxDexBonus: srdData?.maxDexBonus,
-          choiceGroupIndex: globalIndex,
-          choiceOptionIndex: optionIndex,
-        };
-        nextInventory.push(newItem);
-      });
-    }
+    const itemsToAdd = choice.items || [];
+    itemsToAdd.forEach((itemRef: any) => {
+      const srdData = getEquipmentData(itemRef.name);
+      const newItem: Character["inventory"][number] = {
+        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        name: itemRef.name,
+        quantity: itemRef.quantity ?? 1,
+        equipped: false,
+        source: srdData ? "srd" : "custom",
+        srdItemName: srdData?.name,
+        itemType: srdData?.type,
+        category: srdData?.category,
+        damageDice: srdData?.damageDice,
+        damageType: srdData?.damageType,
+        baseAC: srdData?.baseAC,
+        armorType: srdData?.armorType,
+        maxDexBonus: srdData?.maxDexBonus,
+        description: itemRef.description || srdData?.description,
+        choiceGroupIndex: globalIndex,
+        choiceOptionIndex: optionIndex,
+      };
+      nextInventory.push(newItem);
+    });
 
     const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
     onChange({ inventory: nextInventory, ac, attacks });
@@ -110,7 +139,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                   <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
                     <span className="text-sm text-parchment/80 flex-1">
                       {itemRef.name}
-                      {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
+                      {itemRef.quantity && itemRef.quantity > 1 ? ` (x{itemRef.quantity})` : ""}
                     </span>
                     <span className="text-[10px] text-green-400/70">Granted</span>
                   </div>
@@ -133,7 +162,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <div key={item.id} className="flex flex-col gap-0.5 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
                   <span className="text-sm text-parchment/80">
                     {item.name}
-                    {item.quantity && item.quantity > 1 ? ` (x${item.quantity})` : ""}
+                    {item.quantity && item.quantity > 1 ? ` (x{item.quantity})` : ""}
                   </span>
                   {item.description && (
                     <span className="text-xs text-parchment/50">{item.description}</span>
@@ -145,19 +174,19 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         );
       })()}
 
-      {choiceGroups.length > 0 && (
+      {radioGroups.length > 0 && (
         <div className="mb-4">
           <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Equipment Choices</span>
-          <div className="space-y-3">
-            {choiceGroups.map((group: any, groupIdx: number) => {
-              const selectedOption = getSelectedChoiceForGroup(groupIdx);
+          <div className="space-y-4">
+            {radioGroups.map((group) => {
+              const selectedOption = getSelectedOptionForGroup(group);
               return (
-                <div key={groupIdx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
-                  <p className="text-xs text-parchment/50 mb-2">{group.description}</p>
+                <div key={group.name} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
                   <div className="space-y-2">
-                    {group.items.map((itemRef: any, optionIdx: number) => {
-                      const srdData = getEquipmentData(itemRef.name);
+                    {group.choices.map((choice: any, optionIdx: number) => {
                       const isSelected = selectedOption === optionIdx;
+                      const items = choice.items || [];
+                      const itemNames = items.map((i: any) => i.name).join(", ");
                       return (
                         <label
                           key={optionIdx}
@@ -169,19 +198,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                         >
                           <input
                             type="radio"
-                            name={`choice-group-${groupIdx}`}
+                            name={group.name}
                             checked={isSelected}
-                            onChange={() => handleChoiceSelect(groupIdx, optionIdx)}
+                            onChange={() => handleChoiceSelect(group, optionIdx)}
                             onBlur={() => {}}
                             className="mt-0.5 h-4 w-4 text-gold focus:ring-gold/50"
                           />
                           <div className="flex-1">
-                            <span className="text-sm text-parchment/80">{itemRef.name}</span>
-                            {itemRef.description && (
-                              <p className="text-xs text-parchment/50 mt-0.5">{itemRef.description}</p>
-                            )}
-                            {itemRef.quantity && itemRef.quantity > 1 && (
-                              <span className="text-xs text-parchment/60"> (x{itemRef.quantity})</span>
+                            <span className="text-sm text-parchment/80">{itemNames}</span>
+                            {choice.description && (
+                              <p className="text-xs text-parchment/50 mt-0.5">{choice.description}</p>
                             )}
                           </div>
                         </label>
