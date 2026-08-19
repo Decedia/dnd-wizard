@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { StepCard } from "./StepCard";
 import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpStep, type LevelUpChanges } from "@/lib/level-up";
 import { getClassData, getSpellData, spells as srdSpells } from "@/data/srd";
@@ -183,14 +182,17 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   };
 
   return (
-    <div className="space-y-4">
-      <div className="text-xs text-parchment/50 text-center">
-        Step {overallCurrentStep} of {overallTotalSteps}
+    <div className="flex max-h-[calc(100dvh-140px)] flex-col">
+      <div className="mb-2 text-center">
+        <span className="text-xs text-parchment/50">Step {overallCurrentStep} of {overallTotalSteps}</span>
       </div>
-      <StepCard title={currentStep.title}>
-        {renderStepContent()}
-      </StepCard>
-      <div className="flex items-center gap-3">
+      <div className="flex-1 overflow-y-auto rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4">
+        <h3 className="mb-3 font-display text-lg font-semibold text-parchment">{currentStep.title}</h3>
+        <div className="mb-4">
+          {renderStepContent()}
+        </div>
+      </div>
+      <div className="mt-3 flex items-center gap-3">
         <button
           type="button"
           onClick={handleBack}
