@@ -41,10 +41,10 @@ export default function CharacterCreate() {
   const [pendingChanges, setPendingChanges] = useState<LevelUpChanges | null>(null);
 
   const totalSteps = useMemo(() => {
-    return BASE_STEPS + 1 + perLevelSteps.length;
+    return BASE_STEPS + 2 + perLevelSteps.length;
   }, [perLevelSteps.length]);
 
-  const effectiveStep = step <= BASE_STEPS + 1 ? step : BASE_STEPS + 1 + (step - BASE_STEPS - 2);
+  const effectiveStep = step;
 
   const update = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
@@ -157,6 +157,11 @@ export default function CharacterCreate() {
         });
         setStep(totalSteps);
       }
+      return;
+    }
+
+    if (step >= totalSteps) {
+      handleFinish();
       return;
     }
 
