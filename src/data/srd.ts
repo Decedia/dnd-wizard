@@ -55,6 +55,12 @@ export interface SRDClass {
   spellcastingAbility?: string;
   cantripsKnown?: Record<number, number>;
   scalingFeatures?: SRDScalingFeature[];
+  subclassLevel?: number;
+  subclasses?: {
+    name: string;
+    description: string;
+    features: { name: string; description: string }[];
+  }[];
 }
 
 export interface SRDSkill {
@@ -223,6 +229,33 @@ export const classes: SRDClass[] = [
       { features: [{ name: "Indomitable", description: "Reroll a failed saving throw, once per long rest." }], asi: false },
       { features: [{ name: "Extra Indomitable use", description: "You can now use Indomitable twice between long rests." }], asi: false },
     ],
+    subclassLevel: 3,
+    subclasses: [
+      {
+        name: "Champion",
+        description: "A paragon of martial prowess, focusing on the raw power of physical combat.",
+        features: [
+          { name: "Improved Critical", description: "Your weapon attacks score a critical hit on a roll of 19 or 20." },
+          { name: "Remarkable Athlete", description: "You can add half your proficiency bonus to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus." },
+        ],
+      },
+      {
+        name: "Battle Master",
+        description: "A master of combat tactics, using maneuvers to control the battlefield.",
+        features: [
+          { name: "Combat Superiority", description: "You learn maneuvers that fuel your fighting style." },
+          { name: "Student of War", description: "You gain proficiency with one type of artisan's tools." },
+        ],
+      },
+      {
+        name: "Eldritch Knight",
+        description: "A fighter who blends martial skill with arcane magic.",
+        features: [
+          { name: "Weapon Bond", description: "You can bond with a weapon, allowing you to summon it to your hand." },
+          { name: "Spellcasting", description: "You can cast spells using your arcane knowledge." },
+        ],
+      },
+    ],
   },
   {
     name: "Wizard",
@@ -303,6 +336,73 @@ export const classes: SRDClass[] = [
     ],
     spellcastingAbility: "int",
     cantripsKnown: { 1: 3, 4: 4, 10: 5 },
+    subclassLevel: 2,
+    subclasses: [
+      {
+        name: "School of Abjuration",
+        description: "A wizard who specializes in protective magic.",
+        features: [
+          { name: "Abjuration Savant", description: "You gain expertise in abjuration spells." },
+          { name: "Arcane Ward", description: "You can create a magical ward that absorbs damage." },
+        ],
+      },
+      {
+        name: "School of Conjuration",
+        description: "A wizard who specializes in creating objects and creatures from magic.",
+        features: [
+          { name: "Conjuration Savant", description: "You gain expertise in conjuration spells." },
+          { name: "Minor Conjuration", description: "You can conjure a small object with your magic." },
+        ],
+      },
+      {
+        name: "School of Divination",
+        description: "A wizard who specializes in gaining knowledge and foresight.",
+        features: [
+          { name: "Divination Savant", description: "You gain expertise in divination spells." },
+          { name: "Portent", description: "You can glimpse the future and influence the rolls of fate." },
+        ],
+      },
+      {
+        name: "School of Enchantment",
+        description: "A wizard who specializes in charming and beguiling others.",
+        features: [
+          { name: "Enchantment Savant", description: "You gain expertise in enchantment spells." },
+          { name: "Hypnotic Gaze", description: "You can charm a creature with your gaze." },
+        ],
+      },
+      {
+        name: "School of Evocation",
+        description: "A wizard who specializes in raw destructive magic.",
+        features: [
+          { name: "Evocation Savant", description: "You gain expertise in evocation spells." },
+          { name: "Sculpt Spells", description: "You can protect your allies from your own evocation spells." },
+        ],
+      },
+      {
+        name: "School of Illusion",
+        description: "A wizard who specializes in creating deceptive images and phantasms.",
+        features: [
+          { name: "Illusion Savant", description: "You gain expertise in illusion spells." },
+          { name: "Malleable Illusion", description: "You can alter your illusions on the fly." },
+        ],
+      },
+      {
+        name: "School of Necromancy",
+        description: "A wizard who specializes in the magic of death and undeath.",
+        features: [
+          { name: "Necromancy Savant", description: "You gain expertise in necromancy spells." },
+          { name: "Grim Harvest", description: "You can regain hit points when you kill creatures with your spells." },
+        ],
+      },
+      {
+        name: "School of Transmutation",
+        description: "A wizard who specializes in altering the physical world.",
+        features: [
+          { name: "Transmutation Savant", description: "You gain expertise in transmutation spells." },
+          { name: "Minor Alchemy", description: "You can transmute materials into other materials." },
+        ],
+      },
+    ],
   },
   {
     name: "Rogue",
@@ -403,6 +503,33 @@ export const classes: SRDClass[] = [
         description: "Double your proficiency bonus for two chosen skills or thieves' tools.",
         type: "expertise",
         values: { 1: 2, 3: 2, 6: 4 },
+      },
+    ],
+    subclassLevel: 3,
+    subclasses: [
+      {
+        name: "Thief",
+        description: "A rogue who specializes in stealth and speed.",
+        features: [
+          { name: "Fast Hands", description: "You can use your bonus action to Dash, Disengage, or Hide, or to use an object." },
+          { name: "Second-Story Work", description: "You gain the ability to climb difficult surfaces and jump farther." },
+        ],
+      },
+      {
+        name: "Assassin",
+        description: "A rogue who specializes in swift, deadly strikes from the shadows.",
+        features: [
+          { name: "Assassinate", description: "You have advantage on attack rolls against any creature that hasn't taken a turn yet." },
+          { name: "Infiltration Expertise", description: "You can create a disguise to infiltrate a location." },
+        ],
+      },
+      {
+        name: "Arcane Trickster",
+        description: "A rogue who weaves magic into their stealth and trickery.",
+        features: [
+          { name: "Spellcasting", description: "You can cast spells using your arcane trickster features." },
+          { name: "Mage Hand Legerdemain", description: "Your mage hand becomes invisible and can manipulate objects more effectively." },
+        ],
       },
     ],
   },

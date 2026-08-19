@@ -2,14 +2,32 @@
 
 ## Current State
 
-**App Status**: ✅ SRD data-wired mechanics complete (HP, Skills, Equipment, Sneak Attack, Expertise)
+**App Status**: ✅ Multi-step Level Up flow + Dice Roller complete
 
-The character creation wizard and character sheet are now fully wired to the structured `srd.json` data:
-- **HP Auto-calculation**: Level 1 uses max hit die + CON mod; each level up adds class flat per-level HP + CON mod. Max HP is read-only, current HP remains manually adjustable.
-- **Skills Restricted List**: Once a class is selected, the skill checklist filters to only that class's allowed skills from `srd.json`'s `{count, options}` structure. Non-class skills are shown but grayed out. Selection count is enforced and locked when the pick count is reached.
-- **Equipment Choice Packages**: Starting equipment renders as radio-button choice groups from `srd.json` instead of free-text entry. Granted items appear as a confirmed non-interactive list. All items integrate with the existing Equipped toggle / auto-AC / auto-Attack behavior.
-- **Sneak Attack (Rogue)**: Read-only stat displays near Attacks & Spellcasting, auto-calculated from `srd.json` per-level scaling. Attacks from finesse/ranged weapons show a sneak attack tag.
-- **Expertise (Rogue)**: Expertise picker allows selecting 2 skills (from already-chosen proficiencies + Thieves' Tools) at level 1, and 2 more at level 6. EXPERTISE-tagged skills show doubled proficiency bonus in skill totals. Triggered in Wizard after Skills step and via Level Up modal at level 6.
+### Level Up Flow
+- Replaced single `LevelUpModal` with `LevelUpFlow` — a multi-step guided flow using the same `ProgressIndicator` + `StepCard` + Back/Next pattern as the character creation wizard.
+- Triggered when the level slider increases (in both Wizard and Character Sheet). Multiple levels gained at once generate a full step sequence in ascending order.
+- Steps are dynamically generated per class from `srd.json`:
+  - **Hit Points** — always included; integrates the `<Dice/>` component (roll or take average).
+  - **New Class Features** — informational, auto-added to Features list on finish.
+  - **Subclass Selection** — shown at the class's `subclassLevel` (Fighter/Rogue L3, Wizard L2) with radio-button options.
+  - **Ability Score Improvement** — shown on ASI levels with +/- controls.
+  - **Expertise** — shown for Rogue at levels 1 and 6.
+  - **Spell Slot Update** — shown for casters when slots increase.
+- "Finish Level Up" applies all accumulated changes in one write. Backing out or canceling discards everything.
+- `useLevelUp` hook and `LevelUpModal` removed.
+
+### Subclass Data
+- Added `subclassLevel` and `subclasses` to `SRDClass` interface and data in `srd.ts`.
+- Fighter (L3): Champion, Battle Master, Eldritch Knight.
+- Wizard (L2): 8 Arcane Tradition schools.
+- Rogue (L3): Thief, Assassin, Arcane Trickster.
+
+### Dice Roller
+- Reusable `<Dice/>` component supporting d4, d6, d8, d10, d12, d20, d100 with CSS shapes and animations.
+- New `/dice` route with a 2×4 grid, each die independently tappable with last result shown.
+- "Roll All Dice" button with staggered timing.
+- Added Dice entry to `BottomNav` and home screen.
 
 ## Recently Completed
 
@@ -56,36 +74,43 @@ The character creation wizard and character sheet are now fully wired to the str
 - [x] Update character sheet page with Level Up button, HP gain display, and expertise handling
 - [x] Skills not in class allowed list are grayed out, not hidden, in both wizard and sheet
 - [x] Equipment choices render as radio-button groups with granted items shown as non-interactive
+- [x] Replace single `LevelUpModal` with multi-step `LevelUpFlow` component
+- [x] Add `subclassLevel` and `subclasses` to SRDClass for Fighter/Wizard/Rogue
+- [x] Create `/dice` route with Dice Roller screen and `Dice` component
+- [x] Add Dice Roller entry to `BottomNav` and home screen
+- [x] Remove old `LevelUpModal.tsx` and `useLevelUp.ts` hook
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
 
 | File/Directory | Purpose | Status |
 |----------------|---------|--------|
-| `src/app/globals.css` | Dark fantasy theme, `.input` styles | ✅ Ready |
+| `src/app/globals.css` | Dark fantasy theme, `.input` styles, dice CSS | ✅ Ready |
 | `src/app/layout.tsx` | Root layout with fonts + bottom nav | ✅ Ready |
-| `src/app/page.tsx` | Home screen (My Characters list) | ✅ Ready |
+| `src/app/page.tsx` | Home screen (My Characters list + Dice Roller entry) | ✅ Ready |
+| `src/app/dice/page.tsx` | Dice Roller screen | ✅ Ready |
 | `src/app/character/new/page.tsx` | Creates empty character and redirects | ✅ Ready |
 | `src/app/character/[id]/page.tsx` | Full character sheet page with Level Up button | ✅ Ready |
-| `src/app/character/create/page.tsx` | Character creation wizard with expertise modal | ✅ Ready |
-| `src/components/BottomNav.tsx` | Floating bottom nav with dragon hero | ✅ Ready |
+| `src/app/character/create/page.tsx` | Character creation wizard with Level Up flow | ✅ Ready |
+| `src/components/BottomNav.tsx` | Floating bottom nav with Dice entry | ✅ Ready |
 | `src/components/AppHeader.tsx` | App header with dragon logo | ✅ Ready |
 | `src/lib/storage.ts` | LocalStorage CRUD + Character type + HP/expertise helpers | ✅ Ready |
-| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells, hpPerLevel, scalingFeatures) | ✅ Ready |
-| `src/lib/level-up.ts` | Level-up computation with hpGain | ✅ Ready |
-| `src/hooks/useLevelUp.ts` | Reusable level-up state hook | ✅ Ready |
-| `src/components/level-up/LevelUpModal.tsx` | Level-up modal with HP, ASI, expertise, spell slots | ✅ Ready |
+| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells, hpPerLevel, subclassLevel, subclasses, scalingFeatures) | ✅ Ready |
+| `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` | ✅ Ready |
+| `src/components/level-up/LevelUpFlow.tsx` | Multi-step level-up flow with HP (Dice), ASI, subclass, expertise, spell slots | ✅ Ready |
+| `src/components/Dice.tsx` | Reusable animated dice component | ✅ Ready |
 | `src/components/character-creator/StepRace.tsx` | Race selection with SRD traits | ✅ Ready |
 | `src/components/character-creator/StepClass.tsx` | Class selection with SRD features | ✅ Ready |
 | `src/components/character-creator/StepAbilityScores.tsx` | Ability scores with racial auto-bonuses | ✅ Ready |
 | `src/components/character-creator/StepSkills.tsx` | Skill selection with SRD descriptions + expertise picker | ✅ Ready |
+| `src/components/character-creator/StepEquipment.tsx` | Equipment choice packages from SRD | ✅ Ready |
 | `src/components/character-creator/StepSpells.tsx` | Spell picker with SRD data (Wizard only) | ✅ Ready |
 | `src/components/character-creator/StepFinalTouches.tsx` | Appearance and backstory | ✅ Ready |
 | `src/components/character-sheet/SectionCard.tsx` | Base card component | ✅ Ready |
 | `src/components/character-sheet/StickyMiniHeader.tsx` | Sticky scroll header | ✅ Ready |
 | `src/components/character-sheet/SectionNav.tsx` | Floating vertical section nav with scroll-spy | ✅ Ready |
 | `src/components/character-sheet/CharacterSheetContext.tsx` | Context for auto-save blur handler | ✅ Ready |
-| `src/components/character-sheet/IdentitySection.tsx` | Identity fields | ✅ Ready |
+| `src/components/character-sheet/IdentitySection.tsx` | Identity fields with Level Up flow | ✅ Ready |
 | `src/components/character-sheet/StatsSection.tsx` | Stats with auto-modifiers, read-only Max HP | ✅ Ready |
 | `src/components/character-sheet/SkillsSection.tsx` | 18 skills with proficiency, expertise tag + ExpertisePicker | ✅ Ready |
 | `src/components/character-sheet/ExpertisePicker.tsx` | Expertise skill selection for Rogues | ✅ Ready |
@@ -97,7 +122,7 @@ The character creation wizard and character sheet are now fully wired to the str
 
 ## Current Focus
 
-SRD data-wired mechanics complete. Next steps:
+Level Up multi-step flow and Dice Roller complete. Next steps:
 1. Add character deletion from home screen
 2. Implement PDF export/import
 3. Add database persistence (via add-database recipe)
@@ -119,3 +144,4 @@ SRD data-wired mechanics complete. Next steps:
 | 2026-08-18 | Replaced all placeholder data with real 5e SRD data, added racial bonus auto-calculation, auto-skip Spells for non-Wizards |
 | 2026-08-18 | Added Level Up system with reusable modal, SRD levels 1-10 data, ASI picker, and Wizard spell slot summaries |
 | 2026-08-19 | Wired SRD data into UI and calculations: HP auto-calc, skills restricted list + count, equipment choice packages, sneak attack numeric effect, expertise picker for Rogue |
+| 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |

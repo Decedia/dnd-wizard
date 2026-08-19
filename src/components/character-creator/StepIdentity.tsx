@@ -1,11 +1,10 @@
 "use client";
 
-import { useCallback } from "react";
+import { useState } from "react";
 import { StepCard } from "./StepCard";
 import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
-import { useLevelUp } from "@/hooks/useLevelUp";
-import { LevelUpModal } from "@/components/level-up/LevelUpModal";
-import type { LevelUpResult } from "@/lib/level-up";
+import { LevelUpFlow } from "@/components/level-up/LevelUpFlow";
+import { type LevelUpChanges } from "@/lib/level-up";
 import { languageNames } from "@/data/srd";
 
 interface StepIdentityProps {
@@ -27,48 +26,74 @@ interface StepIdentityProps {
     features: { id: string; name: string; description: string }[];
     spellSlots: Record<number, number>;
     languages: string[];
+    skills: Record<string, boolean>;
+    expertise: string[];
   };
   onChange: (patch: Partial<StepIdentityProps["data"]>) => void;
 }
 
 export function StepIdentity({ data, onChange }: StepIdentityProps) {
-  const handleLevelChange = useCallback(
-    (newLevel: number, result: LevelUpResult | null) => {
-      if (!result) {
-        onChange({ level: newLevel });
-        return;
-      }
-      const patch: Partial<StepIdentityProps["data"]> = { level: newLevel };
-      if (result.addedFeatures.length > 0) {
+  const [levelUpOpen, setLevelUpOpen] = useState(false);
+  const [levelUpOldLevel, setLevelUpOldLevel] = useState(data.level);
+  const [levelUpNewLevel, setLevelUpNewLevel] = useState(data.level);
+
+  const handleLevelUpComplete = (changes: LevelUpChanges) => {
+    const patch: Partial<StepIdentityProps["data"]> = { level: changes.level };
+    if (changes.features.length > 0) {
+      patch.features = [
+        ...data.features,
+        ...changes.features.map((f) => ({
+          id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          name: f.name,
+          description: f.description,
+        })),
+      ];
+    }
+    if (changes.subclass) {
+      const classData = require("@/data/srd").getClassData(data.class);
+      const subclassData = classData?.subclasses?.find((s: any) => s.name === changes.subclass);
+      if (subclassData?.features) {
         patch.features = [
-          ...data.features,
-          ...result.addedFeatures.map((f) => ({
+          ...(patch.features || data.features),
+          ...subclassData.features.map((f: any) => ({
             id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
             name: f.name,
             description: f.description,
           })),
         ];
       }
-      if (result.abilityScoreChanges && result.abilityScoreChanges.length > 0) {
-        const updates: any = { ...data };
-        for (const change of result.abilityScoreChanges) {
-          updates[change.ability] = (data[change.ability as keyof typeof data] as number || 0) + change.delta;
-        }
-        Object.assign(patch, updates);
+    }
+    if (changes.abilityScoreChanges.length > 0) {
+      const updates: any = { ...data };
+      for (const change of changes.abilityScoreChanges) {
+        updates[change.ability] = (data[change.ability as keyof typeof data] as number || 0) + change.delta;
       }
-      if (result.spellSlots) {
-        patch.spellSlots = { ...data.spellSlots, ...result.spellSlots };
-      }
-      onChange(patch);
-    },
-    [data, onChange]
-  );
+      Object.assign(patch, updates);
+    }
+    if (changes.expertise.length > 0) {
+      patch.expertise = [...(data.expertise || []), ...changes.expertise];
+    }
+    if (changes.spellSlots) {
+      patch.spellSlots = { ...data.spellSlots, ...changes.spellSlots };
+    }
+    onChange(patch);
+    setLevelUpOpen(false);
+  };
 
-  const { pendingLevelUp, handleLevelChange: handleLevelChangeHook, confirmLevelUp, cancelLevelUp } = useLevelUp({
-    currentLevel: data.level,
-    className: data.class,
-    onLevelChange: handleLevelChange,
-  });
+  const handleLevelUpCancel = () => {
+    onChange({ level: levelUpOldLevel });
+    setLevelUpOpen(false);
+  };
+
+  const handleLevelChange = (newLevel: number) => {
+    if (newLevel > data.level) {
+      setLevelUpOldLevel(data.level);
+      setLevelUpNewLevel(newLevel);
+      setLevelUpOpen(true);
+    } else if (newLevel < data.level) {
+      onChange({ level: newLevel });
+    }
+  };
 
   const toggleLanguage = (lang: string) => {
     const current = data.languages || [];
@@ -105,7 +130,7 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => handleLevelChangeHook(Math.max(1, data.level - 1))}
+              onClick={() => handleLevelChange(Math.max(1, data.level - 1))}
               disabled={data.level <= 1}
               className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
             >
@@ -121,7 +146,7 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
             />
             <button
               type="button"
-              onClick={() => handleLevelChangeHook(Math.min(10, data.level + 1))}
+              onClick={() => handleLevelChange(Math.min(10, data.level + 1))}
               disabled={data.level >= 10}
               className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
             >
@@ -189,10 +214,11 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
         </Field>
       </div>
 
-      <LevelUpModal
-        key={pendingLevelUp?.newLevel}
-        open={!!pendingLevelUp}
-        levelUpResult={pendingLevelUp?.result ?? null}
+      <LevelUpFlow
+        open={levelUpOpen}
+        oldLevel={levelUpOldLevel}
+        newLevel={levelUpNewLevel}
+        className={data.class}
         currentAbilityScores={{
           str: data.str,
           dex: data.dex,
@@ -201,8 +227,10 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
           wis: data.wis,
           cha: data.cha,
         }}
-        onConfirm={confirmLevelUp}
-        onCancel={cancelLevelUp}
+        currentExpertise={data.expertise || []}
+        currentSkills={data.skills || {}}
+        onComplete={handleLevelUpComplete}
+        onCancel={handleLevelUpCancel}
       />
     </StepCard>
   );

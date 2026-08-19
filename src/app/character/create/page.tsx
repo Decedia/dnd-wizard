@@ -120,6 +120,8 @@ export default function CharacterCreate() {
               features: character.features,
               spellSlots: character.spellSlots,
               languages: character.languages,
+              skills: character.skills,
+              expertise: character.expertise || [],
             }}
             onChange={(patch) => update(patch)}
           />

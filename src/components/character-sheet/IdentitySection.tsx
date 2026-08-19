@@ -1,13 +1,12 @@
 "use client";
 
-import { useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { raceNames, classNames, languageNames } from "@/data/srd";
 import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
-import { useLevelUp } from "@/hooks/useLevelUp";
-import { LevelUpModal } from "@/components/level-up/LevelUpModal";
-import type { LevelUpResult } from "@/lib/level-up";
+import { LevelUpFlow } from "@/components/level-up/LevelUpFlow";
+import { type LevelUpChanges } from "@/lib/level-up";
 
 interface IdentitySectionProps {
   character: {
@@ -28,6 +27,8 @@ interface IdentitySectionProps {
     features: { id: string; name: string; description: string }[];
     spellSlots: Record<number, number>;
     languages: string[];
+    expertise: string[];
+    skills: Record<string, boolean>;
   };
   onChange: (patch: Partial<IdentitySectionProps["character"]>) => void;
 }
@@ -35,43 +36,70 @@ interface IdentitySectionProps {
 export function IdentitySection({ character, onChange }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
 
-  const handleLevelChange = useCallback(
-    (newLevel: number, result: LevelUpResult | null) => {
-      if (!result) {
-        onChange({ level: newLevel });
-        return;
-      }
-      const patch: Partial<IdentitySectionProps["character"]> = { level: newLevel };
-      if (result.addedFeatures.length > 0) {
+  const [levelUpOpen, setLevelUpOpen] = useState(false);
+  const [levelUpOldLevel, setLevelUpOldLevel] = useState(character.level);
+
+  const handleLevelUpComplete = useCallback(
+    (changes: LevelUpChanges) => {
+      const patch: Partial<IdentitySectionProps["character"]> = { level: changes.level };
+      if (changes.features.length > 0) {
         patch.features = [
           ...character.features,
-          ...result.addedFeatures.map((f) => ({
+          ...changes.features.map((f) => ({
             id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
             name: f.name,
             description: f.description,
           })),
         ];
       }
-      if (result.abilityScoreChanges && result.abilityScoreChanges.length > 0) {
+      if (changes.subclass) {
+        const classData = require("@/data/srd").getClassData(character.class);
+        const subclassData = classData?.subclasses?.find((s: any) => s.name === changes.subclass);
+        if (subclassData?.features) {
+          patch.features = [
+            ...(patch.features || character.features),
+            ...subclassData.features.map((f: any) => ({
+              id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+              name: f.name,
+              description: f.description,
+            })),
+          ];
+        }
+      }
+      if (changes.abilityScoreChanges.length > 0) {
         const updates: any = { ...character };
-        for (const change of result.abilityScoreChanges) {
+        for (const change of changes.abilityScoreChanges) {
           updates[change.ability] = (character[change.ability as keyof typeof character] as number || 0) + change.delta;
         }
         Object.assign(patch, updates);
       }
-      if (result.spellSlots) {
-        patch.spellSlots = { ...character.spellSlots, ...result.spellSlots };
+      if (changes.expertise.length > 0) {
+        patch.expertise = [...(character.expertise || []), ...changes.expertise];
+      }
+      if (changes.spellSlots) {
+        patch.spellSlots = { ...character.spellSlots, ...changes.spellSlots };
       }
       onChange(patch);
+      setLevelUpOpen(false);
     },
     [character, onChange]
   );
 
-  const { pendingLevelUp, handleLevelChange: handleLevelChangeHook, confirmLevelUp, cancelLevelUp } = useLevelUp({
-    currentLevel: character.level,
-    className: character.class,
-    onLevelChange: handleLevelChange,
-  });
+  const handleLevelUpCancel = useCallback(() => {
+    setLevelUpOpen(false);
+  }, []);
+
+  const handleLevelChange = useCallback(
+    (newLevel: number) => {
+      if (newLevel > character.level) {
+        setLevelUpOldLevel(character.level);
+        setLevelUpOpen(true);
+      } else if (newLevel < character.level) {
+        onChange({ level: newLevel });
+      }
+    },
+    [character.level, onChange]
+  );
 
   const toggleLanguage = (lang: string) => {
     const current = character.languages || [];
@@ -139,7 +167,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
               min={1}
               max={20}
               value={character.level}
-              onChange={(e) => handleLevelChangeHook(Math.max(1, parseInt(e.target.value || "1", 10)))}
+              onChange={(e) => handleLevelChange(Math.max(1, parseInt(e.target.value || "1", 10)))}
               onBlur={() => {}}
               className="input"
             />
@@ -204,10 +232,11 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
         </Field>
       </div>
 
-      <LevelUpModal
-        key={pendingLevelUp?.newLevel}
-        open={!!pendingLevelUp}
-        levelUpResult={pendingLevelUp?.result ?? null}
+      <LevelUpFlow
+        open={levelUpOpen}
+        oldLevel={levelUpOldLevel}
+        newLevel={character.level}
+        className={character.class}
         currentAbilityScores={{
           str: character.str,
           dex: character.dex,
@@ -216,8 +245,10 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
           wis: character.wis,
           cha: character.cha,
         }}
-        onConfirm={confirmLevelUp}
-        onCancel={cancelLevelUp}
+        currentExpertise={character.expertise || []}
+        currentSkills={character.skills || {}}
+        onComplete={handleLevelUpComplete}
+        onCancel={handleLevelUpCancel}
       />
     </SectionCard>
   );
