@@ -166,12 +166,14 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                   const description = itemRef.description || srdData?.description || "";
                   const damageInfo = srdData?.damageDice ? `${srdData.damageDice} ${srdData.damageType || ""}`.trim() : "";
                   const fullDescription = [description, damageInfo].filter(Boolean).join(" · ");
+                  const qty = itemRef.quantity || 1;
+                  const qtyLabel = qty > 1 ? " (x" + qty + ")" : "";
                   return (
                     <div key={itemIdx} className="flex flex-col gap-0.5 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-parchment/80 flex-1">
                           {itemRef.name}
-                          {itemRef.quantity && itemRef.quantity > 1 ? ` (x{itemRef.quantity})` : ""}
+                          {qtyLabel}
                         </span>
                         <span className="text-[10px] text-green-400/70">Granted</span>
                       </div>
