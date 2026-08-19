@@ -89,6 +89,7 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
     if (newLevel > data.level) {
       setLevelUpOldLevel(data.level);
       setLevelUpNewLevel(newLevel);
+      onChange({ level: newLevel });
       setLevelUpOpen(true);
     } else if (newLevel < data.level) {
       onChange({ level: newLevel });
