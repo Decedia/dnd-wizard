@@ -103,9 +103,6 @@ const DiceComponent = forwardRef<DiceHandle, DiceProps>(function Dice(
         </span>
         {type === "d100" && <span className="dice-badge">00</span>}
       </div>
-      {result !== null && !isRolling && (
-        <span className="dice-result-text">Last: {result}</span>
-      )}
     </button>
   );
 });
