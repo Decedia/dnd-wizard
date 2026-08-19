@@ -1,4 +1,5 @@
 import { getClassData } from "@/data/srd";
+import { getClassPerLevelHp, getModifier } from "@/lib/storage";
 
 export interface LevelUpResult {
   oldLevel: number;
@@ -7,6 +8,7 @@ export interface LevelUpResult {
   hasASI: boolean;
   asiLevels: number[];
   spellSlots: Record<number, number> | null;
+  hpGain: number;
   abilityScoreChanges?: AbilityScoreChange[];
 }
 
@@ -25,6 +27,7 @@ export function computeLevelUp(oldLevel: number, newLevel: number, className: st
       hasASI: false,
       asiLevels: [],
       spellSlots: null,
+      hpGain: 0,
     };
   }
 
@@ -45,6 +48,10 @@ export function computeLevelUp(oldLevel: number, newLevel: number, className: st
     }
   }
 
+  const levelsGained = newLevel - oldLevel;
+  const perLevel = getClassPerLevelHp(classData);
+  const hpGain = levelsGained > 0 ? levelsGained : 0;
+
   return {
     oldLevel,
     newLevel,
@@ -52,5 +59,6 @@ export function computeLevelUp(oldLevel: number, newLevel: number, className: st
     hasASI: asiLevels.length > 0,
     asiLevels,
     spellSlots,
+    hpGain,
   };
 }

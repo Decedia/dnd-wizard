@@ -39,6 +39,7 @@ export interface SRDScalingFeature {
 export interface SRDClass {
   name: string;
   hitDie: number;
+  hpPerLevel: number;
   primaryAbility: string;
   savingThrows: string[];
   flavorText: string;
@@ -139,6 +140,7 @@ export const classes: SRDClass[] = [
   {
     name: "Fighter",
     hitDie: 10,
+    hpPerLevel: 6,
     primaryAbility: "str",
     savingThrows: ["str", "con"],
     flavorText: "A master of martial combat, skilled with weapons and armor.",
@@ -225,6 +227,7 @@ export const classes: SRDClass[] = [
   {
     name: "Wizard",
     hitDie: 6,
+    hpPerLevel: 4,
     primaryAbility: "int",
     savingThrows: ["int", "wis"],
     flavorText: "A scholarly spellcaster who wields magic through study and arcane knowledge.",
@@ -304,6 +307,7 @@ export const classes: SRDClass[] = [
   {
     name: "Rogue",
     hitDie: 8,
+    hpPerLevel: 5,
     primaryAbility: "dex",
     savingThrows: ["dex", "int"],
     flavorText: "A stealthy trickster who excels at skills, stealth, and striking from the shadows.",

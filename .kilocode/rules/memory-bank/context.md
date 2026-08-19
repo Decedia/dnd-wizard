@@ -2,9 +2,14 @@
 
 ## Current State
 
-**App Status**: ✅ Level Up system complete
+**App Status**: ✅ SRD data-wired mechanics complete (HP, Skills, Equipment, Sneak Attack, Expertise)
 
-The character creation wizard and character sheet both support a Level Up system. When the level field increases, a modal opens showing cumulative new class features, an ASI picker with +/- controls, and Wizard spell slot summaries. The SRD data now includes levels 1-10 for each class with features, ASI markers (levels 4 and 8), and Wizard spell slot progression.
+The character creation wizard and character sheet are now fully wired to the structured `srd.json` data:
+- **HP Auto-calculation**: Level 1 uses max hit die + CON mod; each level up adds class flat per-level HP + CON mod. Max HP is read-only, current HP remains manually adjustable.
+- **Skills Restricted List**: Once a class is selected, the skill checklist filters to only that class's allowed skills from `srd.json`'s `{count, options}` structure. Non-class skills are shown but grayed out. Selection count is enforced and locked when the pick count is reached.
+- **Equipment Choice Packages**: Starting equipment renders as radio-button choice groups from `srd.json` instead of free-text entry. Granted items appear as a confirmed non-interactive list. All items integrate with the existing Equipped toggle / auto-AC / auto-Attack behavior.
+- **Sneak Attack (Rogue)**: Read-only stat displays near Attacks & Spellcasting, auto-calculated from `srd.json` per-level scaling. Attacks from finesse/ranged weapons show a sneak attack tag.
+- **Expertise (Rogue)**: Expertise picker allows selecting 2 skills (from already-chosen proficiencies + Thieves' Tools) at level 1, and 2 more at level 6. EXPERTISE-tagged skills show doubled proficiency bonus in skill totals. Triggered in Wizard after Skills step and via Level Up modal at level 6.
 
 ## Recently Completed
 
@@ -38,6 +43,19 @@ The character creation wizard and character sheet both support a Level Up system
 - [x] Create useLevelUp hook for detecting level increases and computing cumulative level data
 - [x] Wire level-up modal into Character Sheet IdentitySection and Creation Flow StepIdentity
 - [x] Add spellSlots field to Character type for Wizard spell slot tracking
+- [x] Add `hpPerLevel` to SRDClass interface and classes (Fighter=6, Wizard=4, Rogue=5)
+- [x] Rewrite `computeDerivedStats` HP logic to use class `hitDie` (level 1) and `hpPerLevel` (subsequent levels) + CON modifier
+- [x] Add `getClassLevel1Hp`, `getClassPerLevelHp`, `getMaxExpertiseCount` helpers to `storage.ts`
+- [x] Add `hpGain` to `LevelUpResult` in `level-up.ts`
+- [x] Update `LevelUpModal` to display HP gain description and expertise picker for level 6 Rogue
+- [x] Update `AttacksAndSpellcastingSection` to always show Sneak Attack read-only stat for Rogues
+- [x] Create `ExpertisePicker` component for selecting expertise skills
+- [x] Update `SkillsSection` (character sheet) to integrate `ExpertisePicker`
+- [x] Update `StepSkills` (character creator) to accept full `Character` data and show `ExpertisePicker`
+- [x] Update character creator page to show expertise modal after Skills step for Rogues
+- [x] Update character sheet page with Level Up button, HP gain display, and expertise handling
+- [x] Skills not in class allowed list are grayed out, not hidden, in both wizard and sheet
+- [x] Equipment choices render as radio-button groups with granted items shown as non-interactive
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
@@ -48,18 +66,19 @@ The character creation wizard and character sheet both support a Level Up system
 | `src/app/layout.tsx` | Root layout with fonts + bottom nav | ✅ Ready |
 | `src/app/page.tsx` | Home screen (My Characters list) | ✅ Ready |
 | `src/app/character/new/page.tsx` | Creates empty character and redirects | ✅ Ready |
-| `src/app/character/[id]/page.tsx` | Full character sheet page | ✅ Ready |
+| `src/app/character/[id]/page.tsx` | Full character sheet page with Level Up button | ✅ Ready |
+| `src/app/character/create/page.tsx` | Character creation wizard with expertise modal | ✅ Ready |
 | `src/components/BottomNav.tsx` | Floating bottom nav with dragon hero | ✅ Ready |
 | `src/components/AppHeader.tsx` | App header with dragon logo | ✅ Ready |
-| `src/lib/storage.ts` | LocalStorage CRUD + Character type + helpers | ✅ Ready |
-| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells, levels 1-10) | ✅ Ready |
-| `src/lib/level-up.ts` | Level-up computation helpers | ✅ Ready |
+| `src/lib/storage.ts` | LocalStorage CRUD + Character type + HP/expertise helpers | ✅ Ready |
+| `src/data/srd.ts` | 5e SRD data (races, classes, skills, spells, hpPerLevel, scalingFeatures) | ✅ Ready |
+| `src/lib/level-up.ts` | Level-up computation with hpGain | ✅ Ready |
 | `src/hooks/useLevelUp.ts` | Reusable level-up state hook | ✅ Ready |
-| `src/components/level-up/LevelUpModal.tsx` | Reusable level-up modal component | ✅ Ready |
+| `src/components/level-up/LevelUpModal.tsx` | Level-up modal with HP, ASI, expertise, spell slots | ✅ Ready |
 | `src/components/character-creator/StepRace.tsx` | Race selection with SRD traits | ✅ Ready |
 | `src/components/character-creator/StepClass.tsx` | Class selection with SRD features | ✅ Ready |
 | `src/components/character-creator/StepAbilityScores.tsx` | Ability scores with racial auto-bonuses | ✅ Ready |
-| `src/components/character-creator/StepSkills.tsx` | Skill selection with SRD descriptions | ✅ Ready |
+| `src/components/character-creator/StepSkills.tsx` | Skill selection with SRD descriptions + expertise picker | ✅ Ready |
 | `src/components/character-creator/StepSpells.tsx` | Spell picker with SRD data (Wizard only) | ✅ Ready |
 | `src/components/character-creator/StepFinalTouches.tsx` | Appearance and backstory | ✅ Ready |
 | `src/components/character-sheet/SectionCard.tsx` | Base card component | ✅ Ready |
@@ -67,19 +86,22 @@ The character creation wizard and character sheet both support a Level Up system
 | `src/components/character-sheet/SectionNav.tsx` | Floating vertical section nav with scroll-spy | ✅ Ready |
 | `src/components/character-sheet/CharacterSheetContext.tsx` | Context for auto-save blur handler | ✅ Ready |
 | `src/components/character-sheet/IdentitySection.tsx` | Identity fields | ✅ Ready |
-| `src/components/character-sheet/StatsSection.tsx` | Stats with auto-modifiers | ✅ Ready |
-| `src/components/character-sheet/SkillsSection.tsx` | 18 skills with proficiency checkboxes | ✅ Ready |
+| `src/components/character-sheet/StatsSection.tsx` | Stats with auto-modifiers, read-only Max HP | ✅ Ready |
+| `src/components/character-sheet/SkillsSection.tsx` | 18 skills with proficiency, expertise tag + ExpertisePicker | ✅ Ready |
+| `src/components/character-sheet/ExpertisePicker.tsx` | Expertise skill selection for Rogues | ✅ Ready |
 | `src/components/character-sheet/FeaturesTraitsSection.tsx` | Repeatable features/traits | ✅ Ready |
-| `src/components/character-sheet/InventorySection.tsx` | Repeatable inventory + currency | ✅ Ready |
+| `src/components/character-sheet/InventorySection.tsx` | Equipment choices + granted items + currency | ✅ Ready |
+| `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Attacks with sneak attack display | ✅ Ready |
 | `src/components/character-sheet/SpellsSection.tsx` | Repeatable spells with collapse toggle | ✅ Ready |
 | `src/components/character-sheet/AppearanceBioSection.tsx` | Appearance & backstory | ✅ Ready |
 
 ## Current Focus
 
-Level Up system is complete. Next steps:
+SRD data-wired mechanics complete. Next steps:
 1. Add character deletion from home screen
 2. Implement PDF export/import
 3. Add database persistence (via add-database recipe)
+4. Future: Fighting Style choice, Action Surge tracker, Arcane Recovery tracker
 
 ## Available Recipes
 
@@ -96,3 +118,4 @@ Level Up system is complete. Next steps:
 | 2026-08-18 | Built full character sheet screen with 7 sections, auto-save, sticky header, section nav |
 | 2026-08-18 | Replaced all placeholder data with real 5e SRD data, added racial bonus auto-calculation, auto-skip Spells for non-Wizards |
 | 2026-08-18 | Added Level Up system with reusable modal, SRD levels 1-10 data, ASI picker, and Wizard spell slot summaries |
+| 2026-08-19 | Wired SRD data into UI and calculations: HP auto-calc, skills restricted list + count, equipment choice packages, sneak attack numeric effect, expertise picker for Rogue |

@@ -112,8 +112,32 @@ export function getModifier(score: number): number {
   return Math.floor((score - 10) / 2);
 }
 
+export function getClassLevel1Hp(classData: { hitDie: number } | undefined): number {
+  if (!classData) return 10;
+  return classData.hitDie;
+}
+
+export function getClassPerLevelHp(classData: { hpPerLevel: number } | undefined): number {
+  if (!classData) return 5;
+  return classData.hpPerLevel;
+}
+
 export function getHitDieAverage(hitDie: number): number {
   return Math.floor(hitDie / 2) + 1;
+}
+
+export function getMaxExpertiseCount(character: Character): number {
+  if (character.class !== "Rogue") return 0;
+  const classData = getClassData("Rogue");
+  const scaling = classData?.scalingFeatures?.find((f) => f.type === "expertise");
+  if (!scaling) return 0;
+  let maxCount = 0;
+  for (const [level, count] of Object.entries(scaling.values)) {
+    if (Number(level) <= character.level) {
+      maxCount = Math.max(maxCount, count);
+    }
+  }
+  return maxCount;
 }
 
 export function createEmptyCharacter(overrides: Partial<Character> = {}): Character {
@@ -343,18 +367,16 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const spellSaveDc = 8 + profBonus + spellcastingAbilityMod;
   const spellAttackBonus = profBonus + spellcastingAbilityMod;
 
-  let maxHp = character.maxHp;
+  const conMod = getModifier(character.con);
+  let maxHp: number;
   if (character.level === 1 && classData) {
-    const hitDie = classData.hitDie;
-    const conMod = getModifier(character.con);
-    maxHp = hitDie + conMod;
-  } else if (classData && character.level > 1) {
-    const hitDie = classData.hitDie;
-    const conMod = getModifier(character.con);
-    const flatPerLevel = getHitDieAverage(hitDie);
-    const levelsAboveFirst = character.level - 1;
-    const baseHpAtLevel1 = Math.max(character.maxHp - levelsAboveFirst * (flatPerLevel + conMod), hitDie + conMod);
-    maxHp = baseHpAtLevel1 + levelsAboveFirst * (flatPerLevel + conMod);
+    maxHp = getClassLevel1Hp(classData) + conMod;
+  } else if (classData) {
+    const level1Base = getClassLevel1Hp(classData) + conMod;
+    const perLevel = getClassPerLevelHp(classData) + conMod;
+    maxHp = level1Base + (character.level - 1) * perLevel;
+  } else {
+    maxHp = character.maxHp;
   }
 
   return {

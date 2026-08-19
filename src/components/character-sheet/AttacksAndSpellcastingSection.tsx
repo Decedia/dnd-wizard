@@ -3,6 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
+import { getSneakAttackDice } from "@/lib/storage";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -11,12 +12,13 @@ interface AttacksAndSpellcastingSectionProps {
 
 export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAndSpellcastingSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const sneakAttack = getSneakAttackDice(character);
 
   return (
     <SectionCard id="attacks" title="Attacks & Spellcasting" icon={<AttacksIcon className="h-5 w-5" />}>
-      {character.class === "Rogue" && character.attacks.some((a) => a.sneakAttack) && (
+      {character.class === "Rogue" && sneakAttack && (
         <div className="mb-3 rounded-lg border border-gold/20 bg-gold/5 px-3 py-2">
-          <span className="text-xs font-medium text-gold">Sneak Attack: {character.attacks.find((a) => a.sneakAttack)?.sneakAttack}</span>
+          <span className="text-xs font-medium text-gold">Sneak Attack: {sneakAttack}</span>
         </div>
       )}
       {character.attacks.length === 0 ? (

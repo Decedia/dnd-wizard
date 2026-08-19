@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { skills as srdSkills } from "@/data/srd";
-import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
+import { skills as srdSkills, getClassData } from "@/data/srd";
+import { getModifier, getProficiencyBonus, getMaxExpertiseCount, type Character } from "@/lib/storage";
+import { ExpertisePicker } from "./ExpertisePicker";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -16,7 +17,7 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
   const profBonus = getProficiencyBonus(character.level);
   const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
 
-  const classData = character.class ? (getClassData(character.class) as any) : null;
+  const classData = character.class ? getClassData(character.class) : null;
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
@@ -41,6 +42,10 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
         [skillName]: !character.skills[skillName],
       },
     });
+  };
+
+  const handleExpertiseChange = (selections: string[]) => {
+    onChange({ expertise: selections });
   };
 
   return (
@@ -111,6 +116,12 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
         })}
       </div>
 
+      <ExpertisePicker
+        character={character}
+        selectedExpertise={character.expertise || []}
+        onExpertiseChange={handleExpertiseChange}
+      />
+
       <div className="mt-3 flex justify-end">
         <Field label="Passive Wisdom (Perception)">
           <input
@@ -173,13 +184,4 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       {children}
     </label>
   );
-}
-
-function getClassData(name: string): any {
-  try {
-    const module = require("@/data/srd");
-    return module.getClassData(name);
-  } catch {
-    return null;
-  }
 }

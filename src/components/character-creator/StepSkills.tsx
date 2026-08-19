@@ -3,14 +3,12 @@
 import { useState } from "react";
 import { StepCard } from "./StepCard";
 import { skills as srdSkills, getClassData } from "@/data/srd";
+import type { Character } from "@/lib/storage";
+import { ExpertisePicker } from "@/components/character-sheet/ExpertisePicker";
 
 interface StepSkillsProps {
-  data: {
-    skills: Record<string, boolean>;
-    expertise: string[];
-    class?: string;
-  };
-  onChange: (data: Partial<StepSkillsProps["data"]>) => void;
+  data: Character;
+  onChange: (data: Partial<Character>) => void;
 }
 
 export function StepSkills({ data, onChange }: StepSkillsProps) {
@@ -41,6 +39,10 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
     });
   };
 
+  const handleExpertiseChange = (selections: string[]) => {
+    onChange({ expertise: selections });
+  };
+
   return (
     <StepCard title="Skills">
       {skillChoices ? (
@@ -48,7 +50,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
           Choose {maxSelections} skills from your class list ({currentSelections} of {maxSelections} selected)
         </p>
       ) : (
-        <p className="text-xs text-parchment/50 mb-3">Select your character's skills.</p>
+        <p className="text-xs text-parchment/50 mb-3">Select your character&apos;s skills.</p>
       )}
       <div className="space-y-2">
         {srdSkills.map(({ name, ability, description }) => {
@@ -84,6 +86,12 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
           );
         })}
       </div>
+
+      <ExpertisePicker
+        character={data}
+        selectedExpertise={data.expertise || []}
+        onExpertiseChange={handleExpertiseChange}
+      />
     </StepCard>
   );
 }

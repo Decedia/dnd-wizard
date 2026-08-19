@@ -18,6 +18,9 @@ import { OtherProficienciesSection } from "@/components/character-sheet/OtherPro
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
+import { LevelUpModal } from "@/components/level-up/LevelUpModal";
+import { computeLevelUp, type LevelUpResult } from "@/lib/level-up";
+import { getClassData } from "@/data/srd";
 import { Trash2, Download, Upload } from "lucide-react";
 import { exportCharacterToPdf, importCharacterFromPdf } from "@/lib/pdf";
 
@@ -37,6 +40,8 @@ export default function CharacterView() {
   const [spellsCollapsed, setSpellsCollapsed] = useState(true);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
+  const [pendingLevelUp, setPendingLevelUp] = useState<LevelUpResult | null>(null);
+  const [showLevelUpModal, setShowLevelUpModal] = useState(false);
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -102,6 +107,61 @@ export default function CharacterView() {
     }
   };
 
+  const handleLevelUpClick = () => {
+    if (!character || character.level >= 20) return;
+    const result = computeLevelUp(character.level, character.level + 1, character.class);
+    setPendingLevelUp(result);
+    setShowLevelUpModal(true);
+  };
+
+  const handleLevelUpConfirm = useCallback((asiChoices: { ability: string; delta: number }[]) => {
+    if (!character || !pendingLevelUp) return;
+
+    let newChar = { ...character, level: pendingLevelUp.newLevel };
+    for (const choice of asiChoices) {
+      const abilityValue = newChar[choice.ability as keyof Character];
+      if (typeof abilityValue === "number") {
+        newChar = {
+          ...newChar,
+          [choice.ability]: abilityValue + choice.delta,
+        } as Character;
+      }
+    }
+
+    const { computeDerivedStats } = require("@/lib/storage");
+    const derived = computeDerivedStats(newChar);
+    const finalChar = { ...newChar, ...derived };
+
+    if (finalChar.class === "Rogue" && pendingLevelUp.newLevel === 6) {
+      const currentExpertise = finalChar.expertise || [];
+      if (currentExpertise.length < 4) {
+        setCharacter(finalChar);
+        setShowLevelUpModal(false);
+        setPendingLevelUp(null);
+        return;
+      }
+    }
+
+    saveCharacter(finalChar);
+    setCharacter(finalChar);
+    setShowLevelUpModal(false);
+    setPendingLevelUp(null);
+  }, [character, pendingLevelUp]);
+
+  const handleExpertiseFromLevelUp = useCallback((selections: string[]) => {
+    if (!character) return;
+    const updated = { ...character, expertise: selections };
+    saveCharacter(updated);
+    setCharacter(updated);
+    setShowLevelUpModal(false);
+    setPendingLevelUp(null);
+  }, [character]);
+
+  const handleLevelUpCancel = useCallback(() => {
+    setShowLevelUpModal(false);
+    setPendingLevelUp(null);
+  }, []);
+
   const handleChange = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
       if (!prev) return prev;
@@ -137,6 +197,21 @@ export default function CharacterView() {
     );
   }
 
+  const classData = character.class ? getClassData(character.class) : null;
+  const hpGainDescription = pendingLevelUp && classData
+    ? `You gained ${pendingLevelUp.hpGain} level${pendingLevelUp.hpGain > 1 ? "s" : ""}. Max HP increased by ${pendingLevelUp.hpGain * classData.hpPerLevel} + ${pendingLevelUp.hpGain} × Constitution modifier.`
+    : undefined;
+
+  const needsExpertiseAtLevel6 = character.class === "Rogue" && character.level === 6 && (character.expertise || []).length < 4;
+  const expertiseOptionsForLevelUp = needsExpertiseAtLevel6 && character
+    ? [
+        ...Object.entries(character.skills)
+          .filter(([, proficient]) => proficient)
+          .map(([name]) => ({ name, isSkill: true })),
+        { name: "Thieves' Tools", isSkill: false },
+      ]
+    : undefined;
+
   return (
     <div className="min-h-screen bg-charcoal">
       <AppHeader title={character.name || "Character"} subtitle="Character Sheet" />
@@ -164,6 +239,13 @@ export default function CharacterView() {
           </div>
 
           <div className="mx-auto max-w-lg mt-6 mb-4 flex items-center gap-3">
+            <button
+              onClick={handleLevelUpClick}
+              disabled={character.level >= 20}
+              className="flex-1 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
+            >
+              Level Up
+            </button>
             <button
               onClick={handleSave}
               className="flex-1 rounded-xl bg-burgundy px-6 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98]"
@@ -221,6 +303,28 @@ export default function CharacterView() {
           </div>
         </main>
       </CharacterSheetProvider>
+
+      <LevelUpModal
+        open={showLevelUpModal && !!pendingLevelUp}
+        levelUpResult={pendingLevelUp}
+        currentAbilityScores={{
+          str: character.str,
+          dex: character.dex,
+          con: character.con,
+          int: character.int,
+          wis: character.wis,
+          cha: character.cha,
+        }}
+        onConfirm={handleLevelUpConfirm}
+        onCancel={handleLevelUpCancel}
+        hpGainDescription={hpGainDescription}
+        expertiseOptions={expertiseOptionsForLevelUp}
+        expertiseCount={needsExpertiseAtLevel6 ? 4 - (character.expertise || []).length : undefined}
+        onExpertiseConfirm={handleExpertiseFromLevelUp}
+        characterClass={character.class}
+        currentExpertise={character.expertise}
+        currentSkills={character.skills}
+      />
     </div>
   );
 }
