@@ -164,15 +164,25 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <Field label="Level">
-            <input
-              type="number"
-              min={1}
-              max={20}
-              value={character.level}
-              onChange={(e) => handleLevelChange(Math.max(1, parseInt(e.target.value || "1", 10)))}
-              onBlur={() => {}}
-              className="input"
-            />
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleLevelChange(Math.max(1, character.level - 1))}
+                disabled={character.level <= 1}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
+              >
+                -
+              </button>
+              <span className="text-sm font-semibold text-gold w-6 text-center">{character.level}</span>
+              <button
+                type="button"
+                onClick={() => handleLevelChange(Math.min(20, character.level + 1))}
+                disabled={character.level >= 20}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
+              >
+                +
+              </button>
+            </div>
           </Field>
           <Field label="Proficiency Bonus">
             <input
