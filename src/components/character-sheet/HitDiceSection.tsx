@@ -1,0 +1,62 @@
+"use client";
+
+import { useCharacterSheet } from "./CharacterSheetContext";
+import { SectionCard } from "./SectionCard";
+import type { Character } from "@/lib/storage";
+
+interface HitDiceSectionProps {
+  character: Pick<Character, "hitDiceTotal" | "hitDiceRemaining">;
+  onChange: (patch: Partial<Pick<Character, "hitDiceTotal" | "hitDiceRemaining">>) => void;
+}
+
+export function HitDiceSection({ character, onChange }: HitDiceSectionProps) {
+  const { onFieldBlur } = useCharacterSheet();
+
+  return (
+    <SectionCard id="hit-dice" title="Hit Dice" icon={<DiceIcon className="h-5 w-5" />}>
+      <div className="grid grid-cols-2 gap-3">
+        <Field label="Total">
+          <input
+            type="text"
+            value={character.hitDiceTotal}
+            onChange={(e) => onChange({ hitDiceTotal: e.target.value })}
+            onBlur={onFieldBlur}
+            className="input"
+            placeholder="e.g. 3d10"
+          />
+        </Field>
+        <Field label="Remaining">
+          <input
+            type="number"
+            min={0}
+            value={character.hitDiceRemaining}
+            onChange={(e) => onChange({ hitDiceRemaining: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+            onBlur={onFieldBlur}
+            className="input"
+          />
+        </Field>
+      </div>
+    </SectionCard>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+      {children}
+    </label>
+  );
+}
+
+function DiceIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="8.5" cy="8.5" r="1.5" />
+      <circle cx="15.5" cy="8.5" r="1.5" />
+      <circle cx="8.5" cy="15.5" r="1.5" />
+      <circle cx="15.5" cy="15.5" r="1.5" />
+    </svg>
+  );
+}

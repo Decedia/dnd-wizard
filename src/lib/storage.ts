@@ -166,8 +166,8 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     inspiration: false,
     proficiencyBonus: 2,
     ac: 10,
-    currentHp: 10,
-    maxHp: 10,
+    currentHp: 0,
+    maxHp: 0,
     temporaryHp: 0,
     hitDiceTotal: "",
     hitDiceRemaining: 0,
@@ -406,6 +406,10 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxHp = character.maxHp;
   }
 
+  const hitDie = classData?.hitDie || 10;
+  const hitDiceTotal = `${character.level}d${hitDie}`;
+  const hitDiceRemaining = character.level;
+
   return {
     proficiencyBonus: profBonus,
     savingThrows,
@@ -415,5 +419,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     spellSaveDc,
     spellAttackBonus,
     maxHp,
+    currentHp: maxHp,
+    hitDiceTotal,
+    hitDiceRemaining,
   };
 }

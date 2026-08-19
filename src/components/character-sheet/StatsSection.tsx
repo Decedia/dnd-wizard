@@ -14,16 +14,7 @@ interface StatsSectionProps {
     cha: number;
     inspiration: boolean;
     proficiencyBonus: number;
-    ac: number;
-    currentHp: number;
-    maxHp: number;
-    temporaryHp: number;
-    hitDiceTotal: string;
-    hitDiceRemaining: number;
-    deathSaveSuccesses: number;
-    deathSaveFailures: number;
     initiative: number;
-    speed: number;
     savingThrows: Record<string, { proficient: boolean; value: number }>;
   };
   onChange: (patch: Partial<StatsSectionProps["character"]>) => void;
@@ -88,103 +79,6 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
         </label>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-3">
-        <Field label="AC">
-          <input
-            type="number"
-            value={character.ac}
-            readOnly
-            className="input bg-charcoal/60"
-          />
-        </Field>
-        <Field label="Current HP">
-          <input
-            type="number"
-            value={character.currentHp}
-            onChange={(e) => onChange({ currentHp: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input"
-          />
-        </Field>
-        <Field label="Max HP">
-          <input
-            type="number"
-            value={character.maxHp}
-            readOnly
-            className="input bg-charcoal/60"
-          />
-        </Field>
-      </div>
-
-      <div className="mt-3">
-        <Field label="Temporary HP">
-          <input
-            type="number"
-            value={character.temporaryHp}
-            onChange={(e) => onChange({ temporaryHp: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input max-w-[120px]"
-          />
-        </Field>
-      </div>
-
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        <Field label="Hit Dice Total">
-          <input
-            type="text"
-            value={character.hitDiceTotal}
-            onChange={(e) => onChange({ hitDiceTotal: e.target.value })}
-            onBlur={onFieldBlur}
-            className="input"
-            placeholder="e.g. 3d10"
-          />
-        </Field>
-        <Field label="Hit Dice Remaining">
-          <input
-            type="number"
-            min={0}
-            value={character.hitDiceRemaining}
-            onChange={(e) => onChange({ hitDiceRemaining: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input"
-          />
-        </Field>
-      </div>
-
-      <div className="mt-4">
-        <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Death Saves</span>
-        <div className="mt-2 flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-parchment/70">Successes</span>
-            {[0, 1, 2].map((i) => (
-              <label key={`ds-s-${i}`} className="flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={character.deathSaveSuccesses > i}
-                  onChange={(e) => onChange({ deathSaveSuccesses: e.target.checked ? i + 1 : i })}
-                  onBlur={onFieldBlur}
-                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
-                />
-              </label>
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-parchment/70">Failures</span>
-            {[0, 1, 2].map((i) => (
-              <label key={`ds-f-${i}`} className="flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={character.deathSaveFailures > i}
-                  onChange={(e) => onChange({ deathSaveFailures: e.target.checked ? i + 1 : i })}
-                  onBlur={onFieldBlur}
-                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-red-400 focus:ring-red-400/50"
-                />
-              </label>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="mt-4">
         <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Saving Throws</span>
         <div className="mt-2 space-y-2">
@@ -206,18 +100,6 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
             );
           })}
         </div>
-      </div>
-
-      <div className="mt-4">
-        <Field label="Speed">
-          <input
-            type="number"
-            value={character.speed}
-            onChange={(e) => onChange({ speed: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input max-w-[120px]"
-          />
-        </Field>
       </div>
     </SectionCard>
   );

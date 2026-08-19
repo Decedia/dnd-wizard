@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from "react";
 const sections = [
   { id: "identity", label: "Identity", Icon: UserIcon },
   { id: "stats", label: "Stats", Icon: StatsIcon },
+  { id: "combat", label: "Combat", Icon: CombatIcon },
+  { id: "death-saves", label: "Death Saves", Icon: DeathIcon },
+  { id: "hit-dice", label: "Hit Dice", Icon: HitDiceIcon },
   { id: "skills", label: "Skills", Icon: SkillsIcon },
   { id: "features", label: "Features", Icon: FeaturesIcon },
   { id: "attacks", label: "Attacks", Icon: AttacksIcon },
@@ -81,6 +84,37 @@ function StatsIcon({ className }: { className?: string }) {
       <path d="M18 20V10" />
       <path d="M12 20V4" />
       <path d="M6 20v-6" />
+    </svg>
+  );
+}
+
+function CombatIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.5 17.5L3 6V3h3l11.5 11.5" />
+      <path d="M13 19l6-6" />
+      <path d="M16 16l4 4" />
+      <path d="M19 21l2-2" />
+    </svg>
+  );
+}
+
+function DeathIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+    </svg>
+  );
+}
+
+function HitDiceIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="8.5" cy="8.5" r="1.5" />
+      <circle cx="15.5" cy="8.5" r="1.5" />
+      <circle cx="8.5" cy="15.5" r="1.5" />
+      <circle cx="15.5" cy="15.5" r="1.5" />
     </svg>
   );
 }

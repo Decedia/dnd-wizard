@@ -10,6 +10,9 @@ import { SectionNav } from "@/components/character-sheet/SectionNav";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
+import { CombatStatsSection } from "@/components/character-sheet/CombatStatsSection";
+import { DeathSavesSection } from "@/components/character-sheet/DeathSavesSection";
+import { HitDiceSection } from "@/components/character-sheet/HitDiceSection";
 import { SkillsSection } from "@/components/character-sheet/SkillsSection";
 import { FeaturesTraitsSection } from "@/components/character-sheet/FeaturesTraitsSection";
 import { AttacksAndSpellcastingSection } from "@/components/character-sheet/AttacksAndSpellcastingSection";
@@ -219,6 +222,9 @@ export default function CharacterView() {
           <div className="mx-auto max-w-lg space-y-4">
             <IdentitySection character={character} onChange={handleChange} />
             <StatsSection character={character} onChange={handleChange} />
+            <CombatStatsSection character={character} onChange={handleChange} />
+            <DeathSavesSection character={character} onChange={handleChange} />
+            <HitDiceSection character={character} onChange={handleChange} />
             <SkillsSection character={character} onChange={handleChange} />
             <FeaturesTraitsSection character={character} onChange={handleChange} />
             <AttacksAndSpellcastingSection character={character} onChange={handleChange} />
