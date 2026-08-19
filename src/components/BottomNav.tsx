@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Home, Wand2, ScrollText } from "lucide-react";
+import { Home, Wand2, ScrollText, Dices } from "lucide-react";
 
 const navItems = [
   {
@@ -20,6 +20,11 @@ const navItems = [
     name: "Characters",
     href: "/",
     icon: ScrollText,
+  },
+  {
+    name: "Dice",
+    href: "/dice",
+    icon: Dices,
   },
 ];
 

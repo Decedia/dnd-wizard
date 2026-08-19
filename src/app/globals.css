@@ -39,3 +39,149 @@
     padding-bottom: env(safe-area-inset-bottom, 16px);
   }
 }
+
+.dice-button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.dice-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.dice-button:not(:disabled):hover {
+  transform: scale(1.05);
+}
+
+.dice-button:not(:disabled):active {
+  transform: scale(0.95);
+}
+
+.dice {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+  border: 2px solid #c5a059;
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s;
+}
+
+.dice::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), transparent);
+  pointer-events: none;
+}
+
+@keyframes dice-idle {
+  0%, 100% { box-shadow: 0 0 10px rgba(197, 160, 89, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(197, 160, 89, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes dice-roll {
+  0% { transform: rotate(0deg) scale(1); }
+  20% { transform: rotate(180deg) scale(1.1); }
+  40% { transform: rotate(360deg) scale(0.95); }
+  60% { transform: rotate(540deg) scale(1.05); }
+  80% { transform: rotate(720deg) scale(0.98); }
+  100% { transform: rotate(900deg) scale(1); }
+}
+
+@keyframes dice-land {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.15); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.dice:not(.rolling) {
+  animation: dice-idle 2s ease-in-out infinite;
+}
+
+.dice.rolling {
+  animation: dice-roll 1.2s ease-in-out;
+}
+
+.dice.rolling .dice-face {
+  filter: blur(0.5px);
+}
+
+.dice-face {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: #c5a059;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  transition: all 0.2s;
+}
+
+.dice-face.result {
+  animation: dice-land 0.4s ease-out;
+  color: #d4b068;
+  text-shadow: 0 0 10px rgba(197, 160, 89, 0.6);
+}
+
+.dice-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #722f37;
+  color: #c5a059;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid #c5a059;
+}
+
+.dice-result-text {
+  font-size: 12px;
+  color: #c5a059;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.dice-d4 {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.dice-d6 {
+  border-radius: 12px;
+}
+
+.dice-d8 {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.dice-d10 {
+  clip-path: polygon(50% 0%, 100% 30%, 75% 100%, 25% 100%, 0% 30%);
+}
+
+.dice-d12 {
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+.dice-d20 {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.dice-d100 {
+  clip-path: polygon(50% 0%, 100% 30%, 75% 100%, 25% 100%, 0% 30%);
+}
+

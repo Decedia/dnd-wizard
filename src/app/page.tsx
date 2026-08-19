@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromPdf } from "@/lib/pdf";
-import { Upload } from "lucide-react";
+import { Upload, Dices } from "lucide-react";
 
 export default function Home() {
   const characters = getCharacters();
@@ -45,6 +45,15 @@ export default function Home() {
           >
             <span className="text-2xl leading-none">🐉</span>
             <span>Create New Character</span>
+          </Link>
+        </div>
+        <div className="mb-4">
+          <Link
+            href="/dice"
+            className="flex items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98]"
+          >
+            <Dices className="h-5 w-5" />
+            <span>Dice Roller</span>
           </Link>
         </div>
         <div className="mb-6">
