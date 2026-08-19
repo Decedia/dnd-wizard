@@ -101,16 +101,19 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
             placeholder="Your name"
           />
         </Field>
-        <Field label="Level">
-          <input
-            type="number"
-            min={1}
-            max={10}
-            value={data.level}
-            onChange={(e) => handleLevelChangeHook(Math.max(1, parseInt(e.target.value || "1", 10)))}
-            onBlur={() => {}}
-            className="input"
-          />
+        <Field label={`Level: ${data.level}`}>
+          <div className="flex items-center gap-3">
+            <input
+              type="range"
+              min={1}
+              max={10}
+              value={data.level}
+              onChange={(e) => handleLevelChangeHook(parseInt(e.target.value, 10))}
+              onBlur={() => {}}
+              className="flex-1 accent-gold"
+            />
+            <span className="text-sm font-semibold text-gold w-8 text-center">{data.level}</span>
+          </div>
         </Field>
         <Field label="Proficiency Bonus">
           <input
@@ -129,32 +132,6 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
             onBlur={() => {}}
             className="input"
           />
-        </Field>
-        <Field label="Race">
-          <select
-            value={data.race}
-            onChange={(e) => onChange({ race: e.target.value })}
-            onBlur={() => {}}
-            className="input"
-          >
-            <option value="">Select race</option>
-            {["Human", "Elf", "Dwarf", "Halfling"].map((r) => (
-              <option key={r} value={r}>{r}</option>
-            ))}
-          </select>
-        </Field>
-        <Field label="Class">
-          <select
-            value={data.class}
-            onChange={(e) => onChange({ class: e.target.value })}
-            onBlur={() => {}}
-            className="input"
-          >
-            <option value="">Select class</option>
-            {["Fighter", "Wizard", "Rogue"].map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
         </Field>
         <Field label="Alignment">
           <select
