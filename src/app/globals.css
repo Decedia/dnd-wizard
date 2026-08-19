@@ -79,16 +79,9 @@
   justify-content: center;
   background: #f4f1ea;
   color: #1a1a1a;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   transition: box-shadow 0.3s;
-}
-
-.dice::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.05));
-  pointer-events: none;
+  overflow: hidden;
 }
 
 @keyframes dice-idle {
@@ -98,18 +91,10 @@
 
 @keyframes dice-roll {
   0% { transform: rotate(0deg) scale(1); }
-  20% { transform: rotate(180deg) scale(1.08); }
-  40% { transform: rotate(360deg) scale(0.96); }
-  60% { transform: rotate(540deg) scale(1.04); }
-  80% { transform: rotate(720deg) scale(0.98); }
-  100% { transform: rotate(900deg) scale(1); }
-}
-
-@keyframes dice-land {
-  0% { filter: brightness(1); }
-  35% { filter: brightness(1.25); }
-  65% { filter: brightness(0.95); }
-  100% { filter: brightness(1); }
+  25% { transform: rotate(180deg) scale(1.05); }
+  50% { transform: rotate(360deg) scale(0.97); }
+  75% { transform: rotate(540deg) scale(1.02); }
+  100% { transform: rotate(720deg) scale(1); }
 }
 
 .dice:not(.rolling) {
@@ -129,13 +114,10 @@
   font-size: 28px;
   font-weight: 700;
   color: #1a1a1a;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
   z-index: 1;
-  transition: all 0.2s;
 }
 
 .dice-face.result {
-  animation: dice-land 0.4s ease-out;
   color: #722f37;
 }
 
