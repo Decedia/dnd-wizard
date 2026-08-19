@@ -95,6 +95,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
       if (newLevel > character.level) {
         setLevelUpOldLevel(character.level);
         setLevelUpNewLevel(newLevel);
+        onChange({ level: newLevel });
         setLevelUpOpen(true);
       } else if (newLevel < character.level) {
         onChange({ level: newLevel });
