@@ -5,6 +5,7 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
 import { getEquipmentData, getClassData } from "@/data/srd";
+import { useState } from "react";
 
 interface InventorySectionProps {
   character: Character;
@@ -18,6 +19,7 @@ interface EquipmentRadioGroup {
 
 export function InventorySection({ character, onChange }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const [equipChecked, setEquipChecked] = useState<Record<string, boolean>>({});
 
   const updateItem = (id: string, patch: Partial<Character["inventory"][number]>) => {
     const nextInventory = character.inventory.map((item) =>
@@ -78,7 +80,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     return item?.choiceOptionIndex ?? -1;
   };
 
-  const handleChoiceSelect = (group: EquipmentRadioGroup, optionIndex: number) => {
+  const handleChoiceSelect = (group: EquipmentRadioGroup, optionIndex: number, equip: boolean) => {
     const choice = group.choices[optionIndex];
     if (!choice) return;
 
@@ -92,11 +94,12 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     const itemsToAdd = choice.items || [];
     itemsToAdd.forEach((itemRef: any) => {
       const srdData = getEquipmentData(itemRef.name);
+      const isWeapon = srdData?.type === "weapon";
       const newItem: Character["inventory"][number] = {
         id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         name: itemRef.name,
         quantity: itemRef.quantity ?? 1,
-        equipped: false,
+        equipped: isWeapon ? equip : false,
         source: srdData ? "srd" : "custom",
         srdItemName: srdData?.name,
         itemType: srdData?.type,
@@ -112,6 +115,8 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
       };
       nextInventory.push(newItem);
     });
+
+    setEquipChecked((prev) => ({ ...prev, [group.name]: equip }));
 
     const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
     onChange({ inventory: nextInventory, ac, attacks });
@@ -177,6 +182,12 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                       const isSelected = selectedOption === optionIdx;
                       const items = choice.items || [];
                       const itemNames = items.map((i: any) => i.name).join(", ");
+                      const hasWeapon = items.some((i: any) => {
+                        const srdData = getEquipmentData(i.name);
+                        return srdData?.type === "weapon";
+                      });
+                      const equipKey = `${group.name}-${optionIdx}`;
+                      const isEquipChecked = equipChecked[equipKey] || false;
                       return (
                         <label
                           key={optionIdx}
@@ -190,11 +201,25 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                             type="radio"
                             name={group.name}
                             checked={isSelected}
-                            onChange={() => handleChoiceSelect(group, optionIdx)}
+                            onChange={() => handleChoiceSelect(group, optionIdx, isEquipChecked)}
                             className="mt-0.5 h-4 w-4 text-gold focus:ring-gold/50"
                           />
                           <div className="flex-1">
                             <span className="text-sm text-parchment/80">{itemNames}</span>
+                            {hasWeapon && (
+                              <label className="flex items-center gap-1.5 mt-1 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={isEquipChecked}
+                                  onChange={(e) => {
+                                    e.stopPropagation();
+                                    setEquipChecked((prev) => ({ ...prev, [equipKey]: e.target.checked }));
+                                  }}
+                                  className="h-3.5 w-3.5 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+                                />
+                                <span className="text-xs text-parchment/60">Equip?</span>
+                              </label>
+                            )}
                           </div>
                         </label>
                       );
