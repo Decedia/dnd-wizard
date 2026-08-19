@@ -42,6 +42,7 @@ export default function CharacterView() {
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const [levelUpOpen, setLevelUpOpen] = useState(false);
   const [levelUpOldLevel, setLevelUpOldLevel] = useState(1);
+  const [levelUpNewLevel, setLevelUpNewLevel] = useState(1);
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -110,6 +111,7 @@ export default function CharacterView() {
   const handleLevelUpClick = () => {
     if (!character || character.level >= 20) return;
     setLevelUpOldLevel(character.level);
+    setLevelUpNewLevel(character.level + 1);
     setLevelUpOpen(true);
   };
 
@@ -301,7 +303,7 @@ export default function CharacterView() {
       <LevelUpFlow
         open={levelUpOpen}
         oldLevel={levelUpOldLevel}
-        newLevel={character.level}
+        newLevel={levelUpNewLevel}
         className={character.class}
         currentAbilityScores={{
           str: character.str,

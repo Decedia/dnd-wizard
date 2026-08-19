@@ -38,6 +38,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
 
   const [levelUpOpen, setLevelUpOpen] = useState(false);
   const [levelUpOldLevel, setLevelUpOldLevel] = useState(character.level);
+  const [levelUpNewLevel, setLevelUpNewLevel] = useState(character.level);
 
   const handleLevelUpComplete = useCallback(
     (changes: LevelUpChanges) => {
@@ -93,6 +94,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
     (newLevel: number) => {
       if (newLevel > character.level) {
         setLevelUpOldLevel(character.level);
+        setLevelUpNewLevel(newLevel);
         setLevelUpOpen(true);
       } else if (newLevel < character.level) {
         onChange({ level: newLevel });
@@ -235,7 +237,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
       <LevelUpFlow
         open={levelUpOpen}
         oldLevel={levelUpOldLevel}
-        newLevel={character.level}
+        newLevel={levelUpNewLevel}
         className={character.class}
         currentAbilityScores={{
           str: character.str,
