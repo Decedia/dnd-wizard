@@ -42,15 +42,6 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
 
   const savingThrowKeys = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
-  const updateSavingThrow = (key: string, patch: { proficient?: boolean; value?: number }) => {
-    onChange({
-      savingThrows: {
-        ...character.savingThrows,
-        [key]: { ...character.savingThrows[key], ...patch },
-      },
-    });
-  };
-
   return (
     <SectionCard id="stats" title="Stats" icon={<StatsIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-3">
@@ -119,9 +110,8 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
           <input
             type="number"
             value={character.maxHp}
-            onChange={(e) => onChange({ maxHp: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input"
+            readOnly
+            className="input bg-charcoal/60"
           />
         </Field>
       </div>

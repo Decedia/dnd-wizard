@@ -1,3 +1,4 @@
+import { getClassData } from "@/data/srd";
 export interface Character {
   id: string;
   name: string;
@@ -34,10 +35,11 @@ export interface Character {
   speed: number;
   savingThrows: Record<string, { proficient: boolean; value: number }>;
   skills: Record<string, boolean>;
+  expertise: string[];
   passivePerception: number;
   features: { id: string; name: string; description: string }[];
-  inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null }[];
-  attacks: { id: string; name: string; attackBonus: number; damageType: string }[];
+  inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean }[];
+  attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string }[];
   otherProficiencies: string;
   languages: string[];
   spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string }[];
@@ -110,6 +112,10 @@ export function getModifier(score: number): number {
   return Math.floor((score - 10) / 2);
 }
 
+export function getHitDieAverage(hitDie: number): number {
+  return Math.floor(hitDie / 2) + 1;
+}
+
 export function createEmptyCharacter(overrides: Partial<Character> = {}): Character {
   return {
     id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -147,6 +153,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     speed: 30,
     savingThrows: {},
     skills: {},
+    expertise: [],
     passivePerception: 10,
     features: [],
     inventory: [],
@@ -284,26 +291,36 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
 
   ac += equippedShields.length * 2;
 
+  const profBonus = getProficiencyBonus(character.level);
   const attacks: Character["attacks"] = equippedWeapons.map((weapon) => {
     const abilityKey = weapon.category === "ranged" ? "dex" : "str";
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
-    const profBonus = character.proficiencyBonus;
+    const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
+    const sneakDice = isFinesseOrRanged ? getSneakAttackDice(character) : undefined;
     return {
       id: weapon.id,
       name: weapon.name,
       attackBonus: abilityMod + profBonus,
       damageType: [weapon.damageDice, weapon.damageType].filter(Boolean).join(" "),
+      sneakAttack: sneakDice,
     };
   });
 
   return { ac, attacks };
 }
 
-import { getClassData } from "@/data/srd";
+export function getSneakAttackDice(character: Character): string | undefined {
+  if (character.class !== "Rogue") return undefined;
+  const classData = getClassData("Rogue");
+  const scaling = classData?.scalingFeatures?.find((f) => f.type === "sneak_attack");
+  if (!scaling) return undefined;
+  const diceCount = scaling.values[character.level] ?? 1;
+  return `${diceCount}d6`;
+}
 
 export function computeDerivedStats(character: Character): Partial<Character> {
   const profBonus = getProficiencyBonus(character.level);
-  const classData = character.class ? (getClassData(character.class) as any) : null;
+  const classData = getClassData(character.class);
   const savingThrowProfs = classData?.savingThrows || [];
 
   const savingThrows: Record<string, { proficient: boolean; value: number }> = {};
@@ -326,6 +343,20 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const spellSaveDc = 8 + profBonus + spellcastingAbilityMod;
   const spellAttackBonus = profBonus + spellcastingAbilityMod;
 
+  let maxHp = character.maxHp;
+  if (character.level === 1 && classData) {
+    const hitDie = classData.hitDie;
+    const conMod = getModifier(character.con);
+    maxHp = hitDie + conMod;
+  } else if (classData && character.level > 1) {
+    const hitDie = classData.hitDie;
+    const conMod = getModifier(character.con);
+    const flatPerLevel = getHitDieAverage(hitDie);
+    const levelsAboveFirst = character.level - 1;
+    const baseHpAtLevel1 = Math.max(character.maxHp - levelsAboveFirst * (flatPerLevel + conMod), hitDie + conMod);
+    maxHp = baseHpAtLevel1 + levelsAboveFirst * (flatPerLevel + conMod);
+  }
+
   return {
     proficiencyBonus: profBonus,
     savingThrows,
@@ -334,5 +365,6 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     spellcastingAbility,
     spellSaveDc,
     spellAttackBonus,
+    maxHp,
   };
 }

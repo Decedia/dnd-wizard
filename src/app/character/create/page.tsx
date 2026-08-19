@@ -171,7 +171,7 @@ export default function CharacterCreate() {
       case 6:
         return (
           <StepSkills
-            data={{ skills: character.skills }}
+            data={{ skills: character.skills, expertise: character.expertise, class: character.class }}
             onChange={(patch) => update(patch)}
           />
         );

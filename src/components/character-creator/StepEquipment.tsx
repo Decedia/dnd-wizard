@@ -4,7 +4,7 @@ import { useState } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
-import { equipment as srdEquipment, getEquipmentData } from "@/data/srd";
+import { getEquipmentData, getClassData } from "@/data/srd";
 
 interface StepEquipmentProps {
   data: Character;
@@ -12,37 +12,12 @@ interface StepEquipmentProps {
 }
 
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
-  const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
-
   const updateItem = (id: string, patch: Partial<Character["inventory"][number]>) => {
     const nextInventory = data.inventory.map((item) =>
       item.id === id ? { ...item, ...patch } : item
     );
     const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
     onChange({ inventory: nextInventory, ac, attacks });
-  };
-
-  const addItem = (srdItemName?: string) => {
-    const id = crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
-    const srdItem = srdItemName ? getEquipmentData(srdItemName) : undefined;
-    const newItem: Character["inventory"][number] = {
-      id,
-      name: srdItem?.name ?? "",
-      quantity: 1,
-      equipped: false,
-      source: srdItem ? "srd" : "custom",
-      srdItemName: srdItem?.name,
-      itemType: srdItem?.type,
-      category: srdItem?.category,
-      damageDice: srdItem?.damageDice,
-      damageType: srdItem?.damageType,
-      baseAC: srdItem?.baseAC,
-      armorType: srdItem?.armorType,
-      maxDexBonus: srdItem?.maxDexBonus,
-    };
-    onChange({
-      inventory: [...data.inventory, newItem],
-    });
   };
 
   const removeItem = (id: string) => {
@@ -58,105 +33,180 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     onChange({ inventory: nextInventory, ac, attacks });
   };
 
-  const handleSrdSelect = (itemId: string, srdName: string) => {
-    const srdItem = getEquipmentData(srdName);
-    if (!srdItem) return;
-    const updated = {
-      ...data.inventory.find((i) => i.id === itemId)!,
-      name: srdItem.name,
-      source: "srd" as const,
-      srdItemName: srdItem.name,
-      itemType: srdItem.type,
-      category: srdItem.category,
-      damageDice: srdItem.damageDice,
-      damageType: srdItem.damageType,
-      baseAC: srdItem.baseAC,
-      armorType: srdItem.armorType,
-      maxDexBonus: srdItem.maxDexBonus,
-    };
-    const nextInventory = data.inventory.map((i) => (i.id === itemId ? updated : i));
+  const classData = data.class ? getClassData(data.class) : null;
+  const startingEquipment = classData?.startingEquipment || [];
+  const grantedItems = startingEquipment.filter((g: any) => g.granted);
+  const choiceGroups = startingEquipment.filter((g: any) => !g.granted);
+
+  const getSelectedChoiceForGroup = (groupIndex: number): number => {
+    const globalIndex = startingEquipment.findIndex((g: any) => !g.granted) + groupIndex;
+    const item = data.inventory.find((i) => i.choiceGroupIndex === globalIndex);
+    return item?.choiceOptionIndex ?? -1;
+  };
+
+  const handleChoiceSelect = (groupIndex: number, optionIndex: number) => {
+    const globalIndex = startingEquipment.findIndex((g: any) => !g.granted) + groupIndex;
+    const group = choiceGroups[groupIndex];
+    if (!group) return;
+
+    const nextInventory = data.inventory.filter(
+      (item) => !(item.choiceGroupIndex === globalIndex)
+    );
+
+    const selectedOption = (group as any).items[optionIndex];
+    if (selectedOption) {
+      const srdItem = getEquipmentData(selectedOption.name);
+      const itemsToAdd = Array.isArray(selectedOption) ? selectedOption : [selectedOption];
+      itemsToAdd.forEach((itemRef: any) => {
+        const srdData = getEquipmentData(itemRef.name);
+        const newItem: Character["inventory"][number] = {
+          id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          name: itemRef.name,
+          quantity: itemRef.quantity ?? 1,
+          equipped: false,
+          source: srdData ? "srd" : "custom",
+          srdItemName: srdData?.name,
+          itemType: srdData?.type,
+          category: srdData?.category,
+          damageDice: srdData?.damageDice,
+          damageType: srdData?.damageType,
+          baseAC: srdData?.baseAC,
+          armorType: srdData?.armorType,
+          maxDexBonus: srdData?.maxDexBonus,
+          choiceGroupIndex: globalIndex,
+          choiceOptionIndex: optionIndex,
+        };
+        nextInventory.push(newItem);
+      });
+    }
+
     const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
     onChange({ inventory: nextInventory, ac, attacks });
   };
 
+  const addCustomItem = () => {
+    const newItem: Character["inventory"][number] = {
+      id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      name: "",
+      quantity: 1,
+      equipped: false,
+      source: "custom",
+    };
+    onChange({
+      inventory: [...data.inventory, newItem],
+    });
+  };
+
   return (
     <StepCard title="Equipment">
-      <div className="space-y-2">
-        {data.inventory.map((item) => (
-          <div key={item.id} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
-            <div className="flex items-center gap-2 mb-2">
-              <select
-                value={item.srdItemName || (item.source === "custom" ? "Custom Item" : "")}
-                onChange={(e) => {
-                  if (e.target.value === "Custom Item") {
-                    const nextInventory = data.inventory.map((i) =>
-                      i.id === item.id ? { ...i, source: "custom" as const, srdItemName: undefined } : i
-                    );
-                    onChange({ inventory: nextInventory });
-                  } else if (e.target.value) {
-                    handleSrdSelect(item.id, e.target.value);
-                  }
-                }}
-                onBlur={() => {}}
-                className="input flex-1"
-              >
-                <option value="">Select item...</option>
-                {srdEquipment.map((eq) => (
-                  <option key={eq.name} value={eq.name}>{eq.name}</option>
+      {grantedItems.length > 0 && (
+        <div className="mb-4">
+          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Starting Equipment (Auto-granted)</span>
+          <div className="space-y-1">
+            {grantedItems.map((group: any, groupIdx: number) => (
+              <div key={groupIdx}>
+                {group.description && <p className="text-xs text-parchment/50 mb-1">{group.description}</p>}
+                {group.items.map((itemRef: any, itemIdx: number) => (
+                  <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
+                    <span className="text-sm text-parchment/80 flex-1">
+                      {itemRef.name}
+                      {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
+                    </span>
+                    <span className="text-[10px] text-green-400/70">Granted</span>
+                  </div>
                 ))}
-                <option value="Custom Item">Custom Item</option>
-              </select>
-              <input
-                type="number"
-                min={1}
-                value={item.quantity}
-                onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
-                onBlur={() => {}}
-                className="input w-16 text-center"
-              />
-              <button
-                type="button"
-                onClick={() => removeItem(item.id)}
-                className="text-parchment/40 hover:text-parchment"
-                aria-label="Remove item"
-              >
-                <XIcon className="h-4 w-4" />
-              </button>
-            </div>
-            {item.source === "custom" && (
-              <input
-                type="text"
-                value={item.name}
-                onChange={(e) => updateItem(item.id, { name: e.target.value })}
-                onBlur={() => {}}
-                className="input mb-2"
-                placeholder="Custom item name"
-              />
-            )}
-            {item.itemType && item.itemType !== "item" && (
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={item.equipped}
-                  onChange={(e) => handleEquippedToggle(item, e.target.checked)}
-                  onBlur={() => {}}
-                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
-                />
-                <span className="text-sm text-parchment/80">Equipped</span>
-              </label>
-            )}
-            {item.srdItemName && getEquipmentData(item.srdItemName)?.description && (
-              <p className="text-xs text-parchment/50 mt-1">{getEquipmentData(item.srdItemName)!.description}</p>
-            )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {choiceGroups.length > 0 && (
+        <div className="mb-4">
+          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Equipment Choices</span>
+          <div className="space-y-3">
+            {choiceGroups.map((group: any, groupIdx: number) => {
+              const selectedOption = getSelectedChoiceForGroup(groupIdx);
+              return (
+                <div key={groupIdx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
+                  <p className="text-xs text-parchment/50 mb-2">{group.description}</p>
+                  <div className="space-y-2">
+                    {group.items.map((itemRef: any, optionIdx: number) => {
+                      const srdData = getEquipmentData(itemRef.name);
+                      const isSelected = selectedOption === optionIdx;
+                      return (
+                        <label
+                          key={optionIdx}
+                          className={`flex items-start gap-2 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
+                            isSelected
+                              ? "border-gold/40 bg-gold/5"
+                              : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name={`choice-group-${groupIdx}`}
+                            checked={isSelected}
+                            onChange={() => handleChoiceSelect(groupIdx, optionIdx)}
+                            onBlur={() => {}}
+                            className="mt-0.5 h-4 w-4 text-gold focus:ring-gold/50"
+                          />
+                          <div className="flex-1">
+                            <span className="text-sm text-parchment/80">{itemRef.name}</span>
+                            {itemRef.description && (
+                              <p className="text-xs text-parchment/50 mt-0.5">{itemRef.description}</p>
+                            )}
+                            {itemRef.quantity && itemRef.quantity > 1 && (
+                              <span className="text-xs text-parchment/60"> (x{itemRef.quantity})</span>
+                            )}
+                          </div>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div className="space-y-2">
+        {data.inventory.filter((item) => !item.choiceGroupIndex && !item.isGranted).map((item) => (
+          <div key={item.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+            <input
+              type="text"
+              value={item.name}
+              onChange={(e) => updateItem(item.id, { name: e.target.value })}
+              onBlur={() => {}}
+              className="input flex-1"
+              placeholder="Item name"
+            />
+            <input
+              type="number"
+              min={1}
+              value={item.quantity}
+              onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
+              onBlur={() => {}}
+              className="input w-16 text-center"
+            />
+            <button
+              type="button"
+              onClick={() => removeItem(item.id)}
+              className="text-parchment/40 hover:text-parchment"
+              aria-label="Remove item"
+            >
+              <XIcon className="h-4 w-4" />
+            </button>
           </div>
         ))}
       </div>
       <button
         type="button"
-        onClick={() => addItem()}
+        onClick={addCustomItem}
         className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
       >
-        + Add Item
+        + Add Custom Item
       </button>
     </StepCard>
   );

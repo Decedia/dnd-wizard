@@ -12,9 +12,15 @@ export interface SRDSkillChoice {
   options: string[];
 }
 
+export interface SRDEquipmentItemRef {
+  name: string;
+  quantity?: number;
+  description?: string;
+}
+
 export interface SRDEquipmentChoice {
   description: string;
-  items: { name: string; quantity?: number; description?: string }[];
+  items: SRDEquipmentItemRef[];
 }
 
 export interface SRDClassLevel {
@@ -42,7 +48,7 @@ export interface SRDClass {
     tools: string[];
   };
   skillChoices: SRDSkillChoice;
-  startingEquipment: (SRDEquipmentChoice | { granted: true; description: string; items: { name: string; quantity?: number; description?: string }[] })[];
+  startingEquipment: (SRDEquipmentChoice | { granted: true; description: string; items: SRDEquipmentItemRef[] })[];
   features: { name: string; description: string; type?: string }[];
   levels: SRDClassLevel[];
   spellcastingAbility?: string;

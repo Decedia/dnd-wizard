@@ -14,6 +14,11 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
 
   return (
     <SectionCard id="attacks" title="Attacks & Spellcasting" icon={<AttacksIcon className="h-5 w-5" />}>
+      {character.class === "Rogue" && character.attacks.some((a) => a.sneakAttack) && (
+        <div className="mb-3 rounded-lg border border-gold/20 bg-gold/5 px-3 py-2">
+          <span className="text-xs font-medium text-gold">Sneak Attack: {character.attacks.find((a) => a.sneakAttack)?.sneakAttack}</span>
+        </div>
+      )}
       {character.attacks.length === 0 ? (
         <p className="text-xs text-parchment/50">Equip weapons in Inventory to auto-populate attacks.</p>
       ) : (
@@ -34,12 +39,19 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
                   className="input w-20 text-center bg-charcoal/60"
                 />
               </div>
-              <input
-                type="text"
-                value={attack.damageType}
-                readOnly
-                className="input bg-charcoal/60"
-              />
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={attack.damageType}
+                  readOnly
+                  className="input flex-1 bg-charcoal/60"
+                />
+                {attack.sneakAttack && (
+                  <span className="text-xs font-medium text-gold bg-gold/10 px-2 py-1 rounded">
+                    +{attack.sneakAttack} sneak
+                  </span>
+                )}
+              </div>
             </div>
           ))}
         </div>
