@@ -75,8 +75,8 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
   const getSelectedOptionForGroup = (group: EquipmentRadioGroup): number => {
     const firstChoice = group.choices[0];
     if (!firstChoice) return -1;
-    const globalIndex = startingEquipment.indexOf(firstChoice);
-    const item = character.inventory.find((i) => i.choiceGroupIndex === globalIndex && !i.isGranted);
+    const groupGlobalIndex = startingEquipment.indexOf(firstChoice);
+    const item = character.inventory.find((i) => i.choiceGroupIndex === groupGlobalIndex && !i.isGranted);
     return item?.choiceOptionIndex ?? -1;
   };
 
@@ -141,24 +141,46 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     onChange({ inventory: nextInventory, ac, attacks });
   };
 
+  const getItemDescription = (item: Character["inventory"][number]): string => {
+    const srdData = getEquipmentData(item.srdItemName || item.name);
+    const baseDescription = item.description || srdData?.description || "";
+    const damageInfo = srdData?.damageDice ? `${srdData.damageDice} ${srdData.damageType || ""}`.trim() : "";
+    return [baseDescription, damageInfo].filter(Boolean).join(" · ");
+  };
+
+  const isEditable = (item: Character["inventory"][number]): boolean => {
+    return !item.isGranted && item.choiceGroupIndex === undefined;
+  };
+
   return (
     <SectionCard id="inventory" title="Inventory" icon={<InventoryIcon className="h-5 w-5" />}>
       {grantedItems.length > 0 && (
         <div className="mb-4">
-          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Starting Equipment</span>
+          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Starting Equipment (Auto-granted)</span>
           <div className="space-y-1">
             {grantedItems.map((group: any, groupIdx: number) => (
               <div key={groupIdx}>
-                <p className="text-xs text-parchment/50 mb-1">{group.description}</p>
-                {group.items.map((itemRef: any, itemIdx: number) => (
-                  <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
-                    <span className="text-sm text-parchment/80 flex-1">
-                      {itemRef.name}
-                      {itemRef.quantity && itemRef.quantity > 1 ? ` (x{itemRef.quantity})` : ""}
-                    </span>
-                    <span className="text-[10px] text-green-400/70">Granted</span>
-                  </div>
-                ))}
+                {group.description && <p className="text-xs text-parchment/50 mb-1">{group.description}</p>}
+                {group.items.map((itemRef: any, itemIdx: number) => {
+                  const srdData = getEquipmentData(itemRef.name);
+                  const description = itemRef.description || srdData?.description || "";
+                  const damageInfo = srdData?.damageDice ? `${srdData.damageDice} ${srdData.damageType || ""}`.trim() : "";
+                  const fullDescription = [description, damageInfo].filter(Boolean).join(" · ");
+                  return (
+                    <div key={itemIdx} className="flex flex-col gap-0.5 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-parchment/80 flex-1">
+                          {itemRef.name}
+                          {itemRef.quantity && itemRef.quantity > 1 ? ` (x{itemRef.quantity})` : ""}
+                        </span>
+                        <span className="text-[10px] text-green-400/70">Granted</span>
+                      </div>
+                      {fullDescription && (
+                        <p className="text-xs text-parchment/50">{fullDescription}</p>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>
@@ -243,38 +265,50 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
       )}
 
       <div className="space-y-2">
-        {character.inventory.filter((item) => !item.choiceGroupIndex && !item.isGranted).map((item) => {
-          const srdData = getEquipmentData(item.srdItemName || item.name);
-          const baseDescription = item.description || srdData?.description || "";
-          const damageInfo = srdData?.damageDice ? `${srdData.damageDice} ${srdData.damageType || ""}`.trim() : "";
-          const description = [baseDescription, damageInfo].filter(Boolean).join(" · ");
+        {character.inventory.map((item) => {
+          const editable = isEditable(item);
+          const description = getItemDescription(item);
           return (
-            <div key={item.id} className="flex flex-col gap-1 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+            <div key={item.id} className={`flex flex-col gap-1 rounded-lg border px-3 py-2 ${
+              item.isGranted
+                ? "border-green-500/20 bg-green-500/5"
+                : item.choiceGroupIndex !== undefined
+                ? "border-parchment/10 bg-charcoal/40"
+                : "border-parchment/10 bg-charcoal/40"
+            }`}>
               <div className="flex items-center gap-2">
                 <input
                   type="text"
                   value={item.name}
-                  onChange={(e) => updateItem(item.id, { name: e.target.value })}
+                  onChange={(e) => editable && updateItem(item.id, { name: e.target.value })}
                   onBlur={onFieldBlur}
-                  className="input flex-1"
+                  readOnly={!editable}
+                  className={`input flex-1 ${!editable ? "bg-charcoal/60" : ""}`}
                   placeholder="Item name"
                 />
-                <input
-                  type="number"
-                  min={1}
-                  value={item.quantity}
-                  onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
-                  onBlur={onFieldBlur}
-                  className="input w-16 text-center"
-                />
-                <button
-                  type="button"
-                  onClick={() => removeItem(item.id)}
-                  className="text-parchment/40 hover:text-parchment"
-                  aria-label="Remove item"
-                >
-                  <XIcon className="h-4 w-4" />
-                </button>
+                {editable && (
+                  <input
+                    type="number"
+                    min={1}
+                    value={item.quantity}
+                    onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
+                    onBlur={onFieldBlur}
+                    className="input w-16 text-center"
+                  />
+                )}
+                {!editable && item.quantity && item.quantity > 1 && (
+                  <span className="text-xs text-parchment/50 w-12 text-center">x{item.quantity}</span>
+                )}
+                {editable && (
+                  <button
+                    type="button"
+                    onClick={() => removeItem(item.id)}
+                    className="text-parchment/40 hover:text-parchment"
+                    aria-label="Remove item"
+                  >
+                    <XIcon className="h-4 w-4" />
+                  </button>
+                )}
               </div>
               {description && (
                 <p className="text-xs text-parchment/50">{description}</p>
