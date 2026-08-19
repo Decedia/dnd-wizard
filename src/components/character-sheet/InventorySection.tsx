@@ -186,6 +186,13 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                         const srdData = getEquipmentData(i.name);
                         return srdData?.type === "weapon";
                       });
+                      const weaponDamage = items.map((i: any) => {
+                        const srdData = getEquipmentData(i.name);
+                        if (srdData?.type === "weapon" && srdData.damageDice) {
+                          return `${i.name}: ${srdData.damageDice} ${srdData.damageType || ""}`.trim();
+                        }
+                        return null;
+                      }).filter(Boolean).join(" · ");
                       const equipKey = `${group.name}-${optionIdx}`;
                       const isEquipChecked = equipChecked[equipKey] || false;
                       return (
@@ -206,6 +213,9 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                           />
                           <div className="flex-1">
                             <span className="text-sm text-parchment/80">{itemNames}</span>
+                            {weaponDamage && (
+                              <p className="text-xs text-parchment/50 mt-0.5">{weaponDamage}</p>
+                            )}
                             {hasWeapon && (
                               <label className="flex items-center gap-1.5 mt-1 cursor-pointer">
                                 <input
@@ -235,7 +245,9 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
       <div className="space-y-2">
         {character.inventory.filter((item) => !item.choiceGroupIndex && !item.isGranted).map((item) => {
           const srdData = getEquipmentData(item.srdItemName || item.name);
-          const description = item.description || srdData?.description;
+          const baseDescription = item.description || srdData?.description || "";
+          const damageInfo = srdData?.damageDice ? `${srdData.damageDice} ${srdData.damageType || ""}`.trim() : "";
+          const description = [baseDescription, damageInfo].filter(Boolean).join(" · ");
           return (
             <div key={item.id} className="flex flex-col gap-1 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
               <div className="flex items-center gap-2">

@@ -201,6 +201,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                         const srdData = getEquipmentData(i.name);
                         return srdData?.type === "weapon";
                       });
+                      const weaponDamage = items.map((i: any) => {
+                        const srdData = getEquipmentData(i.name);
+                        if (srdData?.type === "weapon" && srdData.damageDice) {
+                          return `${i.name}: ${srdData.damageDice} ${srdData.damageType || ""}`.trim();
+                        }
+                        return null;
+                      }).filter(Boolean).join(" · ");
                       const equipKey = `${group.name}-${optionIdx}`;
                       const isEquipChecked = equipChecked[equipKey] || false;
                       return (
@@ -222,6 +229,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                           />
                           <div className="flex-1">
                             <span className="text-sm text-parchment/80">{itemNames}</span>
+                            {weaponDamage && (
+                              <p className="text-xs text-parchment/50 mt-0.5">{weaponDamage}</p>
+                            )}
                             {hasWeapon && (
                               <label className="flex items-center gap-1.5 mt-1 cursor-pointer">
                                 <input
