@@ -13,7 +13,7 @@ const COLORS = {
   text: "#0d0d0d",
   textMuted: "#666666",
   gold: "#ef4444",
-  burgundy: "#2563eb",
+  burgundy: "#ef4444",
   border: "#e5e5e5",
   parchment: "#f0f0f0",
 };
