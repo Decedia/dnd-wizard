@@ -109,6 +109,29 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
 
   const classData = data.class ? getClassData(data.class) : null;
   const savingThrowProfs = classData?.savingThrows || [];
+  const profBonus = data.proficiencyBonus || 0;
+
+  const abilityScores = data.abilityScores;
+  const finalAbilityScores = {
+    str: abilityScores.str + getRacialBonus(data.race, "str"),
+    dex: abilityScores.dex + getRacialBonus(data.race, "dex"),
+    con: abilityScores.con + getRacialBonus(data.race, "con"),
+    int: abilityScores.int + getRacialBonus(data.race, "int"),
+    wis: abilityScores.wis + getRacialBonus(data.race, "wis"),
+    cha: abilityScores.cha + getRacialBonus(data.race, "cha"),
+  };
+
+  const liveSavingThrows: Record<string, { proficient: boolean; value: number }> = {};
+  for (const key of ["str", "dex", "con", "int", "wis", "cha"]) {
+    const isProficient = savingThrowProfs.includes(key);
+    const abilityMod = getModifier(finalAbilityScores[key as keyof typeof finalAbilityScores]);
+    liveSavingThrows[key] = {
+      proficient: isProficient,
+      value: isProficient ? abilityMod + profBonus : abilityMod,
+    };
+  }
+
+  const liveInitiative = getModifier(finalAbilityScores.dex);
 
   return (
     <StepCard title="Ability Scores & Saving Throws">
@@ -165,7 +188,7 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
         <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Saving Throws</span>
         <div className="mt-2 space-y-2">
           {ABILITIES.map(({ key, label }) => {
-            const st = data.savingThrows[key] ?? { proficient: false, value: 0 };
+            const st = liveSavingThrows[key] ?? { proficient: false, value: 0 };
             const isProficient = savingThrowProfs.includes(key);
             return (
               <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
@@ -189,7 +212,7 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
         <Field label="Initiative">
           <input
             type="number"
-            value={data.initiative}
+            value={liveInitiative}
             readOnly
             className="input bg-charcoal/60"
           />
