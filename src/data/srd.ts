@@ -144,6 +144,67 @@ export const races: SRDRace[] = [
       { name: "Halfling Nimbleness", description: "You can move through the space of any creature that is of a size larger than yours." },
     ],
   },
+  {
+    name: "Dragonborn",
+    abilityScoreIncreases: { str: 2, cha: 1 },
+    speed: 30,
+    size: "Medium",
+    darkvision: false,
+    traits: [
+      { name: "Dragon Ancestry", description: "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type." },
+      { name: "Breath Weapon", description: "You can use your action to exhale destructive energy. The damage type and area are determined by your draconic ancestry." },
+      { name: "Damage Resistance", description: "You have resistance to the damage type associated with your draconic ancestry." },
+    ],
+  },
+  {
+    name: "Gnome",
+    abilityScoreIncreases: { int: 2 },
+    speed: 25,
+    size: "Small",
+    darkvision: { range: 60 },
+    traits: [
+      { name: "Darkvision", description: "Accustomed to life underground, you have superior vision in dim and dark conditions within 60 feet." },
+      { name: "Gnome Cunning", description: "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic." },
+    ],
+  },
+  {
+    name: "Half-Elf",
+    abilityScoreIncreases: { cha: 2 },
+    speed: 30,
+    size: "Medium",
+    darkvision: { range: 60 },
+    traits: [
+      { name: "Darkvision", description: "Thanks to your elf blood, you have superior vision in dim and dark conditions within 60 feet." },
+      { name: "Fey Ancestry", description: "You have advantage on saving throws against being charmed, and magic can't put you to sleep." },
+      { name: "Skill Versatility", description: "You gain proficiency in two skills of your choice." },
+      { name: "Ability Score Increase", description: "Increase two other ability scores of your choice by 1 each." },
+    ],
+  },
+  {
+    name: "Half-Orc",
+    abilityScoreIncreases: { str: 2, con: 1 },
+    speed: 30,
+    size: "Medium",
+    darkvision: { range: 60 },
+    traits: [
+      { name: "Darkvision", description: "Thanks to your orc blood, you have superior vision in dim and dark conditions within 60 feet." },
+      { name: "Menacing", description: "You gain proficiency in the Intimidation skill." },
+      { name: "Relentless Endurance", description: "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead." },
+      { name: "Savage Attacks", description: "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit." },
+    ],
+  },
+  {
+    name: "Tiefling",
+    abilityScoreIncreases: { cha: 2, int: 1 },
+    speed: 30,
+    size: "Medium",
+    darkvision: { range: 60 },
+    traits: [
+      { name: "Darkvision", description: "Thanks to your infernal heritage, you have superior vision in dim and dark conditions within 60 feet." },
+      { name: "Hellish Resistance", description: "You have resistance to fire damage." },
+      { name: "Infernal Legacy", description: "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once per long rest. When you reach 5th level, you can also cast the darkness spell once per long rest." },
+    ],
+  },
 ];
 
 export const classes: SRDClass[] = [

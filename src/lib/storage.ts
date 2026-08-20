@@ -105,7 +105,6 @@ export const ALIGNMENTS = [
   "Chaotic Evil",
 ];
 
-export const RACES = ["Human", "Elf", "Dwarf", "Halfling"];
 export const CLASSES = ["Fighter", "Wizard", "Rogue"];
 
 export function getProficiencyBonus(level: number): number {
