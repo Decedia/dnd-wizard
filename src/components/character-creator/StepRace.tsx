@@ -25,7 +25,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
               key={race.name}
               type="button"
               onClick={() => handleSelect(race.name)}
-              className={`w-full rounded-full border p-4 text-left transition-all ${
+              className={`w-full rounded-lg border p-4 text-left transition-all ${
                 isSelected
                   ? "border-gold bg-gold/10"
                   : "border-parchment/10 bg-charcoal/40 hover:border-gold/30"
