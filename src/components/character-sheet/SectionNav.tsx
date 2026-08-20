@@ -59,7 +59,7 @@ export function SectionNav() {
           aria-label={label}
           title={label}
           className={`flex items-center gap-2 rounded-xl px-3 py-2 transition-colors ${
-            active === id ? "text-gold bg-gold/10" : "text-parchment/50 hover:text-parchment hover:bg-parchment/5"
+            active === id ? "text-burgundy bg-burgundy/10" : "text-parchment/50 hover:text-parchment hover:bg-parchment/5"
           }`}
         >
           <Icon className="h-4 w-4" />

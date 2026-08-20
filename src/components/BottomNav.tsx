@@ -47,7 +47,7 @@ export function BottomNav() {
                   ? "bg-burgundy shadow-lg shadow-burgundy/30"
                   : ""
                 }
-                ${isActive && !item.isHero ? "text-gold" : "text-parchment/60 hover:text-parchment"}
+                ${isActive && !item.isHero ? "text-burgundy" : "text-parchment/60 hover:text-parchment"}
               `}
               aria-current={isActive ? "page" : undefined}
             >
@@ -60,7 +60,7 @@ export function BottomNav() {
         })}
         {activeIndex >= 0 && (
           <div
-            className="absolute top-1 bottom-1 rounded-full bg-gold/10 transition-all duration-300 ease-out pointer-events-none"
+            className="absolute top-1 bottom-1 rounded-full bg-burgundy/20 transition-all duration-300 ease-out pointer-events-none"
             style={{
               left: `${(activeIndex / navItems.length) * 100}%`,
               width: `${(100 / navItems.length)}%`,
