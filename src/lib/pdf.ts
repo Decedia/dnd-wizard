@@ -141,31 +141,44 @@ export function exportCharacterToPdf(character: Character): void {
   }
 
   const skillsList = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"];
-  const skillEntries = skillsList.map((name) => ({
-    name,
-    proficient: character.skills[name] ?? false,
-  }));
-  const proficientSkills = skillEntries.filter((s) => s.proficient);
-  if (skillEntries.length > 0) {
-    checkPageBreak(proficientSkills.length > 0 ? 14 : 8);
+  const abilityMap: Record<string, string> = {
+    Acrobatics: "dex", "Animal Handling": "wis", Arcana: "int", Athletics: "str", Deception: "cha",
+    History: "int", Insight: "wis", Intimidation: "cha", Investigation: "int", Medicine: "wis",
+    Nature: "int", Perception: "wis", Performance: "cha", Persuasion: "cha", Religion: "int",
+    "Sleight of Hand": "dex", Stealth: "dex", Survival: "wis",
+  };
+  const profBonus = character.proficiencyBonus || 2;
+  if (skillsList.length > 0) {
+    checkPageBreak(Math.ceil(skillsList.length / 2) * 6 + 8);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.setTextColor(40, 40, 40);
     doc.text("Skills", margin, y);
     y += 5;
     doc.setFontSize(9);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(60, 60, 60);
     const colW = contentWidth / 2;
-    skillEntries.forEach((skill, idx) => {
-      checkPageBreak(5);
+    skillsList.forEach((name, idx) => {
+      checkPageBreak(6);
       const x = idx % 2 === 0 ? margin : margin + colW;
-      const rowY = y + Math.floor(idx / 2) * 5;
-      const proficientMark = skill.proficient ? "★ " : "";
-      const expertiseBadge = (character.expertise || []).includes(skill.name) ? " [EXPERTISE]" : "";
-      doc.text(`${proficientMark}${skill.name}${expertiseBadge}`, x, rowY);
+      const rowY = y + Math.floor(idx / 2) * 6;
+      const proficient = character.skills[name] ?? false;
+      const expert = (character.expertise || []).includes(name);
+      const profMultiplier = expert ? 2 : 1;
+      const abilityKey = abilityMap[name] || "dex";
+      const abilityScore = character[abilityKey as keyof typeof character] as number;
+      const mod = Math.floor((abilityScore - 10) / 2);
+      const total = mod + (profBonus * profMultiplier);
+      const proficientMark = proficient ? "★ " : "";
+      const expertiseBadge = expert ? " [EXPERTISE]" : "";
+      const totalText = total >= 0 ? `+${total}` : `${total}`;
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(60, 60, 60);
+      doc.text(`${proficientMark}${name}${expertiseBadge}`, x, rowY);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(100, 100, 100);
+      doc.text(totalText, x + colW - 10, rowY);
     });
-    y += Math.ceil(skillEntries.length / 2) * 5 + 3;
+    y += Math.ceil(skillsList.length / 2) * 6 + 3;
     divider();
   }
 
