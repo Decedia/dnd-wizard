@@ -61,7 +61,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
     <div style={{ fontFamily: "var(--font-display)" }}>
       <style>{`
         [data-print-page] [style*="fontSize"] {
-          transform: translateY(0.5em);
+          transform: translateY(10em);
         }
       `}</style>
       {/* Page 1 */}
