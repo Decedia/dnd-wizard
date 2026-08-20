@@ -78,6 +78,22 @@
 - [x] Removed redundant "Roguish Archetype" text from level 3 features
 - [x] Added `"subclass"` to Character feature source type
 - [x] Character creation `handleFinish` now adds subclass features when subclass is selected
+- [x] Added all common SRD races (Dragonborn, Gnome, Half-Elf, Half-Orc, Tiefling) to `srd.ts`; race traits auto-wire into Features & Traits on selection
+- [x] Removed unused `RACES` constant from `storage.ts`
+- [x] Lint, typecheck, and build verified
+- [x] Replaced equip checkbox with Equip/Equipped button for weapons and armor in StepEquipment and InventorySection
+- [x] Added equip button for granted items and fixed button overflow with flex-wrap
+- [x] Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page
+- [x] Modified `generateLevelUpSteps` to always include level 1 step and moved expertise into level 1
+- [x] Removed expertise selection from StepSkills during Rogue character creation
+- [x] Level 1 step during character creation skips HP rolling
+- [x] Fixed create page `handleNext` condition to properly reach final Finish & Save step for level > 1
+- [x] Removed +/- level buttons from character sheet IdentitySection; level is now static display
+- [x] Level Up button in character sheet navigates to `/character/[id]/level-up` page
+- [x] Updated Rogue SRD subclass data: Thief, Assassin, Arcane Trickster with 3 features each matching D&D 5e PHB
+- [x] Removed redundant "Roguish Archetype" text from level 3 features
+- [x] Added `"subclass"` to Character feature source type
+- [x] Character creation `handleFinish` now adds subclass features when subclass is selected
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
