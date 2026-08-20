@@ -202,7 +202,7 @@ export default function CharacterView() {
                 className="flex items-center justify-center gap-2 rounded-full bg-burgundy px-4 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all hover:bg-burgundy-light active:scale-[0.98]"
               >
                 <Save className="h-4 w-4" />
-                Save Character
+                Save
               </button>
               <button
                 onClick={handleExport}
