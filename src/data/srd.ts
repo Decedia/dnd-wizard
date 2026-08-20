@@ -486,13 +486,13 @@ export const classes: SRDClass[] = [
     levels: [
       { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "feature" }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "attack" }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues.", type: "feature" }], asi: false },
       { features: [{ name: "Cunning Action", description: "Use a bonus action to Dash, Disengage, or Hide.", type: "feature" }], asi: false },
-      { features: [{ name: "Roguish Archetype", description: "Choose a roguish archetype: Thief, Assassin, or Arcane Trickster.", type: "feature" }], asi: false },
+      { features: [], asi: false },
       { features: [], asi: true },
       { features: [{ name: "Uncanny Dodge", description: "Use your reaction to halve the damage from an attack that hits you.", type: "feature" }], asi: false },
-      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype.", type: "feature" }], asi: false },
+      { features: [], asi: false },
       { features: [{ name: "Evasion", description: "Dodge out of the way of area effects on a successful Dexterity saving throw.", type: "feature" }], asi: false },
       { features: [], asi: true },
-      { features: [{ name: "Roguish Archetype feature", description: "You gain a feature from your chosen Roguish Archetype.", type: "feature" }], asi: false },
+      { features: [], asi: false },
       { features: [{ name: "Stroke of Luck", description: "Turn a missed attack into a hit or a failed ability check into a success.", type: "feature" }], asi: false },
     ],
     scalingFeatures: [
@@ -513,26 +513,29 @@ export const classes: SRDClass[] = [
     subclasses: [
       {
         name: "Thief",
-        description: "A rogue who specializes in stealth and speed.",
+        description: "A rogue who specializes in stealth and speed, mastering the art of moving unseen and striking from the shadows.",
         features: [
           { name: "Fast Hands", description: "You can use your bonus action to Dash, Disengage, or Hide, or to use an object." },
-          { name: "Second-Story Work", description: "You gain the ability to climb difficult surfaces and jump farther." },
+          { name: "Second-Story Work", description: "You gain the ability to climb difficult surfaces and jump farther than normal." },
+          { name: "Sneak in the Dark", description: "You gain darkvision out to 60 feet. If you already have darkvision, its range increases by 30 feet. You also have advantage on Dexterity (Stealth) checks made in dim light or darkness." },
         ],
       },
       {
         name: "Assassin",
-        description: "A rogue who specializes in swift, deadly strikes from the shadows.",
+        description: "A rogue who specializes in swift, deadly strikes from the shadows, using subterfuge and misdirection.",
         features: [
-          { name: "Assassinate", description: "You have advantage on attack rolls against any creature that hasn't taken a turn yet." },
-          { name: "Infiltration Expertise", description: "You can create a disguise to infiltrate a location." },
+          { name: "Assassinate", description: "You have advantage on attack rolls against any creature that hasn't taken a turn yet. In addition, any hit you score against a surprised creature is a critical hit." },
+          { name: "Infiltration Expertise", description: "You can create a disguise to infiltrate a location. You can also forge documents with advantage." },
+          { name: "Imposter", description: "You can mimic speech, writing, and mannerisms of another person. You have advantage on Deception checks to pass yourself off as someone else." },
         ],
       },
       {
         name: "Arcane Trickster",
-        description: "A rogue who weaves magic into their stealth and trickery.",
+        description: "A rogue who weaves magic into their stealth and trickery, learning spells from the wizard spell list.",
         features: [
-          { name: "Spellcasting", description: "You can cast spells using your arcane trickster features." },
-          { name: "Mage Hand Legerdemain", description: "Your mage hand becomes invisible and can manipulate objects more effectively." },
+          { name: "Spellcasting", description: "You can cast spells using your arcane trickster features. You know two cantrips and three 1st-level spells from the wizard spell list." },
+          { name: "Mage Hand Legerdemain", description: "Your mage hand becomes invisible and can manipulate objects more effectively, including picking locks and disarming traps." },
+          { name: "Magical Ambush", description: "You have advantage on saving throws against spells and other magical effects when you are hidden from the spellcaster." },
         ],
       },
     ],

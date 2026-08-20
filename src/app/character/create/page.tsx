@@ -219,6 +219,20 @@ export default function CharacterCreate() {
       if (pendingChanges.spellSlots) {
         finalCharacter.spellSlots = { ...finalCharacter.spellSlots, ...pendingChanges.spellSlots };
       }
+      if (pendingChanges.subclass) {
+        const classData = getClassData(character.class);
+        const subclassData = classData?.subclasses?.find((s) => s.name === pendingChanges.subclass);
+        if (subclassData?.features) {
+          const subclassFeatures = subclassData.features.map((f) => ({
+            id: generateId(),
+            name: f.name,
+            description: f.description,
+            source: "subclass" as const,
+            locked: true,
+          }));
+          finalCharacter.features = [...finalCharacter.features, ...subclassFeatures];
+        }
+      }
     }
 
     saveCharacter(finalCharacter);

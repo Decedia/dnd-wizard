@@ -74,6 +74,10 @@
 - [x] Fixed create page `handleNext` condition to properly reach final Finish & Save step for level > 1
 - [x] Removed +/- level buttons from character sheet IdentitySection; level is now static display
 - [x] Level Up button in character sheet navigates to `/character/[id]/level-up` page
+- [x] Updated Rogue SRD subclass data: Thief, Assassin, Arcane Trickster with 3 features each matching D&D 5e PHB
+- [x] Removed redundant "Roguish Archetype" text from level 3 features
+- [x] Added `"subclass"` to Character feature source type
+- [x] Character creation `handleFinish` now adds subclass features when subclass is selected
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
