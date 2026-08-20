@@ -33,6 +33,8 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
       level: srdSpell?.level ?? 0,
       source: srdSpell ? "srd" : "custom",
       srdSpellName: srdSpell?.name,
+      damageDice: "",
+      damageType: "",
     };
     onChange({
       spells: [...character.spells, newSpell],
@@ -77,49 +79,70 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
           <div className="mt-3 space-y-2">
             {character.spells.map((spell) => {
               const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
+              const isCustom = spell.source === "custom";
               return (
-                <div key={spell.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                  <select
-                    value={spell.srdSpellName || (spell.source === "custom" ? "Custom Spell" : "")}
-                    onChange={(e) => {
-                      if (e.target.value === "Custom Spell") {
-                        updateItem(spell.id, { source: "custom", srdSpellName: undefined });
-                      } else if (e.target.value) {
-                        handleSrdSelect(spell.id, e.target.value);
-                      }
-                    }}
-                    onBlur={onFieldBlur}
-                    className="input flex-1"
-                  >
-                    <option value="">Select spell...</option>
-                    {srdSpells.map((s) => (
-                      <option key={s.name} value={s.name}>{s.name}</option>
-                    ))}
-                    <option value="Custom Spell">Custom Spell</option>
-                  </select>
-                  {spell.source === "custom" ? (
+                <div key={spell.id} className="flex flex-wrap items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+                  {isCustom ? (
                     <input
-                      type="number"
-                      min={0}
-                      max={9}
-                      value={spell.level}
-                      onChange={(e) => updateItem(spell.id, { level: Math.max(0, Math.min(9, parseInt(e.target.value || "0", 10))) })}
+                      type="text"
+                      value={spell.name}
+                      onChange={(e) => updateItem(spell.id, { name: e.target.value })}
                       onBlur={onFieldBlur}
-                      className="input w-16 text-center"
+                      className="input flex-1 min-w-[120px]"
+                      placeholder="Spell name"
                     />
                   ) : (
-                    <input
-                      type="number"
-                      value={spell.level}
-                      readOnly
-                      className="input w-16 text-center bg-charcoal/60"
-                    />
+                    <select
+                      value={spell.srdSpellName || ""}
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          handleSrdSelect(spell.id, e.target.value);
+                        }
+                      }}
+                      onBlur={onFieldBlur}
+                      className="input flex-1 min-w-[120px]"
+                    >
+                      <option value="">Select spell...</option>
+                      {srdSpells.map((s) => (
+                        <option key={s.name} value={s.name}>{s.name}</option>
+                      ))}
+                    </select>
                   )}
-                  {description && (
+                  <input
+                    type="number"
+                    min={0}
+                    max={9}
+                    value={spell.level}
+                    onChange={(e) => updateItem(spell.id, { level: Math.max(0, Math.min(9, parseInt(e.target.value || "0", 10))) })}
+                    onBlur={onFieldBlur}
+                    className="input w-14 text-center"
+                    placeholder="Lvl"
+                  />
+                  {isCustom && (
+                    <>
+                      <input
+                        type="text"
+                        value={spell.damageDice || ""}
+                        onChange={(e) => updateItem(spell.id, { damageDice: e.target.value })}
+                        onBlur={onFieldBlur}
+                        className="input w-20 text-center"
+                        placeholder="Dice (e.g. 2d6)"
+                      />
+                      <input
+                        type="text"
+                        value={spell.damageType || ""}
+                        onChange={(e) => updateItem(spell.id, { damageType: e.target.value })}
+                        onBlur={onFieldBlur}
+                        className="input w-20 text-center"
+                        placeholder="Type"
+                      />
+                    </>
+                  )}
+                  {description && !isCustom && (
                     <button
                       type="button"
                       onClick={() => setTooltip({ name: spell.name, description })}
-                      className="text-parchment/40 hover:text-gold"
+                      className="text-parchment/40 hover:text-parchment shrink-0"
                       aria-label={`Info about ${spell.name}`}
                     >
                       <InfoIcon className="h-4 w-4" />
@@ -128,7 +151,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                   <button
                     type="button"
                     onClick={() => removeItem(spell.id)}
-                    className="text-parchment/40 hover:text-parchment"
+                    className="text-parchment/40 hover:text-parchment shrink-0"
                     aria-label="Remove spell"
                   >
                     <XIcon className="h-4 w-4" />
@@ -140,7 +163,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
           <button
             type="button"
             onClick={() => addItem()}
-            className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
+            className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-burgundy/40 hover:text-parchment"
           >
             + Add Spell
           </button>

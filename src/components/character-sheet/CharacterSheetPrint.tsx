@@ -377,14 +377,21 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
             <h2 style={{ fontSize: "16px", fontWeight: "bold", color: COLORS.burgundy, marginBottom: "12px", borderBottom: `2px solid ${COLORS.gold}`, paddingBottom: "6px" }}>
               Spells
             </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
-              {character.spells.filter((s) => s.name).map((spell) => (
-                <div key={spell.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
-                  <span style={{ fontSize: "11px", color: COLORS.text }}>{spell.name}</span>
-                  <span style={{ fontSize: "10px", color: COLORS.textMuted }}>{spell.level === 0 ? "Cantrip" : `Level ${spell.level}`}</span>
-                </div>
-              ))}
-            </div>
+             <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
+               {character.spells.filter((s) => s.name).map((spell) => (
+                 <div key={spell.id} style={{ display: "flex", flexDirection: "column", gap: "2px", padding: "4px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
+                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                     <span style={{ fontSize: "11px", color: COLORS.text }}>{spell.name}</span>
+                     <span style={{ fontSize: "10px", color: COLORS.textMuted }}>{spell.level === 0 ? "Cantrip" : `Level ${spell.level}`}</span>
+                   </div>
+                   {spell.damageDice && (
+                     <span style={{ fontSize: "10px", color: COLORS.textMuted }}>
+                       {spell.damageDice}{spell.damageType ? ` ${spell.damageType}` : ""}
+                     </span>
+                   )}
+                 </div>
+               ))}
+             </div>
           </>
         )}
 
