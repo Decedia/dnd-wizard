@@ -22,7 +22,8 @@ import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { Trash2, Download, Upload } from "lucide-react";
-import { exportCharacterToPdf, importCharacterFromPdf } from "@/lib/pdf";
+import { exportCharacterToPdf } from "@/lib/pdf-visual";
+import { importCharacterFromPdf } from "@/lib/pdf";
 
 export default function CharacterView() {
   const params = useParams();
@@ -43,6 +44,7 @@ export default function CharacterView() {
 
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [spellsCollapsed, setSpellsCollapsed] = useState(true);
+  const [exportingPdf, setExportingPdf] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const importInputRef = useRef<HTMLInputElement | null>(null);
@@ -83,9 +85,13 @@ export default function CharacterView() {
     }
   };
 
-  const handleExport = () => {
-    if (character) {
-      exportCharacterToPdf(character);
+  const handleExport = async () => {
+    if (!character || exportingPdf) return;
+    setExportingPdf(true);
+    try {
+      await exportCharacterToPdf(character);
+    } finally {
+      setExportingPdf(false);
     }
   };
 
@@ -203,10 +209,20 @@ export default function CharacterView() {
           <div className="mx-auto max-w-lg mb-4 flex items-center gap-3">
             <button
               onClick={handleExport}
-              className="flex-1 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98]"
+              disabled={exportingPdf}
+              className="flex-1 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
             >
-              <Download className="h-4 w-4 mr-2 inline" />
-              Export to PDF
+              {exportingPdf ? (
+                <>
+                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-gold/30 border-t-gold mr-2" />
+                  Generating PDF...
+                </>
+              ) : (
+                <>
+                  <Download className="h-4 w-4 mr-2 inline" />
+                  Export to PDF
+                </>
+              )}
             </button>
             <button
               onClick={handleImportClick}
