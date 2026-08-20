@@ -10,6 +10,7 @@ export interface Character {
   alignment: string;
   experiencePoints: number;
   maxExperiencePoints: number;
+  isCustomHp: boolean;
   personalityTrait1: string;
   personalityTrait2: string;
   ideal: string;
@@ -154,6 +155,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     alignment: "",
     experiencePoints: 0,
     maxExperiencePoints: 300,
+    isCustomHp: false,
     personalityTrait1: "",
     personalityTrait2: "",
     ideal: "",
@@ -401,7 +403,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 
   const conMod = getModifier(character.con);
   let maxHp: number;
-  if (character.level === 1 && classData) {
+  if (character.isCustomHp) {
+    maxHp = character.maxHp;
+  } else if (character.level === 1 && classData) {
     maxHp = getClassLevel1Hp(classData) + conMod;
   } else if (classData) {
     const level1Base = getClassLevel1Hp(classData) + conMod;
@@ -434,7 +438,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     spellSaveDc,
     spellAttackBonus,
     maxHp,
-    currentHp: maxHp,
+    currentHp: character.isCustomHp ? character.currentHp : maxHp,
     hitDiceTotal,
     hitDiceRemaining,
     ac,

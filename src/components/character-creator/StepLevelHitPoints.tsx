@@ -18,6 +18,7 @@ export function StepLevelHitPoints({ data, onChange }: StepLevelHitPointsProps) 
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(data.con);
   const level1Hp = (classData?.hitDie || 10) + conMod;
+  const isCustomHp = data.isCustomHp || false;
 
   const handleLevelChange = (newLevel: number) => {
     setSelectedLevel(newLevel);
@@ -25,48 +26,72 @@ export function StepLevelHitPoints({ data, onChange }: StepLevelHitPointsProps) 
     onChange({ level: newLevel });
   };
 
-  const currentMaxHp = data.maxHp || level1Hp + (selectedLevel - 1) * ((classData?.hpPerLevel || 5) + conMod);
+  const calculatedMaxHp = level1Hp + (selectedLevel - 1) * ((classData?.hpPerLevel || 5) + conMod);
+  const currentMaxHp = data.maxHp || calculatedMaxHp;
   const currentHp = data.currentHp || currentMaxHp;
 
   return (
     <StepCard title="Level & Hit Points">
       <div className="space-y-4">
-        <div className="flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => handleLevelChange(Math.max(1, selectedLevel - 1))}
-            disabled={selectedLevel <= 1}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
-          >
-            -
-          </button>
-          <span className="text-2xl font-display font-bold text-gold w-8 text-center">{selectedLevel}</span>
-          <button
-            type="button"
-            onClick={() => handleLevelChange(Math.min(10, selectedLevel + 1))}
-            disabled={selectedLevel >= 10}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
-          >
-            +
-          </button>
+        <div className="flex items-center justify-center gap-2">
+          <input
+            type="checkbox"
+            id="custom-hp-creator"
+            checked={isCustomHp}
+            onChange={(e) => onChange({ isCustomHp: e.target.checked })}
+            className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50"
+          />
+          <label htmlFor="custom-hp-creator" className="text-xs font-medium text-parchment/80 cursor-pointer select-none">
+            Custom HP
+          </label>
         </div>
 
-        <div className="rounded-lg border border-gold/20 bg-gold/5 p-4">
-          <p className="text-xs text-parchment/60 mb-2">
-            <strong className="text-gold">Level 1 Baseline HP:</strong> Your starting hit points are calculated as your class hit die ({hitDie}) + your Constitution modifier ({conMod >= 0 ? "+" : ""}{conMod}).
-          </p>
-          <p className="text-sm font-semibold text-parchment">
-            {level1Hp} HP at Level 1
-          </p>
-        </div>
+        {!isCustomHp ? (
+          <>
+            <div className="flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => handleLevelChange(Math.max(1, selectedLevel - 1))}
+                disabled={selectedLevel <= 1}
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
+              >
+                -
+              </button>
+              <span className="text-2xl font-display font-bold text-gold w-8 text-center">{selectedLevel}</span>
+              <button
+                type="button"
+                onClick={() => handleLevelChange(Math.min(10, selectedLevel + 1))}
+                disabled={selectedLevel >= 10}
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
+              >
+                +
+              </button>
+            </div>
 
-        {selectedLevel > 1 && (
-          <div className="rounded-lg border border-parchment/10 bg-charcoal/40 p-4">
-            <p className="text-xs text-parchment/60 mb-3">
-              Each level above 1 adds your class&apos;s average HP per level ({(classData?.hpPerLevel || 5)} + CON modifier {conMod >= 0 ? "+" : ""}{conMod} = {(classData?.hpPerLevel || 5) + conMod} HP per level).
-            </p>
-            <p className="text-xs text-parchment/50">
-              Selecting level {selectedLevel} will generate {selectedLevel - 1} per-level step{selectedLevel > 2 ? "s" : ""} covering levels 2 through {selectedLevel}.
+            <div className="rounded-lg border border-gold/20 bg-gold/5 p-4">
+              <p className="text-xs text-parchment/60 mb-2">
+                <strong className="text-gold">Level 1 Baseline HP:</strong> Your starting hit points are calculated as your class hit die ({hitDie}) + your Constitution modifier ({conMod >= 0 ? "+" : ""}{conMod}).
+              </p>
+              <p className="text-sm font-semibold text-parchment">
+                {level1Hp} HP at Level 1
+              </p>
+            </div>
+
+            {selectedLevel > 1 && (
+              <div className="rounded-lg border border-parchment/10 bg-charcoal/40 p-4">
+                <p className="text-xs text-parchment/60 mb-3">
+                  Each level above 1 adds your class&apos;s average HP per level ({(classData?.hpPerLevel || 5)} + CON modifier {conMod >= 0 ? "+" : ""}{conMod} = {(classData?.hpPerLevel || 5) + conMod} HP per level).
+                </p>
+                <p className="text-xs text-parchment/50">
+                  Selecting level {selectedLevel} will generate {selectedLevel - 1} per-level step{selectedLevel > 2 ? "s" : ""} covering levels 2 through {selectedLevel}.
+                </p>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="rounded-lg border border-burgundy/20 bg-burgundy/5 p-3">
+            <p className="text-xs text-parchment/60">
+              Custom HP mode enabled. Enter your own HP values below. These will not be automatically calculated based on class, level, or Constitution.
             </p>
           </div>
         )}

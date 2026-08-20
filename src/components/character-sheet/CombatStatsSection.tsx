@@ -6,8 +6,8 @@ import { ShieldStat } from "./styled/ShieldStat";
 import type { Character } from "@/lib/storage";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed">;
-  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed">>) => void;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp">;
+  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp">>) => void;
 }
 
 export function CombatStatsSection({ character, onChange }: CombatStatsSectionProps) {
@@ -15,6 +15,20 @@ export function CombatStatsSection({ character, onChange }: CombatStatsSectionPr
 
   return (
     <SectionCard id="combat" title="Combat Stats" icon={<CombatIcon className="h-5 w-5" />}>
+      <div className="flex items-center gap-2 mb-3">
+        <input
+          type="checkbox"
+          id="custom-hp"
+          checked={character.isCustomHp || false}
+          onChange={(e) => onChange({ isCustomHp: e.target.checked })}
+          onBlur={onFieldBlur}
+          className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50"
+        />
+        <label htmlFor="custom-hp" className="text-xs font-medium text-parchment/80 cursor-pointer select-none">
+          Custom HP
+        </label>
+      </div>
+
       <div className="grid grid-cols-3 gap-3">
         <div className="flex flex-col items-center">
           <ShieldStat value={character.ac} />
