@@ -5,6 +5,7 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
 import { getEquipmentData, getClassData } from "@/data/srd";
+import { useEffect } from "react";
 
 interface InventorySectionProps {
   character: Character;
@@ -181,6 +182,46 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     return item.itemType === "weapon" || item.itemType === "armor";
   };
 
+  const ensureGrantedItemsInInventory = () => {
+    const existingIds = new Set(character.inventory.map((i) => i.id));
+    const toAdd: Character["inventory"][number][] = [];
+    grantedItems.forEach((group: any, groupIdx: number) => {
+      (group.items || []).forEach((itemRef: any, itemIdx: number) => {
+        const srdData = getEquipmentData(itemRef.name);
+        const key = `granted-${groupIdx}-${itemIdx}`;
+        if (!existingIds.has(key)) {
+          toAdd.push({
+            id: key,
+            name: itemRef.name,
+            quantity: itemRef.quantity ?? 1,
+            equipped: srdData?.type === "armor",
+            source: srdData ? "srd" : "custom",
+            srdItemName: srdData?.name,
+            itemType: srdData?.type,
+            category: srdData?.category,
+            damageDice: srdData?.damageDice,
+            damageType: srdData?.damageType,
+            baseAC: srdData?.baseAC,
+            armorType: srdData?.armorType,
+            maxDexBonus: srdData?.maxDexBonus,
+            description: itemRef.description || srdData?.description,
+            isGranted: true,
+          });
+        }
+      });
+    });
+    if (toAdd.length > 0) {
+      const nextInventory = [...character.inventory, ...toAdd];
+      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+      onChange({ inventory: nextInventory, ac, attacks });
+    }
+  };
+
+  useEffect(() => {
+    ensureGrantedItemsInInventory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [character.class, character.inventory.length]);
+
   return (
     <SectionCard id="inventory" title="Inventory" icon={<InventoryIcon className="h-5 w-5" />}>
       {grantedItems.length > 0 && (
@@ -190,28 +231,38 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
             {grantedItems.map((group: any, groupIdx: number) => (
               <div key={groupIdx}>
                 {group.description && <p className="text-xs text-parchment/50 mb-1">{group.description}</p>}
-                {group.items.map((itemRef: any, itemIdx: number) => {
-                  const srdData = getEquipmentData(itemRef.name);
-                  const description = itemRef.description || srdData?.description || "";
-                  const damageInfo = srdData?.damageDice ? `${srdData.damageDice} ${srdData.damageType || ""}`.trim() : "";
-                  const fullDescription = [description, damageInfo].filter(Boolean).join(" · ");
-                  const qty = itemRef.quantity || 1;
-                  const qtyLabel = qty > 1 ? " (x" + qty + ")" : "";
-                  return (
-                    <div key={itemIdx} className="flex flex-col gap-0.5 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-parchment/80 flex-1">
-                          {itemRef.name}
-                          {qtyLabel}
-                        </span>
-                        <span className="text-[10px] text-green-400/70">Granted</span>
-                      </div>
-                      {fullDescription && (
-                        <p className="text-xs text-parchment/50">{fullDescription}</p>
-                      )}
-                    </div>
-                  );
-                })}
+                 {group.items.map((itemRef: any, itemIdx: number) => {
+                   const srdData = getEquipmentData(itemRef.name);
+                   const invItem = character.inventory.find((i) => i.id === `granted-${groupIdx}-${itemIdx}`);
+                   const equipped = invItem?.equipped ?? srdData?.type === "armor";
+                   const canToggle = srdData?.type === "weapon" || srdData?.type === "armor";
+                   return (
+                     <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
+                       <span className="text-sm text-parchment/80 flex-1">
+                         {itemRef.name}
+                         {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
+                       </span>
+                       {canToggle && (
+                         <button
+                           type="button"
+                           onClick={() => {
+                             if (invItem) {
+                               toggleEquip(invItem.id, invItem.itemType);
+                             }
+                           }}
+                           className={`rounded-md px-2 py-1 text-[10px] font-medium transition-colors ${
+                             equipped
+                               ? "bg-gold/20 text-gold border border-gold/40"
+                               : "border border-parchment/20 text-parchment hover:border-parchment/40"
+                           }`}
+                         >
+                           {equipped ? "Equipped" : "Equip"}
+                         </button>
+                       )}
+                       <span className="text-[10px] text-green-400/70">Granted</span>
+                     </div>
+                   );
+                 })}
               </div>
             ))}
           </div>
@@ -288,14 +339,14 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                 ? "border-parchment/10 bg-charcoal/40"
                 : "border-parchment/10 bg-charcoal/40"
             }`}>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <input
                   type="text"
                   value={item.name}
                   onChange={(e) => editable && updateItem(item.id, { name: e.target.value })}
                   onBlur={onFieldBlur}
                   readOnly={!editable}
-                  className={`input flex-1 ${!editable ? "bg-charcoal/60" : ""}`}
+                  className={`input flex-1 min-w-[120px] ${!editable ? "bg-charcoal/60" : ""}`}
                   placeholder="Item name"
                 />
                 {editable && (

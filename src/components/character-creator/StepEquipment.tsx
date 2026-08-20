@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
@@ -64,6 +64,42 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getClassData(data.class) : null;
   const startingEquipment = classData?.startingEquipment || [];
   const grantedItems = startingEquipment.filter((g: any) => g.granted);
+
+  const ensureGrantedItemsInInventory = () => {
+    const existingIds = new Set(data.inventory.map((i) => i.id));
+    const toAdd: Character["inventory"][number][] = [];
+    grantedItems.forEach((group: any, groupIdx: number) => {
+      (group.items || []).forEach((itemRef: any, itemIdx: number) => {
+        const srdData = getEquipmentData(itemRef.name);
+        const key = `granted-${groupIdx}-${itemIdx}`;
+        if (!existingIds.has(key)) {
+          toAdd.push({
+            id: key,
+            name: itemRef.name,
+            quantity: itemRef.quantity ?? 1,
+            equipped: srdData?.type === "armor",
+            source: srdData ? "srd" : "custom",
+            srdItemName: srdData?.name,
+            itemType: srdData?.type,
+            category: srdData?.category,
+            damageDice: srdData?.damageDice,
+            damageType: srdData?.damageType,
+            baseAC: srdData?.baseAC,
+            armorType: srdData?.armorType,
+            maxDexBonus: srdData?.maxDexBonus,
+            description: itemRef.description || srdData?.description,
+            isGranted: true,
+          });
+        }
+      });
+    });
+    if (toAdd.length > 0) {
+      const nextInventory = [...data.inventory, ...toAdd];
+      const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
+      onChange({ inventory: nextInventory, ac, attacks });
+    }
+  };
+
   const choiceEntries = startingEquipment.filter((g: any) => !g.granted);
 
   const buildRadioGroups = (entries: any[]): EquipmentRadioGroup[] => {
@@ -173,6 +209,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return item.itemType === "weapon" || item.itemType === "armor";
   };
 
+  useEffect(() => {
+    ensureGrantedItemsInInventory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.class, data.inventory.length]);
+
   return (
     <StepCard title="Equipment">
       {grantedItems.length > 0 && (
@@ -182,15 +223,40 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
             {grantedItems.map((group: any, groupIdx: number) => (
               <div key={groupIdx}>
                 {group.description && <p className="text-xs text-parchment/50 mb-1">{group.description}</p>}
-                {group.items.map((itemRef: any, itemIdx: number) => (
-                  <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
-                    <span className="text-sm text-parchment/80 flex-1">
-                      {itemRef.name}
-                      {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
-                    </span>
-                    <span className="text-[10px] text-green-400/70">Granted</span>
-                  </div>
-                ))}
+                <div className="space-y-1">
+                  {group.items.map((itemRef: any, itemIdx: number) => {
+                    const srdData = getEquipmentData(itemRef.name);
+                    const invItem = data.inventory.find((i) => i.id === `granted-${groupIdx}-${itemIdx}`);
+                    const equipped = invItem?.equipped ?? srdData?.type === "armor";
+                    const canToggle = srdData?.type === "weapon" || srdData?.type === "armor";
+                    return (
+                      <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
+                        <span className="text-sm text-parchment/80 flex-1">
+                          {itemRef.name}
+                          {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
+                        </span>
+                        {canToggle && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (invItem) {
+                                toggleEquip(invItem.id, invItem.itemType);
+                              }
+                            }}
+                            className={`rounded-md px-2 py-1 text-[10px] font-medium transition-colors ${
+                              equipped
+                                ? "bg-gold/20 text-gold border border-gold/40"
+                                : "border border-parchment/20 text-parchment hover:border-parchment/40"
+                            }`}
+                          >
+                            {equipped ? "Equipped" : "Equip"}
+                          </button>
+                        )}
+                        <span className="text-[10px] text-green-400/70">Granted</span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             ))}
           </div>
@@ -267,14 +333,14 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 ? "border-green-500/20 bg-green-500/5"
                 : "border-parchment/10 bg-charcoal/40"
             }`}>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <input
                   type="text"
                   value={item.name}
                   onChange={(e) => updateItem(item.id, { name: e.target.value })}
                   onBlur={() => {}}
                   readOnly={!isEditable}
-                  className={`input flex-1 ${!isEditable ? "bg-charcoal/60" : ""}`}
+                  className={`input flex-1 min-w-[120px] ${!isEditable ? "bg-charcoal/60" : ""}`}
                   placeholder="Item name"
                 />
                 {isEditable && (
