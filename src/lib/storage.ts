@@ -9,6 +9,7 @@ export interface Character {
   background: string;
   alignment: string;
   experiencePoints: number;
+  maxExperiencePoints: number;
   personalityTrait1: string;
   personalityTrait2: string;
   ideal: string;
@@ -152,6 +153,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     background: "",
     alignment: "",
     experiencePoints: 0,
+    maxExperiencePoints: 300,
     personalityTrait1: "",
     personalityTrait2: "",
     ideal: "",

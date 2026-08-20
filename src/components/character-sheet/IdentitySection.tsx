@@ -106,15 +106,6 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
             />
           </Field>
         </div>
-        <Field label="Experience Points">
-          <input
-            type="number"
-            value={character.experiencePoints}
-            onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={() => {}}
-            className="input"
-          />
-        </Field>
         <Field label="Background">
           <input
             type="text"
