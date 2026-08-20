@@ -109,14 +109,16 @@ export function generateLevelUpSteps(
 
   const steps: LevelUpStep[] = [];
 
-  for (let level = oldLevel + 1; level <= newLevel; level++) {
+  for (let level = 1; level <= newLevel; level++) {
     const levelData = classData.levels[level - 1];
     const sections: LevelUpStepSection[] = [];
 
-    sections.push({
-      type: "hp",
-      description: `Roll or take average for your ${classData.hitDie}-sided hit die.`,
-    });
+    if (level === 1 || level > oldLevel) {
+      sections.push({
+        type: "hp",
+        description: `Roll or take average for your ${classData.hitDie}-sided hit die.`,
+      });
+    }
 
     if (levelData?.features?.length > 0) {
       sections.push({
@@ -141,7 +143,7 @@ export function generateLevelUpSteps(
       });
     }
 
-    if (className === "Rogue" && (level === 1 || level === 6)) {
+    if (className === "Rogue" && level === 1) {
       const expertiseScaling = classData.scalingFeatures?.find((f) => f.type === "feature" && f.name === "Expertise");
       const totalCount = expertiseScaling?.values[level] || 0;
       const currentCount = currentExpertise.length;
@@ -162,7 +164,7 @@ export function generateLevelUpSteps(
     }
 
     if (classData.spellcastingAbility && levelData?.spellSlots) {
-      const prevLevelData = level > oldLevel + 1 ? classData.levels[level - 2] : null;
+      const prevLevelData = level > 1 ? classData.levels[level - 2] : null;
       const cantripsKnown = classData.cantripsKnown?.[level] || 0;
       const prevCantripsKnown = prevLevelData ? (classData.cantripsKnown?.[level - 1] || 0) : 0;
       const prevSlots = prevLevelData?.spellSlots || {};
@@ -181,9 +183,11 @@ export function generateLevelUpSteps(
     }
 
     const levelTitle =
-      sections.length === 1
-        ? `Level ${level} - ${sectionLabel(sections[0].type, className)}`
-        : `Level ${level}`;
+      sections.length === 0
+        ? `Level ${level}`
+        : sections.length === 1
+          ? `Level ${level} - ${sectionLabel(sections[0].type, className)}`
+          : `Level ${level}`;
 
     steps.push({
       id: `level-${level}`,

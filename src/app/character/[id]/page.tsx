@@ -21,9 +21,6 @@ import { OtherProficienciesSection } from "@/components/character-sheet/OtherPro
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
-import { LevelUpFlow } from "@/components/level-up/LevelUpFlow";
-import { type LevelUpChanges } from "@/lib/level-up";
-import { getClassData } from "@/data/srd";
 import { Trash2, Download, Upload } from "lucide-react";
 import { exportCharacterToPdf, importCharacterFromPdf } from "@/lib/pdf";
 
@@ -43,9 +40,6 @@ export default function CharacterView() {
   const [spellsCollapsed, setSpellsCollapsed] = useState(true);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
-  const [levelUpOpen, setLevelUpOpen] = useState(false);
-  const [levelUpOldLevel, setLevelUpOldLevel] = useState(1);
-  const [levelUpNewLevel, setLevelUpNewLevel] = useState(1);
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -113,68 +107,8 @@ export default function CharacterView() {
 
   const handleLevelUpClick = () => {
     if (!character || character.level >= 20) return;
-    setLevelUpOldLevel(character.level);
-    setLevelUpNewLevel(character.level + 1);
-    setLevelUpOpen(true);
+    router.push(`/character/${id}/level-up`);
   };
-
-  const handleLevelUpComplete = useCallback(
-    (changes: LevelUpChanges) => {
-      if (!character) return;
-
-      const patch: Partial<Character> = { level: changes.level };
-      if (changes.features.length > 0) {
-        patch.features = [
-          ...character.features,
-          ...changes.features.map((f) => ({
-            id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-            name: f.name,
-            description: f.description,
-          })),
-        ];
-      }
-      if (changes.subclass) {
-        const classData = getClassData(character.class);
-        const subclassData = classData?.subclasses?.find((s) => s.name === changes.subclass);
-        if (subclassData?.features) {
-          patch.features = [
-            ...(patch.features || character.features),
-            ...subclassData.features.map((f) => ({
-              id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-              name: f.name,
-              description: f.description,
-            })),
-          ];
-        }
-      }
-      if (changes.abilityScoreChanges.length > 0) {
-        const updates: any = { ...character };
-        for (const change of changes.abilityScoreChanges) {
-          updates[change.ability] = (character[change.ability as keyof Character] as number || 0) + change.delta;
-        }
-        Object.assign(patch, updates);
-      }
-      if (changes.expertise.length > 0) {
-        patch.expertise = [...(character.expertise || []), ...changes.expertise];
-      }
-      if (changes.spellSlots) {
-        patch.spellSlots = { ...character.spellSlots, ...changes.spellSlots };
-      }
-
-      const { computeDerivedStats } = require("@/lib/storage");
-      const derived = computeDerivedStats({ ...character, ...patch });
-      const finalChar = { ...character, ...patch, ...derived };
-
-      saveCharacter(finalChar);
-      setCharacter(finalChar);
-      setLevelUpOpen(false);
-    },
-    [character]
-  );
-
-  const handleLevelUpCancel = useCallback(() => {
-    setLevelUpOpen(false);
-  }, []);
 
   const handleChange = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
@@ -305,25 +239,6 @@ export default function CharacterView() {
           </div>
         </main>
       </CharacterSheetProvider>
-
-      <LevelUpFlow
-        open={levelUpOpen}
-        oldLevel={levelUpOldLevel}
-        newLevel={levelUpNewLevel}
-        className={character.class}
-        currentAbilityScores={{
-          str: character.str,
-          dex: character.dex,
-          con: character.con,
-          int: character.int,
-          wis: character.wis,
-          cha: character.cha,
-        }}
-        currentExpertise={character.expertise || []}
-        currentSkills={character.skills || {}}
-        onComplete={handleLevelUpComplete}
-        onCancel={handleLevelUpCancel}
-      />
     </div>
   );
 }

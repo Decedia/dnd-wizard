@@ -65,6 +65,10 @@
 - [x] Consolidated per-level steps: each level now produces one step with multiple sections (hp, features, subclass, asi, expertise, spellSlots, spellSelection)
 - [x] Fixed granted equipment quantity display template literal bug in StepEquipment
 - [x] Added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment
+- [x] Replaced equip checkbox with Equip/Equipped button for weapons and armor in StepEquipment and InventorySection
+- [x] Added equip button for granted items and fixed button overflow with flex-wrap
+- [x] Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page
+- [x] Modified `generateLevelUpSteps` to always include level 1 step and moved expertise into level 1
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
@@ -85,7 +89,7 @@
 | `src/data/srd.ts` | 5e SRD data with type tags, expanded spells, backgrounds | ✅ Ready |
 | `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
 | `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with sections consolidation | ✅ Ready |
-| `src/components/level-up/LevelUpFlow.tsx` | Multi-step level-up modal with sections rendering | ✅ Ready |
+| `src/app/character/[id]/level-up/page.tsx` | Dedicated level-up page (replaces modal) | ✅ Ready |
 | `src/components/character-sheet/FeaturesTraitsSection.tsx` | Locked feature rendering with "default" tag | ✅ Ready |
 | `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Class-granted attack rendering with "class-granted" tag | ✅ Ready |
 
@@ -117,4 +121,5 @@ Wizard restructure complete. Next steps:
 | 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |
 | 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |
 | 2026-08-19 | Consolidated per-level steps: each level produces one step with multiple sections (hp/features/subclass/asi/expertise/spellSlots/spellSelection); updated LevelUpStep type and both PerLevelStepsFlow and LevelUpFlow to render sections |
+| 2026-08-20 | Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page; modified `generateLevelUpSteps` to always include level 1 step with expertise; updated character sheet to navigate to level-up page |
 | 2026-08-20 | Fixed granted equipment quantity display bug (`x{itemRef.quantity}` → `x${itemRef.quantity}`); added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |
