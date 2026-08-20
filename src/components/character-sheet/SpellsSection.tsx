@@ -80,33 +80,39 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
             {character.spells.map((spell) => {
               const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
               const isCustom = spell.source === "custom";
+              const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               return (
                 <div key={spell.id} className="flex flex-wrap items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                  {isCustom ? (
+                  <select
+                    value={dropdownValue}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === "Custom Spell") {
+                        updateItem(spell.id, { source: "custom", srdSpellName: undefined, name: spell.name || "" });
+                      } else if (val) {
+                        handleSrdSelect(spell.id, val);
+                      } else {
+                        updateItem(spell.id, { source: "srd", srdSpellName: undefined, name: "" });
+                      }
+                    }}
+                    onBlur={onFieldBlur}
+                    className="input flex-1 min-w-[120px]"
+                  >
+                    <option value="">Select spell...</option>
+                    {srdSpells.map((s) => (
+                      <option key={s.name} value={s.name}>{s.name}</option>
+                    ))}
+                    <option value="Custom Spell">Custom Spell</option>
+                  </select>
+                  {isCustom && (
                     <input
                       type="text"
                       value={spell.name}
                       onChange={(e) => updateItem(spell.id, { name: e.target.value })}
                       onBlur={onFieldBlur}
                       className="input flex-1 min-w-[120px]"
-                      placeholder="Spell name"
+                      placeholder="Enter custom spell name"
                     />
-                  ) : (
-                    <select
-                      value={spell.srdSpellName || ""}
-                      onChange={(e) => {
-                        if (e.target.value) {
-                          handleSrdSelect(spell.id, e.target.value);
-                        }
-                      }}
-                      onBlur={onFieldBlur}
-                      className="input flex-1 min-w-[120px]"
-                    >
-                      <option value="">Select spell...</option>
-                      {srdSpells.map((s) => (
-                        <option key={s.name} value={s.name}>{s.name}</option>
-                      ))}
-                    </select>
                   )}
                   <input
                     type="number"
