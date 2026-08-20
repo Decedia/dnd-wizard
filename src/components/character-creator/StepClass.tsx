@@ -1,9 +1,8 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StepCard } from "./StepCard";
-import { classes } from "@/data/srd";
-import type { Character } from "@/lib/storage";
+import { fetchSRDData, type SRDClass } from "@/lib/srd-client";
 
 interface StepClassProps {
   data: { class: string };
@@ -11,9 +10,31 @@ interface StepClassProps {
 }
 
 export function StepClass({ data, onChange }: StepClassProps) {
+  const [classes, setClasses] = useState<SRDClass[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchSRDData()
+      .then((srd) => setClasses(srd.classes))
+      .catch(() => setClasses([]))
+      .finally(() => setLoading(false));
+  }, []);
+
   const handleSelect = useCallback((className: string) => {
     onChange({ class: className });
   }, [onChange]);
+
+  if (loading) {
+    return (
+      <StepCard title="Class">
+        <div className="space-y-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="h-24 animate-pulse rounded-lg bg-charcoal/40" />
+          ))}
+        </div>
+      </StepCard>
+    );
+  }
 
   return (
     <StepCard title="Class">
@@ -39,7 +60,8 @@ export function StepClass({ data, onChange }: StepClassProps) {
               <div className="mt-2 space-y-1">
                 {cls.features.map((feature) => (
                   <div key={feature.name} className="text-xs text-parchment/60">
-                    <span className="font-medium text-gold/80">{feature.name}:</span> {feature.description}
+                    <span className="font-medium text-gold/80">{feature.name}:</span>{" "}
+                    {feature.description}
                   </div>
                 ))}
               </div>

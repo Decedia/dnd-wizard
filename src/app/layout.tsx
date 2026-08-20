@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { BottomNav } from "@/components/BottomNav";
+import { SRDProvider } from "@/contexts/SRDContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,9 +25,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
-        <div className="mx-auto max-w-lg">
-          {children}
-        </div>
+        <SRDProvider>
+          <div className="mx-auto max-w-lg">
+            {children}
+          </div>
+        </SRDProvider>
         <BottomNav />
       </body>
     </html>

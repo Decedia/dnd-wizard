@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { spells as srdSpells } from "@/data/srd";
+import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 
 interface SpellsSectionProps {
@@ -15,6 +15,8 @@ interface SpellsSectionProps {
 
 export function SpellsSection({ character, onChange, collapsed = false, onToggleCollapse }: SpellsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { data, loading } = useSRD();
+  const srdSpells = data?.spells || [];
   const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
   const [editingCostumeSpellId, setEditingCostumeSpellId] = useState<string | null>(null);
   const [isAddingCostumeSpell, setIsAddingCostumeSpell] = useState(false);
