@@ -5,11 +5,13 @@
 **App Status**: ✅ DND-AN creation wizard fully restructured (Steps 1-9 + per-level sequence)
 
 ### Data Layer
-- **Static race data**: `src/data/2026_races.json` contains all 9 common 2014 SRD races with full trait descriptions, ability score increases, languages, and darkvision info
-- **Live API route**: `/api/srd` still proxies `https://www.dnd5eapi.co/api/2014` for classes, spells, equipment, and languages with in-memory caching
-- **Client hook**: `useSRD()` in `src/contexts/SRDContext.tsx` provides live SRD data for non-race entities
-- **Race selection**: `StepRace` now uses static `getStaticRaces()` from `src/lib/srd-client.ts` — no live API fetch needed for races
-- **Race dropdown**: `IdentitySection` race selector uses static race names from `2026_races.json`
+- **Static race data**: `src/data/2014_races.json` contains all 9 common 2014 SRD races with full trait descriptions, ability score increases, languages, and darkvision info
+- **Static class data**: `src/data/2014_classes.json` contains all 12 classes with full 20-level progression, spell slots, ASI levels, subclasses, and features with real API descriptions
+- **Static subclass data**: `src/data/2014_subclasses.json` contains all 12 subclasses with features and descriptions fetched from API
+- **Static equipment data**: `src/data/2014_weapon.json`, `2014_armor.json`, `2014_items.json`, `2014_equipments.json` contain full equipment data from API
+- **Static spell data**: Spells still in `src/data/srd.ts` (28 spells, levels 0-5)
+- **Client data access**: `src/lib/srd-client.ts` provides `getStaticRaces/Race`, `getStaticClasses/Class`, `getStaticSpells`, `getStaticWeapons/Armors/Items/Equipments`, `getEquipmentData()` and more
+- **All components migrated**: No components import from `src/data/srd.ts` except `src/lib/srd-client.ts` for spells and `src/lib/storage.ts` for getRaceData helper
 
 ### Creation Wizard Restructure
 - **Step 1 — Identity**: Removed Level/Proficiency/XP; added Background select dropdown; custom language input added below SRD language checkboxes.
@@ -121,7 +123,14 @@
 | `src/components/character-creator/StepLooksAppearances.tsx` | Age, height, weight, eyes, skin, hair, backstory | ✅ Ready |
 | `src/components/character-creator/StepLevelHitPoints.tsx` | Level selector (1-10), baseline HP display | ✅ Ready |
 | `src/components/character-creator/PerLevelStepsFlow.tsx` | Inline per-level step sequence with spell selection | ✅ Ready |
-| `src/data/srd.ts` | 5e SRD data with type tags, expanded spells, backgrounds | ✅ Ready |
+| `src/data/2014_races.json` | Static race data for 9 SRD races | ✅ Ready |
+| `src/data/2014_classes.json` | Static class data for 12 classes with 20 levels each, subclasses, features | ✅ Ready |
+| `src/data/2014_subclasses.json` | Static subclass data fetched from API | ✅ Ready |
+| `src/data/2014_weapon.json` | Static weapon data (37 weapons) | ✅ Ready |
+| `src/data/2014_armor.json` | Static armor data (13 armors) | ✅ Ready |
+| `src/data/2014_items.json` | Static item data (187 items) | ✅ Ready |
+| `src/data/2014_equipments.json` | Combined static equipment data (237 items) | ✅ Ready |
+| `src/lib/srd-client.ts` | Static data accessors for all SRD data | ✅ Ready |
 | `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
 | `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with sections consolidation | ✅ Ready |
 | `src/app/character/[id]/level-up/page.tsx` | Dedicated level-up page (replaces modal) | ✅ Ready |
@@ -159,3 +168,8 @@ Wizard restructure complete. Next steps:
 | 2026-08-20 | Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page; modified `generateLevelUpSteps` to always include level 1 step with expertise; removed expertise from StepSkills for Rogue during creation; level 1 step skips HP rolling; removed +/- level buttons from character sheet; level up navigates to dedicated page |
 | 2026-08-20 | Fixed granted equipment quantity display bug; added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |
 | 2026-08-20 | Replaced live API race fetching with static `src/data/2026_races.json` containing all 9 common 2014 SRD races |
+| 2026-08-20 | Fetched equipment data from API into `2014_weapon.json` (37), `2014_armor.json` (13), `2014_items.json` (187), `2014_equipments.json` (237 total) |
+| 2026-08-20 | Added `getStaticWeapons/Armors/Items/Equipments()` and `getEquipmentData()` to `srd-client.ts`; migrated StepEquipment and InventorySection to use static equipment data |
+| 2026-08-20 | Fetched all subclass data from API into `2014_subclasses.json`; updated `2014_classes.json` subclass features with real API descriptions |
+| 2026-08-20 | Verified all class feature descriptions match API; no changes needed (already correct) |
+| 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |
