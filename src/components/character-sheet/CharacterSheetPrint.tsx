@@ -144,19 +144,19 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                   </div>
                 </div>
                 <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
-                  <div style={{ textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Current HP</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.currentHp}</div>
                   </div>
-                  <div style={{ textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Max HP</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.maxHp}</div>
                   </div>
-                  <div style={{ textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Temp HP</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.temporaryHp}</div>
                   </div>
-                  <div style={{ textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Speed</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.speed}ft</div>
                   </div>
@@ -236,7 +236,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
             <div style={{ display: "flex", justifyContent: "space-around" }}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "10px", color: COLORS.textMuted, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "6px" }}>Successes</div>
-                <div style={{ display: "flex", gap: "6px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                   {[0, 1, 2].map((i) => (
                     <div key={`s-${i}`} style={{
                       width: "16px", height: "16px", borderRadius: "50%",
@@ -249,7 +249,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
               </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "10px", color: COLORS.textMuted, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "6px" }}>Failures</div>
-                <div style={{ display: "flex", gap: "6px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                   {[0, 1, 2].map((i) => (
                     <div key={`f-${i}`} style={{
                       width: "16px", height: "16px", borderRadius: "50%",
@@ -271,7 +271,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
               <div>
                 <span style={{ fontSize: "10px", color: COLORS.textMuted, textTransform: "uppercase", letterSpacing: "0.05em" }}>Total: {character.hitDiceTotal || "—"}</span>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "4px" }}>
                 {Array.from({ length: character.hitDiceRemaining || 0 }).map((_, i) => (
                   <svg key={`r-${i}`} viewBox="0 0 20 20" style={{ width: "16px", height: "16px" }}>
                     <polygon points="10,1 18,5 18,15 10,19 2,15 2,5" fill={COLORS.burgundy} stroke={COLORS.burgundy} strokeWidth="1.5" opacity="0.8" />
@@ -312,7 +312,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
         {character.attacks.filter((a) => a.name).length > 0 ? (
           <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
             {character.attacks.filter((a) => a.name).map((attack) => (
-              <div key={attack.id} style={{ display: "flex", justifyContent: "space-between", padding: "6px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
+              <div key={attack.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
                 <span style={{ fontSize: "12px", fontWeight: "bold", color: COLORS.text }}>{attack.name}</span>
                 <span style={{ fontSize: "11px", color: COLORS.textMuted }}>
                   {attack.attackBonus ? `+${attack.attackBonus}` : ""} {attack.damageType}
@@ -329,7 +329,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
         </h2>
         <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
           {character.inventory.filter((item) => item.name).map((item) => (
-            <div key={item.id} style={{ display: "flex", justifyContent: "space-between", padding: "4px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
+            <div key={item.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
               <span style={{ fontSize: "11px", color: COLORS.text }}>{item.name}</span>
               <span style={{ fontSize: "10px", color: COLORS.textMuted }}>x{item.quantity}</span>
             </div>
@@ -357,7 +357,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
               {character.spells.filter((s) => s.name).map((spell) => (
-                <div key={spell.id} style={{ display: "flex", justifyContent: "space-between", padding: "4px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
+                <div key={spell.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
                   <span style={{ fontSize: "11px", color: COLORS.text }}>{spell.name}</span>
                   <span style={{ fontSize: "10px", color: COLORS.textMuted }}>{spell.level === 0 ? "Cantrip" : `Level ${spell.level}`}</span>
                 </div>
@@ -371,9 +371,9 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
             <h2 style={{ fontSize: "16px", fontWeight: "bold", color: COLORS.burgundy, marginBottom: "12px", borderBottom: `2px solid ${COLORS.gold}`, paddingBottom: "6px" }}>
               Spell Slots
             </h2>
-            <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
               {Object.entries(character.spellSlots).map(([level, count]) => (
-                <div key={level} style={{ textAlign: "center", padding: "6px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
+                <div key={level} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
                   <div style={{ fontSize: "9px", color: COLORS.textMuted, textTransform: "uppercase" }}>Level {level}</div>
                   <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.gold }}>{count}</div>
                 </div>
