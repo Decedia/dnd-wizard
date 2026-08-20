@@ -140,13 +140,13 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                         <stop offset="100%" stopColor={COLORS.burgundy} stopOpacity="0.05" />
                       </linearGradient>
                     </defs>
-                    <path
-                      d="M50 5 L90 20 L90 55 C90 80 50 115 50 115 C50 115 10 80 10 55 L10 20 Z"
-                       fill="#0d0d0d"
-                      stroke={COLORS.gold}
-                      strokeWidth="3"
-                      strokeLinejoin="round"
-                    />
+                     <path
+                       d="M50 5 L90 20 L90 55 C90 80 50 115 50 115 C50 115 10 80 10 55 L10 20 Z"
+                       fill="transparent"
+                       stroke={COLORS.gold}
+                       strokeWidth="3"
+                       strokeLinejoin="round"
+                     />
                     <path
                       d="M50 15 L80 27 L80 55 C80 75 50 103 50 103 C50 103 20 75 20 55 L20 27 Z"
                       fill="none"
@@ -161,19 +161,19 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                   </div>
                 </div>
                 <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}`, marginTop: "-7px" }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Current HP</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.currentHp}</div>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}`, marginTop: "-7px" }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Max HP</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.maxHp}</div>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}`, marginTop: "-7px" }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Temp HP</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.temporaryHp}</div>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}`, marginTop: "-7px" }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Speed</div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.speed}ft</div>
                   </div>
