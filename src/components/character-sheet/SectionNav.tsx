@@ -49,7 +49,7 @@ export function SectionNav() {
 
   return (
     <nav
-      className="fixed right-2 top-1/2 z-40 hidden md:flex -translate-y-1/2 flex-col gap-2 rounded-2xl border border-parchment/10 bg-charcoal-light/90 p-2 shadow-xl backdrop-blur-xl"
+      className="fixed right-1 md:right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-1 md:gap-1.5 rounded-full border border-parchment/10 bg-charcoal-light/90 p-1 md:p-2 shadow-xl backdrop-blur-xl"
       aria-label="Section navigation"
     >
       {sections.map(({ id, label, Icon }) => (
@@ -58,12 +58,13 @@ export function SectionNav() {
           onClick={() => scrollTo(id)}
           aria-label={label}
           title={label}
-          className={`flex items-center gap-2 rounded-xl px-3 py-2 transition-colors ${
-            active === id ? "text-burgundy bg-burgundy/10" : "text-parchment/50 hover:text-parchment hover:bg-parchment/5"
+          className={`flex items-center justify-center rounded-full transition-all ${
+            active === id
+              ? "h-7 w-7 md:h-9 md:w-9 text-parchment bg-burgundy shadow-lg shadow-burgundy/30"
+              : "h-7 w-7 md:h-9 md:w-9 text-parchment/50 hover:text-parchment hover:bg-parchment/5"
           }`}
         >
-          <Icon className="h-4 w-4" />
-          <span className="text-xs font-medium whitespace-nowrap">{label}</span>
+          <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
         </button>
       ))}
     </nav>

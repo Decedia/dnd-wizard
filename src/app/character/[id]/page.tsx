@@ -163,7 +163,7 @@ export default function CharacterView() {
       <SectionNav />
 
       <CharacterSheetProvider onFieldBlur={debouncedSave}>
-        <main className="px-4 py-6 pb-28">
+        <main className="px-4 py-6 pb-28 md:px-4 md:pr-4 pr-12">
           <div className="mx-auto max-w-lg space-y-4">
             <IdentitySection character={character} onChange={handleChange} />
             <StatsSection character={character} onChange={handleChange} />
