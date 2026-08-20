@@ -5,10 +5,11 @@
 **App Status**: ✅ DND-AN creation wizard fully restructured (Steps 1-9 + per-level sequence)
 
 ### Data Layer
-- **API route**: `/api/srd` proxies `https://www.dnd5eapi.co/api/2014` with in-memory caching (5 min TTL)
-- **Client hook**: `useSRD()` in `src/contexts/SRDContext.tsx` provides live SRD data to client components
-- **Live data**: Races, classes, spells, equipment, languages now fetched from the D&D 5e API
-- **Migration status**: Core UI components (StepRace, StepClass, IdentitySection, SpellsSection) use live API data. Business logic files (`storage.ts`, `level-up.ts`, `create/page.tsx` finish logic) still reference static data in `src/data/srd.ts` as fallback.
+- **Static race data**: `src/data/2026_races.json` contains all 9 common 2014 SRD races with full trait descriptions, ability score increases, languages, and darkvision info
+- **Live API route**: `/api/srd` still proxies `https://www.dnd5eapi.co/api/2014` for classes, spells, equipment, and languages with in-memory caching
+- **Client hook**: `useSRD()` in `src/contexts/SRDContext.tsx` provides live SRD data for non-race entities
+- **Race selection**: `StepRace` now uses static `getStaticRaces()` from `src/lib/srd-client.ts` — no live API fetch needed for races
+- **Race dropdown**: `IdentitySection` race selector uses static race names from `2026_races.json`
 
 ### Creation Wizard Restructure
 - **Step 1 — Identity**: Removed Level/Proficiency/XP; added Background select dropdown; custom language input added below SRD language checkboxes.
@@ -87,6 +88,9 @@
 - [x] Added all common SRD races (Dragonborn, Gnome, Half-Elf, Half-Orc, Tiefling) to `srd.ts`; race traits auto-wire into Features & Traits on selection
 - [x] Removed unused `RACES` constant from `storage.ts`
 - [x] Lint, typecheck, and build verified
+- [x] Added static `src/data/2026_races.json` with all 9 common 2014 SRD races and full trait descriptions
+- [x] Updated `StepRace` and `IdentitySection` to use static race data instead of live API
+- [x] Live API route remains for classes, spells, equipment, languages
 - [x] Replaced equip checkbox with Equip/Equipped button for weapons and armor in StepEquipment and InventorySection
 - [x] Added equip button for granted items and fixed button overflow with flex-wrap
 - [x] Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page
@@ -153,4 +157,5 @@ Wizard restructure complete. Next steps:
 | 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |
 | 2026-08-19 | Consolidated per-level steps: each level produces one step with multiple sections (hp/features/subclass/asi/expertise/spellSlots/spellSelection); updated LevelUpStep type and both PerLevelStepsFlow and LevelUpFlow to render sections |
 | 2026-08-20 | Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page; modified `generateLevelUpSteps` to always include level 1 step with expertise; removed expertise from StepSkills for Rogue during creation; level 1 step skips HP rolling; removed +/- level buttons from character sheet; level up navigates to dedicated page |
-| 2026-08-20 | Fixed granted equipment quantity display bug (`x{itemRef.quantity}` → `x${itemRef.quantity}`); added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |
+| 2026-08-20 | Fixed granted equipment quantity display bug; added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |
+| 2026-08-20 | Replaced live API race fetching with static `src/data/2026_races.json` containing all 9 common 2014 SRD races |
