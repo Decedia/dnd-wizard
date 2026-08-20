@@ -41,7 +41,7 @@ export function BottomNav() {
               href={item.href}
               className={`
                 flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10
-                ${isActive ? "text-burgundy" : "text-parchment/60 hover:text-parchment"}
+                ${isActive ? "text-white" : "text-parchment/60 hover:text-parchment"}
               `}
               aria-current={isActive ? "page" : undefined}
             >
@@ -54,7 +54,7 @@ export function BottomNav() {
         })}
         {activeIndex >= 0 && (
           <div
-            className="absolute top-1 bottom-1 rounded-full bg-burgundy transition-all duration-300 ease-out pointer-events-none"
+            className="absolute inset-0 rounded-full bg-burgundy transition-all duration-300 ease-out pointer-events-none"
             style={{
               left: `${(activeIndex / navItems.length) * 100}%`,
               width: `${(100 / navItems.length)}%`,
