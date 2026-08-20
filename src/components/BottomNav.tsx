@@ -2,7 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Home, Wand2, Dices } from "lucide-react";
+import { Home, Dices } from "lucide-react";
+import { WizardHatIcon } from "@/components/AppHeader";
 
 const navItems = [
   {
@@ -13,7 +14,7 @@ const navItems = [
   {
     name: "New Character",
     href: "/character/create",
-    icon: Wand2,
+    icon: WizardHatIcon,
   },
   {
     name: "Dice",

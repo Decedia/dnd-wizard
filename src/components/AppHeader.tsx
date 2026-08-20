@@ -1,23 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { Wand2 } from "lucide-react";
 
 interface AppHeaderProps {
   title: string;
   subtitle?: string;
 }
 
+export function WizardHatIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M2 18h20v2H2z" />
+      <path d="M5 18l7-14 7 14z" />
+    </svg>
+  );
+}
+
 export function AppHeader({ title, subtitle }: AppHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-gold/10 bg-charcoal/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-charcoal/80 backdrop-blur-xl">
       <div className="mx-auto max-w-lg px-4 py-4">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-burgundy shadow-md shadow-burgundy/20 transition-transform group-hover:scale-105">
-            <Wand2 className="h-6 w-6 text-gold" />
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center">
+            <WizardHatIcon className="h-7 w-7 text-burgundy" />
           </div>
           <div className="flex flex-col">
-            <h1 className="font-display text-xl font-bold tracking-wide text-gold">
+            <h1 className="font-display text-xl font-bold tracking-wide text-white">
               {title}
             </h1>
             {subtitle && (
