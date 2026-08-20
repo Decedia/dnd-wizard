@@ -8,14 +8,14 @@ interface CharacterSheetPrintProps {
 
 const PRINT_WIDTH = 794; // A4 width at 96dpi
 const COLORS = {
-  bg: "#f8f4e9",
-  cardBg: "#fffef7",
-  text: "#2c1810",
-  textMuted: "#5c4a3a",
-  gold: "#b8860b",
-  burgundy: "#722f37",
-  border: "#d4c5a9",
-  parchment: "#f5f0e1",
+  bg: "#0d0d0d",
+  cardBg: "#1a1a1a",
+  text: "#ffffff",
+  textMuted: "#a3a3a3",
+  gold: "#ef4444",
+  burgundy: "#2563eb",
+  border: "#262626",
+  parchment: "#1a1a1a",
 };
 
 function Page({ children, pageNum }: { children: React.ReactNode; pageNum?: number }) {
@@ -58,7 +58,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
   const getMod = (score: number) => Math.floor((score - 10) / 2);
 
   return (
-    <div style={{ fontFamily: "sans-serif" }}>
+    <div style={{ fontFamily: "var(--font-display)" }}>
       {/* Page 1 */}
       <Page pageNum={1}>
         {/* Header / Scroll Banner */}
@@ -75,7 +75,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
             <path d="M30 15 Q200 3 370 15 L362 40 Q200 48 38 40 Z" fill="none" stroke={COLORS.gold} strokeWidth="0.75" opacity="0.3" />
           </svg>
           <div style={{ position: "relative", zIndex: 1, paddingTop: "8px" }}>
-            <h1 style={{ fontFamily: "serif", fontSize: "22px", fontWeight: "bold", color: COLORS.burgundy, margin: 0 }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "22px", fontWeight: "bold", color: COLORS.burgundy, margin: 0 }}>
               {character.name || "Unnamed Character"}
             </h1>
             <p style={{ fontSize: "11px", color: COLORS.textMuted, marginTop: "4px" }}>
@@ -135,8 +135,20 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                         <stop offset="100%" stopColor={COLORS.burgundy} stopOpacity="0.05" />
                       </linearGradient>
                     </defs>
-                    <path d="M50 5 L90 20 L90 55 C90 80 50 115 50 115 C50 115 10 80 10 55 L10 20 Z" fill="url(#printShieldGrad)" stroke={COLORS.burgundy} strokeWidth="3" strokeLinejoin="round" />
-                    <path d="M50 15 L80 27 L80 55 C80 75 50 103 50 103 C50 103 20 75 20 55 L20 27 Z" fill="none" stroke={COLORS.burgundy} strokeWidth="1.5" opacity="0.4" />
+                    <path
+                      d="M50 5 L90 20 L90 55 C90 80 50 115 50 115 C50 115 10 80 10 55 L10 20 Z"
+                       fill="#0d0d0d"
+                      stroke={COLORS.gold}
+                      strokeWidth="3"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M50 15 L80 27 L80 55 C80 75 50 103 50 103 C50 103 20 75 20 55 L20 27 Z"
+                      fill="none"
+                      stroke={COLORS.gold}
+                      strokeWidth="1.5"
+                      opacity="0.4"
+                    />
                   </svg>
                   <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                     <span style={{ fontSize: "8px", color: COLORS.textMuted, textTransform: "uppercase" }}>AC</span>
@@ -240,9 +252,9 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                   {[0, 1, 2].map((i) => (
                     <div key={`s-${i}`} style={{
                       width: "16px", height: "16px", borderRadius: "50%",
-                      border: `2px solid ${character.deathSaveSuccesses > i ? COLORS.burgundy : COLORS.border}`,
-                      backgroundColor: character.deathSaveSuccesses > i ? COLORS.burgundy : "transparent",
-                      boxShadow: character.deathSaveSuccesses > i ? `0 0 6px ${COLORS.burgundy}80` : "none",
+                      border: `2px solid ${character.deathSaveSuccesses > i ? COLORS.gold : COLORS.border}`,
+                      backgroundColor: character.deathSaveSuccesses > i ? COLORS.gold : "transparent",
+                      boxShadow: character.deathSaveSuccesses > i ? `0 0 6px ${COLORS.gold}80` : "none",
                     }} />
                   ))}
                 </div>
@@ -274,14 +286,14 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "4px" }}>
                 {Array.from({ length: character.hitDiceRemaining || 0 }).map((_, i) => (
                   <svg key={`r-${i}`} viewBox="0 0 20 20" style={{ width: "16px", height: "16px" }}>
-                    <polygon points="10,1 18,5 18,15 10,19 2,15 2,5" fill={COLORS.burgundy} stroke={COLORS.burgundy} strokeWidth="1.5" opacity="0.8" />
-                    <circle cx="10" cy="10" r="2" fill="#ffcccb" opacity="0.6" />
+                    <polygon points="10,1 18,5 18,15 10,19 2,15 2,5" fill={COLORS.gold} stroke={COLORS.gold} strokeWidth="1.5" opacity="0.8" />
+                    <circle cx="10" cy="10" r="2" fill="#ffffff" opacity="0.6" />
                   </svg>
                 ))}
                 {Array.from({ length: Math.max(0, (parseInt(character.hitDiceTotal) || 0) - (character.hitDiceRemaining || 0)) }).map((_, i) => (
                   <svg key={`u-${i}`} viewBox="0 0 20 20" style={{ width: "16px", height: "16px" }}>
-                    <polygon points="10,1 18,5 18,15 10,19 2,15 2,5" fill="transparent" stroke={COLORS.burgundy} strokeWidth="1.5" opacity="0.4" />
-                    <circle cx="10" cy="10" r="2" fill={COLORS.burgundy} opacity="0.3" />
+                    <polygon points="10,1 18,5 18,15 10,19 2,15 2,5" fill="transparent" stroke={COLORS.gold} strokeWidth="1.5" opacity="0.4" />
+                    <circle cx="10" cy="10" r="2" fill={COLORS.gold} opacity="0.3" />
                   </svg>
                 ))}
               </div>

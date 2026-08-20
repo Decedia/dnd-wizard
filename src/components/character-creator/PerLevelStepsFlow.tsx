@@ -224,7 +224,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
 
   return (
     <div className="flex flex-col">
-      <div className="rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4">
+      <div className="rounded-full border border-parchment/10 bg-charcoal-light/60 p-4">
         <h3 className="mb-3 font-display text-lg font-semibold text-parchment">{currentStep.title}</h3>
         <div className="mb-4">
           {renderStepContent()}

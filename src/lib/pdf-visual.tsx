@@ -33,7 +33,7 @@ export async function exportCharacterToPdf(character: Character): Promise<void> 
       const canvas = await html2canvas(pageEl, {
         scale: 2,
         useCORS: true,
-        backgroundColor: "#f8f4e9",
+        backgroundColor: "#ffffff",
         logging: false,
       });
 

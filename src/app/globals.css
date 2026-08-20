@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-parchment: #f4f1ea;
-  --color-parchment-dark: #e8e4d9;
-  --color-charcoal: #1a1a1a;
-  --color-charcoal-light: #2a2a2a;
-  --color-charcoal-lighter: #3a3a3a;
-  --color-burgundy: #722f37;
-  --color-burgundy-light: #8b3a44;
-  --color-gold: #c5a059;
-  --color-gold-light: #d4b068;
-  --color-gold-dark: #a88845;
-  --font-display: "Cinzel", serif;
-  --font-body: "Geist", sans-serif;
+  --color-parchment: #ffffff;
+  --color-parchment-dark: #e5e5e5;
+  --color-charcoal: #0d0d0d;
+  --color-charcoal-light: #1a1a1a;
+  --color-charcoal-lighter: #262626;
+  --color-burgundy: #ef4444;
+  --color-burgundy-light: #dc2626;
+  --color-gold: #2563eb;
+  --color-gold-light: #3b82f6;
+  --color-gold-dark: #1d4ed8;
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 @layer base {
@@ -27,10 +27,22 @@
 
 @layer components {
   .input {
-    @apply rounded-lg border border-parchment/15 bg-charcoal px-3 py-2 text-sm text-parchment outline-none transition-colors placeholder:text-parchment/30 focus:border-gold/50 focus:ring-1 focus:ring-gold/50;
+    @apply rounded-full border border-white/15 bg-charcoal-light px-3 py-2 text-sm text-parchment outline-none transition-colors placeholder:text-parchment/30 focus:border-accent focus:ring-1 focus:ring-accent;
   }
   textarea.input {
     @apply resize-y;
+  }
+  .btn-primary {
+    @apply rounded-full bg-burgundy px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-burgundy-light active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
+  }
+  .btn-secondary {
+    @apply rounded-full border border-white/20 bg-transparent px-4 py-2.5 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5 active:scale-[0.98];
+  }
+  .btn-danger {
+    @apply rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98];
+  }
+  .btn-gold {
+    @apply rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:border-white/50 hover:bg-white/20 active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100;
   }
 }
 
@@ -73,16 +85,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f1ea;
-  color: #1a1a1a;
+  background: #e5e5e5;
+  color: #0d0d0d;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   transition: box-shadow 0.3s;
   overflow: hidden;
 }
 
 @keyframes dice-idle {
-  0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 rgba(197, 160, 89, 0); }
-  50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 12px rgba(197, 160, 89, 0.25); }
+  0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 rgba(239, 68, 68, 0); }
+  50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 12px rgba(239, 68, 68, 0.25); }
 }
 
 @keyframes dice-roll {
@@ -109,12 +121,12 @@
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #0d0d0d;
   z-index: 1;
 }
 
 .dice-face.result {
-  color: #722f37;
+  color: #ef4444;
 }
 
 .dice-badge {
@@ -122,8 +134,8 @@
   bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
-  background: #722f37;
-  color: #f4f1ea;
+  background: #ef4444;
+  color: #ffffff;
   font-size: 9px;
   font-weight: 700;
   padding: 2px 6px;
@@ -159,5 +171,6 @@
 .dice-d100 {
   clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%);
 }
+
 
 

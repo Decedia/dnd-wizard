@@ -11,7 +11,7 @@ export function SectionCard({ id, title, icon, children }: SectionCardProps) {
   return (
     <section
       id={id}
-      className="scroll-mt-20 rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4 mb-4"
+      className="scroll-mt-20 rounded-full border border-parchment/10 bg-charcoal-light/60 p-4 mb-4"
     >
       <div className="mb-3 flex items-center gap-2 border-b border-parchment/10 pb-3">
         <span className="text-gold">{icon}</span>

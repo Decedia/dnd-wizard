@@ -33,12 +33,12 @@ export function HitDicePips({ total, remaining, onChange }: HitDicePipsProps) {
             <svg viewBox="0 0 20 20" className="h-full w-full">
               <polygon
                 points="10,1 18,5 18,15 10,19 2,15 2,5"
-                fill={isUsed ? "transparent" : "#c73e48"}
-                stroke={isUsed ? "#c73e48" : "#c73e48"}
+                fill={isUsed ? "transparent" : "#ef4444"}
+                stroke={isUsed ? "#ef4444" : "#ef4444"}
                 strokeWidth="1.5"
                 opacity={isUsed ? 0.4 : 0.8}
               />
-              <circle cx="10" cy="10" r="2" fill={isUsed ? "#c73e48" : "#ffcccb"} opacity={isUsed ? 0.3 : 0.6} />
+              <circle cx="10" cy="10" r="2" fill={isUsed ? "#ef4444" : "#ffffff"} opacity={isUsed ? 0.3 : 0.6} />
             </svg>
           </button>
         );

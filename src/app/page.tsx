@@ -41,7 +41,7 @@ export default function Home() {
         <div className="mb-4">
           <Link
             href="/character/create"
-            className="flex items-center justify-center gap-2 rounded-xl bg-burgundy px-6 py-4 text-lg font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98]"
+            className="flex items-center justify-center gap-2 rounded-full bg-burgundy px-6 py-4 text-lg font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98]"
           >
             <span className="text-2xl leading-none">🐉</span>
             <span>Create New Character</span>
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="mb-4">
           <Link
             href="/dice"
-            className="flex items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98]"
+            className="flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-white/50 hover:bg-white/20 active:scale-[0.98]"
           >
             <Dices className="h-5 w-5" />
             <span>Dice Roller</span>
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="mb-6">
           <button
             onClick={handleImportClick}
-            className="w-full rounded-xl border border-parchment/20 bg-parchment/5 px-6 py-3 text-sm font-semibold text-parchment transition-all hover:border-parchment/40 hover:bg-parchment/10 active:scale-[0.98]"
+            className="w-full rounded-full border border-white/20 bg-transparent px-6 py-3 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5 active:scale-[0.98]"
           >
             <Upload className="h-4 w-4 mr-2 inline" />
             Import from PDF
@@ -72,24 +72,24 @@ export default function Home() {
             className="hidden"
           />
           {importError && (
-            <div className="mt-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            <div className="mt-3 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
               {importError}
             </div>
           )}
           {importSuccess && (
-            <div className="mt-3 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-400">
+            <div className="mt-3 rounded-full border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-400">
               {importSuccess}
             </div>
           )}
         </div>
 
         <section>
-          <h2 className="font-display text-lg font-semibold text-gold mb-3">
+          <h2 className="font-display text-lg font-semibold text-white mb-3">
             My Characters
           </h2>
 
           {characters.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-12 text-center">
+            <div className="flex flex-col items-center justify-center rounded-full border border-dashed border-parchment/20 bg-charcoal-light/50 py-12 text-center">
               <div className="mb-3 text-4xl opacity-40">🐉</div>
               <p className="text-sm text-parchment/50">
                 No characters yet. Create your first hero to begin your adventure.
@@ -101,7 +101,7 @@ export default function Home() {
                 <li key={char.id}>
                   <Link
                     href={`/character/${char.id}`}
-                    className="block rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4 transition-all active:scale-[0.98] hover:border-gold/30"
+                     className="block rounded-full border border-white/10 bg-charcoal-light/60 p-4 transition-all active:scale-[0.98] hover:border-white/30"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">

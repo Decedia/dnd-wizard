@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
-import { Cinzel, Geist } from "next/font/google";
+import { Inter } from "next/font/google";
 import { BottomNav } from "@/components/BottomNav";
 import "./globals.css";
 
-const cinzel = Cinzel({
+const inter = Inter({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const geistSans = Geist({
-  variable: "--font-body",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "DND Wizard",
+  title: "DND-AN",
   description: "A mobile-first D&D 5e character creator",
 };
 
@@ -27,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cinzel.variable} ${geistSans.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
       >
         <div className="mx-auto max-w-lg">
           {children}

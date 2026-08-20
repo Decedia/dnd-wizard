@@ -257,7 +257,7 @@ export function LevelUpFlow({
       </main>
       <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
         <div className="mx-auto max-w-lg px-4 w-full">
-          <div className="flex items-center gap-3 rounded-xl border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
+          <div className="flex items-center gap-3 rounded-full border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
             <button
               type="button"
               onClick={handleBack}

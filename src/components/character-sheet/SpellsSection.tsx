@@ -149,7 +149,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
 
       {tooltip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm rounded-xl border border-parchment/20 bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
+          <div className="max-w-sm rounded-full border border-parchment/20 bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-display font-semibold text-gold">{tooltip.name}</h3>
               <button onClick={() => setTooltip(null)} className="text-parchment/40 hover:text-parchment">

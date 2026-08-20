@@ -136,7 +136,7 @@ export default function CharacterView() {
       <div className="min-h-screen bg-charcoal">
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
-          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
+          <div className="flex flex-col items-center justify-center rounded-full border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
             <div className="mb-4 text-5xl opacity-40">🐉</div>
             <h2 className="font-display text-xl font-semibold text-parchment mb-2">
               Character Not Found
@@ -185,19 +185,19 @@ export default function CharacterView() {
             <AppearanceBioSection character={character} onChange={handleChange} />
           </div>
 
-          <div className="mx-auto max-w-lg mt-6 mb-4 rounded-2xl border border-parchment/10 bg-charcoal-light/60 p-4 space-y-3">
+          <div className="mx-auto max-w-lg mt-6 mb-4 rounded-full border border-parchment/10 bg-charcoal-light/60 p-4 space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={handleLevelUpClick}
                 disabled={character.level >= 20}
-                className="flex items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
+                className="flex items-center justify-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
               >
                 <ArrowUp className="h-4 w-4" />
                 Level Up
               </button>
               <button
                 onClick={handleSave}
-                className="flex items-center justify-center gap-2 rounded-xl bg-burgundy px-4 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all hover:bg-burgundy-light active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 rounded-full bg-burgundy px-4 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all hover:bg-burgundy-light active:scale-[0.98]"
               >
                 <Save className="h-4 w-4" />
                 Save Character
@@ -205,7 +205,7 @@ export default function CharacterView() {
               <button
                 onClick={handleExport}
                 disabled={exportingPdf}
-                className="flex items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
+                className="flex items-center justify-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
               >
                 {exportingPdf ? (
                   <>
@@ -221,7 +221,7 @@ export default function CharacterView() {
               </button>
               <button
                 onClick={handleImportClick}
-                className="flex items-center justify-center gap-2 rounded-xl border border-parchment/20 bg-parchment/5 px-4 py-3 text-sm font-semibold text-parchment transition-all hover:border-parchment/40 hover:bg-parchment/10 active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 rounded-full border border-parchment/20 bg-parchment/5 px-4 py-3 text-sm font-semibold text-parchment transition-all hover:border-parchment/40 hover:bg-parchment/10 active:scale-[0.98]"
               >
                 <Upload className="h-4 w-4" />
                 Import PDF
@@ -229,7 +229,7 @@ export default function CharacterView() {
             </div>
             <button
               onClick={handleDelete}
-              className="flex items-center justify-center gap-2 w-full rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98]"
+              className="flex items-center justify-center gap-2 w-full rounded-full border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98]"
             >
               <Trash2 className="h-4 w-4" />
               Delete Character
