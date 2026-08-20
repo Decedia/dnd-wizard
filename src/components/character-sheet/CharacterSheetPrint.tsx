@@ -59,6 +59,11 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
 
   return (
     <div style={{ fontFamily: "var(--font-display)" }}>
+      <style>{`
+        [data-print-page] span[style*="fontSize"] {
+          margin-top: -2px;
+        }
+      `}</style>
       {/* Page 1 */}
       <Page pageNum={1}>
         {/* Header / Scroll Banner */}
@@ -152,7 +157,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                   </svg>
                   <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingTop: "8px" }}>
                     <span style={{ fontSize: "8px", color: COLORS.textMuted, textTransform: "uppercase" }}>AC</span>
-                    <span style={{ fontSize: "20px", fontWeight: "bold", color: COLORS.gold, marginTop: "-2px" }}>{character.ac}</span>
+                    <span style={{ fontSize: "20px", fontWeight: "bold", color: COLORS.gold, marginTop: "-4px" }}>{character.ac}</span>
                   </div>
                 </div>
                 <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
