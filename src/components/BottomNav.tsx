@@ -14,7 +14,6 @@ const navItems = [
     name: "New Character",
     href: "/character/create",
     icon: Wand2,
-    isHero: true,
   },
   {
     name: "Dice",
@@ -27,7 +26,6 @@ export function BottomNav() {
   const pathname = usePathname();
 
   const activeIndex = navItems.findIndex((item) => {
-    if (item.isHero) return pathname === item.href;
     return pathname === item.href;
   });
 
@@ -43,16 +41,12 @@ export function BottomNav() {
               href={item.href}
               className={`
                 flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10
-                ${item.isHero
-                  ? "bg-burgundy shadow-lg shadow-burgundy/30"
-                  : ""
-                }
-                ${isActive && !item.isHero ? "text-burgundy" : "text-parchment/60 hover:text-parchment"}
+                ${isActive ? "text-burgundy" : "text-parchment/60 hover:text-parchment"}
               `}
               aria-current={isActive ? "page" : undefined}
             >
-              <Icon className={`${item.isHero ? "h-6 w-6" : "h-5 w-5"}`} />
-              <span className={`font-medium ${item.isHero ? "text-xs" : "text-[10px]"}`}>
+              <Icon className={`h-5 w-5`} />
+              <span className={`font-medium text-[10px]`}>
                 {item.name}
               </span>
             </Link>
