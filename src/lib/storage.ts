@@ -401,20 +401,6 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const spellSaveDc = 8 + profBonus + spellcastingAbilityMod;
   const spellAttackBonus = profBonus + spellcastingAbilityMod;
 
-  const conMod = getModifier(character.con);
-  let maxHp: number;
-  if (character.isCustomHp) {
-    maxHp = character.maxHp;
-  } else if (character.level === 1 && classData) {
-    maxHp = getClassLevel1Hp(classData) + conMod;
-  } else if (classData) {
-    const level1Base = getClassLevel1Hp(classData) + conMod;
-    const perLevel = getClassPerLevelHp(classData) + conMod;
-    maxHp = level1Base + (character.level - 1) * perLevel;
-  } else {
-    maxHp = character.maxHp;
-  }
-
   const hitDie = classData?.hitDie || 10;
   const hitDiceTotal = `${character.level}d${hitDie}`;
   const hitDiceRemaining = character.level;
@@ -437,8 +423,6 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     spellcastingAbility,
     spellSaveDc,
     spellAttackBonus,
-    maxHp,
-    currentHp: character.isCustomHp ? character.currentHp : maxHp,
     hitDiceTotal,
     hitDiceRemaining,
     ac,

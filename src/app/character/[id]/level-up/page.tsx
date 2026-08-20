@@ -29,7 +29,7 @@ export default function LevelUpPage() {
   });
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [hpResolved, setHpResolved] = useState<Record<number, boolean>>({});
+  const [hpResolved, setHpResolved] = useState<Record<number, number>>({});
   const [asiChoices, setAsiChoices] = useState<Record<number, { ability: string; delta: number }[]>>({});
   const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
@@ -69,8 +69,8 @@ export default function LevelUpPage() {
     [oldLevel, newLevel, className, character?.expertise, character?.skills]
   );
 
-  const handleHpResolve = useCallback((level: number) => {
-    setHpResolved((prev) => ({ ...prev, [level]: true }));
+  const handleHpResolve = useCallback((level: number, gain: number) => {
+    setHpResolved((prev) => ({ ...prev, [level]: gain }));
   }, []);
 
   const handleAsiChange = useCallback((level: number, ability: string, delta: number) => {
@@ -158,12 +158,18 @@ export default function LevelUpPage() {
       patch.spellSlots = { ...character.spellSlots, ...finalSpellSlots };
     }
 
+    const totalHpGain = Object.values(hpResolved).reduce((sum, gain) => sum + gain, 0);
+    if (totalHpGain > 0) {
+      patch.maxHp = (character.maxHp || 0) + totalHpGain;
+      patch.currentHp = (character.currentHp || 0) + totalHpGain;
+    }
+
     const derived = computeDerivedStats({ ...character, ...patch });
     const finalChar = { ...character, ...patch, ...derived };
 
     saveCharacter(finalChar);
     router.push(`/character/${id}`);
-  }, [character, oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, router, id]);
+  }, [character, oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, router, id, hpResolved]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -228,7 +234,7 @@ export default function LevelUpPage() {
     for (const section of sections) {
       switch (section.type) {
         case "hp":
-          if (!hpResolved[currentStep.level]) return false;
+          if (hpResolved[currentStep.level] === undefined) return false;
           break;
         case "asi":
           if ((asiChoices[currentStep.level]?.length || 0) === 0) return false;
@@ -269,13 +275,20 @@ export default function LevelUpPage() {
   const renderSection = (section: LevelUpStepSection) => {
     switch (section.type) {
       case "hp":
+        const runningScoresForHp = getRunningAbilityScores(currentStep.level);
+        const conModForHp = getModifier(runningScoresForHp.con);
+        const classDataForHp = getClassData(className);
+        const hitDieForHp = classDataForHp?.hitDie || 10;
+        const averageForHp = Math.floor(hitDieForHp / 2) + 1;
+        const hpGainForLevel = averageForHp + conModForHp;
         return (
           <HpStep
             step={{ ...section, level: currentStep.level } as any}
             className={className}
-            conMod={getModifier(getRunningAbilityScores(currentStep.level).con)}
-            onResolve={handleHpResolve}
-            resolved={hpResolved[currentStep.level] === true}
+            conMod={conModForHp}
+            onResolve={(level) => handleHpResolve(level, hpGainForLevel)}
+            resolved={hpResolved[currentStep.level] !== undefined}
+            gain={hpGainForLevel}
           />
         );
       case "features":
@@ -352,7 +365,7 @@ export default function LevelUpPage() {
   );
 }
 
-function HpStep({ step, className, conMod, onResolve, resolved }: { step: LevelUpStepSection; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
+function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: LevelUpStepSection; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean; gain?: number }) {
   const classData = getClassData(className);
   const hitDie = classData?.hitDie || 10;
   const average = Math.floor(hitDie / 2) + 1;
@@ -376,7 +389,7 @@ function HpStep({ step, className, conMod, onResolve, resolved }: { step: LevelU
       </div>
       {resolved && (
         <div className="text-center">
-          <span className="text-xs text-parchment/50">HP gain recorded for this level.</span>
+          <span className="text-xs text-parchment/50">HP gain recorded: +{gain || 0} HP</span>
         </div>
       )}
     </div>
