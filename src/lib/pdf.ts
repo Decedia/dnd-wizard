@@ -82,7 +82,7 @@ export function exportCharacterToPdf(character: Character): void {
     doc.setTextColor(120, 120, 120);
     doc.text(modText, x + 15, rowY + 10);
   });
-  y += 22;
+  y += 30;
   divider();
 
   const statsBlock = [
