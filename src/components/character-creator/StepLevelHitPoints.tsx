@@ -25,6 +25,9 @@ export function StepLevelHitPoints({ data, onChange }: StepLevelHitPointsProps) 
     onChange({ level: newLevel });
   };
 
+  const currentMaxHp = data.maxHp || level1Hp + (selectedLevel - 1) * ((classData?.hpPerLevel || 5) + conMod);
+  const currentHp = data.currentHp || currentMaxHp;
+
   return (
     <StepCard title="Level & Hit Points">
       <div className="space-y-4">
@@ -67,6 +70,33 @@ export function StepLevelHitPoints({ data, onChange }: StepLevelHitPointsProps) 
             </p>
           </div>
         )}
+
+        <div className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Max HP</label>
+            <input
+              type="number"
+              value={currentMaxHp}
+              onChange={(e) => {
+                const val = parseInt(e.target.value || "0", 10);
+                onChange({ maxHp: Math.max(1, isNaN(val) ? 1 : val) });
+              }}
+              className="input w-full text-center"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Current HP</label>
+            <input
+              type="number"
+              value={currentHp}
+              onChange={(e) => {
+                const val = parseInt(e.target.value || "0", 10);
+                onChange({ currentHp: Math.max(0, isNaN(val) ? 0 : val) });
+              }}
+              className="input w-full text-center"
+            />
+          </div>
+        </div>
       </div>
     </StepCard>
   );
