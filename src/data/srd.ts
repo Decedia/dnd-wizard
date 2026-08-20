@@ -486,13 +486,13 @@ export const classes: SRDClass[] = [
     levels: [
       { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "feature" }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "attack" }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues.", type: "feature" }], asi: false },
       { features: [{ name: "Cunning Action", description: "Use a bonus action to Dash, Disengage, or Hide.", type: "feature" }], asi: false },
-      { features: [], asi: false },
+      { features: [{ name: "Rogue Archetype", description: "Choose a rogue archetype: Thief, Assassin, or Arcane Trickster.", type: "feature" }], asi: false },
       { features: [], asi: true },
       { features: [{ name: "Uncanny Dodge", description: "Use your reaction to halve the damage from an attack that hits you.", type: "feature" }], asi: false },
       { features: [], asi: false },
       { features: [{ name: "Evasion", description: "Dodge out of the way of area effects on a successful Dexterity saving throw.", type: "feature" }], asi: false },
       { features: [], asi: true },
-      { features: [], asi: false },
+      { features: [{ name: "Rogue Archetype feature", description: "You gain a feature from your chosen Rogue Archetype.", type: "feature" }], asi: false },
       { features: [{ name: "Stroke of Luck", description: "Turn a missed attack into a hit or a failed ability check into a success.", type: "feature" }], asi: false },
     ],
     scalingFeatures: [

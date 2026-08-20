@@ -335,10 +335,9 @@ function HpStep({ step, className, onResolve, resolved }: { step: LevelUpStepSec
 
   return (
     <div className="space-y-4">
-      <p className="text-xs text-parchment/60">{step.description}</p>
       <div className="flex items-center justify-center gap-6">
         <div className="flex flex-col items-center gap-2">
-          <Dice type={diceType} size={80} onRoll={() => onResolve(step.level!)} />
+          <Dice key={`dice-${step.level}`} type={diceType} size={80} onRoll={() => onResolve(step.level!)} />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
         <button
@@ -375,7 +374,6 @@ function FeaturesStep({ step }: { step: LevelUpStepSection }) {
 function SubclassStep({ step, selected, onSelect }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void }) {
   return (
     <div className="space-y-3">
-      {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
       <div className="space-y-2">
         {step.subclassOptions?.map((option) => (
           <label
@@ -438,8 +436,6 @@ function AsiStep({
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-parchment/60">{step.description}</p>
-      <p className="text-xs text-parchment/50">Points remaining: {maxPoints - totalAllocated}</p>
       <div className="space-y-2">
         {abilities.map(({ key, label }) => {
           const baseScore = abilityScores[key];
@@ -612,7 +608,6 @@ function SpellSelectionStep({
 
   return (
     <div className="space-y-3">
-      {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
       <div className="flex gap-1 overflow-x-auto pb-1">
         {spellLevels.map((tab) => (
           <button
