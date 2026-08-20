@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { StepCard } from "./StepCard";
-import { fetchSRDData, type SRDClass } from "@/lib/srd-client";
+import { getStaticClasses, type SRDClassSelection } from "@/lib/srd-client";
 
 interface StepClassProps {
   data: { class: string };
@@ -10,31 +10,11 @@ interface StepClassProps {
 }
 
 export function StepClass({ data, onChange }: StepClassProps) {
-  const [classes, setClasses] = useState<SRDClass[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchSRDData()
-      .then((srd) => setClasses(srd.classes))
-      .catch(() => setClasses([]))
-      .finally(() => setLoading(false));
-  }, []);
+  const classes: SRDClassSelection[] = getStaticClasses();
 
   const handleSelect = useCallback((className: string) => {
     onChange({ class: className });
   }, [onChange]);
-
-  if (loading) {
-    return (
-      <StepCard title="Class">
-        <div className="space-y-3">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="h-24 animate-pulse rounded-lg bg-charcoal/40" />
-          ))}
-        </div>
-      </StepCard>
-    );
-  }
 
   return (
     <StepCard title="Class">
@@ -54,17 +34,8 @@ export function StepClass({ data, onChange }: StepClassProps) {
             >
               <div className="flex items-center justify-between">
                 <span className="font-display font-semibold text-parchment">{cls.name}</span>
-                <span className="text-xs text-parchment/40">d{cls.hitDie} Hit Die</span>
               </div>
-              <p className="mt-1 text-xs text-parchment/50">{cls.flavorText}</p>
-              <div className="mt-2 space-y-1">
-                {cls.features.map((feature) => (
-                  <div key={feature.name} className="text-xs text-parchment/60">
-                    <span className="font-medium text-gold/80">{feature.name}:</span>{" "}
-                    {feature.description}
-                  </div>
-                ))}
-              </div>
+              <p className="mt-1 text-xs text-parchment/50">{cls.description}</p>
             </button>
           );
         })}

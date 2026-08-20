@@ -1,4 +1,5 @@
-import racesData from "@/data/2026_races.json";
+import racesData from "@/data/2014_races.json";
+import classesData from "@/data/2014_classes.json";
 
 export interface SRDRace {
   name: string;
@@ -45,6 +46,11 @@ export interface SRDClass {
     description: string;
     features: { name: string; description: string }[];
   }[];
+}
+
+export interface SRDClassSelection {
+  name: string;
+  description: string;
 }
 
 export interface SRDSpell {
@@ -110,6 +116,10 @@ export async function fetchSRDData(): Promise<SRDData> {
 
 export function getStaticRaces(): SRDRace[] {
   return racesData.races as SRDRace[];
+}
+
+export function getStaticClasses(): SRDClassSelection[] {
+  return classesData.classes as SRDClassSelection[];
 }
 
 export function getCachedSRDData(): SRDData | null {
