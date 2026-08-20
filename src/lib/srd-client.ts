@@ -1,6 +1,10 @@
 import racesData from "@/data/2014_races.json";
 import classesData from "@/data/2014_classes.json";
 import { spells as spellsData } from "@/data/srd";
+import weaponsData from "@/data/2014_weapon.json";
+import armorsData from "@/data/2014_armor.json";
+import itemsData from "@/data/2014_items.json";
+import equipmentsData from "@/data/2014_equipments.json";
 
 export interface SRDRace {
   name: string;
@@ -68,6 +72,62 @@ export interface SRDSpell {
   duration: string;
   description: string;
   effect: string;
+}
+
+export interface SRDWeapon {
+  index: string;
+  name: string;
+  equipment_category: string;
+  description: string;
+  cost: { quantity: number; unit: string };
+  weight: number;
+  weapon_category: string;
+  category_range: string;
+  damage?: { damage_dice: string; damage_type: { index: string; name: string } };
+  two_handed_damage?: { damage_dice: string; damage_type: { index: string; name: string } };
+  properties?: { index: string; name: string }[];
+  throw_range?: { normal: number; long: number };
+}
+
+export interface SRDArmor {
+  index: string;
+  name: string;
+  equipment_category: string;
+  description: string;
+  cost: { quantity: number; unit: string };
+  weight: number;
+  armor_category: string;
+  armor_class: { base: number; dex_bonus: boolean; max_bonus?: number };
+  str_minimum: number;
+  stealth_disadvantage: boolean;
+}
+
+export interface SRDItem {
+  index: string;
+  name: string;
+  equipment_category: string;
+  description: string;
+  cost: { quantity: number; unit: string };
+  weight: number;
+}
+
+export interface SRDEquipmentDetail {
+  index: string;
+  name: string;
+  equipment_category: string;
+  description: string;
+  cost: { quantity: number; unit: string };
+  weight: number;
+  weapon_category?: string;
+  category_range?: string;
+  damage?: { damage_dice: string; damage_type: { index: string; name: string } };
+  two_handed_damage?: { damage_dice: string; damage_type: { index: string; name: string } };
+  properties?: { index: string; name: string }[];
+  throw_range?: { normal: number; long: number };
+  armor_category?: string;
+  armor_class?: { base: number; dex_bonus: boolean; max_bonus?: number };
+  str_minimum?: number;
+  stealth_disadvantage?: boolean;
 }
 
 export interface SRDEquipment {
@@ -146,6 +206,91 @@ export function getCachedSRDData(): SRDData | null {
     return memoryCache.data;
   }
   return null;
+}
+
+export function getStaticWeapons(): SRDWeapon[] {
+  return weaponsData.weapons as SRDWeapon[];
+}
+
+export function getStaticWeapon(name: string): SRDWeapon | undefined {
+  return getStaticWeapons().find((w) => w.name === name);
+}
+
+export function getStaticArmors(): SRDArmor[] {
+  return armorsData.armors as SRDArmor[];
+}
+
+export function getStaticArmor(name: string): SRDArmor | undefined {
+  return getStaticArmors().find((a) => a.name === name);
+}
+
+export function getStaticItems(): SRDItem[] {
+  return itemsData.items as SRDItem[];
+}
+
+export function getStaticItem(name: string): SRDItem | undefined {
+  return getStaticItems().find((i) => i.name === name);
+}
+
+export function getStaticEquipments(): SRDEquipmentDetail[] {
+  return equipmentsData.equipments as SRDEquipmentDetail[];
+}
+
+export function getStaticEquipment(name: string): SRDEquipmentDetail | undefined {
+  return getStaticEquipments().find((e) => e.name === name);
+}
+
+function mapEquipmentCategory(category: string): "weapon" | "armor" | "item" {
+  if (category === "weapon") return "weapon";
+  if (category === "armor") return "armor";
+  return "item";
+}
+
+function mapArmorType(category: string): "light" | "medium" | "heavy" | "shield" | undefined {
+  if (category === "Light") return "light";
+  if (category === "Medium") return "medium";
+  if (category === "Heavy") return "heavy";
+  if (category === "Shield") return "shield";
+  return undefined;
+}
+
+function mapWeaponCategory(range: string | undefined): "melee" | "ranged" | undefined {
+  if (!range) return undefined;
+  if (range.includes("Melee")) return "melee";
+  if (range.includes("Ranged")) return "ranged";
+  return undefined;
+}
+
+export function getEquipmentData(name: string): SRDEquipment | undefined {
+  const detail = getStaticEquipment(name);
+  if (!detail) return undefined;
+  return {
+    name: detail.name,
+    description: detail.description,
+    type: mapEquipmentCategory(detail.equipment_category),
+    category: mapWeaponCategory(detail.category_range),
+    damageDice: detail.damage?.damage_dice,
+    damageType: detail.damage?.damage_type?.name,
+    baseAC: detail.armor_class?.base,
+    armorType: mapArmorType(detail.armor_category || ""),
+    maxDexBonus: detail.armor_class?.max_bonus ?? (detail.armor_class?.dex_bonus ? null : 0),
+  };
+}
+
+export function getEquipmentNames(): string[] {
+  return getStaticEquipments().map((e) => e.name);
+}
+
+export function getWeaponNames(): string[] {
+  return getStaticWeapons().map((w) => w.name);
+}
+
+export function getArmorNames(): string[] {
+  return getStaticArmors().map((a) => a.name);
+}
+
+export function getItemNames(): string[] {
+  return getStaticItems().map((i) => i.name);
 }
 
 export function clearSRDCache() {

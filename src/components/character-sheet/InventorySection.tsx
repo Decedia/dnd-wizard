@@ -4,7 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
-import { getEquipmentData, equipment } from "@/data/srd";
+import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
 import { useEffect } from "react";
 
@@ -372,8 +372,8 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                   className="input flex-1 min-w-[120px]"
                 >
                   <option value="">Select item...</option>
-                  {equipment.map((eq) => (
-                    <option key={eq.name} value={eq.name}>{eq.name}</option>
+                  {getEquipmentNames().map((name) => (
+                    <option key={name} value={name}>{name}</option>
                   ))}
                   <option value="Custom Item">Custom Item</option>
                 </select>

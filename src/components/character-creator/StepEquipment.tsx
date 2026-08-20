@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
-import { getEquipmentData, equipment } from "@/data/srd";
+import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
 import { DiceType } from "@/components/Dice";
 
@@ -366,8 +366,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                   className="input flex-1 min-w-[120px]"
                 >
                   <option value="">Select item...</option>
-                  {equipment.map((eq) => (
-                    <option key={eq.name} value={eq.name}>{eq.name}</option>
+                  {getEquipmentNames().map((name) => (
+                    <option key={name} value={name}>{name}</option>
                   ))}
                   <option value="Custom Item">Custom Item</option>
                 </select>

@@ -1,4 +1,4 @@
-import { getClassData } from "@/data/srd";
+import { getStaticClass } from "@/lib/srd-client";
 import { getClassLevel1Hp, getClassPerLevelHp, getModifier } from "@/lib/storage";
 
 export interface LevelUpResult {
@@ -52,7 +52,7 @@ export interface LevelUpChanges {
 }
 
 export function computeLevelUp(oldLevel: number, newLevel: number, className: string): LevelUpResult {
-  const classData = getClassData(className);
+  const classData = getStaticClass(className);
   if (!classData || !classData.levels) {
     return {
       oldLevel,
@@ -72,7 +72,7 @@ export function computeLevelUp(oldLevel: number, newLevel: number, className: st
   for (let level = oldLevel + 1; level <= newLevel; level++) {
     const levelData = classData.levels[level - 1];
     if (levelData) {
-      addedFeatures.push(...levelData.features);
+      addedFeatures.push(...levelData.features.map((f: any) => ({ name: f.name, description: f.description || f.name })));
       if (levelData.asi) {
         asiLevels.push(level);
       }
@@ -105,7 +105,7 @@ export function generateLevelUpSteps(
   currentSkills: Record<string, boolean> = {},
   includeCurrentLevel: boolean = false
 ): LevelUpStep[] {
-  const classData = getClassData(className);
+  const classData = getStaticClass(className);
   if (!classData || !classData.levels) return [];
 
   const steps: LevelUpStep[] = [];
@@ -126,7 +126,7 @@ export function generateLevelUpSteps(
     if (levelData?.features?.length > 0) {
       sections.push({
         type: "features",
-        features: levelData.features,
+        features: levelData.features.map((f: any) => ({ name: f.name, description: f.description || f.name })),
       });
     }
 
