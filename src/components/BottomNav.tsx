@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Home, Wand2, ScrollText, Dices } from "lucide-react";
+import { Home, Wand2, Dices } from "lucide-react";
 
 const navItems = [
   {
@@ -17,11 +17,6 @@ const navItems = [
     isHero: true,
   },
   {
-    name: "Characters",
-    href: "/",
-    icon: ScrollText,
-  },
-  {
     name: "Dice",
     href: "/dice",
     icon: Dices,
@@ -31,20 +26,23 @@ const navItems = [
 export function BottomNav() {
   const pathname = usePathname();
 
+  const activeIndex = navItems.findIndex((item) => {
+    if (item.isHero) return pathname === item.href;
+    return pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+  });
+
   return (
     <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-sm safe-bottom">
-      <div className="flex items-center rounded-full border border-gold/20 bg-charcoal-light/90 shadow-2xl backdrop-blur-xl overflow-hidden">
-        {navItems.map((item) => {
+      <div className="flex items-center rounded-full border border-gold/20 bg-charcoal-light/90 shadow-2xl backdrop-blur-xl overflow-hidden relative">
+        {navItems.map((item, index) => {
           const Icon = item.icon;
-          const isActive = item.isHero
-            ? pathname === item.href
-            : pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+          const isActive = index === activeIndex;
           return (
             <Link
               key={item.name}
               href={item.href}
               className={`
-                flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200
+                flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10
                 ${item.isHero
                   ? "bg-burgundy shadow-lg shadow-burgundy/30"
                   : ""
@@ -60,6 +58,15 @@ export function BottomNav() {
             </Link>
           );
         })}
+        {activeIndex >= 0 && (
+          <div
+            className="absolute top-1 bottom-1 rounded-full bg-gold/10 transition-all duration-300 ease-out pointer-events-none"
+            style={{
+              left: `${(activeIndex / navItems.length) * 100}%`,
+              width: `${(100 / navItems.length)}%`,
+            }}
+          />
+        )}
       </div>
     </nav>
   );
