@@ -54,7 +54,7 @@ export function BottomNav() {
         })}
         {activeIndex >= 0 && (
           <div
-            className="absolute top-1 bottom-1 rounded-full bg-burgundy/20 transition-all duration-300 ease-out pointer-events-none"
+            className="absolute top-1 bottom-1 rounded-full bg-burgundy transition-all duration-300 ease-out pointer-events-none"
             style={{
               left: `${(activeIndex / navItems.length) * 100}%`,
               width: `${(100 / navItems.length)}%`,
