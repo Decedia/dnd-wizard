@@ -161,8 +161,9 @@ export function exportCharacterToPdf(character: Character): void {
       checkPageBreak(5);
       const x = idx % 2 === 0 ? margin : margin + colW;
       const rowY = y + Math.floor(idx / 2) * 5;
-      const mark = skill.proficient ? "★ " : "";
-      doc.text(`${mark}${skill.name}`, x, rowY);
+      const proficientMark = skill.proficient ? "★ " : "";
+      const expertiseBadge = (character.expertise || []).includes(skill.name) ? " [EXPERTISE]" : "";
+      doc.text(`${proficientMark}${skill.name}${expertiseBadge}`, x, rowY);
     });
     y += Math.ceil(skillEntries.length / 2) * 5 + 3;
     divider();
