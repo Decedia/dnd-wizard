@@ -16,6 +16,9 @@ interface SpellsSectionProps {
 export function SpellsSection({ character, onChange, collapsed = false, onToggleCollapse }: SpellsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
+  const [editingCostumeSpellId, setEditingCostumeSpellId] = useState<string | null>(null);
+  const [isAddingCostumeSpell, setIsAddingCostumeSpell] = useState(false);
+  const [newCostumeSpell, setNewCostumeSpell] = useState({ name: "", description: "" });
 
   const updateItem = (id: string, patch: Partial<Character["spells"][number]>) => {
     onChange({
@@ -61,6 +64,41 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
     onChange({
       spells: character.spells.map((s) => (s.id === spellId ? updated : s)),
     });
+  };
+
+  const addCostumeSpell = () => {
+    if (!newCostumeSpell.name.trim()) return;
+    const newCostume: Character["costumeSpells"][number] = {
+      id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      name: newCostumeSpell.name.trim(),
+      description: newCostumeSpell.description.trim(),
+    };
+    onChange({
+      costumeSpells: [...character.costumeSpells, newCostume],
+    });
+    setNewCostumeSpell({ name: "", description: "" });
+    setIsAddingCostumeSpell(false);
+  };
+
+  const updateCostumeSpell = (id: string, patch: Partial<Character["costumeSpells"][number]>) => {
+    onChange({
+      costumeSpells: character.costumeSpells.map((cs) =>
+        cs.id === id ? { ...cs, ...patch } : cs
+      ),
+    });
+  };
+
+  const removeCostumeSpell = (id: string) => {
+    onChange({
+      costumeSpells: character.costumeSpells.filter((cs) => cs.id !== id),
+    });
+    if (editingCostumeSpellId === id) {
+      setEditingCostumeSpellId(null);
+    }
+  };
+
+  const saveCostumeSpellEdit = (id: string) => {
+    setEditingCostumeSpellId(null);
   };
 
   return (
@@ -182,6 +220,129 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
           >
             + Add Spell
           </button>
+
+          {character.costumeSpells.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-sm font-semibold text-parchment/70 mb-2">Costume Spells</h3>
+              <div className="space-y-2">
+                {character.costumeSpells.map((costumeSpell) => {
+                  const isEditing = editingCostumeSpellId === costumeSpell.id;
+                  return (
+                    <div key={costumeSpell.id} className="rounded-lg border border-parchment/10 bg-charcoal/40 p-3">
+                      {isEditing ? (
+                        <div className="space-y-2">
+                          <input
+                            type="text"
+                            value={costumeSpell.name}
+                            onChange={(e) => updateCostumeSpell(costumeSpell.id, { name: e.target.value })}
+                            onBlur={onFieldBlur}
+                            className="input flex-1"
+                            placeholder="Costume spell name"
+                          />
+                          <textarea
+                            value={costumeSpell.description}
+                            onChange={(e) => updateCostumeSpell(costumeSpell.id, { description: e.target.value })}
+                            onBlur={onFieldBlur}
+                            className="textarea.input min-h-[60px]"
+                            placeholder="Description"
+                          />
+                          <div className="flex gap-2">
+                            <button
+                              type="button"
+                              onClick={() => saveCostumeSpellEdit(costumeSpell.id)}
+                              className="rounded-lg border border-gold/40 px-3 py-1.5 text-xs font-medium text-gold transition-colors hover:border-gold hover:text-parchment"
+                            >
+                              Save
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setEditingCostumeSpellId(null)}
+                              className="rounded-lg border border-parchment/20 px-3 py-1.5 text-xs font-medium text-parchment/60 transition-colors hover:border-parchment/40 hover:text-parchment"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex-1">
+                            <div className="text-sm font-semibold text-parchment">{costumeSpell.name || "Unnamed Costume Spell"}</div>
+                            {costumeSpell.description && (
+                              <p className="mt-1 text-sm text-parchment/70">{costumeSpell.description}</p>
+                            )}
+                          </div>
+                          <div className="flex gap-1 shrink-0">
+                            <button
+                              type="button"
+                              onClick={() => setEditingCostumeSpellId(costumeSpell.id)}
+                              className="text-parchment/40 hover:text-gold"
+                              aria-label="Edit costume spell"
+                            >
+                              <EditIcon className="h-4 w-4" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => removeCostumeSpell(costumeSpell.id)}
+                              className="text-parchment/40 hover:text-parchment"
+                              aria-label="Remove costume spell"
+                            >
+                              <XIcon className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              {!isAddingCostumeSpell ? (
+                <button
+                  type="button"
+                  onClick={() => setIsAddingCostumeSpell(true)}
+                  className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
+                >
+                  + Add Costume Spell
+                </button>
+              ) : (
+                <div className="mt-3 rounded-lg border border-parchment/10 bg-charcoal/40 p-3 space-y-2">
+                  <input
+                    type="text"
+                    value={newCostumeSpell.name}
+                    onChange={(e) => setNewCostumeSpell({ ...newCostumeSpell, name: e.target.value })}
+                    onBlur={onFieldBlur}
+                    className="input"
+                    placeholder="Costume spell name"
+                  />
+                  <textarea
+                    value={newCostumeSpell.description}
+                    onChange={(e) => setNewCostumeSpell({ ...newCostumeSpell, description: e.target.value })}
+                    onBlur={onFieldBlur}
+                    className="textarea.input min-h-[60px]"
+                    placeholder="Description"
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={addCostumeSpell}
+                      className="rounded-lg border border-gold/40 px-3 py-1.5 text-xs font-medium text-gold transition-colors hover:border-gold hover:text-parchment"
+                    >
+                      Add
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsAddingCostumeSpell(false);
+                        setNewCostumeSpell({ name: "", description: "" });
+                      }}
+                      className="rounded-lg border border-parchment/20 px-3 py-1.5 text-xs font-medium text-parchment/60 transition-colors hover:border-parchment/40 hover:text-parchment"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </>
       )}
 
@@ -199,6 +360,15 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
         </div>
       )}
     </SectionCard>
+  );
+}
+
+function EditIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
   );
 }
 
