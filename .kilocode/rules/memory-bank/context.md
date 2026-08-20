@@ -71,6 +71,7 @@
 - [x] Modified `generateLevelUpSteps` to always include level 1 step and moved expertise into level 1
 - [x] Removed expertise selection from StepSkills during Rogue character creation
 - [x] Level 1 step during character creation skips HP rolling
+- [x] Fixed create page `handleNext` condition to properly reach final Finish & Save step for level > 1
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure

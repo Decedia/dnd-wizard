@@ -130,7 +130,7 @@ export default function CharacterCreate() {
       return;
     }
 
-    if (step > BASE_STEPS + 1 && perLevelSteps.length > 0) {
+    if (step > BASE_STEPS + 1 && step < totalSteps && perLevelSteps.length > 0) {
       const perLevelIndex = step - BASE_STEPS - 2;
       if (perLevelIndex < perLevelSteps.length - 1) {
         setStep((s) => s + 1);
