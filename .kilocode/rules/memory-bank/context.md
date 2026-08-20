@@ -63,6 +63,8 @@
 - [x] Added spell selection tabbed UI to both PerLevelStepsFlow and LevelUpFlow
 - [x] Unified Level Up logic between creation and post-creation via `generateLevelUpSteps`
 - [x] Consolidated per-level steps: each level now produces one step with multiple sections (hp, features, subclass, asi, expertise, spellSlots, spellSelection)
+- [x] Fixed granted equipment quantity display template literal bug in StepEquipment
+- [x] Added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
@@ -115,3 +117,4 @@ Wizard restructure complete. Next steps:
 | 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |
 | 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |
 | 2026-08-19 | Consolidated per-level steps: each level produces one step with multiple sections (hp/features/subclass/asi/expertise/spellSlots/spellSelection); updated LevelUpStep type and both PerLevelStepsFlow and LevelUpFlow to render sections |
+| 2026-08-20 | Fixed granted equipment quantity display bug (`x{itemRef.quantity}` → `x${itemRef.quantity}`); added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |

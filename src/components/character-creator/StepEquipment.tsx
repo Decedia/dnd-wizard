@@ -159,7 +159,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                   <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
                     <span className="text-sm text-parchment/80 flex-1">
                       {itemRef.name}
-                      {itemRef.quantity && itemRef.quantity > 1 ? ` (x{itemRef.quantity})` : ""}
+                       {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
                     </span>
                     <span className="text-[10px] text-green-400/70">Granted</span>
                   </div>
