@@ -24,6 +24,26 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [selectedSpells, setSelectedSpells] = useState<Record<string, string[]>>({});
 
+  const baseAbilityScores = useMemo(() => ({
+    str: character.str || 0,
+    dex: character.dex || 0,
+    con: character.con || 0,
+    int: character.int || 0,
+    wis: character.wis || 0,
+    cha: character.cha || 0,
+  }), [character]);
+
+  const getRunningAbilityScores = useCallback((stepLevel: number) => {
+    const scores = { ...baseAbilityScores };
+    for (let level = 2; level < stepLevel; level++) {
+      const choices = asiChoices[level] || [];
+      for (const c of choices) {
+        scores[c.ability as keyof typeof scores] = (scores[c.ability as keyof typeof scores] || 0) + c.delta;
+      }
+    }
+    return scores;
+  }, [baseAbilityScores, asiChoices]);
+
   const handleHpResolve = useCallback((level: number) => {
     setHpResolved((prev) => ({ ...prev, [level]: true }));
   }, []);
@@ -100,6 +120,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   const currentStep = steps[currentStepIndex];
   const isLastStep = currentStepIndex === steps.length - 1;
   const sections = currentStep.sections || [];
+  const currentStepAbilityScores = getRunningAbilityScores(currentStep.level);
 
   const canProceed = (): boolean => {
     for (const section of sections) {
@@ -150,7 +171,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           <HpStepInline
             step={{ ...section, level: currentStep.level } as any}
             className={character.class}
-            conMod={getModifier(character.con)}
+            conMod={getModifier(currentStepAbilityScores.con)}
             onResolve={handleHpResolve}
             resolved={hpResolved[currentStep.level] === true}
           />
@@ -169,14 +190,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
         return (
           <AsiStepInline
             step={{ ...section, level: currentStep.level } as any}
-            abilityScores={{
-              str: character.str,
-              dex: character.dex,
-              con: character.con,
-              int: character.int,
-              wis: character.wis,
-              cha: character.cha,
-            }}
+            abilityScores={currentStepAbilityScores}
             choices={asiChoices[currentStep.level] || []}
             onChange={(ability, delta) => handleAsiChange(currentStep.level, ability, delta)}
           />
@@ -198,7 +212,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
         return (
           <SpellSelectionStepInline
             step={{ ...section, level: currentStep.level } as any}
-            character={character}
+            character={{ ...character, ...currentStepAbilityScores }}
             selected={selectedSpells[`level-${currentStep.level}`] || []}
             onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [`level-${currentStep.level}`]: names }))}
           />

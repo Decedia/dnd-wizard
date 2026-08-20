@@ -52,6 +52,28 @@ export function LevelUpFlow({
 
   const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
 
+  const runningAbilityScores = useMemo(() => {
+    const scores = { ...currentAbilityScores };
+    for (let level = oldLevel + 1; level <= newLevel; level++) {
+      const choices = asiChoices[level] || [];
+      for (const c of choices) {
+        scores[c.ability as keyof typeof scores] = (scores[c.ability as keyof typeof scores] || 0) + c.delta;
+      }
+    }
+    return scores;
+  }, [currentAbilityScores, asiChoices, oldLevel, newLevel]);
+
+  const getAbilityScoresForStep = useCallback((stepLevel: number) => {
+    const scores = { ...currentAbilityScores };
+    for (let level = oldLevel + 1; level < stepLevel; level++) {
+      const choices = asiChoices[level] || [];
+      for (const c of choices) {
+        scores[c.ability as keyof typeof scores] = (scores[c.ability as keyof typeof scores] || 0) + c.delta;
+      }
+    }
+    return scores;
+  }, [currentAbilityScores, asiChoices, oldLevel]);
+
   const handleHpResolve = useCallback((level: number) => {
     setHpResolved((prev) => ({ ...prev, [level]: true }));
   }, []);
@@ -179,6 +201,7 @@ export function LevelUpFlow({
           <HpStep
             step={{ ...section, level: currentStep.level } as any}
             className={className}
+            conMod={getModifier(runningAbilityScores.con)}
             onResolve={handleHpResolve}
             resolved={hpResolved[currentStep.level] === true}
           />
@@ -191,7 +214,7 @@ export function LevelUpFlow({
         return (
           <AsiStep
             step={{ ...section, level: currentStep.level } as any}
-            abilityScores={currentAbilityScores}
+            abilityScores={getAbilityScoresForStep(currentStep.level)}
             choices={asiChoices[currentStep.level] || []}
             onChange={(ability, delta) => handleAsiChange(currentStep.level, ability, delta)}
           />
@@ -213,7 +236,7 @@ export function LevelUpFlow({
         return (
           <SpellSelectionStep
             step={{ ...section, level: currentStep.level } as any}
-            character={{ class: className, level: newLevel, ...currentAbilityScores } as any}
+            character={{ class: className, level: newLevel, ...getAbilityScoresForStep(currentStep.level) } as any}
             selected={selectedSpells[currentStep.level] || []}
             onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [currentStep.level]: names }))}
           />
@@ -257,10 +280,9 @@ export function LevelUpFlow({
   );
 }
 
-function HpStep({ step, className, onResolve, resolved }: { step: LevelUpStep; className: string; onResolve: (level: number) => void; resolved: boolean }) {
+function HpStep({ step, className, conMod, onResolve, resolved }: { step: LevelUpStep; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
   const classData = getClassData(className);
   const hitDie = classData?.hitDie || 10;
-  const conMod = getModifier(10);
   const average = Math.floor(hitDie / 2) + 1;
   const diceType = `d${hitDie}` as DiceType;
 

@@ -28,7 +28,7 @@ export function BottomNav() {
 
   const activeIndex = navItems.findIndex((item) => {
     if (item.isHero) return pathname === item.href;
-    return pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+    return pathname === item.href;
   });
 
   return (
