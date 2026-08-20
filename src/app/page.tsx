@@ -40,15 +40,6 @@ export default function Home() {
       <main className="px-4 py-6 pb-28">
         <div className="mb-4">
           <Link
-            href="/character/create"
-            className="flex items-center justify-center gap-2 rounded-full bg-burgundy px-6 py-4 text-lg font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98]"
-          >
-            <span className="text-2xl leading-none">🐉</span>
-            <span>Create New Character</span>
-          </Link>
-        </div>
-        <div className="mb-4">
-          <Link
             href="/dice"
             className="flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-white/50 hover:bg-white/20 active:scale-[0.98]"
           >
