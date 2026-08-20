@@ -10,7 +10,9 @@
 - **Static subclass data**: `src/data/2014_subclasses.json` contains all 12 subclasses with features and descriptions fetched from API
 - **Static equipment data**: `src/data/2014_weapon.json`, `2014_armor.json`, `2014_items.json`, `2014_equipments.json` contain full equipment data from API
 - **Static spell data**: Spells still in `src/data/srd.ts` (28 spells, levels 0-5)
-- **Client data access**: `src/lib/srd-client.ts` provides `getStaticRaces/Race`, `getStaticClasses/Class`, `getStaticSpells`, `getStaticWeapons/Armors/Items/Equipments`, `getEquipmentData()` and more
+- **Static wizard spell data**: `src/data/2014_wizard_spells.json` contains all 204 wizard spells from API (levels 0-9)
+- **Client data access**: `src/lib/srd-client.ts` provides `getStaticRaces/Race`, `getStaticClasses/Class`, `getStaticSpells`, `getStaticWizardSpells`, `getStaticWeapons/Armors/Items/Equipments`, `getEquipmentData()` and more
+- **Wizard spell restriction**: Spell selection components (`PerLevelStepsFlow`, `LevelUpFlow`, `level-up/page`) use `getStaticWizardSpells()` when class is Wizard, otherwise `getStaticSpells()`
 - **All components migrated**: No components import from `src/data/srd.ts` except `src/lib/srd-client.ts` for spells and `src/lib/storage.ts` for getRaceData helper
 
 ### Creation Wizard Restructure
@@ -130,6 +132,7 @@
 | `src/data/2014_armor.json` | Static armor data (13 armors) | ✅ Ready |
 | `src/data/2014_items.json` | Static item data (187 items) | ✅ Ready |
 | `src/data/2014_equipments.json` | Combined static equipment data (237 items) | ✅ Ready |
+| `src/data/2014_wizard_spells.json` | Wizard-only spell list (204 spells, levels 0-9) | ✅ Ready |
 | `src/lib/srd-client.ts` | Static data accessors for all SRD data | ✅ Ready |
 | `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
 | `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with sections consolidation | ✅ Ready |
@@ -172,4 +175,9 @@ Wizard restructure complete. Next steps:
 | 2026-08-20 | Added `getStaticWeapons/Armors/Items/Equipments()` and `getEquipmentData()` to `srd-client.ts`; migrated StepEquipment and InventorySection to use static equipment data |
 | 2026-08-20 | Fetched all subclass data from API into `2014_subclasses.json`; updated `2014_classes.json` subclass features with real API descriptions |
 | 2026-08-20 | Verified all class feature descriptions match API; no changes needed (already correct) |
+| 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |
+| 2026-08-20 | Fetched all 204 wizard spells from D&D 5e API into `2014_wizard_spells.json` (levels 0-9, 14-27-31-28-23-23-19-15-12-12 spells per level) |
+| 2026-08-20 | Added `SRDWizardSpell` interface and `getStaticWizardSpells()`, `getStaticWizardSpell()`, `getWizardSpellNames()` to `srd-client.ts` |
+| 2026-08-20 | Updated spell selection in `PerLevelStepsFlow.tsx`, `level-up/page.tsx`, and `LevelUpFlow.tsx` to use wizard-only spell list when class is Wizard |
+| 2026-08-20 | Fixed LevelUpFlow prop naming: renamed `className` to `charClass` to avoid TSX parsing conflicts; updated child components `HpStep` and `ExpertiseStep` |
 | 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |

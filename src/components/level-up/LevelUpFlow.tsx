@@ -6,14 +6,14 @@ import { ProgressIndicator } from "@/components/character-creator/ProgressIndica
 import { StepCard } from "@/components/character-creator/StepCard";
 import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection } from "@/lib/level-up";
-import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
+import { getStaticClass, getStaticSpells, getStaticWizardSpells } from "@/lib/srd-client";
 import { getModifier } from "@/lib/storage";
 
 interface LevelUpFlowProps {
   open: boolean;
   oldLevel: number;
   newLevel: number;
-  className: string;
+  charClass: string;
   currentAbilityScores: {
     str: number;
     dex: number;
@@ -32,7 +32,7 @@ export function LevelUpFlow({
   open,
   oldLevel,
   newLevel,
-  className,
+  charClass,
   currentAbilityScores,
   currentExpertise,
   currentSkills,
@@ -46,8 +46,8 @@ export function LevelUpFlow({
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
 
   const steps = useMemo(
-    () => generateLevelUpSteps(oldLevel, newLevel, className, currentExpertise, currentSkills),
-    [oldLevel, newLevel, className, currentExpertise, currentSkills]
+    () => generateLevelUpSteps(oldLevel, newLevel, charClass, currentExpertise, currentSkills),
+    [oldLevel, newLevel, charClass, currentExpertise, currentSkills]
   );
 
   const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
@@ -100,7 +100,7 @@ export function LevelUpFlow({
     let finalSpellSlots: Record<number, number> | null = null;
 
     for (let level = oldLevel + 1; level <= newLevel; level++) {
-      const levelData = getStaticClass(className)?.levels[level - 1];
+      const levelData = getStaticClass(charClass)?.levels[level - 1];
       if (levelData?.features) {
         allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: f.description || f.name })));
       }
@@ -128,7 +128,7 @@ export function LevelUpFlow({
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
     });
-  }, [oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, onComplete]);
+  }, [oldLevel, newLevel, charClass, subclassChoice, asiChoices, expertiseChoices, onComplete]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -200,7 +200,7 @@ export function LevelUpFlow({
         return (
           <HpStep
             step={{ ...section, level: currentStep.level } as any}
-            className={className}
+            charClass={charClass}
             conMod={getModifier(runningAbilityScores.con)}
             onResolve={handleHpResolve}
             resolved={hpResolved[currentStep.level] === true}
@@ -223,7 +223,7 @@ export function LevelUpFlow({
         return (
           <ExpertiseStep
             step={{ ...section, level: currentStep.level } as any}
-            className={className}
+            charClass={charClass}
             currentExpertise={currentExpertise}
             currentSkills={currentSkills}
             selected={expertiseChoices[currentStep.level] || []}
@@ -236,7 +236,7 @@ export function LevelUpFlow({
         return (
           <SpellSelectionStep
             step={{ ...section, level: currentStep.level } as any}
-            character={{ class: className, level: newLevel, ...getAbilityScoresForStep(currentStep.level) } as any}
+            character={{ class: charClass, level: newLevel, ...getAbilityScoresForStep(currentStep.level) } as any}
             selected={selectedSpells[currentStep.level] || []}
             onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [currentStep.level]: names }))}
           />
@@ -280,8 +280,8 @@ export function LevelUpFlow({
   );
 }
 
-function HpStep({ step, className, conMod, onResolve, resolved }: { step: LevelUpStep; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
-  const classData = getStaticClass(className);
+function HpStep({ step, charClass, conMod, onResolve, resolved }: { step: LevelUpStep; charClass: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
+  const classData = getStaticClass(charClass);
   const hitDie = classData?.hitDie || 10;
   const average = Math.floor(hitDie / 2) + 1;
   const diceType = `d${hitDie}` as DiceType;
@@ -431,14 +431,14 @@ function AsiStep({
 
 function ExpertiseStep({
   step,
-  className,
+  charClass,
   currentExpertise,
   currentSkills,
   selected,
   onSelect,
 }: {
   step: LevelUpStepSection;
-  className: string;
+  charClass: string;
   currentExpertise: string[];
   currentSkills: Record<string, boolean>;
   selected: string[];
@@ -460,7 +460,7 @@ function ExpertiseStep({
     .map(([name]) => name);
 
   const options = [...proficientSkills];
-  if (className === "Rogue" && !options.includes("Thieves' Tools")) {
+  if (charClass === "Rogue" && !options.includes("Thieves' Tools")) {
     options.push("Thieves' Tools");
   }
 
@@ -547,13 +547,15 @@ function SpellSelectionStep({
   }, [classData, character.level, step.spellSlots]);
 
   const currentTab = spellLevels.find((l) => l.key === activeTab);
+  const isWizardClass = character.class === "Wizard";
   const tabSpells = useMemo(() => {
     if (!currentTab) return [];
+    const spellList = isWizardClass ? getStaticWizardSpells() : getStaticSpells();
     if (currentTab.level === 0) {
-      return getStaticSpells().filter((s) => s.level === 0);
+      return spellList.filter((s) => s.level === 0);
     }
-    return getStaticSpells().filter((s) => s.level === currentTab!.level);
-  }, [currentTab]);
+    return spellList.filter((s) => s.level === currentTab!.level);
+  }, [currentTab, isWizardClass]);
 
   const toggleSpell = (spellName: string) => {
     if (selected.includes(spellName)) {

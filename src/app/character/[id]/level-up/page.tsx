@@ -8,7 +8,7 @@ import { ProgressIndicator } from "@/components/character-creator/ProgressIndica
 import { StepCard } from "@/components/character-creator/StepCard";
 import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection } from "@/lib/level-up";
-import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
+import { getStaticClass, getStaticSpells, getStaticWizardSpells } from "@/lib/srd-client";
 import { getModifier, getCharacter, saveCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 
 export default function LevelUpPage() {
@@ -630,11 +630,12 @@ function SpellSelectionStep({
   const currentTab = spellLevels.find((l) => l.key === activeTab);
   const tabSpells = useMemo(() => {
     if (!currentTab) return [];
+    const spellList = character.class === "Wizard" ? getStaticWizardSpells() : getStaticSpells();
     if (currentTab.level === 0) {
-      return getStaticSpells().filter((s) => s.level === 0);
+      return spellList.filter((s) => s.level === 0);
     }
-    return getStaticSpells().filter((s) => s.level === currentTab!.level);
-  }, [currentTab]);
+    return spellList.filter((s) => s.level === currentTab!.level);
+  }, [currentTab, character.class]);
 
   const toggleSpell = (spellName: string) => {
     if (selected.includes(spellName)) {

@@ -5,6 +5,7 @@ import weaponsData from "@/data/2014_weapon.json";
 import armorsData from "@/data/2014_armor.json";
 import itemsData from "@/data/2014_items.json";
 import equipmentsData from "@/data/2014_equipments.json";
+import wizardSpellsData from "@/data/2014_wizard_spells.json";
 
 export interface SRDRace {
   name: string;
@@ -72,6 +73,24 @@ export interface SRDSpell {
   duration: string;
   description: string;
   effect: string;
+}
+
+export interface SRDWizardSpell {
+  index: string;
+  name: string;
+  level: number;
+  school: string;
+  castingTime: string;
+  range: string;
+  duration: string;
+  description: string[];
+  effect: string;
+  higherLevel?: string[];
+  components: string[];
+  material?: string;
+  ritual: boolean;
+  concentration: boolean;
+  classes: string[];
 }
 
 export interface SRDWeapon {
@@ -291,6 +310,18 @@ export function getArmorNames(): string[] {
 
 export function getItemNames(): string[] {
   return getStaticItems().map((i) => i.name);
+}
+
+export function getStaticWizardSpells(): SRDWizardSpell[] {
+  return (wizardSpellsData as any).spells as SRDWizardSpell[];
+}
+
+export function getStaticWizardSpell(name: string): SRDWizardSpell | undefined {
+  return getStaticWizardSpells().find((s) => s.name === name);
+}
+
+export function getWizardSpellNames(): string[] {
+  return getStaticWizardSpells().map((s) => s.name);
 }
 
 export function clearSRDCache() {
