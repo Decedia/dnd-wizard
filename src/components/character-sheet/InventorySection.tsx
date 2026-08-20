@@ -5,7 +5,6 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
 import { getEquipmentData, getClassData } from "@/data/srd";
-import { useState } from "react";
 
 interface InventorySectionProps {
   character: Character;
@@ -19,7 +18,6 @@ interface EquipmentRadioGroup {
 
 export function InventorySection({ character, onChange }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const [equipChecked, setEquipChecked] = useState<Record<string, boolean>>({});
 
   const updateItem = (id: string, patch: Partial<Character["inventory"][number]>) => {
     const nextInventory = character.inventory.map((item) =>
@@ -27,6 +25,25 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     );
     const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
     onChange({ inventory: nextInventory, ac, attacks });
+  };
+
+  const toggleEquip = (id: string, itemType: string | undefined) => {
+    const item = character.inventory.find((i) => i.id === id);
+    if (!item) return;
+
+    if (itemType === "armor") {
+      const nextInventory = character.inventory.map((i) =>
+        i.id === id ? { ...i, equipped: !i.equipped } : i.itemType === "armor" ? { ...i, equipped: false } : i
+      );
+      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+      onChange({ inventory: nextInventory, ac, attacks });
+    } else {
+      const nextInventory = character.inventory.map((i) =>
+        i.id === id ? { ...i, equipped: !i.equipped } : i
+      );
+      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+      onChange({ inventory: nextInventory, ac, attacks });
+    }
   };
 
   const updateCurrency = (field: "copper" | "silver" | "electrum" | "gold" | "platinum", value: number) => {
@@ -80,7 +97,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     return item?.choiceOptionIndex ?? -1;
   };
 
-  const handleChoiceSelect = (group: EquipmentRadioGroup, optionIndex: number, equip: boolean) => {
+  const handleChoiceSelect = (group: EquipmentRadioGroup, optionIndex: number) => {
     const choice = group.choices[optionIndex];
     if (!choice) return;
 
@@ -92,14 +109,24 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     );
 
     const itemsToAdd = choice.items || [];
+    const addingArmor = itemsToAdd.some((itemRef: any) => getEquipmentData(itemRef.name)?.type === "armor");
+
+    if (addingArmor) {
+      for (let i = 0; i < nextInventory.length; i++) {
+        if (nextInventory[i].itemType === "armor") {
+          nextInventory[i] = { ...nextInventory[i], equipped: false };
+        }
+      }
+    }
+
     itemsToAdd.forEach((itemRef: any) => {
       const srdData = getEquipmentData(itemRef.name);
-      const isWeapon = srdData?.type === "weapon";
+      const isArmor = srdData?.type === "armor";
       const newItem: Character["inventory"][number] = {
         id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         name: itemRef.name,
         quantity: itemRef.quantity ?? 1,
-        equipped: isWeapon ? equip : false,
+        equipped: isArmor,
         source: srdData ? "srd" : "custom",
         srdItemName: srdData?.name,
         itemType: srdData?.type,
@@ -115,8 +142,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
       };
       nextInventory.push(newItem);
     });
-
-    setEquipChecked((prev) => ({ ...prev, [group.name]: equip }));
 
     const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
     onChange({ inventory: nextInventory, ac, attacks });
@@ -150,6 +175,10 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
 
   const isEditable = (item: Character["inventory"][number]): boolean => {
     return !item.isGranted && item.choiceGroupIndex === undefined;
+  };
+
+  const canEquip = (item: Character["inventory"][number]): boolean => {
+    return item.itemType === "weapon" || item.itemType === "armor";
   };
 
   return (
@@ -206,10 +235,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                       const isSelected = selectedOption === optionIdx;
                       const items = choice.items || [];
                       const itemNames = items.map((i: any) => i.name).join(", ");
-                      const hasWeapon = items.some((i: any) => {
-                        const srdData = getEquipmentData(i.name);
-                        return srdData?.type === "weapon";
-                      });
                       const weaponDamage = items.map((i: any) => {
                         const srdData = getEquipmentData(i.name);
                         if (srdData?.type === "weapon" && srdData.damageDice) {
@@ -217,8 +242,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                         }
                         return null;
                       }).filter(Boolean).join(" · ");
-                      const equipKey = `${group.name}-${optionIdx}`;
-                      const isEquipChecked = equipChecked[equipKey] || false;
                       return (
                         <label
                           key={optionIdx}
@@ -232,27 +255,13 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                             type="radio"
                             name={group.name}
                             checked={isSelected}
-                            onChange={() => handleChoiceSelect(group, optionIdx, isEquipChecked)}
+                            onChange={() => handleChoiceSelect(group, optionIdx)}
                             className="mt-0.5 h-4 w-4 text-gold focus:ring-gold/50"
                           />
                           <div className="flex-1">
                             <span className="text-sm text-parchment/80">{itemNames}</span>
                             {weaponDamage && (
                               <p className="text-xs text-parchment/50 mt-0.5">{weaponDamage}</p>
-                            )}
-                            {hasWeapon && (
-                              <label className="flex items-center gap-1.5 mt-1 cursor-pointer">
-                                <input
-                                  type="checkbox"
-                                  checked={isEquipChecked}
-                                  onChange={(e) => {
-                                    e.stopPropagation();
-                                    setEquipChecked((prev) => ({ ...prev, [equipKey]: e.target.checked }));
-                                  }}
-                                  className="h-3.5 w-3.5 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
-                                />
-                                <span className="text-xs text-parchment/60">Equip?</span>
-                              </label>
                             )}
                           </div>
                         </label>
@@ -270,6 +279,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         {character.inventory.map((item) => {
           const editable = isEditable(item);
           const description = getItemDescription(item);
+          const equipBtn = canEquip(item);
           return (
             <div key={item.id} className={`flex flex-col gap-1 rounded-lg border px-3 py-2 ${
               item.isGranted
@@ -300,6 +310,19 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                 )}
                 {!editable && item.quantity && item.quantity > 1 && (
                   <span className="text-xs text-parchment/50 w-12 text-center">x{item.quantity}</span>
+                )}
+                {equipBtn && (
+                  <button
+                    type="button"
+                    onClick={() => toggleEquip(item.id, item.itemType)}
+                    className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
+                      item.equipped
+                        ? "bg-gold/20 text-gold border border-gold/40"
+                        : "border border-parchment/20 text-parchment hover:border-parchment/40"
+                    }`}
+                  >
+                    {item.equipped ? "Equipped" : "Equip"}
+                  </button>
                 )}
                 {editable && (
                   <button
