@@ -8,6 +8,7 @@ import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type
 import { StickyMiniHeader } from "@/components/character-sheet/StickyMiniHeader";
 import { SectionNav } from "@/components/character-sheet/SectionNav";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
+import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
 import { CombatStatsSection } from "@/components/character-sheet/CombatStatsSection";
@@ -165,6 +166,7 @@ export default function CharacterView() {
       <CharacterSheetProvider onFieldBlur={debouncedSave}>
         <main className="px-4 py-6 pb-28 md:px-4 md:pr-4 pr-12">
           <div className="mx-auto max-w-lg space-y-4">
+            <LevelXpSection character={character} onChange={handleChange} />
             <IdentitySection character={character} onChange={handleChange} />
             <StatsSection character={character} onChange={handleChange} />
             <CombatStatsSection character={character} onChange={handleChange} />
