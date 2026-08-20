@@ -1,5 +1,6 @@
 import racesData from "@/data/2014_races.json";
 import classesData from "@/data/2014_classes.json";
+import { spells as spellsData } from "@/data/srd";
 
 export interface SRDRace {
   name: string;
@@ -34,7 +35,7 @@ export interface SRDClass {
   }[];
   features: { name: string; description: string; type?: string }[];
   levels: {
-    features: string[];
+    features: { name: string; description?: string; type?: string }[];
     asi: boolean;
     spellSlots?: Record<number, number>;
   }[];
@@ -45,6 +46,12 @@ export interface SRDClass {
     name: string;
     description: string;
     features: { name: string; description: string }[];
+  }[];
+  scalingFeatures?: {
+    name: string;
+    description: string;
+    type: "feature" | "attack";
+    values: Record<number, number>;
   }[];
 }
 
@@ -118,8 +125,20 @@ export function getStaticRaces(): SRDRace[] {
   return racesData.races as SRDRace[];
 }
 
-export function getStaticClasses(): SRDClassSelection[] {
-  return classesData.classes as SRDClassSelection[];
+export function getStaticRace(name: string): SRDRace | undefined {
+  return getStaticRaces().find((r) => r.name === name);
+}
+
+export function getStaticClasses(): SRDClass[] {
+  return classesData.classes as SRDClass[];
+}
+
+export function getStaticClass(name: string): SRDClass | undefined {
+  return getStaticClasses().find((c) => c.name === name);
+}
+
+export function getStaticSpells(): SRDSpell[] {
+  return spellsData as SRDSpell[];
 }
 
 export function getCachedSRDData(): SRDData | null {

@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
-import { getEquipmentData, getClassData, equipment } from "@/data/srd";
+import { getEquipmentData, equipment } from "@/data/srd";
+import { getStaticClass } from "@/lib/srd-client";
 import { DiceType } from "@/components/Dice";
 
 interface StepEquipmentProps {
@@ -61,7 +62,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     onChange({ inventory: nextInventory, ac, attacks });
   };
 
-  const classData = data.class ? getClassData(data.class) : null;
+  const classData = data.class ? getStaticClass(data.class) : null;
   const startingEquipment = classData?.startingEquipment || [];
   const grantedItems = startingEquipment.filter((g: any) => g.granted);
 

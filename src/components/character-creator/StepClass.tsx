@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClasses, type SRDClassSelection } from "@/lib/srd-client";
+import { getStaticClasses, type SRDClass } from "@/lib/srd-client";
 
 interface StepClassProps {
   data: { class: string };
@@ -10,7 +10,7 @@ interface StepClassProps {
 }
 
 export function StepClass({ data, onChange }: StepClassProps) {
-  const classes: SRDClassSelection[] = getStaticClasses();
+  const classes: SRDClass[] = getStaticClasses();
 
   const handleSelect = useCallback((className: string) => {
     onChange({ class: className });
@@ -35,7 +35,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
               <div className="flex items-center justify-between">
                 <span className="font-display font-semibold text-parchment">{cls.name}</span>
               </div>
-              <p className="mt-1 text-xs text-parchment/50">{cls.description}</p>
+               <p className="mt-1 text-xs text-parchment/50">{cls.flavorText}</p>
             </button>
           );
         })}

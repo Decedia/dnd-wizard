@@ -8,7 +8,7 @@ import { ProgressIndicator } from "@/components/character-creator/ProgressIndica
 import { StepCard } from "@/components/character-creator/StepCard";
 import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection } from "@/lib/level-up";
-import { getClassData, spells } from "@/data/srd";
+import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import { getModifier, getCharacter, saveCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 
 export default function LevelUpPage() {
@@ -97,9 +97,9 @@ export default function LevelUpPage() {
     let finalSpellSlots: Record<number, number> | null = null;
 
     for (let level = oldLevel + 1; level <= newLevel; level++) {
-      const levelData = getClassData(className)?.levels[level - 1];
+      const levelData = getStaticClass(className)?.levels[level - 1];
       if (levelData?.features) {
-        allFeatures.push(...levelData.features);
+        allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: f.description || f.name })));
       }
       if (levelData?.spellSlots) {
         Object.assign(allSpellSlots, levelData.spellSlots);
@@ -130,7 +130,7 @@ export default function LevelUpPage() {
     }
     if (subclassChoice) {
       patch.subclass = subclassChoice;
-      const classData = getClassData(className);
+      const classData = getStaticClass(className);
       const subclassData = classData?.subclasses?.find((s) => s.name === subclassChoice);
       if (subclassData?.features) {
         const subclassFeatureEntries = subclassData.features.map((f) => ({
@@ -277,7 +277,7 @@ export default function LevelUpPage() {
       case "hp":
         const runningScoresForHp = getRunningAbilityScores(currentStep.level);
         const conModForHp = getModifier(runningScoresForHp.con);
-        const classDataForHp = getClassData(className);
+        const classDataForHp = getStaticClass(className);
         const hitDieForHp = classDataForHp?.hitDie || 10;
         const averageForHp = Math.floor(hitDieForHp / 2) + 1;
         const hpGainForLevel = averageForHp + conModForHp;
@@ -366,7 +366,7 @@ export default function LevelUpPage() {
 }
 
 function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: LevelUpStepSection; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean; gain?: number }) {
-  const classData = getClassData(className);
+  const classData = getStaticClass(className);
   const hitDie = classData?.hitDie || 10;
   const average = Math.floor(hitDie / 2) + 1;
   const diceType = `d${hitDie}` as DiceType;
@@ -610,7 +610,7 @@ function SpellSelectionStep({
   onSelect: (names: string[]) => void;
 }) {
   const [activeTab, setActiveTab] = useState<string>("cantrips");
-  const classData = getClassData(character.class);
+  const classData = getStaticClass(character.class);
 
   const spellLevels = useMemo(() => {
     const levels: { key: string; label: string; level: number; limit: number }[] = [];
@@ -631,9 +631,9 @@ function SpellSelectionStep({
   const tabSpells = useMemo(() => {
     if (!currentTab) return [];
     if (currentTab.level === 0) {
-      return spells.filter((s) => s.level === 0);
+      return getStaticSpells().filter((s) => s.level === 0);
     }
-    return spells.filter((s) => s.level === currentTab!.level);
+    return getStaticSpells().filter((s) => s.level === currentTab!.level);
   }, [currentTab]);
 
   const toggleSpell = (spellName: string) => {

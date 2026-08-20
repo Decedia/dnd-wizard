@@ -4,7 +4,8 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
-import { getEquipmentData, getClassData, equipment } from "@/data/srd";
+import { getEquipmentData, equipment } from "@/data/srd";
+import { getStaticClass } from "@/lib/srd-client";
 import { useEffect } from "react";
 
 interface InventorySectionProps {
@@ -53,7 +54,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
     });
   };
 
-  const classData = character.class ? getClassData(character.class) : null;
+  const classData = character.class ? getStaticClass(character.class) : null;
   const startingEquipment = classData?.startingEquipment || [];
 
   const grantedItems = startingEquipment.filter((g: any) => g.granted);

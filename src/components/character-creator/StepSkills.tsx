@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { StepCard } from "./StepCard";
-import { skills as srdSkills, getClassData } from "@/data/srd";
+import { skills as srdSkills } from "@/data/srd";
+import { getStaticClass } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { ExpertisePicker } from "@/components/character-sheet/ExpertisePicker";
 
@@ -24,7 +25,7 @@ export function StepSkills({ data, onChange, showExpertisePicker = true }: StepS
     return false;
   });
 
-  const classData = data.class ? getClassData(data.class) : null;
+  const classData = data.class ? getStaticClass(data.class) : null;
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;

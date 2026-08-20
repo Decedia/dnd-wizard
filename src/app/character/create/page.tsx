@@ -23,7 +23,7 @@ import {
   generateId,
   type Character,
 } from "@/lib/storage";
-import { getClassData, getRaceData, races } from "@/data/srd";
+import { getStaticClass, getStaticRace, getStaticRaces } from "@/lib/srd-client";
 import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep } from "@/lib/level-up";
 
 const BASE_STEPS = 8;
@@ -72,7 +72,7 @@ export default function CharacterCreate() {
   };
 
   const addRaceFeatures = useCallback((raceName: string) => {
-    const raceData = getRaceData(raceName);
+    const raceData = getStaticRace(raceName);
     if (!raceData) return;
     const newFeatures = raceData.traits.map((trait) => ({
       id: generateId(),
@@ -86,7 +86,7 @@ export default function CharacterCreate() {
   }, [character.features, update]);
 
   const addClassFeatures = useCallback((className: string) => {
-    const classData = getClassData(className);
+    const classData = getStaticClass(className);
     if (!classData) return;
     const newFeatures = classData.features
       .filter((f) => f.type === "feature")
@@ -191,7 +191,7 @@ export default function CharacterCreate() {
   };
 
   const handleFinish = () => {
-    const raceData = getRaceData(character.race);
+    const raceData = getStaticRace(character.race);
     const finalCharacter = { ...character };
     if (raceData) {
       const abilityKeys = ["str", "dex", "con", "int", "wis", "cha"] as const;
@@ -232,7 +232,7 @@ export default function CharacterCreate() {
         finalCharacter.spellSlots = { ...finalCharacter.spellSlots, ...pendingChanges.spellSlots };
       }
       if (pendingChanges.subclass) {
-        const classData = getClassData(character.class);
+        const classData = getStaticClass(character.class);
         const subclassData = classData?.subclasses?.find((s) => s.name === pendingChanges.subclass);
         if (subclassData?.features) {
           const subclassFeatures = subclassData.features.map((f) => ({

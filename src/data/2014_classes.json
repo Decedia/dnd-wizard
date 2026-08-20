@@ -2,51 +2,1247 @@
   "classes": [
     {
       "name": "Barbarian",
-      "description": "A fierce warrior of primitive background who can enter a battle rage."
+      "hitDie": 12,
+      "hpPerLevel": 7,
+      "primaryAbility": "str",
+      "savingThrows": ["str", "con"],
+      "flavorText": "A fierce warrior of primitive background who can enter a battle rage.",
+      "proficiencies": {
+        "armor": ["light", "medium", "shields"],
+        "weapons": ["simple", "martial"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Explorer's Pack",
+          "items": [{ "name": "Explorer's Pack", "quantity": 1 }]
+        },
+        {
+          "granted": true,
+          "description": "Javelin",
+          "items": [{ "name": "Javelin", "quantity": 4 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Greataxe" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Martial Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Handaxe", "quantity": 2 }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Weapon" }]
+        }
+      ],
+      "features": [
+        {
+          "name": "Rage",
+          "description": "You can enter a rage as a bonus action",
+          "type": "feature"
+        },
+        {
+          "name": "Unarmored Defense",
+          "description": "While not wearing armor, your AC is 10 + Dex modifier + Con modifier",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Rage" }, { "name": "Unarmored Defense" }], "asi": false },
+        { "features": [{ "name": "Reckless Attack" }, { "name": "Danger Sense" }], "asi": false },
+        { "features": [{ "name": "Primal Path" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Extra Attack" }, { "name": "Fast Movement" }], "asi": false },
+        { "features": [{ "name": "Path feature" }], "asi": false },
+        { "features": [{ "name": "Feral Instinct" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Brutal Critical (1 die)" }], "asi": false },
+        { "features": [{ "name": "Path feature" }], "asi": false },
+        { "features": [{ "name": "Relentless Rage" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Brutal Critical (2 dice)" }], "asi": false },
+        { "features": [{ "name": "Path feature" }], "asi": false },
+        { "features": [{ "name": "Persistent Rage" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Brutal Critical (3 dice)" }], "asi": false },
+        { "features": [{ "name": "Indomitable Might" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Primal Champion" }], "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Berserker",
+          "description": "A path of untrammeled fury",
+          "features": [
+            { "name": "Frenzy", "description": "Go into a frenzy when you rage" },
+            { "name": "Mindless Rage", "description": "Cannot be charmed or frightened while raging" },
+            { "name": "Intimidating Presence", "description": "Frighten creatures with your presence" }
+          ]
+        }
+      ]
     },
     {
       "name": "Bard",
-      "description": "An inspiring magician whose power echoes the music of creation."
+      "hitDie": 8,
+      "hpPerLevel": 5,
+      "primaryAbility": "cha",
+      "savingThrows": ["dex", "cha"],
+      "flavorText": "An inspiring magician whose power echoes the music of creation.",
+      "proficiencies": {
+        "armor": ["light"],
+        "weapons": ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"],
+        "tools": ["bagpipes", "drum", "dulcimer", "flute", "lute", "lyre", "horn", "pan flute", "shawm", "viol"]
+      },
+      "skillChoices": {
+        "count": 3,
+        "options": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Performance", "Perception", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Leather Armor",
+          "items": [{ "name": "Leather Armor", "quantity": 1 }]
+        },
+        {
+          "granted": true,
+          "description": "Dagger",
+          "items": [{ "name": "Dagger", "quantity": 1 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Rapier" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Longsword" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Diplomat's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Entertainer's Pack" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Lute" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Musical Instrument" }]
+        }
+      ],
+      "spellcastingAbility": "cha",
+      "cantripsKnown": { "1": 2, "4": 3, "10": 4 },
+      "features": [
+        {
+          "name": "Spellcasting",
+          "description": "You can cast spells using a musical instrument as focus",
+          "type": "feature"
+        },
+        {
+          "name": "Bardic Inspiration",
+          "description": "Inspire others with a d6",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Spellcasting" }, { "name": "Bardic Inspiration" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Jack of All Trades" }, { "name": "Song of Rest" }], "spellSlots": { "1": 3 }, "asi": false },
+        { "features": [{ "name": "Expertise" }, { "name": "Bard College" }], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3 }, "asi": true },
+        { "features": [{ "name": "Bardic Inspiration d8" }, { "name": "Font of Inspiration" }], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Countercharm" }, { "name": "Bard College feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [{ "name": "Expertise" }, { "name": "Bardic Inspiration d10" }, { "name": "Magical Secrets" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [{ "name": "Magical Secrets" }, { "name": "Bard College feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [{ "name": "Bardic Inspiration d12" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [{ "name": "Magical Secrets" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 1, "8": 1, "9": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 2, "8": 1, "9": 1 }, "asi": false },
+        { "features": [{ "name": "Superior Inspiration" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 2, "8": 1, "9": 1 }, "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Lore",
+          "description": "A master of song, speech, and magic",
+          "features": [
+            { "name": "Bonus Proficiencies", "description": "Gain proficiency in three skills" },
+            { "name": "Cutting Words", "description": "Use reaction to reduce attack roll or damage" },
+            { "name": "Additional Magical Secrets", "description": "Learn 2 more spells from any class" },
+            { "name": "Peerless Skill", "description": "Add inspiration die to any ability check" }
+          ]
+        }
+      ]
     },
     {
       "name": "Cleric",
-      "description": "A priestly champion who wields divine magic in service of a higher power."
+      "hitDie": 8,
+      "hpPerLevel": 5,
+      "primaryAbility": "wis",
+      "savingThrows": ["wis", "cha"],
+      "flavorText": "A priestly champion who wields divine magic in service of a higher power.",
+      "proficiencies": {
+        "armor": ["light", "medium", "shields"],
+        "weapons": ["simple"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["History", "Insight", "Medicine", "Persuasion", "Religion"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Shield",
+          "items": [{ "name": "Shield", "quantity": 1 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Mace" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Warhammer" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Scale Mail" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Leather Armor" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Chain Mail" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Light Crossbow", "description": "+ 20 bolts" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Priest's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Holy Symbol" }]
+        }
+      ],
+      "spellcastingAbility": "wis",
+      "cantripsKnown": { "1": 3, "4": 4, "10": 5 },
+      "features": [
+        {
+          "name": "Spellcasting",
+          "description": "Prepare spells from cleric spell list",
+          "type": "feature"
+        },
+        {
+          "name": "Divine Domain",
+          "description": "Choose a divine domain",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Spellcasting" }, { "name": "Divine Domain" }, { "name": "Domain Spells" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Channel Divinity (1/rest)" }, { "name": "Turn Undead" }, { "name": "Domain feature" }], "spellSlots": { "1": 3 }, "asi": false },
+        { "features": [{ "name": "Domain Spells" }], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3 }, "asi": true },
+        { "features": [{ "name": "Domain Spells" }, { "name": "Destroy Undead CR 1/2" }], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Channel Divinity (2/rest)" }, { "name": "Domain feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [{ "name": "Domain Spells" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }, { "name": "Destroy Undead CR 1" }, { "name": "Domain feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": true },
+        { "features": [{ "name": "Domain Spells" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [{ "name": "Divine Intervention" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": false },
+        { "features": [{ "name": "Destroy Undead CR 2" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [{ "name": "Destroy Undead CR 3" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [{ "name": "Destroy Undead CR 4" }, { "name": "Domain feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [{ "name": "Channel Divinity (3/rest)" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 1, "8": 1, "9": 1 }, "asi": true },
+        { "features": [{ "name": "Divine Intervention Improvement" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 2, "8": 1, "9": 1 }, "asi": false }
+      ],
+      "subclassLevel": 1,
+      "subclasses": [
+        {
+          "name": "Life",
+          "description": "A domain focused on healing and protection",
+          "features": [
+            { "name": "Bonus Proficiencies", "description": "Gain heavy armor proficiency" },
+            { "name": "Disciple of Life", "description": "Healing spells restore extra hit points" },
+            { "name": "Channel Divinity: Preserve Life", "description": "Spend Channel Divinity to heal creatures" },
+            { "name": "Divine Strike", "description": "Add radiant damage to weapon attacks" },
+            { "name": "Supreme Healing", "description": "Maximize healing dice" }
+          ]
+        }
+      ]
     },
     {
       "name": "Druid",
-      "description": "A priest of the Old Faith, wielding nature-themed magic and shapeshifting."
+      "hitDie": 8,
+      "hpPerLevel": 5,
+      "primaryAbility": "wis",
+      "savingThrows": ["int", "wis"],
+      "flavorText": "A priest of the Old Faith, wielding nature-themed magic and shapeshifting.",
+      "proficiencies": {
+        "armor": ["light", "medium", "shields"],
+        "weapons": ["clubs", "daggers", "darts", "javelins", "maces", "quarterstaffs", "sickles", "spears", "slings", "scimitars"],
+        "tools": ["herbalism kit"]
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Leather Armor",
+          "items": [{ "name": "Leather Armor", "quantity": 1 }]
+        },
+        {
+          "granted": true,
+          "description": "Explorer's Pack",
+          "items": [{ "name": "Explorer's Pack", "quantity": 1 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Wooden Shield" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Scimitar" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Melee Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Druidic Focus" }]
+        }
+      ],
+      "spellcastingAbility": "wis",
+      "cantripsKnown": { "1": 2, "4": 3, "10": 4 },
+      "features": [
+        {
+          "name": "Spellcasting",
+          "description": "Prepare druid spells from the druid spell list",
+          "type": "feature"
+        },
+        {
+          "name": "Druidic",
+          "description": "Know the secret language of druids",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Spellcasting" }, { "name": "Druidic" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Wild Shape" }, { "name": "Druid Circle" }], "spellSlots": { "1": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "ASI" }, { "name": "Wild Shape improvement" }], "spellSlots": { "1": 4, "2": 3 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Druid Circle feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }, { "name": "Wild Shape improvement" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [{ "name": "Druid Circle feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [{ "name": "Druid Circle feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [{ "name": "Timeless Body" }, { "name": "Beast Spells" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [{ "name": "Archdruid" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 1, "8": 1, "9": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 2, "8": 1, "9": 1 }, "asi": false }
+      ],
+      "subclassLevel": 2,
+      "subclasses": [
+        {
+          "name": "Land",
+          "description": "A druid bonded to a specific environment",
+          "features": [
+            { "name": "Circle Spells", "description": "Always prepared spells from land type" },
+            { "name": "Natural Recovery", "description": "Recover spell slots during short rest" },
+            { "name": "Land's Stride", "description": "Move through difficult terrain and resist charm" },
+            { "name": "Nature's Ward", "description": "Resist charm and element damage" },
+            { "name": "Nature's Sanctuary", "description": "Creatures have disadvantage on attacks" }
+          ]
+        }
+      ]
     },
     {
       "name": "Fighter",
-      "description": "A master of martial combat, skilled with weapons and armor."
+      "hitDie": 10,
+      "hpPerLevel": 6,
+      "primaryAbility": "str",
+      "savingThrows": ["str", "con"],
+      "flavorText": "A master of martial combat, skilled with weapons and armor.",
+      "proficiencies": {
+        "armor": ["all", "shields"],
+        "weapons": ["simple", "martial"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
+      },
+      "startingEquipment": [
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Chain Mail" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Leather Armor" }, { "name": "Longbow" }, { "name": "Arrow", "quantity": 20 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Martial Weapon" }, { "name": "Shield" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Martial Weapon", "quantity": 2 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Light Crossbow" }, { "name": "Bolt", "quantity": 20 }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Handaxe", "quantity": 2 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Dungeoneer's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        }
+      ],
+      "features": [
+        {
+          "name": "Fighting Style",
+          "description": "Adopt a style of fighting",
+          "type": "feature"
+        },
+        {
+          "name": "Second Wind",
+          "description": "Regain HP as bonus action",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Fighting Style" }, { "name": "Second Wind" }], "asi": false },
+        { "features": [{ "name": "Action Surge" }], "asi": false },
+        { "features": [{ "name": "Martial Archetype" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Extra Attack" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Martial Archetype feature" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Indomitable" }], "asi": false },
+        { "features": [{ "name": "Martial Archetype feature" }], "asi": false },
+        { "features": [{ "name": "Extra Attack (2)" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Indomitable (2 uses)" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Martial Archetype feature" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Action Surge (2 uses)" }, { "name": "Indomitable (3 uses)" }], "asi": false },
+        { "features": [{ "name": "Martial Archetype feature" }], "asi": false },
+        { "features": [], "asi": true },
+        { "features": [{ "name": "Extra Attack (3)" }], "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Champion",
+          "description": "A paragon of martial prowess",
+          "features": [
+            { "name": "Improved Critical", "description": "Crit on 19-20" },
+            { "name": "Remarkable Athlete", "description": "Half proficiency to physical checks" },
+            { "name": "Additional Fighting Style", "description": "Learn another fighting style" },
+            { "name": "Superior Critical", "description": "Crit on 18-20" },
+            { "name": "Survivor", "description": "Regain HP at end of turn if below half" }
+          ]
+        },
+        {
+          "name": "Battle Master",
+          "description": "A master of combat tactics",
+          "features": [
+            { "name": "Combat Superiority", "description": "Learn maneuvers" },
+            { "name": "Student of War", "description": "Proficiency with artisan tools" },
+            { "name": "Know Your Enemy", "description": "Learn target's capabilities" },
+            { "name": "Relentless", "description": "Superiority dice refresh on init" }
+          ]
+        },
+        {
+          "name": "Eldritch Knight",
+          "description": "A fighter blending martial skill with arcane magic",
+          "features": [
+            { "name": "Weapon Bond", "description": "Bond with a weapon" },
+            { "name": "Spellcasting", "description": "Cast wizard spells" },
+            { "name": "War Magic", "description": "Attack then cast bonus action spell" },
+            { "name": "Improved War Magic", "description": "Bonus action attack after casting" }
+          ]
+        }
+      ]
     },
     {
       "name": "Monk",
-      "description": "A master of martial arts, harnessing the power of the body and mind."
+      "hitDie": 8,
+      "hpPerLevel": 5,
+      "primaryAbility": "dex",
+      "savingThrows": ["str", "dex"],
+      "flavorText": "A master of martial arts, harnessing the power of the body and mind.",
+      "proficiencies": {
+        "armor": [],
+        "weapons": ["simple", "shortswords"],
+        "tools": ["1 artisan tool or 1 musical instrument"]
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"]
+      },
+      "startingEquipment": [
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Shortsword" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Any Simple Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Dungeoneer's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        }
+      ],
+      "features": [
+        {
+          "name": "Unarmored Defense",
+          "description": "AC = 10 + Dex + Wis while unarmored",
+          "type": "feature"
+        },
+        {
+          "name": "Martial Arts",
+          "description": "Use Dexterity for monk weapons",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Unarmored Defense" }, { "name": "Martial Arts" }], "asi": false },
+        { "features": [{ "name": "Ki" }, { "name": "Flurry of Blows" }, { "name": "Patient Defense" }, { "name": "Step of the Wind" }, { "name": "Unarmored Movement" }], "asi": false },
+        { "features": [{ "name": "Monastic Tradition" }, { "name": "Deflect Missiles" }], "asi": false },
+        { "features": [{ "name": "ASI" }, { "name": "Slow Fall" }], "asi": true },
+        { "features": [{ "name": "Extra Attack" }, { "name": "Stunning Strike" }], "asi": false },
+        { "features": [{ "name": "Ki Empowered Strikes" }, { "name": "Monastic Tradition feature" }], "asi": false },
+        { "features": [{ "name": "Evasion" }, { "name": "Stillness of Mind" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Unarmored Movement improvement" }], "asi": false },
+        { "features": [{ "name": "Purity of Body" }], "asi": false },
+        { "features": [{ "name": "Monastic Tradition feature" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Tongue of the Sun and Moon" }], "asi": false },
+        { "features": [{ "name": "Diamond Soul" }], "asi": false },
+        { "features": [{ "name": "Timeless Body" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Monastic Tradition feature" }], "asi": false },
+        { "features": [{ "name": "Empty Body" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Perfect Self" }], "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Open Hand",
+          "description": "A monk focusing on unarmed combat",
+          "features": [
+            { "name": "Open Hand Technique", "description": "Add effects to Flurry of Blows" },
+            { "name": "Wholeness of Body", "description": "Heal yourself" },
+            { "name": "Peak of Life", "description": "Reduce falling damage" },
+            { "name": "Fangs of the Fire Snake", "description": "Extend reach and add fire damage" }
+          ]
+        }
+      ]
     },
     {
       "name": "Paladin",
-      "description": "A holy warrior bound to a sacred oath of justice and devotion."
+      "hitDie": 10,
+      "hpPerLevel": 6,
+      "primaryAbility": "str",
+      "savingThrows": ["wis", "cha"],
+      "flavorText": "A holy warrior bound to a sacred oath of justice and devotion.",
+      "proficiencies": {
+        "armor": ["all", "shields"],
+        "weapons": ["simple", "martial"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Chain Mail",
+          "items": [{ "name": "Chain Mail", "quantity": 1 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Martial Weapon" }, { "name": "Shield" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Martial Weapon", "quantity": 2 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Javelin", "quantity": 5 }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Melee Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Priest's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Holy Symbol" }]
+        }
+      ],
+      "spellcastingAbility": "cha",
+      "features": [
+        {
+          "name": "Divine Sense",
+          "description": "Detect celestials, fiends, and undead",
+          "type": "feature"
+        },
+        {
+          "name": "Lay on Hands",
+          "description": "Heal creatures with touch",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Divine Sense" }, { "name": "Lay on Hands" }], "spellSlots": {}, "asi": false },
+        { "features": [{ "name": "Fighting Style" }, { "name": "Spellcasting" }, { "name": "Divine Smite" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Divine Health" }, { "name": "Sacred Oath" }, { "name": "Oath Spells" }, { "name": "Channel Divinity" }], "spellSlots": { "1": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 3 }, "asi": true },
+        { "features": [{ "name": "Extra Attack" }], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "Aura of Protection" }], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "Sacred Oath feature" }], "spellSlots": { "1": 4, "2": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3 }, "asi": true },
+        { "features": [{ "name": "Aura of Courage" }], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Improved Divine Smite" }], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [{ "name": "Cleansing Touch" }], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [{ "name": "Sacred Oath feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": false },
+        { "features": [{ "name": "Aura improvements" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": true },
+        { "features": [{ "name": "Sacred Oath feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Devotion",
+          "description": "A paladin bound to justice and virtue",
+          "features": [
+            { "name": "Channel Divinity: Sacred Weapon", "description": "Channel Divinity to empower weapon" },
+            { "name": "Channel Divinity: Turn the Unholy", "description": "Turn fiends and undead" },
+            { "name": "Aura of Devotion", "description": "Allies within 10 feet resistant to charm" },
+            { "name": "Purity of Spirit", "description": "Resistant to disease and poison" },
+            { "name": "Holy Nimbus", "description": "Emanate bright light as aura" }
+          ]
+        }
+      ]
     },
     {
       "name": "Ranger",
-      "description": "A warrior who uses martial prowess and nature magic to combat threats."
+      "hitDie": 10,
+      "hpPerLevel": 6,
+      "primaryAbility": "dex",
+      "savingThrows": ["str", "dex"],
+      "flavorText": "A warrior who uses martial prowess and nature magic to combat threats.",
+      "proficiencies": {
+        "armor": ["light", "medium", "shields"],
+        "weapons": ["simple", "martial"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 3,
+        "options": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Longbow",
+          "items": [{ "name": "Longbow", "quantity": 1 }]
+        },
+        {
+          "granted": true,
+          "description": "Arrows",
+          "items": [{ "name": "Arrow", "quantity": 20 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Scale Mail" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Leather Armor" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Shortsword", "quantity": 2 }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Melee Weapon", "quantity": 2 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Dungeoneer's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        }
+      ],
+      "spellcastingAbility": "wis",
+      "features": [
+        {
+          "name": "Favored Enemy",
+          "description": "Choose a creature type as favored enemy",
+          "type": "feature"
+        },
+        {
+          "name": "Natural Explorer",
+          "description": "Choose a terrain type as natural explorer",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Favored Enemy" }, { "name": "Natural Explorer" }], "spellSlots": {}, "asi": false },
+        { "features": [{ "name": "Fighting Style" }, { "name": "Spellcasting" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Ranger Archetype" }, { "name": "Primeval Awareness" }], "spellSlots": { "1": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 3 }, "asi": true },
+        { "features": [{ "name": "Extra Attack" }], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "Favored Enemy (2 types)" }, { "name": "Natural Explorer (2 terrains)" }], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "Ranger Archetype feature" }], "spellSlots": { "1": 4, "2": 3 }, "asi": false },
+        { "features": [{ "name": "ASI" }, { "name": "Land's Stride" }], "spellSlots": { "1": 4, "2": 3 }, "asi": true },
+        { "features": [{ "name": "Natural Explorer (3 terrains)" }, { "name": "Hide in Plain Sight" }], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Ranger Archetype feature" }], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Favored Enemy (3 enemies)" }, { "name": "Vanish" }], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [{ "name": "Ranger Archetype feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [{ "name": "Feral Senses" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [{ "name": "Foe Slayer" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Hunter",
+          "description": "A ranger focused on hunting prey",
+          "features": [
+            { "name": "Hunter's Prey", "description": "Choose a prey benefit" },
+            { "name": "Defensive Tactics", "description": "Choose a defensive benefit" },
+            { "name": "Multiattack", "description": "Attack twice or volley" },
+            { "name": "Superior Hunter's Defense", "description": "Protective reaction" }
+          ]
+        }
+      ]
     },
     {
       "name": "Rogue",
-      "description": "A stealthy trickster who excels at skills, stealth, and striking from the shadows."
+      "hitDie": 8,
+      "hpPerLevel": 5,
+      "primaryAbility": "dex",
+      "savingThrows": ["dex", "int"],
+      "flavorText": "A stealthy trickster who excels at skills, stealth, and striking from the shadows.",
+      "proficiencies": {
+        "armor": ["light"],
+        "weapons": ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"],
+        "tools": ["thieves' tools"]
+      },
+      "skillChoices": {
+        "count": 4,
+        "options": ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Leather Armor",
+          "items": [{ "name": "Leather Armor", "quantity": 1 }]
+        },
+        {
+          "granted": true,
+          "description": "Shortsword",
+          "items": [{ "name": "Shortsword", "quantity": 2 }]
+        },
+        {
+          "granted": true,
+          "description": "Dagger",
+          "items": [{ "name": "Dagger", "quantity": 2 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Rapier" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Shortsword" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Shortbow" }, { "name": "Arrow", "quantity": 20 }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Shortsword" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Burglar's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Dungeoneer's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        }
+      ],
+      "features": [
+        {
+          "name": "Expertise",
+          "description": "Double proficiency bonus for two skills or one skill and thieves' tools",
+          "type": "feature"
+        },
+        {
+          "name": "Sneak Attack",
+          "description": "Deal extra damage when you have advantage on attacks",
+          "type": "attack"
+        },
+        {
+          "name": "Thieves' Cant",
+          "description": "Know the secret language of thieves",
+          "type": "feature"
+        },
+        {
+          "name": "Cunning Action",
+          "description": "Dash, Disengage, or Hide as a bonus action",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Expertise" }, { "name": "Sneak Attack" }, { "name": "Thieves' Cant" }], "asi": false },
+        { "features": [{ "name": "Cunning Action" }], "asi": false },
+        { "features": [{ "name": "Roguish Archetype" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Uncanny Dodge" }], "asi": false },
+        { "features": [{ "name": "Evasion" }], "asi": false },
+        { "features": [{ "name": "Roguish Archetype feature" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Steady Aim" }], "asi": false },
+        { "features": [{ "name": "Roguish Archetype feature" }], "asi": false },
+        { "features": [{ "name": "Reliable Talent" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Blind Sense" }], "asi": false },
+        { "features": [{ "name": "Roguish Archetype feature" }], "asi": false },
+        { "features": [{ "name": "Slippery Mind" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Roguish Archetype feature" }], "asi": false },
+        { "features": [{ "name": "Elusive" }], "asi": false },
+        { "features": [{ "name": "ASI" }], "asi": true },
+        { "features": [{ "name": "Stroke of Luck" }], "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Thief",
+          "description": "A rogue who excels at stealth and acquisition",
+          "features": [
+            { "name": "Fast Hands", "description": "Use Cunning Action for bonus action object interaction or Hide in plain sight" },
+            { "name": "Second-Story Work", "description": "Climbing no longer costs extra movement and distance of long jump increases" },
+            { "name": "Supreme Sneak", "description": "Advantage on Stealth checks when you move no more than half speed" },
+            { "name": "Use Magic Device", "description": "Ignore all class, race, and level requirements on magic items" },
+            { "name": "Thief's Reflexes", "description": "Two turns during the first round of combat" }
+          ]
+        }
+      ],
+      "scalingFeatures": [
+        {
+          "name": "Sneak Attack",
+          "description": "Deal extra damage to a creature you hit with advantage on the attack roll",
+          "type": "attack",
+          "values": { "1": 1, "2": 1, "3": 2, "4": 2, "5": 3, "6": 3, "7": 4, "8": 4, "9": 5, "10": 5 }
+        },
+        {
+          "name": "Expertise",
+          "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit",
+          "type": "feature",
+          "values": { "1": 2, "3": 2, "6": 4 }
+        }
+      ]
     },
     {
       "name": "Sorcerer",
-      "description": "A spellcaster who draws on inherent magic from a gift or bloodline."
+      "hitDie": 6,
+      "hpPerLevel": 4,
+      "primaryAbility": "cha",
+      "savingThrows": ["con", "cha"],
+      "flavorText": "A spellcaster who draws on inherent magic from a gift or bloodline.",
+      "proficiencies": {
+        "armor": [],
+        "weapons": ["daggers", "darts", "slings", "quarterstaffs", "light crossbows"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Dagger",
+          "items": [{ "name": "Dagger", "quantity": 2 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Light Crossbow" }, { "name": "Bolt", "quantity": 20 }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Component Pouch" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Arcane Focus" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Dungeoneer's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        }
+      ],
+      "spellcastingAbility": "cha",
+      "cantripsKnown": { "1": 4, "4": 5, "10": 6 },
+      "features": [
+        {
+          "name": "Spellcasting",
+          "description": "Cast spells using inherent magic",
+          "type": "feature"
+        },
+        {
+          "name": "Sorcerous Origin",
+          "description": "Choose your sorcerous origin",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Spellcasting" }, { "name": "Sorcerous Origin" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Font of Magic" }, { "name": "Flexible Casting" }], "spellSlots": { "1": 3 }, "asi": false },
+        { "features": [{ "name": "Metamagic" }], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Sorcerous Origin feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [{ "name": "Metamagic (2)" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [{ "name": "Sorcerous Origin feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [{ "name": "Metamagic (3)" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [{ "name": "Sorcerous Origin feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 1, "8": 1, "9": 1 }, "asi": true },
+        { "features": [{ "name": "Sorcerous Restoration" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 2, "8": 1, "9": 1 }, "asi": false }
+      ],
+      "subclassLevel": 3,
+      "subclasses": [
+        {
+          "name": "Draconic",
+          "description": "A sorcerer with draconic bloodline",
+          "features": [
+            { "name": "Draconic Resilience", "description": "Increase HP and AC" },
+            { "name": "Elemental Affinity", "description": "Add Charisma to spell damage" },
+            { "name": "Draconic Wings", "description": "Grow wings for flight" },
+            { "name": "Draconic Presence", "description": "Awe or frighten creatures" }
+          ]
+        }
+      ]
     },
     {
       "name": "Warlock",
-      "description": "A spellcaster who draws power from a pact with a powerful entity."
+      "hitDie": 8,
+      "hpPerLevel": 5,
+      "primaryAbility": "cha",
+      "savingThrows": ["wis", "cha"],
+      "flavorText": "A spellcaster who draws power from a pact with a powerful entity.",
+      "proficiencies": {
+        "armor": ["light"],
+        "weapons": ["simple"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Leather Armor",
+          "items": [{ "name": "Leather Armor", "quantity": 1 }]
+        },
+        {
+          "granted": true,
+          "description": "Dagger",
+          "items": [{ "name": "Dagger", "quantity": 2 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Light Crossbow" }, { "name": "Bolt", "quantity": 20 }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Simple Weapon" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Component Pouch" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Arcane Focus" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Scholar's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Dungeoneer's Pack" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Simple Weapon" }]
+        }
+      ],
+      "spellcastingAbility": "cha",
+      "cantripsKnown": { "1": 2, "4": 3, "10": 4 },
+      "features": [
+        {
+          "name": "Otherworldly Patron",
+          "description": "Choose a patron",
+          "type": "feature"
+        },
+        {
+          "name": "Pact Magic",
+          "description": "Cast spells via pact magic",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Otherworldly Patron" }, { "name": "Pact Magic" }], "spellSlots": { "1": 1 }, "asi": false },
+        { "features": [{ "name": "Eldritch Invocations" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Pact Boon" }], "spellSlots": { "2": 2 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "2": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "3": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "3": 2 }, "asi": false },
+        { "features": [{ "name": "Otherworldly Patron feature" }], "spellSlots": { "4": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "4": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "5": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "5": 2 }, "asi": false },
+        { "features": [{ "name": "Otherworldly Patron feature" }], "spellSlots": { "5": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "5": 3 }, "asi": true },
+        { "features": [], "spellSlots": { "5": 3 }, "asi": false },
+        { "features": [{ "name": "Otherworldly Patron feature" }], "spellSlots": { "5": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "5": 3 }, "asi": true },
+        { "features": [], "spellSlots": { "5": 3 }, "asi": true },
+        { "features": [], "spellSlots": { "5": 4 }, "asi": false },
+        { "features": [], "spellSlots": { "5": 4 }, "asi": true },
+        { "features": [{ "name": "Eldritch Master" }], "spellSlots": { "5": 4 }, "asi": false },
+        { "features": [], "spellSlots": { "5": 4 }, "asi": false }
+      ],
+      "subclassLevel": 1,
+      "subclasses": [
+        {
+          "name": "Fiend",
+          "description": "A warlock with a fiendish patron",
+          "features": [
+            { "name": "Dark One's Blessing", "description": "Gain temporary HP on kill" },
+            { "name": "Dark One's Own Luck", "description": "Add d10 to ability check" },
+            { "name": "Fiendish Resilience", "description": "Resistance to damage type" },
+            { "name": "Hurl Through Hell", "description": "Banish and damage target" }
+          ]
+        }
+      ]
     },
     {
       "name": "Wizard",
-      "description": "A scholarly spellcaster who wields magic through study and arcane knowledge."
+      "hitDie": 6,
+      "hpPerLevel": 4,
+      "primaryAbility": "int",
+      "savingThrows": ["int", "wis"],
+      "flavorText": "A scholarly spellcaster who wields magic through study and arcane knowledge.",
+      "proficiencies": {
+        "armor": [],
+        "weapons": ["daggers", "darts", "slings", "quarterstaffs", "light crossbows"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Spellbook",
+          "items": [{ "name": "Spellbook", "quantity": 1 }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Quarterstaff" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Dagger" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Component Pouch" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Arcane Focus" }]
+        },
+        {
+          "description": "Choose one:",
+          "items": [{ "name": "Scholar's Pack" }]
+        },
+        {
+          "description": "Or:",
+          "items": [{ "name": "Explorer's Pack" }]
+        }
+      ],
+      "spellcastingAbility": "int",
+      "cantripsKnown": { "1": 3, "4": 4, "10": 5 },
+      "features": [
+        {
+          "name": "Spellcasting",
+          "description": "Cast spells using arcane focus and spellbook",
+          "type": "feature"
+        },
+        {
+          "name": "Arcane Recovery",
+          "description": "Recover spell slots during short rest",
+          "type": "feature"
+        }
+      ],
+      "levels": [
+        { "features": [{ "name": "Spellcasting" }, { "name": "Arcane Recovery" }], "spellSlots": { "1": 2 }, "asi": false },
+        { "features": [{ "name": "Arcane Tradition" }], "spellSlots": { "1": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 2 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 2 }, "asi": false },
+        { "features": [{ "name": "Arcane Tradition feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 }, "asi": false },
+        { "features": [{ "name": "Arcane Tradition feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [{ "name": "Arcane Tradition feature" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1 }, "asi": true },
+        { "features": [{ "name": "Spell Mastery" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 1, "7": 1, "8": 1, "9": 1 }, "asi": false },
+        { "features": [{ "name": "ASI" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 1, "8": 1, "9": 1 }, "asi": true },
+        { "features": [{ "name": "Signature Spell" }], "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 3, "6": 2, "7": 2, "8": 1, "9": 1 }, "asi": false }
+      ],
+      "subclassLevel": 2,
+      "subclasses": [
+        {
+          "name": "Evocation",
+          "description": "A wizard specializing in destructive magic",
+          "features": [
+            { "name": "Evocation Savant", "description": "Reduce gold/time for evocation spells" },
+            { "name": "Sculpt Spells", "description": "Protect allies from evocation spells" },
+            { "name": "Potent Cantrip", "description": "Double damage on failed save cantrips" },
+            { "name": "Empowered Evocation", "description": "Add Int modifier to evocation damage" },
+            { "name": "Overchannel", "description": "Maximize damage for evocation spells" }
+          ]
+        }
+      ]
     }
   ]
 }

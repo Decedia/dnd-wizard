@@ -1,4 +1,4 @@
-import { getClassData } from "@/data/srd";
+import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 export interface Character {
   id: string;
   name: string;
@@ -105,7 +105,7 @@ export const ALIGNMENTS = [
   "Chaotic Evil",
 ];
 
-export const CLASSES = ["Fighter", "Wizard", "Rogue"];
+export const CLASSES = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"];
 
 export function getProficiencyBonus(level: number): number {
   return Math.floor((level - 1) / 4) + 2;
@@ -131,7 +131,7 @@ export function getHitDieAverage(hitDie: number): number {
 
 export function getMaxExpertiseCount(character: Character): number {
   if (character.class !== "Rogue") return 0;
-  const classData = getClassData("Rogue");
+  const classData = getStaticClass("Rogue");
   const scaling = classData?.scalingFeatures?.find((f) => f.type === "feature" && f.name === "Expertise");
   if (!scaling) return 0;
   let maxCount = 0;
@@ -297,15 +297,9 @@ export function generateId(): string {
 }
 
 export function getRaceData(name: string): { abilityScoreIncreases: Record<string, number> } | undefined {
-  const raceMap: Record<string, Record<string, number>> = {
-    Human: { str: 1, dex: 1, con: 1, int: 1, wis: 1, cha: 1 },
-    Elf: { dex: 2 },
-    Dwarf: { con: 2 },
-    Halfling: { dex: 2 },
-  };
-  const increases = raceMap[name];
-  if (!increases) return undefined;
-  return { abilityScoreIncreases: increases };
+  const race = getStaticRace(name);
+  if (!race) return undefined;
+  return { abilityScoreIncreases: race.abilityScoreIncreases };
 }
 
 export function computeEquippedEffects(character: Character): { ac: number; attacks: Character["attacks"] } {
@@ -347,7 +341,7 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
 
 export function getSneakAttackDice(character: Character): string | undefined {
   if (character.class !== "Rogue") return undefined;
-  const classData = getClassData("Rogue");
+  const classData = getStaticClass("Rogue");
   const scaling = classData?.scalingFeatures?.find((f) => f.type === "attack");
   if (!scaling) return undefined;
   const diceCount = scaling.values[character.level] ?? 1;
@@ -355,7 +349,7 @@ export function getSneakAttackDice(character: Character): string | undefined {
 }
 
 export function getClassGrantedAttacks(character: Character): { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source: "class"; classFeatureName: string }[] {
-  const classData = getClassData(character.class);
+  const classData = getStaticClass(character.class);
   if (!classData) return [];
   const attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source: "class"; classFeatureName: string }[] = [];
   const profBonus = getProficiencyBonus(character.level);
@@ -380,7 +374,7 @@ export function getClassGrantedAttacks(character: Character): { id: string; name
 
 export function computeDerivedStats(character: Character): Partial<Character> {
   const profBonus = getProficiencyBonus(character.level);
-  const classData = getClassData(character.class);
+  const classData = getStaticClass(character.class);
   const savingThrowProfs = classData?.savingThrows || [];
 
   const savingThrows: Record<string, { proficient: boolean; value: number }> = {};

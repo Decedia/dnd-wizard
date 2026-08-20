@@ -3,8 +3,8 @@
 import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { getStaticRaces } from "@/lib/srd-client";
-import { classNames, languageNames } from "@/data/srd";
+import { getStaticRaces, getStaticClasses } from "@/lib/srd-client";
+import { languageNames } from "@/data/srd";
 import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
 
 interface IdentitySectionProps {
@@ -36,6 +36,8 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const races = getStaticRaces();
   const raceNames = races.map((r) => r.name);
+  const classes = getStaticClasses();
+  const classNames = classes.map((c) => c.name);
 
   const toggleLanguage = (lang: string) => {
     const current = character.languages || [];

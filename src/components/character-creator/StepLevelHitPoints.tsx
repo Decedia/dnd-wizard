@@ -4,7 +4,7 @@ import { useState } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { getClassLevel1Hp, getClassPerLevelHp, getModifier } from "@/lib/storage";
-import { getClassData } from "@/data/srd";
+import { getStaticClass } from "@/lib/srd-client";
 
 interface StepLevelHitPointsProps {
   data: Character;
@@ -14,7 +14,7 @@ interface StepLevelHitPointsProps {
 export function StepLevelHitPoints({ data, onChange }: StepLevelHitPointsProps) {
   const [selectedLevel, setSelectedLevel] = useState(data.level);
   const [hpResolved, setHpResolved] = useState(false);
-  const classData = data.class ? getClassData(data.class) : null;
+  const classData = data.class ? getStaticClass(data.class) : null;
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(data.con);
   const level1Hp = (classData?.hitDie || 10) + conMod;

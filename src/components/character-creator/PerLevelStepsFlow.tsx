@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback } from "react";
 import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpStep, type LevelUpChanges, type LevelUpStepSection } from "@/lib/level-up";
-import { getClassData, getSpellData, spells as srdSpells } from "@/data/srd";
+import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 
@@ -65,7 +65,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   }, []);
 
   const handleFinish = useCallback(() => {
-    const classData = getClassData(character.class);
+    const classData = getStaticClass(character.class);
     const allFeatures: { name: string; description: string }[] = [];
     const allSpellSlots: Record<number, number> = {};
     let finalSpellSlots: Record<number, number> | null = null;
@@ -73,7 +73,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
     for (let level = 2; level <= character.level; level++) {
       const levelData = classData?.levels[level - 1];
       if (levelData?.features) {
-        allFeatures.push(...levelData.features);
+        allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: f.description || f.name })));
       }
       if (levelData?.spellSlots) {
         Object.assign(allSpellSlots, levelData.spellSlots);
@@ -252,7 +252,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
 }
 
 function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: LevelUpStepSection; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
-  const classData = getClassData(className);
+  const classData = getStaticClass(className);
   const hitDie = classData?.hitDie || 10;
   const average = Math.floor(hitDie / 2) + 1;
   const diceType = `d${hitDie}` as DiceType;
@@ -501,7 +501,7 @@ function SpellSelectionStepInline({
   selected: string[];
   onSelect: (names: string[]) => void;
 }) {
-  const classData = getClassData(character.class);
+  const classData = getStaticClass(character.class);
   const [activeTab, setActiveTab] = useState<string>("cantrips");
 
   const spellLevels = useMemo(() => {
@@ -523,9 +523,9 @@ function SpellSelectionStepInline({
   const tabSpells = useMemo(() => {
     if (!currentTab) return [];
     if (currentTab.level === 0) {
-      return srdSpells.filter((s) => s.level === 0);
+      return getStaticSpells().filter((s) => s.level === 0);
     }
-    return srdSpells.filter((s) => s.level === currentTab!.level);
+    return getStaticSpells().filter((s) => s.level === currentTab!.level);
   }, [currentTab]);
 
   const toggleSpell = (spellName: string) => {

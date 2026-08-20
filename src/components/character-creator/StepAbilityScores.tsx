@@ -2,8 +2,8 @@
 
 import { useState, useCallback } from "react";
 import { StepCard } from "./StepCard";
-import { getModifier, getRaceData } from "@/lib/storage";
-import { getClassData } from "@/data/srd";
+import { getModifier } from "@/lib/storage";
+import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 
 interface StepAbilityScoresProps {
   data: {
@@ -47,7 +47,7 @@ const POINT_BUY_COSTS: Record<number, number> = {
 
 function getRacialBonus(race: string | undefined, ability: string): number {
   if (!race) return 0;
-  const raceData = getRaceData(race);
+  const raceData = getStaticRace(race);
   return raceData?.abilityScoreIncreases[ability] ?? 0;
 }
 
@@ -107,7 +107,8 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
     }
   };
 
-  const classData = data.class ? getClassData(data.class) : null;
+  const raceData = data.race ? getStaticRace(data.race) : null;
+  const classData = data.class ? getStaticClass(data.class) : null;
   const savingThrowProfs = classData?.savingThrows || [];
   const profBonus = data.proficiencyBonus || 0;
 

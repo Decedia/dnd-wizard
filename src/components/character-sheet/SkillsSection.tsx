@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { skills as srdSkills, getClassData } from "@/data/srd";
+import { skills as srdSkills } from "@/data/srd";
+import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, getMaxExpertiseCount, type Character } from "@/lib/storage";
 import { ExpertisePicker } from "./ExpertisePicker";
 
@@ -17,7 +18,7 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
   const profBonus = getProficiencyBonus(character.level);
   const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
 
-  const classData = character.class ? getClassData(character.class) : null;
+  const classData = character.class ? getStaticClass(character.class) : null;
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
