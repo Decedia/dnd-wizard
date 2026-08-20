@@ -479,12 +479,12 @@ export const classes: SRDClass[] = [
       },
     ],
     features: [
-      { name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "feature" },
+      { name: "Expertise", description: "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.", type: "feature" },
       { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "attack" },
       { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues.", type: "feature" },
     ],
     levels: [
-      { features: [{ name: "Expertise", description: "Double your proficiency bonus for two chosen skills or thieves' tools.", type: "feature" }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "attack" }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues.", type: "feature" }], asi: false },
+      { features: [{ name: "Expertise", description: "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.", type: "feature" }, { name: "Sneak Attack", description: "Deal extra damage to a creature you hit with advantage on the attack roll.", type: "attack" }, { name: "Thieves' Cant", description: "Speak a secret mix of dialect and code known only to rogues.", type: "feature" }], asi: false },
       { features: [{ name: "Cunning Action", description: "Use a bonus action to Dash, Disengage, or Hide.", type: "feature" }], asi: false },
       { features: [{ name: "Rogue Archetype", description: "Choose a rogue archetype: Thief, Assassin, or Arcane Trickster.", type: "feature" }], asi: false },
       { features: [], asi: true },
@@ -504,7 +504,7 @@ export const classes: SRDClass[] = [
       },
       {
         name: "Expertise",
-        description: "Double your proficiency bonus for two chosen skills or thieves' tools.",
+        description: "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
         type: "feature",
         values: { 1: 2, 3: 2, 6: 4 },
       },
