@@ -140,6 +140,34 @@ export function exportCharacterToPdf(character: Character): void {
     divider();
   }
 
+  const skillsList = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"];
+  const skillEntries = skillsList.map((name) => ({
+    name,
+    proficient: character.skills[name] ?? false,
+  }));
+  const proficientSkills = skillEntries.filter((s) => s.proficient);
+  if (skillEntries.length > 0) {
+    checkPageBreak(proficientSkills.length > 0 ? 14 : 8);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.setTextColor(40, 40, 40);
+    doc.text("Skills", margin, y);
+    y += 5;
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(60, 60, 60);
+    const colW = contentWidth / 2;
+    skillEntries.forEach((skill, idx) => {
+      checkPageBreak(5);
+      const x = idx % 2 === 0 ? margin : margin + colW;
+      const rowY = y + Math.floor(idx / 2) * 5;
+      const mark = skill.proficient ? "★ " : "";
+      doc.text(`${mark}${skill.name}`, x, rowY);
+    });
+    y += Math.ceil(skillEntries.length / 2) * 5 + 3;
+    divider();
+  }
+
   const features = character.features.filter((f) => f.name);
   if (features.length > 0) {
     doc.setFont("helvetica", "bold");
