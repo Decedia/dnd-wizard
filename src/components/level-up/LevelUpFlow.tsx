@@ -224,7 +224,7 @@ export function LevelUpFlow({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal">
+    <div className="min-h-screen bg-charcoal">
       <AppHeader title="Level Up!" subtitle={`Step ${currentStepIndex + 1} of ${steps.length}`} />
       <main className="px-4 py-6 pb-28">
         <div className="mx-auto max-w-lg">
@@ -269,7 +269,7 @@ function HpStep({ step, className, onResolve, resolved }: { step: LevelUpStep; c
       <p className="text-xs text-parchment/60">{step.description}</p>
       <div className="flex items-center justify-center gap-6">
         <div className="flex flex-col items-center gap-2">
-          <Dice type={diceType} size={80} onRoll={() => onResolve(step.level)} />
+          <Dice key={`dice-${step.level}`} type={diceType} size={80} onRoll={() => onResolve(step.level)} />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
         <button

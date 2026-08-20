@@ -50,7 +50,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
     const allSpellSlots: Record<number, number> = {};
     let finalSpellSlots: Record<number, number> | null = null;
 
-    for (let level = 1; level <= character.level; level++) {
+    for (let level = 2; level <= character.level; level++) {
       const levelData = classData?.levels[level - 1];
       if (levelData?.features) {
         allFeatures.push(...levelData.features);
@@ -209,11 +209,11 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   };
 
   return (
-    <div className="flex max-h-[calc(100dvh-140px)] flex-col">
+    <div className="flex flex-col">
       <div className="mb-2 text-center">
         <span className="text-xs text-parchment/50">Step {overallCurrentStep} of {overallTotalSteps}</span>
       </div>
-      <div className="flex-1 overflow-y-auto rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4">
+      <div className="rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4">
         <h3 className="mb-3 font-display text-lg font-semibold text-parchment">{currentStep.title}</h3>
         <div className="mb-4">
           {renderStepContent()}
@@ -252,7 +252,7 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
       <p className="text-xs text-parchment/60">{step.description}</p>
       <div className="flex items-center justify-center gap-6">
         <div className="flex flex-col items-center gap-2">
-          <Dice type={diceType} size={80} onRoll={() => onResolve(step.level!)} />
+          <Dice key={`dice-${step.level}`} type={diceType} size={80} onRoll={() => onResolve(step.level!)} />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
         <button
