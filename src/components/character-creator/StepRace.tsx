@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { StepCard } from "./StepCard";
-import { fetchSRDData, type SRDRace } from "@/lib/srd-client";
+import { getStaticRaces, type SRDRace } from "@/lib/srd-client";
 
 interface StepRaceProps {
   data: { race: string };
@@ -10,31 +10,11 @@ interface StepRaceProps {
 }
 
 export function StepRace({ data, onChange }: StepRaceProps) {
-  const [races, setRaces] = useState<SRDRace[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchSRDData()
-      .then((srd) => setRaces(srd.races))
-      .catch(() => setRaces([]))
-      .finally(() => setLoading(false));
-  }, []);
+  const races: SRDRace[] = getStaticRaces();
 
   const handleSelect = useCallback((raceName: string) => {
     onChange({ race: raceName });
   }, [onChange]);
-
-  if (loading) {
-    return (
-      <StepCard title="Race">
-        <div className="space-y-3">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="h-24 animate-pulse rounded-lg bg-charcoal/40" />
-          ))}
-        </div>
-      </StepCard>
-    );
-  }
 
   return (
     <StepCard title="Race">

@@ -1,3 +1,5 @@
+import racesData from "@/data/2026_races.json";
+
 export interface SRDRace {
   name: string;
   abilityScoreIncreases: Record<string, number>;
@@ -5,6 +7,8 @@ export interface SRDRace {
   size: string;
   darkvision: boolean | { range: number };
   traits: { name: string; description: string }[];
+  languages: string[];
+  languageDesc?: string;
 }
 
 export interface SRDClass {
@@ -102,6 +106,10 @@ export async function fetchSRDData(): Promise<SRDData> {
     }
     throw error;
   }
+}
+
+export function getStaticRaces(): SRDRace[] {
+  return racesData.races as SRDRace[];
 }
 
 export function getCachedSRDData(): SRDData | null {

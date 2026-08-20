@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { useSRD } from "@/contexts/SRDContext";
+import { getStaticRaces } from "@/lib/srd-client";
+import { classNames, languageNames } from "@/data/srd";
 import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
 
 interface IdentitySectionProps {
@@ -33,10 +34,8 @@ interface IdentitySectionProps {
 
 export function IdentitySection({ character, onChange }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const { data, loading } = useSRD();
-  const raceNames = data?.races.map((r) => r.name) || [];
-  const classNames = data?.classes.map((c) => c.name) || [];
-  const languageNames = data?.languages.map((l) => l.name) || [];
+  const races = getStaticRaces();
+  const raceNames = races.map((r) => r.name);
 
   const toggleLanguage = (lang: string) => {
     const current = character.languages || [];
@@ -45,18 +44,6 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
       : [...current, lang];
     onChange({ languages: next });
   };
-
-  if (loading) {
-    return (
-      <SectionCard id="identity" title="Identity" icon={<UserIcon className="h-5 w-5" />}>
-        <div className="grid grid-cols-1 gap-4">
-          <div className="h-10 animate-pulse rounded-lg bg-charcoal/40" />
-          <div className="h-10 animate-pulse rounded-lg bg-charcoal/40" />
-          <div className="h-10 animate-pulse rounded-lg bg-charcoal/40" />
-        </div>
-      </SectionCard>
-    );
-  }
 
   return (
     <SectionCard id="identity" title="Identity" icon={<UserIcon className="h-5 w-5" />}>
