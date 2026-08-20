@@ -4,6 +4,12 @@
 
 **App Status**: ✅ DND-AN creation wizard fully restructured (Steps 1-9 + per-level sequence)
 
+### Data Layer
+- **API route**: `/api/srd` proxies `https://www.dnd5eapi.co/api/2014` with in-memory caching (5 min TTL)
+- **Client hook**: `useSRD()` in `src/contexts/SRDContext.tsx` provides live SRD data to client components
+- **Live data**: Races, classes, spells, equipment, languages now fetched from the D&D 5e API
+- **Migration status**: Core UI components (StepRace, StepClass, IdentitySection, SpellsSection) use live API data. Business logic files (`storage.ts`, `level-up.ts`, `create/page.tsx` finish logic) still reference static data in `src/data/srd.ts` as fallback.
+
 ### Creation Wizard Restructure
 - **Step 1 — Identity**: Removed Level/Proficiency/XP; added Background select dropdown; custom language input added below SRD language checkboxes.
 - **Step 2 — Race**: Card-select from SRD races; on selection, race traits auto-added as locked Features & Traits entries (green "default" tag, no delete/edit).
