@@ -35,6 +35,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
       srdSpellName: srdSpell?.name,
       damageDice: "",
       damageType: "",
+      description: "",
     };
     onChange({
       spells: [...character.spells, newSpell],
@@ -105,20 +106,46 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                     <option value="Custom Spell">Custom Spell</option>
                   </select>
                   {isCustom && (
-                    <input
-                      type="text"
-                      value={spell.name}
-                      onChange={(e) => updateItem(spell.id, { name: e.target.value })}
-                      onBlur={onFieldBlur}
-                      className="input flex-1 min-w-[120px]"
-                      placeholder="Enter custom spell name"
-                    />
+                    <>
+                      <input
+                        type="text"
+                        value={spell.name}
+                        onChange={(e) => updateItem(spell.id, { name: e.target.value })}
+                        onBlur={onFieldBlur}
+                        className="input flex-1 min-w-[120px]"
+                        placeholder="Enter custom spell name"
+                      />
+                      <input
+                        type="text"
+                        value={spell.description || ""}
+                        onChange={(e) => updateItem(spell.id, { description: e.target.value })}
+                        onBlur={onFieldBlur}
+                        className="input flex-1 min-w-[120px]"
+                        placeholder="Spell description / effect"
+                      />
+                    </>
                   )}
                   <input
                     type="number"
                     value={spell.level}
-                    onChange={(e) => updateItem(spell.id, { level: parseInt(e.target.value || "0", 10) })}
-                    onBlur={onFieldBlur}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === "") {
+                        updateItem(spell.id, { level: 0 });
+                      } else {
+                        const num = parseInt(val, 10);
+                        if (!isNaN(num)) {
+                          updateItem(spell.id, { level: num });
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      const val = e.target.value;
+                      if (val === "") {
+                        updateItem(spell.id, { level: 0 });
+                      }
+                      onFieldBlur();
+                    }}
                     className="input w-14 text-center"
                     placeholder="Lvl"
                   />

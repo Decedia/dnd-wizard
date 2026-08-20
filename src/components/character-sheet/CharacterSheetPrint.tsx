@@ -389,6 +389,9 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                        {spell.damageDice}{spell.damageType ? ` ${spell.damageType}` : ""}
                      </span>
                    )}
+                   {spell.description && (
+                     <span style={{ fontSize: "10px", color: COLORS.textMuted }}>{spell.description}</span>
+                   )}
                  </div>
                ))}
              </div>
