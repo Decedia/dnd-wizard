@@ -37,6 +37,11 @@ export function FeaturesTraitsSection({ character, onChange }: FeaturesTraitsSec
   return (
     <SectionCard id="features" title="Features & Traits" icon={<FeaturesIcon className="h-5 w-5" />}>
       <div className="space-y-3">
+        {character.subclass && (
+          <div key="subclass-header" className="rounded-lg border border-gold/20 bg-gold/5 px-3 py-2">
+            <span className="text-sm font-semibold text-gold">{character.subclass}</span>
+          </div>
+        )}
         {character.features.map((feature) => {
           const isLocked = feature.locked === true;
           return (

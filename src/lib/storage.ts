@@ -38,6 +38,7 @@ export interface Character {
   expertise: string[];
   passivePerception: number;
   features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean }[];
+  subclass?: string;
   inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string }[];
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class"; classFeatureName?: string }[];
   otherProficiencies: string;
@@ -180,6 +181,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     expertise: [],
     passivePerception: 10,
     features: [],
+    subclass: "",
     inventory: [],
     attacks: [],
     otherProficiencies: "",

@@ -216,6 +216,9 @@ export default function CharacterCreate() {
       }
       finalCharacter.features = allFeatures;
       finalCharacter.level = pendingChanges.level;
+      if (pendingChanges.subclass) {
+        finalCharacter.subclass = pendingChanges.subclass;
+      }
 
       if (pendingChanges.abilityScoreChanges.length > 0) {
         for (const change of pendingChanges.abilityScoreChanges) {

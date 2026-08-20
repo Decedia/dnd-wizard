@@ -29,6 +29,13 @@ export function exportCharacterToPdf(character: Character): void {
   doc.setTextColor(80, 80, 80);
   doc.text(`${character.race} • ${character.class} • Level ${character.level}`, margin, y);
   y += 6;
+  if (character.subclass) {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(114, 47, 55);
+    doc.text(`Archetype: ${character.subclass}`, margin, y);
+    y += 6;
+  }
   doc.text(`Background: ${character.background || "—"}  |  Alignment: ${character.alignment || "—"}  |  XP: ${character.experiencePoints}`, margin, y);
   y += 8;
 
@@ -58,8 +65,8 @@ export function exportCharacterToPdf(character: Character): void {
     const mod = Math.floor((value - 10) / 2);
     const modText = mod >= 0 ? `+${mod}` : `${mod}`;
     const x = margin + (idx % 3) * (contentWidth / 3);
-    const rowY = y + Math.floor(idx / 3) * 14;
     checkPageBreak(14);
+    const rowY = y + Math.floor(idx / 3) * 14;
     doc.setDrawColor(180, 180, 180);
     doc.setLineWidth(0.2);
     doc.rect(x, rowY, contentWidth / 3 - 4, 12, "S");
@@ -101,8 +108,8 @@ export function exportCharacterToPdf(character: Character): void {
   const colWidth = contentWidth / 2;
   statsBlock.forEach(([label, value], idx) => {
     const x = idx % 2 === 0 ? margin : margin + colWidth;
-    const rowY = y + Math.floor(idx / 2) * 6;
     checkPageBreak(6);
+    const rowY = y + Math.floor(idx / 2) * 6;
     doc.setFont("helvetica", "bold");
     doc.setTextColor(100, 100, 100);
     doc.text(`${label}:`, x, rowY);
@@ -158,7 +165,7 @@ export function exportCharacterToPdf(character: Character): void {
           y += 5;
         });
       }
-      y += 2;
+      y += 4;
     });
     divider();
   }

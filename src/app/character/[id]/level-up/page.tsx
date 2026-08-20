@@ -99,16 +99,18 @@ export default function LevelUpPage() {
       ];
     }
     if (subclassChoice) {
+      patch.subclass = subclassChoice;
       const classData = getClassData(className);
       const subclassData = classData?.subclasses?.find((s) => s.name === subclassChoice);
       if (subclassData?.features) {
+        const subclassFeatureEntries = subclassData.features.map((f) => ({
+          id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          name: f.name,
+          description: f.description,
+        }));
         patch.features = [
           ...(patch.features || character.features),
-          ...subclassData.features.map((f) => ({
-            id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-            name: f.name,
-            description: f.description,
-          })),
+          ...subclassFeatureEntries,
         ];
       }
     }
