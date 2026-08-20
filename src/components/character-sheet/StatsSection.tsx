@@ -3,6 +3,8 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getModifier } from "@/lib/storage";
+import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
+import { ProficiencyDot } from "./styled/ProficiencyDot";
 
 interface StatsSectionProps {
   character: {
@@ -37,7 +39,7 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
     <SectionCard id="stats" title="Stats" icon={<StatsIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-3">
         {stats.map(({ key, label }) => (
-          <StatBox
+          <AbilityScoreBlock
             key={key}
             label={label}
             value={character[key]}
@@ -86,43 +88,32 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             return (
               <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                <span className="text-sm text-parchment/80 w-10">{key.toUpperCase()}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-parchment/50">{st.proficient ? "Proficient" : ""}</span>
-                  <input
-                    type="number"
-                    value={st.value}
-                    readOnly
-                    className="input w-20 text-center bg-charcoal/60"
+                  <span className="text-sm text-parchment/80 w-10">{key.toUpperCase()}</span>
+                  <ProficiencyDot
+                    proficient={st.proficient}
+                    onChange={(proficient) =>
+                      onChange({
+                        savingThrows: {
+                          ...character.savingThrows,
+                          [key]: { ...st, proficient },
+                        },
+                      })
+                    }
                   />
                 </div>
+                <input
+                  type="number"
+                  value={st.value}
+                  readOnly
+                  className="input w-20 text-center bg-charcoal/60"
+                />
               </div>
             );
           })}
         </div>
       </div>
     </SectionCard>
-  );
-}
-
-function StatBox({ label, value, onChange, onBlur }: { label: string; value: number; onChange: (v: number) => void; onBlur: () => void }) {
-  const mod = getModifier(value);
-  return (
-    <div className="rounded-lg border border-parchment/10 bg-charcoal/60 p-3 text-center">
-      <span className="text-[10px] font-medium text-parchment/50 uppercase tracking-wider">{label}</span>
-      <div className="mt-1 flex items-center justify-center gap-2">
-        <input
-          type="number"
-          value={value}
-          onChange={(e) => onChange(Math.max(1, parseInt(e.target.value || "10", 10)))}
-          onBlur={onBlur}
-          className="input w-12 text-center py-1 text-sm"
-        />
-        <span className="text-xs font-semibold text-gold">
-          {mod >= 0 ? `+${mod}` : mod}
-        </span>
-      </div>
-    </div>
   );
 }
 

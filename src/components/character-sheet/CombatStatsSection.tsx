@@ -2,6 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { ShieldStat } from "./styled/ShieldStat";
 import type { Character } from "@/lib/storage";
 
 interface CombatStatsSectionProps {
@@ -15,14 +16,9 @@ export function CombatStatsSection({ character, onChange }: CombatStatsSectionPr
   return (
     <SectionCard id="combat" title="Combat Stats" icon={<CombatIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-3">
-        <Field label="AC">
-          <input
-            type="number"
-            value={character.ac}
-            readOnly
-            className="input bg-charcoal/60"
-          />
-        </Field>
+        <div className="flex flex-col items-center">
+          <ShieldStat value={character.ac} />
+        </div>
         <Field label="Current HP">
           <input
             type="number"
