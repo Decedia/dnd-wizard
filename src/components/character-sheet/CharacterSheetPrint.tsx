@@ -8,14 +8,14 @@ interface CharacterSheetPrintProps {
 
 const PRINT_WIDTH = 794; // A4 width at 96dpi
 const COLORS = {
-  bg: "#0d0d0d",
-  cardBg: "#1a1a1a",
-  text: "#ffffff",
-  textMuted: "#a3a3a3",
+  bg: "#ffffff",
+  cardBg: "#f8f8f8",
+  text: "#0d0d0d",
+  textMuted: "#666666",
   gold: "#ef4444",
   burgundy: "#2563eb",
-  border: "#262626",
-  parchment: "#1a1a1a",
+  border: "#e5e5e5",
+  parchment: "#f0f0f0",
 };
 
 function Page({ children, pageNum }: { children: React.ReactNode; pageNum?: number }) {
