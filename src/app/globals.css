@@ -30,7 +30,7 @@
     @apply rounded-full border border-white/15 bg-charcoal-light px-3 py-2 text-sm text-parchment outline-none transition-colors placeholder:text-parchment/30 focus:border-white/50 focus:ring-1 focus:ring-white/50;
   }
   textarea.input {
-    @apply resize-y;
+    @apply resize-y rounded-xl;
   }
   .btn-primary {
     @apply rounded-full bg-burgundy px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-burgundy-light active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;

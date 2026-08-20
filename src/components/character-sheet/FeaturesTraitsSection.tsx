@@ -77,7 +77,7 @@ export function FeaturesTraitsSection({ character, onChange }: FeaturesTraitsSec
                 readOnly={isLocked}
                 onChange={(e) => !isLocked && updateItem(feature.id, { description: e.target.value })}
                 onBlur={isLocked ? undefined : onFieldBlur}
-                className={`input mt-2 min-h-[80px] ${isLocked ? "bg-charcoal/60" : ""}`}
+                className={`textarea.input mt-2 min-h-[80px] ${isLocked ? "bg-charcoal/60" : ""}`}
                 placeholder="Description"
               />
             </div>

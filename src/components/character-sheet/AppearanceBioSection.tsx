@@ -103,7 +103,7 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
             value={character.appearance.characterAppearance}
             onChange={(e) => updateField("characterAppearance", e.target.value)}
             onBlur={onFieldBlur}
-            className="input min-h-[80px]"
+            className="textarea.input min-h-[80px]"
             placeholder="Describe your character's physical appearance..."
           />
         </Field>
@@ -112,7 +112,7 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
             value={character.appearance.personality}
             onChange={(e) => updateField("personality", e.target.value)}
             onBlur={onFieldBlur}
-            className="input min-h-[80px]"
+            className="textarea.input min-h-[80px]"
             placeholder="Describe your character's personality traits, ideals, bonds, and flaws..."
           />
         </Field>
@@ -121,7 +121,7 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
             value={character.appearance.backstory}
             onChange={(e) => updateField("backstory", e.target.value)}
             onBlur={onFieldBlur}
-            className="input min-h-[120px]"
+            className="textarea.input min-h-[120px]"
             placeholder="Where did your character come from? What drives them?"
           />
         </Field>
@@ -130,7 +130,7 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
             value={character.appearance.alliesOrganizations}
             onChange={(e) => updateField("alliesOrganizations", e.target.value)}
             onBlur={onFieldBlur}
-            className="input min-h-[80px]"
+            className="textarea.input min-h-[80px]"
             placeholder="List allies, organizations, or contacts..."
           />
         </Field>
@@ -139,7 +139,7 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
             value={character.appearance.additionalFeaturesTraits}
             onChange={(e) => updateField("additionalFeaturesTraits", e.target.value)}
             onBlur={onFieldBlur}
-            className="input min-h-[80px]"
+            className="textarea.input min-h-[80px]"
             placeholder="Any additional features or traits not listed elsewhere..."
           />
         </Field>
@@ -148,7 +148,7 @@ export function AppearanceBioSection({ character, onChange }: AppearanceBioSecti
             value={character.appearance.treasure}
             onChange={(e) => updateField("treasure", e.target.value)}
             onBlur={onFieldBlur}
-            className="input min-h-[80px]"
+            className="textarea.input min-h-[80px]"
             placeholder="Notable treasure, magic items, or valuables..."
           />
         </Field>

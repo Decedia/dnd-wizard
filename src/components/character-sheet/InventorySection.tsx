@@ -155,6 +155,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
       quantity: 1,
       equipped: false,
       source: "custom",
+      description: "",
     };
     onChange({
       inventory: [...character.inventory, newItem],
@@ -386,6 +387,15 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                   </button>
                 )}
               </div>
+              {editable && item.source === "custom" && (
+                <textarea
+                  value={item.description || ""}
+                  onChange={(e) => updateItem(item.id, { description: e.target.value })}
+                  onBlur={onFieldBlur}
+                  className="input min-h-[60px] mt-2 rounded-xl"
+                  placeholder="Item description"
+                />
+              )}
               {description && (
                 <p className="text-xs text-parchment/50">{description}</p>
               )}

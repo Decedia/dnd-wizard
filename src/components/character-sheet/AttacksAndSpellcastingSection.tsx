@@ -47,35 +47,38 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
         weaponAttacks.length > 0 && (
           <div className="space-y-2">
             {weaponAttacks.map((attack) => (
-              <div key={attack.id} className="flex flex-col gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={attack.name}
-                    readOnly
-                    className="input flex-1 bg-charcoal/60"
-                  />
-                  <input
-                    type="number"
-                    value={attack.attackBonus}
-                    readOnly
-                    className="input w-20 text-center bg-charcoal/60"
-                  />
-                </div>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={attack.damageType}
-                    readOnly
-                    className="input flex-1 bg-charcoal/60"
-                  />
-                  {attack.sneakAttack && (
-                    <span className="text-xs font-medium text-gold bg-gold/10 px-2 py-1 rounded">
-                      +{attack.sneakAttack} sneak
-                    </span>
-                  )}
-                </div>
+            <div key={attack.id} className="flex flex-col gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={attack.name}
+                  readOnly
+                  className="input flex-1 bg-charcoal/60"
+                />
+                <input
+                  type="number"
+                  value={attack.attackBonus}
+                  readOnly
+                  className="input w-20 text-center bg-charcoal/60"
+                />
               </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={attack.damageType}
+                  readOnly
+                  className="input flex-1 bg-charcoal/60"
+                />
+                {attack.sneakAttack && (
+                  <span className="text-xs font-medium text-burgundy bg-burgundy/10 px-2 py-1 rounded">
+                    +{attack.sneakAttack} sneak
+                  </span>
+                )}
+              </div>
+              {attack.description && (
+                <p className="text-xs text-parchment/50">{attack.description}</p>
+              )}
+            </div>
             ))}
           </div>
         )

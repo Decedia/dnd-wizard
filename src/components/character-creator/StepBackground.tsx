@@ -33,7 +33,7 @@ export function StepBackground({ data, onChange }: StepBackgroundProps) {
             value={data.personalityTrait1}
             onChange={(e) => onChange({ personalityTrait1: e.target.value })}
             onBlur={() => {}}
-            className="input min-h-[60px]"
+            className="textarea.input min-h-[60px]"
             placeholder="A personality trait that defines your character"
           />
         </Field>
@@ -42,7 +42,7 @@ export function StepBackground({ data, onChange }: StepBackgroundProps) {
             value={data.personalityTrait2}
             onChange={(e) => onChange({ personalityTrait2: e.target.value })}
             onBlur={() => {}}
-            className="input min-h-[60px]"
+            className="textarea.input min-h-[60px]"
             placeholder="Another personality trait"
           />
         </Field>
@@ -51,7 +51,7 @@ export function StepBackground({ data, onChange }: StepBackgroundProps) {
             value={data.ideal}
             onChange={(e) => onChange({ ideal: e.target.value })}
             onBlur={() => {}}
-            className="input min-h-[60px]"
+            className="textarea.input min-h-[60px]"
             placeholder="A principle or belief your character holds dear"
           />
         </Field>
@@ -60,7 +60,7 @@ export function StepBackground({ data, onChange }: StepBackgroundProps) {
             value={data.bond}
             onChange={(e) => onChange({ bond: e.target.value })}
             onBlur={() => {}}
-            className="input min-h-[60px]"
+            className="textarea.input min-h-[60px]"
             placeholder="A connection or promise that drives your character"
           />
         </Field>
@@ -69,7 +69,7 @@ export function StepBackground({ data, onChange }: StepBackgroundProps) {
             value={data.flaw}
             onChange={(e) => onChange({ flaw: e.target.value })}
             onBlur={() => {}}
-            className="input min-h-[60px]"
+            className="textarea.input min-h-[60px]"
             placeholder="A weakness or vice your character struggles with"
           />
         </Field>

@@ -17,7 +17,7 @@ export function OtherProficienciesSection({ otherProficiencies, onChange }: Othe
         value={otherProficiencies}
         onChange={(e) => onChange(e.target.value)}
         onBlur={onFieldBlur}
-        className="input min-h-[100px]"
+        className="textarea.input min-h-[100px]"
         placeholder="List any additional proficiencies, languages, or other notable abilities..."
       />
     </SectionCard>

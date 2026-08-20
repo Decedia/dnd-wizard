@@ -86,7 +86,7 @@ export function StepLooksAppearances({ data, onChange }: StepLooksAppearancesPro
             value={data.appearance.backstory}
             onChange={(e) => updateField("backstory", e.target.value)}
             onBlur={() => {}}
-            className="input min-h-[120px]"
+            className="textarea.input min-h-[120px]"
             placeholder="Where did your character come from? What drives them?"
           />
         </Field>

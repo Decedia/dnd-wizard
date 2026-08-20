@@ -329,11 +329,16 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
         {character.attacks.filter((a) => a.name).length > 0 ? (
           <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
             {character.attacks.filter((a) => a.name).map((attack) => (
-              <div key={attack.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
-                <span style={{ fontSize: "12px", fontWeight: "bold", color: COLORS.text }}>{attack.name}</span>
-                <span style={{ fontSize: "11px", color: COLORS.textMuted }}>
-                  {attack.attackBonus ? `+${attack.attackBonus}` : ""} {attack.damageType}
-                </span>
+              <div key={attack.id} style={{ display: "flex", flexDirection: "column", gap: "2px", padding: "6px 10px", backgroundColor: COLORS.cardBg, border: `1px solid ${COLORS.border}`, borderRadius: "4px" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <span style={{ fontSize: "12px", fontWeight: "bold", color: COLORS.text }}>{attack.name}</span>
+                  <span style={{ fontSize: "11px", color: COLORS.textMuted }}>
+                    {attack.attackBonus ? `+${attack.attackBonus}` : ""} {attack.damageType}
+                  </span>
+                </div>
+                {attack.description && (
+                  <span style={{ fontSize: "10px", color: COLORS.textMuted }}>{attack.description}</span>
+                )}
               </div>
             ))}
           </div>

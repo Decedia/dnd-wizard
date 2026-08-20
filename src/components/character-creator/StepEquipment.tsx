@@ -199,6 +199,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       damageDice: "",
       damageType: "",
       itemType: "item",
+      description: "",
     };
     onChange({
       inventory: [...data.inventory, newItem],
@@ -391,6 +392,15 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                   </button>
                 )}
               </div>
+              {isEditable && item.source === "custom" && (
+                <textarea
+                  value={item.description || ""}
+                  onChange={(e) => updateItem(item.id, { description: e.target.value })}
+                  onBlur={() => {}}
+                  className="input min-h-[60px] mt-2 rounded-xl"
+                  placeholder="Item description"
+                />
+              )}
               {description && (
                 <p className="text-xs text-parchment/50">{description}</p>
               )}

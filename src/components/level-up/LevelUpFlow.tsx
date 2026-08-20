@@ -258,19 +258,19 @@ export function LevelUpFlow({
       <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
         <div className="mx-auto max-w-lg px-4 w-full">
           <div className="flex items-center gap-3 rounded-full border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
-            <button
-              type="button"
-              onClick={handleBack}
-              className="flex-1 rounded-lg border border-parchment/20 px-4 py-2.5 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
-            >
-              Back
-            </button>
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={!canProceed()}
-              className="flex-1 rounded-lg bg-burgundy px-4 py-2.5 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
-            >
+             <button
+               type="button"
+               onClick={handleBack}
+               className="flex-1 rounded-full border border-white/20 bg-transparent px-4 py-2.5 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5"
+             >
+               Back
+             </button>
+             <button
+               type="button"
+               onClick={handleNext}
+               disabled={!canProceed()}
+               className="flex-1 rounded-full bg-burgundy px-4 py-2.5 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
+             >
               {isLastStep ? "Finish Level Up" : "Next"}
             </button>
           </div>
@@ -293,12 +293,12 @@ function HpStep({ step, className, conMod, onResolve, resolved }: { step: LevelU
           <Dice key={`dice-${step.level}`} type={diceType} size={80} onRoll={() => onResolve(step.level)} />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
-        <button
-          type="button"
-          onClick={() => onResolve(step.level)}
-          disabled={resolved}
-          className="rounded-lg border border-parchment/20 bg-charcoal/40 px-4 py-2 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40 disabled:opacity-40"
-        >
+         <button
+           type="button"
+           onClick={() => onResolve(step.level)}
+           disabled={resolved}
+           className="rounded-full border border-white/20 bg-transparent px-4 py-2 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5 disabled:opacity-40"
+         >
           Take Average ({average + conMod})
         </button>
       </div>
@@ -316,7 +316,7 @@ function FeaturesStep({ step }: { step: LevelUpStepSection }) {
     <div className="space-y-2">
       {step.features?.map((feature, idx) => (
         <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-          <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
+          <span className="text-sm font-medium text-parchment/80">{feature.name}:</span>
           <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
         </div>
       ))}
@@ -351,7 +351,7 @@ function SubclassStep({ step, selected, onSelect }: { step: LevelUpStepSection; 
                 <div className="mt-2 space-y-1">
                   {option.features.map((feature, idx) => (
                     <div key={idx} className="text-xs text-parchment/60">
-                      <span className="font-medium text-gold/80">{feature.name}:</span> {feature.description}
+                       <span className="font-medium text-parchment/80">{feature.name}:</span> {feature.description}
                     </div>
                   ))}
                 </div>
@@ -402,21 +402,21 @@ function AsiStep({
               <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
               <span className="text-sm text-parchment/60">{baseScore}</span>
               <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => onChange(key, -1)}
-                  disabled={allocated <= 0}
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-parchment/20 text-parchment/60 disabled:opacity-30"
-                >
+                 <button
+                   type="button"
+                   onClick={() => onChange(key, -1)}
+                   disabled={allocated <= 0}
+                   className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 text-parchment/60 disabled:opacity-30"
+                 >
                   -
                 </button>
-                <span className="text-sm font-semibold text-gold w-6 text-center">{allocated > 0 ? `+${allocated}` : "0"}</span>
-                <button
-                  type="button"
-                  onClick={() => onChange(key, 1)}
-                  disabled={totalAllocated >= maxPoints || newScore >= 20}
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-parchment/20 text-parchment/60 disabled:opacity-30"
-                >
+                <span className="text-sm font-semibold text-burgundy w-6 text-center">{allocated > 0 ? `+${allocated}` : "0"}</span>
+                 <button
+                   type="button"
+                   onClick={() => onChange(key, 1)}
+                   disabled={totalAllocated >= maxPoints || newScore >= 20}
+                   className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 text-parchment/60 disabled:opacity-30"
+                 >
                   +
                 </button>
               </div>
@@ -509,7 +509,7 @@ function SpellSlotsStep({ step }: { step: LevelUpStepSection }) {
         {Object.entries(step.spellSlots || {}).map(([level, count]) => (
           <div key={level} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-2 py-2 text-center">
             <span className="text-[10px] text-parchment/50 uppercase">Level {level}</span>
-            <span className="block text-sm font-semibold text-gold">{count}</span>
+            <span className="block text-sm font-semibold text-burgundy">{count}</span>
           </div>
         ))}
       </div>
@@ -571,11 +571,11 @@ function SpellSelectionStep({
             key={tab.key}
             type="button"
             onClick={() => setActiveTab(tab.key)}
-            className={`rounded-md px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
-              activeTab === tab.key
-                ? "bg-burgundy text-parchment"
-                : "border border-parchment/10 text-parchment/60 hover:text-parchment"
-            }`}
+             className={`rounded-full px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-all ${
+               activeTab === tab.key
+                 ? "bg-burgundy text-parchment"
+                 : "border border-white/20 text-parchment/60 hover:text-parchment"
+             }`}
           >
             {tab.label}
           </button>
@@ -605,18 +605,18 @@ function SpellSelectionStep({
                   <p className="text-xs text-parchment/50 mt-0.5">{spell.effect}</p>
                   <p className="text-[10px] text-parchment/40 mt-1">{spell.castingTime} | {spell.range} | {spell.duration}</p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => toggleSpell(spell.name)}
-                  disabled={isDisabled}
-                  className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
-                    isSelected
-                      ? "bg-gold/20 text-gold"
-                      : isDisabled
-                      ? "bg-charcoal/20 text-parchment/30"
-                      : "border border-parchment/20 text-parchment hover:border-parchment/40"
-                  }`}
-                >
+                 <button
+                   type="button"
+                   onClick={() => toggleSpell(spell.name)}
+                   disabled={isDisabled}
+                   className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
+                     isSelected
+                       ? "bg-burgundy text-parchment"
+                       : isDisabled
+                       ? "bg-charcoal/20 text-parchment/30"
+                       : "border border-white/20 text-parchment hover:border-white/40"
+                   }`}
+                 >
                   {isSelected ? "Selected" : `Select (${selected.length}/${currentTab?.limit || 0})`}
                 </button>
               </div>

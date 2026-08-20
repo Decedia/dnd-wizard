@@ -40,7 +40,7 @@ export interface Character {
   features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean }[];
   subclass?: string;
   inventory: { id: string; name: string; quantity: number; equipped: boolean; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string }[];
-  attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class"; classFeatureName?: string }[];
+  attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
   spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string }[];
@@ -329,6 +329,7 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
       attackBonus: abilityMod + profBonus,
       damageType: [weapon.damageDice, weapon.damageType].filter(Boolean).join(" "),
       sneakAttack: sneakDice,
+      description: weapon.description,
       source: "weapon" as const,
     };
   });
