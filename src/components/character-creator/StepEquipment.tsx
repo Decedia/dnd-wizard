@@ -95,19 +95,28 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const firstChoice = group.choices[0];
     const groupGlobalIndex = startingEquipment.indexOf(firstChoice);
 
-    const nextInventory = data.inventory.filter(
+    let nextInventory = data.inventory.filter(
       (item) => !(item.choiceGroupIndex === groupGlobalIndex && !item.isGranted)
     );
 
     const itemsToAdd = choice.items || [];
+    const addingArmor = itemsToAdd.some((itemRef: any) => getEquipmentData(itemRef.name)?.type === "armor");
+
+    if (addingArmor) {
+      nextInventory = nextInventory.map((item) =>
+        item.itemType === "armor" ? { ...item, equipped: false } : item
+      );
+    }
+
     itemsToAdd.forEach((itemRef: any) => {
       const srdData = getEquipmentData(itemRef.name);
       const isWeapon = srdData?.type === "weapon";
+      const isArmor = srdData?.type === "armor";
       const newItem: Character["inventory"][number] = {
         id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         name: itemRef.name,
         quantity: itemRef.quantity ?? 1,
-        equipped: isWeapon ? equip : false,
+        equipped: isWeapon ? equip : isArmor,
         source: srdData ? "srd" : "custom",
         srdItemName: srdData?.name,
         itemType: srdData?.type,
