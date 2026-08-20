@@ -72,12 +72,12 @@ export default function Home() {
             className="hidden"
           />
           {importError && (
-            <div className="mt-3 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            <div className="mt-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
               {importError}
             </div>
           )}
           {importSuccess && (
-            <div className="mt-3 rounded-full border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-400">
+            <div className="mt-3 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-400">
               {importSuccess}
             </div>
           )}
@@ -89,7 +89,7 @@ export default function Home() {
           </h2>
 
           {characters.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-full border border-dashed border-parchment/20 bg-charcoal-light/50 py-12 text-center">
+               <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-12 text-center">
               <div className="mb-3 text-4xl opacity-40">🐉</div>
               <p className="text-sm text-parchment/50">
                 No characters yet. Create your first hero to begin your adventure.
@@ -101,7 +101,7 @@ export default function Home() {
                 <li key={char.id}>
                   <Link
                     href={`/character/${char.id}`}
-                     className="block rounded-full border border-white/10 bg-charcoal-light/60 p-4 transition-all active:scale-[0.98] hover:border-white/30"
+                     className="block rounded-xl border border-white/10 bg-charcoal-light/60 p-4 transition-all active:scale-[0.98] hover:border-white/30"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">

@@ -136,7 +136,7 @@ export default function CharacterView() {
       <div className="min-h-screen bg-charcoal">
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
-          <div className="flex flex-col items-center justify-center rounded-full border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
+          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
             <div className="mb-4 text-5xl opacity-40">🐉</div>
             <h2 className="font-display text-xl font-semibold text-parchment mb-2">
               Character Not Found
@@ -185,7 +185,7 @@ export default function CharacterView() {
             <AppearanceBioSection character={character} onChange={handleChange} />
           </div>
 
-          <div className="mx-auto max-w-lg mt-6 mb-4 rounded-full border border-parchment/10 bg-charcoal-light/60 p-4 space-y-3">
+          <div className="mx-auto max-w-lg mt-6 mb-4 rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4 space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={handleLevelUpClick}

@@ -56,7 +56,7 @@ export default function DiceRoller() {
             {DICE_TYPES.map((type) => (
               <div
                 key={type}
-                 className="flex flex-col items-center gap-2 rounded-full border border-white/10 bg-charcoal/40 p-4"
+                 className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-charcoal/40 p-4"
               >
                 <Dice
                   ref={(el) => {

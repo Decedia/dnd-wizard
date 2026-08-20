@@ -423,7 +423,7 @@ export default function CharacterCreate() {
 
       {showExpertiseModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80">
-          <div className="max-w-md w-full rounded-full border border-parchment/20 bg-charcoal-light p-6 shadow-xl">
+          <div className="max-w-md w-full rounded-xl border border-parchment/20 bg-charcoal-light p-6 shadow-xl">
             <h2 className="font-display text-xl font-semibold text-gold mb-2">Expertise</h2>
             <p className="text-xs text-parchment/50 mb-4">
               Select {maxExpertise} skills to double your proficiency bonus. These should be skills your character is already proficient in.

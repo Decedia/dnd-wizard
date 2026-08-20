@@ -186,7 +186,7 @@ export default function LevelUpPage() {
       <div className="min-h-screen bg-charcoal">
         <AppHeader title="Level Up" subtitle="Character Not Found" />
         <main className="px-4 py-6 pb-28">
-          <div className="mx-auto max-w-lg flex flex-col items-center justify-center rounded-full border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
+          <div className="mx-auto max-w-lg flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
             <div className="mb-4 text-5xl opacity-40">🐉</div>
             <h2 className="font-display text-xl font-semibold text-parchment mb-2">Character Not Found</h2>
             <p className="text-sm text-parchment/50 max-w-xs mb-6">This character could not be found. It may have been deleted.</p>
@@ -204,7 +204,7 @@ export default function LevelUpPage() {
       <div className="min-h-screen bg-charcoal">
         <AppHeader title="Level Up" subtitle={character.name || "Character"} />
         <main className="px-4 py-6 pb-28">
-          <div className="mx-auto max-w-lg flex flex-col items-center justify-center rounded-full border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
+          <div className="mx-auto max-w-lg flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
             <div className="mb-4 text-5xl opacity-40">✨</div>
             <h2 className="font-display text-xl font-semibold text-parchment mb-2">No Level Up Available</h2>
             <p className="text-sm text-parchment/50 max-w-xs mb-6">There are no level-up steps for this character at this time.</p>
