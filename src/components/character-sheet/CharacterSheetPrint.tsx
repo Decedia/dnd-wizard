@@ -80,7 +80,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
             <path d="M30 15 Q200 3 370 15 L362 40 Q200 48 38 40 Z" fill="none" stroke={COLORS.gold} strokeWidth="0.75" opacity="0.3" />
           </svg>
           <div style={{ position: "relative", zIndex: 1, paddingTop: "8px" }}>
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "22px", fontWeight: "bold", color: COLORS.burgundy, margin: 0 }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "22px", fontWeight: "bold", color: COLORS.burgundy, margin: 0, marginTop: "-20px" }}>
               {character.name || "Unnamed Character"}
             </h1>
             <p style={{ fontSize: "11px", color: COLORS.textMuted, marginTop: "4px" }}>
