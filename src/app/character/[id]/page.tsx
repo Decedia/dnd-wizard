@@ -21,7 +21,7 @@ import { OtherProficienciesSection } from "@/components/character-sheet/OtherPro
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
-import { Trash2, Download, Upload } from "lucide-react";
+import { Trash2, Download, Upload, ArrowUp, Save } from "lucide-react";
 import { exportCharacterToPdf } from "@/lib/pdf-visual";
 import { importCharacterFromPdf } from "@/lib/pdf";
 
@@ -185,52 +185,61 @@ export default function CharacterView() {
             <AppearanceBioSection character={character} onChange={handleChange} />
           </div>
 
-          <div className="mx-auto max-w-lg mt-6 mb-4 flex items-center gap-3">
+          <div className="mx-auto max-w-lg mt-6 mb-4 rounded-2xl border border-parchment/10 bg-charcoal-light/60 p-4 space-y-3">
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={handleLevelUpClick}
+                disabled={character.level >= 20}
+                className="flex items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
+              >
+                <ArrowUp className="h-4 w-4" />
+                Level Up
+              </button>
+              <button
+                onClick={handleSave}
+                className="flex items-center justify-center gap-2 rounded-xl bg-burgundy px-4 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all hover:bg-burgundy-light active:scale-[0.98]"
+              >
+                <Save className="h-4 w-4" />
+                Save Character
+              </button>
+              <button
+                onClick={handleExport}
+                disabled={exportingPdf}
+                className="flex items-center justify-center gap-2 rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
+              >
+                {exportingPdf ? (
+                  <>
+                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-gold/30 border-t-gold" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-4 w-4" />
+                    Export PDF
+                  </>
+                )}
+              </button>
+              <button
+                onClick={handleImportClick}
+                className="flex items-center justify-center gap-2 rounded-xl border border-parchment/20 bg-parchment/5 px-4 py-3 text-sm font-semibold text-parchment transition-all hover:border-parchment/40 hover:bg-parchment/10 active:scale-[0.98]"
+              >
+                <Upload className="h-4 w-4" />
+                Import PDF
+              </button>
+            </div>
             <button
-              onClick={handleLevelUpClick}
-              disabled={character.level >= 20}
-              className="flex-1 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
+              onClick={handleDelete}
+              className="flex items-center justify-center gap-2 w-full rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98]"
             >
-              Level Up
-            </button>
-            <button
-              onClick={handleSave}
-              className="flex-1 rounded-xl bg-burgundy px-6 py-3 text-sm font-semibold text-parchment shadow-lg shadow-burgundy/20 transition-all active:scale-[0.98]"
-            >
-              Save Character
+              <Trash2 className="h-4 w-4" />
+              Delete Character
             </button>
             {savedAt && (
-              <div className="flex items-center gap-1.5 text-sm font-medium text-green-400">
+              <div className="flex items-center justify-center gap-1.5 text-sm font-medium text-green-400">
                 <CheckIcon className="h-4 w-4" />
                 Saved
               </div>
             )}
-          </div>
-          <div className="mx-auto max-w-lg mb-4 flex items-center gap-3">
-            <button
-              onClick={handleExport}
-              disabled={exportingPdf}
-              className="flex-1 rounded-xl border border-gold/30 bg-gold/10 px-6 py-3 text-sm font-semibold text-gold transition-all hover:border-gold/50 hover:bg-gold/20 active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
-            >
-              {exportingPdf ? (
-                <>
-                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-gold/30 border-t-gold mr-2" />
-                  Generating PDF...
-                </>
-              ) : (
-                <>
-                  <Download className="h-4 w-4 mr-2 inline" />
-                  Export to PDF
-                </>
-              )}
-            </button>
-            <button
-              onClick={handleImportClick}
-              className="flex-1 rounded-xl border border-parchment/20 bg-parchment/5 px-6 py-3 text-sm font-semibold text-parchment transition-all hover:border-parchment/40 hover:bg-parchment/10 active:scale-[0.98]"
-            >
-              <Upload className="h-4 w-4 mr-2 inline" />
-              Import from PDF
-            </button>
             <input
               ref={importInputRef}
               type="file"
@@ -238,25 +247,6 @@ export default function CharacterView() {
               onChange={handleImportFile}
               className="hidden"
             />
-          </div>
-          {importError && (
-            <div className="mx-auto max-w-lg mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-              {importError}
-            </div>
-          )}
-          {importSuccess && (
-            <div className="mx-auto max-w-lg mb-4 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-400">
-              {importSuccess}
-            </div>
-          )}
-          <div className="mx-auto max-w-lg mb-4">
-            <button
-              onClick={handleDelete}
-              className="w-full rounded-xl border border-red-500/30 bg-red-500/10 px-6 py-3 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98]"
-            >
-              <Trash2 className="h-4 w-4 mr-2 inline" />
-              Delete Character
-            </button>
           </div>
         </main>
       </CharacterSheetProvider>
