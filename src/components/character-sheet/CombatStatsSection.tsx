@@ -19,9 +19,8 @@ export function CombatStatsSection({ character, onChange }: CombatStatsSectionPr
           <input
             type="number"
             value={character.ac}
-            onChange={(e) => onChange({ ac: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input"
+            readOnly
+            className="input bg-charcoal/60"
           />
         </Field>
         <Field label="Current HP">

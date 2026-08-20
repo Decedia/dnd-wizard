@@ -4,7 +4,7 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
-import { getCharacter, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
+import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 import { StickyMiniHeader } from "@/components/character-sheet/StickyMiniHeader";
 import { SectionNav } from "@/components/character-sheet/SectionNav";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
@@ -31,7 +31,12 @@ export default function CharacterView() {
 
   const [character, setCharacter] = useState<Character | null>(() => {
     if (typeof window !== "undefined" && id) {
-      return getCharacter(id) ?? null;
+      const loaded = getCharacter(id) ?? null;
+      if (loaded) {
+        const derived = computeDerivedStats(loaded);
+        return { ...loaded, ...derived };
+      }
+      return null;
     }
     return null;
   });

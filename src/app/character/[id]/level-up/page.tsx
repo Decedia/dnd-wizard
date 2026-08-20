@@ -18,7 +18,12 @@ export default function LevelUpPage() {
 
   const [character, setCharacter] = useState(() => {
     if (typeof window !== "undefined" && id) {
-      return getCharacter(id) ?? null;
+      const loaded = getCharacter(id) ?? null;
+      if (loaded) {
+        const derived = computeDerivedStats(loaded);
+        return { ...loaded, ...derived };
+      }
+      return null;
     }
     return null;
   });
@@ -31,7 +36,7 @@ export default function LevelUpPage() {
   const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
 
   const oldLevel = character?.level ?? 1;
-  const newLevel = oldLevel;
+  const newLevel = oldLevel + 1;
   const className = character?.class ?? "";
 
   const steps = useMemo(

@@ -247,8 +247,11 @@ export default function CharacterCreate() {
       }
     }
 
-    saveCharacter(finalCharacter);
-    router.replace(`/character/${finalCharacter.id}`);
+    const derived = computeDerivedStats(finalCharacter);
+    const finalWithDerived = { ...finalCharacter, ...derived };
+
+    saveCharacter(finalWithDerived);
+    router.replace(`/character/${finalWithDerived.id}`);
   };
 
   const renderStep = () => {

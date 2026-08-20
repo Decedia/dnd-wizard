@@ -412,6 +412,16 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const hitDiceTotal = `${character.level}d${hitDie}`;
   const hitDiceRemaining = character.level;
 
+  const equippedShields = character.inventory.filter((item) => item.equipped && item.armorType === "shield");
+  let ac = 10 + getModifier(character.dex);
+  const bodyArmor = character.inventory.find((item) => item.equipped && item.itemType === "armor" && item.armorType !== "shield");
+  if (bodyArmor && bodyArmor.baseAC !== undefined) {
+    const maxDex = bodyArmor.maxDexBonus ?? null;
+    const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
+    ac = bodyArmor.baseAC + dexMod;
+  }
+  ac += equippedShields.length * 2;
+
   return {
     proficiencyBonus: profBonus,
     savingThrows,
@@ -424,5 +434,6 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     currentHp: maxHp,
     hitDiceTotal,
     hitDiceRemaining,
+    ac,
   };
 }
