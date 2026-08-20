@@ -83,7 +83,7 @@ export default function LevelUpPage() {
     }
 
     const allExpertise: string[] = [];
-    for (let level = 1; level <= newLevel; level++) {
+    for (let level = oldLevel + 1; level <= newLevel; level++) {
       allExpertise.push(...(expertiseChoices[level] || []));
     }
 

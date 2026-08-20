@@ -9,9 +9,10 @@ import { ExpertisePicker } from "@/components/character-sheet/ExpertisePicker";
 interface StepSkillsProps {
   data: Character;
   onChange: (data: Partial<Character>) => void;
+  showExpertisePicker?: boolean;
 }
 
-export function StepSkills({ data, onChange }: StepSkillsProps) {
+export function StepSkills({ data, onChange, showExpertisePicker = true }: StepSkillsProps) {
   const [showInfo, setShowInfo] = useState(() => {
     if (typeof window !== "undefined") {
       const hasSeen = sessionStorage.getItem("skills-info-seen");
@@ -116,11 +117,13 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
         })}
       </div>
 
-      <ExpertisePicker
-        character={data}
-        selectedExpertise={data.expertise || []}
-        onExpertiseChange={handleExpertiseChange}
-      />
+      {showExpertisePicker && (
+        <ExpertisePicker
+          character={data}
+          selectedExpertise={data.expertise || []}
+          onExpertiseChange={handleExpertiseChange}
+        />
+      )}
     </StepCard>
   );
 }

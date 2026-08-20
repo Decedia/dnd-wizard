@@ -102,18 +102,21 @@ export function generateLevelUpSteps(
   newLevel: number,
   className: string,
   currentExpertise: string[] = [],
-  currentSkills: Record<string, boolean> = {}
+  currentSkills: Record<string, boolean> = {},
+  includeCurrentLevel: boolean = false
 ): LevelUpStep[] {
   const classData = getClassData(className);
   if (!classData || !classData.levels) return [];
 
   const steps: LevelUpStep[] = [];
+  const startLevel = includeCurrentLevel ? oldLevel : oldLevel + 1;
 
-  for (let level = 1; level <= newLevel; level++) {
+  for (let level = startLevel; level <= newLevel; level++) {
     const levelData = classData.levels[level - 1];
     const sections: LevelUpStepSection[] = [];
 
-    if (level === 1 || level > oldLevel) {
+    const isCurrentLevel = includeCurrentLevel && level === oldLevel;
+    if (!isCurrentLevel) {
       sections.push({
         type: "hp",
         description: `Roll or take average for your ${classData.hitDie}-sided hit die.`,

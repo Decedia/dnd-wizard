@@ -34,8 +34,7 @@ export default function CharacterCreate() {
   const [character, setCharacter] = useState<Character>(createEmptyCharacter());
   const [showExpertiseModal, setShowExpertiseModal] = useState(false);
   const perLevelSteps = useMemo(() => {
-    if (character.level <= 1) return [];
-    return generateLevelUpSteps(1, character.level, character.class, character.expertise || [], character.skills || {});
+    return generateLevelUpSteps(1, character.level, character.class, character.expertise || [], character.skills || {}, true);
   }, [character.level, character.class, character.expertise, character.skills]);
 
   const [pendingChanges, setPendingChanges] = useState<LevelUpChanges | null>(null);
@@ -59,10 +58,6 @@ export default function CharacterCreate() {
   const canProceed = (): boolean => {
     if (step === 1) {
       return character.name.trim().length > 0;
-    }
-    if (step === 6 && character.class === "Rogue") {
-      const currentExpertise = (character.expertise || []).length;
-      return currentExpertise >= maxExpertise;
     }
     return true;
   };
@@ -124,10 +119,6 @@ export default function CharacterCreate() {
 
   const handleNext = () => {
     if (!canProceed()) return;
-    if (step === 6 && character.class === "Rogue" && (character.expertise || []).length < maxExpertise) {
-      setShowExpertiseModal(true);
-      return;
-    }
 
     if (step === BASE_STEPS) {
       setStep(BASE_STEPS + 1);
@@ -135,10 +126,6 @@ export default function CharacterCreate() {
     }
 
     if (step === BASE_STEPS + 1) {
-      if (character.level === 1) {
-        handleFinish();
-        return;
-      }
       setStep(BASE_STEPS + 2);
       return;
     }
@@ -319,6 +306,7 @@ export default function CharacterCreate() {
           <StepSkills
             data={character}
             onChange={(patch) => update(patch)}
+            showExpertisePicker={character.class !== "Rogue"}
           />
         );
       case 7:
