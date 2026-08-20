@@ -116,10 +116,8 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                   )}
                   <input
                     type="number"
-                    min={0}
-                    max={9}
                     value={spell.level}
-                    onChange={(e) => updateItem(spell.id, { level: Math.max(0, Math.min(9, parseInt(e.target.value || "0", 10))) })}
+                    onChange={(e) => updateItem(spell.id, { level: parseInt(e.target.value || "0", 10) })}
                     onBlur={onFieldBlur}
                     className="input w-14 text-center"
                     placeholder="Lvl"

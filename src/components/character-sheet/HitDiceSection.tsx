@@ -28,7 +28,6 @@ export function HitDiceSection({ character, onChange }: HitDiceSectionProps) {
         <Field label="Remaining">
           <input
             type="number"
-            min={0}
             value={character.hitDiceRemaining}
             onChange={(e) => onChange({ hitDiceRemaining: Math.max(0, parseInt(e.target.value || "0", 10)) })}
             onBlur={onFieldBlur}

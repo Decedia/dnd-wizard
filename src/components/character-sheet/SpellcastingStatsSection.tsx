@@ -120,7 +120,6 @@ export function SpellcastingStatsSection({ character, onChange }: SpellcastingSt
                 <div className="flex items-center gap-2">
                   <input
                     type="number"
-                    min={0}
                     value={total}
                     onChange={(e) => updateSpellSlot(level, "total", parseInt(e.target.value || "0", 10))}
                     onBlur={onFieldBlur}
@@ -130,7 +129,6 @@ export function SpellcastingStatsSection({ character, onChange }: SpellcastingSt
                   <span className="text-xs text-parchment/50">/</span>
                   <input
                     type="number"
-                    min={0}
                     value={expended}
                     onChange={(e) => updateSpellSlot(level, "expended", parseInt(e.target.value || "0", 10))}
                     onBlur={onFieldBlur}

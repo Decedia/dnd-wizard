@@ -4,7 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
-import { getEquipmentData, getClassData } from "@/data/srd";
+import { getEquipmentData, getClassData, equipment } from "@/data/srd";
 import { useEffect } from "react";
 
 interface InventorySectionProps {
@@ -332,6 +332,8 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
           const editable = isEditable(item);
           const description = getItemDescription(item);
           const equipBtn = canEquip(item);
+          const isCustom = item.source === "custom";
+          const dropdownValue = isCustom ? "Custom Item" : (item.srdItemName || item.name || "");
           return (
             <div key={item.id} className={`flex flex-col gap-1 rounded-lg border px-3 py-2 ${
               item.isGranted
@@ -341,26 +343,59 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                 : "border-parchment/10 bg-charcoal/40"
             }`}>
               <div className="flex items-center gap-2 flex-wrap">
-                <input
-                  type="text"
-                  value={item.name}
-                  onChange={(e) => editable && updateItem(item.id, { name: e.target.value })}
+                <select
+                  value={dropdownValue}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === "Custom Item") {
+                      updateItem(item.id, { source: "custom", srdItemName: undefined, name: item.name || "" });
+                    } else if (val) {
+                      const srdData = getEquipmentData(val);
+                      updateItem(item.id, {
+                        name: val,
+                        srdItemName: val,
+                        source: "srd",
+                        itemType: srdData?.type,
+                        category: srdData?.category,
+                        damageDice: srdData?.damageDice,
+                        damageType: srdData?.damageType,
+                        baseAC: srdData?.baseAC,
+                        armorType: srdData?.armorType,
+                        maxDexBonus: srdData?.maxDexBonus,
+                      });
+                    } else {
+                      updateItem(item.id, { source: "custom", srdItemName: undefined, name: "" });
+                    }
+                  }}
                   onBlur={onFieldBlur}
-                  readOnly={!editable}
-                  className={`input flex-1 min-w-[120px] ${!editable ? "bg-charcoal/60" : ""}`}
-                  placeholder="Item name"
-                />
-                {editable && (
+                  className="input flex-1 min-w-[120px]"
+                >
+                  <option value="">Select item...</option>
+                  {equipment.map((eq) => (
+                    <option key={eq.name} value={eq.name}>{eq.name}</option>
+                  ))}
+                  <option value="Custom Item">Custom Item</option>
+                </select>
+                {isCustom && (
                   <input
-                    type="number"
-                    min={1}
-                    value={item.quantity}
-                    onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
+                    type="text"
+                    value={item.name}
+                    onChange={(e) => updateItem(item.id, { name: e.target.value })}
                     onBlur={onFieldBlur}
-                    className="input w-16 text-center"
+                    className="input flex-1 min-w-[120px]"
+                    placeholder="Enter custom item name"
                   />
                 )}
-                {!editable && item.quantity && item.quantity > 1 && (
+                <input
+                  type="number"
+                  value={item.quantity}
+                  onChange={(e) => updateItem(item.id, { quantity: parseInt(e.target.value || "0", 10) })}
+                  onBlur={onFieldBlur}
+                  readOnly={!editable}
+                  className={`input w-16 text-center ${!editable ? "bg-charcoal/60" : ""}`}
+                  placeholder="Qty"
+                />
+                {!editable && item.quantity > 1 && (
                   <span className="text-xs text-parchment/50 w-12 text-center">x{item.quantity}</span>
                 )}
                 {equipBtn && (
@@ -380,7 +415,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                   <button
                     type="button"
                     onClick={() => removeItem(item.id)}
-                    className="text-parchment/40 hover:text-parchment"
+                    className="text-parchment/40 hover:text-parchment shrink-0"
                     aria-label="Remove item"
                   >
                     <XIcon className="h-4 w-4" />
@@ -416,7 +451,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         <Field label="CP">
           <input
             type="number"
-            min={0}
             value={character.currency.copper}
             onChange={(e) => updateCurrency("copper", parseInt(e.target.value || "0", 10))}
             onBlur={onFieldBlur}
@@ -426,7 +460,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         <Field label="SP">
           <input
             type="number"
-            min={0}
             value={character.currency.silver}
             onChange={(e) => updateCurrency("silver", parseInt(e.target.value || "0", 10))}
             onBlur={onFieldBlur}
@@ -436,7 +469,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         <Field label="EP">
           <input
             type="number"
-            min={0}
             value={character.currency.electrum}
             onChange={(e) => updateCurrency("electrum", parseInt(e.target.value || "0", 10))}
             onBlur={onFieldBlur}
@@ -446,7 +478,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         <Field label="GP">
           <input
             type="number"
-            min={0}
             value={character.currency.gold}
             onChange={(e) => updateCurrency("gold", parseInt(e.target.value || "0", 10))}
             onBlur={onFieldBlur}
@@ -456,7 +487,6 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
         <Field label="PP">
           <input
             type="number"
-            min={0}
             value={character.currency.platinum}
             onChange={(e) => updateCurrency("platinum", parseInt(e.target.value || "0", 10))}
             onBlur={onFieldBlur}

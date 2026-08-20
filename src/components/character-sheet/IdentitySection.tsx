@@ -109,7 +109,6 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
         <Field label="Experience Points">
           <input
             type="number"
-            min={0}
             value={character.experiencePoints}
             onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
             onBlur={() => {}}

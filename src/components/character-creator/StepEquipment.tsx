@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
-import { getEquipmentData, getClassData } from "@/data/srd";
+import { getEquipmentData, getClassData, equipment } from "@/data/srd";
 import { DiceType } from "@/components/Dice";
 
 interface StepEquipmentProps {
@@ -328,6 +328,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           const description = item.description || srdData?.description;
           const isEditable = item.choiceGroupIndex === undefined;
           const equipBtn = canEquip(item);
+          const isCustom = item.source === "custom";
+          const dropdownValue = isCustom ? "Custom Item" : (item.srdItemName || item.name || "");
           return (
             <div key={item.id} className={`flex flex-col gap-1 rounded-lg border px-3 py-2 ${
               item.isGranted
@@ -335,15 +337,49 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 : "border-parchment/10 bg-charcoal/40"
             }`}>
               <div className="flex items-center gap-2 flex-wrap">
-                <input
-                  type="text"
-                  value={item.name}
-                  onChange={(e) => updateItem(item.id, { name: e.target.value })}
+                <select
+                  value={dropdownValue}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === "Custom Item") {
+                      updateItem(item.id, { source: "custom", srdItemName: undefined, name: item.name || "" });
+                    } else if (val) {
+                      const srd = getEquipmentData(val);
+                      updateItem(item.id, {
+                        name: val,
+                        srdItemName: val,
+                        source: "srd",
+                        itemType: srd?.type,
+                        category: srd?.category,
+                        damageDice: srd?.damageDice,
+                        damageType: srd?.damageType,
+                        baseAC: srd?.baseAC,
+                        armorType: srd?.armorType,
+                        maxDexBonus: srd?.maxDexBonus,
+                      });
+                    } else {
+                      updateItem(item.id, { source: "custom", srdItemName: undefined, name: "" });
+                    }
+                  }}
                   onBlur={() => {}}
-                  readOnly={!isEditable}
-                  className={`input flex-1 min-w-[120px] ${!isEditable ? "bg-charcoal/60" : ""}`}
-                  placeholder="Item name"
-                />
+                  className="input flex-1 min-w-[120px]"
+                >
+                  <option value="">Select item...</option>
+                  {equipment.map((eq) => (
+                    <option key={eq.name} value={eq.name}>{eq.name}</option>
+                  ))}
+                  <option value="Custom Item">Custom Item</option>
+                </select>
+                {isCustom && (
+                  <input
+                    type="text"
+                    value={item.name}
+                    onChange={(e) => updateItem(item.id, { name: e.target.value })}
+                    onBlur={() => {}}
+                    className="input flex-1 min-w-[120px]"
+                    placeholder="Enter custom item name"
+                  />
+                )}
                 {isEditable && (
                   <select
                     value={item.damageDice || ""}
@@ -361,9 +397,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 )}
                 <input
                   type="number"
-                  min={1}
                   value={item.quantity}
-                  onChange={(e) => updateItem(item.id, { quantity: Math.max(1, parseInt(e.target.value || "1", 10)) })}
+                  onChange={(e) => updateItem(item.id, { quantity: parseInt(e.target.value || "0", 10) })}
                   onBlur={() => {}}
                   readOnly={!isEditable}
                   className={`input w-16 text-center ${!isEditable ? "bg-charcoal/60" : ""}`}

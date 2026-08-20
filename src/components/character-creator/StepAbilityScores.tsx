@@ -526,8 +526,6 @@ function DiceRoll({
               <div className="ml-2 flex items-center gap-1">
                 <input
                   type="number"
-                  min={3}
-                  max={18}
                   value={state.manualOverride}
                   onChange={(e) => handleManualOverride(key, e.target.value)}
                   onBlur={() => {}}
