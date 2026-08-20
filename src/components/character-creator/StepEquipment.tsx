@@ -398,23 +398,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <input
                   type="number"
                   value={item.quantity}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    if (val === "") {
-                      updateItem(item.id, { quantity: 1 });
-                    } else {
-                      const num = parseInt(val, 10);
-                      if (!isNaN(num)) {
-                        updateItem(item.id, { quantity: num });
-                      }
-                    }
-                  }}
-                  onBlur={(e) => {
-                    const val = e.target.value;
-                    if (val === "") {
-                      updateItem(item.id, { quantity: 1 });
-                    }
-                  }}
+                  onChange={(e) => updateItem(item.id, { quantity: parseInt(e.target.value || "1", 10) })}
+                  onBlur={() => {}}
                   readOnly={!isEditable}
                   className={`input w-16 text-center ${!isEditable ? "bg-charcoal/60" : ""}`}
                 />

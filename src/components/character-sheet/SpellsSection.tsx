@@ -128,24 +128,8 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                   <input
                     type="number"
                     value={spell.level}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      if (val === "") {
-                        updateItem(spell.id, { level: 0 });
-                      } else {
-                        const num = parseInt(val, 10);
-                        if (!isNaN(num)) {
-                          updateItem(spell.id, { level: num });
-                        }
-                      }
-                    }}
-                    onBlur={(e) => {
-                      const val = e.target.value;
-                      if (val === "") {
-                        updateItem(spell.id, { level: 0 });
-                      }
-                      onFieldBlur();
-                    }}
+                    onChange={(e) => updateItem(spell.id, { level: parseInt(e.target.value || "0", 10) })}
+                    onBlur={onFieldBlur}
                     className="input w-14 text-center"
                     placeholder="Lvl"
                   />

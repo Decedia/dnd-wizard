@@ -389,24 +389,8 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                 <input
                   type="number"
                   value={item.quantity}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    if (val === "") {
-                      updateItem(item.id, { quantity: 1 });
-                    } else {
-                      const num = parseInt(val, 10);
-                      if (!isNaN(num)) {
-                        updateItem(item.id, { quantity: num });
-                      }
-                    }
-                  }}
-                  onBlur={(e) => {
-                    const val = e.target.value;
-                    if (val === "") {
-                      updateItem(item.id, { quantity: 1 });
-                    }
-                    onFieldBlur();
-                  }}
+                  onChange={(e) => updateItem(item.id, { quantity: parseInt(e.target.value || "1", 10) })}
+                  onBlur={onFieldBlur}
                   readOnly={!editable}
                   className={`input w-16 text-center ${!editable ? "bg-charcoal/60" : ""}`}
                 />
