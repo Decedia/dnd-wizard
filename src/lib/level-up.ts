@@ -146,7 +146,7 @@ export function generateLevelUpSteps(
       });
     }
 
-    if (className === "Rogue" && level === 1) {
+    if (className === "Rogue") {
       const expertiseScaling = classData.scalingFeatures?.find((f) => f.type === "feature" && f.name === "Expertise");
       const totalCount = expertiseScaling?.values[level] || 0;
       const currentCount = currentExpertise.length;
