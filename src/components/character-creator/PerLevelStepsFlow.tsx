@@ -403,6 +403,9 @@ function ExpertiseStepInline({
   onSelect: (names: string[]) => void;
 }) {
   const toggle = (name: string) => {
+    if (currentExpertise.includes(name)) {
+      return;
+    }
     if (selected.includes(name)) {
       onSelect(selected.filter((n) => n !== name));
     } else if (selected.length < (step.expertiseCount || 0)) {
@@ -425,13 +428,14 @@ function ExpertiseStepInline({
       <div className="space-y-2">
         {options.map((name) => {
           const isSelected = selected.includes(name);
-          const isDisabled = !isSelected && selected.length >= (step.expertiseCount || 0);
+          const isAlreadySelected = currentExpertise.includes(name);
+          const isDisabled = isAlreadySelected || (!isSelected && selected.length >= (step.expertiseCount || 0));
           return (
             <label
               key={name}
               className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
-                isSelected
-                  ? "border-gold/40 bg-gold/5"
+                isAlreadySelected || isSelected
+                  ? "border-burgundy/40 bg-burgundy/5"
                   : isDisabled
                   ? "border-parchment/5 bg-charcoal/20 opacity-50"
                   : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
@@ -439,14 +443,14 @@ function ExpertiseStepInline({
             >
               <input
                 type="checkbox"
-                checked={isSelected}
+                checked={isAlreadySelected || isSelected}
                 onChange={() => toggle(name)}
                 disabled={isDisabled}
-                className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50 disabled:opacity-30"
+                className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
               />
               <span className="text-sm text-parchment/80">{name}</span>
-              {isSelected && (
-                <span className="text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded ml-auto">EXPERTISE</span>
+              {(isAlreadySelected || isSelected) && (
+                <span className="text-[10px] font-bold text-burgundy bg-burgundy/10 px-1.5 py-0.5 rounded ml-auto">EXPERTISE</span>
               )}
             </label>
           );

@@ -148,14 +148,27 @@ export function generateLevelUpSteps(
 
     if (className === "Rogue") {
       const expertiseScaling = classData.scalingFeatures?.find((f) => f.type === "feature" && f.name === "Expertise");
-      const totalCount = expertiseScaling?.values[level] || 0;
-      const currentCount = currentExpertise.length;
-      if (totalCount > currentCount) {
-        sections.push({
-          type: "expertise",
-          description: `Choose ${totalCount - currentCount} skill${totalCount - currentCount !== 1 ? "s" : ""} to double your proficiency bonus.`,
-          expertiseCount: totalCount - currentCount,
-        });
+      if (expertiseScaling?.values) {
+        const sortedLevels = Object.keys(expertiseScaling.values)
+          .map(Number)
+          .sort((a, b) => a - b);
+        const currentIndex = sortedLevels.indexOf(level);
+        if (currentIndex >= 0) {
+          const currentValue = expertiseScaling.values[level];
+          const prevValue = currentIndex > 0 ? (expertiseScaling.values[sortedLevels[currentIndex - 1]] || 0) : 0;
+          if (currentValue > prevValue) {
+            const currentCount = currentExpertise.length;
+            const expertiseCount = Math.max(0, currentValue - Math.max(currentCount, prevValue));
+            if (expertiseCount > 0) {
+              const hasExisting = prevValue > 0 || currentCount > 0;
+              sections.push({
+                type: "expertise",
+                description: `Choose ${expertiseCount} ${hasExisting ? "more " : ""}skill${expertiseCount !== 1 ? "s" : ""} to double your proficiency bonus.`,
+                expertiseCount,
+              });
+            }
+          }
+        }
       }
     }
 
