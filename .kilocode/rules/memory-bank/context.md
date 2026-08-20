@@ -72,6 +72,8 @@
 - [x] Removed expertise selection from StepSkills during Rogue character creation
 - [x] Level 1 step during character creation skips HP rolling
 - [x] Fixed create page `handleNext` condition to properly reach final Finish & Save step for level > 1
+- [x] Removed +/- level buttons from character sheet IdentitySection; level is now static display
+- [x] Level Up button in character sheet navigates to `/character/[id]/level-up` page
 - [x] Lint, typecheck, and build verified
 
 ## Current Structure
@@ -124,5 +126,5 @@ Wizard restructure complete. Next steps:
 | 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |
 | 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |
 | 2026-08-19 | Consolidated per-level steps: each level produces one step with multiple sections (hp/features/subclass/asi/expertise/spellSlots/spellSelection); updated LevelUpStep type and both PerLevelStepsFlow and LevelUpFlow to render sections |
-| 2026-08-20 | Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page; modified `generateLevelUpSteps` to always include level 1 step with expertise; removed expertise from StepSkills for Rogue during creation; level 1 step skips HP rolling |
+| 2026-08-20 | Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page; modified `generateLevelUpSteps` to always include level 1 step with expertise; removed expertise from StepSkills for Rogue during creation; level 1 step skips HP rolling; removed +/- level buttons from character sheet; level up navigates to dedicated page |
 | 2026-08-20 | Fixed granted equipment quantity display bug (`x{itemRef.quantity}` → `x${itemRef.quantity}`); added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |

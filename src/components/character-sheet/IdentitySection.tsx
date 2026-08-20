@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { raceNames, classNames, languageNames } from "@/data/srd";
 import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
-import { LevelUpFlow } from "@/components/level-up/LevelUpFlow";
-import { type LevelUpChanges } from "@/lib/level-up";
 
 interface IdentitySectionProps {
   character: {
@@ -35,74 +33,6 @@ interface IdentitySectionProps {
 
 export function IdentitySection({ character, onChange }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-
-  const [levelUpOpen, setLevelUpOpen] = useState(false);
-  const [levelUpOldLevel, setLevelUpOldLevel] = useState(character.level);
-  const [levelUpNewLevel, setLevelUpNewLevel] = useState(character.level);
-
-  const handleLevelUpComplete = useCallback(
-    (changes: LevelUpChanges) => {
-      const patch: Partial<IdentitySectionProps["character"]> = { level: changes.level };
-      if (changes.features.length > 0) {
-        patch.features = [
-          ...character.features,
-          ...changes.features.map((f) => ({
-            id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-            name: f.name,
-            description: f.description,
-          })),
-        ];
-      }
-      if (changes.subclass) {
-        const classData = require("@/data/srd").getClassData(character.class);
-        const subclassData = classData?.subclasses?.find((s: any) => s.name === changes.subclass);
-        if (subclassData?.features) {
-          patch.features = [
-            ...(patch.features || character.features),
-            ...subclassData.features.map((f: any) => ({
-              id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-              name: f.name,
-              description: f.description,
-            })),
-          ];
-        }
-      }
-      if (changes.abilityScoreChanges.length > 0) {
-        const updates: any = { ...character };
-        for (const change of changes.abilityScoreChanges) {
-          updates[change.ability] = (character[change.ability as keyof typeof character] as number || 0) + change.delta;
-        }
-        Object.assign(patch, updates);
-      }
-      if (changes.expertise.length > 0) {
-        patch.expertise = [...(character.expertise || []), ...changes.expertise];
-      }
-      if (changes.spellSlots) {
-        patch.spellSlots = { ...character.spellSlots, ...changes.spellSlots };
-      }
-      onChange(patch);
-      setLevelUpOpen(false);
-    },
-    [character, onChange]
-  );
-
-  const handleLevelUpCancel = useCallback(() => {
-    setLevelUpOpen(false);
-  }, []);
-
-  const handleLevelChange = useCallback(
-    (newLevel: number) => {
-      if (newLevel > character.level) {
-        setLevelUpOldLevel(character.level);
-        setLevelUpNewLevel(newLevel);
-        onChange({ level: newLevel });
-        setLevelUpOpen(true);
-      } else if (newLevel < character.level) {
-        onChange({ level: newLevel });
-      }
-    },
-    [character.level, onChange]
-  );
 
   const toggleLanguage = (lang: string) => {
     const current = character.languages || [];
@@ -165,25 +95,7 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <Field label="Level">
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => handleLevelChange(Math.max(1, character.level - 1))}
-                disabled={character.level <= 1}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
-              >
-                -
-              </button>
-              <span className="text-sm font-semibold text-gold w-6 text-center">{character.level}</span>
-              <button
-                type="button"
-                onClick={() => handleLevelChange(Math.min(20, character.level + 1))}
-                disabled={character.level >= 20}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-parchment/20 text-parchment/70 transition-colors hover:border-gold/40 hover:text-gold disabled:opacity-30"
-              >
-                +
-              </button>
-            </div>
+            <span className="text-sm font-semibold text-gold">{character.level}</span>
           </Field>
           <Field label="Proficiency Bonus">
             <input
@@ -244,25 +156,6 @@ export function IdentitySection({ character, onChange }: IdentitySectionProps) {
           </div>
         </Field>
       </div>
-
-      <LevelUpFlow
-        open={levelUpOpen}
-        oldLevel={levelUpOldLevel}
-        newLevel={levelUpNewLevel}
-        className={character.class}
-        currentAbilityScores={{
-          str: character.str,
-          dex: character.dex,
-          con: character.con,
-          int: character.int,
-          wis: character.wis,
-          cha: character.cha,
-        }}
-        currentExpertise={character.expertise || []}
-        currentSkills={character.skills || {}}
-        onComplete={handleLevelUpComplete}
-        onCancel={handleLevelUpCancel}
-      />
     </SectionCard>
   );
 }
