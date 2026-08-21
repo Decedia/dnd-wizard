@@ -349,6 +349,49 @@
               "level": 14
             }
           ]
+        },
+        {
+          "name": "Totem Warrior",
+          "description": "A spiritual journey where the barbarian accepts a spirit animal as guide, protector, and inspiration",
+          "features": [
+            {
+              "name": "Totem Spirit",
+              "description": [
+                "Beginning at 3rd level, when you enter your rage, you choose a totem animal and gain the benefits of that totem. You can choose the same animal you selected previously or a different one.",
+                "Bear. While raging, you have resistance to all damage except psychic damage.",
+                "Eagle. While raging, you can see while you are raging, even in magical darkness. Additionally, your flying speed equals your walking speed while you are raging.",
+                "Wolf. While raging, you can use a bonus action on your turn to knock a creature prone when you hit it with a melee weapon attack during that rage."
+              ],
+              "level": 3
+            },
+            {
+              "name": "Aspect of the Beast",
+              "description": [
+                "At 6th level, you gain a benefit based on the totem animal you chose for Totem Spirit. You can choose the same animal you selected previously or a different one.",
+                "Bear. Your carrying capacity (including maximum load and maximum lift) doubles.",
+                "Eagle. You gain the benefits of your Totem Spirit feature. Additionally, while raging, you have advantage on Wisdom (Perception) checks that rely on sight.",
+                "Wolf. You gain the benefits of your Totem Spirit feature. Additionally, while you are raging, your allies within 5 feet of you have advantage on melee attack rolls against creatures that are within 5 feet of you."
+              ],
+              "level": 6
+            },
+            {
+              "name": "Spirit Walker",
+              "description": [
+                "At 10th level, you gain the ability to cast beast sense and commune with nature, but only as rituals. While in your natural habitat, you have advantage on Wisdom (Survival) checks."
+              ],
+              "level": 10
+            },
+            {
+              "name": "Totem Attunement",
+              "description": [
+                "At 14th level, you gain a benefit based on the totem animal you chose for Totem Spirit. You can choose the same animal you selected previously or a different one.",
+                "Bear. While raging, you have resistance to all damage except psychic damage.",
+                "Eagle. Your flying speed equals your walking speed, even when you are not raging.",
+                "Wolf. When a creature within 5 feet of you hits you with an attack, you can use your reaction to make a melee weapon attack against that creature."
+              ],
+              "level": 14
+            }
+          ]
         }
       ]
     },
