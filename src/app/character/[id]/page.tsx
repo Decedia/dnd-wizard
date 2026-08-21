@@ -126,9 +126,13 @@ export default function CharacterView() {
     setCharacter((prev) => {
       if (!prev) return prev;
       const next = { ...prev, ...patch };
-      const { computeDerivedStats } = require("@/lib/storage");
-      const derived = computeDerivedStats(next);
-      return { ...next, ...derived };
+      try {
+        const { computeDerivedStats } = require("@/lib/storage");
+        const derived = computeDerivedStats(next);
+        return { ...next, ...derived };
+      } catch {
+        return next;
+      }
     });
   }, []);
 

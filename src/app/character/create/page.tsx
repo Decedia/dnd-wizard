@@ -50,8 +50,12 @@ export default function CharacterCreate() {
   const update = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
       const next = { ...prev, ...patch };
-      const derived = computeDerivedStats(next);
-      return { ...next, ...derived };
+      try {
+        const derived = computeDerivedStats(next);
+        return { ...next, ...derived };
+      } catch {
+        return next;
+      }
     });
   }, []);
 
