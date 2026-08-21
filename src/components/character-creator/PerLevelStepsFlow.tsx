@@ -183,6 +183,10 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
             for (const choice of section.featureChoices) {
               if (choice.optional) continue;
               if (!featureChoices[choice.featureName]) return false;
+              if (choice.featureName === "Aspect of the Beast" && featureChoices[choice.featureName] === "Tiger" && choice.tigerSkillCount) {
+                const selected = skillSelections[currentStep.level] || [];
+                if (selected.length !== choice.tigerSkillCount) return false;
+              }
             }
           }
           break;
@@ -237,6 +241,9 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
                 return next;
               });
             }}
+            skillSelections={skillSelections}
+            onSkillSelect={(level, names) => setSkillSelections((prev) => ({ ...prev, [level]: names }))}
+            currentSkills={character.skills || {}}
           />
         );
       case "subclass":
@@ -366,13 +373,16 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
   );
 }
 
-function FeaturesStepInline({ step, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; featureChoices?: LevelUpStepSection["featureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
+function FeaturesStepInline({ step, featureChoices, selectedChoices, onChoiceChange, skillSelections, onSkillSelect, currentSkills }: { step: LevelUpStepSection; featureChoices?: LevelUpStepSection["featureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void; skillSelections?: Record<number, string[]>; onSkillSelect?: (level: number, names: string[]) => void; currentSkills?: Record<string, boolean> }) {
+  const level = step.level;
   return (
     <div className="space-y-2">
       {step.features?.map((feature, idx) => {
         const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
         const selectedAnimal = selectedChoices?.[feature.name];
         const animalDesc = selectedAnimal ? getAnimalDescription(feature.description, selectedAnimal) : undefined;
+        const tigerSkills = optionFeatureChoices?.tigerSkillOptions;
+        const selectedTigerSkills = skillSelections?.[level || 0] || [];
         return (
           <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
             <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
@@ -392,6 +402,38 @@ function FeaturesStepInline({ step, featureChoices, selectedChoices, onChoiceCha
                 </select>
                 {animalDesc && (
                   <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
+                )}
+                {selectedAnimal === "Tiger" && tigerSkills && (
+                  <div className="mt-3 space-y-2">
+                    <p className="text-xs text-parchment/60">If you chose Tiger for {feature.name}, select {optionFeatureChoices.tigerSkillCount || 2} skills to gain proficiency in.</p>
+                    {tigerSkills.map((skill) => {
+                      const isAlreadyProficient = currentSkills?.[skill];
+                      const isSelected = selectedTigerSkills.includes(skill);
+                      const isDisabled = isAlreadyProficient || (!isSelected && selectedTigerSkills.length >= (optionFeatureChoices.tigerSkillCount || 2));
+                      return (
+                        <label key={skill} className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${isSelected ? "border-gold/40 bg-gold/5" : isDisabled ? "border-parchment/5 bg-charcoal/20 opacity-50" : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"}`}>
+                          <input
+                            type="checkbox"
+                            checked={isSelected || isAlreadyProficient}
+                            onChange={() => {
+                              if (!onSkillSelect || !level) return;
+                              const next = isSelected
+                                ? selectedTigerSkills.filter((n) => n !== skill)
+                                : selectedTigerSkills.length < (optionFeatureChoices.tigerSkillCount || 2)
+                                  ? [...selectedTigerSkills, skill]
+                                  : selectedTigerSkills;
+                              onSkillSelect(level, next);
+                            }}
+                            disabled={isDisabled}
+                            className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50 disabled:opacity-30"
+                          />
+                          <span className="text-sm text-parchment/80">{skill}</span>
+                          {isAlreadyProficient && <span className="text-[10px] text-parchment/40">(already proficient)</span>}
+                        </label>
+                      );
+                    })}
+                    <p className="text-xs text-parchment/50">{selectedTigerSkills.length} of {optionFeatureChoices.tigerSkillCount || 2} selected</p>
+                  </div>
                 )}
               </div>
             )}

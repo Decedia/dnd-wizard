@@ -26,6 +26,8 @@ export interface LevelUpStepSection {
     options: string[];
     selected?: string;
     optional?: boolean;
+    tigerSkillOptions?: string[];
+    tigerSkillCount?: number;
   }[];
   subclassOptions?: {
     name: string;
@@ -175,15 +177,6 @@ export function generateLevelUpSteps(
       });
     }
 
-    if (className === "Barbarian" && level === 6) {
-      sections.push({
-        type: "skillSelection",
-        description: "If you chose Tiger for Aspect of the Beast, select 2 skills to gain proficiency in.",
-        skillSelectionCount: 2,
-        skillOptions: [...TIGER_ASPECT_SKILLS],
-      });
-    }
-
     if (levelData?.asi) {
       sections.push({
         type: "asi",
@@ -296,6 +289,8 @@ function getFeatureChoices(className: string, features: { name: string; descript
       choices.push({
         featureName: feature.name,
         options: [...TOTEM_ANIMALS],
+        tigerSkillOptions: feature.name === "Aspect of the Beast" ? [...TIGER_ASPECT_SKILLS] : undefined,
+        tigerSkillCount: feature.name === "Aspect of the Beast" ? 2 : undefined,
       });
     }
     if (feature.name === "Primal Knowledge") {
