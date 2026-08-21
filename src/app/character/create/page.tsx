@@ -58,10 +58,78 @@ export default function CharacterCreate() {
   const maxExpertise = character.class === "Rogue" ? getMaxExpertiseCount(character) : 0;
 
   const canProceed = (): boolean => {
-    if (step === 1) {
-      return character.name.trim().length > 0;
+    switch (step) {
+      case 1:
+        return character.name.trim().length > 0;
+      case 2:
+        return !!character.race;
+      case 3:
+        return !!character.class;
+      case 4: {
+        return (
+          (character.str || 0) > 0 &&
+          (character.dex || 0) > 0 &&
+          (character.con || 0) > 0 &&
+          (character.int || 0) > 0 &&
+          (character.wis || 0) > 0 &&
+          (character.cha || 0) > 0
+        );
+      }
+      case 5:
+        return true;
+      case 6: {
+        const classData = getStaticClass(character.class);
+        const skillChoices = classData?.skillChoices;
+        if (!skillChoices || skillChoices.count === 0) return true;
+        const selectedCount = Object.entries(character.skills || {})
+          .filter(([name, proficient]) => proficient && skillChoices.options.includes(name))
+          .length;
+        return selectedCount >= skillChoices.count;
+      }
+      case 7: {
+        const classData = getStaticClass(character.class);
+        const startingEquipment = classData?.startingEquipment || [];
+        const choiceEntries = startingEquipment.filter((g: any) => !g.granted);
+        if (choiceEntries.length === 0) return true;
+        const groups: any[] = [];
+        let currentChoices: any[] = [];
+        let groupCounter = 0;
+        const flush = () => {
+          if (currentChoices.length > 0) {
+            groups.push({
+              name: `equip-choice-${groupCounter++}`,
+              choices: [...currentChoices],
+            });
+            currentChoices = [];
+          }
+        };
+        for (const entry of choiceEntries) {
+          const desc = (entry.description || "").trim();
+          if (desc.startsWith("Choose one")) {
+            flush();
+            currentChoices = [entry];
+          } else if (desc.startsWith("Or")) {
+            currentChoices.push(entry);
+          }
+        }
+        flush();
+        for (const group of groups) {
+          const firstChoice = group.choices[0];
+          const groupGlobalIndex = startingEquipment.indexOf(firstChoice);
+          const hasSelection = character.inventory.some(
+            (i) => i.choiceGroupIndex === groupGlobalIndex && !i.isGranted && i.choiceOptionIndex != null && i.choiceOptionIndex >= 0
+          );
+          if (!hasSelection) return false;
+        }
+        return true;
+      }
+      case 8:
+        return true;
+      case 9:
+        return character.level > 0 && (character.maxHp || 0) > 0;
+      default:
+        return true;
     }
-    return true;
   };
 
   const addRaceFeatures = useCallback((raceName: string) => {
