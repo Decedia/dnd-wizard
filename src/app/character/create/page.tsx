@@ -237,8 +237,10 @@ export default function CharacterCreate() {
         const classData = getStaticClass(character.class);
         const subclassData = classData?.subclasses?.find((s) => s.name === pendingChanges.subclass);
         if (subclassData?.features) {
+          const existingNames = new Set(finalCharacter.features.map((f) => f.name));
           const subclassFeatures = subclassData.features
             .filter((f) => (f as any).level == null || (f as any).level <= pendingChanges.level)
+            .filter((f) => !existingNames.has(f.name))
             .map((f) => {
               const choiceKey = f.name;
               const choice = pendingChanges.choices?.[choiceKey];

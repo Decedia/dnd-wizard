@@ -117,7 +117,8 @@ export function generateLevelUpSteps(
   className: string,
   currentExpertise: string[] = [],
   currentSkills: Record<string, boolean> = {},
-  includeCurrentLevel: boolean = false
+  includeCurrentLevel: boolean = false,
+  currentSubclass?: string
 ): LevelUpStep[] {
   const classData = getStaticClass(className);
   if (!classData || !classData.levels) return [];
@@ -138,7 +139,19 @@ export function generateLevelUpSteps(
     }
 
     if (levelData?.features?.length > 0) {
-      const features = levelData.features.map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+      let features = levelData.features.map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+
+      if (currentSubclass && classData.subclasses) {
+        const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
+        if (subclassData?.features) {
+          const subclassFeaturesAtLevel = subclassData.features
+            .filter((f: any) => (f as any).level != null && (f as any).level === level && (f as any).level !== classData.subclassLevel)
+            .filter((f: any) => !features.some((cf: any) => cf.name === f.name))
+            .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+          features = [...features, ...subclassFeaturesAtLevel];
+        }
+      }
+
       sections.push({
         type: "features",
         features,
@@ -149,7 +162,9 @@ export function generateLevelUpSteps(
     if (level === classData.subclassLevel && classData.subclasses && classData.subclasses.length > 0) {
       const subclassOptions = classData.subclasses.map((sub: any) => ({
         ...sub,
-        features: (sub.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description), level: f.level })),
+        features: (sub.features || [])
+          .filter((f: any) => (f as any).level == null || (f as any).level === classData.subclassLevel)
+          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description), level: f.level })),
       }));
       sections.push({
         type: "subclass",

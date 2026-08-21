@@ -67,8 +67,8 @@ export default function LevelUpPage() {
   }, [baseAbilityScores, asiChoices, oldLevel]);
 
   const steps = useMemo(
-    () => generateLevelUpSteps(oldLevel, newLevel, className, character?.expertise || [], character?.skills || {}),
-    [oldLevel, newLevel, className, character?.expertise, character?.skills]
+    () => generateLevelUpSteps(oldLevel, newLevel, className, character?.expertise || [], character?.skills || {}, false, character?.subclass),
+    [oldLevel, newLevel, className, character?.expertise, character?.skills, character?.subclass]
   );
 
   const handleHpResolve = useCallback((level: number, gain: number) => {
@@ -135,8 +135,10 @@ export default function LevelUpPage() {
       const classData = getStaticClass(className);
       const subclassData = classData?.subclasses?.find((s) => s.name === subclassChoice);
       if (subclassData?.features) {
+        const existingNames = new Set((patch.features || character.features).map((f) => f.name));
         const subclassFeatureEntries = subclassData.features
           .filter((f: any) => (f as any).level == null || ((f as any).level > oldLevel && (f as any).level <= newLevel))
+          .filter((f: any) => !existingNames.has(f.name))
           .map((f) => {
             const choiceKey = f.name;
             const choice = featureChoices[choiceKey];
@@ -164,8 +166,10 @@ export default function LevelUpPage() {
       const classData = getStaticClass(className);
       const subclassData = classData?.subclasses?.find((s) => s.name === character.subclass);
       if (subclassData?.features) {
+        const existingNames = new Set((patch.features || character.features).map((f) => f.name));
         const subclassFeatureEntries = subclassData.features
           .filter((f: any) => (f as any).level == null || ((f as any).level > oldLevel && (f as any).level <= newLevel))
+          .filter((f: any) => !existingNames.has(f.name))
           .map((f) => {
             const choiceKey = f.name;
             const choice = featureChoices[choiceKey];
