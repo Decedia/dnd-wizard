@@ -25,6 +25,7 @@ export interface LevelUpStepSection {
     featureName: string;
     options: string[];
     selected?: string;
+    optional?: boolean;
   }[];
   subclassOptions?: {
     name: string;
@@ -287,7 +288,7 @@ const TOTEM_FEATURES = ["Totem Spirit", "Aspect of the Beast", "Totem Attunement
 const TOTEM_ANIMALS = ["Bear", "Eagle", "Elk", "Tiger", "Wolf"] as const;
 const TIGER_ASPECT_SKILLS = ["Athletics", "Acrobatics", "Stealth", "Survival"] as const;
 
-function getFeatureChoices(className: string, features: { name: string; description: string }[]): LevelUpStepSection["featureChoices"] {
+function getFeatureChoices(className: string, features: { name: string; description: string; optional?: boolean }[]): LevelUpStepSection["featureChoices"] {
   if (className !== "Barbarian") return undefined;
   const choices: LevelUpStepSection["featureChoices"] = [];
   for (const feature of features) {
@@ -295,6 +296,13 @@ function getFeatureChoices(className: string, features: { name: string; descript
       choices.push({
         featureName: feature.name,
         options: [...TOTEM_ANIMALS],
+      });
+    }
+    if (feature.name === "Primal Knowledge") {
+      choices.push({
+        featureName: feature.name,
+        options: ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"],
+        optional: true,
       });
     }
   }

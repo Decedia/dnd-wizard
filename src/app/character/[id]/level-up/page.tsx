@@ -101,7 +101,17 @@ export default function LevelUpPage() {
     for (let level = oldLevel + 1; level <= newLevel; level++) {
       const levelData = getStaticClass(className)?.levels[level - 1];
       if (levelData?.features) {
-        allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: f.description || f.name })));
+        allFeatures.push(...levelData.features
+          .filter((f: any) => !f.optional || featureChoices[f.name])
+          .map((f: any) => {
+            const choice = featureChoices[f.name];
+            let name = f.name;
+            let description = Array.isArray(f.description) ? f.description.join("\n") : f.description;
+            if (choice) {
+              name = `${f.name} (${choice})`;
+            }
+            return { name, description: description || f.name };
+          }));
       }
       if (levelData?.spellSlots) {
         Object.assign(allSpellSlots, levelData.spellSlots);
@@ -336,6 +346,7 @@ export default function LevelUpPage() {
         case "features":
           if (section.featureChoices) {
             for (const choice of section.featureChoices) {
+              if (choice.optional) continue;
               if (!featureChoices[choice.featureName]) return false;
             }
           }
@@ -551,11 +562,11 @@ function FeaturesStep({ step, featureChoices, selectedChoices, onChoiceChange }:
                   onBlur={() => {}}
                   className="input w-full"
                 >
-                  <option value="">Choose totem animal...</option>
-                  {optionFeatureChoices.options.map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  ))}
-                </select>
+                   <option value="">Choose...</option>
+                   {optionFeatureChoices.options.map((opt) => (
+                     <option key={opt} value={opt}>{opt}</option>
+                   ))}
+                 </select>
                 {animalDesc && (
                   <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
                 )}
@@ -612,18 +623,18 @@ function SubclassStep({ step, selected, onSelect, featureChoices, selectedChoice
                     <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
                     <span className="text-xs text-parchment/70 ml-1 whitespace-pre-line">{feature.description}</span>
                     {optionFeatureChoices && (
-                      <div className="mt-2">
-                        <select
-                          value={selectedAnimal || ""}
-                          onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
-                          onBlur={() => {}}
-                          className="input w-full"
-                        >
-                          <option value="">Choose totem animal...</option>
-                          {optionFeatureChoices.options.map((opt) => (
-                            <option key={opt} value={opt}>{opt}</option>
-                          ))}
-                        </select>
+              <div className="mt-2">
+                <select
+                  value={selectedAnimal || ""}
+                  onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                  onBlur={() => {}}
+                  className="input w-full"
+                >
+                  <option value="">Choose...</option>
+                  {optionFeatureChoices.options.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
                         {animalDesc && (
                           <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
                         )}

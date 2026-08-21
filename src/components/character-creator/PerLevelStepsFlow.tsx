@@ -76,7 +76,17 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
     for (let level = 1; level <= character.level; level++) {
       const levelData = classData?.levels[level - 1];
       if (levelData?.features) {
-        allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: normalizeDescription(f.description) })));
+        allFeatures.push(...levelData.features
+          .filter((f: any) => !f.optional || featureChoices[f.name])
+          .map((f: any) => {
+            const choice = featureChoices[f.name];
+            let name = f.name;
+            let description = normalizeDescription(f.description);
+            if (choice) {
+              name = `${f.name} (${choice})`;
+            }
+            return { name, description };
+          }));
       }
       if (levelData?.spellSlots) {
         Object.assign(allSpellSlots, levelData.spellSlots);
@@ -171,6 +181,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
         case "features":
           if (section.featureChoices) {
             for (const choice of section.featureChoices) {
+              if (choice.optional) continue;
               if (!featureChoices[choice.featureName]) return false;
             }
           }
@@ -374,7 +385,7 @@ function FeaturesStepInline({ step, featureChoices, selectedChoices, onChoiceCha
                   onBlur={() => {}}
                   className="input w-full"
                 >
-                  <option value="">Choose totem animal...</option>
+                  <option value="">Choose...</option>
                   {optionFeatureChoices.options.map((opt) => (
                     <option key={opt} value={opt}>{opt}</option>
                   ))}
@@ -443,11 +454,11 @@ function SubclassStepInline({ step, selected, onSelect, featureChoices, selected
                           onBlur={() => {}}
                           className="input w-full"
                         >
-                          <option value="">Choose totem animal...</option>
-                          {optionFeatureChoices.options.map((opt) => (
-                            <option key={opt} value={opt}>{opt}</option>
-                          ))}
-                        </select>
+                           <option value="">Choose...</option>
+                           {optionFeatureChoices.options.map((opt) => (
+                             <option key={opt} value={opt}>{opt}</option>
+                           ))}
+                         </select>
                         {animalDesc && (
                           <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
                         )}

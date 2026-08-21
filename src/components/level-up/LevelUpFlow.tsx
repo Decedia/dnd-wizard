@@ -104,7 +104,17 @@ export function LevelUpFlow({
     for (let level = oldLevel + 1; level <= newLevel; level++) {
       const levelData = getStaticClass(charClass)?.levels[level - 1];
       if (levelData?.features) {
-        allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: f.description || f.name })));
+        allFeatures.push(...levelData.features
+          .filter((f: any) => !f.optional || featureChoices[f.name])
+          .map((f: any) => {
+            const choice = featureChoices[f.name];
+            let name = f.name;
+            let description = f.description || f.name;
+            if (choice) {
+              name = `${f.name} (${choice})`;
+            }
+            return { name, description };
+          }));
       }
       if (levelData?.spellSlots) {
         Object.assign(allSpellSlots, levelData.spellSlots);
@@ -194,6 +204,7 @@ export function LevelUpFlow({
         case "features":
           if (section.featureChoices) {
             for (const choice of section.featureChoices) {
+              if (choice.optional) continue;
               if (!featureChoices[choice.featureName]) return false;
             }
           }
