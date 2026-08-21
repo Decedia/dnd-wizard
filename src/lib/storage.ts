@@ -33,6 +33,9 @@ export interface Character {
   hitDiceRemaining: number;
   deathSaveSuccesses: number;
   deathSaveFailures: number;
+  rages: number;
+  maxRages: number;
+  rageDamage: number;
   initiative: number;
   speed: number;
   savingThrows: Record<string, { proficient: boolean; value: number }>;
@@ -178,6 +181,9 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     hitDiceRemaining: 0,
     deathSaveSuccesses: 0,
     deathSaveFailures: 0,
+    rages: 0,
+    maxRages: 0,
+    rageDamage: 0,
     initiative: 0,
     speed: 30,
     savingThrows: {},
@@ -401,6 +407,21 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const hitDiceTotal = `${character.level}d${hitDie}`;
   const hitDiceRemaining = character.level;
 
+  let rages = 0;
+  let maxRages = 0;
+  let rageDamage = 0;
+  if (classData?.name === "Barbarian") {
+    if (character.level >= 17) maxRages = 6;
+    else if (character.level >= 12) maxRages = 5;
+    else if (character.level >= 6) maxRages = 4;
+    else if (character.level >= 3) maxRages = 3;
+    else maxRages = 2;
+    rages = maxRages;
+    if (character.level >= 16) rageDamage = 4;
+    else if (character.level >= 9) rageDamage = 3;
+    else rageDamage = 2;
+  }
+
   const equippedShields = character.inventory.filter((item) => item.equipped && item.armorType === "shield");
   let ac = 10 + getModifier(character.dex);
   const bodyArmor = character.inventory.find((item) => item.equipped && item.itemType === "armor" && item.armorType !== "shield");
@@ -421,6 +442,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     spellAttackBonus,
     hitDiceTotal,
     hitDiceRemaining,
+    rages,
+    maxRages,
+    rageDamage,
     ac,
   };
 }

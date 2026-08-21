@@ -181,7 +181,14 @@
           "asi": false
         },
         {
-          "features": [],
+          "features": [
+            {
+              "name": "Path feature",
+              "description": [
+                "At 3rd level, you choose a path that shapes the nature of your rage. Choose the Path of the Berserker or the Path of the Totem Warrior, both detailed at the end of the class description. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels."
+              ]
+            }
+          ],
           "asi": false
         },
         {
@@ -192,6 +199,13 @@
                 "By 7th level, your instincts are so honed that you have advantage on initiative rolls.",
                 "Additionally, if you are surprised at the beginning of combat and aren't incapacitated, you can act normally on your first turn, but only if you enter your rage before doing anything else on that turn."
               ]
+            },
+            {
+              "name": "Instinctive Pounce",
+              "description": [
+                "As part of the bonus action you take to enter your rage, you can move up to half your speed."
+              ],
+              "optional": true
             }
           ],
           "asi": false
