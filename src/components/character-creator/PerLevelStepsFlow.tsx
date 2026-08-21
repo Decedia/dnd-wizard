@@ -357,61 +357,67 @@ function FeaturesStepInline({ step, featureChoices, selectedChoices, onChoiceCha
 }
 
 function SubclassStepInline({ step, selected, onSelect, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void; featureChoices?: LevelUpStepSection["subclassFeatureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
+  const selectedOption = step.subclassOptions?.find((o) => o.name === selected);
+  const level = step.level;
   return (
     <div className="space-y-3">
       <div className="space-y-2">
-        {step.subclassOptions?.map((option) => {
-          const optionFeatureChoices = featureChoices?.filter((c) => option.features?.some((f) => f.name === c.featureName));
-          return (
-            <label
-              key={option.name}
-              className={`flex items-start gap-3 rounded-lg border px-3 py-3 cursor-pointer transition-colors ${
-                selected === option.name
-                  ? "border-gold/40 bg-gold/5"
-                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
-              }`}
-            >
-              <input
-                type="radio"
-                name="subclass"
-                checked={selected === option.name}
-                onChange={() => onSelect(option.name)}
-                className="mt-1 h-4 w-4 text-gold focus:ring-gold/50"
-              />
-              <div className="flex-1">
-                <span className="text-sm font-medium text-parchment/80">{option.name}</span>
-                {option.description && <p className="text-xs text-parchment/50 mt-1">{option.description}</p>}
-                {option.features?.length > 0 && (
-                  <div className="mt-2 space-y-1">
-                    {option.features.map((feature, idx) => (
-                      <div key={idx}>
-                        <div className="text-xs text-parchment/60">
-                          <span className="font-medium text-gold/80">{feature.name}:</span> {feature.description}
-                        </div>
-                        {optionFeatureChoices?.find((c) => c.featureName === feature.name) && (
-                          <div className="mt-1">
-                            <select
-                              value={selectedChoices?.[feature.name] || ""}
-                              onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
-                              onBlur={() => {}}
-                              className="input w-full"
-                            >
-                              <option value="">Choose totem animal...</option>
-                              {optionFeatureChoices.find((c) => c.featureName === feature.name)?.options.map((opt) => (
-                                <option key={opt} value={opt}>{opt}</option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </label>
-          );
-        })}
+        {step.subclassOptions?.map((option) => (
+          <label
+            key={option.name}
+            className={`flex items-start gap-3 rounded-lg border px-3 py-3 cursor-pointer transition-colors ${
+              selected === option.name
+                ? "border-gold/40 bg-gold/5"
+                : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+            }`}
+          >
+            <input
+              type="radio"
+              name="subclass"
+              checked={selected === option.name}
+              onChange={() => onSelect(option.name)}
+              className="mt-1 h-4 w-4 text-gold focus:ring-gold/50"
+            />
+            <div className="flex-1">
+              <span className="text-sm font-medium text-parchment/80">{option.name}</span>
+              {option.description && <p className="text-xs text-parchment/50 mt-1">{option.description}</p>}
+            </div>
+          </label>
+        ))}
       </div>
+      {selectedOption && level && selectedOption.features?.length > 0 && (
+        <div className="mt-4 space-y-2">
+          <p className="text-xs font-medium text-parchment/60 uppercase tracking-wider">Features gained at level {level}</p>
+          <div className="space-y-2">
+            {selectedOption.features
+              .filter((f) => (f as any).level == null || (f as any).level === level)
+              .map((feature, idx) => {
+                const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
+                return (
+                  <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+                    <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
+                    <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
+                    {optionFeatureChoices && (
+                      <div className="mt-2">
+                        <select
+                          value={selectedChoices?.[feature.name] || ""}
+                          onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                          onBlur={() => {}}
+                          className="input w-full"
+                        >
+                          <option value="">Choose totem animal...</option>
+                          {optionFeatureChoices.options.map((opt) => (
+                            <option key={opt} value={opt}>{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
