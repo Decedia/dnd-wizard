@@ -183,10 +183,11 @@
         {
           "features": [
             {
-              "name": "Path feature",
+              "name": "Primal Knowledge",
               "description": [
-                "At 3rd level, you choose a path that shapes the nature of your rage. Choose the Path of the Berserker or the Path of the Totem Warrior, both detailed at the end of the class description. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels."
-              ]
+                "At 6th level, you learn the secret of forging a mystical bond between yourself and the natural world. You gain proficiency in one skill of your choice from the following list: Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival."
+              ],
+              "optional": true
             }
           ],
           "asi": false
