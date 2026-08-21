@@ -138,9 +138,13 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           if (subclassChoice === null) return false;
           if (section.subclassFeatureChoices && section.subclassOptions) {
             const selectedSub = section.subclassOptions.find((o) => o.name === subclassChoice);
-            const selectedFeatureNames = new Set((selectedSub?.features || []).map((f) => f.name));
+            const featureLevelMap = new Map(
+              (selectedSub?.features || [])
+                .filter((f: any) => (f.level == null || f.level === currentStep.level))
+                .map((f: any) => [f.name, f.level])
+            );
             for (const choice of section.subclassFeatureChoices) {
-              if (selectedFeatureNames.has(choice.featureName) && !featureChoices[choice.featureName]) return false;
+              if (featureLevelMap.has(choice.featureName) && !featureChoices[choice.featureName]) return false;
             }
           }
           break;
