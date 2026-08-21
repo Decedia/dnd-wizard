@@ -21,7 +21,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [hpResolved, setHpResolved] = useState<Record<number, boolean>>({});
   const [asiChoices, setAsiChoices] = useState<Record<number, { ability: string; delta: number }[]>>({});
-  const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
+  const [subclassChoice, setSubclassChoice] = useState<string | null>(character.subclass || null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [selectedSpells, setSelectedSpells] = useState<Record<string, string[]>>({});
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
