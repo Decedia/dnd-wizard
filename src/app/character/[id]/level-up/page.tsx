@@ -34,6 +34,7 @@ export default function LevelUpPage() {
   const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
+  const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
 
   const oldLevel = character?.level ?? 1;
   const newLevel = oldLevel + 1;
@@ -133,15 +134,61 @@ export default function LevelUpPage() {
       const classData = getStaticClass(className);
       const subclassData = classData?.subclasses?.find((s) => s.name === subclassChoice);
       if (subclassData?.features) {
-        const subclassFeatureEntries = subclassData.features.map((f) => ({
-          id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-          name: f.name,
-          description: f.description,
-        }));
+        const subclassFeatureEntries = subclassData.features
+          .filter((f: any) => (f as any).level == null || ((f as any).level > oldLevel && (f as any).level <= newLevel))
+          .map((f) => {
+            const choiceKey = f.name;
+            const choice = featureChoices[choiceKey];
+            let name = f.name;
+            let description = Array.isArray(f.description) ? f.description.join("\n") : f.description;
+            if (choice) {
+              name = `${f.name} (${choice})`;
+              if (Array.isArray(f.description)) {
+                const optionLines = f.description.filter((line: string) => line.startsWith(`${choice}.`));
+                description = optionLines.length > 0 ? optionLines.join("\n") : description;
+              }
+            }
+            return {
+              id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+              name,
+              description: description || f.name,
+            };
+          });
         patch.features = [
           ...(patch.features || character.features),
           ...subclassFeatureEntries,
         ];
+      }
+    } else if (character.subclass) {
+      const classData = getStaticClass(className);
+      const subclassData = classData?.subclasses?.find((s) => s.name === character.subclass);
+      if (subclassData?.features) {
+        const subclassFeatureEntries = subclassData.features
+          .filter((f: any) => (f as any).level == null || ((f as any).level > oldLevel && (f as any).level <= newLevel))
+          .map((f) => {
+            const choiceKey = f.name;
+            const choice = featureChoices[choiceKey];
+            let name = f.name;
+            let description = Array.isArray(f.description) ? f.description.join("\n") : f.description;
+            if (choice) {
+              name = `${f.name} (${choice})`;
+              if (Array.isArray(f.description)) {
+                const optionLines = f.description.filter((line: string) => line.startsWith(`${choice}.`));
+                description = optionLines.length > 0 ? optionLines.join("\n") : description;
+              }
+            }
+            return {
+              id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+              name,
+              description: description || f.name,
+            };
+          });
+        if (subclassFeatureEntries.length > 0) {
+          patch.features = [
+            ...(patch.features || character.features),
+            ...subclassFeatureEntries,
+          ];
+        }
       }
     }
     if (allAsi.length > 0) {
@@ -169,7 +216,7 @@ export default function LevelUpPage() {
 
     saveCharacter(finalChar);
     router.push(`/character/${id}`);
-  }, [character, oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, router, id, hpResolved]);
+  }, [character, oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, featureChoices, router, id, hpResolved]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -241,6 +288,11 @@ export default function LevelUpPage() {
           break;
         case "subclass":
           if (subclassChoice === null) return false;
+          if (section.subclassFeatureChoices) {
+            for (const choice of section.subclassFeatureChoices) {
+              if (!featureChoices[choice.featureName]) return false;
+            }
+          }
           break;
         case "expertise":
           if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
@@ -250,6 +302,13 @@ export default function LevelUpPage() {
           if ((selectedSpells[spellKey]?.length || 0) < (section.spellSelectionCount || 0)) return false;
           break;
         }
+        case "features":
+          if (section.featureChoices) {
+            for (const choice of section.featureChoices) {
+              if (!featureChoices[choice.featureName]) return false;
+            }
+          }
+          break;
         default:
           break;
       }
@@ -292,9 +351,45 @@ export default function LevelUpPage() {
           />
         );
       case "features":
-        return <FeaturesStep step={{ ...section, level: currentStep.level } as any} />;
+        return (
+          <FeaturesStep
+            step={{ ...section, level: currentStep.level } as any}
+            featureChoices={section.featureChoices}
+            selectedChoices={featureChoices}
+            onChoiceChange={(featureName, value) => {
+              setFeatureChoices((prev) => {
+                const next = { ...prev };
+                if (value) {
+                  next[featureName] = value;
+                } else {
+                  delete next[featureName];
+                }
+                return next;
+              });
+            }}
+          />
+        );
       case "subclass":
-        return <SubclassStep step={{ ...section, level: currentStep.level } as any} selected={subclassChoice} onSelect={setSubclassChoice} />;
+        return (
+          <SubclassStep
+            step={{ ...section, level: currentStep.level } as any}
+            selected={subclassChoice}
+            onSelect={setSubclassChoice}
+            featureChoices={section.subclassFeatureChoices}
+            selectedChoices={featureChoices}
+            onChoiceChange={(featureName, value) => {
+              setFeatureChoices((prev) => {
+                const next = { ...prev };
+                if (value) {
+                  next[featureName] = value;
+                } else {
+                  delete next[featureName];
+                }
+                return next;
+              });
+            }}
+          />
+        );
       case "asi":
         return (
           <AsiStep
@@ -396,54 +491,91 @@ function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: 
   );
 }
 
-function FeaturesStep({ step }: { step: LevelUpStepSection }) {
+function FeaturesStep({ step, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; featureChoices?: LevelUpStepSection["featureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
   return (
     <div className="space-y-2">
       {step.features?.map((feature, idx) => (
         <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
           <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
           <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
+          {featureChoices?.find((c) => c.featureName === feature.name) && (
+            <div className="mt-2">
+              <select
+                data-feature-choice={feature.name}
+                value={selectedChoices?.[feature.name] || ""}
+                onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                onBlur={() => {}}
+                className="input w-full"
+              >
+                <option value="">Choose totem animal...</option>
+                {featureChoices.find((c) => c.featureName === feature.name)?.options.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 }
 
-function SubclassStep({ step, selected, onSelect }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void }) {
+function SubclassStep({ step, selected, onSelect, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void; featureChoices?: LevelUpStepSection["subclassFeatureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
   return (
     <div className="space-y-3">
       <div className="space-y-2">
-        {step.subclassOptions?.map((option) => (
-          <label
-            key={option.name}
-            className={`flex items-start gap-3 rounded-lg border px-3 py-3 cursor-pointer transition-colors ${
-              selected === option.name
-                ? "border-gold/40 bg-gold/5"
-                : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
-            }`}
-          >
-            <input
-              type="radio"
-              name="subclass"
-              checked={selected === option.name}
-              onChange={() => onSelect(option.name)}
-              className="mt-1 h-4 w-4 text-gold focus:ring-gold/50"
-            />
-            <div className="flex-1">
-              <span className="text-sm font-medium text-parchment/80">{option.name}</span>
-              {option.description && <p className="text-xs text-parchment/50 mt-1">{option.description}</p>}
-              {option.features?.length > 0 && (
-                <div className="mt-2 space-y-1">
-                  {option.features.map((feature, idx) => (
-                    <div key={idx} className="text-xs text-parchment/60">
-                      <span className="font-medium text-gold/80">{feature.name}:</span> {feature.description}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </label>
-        ))}
+        {step.subclassOptions?.map((option) => {
+          const optionFeatureChoices = featureChoices?.filter((c) => option.features?.some((f) => f.name === c.featureName));
+          return (
+            <label
+              key={option.name}
+              className={`flex items-start gap-3 rounded-lg border px-3 py-3 cursor-pointer transition-colors ${
+                selected === option.name
+                  ? "border-gold/40 bg-gold/5"
+                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+              }`}
+            >
+              <input
+                type="radio"
+                name="subclass"
+                checked={selected === option.name}
+                onChange={() => onSelect(option.name)}
+                className="mt-1 h-4 w-4 text-gold focus:ring-gold/50"
+              />
+              <div className="flex-1">
+                <span className="text-sm font-medium text-parchment/80">{option.name}</span>
+                {option.description && <p className="text-xs text-parchment/50 mt-1">{option.description}</p>}
+                {option.features?.length > 0 && (
+                  <div className="mt-2 space-y-1">
+                    {option.features.map((feature, idx) => (
+                      <div key={idx}>
+                        <div className="text-xs text-parchment/60">
+                          <span className="font-medium text-gold/80">{feature.name}:</span> {feature.description}
+                        </div>
+                        {optionFeatureChoices?.find((c) => c.featureName === feature.name) && (
+                          <div className="mt-1">
+                            <select
+                              data-feature-choice={feature.name}
+                              value={selectedChoices?.[feature.name] || ""}
+                              onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                              onBlur={() => {}}
+                              className="input w-full"
+                            >
+                              <option value="">Choose totem animal...</option>
+                              {optionFeatureChoices.find((c) => c.featureName === feature.name)?.options.map((opt) => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
+                            </select>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </label>
+          );
+        })}
       </div>
     </div>
   );

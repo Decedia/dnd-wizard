@@ -21,10 +21,20 @@ export interface LevelUpStepSection {
   type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection";
   description?: string;
   features?: { name: string; description: string }[];
+  featureChoices?: {
+    featureName: string;
+    options: string[];
+    selected?: string;
+  }[];
   subclassOptions?: {
     name: string;
     description: string;
-    features: { name: string; description: string }[];
+    features: { name: string; description: string; level?: number }[];
+  }[];
+  subclassFeatureChoices?: {
+    featureName: string;
+    options: string[];
+    selected?: string;
   }[];
   asiCount?: number;
   expertiseCount?: number;
@@ -49,6 +59,7 @@ export interface LevelUpChanges {
   abilityScoreChanges: { ability: string; delta: number }[];
   expertise: string[];
   spellSlots: Record<number, number> | null;
+  choices?: Record<string, string>;
 }
 
 export function computeLevelUp(oldLevel: number, newLevel: number, className: string): LevelUpResult {
@@ -124,17 +135,24 @@ export function generateLevelUpSteps(
     }
 
     if (levelData?.features?.length > 0) {
+      const features = levelData.features.map((f: any) => ({ name: f.name, description: f.description || f.name }));
       sections.push({
         type: "features",
-        features: levelData.features.map((f: any) => ({ name: f.name, description: f.description || f.name })),
+        features,
+        featureChoices: getFeatureChoices(className, features),
       });
     }
 
     if (level === classData.subclassLevel && classData.subclasses && classData.subclasses.length > 0) {
+      const subclassOptions = classData.subclasses.map((sub: any) => ({
+        ...sub,
+        features: (sub.features || []).map((f: any) => ({ name: f.name, description: f.description || f.name, level: f.level })),
+      }));
       sections.push({
         type: "subclass",
         description: `Choose your ${classData.name} subclass.`,
-        subclassOptions: classData.subclasses,
+        subclassOptions,
+        subclassFeatureChoices: getSubclassFeatureChoices(className, subclassOptions),
       });
     }
 
@@ -236,4 +254,42 @@ function sectionLabel(type: LevelUpStepSection["type"], className: string): stri
     default:
       return "";
   }
+}
+
+const TOTEM_FEATURES = ["Totem Spirit", "Aspect of the Beast", "Totem Attunement"] as const;
+const TOTEM_ANIMALS = ["Bear", "Eagle", "Wolf"] as const;
+
+function getFeatureChoices(className: string, features: { name: string; description: string }[]): LevelUpStepSection["featureChoices"] {
+  if (className !== "Barbarian") return undefined;
+  const choices: LevelUpStepSection["featureChoices"] = [];
+  for (const feature of features) {
+    if (TOTEM_FEATURES.includes(feature.name as any)) {
+      choices.push({
+        featureName: feature.name,
+        options: [...TOTEM_ANIMALS],
+      });
+    }
+  }
+  return choices.length > 0 ? choices : undefined;
+}
+
+function getSubclassFeatureChoices(
+  className: string,
+  subclassOptions: { name: string; description: string; features: { name: string; description: string; level?: number }[] }[]
+): LevelUpStepSection["subclassFeatureChoices"] {
+  if (className !== "Barbarian") return undefined;
+  const choices: LevelUpStepSection["subclassFeatureChoices"] = [];
+  for (const sub of subclassOptions) {
+    if (sub.name === "Totem Warrior") {
+      for (const feature of sub.features || []) {
+        if (TOTEM_FEATURES.includes(feature.name as any)) {
+          choices.push({
+            featureName: feature.name,
+            options: [...TOTEM_ANIMALS],
+          });
+        }
+      }
+    }
+  }
+  return choices.length > 0 ? choices : undefined;
 }

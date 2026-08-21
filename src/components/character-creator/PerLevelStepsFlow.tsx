@@ -23,6 +23,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [selectedSpells, setSelectedSpells] = useState<Record<string, string[]>>({});
+  const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
 
   const baseAbilityScores = useMemo(() => ({
     str: character.str || 0,
@@ -98,8 +99,9 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
       abilityScoreChanges: allAsi,
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
+      choices: Object.keys(featureChoices).length > 0 ? featureChoices : undefined,
     });
-  }, [character.level, character.class, subclassChoice, asiChoices, expertiseChoices, onComplete]);
+  }, [character.level, character.class, subclassChoice, asiChoices, expertiseChoices, featureChoices, onComplete]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -133,6 +135,11 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           break;
         case "subclass":
           if (subclassChoice === null) return false;
+          if (section.subclassFeatureChoices) {
+            for (const choice of section.subclassFeatureChoices) {
+              if (!featureChoices[choice.featureName]) return false;
+            }
+          }
           break;
         case "expertise":
           if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
@@ -142,6 +149,13 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           if ((selectedSpells[spellKey]?.length || 0) < (section.spellSelectionCount || 0)) return false;
           break;
         }
+        case "features":
+          if (section.featureChoices) {
+            for (const choice of section.featureChoices) {
+              if (!featureChoices[choice.featureName]) return false;
+            }
+          }
+          break;
         default:
           break;
       }
@@ -177,13 +191,43 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           />
         );
       case "features":
-        return <FeaturesStepInline step={{ ...section, level: currentStep.level } as any} />;
+        return (
+          <FeaturesStepInline
+            step={{ ...section, level: currentStep.level } as any}
+            featureChoices={section.featureChoices}
+            selectedChoices={featureChoices}
+            onChoiceChange={(featureName, value) => {
+              setFeatureChoices((prev) => {
+                const next = { ...prev };
+                if (value) {
+                  next[featureName] = value;
+                } else {
+                  delete next[featureName];
+                }
+                return next;
+              });
+            }}
+          />
+        );
       case "subclass":
         return (
           <SubclassStepInline
             step={{ ...section, level: currentStep.level } as any}
             selected={subclassChoice}
             onSelect={setSubclassChoice}
+            featureChoices={section.subclassFeatureChoices}
+            selectedChoices={featureChoices}
+            onChoiceChange={(featureName, value) => {
+              setFeatureChoices((prev) => {
+                const next = { ...prev };
+                if (value) {
+                  next[featureName] = value;
+                } else {
+                  delete next[featureName];
+                }
+                return next;
+              });
+            }}
           />
         );
       case "asi":
@@ -283,13 +327,28 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
   );
 }
 
-function FeaturesStepInline({ step }: { step: LevelUpStepSection }) {
+function FeaturesStepInline({ step, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; featureChoices?: LevelUpStepSection["featureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
   return (
     <div className="space-y-2">
       {step.features?.map((feature, idx) => (
         <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
           <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
           <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
+          {featureChoices?.find((c) => c.featureName === feature.name) && (
+            <div className="mt-2">
+              <select
+                value={selectedChoices?.[feature.name] || ""}
+                onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                onBlur={() => {}}
+                className="input w-full"
+              >
+                <option value="">Choose totem animal...</option>
+                {featureChoices.find((c) => c.featureName === feature.name)?.options.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
       ))}
       <p className="text-xs text-parchment/50 mt-2">These features have been added to your character sheet.</p>
@@ -297,41 +356,61 @@ function FeaturesStepInline({ step }: { step: LevelUpStepSection }) {
   );
 }
 
-function SubclassStepInline({ step, selected, onSelect }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void }) {
+function SubclassStepInline({ step, selected, onSelect, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; selected: string | null; onSelect: (name: string) => void; featureChoices?: LevelUpStepSection["subclassFeatureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
   return (
     <div className="space-y-3">
       <div className="space-y-2">
-        {step.subclassOptions?.map((option) => (
-          <label
-            key={option.name}
-            className={`flex items-start gap-3 rounded-lg border px-3 py-3 cursor-pointer transition-colors ${
-              selected === option.name
-                ? "border-gold/40 bg-gold/5"
-                : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
-            }`}
-          >
-            <input
-              type="radio"
-              name="subclass"
-              checked={selected === option.name}
-              onChange={() => onSelect(option.name)}
-              className="mt-1 h-4 w-4 text-gold focus:ring-gold/50"
-            />
-            <div className="flex-1">
-              <span className="text-sm font-medium text-parchment/80">{option.name}</span>
-              {option.description && <p className="text-xs text-parchment/50 mt-1">{option.description}</p>}
-              {option.features?.length > 0 && (
-                <div className="mt-2 space-y-1">
-                  {option.features.map((feature, idx) => (
-                    <div key={idx} className="text-xs text-parchment/60">
-                      <span className="font-medium text-gold/80">{feature.name}:</span> {feature.description}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </label>
-        ))}
+        {step.subclassOptions?.map((option) => {
+          const optionFeatureChoices = featureChoices?.filter((c) => option.features?.some((f) => f.name === c.featureName));
+          return (
+            <label
+              key={option.name}
+              className={`flex items-start gap-3 rounded-lg border px-3 py-3 cursor-pointer transition-colors ${
+                selected === option.name
+                  ? "border-gold/40 bg-gold/5"
+                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+              }`}
+            >
+              <input
+                type="radio"
+                name="subclass"
+                checked={selected === option.name}
+                onChange={() => onSelect(option.name)}
+                className="mt-1 h-4 w-4 text-gold focus:ring-gold/50"
+              />
+              <div className="flex-1">
+                <span className="text-sm font-medium text-parchment/80">{option.name}</span>
+                {option.description && <p className="text-xs text-parchment/50 mt-1">{option.description}</p>}
+                {option.features?.length > 0 && (
+                  <div className="mt-2 space-y-1">
+                    {option.features.map((feature, idx) => (
+                      <div key={idx}>
+                        <div className="text-xs text-parchment/60">
+                          <span className="font-medium text-gold/80">{feature.name}:</span> {feature.description}
+                        </div>
+                        {optionFeatureChoices?.find((c) => c.featureName === feature.name) && (
+                          <div className="mt-1">
+                            <select
+                              value={selectedChoices?.[feature.name] || ""}
+                              onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                              onBlur={() => {}}
+                              className="input w-full"
+                            >
+                              <option value="">Choose totem animal...</option>
+                              {optionFeatureChoices.find((c) => c.featureName === feature.name)?.options.map((opt) => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
+                            </select>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </label>
+          );
+        })}
       </div>
     </div>
   );

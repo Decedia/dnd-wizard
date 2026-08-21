@@ -51,6 +51,7 @@ export function LevelUpFlow({
   );
 
   const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
+  const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
 
   const runningAbilityScores = useMemo(() => {
     const scores = { ...currentAbilityScores };
@@ -127,8 +128,9 @@ export function LevelUpFlow({
       abilityScoreChanges: allAsi,
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
+      choices: Object.keys(featureChoices).length > 0 ? featureChoices : undefined,
     });
-  }, [oldLevel, newLevel, charClass, subclassChoice, asiChoices, expertiseChoices, onComplete]);
+  }, [oldLevel, newLevel, charClass, subclassChoice, asiChoices, expertiseChoices, featureChoices, onComplete]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -163,6 +165,11 @@ export function LevelUpFlow({
           break;
         case "subclass":
           if (subclassChoice === null) return false;
+          if (section.subclassFeatureChoices) {
+            for (const choice of section.subclassFeatureChoices) {
+              if (!featureChoices[choice.featureName]) return false;
+            }
+          }
           break;
         case "expertise":
           if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
@@ -172,6 +179,13 @@ export function LevelUpFlow({
           if ((selectedSpells[spellKey]?.length || 0) < (section.spellSelectionCount || 0)) return false;
           break;
         }
+        case "features":
+          if (section.featureChoices) {
+            for (const choice of section.featureChoices) {
+              if (!featureChoices[choice.featureName]) return false;
+            }
+          }
+          break;
         default:
           break;
       }

@@ -50,7 +50,7 @@ export interface SRDClass {
   subclasses: {
     name: string;
     description: string;
-    features: { name: string; description: string }[];
+    features: { name: string; description: string; level?: number }[];
   }[];
   scalingFeatures?: {
     name: string;

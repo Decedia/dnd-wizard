@@ -227,13 +227,28 @@ export default function CharacterCreate() {
         const classData = getStaticClass(character.class);
         const subclassData = classData?.subclasses?.find((s) => s.name === pendingChanges.subclass);
         if (subclassData?.features) {
-          const subclassFeatures = subclassData.features.map((f) => ({
-            id: generateId(),
-            name: f.name,
-            description: f.description,
-            source: "subclass" as const,
-            locked: true,
-          }));
+          const subclassFeatures = subclassData.features
+            .filter((f) => (f as any).level == null || (f as any).level <= pendingChanges.level)
+            .map((f) => {
+              const choiceKey = f.name;
+              const choice = pendingChanges.choices?.[choiceKey];
+              let name = f.name;
+              let description = Array.isArray(f.description) ? f.description.join("\n") : f.description;
+              if (choice) {
+                name = `${f.name} (${choice})`;
+                if (Array.isArray(f.description)) {
+                  const optionLines = f.description.filter((line) => line.startsWith(`${choice}.`));
+                  description = optionLines.length > 0 ? optionLines.join("\n") : description;
+                }
+              }
+              return {
+                id: generateId(),
+                name,
+                description: description || f.name,
+                source: "subclass" as const,
+                locked: true,
+              };
+            });
           finalCharacter.features = [...finalCharacter.features, ...subclassFeatures];
         }
       }
