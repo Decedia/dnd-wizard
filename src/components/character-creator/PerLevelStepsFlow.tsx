@@ -145,13 +145,13 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           if (subclassChoice === null) return false;
           if (section.subclassFeatureChoices && section.subclassOptions) {
             const selectedSub = section.subclassOptions.find((o) => o.name === subclassChoice);
-            const featureLevelMap = new Map(
+            const availableFeatureNames = new Set(
               (selectedSub?.features || [])
                 .filter((f: any) => (f.level == null || f.level === currentStep.level))
-                .map((f: any) => [f.name, f.level])
+                .map((f: any) => f.name)
             );
             for (const choice of section.subclassFeatureChoices) {
-              if (featureLevelMap.has(choice.featureName) && !featureChoices[choice.featureName]) return false;
+              if (availableFeatureNames.has(choice.featureName) && !featureChoices[choice.featureName]) return false;
             }
           }
           break;
