@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
 import { getClassLevel1Hp, getClassPerLevelHp, getModifier } from "@/lib/storage";
@@ -23,8 +23,20 @@ export function StepLevelHitPoints({ data, onChange }: StepLevelHitPointsProps) 
   const handleLevelChange = (newLevel: number) => {
     setSelectedLevel(newLevel);
     setHpResolved(false);
-    onChange({ level: newLevel });
+    if (!isCustomHp) {
+      const newCalculatedMaxHp = level1Hp + (newLevel - 1) * ((classData?.hpPerLevel || 5) + conMod);
+      onChange({ level: newLevel, maxHp: newCalculatedMaxHp, currentHp: newCalculatedMaxHp });
+    } else {
+      onChange({ level: newLevel });
+    }
   };
+
+  useEffect(() => {
+    if (!isCustomHp && (data.maxHp || 0) === 0 && data.class) {
+      const calculated = level1Hp + (selectedLevel - 1) * ((classData?.hpPerLevel || 5) + conMod);
+      onChange({ maxHp: calculated, currentHp: calculated });
+    }
+  }, [data.class, data.maxHp, isCustomHp, level1Hp, selectedLevel, conMod, onChange, classData?.hpPerLevel]);
 
   const calculatedMaxHp = level1Hp + (selectedLevel - 1) * ((classData?.hpPerLevel || 5) + conMod);
   const currentMaxHp = data.maxHp || calculatedMaxHp;
