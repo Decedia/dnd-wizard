@@ -221,6 +221,15 @@ export default function CharacterCreate() {
       if (pendingChanges.expertise.length > 0) {
         finalCharacter.expertise = [...(finalCharacter.expertise || []), ...pendingChanges.expertise];
       }
+      if (pendingChanges.skillProficiencies?.length) {
+        const newSkills = { ...(finalCharacter.skills || {}) };
+        for (const skill of pendingChanges.skillProficiencies) {
+          if (!newSkills[skill]) {
+            newSkills[skill] = true;
+          }
+        }
+        finalCharacter.skills = newSkills;
+      }
       if (pendingChanges.spellSlots) {
         finalCharacter.spellSlots = { ...finalCharacter.spellSlots, ...pendingChanges.spellSlots };
       }

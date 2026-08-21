@@ -25,6 +25,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [selectedSpells, setSelectedSpells] = useState<Record<string, string[]>>({});
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
+  const [skillSelections, setSkillSelections] = useState<Record<number, string[]>>({});
 
   const baseAbilityScores = useMemo(() => ({
     str: character.str || 0,
@@ -93,6 +94,11 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
       allExpertise.push(...(expertiseChoices[level] || []));
     }
 
+    const allSkillProficiencies: string[] = [];
+    for (let level = 1; level <= character.level; level++) {
+      allSkillProficiencies.push(...(skillSelections[level] || []));
+    }
+
     onComplete({
       level: character.level,
       features: allFeatures,
@@ -101,8 +107,9 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
       choices: Object.keys(featureChoices).length > 0 ? featureChoices : undefined,
+      ...(allSkillProficiencies.length > 0 ? { skillProficiencies: [...new Set(allSkillProficiencies)] } : {}),
     });
-  }, [character.level, character.class, subclassChoice, asiChoices, expertiseChoices, featureChoices, onComplete]);
+  }, [character.level, character.class, subclassChoice, asiChoices, expertiseChoices, featureChoices, skillSelections, onComplete]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -150,6 +157,11 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           break;
         case "expertise":
           if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
+          break;
+        case "skillSelection":
+          if (featureChoices["Aspect of the Beast"] === "Tiger") {
+            if ((skillSelections[currentStep.level]?.length || 0) !== (section.skillSelectionCount || 0)) return false;
+          }
           break;
         case "spellSelection": {
           const spellKey = `level-${currentStep.level}`;
@@ -255,6 +267,15 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
             currentSkills={character.skills || {}}
             selected={expertiseChoices[currentStep.level] || []}
             onSelect={(names) => setExpertiseChoices((prev) => ({ ...prev, [currentStep.level]: names }))}
+          />
+        );
+      case "skillSelection":
+        return (
+          <SkillSelectionStepInline
+            step={{ ...section, level: currentStep.level } as any}
+            currentSkills={character.skills || {}}
+            selected={skillSelections[currentStep.level] || []}
+            onSelect={(names) => setSkillSelections((prev) => ({ ...prev, [currentStep.level]: names }))}
           />
         );
       case "spellSlots":
@@ -575,6 +596,64 @@ function ExpertiseStepInline({
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function SkillSelectionStepInline({
+  step,
+  currentSkills,
+  selected,
+  onSelect,
+}: {
+  step: LevelUpStepSection;
+  currentSkills: Record<string, boolean>;
+  selected: string[];
+  onSelect: (names: string[]) => void;
+}) {
+  const toggle = (name: string) => {
+    if (selected.includes(name)) {
+      onSelect(selected.filter((n) => n !== name));
+    } else if (selected.length < (step.skillSelectionCount || 0)) {
+      onSelect([...selected, name]);
+    }
+  };
+
+  const options = step.skillOptions || [];
+
+  return (
+    <div className="space-y-3">
+      {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
+      <div className="space-y-2">
+        {options.map((name) => {
+          const isSelected = selected.includes(name);
+          const isAlreadyProficient = currentSkills[name];
+          const isDisabled = isAlreadyProficient || (!isSelected && selected.length >= (step.skillSelectionCount || 0));
+          return (
+            <label
+              key={name}
+              className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
+                isSelected
+                  ? "border-gold/40 bg-gold/5"
+                  : isDisabled
+                  ? "border-parchment/5 bg-charcoal/20 opacity-50"
+                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isSelected || isAlreadyProficient}
+                onChange={() => toggle(name)}
+                disabled={isDisabled}
+                className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50 disabled:opacity-30"
+              />
+              <span className="text-sm text-parchment/80">{name}</span>
+              {isAlreadyProficient && <span className="text-[10px] text-parchment/40">(already proficient)</span>}
+            </label>
+          );
+        })}
+      </div>
+      <p className="text-xs text-parchment/50">{selected.length} of {step.skillSelectionCount || 0} selected</p>
     </div>
   );
 }

@@ -35,6 +35,7 @@ export default function LevelUpPage() {
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
+  const [skillSelections, setSkillSelections] = useState<Record<number, string[]>>({});
 
   const oldLevel = character?.level ?? 1;
   const newLevel = oldLevel + 1;
@@ -201,6 +202,21 @@ export default function LevelUpPage() {
     if (allExpertise.length > 0) {
       patch.expertise = [...(character.expertise || []), ...allExpertise];
     }
+
+    const allSkillProficiencies: string[] = [];
+    for (let level = oldLevel + 1; level <= newLevel; level++) {
+      allSkillProficiencies.push(...(skillSelections[level] || []));
+    }
+    if (allSkillProficiencies.length > 0) {
+      const newSkills = { ...(character.skills || {}) };
+      for (const skill of allSkillProficiencies) {
+        if (!newSkills[skill]) {
+          newSkills[skill] = true;
+        }
+      }
+      patch.skills = newSkills;
+    }
+
     if (finalSpellSlots) {
       patch.spellSlots = { ...character.spellSlots, ...finalSpellSlots };
     }
@@ -216,7 +232,7 @@ export default function LevelUpPage() {
 
     saveCharacter(finalChar);
     router.push(`/character/${id}`);
-  }, [character, oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, featureChoices, router, id, hpResolved]);
+  }, [character, oldLevel, newLevel, className, subclassChoice, asiChoices, expertiseChoices, featureChoices, skillSelections, router, id, hpResolved]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -302,6 +318,11 @@ export default function LevelUpPage() {
           break;
         case "expertise":
           if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
+          break;
+        case "skillSelection":
+          if (featureChoices["Aspect of the Beast"] === "Tiger") {
+            if ((skillSelections[currentStep.level]?.length || 0) !== (section.skillSelectionCount || 0)) return false;
+          }
           break;
         case "spellSelection": {
           const spellKey = currentStep.level;
@@ -405,18 +426,27 @@ export default function LevelUpPage() {
             onChange={(ability, delta) => handleAsiChange(currentStep.level, ability, delta)}
           />
         );
-      case "expertise":
-        return (
-          <ExpertiseStep
-            step={{ ...section, level: currentStep.level } as any}
-            className={className}
-            currentExpertise={character.expertise || []}
-            currentSkills={character.skills || {}}
-            selected={expertiseChoices[currentStep.level] || []}
-            onSelect={(names) => setExpertiseChoices((prev) => ({ ...prev, [currentStep.level]: names }))}
-          />
-        );
-      case "spellSlots":
+        case "expertise":
+          return (
+            <ExpertiseStep
+              step={{ ...section, level: currentStep.level } as any}
+              className={className}
+              currentExpertise={character.expertise || []}
+              currentSkills={character.skills || {}}
+              selected={expertiseChoices[currentStep.level] || []}
+              onSelect={(names) => setExpertiseChoices((prev) => ({ ...prev, [currentStep.level]: names }))}
+            />
+          );
+        case "skillSelection":
+          return (
+            <SkillSelectionStep
+              step={{ ...section, level: currentStep.level } as any}
+              currentSkills={character.skills || {}}
+              selected={skillSelections[currentStep.level] || []}
+              onSelect={(names) => setSkillSelections((prev) => ({ ...prev, [currentStep.level]: names }))}
+            />
+          );
+        case "spellSlots":
         return <SpellSlotsStep step={{ ...section, level: currentStep.level } as any} />;
       case "spellSelection":
         return (
@@ -734,6 +764,64 @@ function ExpertiseStep({
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function SkillSelectionStep({
+  step,
+  currentSkills,
+  selected,
+  onSelect,
+}: {
+  step: LevelUpStepSection;
+  currentSkills: Record<string, boolean>;
+  selected: string[];
+  onSelect: (names: string[]) => void;
+}) {
+  const toggle = (name: string) => {
+    if (selected.includes(name)) {
+      onSelect(selected.filter((n) => n !== name));
+    } else if (selected.length < (step.skillSelectionCount || 0)) {
+      onSelect([...selected, name]);
+    }
+  };
+
+  const options = step.skillOptions || [];
+
+  return (
+    <div className="space-y-3">
+      {step.description && <p className="text-xs text-parchment/60">{step.description}</p>}
+      <div className="space-y-2">
+        {options.map((name) => {
+          const isSelected = selected.includes(name);
+          const isAlreadyProficient = currentSkills[name];
+          const isDisabled = isAlreadyProficient || (!isSelected && selected.length >= (step.skillSelectionCount || 0));
+          return (
+            <label
+              key={name}
+              className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
+                isSelected
+                  ? "border-gold/40 bg-gold/5"
+                  : isDisabled
+                  ? "border-parchment/5 bg-charcoal/20 opacity-50"
+                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isSelected || isAlreadyProficient}
+                onChange={() => toggle(name)}
+                disabled={isDisabled}
+                className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50 disabled:opacity-30"
+              />
+              <span className="text-sm text-parchment/80">{name}</span>
+              {isAlreadyProficient && <span className="text-[10px] text-parchment/40">(already proficient)</span>}
+            </label>
+          );
+        })}
+      </div>
+      <p className="text-xs text-parchment/50">{selected.length} of {step.skillSelectionCount || 0} selected</p>
     </div>
   );
 }

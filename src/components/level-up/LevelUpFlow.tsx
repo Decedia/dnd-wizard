@@ -44,6 +44,7 @@ export function LevelUpFlow({
   const [asiChoices, setAsiChoices] = useState<Record<number, { ability: string; delta: number }[]>>({});
   const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
+  const [skillSelections, setSkillSelections] = useState<Record<number, string[]>>({});
 
   const steps = useMemo(
     () => generateLevelUpSteps(oldLevel, newLevel, charClass, currentExpertise, currentSkills),
@@ -121,6 +122,11 @@ export function LevelUpFlow({
       allExpertise.push(...(expertiseChoices[level] || []));
     }
 
+    const allSkillProficiencies: string[] = [];
+    for (let level = oldLevel + 1; level <= newLevel; level++) {
+      allSkillProficiencies.push(...(skillSelections[level] || []));
+    }
+
     onComplete({
       level: newLevel,
       features: allFeatures,
@@ -129,8 +135,9 @@ export function LevelUpFlow({
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
       choices: Object.keys(featureChoices).length > 0 ? featureChoices : undefined,
+      ...(allSkillProficiencies.length > 0 ? { skillProficiencies: [...new Set(allSkillProficiencies)] } : {}),
     });
-  }, [oldLevel, newLevel, charClass, subclassChoice, asiChoices, expertiseChoices, featureChoices, onComplete]);
+  }, [oldLevel, newLevel, charClass, subclassChoice, asiChoices, expertiseChoices, featureChoices, skillSelections, onComplete]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -173,6 +180,11 @@ export function LevelUpFlow({
           break;
         case "expertise":
           if ((expertiseChoices[currentStep.level]?.length || 0) !== (section.expertiseCount || 0)) return false;
+          break;
+        case "skillSelection":
+          if (featureChoices["Aspect of the Beast"] === "Tiger") {
+            if ((skillSelections[currentStep.level]?.length || 0) !== (section.skillSelectionCount || 0)) return false;
+          }
           break;
         case "spellSelection": {
           const spellKey = currentStep.level;
@@ -242,6 +254,15 @@ export function LevelUpFlow({
             currentSkills={currentSkills}
             selected={expertiseChoices[currentStep.level] || []}
             onSelect={(names) => setExpertiseChoices((prev) => ({ ...prev, [currentStep.level]: names }))}
+          />
+        );
+      case "skillSelection":
+        return (
+          <SkillSelectionStep
+            step={{ ...section, level: currentStep.level } as any}
+            currentSkills={currentSkills}
+            selected={skillSelections[currentStep.level] || []}
+            onSelect={(names) => setSkillSelections((prev) => ({ ...prev, [currentStep.level]: names }))}
           />
         );
       case "spellSlots":
@@ -607,39 +628,87 @@ function SpellSelectionStep({
           return (
             <div
               key={spell.name}
-              className={`rounded-lg border px-3 py-2 ${
+              className={`flex items-center justify-between rounded-lg border px-3 py-2 ${
                 isSelected
-                  ? "border-gold/40 bg-gold/5"
+                  ? "border-burgundy/40 bg-burgundy/5"
                   : isDisabled
                   ? "border-parchment/5 bg-charcoal/20 opacity-50"
-                  : "border-parchment/10 bg-charcoal/40"
+                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
               }`}
             >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex-1">
-                  <span className="text-sm font-medium text-parchment/80">{spell.name}</span>
-                  <p className="text-xs text-parchment/50 mt-0.5">{spell.effect}</p>
-                  <p className="text-[10px] text-parchment/40 mt-1">{spell.castingTime} | {spell.range} | {spell.duration}</p>
-                </div>
-                 <button
-                   type="button"
-                   onClick={() => toggleSpell(spell.name)}
-                   disabled={isDisabled}
-                   className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
-                     isSelected
-                       ? "bg-burgundy text-parchment"
-                       : isDisabled
-                       ? "bg-charcoal/20 text-parchment/30"
-                       : "border border-white/20 text-parchment hover:border-white/40"
-                   }`}
-                 >
-                  {isSelected ? "Selected" : `Select (${selected.length}/${currentTab?.limit || 0})`}
-                </button>
-              </div>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={() => toggleSpell(spell.name)}
+                  disabled={isDisabled}
+                  className="h-4 w-4 rounded border-white/30 bg-charcoal text-white focus:ring-white/50 disabled:opacity-30"
+                />
+                <span className="text-sm text-parchment/80">{spell.name}</span>
+              </label>
+              <span className="text-xs text-parchment/50 capitalize">{("school" in spell ? spell.school : undefined) || spell.level}</span>
             </div>
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function SkillSelectionStep({
+  step,
+  currentSkills,
+  selected,
+  onSelect,
+}: {
+  step: LevelUpStepSection;
+  currentSkills: Record<string, boolean>;
+  selected: string[];
+  onSelect: (names: string[]) => void;
+}) {
+  const toggle = (name: string) => {
+    if (selected.includes(name)) {
+      onSelect(selected.filter((n) => n !== name));
+    } else if (selected.length < (step.skillSelectionCount || 0)) {
+      onSelect([...selected, name]);
+    }
+  };
+
+  const options = step.skillOptions || [];
+
+  return (
+    <div className="space-y-3">
+      {step.description && <p className="text-xs text-parchment/50">{step.description}</p>}
+      <div className="space-y-2">
+        {options.map((name) => {
+          const isSelected = selected.includes(name);
+          const isAlreadyProficient = currentSkills[name];
+          const isDisabled = isAlreadyProficient || (!isSelected && selected.length >= (step.skillSelectionCount || 0));
+          return (
+            <label
+              key={name}
+              className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
+                isSelected
+                  ? "border-gold/40 bg-gold/5"
+                  : isDisabled
+                  ? "border-parchment/5 bg-charcoal/20 opacity-50"
+                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isSelected || isAlreadyProficient}
+                onChange={() => toggle(name)}
+                disabled={isDisabled}
+                className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50 disabled:opacity-30"
+              />
+              <span className="text-sm text-parchment/80">{name}</span>
+              {isAlreadyProficient && <span className="text-[10px] text-parchment/40">(already proficient)</span>}
+            </label>
+          );
+        })}
+      </div>
+      <p className="text-xs text-parchment/50">{selected.length} of {step.skillSelectionCount || 0} selected</p>
     </div>
   );
 }

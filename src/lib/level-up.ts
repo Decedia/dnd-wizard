@@ -18,7 +18,7 @@ export interface AbilityScoreChange {
 }
 
 export interface LevelUpStepSection {
-  type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection";
+  type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
   description?: string;
   features?: { name: string; description: string }[];
   featureChoices?: {
@@ -41,6 +41,8 @@ export interface LevelUpStepSection {
   spellSlots?: Record<number, number>;
   spellSelectionCount?: number;
   spellSelectionLevel?: number;
+  skillSelectionCount?: number;
+  skillOptions?: string[];
   level?: number;
 }
 
@@ -60,6 +62,7 @@ export interface LevelUpChanges {
   expertise: string[];
   spellSlots: Record<number, number> | null;
   choices?: Record<string, string>;
+  skillProficiencies?: string[];
 }
 
 export function computeLevelUp(oldLevel: number, newLevel: number, className: string): LevelUpResult {
@@ -153,6 +156,15 @@ export function generateLevelUpSteps(
         description: `Choose your ${classData.name} subclass.`,
         subclassOptions,
         subclassFeatureChoices: getSubclassFeatureChoices(className, subclassOptions),
+      });
+    }
+
+    if (className === "Barbarian" && level === 6) {
+      sections.push({
+        type: "skillSelection",
+        description: "If you chose Tiger for Aspect of the Beast, select 2 skills to gain proficiency in.",
+        skillSelectionCount: 2,
+        skillOptions: [...TIGER_ASPECT_SKILLS],
       });
     }
 
@@ -258,6 +270,7 @@ function sectionLabel(type: LevelUpStepSection["type"], className: string): stri
 
 const TOTEM_FEATURES = ["Totem Spirit", "Aspect of the Beast", "Totem Attunement"] as const;
 const TOTEM_ANIMALS = ["Bear", "Eagle", "Elk", "Tiger", "Wolf"] as const;
+const TIGER_ASPECT_SKILLS = ["Athletics", "Acrobatics", "Stealth", "Survival"] as const;
 
 function getFeatureChoices(className: string, features: { name: string; description: string }[]): LevelUpStepSection["featureChoices"] {
   if (className !== "Barbarian") return undefined;
