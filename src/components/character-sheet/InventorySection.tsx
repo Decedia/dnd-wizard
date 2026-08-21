@@ -222,7 +222,7 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
   useEffect(() => {
     ensureGrantedItemsInInventory();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [character.class, character.inventory.length]);
+  }, [character.class]);
 
   return (
     <SectionCard id="inventory" title="Inventory" icon={<InventoryIcon className="h-5 w-5" />}>
@@ -411,16 +411,14 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
                     {item.equipped ? "Equipped" : "Equip"}
                   </button>
                 )}
-                {editable && (
-                  <button
-                    type="button"
-                    onClick={() => removeItem(item.id)}
-                    className="text-parchment/40 hover:text-parchment shrink-0"
-                    aria-label="Remove item"
-                  >
-                    <XIcon className="h-4 w-4" />
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => removeItem(item.id)}
+                  className="text-parchment/40 hover:text-parchment shrink-0"
+                  aria-label="Remove item"
+                >
+                  <XIcon className="h-4 w-4" />
+                </button>
               </div>
               {editable && item.source === "custom" && (
                 <textarea

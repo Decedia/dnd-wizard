@@ -214,7 +214,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   useEffect(() => {
     ensureGrantedItemsInInventory();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data.class, data.inventory.length]);
+  }, [data.class]);
 
   return (
     <StepCard title="Equipment">
@@ -417,16 +417,14 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                     {item.equipped ? "Equipped" : "Equip"}
                   </button>
                 )}
-                {isEditable && (
-                  <button
-                    type="button"
-                    onClick={() => removeItem(item.id)}
-                    className="text-parchment/40 hover:text-parchment"
-                    aria-label="Remove item"
-                  >
-                    <XIcon className="h-4 w-4" />
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => removeItem(item.id)}
+                  className="text-parchment/40 hover:text-parchment"
+                  aria-label="Remove item"
+                >
+                  <XIcon className="h-4 w-4" />
+                </button>
               </div>
               {isEditable && item.source === "custom" && (
                 <textarea

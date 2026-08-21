@@ -114,7 +114,7 @@ export default function CharacterCreate() {
   }, [update, addRaceFeatures]);
 
   const handleClassChange = useCallback((className: string) => {
-    update({ class: className });
+    update({ class: className, inventory: [], attacks: [] });
     addClassFeatures(className);
   }, [update, addClassFeatures]);
 
