@@ -25,6 +25,7 @@ import {
 } from "@/lib/storage";
 import { getStaticClass, getStaticRace, getStaticRaces } from "@/lib/srd-client";
 import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep } from "@/lib/level-up";
+import { normalizeDescription } from "@/lib/level-up";
 
 const BASE_STEPS = 8;
 
@@ -85,7 +86,7 @@ export default function CharacterCreate() {
       .map((f) => ({
         id: generateId(),
         name: f.name,
-        description: f.description,
+        description: normalizeDescription(f.description),
         source: "class" as const,
         locked: true,
       }));

@@ -588,8 +588,10 @@
           "description": [
             "Beginning at 3rd level, when you enter your rage, you choose a totem animal and gain the benefits of that totem. You can choose the same animal you selected previously or a different one.",
             "Bear. While raging, you have resistance to all damage except psychic damage.",
-            "Eagle. While raging, you can see while you are raging, even in magical darkness. Additionally, your flying speed equals your walking speed while you are raging.",
-            "Wolf. While raging, you can use a bonus action on your turn to knock a creature prone when you hit it with a melee weapon attack during that rage."
+            "Eagle. While raging and not wearing heavy armor, other creatures have disadvantage on opportunity attack rolls against you, and you can use the Dash action as a bonus action on your turn.",
+            "Elk. While raging and not wearing heavy armor, your walking speed increases by 15 feet.",
+            "Tiger. While raging, you can add 10 feet to your long jump distance and 3 feet to your high jump distance.",
+            "Wolf. While raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you."
           ],
           "level": 3
         },
@@ -597,9 +599,11 @@
           "name": "Aspect of the Beast",
           "description": [
             "At 6th level, you gain a benefit based on the totem animal you chose for Totem Spirit. You can choose the same animal you selected previously or a different one.",
-            "Bear. Your carrying capacity (including maximum load and maximum lift) doubles.",
-            "Eagle. You gain the benefits of your Totem Spirit feature. Additionally, while raging, you have advantage on Wisdom (Perception) checks that rely on sight.",
-            "Wolf. You gain the benefits of your Totem Spirit feature. Additionally, while you are raging, your allies within 5 feet of you have advantage on melee attack rolls against creatures that are within 5 feet of you."
+            "Bear. Your carrying capacity (including maximum load and maximum lift) doubles, and you have advantage on Strength checks made to push, pull, lift, or break objects.",
+            "Eagle. You can see up to 1 mile away with no difficulty, able to discern even fine details as though looking at something no more than 100 feet away from you. Additionally, dim light doesn't impose disadvantage on your Wisdom (Perception) checks.",
+            "Elk. Whether mounted or on foot, your travel pace is doubled, as is the travel pace of up to ten companions while they're within 60 feet of you and you're not incapacitated.",
+            "Tiger. You gain proficiency in two skills from the following list: Athletics, Acrobatics, Stealth, and Survival.",
+            "Wolf. You gain the hunting sensibilities of a wolf."
           ],
           "level": 6
         },
@@ -614,8 +618,10 @@
           "name": "Totem Attunement",
           "description": [
             "At 14th level, you gain a benefit based on the totem animal you chose for Totem Spirit. You can choose the same animal you selected previously or a different one.",
-            "Bear. While raging, you have resistance to all damage except psychic damage.",
-            "Eagle. Your flying speed equals your walking speed, even when you are not raging.",
+            "Bear. While raging, you have resistance to all damage except psychic damage. Additionally, while you are raging, any creature within 5 feet of you that is hostile to you has disadvantage on attack rolls against targets other than you or another creature with this feature.",
+            "Eagle. While raging, you have a flying speed equal to your walking speed.",
+            "Elk. While raging, you can use a bonus action to charge through any creature Large or smaller.",
+            "Tiger. When you score a critical hit or reduce a creature to 0 hit points, you can make one weapon attack as a bonus action.",
             "Wolf. When a creature within 5 feet of you hits you with an attack, you can use your reaction to make a melee weapon attack against that creature."
           ],
           "level": 14

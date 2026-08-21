@@ -5,6 +5,7 @@ import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpStep, type LevelUpChanges, type LevelUpStepSection } from "@/lib/level-up";
 import { getStaticClass, getStaticSpells, getStaticWizardSpells } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus } from "@/lib/storage";
+import { normalizeDescription, getAnimalDescription } from "@/lib/level-up";
 import type { Character } from "@/lib/storage";
 
 interface PerLevelStepsFlowProps {
@@ -74,7 +75,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
     for (let level = 1; level <= character.level; level++) {
       const levelData = classData?.levels[level - 1];
       if (levelData?.features) {
-        allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: f.description || f.name })));
+        allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: normalizeDescription(f.description) })));
       }
       if (levelData?.spellSlots) {
         Object.assign(allSpellSlots, levelData.spellSlots);
@@ -135,9 +136,11 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
           break;
         case "subclass":
           if (subclassChoice === null) return false;
-          if (section.subclassFeatureChoices) {
+          if (section.subclassFeatureChoices && section.subclassOptions) {
+            const selectedSub = section.subclassOptions.find((o) => o.name === subclassChoice);
+            const selectedFeatureNames = new Set((selectedSub?.features || []).map((f) => f.name));
             for (const choice of section.subclassFeatureChoices) {
-              if (!featureChoices[choice.featureName]) return false;
+              if (selectedFeatureNames.has(choice.featureName) && !featureChoices[choice.featureName]) return false;
             }
           }
           break;
@@ -330,27 +333,35 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
 function FeaturesStepInline({ step, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; featureChoices?: LevelUpStepSection["featureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
   return (
     <div className="space-y-2">
-      {step.features?.map((feature, idx) => (
-        <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-          <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
-          <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
-          {featureChoices?.find((c) => c.featureName === feature.name) && (
-            <div className="mt-2">
-              <select
-                value={selectedChoices?.[feature.name] || ""}
-                onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
-                onBlur={() => {}}
-                className="input w-full"
-              >
-                <option value="">Choose totem animal...</option>
-                {featureChoices.find((c) => c.featureName === feature.name)?.options.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
-            </div>
-          )}
-        </div>
-      ))}
+      {step.features?.map((feature, idx) => {
+        const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
+        const selectedAnimal = selectedChoices?.[feature.name];
+        const animalDesc = selectedAnimal ? getAnimalDescription(feature.description, selectedAnimal) : undefined;
+        return (
+          <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+            <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
+            <span className="text-xs text-parchment/70 ml-1 whitespace-pre-line">{feature.description}</span>
+            {optionFeatureChoices && (
+              <div className="mt-2">
+                <select
+                  value={selectedAnimal || ""}
+                  onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                  onBlur={() => {}}
+                  className="input w-full"
+                >
+                  <option value="">Choose totem animal...</option>
+                  {optionFeatureChoices.options.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+                {animalDesc && (
+                  <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
       <p className="text-xs text-parchment/50 mt-2">These features have been added to your character sheet.</p>
     </div>
   );
@@ -393,14 +404,16 @@ function SubclassStepInline({ step, selected, onSelect, featureChoices, selected
               .filter((f) => (f as any).level == null || (f as any).level === level)
               .map((feature, idx) => {
                 const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
+                const selectedAnimal = selectedChoices?.[feature.name];
+                const animalDesc = selectedAnimal ? getAnimalDescription(feature.description, selectedAnimal) : undefined;
                 return (
                   <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
                     <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
-                    <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
+                    <span className="text-xs text-parchment/70 ml-1 whitespace-pre-line">{feature.description}</span>
                     {optionFeatureChoices && (
                       <div className="mt-2">
                         <select
-                          value={selectedChoices?.[feature.name] || ""}
+                          value={selectedAnimal || ""}
                           onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
                           onBlur={() => {}}
                           className="input w-full"
@@ -410,6 +423,9 @@ function SubclassStepInline({ step, selected, onSelect, featureChoices, selected
                             <option key={opt} value={opt}>{opt}</option>
                           ))}
                         </select>
+                        {animalDesc && (
+                          <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
+                        )}
                       </div>
                     )}
                   </div>

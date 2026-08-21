@@ -7,7 +7,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepCard } from "@/components/character-creator/StepCard";
 import { Dice, DiceType } from "@/components/Dice";
-import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection } from "@/lib/level-up";
+import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection, getAnimalDescription } from "@/lib/level-up";
 import { getStaticClass, getStaticSpells, getStaticWizardSpells } from "@/lib/srd-client";
 import { getModifier, getCharacter, saveCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 
@@ -288,9 +288,11 @@ export default function LevelUpPage() {
           break;
         case "subclass":
           if (subclassChoice === null) return false;
-          if (section.subclassFeatureChoices) {
+          if (section.subclassFeatureChoices && section.subclassOptions) {
+            const selectedSub = section.subclassOptions.find((o) => o.name === subclassChoice);
+            const selectedFeatureNames = new Set((selectedSub?.features || []).map((f) => f.name));
             for (const choice of section.subclassFeatureChoices) {
-              if (!featureChoices[choice.featureName]) return false;
+              if (selectedFeatureNames.has(choice.featureName) && !featureChoices[choice.featureName]) return false;
             }
           }
           break;
@@ -494,28 +496,36 @@ function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: 
 function FeaturesStep({ step, featureChoices, selectedChoices, onChoiceChange }: { step: LevelUpStepSection; featureChoices?: LevelUpStepSection["featureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void }) {
   return (
     <div className="space-y-2">
-      {step.features?.map((feature, idx) => (
-        <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-          <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
-          <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
-          {featureChoices?.find((c) => c.featureName === feature.name) && (
-            <div className="mt-2">
-              <select
-                data-feature-choice={feature.name}
-                value={selectedChoices?.[feature.name] || ""}
-                onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
-                onBlur={() => {}}
-                className="input w-full"
-              >
-                <option value="">Choose totem animal...</option>
-                {featureChoices.find((c) => c.featureName === feature.name)?.options.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
-            </div>
-          )}
-        </div>
-      ))}
+      {step.features?.map((feature, idx) => {
+        const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
+        const selectedAnimal = selectedChoices?.[feature.name];
+        const animalDesc = selectedAnimal ? getAnimalDescription(feature.description, selectedAnimal) : undefined;
+        return (
+          <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+            <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
+            <span className="text-xs text-parchment/70 ml-1 whitespace-pre-line">{feature.description}</span>
+            {optionFeatureChoices && (
+              <div className="mt-2">
+                <select
+                  data-feature-choice={feature.name}
+                  value={selectedAnimal || ""}
+                  onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                  onBlur={() => {}}
+                  className="input w-full"
+                >
+                  <option value="">Choose totem animal...</option>
+                  {optionFeatureChoices.options.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+                {animalDesc && (
+                  <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -557,14 +567,16 @@ function SubclassStep({ step, selected, onSelect, featureChoices, selectedChoice
               .filter((f) => (f as any).level == null || (f as any).level === level)
               .map((feature, idx) => {
                 const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
+                const selectedAnimal = selectedChoices?.[feature.name];
+                const animalDesc = selectedAnimal ? getAnimalDescription(feature.description, selectedAnimal) : undefined;
                 return (
                   <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
                     <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
-                    <span className="text-xs text-parchment/70 ml-1">{feature.description}</span>
+                    <span className="text-xs text-parchment/70 ml-1 whitespace-pre-line">{feature.description}</span>
                     {optionFeatureChoices && (
                       <div className="mt-2">
                         <select
-                          value={selectedChoices?.[feature.name] || ""}
+                          value={selectedAnimal || ""}
                           onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
                           onBlur={() => {}}
                           className="input w-full"
@@ -574,6 +586,9 @@ function SubclassStep({ step, selected, onSelect, featureChoices, selectedChoice
                             <option key={opt} value={opt}>{opt}</option>
                           ))}
                         </select>
+                        {animalDesc && (
+                          <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
+                        )}
                       </div>
                     )}
                   </div>

@@ -83,7 +83,7 @@ export function computeLevelUp(oldLevel: number, newLevel: number, className: st
   for (let level = oldLevel + 1; level <= newLevel; level++) {
     const levelData = classData.levels[level - 1];
     if (levelData) {
-      addedFeatures.push(...levelData.features.map((f: any) => ({ name: f.name, description: f.description || f.name })));
+      addedFeatures.push(...levelData.features.map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) })));
       if (levelData.asi) {
         asiLevels.push(level);
       }
@@ -135,7 +135,7 @@ export function generateLevelUpSteps(
     }
 
     if (levelData?.features?.length > 0) {
-      const features = levelData.features.map((f: any) => ({ name: f.name, description: f.description || f.name }));
+      const features = levelData.features.map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
       sections.push({
         type: "features",
         features,
@@ -146,7 +146,7 @@ export function generateLevelUpSteps(
     if (level === classData.subclassLevel && classData.subclasses && classData.subclasses.length > 0) {
       const subclassOptions = classData.subclasses.map((sub: any) => ({
         ...sub,
-        features: (sub.features || []).map((f: any) => ({ name: f.name, description: f.description || f.name, level: f.level })),
+        features: (sub.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description), level: f.level })),
       }));
       sections.push({
         type: "subclass",
@@ -257,7 +257,7 @@ function sectionLabel(type: LevelUpStepSection["type"], className: string): stri
 }
 
 const TOTEM_FEATURES = ["Totem Spirit", "Aspect of the Beast", "Totem Attunement"] as const;
-const TOTEM_ANIMALS = ["Bear", "Eagle", "Wolf"] as const;
+const TOTEM_ANIMALS = ["Bear", "Eagle", "Elk", "Tiger", "Wolf"] as const;
 
 function getFeatureChoices(className: string, features: { name: string; description: string }[]): LevelUpStepSection["featureChoices"] {
   if (className !== "Barbarian") return undefined;
@@ -292,4 +292,17 @@ function getSubclassFeatureChoices(
     }
   }
   return choices.length > 0 ? choices : undefined;
+}
+
+export function normalizeDescription(description: any): string {
+  if (Array.isArray(description)) {
+    return description.filter(Boolean).join("\n");
+  }
+  return description || "";
+}
+
+export function getAnimalDescription(description: string, animal: string): string | undefined {
+  const lines = description.split("\n");
+  const prefix = `${animal}.`;
+  return lines.find((line) => line.trim().startsWith(prefix));
 }
