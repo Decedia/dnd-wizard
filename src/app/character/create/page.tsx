@@ -35,15 +35,7 @@ export default function CharacterCreate() {
   const [showExpertiseModal, setShowExpertiseModal] = useState(false);
   const perLevelSteps = useMemo(() => {
     const steps = generateLevelUpSteps(1, character.level, character.class, character.expertise || [], character.skills || {}, true);
-    return steps.map((step) => {
-      if (step.level === 1) {
-        return {
-          ...step,
-          sections: step.sections.filter((s) => s.type !== "features"),
-        };
-      }
-      return step;
-    });
+    return steps;
   }, [character.level, character.class, character.expertise, character.skills]);
 
   const [pendingChanges, setPendingChanges] = useState<LevelUpChanges | null>(null);

@@ -70,7 +70,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
     const allSpellSlots: Record<number, number> = {};
     let finalSpellSlots: Record<number, number> | null = null;
 
-    for (let level = 2; level <= character.level; level++) {
+    for (let level = 1; level <= character.level; level++) {
       const levelData = classData?.levels[level - 1];
       if (levelData?.features) {
         allFeatures.push(...levelData.features.map((f) => ({ name: f.name, description: f.description || f.name })));
