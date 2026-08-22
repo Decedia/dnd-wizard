@@ -329,13 +329,18 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
     const sneakDice = isFinesseOrRanged ? getSneakAttackDice(character) : undefined;
+    const attackBonus = abilityMod + profBonus;
+    const damageBonus = abilityMod;
+    const damageDice = weapon.damageDice || "";
+    const damageTypeName = weapon.damageType || "";
+    const damageText = [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" ");
     return {
       id: weapon.id,
       name: weapon.name,
-      attackBonus: abilityMod + profBonus,
-      damageType: [weapon.damageDice, weapon.damageType].filter(Boolean).join(" "),
+      attackBonus,
+      damageType: damageText,
       sneakAttack: sneakDice,
-      description: weapon.description,
+      description: `+${attackBonus} to hit, ${damageText}`,
       source: "weapon" as const,
     };
   });

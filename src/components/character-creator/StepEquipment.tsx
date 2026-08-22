@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import type { Character } from "@/lib/storage";
-import { computeEquippedEffects } from "@/lib/storage";
+import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
 
@@ -208,6 +208,22 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
   const canEquip = (item: Character["inventory"][number]): boolean => {
     return item.itemType === "weapon" || item.itemType === "armor";
+  };
+
+  const getWeaponStats = (item: Character["inventory"][number]): string | null => {
+    if (item.itemType !== "weapon") return null;
+    const profBonus = getProficiencyBonus(data.level);
+    const abilityKey = item.category === "ranged" ? "dex" : "str";
+    const abilityMod = getModifier(data[abilityKey as keyof Character] as number);
+    const attackBonus = abilityMod + profBonus;
+    const damageBonus = abilityMod;
+    const damageDice = item.damageDice || "";
+    const damageTypeName = item.damageType || "";
+    const parts = [
+      `+${attackBonus} to hit`,
+      [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" "),
+    ];
+    return parts.join(" · ");
   };
 
   useEffect(() => {
@@ -436,6 +452,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               )}
               {description && (
                 <p className="text-xs text-parchment/50">{description}</p>
+              )}
+              {getWeaponStats(item) && (
+                <p className="text-xs text-gold/80 bg-gold/5 border border-gold/10 rounded px-2 py-1 mt-1">{getWeaponStats(item)}</p>
               )}
             </div>
           );

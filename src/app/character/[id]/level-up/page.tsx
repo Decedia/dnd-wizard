@@ -582,6 +582,7 @@ function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: 
 }
 
 function FeaturesStep({ step, featureChoices, selectedChoices, onChoiceChange, skillSelections, onSkillSelect, currentSkills }: { step: LevelUpStepSection; featureChoices?: LevelUpStepSection["featureChoices"]; selectedChoices?: Record<string, string>; onChoiceChange?: (featureName: string, value: string) => void; skillSelections?: Record<number, string[]>; onSkillSelect?: (level: number, names: string[]) => void; currentSkills?: Record<string, boolean> }) {
+  console.log('[FeaturesStep] step.features:', step.features?.map((f: any) => f.name), 'featureChoices:', featureChoices);
   const level = step.level;
   return (
     <div className="space-y-2">

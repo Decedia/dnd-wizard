@@ -181,7 +181,19 @@
           "asi": false
         },
         {
-          "features": [],
+          "features": [
+            {
+              "name": "Aspect of the Beast",
+              "description": [
+                "At 6th level, you gain a magical benefit based on the totem animal of your choice.",
+                "Bear. You gain the might of a bear.",
+                "Eagle. You gain the eyesight of an eagle.",
+                "Elk. Whether mounted or on foot, your travel pace is doubled.",
+                "Tiger. You gain proficiency in two skills from the following list: Athletics, Acrobatics, Stealth, and Survival.",
+                "Wolf. You gain the hunting sensibilities of a wolf."
+              ]
+            }
+          ],
           "asi": false
         },
         {

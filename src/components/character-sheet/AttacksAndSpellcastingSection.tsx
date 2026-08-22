@@ -3,7 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
-import { getSneakAttackDice } from "@/lib/storage";
+import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -15,6 +15,25 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
   const sneakAttack = getSneakAttackDice(character);
   const classAttacks = character.attacks.filter((a) => a.source === "class");
   const weaponAttacks = character.attacks.filter((a) => a.source === "weapon");
+  const profBonus = getProficiencyBonus(character.level);
+
+  const getWeaponAttackDetails = (attack: Character["attacks"][number]) => {
+    const weapon = character.inventory.find((i) => i.id === attack.id);
+    if (!weapon || weapon.itemType !== "weapon") return null;
+    const abilityKey = weapon.category === "ranged" ? "dex" : "str";
+    const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
+    const attackBonus = abilityMod + profBonus;
+    const damageBonus = abilityMod;
+    const damageDice = weapon.damageDice || "";
+    const damageTypeName = weapon.damageType || "";
+    const damageText = [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" ");
+    return {
+      attackBonus,
+      damageText,
+      abilityKey,
+      abilityMod,
+    };
+  };
 
   return (
     <SectionCard id="attacks" title="Attacks & Spellcasting" icon={<AttacksIcon className="h-5 w-5" />}>
@@ -46,40 +65,37 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
       ) : (
         weaponAttacks.length > 0 && (
           <div className="space-y-2">
-            {weaponAttacks.map((attack) => (
-            <div key={attack.id} className="flex flex-col gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={attack.name}
-                  readOnly
-                  className="input flex-1 bg-charcoal/60"
-                />
-                <input
-                  type="number"
-                  value={attack.attackBonus}
-                  readOnly
-                  className="input w-20 text-center bg-charcoal/60"
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={attack.damageType}
-                  readOnly
-                  className="input flex-1 bg-charcoal/60"
-                />
-                {attack.sneakAttack && (
-                  <span className="text-xs font-medium text-burgundy bg-burgundy/10 px-2 py-1 rounded">
-                    +{attack.sneakAttack} sneak
-                  </span>
+            {weaponAttacks.map((attack) => {
+              const details = getWeaponAttackDetails(attack);
+              return (
+              <div key={attack.id} className="flex flex-col gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-parchment/80 flex-1">{attack.name}</span>
+                  {details && (
+                    <span className="text-xs font-semibold text-gold bg-gold/10 border border-gold/20 px-2 py-1 rounded">
+                      +{details.attackBonus} to hit
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {details && (
+                    <span className="text-xs text-parchment/80">{details.damageText}</span>
+                  )}
+                  {!details && attack.damageType && (
+                    <span className="text-xs text-parchment/80">{attack.damageType}</span>
+                  )}
+                  {attack.sneakAttack && (
+                    <span className="text-xs font-medium text-burgundy bg-burgundy/10 px-2 py-1 rounded">
+                      +{attack.sneakAttack} sneak
+                    </span>
+                  )}
+                </div>
+                {attack.description && (
+                  <p className="text-xs text-parchment/50">{attack.description}</p>
                 )}
               </div>
-              {attack.description && (
-                <p className="text-xs text-parchment/50">{attack.description}</p>
-              )}
-            </div>
-            ))}
+              );
+            })}
           </div>
         )
       )}

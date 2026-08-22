@@ -3,7 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
-import { computeEquippedEffects } from "@/lib/storage";
+import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
 import { useEffect } from "react";
@@ -182,6 +182,22 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
 
   const canEquip = (item: Character["inventory"][number]): boolean => {
     return item.itemType === "weapon" || item.itemType === "armor";
+  };
+
+  const getWeaponStats = (item: Character["inventory"][number]): string | null => {
+    if (item.itemType !== "weapon") return null;
+    const profBonus = getProficiencyBonus(character.level);
+    const abilityKey = item.category === "ranged" ? "dex" : "str";
+    const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
+    const attackBonus = abilityMod + profBonus;
+    const damageBonus = abilityMod;
+    const damageDice = item.damageDice || "";
+    const damageTypeName = item.damageType || "";
+    const parts = [
+      `+${attackBonus} to hit`,
+      [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" "),
+    ];
+    return parts.join(" · ");
   };
 
   const ensureGrantedItemsInInventory = () => {
@@ -431,6 +447,9 @@ export function InventorySection({ character, onChange }: InventorySectionProps)
               )}
               {description && (
                 <p className="text-xs text-parchment/50">{description}</p>
+              )}
+              {getWeaponStats(item) && (
+                <p className="text-xs text-gold/80 bg-gold/5 border border-gold/10 rounded px-2 py-1 mt-1">{getWeaponStats(item)}</p>
               )}
             </div>
           );
