@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepCard } from "@/components/character-creator/StepCard";
@@ -332,6 +332,13 @@ function HpStep({ step, charClass, conMod, onResolve, resolved, gain }: { step: 
   const totalGain = average + conMod;
   const [manualRoll, setManualRoll] = useState("");
 
+  useEffect(() => {
+    const parsed = parseInt(manualRoll, 10);
+    if (!isNaN(parsed) && parsed > 0 && step.level != null) {
+      onResolve(step.level, parsed);
+    }
+  }, [manualRoll, onResolve, step.level]);
+
   const handleManualSubmit = () => {
     const val = parseInt(manualRoll, 10);
     if (!isNaN(val) && val > 0) {
@@ -342,10 +349,6 @@ function HpStep({ step, charClass, conMod, onResolve, resolved, gain }: { step: 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setManualRoll(val);
-    const parsed = parseInt(val, 10);
-    if (!isNaN(parsed) && parsed > 0) {
-      onResolve(step.level, parsed);
-    }
   };
 
   return (

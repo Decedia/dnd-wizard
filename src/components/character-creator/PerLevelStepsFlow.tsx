@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { generateLevelUpSteps, type LevelUpStep, type LevelUpChanges, type LevelUpStepSection } from "@/lib/level-up";
 import { getStaticClass, getStaticSpells, getStaticWizardSpells } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus } from "@/lib/storage";
@@ -353,6 +353,13 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
   const totalGain = average + conMod;
   const [manualRoll, setManualRoll] = useState("");
 
+  useEffect(() => {
+    const parsed = parseInt(manualRoll, 10);
+    if (!isNaN(parsed) && parsed > 0 && step.level != null) {
+      onResolve(step.level, parsed);
+    }
+  }, [manualRoll, onResolve, step.level]);
+
   const handleManualSubmit = () => {
     const val = parseInt(manualRoll, 10);
     if (!isNaN(val) && val > 0) {
@@ -363,10 +370,6 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setManualRoll(val);
-    const parsed = parseInt(val, 10);
-    if (!isNaN(parsed) && parsed > 0) {
-      onResolve(step.level!, parsed);
-    }
   };
 
   return (
