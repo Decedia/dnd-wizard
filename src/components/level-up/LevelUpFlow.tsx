@@ -44,6 +44,7 @@ export function LevelUpFlow({
   const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [skillSelections, setSkillSelections] = useState<Record<number, string[]>>({});
+  const [aspectOfBeast, setAspectOfBeast] = useState<string>("");
 
   const steps = useMemo(
     () => generateLevelUpSteps(oldLevel, newLevel, charClass, currentExpertise, currentSkills),
@@ -143,10 +144,10 @@ export function LevelUpFlow({
       abilityScoreChanges: allAsi,
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
-      choices: Object.keys(featureChoices).length > 0 ? featureChoices : undefined,
+      choices: Object.keys(featureChoices).length > 0 ? { ...featureChoices, ...(aspectOfBeast ? { debugAspectOfBeast: aspectOfBeast } : {}) } : (aspectOfBeast ? { debugAspectOfBeast: aspectOfBeast } : undefined),
       ...(allSkillProficiencies.length > 0 ? { skillProficiencies: [...new Set(allSkillProficiencies)] } : {}),
     });
-  }, [oldLevel, newLevel, charClass, subclassChoice, asiChoices, expertiseChoices, featureChoices, skillSelections, onComplete]);
+  }, [oldLevel, newLevel, charClass, subclassChoice, asiChoices, expertiseChoices, featureChoices, skillSelections, aspectOfBeast, onComplete]);
 
   const handleNext = useCallback(() => {
     if (currentStepIndex === steps.length - 1) {
@@ -200,6 +201,9 @@ export function LevelUpFlow({
           if ((selectedSpells[spellKey]?.length || 0) < (section.spellSelectionCount || 0)) return false;
           break;
         }
+        case "debugAspectOfBeast":
+          if (!aspectOfBeast) return false;
+          break;
         case "features":
           if (section.featureChoices) {
             for (const choice of section.featureChoices) {
@@ -286,6 +290,22 @@ export function LevelUpFlow({
             selected={selectedSpells[currentStep.level] || []}
             onSelect={(names) => setSelectedSpells((prev) => ({ ...prev, [currentStep.level]: names }))}
           />
+        );
+      case "debugAspectOfBeast":
+        return (
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-wider text-parchment/60">{section.debugLabel}</label>
+            <select
+              value={aspectOfBeast}
+              onChange={(e) => setAspectOfBeast(e.target.value)}
+              className="w-full rounded-lg border border-parchment/20 bg-charcoal/50 px-3 py-2 text-sm text-parchment"
+            >
+              <option value="">Select...</option>
+              {(section.debugOptions || []).map((opt: string) => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
         );
       default:
         return null;

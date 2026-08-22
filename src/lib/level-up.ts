@@ -18,7 +18,7 @@ export interface AbilityScoreChange {
 }
 
 export interface LevelUpStepSection {
-  type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
+  type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection" | "debugAspectOfBeast";
   description?: string;
   features?: { name: string; description: string }[];
   featureChoices?: {
@@ -47,6 +47,8 @@ export interface LevelUpStepSection {
   skillSelectionCount?: number;
   skillOptions?: string[];
   level?: number;
+  debugLabel?: string;
+  debugOptions?: string[];
 }
 
 export interface LevelUpStep {
@@ -235,6 +237,14 @@ export function generateLevelUpSteps(
           spellSelectionLevel: level,
         });
       }
+    }
+
+    if (level === 6 && className === "Barbarian" && currentSubclass === "Totem Warrior") {
+      sections.push({
+        type: "debugAspectOfBeast",
+        debugLabel: "Aspect of the Beast",
+        debugOptions: ["Bear", "Eagle", "Elk", "Tiger", "Wolf"],
+      });
     }
 
     const levelTitle =
