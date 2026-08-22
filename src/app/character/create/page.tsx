@@ -302,6 +302,13 @@ export default function CharacterCreate() {
         }
         finalCharacter.skills = newSkills;
       }
+      if (pendingChanges.choices?.["Primal Knowledge"]) {
+        const newSkills = { ...(finalCharacter.skills || {}) };
+        if (!newSkills[pendingChanges.choices["Primal Knowledge"]]) {
+          newSkills[pendingChanges.choices["Primal Knowledge"]] = true;
+        }
+        finalCharacter.skills = newSkills;
+      }
       if (pendingChanges.spellSlots) {
         finalCharacter.spellSlots = { ...finalCharacter.spellSlots, ...pendingChanges.spellSlots };
       }

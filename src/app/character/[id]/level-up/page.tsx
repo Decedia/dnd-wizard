@@ -231,6 +231,15 @@ export default function LevelUpPage() {
       patch.skills = newSkills;
     }
 
+    const primalKnowledgeSkill = featureChoices["Primal Knowledge"];
+    if (primalKnowledgeSkill) {
+      const newSkills = { ...(patch.skills || character.skills || {}) };
+      if (!newSkills[primalKnowledgeSkill]) {
+        newSkills[primalKnowledgeSkill] = true;
+      }
+      patch.skills = newSkills;
+    }
+
     if (finalSpellSlots) {
       patch.spellSlots = { ...character.spellSlots, ...finalSpellSlots };
     }

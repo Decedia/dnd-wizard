@@ -109,6 +109,12 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
       allSkillProficiencies.push(...(skillSelections[level] || []));
     }
 
+    const featureChoiceSkills: string[] = [];
+    const primalKnowledgeSkill = featureChoices["Primal Knowledge"];
+    if (primalKnowledgeSkill) {
+      featureChoiceSkills.push(primalKnowledgeSkill);
+    }
+
     onComplete({
       level: character.level,
       features: allFeatures,
@@ -117,7 +123,7 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
       expertise: [...new Set(allExpertise)],
       spellSlots: finalSpellSlots,
       choices: Object.keys(featureChoices).length > 0 ? featureChoices : undefined,
-      ...(allSkillProficiencies.length > 0 ? { skillProficiencies: [...new Set(allSkillProficiencies)] } : {}),
+      ...(allSkillProficiencies.length > 0 || featureChoiceSkills.length > 0 ? { skillProficiencies: [...new Set([...allSkillProficiencies, ...featureChoiceSkills])] } : {}),
     });
   }, [character.level, character.class, subclassChoice, asiChoices, expertiseChoices, featureChoices, skillSelections, onComplete]);
 
