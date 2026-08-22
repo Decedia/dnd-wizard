@@ -234,21 +234,21 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   return (
     <StepCard title="Equipment">
       {grantedItems.length > 0 && (
-        <div className="mb-4">
-          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Starting Equipment (Auto-granted)</span>
-          <div className="space-y-1">
+        <div className="mb-5">
+          <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">Starting Equipment (Auto-granted)</span>
+          <div className="space-y-2">
             {grantedItems.map((group: any, groupIdx: number) => (
               <div key={groupIdx}>
-                {group.description && <p className="text-xs text-parchment/50 mb-1">{group.description}</p>}
-                <div className="space-y-1">
+                {group.description && <p className="text-sm text-parchment/60 mb-2 leading-relaxed">{group.description}</p>}
+                <div className="space-y-2">
                   {group.items.map((itemRef: any, itemIdx: number) => {
                     const srdData = getEquipmentData(itemRef.name);
                     const invItem = data.inventory.find((i) => i.id === `granted-${groupIdx}-${itemIdx}`);
                     const equipped = invItem?.equipped ?? srdData?.type === "armor";
                     const canToggle = srdData?.type === "weapon" || srdData?.type === "armor";
                     return (
-                      <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2">
-                        <span className="text-sm text-parchment/80 flex-1">
+                      <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/25 bg-green-500/5 px-3 py-2.5">
+                        <span className="text-sm font-medium text-parchment/90 flex-1">
                           {itemRef.name}
                           {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
                         </span>
@@ -260,7 +260,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                 toggleEquip(invItem.id, invItem.itemType);
                               }
                             }}
-                            className={`rounded-md px-2 py-1 text-[10px] font-medium transition-colors ${
+                            className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
                               equipped
                                 ? "bg-gold/20 text-gold border border-gold/40"
                                 : "border border-parchment/20 text-parchment hover:border-parchment/40"
@@ -269,7 +269,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                             {equipped ? "Equipped" : "Equip"}
                           </button>
                         )}
-                        <span className="text-[10px] text-green-400/70">Granted</span>
+                        <span className="text-[10px] font-semibold text-green-400/80">Granted</span>
                       </div>
                     );
                   })}
@@ -281,16 +281,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       )}
 
       {radioGroups.length > 0 && (
-        <div className="mb-4">
-          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider mb-2 block">Equipment Choices</span>
+        <div className="mb-5">
+          <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">Equipment Choices</span>
           <div className="space-y-4">
             {radioGroups.map((group) => {
               const selectedOption = getSelectedOptionForGroup(group);
               const groupDescription = group.choices[0]?.description || "";
               return (
-                <div key={group.name} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
+                <div key={group.name} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-4 py-4">
                   {groupDescription && (
-                    <p className="text-[10px] font-medium text-parchment/50 uppercase tracking-wider mb-2">{groupDescription}</p>
+                    <p className="text-xs font-semibold text-parchment/60 uppercase tracking-wider mb-3">{groupDescription}</p>
                   )}
                   <div className="space-y-2">
                     {group.choices.map((choice: any, optionIdx: number) => {
@@ -321,12 +321,12 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                             onBlur={() => {}}
                             className="mt-0.5 h-4 w-4 text-gold focus:ring-gold/50"
                           />
-                          <div className="flex-1">
-                            <span className="text-sm text-parchment/80">{itemNames}</span>
-                            {weaponDamage && (
-                              <p className="text-xs text-parchment/50 mt-0.5">{weaponDamage}</p>
-                            )}
-                          </div>
+                           <div className="flex-1">
+                             <span className="text-sm font-medium text-parchment/90">{itemNames}</span>
+                             {weaponDamage && (
+                               <p className="text-sm text-parchment/70 font-medium mt-1">{weaponDamage}</p>
+                             )}
+                           </div>
                         </label>
                       );
                     })}
@@ -347,9 +347,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           const isCustom = item.source === "custom";
           const dropdownValue = isCustom ? "Custom Item" : (item.srdItemName || item.name || "");
           return (
-            <div key={item.id} className={`flex flex-col gap-1 rounded-lg border px-3 py-2 ${
+            <div key={item.id} className={`flex flex-col gap-2 rounded-lg border px-3 py-2.5 ${
               item.isGranted
-                ? "border-green-500/20 bg-green-500/5"
+                ? "border-green-500/25 bg-green-500/5"
                 : "border-parchment/10 bg-charcoal/40"
             }`}>
               <div className="flex items-center gap-2 flex-wrap">
@@ -423,7 +423,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                   <button
                     type="button"
                     onClick={() => toggleEquip(item.id, item.itemType)}
-                    className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
+                    className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
                       item.equipped
                         ? "bg-gold/20 text-gold border border-gold/40"
                         : "border border-parchment/20 text-parchment hover:border-parchment/40"
@@ -435,7 +435,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <button
                   type="button"
                   onClick={() => removeItem(item.id)}
-                  className="text-parchment/40 hover:text-parchment"
+                  className="text-parchment/40 hover:text-parchment shrink-0"
                   aria-label="Remove item"
                 >
                   <XIcon className="h-4 w-4" />
@@ -451,10 +451,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 />
               )}
               {description && (
-                <p className="text-xs text-parchment/50">{description}</p>
+                <p className="text-sm text-parchment/60 leading-relaxed">{description}</p>
               )}
               {getWeaponStats(item) && (
-                <p className="text-xs text-gold/80 bg-gold/5 border border-gold/10 rounded px-2 py-1 mt-1">{getWeaponStats(item)}</p>
+                <p className="text-sm font-bold text-gold bg-gold/10 border border-gold/25 rounded-lg px-3 py-2.5 shadow-sm">{getWeaponStats(item)}</p>
               )}
             </div>
           );

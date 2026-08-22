@@ -38,22 +38,22 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
   return (
     <SectionCard id="attacks" title="Attacks & Spellcasting" icon={<AttacksIcon className="h-5 w-5" />}>
       {character.class === "Rogue" && sneakAttack && (
-        <div className="mb-3 rounded-lg border border-gold/20 bg-gold/5 px-3 py-2">
-          <span className="text-xs font-medium text-gold">Sneak Attack: {sneakAttack}</span>
+        <div className="mb-4 rounded-lg border border-gold/30 bg-gold/10 px-4 py-3">
+          <span className="text-sm font-semibold text-gold">Sneak Attack: {sneakAttack}</span>
         </div>
       )}
       {classAttacks.length > 0 && (
-        <div className="mb-3 space-y-2">
+        <div className="mb-4 space-y-3">
           {classAttacks.map((attack) => (
-            <div key={attack.id} className="flex flex-col gap-2 rounded-lg border border-gold/20 bg-gold/5 px-3 py-3">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gold/80 flex-1">{attack.name}</span>
-                <span className="text-[10px] font-medium text-gold bg-gold/10 px-1.5 py-0.5 rounded">class-granted</span>
+            <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-gold/30 bg-gold/10 px-4 py-4">
+              <div className="flex items-center gap-3">
+                <span className="text-base font-semibold text-gold/90 flex-1">{attack.name}</span>
+                <span className="text-[10px] font-bold text-gold bg-gold/20 px-2 py-1 rounded uppercase tracking-wider">class-granted</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-parchment/60">{attack.damageType}</span>
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="text-sm text-parchment/70">{attack.damageType}</span>
                 {attack.sneakAttack && (
-                  <span className="text-xs font-medium text-gold bg-gold/10 px-2 py-1 rounded">+{attack.sneakAttack} sneak</span>
+                  <span className="text-xs font-bold text-gold bg-gold/20 px-2.5 py-1.5 rounded">+{attack.sneakAttack} sneak</span>
                 )}
               </div>
             </div>
@@ -61,37 +61,37 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
         </div>
       )}
       {weaponAttacks.length === 0 && classAttacks.length === 0 ? (
-        <p className="text-xs text-parchment/50">Equip weapons in Inventory to auto-populate attacks.</p>
+        <p className="text-sm text-parchment/50">Equip weapons in Inventory to auto-populate attacks.</p>
       ) : (
         weaponAttacks.length > 0 && (
-          <div className="space-y-2">
+          <div className="space-y-3">
             {weaponAttacks.map((attack) => {
               const details = getWeaponAttackDetails(attack);
               return (
-              <div key={attack.id} className="flex flex-col gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-parchment/80 flex-1">{attack.name}</span>
+              <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-parchment/15 bg-charcoal/40 px-4 py-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-base font-semibold text-parchment/90 flex-1">{attack.name}</span>
                   {details && (
-                    <span className="text-xs font-semibold text-gold bg-gold/10 border border-gold/20 px-2 py-1 rounded">
+                    <span className="text-sm font-bold text-gold bg-gold/15 border border-gold/30 px-3 py-1.5 rounded-lg shadow-sm">
                       +{details.attackBonus} to hit
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-2 flex-wrap">
+                <div className="flex items-center gap-3 flex-wrap">
                   {details && (
-                    <span className="text-xs text-parchment/80">{details.damageText}</span>
+                    <span className="text-sm text-parchment/80 font-medium">{details.damageText}</span>
                   )}
                   {!details && attack.damageType && (
-                    <span className="text-xs text-parchment/80">{attack.damageType}</span>
+                    <span className="text-sm text-parchment/80 font-medium">{attack.damageType}</span>
                   )}
                   {attack.sneakAttack && (
-                    <span className="text-xs font-medium text-burgundy bg-burgundy/10 px-2 py-1 rounded">
+                    <span className="text-xs font-bold text-burgundy bg-burgundy/15 border border-burgundy/25 px-2.5 py-1.5 rounded-lg">
                       +{attack.sneakAttack} sneak
                     </span>
                   )}
                 </div>
                 {attack.description && (
-                  <p className="text-xs text-parchment/50">{attack.description}</p>
+                  <p className="text-xs text-parchment/50 mt-1">{attack.description}</p>
                 )}
               </div>
               );
@@ -99,7 +99,7 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
           </div>
         )
       )}
-      <p className="text-xs text-parchment/50 mt-3">Attacks are automatically generated from equipped weapons and class features.</p>
+      <p className="text-xs text-parchment/50 mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
     </SectionCard>
   );
 }
