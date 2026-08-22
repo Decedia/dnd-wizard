@@ -540,6 +540,15 @@ function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: 
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setManualRoll(val);
+    const parsed = parseInt(val, 10);
+    if (!isNaN(parsed) && parsed > 0) {
+      onResolve(step.level!, parsed);
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-center">
@@ -547,8 +556,11 @@ function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: 
           <input
             type="number"
             value={manualRoll}
-            onChange={(e) => setManualRoll(e.target.value)}
+            onChange={handleInputChange}
             onBlur={() => {}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleManualSubmit();
+            }}
             placeholder="Enter roll..."
             className="input w-24 text-center text-sm"
             min={1}
