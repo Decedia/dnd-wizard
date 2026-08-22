@@ -86,21 +86,25 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
         <div className="mt-2 space-y-2">
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
+            const abilityMod = getModifier(character[key]);
             return (
               <div key={key} className="flex items-center justify-between rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                <div className="flex items-center gap-3">
-                  <span className="text-sm text-parchment/80 w-10">{key.toUpperCase()}</span>
-                  <ProficiencyDot
-                    proficient={st.proficient}
-                    onChange={(proficient) =>
-                      onChange({
-                        savingThrows: {
-                          ...character.savingThrows,
-                          [key]: { ...st, proficient },
-                        },
-                      })
-                    }
-                  />
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-parchment/80 w-10">{key.toUpperCase()}</span>
+                    <ProficiencyDot
+                      proficient={st.proficient}
+                      onChange={(proficient) =>
+                        onChange({
+                          savingThrows: {
+                            ...character.savingThrows,
+                            [key]: { ...st, proficient },
+                          },
+                        })
+                      }
+                    />
+                  </div>
+                  <span className="text-[10px] text-parchment/50 ml-13">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
                 </div>
                 <input
                   type="number"

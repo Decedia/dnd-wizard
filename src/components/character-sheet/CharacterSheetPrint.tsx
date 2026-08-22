@@ -182,30 +182,36 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
 
               {/* Saving Throws */}
               <div>
-                <div style={{ fontSize: "10px", fontWeight: "bold", color: COLORS.textMuted, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "6px" }}>
-                  Saving Throws
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                  {savingThrowKeys.map((key) => {
-                    const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
-                    return (
-                      <div key={key} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "3px 6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                          <span style={{ fontSize: "11px", fontWeight: "bold", color: COLORS.text, width: "28px" }}>{key.toUpperCase()}</span>
-                          <div style={{
-                            width: "16px", height: "16px", borderRadius: "50%",
-                            border: `2px solid ${st.proficient ? COLORS.gold : COLORS.border}`,
-                            backgroundColor: st.proficient ? COLORS.gold : "transparent",
-                          }} />
-                        </div>
-                        <span style={{ fontSize: "12px", fontWeight: "bold", color: COLORS.text, width: "30px", textAlign: "right" }}>
-                          {st.value >= 0 ? `+${st.value}` : st.value}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+                 <div style={{ fontSize: "10px", fontWeight: "bold", color: COLORS.textMuted, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "6px" }}>
+                   Saving Throws
+                 </div>
+                 <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                   {savingThrowKeys.map((key) => {
+                     const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
+                     const abilityMod = getMod(character[key]);
+                     return (
+                       <div key={key} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "3px 6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                         <div style={{ display: "flex", flexDirection: "column" }}>
+                           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                             <span style={{ fontSize: "11px", fontWeight: "bold", color: COLORS.text, width: "28px" }}>{key.toUpperCase()}</span>
+                             <div style={{
+                               width: "16px", height: "16px", borderRadius: "50%",
+                               border: `2px solid ${st.proficient ? COLORS.gold : COLORS.border}`,
+                               backgroundColor: st.proficient ? COLORS.gold : "transparent",
+                             }} />
+                           </div>
+                           <span style={{ fontSize: "9px", color: COLORS.textMuted, marginLeft: "34px" }}>
+                             {abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod
+                           </span>
+                         </div>
+                         <span style={{ fontSize: "12px", fontWeight: "bold", color: COLORS.text, width: "30px", textAlign: "right" }}>
+                           {st.value >= 0 ? `+${st.value}` : st.value}
+                         </span>
+                       </div>
+                     );
+                   })}
+                 </div>
+               </div>
             </div>
           </div>
         </div>
@@ -225,20 +231,25 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
               const mod = getMod(abilityScore);
               const total = mod + (profBonus * profMultiplier);
               return (
-                <div key={name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "3px 6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                    <span style={{ fontSize: "10px", color: COLORS.textMuted, width: "18px" }}>
-                      {proficient ? "★" : ""}
-                    </span>
-                    <span style={{ fontSize: "11px", color: COLORS.text }}>
-                      {name}
-                      {expert && <span style={{ fontSize: "8px", fontWeight: "bold", color: COLORS.burgundy, marginLeft: "3px", backgroundColor: COLORS.parchment, padding: "1px 4px", borderRadius: "3px", border: `1px solid ${COLORS.burgundy}30` }}>EXPERTISE</span>}
-                    </span>
-                  </div>
-                  <span style={{ fontSize: "11px", fontWeight: "bold", color: COLORS.text, width: "28px", textAlign: "right" }}>
-                    {total >= 0 ? `+${total}` : total}
-                  </span>
-                </div>
+                 <div key={name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "3px 6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}` }}>
+                   <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                     <span style={{ fontSize: "10px", color: COLORS.textMuted, width: "18px" }}>
+                       {proficient ? "★" : ""}
+                     </span>
+                     <div style={{ display: "flex", flexDirection: "column" }}>
+                       <span style={{ fontSize: "11px", color: COLORS.text }}>
+                         {name}
+                         {expert && <span style={{ fontSize: "8px", fontWeight: "bold", color: COLORS.burgundy, marginLeft: "3px", backgroundColor: COLORS.parchment, padding: "1px 4px", borderRadius: "3px", border: `1px solid ${COLORS.burgundy}30` }}>EXPERTISE</span>}
+                       </span>
+                       <span style={{ fontSize: "9px", color: COLORS.textMuted }}>
+                         {abilityKey.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}
+                       </span>
+                     </div>
+                   </div>
+                   <span style={{ fontSize: "11px", fontWeight: "bold", color: COLORS.text, width: "28px", textAlign: "right" }}>
+                     {total >= 0 ? `+${total}` : total}
+                   </span>
+                 </div>
               );
             })}
           </div>

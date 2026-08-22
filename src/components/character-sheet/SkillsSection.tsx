@@ -94,6 +94,7 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
                       <span className="text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">EXPERTISE</span>
                     )}
                   </span>
+                  <span className="text-[10px] text-parchment/50">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   {!allowed && (
                     <span className="text-[10px] text-parchment/40">Not available for this class</span>
                   )}
