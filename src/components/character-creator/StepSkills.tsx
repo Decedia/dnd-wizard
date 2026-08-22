@@ -34,9 +34,9 @@ export function StepSkills({ data, onChange, showExpertisePicker = true, extraSk
   const currentSelections = Object.values(data.skills).filter(Boolean).length;
 
   const isSkillAllowed = (skillName: string) => {
-    if (totalMaxSelections === 0) return allowedSkills.includes(skillName);
+    if (allowedSkills.length > 0) return allowedSkills.includes(skillName);
     return true;
-    };
+  };
   
   const isAtMaxSelections = (skillName: string) => {
     if (totalMaxSelections === 0) return false;
@@ -107,7 +107,7 @@ export function StepSkills({ data, onChange, showExpertisePicker = true, extraSk
                   onChange={() => toggleSkill(name)}
                   onBlur={() => {}}
                   disabled={disabled}
-                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50 disabled:opacity-30"
+                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
                 />
                 <span className="text-sm text-parchment/80">{name}</span>
                 {!allowed && (
