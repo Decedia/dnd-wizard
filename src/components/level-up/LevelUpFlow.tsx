@@ -235,6 +235,7 @@ export function LevelUpFlow({
       case "hp":
         return (
           <HpStep
+            key={currentStep.level}
             step={{ ...section, level: currentStep.level } as any}
             charClass={charClass}
             conMod={getModifier(runningAbilityScores.con)}

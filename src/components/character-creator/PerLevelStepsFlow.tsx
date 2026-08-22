@@ -222,11 +222,12 @@ export function PerLevelStepsFlow({ character, steps, onComplete, onBack, overal
       case "hp":
         return (
           <HpStepInline
+            key={currentStep.level}
             step={{ ...section, level: currentStep.level } as any}
             className={character.class}
             conMod={getModifier(currentStepAbilityScores.con)}
             onResolve={handleHpResolve}
-            resolved={hpResolved[currentStep.level] === true}
+            resolved={hpResolved[currentStep.level] != null}
           />
         );
       case "features":

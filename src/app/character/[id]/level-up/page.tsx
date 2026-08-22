@@ -396,6 +396,7 @@ export default function LevelUpPage() {
         const hpGainForLevel = averageForHp + conModForHp;
         return (
           <HpStep
+            key={currentStep.level}
             step={{ ...section, level: currentStep.level } as any}
             className={className}
             conMod={conModForHp}
