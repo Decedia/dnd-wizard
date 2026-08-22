@@ -65,7 +65,7 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
           const isProficient = character.skills[name] ?? false;
           const isExpert = character.expertise?.includes(name) ?? false;
           const profMultiplier = isExpert ? 2 : 1;
-          const total = mod + (profBonus * profMultiplier);
+          const total = isProficient ? mod + (profBonus * profMultiplier) : mod;
           const allowed = isSkillAllowed(name);
           const disabled = !allowed || isAtMaxSelections(name);
 
@@ -85,7 +85,7 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
                   onChange={() => toggleSkill(name)}
                   onBlur={onFieldBlur}
                   disabled={disabled}
-                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50 disabled:opacity-30"
+                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
                 />
                 <div className="flex flex-col">
                   <span className="text-sm text-parchment/80 flex items-center gap-2">
