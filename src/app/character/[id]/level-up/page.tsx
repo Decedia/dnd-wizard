@@ -6,7 +6,6 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepCard } from "@/components/character-creator/StepCard";
-import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection, getAnimalDescription } from "@/lib/level-up";
 import { getStaticClass, getStaticSpells, getStaticWizardSpells } from "@/lib/srd-client";
 import { getModifier, getCharacter, saveCharacter, computeDerivedStats, type Character } from "@/lib/storage";
@@ -400,7 +399,7 @@ export default function LevelUpPage() {
             step={{ ...section, level: currentStep.level } as any}
             className={className}
             conMod={conModForHp}
-            onResolve={(level) => handleHpResolve(level, hpGainForLevel)}
+            onResolve={(level, gain) => handleHpResolve(level, gain ?? hpGainForLevel)}
             resolved={hpResolved[currentStep.level] !== undefined}
             gain={hpGainForLevel}
           />
@@ -527,26 +526,44 @@ export default function LevelUpPage() {
   );
 }
 
-function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: LevelUpStepSection; className: string; conMod: number; onResolve: (level: number) => void; resolved: boolean; gain?: number }) {
+function HpStep({ step, className, conMod, onResolve, resolved, gain }: { step: LevelUpStepSection; className: string; conMod: number; onResolve: (level: number, gain?: number) => void; resolved: boolean; gain?: number }) {
   const classData = getStaticClass(className);
   const hitDie = classData?.hitDie || 10;
   const average = Math.floor(hitDie / 2) + 1;
-  const diceType = `d${hitDie}` as DiceType;
+  const totalGain = average + conMod;
+  const [manualRoll, setManualRoll] = useState("");
+
+  const handleManualSubmit = () => {
+    const val = parseInt(manualRoll, 10);
+    if (!isNaN(val) && val > 0) {
+      onResolve(step.level!, val);
+    } else {
+      onResolve(step.level!);
+    }
+  };
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-center gap-6">
-        <div className="flex flex-col items-center gap-2">
-          <Dice key={`dice-${step.level}`} type={diceType} size={80} onRoll={() => onResolve(step.level!)} />
+      <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col items-center gap-1">
+          <input
+            type="number"
+            value={manualRoll}
+            onChange={(e) => setManualRoll(e.target.value)}
+            onBlur={() => {}}
+            placeholder="Enter roll..."
+            className="input w-24 text-center text-sm"
+            min={1}
+          />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
         <button
           type="button"
-          onClick={() => onResolve(step.level!)}
+          onClick={handleManualSubmit}
           disabled={resolved}
           className="rounded-lg border border-parchment/20 bg-charcoal/40 px-4 py-2 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40 disabled:opacity-40"
         >
-          Take Average ({average + conMod})
+          Take Average ({totalGain})
         </button>
       </div>
       {resolved && (

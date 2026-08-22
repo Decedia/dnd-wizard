@@ -6,7 +6,6 @@ import type { Character } from "@/lib/storage";
 import { computeEquippedEffects } from "@/lib/storage";
 import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
-import { DiceType } from "@/components/Dice";
 
 interface StepEquipmentProps {
   data: Character;

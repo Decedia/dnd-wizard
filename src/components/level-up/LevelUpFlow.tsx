@@ -4,7 +4,6 @@ import { useState, useMemo, useCallback } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepCard } from "@/components/character-creator/StepCard";
-import { Dice, DiceType } from "@/components/Dice";
 import { generateLevelUpSteps, type LevelUpChanges, type LevelUpStep, type LevelUpStepSection } from "@/lib/level-up";
 import { getStaticClass, getStaticSpells, getStaticWizardSpells } from "@/lib/srd-client";
 import { getModifier } from "@/lib/storage";
@@ -40,7 +39,7 @@ export function LevelUpFlow({
   onCancel,
 }: LevelUpFlowProps) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [hpResolved, setHpResolved] = useState<Record<number, boolean>>({});
+  const [hpResolved, setHpResolved] = useState<Record<number, number | boolean>>({});
   const [asiChoices, setAsiChoices] = useState<Record<number, { ability: string; delta: number }[]>>({});
   const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
@@ -76,8 +75,8 @@ export function LevelUpFlow({
     return scores;
   }, [currentAbilityScores, asiChoices, oldLevel]);
 
-  const handleHpResolve = useCallback((level: number) => {
-    setHpResolved((prev) => ({ ...prev, [level]: true }));
+  const handleHpResolve = useCallback((level: number, gain?: number) => {
+    setHpResolved((prev) => ({ ...prev, [level]: gain ?? true }));
   }, []);
 
   const handleAsiChange = useCallback((level: number, ability: string, delta: number) => {
@@ -240,7 +239,7 @@ export function LevelUpFlow({
             charClass={charClass}
             conMod={getModifier(runningAbilityScores.con)}
             onResolve={handleHpResolve}
-            resolved={hpResolved[currentStep.level] === true}
+            resolved={hpResolved[currentStep.level] != null}
           />
         );
       case "features":
@@ -326,26 +325,44 @@ export function LevelUpFlow({
   );
 }
 
-function HpStep({ step, charClass, conMod, onResolve, resolved }: { step: LevelUpStep; charClass: string; conMod: number; onResolve: (level: number) => void; resolved: boolean }) {
+function HpStep({ step, charClass, conMod, onResolve, resolved, gain }: { step: LevelUpStep; charClass: string; conMod: number; onResolve: (level: number, gain?: number) => void; resolved: boolean; gain?: number }) {
   const classData = getStaticClass(charClass);
   const hitDie = classData?.hitDie || 10;
   const average = Math.floor(hitDie / 2) + 1;
-  const diceType = `d${hitDie}` as DiceType;
+  const totalGain = average + conMod;
+  const [manualRoll, setManualRoll] = useState("");
+
+  const handleManualSubmit = () => {
+    const val = parseInt(manualRoll, 10);
+    if (!isNaN(val) && val > 0) {
+      onResolve(step.level, val);
+    } else {
+      onResolve(step.level);
+    }
+  };
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-center gap-6">
-        <div className="flex flex-col items-center gap-2">
-          <Dice key={`dice-${step.level}`} type={diceType} size={80} onRoll={() => onResolve(step.level)} />
+      <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col items-center gap-1">
+          <input
+            type="number"
+            value={manualRoll}
+            onChange={(e) => setManualRoll(e.target.value)}
+            onBlur={() => {}}
+            placeholder="Enter roll..."
+            className="input w-24 text-center text-sm"
+            min={1}
+          />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
-         <button
-           type="button"
-           onClick={() => onResolve(step.level)}
-           disabled={resolved}
-           className="rounded-full border border-white/20 bg-transparent px-4 py-2 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5 disabled:opacity-40"
-         >
-          Take Average ({average + conMod})
+        <button
+          type="button"
+          onClick={handleManualSubmit}
+          disabled={resolved}
+          className="rounded-full border border-white/20 bg-transparent px-4 py-2 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5 disabled:opacity-40"
+        >
+          Take Average ({totalGain})
         </button>
       </div>
       {resolved && (
