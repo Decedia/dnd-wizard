@@ -11,9 +11,10 @@ interface StepSkillsProps {
   data: Character;
   onChange: (data: Partial<Character>) => void;
   showExpertisePicker?: boolean;
+  extraSkillChoices?: number;
 }
 
-export function StepSkills({ data, onChange, showExpertisePicker = true }: StepSkillsProps) {
+export function StepSkills({ data, onChange, showExpertisePicker = true, extraSkillChoices = 0 }: StepSkillsProps) {
   const [showInfo, setShowInfo] = useState(() => {
     if (typeof window !== "undefined") {
       const hasSeen = sessionStorage.getItem("skills-info-seen");
@@ -29,17 +30,18 @@ export function StepSkills({ data, onChange, showExpertisePicker = true }: StepS
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
+  const totalMaxSelections = maxSelections + extraSkillChoices;
   const currentSelections = Object.values(data.skills).filter(Boolean).length;
 
   const isSkillAllowed = (skillName: string) => {
-    return allowedSkills.includes(skillName);
-  };
-
+    if (totalMaxSelections === 0) return allowedSkills.includes(skillName);
+    return true;
+    };
+  
   const isAtMaxSelections = (skillName: string) => {
-    if (maxSelections === 0) return false;
-    if (!isSkillAllowed(skillName)) return true;
+    if (totalMaxSelections === 0) return false;
     if (data.skills[skillName]) return false;
-    return currentSelections >= maxSelections;
+    return currentSelections >= totalMaxSelections;
   };
 
   const toggleSkill = (skillName: string) => {
@@ -76,9 +78,9 @@ export function StepSkills({ data, onChange, showExpertisePicker = true }: StepS
         </div>
       )}
 
-      {skillChoices ? (
+      {skillChoices || extraSkillChoices > 0 ? (
         <p className="text-xs text-parchment/50 mb-3">
-          Choose {maxSelections} skills from your class list ({currentSelections} of {maxSelections} selected)
+          Choose {totalMaxSelections} skills ({currentSelections} of {totalMaxSelections} selected)
         </p>
       ) : (
         <p className="text-xs text-parchment/50 mb-3">Select your character&apos;s skills.</p>

@@ -29,6 +29,18 @@ import { normalizeDescription } from "@/lib/level-up";
 
 const BASE_STEPS = 8;
 
+function getSkillNameFromTrait(description: string): string | null {
+  const match = description.match(/proficiency in (?:the )?([A-Z][a-z]+(?: [A-Z][a-z]+)*) skill/);
+  return match ? match[1] : null;
+}
+
+function countSkillChoicesFromTrait(description: string): number {
+  const match = description.match(/proficiency in (\w+) skills? of your choice/);
+  if (!match) return 0;
+  const num = parseInt(match[1], 10);
+  return isNaN(num) ? 0 : num;
+}
+
 export default function CharacterCreate() {
   const router = useRouter();
   const [step, setStep] = useState(1);
@@ -40,6 +52,7 @@ export default function CharacterCreate() {
   }, [character.level, character.class, character.expertise, character.skills, character.subclass]);
 
   const [pendingChanges, setPendingChanges] = useState<LevelUpChanges | null>(null);
+  const [raceSkillChoiceCount, setRaceSkillChoiceCount] = useState(0);
 
   const totalSteps = useMemo(() => {
     return BASE_STEPS + 2 + perLevelSteps.length;
@@ -147,8 +160,23 @@ export default function CharacterCreate() {
       locked: true,
     }));
     const existingRaceFeatures = character.features.filter((f) => f.source !== "race");
-    update({ features: [...existingRaceFeatures, ...newFeatures] });
-  }, [character.features, update]);
+    
+    const newSkills = { ...character.skills };
+    let extraSkillChoices = 0;
+    for (const trait of raceData.traits) {
+      const fixedSkill = getSkillNameFromTrait(trait.description);
+      if (fixedSkill) {
+        newSkills[fixedSkill] = true;
+      }
+      extraSkillChoices += countSkillChoicesFromTrait(trait.description);
+    }
+    setRaceSkillChoiceCount(extraSkillChoices);
+    
+    update({ 
+      features: [...existingRaceFeatures, ...newFeatures],
+      ...(Object.keys(newSkills).length > 0 ? { skills: newSkills } : {})
+    });
+  }, [character.features, character.skills, update]);
 
   const addClassFeatures = useCallback((className: string) => {
     const classData = getStaticClass(className);
@@ -434,6 +462,7 @@ export default function CharacterCreate() {
             data={character}
             onChange={(patch) => update(patch)}
             showExpertisePicker={character.class !== "Rogue"}
+            extraSkillChoices={raceSkillChoiceCount}
           />
         );
       case 7:
