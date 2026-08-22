@@ -459,6 +459,7 @@ export default function CharacterCreate() {
       case 6:
         return (
           <StepSkills
+            key={`${character.class}-${character.race}`}
             data={character}
             onChange={(patch) => update(patch)}
             showExpertisePicker={character.class !== "Rogue"}

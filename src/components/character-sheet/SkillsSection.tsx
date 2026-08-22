@@ -22,10 +22,14 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
-  const currentSelections = Object.values(character.skills).filter(Boolean).length;
+  const currentSelections = allowedSkills.filter((skill) => character.skills[skill]).length;
 
   const isSkillAllowed = (skillName: string) => {
     return allowedSkills.includes(skillName);
+  };
+
+  const isAlreadyProficient = (skillName: string) => {
+    return !!character.skills[skillName];
   };
 
   const isAtMaxSelections = (skillName: string) => {
@@ -67,7 +71,8 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
           const profMultiplier = isExpert ? 2 : 1;
           const total = isProficient ? mod + (profBonus * profMultiplier) : mod;
           const allowed = isSkillAllowed(name);
-          const disabled = !allowed || isAtMaxSelections(name);
+          const alreadyProficient = isAlreadyProficient(name);
+          const disabled = !allowed || isAtMaxSelections(name) || alreadyProficient;
 
           return (
             <div
@@ -95,7 +100,10 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
                     )}
                   </span>
                   <span className="text-[10px] text-parchment/50">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
-                  {!allowed && (
+                  {alreadyProficient && (
+                    <span className="text-[10px] text-parchment/40">Already proficient</span>
+                  )}
+                  {!allowed && !alreadyProficient && (
                     <span className="text-[10px] text-parchment/40">Not available for this class</span>
                   )}
                 </div>

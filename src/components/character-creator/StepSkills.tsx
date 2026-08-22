@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { StepCard } from "./StepCard";
 import { skills as srdSkills } from "@/data/srd";
 import { getStaticClass } from "@/lib/srd-client";
@@ -31,25 +31,37 @@ export function StepSkills({ data, onChange, showExpertisePicker = true, extraSk
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
   const totalMaxSelections = maxSelections + extraSkillChoices;
-  const currentSelections = Object.values(data.skills).filter(Boolean).length;
+  const [initialSkills] = useState<Record<string, boolean>>(data.skills);
+
+  const newSelections = allowedSkills.filter((skill) => {
+    const wasInitiallyProficient = initialSkills[skill];
+    const isCurrentlyProficient = data.skills[skill];
+    return isCurrentlyProficient && !wasInitiallyProficient;
+  }).length;
 
   const isSkillAllowed = (skillName: string) => {
     if (allowedSkills.length > 0) return allowedSkills.includes(skillName);
     return true;
   };
-  
+
+  const isAlreadyProficient = (skillName: string) => {
+    return !!data.skills[skillName];
+  };
+
   const isAtMaxSelections = (skillName: string) => {
     if (totalMaxSelections === 0) return false;
     if (data.skills[skillName]) return false;
-    return currentSelections >= totalMaxSelections;
+    if (!isSkillAllowed(skillName)) return true;
+    return newSelections >= totalMaxSelections;
   };
 
   const toggleSkill = (skillName: string) => {
     if (isAtMaxSelections(skillName)) return;
+    const wasProficient = data.skills[skillName];
     onChange({
       skills: {
         ...data.skills,
-        [skillName]: !data.skills[skillName],
+        [skillName]: !wasProficient,
       },
     });
   };
@@ -80,7 +92,7 @@ export function StepSkills({ data, onChange, showExpertisePicker = true, extraSk
 
       {skillChoices || extraSkillChoices > 0 ? (
         <p className="text-xs text-parchment/50 mb-3">
-          Choose {totalMaxSelections} skills ({currentSelections} of {totalMaxSelections} selected)
+          Choose {totalMaxSelections} skills ({newSelections} of {totalMaxSelections} selected)
         </p>
       ) : (
         <p className="text-xs text-parchment/50 mb-3">Select your character&apos;s skills.</p>
@@ -89,7 +101,8 @@ export function StepSkills({ data, onChange, showExpertisePicker = true, extraSk
         {srdSkills.map(({ name, ability, description }) => {
           const isProficient = data.skills[name] ?? false;
           const allowed = isSkillAllowed(name);
-          const disabled = !allowed || isAtMaxSelections(name);
+          const alreadyProficient = isAlreadyProficient(name);
+          const disabled = !allowed || isAtMaxSelections(name) || alreadyProficient;
 
           return (
             <div
@@ -110,7 +123,10 @@ export function StepSkills({ data, onChange, showExpertisePicker = true, extraSk
                   className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
                 />
                 <span className="text-sm text-parchment/80">{name}</span>
-                {!allowed && (
+                {alreadyProficient && (
+                  <span className="text-[10px] text-parchment/40">(already proficient)</span>
+                )}
+                {!allowed && !alreadyProficient && (
                   <span className="text-[10px] text-parchment/40">(not available)</span>
                 )}
               </label>
