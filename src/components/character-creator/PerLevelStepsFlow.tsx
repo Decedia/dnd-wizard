@@ -357,14 +357,12 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
     const val = parseInt(manualRoll, 10);
     if (!isNaN(val) && val > 0) {
       onResolve(step.level!, val);
-    } else {
-      onResolve(step.level!);
     }
   };
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center">
         <div className="flex flex-col items-center gap-1">
           <input
             type="number"
@@ -377,14 +375,6 @@ function HpStepInline({ step, className, conMod, onResolve, resolved }: { step: 
           />
           <span className="text-[10px] text-parchment/50 uppercase tracking-wider">Roll</span>
         </div>
-        <button
-          type="button"
-          onClick={handleManualSubmit}
-          disabled={resolved}
-          className="rounded-lg border border-parchment/20 bg-charcoal/40 px-3 py-2 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40 disabled:opacity-40"
-        >
-          Take Average ({totalGain})
-        </button>
       </div>
       {resolved && (
         <div className="text-center">
