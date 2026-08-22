@@ -141,20 +141,20 @@ export function generateLevelUpSteps(
       });
     }
 
-    if (levelData?.features?.length > 0) {
-      let features = levelData.features.map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+    let features = (levelData?.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
 
-      if (currentSubclass && classData.subclasses) {
-        const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
-        if (subclassData?.features) {
-          const subclassFeaturesAtLevel = subclassData.features
-            .filter((f: any) => (f as any).level != null && (f as any).level === level && (f as any).level !== classData.subclassLevel)
-            .filter((f: any) => !features.some((cf: any) => cf.name === f.name))
-            .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
-          features = [...features, ...subclassFeaturesAtLevel];
-        }
+    if (currentSubclass && classData.subclasses) {
+      const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
+      if (subclassData?.features) {
+        const subclassFeaturesAtLevel = subclassData.features
+          .filter((f: any) => (f as any).level != null && (f as any).level === level && (f as any).level !== classData.subclassLevel)
+          .filter((f: any) => !features.some((cf: any) => cf.name === f.name))
+          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+        features = [...features, ...subclassFeaturesAtLevel];
       }
+    }
 
+    if (features.length > 0) {
       sections.push({
         type: "features",
         features,
