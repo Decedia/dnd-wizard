@@ -171,10 +171,11 @@ export default function CharacterView() {
       <AppHeader title={character.name || "Character"} subtitle="Character Sheet" />
       <StickyMiniHeader character={character} />
 
-      <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
-
       <div className="mx-auto max-w-lg px-4">
-        <div className="flex items-center justify-end">
+        <div className="flex items-center gap-3">
+          <div className="flex-1 overflow-x-auto">
+            <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          </div>
           <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => setEditMode(m === "edit")} />
         </div>
       </div>
