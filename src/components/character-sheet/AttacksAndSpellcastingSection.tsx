@@ -2,7 +2,6 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { DescriptionText } from "./DescriptionText";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
 
@@ -112,9 +111,6 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                     </span>
                   )}
                 </div>
-                {attack.description && (
-                  <DescriptionText>{attack.description}</DescriptionText>
-                )}
               </div>
             );
           })}
