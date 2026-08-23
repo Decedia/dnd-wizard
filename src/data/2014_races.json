@@ -1,119 +1,6 @@
 {
   "races": [
     {
-      "name": "Human",
-      "abilityScoreIncreases": {
-        "str": 1,
-        "dex": 1,
-        "con": 1,
-        "int": 1,
-        "wis": 1,
-        "cha": 1
-      },
-      "speed": 30,
-      "size": "Medium",
-      "darkvision": false,
-      "traits": [
-        {
-          "name": "Extra Language",
-          "description": "You know one extra language of your choice."
-        }
-      ],
-      "languages": ["Common"],
-      "languageDesc": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on."
-    },
-    {
-      "name": "Elf",
-      "abilityScoreIncreases": {
-        "dex": 2
-      },
-      "speed": 30,
-      "size": "Medium",
-      "darkvision": {
-        "range": 60
-      },
-      "traits": [
-        {
-          "name": "Darkvision",
-          "description": "Accustomed to the dim light of the twilight wilds, you can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light."
-        },
-        {
-          "name": "Keen Senses",
-          "description": "You have proficiency in the Perception skill."
-        },
-        {
-          "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
-        },
-        {
-          "name": "Trance",
-          "description": "Elves do not need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. After resting this way, you gain the same benefit that a human does from 8 hours of sleep."
-        }
-      ],
-      "languages": ["Common", "Elvish"],
-      "languageDesc": "You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires."
-    },
-    {
-      "name": "Dwarf",
-      "abilityScoreIncreases": {
-        "con": 2
-      },
-      "speed": 25,
-      "size": "Medium",
-      "darkvision": {
-        "range": 60
-      },
-      "traits": [
-        {
-          "name": "Darkvision",
-          "description": "Accustomed to life underground, you have superior vision in dim and dark conditions within 60 feet."
-        },
-        {
-          "name": "Dwarven Resilience",
-          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage."
-        },
-        {
-          "name": "Dwarven Combat Training",
-          "description": "You have proficiency with battleaxes, handaxes, light hammers, and warhammers."
-        },
-        {
-          "name": "Tool Proficiency",
-          "description": "You gain proficiency with one type of artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools."
-        },
-        {
-          "name": "Stonecunning",
-          "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check."
-        }
-      ],
-      "languages": ["Common", "Dwarvish"],
-      "languageDesc": "You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak."
-    },
-    {
-      "name": "Halfling",
-      "abilityScoreIncreases": {
-        "dex": 2
-      },
-      "speed": 25,
-      "size": "Small",
-      "darkvision": false,
-      "traits": [
-        {
-          "name": "Lucky",
-          "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
-        },
-        {
-          "name": "Brave",
-          "description": "You have advantage on saving throws against being frightened."
-        },
-        {
-          "name": "Halfling Nimbleness",
-          "description": "You can move through the space of any creature that is of a size larger than yours."
-        }
-      ],
-      "languages": ["Common", "Halfling"],
-      "languageDesc": "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong."
-    },
-    {
       "name": "Dragonborn",
       "abilityScoreIncreases": {
         "str": 2,
@@ -129,15 +16,90 @@
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. Each creature in the area of the exhalation must make a saving throw. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases at higher levels. After you use your breath weapon, you cannot use it again until you complete a short or long rest."
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest."
         },
         {
           "name": "Damage Resistance",
           "description": "You have resistance to the damage type associated with your draconic ancestry."
         }
       ],
-      "languages": ["Common", "Draconic"],
+      "languages": [
+        "Common",
+        "Draconic"
+      ],
       "languageDesc": "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants."
+    },
+    {
+      "name": "Dwarf",
+      "abilityScoreIncreases": {
+        "con": 2
+      },
+      "speed": 25,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Dwarven Resilience",
+          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+        },
+        {
+          "name": "Stonecunning",
+          "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
+        },
+        {
+          "name": "Dwarven Combat Training",
+          "description": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer."
+        },
+        {
+          "name": "Tool Proficiency",
+          "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Dwarvish"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak."
+    },
+    {
+      "name": "Elf",
+      "abilityScoreIncreases": {
+        "dex": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+        },
+        {
+          "name": "Trance",
+          "description": "Elves do not need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting this way, you gain the same benefit that a human does from 8 hours of sleep."
+        },
+        {
+          "name": "Keen Senses",
+          "description": "You have proficiency in the Perception skill."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires."
     },
     {
       "name": "Gnome",
@@ -152,15 +114,18 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Accustomed to life underground, you have superior vision in dim and dark conditions within 60 feet."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
         },
         {
           "name": "Gnome Cunning",
           "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
         }
       ],
-      "languages": ["Common", "Gnomish"],
-      "languageDesc": "You can speak, read, and write Common and Gnomish. Gnomish uses the Dwarvish script, as do many other languages of the Forgotten Realms. Its spoken form sounds more like a combination of goblinoid grunts and the twittering of small animals than a true language."
+      "languages": [
+        "Common",
+        "Gnomish"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Gnomish. The Gnomish language, which uses the Dwarvish script, is renowned for its technical treatises and its catalogs of knowledge about the natural world."
     },
     {
       "name": "Half-Elf",
@@ -175,19 +140,22 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Thanks to your elf blood, you have superior vision in dim and dark conditions within 60 feet."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
         },
         {
           "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
         },
         {
           "name": "Skill Versatility",
           "description": "You gain proficiency in two skills of your choice."
         }
       ],
-      "languages": ["Common", "Elvish"],
-      "languageDesc": "You can speak, read, and write Common and Elvish. Half-elves often learn the languages of their neighbors, picking up one or more additional languages beyond those they were born with."
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice."
     },
     {
       "name": "Half-Orc",
@@ -203,29 +171,79 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Thanks to your orc blood, you have superior vision in dim and dark conditions within 60 feet."
-        },
-        {
-          "name": "Menacing",
-          "description": "You gain proficiency in the Intimidation skill."
-        },
-        {
-          "name": "Relentless Endurance",
-          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
         },
         {
           "name": "Savage Attacks",
           "description": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit."
+        },
+        {
+          "name": "Relentless Endurance",
+          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. you cannot use this feature again until you finish a long rest."
+        },
+        {
+          "name": "Menacing",
+          "description": "You gain proficiency in the Intimidation skill."
         }
       ],
-      "languages": ["Common", "Orc"],
-      "languageDesc": "You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants and sharp tones. Orc writing is a simple pictographic script that has changed little over the centuries."
+      "languages": [
+        "Common",
+        "Orc"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script."
+    },
+    {
+      "name": "Halfling",
+      "abilityScoreIncreases": {
+        "dex": 2
+      },
+      "speed": 25,
+      "size": "Small",
+      "darkvision": false,
+      "traits": [
+        {
+          "name": "Brave",
+          "description": "You have advantage on saving throw against being frightened."
+        },
+        {
+          "name": "Halfling Nimbleness",
+          "description": "You can move through the space of any creature that is of a size larger than yours."
+        },
+        {
+          "name": "Lucky",
+          "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Halfling"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling."
+    },
+    {
+      "name": "Human",
+      "abilityScoreIncreases": {
+        "str": 1,
+        "dex": 1,
+        "con": 1,
+        "int": 1,
+        "wis": 1,
+        "cha": 1
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": false,
+      "traits": [],
+      "languages": [
+        "Common"
+      ],
+      "languageDesc": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on."
     },
     {
       "name": "Tiefling",
       "abilityScoreIncreases": {
-        "cha": 2,
-        "int": 1
+        "int": 1,
+        "cha": 2
       },
       "speed": 30,
       "size": "Medium",
@@ -235,7 +253,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Thanks to your infernal heritage, you have superior vision in dim and dark conditions within 60 feet."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
         },
         {
           "name": "Hellish Resistance",
@@ -246,8 +264,11 @@
           "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells."
         }
       ],
-      "languages": ["Common", "Infernal"],
-      "languageDesc": "You can speak, read, and write Common and Infernal. Infernal is a harsh language of sharp edges and complex grammatical structures. It is the language of the Nine Hells and is spoken by many fiends."
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Infernal."
     }
   ]
 }

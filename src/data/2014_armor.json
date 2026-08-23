@@ -3,8 +3,9 @@
     {
       "index": "breastplate",
       "name": "Breastplate",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 400,
         "unit": "gp"
@@ -17,13 +18,15 @@
         "max_bonus": 2
       },
       "str_minimum": 0,
-      "stealth_disadvantage": false
+      "stealth_disadvantage": false,
+      "contents": []
     },
     {
       "index": "chain-mail",
       "name": "Chain Mail",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 75,
         "unit": "gp"
@@ -35,13 +38,15 @@
         "dex_bonus": false
       },
       "str_minimum": 13,
-      "stealth_disadvantage": true
+      "stealth_disadvantage": true,
+      "contents": []
     },
     {
       "index": "chain-shirt",
       "name": "Chain Shirt",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 50,
         "unit": "gp"
@@ -54,13 +59,15 @@
         "max_bonus": 2
       },
       "str_minimum": 0,
-      "stealth_disadvantage": false
+      "stealth_disadvantage": false,
+      "contents": []
     },
     {
       "index": "half-plate-armor",
       "name": "Half Plate Armor",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 750,
         "unit": "gp"
@@ -73,13 +80,15 @@
         "max_bonus": 2
       },
       "str_minimum": 0,
-      "stealth_disadvantage": true
+      "stealth_disadvantage": true,
+      "contents": []
     },
     {
       "index": "hide-armor",
       "name": "Hide Armor",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 10,
         "unit": "gp"
@@ -92,13 +101,15 @@
         "max_bonus": 2
       },
       "str_minimum": 0,
-      "stealth_disadvantage": false
+      "stealth_disadvantage": false,
+      "contents": []
     },
     {
       "index": "leather-armor",
       "name": "Leather Armor",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 10,
         "unit": "gp"
@@ -110,13 +121,15 @@
         "dex_bonus": true
       },
       "str_minimum": 0,
-      "stealth_disadvantage": false
+      "stealth_disadvantage": false,
+      "contents": []
     },
     {
       "index": "padded-armor",
       "name": "Padded Armor",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 5,
         "unit": "gp"
@@ -128,13 +141,15 @@
         "dex_bonus": true
       },
       "str_minimum": 0,
-      "stealth_disadvantage": true
+      "stealth_disadvantage": true,
+      "contents": []
     },
     {
       "index": "plate-armor",
       "name": "Plate Armor",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 1500,
         "unit": "gp"
@@ -146,13 +161,15 @@
         "dex_bonus": false
       },
       "str_minimum": 15,
-      "stealth_disadvantage": true
+      "stealth_disadvantage": true,
+      "contents": []
     },
     {
       "index": "ring-mail",
       "name": "Ring Mail",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 30,
         "unit": "gp"
@@ -164,13 +181,15 @@
         "dex_bonus": false
       },
       "str_minimum": 0,
-      "stealth_disadvantage": true
+      "stealth_disadvantage": true,
+      "contents": []
     },
     {
       "index": "scale-mail",
       "name": "Scale Mail",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 50,
         "unit": "gp"
@@ -183,13 +202,15 @@
         "max_bonus": 2
       },
       "str_minimum": 0,
-      "stealth_disadvantage": true
+      "stealth_disadvantage": true,
+      "contents": []
     },
     {
       "index": "shield",
       "name": "Shield",
-      "equipment_category": "armor",
-      "description": "A shield is made from wood or metal and is carried in one hand. Wielding a shield increases your Armor Class by +2.",
+      "equipment_category": "Armor",
+      "description": "",
+      "special": "",
       "cost": {
         "quantity": 10,
         "unit": "gp"
@@ -201,13 +222,15 @@
         "dex_bonus": false
       },
       "str_minimum": 0,
-      "stealth_disadvantage": false
+      "stealth_disadvantage": false,
+      "contents": []
     },
     {
       "index": "splint-armor",
       "name": "Splint Armor",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 200,
         "unit": "gp"
@@ -219,13 +242,15 @@
         "dex_bonus": false
       },
       "str_minimum": 15,
-      "stealth_disadvantage": true
+      "stealth_disadvantage": true,
+      "contents": []
     },
     {
       "index": "studded-leather-armor",
       "name": "Studded Leather Armor",
-      "equipment_category": "armor",
+      "equipment_category": "Armor",
       "description": "",
+      "special": "",
       "cost": {
         "quantity": 45,
         "unit": "gp"
@@ -237,7 +262,8 @@
         "dex_bonus": true
       },
       "str_minimum": 0,
-      "stealth_disadvantage": false
+      "stealth_disadvantage": false,
+      "contents": []
     }
   ]
 }

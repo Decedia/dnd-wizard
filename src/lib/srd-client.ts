@@ -35,14 +35,15 @@ export interface SRDClass {
     options: string[];
   };
   startingEquipment: {
+    granted?: boolean;
     description: string;
     items: any[];
   }[];
   features: { name: string; description: string; type?: string }[];
   levels: {
-    features: { name: string; description?: string; type?: string }[];
+    features: { name: string; description?: string | string[]; type?: string }[];
     asi: boolean;
-    spellSlots?: Record<number, number>;
+    spellSlots?: Record<string, number>;
   }[];
   spellcastingAbility?: string;
   cantripsKnown?: Record<number, number>;
@@ -66,13 +67,22 @@ export interface SRDClassSelection {
 }
 
 export interface SRDSpell {
+  index: string;
   name: string;
   level: number;
+  school: string;
   castingTime: string;
   range: string;
   duration: string;
-  description: string;
+  description: string | string[];
   effect: string;
+  higherLevel?: string[];
+  components: string[];
+  material?: string;
+  ritual: boolean;
+  concentration: boolean;
+  classes: string[];
+  subclasses?: string[];
 }
 
 export interface SRDWizardSpell {
@@ -209,7 +219,7 @@ export function getStaticRace(name: string): SRDRace | undefined {
 }
 
 export function getStaticClasses(): SRDClass[] {
-  return classesData.classes as SRDClass[];
+  return classesData.classes as unknown as SRDClass[];
 }
 
 export function getStaticClass(name: string): SRDClass | undefined {

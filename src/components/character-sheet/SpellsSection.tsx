@@ -109,6 +109,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       <div className="mt-3 space-y-2">
             {character.spells.map((spell) => {
               const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
+              const descriptionText = typeof description === "string" ? description : Array.isArray(description) ? description.join("\n") : undefined;
               const isCustom = spell.source === "custom";
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               return (
@@ -187,7 +188,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       {description && !isCustom && (
                         <button
                           type="button"
-                          onClick={() => setTooltip({ name: spell.name, description })}
+                          onClick={() => setTooltip({ name: spell.name, description: descriptionText || "" })}
                           className="text-text-muted hover:text-parchment shrink-0"
                           aria-label={`Info about ${spell.name}`}
                         >

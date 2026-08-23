@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { StepCard } from "./StepCard";
-import type { Character } from "@/lib/storage";
+import { getStaticClass, getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
-import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
-import { getStaticClass } from "@/lib/srd-client";
+import type { Character } from "@/lib/storage";
 
 interface StepEquipmentProps {
   data: Character;
-  onChange: (data: Partial<Character>) => void;
+  onChange: (patch: Partial<Character>) => void;
 }
 
 interface EquipmentRadioGroup {
@@ -17,262 +16,92 @@ interface EquipmentRadioGroup {
   choices: any[];
 }
 
-const DICE_OPTIONS: { value: string; label: string }[] = [
-  { value: "", label: "Dice" },
-  { value: "d4", label: "d4" },
-  { value: "d6", label: "d6" },
-  { value: "d8", label: "d8" },
-  { value: "d10", label: "d10" },
-  { value: "d12", label: "d12" },
-  { value: "d20", label: "d20" },
-];
-
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
-  const updateItem = (id: string, patch: Partial<Character["inventory"][number]>) => {
-    const nextInventory = data.inventory.map((item) =>
-      item.id === id ? { ...item, ...patch } : item
-    );
-    const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
-    onChange({ inventory: nextInventory, ac, attacks });
-  };
-
-  const toggleEquip = (id: string, itemType: string | undefined) => {
-    const item = data.inventory.find((i) => i.id === id);
-    if (!item) return;
-
-    if (itemType === "armor") {
-      const nextInventory = data.inventory.map((i) =>
-        i.id === id ? { ...i, equipped: !i.equipped } : i.itemType === "armor" ? { ...i, equipped: false } : i
-      );
-      const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
-      onChange({ inventory: nextInventory, ac, attacks });
-    } else {
-      const nextInventory = data.inventory.map((i) =>
-        i.id === id ? { ...i, equipped: !i.equipped } : i
-      );
-      const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
-      onChange({ inventory: nextInventory, ac, attacks });
-    }
-  };
-
-  const removeItem = (id: string) => {
-    const nextInventory = data.inventory.filter((item) => item.id !== id);
-    const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
-    onChange({ inventory: nextInventory, ac, attacks });
-  };
-
   const classData = data.class ? getStaticClass(data.class) : null;
-  const startingEquipment = classData?.startingEquipment || [];
-  const grantedItems = startingEquipment.filter((g: any) => g.granted);
+  const [pendingEquip, setPendingEquip] = useState<Character["inventory"]>([]);
+  const [customItemName, setCustomItemName] = useState("");
+  const [customItemQty, setCustomItemQty] = useState(1);
+  const [customItemType, setCustomItemType] = useState<Character["inventory"][number]["itemType"]>("item");
 
-  const ensureGrantedItemsInInventory = () => {
-    const existingIds = new Set(data.inventory.map((i) => i.id));
-    const toAdd: Character["inventory"][number][] = [];
-    grantedItems.forEach((group: any, groupIdx: number) => {
-      (group.items || []).forEach((itemRef: any, itemIdx: number) => {
-        const srdData = getEquipmentData(itemRef.name);
-        const key = `granted-${groupIdx}-${itemIdx}`;
-        if (!existingIds.has(key)) {
-          toAdd.push({
-            id: key,
-            name: itemRef.name,
-            quantity: itemRef.quantity ?? 1,
-            equipped: srdData?.type === "armor",
-            source: srdData ? "srd" : "custom",
-            srdItemName: srdData?.name,
-            itemType: srdData?.type,
-            category: srdData?.category,
-            damageDice: srdData?.damageDice,
-            damageType: srdData?.damageType,
-            baseAC: srdData?.baseAC,
-            armorType: srdData?.armorType,
-            maxDexBonus: srdData?.maxDexBonus,
-            description: itemRef.description || srdData?.description,
-            isGranted: true,
-          });
-        }
-      });
-    });
-    if (toAdd.length > 0) {
-      const nextInventory = [...data.inventory, ...toAdd];
-      const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
-      onChange({ inventory: nextInventory, ac, attacks });
-    }
-  };
+  const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
-  const choiceEntries = startingEquipment.filter((g: any) => !g.granted);
-
-  const buildRadioGroups = (entries: any[]): EquipmentRadioGroup[] => {
-    const groups: EquipmentRadioGroup[] = [];
-    let currentChoices: any[] = [];
-    let groupCounter = 0;
-
-    const flush = () => {
-      if (currentChoices.length > 0) {
-        groups.push({
-          name: `equip-choice-${groupCounter++}`,
-          choices: [...currentChoices],
-        });
-        currentChoices = [];
+  const grantedItems = useMemo(() => {
+    const granted: any[] = [];
+    const choices: any[] = [];
+    for (const entry of startingEquipment) {
+      if (entry.granted) {
+        granted.push(entry);
+      } else {
+        choices.push(entry);
       }
+    }
+    return { granted, choices };
+  }, [startingEquipment]);
+
+  const inventory = useMemo(() => {
+    return [...data.inventory, ...pendingEquip];
+  }, [data.inventory, pendingEquip]);
+
+  const addPending = (item: any, quantity: number = 1) => {
+    const newItem: Character["inventory"][number] = {
+      id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      name: item.name || item.description || "Unknown Item",
+      quantity,
+      equipped: false,
+      source: "srd",
+      description: item.description || "",
+      itemType: item.itemType || "item",
+      damageDice: item.damageDice || "",
+      damageType: item.damageType || "",
     };
-
-    for (const entry of entries) {
-      const desc = (entry.description || "").trim();
-      if (desc.startsWith("Choose one")) {
-        flush();
-        currentChoices = [entry];
-      } else if (desc.startsWith("Or")) {
-        currentChoices.push(entry);
-      }
-    }
-    flush();
-
-    return groups;
+    setPendingEquip((prev) => [...prev, newItem]);
   };
 
-  const radioGroups = buildRadioGroups(choiceEntries);
-
-  const getSelectedOptionForGroup = (group: EquipmentRadioGroup): number => {
-    const firstChoice = group.choices[0];
-    if (!firstChoice) return -1;
-    const groupGlobalIndex = startingEquipment.indexOf(firstChoice);
-    const item = data.inventory.find((i) => i.choiceGroupIndex === groupGlobalIndex && !i.isGranted);
-    return item?.choiceOptionIndex ?? -1;
-  };
-
-  const handleChoiceSelect = (group: EquipmentRadioGroup, optionIndex: number) => {
-    const choice = group.choices[optionIndex];
-    if (!choice) return;
-
-    const firstChoice = group.choices[0];
-    const groupGlobalIndex = startingEquipment.indexOf(firstChoice);
-
-    let nextInventory = data.inventory.filter(
-      (item) => !(item.choiceGroupIndex === groupGlobalIndex && !item.isGranted)
-    );
-
-    const itemsToAdd = choice.items || [];
-    const addingArmor = itemsToAdd.some((itemRef: any) => getEquipmentData(itemRef.name)?.type === "armor");
-
-    if (addingArmor) {
-      nextInventory = nextInventory.map((item) =>
-        item.itemType === "armor" ? { ...item, equipped: false } : item
-      );
-    }
-
-    itemsToAdd.forEach((itemRef: any) => {
-      const srdData = getEquipmentData(itemRef.name);
-      const isArmor = srdData?.type === "armor";
-      const newItem: Character["inventory"][number] = {
-        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-        name: itemRef.name,
-        quantity: itemRef.quantity ?? 1,
-        equipped: isArmor,
-        source: srdData ? "srd" : "custom",
-        srdItemName: srdData?.name,
-        itemType: srdData?.type,
-        category: srdData?.category,
-        damageDice: srdData?.damageDice,
-        damageType: srdData?.damageType,
-        baseAC: srdData?.baseAC,
-        armorType: srdData?.armorType,
-        maxDexBonus: srdData?.maxDexBonus,
-        description: itemRef.description || srdData?.description,
-        choiceGroupIndex: groupGlobalIndex,
-        choiceOptionIndex: optionIndex,
-      };
-      nextInventory.push(newItem);
-    });
-
-    const { ac, attacks } = computeEquippedEffects({ ...data, inventory: nextInventory });
-    onChange({ inventory: nextInventory, ac, attacks });
+  const removePending = (id: string) => {
+    setPendingEquip((prev) => prev.filter((item) => item.id !== id));
   };
 
   const addCustomItem = () => {
+    if (!customItemName.trim()) return;
     const newItem: Character["inventory"][number] = {
-      id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-      name: "",
-      quantity: 1,
+      id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      name: customItemName.trim(),
+      quantity: customItemQty,
       equipped: false,
       source: "custom",
+      description: "",
+      itemType: customItemType,
       damageDice: "",
       damageType: "",
-      itemType: "item",
-      description: "",
     };
-    onChange({
-      inventory: [...data.inventory, newItem],
-    });
+    setPendingEquip((prev) => [...prev, newItem]);
+    setCustomItemName("");
+    setCustomItemQty(1);
   };
 
-  const canEquip = (item: Character["inventory"][number]): boolean => {
-    return item.itemType === "weapon" || item.itemType === "armor";
+  const confirmEquipment = () => {
+    onChange({ inventory: [...data.inventory, ...pendingEquip] });
+    setPendingEquip([]);
   };
-
-  const getWeaponStats = (item: Character["inventory"][number]): string | null => {
-    if (item.itemType !== "weapon") return null;
-    const profBonus = getProficiencyBonus(data.level);
-    const abilityKey = item.category === "ranged" ? "dex" : "str";
-    const abilityMod = getModifier(data[abilityKey as keyof Character] as number);
-    const attackBonus = abilityMod + profBonus;
-    const damageBonus = abilityMod;
-    const damageDice = item.damageDice || "";
-    const damageTypeName = item.damageType || "";
-    const parts = [
-      `+${attackBonus} to hit`,
-      [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" "),
-    ];
-    return parts.join(" · ");
-  };
-
-  useEffect(() => {
-    ensureGrantedItemsInInventory();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data.class]);
 
   return (
     <StepCard title="Equipment" hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.">
-      {grantedItems.length > 0 && (
+      {grantedItems.granted.length > 0 && (
         <div className="mb-5">
-          <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">Starting Equipment (Auto-granted)</span>
+          <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">
+            Starting Equipment (Auto-granted)
+          </span>
           <div className="space-y-2">
-            {grantedItems.map((group: any, groupIdx: number) => (
+            {grantedItems.granted.map((group: any, groupIdx: number) => (
               <div key={groupIdx}>
                 {group.description && <p className="text-sm text-parchment/60 mb-2 leading-relaxed">{group.description}</p>}
-                <div className="space-y-2">
-                  {group.items.map((itemRef: any, itemIdx: number) => {
-                    const srdData = getEquipmentData(itemRef.name);
-                    const invItem = data.inventory.find((i) => i.id === `granted-${groupIdx}-${itemIdx}`);
-                    const equipped = invItem?.equipped ?? srdData?.type === "armor";
-                    const canToggle = srdData?.type === "weapon" || srdData?.type === "armor";
-                    return (
-                      <div key={itemIdx} className="flex items-center gap-2 rounded-lg border border-green-500/25 bg-green-500/5 px-3 py-2.5">
-                        <span className="text-sm font-medium text-parchment/90 flex-1">
-                          {itemRef.name}
-                          {itemRef.quantity && itemRef.quantity > 1 ? ` (x${itemRef.quantity})` : ""}
-                        </span>
-                        {canToggle && (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              if (invItem) {
-                                toggleEquip(invItem.id, invItem.itemType);
-                              }
-                            }}
-                            className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
-                              equipped
-                                ? "bg-gold/20 text-gold border border-gold/40"
-                                : "border border-parchment/20 text-parchment hover:border-parchment/40"
-                            }`}
-                          >
-                            {equipped ? "Equipped" : "Equip"}
-                          </button>
-                        )}
-                        <span className="text-[10px] font-semibold text-green-400/80">Granted</span>
-                      </div>
-                    );
-                  })}
+                <div className="space-y-1">
+                  {group.items?.map((item: any, idx: number) => (
+                    <div key={idx} className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2">
+                      <span className="text-sm text-parchment/80">{item.name}</span>
+                      <span className="text-xs text-text-muted">x{item.quantity || 1}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
@@ -280,57 +109,55 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         </div>
       )}
 
-      {radioGroups.length > 0 && (
+      {grantedItems.choices.length > 0 && (
         <div className="mb-5">
-          <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">Equipment Choices</span>
-          <div className="space-y-4">
-            {radioGroups.map((group) => {
-              const selectedOption = getSelectedOptionForGroup(group);
-              const groupDescription = group.choices[0]?.description || "";
+          <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">
+            Choose Your Equipment
+          </span>
+          <div className="space-y-3">
+            {grantedItems.choices.map((group: any, groupIdx: number) => {
+              const groups: EquipmentRadioGroup[] = [];
+              let currentChoices: any[] = [];
+              let groupCounter = 0;
+              const flush = () => {
+                if (currentChoices.length > 0) {
+                  groups.push({
+                    name: `equip-choice-${groupCounter++}`,
+                    choices: [...currentChoices],
+                  });
+                  currentChoices = [];
+                }
+              };
+
+              const desc = (group.description || "").trim();
+              if (desc.startsWith("Choose one")) {
+                flush();
+                currentChoices = [group];
+              } else if (desc.startsWith("Or")) {
+                currentChoices.push(group);
+              }
+              flush();
+
               return (
-                <div key={group.name} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-4 py-4">
-                  {groupDescription && (
-                    <p className="text-xs font-semibold text-parchment/60 uppercase tracking-wider mb-3">{groupDescription}</p>
-                  )}
-                  <div className="space-y-2">
-                    {group.choices.map((choice: any, optionIdx: number) => {
-                      const isSelected = selectedOption === optionIdx;
-                      const items = choice.items || [];
-                      const itemNames = items.map((i: any) => i.name).join(", ");
-                      const weaponDamage = items.map((i: any) => {
-                        const srdData = getEquipmentData(i.name);
-                        if (srdData?.type === "weapon" && srdData.damageDice) {
-                          return `${i.name}: ${srdData.damageDice} ${srdData.damageType || ""}`.trim();
-                        }
-                        return null;
-                      }).filter(Boolean).join(" · ");
-                      return (
-                        <label
-                          key={optionIdx}
-                          className={`flex items-start gap-2 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
-                            isSelected
-                              ? "border-gold/40 bg-gold/5"
-                              : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
-                          }`}
+                <div key={groupIdx} className="space-y-2">
+                  {group.description && <p className="text-xs text-parchment/60 mb-2">{group.description}</p>}
+                  {groups.map((choiceGroup, gIdx) => (
+                    <div key={gIdx} className="space-y-2">
+                      <p className="text-xs font-medium text-parchment/60 uppercase tracking-wider">
+                        {choiceGroup.choices[0]?.description || "Choose one:"}
+                      </p>
+                      {choiceGroup.choices.map((choice: any, cIdx: number) => (
+                        <button
+                          key={cIdx}
+                          type="button"
+                          onClick={() => addPending(choice)}
+                          className="w-full rounded-lg border border-border bg-charcoal/40 px-3 py-2 text-left text-sm text-parchment hover:border-accent/30 transition-colors"
                         >
-                          <input
-                            type="radio"
-                            name={group.name}
-                            checked={isSelected}
-                            onChange={() => handleChoiceSelect(group, optionIdx)}
-                            onBlur={() => {}}
-                            className="mt-0.5 h-4 w-4 text-gold focus:ring-gold/50"
-                          />
-                           <div className="flex-1">
-                             <span className="text-sm font-medium text-parchment/90">{itemNames}</span>
-                             {weaponDamage && (
-                               <p className="text-sm text-parchment/70 font-medium mt-1">{weaponDamage}</p>
-                             )}
-                           </div>
-                        </label>
-                      );
-                    })}
-                  </div>
+                          {choice.description}
+                        </button>
+                      ))}
+                    </div>
+                  ))}
                 </div>
               );
             })}
@@ -338,143 +165,60 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         </div>
       )}
 
-      <div className="space-y-2">
-        {data.inventory.filter((item) => !item.isGranted).map((item) => {
-          const srdData = getEquipmentData(item.srdItemName || item.name);
-          const description = item.description || srdData?.description;
-          const isEditable = item.choiceGroupIndex === undefined;
-          const equipBtn = canEquip(item);
-          const isCustom = item.source === "custom";
-          const dropdownValue = isCustom ? "Custom Item" : (item.srdItemName || item.name || "");
-          return (
-            <div key={item.id} className={`flex flex-col gap-2 rounded-lg border px-3 py-2.5 ${
-              item.isGranted
-                ? "border-green-500/25 bg-green-500/5"
-                : "border-parchment/10 bg-charcoal/40"
-            }`}>
-              <div className="flex items-center gap-2 flex-wrap">
-                <select
-                  value={dropdownValue}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    if (val === "Custom Item") {
-                      updateItem(item.id, { source: "custom", srdItemName: undefined, name: item.name || "" });
-                    } else if (val) {
-                      const srd = getEquipmentData(val);
-                      updateItem(item.id, {
-                        name: val,
-                        srdItemName: val,
-                        source: "srd",
-                        itemType: srd?.type,
-                        category: srd?.category,
-                        damageDice: srd?.damageDice,
-                        damageType: srd?.damageType,
-                        baseAC: srd?.baseAC,
-                        armorType: srd?.armorType,
-                        maxDexBonus: srd?.maxDexBonus,
-                      });
-                    } else {
-                      updateItem(item.id, { source: "custom", srdItemName: undefined, name: "" });
-                    }
-                  }}
-                  onBlur={() => {}}
-                  className="input flex-1 min-w-[120px]"
-                >
-                  <option value="">Select item...</option>
-                  {getEquipmentNames().map((name) => (
-                    <option key={name} value={name}>{name}</option>
-                  ))}
-                  <option value="Custom Item">Custom Item</option>
-                </select>
-                {isCustom && (
-                  <input
-                    type="text"
-                    value={item.name}
-                    onChange={(e) => updateItem(item.id, { name: e.target.value })}
-                    onBlur={() => {}}
-                    className="input flex-1 min-w-[120px]"
-                    placeholder="Enter custom item name"
-                  />
-                )}
-                {isEditable && (
-                  <select
-                    value={item.damageDice || ""}
-                    onChange={(e) => updateItem(item.id, { damageDice: e.target.value || undefined })}
-                    onBlur={() => {}}
-                    className="input w-20 text-center"
-                  >
-                    {DICE_OPTIONS.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                )}
-                {!isEditable && item.damageDice && (
-                  <span className="text-xs text-parchment/50 w-16 text-center">{item.damageDice}</span>
-                )}
-                <input
-                  type="number"
-                  value={item.quantity}
-                  onChange={(e) => updateItem(item.id, { quantity: parseInt(e.target.value || "1", 10) })}
-                  onBlur={() => {}}
-                  readOnly={!isEditable}
-                  className={`input w-16 text-center ${!isEditable ? "bg-charcoal/60" : ""}`}
-                />
-                {equipBtn && (
-                  <button
-                    type="button"
-                    onClick={() => toggleEquip(item.id, item.itemType)}
-                    className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
-                      item.equipped
-                        ? "bg-gold/20 text-gold border border-gold/40"
-                        : "border border-parchment/20 text-parchment hover:border-parchment/40"
-                    }`}
-                  >
-                    {item.equipped ? "Equipped" : "Equip"}
-                  </button>
-                )}
+      <div className="mb-5">
+        <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">
+          Pending Equipment
+        </span>
+        {pendingEquip.length === 0 ? (
+          <p className="text-xs text-parchment/50">No equipment selected yet.</p>
+        ) : (
+          <div className="space-y-2">
+            {pendingEquip.map((item) => (
+              <div key={item.id} className="flex items-center justify-between rounded-lg border border-accent/20 bg-accent/5 px-3 py-2">
+                <div className="flex flex-col">
+                  <span className="text-sm text-parchment">{item.name}</span>
+                  {item.description && <span className="text-xs text-parchment/50">{item.description}</span>}
+                </div>
                 <button
                   type="button"
-                  onClick={() => removeItem(item.id)}
-                  className="text-parchment/40 hover:text-parchment shrink-0"
-                  aria-label="Remove item"
+                  onClick={() => removePending(item.id)}
+                  className="text-xs text-burgundy hover:text-burgundy-light"
                 >
-                  <XIcon className="h-4 w-4" />
+                  Remove
                 </button>
               </div>
-              {isEditable && item.source === "custom" && (
-                <textarea
-                  value={item.description || ""}
-                  onChange={(e) => updateItem(item.id, { description: e.target.value })}
-                  onBlur={() => {}}
-                  className="input min-h-[60px] mt-2 rounded-xl"
-                  placeholder="Item description"
-                />
-              )}
-              {description && (
-                <p className="text-sm text-parchment/60 leading-relaxed">{description}</p>
-              )}
-              {getWeaponStats(item) && (
-                <p className="text-sm font-bold text-gold bg-gold/10 border border-gold/25 rounded-lg px-3 py-2.5 shadow-sm">{getWeaponStats(item)}</p>
-              )}
-            </div>
-          );
-        })}
+            ))}
+            <button
+              type="button"
+              onClick={confirmEquipment}
+              className="w-full rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-sm font-medium text-accent hover:border-accent hover:bg-accent/20 transition-colors"
+            >
+              Confirm Equipment
+            </button>
+          </div>
+        )}
       </div>
-      <button
-        type="button"
-        onClick={addCustomItem}
-        className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
-      >
-        + Add Custom Item
-      </button>
-    </StepCard>
-  );
-}
 
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
+      <div>
+        <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">
+          Current Inventory
+        </span>
+        {inventory.length === 0 ? (
+          <p className="text-xs text-parchment/50">No equipment yet.</p>
+        ) : (
+          <div className="space-y-2">
+            {inventory.map((item) => (
+              <div key={item.id} className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2">
+                <div className="flex flex-col">
+                  <span className="text-sm text-parchment">{item.name}</span>
+                  {item.description && <span className="text-xs text-parchment/50">{item.description}</span>}
+                </div>
+                <span className="text-xs text-text-muted">x{item.quantity || 1}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </StepCard>
   );
 }

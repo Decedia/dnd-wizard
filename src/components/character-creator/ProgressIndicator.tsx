@@ -20,7 +20,7 @@ export function ProgressIndicator({ currentStep, totalSteps }: ProgressIndicator
       </div>
       <div className="h-1.5 w-full rounded-full bg-charcoal-lighter overflow-hidden">
         <div
-          className="h-full rounded-full bg-gold transition-all duration-300"
+          className="h-full rounded-full bg-accent transition-all duration-300"
           style={{ width: `${progress}%` }}
         />
       </div>
