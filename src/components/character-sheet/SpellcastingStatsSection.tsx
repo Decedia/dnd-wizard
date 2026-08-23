@@ -48,7 +48,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
   return (
     <SectionCard id="spellcasting" title="SPELLCASTING STATS" icon={<SpellcastingIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-1 gap-4">
-        <Field label="Spellcasting Ability">
+        <Field label="SPELLCASTING ABILITY">
           {editMode ? (
             <input
               type="text"
@@ -57,11 +57,11 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
               className="input bg-charcoal/60"
             />
           ) : (
-            <span className="text-sm font-semibold text-text-secondary">{character.spellcastingAbility || "—"}</span>
+            <span className="text-sm font-semibold text-parchment">{character.spellcastingAbility || "—"}</span>
           )}
         </Field>
         <div className="grid grid-cols-2 gap-3">
-          <Field label="Spell Save DC">
+          <Field label="SPELL SAVE DC">
             {editMode ? (
               <input
                 type="number"
@@ -70,10 +70,10 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                 className="input bg-charcoal/60"
               />
             ) : (
-              <span className="text-sm font-semibold text-burgundy">{character.spellSaveDc}</span>
+              <span className="text-sm font-semibold text-accent">{character.spellSaveDc}</span>
             )}
           </Field>
-          <Field label="Spell Attack Bonus">
+          <Field label="SPELL ATTACK BONUS">
             {editMode ? (
               <input
                 type="number"
@@ -82,15 +82,15 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                 className="input bg-charcoal/60"
               />
             ) : (
-              <span className="text-sm font-semibold text-burgundy">{character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}</span>
+              <span className="text-sm font-semibold text-accent">{character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}</span>
             )}
           </Field>
         </div>
       </div>
 
       <div className="mt-4">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Cantrips</span>
-        <div className="mt-2 space-y-2">
+        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-2">Cantrips</span>
+        <div className="space-y-2">
           {character.cantrips.map((cantrip) => (
             <div key={cantrip.id} className="flex items-center gap-2 rounded-lg border border-border bg-charcoal px-3 py-2">
               {editMode ? (
@@ -122,7 +122,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
           <button
             type="button"
             onClick={addCantrip}
-            className="mt-2 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
+            className="mt-2 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-accent/40 hover:text-parchment"
           >
             + Add Cantrip
           </button>
@@ -130,14 +130,14 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
       </div>
 
       <div className="mt-4">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Spell Slots</span>
-        <div className="mt-2 grid grid-cols-1 gap-2">
+        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-2">Spell Slots</span>
+        <div className="grid grid-cols-1 gap-2">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => {
             const total = character.spellSlots[level] ?? 0;
             const expended = character.spellSlotsExpended[level] ?? 0;
             return (
               <div key={level} className="flex items-center gap-3 rounded-lg border border-border bg-charcoal px-3 py-2">
-                <span className="text-sm text-text-secondary w-16">Level {level}</span>
+                <span className="text-sm text-parchment w-16">Level {level}</span>
                 {editMode ? (
                   <div className="flex items-center gap-2">
                     <input
@@ -148,7 +148,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                       className="input w-16 text-center"
                       placeholder="Total"
                     />
-                    <span className="text-xs text-text-muted">/</span>
+                    <span className="text-text-muted">/</span>
                     <input
                       type="number"
                       value={expended}
@@ -159,7 +159,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                     />
                   </div>
                 ) : (
-                  <span className="text-sm font-medium text-text-secondary">
+                  <span className="text-sm font-medium text-parchment">
                     {total} / {expended} used
                   </span>
                 )}
@@ -174,10 +174,10 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5">
       <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
-    </label>
+    </div>
   );
 }
 

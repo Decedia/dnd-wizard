@@ -4,8 +4,8 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
+import { BottomNav } from "@/components/BottomNav";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
-import { StickyMiniHeader } from "@/components/character-sheet/StickyMiniHeader";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
 import { SheetTabs } from "@/components/character-sheet/SheetTabs";
 import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
@@ -146,7 +146,7 @@ export default function CharacterView() {
       <div className="min-h-screen bg-charcoal">
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
-          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-20 text-center">
+          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-charcoal-light/50 py-20 text-center">
             <div className="mb-4 text-5xl opacity-40">🐉</div>
             <h2 className="font-display text-xl font-semibold text-parchment mb-2">
               Character Not Found
@@ -156,7 +156,7 @@ export default function CharacterView() {
             </p>
             <Link
               href="/"
-              className="rounded-lg bg-burgundy px-6 py-3 text-sm font-semibold text-parchment transition-colors hover:bg-burgundy-light"
+              className="rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
             >
               Return Home
             </Link>
@@ -169,60 +169,59 @@ export default function CharacterView() {
   return (
     <div className="min-h-screen bg-charcoal">
       <AppHeader title={character.name || "Character"} subtitle="Character Sheet" />
-      <StickyMiniHeader character={character} />
 
-      <div className="mx-auto max-w-lg px-4">
-        <div className="flex items-center gap-3">
-          <div className="flex-1 overflow-x-auto">
-            <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
+      <div className="sticky top-[68px] z-30 bg-charcoal/90 backdrop-blur-xl border-b border-border">
+        <div className="mx-auto max-w-lg px-4 py-3">
+          <div className="flex items-center gap-3">
+            <div className="flex-1 overflow-x-auto scrollbar-hide">
+              <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
+            </div>
+            <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => setEditMode(m === "edit")} />
           </div>
-          <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => setEditMode(m === "edit")} />
         </div>
       </div>
 
       <CharacterSheetProvider onFieldBlur={debouncedSave}>
-        <main className="px-4 py-4 pb-28 md:px-4 md:pr-4 pr-12">
-          <div className="mx-auto max-w-lg space-y-4">
-            {activeTab === "combat" && (
-              <>
-                <StatsSection character={character} onChange={handleChange} editMode={editMode} />
-                <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
-                <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
-                <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
-                <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
-                <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
-              </>
-            )}
-            {activeTab === "spells" && (
-              <>
-                <SpellsSection
-                  character={character}
-                  onChange={handleChange}
-                  collapsed={spellsCollapsed}
-                  onToggleCollapse={() => setSpellsCollapsed((c) => !c)}
-                  editMode={editMode}
-                />
-                <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
-              </>
-            )}
-            {activeTab === "abilities" && (
-              <>
-                <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
-                <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
-                <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} editMode={editMode} />
-              </>
-            )}
-            {activeTab === "character" && (
-              <>
-                <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
-                <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
-                <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
-                <InventorySection character={character} onChange={handleChange} editMode={editMode} />
-              </>
-            )}
-          </div>
+        <main className="mx-auto max-w-lg px-4 py-4 pb-28">
+          {activeTab === "combat" && (
+            <>
+              <StatsSection character={character} onChange={handleChange} editMode={editMode} />
+              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
+              <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
+              <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
+              <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
+              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "spells" && (
+            <>
+              <SpellsSection
+                character={character}
+                onChange={handleChange}
+                collapsed={spellsCollapsed}
+                onToggleCollapse={() => setSpellsCollapsed((c) => !c)}
+                editMode={editMode}
+              />
+              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "abilities" && (
+            <>
+              <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
+              <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
+              <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "character" && (
+            <>
+              <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
+              <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
+              <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
+              <InventorySection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
 
-          <div className="mx-auto max-w-lg mt-6 mb-4 rounded-lg border border-border bg-charcoal-light p-4 space-y-3">
+          <div className="mt-6 space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={handleLevelUpClick}
@@ -234,7 +233,7 @@ export default function CharacterView() {
               </button>
               <button
                 onClick={handleSave}
-                className="flex items-center justify-center gap-2 rounded-full bg-burgundy px-4 py-3 text-sm font-semibold text-parchment transition-all hover:bg-burgundy-light active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98]"
               >
                 <Save className="h-4 w-4" />
                 Save
@@ -246,7 +245,7 @@ export default function CharacterView() {
               >
                 {exportingPdf ? (
                   <>
-                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-border border-t-burgundy" />
+                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-border border-t-accent" />
                     Generating...
                   </>
                 ) : (
@@ -287,6 +286,8 @@ export default function CharacterView() {
           </div>
         </main>
       </CharacterSheetProvider>
+
+      <BottomNav />
     </div>
   );
 }

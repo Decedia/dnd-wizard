@@ -26,15 +26,6 @@ interface AppearanceBioSectionProps {
   editMode?: boolean;
 }
 
-function ViewField({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
-      <span className="text-sm font-medium text-text-secondary">{value || "—"}</span>
-    </div>
-  );
-}
-
 export function AppearanceBioSection({ character, onChange, editMode = true }: AppearanceBioSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const updateField = (field: keyof Character["appearance"], value: string) => {
@@ -47,8 +38,8 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
     <SectionCard id="appearance" title="APPEARANCE & BIO" icon={<AppearanceIcon className="h-5 w-5" />}>
       {editMode ? (
         <>
-          <div className="grid grid-cols-2 gap-4">
-            <Field label="Age">
+          <div className="grid grid-cols-2 divide-x divide-border">
+            <Field label="AGE">
               <input
                 type="text"
                 value={character.appearance.age}
@@ -58,7 +49,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="e.g. 27"
               />
             </Field>
-            <Field label="Height">
+            <Field label="HEIGHT" className="pl-4">
               <input
                 type="text"
                 value={character.appearance.height}
@@ -68,7 +59,9 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="e.g. 6'2&quot;"
               />
             </Field>
-            <Field label="Weight">
+          </div>
+          <div className="grid grid-cols-2 divide-x divide-border">
+            <Field label="WEIGHT">
               <input
                 type="text"
                 value={character.appearance.weight}
@@ -78,7 +71,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="e.g. 180 lbs"
               />
             </Field>
-            <Field label="Eyes">
+            <Field label="EYES" className="pl-4">
               <input
                 type="text"
                 value={character.appearance.eyes}
@@ -88,7 +81,9 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="e.g. Blue"
               />
             </Field>
-            <Field label="Skin">
+          </div>
+          <div className="grid grid-cols-2 divide-x divide-border">
+            <Field label="SKIN">
               <input
                 type="text"
                 value={character.appearance.skin}
@@ -98,7 +93,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="e.g. Fair"
               />
             </Field>
-            <Field label="Hair">
+            <Field label="HAIR" className="pl-4">
               <input
                 type="text"
                 value={character.appearance.hair}
@@ -110,8 +105,8 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
             </Field>
           </div>
 
-          <div className="mt-4 grid grid-cols-1 gap-4">
-            <Field label="Character Appearance">
+          <div className="mt-4 space-y-4">
+            <Field label="CHARACTER APPEARANCE">
               <textarea
                 value={character.appearance.characterAppearance}
                 onChange={(e) => updateField("characterAppearance", e.target.value)}
@@ -120,7 +115,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="Describe your character's physical appearance..."
               />
             </Field>
-            <Field label="Personality">
+            <Field label="PERSONALITY">
               <textarea
                 value={character.appearance.personality}
                 onChange={(e) => updateField("personality", e.target.value)}
@@ -129,7 +124,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="Describe your character's personality traits, ideals, bonds, and flaws..."
               />
             </Field>
-            <Field label="Backstory">
+            <Field label="BACKSTORY">
               <textarea
                 value={character.appearance.backstory}
                 onChange={(e) => updateField("backstory", e.target.value)}
@@ -138,7 +133,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="Where did your character come from? What drives them?"
               />
             </Field>
-            <Field label="Allies & Organizations">
+            <Field label="ALLIES & ORGANIZATIONS">
               <textarea
                 value={character.appearance.alliesOrganizations}
                 onChange={(e) => updateField("alliesOrganizations", e.target.value)}
@@ -147,7 +142,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="List allies, organizations, or contacts..."
               />
             </Field>
-            <Field label="Additional Features & Traits">
+            <Field label="ADDITIONAL FEATURES & TRAITS">
               <textarea
                 value={character.appearance.additionalFeaturesTraits}
                 onChange={(e) => updateField("additionalFeaturesTraits", e.target.value)}
@@ -156,7 +151,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder="Any additional features or traits not listed elsewhere..."
               />
             </Field>
-            <Field label="Treasure">
+            <Field label="TREASURE">
               <textarea
                 value={character.appearance.treasure}
                 onChange={(e) => updateField("treasure", e.target.value)}
@@ -169,33 +164,37 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
         </>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-4">
-            <ViewField label="Age" value={character.appearance.age} />
-            <ViewField label="Height" value={character.appearance.height} />
-            <ViewField label="Weight" value={character.appearance.weight} />
-            <ViewField label="Eyes" value={character.appearance.eyes} />
-            <ViewField label="Skin" value={character.appearance.skin} />
-            <ViewField label="Hair" value={character.appearance.hair} />
+          <div className="grid grid-cols-2 divide-x divide-border">
+            <ViewField label="AGE" value={character.appearance.age} />
+            <ViewField label="HEIGHT" value={character.appearance.height} className="pl-4" />
+          </div>
+          <div className="grid grid-cols-2 divide-x divide-border">
+            <ViewField label="WEIGHT" value={character.appearance.weight} />
+            <ViewField label="EYES" value={character.appearance.eyes} className="pl-4" />
+          </div>
+          <div className="grid grid-cols-2 divide-x divide-border">
+            <ViewField label="SKIN" value={character.appearance.skin} />
+            <ViewField label="HAIR" value={character.appearance.hair} className="pl-4" />
           </div>
 
-          <div className="mt-4 grid grid-cols-1 gap-4">
+          <div className="mt-4 space-y-3">
             {character.appearance.characterAppearance && (
-              <ViewField label="Character Appearance" value={character.appearance.characterAppearance} />
+              <ViewField label="CHARACTER APPEARANCE" value={character.appearance.characterAppearance} />
             )}
             {character.appearance.personality && (
-              <ViewField label="Personality" value={character.appearance.personality} />
+              <ViewField label="PERSONALITY" value={character.appearance.personality} />
             )}
             {character.appearance.backstory && (
-              <ViewField label="Backstory" value={character.appearance.backstory} />
+              <ViewField label="BACKSTORY" value={character.appearance.backstory} />
             )}
             {character.appearance.alliesOrganizations && (
-              <ViewField label="Allies & Organizations" value={character.appearance.alliesOrganizations} />
+              <ViewField label="ALLIES & ORGANIZATIONS" value={character.appearance.alliesOrganizations} />
             )}
             {character.appearance.additionalFeaturesTraits && (
-              <ViewField label="Additional Features & Traits" value={character.appearance.additionalFeaturesTraits} />
+              <ViewField label="ADDITIONAL FEATURES & TRAITS" value={character.appearance.additionalFeaturesTraits} />
             )}
             {character.appearance.treasure && (
-              <ViewField label="Treasure" value={character.appearance.treasure} />
+              <ViewField label="TREASURE" value={character.appearance.treasure} />
             )}
           </div>
         </>
@@ -204,12 +203,21 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children, className }: { label: string; children: React.ReactNode; className?: string }) {
   return (
-    <label className="flex flex-col gap-1.5">
+    <div className={`flex flex-col gap-1.5 ${className || ""}`}>
       <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
-    </label>
+    </div>
+  );
+}
+
+function ViewField({ label, value, className }: { label: string; value: string; className?: string }) {
+  return (
+    <div className={`flex flex-col gap-1.5 ${className || ""}`}>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+      <span className="text-sm font-medium text-parchment">{value || "—"}</span>
+    </div>
   );
 }
 

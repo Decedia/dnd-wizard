@@ -2,19 +2,15 @@
 
 @theme {
   --color-parchment: #ffffff;
-  --color-parchment-dark: #e5e5e5;
   --color-charcoal: #0a0a0a;
   --color-charcoal-light: #141414;
   --color-charcoal-lighter: #1a1a1a;
-  --color-burgundy: #ef4444;
-  --color-burgundy-light: #dc2626;
-  --color-gold: #ef4444;
-  --color-gold-light: #f87171;
-  --color-gold-dark: #b91c1c;
   --color-border: #2a2a2a;
   --color-border-light: #333333;
   --color-text-muted: #888888;
-  --color-text-secondary: #a0a0a0;
+  --color-accent: #ef4444;
+  --color-accent-light: #f87171;
+  --color-accent-dark: #dc2626;
   --font-display: "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
 }
@@ -31,13 +27,13 @@
 
 @layer components {
   .input {
-    @apply rounded-lg border border-border-light bg-charcoal px-3 py-2 text-sm text-parchment outline-none transition-colors placeholder:text-text-muted focus:border-burgundy focus:ring-1 focus:ring-burgundy/50;
+    @apply rounded-lg border border-border-light bg-charcoal px-3 py-2 text-sm text-parchment outline-none transition-colors placeholder:text-text-muted focus:border-accent focus:ring-1 focus:ring-accent/50;
   }
   textarea.input {
     @apply resize-y rounded-lg;
   }
   .btn-primary {
-    @apply rounded-full bg-burgundy px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-burgundy-light active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
+    @apply rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
   }
   .btn-secondary {
     @apply rounded-full border border-border bg-transparent px-4 py-2.5 text-sm font-semibold text-parchment transition-all hover:border-border-light hover:bg-charcoal-lighter active:scale-[0.98];
@@ -45,14 +41,18 @@
   .btn-danger {
     @apply rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98];
   }
-  .btn-gold {
-    @apply rounded-full border border-border bg-charcoal-lighter px-4 py-2.5 text-sm font-semibold text-parchment transition-all hover:border-border-light hover:bg-charcoal active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100;
-  }
 }
 
 @layer utilities {
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -175,5 +175,3 @@
 .dice-d100 {
   clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%);
 }
-
-

@@ -22,7 +22,7 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
       <div className="mx-auto max-w-lg px-4 py-4">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="flex h-8 w-8 shrink-0 items-center justify-center">
-            <WizardHatIcon className="h-7 w-7 text-burgundy" />
+            <WizardHatIcon className="h-7 w-7 text-accent" />
           </div>
           <div className="flex flex-col">
             <h1 className="font-display text-xl font-bold tracking-wide text-white">

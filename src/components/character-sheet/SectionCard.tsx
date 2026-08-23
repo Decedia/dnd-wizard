@@ -11,11 +11,11 @@ export function SectionCard({ id, title, icon, children }: SectionCardProps) {
   return (
     <section
       id={id}
-      className="scroll-mt-20 rounded-lg border border-border bg-charcoal-light p-4 mb-4"
+      className="rounded-xl border border-border bg-charcoal-light p-4 mb-4"
     >
-      <div className="mb-3 flex items-center gap-2 border-b border-border pb-3">
-        <span className="text-burgundy">{icon}</span>
-        <h2 className="font-display text-sm font-semibold text-parchment uppercase tracking-wider">{title}</h2>
+      <div className="mb-3 flex items-center gap-2">
+        <span className="text-accent">{icon}</span>
+        <h2 className="text-xs font-bold text-accent uppercase tracking-widest">{title}</h2>
       </div>
       {children}
     </section>

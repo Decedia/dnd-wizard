@@ -55,22 +55,22 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   return (
     <SectionCard id="attacks" title="ATTACKS" icon={<AttacksIcon className="h-5 w-5" />}>
       {character.class === "Rogue" && sneakAttack && (
-        <div className="mb-4 rounded-lg border border-burgundy/30 bg-burgundy/10 px-4 py-3">
-          <span className="text-sm font-semibold text-burgundy">Sneak Attack: {sneakAttack}</span>
+        <div className="mb-4 rounded-lg border border-accent/30 bg-accent/10 px-4 py-3">
+          <span className="text-sm font-semibold text-accent">Sneak Attack: {sneakAttack}</span>
         </div>
       )}
       {classAttacks.length > 0 && (
         <div className="mb-4 space-y-3">
           {classAttacks.map((attack) => (
-            <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-burgundy/30 bg-burgundy/10 px-4 py-4">
+            <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-accent/30 bg-accent/10 px-4 py-4">
               <div className="flex items-center gap-3">
                 <span className="text-base font-semibold text-parchment/90 flex-1">{attack.name}</span>
-                <span className="text-[10px] font-bold text-burgundy bg-burgundy/20 px-2 py-1 rounded uppercase tracking-wider">class-granted</span>
+                <span className="text-[10px] font-bold text-accent bg-accent/20 px-2 py-1 rounded uppercase tracking-wider">class-granted</span>
               </div>
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-sm text-text-secondary">{attack.damageType}</span>
+                <span className="text-sm text-parchment">{attack.damageType}</span>
                 {attack.sneakAttack && (
-                  <span className="text-xs font-bold text-burgundy bg-burgundy/20 px-2.5 py-1.5 rounded">+{attack.sneakAttack} sneak</span>
+                  <span className="text-xs font-bold text-accent bg-accent/20 px-2.5 py-1.5 rounded">+{attack.sneakAttack} sneak</span>
                 )}
               </div>
             </div>
@@ -88,7 +88,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <div className="flex items-center gap-3">
                   <span className="text-base font-semibold text-parchment flex-1">{attack.name}</span>
                   {details && (
-                    <span className="text-sm font-bold text-burgundy bg-burgundy/15 border border-burgundy/25 px-3 py-1.5 rounded-lg">
+                    <span className="text-sm font-bold text-accent bg-accent/15 border border-accent/25 px-3 py-1.5 rounded-lg">
                       +{details.attackBonus} to hit
                     </span>
                   )}
@@ -96,8 +96,8 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <div className="flex items-center gap-3 flex-wrap">
                   {details && (
                     <>
-                      <span className="text-sm text-text-secondary">{details.damageDice || "—"}</span>
-                      <span className="text-sm text-text-secondary font-medium">
+                      <span className="text-sm text-parchment">{details.damageDice || "—"}</span>
+                      <span className="text-sm text-parchment font-medium">
                         {details.damageBonus >= 0 ? `+${details.damageBonus}` : details.damageBonus}
                       </span>
                       <InfoTooltip content={
@@ -120,10 +120,10 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                     </>
                   )}
                   {!details && attack.damageType && (
-                    <span className="text-sm text-text-secondary font-medium">{attack.damageType}</span>
+                    <span className="text-sm text-parchment font-medium">{attack.damageType}</span>
                   )}
                   {attack.sneakAttack && (
-                    <span className="text-xs font-bold text-burgundy bg-burgundy/15 border border-burgundy/25 px-2.5 py-1.5 rounded-lg">
+                    <span className="text-xs font-bold text-accent bg-accent/15 border border-accent/25 px-2.5 py-1.5 rounded-lg">
                       +{attack.sneakAttack} sneak
                     </span>
                   )}

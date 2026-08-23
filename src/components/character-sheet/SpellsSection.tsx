@@ -225,7 +225,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                         <span className="text-xs text-text-muted">Level {spell.level}</span>
                       </div>
                       {(spell.damageDice || spell.damageType) && (
-                        <span className="text-sm text-text-secondary">
+                        <span className="text-sm text-parchment">
                           {spell.damageDice}{spell.damageType ? ` ${spell.damageType}` : ""}
                         </span>
                       )}
@@ -240,7 +240,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
             <button
               type="button"
               onClick={() => addItem()}
-              className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
+              className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-accent/40 hover:text-parchment"
             >
               + Add Spell
             </button>
@@ -248,7 +248,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
 
           {character.costumeSpells.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-sm font-semibold text-text-secondary mb-2">Costume Spells</h3>
+              <h3 className="text-sm font-semibold text-parchment mb-2">Costume Spells</h3>
               <div className="space-y-2">
                 {character.costumeSpells.map((costumeSpell) => {
                   const isEditing = editingCostumeSpellId === costumeSpell.id;
@@ -275,7 +275,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                             <button
                               type="button"
                               onClick={() => saveCostumeSpellEdit(costumeSpell.id)}
-                              className="rounded-lg border border-burgundy/40 px-3 py-1.5 text-xs font-medium text-burgundy transition-colors hover:border-burgundy hover:text-parchment"
+                              className="rounded-lg border border-accent/40 px-3 py-1.5 text-xs font-medium text-accent transition-colors hover:border-accent hover:text-parchment"
                             >
                               Save
                             </button>
@@ -301,7 +301,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                               <button
                                 type="button"
                                 onClick={() => setEditingCostumeSpellId(costumeSpell.id)}
-                                className="text-text-muted hover:text-burgundy"
+                                className="text-text-muted hover:text-accent"
                                 aria-label="Edit costume spell"
                               >
                                 <EditIcon className="h-4 w-4" />
@@ -326,7 +326,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                 <button
                   type="button"
                   onClick={() => setIsAddingCostumeSpell(true)}
-                  className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
+                  className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-accent/40 hover:text-parchment"
                 >
                   + Add Costume Spell
                 </button>
@@ -352,7 +352,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                     <button
                       type="button"
                       onClick={addCostumeSpell}
-                      className="rounded-lg border border-burgundy/40 px-3 py-1.5 text-xs font-medium text-burgundy transition-colors hover:border-burgundy hover:text-parchment"
+                      className="rounded-lg border border-accent/40 px-3 py-1.5 text-xs font-medium text-accent transition-colors hover:border-accent hover:text-parchment"
                     >
                       Add
                     </button>
@@ -378,12 +378,12 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80" onClick={() => setTooltip(null)}>
           <div className="max-w-sm rounded-lg border border-border bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-display font-semibold text-burgundy">{tooltip.name}</h3>
+              <h3 className="font-display font-semibold text-accent">{tooltip.name}</h3>
               <button onClick={() => setTooltip(null)} className="text-text-muted hover:text-parchment">
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-sm text-text-secondary">{tooltip.description}</p>
+            <p className="text-sm text-parchment">{tooltip.description}</p>
           </div>
         </div>
       )}

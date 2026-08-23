@@ -60,7 +60,7 @@ export function SectionNav() {
           title={label}
           className={`flex items-center justify-center rounded-full transition-all ${
             active === id
-              ? "h-7 w-7 md:h-9 md:w-9 text-parchment bg-burgundy shadow-lg shadow-burgundy/30"
+              ? "h-7 w-7 md:h-9 md:w-9 text-parchment bg-accent shadow-lg shadow-accent/30"
               : "h-7 w-7 md:h-9 md:w-9 text-parchment/50 hover:text-parchment hover:bg-parchment/5"
           }`}
         >

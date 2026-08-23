@@ -32,7 +32,7 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-sm safe-bottom">
-      <div className="flex items-center rounded-full border border-gold/20 bg-charcoal-light/90 shadow-2xl backdrop-blur-xl overflow-hidden relative">
+       <div className="flex items-center rounded-full border border-accent/20 bg-charcoal-light/90 shadow-2xl backdrop-blur-xl overflow-hidden relative">
         {navItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = index === activeIndex;

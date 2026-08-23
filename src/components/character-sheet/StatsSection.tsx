@@ -4,7 +4,6 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getModifier } from "@/lib/storage";
 import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
-import { ProficiencyDot } from "./styled/ProficiencyDot";
 
 interface StatsSectionProps {
   character: {
@@ -52,7 +51,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
-        <Field label="Proficiency Bonus">
+        <Field label="PROFICIENCY BONUS">
           {editMode ? (
             <input
               type="number"
@@ -61,10 +60,10 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               className="input bg-charcoal/60"
             />
           ) : (
-            <span className="text-sm font-semibold text-burgundy">+{character.proficiencyBonus}</span>
+            <span className="text-sm font-semibold text-accent">+{character.proficiencyBonus}</span>
           )}
         </Field>
-        <Field label="Initiative">
+        <Field label="INITIATIVE">
           {editMode ? (
             <input
               type="number"
@@ -73,47 +72,36 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               className="input bg-charcoal/60"
             />
           ) : (
-            <span className="text-sm font-semibold text-text-secondary">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
+            <span className="text-sm font-semibold text-parchment">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
           )}
         </Field>
       </div>
 
-      <div className="mt-3 flex items-center gap-3">
-        {editMode ? (
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={character.inspiration}
-              onChange={(e) => onChange({ inspiration: e.target.checked })}
-              onBlur={onFieldBlur}
-              className="h-4 w-4 rounded border-border bg-charcoal text-burgundy focus:ring-burgundy/50"
-            />
-            <span className="text-sm text-text-secondary">Inspiration</span>
-          </label>
-        ) : (
-          <span className="text-sm text-text-secondary">
-            Inspiration: {character.inspiration ? "Yes" : "No"}
-          </span>
-        )}
+      <div className="mt-3">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={character.inspiration}
+            onChange={(e) => onChange({ inspiration: e.target.checked })}
+            onBlur={onFieldBlur}
+            className="h-4 w-4 rounded border-border bg-charcoal text-accent focus:ring-accent/50"
+          />
+          <span className="text-sm text-parchment">Inspiration</span>
+        </label>
       </div>
 
       <div className="mt-4">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Saving Throws</span>
-        <div className="mt-2 space-y-2">
+        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-2">Saving Throws</span>
+        <div className="space-y-2">
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             const abilityMod = getModifier(character[key]);
             return (
               <div key={key} className="flex items-center justify-between rounded-lg border border-border bg-charcoal px-3 py-2">
-                <div className="flex flex-col">
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm text-text-secondary w-10">{key.toUpperCase()}</span>
-                    <ProficiencyDot
-                      proficient={st.proficient}
-                      editMode={editMode}
-                    />
-                  </div>
-                  <span className="text-[10px] text-text-muted ml-13">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-text-muted w-10">{key.toUpperCase()}</span>
+                  <span className="text-text-muted">•</span>
+                  <span className="text-xs text-text-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
                 </div>
                 {editMode ? (
                   <input
@@ -123,7 +111,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
                     className="input w-20 text-center bg-charcoal/60"
                   />
                 ) : (
-                  <span className="text-sm font-semibold text-burgundy w-20 text-right">
+                  <span className="text-sm font-semibold text-accent w-20 text-right">
                     {st.value >= 0 ? `+${st.value}` : st.value}
                   </span>
                 )}
@@ -138,10 +126,10 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5">
       <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
-    </label>
+    </div>
   );
 }
 

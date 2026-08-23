@@ -18,13 +18,13 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
   const progressPercent = maxXp > 0 ? Math.min(100, Math.max(0, (currentXp / maxXp) * 100)) : 0;
 
   return (
-    <div className="rounded-lg border border-border bg-charcoal-light p-5 mb-4">
+    <section className="rounded-xl border border-border bg-charcoal-light p-5 mb-4">
       <div className="flex items-center gap-5">
         <div className="relative flex flex-col items-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-burgundy bg-charcoal">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-accent bg-charcoal">
             <div className="flex flex-col items-center">
               <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Level</span>
-              <span className="text-3xl font-bold text-burgundy">{level}</span>
+              <span className="text-3xl font-bold text-accent">{level}</span>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
                 />
               </div>
               <div className="flex items-center justify-center pt-4">
-                <span className="text-burgundy font-bold text-lg">/</span>
+                <span className="text-accent font-bold text-lg">/</span>
               </div>
               <div className="flex-1">
                 <label className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-1">
@@ -66,14 +66,14 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
             <div className="flex items-center gap-3">
               <div className="flex-1 text-center">
                 <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-1">Current XP</span>
-                <span className="text-lg font-bold text-burgundy">{currentXp.toLocaleString()}</span>
+                <span className="text-lg font-bold text-accent">{currentXp.toLocaleString()}</span>
               </div>
               <div className="flex items-center justify-center pt-4">
-                <span className="text-burgundy font-bold text-lg">/</span>
+                <span className="text-accent font-bold text-lg">/</span>
               </div>
               <div className="flex-1 text-center">
                 <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-1">Max XP</span>
-                <span className="text-lg font-bold text-burgundy">{maxXp.toLocaleString()}</span>
+                <span className="text-lg font-bold text-accent">{maxXp.toLocaleString()}</span>
               </div>
             </div>
           )}
@@ -81,7 +81,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
           <div className="space-y-1">
             <div className="h-3 w-full overflow-hidden rounded-full bg-charcoal border border-border">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-burgundy to-burgundy-light transition-all duration-300"
+                className="h-full rounded-full bg-gradient-to-r from-accent to-accent-light transition-all duration-300"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -96,6 +96,6 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

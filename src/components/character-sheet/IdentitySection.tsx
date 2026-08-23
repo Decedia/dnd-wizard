@@ -5,7 +5,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getStaticRaces, getStaticClasses } from "@/lib/srd-client";
 import { languageNames } from "@/data/srd";
-import { ALIGNMENTS, getProficiencyBonus } from "@/lib/storage";
+import { ALIGNMENTS } from "@/lib/storage";
 
 interface IdentitySectionProps {
   character: {
@@ -33,15 +33,6 @@ interface IdentitySectionProps {
   editMode?: boolean;
 }
 
-function ViewField({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
-      <span className="text-sm font-medium text-text-secondary">{value || "—"}</span>
-    </div>
-  );
-}
-
 export function IdentitySection({ character, onChange, editMode = true }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const races = getStaticRaces();
@@ -59,10 +50,10 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
 
   return (
     <SectionCard id="identity" title="IDENTITY" icon={<UserIcon className="h-5 w-5" />}>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="space-y-4">
         {editMode ? (
           <>
-            <Field label="Character Name">
+            <Field label="CHARACTER NAME">
               <input
                 type="text"
                 value={character.name}
@@ -72,7 +63,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                 placeholder="Enter character name"
               />
             </Field>
-            <Field label="Player Name (optional)">
+            <Field label="PLAYER NAME">
               <input
                 type="text"
                 value={character.playerName}
@@ -82,8 +73,8 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                 placeholder="Your name"
               />
             </Field>
-            <div className="grid grid-cols-2 gap-4">
-              <Field label="Race">
+            <div className="grid grid-cols-2 divide-x divide-border">
+              <Field label="RACE">
                 <select
                   value={character.race}
                   onChange={(e) => onChange({ race: e.target.value })}
@@ -96,7 +87,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                   ))}
                 </select>
               </Field>
-              <Field label="Class">
+              <Field label="CLASS" className="pl-4">
                 <select
                   value={character.class}
                   onChange={(e) => onChange({ class: e.target.value })}
@@ -110,8 +101,8 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                 </select>
               </Field>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <Field label="Background">
+            <div className="grid grid-cols-2 divide-x divide-border">
+              <Field label="BACKGROUND">
                 <input
                   type="text"
                   value={character.background}
@@ -121,7 +112,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                   placeholder="e.g. Folk Hero"
                 />
               </Field>
-              <Field label="Alignment">
+              <Field label="ALIGNMENT" className="pl-4">
                 <select
                   value={character.alignment}
                   onChange={(e) => onChange({ alignment: e.target.value })}
@@ -135,7 +126,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                 </select>
               </Field>
             </div>
-            <Field label="Languages">
+            <Field label="LANGUAGES">
               <div className="grid grid-cols-2 gap-2">
                 {languageNames.map((lang) => (
                   <label key={lang} className="flex items-center gap-2 cursor-pointer">
@@ -144,9 +135,9 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                       checked={character.languages.includes(lang)}
                       onChange={() => toggleLanguage(lang)}
                       onBlur={() => {}}
-                      className="h-4 w-4 rounded border-border bg-charcoal text-burgundy focus:ring-burgundy/50"
+                      className="h-4 w-4 rounded border-border bg-charcoal text-accent focus:ring-accent/50"
                     />
-                    <span className="text-sm text-text-secondary">{lang}</span>
+                    <span className="text-sm text-parchment">{lang}</span>
                   </label>
                 ))}
               </div>
@@ -154,23 +145,19 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
           </>
         ) : (
           <>
-            <Field label="Character Name">
-              <span className="text-sm font-medium text-text-secondary">{character.name || "—"}</span>
-            </Field>
-            <Field label="Player Name">
-              <span className="text-sm font-medium text-text-secondary">{character.playerName || "—"}</span>
-            </Field>
-            <div className="grid grid-cols-2 gap-4">
-              <ViewField label="Race" value={character.race} />
-              <ViewField label="Class" value={character.class} />
+            <ViewField label="CHARACTER NAME" value={character.name} />
+            <ViewField label="PLAYER NAME" value={character.playerName} />
+            <div className="grid grid-cols-2 divide-x divide-border">
+              <ViewField label="RACE" value={character.race} />
+              <ViewField label="CLASS" value={character.class} className="pl-4" />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <ViewField label="Background" value={character.background} />
-              <ViewField label="Alignment" value={character.alignment} />
+            <div className="grid grid-cols-2 divide-x divide-border">
+              <ViewField label="BACKGROUND" value={character.background} />
+              <ViewField label="ALIGNMENT" value={character.alignment} className="pl-4" />
             </div>
             <div className="flex flex-col gap-1.5">
-              <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Languages</span>
-              <span className="text-sm font-medium text-text-secondary">
+              <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">LANGUAGES</span>
+              <span className="text-sm font-medium text-parchment">
                 {character.languages.length > 0 ? character.languages.join(", ") : "—"}
               </span>
             </div>
@@ -181,12 +168,21 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children, className }: { label: string; children: React.ReactNode; className?: string }) {
   return (
-    <label className="flex flex-col gap-1.5">
+    <div className={`flex flex-col gap-1.5 ${className || ""}`}>
       <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
-    </label>
+    </div>
+  );
+}
+
+function ViewField({ label, value, className }: { label: string; value: string; className?: string }) {
+  return (
+    <div className={`flex flex-col gap-1.5 ${className || ""}`}>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+      <span className="text-sm font-medium text-parchment">{value || "—"}</span>
+    </div>
   );
 }
 

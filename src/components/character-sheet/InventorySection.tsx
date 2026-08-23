@@ -169,8 +169,8 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                         onClick={() => toggleEquip(item.id, item.itemType)}
                         className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
                           item.equipped
-                            ? "bg-burgundy/20 text-burgundy border border-burgundy/40"
-                            : "border border-border text-text-secondary hover:border-text-muted"
+                            ? "bg-accent/20 text-accent border border-accent/40"
+                            : "border border-border text-parchment hover:border-text-muted"
                         }`}
                       >
                         {item.equipped ? "Equipped" : "Equip"}
@@ -201,7 +201,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                     <span className="text-xs text-text-muted">x{item.quantity}</span>
                   )}
                   {item.equipped && (
-                    <span className="text-[10px] font-bold text-burgundy bg-burgundy/10 px-1.5 py-0.5 rounded">EQUIPPED</span>
+                    <span className="text-[10px] font-bold text-accent bg-accent/10 px-1.5 py-0.5 rounded">EQUIPPED</span>
                   )}
                 </div>
               )}
@@ -209,10 +209,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 <DescriptionText>{description}</DescriptionText>
               )}
               {getWeaponStats(item) && !editMode && (
-                <p className="text-sm font-bold text-burgundy bg-burgundy/10 border border-burgundy/25 rounded-lg px-3 py-2.5">{getWeaponStats(item)}</p>
+                <p className="text-sm font-bold text-accent bg-accent/10 border border-accent/25 rounded-lg px-3 py-2.5">{getWeaponStats(item)}</p>
               )}
               {getWeaponStats(item) && editMode && (
-                <p className="text-sm font-bold text-burgundy bg-burgundy/10 border border-burgundy/25 rounded-lg px-3 py-2.5">{getWeaponStats(item)}</p>
+                <p className="text-sm font-bold text-accent bg-accent/10 border border-accent/25 rounded-lg px-3 py-2.5">{getWeaponStats(item)}</p>
               )}
             </div>
           );
@@ -222,14 +222,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
         <button
           type="button"
           onClick={addCustomItem}
-          className="mt-4 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
+          className="mt-4 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-accent/40 hover:text-parchment"
         >
           + Add Custom Item
         </button>
       )}
 
       <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-border pt-4">
-        <span className="text-xs font-bold text-text-secondary uppercase tracking-wider w-full mb-2">Currency</span>
+        <span className="text-xs font-bold text-parchment uppercase tracking-wider w-full mb-2">Currency</span>
         {(["copper", "silver", "electrum", "gold", "platinum"] as const).map((field) => (
           <Field key={field} label={field.toUpperCase().slice(0, 2)}>
             {editMode ? (
@@ -241,7 +241,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 className="input w-20 text-center"
               />
             ) : (
-              <span className="text-sm font-semibold text-text-secondary">{character.currency[field]}</span>
+              <span className="text-sm font-semibold text-parchment">{character.currency[field]}</span>
             )}
           </Field>
         ))}
@@ -252,10 +252,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1">
       <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
-    </label>
+    </div>
   );
 }
 

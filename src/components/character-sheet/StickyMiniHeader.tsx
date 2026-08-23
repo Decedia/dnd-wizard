@@ -28,7 +28,7 @@ export function StickyMiniHeader({ character }: StickyMiniHeaderProps) {
     <div className="fixed top-0 left-0 right-0 z-30 bg-charcoal/90 backdrop-blur-xl border-b border-border">
       <div className="mx-auto max-w-lg px-4 py-2.5 flex items-center justify-between">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="font-display text-sm font-bold text-burgundy truncate">{title}</span>
+           <span className="font-display text-sm font-bold text-accent truncate">{title}</span>
           <span className="text-text-muted">•</span>
           <span className="text-xs text-text-muted truncate">{subtitle}</span>
         </div>

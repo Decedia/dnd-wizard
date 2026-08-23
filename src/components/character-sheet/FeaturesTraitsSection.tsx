@@ -40,8 +40,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     <SectionCard id="features" title="FEATURES & TRAITS" icon={<FeaturesIcon className="h-5 w-5" />}>
       <div className="space-y-3">
         {character.subclass && (
-          <div key="subclass-header" className="rounded-lg border border-burgundy/20 bg-burgundy/5 px-3 py-2">
-            <span className="text-sm font-semibold text-burgundy">{character.subclass}</span>
+          <div key="subclass-header" className="rounded-lg border border-accent/20 bg-accent/5 px-3 py-2">
+            <span className="text-sm font-semibold text-accent">{character.subclass}</span>
           </div>
         )}
         {character.features.map((feature) => {
@@ -99,7 +99,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         <button
           type="button"
           onClick={addItem}
-          className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
+          className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-accent/40 hover:text-parchment"
         >
           + Add Feature
         </button>

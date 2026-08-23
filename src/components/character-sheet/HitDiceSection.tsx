@@ -16,7 +16,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
   return (
     <SectionCard id="hit-dice" title="HIT DICE" icon={<DiceIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-2 gap-3">
-        <Field label="Total">
+        <Field label="TOTAL">
           {editMode ? (
             <input
               type="text"
@@ -27,10 +27,10 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               placeholder="e.g. 10d8"
             />
           ) : (
-            <span className="text-sm font-semibold text-text-secondary">{character.hitDiceTotal || "—"}</span>
+            <span className="text-sm font-semibold text-parchment">{character.hitDiceTotal || "—"}</span>
           )}
         </Field>
-        <Field label="Remaining">
+        <Field label="REMAINING">
           {editMode ? (
             <input
               type="number"
@@ -40,7 +40,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               className="input"
             />
           ) : (
-            <span className="text-sm font-semibold text-burgundy">{character.hitDiceRemaining}</span>
+            <span className="text-sm font-semibold text-accent">{character.hitDiceRemaining}</span>
           )}
         </Field>
       </div>
@@ -50,10 +50,10 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5">
       <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
-    </label>
+    </div>
   );
 }
 
