@@ -232,7 +232,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [data.class]);
 
   return (
-    <StepCard title="Equipment">
+    <StepCard title="Equipment" hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.">
       {grantedItems.length > 0 && (
         <div className="mb-5">
           <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">Starting Equipment (Auto-granted)</span>

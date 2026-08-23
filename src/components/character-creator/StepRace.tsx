@@ -17,7 +17,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
   }, [onChange]);
 
   return (
-    <StepCard title="Race">
+    <StepCard title="Race" hint="Choose your character's race. Each race has unique traits, ability bonuses, and special abilities.">
       <div className="space-y-3">
         {races.map((race) => {
           const isSelected = data.race === race.name;

@@ -663,68 +663,72 @@ function SubclassStep({ step, selected, onSelect, featureChoices, selectedChoice
   const level = step.level;
   return (
     <div className="space-y-3">
-      <div className="space-y-2">
-        {step.subclassOptions?.map((option) => (
-          <label
-            key={option.name}
-            className={`flex items-start gap-3 rounded-lg border px-3 py-3 cursor-pointer transition-colors ${
-              selected === option.name
-                ? "border-gold/40 bg-gold/5"
-                : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
-            }`}
-          >
-            <input
-              type="radio"
-              name="subclass"
-              checked={selected === option.name}
-              onChange={() => onSelect(option.name)}
-              className="mt-1 h-4 w-4 text-gold focus:ring-gold/50"
-            />
-            <div className="flex-1">
-              <span className="text-sm font-medium text-parchment/80">{option.name}</span>
-              {option.description && <p className="text-xs text-parchment/50 mt-1">{option.description}</p>}
-            </div>
-          </label>
-        ))}
-      </div>
-      {selectedOption && level && selectedOption.features?.length > 0 && (
-        <div className="mt-4 space-y-2">
-          <p className="text-xs font-medium text-parchment/60 uppercase tracking-wider">Features gained at level {level}</p>
-          <div className="space-y-2">
-            {selectedOption.features
-              .filter((f) => (f as any).level == null || (f as any).level === level)
-              .map((feature, idx) => {
-                const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
-                const selectedAnimal = selectedChoices?.[feature.name];
-                const animalDesc = selectedAnimal ? getAnimalDescription(feature.description, selectedAnimal) : undefined;
-                return (
-                  <div key={idx} className="rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                    <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
-                    <span className="text-xs text-parchment/70 ml-1 whitespace-pre-line">{feature.description}</span>
-                    {optionFeatureChoices && (
-              <div className="mt-2">
-                <select
-                  value={selectedAnimal || ""}
-                  onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
-                  onBlur={() => {}}
-                  className="input w-full"
-                >
-                  <option value="">Choose...</option>
-                  {optionFeatureChoices.options.map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  ))}
-                </select>
-                        {animalDesc && (
-                          <p className="text-xs text-parchment/50 mt-1">{animalDesc}</p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-          </div>
-        </div>
+      {step.description && (
+        <p className="text-xs text-parchment/60 mb-2">{step.description}</p>
       )}
+      <div className="space-y-2">
+        {step.subclassOptions?.map((option) => {
+          const optionFeatures = option.features?.filter((f: any) => (f as any).level == null || (f as any).level === level) || [];
+          const isSelected = selected === option.name;
+          return (
+            <div
+              key={option.name}
+              className={`rounded-lg border p-3 transition-colors ${
+                isSelected
+                  ? "border-gold/40 bg-gold/5"
+                  : "border-parchment/10 bg-charcoal/40 hover:border-parchment/20"
+              }`}
+            >
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="subclass"
+                  checked={isSelected}
+                  onChange={() => onSelect(option.name)}
+                  className="mt-0.5 h-4 w-4 text-gold focus:ring-gold/50"
+                />
+                <div className="flex-1">
+                  <span className="text-sm font-medium text-parchment/80">{option.name}</span>
+                  {option.description && <p className="text-xs text-parchment/50 mt-0.5">{option.description}</p>}
+                  {optionFeatures.length > 0 && (
+                    <div className="mt-2 space-y-1.5">
+                      {optionFeatures.map((feature, idx) => {
+                        const optionFeatureChoices = featureChoices?.find((c) => c.featureName === feature.name);
+                        const selectedAnimal = selectedChoices?.[feature.name];
+                        const animalDesc = selectedAnimal ? getAnimalDescription(feature.description as string, selectedAnimal) : undefined;
+                        return (
+                          <div key={idx} className="rounded-md border border-parchment/10 bg-charcoal/30 px-2.5 py-2">
+                            <span className="text-xs font-medium text-gold/70">{feature.name}:</span>
+                            <span className="text-[11px] text-parchment/60 ml-1 whitespace-pre-line">{feature.description as string}</span>
+                            {optionFeatureChoices && (
+                              <div className="mt-1.5">
+                                <select
+                                  value={selectedAnimal || ""}
+                                  onChange={(e) => onChoiceChange?.(feature.name, e.target.value)}
+                                  onBlur={() => {}}
+                                  className="input w-full text-xs"
+                                >
+                                  <option value="">Choose...</option>
+                                  {optionFeatureChoices.options.map((opt) => (
+                                    <option key={opt} value={opt}>{opt}</option>
+                                  ))}
+                                </select>
+                                {animalDesc && (
+                                  <p className="text-[11px] text-parchment/50 mt-1">{animalDesc}</p>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </label>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -135,7 +135,7 @@ export function StepAbilityScores({ data, onChange }: StepAbilityScoresProps) {
   const liveInitiative = getModifier(finalAbilityScores.dex);
 
   return (
-    <StepCard title="Ability Scores & Saving Throws">
+    <StepCard title="Ability Scores & Saving Throws" hint="Ability scores define your character's physical and mental abilities. Each class relies on different abilities — for example, a Fighter uses Strength, while a Wizard uses Intelligence.">
       {showInfo && (
         <div className="mb-4 rounded-lg border border-gold/20 bg-gold/5 p-3">
           <p className="text-xs text-parchment/70 mb-2">

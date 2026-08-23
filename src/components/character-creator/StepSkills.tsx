@@ -71,7 +71,7 @@ export function StepSkills({ data, onChange, showExpertisePicker = true, extraSk
   };
 
   return (
-    <StepCard title="Skills">
+    <StepCard title="Skills" hint="Choose your character's skill proficiencies. Skills represent your character's abilities and training, from Athletics to Persuasion.">
       {showInfo && (
         <div className="mb-4 rounded-lg border border-gold/20 bg-gold/5 p-3">
           <p className="text-xs text-parchment/70 mb-2">

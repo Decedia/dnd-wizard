@@ -16,7 +16,7 @@ export function StepLooksAppearances({ data, onChange }: StepLooksAppearancesPro
   };
 
   return (
-    <StepCard title="Looks / Appearances">
+    <StepCard title="Looks / Appearances" hint="Describe your character's physical appearance, personality, and backstory. This brings your character to life.">
       <div className="grid grid-cols-2 gap-4">
         <Field label="Age">
           <input

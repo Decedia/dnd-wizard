@@ -185,15 +185,18 @@ export function generateLevelUpSteps(
     }
 
     if (level === classData.subclassLevel && classData.subclasses && classData.subclasses.length > 0) {
-      const subclassOptions = classData.subclasses.map((sub: any) => ({
-        ...sub,
-        features: (sub.features || [])
+      const subclassOptions = classData.subclasses.map((sub: any) => {
+        const levelFeatures = (sub.features || [])
           .filter((f: any) => (f as any).level == null || (f as any).level === classData.subclassLevel)
-          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description), level: f.level })),
-      }));
+          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description), level: f.level }));
+        return {
+          ...sub,
+          features: levelFeatures,
+        };
+      });
       sections.push({
         type: "subclass",
-        description: `Choose your ${classData.name} subclass.`,
+        description: `Choose your ${classData.name} subclass at level ${classData.subclassLevel}. This choice defines your archetype and grants unique features.`,
         subclassOptions,
         subclassFeatureChoices: getSubclassFeatureChoices(className, subclassOptions),
       });

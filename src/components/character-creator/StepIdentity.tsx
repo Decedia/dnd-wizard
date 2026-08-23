@@ -38,7 +38,7 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
   };
 
   return (
-    <StepCard title="Identity">
+    <StepCard title="Identity" hint="Enter your character's name and basic details. This is who your character is in the world.">
       <div className="space-y-4">
         <Field label="Character Name" required>
           <input

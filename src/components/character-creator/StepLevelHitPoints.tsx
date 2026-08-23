@@ -43,7 +43,7 @@ export function StepLevelHitPoints({ data, onChange }: StepLevelHitPointsProps) 
   const currentHp = data.currentHp || currentMaxHp;
 
   return (
-    <StepCard title="Level & Hit Points">
+    <StepCard title="Level & Hit Points" hint="Set your character's starting level and hit points. Hit points represent how much damage your character can take before falling unconscious.">
       <div className="space-y-4">
         <div className="flex items-center justify-center gap-2">
           <input

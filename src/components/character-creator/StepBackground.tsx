@@ -16,7 +16,7 @@ interface StepBackgroundProps {
 
 export function StepBackground({ data, onChange }: StepBackgroundProps) {
   return (
-    <StepCard title="Background">
+    <StepCard title="Background" hint="Create your character's backstory, personality, and motivations. This adds depth to your character and may grant special features.">
       <div className="space-y-4">
         <Field label="Background Name">
           <input
