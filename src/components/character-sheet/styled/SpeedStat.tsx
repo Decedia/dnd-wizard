@@ -26,10 +26,6 @@ export function SpeedStat({ value }: SpeedStatProps) {
             strokeWidth="1.5"
             opacity="0.5"
           />
-          <g transform="translate(50, 50) scale(0.9)" stroke="#ef4444" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none">
-            <path d="M-6 -14 L-2 -6 L6 -6 L2 -14 Z" />
-            <path d="M-10 0 L-4 -4 L-2 6 L6 6 L8 -4 L14 0" />
-          </g>
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-2xl font-bold text-parchment">{value}ft</span>
