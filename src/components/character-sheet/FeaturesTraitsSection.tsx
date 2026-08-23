@@ -37,17 +37,17 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   };
 
   return (
-    <SectionCard id="features" title="Features & Traits" icon={<FeaturesIcon className="h-5 w-5" />}>
+    <SectionCard id="features" title="FEATURES & TRAITS" icon={<FeaturesIcon className="h-5 w-5" />}>
       <div className="space-y-3">
         {character.subclass && (
-          <div key="subclass-header" className="rounded-lg border border-gold/20 bg-gold/5 px-3 py-2">
-            <span className="text-sm font-semibold text-gold">{character.subclass}</span>
+          <div key="subclass-header" className="rounded-lg border border-burgundy/20 bg-burgundy/5 px-3 py-2">
+            <span className="text-sm font-semibold text-burgundy">{character.subclass}</span>
           </div>
         )}
         {character.features.map((feature) => {
           const isLocked = feature.locked === true;
           return (
-            <div key={feature.id} className={`rounded-lg border p-3 ${isLocked ? "border-green-500/20 bg-green-500/5" : "border-parchment/10 bg-charcoal/40"}`}>
+            <div key={feature.id} className={`rounded-lg border p-3 ${isLocked ? "border-green-500/20 bg-green-500/5" : "border-border bg-charcoal/60"}`}>
               {editMode ? (
                 <>
                   <div className="flex items-center justify-between gap-3">
@@ -69,7 +69,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                       <button
                         type="button"
                         onClick={() => removeItem(feature.id)}
-                        className="text-parchment/40 hover:text-parchment"
+                        className="text-text-muted hover:text-parchment"
                         aria-label="Remove feature"
                       >
                         <XIcon className="h-4 w-4" />
@@ -87,7 +87,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 </>
               ) : (
                 <div>
-                  <h3 className="text-sm font-semibold text-parchment/90">{feature.name}</h3>
+                  <h3 className="text-sm font-semibold text-parchment">{feature.name}</h3>
                   {feature.description && <DescriptionText>{feature.description}</DescriptionText>}
                 </div>
               )}
@@ -99,7 +99,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         <button
           type="button"
           onClick={addItem}
-          className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
+          className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
         >
           + Add Feature
         </button>

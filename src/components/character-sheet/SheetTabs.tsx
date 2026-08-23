@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type TabId = "combat" | "character" | "gear" | "bio";
+type TabId = "combat" | "character" | "abilities" | "spells";
 
 interface SheetTabsProps {
   activeTab: TabId;
@@ -11,9 +11,9 @@ interface SheetTabsProps {
 
 const TABS: { id: TabId; label: string }[] = [
   { id: "combat", label: "Combat" },
+  { id: "spells", label: "Spells" },
+  { id: "abilities", label: "Abilities" },
   { id: "character", label: "Character" },
-  { id: "gear", label: "Gear" },
-  { id: "bio", label: "Bio" },
 ];
 
 export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
@@ -29,7 +29,7 @@ export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
             className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
               isActive
                 ? "bg-burgundy text-parchment shadow-lg shadow-burgundy/20"
-                : "bg-charcoal-lighter text-parchment/60 hover:text-parchment hover:bg-charcoal-lighter/80"
+                : "bg-charcoal-lighter text-text-muted hover:text-parchment hover:bg-charcoal-lighter/80 border border-border"
             }`}
           >
             {tab.label}

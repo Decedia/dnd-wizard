@@ -106,13 +106,13 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
   }, []);
 
   return (
-    <SectionCard id="spells" title="Spells" icon={<SpellsIcon className="h-5 w-5" />}>
+    <SectionCard id="spells" title="SPELLS" icon={<SpellsIcon className="h-5 w-5" />}>
       <div className="flex items-center justify-between">
         {editMode && onToggleCollapse && (
           <button
             type="button"
             onClick={onToggleCollapse}
-            className="text-xs text-parchment/50 hover:text-parchment"
+            className="text-xs text-text-muted hover:text-parchment"
           >
             {collapsed ? "Show Spells" : "Hide Spells"}
           </button>
@@ -127,7 +127,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
               const isCustom = spell.source === "custom";
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               return (
-                <div key={spell.id} className="flex flex-wrap items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
+                <div key={spell.id} className="flex flex-wrap items-center gap-2 rounded-lg border border-border bg-charcoal px-3 py-2">
                   {editMode ? (
                     <>
                       <select
@@ -203,7 +203,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                         <button
                           type="button"
                           onClick={() => setTooltip({ name: spell.name, description })}
-                          className="text-parchment/40 hover:text-parchment shrink-0"
+                          className="text-text-muted hover:text-parchment shrink-0"
                           aria-label={`Info about ${spell.name}`}
                         >
                           <InfoIcon className="h-4 w-4" />
@@ -212,7 +212,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                       <button
                         type="button"
                         onClick={() => removeItem(spell.id)}
-                        className="text-parchment/40 hover:text-parchment shrink-0"
+                        className="text-text-muted hover:text-parchment shrink-0"
                         aria-label="Remove spell"
                       >
                         <XIcon className="h-4 w-4" />
@@ -221,11 +221,11 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                   ) : (
                     <div className="flex flex-col gap-1 w-full">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-parchment/90">{spell.name}</span>
-                        <span className="text-xs text-parchment/50">Level {spell.level}</span>
+                        <span className="text-sm font-semibold text-parchment">{spell.name}</span>
+                        <span className="text-xs text-text-muted">Level {spell.level}</span>
                       </div>
                       {(spell.damageDice || spell.damageType) && (
-                        <span className="text-sm text-parchment/70">
+                        <span className="text-sm text-text-secondary">
                           {spell.damageDice}{spell.damageType ? ` ${spell.damageType}` : ""}
                         </span>
                       )}
@@ -240,7 +240,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
             <button
               type="button"
               onClick={() => addItem()}
-              className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-burgundy/40 hover:text-parchment"
+              className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
             >
               + Add Spell
             </button>
@@ -248,12 +248,12 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
 
           {character.costumeSpells.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-sm font-semibold text-parchment/70 mb-2">Costume Spells</h3>
+              <h3 className="text-sm font-semibold text-text-secondary mb-2">Costume Spells</h3>
               <div className="space-y-2">
                 {character.costumeSpells.map((costumeSpell) => {
                   const isEditing = editingCostumeSpellId === costumeSpell.id;
                   return (
-                    <div key={costumeSpell.id} className="rounded-lg border border-parchment/10 bg-charcoal/40 p-3">
+                    <div key={costumeSpell.id} className="rounded-lg border border-border bg-charcoal/60 p-3">
                       {isEditing ? (
                         <div className="space-y-2">
                           <input
@@ -275,14 +275,14 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                             <button
                               type="button"
                               onClick={() => saveCostumeSpellEdit(costumeSpell.id)}
-                              className="rounded-lg border border-gold/40 px-3 py-1.5 text-xs font-medium text-gold transition-colors hover:border-gold hover:text-parchment"
+                              className="rounded-lg border border-burgundy/40 px-3 py-1.5 text-xs font-medium text-burgundy transition-colors hover:border-burgundy hover:text-parchment"
                             >
                               Save
                             </button>
                             <button
                               type="button"
                               onClick={() => setEditingCostumeSpellId(null)}
-                              className="rounded-lg border border-parchment/20 px-3 py-1.5 text-xs font-medium text-parchment/60 transition-colors hover:border-parchment/40 hover:text-parchment"
+                              className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-text-muted transition-colors hover:border-text-muted hover:text-parchment"
                             >
                               Cancel
                             </button>
@@ -301,7 +301,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                               <button
                                 type="button"
                                 onClick={() => setEditingCostumeSpellId(costumeSpell.id)}
-                                className="text-parchment/40 hover:text-gold"
+                                className="text-text-muted hover:text-burgundy"
                                 aria-label="Edit costume spell"
                               >
                                 <EditIcon className="h-4 w-4" />
@@ -309,7 +309,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                               <button
                                 type="button"
                                 onClick={() => removeCostumeSpell(costumeSpell.id)}
-                                className="text-parchment/40 hover:text-parchment"
+                                className="text-text-muted hover:text-parchment"
                                 aria-label="Remove costume spell"
                               >
                                 <XIcon className="h-4 w-4" />
@@ -326,13 +326,13 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                 <button
                   type="button"
                   onClick={() => setIsAddingCostumeSpell(true)}
-                  className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
+                  className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-burgundy/40 hover:text-parchment"
                 >
                   + Add Costume Spell
                 </button>
               )}
               {isAddingCostumeSpell && (
-                <div className="mt-3 rounded-lg border border-parchment/10 bg-charcoal/40 p-3 space-y-2">
+                <div className="mt-3 rounded-lg border border-border bg-charcoal/60 p-3 space-y-2">
                   <input
                     type="text"
                     value={newCostumeSpell.name}
@@ -352,7 +352,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                     <button
                       type="button"
                       onClick={addCostumeSpell}
-                      className="rounded-lg border border-gold/40 px-3 py-1.5 text-xs font-medium text-gold transition-colors hover:border-gold hover:text-parchment"
+                      className="rounded-lg border border-burgundy/40 px-3 py-1.5 text-xs font-medium text-burgundy transition-colors hover:border-burgundy hover:text-parchment"
                     >
                       Add
                     </button>
@@ -362,7 +362,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                         setIsAddingCostumeSpell(false);
                         setNewCostumeSpell({ name: "", description: "" });
                       }}
-                      className="rounded-lg border border-parchment/20 px-3 py-1.5 text-xs font-medium text-parchment/60 transition-colors hover:border-parchment/40 hover:text-parchment"
+                      className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-text-muted transition-colors hover:border-text-muted hover:text-parchment"
                     >
                       Cancel
                     </button>
@@ -376,14 +376,14 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
 
       {tooltip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm rounded-xl border border-parchment/20 bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
+          <div className="max-w-sm rounded-lg border border-border bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-display font-semibold text-gold">{tooltip.name}</h3>
-              <button onClick={() => setTooltip(null)} className="text-parchment/40 hover:text-parchment">
+              <h3 className="font-display font-semibold text-burgundy">{tooltip.name}</h3>
+              <button onClick={() => setTooltip(null)} className="text-text-muted hover:text-parchment">
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-sm text-parchment/70">{tooltip.description}</p>
+            <p className="text-sm text-text-secondary">{tooltip.description}</p>
           </div>
         </div>
       )}

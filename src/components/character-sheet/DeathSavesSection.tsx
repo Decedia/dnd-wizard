@@ -18,18 +18,18 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
       className={`inline-block h-4 w-4 rounded-full border-2 ${
         filled
           ? color === "gold"
-            ? "border-gold bg-gold shadow-sm shadow-gold/40"
-            : "border-red-400 bg-red-400 shadow-sm shadow-red-400/40"
-          : "border-parchment/30 bg-transparent"
+            ? "border-burgundy bg-burgundy shadow-sm shadow-burgundy/40"
+            : "border-burgundy bg-burgundy shadow-sm shadow-burgundy/40"
+          : "border-border bg-transparent"
       }`}
     />
   );
 
   return (
-    <SectionCard id="death-saves" title="Death Saves" icon={<DeathIcon className="h-5 w-5" />}>
+    <SectionCard id="death-saves" title="DEATH SAVES" icon={<DeathIcon className="h-5 w-5" />}>
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-medium text-parchment/70">Successes</span>
+          <span className="text-xs font-medium text-text-secondary">Successes</span>
           {editMode
             ? [0, 1, 2].map((i) => (
                 <label key={`ds-s-${i}`} className="flex items-center cursor-pointer">
@@ -38,16 +38,16 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
                     checked={character.deathSaveSuccesses > i}
                     onChange={(e) => onChange({ deathSaveSuccesses: e.target.checked ? i + 1 : i })}
                     onBlur={onFieldBlur}
-                    className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+                    className="h-4 w-4 rounded border-border bg-charcoal text-burgundy focus:ring-burgundy/50"
                   />
                 </label>
               ))
             : [0, 1, 2].map((i) => (
-                <span key={`ds-s-${i}`}>{renderDot(character.deathSaveSuccesses > i, "gold")}</span>
+                <span key={`ds-s-${i}`}>{renderDot(character.deathSaveSuccesses > i, "red")}</span>
               ))}
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs font-medium text-parchment/70">Failures</span>
+          <span className="text-xs font-medium text-text-secondary">Failures</span>
           {editMode
             ? [0, 1, 2].map((i) => (
                 <label key={`ds-f-${i}`} className="flex items-center cursor-pointer">
@@ -56,7 +56,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
                     checked={character.deathSaveFailures > i}
                     onChange={(e) => onChange({ deathSaveFailures: e.target.checked ? i + 1 : i })}
                     onBlur={onFieldBlur}
-                    className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-red-400 focus:ring-red-400/50"
+                    className="h-4 w-4 rounded border-border bg-charcoal text-burgundy focus:ring-burgundy/50"
                   />
                 </label>
               ))

@@ -7,13 +7,6 @@ interface AbilityScoreBlockProps {
   value: number;
   onChange: (value: number) => void;
   onBlur?: () => void;
-}
-
-interface AbilityScoreBlockProps {
-  label: string;
-  value: number;
-  onChange: (value: number) => void;
-  onBlur?: () => void;
   editMode?: boolean;
 }
 
@@ -23,36 +16,32 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
 
   if (!editMode) {
     return (
-      <div className="flex flex-col items-center">
-        <div className="flex flex-col items-center">
-          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
-          <span className={`text-lg font-bold ${mod >= 0 ? "text-gold" : "text-red-300"}`}>
-            {mod >= 0 ? `+${mod}` : mod}
-          </span>
-        </div>
-        <div className="mt-1 rounded-full border border-parchment/20 bg-charcoal/60 px-2 py-0.5">
-          <span className="text-[10px] font-semibold text-parchment/80">{value}</span>
-        </div>
+      <div className="flex flex-col items-center rounded-lg border border-border bg-charcoal p-3">
+        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+        <span className={`text-lg font-bold ${mod >= 0 ? "text-burgundy" : "text-red-300"}`}>
+          {mod >= 0 ? `+${mod}` : mod}
+        </span>
+        <span className="text-[10px] font-semibold text-text-muted mt-1">{value}</span>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center rounded-lg border border-border bg-charcoal p-3">
       <div className="relative flex flex-col items-center">
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="group flex h-16 w-16 flex-col items-center justify-center rounded-full border-2 border-gold/40 bg-charcoal-light shadow-lg shadow-burgundy/10 transition-all hover:border-gold/60 active:scale-95"
+          className="group flex flex-col items-center justify-center transition-all hover:opacity-80"
           aria-label={`${label} score`}
         >
-          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
-          <span className={`text-lg font-bold ${mod >= 0 ? "text-gold" : "text-red-300"}`}>
+          <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+          <span className={`text-lg font-bold ${mod >= 0 ? "text-burgundy" : "text-red-300"}`}>
             {mod >= 0 ? `+${mod}` : mod}
           </span>
         </button>
         {editing && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-charcoal/90 backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-charcoal/90 backdrop-blur-sm">
             <input
               type="number"
               autoFocus
@@ -73,9 +62,7 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
           </div>
         )}
       </div>
-      <div className="mt-1 rounded-full border border-parchment/20 bg-charcoal/60 px-2 py-0.5">
-        <span className="text-[10px] font-semibold text-parchment/80">{value}</span>
-      </div>
+      <span className="text-[10px] font-semibold text-text-muted mt-1">{value}</span>
     </div>
   );
 }

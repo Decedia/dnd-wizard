@@ -14,7 +14,7 @@ export function OtherProficienciesSection({ otherProficiencies, onChange, editMo
   const { onFieldBlur } = useCharacterSheet();
 
   return (
-    <SectionCard id="proficiencies" title="Other Proficiencies & Languages" icon={<ProficienciesIcon className="h-5 w-5" />}>
+    <SectionCard id="proficiencies" title="OTHER PROFICIENCIES & LANGUAGES" icon={<ProficienciesIcon className="h-5 w-5" />}>
       {editMode ? (
         <textarea
           value={otherProficiencies}
@@ -27,7 +27,7 @@ export function OtherProficienciesSection({ otherProficiencies, onChange, editMo
         otherProficiencies ? (
           <DescriptionText>{otherProficiencies}</DescriptionText>
         ) : (
-          <p className="text-sm text-parchment/50">None</p>
+          <p className="text-sm text-text-muted">None</p>
         )
       )}
     </SectionCard>

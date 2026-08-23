@@ -38,8 +38,8 @@ export function ProficiencyDot({ proficient, onChange, size = "sm", editMode }: 
       onKeyDown={handleKeyDown}
       className={`${sizeClasses} rounded-full border-2 transition-all duration-200 ${
         proficient
-          ? "border-gold bg-gold shadow-sm shadow-gold/40"
-          : "border-parchment/30 bg-transparent hover:border-parchment/50"
+          ? "border-burgundy bg-burgundy shadow-sm shadow-burgundy/40"
+          : "border-border bg-transparent hover:border-text-muted"
       } ${interactive ? "cursor-pointer" : "cursor-default"}`}
     />
   );

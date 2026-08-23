@@ -15,7 +15,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
   const { onFieldBlur } = useCharacterSheet();
 
   return (
-    <SectionCard id="combat" title="Combat Stats" icon={<CombatIcon className="h-5 w-5" />}>
+    <SectionCard id="combat" title="COMBAT STATS" icon={<CombatIcon className="h-5 w-5" />}>
       {editMode ? (
         <div className="flex items-center gap-2 mb-3">
           <input
@@ -24,15 +24,15 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             checked={character.isCustomHp || false}
             onChange={(e) => onChange({ isCustomHp: e.target.checked })}
             onBlur={onFieldBlur}
-            className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50"
+            className="h-4 w-4 rounded border-border bg-charcoal text-burgundy focus:ring-burgundy/50"
           />
-          <label htmlFor="custom-hp" className="text-xs font-medium text-parchment/80 cursor-pointer select-none">
+          <label htmlFor="custom-hp" className="text-xs font-medium text-text-secondary cursor-pointer select-none">
             Custom HP
           </label>
         </div>
       ) : (
         character.isCustomHp && (
-          <div className="mb-3 text-xs font-medium text-parchment/70">Custom HP enabled</div>
+          <div className="mb-3 text-xs font-medium text-text-muted">Custom HP enabled</div>
         )
       )}
 
@@ -50,7 +50,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment/90">{character.currentHp}</span>
+            <span className="text-sm font-semibold text-burgundy">{character.currentHp}</span>
           )}
         </Field>
         <Field label="Max HP">
@@ -63,7 +63,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment/90">{character.maxHp}</span>
+            <span className="text-sm font-semibold text-burgundy">{character.maxHp}</span>
           )}
         </Field>
       </div>
@@ -79,7 +79,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment/90">{character.temporaryHp}</span>
+            <span className="text-sm font-semibold text-burgundy">{character.temporaryHp}</span>
           )}
         </Field>
         <Field label="Speed">
@@ -92,7 +92,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment/90">{character.speed}ft</span>
+            <span className="text-sm font-semibold text-burgundy">{character.speed}ft</span>
           )}
         </Field>
       </div>
@@ -103,7 +103,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
     </label>
   );

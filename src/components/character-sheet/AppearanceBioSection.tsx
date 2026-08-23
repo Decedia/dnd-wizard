@@ -29,8 +29,8 @@ interface AppearanceBioSectionProps {
 function ViewField({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
-      <span className="text-sm font-medium text-parchment/90">{value || "—"}</span>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+      <span className="text-sm font-medium text-text-secondary">{value || "—"}</span>
     </div>
   );
 }
@@ -44,7 +44,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
   };
 
   return (
-    <SectionCard id="appearance" title="Appearance & Bio" icon={<AppearanceIcon className="h-5 w-5" />}>
+    <SectionCard id="appearance" title="APPEARANCE & BIO" icon={<AppearanceIcon className="h-5 w-5" />}>
       {editMode ? (
         <>
           <div className="grid grid-cols-2 gap-4">
@@ -207,7 +207,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
     </label>
   );

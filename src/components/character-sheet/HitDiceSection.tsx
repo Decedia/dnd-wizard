@@ -14,7 +14,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
   const { onFieldBlur } = useCharacterSheet();
 
   return (
-    <SectionCard id="hit-dice" title="Hit Dice" icon={<DiceIcon className="h-5 w-5" />}>
+    <SectionCard id="hit-dice" title="HIT DICE" icon={<DiceIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-2 gap-3">
         <Field label="Total">
           {editMode ? (
@@ -24,10 +24,10 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               onChange={(e) => onChange({ hitDiceTotal: e.target.value })}
               onBlur={onFieldBlur}
               className="input"
-              placeholder="e.g. 3d10"
+              placeholder="e.g. 10d8"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment/90">{character.hitDiceTotal || "—"}</span>
+            <span className="text-sm font-semibold text-text-secondary">{character.hitDiceTotal || "—"}</span>
           )}
         </Field>
         <Field label="Remaining">
@@ -40,7 +40,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               className="input"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment/90">{character.hitDiceRemaining}</span>
+            <span className="text-sm font-semibold text-burgundy">{character.hitDiceRemaining}</span>
           )}
         </Field>
       </div>
@@ -51,7 +51,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
     </label>
   );

@@ -5,7 +5,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { skills as srdSkills } from "@/data/srd";
 import { getStaticClass } from "@/lib/srd-client";
-import { getModifier, getProficiencyBonus, getMaxExpertiseCount, type Character } from "@/lib/storage";
+import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 import { ExpertisePicker } from "./ExpertisePicker";
 
 interface SkillsSectionProps {
@@ -55,10 +55,10 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   }, [onChange]);
 
   return (
-    <SectionCard id="skills" title="Skills" icon={<SkillsIcon className="h-5 w-5" />}>
+    <SectionCard id="skills" title="SKILLS" icon={<SkillsIcon className="h-5 w-5" />}>
       {skillChoices && (
-        <div className="mb-3 rounded-lg border border-gold/20 bg-gold/5 px-3 py-2">
-          <span className="text-xs text-parchment/70">
+        <div className="mb-3 rounded-lg border border-border bg-charcoal px-3 py-2">
+          <span className="text-xs text-text-secondary">
             Select {maxSelections} skills from your class list ({currentSelections} of {maxSelections} selected)
           </span>
         </div>
@@ -80,8 +80,8 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               key={name}
               className={`flex items-center justify-between rounded-lg border px-3 py-2 ${
                 disabled
-                  ? "border-parchment/5 bg-charcoal/20 opacity-50"
-                  : "border-parchment/10 bg-charcoal/40"
+                  ? "border-border bg-charcoal/40 opacity-50"
+                  : "border-border bg-charcoal/60"
               }`}
             >
               {editMode ? (
@@ -92,43 +92,43 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                     onChange={() => toggleSkill(name)}
                     onBlur={onFieldBlur}
                     disabled={disabled}
-                    className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
+                    className="h-4 w-4 rounded border-border bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
                   />
                   <div className="flex flex-col">
-                    <span className="text-sm text-parchment/80 flex items-center gap-2">
+                    <span className="text-sm text-text-secondary flex items-center gap-2">
                       {name}
                       {isExpert && (
-                        <span className="text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">EXPERTISE</span>
+                        <span className="text-[10px] font-bold text-burgundy bg-burgundy/10 px-1.5 py-0.5 rounded">EXPERTISE</span>
                       )}
                     </span>
-                    <span className="text-[10px] text-parchment/50">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
+                    <span className="text-[10px] text-text-muted">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                     {alreadyProficient && (
-                      <span className="text-[10px] text-parchment/40">Already proficient</span>
+                      <span className="text-[10px] text-text-muted">Already proficient</span>
                     )}
                     {!allowed && !alreadyProficient && (
-                      <span className="text-[10px] text-parchment/40">Not available for this class</span>
+                      <span className="text-[10px] text-text-muted">Not available for this class</span>
                     )}
                   </div>
                 </label>
               ) : (
                 <div className="flex flex-col">
-                  <span className="text-sm text-parchment/80 flex items-center gap-2">
+                  <span className="text-sm text-text-secondary flex items-center gap-2">
                     {name}
                     {isExpert && (
-                      <span className="text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">EXPERTISE</span>
+                      <span className="text-[10px] font-bold text-burgundy bg-burgundy/10 px-1.5 py-0.5 rounded">EXPERTISE</span>
                     )}
                   </span>
-                  <span className="text-[10px] text-parchment/50">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
+                  <span className="text-[10px] text-text-muted">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                 </div>
               )}
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-parchment/70">
+                <span className="text-sm font-semibold text-burgundy">
                   {total >= 0 ? `+${total}` : total}
                 </span>
                 <button
                   type="button"
                   onClick={() => setTooltip({ name, description })}
-                  className="text-parchment/40 hover:text-parchment"
+                  className="text-text-muted hover:text-parchment"
                   aria-label={`Info about ${name}`}
                 >
                   <InfoIcon className="h-4 w-4" />
@@ -157,21 +157,21 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               className="input max-w-[120px] bg-charcoal/60"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment/90">{character.passivePerception}</span>
+            <span className="text-sm font-semibold text-text-secondary">{character.passivePerception}</span>
           )}
         </Field>
       </div>
 
       {tooltip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm rounded-xl border border-parchment/20 bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
+          <div className="max-w-sm rounded-lg border border-border bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-display font-semibold text-gold">{tooltip.name}</h3>
-              <button onClick={() => setTooltip(null)} className="text-parchment/40 hover:text-parchment">
+              <h3 className="font-display font-semibold text-burgundy">{tooltip.name}</h3>
+              <button onClick={() => setTooltip(null)} className="text-text-muted hover:text-parchment">
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-sm text-parchment/70">{tooltip.description}</p>
+            <p className="text-sm text-text-secondary">{tooltip.description}</p>
           </div>
         </div>
       )}
@@ -209,7 +209,7 @@ function SkillsIcon({ className }: { className?: string }) {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
       {children}
     </label>
   );

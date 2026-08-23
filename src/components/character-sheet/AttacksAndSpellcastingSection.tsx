@@ -53,24 +53,24 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   };
 
   return (
-    <SectionCard id="attacks" title="Attacks & Spellcasting" icon={<AttacksIcon className="h-5 w-5" />}>
+    <SectionCard id="attacks" title="ATTACKS" icon={<AttacksIcon className="h-5 w-5" />}>
       {character.class === "Rogue" && sneakAttack && (
-        <div className="mb-4 rounded-lg border border-gold/30 bg-gold/10 px-4 py-3">
-          <span className="text-sm font-semibold text-gold">Sneak Attack: {sneakAttack}</span>
+        <div className="mb-4 rounded-lg border border-burgundy/30 bg-burgundy/10 px-4 py-3">
+          <span className="text-sm font-semibold text-burgundy">Sneak Attack: {sneakAttack}</span>
         </div>
       )}
       {classAttacks.length > 0 && (
         <div className="mb-4 space-y-3">
           {classAttacks.map((attack) => (
-            <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-gold/30 bg-gold/10 px-4 py-4">
+            <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-burgundy/30 bg-burgundy/10 px-4 py-4">
               <div className="flex items-center gap-3">
-                <span className="text-base font-semibold text-gold/90 flex-1">{attack.name}</span>
-                <span className="text-[10px] font-bold text-gold bg-gold/20 px-2 py-1 rounded uppercase tracking-wider">class-granted</span>
+                <span className="text-base font-semibold text-parchment/90 flex-1">{attack.name}</span>
+                <span className="text-[10px] font-bold text-burgundy bg-burgundy/20 px-2 py-1 rounded uppercase tracking-wider">class-granted</span>
               </div>
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-sm text-parchment/70">{attack.damageType}</span>
+                <span className="text-sm text-text-secondary">{attack.damageType}</span>
                 {attack.sneakAttack && (
-                  <span className="text-xs font-bold text-gold bg-gold/20 px-2.5 py-1.5 rounded">+{attack.sneakAttack} sneak</span>
+                  <span className="text-xs font-bold text-burgundy bg-burgundy/20 px-2.5 py-1.5 rounded">+{attack.sneakAttack} sneak</span>
                 )}
               </div>
             </div>
@@ -78,17 +78,17 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
         </div>
       )}
       {weaponAttacks.length === 0 && classAttacks.length === 0 ? (
-        <p className="text-sm text-parchment/50">Equip weapons in Inventory to auto-populate attacks.</p>
+        <p className="text-sm text-text-muted">Equip weapons in Inventory to auto-populate attacks.</p>
       ) : (
         <div className="space-y-3">
           {weaponAttacks.map((attack) => {
             const details = getWeaponAttackDetails(attack);
             return (
-              <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-parchment/15 bg-charcoal/40 px-4 py-4">
+              <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-border bg-charcoal/60 px-4 py-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-base font-semibold text-parchment/90 flex-1">{attack.name}</span>
+                  <span className="text-base font-semibold text-parchment flex-1">{attack.name}</span>
                   {details && (
-                    <span className="text-sm font-bold text-gold bg-gold/15 border border-gold/30 px-3 py-1.5 rounded-lg shadow-sm">
+                    <span className="text-sm font-bold text-burgundy bg-burgundy/15 border border-burgundy/25 px-3 py-1.5 rounded-lg">
                       +{details.attackBonus} to hit
                     </span>
                   )}
@@ -96,8 +96,8 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <div className="flex items-center gap-3 flex-wrap">
                   {details && (
                     <>
-                      <span className="text-sm text-parchment/80">{details.damageDice || "—"}</span>
-                      <span className="text-sm text-parchment/80 font-medium">
+                      <span className="text-sm text-text-secondary">{details.damageDice || "—"}</span>
+                      <span className="text-sm text-text-secondary font-medium">
                         {details.damageBonus >= 0 ? `+${details.damageBonus}` : details.damageBonus}
                       </span>
                       <InfoTooltip content={
@@ -112,15 +112,15 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                           <div>Total to hit: +{details.attackBonus}</div>
                         </div>
                       }>
-                        <span className="text-parchment/40 hover:text-parchment cursor-help">
+                        <span className="text-text-muted hover:text-parchment cursor-help">
                           <InfoIcon className="h-4 w-4" />
                         </span>
                       </InfoTooltip>
-                      <span className="text-sm text-parchment/50">{details.damageType}</span>
+                      <span className="text-sm text-text-muted">{details.damageType}</span>
                     </>
                   )}
                   {!details && attack.damageType && (
-                    <span className="text-sm text-parchment/80 font-medium">{attack.damageType}</span>
+                    <span className="text-sm text-text-secondary font-medium">{attack.damageType}</span>
                   )}
                   {attack.sneakAttack && (
                     <span className="text-xs font-bold text-burgundy bg-burgundy/15 border border-burgundy/25 px-2.5 py-1.5 rounded-lg">
@@ -136,7 +136,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
           })}
         </div>
       )}
-      <p className="text-xs text-parchment/50 mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
+      <p className="text-xs text-text-muted mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
     </SectionCard>
   );
 }

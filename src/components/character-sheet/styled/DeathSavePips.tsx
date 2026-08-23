@@ -26,7 +26,7 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
   return (
     <div className="flex items-center gap-6">
       <div className="flex flex-col items-center gap-1.5">
-        <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Successes</span>
+        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Successes</span>
         <div className="flex items-center gap-2">
           {[0, 1, 2].map((i) => (
             <button
@@ -45,7 +45,7 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
         </div>
       </div>
       <div className="flex flex-col items-center gap-1.5">
-        <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">Failures</span>
+        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Failures</span>
         <div className="flex items-center gap-2">
           {[0, 1, 2].map((i) => (
             <button

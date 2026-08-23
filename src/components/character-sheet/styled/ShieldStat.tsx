@@ -12,7 +12,7 @@ export function ShieldStat({ value, label = "AC" }: ShieldStatProps) {
         <svg viewBox="0 0 100 120" className="h-20 w-16 drop-shadow-md">
           <path
             d="M50 5 L90 20 L90 55 C90 80 50 115 50 115 C50 115 10 80 10 55 L10 20 Z"
-            fill="#0d0d0d"
+            fill="#0a0a0a"
             stroke="#ef4444"
             strokeWidth="3"
             strokeLinejoin="round"
@@ -26,8 +26,8 @@ export function ShieldStat({ value, label = "AC" }: ShieldStatProps) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
-          <span className="text-2xl font-bold text-white">{value}</span>
+          <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+          <span className="text-2xl font-bold text-parchment">{value}</span>
         </div>
       </div>
     </div>
