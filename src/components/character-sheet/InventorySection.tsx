@@ -105,8 +105,49 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   const getItemDescription = (item: Character["inventory"][number]): string => {
     const srdData = getEquipmentData(item.srdItemName || item.name);
     const baseDescription = item.description || srdData?.description || "";
-    const damageInfo = srdData?.damageDice ? `${srdData.damageDice} ${srdData.damageType || ""}`.trim() : "";
-    return [baseDescription, damageInfo].filter(Boolean).join(" · ");
+
+    if (baseDescription) return baseDescription;
+
+    const fallbackParts: string[] = [];
+    const itemName = item.name || srdData?.name || "Item";
+
+    if (item.itemType === "weapon") {
+      const dice = item.damageDice || srdData?.damageDice || "";
+      const type = item.damageType || srdData?.damageType || "";
+      const profBonus = getProficiencyBonus(character.level);
+      const abilityKey = item.category === "ranged" ? "dex" : "str";
+      const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
+      const attackBonus = abilityMod + profBonus;
+      const damageBonus = abilityMod;
+
+      fallbackParts.push(`${itemName}`);
+      if (dice || type) {
+        const damagePart = [dice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, type].filter(Boolean).join(" ");
+        fallbackParts.push(`${attackBonus >= 0 ? `+${attackBonus}` : attackBonus} to hit · ${damagePart} · ${abilityKey.toUpperCase()} modifier`);
+      }
+    } else if (item.itemType === "armor") {
+      const baseAC = item.baseAC ?? srdData?.baseAC;
+      const armorType = item.armorType || srdData?.armorType;
+
+      if (armorType === "shield") {
+        fallbackParts.push(`${itemName}. +2 AC`);
+      } else if (baseAC !== undefined) {
+        const maxDex = item.maxDexBonus ?? srdData?.maxDexBonus;
+        if (maxDex === null) {
+          fallbackParts.push(`${itemName}. AC ${baseAC} + Dex modifier`);
+        } else if (maxDex === 0) {
+          fallbackParts.push(`${itemName}. AC ${baseAC}`);
+        } else {
+          fallbackParts.push(`${itemName}. AC ${baseAC} + Dex modifier (max +${maxDex})`);
+        }
+      }
+    } else if (srdData?.damageDice || srdData?.damageType) {
+      const dice = srdData.damageDice || "";
+      const type = srdData.damageType || "";
+      fallbackParts.push(`${itemName}: ${[dice, type].filter(Boolean).join(" ")}`);
+    }
+
+    return fallbackParts.join(" · ");
   };
 
   return (

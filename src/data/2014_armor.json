@@ -189,7 +189,7 @@
       "index": "shield",
       "name": "Shield",
       "equipment_category": "armor",
-      "description": "",
+      "description": "A shield is made from wood or metal and is carried in one hand. Wielding a shield increases your Armor Class by +2.",
       "cost": {
         "quantity": 10,
         "unit": "gp"
