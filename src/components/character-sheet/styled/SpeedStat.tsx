@@ -27,11 +27,11 @@ export function SpeedStat({ value }: SpeedStatProps) {
             opacity="0.5"
           />
         </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+          <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Speed</span>
           <span className="text-2xl font-bold text-parchment">{value}ft</span>
         </div>
       </div>
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider mt-1">Speed</span>
     </div>
   );
 }
