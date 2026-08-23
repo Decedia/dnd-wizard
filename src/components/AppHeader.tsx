@@ -20,19 +20,24 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-charcoal/80 backdrop-blur-xl">
       <div className="mx-auto max-w-lg px-4 py-4">
-        <Link href="/" className="flex items-center gap-3 group">
+        <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 shrink-0 items-center justify-center">
             <WizardHatIcon className="h-7 w-7 text-accent" />
           </div>
-          <div className="flex flex-col">
-            <h1 className="font-display text-xl font-bold tracking-wide text-white">
-              {title}
-            </h1>
-            {subtitle && (
-              <p className="text-xs text-parchment/50 font-body">{subtitle}</p>
-            )}
-          </div>
-        </Link>
+          {title && (
+            <div className="flex flex-col">
+              <h1 className="font-display text-xl font-bold tracking-wide text-white">
+                {title}
+              </h1>
+              {subtitle && (
+                <p className="text-xs text-parchment/50 font-body">{subtitle}</p>
+              )}
+            </div>
+          )}
+          {!title && subtitle && (
+            <p className="text-sm text-parchment/70 font-body">{subtitle}</p>
+          )}
+        </div>
       </div>
     </header>
   );

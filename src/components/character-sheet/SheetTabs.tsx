@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
-
-type TabId = "combat" | "character" | "abilities" | "spells";
+export type TabId = "combat" | "features" | "gear" | "bio";
 
 interface SheetTabsProps {
   activeTab: TabId;
@@ -11,9 +9,9 @@ interface SheetTabsProps {
 
 const TABS: { id: TabId; label: string }[] = [
   { id: "combat", label: "Combat" },
-  { id: "spells", label: "Spells" },
-  { id: "abilities", label: "Abilities" },
-  { id: "character", label: "Character" },
+  { id: "features", label: "Features" },
+  { id: "gear", label: "Gear" },
+  { id: "bio", label: "Bio" },
 ];
 
 export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {

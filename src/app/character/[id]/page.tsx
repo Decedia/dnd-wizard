@@ -7,7 +7,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
-import { SheetTabs } from "@/components/character-sheet/SheetTabs";
+import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
 import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
@@ -26,8 +26,6 @@ import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBio
 import { Trash2, Download, Upload, ArrowUp, Save } from "lucide-react";
 import { exportCharacterToPdf } from "@/lib/pdf-visual";
 import { importCharacterFromPdf } from "@/lib/pdf";
-
-type TabId = "combat" | "character" | "abilities" | "spells";
 
 export default function CharacterView() {
   const params = useParams();
@@ -168,7 +166,7 @@ export default function CharacterView() {
 
   return (
     <div className="min-h-screen bg-charcoal">
-      <AppHeader title={character.name || "Character"} subtitle="Character Sheet" />
+      <AppHeader title="" subtitle="Character Sheet" />
 
       <div className="sticky top-[68px] z-30 bg-charcoal/90 backdrop-blur-xl border-b border-border">
         <div className="mx-auto max-w-lg px-4 py-3">
@@ -193,8 +191,16 @@ export default function CharacterView() {
               <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
-          {activeTab === "spells" && (
+          {activeTab === "features" && (
             <>
+              <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
+              <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
+              <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "gear" && (
+            <>
+              <InventorySection character={character} onChange={handleChange} editMode={editMode} />
               <SpellsSection
                 character={character}
                 onChange={handleChange}
@@ -202,22 +208,13 @@ export default function CharacterView() {
                 onToggleCollapse={() => setSpellsCollapsed((c) => !c)}
                 editMode={editMode}
               />
-              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
-          {activeTab === "abilities" && (
-            <>
-              <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
-              <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
-              <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} editMode={editMode} />
-            </>
-          )}
-          {activeTab === "character" && (
+          {activeTab === "bio" && (
             <>
               <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
-              <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
               <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
-              <InventorySection character={character} onChange={handleChange} editMode={editMode} />
+              <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
 
