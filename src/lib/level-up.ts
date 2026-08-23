@@ -150,10 +150,9 @@ export function generateLevelUpSteps(
 
     if (currentSubclass && classData.subclasses) {
       const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
-      if (subclassData?.features) {
-        const subclassFeaturesAtLevel = subclassData.features
+      if (subclassData) {
+        const subclassFeaturesAtLevel = (subclassData.features || [])
           .filter((f: any) => (f as any).level != null && (f as any).level === level && (f as any).level !== classData.subclassLevel)
-          .filter((f: any) => !features.some((cf: any) => cf.name === f.name))
           .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
         features = [...features, ...subclassFeaturesAtLevel];
       }
@@ -170,18 +169,13 @@ export function generateLevelUpSteps(
     if (currentSubclass && classData.subclasses) {
       const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
       if (subclassData) {
-        const featureNames = new Set(features.map((f: any) => f.name));
-        const subclassFeaturesAtLevel = (subclassData.features || [])
-          .filter((f: any) => (f as any).level == null || (f as any).level === level)
-          .filter((f: any) => !featureNames.has(f.name))
-          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
         sections.push({
           type: "subclassInfo",
           description: `Your ${classData.name} subclass: ${currentSubclass}`,
           subclassInfo: {
             name: currentSubclass,
             description: subclassData.description,
-            features: subclassFeaturesAtLevel,
+            features: [],
           },
         });
       }
