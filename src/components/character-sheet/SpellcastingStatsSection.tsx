@@ -7,9 +7,10 @@ import type { Character } from "@/lib/storage";
 interface SpellcastingStatsSectionProps {
   character: Character;
   onChange: (patch: Partial<Character>) => void;
+  editMode?: boolean;
 }
 
-export function SpellcastingStatsSection({ character, onChange }: SpellcastingStatsSectionProps) {
+export function SpellcastingStatsSection({ character, onChange, editMode = true }: SpellcastingStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
 
   const updateCantrip = (id: string, name: string) => {
@@ -48,29 +49,41 @@ export function SpellcastingStatsSection({ character, onChange }: SpellcastingSt
     <SectionCard id="spellcasting" title="Spellcasting Stats" icon={<SpellcastingIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-1 gap-4">
         <Field label="Spellcasting Ability">
-          <input
-            type="text"
-            value={character.spellcastingAbility}
-            readOnly
-            className="input bg-charcoal/60"
-          />
+          {editMode ? (
+            <input
+              type="text"
+              value={character.spellcastingAbility}
+              readOnly
+              className="input bg-charcoal/60"
+            />
+          ) : (
+            <span className="text-sm font-semibold text-parchment/90">{character.spellcastingAbility || "—"}</span>
+          )}
         </Field>
         <div className="grid grid-cols-2 gap-3">
           <Field label="Spell Save DC">
-            <input
-              type="number"
-              value={character.spellSaveDc}
-              readOnly
-              className="input bg-charcoal/60"
-            />
+            {editMode ? (
+              <input
+                type="number"
+                value={character.spellSaveDc}
+                readOnly
+                className="input bg-charcoal/60"
+              />
+            ) : (
+              <span className="text-sm font-semibold text-parchment/90">{character.spellSaveDc}</span>
+            )}
           </Field>
           <Field label="Spell Attack Bonus">
-            <input
-              type="number"
-              value={character.spellAttackBonus}
-              readOnly
-              className="input bg-charcoal/60"
-            />
+            {editMode ? (
+              <input
+                type="number"
+                value={character.spellAttackBonus}
+                readOnly
+                className="input bg-charcoal/60"
+              />
+            ) : (
+              <span className="text-sm font-semibold text-parchment/90">{character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}</span>
+            )}
           </Field>
         </div>
       </div>
@@ -80,32 +93,40 @@ export function SpellcastingStatsSection({ character, onChange }: SpellcastingSt
         <div className="mt-2 space-y-2">
           {character.cantrips.map((cantrip) => (
             <div key={cantrip.id} className="flex items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-              <input
-                type="text"
-                value={cantrip.name}
-                onChange={(e) => updateCantrip(cantrip.id, e.target.value)}
-                onBlur={onFieldBlur}
-                className="input flex-1"
-                placeholder="Cantrip name"
-              />
-              <button
-                type="button"
-                onClick={() => removeCantrip(cantrip.id)}
-                className="text-parchment/40 hover:text-parchment"
-                aria-label="Remove cantrip"
-              >
-                <XIcon className="h-4 w-4" />
-              </button>
+              {editMode ? (
+                <>
+                  <input
+                    type="text"
+                    value={cantrip.name}
+                    onChange={(e) => updateCantrip(cantrip.id, e.target.value)}
+                    onBlur={onFieldBlur}
+                    className="input flex-1"
+                    placeholder="Cantrip name"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeCantrip(cantrip.id)}
+                    className="text-parchment/40 hover:text-parchment"
+                    aria-label="Remove cantrip"
+                  >
+                    <XIcon className="h-4 w-4" />
+                  </button>
+                </>
+              ) : (
+                <span className="text-sm font-medium text-parchment/90">{cantrip.name || "Unnamed Cantrip"}</span>
+              )}
             </div>
           ))}
         </div>
-        <button
-          type="button"
-          onClick={addCantrip}
-          className="mt-2 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
-        >
-          + Add Cantrip
-        </button>
+        {editMode && (
+          <button
+            type="button"
+            onClick={addCantrip}
+            className="mt-2 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-gold/40 hover:text-parchment"
+          >
+            + Add Cantrip
+          </button>
+        )}
       </div>
 
       <div className="mt-4">
@@ -117,25 +138,31 @@ export function SpellcastingStatsSection({ character, onChange }: SpellcastingSt
             return (
               <div key={level} className="flex items-center gap-3 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
                 <span className="text-sm text-parchment/70 w-16">Level {level}</span>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="number"
-                    value={total}
-                    onChange={(e) => updateSpellSlot(level, "total", parseInt(e.target.value || "0", 10))}
-                    onBlur={onFieldBlur}
-                    className="input w-16 text-center"
-                    placeholder="Total"
-                  />
-                  <span className="text-xs text-parchment/50">/</span>
-                  <input
-                    type="number"
-                    value={expended}
-                    onChange={(e) => updateSpellSlot(level, "expended", parseInt(e.target.value || "0", 10))}
-                    onBlur={onFieldBlur}
-                    className="input w-16 text-center"
-                    placeholder="Used"
-                  />
-                </div>
+                {editMode ? (
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      value={total}
+                      onChange={(e) => updateSpellSlot(level, "total", parseInt(e.target.value || "0", 10))}
+                      onBlur={onFieldBlur}
+                      className="input w-16 text-center"
+                      placeholder="Total"
+                    />
+                    <span className="text-xs text-parchment/50">/</span>
+                    <input
+                      type="number"
+                      value={expended}
+                      onChange={(e) => updateSpellSlot(level, "expended", parseInt(e.target.value || "0", 10))}
+                      onBlur={onFieldBlur}
+                      className="input w-16 text-center"
+                      placeholder="Used"
+                    />
+                  </div>
+                ) : (
+                  <span className="text-sm font-medium text-parchment/90">
+                    {total} / {expended} used
+                  </span>
+                )}
               </div>
             );
           })}

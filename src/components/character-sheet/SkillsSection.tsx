@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { skills as srdSkills } from "@/data/srd";
@@ -11,9 +11,10 @@ import { ExpertisePicker } from "./ExpertisePicker";
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
   onChange: (patch: Partial<Character & { passivePerception: number }>) => void;
+  editMode?: boolean;
 }
 
-export function SkillsSection({ character, onChange }: SkillsSectionProps) {
+export function SkillsSection({ character, onChange, editMode = true }: SkillsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const profBonus = getProficiencyBonus(character.level);
   const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
@@ -39,7 +40,7 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
     return currentSelections >= maxSelections;
   };
 
-  const toggleSkill = (skillName: string) => {
+  const toggleSkill = useCallback((skillName: string) => {
     if (isAtMaxSelections(skillName)) return;
     onChange({
       skills: {
@@ -47,11 +48,11 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
         [skillName]: !character.skills[skillName],
       },
     });
-  };
+  }, [character.skills, isAtMaxSelections, onChange]);
 
-  const handleExpertiseChange = (selections: string[]) => {
+  const handleExpertiseChange = useCallback((selections: string[]) => {
     onChange({ expertise: selections });
-  };
+  }, [onChange]);
 
   return (
     <SectionCard id="skills" title="Skills" icon={<SkillsIcon className="h-5 w-5" />}>
@@ -83,15 +84,33 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
                   : "border-parchment/10 bg-charcoal/40"
               }`}
             >
-              <label className={`flex items-center gap-3 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
-                <input
-                  type="checkbox"
-                  checked={isProficient}
-                  onChange={() => toggleSkill(name)}
-                  onBlur={onFieldBlur}
-                  disabled={disabled}
-                  className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
-                />
+              {editMode ? (
+                <label className={`flex items-center gap-3 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
+                  <input
+                    type="checkbox"
+                    checked={isProficient}
+                    onChange={() => toggleSkill(name)}
+                    onBlur={onFieldBlur}
+                    disabled={disabled}
+                    className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-burgundy focus:ring-burgundy/50 disabled:opacity-30"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-sm text-parchment/80 flex items-center gap-2">
+                      {name}
+                      {isExpert && (
+                        <span className="text-[10px] font-bold text-gold bg-gold/10 px-1.5 py-0.5 rounded">EXPERTISE</span>
+                      )}
+                    </span>
+                    <span className="text-[10px] text-parchment/50">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
+                    {alreadyProficient && (
+                      <span className="text-[10px] text-parchment/40">Already proficient</span>
+                    )}
+                    {!allowed && !alreadyProficient && (
+                      <span className="text-[10px] text-parchment/40">Not available for this class</span>
+                    )}
+                  </div>
+                </label>
+              ) : (
                 <div className="flex flex-col">
                   <span className="text-sm text-parchment/80 flex items-center gap-2">
                     {name}
@@ -100,14 +119,8 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
                     )}
                   </span>
                   <span className="text-[10px] text-parchment/50">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
-                  {alreadyProficient && (
-                    <span className="text-[10px] text-parchment/40">Already proficient</span>
-                  )}
-                  {!allowed && !alreadyProficient && (
-                    <span className="text-[10px] text-parchment/40">Not available for this class</span>
-                  )}
                 </div>
-              </label>
+              )}
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold text-parchment/70">
                   {total >= 0 ? `+${total}` : total}
@@ -126,20 +139,26 @@ export function SkillsSection({ character, onChange }: SkillsSectionProps) {
         })}
       </div>
 
-      <ExpertisePicker
-        character={character}
-        selectedExpertise={character.expertise || []}
-        onExpertiseChange={handleExpertiseChange}
-      />
+      {editMode && (
+        <ExpertisePicker
+          character={character}
+          selectedExpertise={character.expertise || []}
+          onExpertiseChange={handleExpertiseChange}
+        />
+      )}
 
       <div className="mt-3 flex justify-end">
         <Field label="Passive Wisdom (Perception)">
-          <input
-            type="number"
-            value={character.passivePerception}
-            readOnly
-            className="input max-w-[120px] bg-charcoal/60"
-          />
+          {editMode ? (
+            <input
+              type="number"
+              value={character.passivePerception}
+              readOnly
+              className="input max-w-[120px] bg-charcoal/60"
+            />
+          ) : (
+            <span className="text-sm font-semibold text-parchment/90">{character.passivePerception}</span>
+          )}
         </Field>
       </div>
 

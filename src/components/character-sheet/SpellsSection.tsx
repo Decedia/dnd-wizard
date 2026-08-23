@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 
@@ -11,9 +12,10 @@ interface SpellsSectionProps {
   onChange: (patch: Partial<Character>) => void;
   collapsed?: boolean;
   onToggleCollapse?: () => void;
+  editMode?: boolean;
 }
 
-export function SpellsSection({ character, onChange, collapsed = false, onToggleCollapse }: SpellsSectionProps) {
+export function SpellsSection({ character, onChange, collapsed = false, onToggleCollapse, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { data, loading } = useSRD();
   const srdSpells = data?.spells || [];
@@ -22,15 +24,15 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
   const [isAddingCostumeSpell, setIsAddingCostumeSpell] = useState(false);
   const [newCostumeSpell, setNewCostumeSpell] = useState({ name: "", description: "" });
 
-  const updateItem = (id: string, patch: Partial<Character["spells"][number]>) => {
+  const updateItem = useCallback((id: string, patch: Partial<Character["spells"][number]>) => {
     onChange({
       spells: character.spells.map((s) =>
         s.id === id ? { ...s, ...patch } : s
       ),
     });
-  };
+  }, [character.spells, onChange]);
 
-  const addItem = (srdSpellName?: string) => {
+  const addItem = useCallback((srdSpellName?: string) => {
     const srdSpell = srdSpellName ? srdSpells.find((s) => s.name === srdSpellName) : undefined;
     const newSpell: Character["spells"][number] = {
       id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -45,15 +47,15 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
     onChange({
       spells: [...character.spells, newSpell],
     });
-  };
+  }, [character.spells, onChange, srdSpells]);
 
-  const removeItem = (id: string) => {
+  const removeItem = useCallback((id: string) => {
     onChange({
       spells: character.spells.filter((s) => s.id !== id),
     });
-  };
+  }, [character.spells, onChange]);
 
-  const handleSrdSelect = (spellId: string, srdName: string) => {
+  const handleSrdSelect = useCallback((spellId: string, srdName: string) => {
     const srdSpell = srdSpells.find((s) => s.name === srdName);
     if (!srdSpell) return;
     const updated = {
@@ -66,9 +68,9 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
     onChange({
       spells: character.spells.map((s) => (s.id === spellId ? updated : s)),
     });
-  };
+  }, [character.spells, onChange, srdSpells]);
 
-  const addCostumeSpell = () => {
+  const addCostumeSpell = useCallback(() => {
     if (!newCostumeSpell.name.trim()) return;
     const newCostume: Character["costumeSpells"][number] = {
       id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -80,39 +82,41 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
     });
     setNewCostumeSpell({ name: "", description: "" });
     setIsAddingCostumeSpell(false);
-  };
+  }, [character.costumeSpells, newCostumeSpell, onChange]);
 
-  const updateCostumeSpell = (id: string, patch: Partial<Character["costumeSpells"][number]>) => {
+  const updateCostumeSpell = useCallback((id: string, patch: Partial<Character["costumeSpells"][number]>) => {
     onChange({
       costumeSpells: character.costumeSpells.map((cs) =>
         cs.id === id ? { ...cs, ...patch } : cs
       ),
     });
-  };
+  }, [character.costumeSpells, onChange]);
 
-  const removeCostumeSpell = (id: string) => {
+  const removeCostumeSpell = useCallback((id: string) => {
     onChange({
       costumeSpells: character.costumeSpells.filter((cs) => cs.id !== id),
     });
     if (editingCostumeSpellId === id) {
       setEditingCostumeSpellId(null);
     }
-  };
+  }, [character.costumeSpells, editingCostumeSpellId, onChange]);
 
-  const saveCostumeSpellEdit = (id: string) => {
+  const saveCostumeSpellEdit = useCallback((id: string) => {
     setEditingCostumeSpellId(null);
-  };
+  }, []);
 
   return (
     <SectionCard id="spells" title="Spells" icon={<SpellsIcon className="h-5 w-5" />}>
       <div className="flex items-center justify-between">
-        <button
-          type="button"
-          onClick={onToggleCollapse}
-          className="text-xs text-parchment/50 hover:text-parchment"
-        >
-          {collapsed ? "Show Spells" : "Hide Spells"}
-        </button>
+        {editMode && onToggleCollapse && (
+          <button
+            type="button"
+            onClick={onToggleCollapse}
+            className="text-xs text-parchment/50 hover:text-parchment"
+          >
+            {collapsed ? "Show Spells" : "Hide Spells"}
+          </button>
+        )}
       </div>
 
       {!collapsed && (
@@ -124,104 +128,123 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               return (
                 <div key={spell.id} className="flex flex-wrap items-center gap-2 rounded-lg border border-parchment/10 bg-charcoal/40 px-3 py-2">
-                  <select
-                    value={dropdownValue}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      if (val === "Custom Spell") {
-                        updateItem(spell.id, { source: "custom", srdSpellName: undefined, name: spell.name || "" });
-                      } else if (val) {
-                        handleSrdSelect(spell.id, val);
-                      } else {
-                        updateItem(spell.id, { source: "srd", srdSpellName: undefined, name: "" });
-                      }
-                    }}
-                    onBlur={onFieldBlur}
-                    className="input flex-1 min-w-[120px]"
-                  >
-                    <option value="">Select spell...</option>
-                    {srdSpells.map((s) => (
-                      <option key={s.name} value={s.name}>{s.name}</option>
-                    ))}
-                    <option value="Custom Spell">Custom Spell</option>
-                  </select>
-                  {isCustom && (
+                  {editMode ? (
                     <>
-                      <input
-                        type="text"
-                        value={spell.name}
-                        onChange={(e) => updateItem(spell.id, { name: e.target.value })}
+                      <select
+                        value={dropdownValue}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "Custom Spell") {
+                            updateItem(spell.id, { source: "custom", srdSpellName: undefined, name: spell.name || "" });
+                          } else if (val) {
+                            handleSrdSelect(spell.id, val);
+                          } else {
+                            updateItem(spell.id, { source: "srd", srdSpellName: undefined, name: "" });
+                          }
+                        }}
                         onBlur={onFieldBlur}
                         className="input flex-1 min-w-[120px]"
-                        placeholder="Enter custom spell name"
-                      />
+                      >
+                        <option value="">Select spell...</option>
+                        {srdSpells.map((s) => (
+                          <option key={s.name} value={s.name}>{s.name}</option>
+                        ))}
+                        <option value="Custom Spell">Custom Spell</option>
+                      </select>
+                      {isCustom && (
+                        <>
+                          <input
+                            type="text"
+                            value={spell.name}
+                            onChange={(e) => updateItem(spell.id, { name: e.target.value })}
+                            onBlur={onFieldBlur}
+                            className="input flex-1 min-w-[120px]"
+                            placeholder="Enter custom spell name"
+                          />
+                          <input
+                            type="text"
+                            value={spell.description || ""}
+                            onChange={(e) => updateItem(spell.id, { description: e.target.value })}
+                            onBlur={onFieldBlur}
+                            className="input flex-1 min-w-[120px]"
+                            placeholder="Spell description / effect"
+                          />
+                        </>
+                      )}
                       <input
-                        type="text"
-                        value={spell.description || ""}
-                        onChange={(e) => updateItem(spell.id, { description: e.target.value })}
+                        type="number"
+                        value={spell.level}
+                        onChange={(e) => updateItem(spell.id, { level: parseInt(e.target.value || "0", 10) })}
                         onBlur={onFieldBlur}
-                        className="input flex-1 min-w-[120px]"
-                        placeholder="Spell description / effect"
+                        className="input w-14 text-center"
+                        placeholder="Lvl"
                       />
+                      {isCustom && (
+                        <>
+                          <input
+                            type="text"
+                            value={spell.damageDice || ""}
+                            onChange={(e) => updateItem(spell.id, { damageDice: e.target.value })}
+                            onBlur={onFieldBlur}
+                            className="input w-20 text-center"
+                            placeholder="Dice (e.g. 2d6)"
+                          />
+                          <input
+                            type="text"
+                            value={spell.damageType || ""}
+                            onChange={(e) => updateItem(spell.id, { damageType: e.target.value })}
+                            onBlur={onFieldBlur}
+                            className="input w-20 text-center"
+                            placeholder="Type"
+                          />
+                        </>
+                      )}
+                      {description && !isCustom && (
+                        <button
+                          type="button"
+                          onClick={() => setTooltip({ name: spell.name, description })}
+                          className="text-parchment/40 hover:text-parchment shrink-0"
+                          aria-label={`Info about ${spell.name}`}
+                        >
+                          <InfoIcon className="h-4 w-4" />
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => removeItem(spell.id)}
+                        className="text-parchment/40 hover:text-parchment shrink-0"
+                        aria-label="Remove spell"
+                      >
+                        <XIcon className="h-4 w-4" />
+                      </button>
                     </>
+                  ) : (
+                    <div className="flex flex-col gap-1 w-full">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold text-parchment/90">{spell.name}</span>
+                        <span className="text-xs text-parchment/50">Level {spell.level}</span>
+                      </div>
+                      {(spell.damageDice || spell.damageType) && (
+                        <span className="text-sm text-parchment/70">
+                          {spell.damageDice}{spell.damageType ? ` ${spell.damageType}` : ""}
+                        </span>
+                      )}
+                      {description && <DescriptionText>{description}</DescriptionText>}
+                    </div>
                   )}
-                  <input
-                    type="number"
-                    value={spell.level}
-                    onChange={(e) => updateItem(spell.id, { level: parseInt(e.target.value || "0", 10) })}
-                    onBlur={onFieldBlur}
-                    className="input w-14 text-center"
-                    placeholder="Lvl"
-                  />
-                  {isCustom && (
-                    <>
-                      <input
-                        type="text"
-                        value={spell.damageDice || ""}
-                        onChange={(e) => updateItem(spell.id, { damageDice: e.target.value })}
-                        onBlur={onFieldBlur}
-                        className="input w-20 text-center"
-                        placeholder="Dice (e.g. 2d6)"
-                      />
-                      <input
-                        type="text"
-                        value={spell.damageType || ""}
-                        onChange={(e) => updateItem(spell.id, { damageType: e.target.value })}
-                        onBlur={onFieldBlur}
-                        className="input w-20 text-center"
-                        placeholder="Type"
-                      />
-                    </>
-                  )}
-                  {description && !isCustom && (
-                    <button
-                      type="button"
-                      onClick={() => setTooltip({ name: spell.name, description })}
-                      className="text-parchment/40 hover:text-parchment shrink-0"
-                      aria-label={`Info about ${spell.name}`}
-                    >
-                      <InfoIcon className="h-4 w-4" />
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => removeItem(spell.id)}
-                    className="text-parchment/40 hover:text-parchment shrink-0"
-                    aria-label="Remove spell"
-                  >
-                    <XIcon className="h-4 w-4" />
-                  </button>
                 </div>
               );
             })}
           </div>
-          <button
-            type="button"
-            onClick={() => addItem()}
-            className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-burgundy/40 hover:text-parchment"
-          >
-            + Add Spell
-          </button>
+          {editMode && (
+            <button
+              type="button"
+              onClick={() => addItem()}
+              className="mt-3 rounded-lg border border-dashed border-parchment/20 px-4 py-2 text-sm font-medium text-parchment/60 transition-colors hover:border-burgundy/40 hover:text-parchment"
+            >
+              + Add Spell
+            </button>
+          )}
 
           {character.costumeSpells.length > 0 && (
             <div className="mt-6">
@@ -270,34 +293,36 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                           <div className="flex-1">
                             <div className="text-sm font-semibold text-parchment">{costumeSpell.name || "Unnamed Costume Spell"}</div>
                             {costumeSpell.description && (
-                              <p className="mt-1 text-sm text-parchment/70">{costumeSpell.description}</p>
+                              <DescriptionText>{costumeSpell.description}</DescriptionText>
                             )}
                           </div>
-                          <div className="flex gap-1 shrink-0">
-                            <button
-                              type="button"
-                              onClick={() => setEditingCostumeSpellId(costumeSpell.id)}
-                              className="text-parchment/40 hover:text-gold"
-                              aria-label="Edit costume spell"
-                            >
-                              <EditIcon className="h-4 w-4" />
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => removeCostumeSpell(costumeSpell.id)}
-                              className="text-parchment/40 hover:text-parchment"
-                              aria-label="Remove costume spell"
-                            >
-                              <XIcon className="h-4 w-4" />
-                            </button>
-                          </div>
+                          {editMode && (
+                            <div className="flex gap-1 shrink-0">
+                              <button
+                                type="button"
+                                onClick={() => setEditingCostumeSpellId(costumeSpell.id)}
+                                className="text-parchment/40 hover:text-gold"
+                                aria-label="Edit costume spell"
+                              >
+                                <EditIcon className="h-4 w-4" />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => removeCostumeSpell(costumeSpell.id)}
+                                className="text-parchment/40 hover:text-parchment"
+                                aria-label="Remove costume spell"
+                              >
+                                <XIcon className="h-4 w-4" />
+                              </button>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
                   );
                 })}
               </div>
-              {!isAddingCostumeSpell ? (
+              {editMode && !isAddingCostumeSpell && (
                 <button
                   type="button"
                   onClick={() => setIsAddingCostumeSpell(true)}
@@ -305,7 +330,8 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
                 >
                   + Add Costume Spell
                 </button>
-              ) : (
+              )}
+              {isAddingCostumeSpell && (
                 <div className="mt-3 rounded-lg border border-parchment/10 bg-charcoal/40 p-3 space-y-2">
                   <input
                     type="text"

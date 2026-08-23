@@ -185,3 +185,4 @@ Wizard restructure complete. Next steps:
 | 2026-08-23 | Added `subclassInfo` section type to `generateLevelUpSteps`; selected subclass now displays on every level-up step for classes that have subclasses |
 | 2026-08-23 | Updated `LevelUpFlow`, `level-up/page`, and `PerLevelStepsFlow` with `SubclassInfoStep` read-only components; lint and typecheck pass |
 | 2026-08-23 | Refreshed subclass data from D&D 5e API: updated `2014_subclasses.json` and embedded subclass features in `2014_classes.json` for 12 API-available subclasses; preserved static-only subclasses (Totem Warrior) |
+| 2026-08-23 | Redesigned character sheet: added tabbed layout (Combat/Character/Gear/Bio), View/Edit mode toggle, standardized description typography, separated attack damage display with info tooltips, removed floating dot nav; all 14 sections updated with editMode prop; lint and typecheck pass |

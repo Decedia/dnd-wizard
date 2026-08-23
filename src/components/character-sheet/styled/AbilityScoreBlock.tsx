@@ -9,9 +9,33 @@ interface AbilityScoreBlockProps {
   onBlur?: () => void;
 }
 
-export function AbilityScoreBlock({ label, value, onChange, onBlur }: AbilityScoreBlockProps) {
+interface AbilityScoreBlockProps {
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+  onBlur?: () => void;
+  editMode?: boolean;
+}
+
+export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: AbilityScoreBlockProps) {
   const [editing, setEditing] = useState(false);
   const mod = Math.floor((value - 10) / 2);
+
+  if (!editMode) {
+    return (
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center">
+          <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider">{label}</span>
+          <span className={`text-lg font-bold ${mod >= 0 ? "text-gold" : "text-red-300"}`}>
+            {mod >= 0 ? `+${mod}` : mod}
+          </span>
+        </div>
+        <div className="mt-1 rounded-full border border-parchment/20 bg-charcoal/60 px-2 py-0.5">
+          <span className="text-[10px] font-semibold text-parchment/80">{value}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center">

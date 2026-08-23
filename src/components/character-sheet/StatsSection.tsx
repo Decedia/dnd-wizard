@@ -20,9 +20,10 @@ interface StatsSectionProps {
     savingThrows: Record<string, { proficient: boolean; value: number }>;
   };
   onChange: (patch: Partial<StatsSectionProps["character"]>) => void;
+  editMode?: boolean;
 }
 
-export function StatsSection({ character, onChange }: StatsSectionProps) {
+export function StatsSection({ character, onChange, editMode = true }: StatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const stats = [
     { key: "str", label: "STR" },
@@ -45,40 +46,55 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
             value={character[key]}
             onChange={(value) => onChange({ [key]: value })}
             onBlur={onFieldBlur}
+            editMode={editMode}
           />
         ))}
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
         <Field label="Proficiency Bonus">
-          <input
-            type="number"
-            value={character.proficiencyBonus}
-            readOnly
-            className="input bg-charcoal/60"
-          />
+          {editMode ? (
+            <input
+              type="number"
+              value={character.proficiencyBonus}
+              readOnly
+              className="input bg-charcoal/60"
+            />
+          ) : (
+            <span className="text-sm font-semibold text-gold">+{character.proficiencyBonus}</span>
+          )}
         </Field>
         <Field label="Initiative">
-          <input
-            type="number"
-            value={character.initiative}
-            readOnly
-            className="input bg-charcoal/60"
-          />
+          {editMode ? (
+            <input
+              type="number"
+              value={character.initiative}
+              readOnly
+              className="input bg-charcoal/60"
+            />
+          ) : (
+            <span className="text-sm font-semibold text-parchment/90">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
+          )}
         </Field>
       </div>
 
       <div className="mt-3 flex items-center gap-3">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={character.inspiration}
-            onChange={(e) => onChange({ inspiration: e.target.checked })}
-            onBlur={onFieldBlur}
-            className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
-          />
-          <span className="text-sm text-parchment/80">Inspiration</span>
-        </label>
+        {editMode ? (
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={character.inspiration}
+              onChange={(e) => onChange({ inspiration: e.target.checked })}
+              onBlur={onFieldBlur}
+              className="h-4 w-4 rounded border-parchment/30 bg-charcoal text-gold focus:ring-gold/50"
+            />
+            <span className="text-sm text-parchment/80">Inspiration</span>
+          </label>
+        ) : (
+          <span className="text-sm text-parchment/80">
+            Inspiration: {character.inspiration ? "Yes" : "No"}
+          </span>
+        )}
       </div>
 
       <div className="mt-4">
@@ -94,24 +110,23 @@ export function StatsSection({ character, onChange }: StatsSectionProps) {
                     <span className="text-sm text-parchment/80 w-10">{key.toUpperCase()}</span>
                     <ProficiencyDot
                       proficient={st.proficient}
-                      onChange={(proficient) =>
-                        onChange({
-                          savingThrows: {
-                            ...character.savingThrows,
-                            [key]: { ...st, proficient },
-                          },
-                        })
-                      }
+                      editMode={editMode}
                     />
                   </div>
                   <span className="text-[10px] text-parchment/50 ml-13">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
                 </div>
-                <input
-                  type="number"
-                  value={st.value}
-                  readOnly
-                  className="input w-20 text-center bg-charcoal/60"
-                />
+                {editMode ? (
+                  <input
+                    type="number"
+                    value={st.value}
+                    readOnly
+                    className="input w-20 text-center bg-charcoal/60"
+                  />
+                ) : (
+                  <span className="text-sm font-semibold text-parchment/90 w-20 text-right">
+                    {st.value >= 0 ? `+${st.value}` : st.value}
+                  </span>
+                )}
               </div>
             );
           })}

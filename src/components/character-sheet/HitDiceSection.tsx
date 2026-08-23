@@ -7,32 +7,41 @@ import type { Character } from "@/lib/storage";
 interface HitDiceSectionProps {
   character: Pick<Character, "hitDiceTotal" | "hitDiceRemaining">;
   onChange: (patch: Partial<Pick<Character, "hitDiceTotal" | "hitDiceRemaining">>) => void;
+  editMode?: boolean;
 }
 
-export function HitDiceSection({ character, onChange }: HitDiceSectionProps) {
+export function HitDiceSection({ character, onChange, editMode = true }: HitDiceSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
 
   return (
     <SectionCard id="hit-dice" title="Hit Dice" icon={<DiceIcon className="h-5 w-5" />}>
       <div className="grid grid-cols-2 gap-3">
         <Field label="Total">
-          <input
-            type="text"
-            value={character.hitDiceTotal}
-            onChange={(e) => onChange({ hitDiceTotal: e.target.value })}
-            onBlur={onFieldBlur}
-            className="input"
-            placeholder="e.g. 3d10"
-          />
+          {editMode ? (
+            <input
+              type="text"
+              value={character.hitDiceTotal}
+              onChange={(e) => onChange({ hitDiceTotal: e.target.value })}
+              onBlur={onFieldBlur}
+              className="input"
+              placeholder="e.g. 3d10"
+            />
+          ) : (
+            <span className="text-sm font-semibold text-parchment/90">{character.hitDiceTotal || "—"}</span>
+          )}
         </Field>
         <Field label="Remaining">
-          <input
-            type="number"
-            value={character.hitDiceRemaining}
-            onChange={(e) => onChange({ hitDiceRemaining: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-            onBlur={onFieldBlur}
-            className="input"
-          />
+          {editMode ? (
+            <input
+              type="number"
+              value={character.hitDiceRemaining}
+              onChange={(e) => onChange({ hitDiceRemaining: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+              onBlur={onFieldBlur}
+              className="input"
+            />
+          ) : (
+            <span className="text-sm font-semibold text-parchment/90">{character.hitDiceRemaining}</span>
+          )}
         </Field>
       </div>
     </SectionCard>

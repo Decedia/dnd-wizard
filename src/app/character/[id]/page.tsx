@@ -6,8 +6,9 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 import { StickyMiniHeader } from "@/components/character-sheet/StickyMiniHeader";
-import { SectionNav } from "@/components/character-sheet/SectionNav";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
+import { SheetTabs } from "@/components/character-sheet/SheetTabs";
+import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
@@ -25,6 +26,8 @@ import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBio
 import { Trash2, Download, Upload, ArrowUp, Save } from "lucide-react";
 import { exportCharacterToPdf } from "@/lib/pdf-visual";
 import { importCharacterFromPdf } from "@/lib/pdf";
+
+type TabId = "combat" | "character" | "gear" | "bio";
 
 export default function CharacterView() {
   const params = useParams();
@@ -48,6 +51,8 @@ export default function CharacterView() {
   const [exportingPdf, setExportingPdf] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
+  const [editMode, setEditMode] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabId>("combat");
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -165,30 +170,54 @@ export default function CharacterView() {
     <div className="min-h-screen bg-charcoal">
       <AppHeader title={character.name || "Character"} subtitle="Character Sheet" />
       <StickyMiniHeader character={character} />
-      <SectionNav />
+
+      <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
+
+      <div className="mx-auto max-w-lg px-4">
+        <div className="flex items-center justify-end">
+          <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => setEditMode(m === "edit")} />
+        </div>
+      </div>
 
       <CharacterSheetProvider onFieldBlur={debouncedSave}>
-        <main className="px-4 py-6 pb-28 md:px-4 md:pr-4 pr-12">
+        <main className="px-4 py-4 pb-28 md:px-4 md:pr-4 pr-12">
           <div className="mx-auto max-w-lg space-y-4">
-            <LevelXpSection character={character} onChange={handleChange} />
-            <IdentitySection character={character} onChange={handleChange} />
-            <StatsSection character={character} onChange={handleChange} />
-            <CombatStatsSection character={character} onChange={handleChange} />
-            <DeathSavesSection character={character} onChange={handleChange} />
-            <HitDiceSection character={character} onChange={handleChange} />
-            <SkillsSection character={character} onChange={handleChange} />
-            <FeaturesTraitsSection character={character} onChange={handleChange} />
-            <AttacksAndSpellcastingSection character={character} onChange={handleChange} />
-            <InventorySection character={character} onChange={handleChange} />
-            <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} />
-            <SpellsSection
-              character={character}
-              onChange={handleChange}
-              collapsed={spellsCollapsed}
-              onToggleCollapse={() => setSpellsCollapsed((c) => !c)}
-            />
-            <SpellcastingStatsSection character={character} onChange={handleChange} />
-            <AppearanceBioSection character={character} onChange={handleChange} />
+            {activeTab === "combat" && (
+              <>
+                <StatsSection character={character} onChange={handleChange} editMode={editMode} />
+                <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
+                <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
+                <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
+                <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
+                <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
+              </>
+            )}
+            {activeTab === "character" && (
+              <>
+                <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
+                <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
+                <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
+                <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} editMode={editMode} />
+              </>
+            )}
+            {activeTab === "gear" && (
+              <>
+                <InventorySection character={character} onChange={handleChange} editMode={editMode} />
+                <SpellsSection
+                  character={character}
+                  onChange={handleChange}
+                  collapsed={spellsCollapsed}
+                  onToggleCollapse={() => setSpellsCollapsed((c) => !c)}
+                  editMode={editMode}
+                />
+              </>
+            )}
+            {activeTab === "bio" && (
+              <>
+                <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
+                <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
+              </>
+            )}
           </div>
 
           <div className="mx-auto max-w-lg mt-6 mb-4 rounded-xl border border-parchment/10 bg-charcoal-light/60 p-4 space-y-3">

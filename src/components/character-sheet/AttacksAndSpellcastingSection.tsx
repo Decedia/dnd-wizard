@@ -2,15 +2,18 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { DescriptionText } from "./DescriptionText";
+import { InfoTooltip } from "./InfoTooltip";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
   onChange: (patch: Partial<Character>) => void;
+  editMode?: boolean;
 }
 
-export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAndSpellcastingSectionProps) {
+export function AttacksAndSpellcastingSection({ character, onChange, editMode = true }: AttacksAndSpellcastingSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const sneakAttack = getSneakAttackDice(character);
   const classAttacks = character.attacks.filter((a) => a.source === "class");
@@ -20,18 +23,32 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
   const getWeaponAttackDetails = (attack: Character["attacks"][number]) => {
     const weapon = character.inventory.find((i) => i.id === attack.id);
     if (!weapon || weapon.itemType !== "weapon") return null;
-    const abilityKey = weapon.category === "ranged" ? "dex" : "str";
-    const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
+    const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
+    let abilityKey: "str" | "dex";
+    if (isFinesseOrRanged) {
+      const strMod = getModifier(character.str);
+      const dexMod = getModifier(character.dex);
+      abilityKey = dexMod >= strMod ? "dex" : "str";
+    } else {
+      abilityKey = weapon.category === "ranged" ? "dex" : "str";
+    }
+    const abilityMod = getModifier(character[abilityKey] as number);
     const attackBonus = abilityMod + profBonus;
     const damageBonus = abilityMod;
     const damageDice = weapon.damageDice || "";
     const damageTypeName = weapon.damageType || "";
-    const damageText = [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" ");
+    const strMod = getModifier(character.str);
+    const dexMod = getModifier(character.dex);
     return {
       attackBonus,
-      damageText,
+      damageDice,
+      damageBonus,
+      damageType: damageTypeName,
       abilityKey,
       abilityMod,
+      isFinesseOrRanged,
+      strMod,
+      dexMod,
     };
   };
 
@@ -63,11 +80,10 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
       {weaponAttacks.length === 0 && classAttacks.length === 0 ? (
         <p className="text-sm text-parchment/50">Equip weapons in Inventory to auto-populate attacks.</p>
       ) : (
-        weaponAttacks.length > 0 && (
-          <div className="space-y-3">
-            {weaponAttacks.map((attack) => {
-              const details = getWeaponAttackDetails(attack);
-              return (
+        <div className="space-y-3">
+          {weaponAttacks.map((attack) => {
+            const details = getWeaponAttackDetails(attack);
+            return (
               <div key={attack.id} className="flex flex-col gap-3 rounded-lg border border-parchment/15 bg-charcoal/40 px-4 py-4">
                 <div className="flex items-center gap-3">
                   <span className="text-base font-semibold text-parchment/90 flex-1">{attack.name}</span>
@@ -79,7 +95,29 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">
                   {details && (
-                    <span className="text-sm text-parchment/80 font-medium">{details.damageText}</span>
+                    <>
+                      <span className="text-sm text-parchment/80">{details.damageDice || "—"}</span>
+                      <span className="text-sm text-parchment/80 font-medium">
+                        {details.damageBonus >= 0 ? `+${details.damageBonus}` : details.damageBonus}
+                      </span>
+                      <InfoTooltip content={
+                        <div className="space-y-1">
+                          <div>
+                            {details.isFinesseOrRanged
+                              ? `Using ${details.abilityKey.toUpperCase()} +${details.abilityMod} (higher than ${details.abilityKey === "dex" ? "STR" : "DEX"} +${details.abilityKey === "dex" ? details.strMod : details.dexMod})`
+                              : `Using ${details.abilityKey.toUpperCase()} +${details.abilityMod}`}
+                          </div>
+                          <div>Ability modifier: +{details.abilityMod}</div>
+                          <div>Proficiency bonus: +{profBonus}</div>
+                          <div>Total to hit: +{details.attackBonus}</div>
+                        </div>
+                      }>
+                        <span className="text-parchment/40 hover:text-parchment cursor-help">
+                          <InfoIcon className="h-4 w-4" />
+                        </span>
+                      </InfoTooltip>
+                      <span className="text-sm text-parchment/50">{details.damageType}</span>
+                    </>
                   )}
                   {!details && attack.damageType && (
                     <span className="text-sm text-parchment/80 font-medium">{attack.damageType}</span>
@@ -91,16 +129,25 @@ export function AttacksAndSpellcastingSection({ character, onChange }: AttacksAn
                   )}
                 </div>
                 {attack.description && (
-                  <p className="text-xs text-parchment/50 mt-1">{attack.description}</p>
+                  <DescriptionText>{attack.description}</DescriptionText>
                 )}
               </div>
-              );
-            })}
-          </div>
-        )
+            );
+          })}
+        </div>
       )}
       <p className="text-xs text-parchment/50 mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
     </SectionCard>
+  );
+}
+
+function InfoIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 16v-4" />
+      <path d="M12 8h.01" />
+    </svg>
   );
 }
 

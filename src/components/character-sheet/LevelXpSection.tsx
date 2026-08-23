@@ -6,9 +6,10 @@ import type { Character } from "@/lib/storage";
 interface LevelXpSectionProps {
   character: Character;
   onChange: (patch: Partial<Character>) => void;
+  editMode?: boolean;
 }
 
-export function LevelXpSection({ character, onChange }: LevelXpSectionProps) {
+export function LevelXpSection({ character, onChange, editMode = true }: LevelXpSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const level = character.level || 1;
   const currentXp = character.experiencePoints || 0;
@@ -19,7 +20,6 @@ export function LevelXpSection({ character, onChange }: LevelXpSectionProps) {
   return (
     <div className="rounded-xl border border-parchment/10 bg-charcoal-light/60 p-5 mb-4">
       <div className="flex items-center gap-5">
-        {/* Level Circle - Read Only */}
         <div className="relative flex flex-col items-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-burgundy bg-charcoal shadow-lg shadow-burgundy/20">
             <div className="flex flex-col items-center">
@@ -29,41 +29,55 @@ export function LevelXpSection({ character, onChange }: LevelXpSectionProps) {
           </div>
         </div>
 
-        {/* XP Section */}
         <div className="flex-1 space-y-3">
-          <div className="flex items-center gap-3">
-            <div className="flex-1">
-              <label className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider block mb-1">
-                Current XP
-              </label>
-              <input
-                type="number"
-                value={currentXp}
-                onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-                onBlur={onFieldBlur}
-                className="input w-full text-center"
-                placeholder="0"
-              />
+          {editMode ? (
+            <div className="flex items-center gap-3">
+              <div className="flex-1">
+                <label className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider block mb-1">
+                  Current XP
+                </label>
+                <input
+                  type="number"
+                  value={currentXp}
+                  onChange={(e) => onChange({ experiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+                  onBlur={onFieldBlur}
+                  className="input w-full text-center"
+                  placeholder="0"
+                />
+              </div>
+              <div className="flex items-center justify-center pt-4">
+                <span className="text-burgundy font-bold text-lg">/</span>
+              </div>
+              <div className="flex-1">
+                <label className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider block mb-1">
+                  Max XP
+                </label>
+                <input
+                  type="number"
+                  value={maxXp}
+                  onChange={(e) => onChange({ maxExperiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+                  onBlur={onFieldBlur}
+                  className="input w-full text-center"
+                  placeholder="0"
+                />
+              </div>
             </div>
-            <div className="flex items-center justify-center pt-4">
-              <span className="text-burgundy font-bold text-lg">/</span>
+          ) : (
+            <div className="flex items-center gap-3">
+              <div className="flex-1 text-center">
+                <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider block mb-1">Current XP</span>
+                <span className="text-lg font-bold text-gold">{currentXp.toLocaleString()}</span>
+              </div>
+              <div className="flex items-center justify-center pt-4">
+                <span className="text-burgundy font-bold text-lg">/</span>
+              </div>
+              <div className="flex-1 text-center">
+                <span className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider block mb-1">Max XP</span>
+                <span className="text-lg font-bold text-gold">{maxXp.toLocaleString()}</span>
+              </div>
             </div>
-            <div className="flex-1">
-              <label className="text-[10px] font-medium text-parchment/60 uppercase tracking-wider block mb-1">
-                Max XP
-              </label>
-              <input
-                type="number"
-                value={maxXp}
-                onChange={(e) => onChange({ maxExperiencePoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-                onBlur={onFieldBlur}
-                className="input w-full text-center"
-                placeholder="0"
-              />
-            </div>
-          </div>
+          )}
 
-          {/* XP Bar */}
           <div className="space-y-1">
             <div className="h-3 w-full overflow-hidden rounded-full bg-charcoal border border-parchment/10">
               <div

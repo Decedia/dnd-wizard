@@ -2,24 +2,34 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { DescriptionText } from "./DescriptionText";
 
 interface OtherProficienciesSectionProps {
   otherProficiencies: string;
   onChange: (value: string) => void;
+  editMode?: boolean;
 }
 
-export function OtherProficienciesSection({ otherProficiencies, onChange }: OtherProficienciesSectionProps) {
+export function OtherProficienciesSection({ otherProficiencies, onChange, editMode = true }: OtherProficienciesSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
 
   return (
     <SectionCard id="proficiencies" title="Other Proficiencies & Languages" icon={<ProficienciesIcon className="h-5 w-5" />}>
-      <textarea
-        value={otherProficiencies}
-        onChange={(e) => onChange(e.target.value)}
-        onBlur={onFieldBlur}
-        className="textarea.input min-h-[100px]"
-        placeholder="List any additional proficiencies, languages, or other notable abilities..."
-      />
+      {editMode ? (
+        <textarea
+          value={otherProficiencies}
+          onChange={(e) => onChange(e.target.value)}
+          onBlur={onFieldBlur}
+          className="textarea.input min-h-[100px]"
+          placeholder="List any additional proficiencies, languages, or other notable abilities..."
+        />
+      ) : (
+        otherProficiencies ? (
+          <DescriptionText>{otherProficiencies}</DescriptionText>
+        ) : (
+          <p className="text-sm text-parchment/50">None</p>
+        )
+      )}
     </SectionCard>
   );
 }
