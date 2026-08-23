@@ -6,6 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
+import { getModifier } from "@/lib/storage";
 
 interface SpellsSectionProps {
   character: Character;
@@ -204,9 +205,18 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     </>
                   ) : (
                     <div className="flex flex-col gap-1 w-full">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-sm font-semibold text-parchment">{spell.name}</span>
                         <span className="text-xs text-text-muted">Level {spell.level}</span>
+                        {character.spellcastingAbility && (() => {
+                          const castingAbility = character.spellcastingAbility as keyof Character;
+                          const castingMod = getModifier(character[castingAbility] as number);
+                          return (
+                            <span className="text-[10px] font-medium text-text-muted bg-charcoal px-1.5 py-0.5 rounded border border-border">
+                              {character.spellcastingAbility.toUpperCase()} {castingMod >= 0 ? `+${castingMod}` : castingMod}
+                            </span>
+                          );
+                        })()}
                       </div>
                       {(spell.damageDice || spell.damageType) && (
                         <span className="text-sm text-parchment">

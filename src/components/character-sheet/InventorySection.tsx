@@ -60,7 +60,15 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   const getWeaponStats = (item: Character["inventory"][number]): string | null => {
     if (item.itemType !== "weapon") return null;
     const profBonus = getProficiencyBonus(character.level);
-    const abilityKey = item.category === "ranged" ? "dex" : "str";
+    const isFinesseOrRanged = item.category === "ranged" || item.name === "Dagger" || item.name === "Rapier" || item.name === "Shortsword";
+    let abilityKey: "str" | "dex";
+    if (isFinesseOrRanged) {
+      const strMod = getModifier(character.str);
+      const dexMod = getModifier(character.dex);
+      abilityKey = dexMod >= strMod ? "dex" : "str";
+    } else {
+      abilityKey = item.category === "ranged" ? "dex" : "str";
+    }
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const attackBonus = abilityMod + profBonus;
     const damageBonus = abilityMod;
@@ -69,6 +77,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     const parts = [
       `+${attackBonus} to hit`,
       [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" "),
+      `(${abilityKey.toUpperCase()} modifier)`,
     ];
     return parts.join(" · ");
   };
