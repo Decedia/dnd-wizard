@@ -38,7 +38,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         )
       )}
 
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-center justify-center gap-4 mb-3">
         <ShieldStat value={character.ac} />
         <SpeedStat value={character.speed} />
       </div>

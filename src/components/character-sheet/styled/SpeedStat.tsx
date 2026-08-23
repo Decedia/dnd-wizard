@@ -2,10 +2,9 @@
 
 interface SpeedStatProps {
   value: number;
-  label?: string;
 }
 
-export function SpeedStat({ value, label = "SPEED" }: SpeedStatProps) {
+export function SpeedStat({ value }: SpeedStatProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="relative flex items-center justify-center">
@@ -33,10 +32,10 @@ export function SpeedStat({ value, label = "SPEED" }: SpeedStatProps) {
           </g>
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
           <span className="text-2xl font-bold text-parchment">{value}ft</span>
         </div>
       </div>
+      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider mt-1">Speed</span>
     </div>
   );
 }

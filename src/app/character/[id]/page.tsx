@@ -176,8 +176,8 @@ export default function CharacterView() {
         <main className="mx-auto max-w-lg px-4 py-4 pb-28">
           {activeTab === "combat" && (
             <>
-              <StatsSection character={character} onChange={handleChange} editMode={editMode} />
               <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
+              <StatsSection character={character} onChange={handleChange} editMode={editMode} />
               <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
               <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
               <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
