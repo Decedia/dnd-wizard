@@ -3,7 +3,6 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
-import { InfoTooltip } from "./InfoTooltip";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
 
@@ -89,33 +88,18 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                   <span className="text-base font-semibold text-parchment flex-1">{attack.name}</span>
                   {details && (
                     <span className="text-sm font-bold text-accent bg-accent/15 border border-accent/25 px-3 py-1.5 rounded-lg">
-                      +{details.attackBonus} to hit
+                      +{details.attackBonus} to hit ({details.abilityKey.toUpperCase()})
                     </span>
                   )}
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">
                   {details && (
                     <>
-                      <span className="text-sm text-parchment">{details.damageDice || "—"}</span>
-                      <span className="text-sm text-parchment font-medium">
-                        {details.damageBonus >= 0 ? `+${details.damageBonus}` : details.damageBonus}
+                      <span className="text-sm text-parchment">
+                        {details.damageDice || "—"}
+                        {details.damageBonus ? ` +${details.damageBonus}` : ""}
                       </span>
-                      <InfoTooltip content={
-                        <div className="space-y-1">
-                          <div>
-                            {details.isFinesseOrRanged
-                              ? `Using ${details.abilityKey.toUpperCase()} +${details.abilityMod} (higher than ${details.abilityKey === "dex" ? "STR" : "DEX"} +${details.abilityKey === "dex" ? details.strMod : details.dexMod})`
-                              : `Using ${details.abilityKey.toUpperCase()} +${details.abilityMod}`}
-                          </div>
-                          <div>Ability modifier: +{details.abilityMod}</div>
-                          <div>Proficiency bonus: +{profBonus}</div>
-                          <div>Total to hit: +{details.attackBonus}</div>
-                        </div>
-                      }>
-                        <span className="text-text-muted hover:text-parchment cursor-help">
-                          <InfoIcon className="h-4 w-4" />
-                        </span>
-                      </InfoTooltip>
+                      <span className="text-sm text-text-muted">({details.abilityKey.toUpperCase()} modifier)</span>
                       <span className="text-sm text-text-muted">{details.damageType}</span>
                     </>
                   )}
@@ -138,16 +122,6 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
       )}
       <p className="text-xs text-text-muted mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
     </SectionCard>
-  );
-}
-
-function InfoIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 16v-4" />
-      <path d="M12 8h.01" />
-    </svg>
   );
 }
 
