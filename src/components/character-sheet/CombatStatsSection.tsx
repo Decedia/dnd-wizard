@@ -3,6 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
+import { SpeedStat } from "./styled/SpeedStat";
 import type { Character } from "@/lib/storage";
 
 interface CombatStatsSectionProps {
@@ -13,6 +14,7 @@ interface CombatStatsSectionProps {
 
 export function CombatStatsSection({ character, onChange, editMode = true }: CombatStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const hpPercent = character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0;
 
   return (
     <SectionCard id="combat-stats" title="COMBAT STATS" icon={<CombatIcon className="h-5 w-5" />}>
@@ -36,12 +38,44 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         )
       )}
 
-      <div className="grid grid-cols-4 gap-3">
-        <div className="flex flex-col items-center">
-          <ShieldStat value={character.ac} />
+      <div className="flex items-center gap-3 mb-3">
+        <ShieldStat value={character.ac} />
+        <SpeedStat value={character.speed} />
+      </div>
+
+      <div className="space-y-2">
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">HP</span>
+            <span className="text-[10px] font-medium text-text-muted">
+              {character.currentHp} / {character.maxHp}
+            </span>
+          </div>
+          <div className="h-3 w-full rounded-full bg-charcoal border border-border overflow-hidden">
+            <div
+              className="h-full rounded-full bg-accent transition-all"
+              style={{ width: `${hpPercent}%` }}
+            />
+          </div>
         </div>
-        <Field label="CURRENT HP">
-          {editMode ? (
+
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Temp HP</span>
+            <span className="text-[10px] font-medium text-text-muted">{character.temporaryHp}</span>
+          </div>
+          <div className="h-2.5 w-full rounded-full bg-charcoal border border-border overflow-hidden">
+            <div
+              className="h-full rounded-full bg-parchment/80 transition-all"
+              style={{ width: character.temporaryHp > 0 ? "100%" : "0%" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {editMode && (
+        <div className="grid grid-cols-2 gap-3 mt-4">
+          <Field label="Current HP">
             <input
               type="number"
               value={character.currentHp}
@@ -49,12 +83,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               onBlur={onFieldBlur}
               className="input"
             />
-          ) : (
-            <span className="text-sm font-semibold text-accent">{character.currentHp}</span>
-          )}
-        </Field>
-        <Field label="MAX HP">
-          {editMode ? (
+          </Field>
+          <Field label="Max HP">
             <input
               type="number"
               value={character.maxHp}
@@ -62,12 +92,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               onBlur={onFieldBlur}
               className="input"
             />
-          ) : (
-            <span className="text-sm font-semibold text-accent">{character.maxHp}</span>
-          )}
-        </Field>
-        <Field label="TEMP HP">
-          {editMode ? (
+          </Field>
+          <Field label="Temp HP">
             <input
               type="number"
               value={character.temporaryHp}
@@ -75,15 +101,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               onBlur={onFieldBlur}
               className="input"
             />
-          ) : (
-            <span className="text-sm font-semibold text-accent">{character.temporaryHp}</span>
-          )}
-        </Field>
-      </div>
-
-      <div className="mt-3">
-        <Field label="SPEED">
-          {editMode ? (
+          </Field>
+          <Field label="Speed">
             <input
               type="number"
               value={character.speed}
@@ -91,11 +110,9 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               onBlur={onFieldBlur}
               className="input"
             />
-          ) : (
-            <span className="text-sm font-semibold text-accent">{character.speed}ft</span>
-          )}
-        </Field>
-      </div>
+          </Field>
+        </div>
+      )}
     </SectionCard>
   );
 }
