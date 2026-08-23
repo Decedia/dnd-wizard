@@ -184,3 +184,4 @@ Wizard restructure complete. Next steps:
 | 2026-08-23 | Fixed Barbarian level progression bug: Feral Instinct moved from level 6 to level 7; ASI remains at level 8 |
 | 2026-08-23 | Added `subclassInfo` section type to `generateLevelUpSteps`; selected subclass now displays on every level-up step for classes that have subclasses |
 | 2026-08-23 | Updated `LevelUpFlow`, `level-up/page`, and `PerLevelStepsFlow` with `SubclassInfoStep` read-only components; lint and typecheck pass |
+| 2026-08-23 | Refreshed subclass data from D&D 5e API: updated `2014_subclasses.json` and embedded subclass features in `2014_classes.json` for 12 API-available subclasses; preserved static-only subclasses (Totem Warrior) |
