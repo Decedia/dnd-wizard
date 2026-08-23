@@ -44,7 +44,6 @@ export default function CharacterView() {
   });
 
   const [savedAt, setSavedAt] = useState<number | null>(null);
-  const [spellsCollapsed, setSpellsCollapsed] = useState(true);
   const [exportingPdf, setExportingPdf] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
@@ -194,13 +193,16 @@ export default function CharacterView() {
           {activeTab === "gear" && (
             <>
               <InventorySection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "spells" && (
+            <>
               <SpellsSection
                 character={character}
                 onChange={handleChange}
-                collapsed={spellsCollapsed}
-                onToggleCollapse={() => setSpellsCollapsed((c) => !c)}
                 editMode={editMode}
               />
+              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
           {activeTab === "bio" && (

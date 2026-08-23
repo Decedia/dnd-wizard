@@ -1,6 +1,6 @@
 "use client";
 
-export type TabId = "combat" | "features" | "gear" | "bio";
+export type TabId = "combat" | "features" | "gear" | "spells" | "bio";
 
 interface SheetTabsProps {
   activeTab: TabId;
@@ -11,6 +11,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "combat", label: "Combat" },
   { id: "features", label: "Features" },
   { id: "gear", label: "Gear" },
+  { id: "spells", label: "Spells" },
   { id: "bio", label: "Bio" },
 ];
 

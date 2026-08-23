@@ -10,12 +10,10 @@ import type { Character } from "@/lib/storage";
 interface SpellsSectionProps {
   character: Character;
   onChange: (patch: Partial<Character>) => void;
-  collapsed?: boolean;
-  onToggleCollapse?: () => void;
   editMode?: boolean;
 }
 
-export function SpellsSection({ character, onChange, collapsed = false, onToggleCollapse, editMode = true }: SpellsSectionProps) {
+export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { data, loading } = useSRD();
   const srdSpells = data?.spells || [];
@@ -107,21 +105,7 @@ export function SpellsSection({ character, onChange, collapsed = false, onToggle
 
   return (
     <SectionCard id="spells" title="SPELLS" icon={<SpellsIcon className="h-5 w-5" />}>
-      <div className="flex items-center justify-between">
-        {editMode && onToggleCollapse && (
-          <button
-            type="button"
-            onClick={onToggleCollapse}
-            className="text-xs text-text-muted hover:text-parchment"
-          >
-            {collapsed ? "Show Spells" : "Hide Spells"}
-          </button>
-        )}
-      </div>
-
-      {!collapsed && (
-        <>
-          <div className="mt-3 space-y-2">
+      <div className="mt-3 space-y-2">
             {character.spells.map((spell) => {
               const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
               const isCustom = spell.source === "custom";
