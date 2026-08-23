@@ -36,7 +36,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         )
       )}
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-4 gap-3">
         <div className="flex flex-col items-center">
           <ShieldStat value={character.ac} />
         </div>
@@ -66,10 +66,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             <span className="text-sm font-semibold text-accent">{character.maxHp}</span>
           )}
         </Field>
-      </div>
-
-      <div className="mt-3 grid grid-cols-2 gap-3">
-        <Field label="TEMPORARY HP">
+        <Field label="TEMP HP">
           {editMode ? (
             <input
               type="number"
@@ -82,6 +79,9 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             <span className="text-sm font-semibold text-accent">{character.temporaryHp}</span>
           )}
         </Field>
+      </div>
+
+      <div className="mt-3">
         <Field label="SPEED">
           {editMode ? (
             <input

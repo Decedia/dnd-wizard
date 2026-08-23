@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
 
 interface AppHeaderProps {
-  title: string;
+  title?: string;
   subtitle?: string;
+  editMode?: boolean;
+  onEditModeChange?: (mode: boolean) => void;
 }
 
 export function WizardHatIcon({ className }: { className?: string }) {
@@ -16,26 +19,28 @@ export function WizardHatIcon({ className }: { className?: string }) {
   );
 }
 
-export function AppHeader({ title, subtitle }: AppHeaderProps) {
+export function AppHeader({ title, subtitle, editMode, onEditModeChange }: AppHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-charcoal/80 backdrop-blur-xl">
       <div className="mx-auto max-w-lg px-4 py-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center">
-            <WizardHatIcon className="h-7 w-7 text-accent" />
-          </div>
-          {title && (
+        <div className="flex items-center justify-between gap-3">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center">
+              <WizardHatIcon className="h-7 w-7 text-accent" />
+            </div>
             <div className="flex flex-col">
-              <h1 className="font-display text-xl font-bold tracking-wide text-white">
-                {title}
-              </h1>
+              {title && (
+                <h1 className="font-display text-xl font-bold tracking-wide text-white">
+                  {title}
+                </h1>
+              )}
               {subtitle && (
                 <p className="text-xs text-parchment/50 font-body">{subtitle}</p>
               )}
             </div>
-          )}
-          {!title && subtitle && (
-            <p className="text-sm text-parchment/70 font-body">{subtitle}</p>
+          </Link>
+          {editMode !== undefined && onEditModeChange && (
+            <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => onEditModeChange(m === "edit")} />
           )}
         </div>
       </div>

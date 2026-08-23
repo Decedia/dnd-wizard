@@ -8,7 +8,6 @@ import { BottomNav } from "@/components/BottomNav";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
 import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
-import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
@@ -166,16 +165,11 @@ export default function CharacterView() {
 
   return (
     <div className="min-h-screen bg-charcoal">
-      <AppHeader title="" subtitle="Character Sheet" />
+      <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} />
 
       <div className="sticky top-[68px] z-30 bg-charcoal/90 backdrop-blur-xl border-b border-border">
         <div className="mx-auto max-w-lg px-4 py-3">
-          <div className="flex items-center gap-3">
-            <div className="flex-1 overflow-x-auto scrollbar-hide">
-              <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
-            </div>
-            <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => setEditMode(m === "edit")} />
-          </div>
+          <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
         </div>
       </div>
 
@@ -188,7 +182,6 @@ export default function CharacterView() {
               <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
               <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
               <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
-              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
           {activeTab === "features" && (
