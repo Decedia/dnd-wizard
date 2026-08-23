@@ -448,6 +448,10 @@ export default function LevelUpPage() {
             }}
           />
         );
+      case "subclassInfo":
+        return (
+          <SubclassInfoStep step={{ ...section, level: currentStep.level } as any} />
+        );
       case "asi":
         return (
           <AsiStep
@@ -719,6 +723,26 @@ function SubclassStep({ step, selected, onSelect, featureChoices, selectedChoice
                 );
               })}
           </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SubclassInfoStep({ step }: { step: LevelUpStepSection }) {
+  const info = step.subclassInfo;
+  if (!info) return null;
+  return (
+    <div className="space-y-2">
+      <p className="text-xs text-parchment/60">{step.description}</p>
+      {info.features?.length > 0 && (
+        <div className="space-y-2">
+          {info.features.map((feature, idx) => (
+            <div key={idx} className="rounded-lg border border-gold/10 bg-gold/5 px-3 py-2">
+              <span className="text-sm font-medium text-gold/80">{feature.name}:</span>
+              <span className="text-xs text-parchment/70 ml-1 whitespace-pre-line">{feature.description}</span>
+            </div>
+          ))}
         </div>
       )}
     </div>

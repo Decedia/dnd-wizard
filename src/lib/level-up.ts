@@ -18,7 +18,7 @@ export interface AbilityScoreChange {
 }
 
 export interface LevelUpStepSection {
-  type: "hp" | "features" | "subclass" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
+  type: "hp" | "features" | "subclass" | "subclassInfo" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
   description?: string;
   features?: { name: string; description: string }[];
   featureChoices?: {
@@ -39,6 +39,11 @@ export interface LevelUpStepSection {
     options: string[];
     selected?: string;
   }[];
+  subclassInfo?: {
+    name: string;
+    description?: string;
+    features: { name: string; description: string }[];
+  };
   asiCount?: number;
   expertiseCount?: number;
   spellSlots?: Record<number, number>;
@@ -160,6 +165,26 @@ export function generateLevelUpSteps(
         features,
         featureChoices: getFeatureChoices(className, features),
       });
+    }
+
+    if (currentSubclass && classData.subclasses) {
+      const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
+      if (subclassData) {
+        const featureNames = new Set(features.map((f: any) => f.name));
+        const subclassFeaturesAtLevel = (subclassData.features || [])
+          .filter((f: any) => (f as any).level == null || (f as any).level === level)
+          .filter((f: any) => !featureNames.has(f.name))
+          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+        sections.push({
+          type: "subclassInfo",
+          description: `Your ${classData.name} subclass: ${currentSubclass}`,
+          subclassInfo: {
+            name: currentSubclass,
+            description: subclassData.description,
+            features: subclassFeaturesAtLevel,
+          },
+        });
+      }
     }
 
     if (level === classData.subclassLevel && classData.subclasses && classData.subclasses.length > 0) {

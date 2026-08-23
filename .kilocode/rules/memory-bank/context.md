@@ -181,3 +181,6 @@ Wizard restructure complete. Next steps:
 | 2026-08-20 | Updated spell selection in `PerLevelStepsFlow.tsx`, `level-up/page.tsx`, and `LevelUpFlow.tsx` to use wizard-only spell list when class is Wizard |
 | 2026-08-20 | Fixed LevelUpFlow prop naming: renamed `className` to `charClass` to avoid TSX parsing conflicts; updated child components `HpStep` and `ExpertiseStep` |
 | 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |
+| 2026-08-23 | Fixed Barbarian level progression bug: Feral Instinct moved from level 6 to level 7; level 6 now correctly shows ASI only |
+| 2026-08-23 | Added `subclassInfo` section type to `generateLevelUpSteps`; selected subclass now displays on every level-up step for classes that have subclasses |
+| 2026-08-23 | Updated `LevelUpFlow`, `level-up/page`, and `PerLevelStepsFlow` with `SubclassInfoStep` read-only components; lint and typecheck pass |
