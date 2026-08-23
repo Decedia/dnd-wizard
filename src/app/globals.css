@@ -11,6 +11,11 @@
   --color-accent: #ef4444;
   --color-accent-light: #f87171;
   --color-accent-dark: #dc2626;
+  --color-gold: #fbbf24;
+  --color-gold-light: #f59e0b;
+  --color-gold-dark: #d97706;
+  --color-burgundy: #7f1d1d;
+  --color-burgundy-light: #991b1b;
   --font-display: "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
 }
