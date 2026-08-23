@@ -169,13 +169,16 @@ export function generateLevelUpSteps(
     if (currentSubclass && classData.subclasses) {
       const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
       if (subclassData) {
+        const subclassFeaturesAtLevel = (subclassData.features || [])
+          .filter((f: any) => (f as any).level != null && (f as any).level === level && (f as any).level !== classData.subclassLevel)
+          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
         sections.push({
           type: "subclassInfo",
           description: `Your ${classData.name} subclass: ${currentSubclass}`,
           subclassInfo: {
             name: currentSubclass,
             description: subclassData.description,
-            features: [],
+            features: subclassFeaturesAtLevel,
           },
         });
       }
