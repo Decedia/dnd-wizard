@@ -175,7 +175,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "6px", backgroundColor: COLORS.bg, borderRadius: "4px", border: `1px solid ${COLORS.border}`, marginTop: "-7px" }}>
                     <div style={{ fontSize: "9px", color: COLORS.textMuted }}>Speed</div>
-                    <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.speed}ft</div>
+                     <div style={{ fontSize: "14px", fontWeight: "bold", color: COLORS.text }}>{character.speed}</div>
                   </div>
                 </div>
               </div>

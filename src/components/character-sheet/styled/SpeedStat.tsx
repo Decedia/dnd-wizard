@@ -33,7 +33,7 @@ export function SpeedStat({ value }: SpeedStatProps) {
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Speed</span>
-          <span className="text-2xl font-bold text-parchment">{value}ft</span>
+          <span className="text-2xl font-bold text-parchment">{value}</span>
         </div>
       </div>
     </div>
