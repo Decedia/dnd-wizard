@@ -233,7 +233,12 @@
       "speed": 30,
       "size": "Medium",
       "darkvision": false,
-      "traits": [],
+      "traits": [
+        {
+          "name": "Versatile",
+          "description": "Humans are the most adaptable and ambitious people among the common races. They have a drive to achieve and a capacity for innovation, making them excellent at a wide variety of roles."
+        }
+      ],
       "languages": [
         "Common"
       ],

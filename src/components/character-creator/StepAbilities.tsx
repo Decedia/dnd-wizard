@@ -84,6 +84,17 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     onChange({ [abilityKey]: newBase } as Partial<Character>);
   }, [raceBonuses, onChange]);
 
+  const adjustDiceScore = useCallback((abilityKey: AbilityKey, delta: number) => {
+    const currentBase = getBaseScore(abilityKey);
+    const newBase = Math.max(8, Math.min(15, currentBase + delta));
+    if (newBase === currentBase) return;
+    
+    const raceBonus = raceBonuses[abilityKey] || 0;
+    const capped = Math.min(15, newBase + raceBonus);
+    setDiceRollResults(prev => ({ ...prev, [abilityKey]: capped }));
+    onChange({ [abilityKey]: newBase } as Partial<Character>);
+  }, [getBaseScore, raceBonuses, onChange]);
+
   const handleStandardArrayAssign = useCallback((abilityKey: AbilityKey, value: number) => {
     const newAssigned = { ...assignedArrayToAbility };
     Object.keys(newAssigned).forEach(key => {
@@ -165,9 +176,9 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
         </div>
         <div className="space-y-3">
           {ABILITIES.map(({ key, label, full }) => {
-            const currentScore = getFinalScore(key);
+            const finalScore = getFinalScore(key);
             const baseScore = getBaseScore(key);
-            const modifier = getModifier(currentScore);
+            const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
 
             return (
@@ -180,6 +191,9 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   <span className="text-[10px] text-text-muted">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
+                  {raceBonus > 0 && (
+                    <span className="text-xs text-accent font-medium">+{raceBonus}</span>
+                  )}
                   <select
                     value={assignedArrayToAbility[key] || ""}
                     onChange={(e) => {
@@ -195,9 +209,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                       </option>
                     ))}
                   </select>
-                  {raceBonus > 0 && (
-                    <span className="text-xs text-accent">+{raceBonus}</span>
-                  )}
                   <div className="flex flex-col items-center w-12">
                     <span className="text-sm font-semibold text-accent">
                       {modifier >= 0 ? `+${modifier}` : modifier}
@@ -239,7 +250,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
                   <span className="text-[10px] text-text-muted">{full}</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => handlePointBuyChange(key, baseScore - 1)}
@@ -248,9 +259,11 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     -
                   </button>
-                  <div className="flex flex-col items-center w-16">
+                  <div className="flex flex-col items-center w-20">
                     <span className="text-lg font-bold text-parchment">{baseScore}</span>
-                    <span className="text-[10px] text-text-muted">cost: {cost}</span>
+                    <span className="text-[10px] text-text-muted">
+                      {raceBonus > 0 ? `final: ${finalScore}` : `cost: ${cost}`}
+                    </span>
                   </div>
                   <button
                     type="button"
@@ -260,9 +273,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     +
                   </button>
-                  {raceBonus > 0 && (
-                    <span className="text-xs text-accent">+{raceBonus}</span>
-                  )}
                   <div className="flex flex-col items-center w-12">
                     <span className="text-sm font-semibold text-accent">
                       {modifier >= 0 ? `+${modifier}` : modifier}
@@ -282,7 +292,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     return (
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <p className="text-xs text-parchment/50">Roll 4d6, drop the lowest. Maximum score is 15.</p>
+          <p className="text-xs text-parchment/50">Roll 4d6, drop the lowest. Maximum score is 15. Use +/- to adjust after rolling.</p>
           <button
             type="button"
             onClick={handleDiceRollAll}
@@ -308,7 +318,15 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
                   <span className="text-[10px] text-text-muted">{full}</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => adjustDiceScore(key, -1)}
+                    disabled={baseScore <= 8}
+                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                  >
+                    -
+                  </button>
                   <div className="flex flex-col items-center">
                     <div className="flex gap-1">
                       {rolls.length === 0 ? (
@@ -334,10 +352,11 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   </div>
                   <button
                     type="button"
-                    onClick={() => rollDice(key)}
-                    className="rounded-md border border-border bg-charcoal/40 px-2 py-1 text-xs text-parchment/60 hover:border-accent hover:text-accent transition-colors"
+                    onClick={() => adjustDiceScore(key, 1)}
+                    disabled={baseScore >= 15}
+                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
                   >
-                    Roll
+                    +
                   </button>
                   {raceBonus > 0 && (
                     <span className="text-xs text-accent">+{raceBonus}</span>
