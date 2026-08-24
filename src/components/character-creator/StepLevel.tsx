@@ -108,86 +108,97 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
   return (
     <StepCard title="Starting Level" hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity. Your subclass becomes available when you reach the required level for your class.">
-      <div className="space-y-4">
-        <div>
-          <div className="text-xs text-parchment/50 uppercase tracking-wider mb-1">HP Roll *</div>
+      <div className="space-y-5">
+        <div className="rounded-xl border border-border bg-charcoal/40 p-4">
+          <div className="text-xs text-parchment/50 uppercase tracking-wider mb-2">HP Roll *</div>
           <input
             type="number"
             value={data.maxHp || ""}
             onChange={handleHpChange}
-            className="input w-full text-center"
+            className="input w-full text-center text-lg font-semibold"
             placeholder={String(baselineHp)}
           />
-          <div className="text-[10px] text-parchment/40 mt-1">
-            d{hitDie} + CON ({conMod >= 0 ? '+' : ''}{conMod}) = {baselineHp} average
+          <div className="text-[11px] text-parchment/50 mt-2 text-center">
+            d{hitDie} + CON ({conMod >= 0 ? '+' : ''}{conMod}) = <span className="text-accent font-semibold">{baselineHp}</span> average
           </div>
         </div>
 
-        <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-          {Array.from({ length: 20 }, (_, i) => i + 1).map((lvl) => {
-            const isActive = lvl === level;
-            const isAsi = asiLevels.includes(lvl);
-            const isApplied = data.appliedAsi.includes(lvl);
-            return (
-              <button
-                key={lvl}
-                type="button"
-                onClick={() => adjustLevel(lvl)}
-                className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-all relative ${
-                  isActive
-                    ? "bg-accent text-white shadow-lg shadow-accent/20"
-                    : "bg-charcoal-lighter text-text-muted hover:text-parchment border border-border"
-                }`}
-              >
-                {lvl}
-                {isAsi && isApplied && <span className="absolute -top-1 -right-1 text-[10px]">📊</span>}
-              </button>
-            );
-          })}
+        <div>
+          <div className="text-[10px] text-parchment/40 uppercase tracking-wider mb-2 font-medium">Select Level</div>
+          <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
+            {Array.from({ length: 20 }, (_, i) => i + 1).map((lvl) => {
+              const isActive = lvl === level;
+              const isAsi = asiLevels.includes(lvl);
+              const isApplied = data.appliedAsi.includes(lvl);
+              return (
+                <button
+                  key={lvl}
+                  type="button"
+                  onClick={() => adjustLevel(lvl)}
+                  className={`h-9 min-w-[2.5rem] whitespace-nowrap rounded-full px-3 text-sm font-semibold transition-all relative ${
+                    isActive
+                      ? "bg-accent text-white shadow-lg shadow-accent/20"
+                      : "bg-charcoal-lighter text-text-muted hover:text-parchment border border-border"
+                  }`}
+                >
+                  {lvl}
+                  {isAsi && isApplied && <span className="absolute -top-1 -right-1 text-[10px] leading-none">📊</span>}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="text-center">
-          <div className="text-3xl font-display font-bold text-parchment">Level {level}</div>
+        <div className="text-center py-2">
+          <div className="text-4xl font-display font-bold text-parchment tracking-tight">Level {level}</div>
           {classData && classData.subclassLevel && (
-            <div className="text-xs text-parchment/50 mt-1">
+            <div className="text-xs text-parchment/50 mt-1.5 font-medium">
               Subclass available at Level {classData.subclassLevel}
             </div>
           )}
         </div>
 
         {currentAsiLevel && (
-          <div className="rounded-lg border border-accent/20 bg-accent/5 p-3 space-y-3">
-            <div className="text-xs text-accent font-semibold uppercase tracking-wider">
-              Ability Score Improvement (Level {currentAsiLevel})
+          <div className="rounded-xl border border-accent/25 bg-accent/5 p-4 space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="text-accent text-base">📊</span>
+              <div className="text-xs text-accent font-semibold uppercase tracking-wider">
+                Ability Score Improvement (Level {currentAsiLevel})
+              </div>
             </div>
-            <p className="text-xs text-parchment/70">Distribute 2 points: +2 to one ability, or +1 to two abilities.</p>
+            <p className="text-xs text-parchment/70 leading-relaxed">
+              Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
+            </p>
             <div className="space-y-2">
               {ABILITIES.map(({ key, label, full }) => {
                 const currentScore = data[key] as number;
                 const allocated = asiAllocation[key] || 0;
+                const isAtCap = currentScore >= 20;
                 return (
-                  <div key={key} className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2">
+                  <div key={key} className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2.5">
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
+                      <span className="text-sm font-semibold text-parchment/90 w-12">{label}</span>
                       <span className="text-[10px] text-text-muted">{full}</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <span className="text-sm font-bold text-parchment w-8 text-center">{currentScore}</span>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1.5">
                         <button
                           type="button"
                           onClick={() => removeAsiPoint(key)}
-                          disabled={allocated <= 0}
-                          className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                          disabled={allocated <= 0 || isAtCap}
+                          className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-parchment/70 disabled:opacity-25 hover:border-accent hover:text-accent transition-colors"
                         >
-                          -
+                          −
                         </button>
-                        <span className="text-sm font-bold text-accent w-6 text-center">{allocated > 0 ? `+${allocated}` : "0"}</span>
+                        <span className="text-sm font-bold text-accent w-7 text-center">
+                          {allocated > 0 ? `+${allocated}` : "0"}
+                        </span>
                         <button
                           type="button"
                           onClick={() => allocateAsiPoint(key)}
-                          disabled={allocated >= 2 || totalAsiPoints >= 2}
-                          className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                          disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
+                          className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-parchment/70 disabled:opacity-25 hover:border-accent hover:text-accent transition-colors"
                         >
                           +
                         </button>
@@ -201,27 +212,29 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
               type="button"
               onClick={applyAsi}
               disabled={!canApplyAsi}
-              className="w-full rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-accent-dark disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
             >
-              Apply ASI
+              Apply Ability Score Improvement
             </button>
           </div>
         )}
 
         {pendingAsiLevels.length > 0 && !currentAsiLevel && (
-          <div className="rounded-lg border border-accent/20 bg-accent/5 p-3">
-            <p className="text-xs text-parchment/70">Complete the current Ability Score Improvement to continue.</p>
+          <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
+            <p className="text-xs text-parchment/70 leading-relaxed">
+              Complete the current Ability Score Improvement to continue.
+            </p>
           </div>
         )}
 
         {features.length > 0 && (
-          <div>
-            <div className="text-xs text-parchment/50 uppercase tracking-wider mb-2">Features</div>
-            <div className="space-y-2">
+          <div className="space-y-3">
+            <div className="text-[10px] text-parchment/40 uppercase tracking-wider font-medium">Class Features</div>
+            <div className="space-y-4">
               {features.map((feature, idx) => (
-                <div key={idx} className="space-y-0.5">
-                  <div className="text-sm font-semibold text-accent">{feature.name}</div>
-                  <p className="text-xs text-parchment/70 leading-relaxed whitespace-pre-line">{feature.description}</p>
+                <div key={idx} className="rounded-xl border border-border bg-charcoal/30 p-4 space-y-2">
+                  <div className="text-sm font-bold text-accent tracking-wide">{feature.name}</div>
+                  <p className="text-sm text-parchment/80 leading-[1.7] whitespace-pre-line">{feature.description}</p>
                 </div>
               ))}
             </div>
