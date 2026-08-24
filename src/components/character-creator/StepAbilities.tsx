@@ -11,7 +11,7 @@ interface StepAbilitiesProps {
   onChange: (patch: Partial<Character>) => void;
 }
 
-type AbilityMethod = "standard" | "pointbuy";
+type AbilityMethod = "standard" | "pointbuy" | "diceroll";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -42,6 +42,18 @@ const POINT_BUY_TOTAL = 27;
 export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const [method, setMethod] = useState<AbilityMethod>(data.abilityMethod || "standard");
   const [pointBuyScores, setPointBuyScores] = useState<Record<AbilityKey, number>>(() => {
+    const initial: Record<AbilityKey, number> = {
+      str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8
+    };
+    ABILITIES.forEach(ability => {
+      const currentScore = (data[ability.key] as number) || 10;
+      if (currentScore >= 8 && currentScore <= 15) {
+        initial[ability.key] = currentScore;
+      }
+    });
+    return initial;
+  });
+  const [diceRollScores, setDiceRollScores] = useState<Record<AbilityKey, number>>(() => {
     const initial: Record<AbilityKey, number> = {
       str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8
     };
@@ -90,6 +102,14 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     onChange(patch);
   }, [onChange]);
 
+  const syncDiceRollToCharacter = useCallback((scores: Record<AbilityKey, number>) => {
+    const patch: Partial<Character> = {};
+    ABILITIES.forEach(ability => {
+      patch[ability.key] = scores[ability.key];
+    });
+    onChange(patch);
+  }, [onChange]);
+
   const loadCharacterScoresToPointBuy = useCallback(() => {
     const scores: Record<AbilityKey, number> = {
       str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8
@@ -120,15 +140,22 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       if (newScore < 8 || newScore > 15) return prev;
 
       const next = { ...prev, [abilityKey]: newScore };
-
-      const raceBonus = raceBonuses[abilityKey] || 0;
-      const finalValue = Math.min(20, newScore + raceBonus);
-
       onChange({ [abilityKey]: newScore } as Partial<Character>);
-
       return next;
     });
-  }, [raceBonuses, onChange]);
+  }, [onChange]);
+
+  const handleDiceRollChange = useCallback((abilityKey: AbilityKey, newScore: number) => {
+    setDiceRollScores(prev => {
+      const oldScore = prev[abilityKey];
+      if (newScore === oldScore) return prev;
+      if (newScore < 8 || newScore > 15) return prev;
+
+      const next = { ...prev, [abilityKey]: newScore };
+      onChange({ [abilityKey]: newScore } as Partial<Character>);
+      return next;
+    });
+  }, [onChange]);
 
   const renderStandardArray = () => {
     const assignedValues = Object.values(
@@ -271,12 +298,72 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     );
   };
 
+  const renderDiceRoll = () => {
+    return (
+      <div className="space-y-4">
+        <p className="text-xs text-parchment/50">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
+        <div className="space-y-3">
+          {ABILITIES.map(({ key, label, full }) => {
+            const score = diceRollScores[key];
+            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
+            const modifier = getModifier(finalScore);
+            const raceBonus = raceBonuses[key] || 0;
+
+            return (
+              <div
+                key={key}
+                className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-4 py-3"
+              >
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
+                  <span className="text-[10px] text-text-muted">{full}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleDiceRollChange(key, score - 1)}
+                    disabled={score <= 8}
+                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                  >
+                    -
+                  </button>
+                  <div className="flex flex-col items-center w-20">
+                    <span className="text-lg font-bold text-parchment">{score}</span>
+                    <span className="text-[10px] text-text-muted">
+                      {raceBonus > 0 ? `final: ${finalScore}` : "max: 15"}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleDiceRollChange(key, score + 1)}
+                    disabled={score >= 15}
+                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                  >
+                    +
+                  </button>
+                  <div className="flex flex-col items-center w-12">
+                    <span className="text-sm font-semibold text-accent">
+                      {modifier >= 0 ? `+${modifier}` : modifier}
+                    </span>
+                    <span className="text-[10px] text-text-muted">mod</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   const renderMethodContent = () => {
     switch (method) {
       case "standard":
         return renderStandardArray();
       case "pointbuy":
         return renderPointBuy();
+      case "diceroll":
+        return renderDiceRoll();
       default:
         return null;
     }
@@ -292,6 +379,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           {([
             { key: "standard" as AbilityMethod, label: "Standard Array" },
             { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
+            { key: "diceroll" as AbilityMethod, label: "Dice Roll" },
           ]).map((tab) => (
             <button
               key={tab.key}
