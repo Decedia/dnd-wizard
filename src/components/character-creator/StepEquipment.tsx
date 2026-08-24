@@ -381,7 +381,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       const itemInfo = option.items[0]?.name ? getItemInfo(option.items[0].name) : null;
                       const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
                       const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
-                      const isDisabled = isExpanded && !isWeaponChoice;
+                       const isDisabled = hasSelection && !isSelected;
 
                       if (isWeaponChoice) {
                         const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
