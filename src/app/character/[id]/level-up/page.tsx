@@ -325,10 +325,13 @@ export default function LevelUpPage() {
   return (
     <div className="min-h-screen bg-charcoal">
       <AppHeader title="Level Up!" subtitle={`Level ${oldLevel} → ${newLevel}`} />
+
+      <div className="px-4">
+        <LevelTabs steps={steps} levelTab={levelTab} onSelect={setLevelTab} />
+      </div>
+
       <main className="px-4 py-6 pb-28">
         <div className="mx-auto max-w-lg">
-          <LevelTabs steps={steps} levelTab={levelTab} onSelect={setLevelTab} />
-
           {currentStep && (
             <div className="space-y-4">
               <div className="flex items-center gap-2 mb-2">

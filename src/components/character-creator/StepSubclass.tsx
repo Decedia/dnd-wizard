@@ -107,7 +107,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
 
   return (
     <StepCard
-      title={`Subclass (Level ${subclassUnlockLevel})`}
+      title={`Level Up (Level ${subclassUnlockLevel})`}
       hint={`At level ${subclassUnlockLevel}, you choose a subclass that defines your character's archetype. Each subclass grants unique features and abilities that shape how your character plays.`}
     >
       <div className="space-y-6">
