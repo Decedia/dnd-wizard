@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClass, getEquipmentData, getStaticWeapons, getStaticArmors } from "@/lib/srd-client";
+import { getStaticClass, getStaticWeapons, getStaticArmors } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 
 interface StepEquipmentProps {
@@ -20,6 +20,7 @@ interface EquipmentOption {
   description: string;
   items: { name: string; quantity: number }[];
   weaponType?: string;
+  isWeaponChoice?: boolean;
 }
 
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
@@ -29,6 +30,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const [customItemName, setCustomItemName] = useState("");
   const [customItemQty, setCustomItemQty] = useState(1);
   const [customItemType, setCustomItemType] = useState<Character["inventory"][number]["itemType"]>("item");
+  const [weaponPopup, setWeaponPopup] = useState<{ groupId: string; optionIndex: number; category: string } | null>(null);
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
@@ -45,11 +47,28 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
       if (desc.includes(" or ")) {
         const parts = desc.split(" or ");
-        const options: EquipmentOption[] = parts.map((part: string) => ({
-          description: part.trim(),
-          items: items.length > 0 ? [items[0]] : [],
-          weaponType: extractWeaponType(part),
-        }));
+        const options: EquipmentOption[] = parts.map((part: string) => {
+          const trimmed = part.trim();
+          const isWeaponChoice = trimmed.includes("any martial") || trimmed.includes("any simple");
+          let weaponType: string | undefined;
+
+          if (isWeaponChoice) {
+            if (trimmed.includes("martial melee")) weaponType = "martial_melee";
+            else if (trimmed.includes("martial ranged")) weaponType = "martial_ranged";
+            else if (trimmed.includes("martial")) weaponType = "martial";
+            else if (trimmed.includes("simple melee")) weaponType = "simple_melee";
+            else if (trimmed.includes("simple ranged")) weaponType = "simple_ranged";
+            else if (trimmed.includes("simple")) weaponType = "simple";
+          }
+
+          return {
+            description: trimmed,
+            items: items.length > 0 ? [items[0]] : [],
+            weaponType,
+            isWeaponChoice,
+          };
+        });
+
         groups.push({
           id: `choice-${groupCounter++}`,
           description: desc,
@@ -71,35 +90,48 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [startingEquipment]);
 
   const filteredWeapons = useMemo(() => {
-    const selectedTypes = Object.entries(selectedChoices)
-      .filter(([_, optionIndex]) => optionIndex !== undefined)
-      .flatMap(([groupId, optionIndex]) => {
-        const group = choiceGroups.find(g => g.id === groupId);
-        if (!group || optionIndex === undefined) return [];
-        const option = group.options[optionIndex];
-        return option.weaponType ? [option.weaponType] : [];
-      });
-
-    if (selectedTypes.length === 0) return weapons;
-
+    if (!weaponPopup) return [];
+    
+    const category = weaponPopup.category;
     return weapons.filter((w: any) => {
-      return selectedTypes.some(type => {
-        if (type === "martial") return w.weapon_category === "Martial";
-        if (type === "simple") return w.weapon_category === "Simple";
-        if (type === "martial melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
-        if (type === "martial ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
-        if (type === "simple melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
-        if (type === "simple ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
-        return false;
-      });
+      if (category === "martial") return w.weapon_category === "Martial";
+      if (category === "simple") return w.weapon_category === "Simple";
+      if (category === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
+      if (category === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
+      if (category === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
+      if (category === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
+      return false;
     });
-  }, [selectedChoices, choiceGroups, weapons]);
+  }, [weaponPopup, weapons]);
 
   const handleChoiceSelect = (groupId: string, optionIndex: number) => {
     setSelectedChoices(prev => ({
       ...prev,
       [groupId]: optionIndex,
     }));
+  };
+
+  const handleWeaponSelect = (weapon: any) => {
+    if (!weaponPopup) return;
+    
+    const group = choiceGroups.find(g => g.id === weaponPopup.groupId);
+    if (!group) return;
+    
+    const option = group.options[weaponPopup.optionIndex];
+    const weaponItem = {
+      id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      name: weapon.name,
+      quantity: option.items[0]?.quantity || 1,
+      equipped: false,
+      source: "srd" as const,
+      description: "",
+      itemType: "weapon" as const,
+      damageDice: weapon.damage_dice || "",
+      damageType: weapon.damage_type || "",
+    };
+    
+    setPendingEquip(prev => [...prev, weaponItem]);
+    setWeaponPopup(null);
   };
 
   const addSelectedToPending = () => {
@@ -109,13 +141,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       const selectedIndex = selectedChoices[group.id];
       if (selectedIndex !== undefined) {
         const option = group.options[selectedIndex];
+        if (option.isWeaponChoice) {
+          return;
+        }
         option.items.forEach((item) => {
           newItems.push({
             id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
             name: item.name,
             quantity: item.quantity || 1,
             equipped: false,
-            source: "srd",
+            source: "srd" as const,
             description: "",
             itemType: getItemType(item.name),
           });
@@ -159,6 +194,24 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <div className="space-y-2">
                   {group.options.map((option, optionIndex) => {
                     const isSelected = selectedChoices[group.id] === optionIndex;
+                    
+                    if (option.isWeaponChoice) {
+                      return (
+                        <button
+                          key={optionIndex}
+                          type="button"
+                          onClick={() => setWeaponPopup({ groupId: group.id, optionIndex, category: option.weaponType || "" })}
+                          className={`w-full rounded-lg border px-3 py-2 text-left text-sm transition-all ${
+                            isSelected
+                              ? "border-accent/40 bg-accent/10 text-parchment"
+                              : "border-white/20 bg-charcoal/40 text-parchment/80 hover:border-white/40"
+                          }`}
+                        >
+                          Choose a {option.weaponType?.replace('_', ' ')} weapon →
+                        </button>
+                      );
+                    }
+                    
                     return (
                       <button
                         key={optionIndex}
@@ -185,6 +238,42 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
             >
               Add Selected to Pending
             </button>
+          </div>
+        </div>
+      )}
+
+      {weaponPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80" onClick={() => setWeaponPopup(null)}>
+          <div className="max-w-sm w-full max-h-[80vh] overflow-y-auto rounded-lg border border-border bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-display font-semibold text-accent">
+                Choose a {weaponPopup.category.replace('_', ' ')} weapon
+              </h3>
+              <button onClick={() => setWeaponPopup(null)} className="text-text-muted hover:text-parchment">
+                ✕
+              </button>
+            </div>
+            <div className="space-y-2">
+              {filteredWeapons.map((weapon: any) => (
+                <button
+                  key={weapon.name}
+                  type="button"
+                  onClick={() => handleWeaponSelect(weapon)}
+                  className="w-full rounded-lg border border-border bg-charcoal/40 px-3 py-2 text-left text-sm hover:border-accent/30 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-parchment font-medium">{weapon.name}</span>
+                    <span className="text-xs text-accent">{weapon.damage_dice || "-"}</span>
+                  </div>
+                  <div className="text-xs text-parchment/60 mt-1">
+                    {weapon.damage_type && <span>{weapon.damage_type}</span>}
+                    {weapon.properties && weapon.properties.length > 0 && (
+                      <span className="ml-2 text-text-muted">{weapon.properties.join(", ")}</span>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -245,22 +334,4 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       </div>
     </StepCard>
   );
-}
-
-function extractWeaponType(text: string): string | undefined {
-  const lower = text.toLowerCase();
-  if (lower.includes("martial weapon")) {
-    if (lower.includes("melee")) return "martial melee";
-    if (lower.includes("ranged")) return "martial ranged";
-    return "martial";
-  }
-  if (lower.includes("simple weapon")) {
-    if (lower.includes("melee")) return "simple melee";
-    if (lower.includes("ranged")) return "simple ranged";
-    return "simple";
-  }
-  if (lower.includes("light armor")) return "light";
-  if (lower.includes("heavy armor")) return "heavy";
-  if (lower.includes("medium armor")) return "medium";
-  return undefined;
 }
