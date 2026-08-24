@@ -56,6 +56,7 @@
 
 ## Recently Completed
 
+- [x] Rewrote StepEquipment: removed pending selection state, clicks immediately add to inventory, inline weapon list, info for all options, granted items auto-added, fixed double-selection bug; lint and typecheck pass
 - [x] Restructured DND-AN creation wizard end-to-end (Steps 1-8 fixes + new Steps 9+)
 - [x] Added `type: "feature" | "attack"` tags to all class features in srd.ts
 - [x] Expanded spells to 28 entries with full casting metadata (levels 0-5)
@@ -122,7 +123,7 @@
 | `src/components/character-creator/StepAbilityScores.tsx` | Ability scores with popup, 3 methods, saving throws | ✅ Ready |
 | `src/components/character-creator/StepBackground.tsx` | Background + personality/ideal/bond/flaw | ✅ Ready |
 | `src/components/character-creator/StepSkills.tsx` | Skills with popup, restricted list, expertise picker | ✅ Ready |
-| `src/components/character-creator/StepEquipment.tsx` | Equipment choices, auto-populate attacks/inventory | ✅ Ready |
+| `src/components/character-creator/StepEquipment.tsx` | Equipment choices, immediate inventory commit, inline weapon picker, auto-granted items | ✅ Ready |
 | `src/components/character-creator/StepLooksAppearances.tsx` | Age, height, weight, eyes, skin, hair, backstory | ✅ Ready |
 | `src/components/character-creator/StepLevelHitPoints.tsx` | Level selector (1-10), baseline HP display | ✅ Ready |
 | `src/components/character-creator/PerLevelStepsFlow.tsx` | Inline per-level step sequence with spell selection | ✅ Ready |
@@ -200,6 +201,7 @@ Wizard restructure complete. Next steps:
 | 2026-08-24 | Added all PHB subclasses (28 new) to `2014_subclasses.json` and updated class arrays; added `choices` data to class features (Fighting Style, Expertise, Eldritch Invocations, Favored Enemy, Natural Explorer); created `StepFeatureSelections.tsx` and integrated feature-selection steps into creation wizard; fixed nested StepCard visual bug in creation page; added `featureSelections` field to Character type; lint and typecheck pass |
 | 2026-08-24 | Rewrote StepEquipment with actual selection UI: equipment choices now show as radio-button style selection groups; descriptions are parsed to detect weapon types ("martial weapon", "simple weapon", etc.) and flag them as `weapon_choice` in srd.json; when rendering such an option, shows a tappable "Choose a X weapon →" label that opens a filtered weapon selection popup; popup shows each weapon's name, damage dice, damage type, and properties; once selected, weapon is added to pending equipment with correct damageDice/damageType for Attacks & Spellcasting section; updated srd.json startingEquipment for Fighter, Paladin, Barbarian, Cleric, Ranger, Bard, Druid, Monk, Sorcerer, Warlock with proper weapon_choice flags; lint and typecheck pass |
 | 2026-08-24 | Added `StepLevel.tsx` with +/- level selector (1-20) showing baseline HP; subclass step now only appears when `character.level >= subclassLevel`; feature selection steps now only appear for features available at the selected level; subclass is cleared when level drops below threshold; lint and typecheck pass |
+| 2026-08-24 | Rewrote StepEquipment: removed pending selection state (`selectedChoices`/`selectedWeaponData`), clicks now immediately add items to inventory; replaced weapon popup with inline expandable weapon list; all equipment options show info (damage dice, AC, properties) even when unselected; granted items auto-added with `isGranted: true` and excluded from choice groups; fixed double-selection bug by removing previous group selection before adding new one; Current Inventory shows GRANTED badge; InventorySection dropdown now populates `description` field; lint and typecheck pass |
 
 - [x] Comprehensive SRD data refresh from D&D 5e API
 - [x] Fixed TypeScript type issues in srd-client.ts for JSON imports

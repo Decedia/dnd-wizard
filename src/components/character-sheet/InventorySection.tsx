@@ -175,6 +175,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                             name: val,
                             srdItemName: val,
                             source: "srd",
+                            description: srdData?.description || item.description || "",
                             itemType: srdData?.type,
                             category: srdData?.category,
                             damageDice: srdData?.damageDice,
