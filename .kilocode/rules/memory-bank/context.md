@@ -217,3 +217,4 @@ Wizard restructure complete. Next steps:
 - [x] Created `StepFeatureSelections.tsx` component to render feature selection UI with multi-select support
 - [x] Fixed nested StepCard visual bug in creation page by removing outer wrapper (step components already render their own StepCard)
 - [x] Creation wizard now generates dynamic feature-selection steps after base steps when class has choice features; lint and typecheck pass
+| 2026-08-24 | Extended subclass progression in creation wizard: `applySubclassFeatures` and `isSubclassStepComplete` (and the StepSubclass UI) now cover every subclass feature earned from the unlock level up through the character's current level (verified through level 10+), not just the unlock-level feature. Added `getEarnedSubclassFeatures` helper; choice features at each earned level require selection. lint and typecheck pass |
