@@ -128,6 +128,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         damageDice: equipmentData.damageDice,
         damageType: equipmentData.damageType,
         category: equipmentData.category,
+        contents: equipmentData.contents,
       };
     }
 
@@ -323,8 +324,15 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       );
     }
 
-    if (itemInfo.type === "item" && itemInfo.description) {
-      return <span>{itemInfo.description}</span>;
+    if (itemInfo.type === "item") {
+      return (
+        <span>
+          {itemInfo.description && <span>{itemInfo.description}</span>}
+          {itemInfo.contents && (
+            <span className="ml-2 text-text-muted">Contains: {itemInfo.contents}</span>
+          )}
+        </span>
+      );
     }
 
     return null;

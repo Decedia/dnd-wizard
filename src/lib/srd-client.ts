@@ -157,6 +157,7 @@ export interface SRDEquipmentDetail {
   armor_class?: { base: number; dex_bonus: boolean; max_bonus?: number };
   str_minimum?: number;
   stealth_disadvantage?: boolean;
+  contents?: any;
 }
 
 export interface SRDEquipment {
@@ -169,6 +170,7 @@ export interface SRDEquipment {
   baseAC?: number;
   armorType?: "light" | "medium" | "heavy" | "shield";
   maxDexBonus?: number | null;
+  contents?: string;
 }
 
 export interface SRDLanguage {
@@ -293,6 +295,12 @@ function mapWeaponCategory(range: string | undefined): "melee" | "ranged" | unde
 export function getEquipmentData(name: string): SRDEquipment | undefined {
   const detail = getStaticEquipment(name);
   if (!detail) return undefined;
+  const contents = detail.contents;
+  const contentsStr = Array.isArray(contents)
+    ? contents.map((c: any) => c.item?.name || c.name).filter(Boolean).join(", ")
+    : typeof contents === "string"
+      ? contents
+      : undefined;
   return {
     name: detail.name,
     description: detail.description,
@@ -303,6 +311,7 @@ export function getEquipmentData(name: string): SRDEquipment | undefined {
     baseAC: detail.armor_class?.base,
     armorType: mapArmorType(detail.armor_category || ""),
     maxDexBonus: detail.armor_class?.max_bonus ?? (detail.armor_class?.dex_bonus ? null : 0),
+    contents: contentsStr,
   };
 }
 
