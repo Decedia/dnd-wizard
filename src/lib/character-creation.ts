@@ -13,7 +13,7 @@ interface FeatureSelection {
   level: number;
 }
 
-export function getValidationMessage(step: CreationStep): string {
+export function getValidationMessage(step: CreationStep, character?: Character): string {
   switch (step.type) {
     case "identity":
       return "Please enter your character's name, select a background, and choose an alignment.";
@@ -30,7 +30,16 @@ export function getValidationMessage(step: CreationStep): string {
     case "spells":
       return "Please select your starting spells.";
     case "level":
-      return "Please choose a starting level.";
+      if (!character?.level || character.level < 1) return "Please choose a starting level.";
+      if (!character.maxHp || character.maxHp <= 0) return "Please enter your character's HP.";
+      const classData = character.class ? getStaticClass(character.class) : null;
+      const asiLevels = classData?.levels
+        .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
+        .filter((entry) => entry.asi)
+        .map((entry) => entry.level) || [];
+      const pendingAsiCount = asiLevels.filter((asiLevel) => !(character.appliedAsi || []).includes(asiLevel) && asiLevel <= character.level).length;
+      if (pendingAsiCount > 0) return `Please complete ${pendingAsiCount} pending Ability Score Improvement${pendingAsiCount > 1 ? 's' : ''}.`;
+      return "Please complete this step before continuing.";
     case "feature-selections":
       return "Please make all required feature selections.";
     case "appearance":
@@ -50,7 +59,14 @@ export function getCreationSteps(character: Character): CreationStep[] {
   const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
   const spellsCompleted = !classData?.spellcastingAbility || (character.spells && character.spells.length > 0);
   const appearanceCompleted = true;
-  const levelCompleted = character.level >= 1;
+
+  const asiLevels = classData?.levels
+    .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
+    .filter((entry) => entry.asi)
+    .map((entry) => entry.level) || [];
+
+  const pendingAsiCount = asiLevels.filter((asiLevel) => !character.appliedAsi.includes(asiLevel) && asiLevel <= character.level).length;
+  const levelCompleted = character.level >= 1 && character.maxHp > 0 && pendingAsiCount === 0;
 
   const steps: CreationStep[] = [
     {

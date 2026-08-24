@@ -57,6 +57,7 @@ export interface Character {
   spellSlots: Record<number, number>;
   spellSlotsExpended: Record<number, number>;
   featureSelections: Record<string, string[]>;
+  appliedAsi: number[];
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
     age: string;
@@ -206,6 +207,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     spellSlots: {},
     spellSlotsExpended: {},
     featureSelections: {},
+    appliedAsi: [],
     currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
     appearance: {
       age: "",

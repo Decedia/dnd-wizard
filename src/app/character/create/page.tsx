@@ -39,7 +39,7 @@ export default function CharacterCreate() {
   const featureSelections = useMemo(() => getFeatureSelections(character), [character]);
 
   const currentValidationError = currentStep?.required && !currentStep.completed
-    ? getValidationMessage(currentStep)
+    ? getValidationMessage(currentStep, character)
     : null;
 
   const update = useCallback((patch: Partial<Character>) => {
