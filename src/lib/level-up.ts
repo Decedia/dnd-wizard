@@ -1,22 +1,6 @@
 import { getStaticClass } from "@/lib/srd-client";
 import { getClassLevel1Hp, getClassPerLevelHp, getModifier } from "@/lib/storage";
 
-export interface LevelUpResult {
-  oldLevel: number;
-  newLevel: number;
-  addedFeatures: { name: string; description: string }[];
-  hasASI: boolean;
-  asiLevels: number[];
-  spellSlots: Record<number, number> | null;
-  hpGain: number;
-  abilityScoreChanges?: AbilityScoreChange[];
-}
-
-export interface AbilityScoreChange {
-  ability: string;
-  delta: number;
-}
-
 export interface LevelUpStepSection {
   type: "hp" | "features" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
   description?: string;
@@ -45,63 +29,6 @@ export interface LevelUpStep {
   title: string;
   description?: string;
   sections: LevelUpStepSection[];
-}
-
-export interface LevelUpChanges {
-  level: number;
-  features: { name: string; description: string }[];
-  subclass?: string;
-  abilityScoreChanges: { ability: string; delta: number }[];
-  expertise: string[];
-  spellSlots: Record<number, number> | null;
-  choices?: Record<string, string>;
-  skillProficiencies?: string[];
-}
-
-export function computeLevelUp(oldLevel: number, newLevel: number, className: string): LevelUpResult {
-  const classData = getStaticClass(className);
-  if (!classData || !classData.levels) {
-    return {
-      oldLevel,
-      newLevel,
-      addedFeatures: [],
-      hasASI: false,
-      asiLevels: [],
-      spellSlots: null,
-      hpGain: 0,
-    };
-  }
-
-  const addedFeatures: { name: string; description: string }[] = [];
-  const asiLevels: number[] = [];
-  let spellSlots: Record<number, number> | null = null;
-
-  for (let level = oldLevel + 1; level <= newLevel; level++) {
-    const levelData = classData.levels[level - 1];
-    if (levelData) {
-      addedFeatures.push(...levelData.features.map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) })));
-      if (levelData.asi) {
-        asiLevels.push(level);
-      }
-      if (levelData.spellSlots) {
-        spellSlots = { ...levelData.spellSlots };
-      }
-    }
-  }
-
-  const levelsGained = newLevel - oldLevel;
-  const perLevel = getClassPerLevelHp(classData);
-  const hpGain = levelsGained > 0 ? levelsGained : 0;
-
-  return {
-    oldLevel,
-    newLevel,
-    addedFeatures,
-    hasASI: asiLevels.length > 0,
-    asiLevels,
-    spellSlots,
-    hpGain,
-  };
 }
 
 export function generateLevelUpSteps(
@@ -217,6 +144,48 @@ export function generateLevelUpSteps(
   }
 
   return steps;
+}
+
+export function sectionTitle(type: LevelUpStepSection["type"]): string {
+  switch (type) {
+    case "hp":
+      return "Hit Points";
+    case "features":
+      return "New Features";
+    case "asi":
+      return "Ability Score Improvement";
+    case "expertise":
+      return "Expertise";
+    case "spellSlots":
+      return "Spell Slots";
+    case "spellSelection":
+      return "Spell Selection";
+    case "skillSelection":
+      return "Skill Selection";
+    default:
+      return "";
+  }
+}
+
+export function sectionIcon(type: LevelUpStepSection["type"]): string {
+  switch (type) {
+    case "hp":
+      return "❤️";
+    case "features":
+      return "⚡";
+    case "asi":
+      return "📊";
+    case "expertise":
+      return "🎯";
+    case "spellSlots":
+      return "✨";
+    case "spellSelection":
+      return "🔮";
+    case "skillSelection":
+      return "🛡️";
+    default:
+      return "📋";
+  }
 }
 
 function sectionLabel(type: LevelUpStepSection["type"], className: string): string {

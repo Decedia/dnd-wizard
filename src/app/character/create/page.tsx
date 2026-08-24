@@ -15,6 +15,7 @@ import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
 import { StepSpells } from "@/components/character-creator/StepSpells";
 import { StepAppearance } from "@/components/character-creator/StepAppearance";
+import { WizardNav } from "@/components/level-up/WizardNav";
 import { StepFeatureSelections } from "@/components/character-creator/StepFeatureSelections";
 import {
   initializeCharacter,
@@ -110,27 +111,13 @@ export default function CharacterCreate() {
         </div>
       </main>
 
-      <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
-        <div className="mx-auto max-w-lg px-4 w-full">
-          <div className="flex items-center gap-3 rounded-full border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
-            {step > 0 && (
-              <button
-                onClick={handleBack}
-                className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5"
-              >
-                Back
-              </button>
-            )}
-            <button
-              onClick={handleNext}
-              disabled={!canProceed()}
-              className="flex-1 rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
-            >
-              {isLastStep ? "Create Character" : "Next"}
-            </button>
-          </div>
-        </div>
-      </div>
+      <WizardNav
+        onBack={handleBack}
+        onNext={handleNext}
+        canProceed={canProceed()}
+        nextLabel={isLastStep ? "Create Character" : "Next"}
+        showBack={step > 0}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
@@ -9,9 +9,21 @@ import { getCharacter, saveCharacter, computeDerivedStats, type Character } from
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import {
   generateLevelUpSteps,
+  sectionTitle,
+  sectionIcon,
   type LevelUpStep,
   type LevelUpStepSection,
 } from "@/lib/level-up";
+import { useToggleArray } from "@/hooks/useToggleArray";
+import { LevelTabs } from "@/components/level-up/LevelTabs";
+import { WizardNav } from "@/components/level-up/WizardNav";
+import { LevelUpHpSection } from "@/components/level-up/sections/LevelUpHpSection";
+import { LevelUpAsiSection } from "@/components/level-up/sections/LevelUpAsiSection";
+import { LevelUpFeaturesSection } from "@/components/level-up/sections/LevelUpFeaturesSection";
+import { LevelUpExpertiseSection } from "@/components/level-up/sections/LevelUpExpertiseSection";
+import { LevelUpSpellSlotsSection } from "@/components/level-up/sections/LevelUpSpellSlotsSection";
+import { LevelUpSpellSelectionSection } from "@/components/level-up/sections/LevelUpSpellSelectionSection";
+import { LevelUpSkillSelectionSection } from "@/components/level-up/sections/LevelUpSkillSelectionSection";
 
 export default function LevelUpPage() {
   const params = useParams();
@@ -33,9 +45,9 @@ export default function LevelUpPage() {
   const [hpGains, setHpGains] = useState<Record<number, number>>({});
   const [asiChoices, setAsiChoices] = useState<Record<number, { ability: string; delta: number }[]>>({});
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
-  const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
-  const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
-  const [skillChoices, setSkillChoices] = useState<Record<number, string[]>>({});
+  const [expertiseChoices, toggleExpertise] = useToggleArray<string>({});
+  const [selectedSpells, toggleSpell] = useToggleArray<string>({});
+  const [skillChoices, toggleSkill] = useToggleArray<string>({});
 
   const oldLevel = character?.level ?? 1;
   const newLevel = oldLevel + 1;
@@ -181,293 +193,86 @@ export default function LevelUpPage() {
       switch (section.type) {
         case "hp":
           return (
-            <div key={section.type} className="space-y-4">
-              <p className="text-sm text-parchment/60">{section.description}</p>
-              <div className="flex items-center justify-center gap-4">
-                <div className="flex flex-col items-center gap-2">
-                  <input
-                    type="number"
-                    value={hpGains[currentStep?.level ?? 0] || ""}
-                    onChange={(e) => updateHp(currentStep?.level ?? 0, Number(e.target.value) || 0)}
-                    className="input w-24 text-center"
-                    placeholder="HP"
-                    min={1}
-                  />
-                  <span className="text-xs text-text-muted">HP Gain</span>
-                </div>
-              </div>
-            </div>
+            <LevelUpHpSection
+              key={section.type}
+              description={section.description || ""}
+              level={currentStep?.level ?? 0}
+              hpGain={hpGains[currentStep?.level ?? 0] || 0}
+              onHpChange={updateHp}
+            />
           );
 
         case "features":
           return (
-            <div key={section.type} className="space-y-3">
-              {section.features?.map((feature, i) => (
-                <div key={i} className="rounded-lg border border-border bg-charcoal/40 p-3">
-                  <h4 className="text-sm font-medium text-parchment/80">{feature.name}</h4>
-                  <p className="text-xs text-parchment/50 mt-1 whitespace-pre-line">{feature.description}</p>
-                </div>
-              ))}
-              {section.featureChoices?.map((choice, i) => (
-                <div key={`choice-${i}`} className="rounded-lg border border-accent/30 bg-accent/5 p-3 space-y-2">
-                  <p className="text-xs font-medium text-accent">{choice.featureName}</p>
-                  <p className="text-xs text-parchment/50">
-                    {choice.optional ? "Optionally choose" : "Choose"} one
-                    {choice.tigerSkillCount ? ` and ${choice.tigerSkillCount} skills` : ""}:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {choice.options.map((opt) => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() =>
-                          setFeatureChoices((prev) => ({ ...prev, [choice.featureName]: opt }))
-                        }
-                        className={`rounded-md border px-3 py-1 text-xs transition-colors ${
-                          featureChoices[choice.featureName] === opt
-                            ? "border-accent bg-accent/20 text-accent"
-                            : "border-border bg-charcoal/40 text-parchment/60 hover:border-accent/30"
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                  {choice.tigerSkillOptions && choice.tigerSkillCount && featureChoices[choice.featureName] === "Tiger" && (
-                    <div className="mt-2 space-y-1">
-                      <p className="text-xs text-parchment/50">Choose {choice.tigerSkillCount} skills:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {choice.tigerSkillOptions.map((skill) => (
-                          <button
-                            key={skill}
-                            type="button"
-                            className="rounded-md border border-border bg-charcoal/40 px-2 py-0.5 text-xs text-parchment/60 hover:border-accent/30"
-                          >
-                            {skill}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            <LevelUpFeaturesSection
+              key={section.type}
+              features={section.features || []}
+              featureChoices={section.featureChoices}
+              featureChoicesState={featureChoices}
+              onFeatureChoiceChange={(featureName, option) =>
+                setFeatureChoices((prev) => ({ ...prev, [featureName]: option }))
+              }
+            />
           );
 
         case "asi":
           return (
-            <div key={section.type} className="space-y-3">
-              <p className="text-sm text-parchment/60">{section.description}</p>
-              {["str", "dex", "con", "int", "wis", "cha"].map((ability) => {
-                const currentAllocation = (asiChoices[currentStep?.level ?? 0] || []).find(
-                  (c) => c.ability === ability
-                );
-                const currentValue = currentAllocation?.delta || 0;
-                const baseScore = character?.[ability as keyof Character] as number;
-                const newScore = baseScore + currentValue;
-
-                return (
-                  <div
-                    key={ability}
-                    className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2"
-                  >
-                    <span className="text-sm font-medium text-parchment/80 w-12">
-                      {ability.toUpperCase()}
-                    </span>
-                    <span className="text-sm text-parchment/60">{baseScore}</span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => updateAsi(currentStep?.level ?? 0, ability, -1)}
-                        disabled={currentValue <= 0}
-                        className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30"
-                      >
-                        -
-                      </button>
-                      <span className="text-sm font-semibold text-accent w-6 text-center">
-                        {currentValue}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => updateAsi(currentStep?.level ?? 0, ability, 1)}
-                        disabled={
-                          totalAsiAllocated(currentStep?.level ?? 0) >= 2 || newScore >= 20
-                        }
-                        className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30"
-                      >
-                        +
-                      </button>
-                    </div>
-                    <span className="text-sm font-semibold text-parchment w-8 text-right">
-                      {newScore}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            <LevelUpAsiSection
+              key={section.type}
+              description={section.description || ""}
+              level={currentStep?.level ?? 0}
+              character={character!}
+              asiChoices={asiChoices}
+              onAsiChange={updateAsi}
+              totalAsiAllocated={totalAsiAllocated}
+            />
           );
 
         case "expertise":
           return (
-            <div key={section.type} className="space-y-3">
-              <p className="text-sm text-parchment/60">{section.description}</p>
-              {Object.entries(character?.skills || {})
-                .filter(([, proficient]) => proficient)
-                .map(([name]) => {
-                  const isSelected = (expertiseChoices[currentStep?.level ?? 0] || []).includes(name);
-                  const isDisabled =
-                    !isSelected &&
-                    (expertiseChoices[currentStep?.level ?? 0] || []).length >=
-                      (section.expertiseCount || 2);
-
-                  return (
-                    <label
-                      key={name}
-                      className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
-                        isSelected
-                          ? "border-accent/40 bg-accent/10"
-                          : isDisabled
-                            ? "border-border bg-charcoal/40 opacity-50"
-                            : "border-border bg-charcoal/40 hover:border-accent/30"
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={isSelected}
-                        onChange={() => {
-                          setExpertiseChoices((prev) => {
-                            const current = prev[currentStep?.level ?? 0] || [];
-                            if (isSelected) {
-                              return {
-                                ...prev,
-                                [currentStep?.level ?? 0]: current.filter((n) => n !== name),
-                              };
-                            } else if (current.length < (section.expertiseCount || 2)) {
-                              return {
-                                ...prev,
-                                [currentStep?.level ?? 0]: [...current, name],
-                              };
-                            }
-                            return prev;
-                          });
-                        }}
-                        disabled={isDisabled}
-                        className="h-4 w-4 rounded border-border bg-charcoal text-accent focus:ring-accent/50 disabled:opacity-30"
-                      />
-                      <span className="text-sm text-parchment/80">{name}</span>
-                      {isSelected && (
-                        <span className="text-[10px] font-bold text-accent bg-accent/10 px-1.5 py-0.5 rounded ml-auto">
-                          EXPERTISE
-                        </span>
-                      )}
-                    </label>
-                  );
-                })}
-            </div>
+            <LevelUpExpertiseSection
+              key={section.type}
+              description={section.description || ""}
+              level={currentStep?.level ?? 0}
+              character={character!}
+              expertiseChoices={expertiseChoices}
+              expertiseCount={section.expertiseCount || 2}
+              onExpertiseChange={toggleExpertise}
+            />
           );
 
         case "spellSlots":
           return (
-            <div key={section.type} className="space-y-3">
-              <p className="text-sm text-parchment/60">Your new spell slots:</p>
-              <div className="grid grid-cols-4 gap-2">
-                {Object.entries(section.spellSlots || {}).map(([level, count]) => (
-                  <div
-                    key={level}
-                    className="flex flex-col items-center rounded-lg border border-border bg-charcoal/40 p-2"
-                  >
-                    <span className="text-xs text-parchment/50">Lvl {level}</span>
-                    <span className="text-lg font-bold text-accent">{count}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <LevelUpSpellSlotsSection
+              key={section.type}
+              description={section.description || ""}
+              spellSlots={section.spellSlots || {}}
+            />
           );
 
         case "spellSelection":
           return (
-            <div key={section.type} className="space-y-3">
-              <p className="text-sm text-parchment/60">{section.description}</p>
-              {getStaticSpells()
-                .filter((s) => s.classes?.includes(character?.class || ""))
-                .map((spell) => {
-                  const isSelected = (selectedSpells[currentStep?.level ?? 0] || []).includes(
-                    spell.name
-                  );
-                  return (
-                    <button
-                      key={spell.name}
-                      type="button"
-                      onClick={() => {
-                        setSelectedSpells((prev) => {
-                          const current = prev[currentStep?.level ?? 0] || [];
-                          if (isSelected) {
-                            return {
-                              ...prev,
-                              [currentStep?.level ?? 0]: current.filter((s) => s !== spell.name),
-                            };
-                          } else {
-                            return {
-                              ...prev,
-                              [currentStep?.level ?? 0]: [...current, spell.name],
-                            };
-                          }
-                        });
-                      }}
-                      className={`w-full rounded-lg border px-3 py-2 text-left transition-all ${
-                        isSelected
-                          ? "border-accent/40 bg-accent/10"
-                          : "border-border bg-charcoal/40 hover:border-accent/30"
-                      }`}
-                    >
-                      <span className="text-sm text-parchment">{spell.name}</span>
-                      <span className="text-xs text-text-muted ml-2">Level {spell.level}</span>
-                    </button>
-                  );
-                })}
-            </div>
+            <LevelUpSpellSelectionSection
+              key={section.type}
+              description={section.description || ""}
+              level={currentStep?.level ?? 0}
+              selectedSpells={selectedSpells}
+              characterClass={character?.class || ""}
+              onSpellChange={toggleSpell}
+            />
           );
 
         case "skillSelection":
           return (
-            <div key={section.type} className="space-y-3">
-              <p className="text-sm text-parchment/60">{section.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {section.skillOptions?.map((skill) => {
-                  const isSelected = (skillChoices[currentStep?.level ?? 0] || []).includes(skill);
-                  return (
-                    <button
-                      key={skill}
-                      type="button"
-                      onClick={() => {
-                        setSkillChoices((prev) => {
-                          const current = prev[currentStep?.level ?? 0] || [];
-                          if (isSelected) {
-                            return {
-                              ...prev,
-                              [currentStep?.level ?? 0]: current.filter((s) => s !== skill),
-                            };
-                          } else if (current.length < (section.skillSelectionCount || 1)) {
-                            return {
-                              ...prev,
-                              [currentStep?.level ?? 0]: [...current, skill],
-                            };
-                          }
-                          return prev;
-                        });
-                      }}
-                      className={`rounded-md border px-3 py-1 text-xs transition-colors ${
-                        isSelected
-                          ? "border-accent bg-accent/20 text-accent"
-                          : "border-border bg-charcoal/40 text-parchment/60 hover:border-accent/30"
-                      }`}
-                    >
-                      {skill}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            <LevelUpSkillSelectionSection
+              key={section.type}
+              description={section.description || ""}
+              level={currentStep?.level ?? 0}
+              skillChoices={skillChoices}
+              skillOptions={section.skillOptions || []}
+              skillSelectionCount={section.skillSelectionCount || 1}
+              onSkillChange={toggleSkill}
+            />
           );
 
         default:
@@ -486,6 +291,9 @@ export default function LevelUpPage() {
       updateHp,
       updateAsi,
       totalAsiAllocated,
+      toggleExpertise,
+      toggleSpell,
+      toggleSkill,
     ]
   );
 
@@ -519,27 +327,8 @@ export default function LevelUpPage() {
       <AppHeader title="Level Up!" subtitle={`Level ${oldLevel} → ${newLevel}`} />
       <main className="px-4 py-6 pb-28">
         <div className="mx-auto max-w-lg">
-          {/* Level Tabs */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 overflow-x-auto pb-2">
-              {steps.map((step, index) => (
-                <button
-                  key={step.id}
-                  type="button"
-                  onClick={() => setLevelTab(index)}
-                  className={`flex-shrink-0 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                    index === levelTab
-                      ? "bg-accent text-white"
-                      : "bg-charcoal-light text-parchment/60 hover:bg-charcoal-lighter"
-                  }`}
-                >
-                  Level {step.level}
-                </button>
-              ))}
-            </div>
-          </div>
+          <LevelTabs steps={steps} levelTab={levelTab} onSelect={setLevelTab} />
 
-          {/* Current Level Content */}
           {currentStep && (
             <div className="space-y-4">
               <div className="flex items-center gap-2 mb-2">
@@ -560,70 +349,12 @@ export default function LevelUpPage() {
         </div>
       </main>
 
-      {/* Navigation */}
-      <div className="fixed bottom-24 left-0 right-0 z-50 flex justify-center">
-        <div className="mx-auto max-w-lg px-4 w-full">
-          <div className="flex items-center gap-3 rounded-full border border-parchment/20 bg-charcoal/90 backdrop-blur-xl p-3 shadow-lg">
-            <button
-              type="button"
-              onClick={handleBack}
-              className="rounded-lg border border-parchment/20 px-5 py-2.5 text-sm font-semibold text-parchment transition-colors hover:border-parchment/40"
-            >
-              Back
-            </button>
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={!canProceed()}
-              className="flex-1 rounded-lg bg-accent px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
-            >
-              {isLastTab ? "Finish Level Up" : "Next"}
-            </button>
-          </div>
-        </div>
-      </div>
+      <WizardNav
+        onBack={handleBack}
+        onNext={handleNext}
+        canProceed={canProceed()}
+        nextLabel={isLastTab ? "Finish Level Up" : "Next"}
+      />
     </div>
   );
-}
-
-function sectionTitle(type: LevelUpStepSection["type"]): string {
-  switch (type) {
-    case "hp":
-      return "Hit Points";
-    case "features":
-      return "New Features";
-    case "asi":
-      return "Ability Score Improvement";
-    case "expertise":
-      return "Expertise";
-    case "spellSlots":
-      return "Spell Slots";
-    case "spellSelection":
-      return "Spell Selection";
-    case "skillSelection":
-      return "Skill Selection";
-    default:
-      return "";
-  }
-}
-
-function sectionIcon(type: LevelUpStepSection["type"]): string {
-  switch (type) {
-    case "hp":
-      return "❤️";
-    case "features":
-      return "⚡";
-    case "asi":
-      return "📊";
-    case "expertise":
-      return "🎯";
-    case "spellSlots":
-      return "✨";
-    case "spellSelection":
-      return "🔮";
-    case "skillSelection":
-      return "🛡️";
-    default:
-      return "📋";
-  }
 }
