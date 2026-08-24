@@ -243,9 +243,25 @@ export function syncBaseFeatures(character: Character): Character {
 }
 
 /**
- * Adds the selected subclass's starting features to the character's Features &
- * Traits list (marked locked/default) when the subclass step is confirmed.
- * For features with choices, only the selected option(s) are added.
+ * Returns the subclass features the character has actually earned: every
+ * feature at or above the subclass unlock level and at or below the character's
+ * current level. This drives both the selection UI and the final feature list.
+ */
+function getEarnedSubclassFeatures(
+  subclass: { features: { name: string; description: string; level?: number; choices?: { name: string; description: string }[] }[] },
+  characterLevel: number,
+  unlockLevel: number
+) {
+  return subclass.features.filter(
+    (f) => f.level == null || (f.level >= unlockLevel && f.level <= characterLevel)
+  );
+}
+
+/**
+ * Adds the selected subclass's features (every feature earned from the unlock
+ * level up through the character's current level) to the Features & Traits list
+ * (marked locked/default) when the subclass step is confirmed. For features
+ * with choices, only the selected option(s) are added.
  */
 export function applySubclassFeatures(character: Character): Character {
   if (!character.subclass) return character;
@@ -257,12 +273,10 @@ export function applySubclassFeatures(character: Character): Character {
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return character;
 
-  const startingFeatures = subclass.features.filter(
-    (f) => f.level == null || f.level === unlockLevel
-  );
+  const earnedFeatures = getEarnedSubclassFeatures(subclass, character.level, unlockLevel);
 
   const newFeatures: Character["features"] = [];
-  for (const feature of startingFeatures) {
+  for (const feature of earnedFeatures) {
     if (feature.choices && feature.choices.length > 0) {
       const key = `subclass-feature-${feature.name}`;
       const selected = (character as any).featureSelections?.[key];
@@ -312,11 +326,9 @@ export function isSubclassStepComplete(character: Character): boolean {
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return false;
 
-  const startingFeatures = subclass.features.filter(
-    (f) => f.level == null || f.level === unlockLevel
-  );
+  const earnedFeatures = getEarnedSubclassFeatures(subclass, character.level, unlockLevel);
 
-  return startingFeatures.every((feature) => {
+  return earnedFeatures.every((feature) => {
     if (!feature.choices || feature.choices.length === 0) return true;
     const key = `subclass-feature-${feature.name}`;
     const selected = (character as any).featureSelections?.[key];

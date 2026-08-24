@@ -142,8 +142,8 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
             <div className="space-y-3">
               {subclasses.map((subclass) => {
                 const isSelected = selectedSubclass === subclass.name;
-                const startingFeatures = subclass.features.filter(
-                  (f) => f.level == null || f.level === subclassUnlockLevel
+                const earnedFeatures = subclass.features.filter(
+                  (f) => f.level == null || (f.level >= subclassUnlockLevel && f.level <= data.level)
                 );
 
                 return (
@@ -169,9 +169,9 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                       <p className="mt-1 text-xs text-parchment/80">{subclass.description}</p>
                     )}
 
-                    {startingFeatures.length > 0 && (
+                    {earnedFeatures.length > 0 && (
                       <div className="mt-3 space-y-3">
-                        {startingFeatures.map((feature, idx) => {
+                        {earnedFeatures.map((feature, idx) => {
                           const hasChoices = feature.choices && feature.choices.length > 0;
                           const choiceKey = `subclass-feature-${feature.name}`;
                           const selectedOpts = selectedChoices[choiceKey] || [];
@@ -182,7 +182,14 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                               key={idx}
                               className="rounded-md border border-border bg-charcoal/30 px-3 py-2"
                             >
-                              <span className="text-xs font-semibold text-accent">{feature.name}</span>
+                              <span className="text-xs font-semibold text-accent">
+                                {feature.name}
+                                {feature.level != null && (
+                                  <span className="ml-2 text-[10px] font-normal text-parchment/40">
+                                    Lv {feature.level}
+                                  </span>
+                                )}
+                              </span>
                               {!hasChoices && feature.description && (
                                 <p className="text-[11px] text-parchment/80 mt-0.5 leading-relaxed">
                                   {feature.description}
