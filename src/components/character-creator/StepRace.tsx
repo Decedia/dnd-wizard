@@ -38,11 +38,11 @@ export function StepRace({ data, onChange }: StepRaceProps) {
             >
               <div className="flex items-center justify-between">
                 <span className="font-display font-semibold text-parchment">{race.name}</span>
-                <span className="text-xs text-text-muted">
+                <span className="text-xs text-parchment/80">
                   {race.size} / Speed {race.speed} ft
                 </span>
               </div>
-              <p className="mt-1 text-xs text-text-muted">
+              <p className="mt-1 text-xs text-parchment/80">
                 {Object.entries(race.abilityScoreIncreases || {})
                   .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
                   .join(", ")}
@@ -50,7 +50,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
               {race.traits && race.traits.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {race.traits.map((trait) => (
-                    <div key={trait.name} className="text-xs text-parchment/60">
+                    <div key={trait.name} className="text-xs text-parchment/80">
                       <span className="font-medium text-accent">{trait.name}:</span> {trait.description}
                     </div>
                   ))}

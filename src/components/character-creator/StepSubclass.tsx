@@ -73,7 +73,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                     <div className="flex-1">
                       <span className="text-sm font-medium text-parchment/80">{subclass.name}</span>
                       {subclass.description && (
-                        <p className="text-xs text-parchment/50 mt-1">{subclass.description}</p>
+                        <p className="text-xs text-parchment/70 mt-1">{subclass.description}</p>
                       )}
                       {isSelected && subclassFeatures.length > 0 && (
                         <div className="mt-3 space-y-2">
@@ -90,7 +90,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                                 className="rounded-md border border-border bg-charcoal/30 px-3 py-2"
                               >
                                 <span className="text-xs font-medium text-accent">{feature.name}:</span>
-                                <span className="text-[11px] text-parchment/60 ml-1 whitespace-pre-line">
+                                <span className="text-[11px] text-parchment/80 ml-1 whitespace-pre-line">
                                   {typeof feature.description === "string"
                                     ? feature.description
                                     : Array.isArray(feature.description)

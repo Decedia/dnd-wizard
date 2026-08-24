@@ -47,7 +47,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
                   </span>
                 )}
               </div>
-              <p className="mt-1 text-xs text-parchment/50">{cls.flavorText}</p>
+              <p className="mt-1 text-xs text-parchment/80">{cls.flavorText}</p>
               {hasSubclasses && (
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {cls.subclasses!.map((sub) => (

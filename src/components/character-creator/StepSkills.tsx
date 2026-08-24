@@ -76,7 +76,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
         <div className="mb-4 rounded-lg border border-accent/20 bg-accent/5 px-3 py-2">
           <p className="text-xs text-parchment/70">
             Select <span className="text-accent font-semibold">{skillChoices.count}</span> skills from your class list.
-            <span className="text-parchment/50">({selectedCount} of {skillChoices.count} selected)</span>
+            <span className="text-parchment/80">({selectedCount} of {skillChoices.count} selected)</span>
           </p>
         </div>
       )}

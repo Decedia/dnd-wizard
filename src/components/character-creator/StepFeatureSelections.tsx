@@ -87,7 +87,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
             <div key={key} className="space-y-3">
               <div>
                 <h3 className="text-sm font-medium text-parchment/80">{selection.featureName}</h3>
-                <p className="text-xs text-parchment/50 mt-1">{selection.description}</p>
+                <p className="text-xs text-parchment/80 mt-1">{selection.description}</p>
               </div>
               
               {selection.type === "spells" ? (
@@ -132,7 +132,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
               )}
               
               {isMultiple && (
-                <p className="text-xs text-parchment/50">
+                <p className="text-xs text-parchment/80">
                   {selected.length} of {maxCount} selected
                 </p>
               )}
