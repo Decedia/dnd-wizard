@@ -12,6 +12,7 @@ interface FeatureSelection {
   count?: number;
   level: number;
   storageKey: string;
+  optional?: boolean;
   source?: "class" | "subclass";
 }
 
@@ -178,11 +179,12 @@ export function getCreationSteps(character: Character): CreationStep[] {
 
   const featureSelections = getFeatureSelections(character);
   featureSelections.forEach((selection, index) => {
-    const key = `feature-${selection.featureName}`;
-    const existing = (character as any).featureSelections?.[key];
-    const isComplete = selection.type === "single"
-      ? !!existing
-      : Array.isArray(existing) && existing.length >= (selection.count || 1);
+    const existing = (character as any).featureSelections?.[selection.storageKey];
+    const isComplete = selection.optional
+      ? true
+      : selection.type === "single"
+        ? !!existing
+        : Array.isArray(existing) && existing.length >= (selection.count || 1);
 
     steps.push({
       id: `feature-selection-${index}`,
@@ -265,6 +267,7 @@ export function getFeatureSelections(character: Character): FeatureSelection[] {
           count: feature.choices.count,
           level: levelNumber,
           storageKey: `feature-${feature.name}`,
+          optional: feature.choices.optional || false,
           source: "class",
         });
       }

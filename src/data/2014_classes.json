@@ -148,6 +148,27 @@
                 "At 3rd level, you choose a path that shapes the nature of your rage. Choose the Path of the Berserker or the Path of the Totem Warrior, both detailed at the end of the class description. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels."
               ],
               "type": "feature"
+            },
+            {
+              "name": "Primal Knowledge",
+              "description": [
+                "When you reach 3rd level and again at 10th level, you gain proficiency in one skill of your choice from the list of skills available to barbarians at 1st level."
+              ],
+              "type": "feature",
+              "choices": {
+                "type": "skills",
+                "count": 1,
+                "optional": true,
+                "description": "Choose one barbarian skill to gain proficiency in.",
+                "options": [
+                  "Animal Handling",
+                  "Athletics",
+                  "Intimidation",
+                  "Nature",
+                  "Perception",
+                  "Survival"
+                ]
+              }
             }
           ],
           "asi": false,
@@ -212,6 +233,13 @@
                 "Additionally, if you are surprised at the beginning of combat and aren't incapacitated, you can act normally on your first turn, but only if you enter your rage before doing anything else on that turn."
               ],
               "type": "feature"
+            },
+            {
+              "name": "Instinctive Pounce",
+              "description": [
+                "At 7th level, as part of the bonus action you take to enter your rage, you can move up to half your speed."
+              ],
+              "type": "feature"
             }
           ],
           "asi": false,
@@ -254,6 +282,27 @@
                 "At 3rd level, you choose a path that shapes the nature of your rage. Choose the Path of the Berserker or the Path of the Totem Warrior, both detailed at the end of the class description. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels."
               ],
               "type": "feature"
+            },
+            {
+              "name": "Primal Knowledge",
+              "description": [
+                "When you reach 3rd level and again at 10th level, you gain proficiency in one skill of your choice from the list of skills available to barbarians at 1st level."
+              ],
+              "type": "feature",
+              "choices": {
+                "type": "skills",
+                "count": 1,
+                "optional": true,
+                "description": "Choose one barbarian skill to gain proficiency in.",
+                "options": [
+                  "Animal Handling",
+                  "Athletics",
+                  "Intimidation",
+                  "Nature",
+                  "Perception",
+                  "Survival"
+                ]
+              }
             }
           ],
           "asi": false,
@@ -501,16 +550,16 @@
           ]
         },
         {
-          "description": "(a) a diplomat\u2019s pack or (b) an entertainer\u2019s pack",
+          "description": "(a) a diplomat’s pack or (b) an entertainer’s pack",
           "items": [
             {
               "name": "Diplomat's Pack",
-              "description": "(a) a diplomat\u2019s pack",
+              "description": "(a) a diplomat’s pack",
               "quantity": 1
             },
             {
               "name": "Entertainer's Pack",
-              "description": "(b) an entertainer\u2019s pack",
+              "description": "(b) an entertainer’s pack",
               "quantity": 1
             }
           ]
@@ -1963,16 +2012,16 @@
           ]
         },
         {
-          "description": "(a) a priest\u2019s pack or (b) an explorer\u2019s pack",
+          "description": "(a) a priest’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Priest's Pack",
-              "description": "(a) a priest\u2019s pack",
+              "description": "(a) a priest’s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer\u2019s pack",
+              "description": "(b) an explorer’s pack",
               "quantity": 1
             }
           ]
@@ -3126,16 +3175,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer\u2019s pack",
+              "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer\u2019s pack",
+              "description": "(b) an explorer’s pack",
               "quantity": 1
             }
           ]
@@ -3536,16 +3585,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer\u2019s pack",
+              "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer\u2019s pack",
+              "description": "(b) an explorer’s pack",
               "quantity": 1
             }
           ]
@@ -4017,16 +4066,16 @@
           ]
         },
         {
-          "description": "(a) a priest\u2019s pack or (b) an explorer\u2019s pack",
+          "description": "(a) a priest’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Priest's Pack",
-              "description": "(a) a priest\u2019s pack",
+              "description": "(a) a priest’s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer\u2019s pack",
+              "description": "(b) an explorer’s pack",
               "quantity": 1
             }
           ]
@@ -4554,16 +4603,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer\u2019s pack",
+              "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer\u2019s pack",
+              "description": "(b) an explorer’s pack",
               "quantity": 1
             }
           ]
@@ -5141,16 +5190,16 @@
           ]
         },
         {
-          "description": "(a) a burglar\u2019s pack, (b) a dungeoneer\u2019s pack, or (c) an explorer\u2019s pack",
+          "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack",
           "items": [
             {
               "name": "Burglar's Pack",
-              "description": "(a) a burglar\u2019s pack, (b) a dungeoneer\u2019s pack,",
+              "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack,",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(c) an explorer\u2019s pack",
+              "description": "(c) an explorer’s pack",
               "quantity": 1
             }
           ]
@@ -5606,16 +5655,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer\u2019s pack",
+              "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer\u2019s pack",
+              "description": "(b) an explorer’s pack",
               "quantity": 1
             }
           ]
@@ -6130,16 +6179,16 @@
           ]
         },
         {
-          "description": "(a) a scholar\u2019s pack or (b) a dungeoneer\u2019s pack",
+          "description": "(a) a scholar’s pack or (b) a dungeoneer’s pack",
           "items": [
             {
               "name": "Scholar's Pack",
-              "description": "(a) a scholar\u2019s pack",
+              "description": "(a) a scholar’s pack",
               "quantity": 1
             },
             {
               "name": "Dungeoneer's Pack",
-              "description": "(b) a dungeoneer\u2019s pack",
+              "description": "(b) a dungeoneer’s pack",
               "quantity": 1
             }
           ]
@@ -6659,16 +6708,16 @@
           ]
         },
         {
-          "description": "(a) a scholar\u2019s pack or (b) an explorer\u2019s pack",
+          "description": "(a) a scholar’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Scholar's Pack",
-              "description": "(a) a scholar\u2019s pack",
+              "description": "(a) a scholar’s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer\u2019s pack",
+              "description": "(b) an explorer’s pack",
               "quantity": 1
             }
           ]
