@@ -94,7 +94,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, []);
 
   const getItemInfo = useCallback((itemName: string) => {
-    const weapon = weapons.find((w: any) => w.name === itemName);
+    const weapon = weapons.find((w: any) => w.name === itemName) as any;
     if (weapon) {
       return {
         type: "weapon",
@@ -105,7 +105,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       };
     }
 
-    const armor = armors.find((a: any) => a.name === itemName);
+    const armor = armors.find((a: any) => a.name === itemName) as any;
     if (armor) {
       const armorType = armor.armor_category === "Light" ? "light" : armor.armor_category === "Medium" ? "medium" : armor.armor_category === "Heavy" ? "heavy" : armor.armor_category === "Shield" ? "shield" : "unknown";
       return {
@@ -117,16 +117,22 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       };
     }
 
-    const equipment = allEquipment.find((e: string) => e === itemName);
-    if (equipment) {
+    const equipmentData = getEquipmentData(itemName);
+    if (equipmentData) {
       return {
-        type: "item",
-        description: "",
+        type: equipmentData.type,
+        description: equipmentData.description || "",
+        baseAC: equipmentData.baseAC,
+        armorType: equipmentData.armorType,
+        maxDex: equipmentData.maxDexBonus ?? null,
+        damageDice: equipmentData.damageDice,
+        damageType: equipmentData.damageType,
+        category: equipmentData.category,
       };
     }
 
     return null;
-  }, [weapons, armors, allEquipment]);
+  }, [weapons, armors]);
 
   const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {
     const option = group.options[optionIndex];
@@ -291,6 +297,39 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     };
   }, [weapons, data]);
 
+  const renderItemInfo = useCallback((itemInfo: any, compact: boolean = false) => {
+    if (!itemInfo) return null;
+
+    if (itemInfo.type === "weapon") {
+      return (
+        <span>
+          {itemInfo.damageDice && <span>{itemInfo.damageDice} {itemInfo.damageType}</span>}
+          {itemInfo.properties && itemInfo.properties.length > 0 && (
+            <span className="ml-2 text-text-muted">{itemInfo.properties.join(", ")}</span>
+          )}
+          {itemInfo.category && <span className="ml-2 text-text-muted">({itemInfo.category})</span>}
+        </span>
+      );
+    }
+
+    if (itemInfo.type === "armor") {
+      return (
+        <span>
+          AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}
+          {itemInfo.armorType && <span className="ml-2 text-text-muted">({itemInfo.armorType})</span>}
+          {itemInfo.description && compact && <span className="ml-2 text-text-muted">— {itemInfo.description}</span>}
+          {itemInfo.description && !compact && <span className="ml-2 text-parchment/60">— {itemInfo.description}</span>}
+        </span>
+      );
+    }
+
+    if (itemInfo.type === "item" && itemInfo.description) {
+      return <span>{itemInfo.description}</span>;
+    }
+
+    return null;
+  }, []);
+
   const getWeaponsByCategory = useCallback((weaponType: string) => {
     return weapons.filter((w: any) => {
       if (weaponType === "martial") return w.weapon_category === "Martial";
@@ -434,12 +473,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                 </div>
                                 {itemInfo && (
                                   <div className="text-xs text-parchment/70 mt-1 ml-5">
-                                    {itemInfo.type === "weapon" && itemInfo.damageDice && (
-                                      <span>{itemInfo.damageDice} {itemInfo.damageType}</span>
-                                    )}
-                                    {itemInfo.type === "armor" && (
-                                      <span>AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}</span>
-                                    )}
+                                    {renderItemInfo(itemInfo)}
                                   </div>
                                 )}
                               </div>
@@ -462,19 +496,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                 <span>{option.description || option.items[0]?.name}</span>
                                 {itemInfo && (
                                   <span className="text-xs text-parchment/50">
-                                    {itemInfo.type === "weapon" && itemInfo.damageDice && <span>{itemInfo.damageDice}</span>}
-                                    {itemInfo.type === "armor" && <span>AC {itemInfo.baseAC}</span>}
+                                    {renderItemInfo(itemInfo, true)}
                                   </span>
                                 )}
                               </div>
                               {itemInfo && (
                                 <div className="text-xs text-parchment/60 mt-1">
-                                  {itemInfo.type === "weapon" && itemInfo.damageDice && (
-                                    <span>{itemInfo.damageDice} {itemInfo.damageType}</span>
-                                  )}
-                                  {itemInfo.type === "armor" && (
-                                    <span>AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}</span>
-                                  )}
+                                  {renderItemInfo(itemInfo)}
                                 </div>
                               )}
                             </button>
@@ -518,9 +546,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       {itemInfo.type === "weapon" && itemInfo.damageDice && (
                         <span>{itemInfo.damageDice} {itemInfo.damageType} · {getWeaponStats(item.name, itemInfo.category)?.attackBonus} to hit · {getWeaponStats(item.name, itemInfo.category)?.damageBonus} damage · {getWeaponStats(item.name, itemInfo.category)?.abilityKey}</span>
                       )}
-                      {itemInfo.type === "armor" && (
-                        <span>AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}</span>
-                      )}
+                      {itemInfo.type === "weapon" && !itemInfo.damageDice && renderItemInfo(itemInfo)}
+                      {itemInfo.type !== "weapon" && renderItemInfo(itemInfo)}
                     </div>
                   )}
                 </div>
