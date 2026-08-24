@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClass, getStaticWeapons, getStaticArmors } from "@/lib/srd-client";
+import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 
@@ -24,20 +24,24 @@ interface EquipmentOption {
   isWeaponChoice?: boolean;
 }
 
+interface SelectedWeaponInfo {
+  name: string;
+  damageDice: string;
+  damageType: string;
+  category?: string;
+}
+
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
-  const [pendingEquip, setPendingEquip] = useState<Character["inventory"]>([]);
   const [selectedChoices, setSelectedChoices] = useState<Record<string, number>>({});
-  const [selectedWeaponData, setSelectedWeaponData] = useState<Record<string, { name: string; damageDice: string; damageType: string; category?: string }>>({});
-  const [customItemName, setCustomItemName] = useState("");
-  const [customItemQty, setCustomItemQty] = useState(1);
-  const [customItemType, setCustomItemType] = useState<Character["inventory"][number]["itemType"]>("item");
+  const [selectedWeaponData, setSelectedWeaponData] = useState<Record<string, SelectedWeaponInfo>>({});
   const [weaponPopup, setWeaponPopup] = useState<{ groupId: string; optionIndex: number; category: string } | null>(null);
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
   const weapons = useMemo(() => getStaticWeapons(), []);
   const armors = useMemo(() => getStaticArmors(), []);
+  const allEquipment = useMemo(() => getEquipmentNames(), []);
 
   const choiceGroups = useMemo<ChoiceGroup[]>(() => {
     const groups: ChoiceGroup[] = [];
@@ -108,11 +112,78 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     }).filter((w: any) => !selectedNames.includes(w.name));
   }, [weaponPopup, weapons, selectedWeaponData]);
 
+  const getItemInfo = (itemName: string) => {
+    const weapon = weapons.find((w: any) => w.name === itemName);
+    if (weapon) {
+      return {
+        type: "weapon",
+        damageDice: weapon.damage?.damage_dice || "",
+        damageType: weapon.damage?.damage_type?.name || "",
+        properties: weapon.properties?.map((p: any) => p.name) || [],
+        category: weapon.category_range,
+      };
+    }
+    
+    const armor = armors.find((a: any) => a.name === itemName);
+    if (armor) {
+      return {
+        type: "armor",
+        baseAC: armor.base_ac || 0,
+        maxDex: armor.max_dex_bonus ?? null,
+        armorType: armor.armor_type || "unknown",
+        description: armor.description || "",
+      };
+    }
+    
+    const equipment = allEquipment.find((e: string) => e === itemName);
+    if (equipment) {
+      return {
+        type: "item",
+        description: "",
+      };
+    }
+    
+    return null;
+  };
+
   const handleChoiceSelect = (groupId: string, optionIndex: number) => {
-    setSelectedChoices(prev => ({
-      ...prev,
-      [groupId]: optionIndex,
-    }));
+    setSelectedChoices(prev => {
+      const next = { ...prev, [groupId]: optionIndex };
+      
+      const group = choiceGroups.find(g => g.id === groupId);
+      if (!group) return next;
+      
+      const option = group.options[optionIndex];
+      
+      if (option.isWeaponChoice) {
+        setWeaponPopup({ groupId, optionIndex, category: option.weaponType || "" });
+        return prev;
+      }
+      
+      const itemName = option.items[0]?.name;
+      if (!itemName) return next;
+      
+      const itemInfo = getItemInfo(itemName);
+      const newItem: Character["inventory"][number] = {
+        id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        name: itemName,
+        quantity: option.items[0]?.quantity || 1,
+        equipped: false,
+        source: "srd" as const,
+        description: itemInfo ? JSON.stringify(itemInfo) : "",
+        itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
+      };
+      
+      if (itemInfo?.type === "weapon") {
+        newItem.damageDice = itemInfo.damageDice;
+        newItem.damageType = itemInfo.damageType;
+        newItem.category = itemInfo.category;
+      }
+      
+      onChange({ inventory: [...data.inventory, newItem] });
+      
+      return next;
+    });
   };
 
   const handleWeaponSelect = (weapon: any) => {
@@ -122,36 +193,61 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (!group) return;
     
     const option = group.options[weaponPopup.optionIndex];
-    const weaponItem = {
+    const itemInfo = getItemInfo(weapon.name);
+    
+    const weaponItem: Character["inventory"][number] = {
       id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
       name: weapon.name,
       quantity: option.items[0]?.quantity || 1,
       equipped: false,
       source: "srd" as const,
-      description: "",
+      description: itemInfo ? JSON.stringify(itemInfo) : "",
       itemType: "weapon" as const,
       damageDice: weapon.damage?.damage_dice || "",
       damageType: weapon.damage?.damage_type?.name || "",
+      category: weapon.category_range || weapon.weapon_category,
     };
     
-    setPendingEquip(prev => [...prev, weaponItem]);
+    onChange({ inventory: [...data.inventory, weaponItem] });
     setSelectedWeaponData(prev => ({
       ...prev,
-      [weaponPopup!.groupId]: {
+      [weaponPopup.groupId]: {
         name: weapon.name,
-      damageDice: weapon.damage?.damage_dice || "",
-      damageType: weapon.damage?.damage_type?.name || "",
+        damageDice: weapon.damage?.damage_dice || "",
+        damageType: weapon.damage?.damage_type?.name || "",
         category: weapon.category_range || weapon.weapon_category,
       }
     }));
     setSelectedChoices(prev => ({
       ...prev,
-      [weaponPopup!.groupId]: weaponPopup!.optionIndex,
+      [weaponPopup.groupId]: weaponPopup.optionIndex,
     }));
     setWeaponPopup(null);
   };
 
   const handleChoiceRemove = (groupId: string) => {
+    const selectedOption = selectedChoices[groupId];
+    if (selectedOption === undefined) return;
+    
+    const group = choiceGroups.find(g => g.id === groupId);
+    if (!group) return;
+    
+    const option = group.options[selectedOption];
+    
+    if (option.isWeaponChoice) {
+      const weaponInfo = selectedWeaponData[groupId];
+      if (weaponInfo) {
+        const newInventory = data.inventory.filter(item => item.name !== weaponInfo.name);
+        onChange({ inventory: newInventory });
+      }
+    } else {
+      const itemName = option.items[0]?.name;
+      if (itemName) {
+        const newInventory = data.inventory.filter(item => item.name !== itemName);
+        onChange({ inventory: newInventory });
+      }
+    }
+    
     setSelectedChoices(prev => {
       const next = { ...prev };
       delete next[groupId];
@@ -164,47 +260,48 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     });
   };
 
-  const addSelectedToPending = () => {
-    const newItems: Character["inventory"] = [];
-
-    choiceGroups.forEach((group) => {
-      const selectedIndex = selectedChoices[group.id];
-      if (selectedIndex !== undefined) {
-        const option = group.options[selectedIndex];
-        if (option.isWeaponChoice) {
-          return;
-        }
-        option.items.forEach((item) => {
-          newItems.push({
-            id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-            name: item.name,
-            quantity: item.quantity || 1,
-            equipped: false,
-            source: "srd" as const,
-            description: "",
-            itemType: getItemType(item.name),
-          });
+  const autoGrantItems = useCallback(() => {
+    const newInventory = [...data.inventory];
+    const grantedItems: Character["inventory"][number][] = [];
+    
+    startingEquipment.forEach((entry: any) => {
+      if (entry.granted && entry.items) {
+        entry.items.forEach((item: any) => {
+          const existing = newInventory.find(i => i.name === item.name);
+          if (!existing) {
+            const itemInfo = getItemInfo(item.name);
+            const newItem: Character["inventory"][number] = {
+              id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+              name: item.name,
+              quantity: item.quantity || 1,
+              equipped: false,
+              source: "srd" as const,
+              description: itemInfo ? JSON.stringify(itemInfo) : "",
+              itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
+            };
+            
+            if (itemInfo?.type === "weapon") {
+              const weapon = weapons.find((w: any) => w.name === item.name);
+              newItem.damageDice = weapon?.damage?.damage_dice || "";
+              newItem.damageType = weapon?.damage?.damage_type?.name || "";
+              newItem.category = weapon?.category_range;
+            }
+            
+            grantedItems.push(newItem);
+            newInventory.push(newItem);
+          }
         });
       }
     });
+    
+    if (grantedItems.length > 0) {
+      onChange({ inventory: newInventory });
+    }
+  }, [data.inventory, startingEquipment, weapons, onChange]);
 
-    setPendingEquip(prev => [...prev, ...newItems]);
-  };
-
-  const getItemType = (itemName: string): Character["inventory"][number]["itemType"] => {
-    const weaponNames = weapons.map((w: any) => w.name);
-    const armorNames = armors.map((a: any) => a.name);
-    if (weaponNames.includes(itemName)) return "weapon";
-    if (armorNames.includes(itemName)) return "armor";
-    return "item";
-  };
-
-  const confirmEquipment = () => {
-    onChange({ inventory: [...data.inventory, ...pendingEquip] });
-    setPendingEquip([]);
-    setSelectedChoices({});
-    setSelectedWeaponData({});
-  };
+  useEffect(() => {
+    autoGrantItems();
+  }, [autoGrantItems]);
 
   const getWeaponStats = (weaponName: string, category?: string) => {
     const weapon = weapons.find((w) => w.name === weaponName) as any;
@@ -257,9 +354,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <div className="space-y-2">
                   {group.options.map((option, optionIndex) => {
                     const isSelected = selectedChoices[group.id] === optionIndex;
+                    const selectedWeapon = selectedWeaponData[group.id];
+                    const itemInfo = option.items[0]?.name ? getItemInfo(option.items[0].name) : null;
                     
                     if (option.isWeaponChoice) {
-                      const selectedWeapon = selectedWeaponData[group.id];
                       const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
                       
                       return (
@@ -289,9 +387,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               </div>
                               <button
                                 type="button"
-                                onClick={() => {
-                                  handleChoiceRemove(group.id);
-                                }}
+                                onClick={() => handleChoiceRemove(group.id)}
                                 className="text-xs text-red-400 hover:text-red-300 ml-2"
                               >
                                 ✕
@@ -321,10 +417,22 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       >
                         {isSelected ? (
                           <div className="flex items-center justify-between">
-                            <span>
-                              <span className="text-accent mr-1">✓</span>
-                              {option.description}
-                            </span>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-accent font-bold">✓</span>
+                                <span className="font-medium">{option.description}</span>
+                              </div>
+                              {itemInfo && (
+                                <div className="text-xs text-parchment/70 mt-1 ml-5">
+                                  {itemInfo.type === "weapon" && itemInfo.damageDice && (
+                                    <span>{itemInfo.damageDice} {itemInfo.damageType}</span>
+                                  )}
+                                  {itemInfo.type === "armor" && (
+                                    <span>AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}</span>
+                                  )}
+                                </div>
+                              )}
+                            </div>
                             <button
                               type="button"
                               onClick={() => handleChoiceRemove(group.id)}
@@ -339,7 +447,15 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                             onClick={() => handleChoiceSelect(group.id, optionIndex)}
                             className="w-full text-left"
                           >
-                            {option.description}
+                            <div className="flex items-center justify-between">
+                              <span>{option.description}</span>
+                              {itemInfo && (
+                                <span className="text-xs text-parchment/50">
+                                  {itemInfo.type === "weapon" && itemInfo.damageDice && <span>{itemInfo.damageDice}</span>}
+                                  {itemInfo.type === "armor" && <span>AC {itemInfo.baseAC}</span>}
+                                </span>
+                              )}
+                            </div>
                           </button>
                         )}
                       </div>
@@ -348,14 +464,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 </div>
               </div>
             ))}
-            <button
-              type="button"
-              onClick={addSelectedToPending}
-              disabled={!isAllRequiredSelected}
-              className="w-full rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-sm font-medium text-accent hover:border-accent hover:bg-accent/20 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              Add Selected to Pending
-            </button>
           </div>
         </div>
       )}
@@ -401,40 +509,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         </div>
       )}
 
-      <div className="mb-5">
-        <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">
-          Pending Equipment
-        </span>
-        {pendingEquip.length === 0 ? (
-          <p className="text-xs text-parchment/50">No equipment selected yet.</p>
-        ) : (
-          <div className="space-y-2">
-            {pendingEquip.map((item) => (
-              <div key={item.id} className="flex items-center justify-between rounded-lg border border-accent/20 bg-accent/5 px-3 py-2">
-                <div className="flex flex-col">
-                  <span className="text-sm text-parchment">{item.name}</span>
-                  {item.description && <span className="text-xs text-parchment/50">{item.description}</span>}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setPendingEquip(prev => prev.filter(i => i.id !== item.id))}
-                  className="text-xs text-burgundy hover:text-burgundy-light"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={confirmEquipment}
-              className="w-full rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-sm font-medium text-accent hover:border-accent hover:bg-accent/20 transition-colors"
-            >
-              Confirm Equipment
-            </button>
-          </div>
-        )}
-      </div>
-
       <div>
         <span className="text-xs font-bold text-parchment/70 uppercase tracking-wider mb-3 block">
           Current Inventory
@@ -443,15 +517,28 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           <p className="text-xs text-parchment/50">No equipment yet.</p>
         ) : (
           <div className="space-y-2">
-            {data.inventory.map((item) => (
-              <div key={item.id} className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2">
-                <div className="flex flex-col">
-                  <span className="text-sm text-parchment">{item.name}</span>
-                  {item.description && <span className="text-xs text-parchment/50">{item.description}</span>}
+            {data.inventory.map((item) => {
+              const itemInfo = item.description ? JSON.parse(item.description) : null;
+              
+              return (
+                <div key={item.id} className="flex flex-col gap-1 rounded-lg border border-border bg-charcoal px-3 py-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-parchment">{item.name}</span>
+                    <span className="text-xs text-text-muted">x{item.quantity || 1}</span>
+                  </div>
+                  {itemInfo && (
+                    <div className="text-xs text-parchment/60">
+                      {itemInfo.type === "weapon" && itemInfo.damageDice && (
+                        <span>{itemInfo.damageDice} {itemInfo.damageType} · {getWeaponStats(item.name, itemInfo.category)?.attackBonus} to hit · {getWeaponStats(item.name, itemInfo.category)?.damageBonus} damage · {getWeaponStats(item.name, itemInfo.category)?.abilityKey}</span>
+                      )}
+                      {itemInfo.type === "armor" && (
+                        <span>AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}</span>
+                      )}
+                    </div>
+                  )}
                 </div>
-                <span className="text-xs text-text-muted">x{item.quantity || 1}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
