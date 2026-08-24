@@ -94,7 +94,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, []);
 
   const getItemInfo = useCallback((itemName: string) => {
-    const weapon = weapons.find((w: any) => w.name === itemName) as any;
+    const normalized = itemName.toLowerCase();
+    const weapon = weapons.find((w: any) => w.name.toLowerCase() === normalized) as any;
     if (weapon) {
       return {
         type: "weapon",
@@ -105,7 +106,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       };
     }
 
-    const armor = armors.find((a: any) => a.name === itemName) as any;
+    const armor = armors.find((a: any) => a.name.toLowerCase() === normalized) as any;
     if (armor) {
       const armorType = armor.armor_category === "Light" ? "light" : armor.armor_category === "Medium" ? "medium" : armor.armor_category === "Heavy" ? "heavy" : armor.armor_category === "Shield" ? "shield" : "unknown";
       return {

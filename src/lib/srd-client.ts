@@ -244,7 +244,8 @@ export function getStaticWeapons(): SRDWeapon[] {
 }
 
 export function getStaticWeapon(name: string): SRDWeapon | undefined {
-  return getStaticWeapons().find((w) => w.name === name);
+  const normalized = name.toLowerCase();
+  return getStaticWeapons().find((w) => w.name.toLowerCase() === normalized);
 }
 
 export function getStaticArmors(): SRDArmor[] {
@@ -252,7 +253,8 @@ export function getStaticArmors(): SRDArmor[] {
 }
 
 export function getStaticArmor(name: string): SRDArmor | undefined {
-  return getStaticArmors().find((a) => a.name === name);
+  const normalized = name.toLowerCase();
+  return getStaticArmors().find((a) => a.name.toLowerCase() === normalized);
 }
 
 export function getStaticItems(): SRDItem[] {
@@ -268,7 +270,8 @@ export function getStaticEquipments(): SRDEquipmentDetail[] {
 }
 
 export function getStaticEquipment(name: string): SRDEquipmentDetail | undefined {
-  return getStaticEquipments().find((e) => e.name === name);
+  const normalized = name.toLowerCase();
+  return getStaticEquipments().find((e) => e.name.toLowerCase() === normalized);
 }
 
 function mapEquipmentCategory(category: string): "weapon" | "armor" | "item" {
