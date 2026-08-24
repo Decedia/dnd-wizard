@@ -21,6 +21,7 @@ import {
   finalizeCreation,
   getCreationSteps,
   getFeatureSelections,
+  syncBaseFeatures,
   type Character,
 } from "@/lib/character-creation";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
@@ -38,7 +39,7 @@ export default function CharacterCreate() {
 
   const update = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
-      const next = { ...prev, ...patch };
+      const next = syncBaseFeatures({ ...prev, ...patch });
       return next;
     });
   }, []);

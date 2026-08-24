@@ -1,5 +1,6 @@
 import racesData from "@/data/2014_races.json";
 import classesData from "@/data/2014_classes.json";
+import subclassesData from "@/data/2014_subclasses.json";
 import { spells as spellsData } from "@/data/srd";
 import weaponsData from "@/data/2014_weapon.json";
 import armorsData from "@/data/2014_armor.json";
@@ -226,6 +227,27 @@ export function getStaticClasses(): SRDClass[] {
 
 export function getStaticClass(name: string): SRDClass | undefined {
   return getStaticClasses().find((c) => c.name === name);
+}
+
+export interface SRDSubclass {
+  name: string;
+  description: string;
+  features: { name: string; description: string; level?: number }[];
+}
+
+export function getStaticSubclasses(className: string): SRDSubclass[] {
+  const all = (subclassesData as any).subclasses as any[];
+  return all
+    .filter((s) => s.class === className)
+    .map((s) => ({
+      name: s.name,
+      description: Array.isArray(s.description) ? s.description.join("\n") : s.description || "",
+      features: (s.features || []).map((f: any) => ({
+        name: f.name,
+        description: Array.isArray(f.description) ? f.description.join("\n") : f.description || "",
+        level: f.level,
+      })),
+    }));
 }
 
 export function getStaticSpells(): SRDSpell[] {
