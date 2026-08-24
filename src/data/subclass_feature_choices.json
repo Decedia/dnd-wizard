@@ -1,0 +1,254 @@
+{
+ "Fighter": {
+  "Champion": {
+   "Additional Fighting Style": {
+    "options": [
+     {
+      "name": "Fighting Style: Archery",
+      "description": "You gain a +2 bonus to attack rolls you make with ranged weapons."
+     },
+     {
+      "name": "Fighting Style: Defense",
+      "description": "While you are wearing armor, you gain a +1 bonus to AC."
+     },
+     {
+      "name": "Fighting Style: Dueling",
+      "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
+     },
+     {
+      "name": "Fighting Style: Great Weapon Fighting",
+      "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll, even if the new roll is a 1 or a 2. The weapon must have the two-handed or versatile property for you to gain this benefit."
+     },
+     {
+      "name": "Fighting Style: Protection",
+      "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield."
+     },
+     {
+      "name": "Fighting Style: Two-Weapon Fighting",
+      "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack."
+     }
+    ]
+   }
+  }
+ },
+ "Sorcerer": {
+  "Draconic": {
+   "Dragon Ancestor": {
+    "options": [
+     {
+      "name": "Dragon Ancestor: Black - Acid Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Blue - Lightning Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Brass - Fire Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Bronze - Lightning Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Copper - Acid Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Gold - Fire Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Green - Poison Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Red - Fire Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: Silver - Cold Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     },
+     {
+      "name": "Dragon Ancestor: White - Cold Damage",
+      "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+     }
+    ]
+   }
+  }
+ },
+ "Ranger": {
+  "Hunter": {
+   "Hunter's Prey": {
+    "options": [
+     {
+      "name": "Hunter's Prey: Colossus Slayer",
+      "description": "Your tenacity can wear down the most potent foes. When you hit a creature with a weapon attack, the creature takes an extra 1d8 damage if it's below its hit point maximum. You can deal this extra damage only once per turn."
+     },
+     {
+      "name": "Hunter's Prey: Giant Killer",
+      "description": "When a Large or larger creature within 5 feet of you hits or misses you with an attack, you can use your reaction to attack that creature immediately after its attack, provided that you can see the creature."
+     },
+     {
+      "name": "Hunter's Prey: Horde Breaker",
+      "description": "Once on each of your turns when you make a weapon attack, you can make another attack with the same weapon against a different creature that is within 5 feet of the original target and within range of your weapon."
+     }
+    ]
+   },
+   "Defensive Tactics": {
+    "options": [
+     {
+      "name": "Defensive Tactics: Escape the Horde",
+      "description": "Opportunity attacks against you are made with disadvantage."
+     },
+     {
+      "name": "Defensive Tactics: Multiattack Defense",
+      "description": "When a creature hits you with an attack, you gain a +4 bonus to AC against all subsequent attacks made by that creature for the rest of the turn."
+     },
+     {
+      "name": "Defensive Tactics: Steel Will",
+      "description": "You have advantage on saving throws against being frightened."
+     }
+    ]
+   },
+   "Multiattack": {
+    "options": [
+     {
+      "name": "Multiattack: Volley",
+      "description": "You can use your action to make a ranged attack against any number of creatures within 10 feet of a point you can see within your weapon's range. You must have ammunition for each target, as normal, and you make a separate attack roll for each target."
+     },
+     {
+      "name": "Multiattack: Whirlwind Attack",
+      "description": "You can use your action to make a melee attack against any number of creatures within 5 feet of you, with a separate attack roll for each target."
+     }
+    ]
+   },
+   "Superior Hunter's Defense": {
+    "options": [
+     {
+      "name": "Superior Hunter's Defense: Evasion",
+      "description": "When you are subjected to an effect, such as a red dragon's fiery breath or a lightning bolt spell, that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
+     },
+     {
+      "name": "Superior Hunter's Defense: Stand Against the Tide",
+      "description": "When a hostile creature misses you with a melee attack, you can use your reaction to force that creature to repeat the same attack against another creature (other than itself) of your choice."
+     },
+     {
+      "name": "Superior Hunter's Defense: Uncanny Dodge",
+      "description": "When an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you."
+     }
+    ]
+   }
+  }
+ },
+ "Barbarian": {
+  "Totem Warrior": {
+   "Totem Spirit": {
+    "options": [
+     {
+      "name": "Bear",
+      "description": "While raging, you have resistance to all damage except psychic. Additionally, while raging, you can use a bonus action to make a single melee weapon attack, but you lose the benefit of your Rage's bonus damage."
+     },
+     {
+      "name": "Eagle",
+      "description": "While raging, you have a flying speed equal to your current speed. This benefit works only if you are not wearing heavy armor. Additionally, you can use a bonus action to take the Disengage or Dash action while raging."
+     },
+     {
+      "name": "Elk",
+      "description": "While raging, your walking speed increases by 15 feet. Additionally, you can use a bonus action to take the Dash action while raging. When you do so, you can also make a melee weapon attack as a bonus action."
+     },
+     {
+      "name": "Tiger",
+      "description": "While raging, you can add 10 feet to your long jump distance and 3 feet to your high jump distance. Additionally, you can use a bonus action to make a melee weapon attack, but you lose the benefit of your Rage's bonus damage."
+     },
+     {
+      "name": "Wolf",
+      "description": "While raging, you can use a bonus action to knock a creature prone when you hit it with a melee weapon attack. Additionally, you and your companions have advantage on melee attack rolls against any creature within 5 feet of you."
+     }
+    ]
+   },
+   "Aspect of the Beast": {
+    "options": [
+     {
+      "name": "Bear",
+      "description": "You gain the bear's power to carry. Your carrying capacity doubles, and you have advantage on Strength (Athletics) checks made to lift, push, drag, or break objects."
+     },
+     {
+      "name": "Eagle",
+      "description": "You gain the eagle's keen sight. You can see up to 1 mile away with no difficulty, and you can discern fine detail as if it were only 100 feet away. Additionally, you have advantage on Wisdom (Perception) checks that rely on sight."
+     },
+     {
+      "name": "Elk",
+      "description": "You gain the elk's swiftness. Your base walking speed increases by 15 feet. Additionally, you can travel at a fast pace while traveling stealthily."
+     },
+     {
+      "name": "Tiger",
+      "description": "You gain the tiger's proficiency in stealth. You gain proficiency in the Stealth skill if you don't already have it. Additionally, when you make a long jump, you can cover 25 feet."
+     },
+     {
+      "name": "Wolf",
+      "description": "You gain the wolf's hunting ability. You can track while traveling at a fast pace, and you can move through nonmagical difficult terrain without penalty while traveling."
+     }
+    ]
+   },
+   "Totemic Attunement": {
+    "options": [
+     {
+      "name": "Bear",
+      "description": "You have advantage on saving throws against any effect that would knock you prone or push you, and you cannot be frightened while raging."
+     },
+     {
+      "name": "Eagle",
+      "description": "While raging, you have a flying speed equal to your current speed (if not wearing heavy armor), and you can take the Disengage or Dash as a bonus action."
+     },
+     {
+      "name": "Elk",
+      "description": "While raging, you can use a bonus action to Dash, and when you do, you can also make one melee weapon attack as a bonus action."
+     },
+     {
+      "name": "Tiger",
+      "description": "While raging, you can add 10 feet to your long jump and 3 feet to your high jump, and you can make a melee attack as a bonus action (losing Rage bonus damage)."
+     },
+     {
+      "name": "Wolf",
+      "description": "While raging, you can use a bonus action to knock a creature prone on a hit, and your allies have advantage on melee attacks against creatures within 5 feet of you."
+     }
+    ]
+   }
+  }
+ },
+ "Warlock": {
+  "Fiend": {
+   "Fiendish Resilience": {
+    "options": [
+     {
+      "name": "Acid",
+      "description": "You gain resistance to acid damage."
+     },
+     {
+      "name": "Cold",
+      "description": "You gain resistance to cold damage."
+     },
+     {
+      "name": "Fire",
+      "description": "You gain resistance to fire damage."
+     },
+     {
+      "name": "Lightning",
+      "description": "You gain resistance to lightning damage."
+     },
+     {
+      "name": "Thunder",
+      "description": "You gain resistance to thunder damage."
+     },
+     {
+      "name": "Poison",
+      "description": "You gain resistance to poison damage."
+     }
+    ]
+   }
+  }
+ }
+}

@@ -143,7 +143,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: `At level ${subclassUnlockLevel}, you choose a subclass that defines your character's archetype. Each subclass grants unique features and abilities that shape how your character plays.`,
       type: "subclass",
       required: true,
-      completed: !!character.subclass,
+      completed: isSubclassStepComplete(character),
     });
   }
 
@@ -245,6 +245,7 @@ export function syncBaseFeatures(character: Character): Character {
 /**
  * Adds the selected subclass's starting features to the character's Features &
  * Traits list (marked locked/default) when the subclass step is confirmed.
+ * For features with choices, only the selected option(s) are added.
  */
 export function applySubclassFeatures(character: Character): Character {
   if (!character.subclass) return character;
@@ -260,18 +261,67 @@ export function applySubclassFeatures(character: Character): Character {
     (f) => f.level == null || f.level === unlockLevel
   );
 
-  const existingNames = new Set(character.features.map((f) => f.name));
-  const newFeatures: Character["features"] = startingFeatures
-    .filter((f) => !existingNames.has(f.name))
-    .map((f) => ({
-      id: `subclass-${f.name}`.replace(/\s+/g, "-"),
-      name: f.name,
-      description: f.description,
-      source: "subclass" as const,
-      locked: true,
-    }));
+  const newFeatures: Character["features"] = [];
+  for (const feature of startingFeatures) {
+    if (feature.choices && feature.choices.length > 0) {
+      const key = `subclass-feature-${feature.name}`;
+      const selected = (character as any).featureSelections?.[key];
+      if (selected && Array.isArray(selected) && selected.length > 0) {
+        for (const optName of selected) {
+          const opt = feature.choices.find((c: any) => c.name === optName);
+          if (opt && !newFeatures.some((f) => f.name === opt.name)) {
+            newFeatures.push({
+              id: `subclass-${opt.name}`.replace(/\s+/g, "-"),
+              name: opt.name,
+              description: opt.description,
+              source: "subclass" as const,
+              locked: true,
+            });
+          }
+        }
+      }
+    } else {
+      if (!newFeatures.some((f) => f.name === feature.name)) {
+        newFeatures.push({
+          id: `subclass-${feature.name}`.replace(/\s+/g, "-"),
+          name: feature.name,
+          description: feature.description,
+          source: "subclass" as const,
+          locked: true,
+        });
+      }
+    }
+  }
 
-  return { ...character, features: [...character.features, ...newFeatures] };
+  const existingNames = new Set(character.features.map((f) => f.name));
+  const toAdd = newFeatures.filter((f) => !existingNames.has(f.name));
+  return { ...character, features: [...character.features, ...toAdd] };
+}
+
+/**
+ * Returns true when the subclass step is truly complete:
+ * a subclass is selected AND every choice-requiring feature has a selection.
+ */
+export function isSubclassStepComplete(character: Character): boolean {
+  if (!character.subclass) return false;
+  const classData = character.class ? getStaticClass(character.class) : null;
+  const unlockLevel = classData?.subclassLevel ?? 3;
+  if (character.level < unlockLevel) return false;
+
+  const subclasses = getStaticSubclasses(character.class);
+  const subclass = subclasses.find((s) => s.name === character.subclass);
+  if (!subclass) return false;
+
+  const startingFeatures = subclass.features.filter(
+    (f) => f.level == null || f.level === unlockLevel
+  );
+
+  return startingFeatures.every((feature) => {
+    if (!feature.choices || feature.choices.length === 0) return true;
+    const key = `subclass-feature-${feature.name}`;
+    const selected = (character as any).featureSelections?.[key];
+    return Array.isArray(selected) && selected.length > 0;
+  });
 }
 
 export function finalizeCreation(character: Character): Character {
