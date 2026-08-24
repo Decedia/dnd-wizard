@@ -90,8 +90,6 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
     });
   };
 
-  const ownedFeatures = data.features;
-
   const activeFeatures = displaySubclass
     ? displaySubclass.features.filter((f) => {
         const lvl = f.level == null ? subclassUnlockLevel : (f.level as number);
@@ -113,44 +111,6 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
       hint={`At level ${subclassUnlockLevel}, you choose a subclass that defines your character's archetype. Each subclass grants unique features and abilities that shape how your character plays.`}
     >
       <div className="space-y-6">
-        {/* PART 1 — What you already have (read-only, informational) */}
-        <section>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-parchment/70 mb-2">
-            Your {className} Features So Far
-          </h3>
-          {ownedFeatures.length === 0 ? (
-            <p className="text-sm text-parchment/50">
-              You haven&apos;t gained any class or race features yet.
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {ownedFeatures.map((feature) => {
-                const isLocked = feature.locked === true;
-                return (
-                  <div
-                    key={feature.id}
-                    className={`rounded-lg border p-3 ${
-                      isLocked ? "border-green-500/20 bg-green-500/5" : "border-border bg-charcoal/60"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-semibold text-parchment">{feature.name}</span>
-                      {isLocked && (
-                        <span className="text-[10px] font-medium text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded whitespace-nowrap">
-                          default
-                        </span>
-                      )}
-                    </div>
-                    {feature.description && (
-                      <p className="text-sm text-parchment/70 leading-relaxed mt-1">{feature.description}</p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </section>
-
         {/* PART 2 — What your subclass adds (selection required) */}
         <section>
           <h3 className="text-sm font-semibold uppercase tracking-wider text-parchment/70 mb-2">
