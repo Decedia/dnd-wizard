@@ -16,7 +16,7 @@ export interface Character {
   ideal: string;
   bond: string;
   flaw: string;
-  abilityMethod: "standard" | "pointbuy" | "diceroll";
+  abilityMethod: "standard" | "pointbuy";
   str: number;
   dex: number;
   con: number;

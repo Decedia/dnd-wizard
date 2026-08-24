@@ -11,7 +11,7 @@ interface StepAbilitiesProps {
   onChange: (patch: Partial<Character>) => void;
 }
 
-type AbilityMethod = "standard" | "pointbuy" | "diceroll";
+type AbilityMethod = "standard" | "pointbuy";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -41,13 +41,17 @@ const POINT_BUY_TOTAL = 27;
 
 export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const [method, setMethod] = useState<AbilityMethod>(data.abilityMethod || "standard");
-  const [pointBuyRemaining, setPointBuyRemaining] = useState(POINT_BUY_TOTAL);
-  const [diceRolls, setDiceRolls] = useState<Record<AbilityKey, number[]>>({
-    str: [], dex: [], con: [], int: [], wis: [], cha: []
-  });
-  const [assignedArrayToAbility, setAssignedArrayToAbility] = useState<Record<AbilityKey, number>>({} as Record<AbilityKey, number>);
-  const [diceRollResults, setDiceRollResults] = useState<Record<AbilityKey, number>>({
-    str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0
+  const [pointBuyScores, setPointBuyScores] = useState<Record<AbilityKey, number>>(() => {
+    const initial: Record<AbilityKey, number> = {
+      str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8
+    };
+    ABILITIES.forEach(ability => {
+      const currentScore = (data[ability.key] as number) || 10;
+      if (currentScore >= 8 && currentScore <= 15) {
+        initial[ability.key] = currentScore;
+      }
+    });
+    return initial;
   });
 
   const classData = data.class ? getStaticClass(data.class) : null;
@@ -68,91 +72,71 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     return Math.min(20, base + raceBonus);
   }, [getBaseScore, raceBonuses]);
 
-  const rollDice = useCallback((abilityKey: AbilityKey) => {
-    const rolls: number[] = [];
-    for (let i = 0; i < 4; i++) {
-      rolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-    rolls.sort((a, b) => b - a);
-    const total = Math.min(15, rolls.slice(0, 3).reduce((a, b) => a + b, 0));
-    
-    setDiceRolls(prev => ({ ...prev, [abilityKey]: rolls }));
-    setDiceRollResults(prev => ({ ...prev, [abilityKey]: total }));
-    
-    const raceBonus = raceBonuses[abilityKey] || 0;
-    const newBase = Math.max(8, total - raceBonus);
-    onChange({ [abilityKey]: newBase } as Partial<Character>);
-  }, [raceBonuses, onChange]);
+  const pointBuyUsed = useMemo(() => {
+    return ABILITIES.reduce((sum, ability) => {
+      return sum + (POINT_BUY_COSTS[pointBuyScores[ability.key]] || 0);
+    }, 0);
+  }, [pointBuyScores]);
 
-  const adjustDiceScore = useCallback((abilityKey: AbilityKey, delta: number) => {
-    const currentBase = getBaseScore(abilityKey);
-    const newBase = Math.max(8, Math.min(15, currentBase + delta));
-    if (newBase === currentBase) return;
-    
-    const raceBonus = raceBonuses[abilityKey] || 0;
-    const capped = Math.min(15, newBase + raceBonus);
-    setDiceRollResults(prev => ({ ...prev, [abilityKey]: capped }));
-    onChange({ [abilityKey]: newBase } as Partial<Character>);
-  }, [getBaseScore, raceBonuses, onChange]);
+  const pointBuyRemaining = useMemo(() => {
+    return POINT_BUY_TOTAL - pointBuyUsed;
+  }, [pointBuyUsed]);
 
-  const handleStandardArrayAssign = useCallback((abilityKey: AbilityKey, value: number) => {
-    const newAssigned = { ...assignedArrayToAbility };
-    Object.keys(newAssigned).forEach(key => {
-      if (newAssigned[key as AbilityKey] === value) {
-        delete newAssigned[key as AbilityKey];
+  const syncPointBuyToCharacter = useCallback((scores: Record<AbilityKey, number>) => {
+    const patch: Partial<Character> = {};
+    ABILITIES.forEach(ability => {
+      patch[ability.key] = scores[ability.key];
+    });
+    onChange(patch);
+  }, [onChange]);
+
+  const loadCharacterScoresToPointBuy = useCallback(() => {
+    const scores: Record<AbilityKey, number> = {
+      str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8
+    };
+    ABILITIES.forEach(ability => {
+      const currentScore = getBaseScore(ability.key);
+      if (currentScore >= 8 && currentScore <= 15) {
+        scores[ability.key] = currentScore;
       }
     });
-    newAssigned[abilityKey] = value;
-    setAssignedArrayToAbility(newAssigned);
-
-    const raceBonus = raceBonuses[abilityKey] || 0;
-    const baseValue = Math.max(8, value - raceBonus);
-    onChange({ [abilityKey]: baseValue } as Partial<Character>);
-  }, [assignedArrayToAbility, raceBonuses, onChange]);
+    setPointBuyScores(scores);
+  }, [getBaseScore]);
 
   const handlePointBuyChange = useCallback((abilityKey: AbilityKey, newScore: number) => {
-    const oldScore = getBaseScore(abilityKey);
-    if (newScore === oldScore) return;
+    setPointBuyScores(prev => {
+      const oldScore = prev[abilityKey];
+      if (newScore === oldScore) return prev;
 
-    const oldCost = POINT_BUY_COSTS[oldScore] || 0;
-    const newCost = POINT_BUY_COSTS[newScore] || 0;
-    const costDiff = newCost - oldCost;
+      const oldCost = POINT_BUY_COSTS[oldScore] || 0;
+      const newCost = POINT_BUY_COSTS[newScore] || 0;
+      const costDiff = newCost - oldCost;
 
-    if (pointBuyRemaining - costDiff < 0) return;
-    if (newScore < 8 || newScore > 15) return;
+      const currentUsed = ABILITIES.reduce((sum, ability) => {
+        return sum + (POINT_BUY_COSTS[prev[ability.key]] || 0);
+      }, 0);
 
-    setPointBuyRemaining(prev => prev - costDiff);
-    
-    const raceBonus = raceBonuses[abilityKey] || 0;
-    const baseValue = Math.max(8, newScore - raceBonus);
-    onChange({ [abilityKey]: baseValue } as Partial<Character>);
-  }, [getBaseScore, pointBuyRemaining, raceBonuses, onChange]);
+      if (currentUsed + costDiff > POINT_BUY_TOTAL) return prev;
+      if (newScore < 8 || newScore > 15) return prev;
 
-  const handleDiceRollAll = useCallback(() => {
-    const newResults: Record<AbilityKey, number> = {
-      str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0
-    };
-    const patch: Partial<Character> = {};
-    
-    ABILITIES.forEach(ability => {
-      const rolls: number[] = [];
-      for (let i = 0; i < 4; i++) {
-        rolls.push(Math.floor(Math.random() * 6) + 1);
-      }
-      rolls.sort((a, b) => b - a);
-      const total = Math.min(15, rolls.slice(0, 3).reduce((a, b) => a + b, 0));
-      newResults[ability.key] = total;
-      
-      const raceBonus = raceBonuses[ability.key] || 0;
-      patch[ability.key] = Math.max(8, total - raceBonus);
+      const next = { ...prev, [abilityKey]: newScore };
+
+      const raceBonus = raceBonuses[abilityKey] || 0;
+      const finalValue = Math.min(20, newScore + raceBonus);
+
+      onChange({ [abilityKey]: newScore } as Partial<Character>);
+
+      return next;
     });
-    
-    setDiceRollResults(newResults);
-    onChange(patch);
   }, [raceBonuses, onChange]);
 
   const renderStandardArray = () => {
-    const assignedValues = Object.values(assignedArrayToAbility);
+    const assignedValues = Object.values(
+      ABILITIES.reduce((acc, ability) => {
+        acc[ability.key] = pointBuyScores[ability.key];
+        return acc;
+      }, {} as Record<AbilityKey, number>)
+    );
     const availableValues = STANDARD_ARRAY.filter(val => !assignedValues.includes(val));
 
     return (
@@ -195,18 +179,15 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     <span className="text-xs text-accent font-medium">+{raceBonus}</span>
                   )}
                   <select
-                    value={assignedArrayToAbility[key] || ""}
+                    value={baseScore}
                     onChange={(e) => {
-                      const val = e.target.value ? parseInt(e.target.value) : undefined;
-                      if (val) handleStandardArrayAssign(key, val);
+                      const val = parseInt(e.target.value);
+                      onChange({ [key]: val } as Partial<Character>);
                     }}
                     className="input w-16 text-center"
                   >
-                    <option value="">-</option>
                     {STANDARD_ARRAY.map((val) => (
-                      <option key={val} value={val} disabled={!availableValues.includes(val) && assignedArrayToAbility[key] !== val}>
-                        {val}
-                      </option>
+                      <option key={val} value={val}>{val}</option>
                     ))}
                   </select>
                   <div className="flex flex-col items-center w-12">
@@ -229,17 +210,19 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       <div className="space-y-4">
         <div className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-4 py-2">
           <span className="text-sm text-parchment/80">Points Remaining</span>
-          <span className={`text-lg font-bold ${pointBuyRemaining > 0 ? "text-accent" : "text-parchment/50"}`}>
+          <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-accent" : "text-red-400"}`}>
             {pointBuyRemaining} / {POINT_BUY_TOTAL}
           </span>
         </div>
         <div className="space-y-3">
           {ABILITIES.map(({ key, label, full }) => {
-            const baseScore = getBaseScore(key);
-            const finalScore = getFinalScore(key);
+            const score = pointBuyScores[key];
+            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
             const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
-            const cost = POINT_BUY_COSTS[baseScore] || 0;
+            const cost = POINT_BUY_COSTS[score] || 0;
+            const canDecrease = score > 8;
+            const canIncrease = score < 15 && pointBuyRemaining >= (POINT_BUY_COSTS[score + 1] || 0);
 
             return (
               <div
@@ -253,114 +236,26 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
-                    onClick={() => handlePointBuyChange(key, baseScore - 1)}
-                    disabled={baseScore <= 8}
+                    onClick={() => handlePointBuyChange(key, score - 1)}
+                    disabled={!canDecrease}
                     className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
                   >
                     -
                   </button>
                   <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-parchment">{baseScore}</span>
+                    <span className="text-lg font-bold text-parchment">{score}</span>
                     <span className="text-[10px] text-text-muted">
                       {raceBonus > 0 ? `final: ${finalScore}` : `cost: ${cost}`}
                     </span>
                   </div>
                   <button
                     type="button"
-                    onClick={() => handlePointBuyChange(key, baseScore + 1)}
-                    disabled={baseScore >= 15 || (pointBuyRemaining - (POINT_BUY_COSTS[baseScore + 1] || 0) < 0)}
+                    onClick={() => handlePointBuyChange(key, score + 1)}
+                    disabled={!canIncrease}
                     className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
                   >
                     +
                   </button>
-                  <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-semibold text-accent">
-                      {modifier >= 0 ? `+${modifier}` : modifier}
-                    </span>
-                    <span className="text-[10px] text-text-muted">mod</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
-  const renderDiceRoll = () => {
-    return (
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <p className="text-xs text-parchment/50">Roll 4d6, drop the lowest. Maximum score is 15. Use +/- to adjust after rolling.</p>
-          <button
-            type="button"
-            onClick={handleDiceRollAll}
-            className="rounded-lg bg-accent/10 border border-accent/30 px-4 py-2 text-sm font-medium text-accent hover:bg-accent/20 transition-colors"
-          >
-            Roll All
-          </button>
-        </div>
-        <div className="space-y-3">
-          {ABILITIES.map(({ key, label, full }) => {
-            const baseScore = getBaseScore(key);
-            const finalScore = getFinalScore(key);
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-            const rolls = diceRolls[key] || [];
-
-            return (
-              <div
-                key={key}
-                className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-4 py-3"
-              >
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
-                  <span className="text-[10px] text-text-muted">{full}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => adjustDiceScore(key, -1)}
-                    disabled={baseScore <= 8}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
-                  >
-                    -
-                  </button>
-                  <div className="flex flex-col items-center">
-                    <div className="flex gap-1">
-                      {rolls.length === 0 ? (
-                        <span className="text-xs text-parchment/30">Not rolled</span>
-                      ) : (
-                        rolls.map((roll, i) => (
-                          <span
-                            key={i}
-                            className={`w-6 h-6 flex items-center justify-center rounded text-xs font-bold ${
-                              i < 3
-                                ? "bg-accent/20 text-accent border border-accent/30"
-                                : "bg-charcoal/60 text-parchment/30 line-through"
-                            }`}
-                          >
-                            {roll}
-                          </span>
-                        ))
-                      )}
-                    </div>
-                    <span className="text-[10px] text-text-muted mt-0.5">
-                      {diceRollResults[key] ? `Total: ${diceRollResults[key]}` : "4d6 drop lowest"}
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => adjustDiceScore(key, 1)}
-                    disabled={baseScore >= 15}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
-                  >
-                    +
-                  </button>
-                  {raceBonus > 0 && (
-                    <span className="text-xs text-accent">+{raceBonus}</span>
-                  )}
                   <div className="flex flex-col items-center w-12">
                     <span className="text-sm font-semibold text-accent">
                       {modifier >= 0 ? `+${modifier}` : modifier}
@@ -382,8 +277,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
         return renderStandardArray();
       case "pointbuy":
         return renderPointBuy();
-      case "diceroll":
-        return renderDiceRoll();
       default:
         return null;
     }
@@ -392,14 +285,13 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   return (
     <StepCard
       title="Ability Scores"
-      hint="Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced), Point Buy (custom), or Dice Roll (random)."
+      hint="Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced) or Point Buy (custom)."
     >
       <div className="space-y-4">
         <div className="flex rounded-lg border border-border bg-charcoal/40 p-1">
           {([
             { key: "standard" as AbilityMethod, label: "Standard Array" },
             { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
-            { key: "diceroll" as AbilityMethod, label: "Dice Roll" },
           ]).map((tab) => (
             <button
               key={tab.key}
