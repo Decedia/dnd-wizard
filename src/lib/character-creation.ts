@@ -44,10 +44,22 @@ export function getCreationSteps(character: Character): CreationStep[] {
     },
   ];
 
+  if (character.class) {
+    steps.push({
+      id: "level",
+      title: "Starting Level",
+      description: "Choose your character's starting level",
+      hint: "Higher levels mean more abilities and power. Your subclass becomes available when you reach the required level for your class.",
+      type: "level",
+      required: true,
+      completed: character.level >= 1,
+    });
+  }
+
   const classData = character.class ? getStaticClass(character.class) : null;
   const subclassLevel = classData?.subclassLevel;
 
-  if (subclassLevel && classData?.subclasses && classData.subclasses.length > 0) {
+  if (subclassLevel && classData?.subclasses && classData.subclasses.length > 0 && character.level >= subclassLevel) {
     steps.push({
       id: "subclass",
       title: `Subclass (Level ${subclassLevel})`,
@@ -137,6 +149,8 @@ export function getFeatureSelections(character: Character): FeatureSelection[] {
 
   classData.levels.forEach((level, index) => {
     const levelNumber = index + 1;
+    if (levelNumber > character.level) return;
+    
     level.features?.forEach((feature: any) => {
       if (feature.choices) {
         selections.push({
