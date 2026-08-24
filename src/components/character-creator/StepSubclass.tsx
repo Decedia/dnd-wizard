@@ -33,10 +33,26 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
     return initial;
   });
 
-  const selectedOption = useMemo(
-    () => subclasses.find((s) => s.name === selectedSubclass),
-    [subclasses, selectedSubclass]
-  );
+  const displaySubclass = subclasses.find((s) => s.name === selectedSubclass) || null;
+
+  // Pill tabs: one per level that has subclass features. Before a subclass is
+  // chosen we still show the level range (disabled) so the structure is visible.
+  const displayLevels = useMemo(() => {
+    if (displaySubclass) {
+      const levels = displaySubclass.features
+        .filter((f) => f.level == null || (f.level >= subclassUnlockLevel && f.level <= data.level))
+        .map((f) => (f.level == null ? subclassUnlockLevel : (f.level as number)));
+      return Array.from(new Set(levels)).sort((a, b) => a - b);
+    }
+    const range: number[] = [];
+    for (let L = subclassUnlockLevel; L <= data.level; L++) range.push(L);
+    return range;
+  }, [displaySubclass, subclassUnlockLevel, data.level]);
+
+  const [activeLevel, setActiveLevel] = useState<number>(displayLevels[0] ?? subclassUnlockLevel);
+  const safeActiveLevel = displayLevels.includes(activeLevel)
+    ? activeLevel
+    : displayLevels[0] ?? subclassUnlockLevel;
 
   const handleSubclassSelect = (name: string) => {
     setSelectedSubclass(name);
@@ -80,6 +96,21 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
   };
 
   const ownedFeatures = data.features;
+
+  const activeFeatures = displaySubclass
+    ? displaySubclass.features.filter((f) => {
+        const lvl = f.level == null ? subclassUnlockLevel : (f.level as number);
+        return lvl === safeActiveLevel && lvl >= subclassUnlockLevel && lvl <= data.level;
+      })
+    : [];
+
+  const activeIndex = displayLevels.indexOf(safeActiveLevel);
+  const goPrev = () => {
+    if (activeIndex > 0) setActiveLevel(displayLevels[activeIndex - 1]);
+  };
+  const goNext = () => {
+    if (activeIndex < displayLevels.length - 1) setActiveLevel(displayLevels[activeIndex + 1]);
+  };
 
   return (
     <StepCard
@@ -139,127 +170,181 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
           {subclasses.length === 0 ? (
             <p className="text-sm text-parchment/60">This class does not have subclasses.</p>
           ) : (
-            <div className="space-y-3">
-              {subclasses.map((subclass) => {
-                const isSelected = selectedSubclass === subclass.name;
-                const earnedFeatures = subclass.features.filter(
-                  (f) => f.level == null || (f.level >= subclassUnlockLevel && f.level <= data.level)
-                );
-
-                return (
-                  <button
-                    key={subclass.name}
-                    type="button"
-                    onClick={() => handleSubclassSelect(subclass.name)}
-                    className={`w-full rounded-lg border p-4 text-left transition-all ${
-                      isSelected
-                        ? "border-accent bg-accent/10"
-                        : "border-border bg-charcoal/40 hover:border-accent/30"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="font-display font-semibold text-parchment">{subclass.name}</span>
-                      {isSelected && (
-                        <span className="text-[10px] font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full">
-                          Selected
-                        </span>
+            <div className="space-y-4">
+              {/* Subclass selection cards */}
+              <div className="space-y-3">
+                {subclasses.map((subclass) => {
+                  const isSelected = selectedSubclass === subclass.name;
+                  return (
+                    <button
+                      key={subclass.name}
+                      type="button"
+                      onClick={() => handleSubclassSelect(subclass.name)}
+                      className={`w-full rounded-lg border p-4 text-left transition-all ${
+                        isSelected
+                          ? "border-accent bg-accent/10"
+                          : "border-border bg-charcoal/40 hover:border-accent/30"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-display font-semibold text-parchment">{subclass.name}</span>
+                        {isSelected && (
+                          <span className="text-[10px] font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full">
+                            Selected
+                          </span>
+                        )}
+                      </div>
+                      {subclass.description && (
+                        <p className="mt-1 text-xs text-parchment/80">{subclass.description}</p>
                       )}
-                    </div>
-                    {subclass.description && (
-                      <p className="mt-1 text-xs text-parchment/80">{subclass.description}</p>
-                    )}
+                    </button>
+                  );
+                })}
+              </div>
 
-                    {earnedFeatures.length > 0 && (
-                      <div className="mt-3 space-y-3">
-                        {earnedFeatures.map((feature, idx) => {
-                          const hasChoices = feature.choices && feature.choices.length > 0;
-                          const choiceKey = `subclass-feature-${feature.name}`;
-                          const selectedOpts = selectedChoices[choiceKey] || [];
-                          const maxCount = 1;
+              {/* Per-level pill tabs */}
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  {displayLevels.map((L) => {
+                    const isDisabled = !selectedSubclass;
+                    const isActive = L === safeActiveLevel;
+                    return (
+                      <button
+                        key={L}
+                        type="button"
+                        disabled={isDisabled}
+                        onClick={() => setActiveLevel(L)}
+                        className={`rounded-full px-3 py-1.5 text-xs font-medium border transition-all ${
+                          isActive
+                            ? "border-accent bg-accent/15 text-accent"
+                            : isDisabled
+                              ? "border-border bg-charcoal/40 text-parchment/30 cursor-not-allowed"
+                              : "border-border bg-charcoal/40 text-parchment/70 hover:border-accent/30"
+                        }`}
+                      >
+                        Level {L}
+                      </button>
+                    );
+                  })}
+                </div>
 
-                          return (
-                            <div
-                              key={idx}
-                              className="rounded-md border border-border bg-charcoal/30 px-3 py-2"
-                            >
-                              <span className="text-xs font-semibold text-accent">
-                                {feature.name}
-                                {feature.level != null && (
-                                  <span className="ml-2 text-[10px] font-normal text-parchment/40">
-                                    Lv {feature.level}
-                                  </span>
-                                )}
-                              </span>
-                              {!hasChoices && feature.description && (
-                                <p className="text-[11px] text-parchment/80 mt-0.5 leading-relaxed">
-                                  {feature.description}
+                {/* Tab content (one level shown at a time) */}
+                <div className="mt-3">
+                  {!selectedSubclass ? (
+                    <p className="text-sm text-parchment/50">
+                      Choose your subclass above to unlock the features you gain at each level.
+                    </p>
+                  ) : activeFeatures.length === 0 ? (
+                    <p className="text-sm text-parchment/50">
+                      No subclass features are gained at level {safeActiveLevel}.
+                    </p>
+                  ) : (
+                    <div className="space-y-3">
+                      {activeFeatures.map((feature, idx) => {
+                        const hasChoices = feature.choices && feature.choices.length > 0;
+                        const choiceKey = `subclass-feature-${feature.name}`;
+                        const selectedOpts = selectedChoices[choiceKey] || [];
+                        const maxCount = 1;
+
+                        return (
+                          <div
+                            key={idx}
+                            className="rounded-md border border-border bg-charcoal/30 px-3 py-2"
+                          >
+                            <span className="text-xs font-semibold text-accent">{feature.name}</span>
+                            {!hasChoices && feature.description && (
+                              <p className="text-[11px] text-parchment/80 mt-0.5 leading-relaxed">
+                                {feature.description}
+                              </p>
+                            )}
+
+                            {hasChoices && (
+                              <div className="mt-2 space-y-2">
+                                <p className="text-[10px] font-medium text-parchment/50 uppercase tracking-wider">
+                                  Choose {maxCount} option{maxCount > 1 ? "s" : ""}
                                 </p>
-                              )}
+                                <div className="grid grid-cols-1 gap-2">
+                                  {feature.choices!.map((option) => {
+                                    const isSelected = selectedOpts.includes(option.name);
+                                    const isDisabled = !isSelected && selectedOpts.length >= maxCount;
 
-                              {hasChoices && (
-                                <div className="mt-2 space-y-2">
-                                  <p className="text-[10px] font-medium text-parchment/50 uppercase tracking-wider">
-                                    Choose {maxCount} option{maxCount > 1 ? "s" : ""}
-                                  </p>
-                                  <div className="grid grid-cols-1 gap-2">
-                                    {feature.choices!.map((option) => {
-                                      const isSelected = selectedOpts.includes(option.name);
-                                      const isDisabled = !isSelected && selectedOpts.length >= maxCount;
-
-                                      return (
-                                        <button
-                                          key={option.name}
-                                          type="button"
-                                          onClick={() => handleChoiceToggle(feature.name, option.name, maxCount)}
-                                          disabled={isDisabled}
-                                          className={`w-full rounded-lg border px-3 py-2 text-left transition-all ${
-                                            isSelected
-                                              ? "border-accent/40 bg-accent/10"
-                                              : isDisabled
-                                                ? "border-border bg-charcoal/40 opacity-50 cursor-not-allowed"
-                                                : "border-border bg-charcoal/40 hover:border-accent/30"
-                                          }`}
-                                        >
-                                          <div className="flex items-start justify-between gap-2">
-                                            <div className="flex-1">
-                                              <span className="text-xs font-semibold text-parchment">{option.name}</span>
-                                              {option.description && (
-                                                <p className="text-[11px] text-parchment/80 mt-0.5 leading-relaxed">
-                                                  {option.description}
-                                                </p>
-                                              )}
-                                            </div>
-                                            {isSelected && (
-                                              <svg
-                                                className="h-4 w-4 text-accent shrink-0 mt-0.5"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth={3}
-                                              >
-                                                <path d="M5 12l5 5L20 7" />
-                                              </svg>
+                                    return (
+                                      <button
+                                        key={option.name}
+                                        type="button"
+                                        onClick={() => handleChoiceToggle(feature.name, option.name, maxCount)}
+                                        disabled={isDisabled}
+                                        className={`w-full rounded-lg border px-3 py-2 text-left transition-all ${
+                                          isSelected
+                                            ? "border-accent/40 bg-accent/10"
+                                            : isDisabled
+                                              ? "border-border bg-charcoal/40 opacity-50 cursor-not-allowed"
+                                              : "border-border bg-charcoal/40 hover:border-accent/30"
+                                        }`}
+                                      >
+                                        <div className="flex items-start justify-between gap-2">
+                                          <div className="flex-1">
+                                            <span className="text-xs font-semibold text-parchment">{option.name}</span>
+                                            {option.description && (
+                                              <p className="text-[11px] text-parchment/80 mt-0.5 leading-relaxed">
+                                                {option.description}
+                                              </p>
                                             )}
                                           </div>
-                                        </button>
-                                      );
-                                    })}
-                                  </div>
-                                  {maxCount > 1 && (
-                                    <p className="text-xs text-parchment/80">
-                                      {selectedOpts.length} of {maxCount} selected
-                                    </p>
-                                  )}
+                                          {isSelected && (
+                                            <svg
+                                              className="h-4 w-4 text-accent shrink-0 mt-0.5"
+                                              viewBox="0 0 24 24"
+                                              fill="none"
+                                              stroke="currentColor"
+                                              strokeWidth={3}
+                                            >
+                                              <path d="M5 12l5 5L20 7" />
+                                            </svg>
+                                          )}
+                                        </div>
+                                      </button>
+                                    );
+                                  })}
                                 </div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
+                                {maxCount > 1 && (
+                                  <p className="text-xs text-parchment/80">
+                                    {selectedOpts.length} of {maxCount} selected
+                                  </p>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                {/* Level-to-level navigation */}
+                <div className="mt-4 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    disabled={activeIndex <= 0}
+                    className="rounded-full border border-border bg-charcoal/40 px-4 py-2 text-sm text-parchment transition-all hover:border-accent/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-border"
+                  >
+                    Back
                   </button>
-                );
-              })}
+                  <span className="text-xs text-parchment/40">
+                    Level {safeActiveLevel}
+                    {displayLevels.length > 0 ? ` / ${displayLevels[displayLevels.length - 1]}` : ""}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    disabled={activeIndex >= displayLevels.length - 1}
+                    className="rounded-full border border-border bg-charcoal/40 px-4 py-2 text-sm text-parchment transition-all hover:border-accent/30 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-border"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </section>
