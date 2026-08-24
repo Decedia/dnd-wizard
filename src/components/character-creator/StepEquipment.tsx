@@ -27,6 +27,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const [pendingEquip, setPendingEquip] = useState<Character["inventory"]>([]);
   const [selectedChoices, setSelectedChoices] = useState<Record<string, number>>({});
+  const [selectedWeaponNames, setSelectedWeaponNames] = useState<Record<string, string>>({});
   const [customItemName, setCustomItemName] = useState("");
   const [customItemQty, setCustomItemQty] = useState(1);
   const [customItemType, setCustomItemType] = useState<Character["inventory"][number]["itemType"]>("item");
@@ -93,6 +94,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (!weaponPopup) return [];
     
     const category = weaponPopup.category;
+    const selectedNames = Object.values(selectedWeaponNames);
+    
     return weapons.filter((w: any) => {
       if (category === "martial") return w.weapon_category === "Martial";
       if (category === "simple") return w.weapon_category === "Simple";
@@ -101,14 +104,32 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       if (category === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
       if (category === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
       return false;
-    });
-  }, [weaponPopup, weapons]);
+    }).filter((w: any) => !selectedNames.includes(w.name));
+  }, [weaponPopup, weapons, selectedWeaponNames]);
 
   const handleChoiceSelect = (groupId: string, optionIndex: number) => {
-    setSelectedChoices(prev => ({
-      ...prev,
-      [groupId]: optionIndex,
-    }));
+    setSelectedChoices(prev => {
+      const newSelected = { ...prev, [groupId]: optionIndex };
+      
+      // Track weapon name for duplicate prevention
+      const group = choiceGroups.find(g => g.id === groupId);
+      if (group && group.options[optionIndex]?.isWeaponChoice) {
+        // Will be updated after weapon is selected from popup
+      } else if (group && group.options[optionIndex]?.items?.[0]?.name) {
+        const itemName = group.options[optionIndex].items[0].name;
+        setSelectedWeaponNames(prevWeapons => {
+          const next = { ...prevWeapons };
+          if (prev[groupId] === optionIndex) {
+            delete next[groupId];
+          } else {
+            next[groupId] = itemName;
+          }
+          return next;
+        });
+      }
+      
+      return newSelected;
+    });
   };
 
   const handleWeaponSelect = (weapon: any) => {
@@ -131,7 +152,24 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     };
     
     setPendingEquip(prev => [...prev, weaponItem]);
+    setSelectedWeaponNames(prev => ({
+      ...prev,
+      [weaponPopup.groupId]: weapon.name
+    }));
     setWeaponPopup(null);
+  };
+
+  const handleChoiceRemove = (groupId: string) => {
+    setSelectedChoices(prev => {
+      const next = { ...prev };
+      delete next[groupId];
+      return next;
+    });
+    setSelectedWeaponNames(prev => {
+      const next = { ...prev };
+      delete next[groupId];
+      return next;
+    });
   };
 
   const addSelectedToPending = () => {
@@ -173,6 +211,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     onChange({ inventory: [...data.inventory, ...pendingEquip] });
     setPendingEquip([]);
     setSelectedChoices({});
+    setSelectedWeaponNames({});
   };
 
   const isAllRequiredSelected = useMemo(() => {
@@ -196,35 +235,78 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                     const isSelected = selectedChoices[group.id] === optionIndex;
                     
                     if (option.isWeaponChoice) {
+                      const selectedWeapon = selectedWeaponNames[group.id];
                       return (
-                        <button
+                        <div
                           key={optionIndex}
-                          type="button"
-                          onClick={() => setWeaponPopup({ groupId: group.id, optionIndex, category: option.weaponType || "" })}
                           className={`w-full rounded-lg border px-3 py-2 text-left text-sm transition-all ${
-                            isSelected
+                            isSelected || selectedWeapon
                               ? "border-accent/40 bg-accent/10 text-parchment"
                               : "border-white/20 bg-charcoal/40 text-parchment/80 hover:border-white/40"
                           }`}
                         >
-                          Choose a {option.weaponType?.replace('_', ' ')} weapon →
-                        </button>
+                          {selectedWeapon ? (
+                            <div className="flex items-center justify-between">
+                              <span>
+                                <span className="text-accent mr-1">✓</span>
+                                {selectedWeapon}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  handleChoiceRemove(group.id);
+                                }}
+                                className="text-xs text-red-400 hover:text-red-300 ml-2"
+                              >
+                                ✕
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => setWeaponPopup({ groupId: group.id, optionIndex, category: option.weaponType || "" })}
+                              className="w-full text-left"
+                            >
+                              Choose a {option.weaponType?.replace('_', ' ')} weapon →
+                            </button>
+                          )}
+                        </div>
                       );
                     }
                     
                     return (
-                      <button
+                      <div
                         key={optionIndex}
-                        type="button"
-                        onClick={() => handleChoiceSelect(group.id, optionIndex)}
                         className={`w-full rounded-lg border px-3 py-2 text-left text-sm transition-all ${
                           isSelected
                             ? "border-accent/40 bg-accent/10 text-parchment"
                             : "border-white/20 bg-charcoal/40 text-parchment/80 hover:border-white/40"
                         }`}
                       >
-                        {option.description}
-                      </button>
+                        {isSelected ? (
+                          <div className="flex items-center justify-between">
+                            <span>
+                              <span className="text-accent mr-1">✓</span>
+                              {option.description}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleChoiceRemove(group.id)}
+                              className="text-xs text-red-400 hover:text-red-300 ml-2"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => handleChoiceSelect(group.id, optionIndex)}
+                            className="w-full text-left"
+                          >
+                            {option.description}
+                          </button>
+                        )}
+                      </div>
                     );
                   })}
                 </div>
@@ -273,6 +355,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                   </div>
                 </button>
               ))}
+              {filteredWeapons.length === 0 && (
+                <p className="text-xs text-parchment/50 text-center py-3">
+                  No weapons available in this category.
+                </p>
+              )}
             </div>
           </div>
         </div>
