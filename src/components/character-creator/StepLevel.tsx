@@ -118,8 +118,9 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             className="input w-full text-center text-lg font-semibold"
             placeholder={String(baselineHp)}
           />
-          <div className="text-[11px] text-parchment/50 mt-2 text-center">
-            d{hitDie} + CON ({conMod >= 0 ? '+' : ''}{conMod}) = <span className="text-accent font-semibold">{baselineHp}</span> average
+          <div className="text-[11px] text-parchment/50 mt-2 text-center leading-relaxed">
+            Level 1: d{hitDie} + CON = <span className="text-accent font-semibold">{baselineHp}</span> max HP.
+            {" "}Each level after, add either a d{hitDie} roll or <span className="text-accent font-semibold">{Math.floor(hitDie / 2) + 1 + conMod}</span> average (+CON).
           </div>
         </div>
 

@@ -185,7 +185,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -199,7 +199,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -214,7 +214,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -242,7 +242,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -256,7 +256,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -271,7 +271,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -299,7 +299,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -313,7 +313,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -327,7 +327,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -355,7 +355,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -369,7 +369,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -397,7 +397,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         }
       ],
@@ -501,16 +501,16 @@
           ]
         },
         {
-          "description": "(a) a diplomat’s pack or (b) an entertainer’s pack",
+          "description": "(a) a diplomat\u2019s pack or (b) an entertainer\u2019s pack",
           "items": [
             {
               "name": "Diplomat's Pack",
-              "description": "(a) a diplomat’s pack",
+              "description": "(a) a diplomat\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Entertainer's Pack",
-              "description": "(b) an entertainer’s pack",
+              "description": "(b) an entertainer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -679,7 +679,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -704,7 +704,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -714,7 +714,7 @@
         {
           "level": 7,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -753,7 +753,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1023,7 +1023,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1035,7 +1035,7 @@
         {
           "level": 11,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1078,7 +1078,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1384,7 +1384,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1408,7 +1408,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1455,7 +1455,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1792,7 +1792,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1840,7 +1840,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -1963,16 +1963,16 @@
           ]
         },
         {
-          "description": "(a) a priest’s pack or (b) an explorer’s pack",
+          "description": "(a) a priest\u2019s pack or (b) an explorer\u2019s pack",
           "items": [
             {
               "name": "Priest's Pack",
-              "description": "(a) a priest’s pack",
+              "description": "(a) a priest\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer’s pack",
+              "description": "(b) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -2117,7 +2117,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2143,7 +2143,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2162,7 +2162,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2216,7 +2216,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2239,7 +2239,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2259,7 +2259,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2293,7 +2293,7 @@
         {
           "level": 13,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2315,7 +2315,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2329,7 +2329,7 @@
         {
           "level": 15,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2383,7 +2383,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2407,7 +2407,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2455,7 +2455,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2713,7 +2713,7 @@
         {
           "level": 5,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2731,7 +2731,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2741,7 +2741,7 @@
         {
           "level": 7,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2786,7 +2786,7 @@
         {
           "level": 9,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2806,7 +2806,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2818,7 +2818,7 @@
         {
           "level": 11,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2852,7 +2852,7 @@
         {
           "level": 13,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2874,7 +2874,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2888,7 +2888,7 @@
         {
           "level": 15,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2926,7 +2926,7 @@
         {
           "level": 17,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -2957,7 +2957,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -3006,7 +3006,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -3126,16 +3126,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer’s pack",
+              "description": "(a) a dungeoneer\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer’s pack",
+              "description": "(b) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -3241,7 +3241,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3269,7 +3269,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3297,7 +3297,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3311,7 +3311,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3325,7 +3325,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3353,7 +3353,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3381,7 +3381,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3417,7 +3417,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3431,7 +3431,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3459,7 +3459,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         }
       ],
@@ -3536,16 +3536,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer’s pack",
+              "description": "(a) a dungeoneer\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer’s pack",
+              "description": "(b) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -3698,7 +3698,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3719,7 +3719,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3740,7 +3740,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3769,7 +3769,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3783,7 +3783,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3797,7 +3797,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3825,7 +3825,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3840,7 +3840,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3854,7 +3854,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3882,7 +3882,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3897,7 +3897,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -3925,7 +3925,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         }
       ],
@@ -4017,16 +4017,16 @@
           ]
         },
         {
-          "description": "(a) a priest’s pack or (b) an explorer’s pack",
+          "description": "(a) a priest\u2019s pack or (b) an explorer\u2019s pack",
           "items": [
             {
               "name": "Priest's Pack",
-              "description": "(a) a priest’s pack",
+              "description": "(a) a priest\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer’s pack",
+              "description": "(b) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -4180,7 +4180,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 2
@@ -4198,7 +4198,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 2
@@ -4216,7 +4216,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3
@@ -4242,7 +4242,7 @@
         {
           "level": 9,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4261,7 +4261,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4279,7 +4279,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4307,7 +4307,7 @@
         {
           "level": 13,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4327,7 +4327,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4347,7 +4347,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4377,7 +4377,7 @@
         {
           "level": 17,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4397,7 +4397,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4438,7 +4438,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4554,16 +4554,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer’s pack",
+              "description": "(a) a dungeoneer\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer’s pack",
+              "description": "(b) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -4700,7 +4700,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 2
@@ -4736,7 +4736,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 2
@@ -4753,7 +4753,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3
@@ -4787,7 +4787,7 @@
         {
           "level": 9,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4821,7 +4821,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4839,7 +4839,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4867,7 +4867,7 @@
         {
           "level": 13,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4897,7 +4897,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4916,7 +4916,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4946,7 +4946,7 @@
         {
           "level": 17,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -4967,7 +4967,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5007,7 +5007,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5141,16 +5141,16 @@
           ]
         },
         {
-          "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack",
+          "description": "(a) a burglar\u2019s pack, (b) a dungeoneer\u2019s pack, or (c) an explorer\u2019s pack",
           "items": [
             {
               "name": "Burglar's Pack",
-              "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack,",
+              "description": "(a) a burglar\u2019s pack, (b) a dungeoneer\u2019s pack,",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(c) an explorer’s pack",
+              "description": "(c) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -5278,7 +5278,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5312,7 +5312,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5326,7 +5326,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5354,7 +5354,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5382,7 +5382,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5410,7 +5410,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5424,7 +5424,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5438,7 +5438,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5466,7 +5466,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5480,7 +5480,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         },
         {
@@ -5509,7 +5509,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": null
         }
       ],
@@ -5606,16 +5606,16 @@
           ]
         },
         {
-          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+          "description": "(a) a dungeoneer\u2019s pack or (b) an explorer\u2019s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
-              "description": "(a) a dungeoneer’s pack",
+              "description": "(a) a dungeoneer\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer’s pack",
+              "description": "(b) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -5729,7 +5729,7 @@
         {
           "level": 5,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5748,7 +5748,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5758,7 +5758,7 @@
         {
           "level": 7,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5788,7 +5788,7 @@
         {
           "level": 9,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5809,7 +5809,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5821,7 +5821,7 @@
         {
           "level": 11,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5855,7 +5855,7 @@
         {
           "level": 13,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5878,7 +5878,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5892,7 +5892,7 @@
         {
           "level": 15,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5939,7 +5939,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -5964,7 +5964,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6012,7 +6012,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6130,16 +6130,16 @@
           ]
         },
         {
-          "description": "(a) a scholar’s pack or (b) a dungeoneer’s pack",
+          "description": "(a) a scholar\u2019s pack or (b) a dungeoneer\u2019s pack",
           "items": [
             {
               "name": "Scholar's Pack",
-              "description": "(a) a scholar’s pack",
+              "description": "(a) a scholar\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Dungeoneer's Pack",
-              "description": "(b) a dungeoneer’s pack",
+              "description": "(b) a dungeoneer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -6278,7 +6278,7 @@
         {
           "level": 5,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "3": 2
           }
@@ -6294,7 +6294,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "3": 2
           }
@@ -6302,7 +6302,7 @@
         {
           "level": 7,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "4": 2
           }
@@ -6326,7 +6326,7 @@
         {
           "level": 9,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 2
           }
@@ -6342,7 +6342,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 2
           }
@@ -6374,7 +6374,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 3
           }
@@ -6419,7 +6419,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 3
           }
@@ -6435,7 +6435,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 3
           }
@@ -6465,7 +6465,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 3
           }
@@ -6511,7 +6511,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 4
           }
@@ -6519,7 +6519,7 @@
         {
           "level": 18,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 4
           }
@@ -6552,7 +6552,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "5": 4
           }
@@ -6659,16 +6659,16 @@
           ]
         },
         {
-          "description": "(a) a scholar’s pack or (b) an explorer’s pack",
+          "description": "(a) a scholar\u2019s pack or (b) an explorer\u2019s pack",
           "items": [
             {
               "name": "Scholar's Pack",
-              "description": "(a) a scholar’s pack",
+              "description": "(a) a scholar\u2019s pack",
               "quantity": 1
             },
             {
               "name": "Explorer's Pack",
-              "description": "(b) an explorer’s pack",
+              "description": "(b) an explorer\u2019s pack",
               "quantity": 1
             }
           ]
@@ -6757,7 +6757,7 @@
         {
           "level": 5,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6776,7 +6776,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6786,7 +6786,7 @@
         {
           "level": 7,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6816,7 +6816,7 @@
         {
           "level": 9,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6837,7 +6837,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6849,7 +6849,7 @@
         {
           "level": 11,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6883,7 +6883,7 @@
         {
           "level": 13,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6906,7 +6906,7 @@
               "type": "feature"
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6920,7 +6920,7 @@
         {
           "level": 15,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -6958,7 +6958,7 @@
         {
           "level": 17,
           "features": [],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -7017,7 +7017,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,
@@ -7101,7 +7101,7 @@
               }
             }
           ],
-          "asi": true,
+          "asi": false,
           "spellSlots": {
             "1": 4,
             "2": 3,

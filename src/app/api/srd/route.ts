@@ -96,6 +96,21 @@ async function fetchAllClasses() {
   const subclassMap = new Map(subclassesRaw.map((s: any) => [s.index, s]));
   const levelsMap = new Map(levelsRaw.map((l: any) => [l.index, l]));
 
+  const SUBCLASS_LEVELS: Record<string, number> = {
+    barbarian: 3,
+    bard: 3,
+    cleric: 1,
+    druid: 2,
+    fighter: 3,
+    monk: 3,
+    paladin: 3,
+    ranger: 3,
+    rogue: 3,
+    sorcerer: 1,
+    warlock: 1,
+    wizard: 2,
+  };
+
   const spellcastingMap = new Map<string, string>();
   for (const cls of classes) {
     const spellSlugs = new Set<string>();
@@ -116,12 +131,20 @@ async function fetchAllClasses() {
   }
 
   return classes.map((cls: any) => {
-    const levels = (levelsMap.get(cls.index) || []).map((lvl: any) => ({
+    const rawLevels = levelsMap.get(cls.index) || [];
+    const levels = rawLevels.map((lvl: any) => ({
       level: lvl.level,
       features: (lvl.features || []).map((f: any) => f.name),
-      asi: lvl.ability_score_bonuses > 0,
       spellSlots: lvl.spell_slots || undefined,
     }));
+
+    let prevBonus = 0;
+    levels.forEach((lvl: any, idx: number) => {
+      const raw = rawLevels[idx];
+      const bonus = raw?.ability_score_bonuses || 0;
+      lvl.asi = bonus > prevBonus;
+      prevBonus = bonus;
+    });
 
     const features = (levels[0]?.features || [])
       .map((name: string) => {
@@ -161,7 +184,7 @@ async function fetchAllClasses() {
       levels,
       spellcastingAbility: spellcastingMap.get(cls.index),
       cantripsKnown: {},
-      subclassLevel: (cls.subclasses || []).length > 0 ? 1 : undefined,
+      subclassLevel: SUBCLASS_LEVELS[cls.index],
       subclasses: (cls.subclasses || []).map((sub: any) => {
         const subRaw = subclassMap.get(sub.index);
         return {
