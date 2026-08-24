@@ -98,7 +98,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                   ? "border-accent/40 bg-accent/10"
                   : disabled
                     ? "border-border bg-charcoal/40 opacity-50"
-                    : "border-border bg-charcoal/60 hover:border-accent/30"
+                    : "border-white/20 bg-charcoal/60 hover:border-white/40"
               } ${disabled ? "cursor-not-allowed" : "cursor-pointer"}`}
             >
               <div className="flex items-center justify-between">
