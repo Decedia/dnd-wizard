@@ -53,32 +53,8 @@ export function getCreationSteps(character: Character): CreationStep[] {
     },
   ];
 
-  if (character.class) {
-    steps.push({
-      id: "level",
-      title: "Starting Level",
-      description: "Choose your character's starting level",
-      hint: "Higher levels mean more abilities and power. Your subclass becomes available when you reach the required level for your class.",
-      type: "level",
-      required: true,
-      completed: character.level >= 1,
-    });
-  }
-
   const classData = character.class ? getStaticClass(character.class) : null;
   const subclassLevel = classData?.subclassLevel;
-
-  if (subclassLevel && classData?.subclasses && classData.subclasses.length > 0 && character.level >= subclassLevel) {
-    steps.push({
-      id: "subclass",
-      title: `Subclass (Level ${subclassLevel})`,
-      description: `Choose your ${classData.name} subclass`,
-      hint: `At level ${subclassLevel}, you choose a subclass that defines your character's archetype. Each subclass grants unique features and abilities that shape how your character plays.`,
-      type: "subclass",
-      required: true,
-      completed: !!character.subclass,
-    });
-  }
 
   steps.push(
     {
@@ -118,6 +94,30 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: true,
     }
   );
+
+  if (character.class) {
+    steps.push({
+      id: "level",
+      title: "Starting Level",
+      description: "Choose your character's starting level",
+      hint: "Higher levels mean more abilities and power. Your subclass becomes available when you reach the required level for your class.",
+      type: "level",
+      required: true,
+      completed: character.level >= 1,
+    });
+  }
+
+  if (subclassLevel && classData?.subclasses && classData.subclasses.length > 0 && character.level >= subclassLevel) {
+    steps.push({
+      id: "subclass",
+      title: `Subclass (Level ${subclassLevel})`,
+      description: `Choose your ${classData.name} subclass`,
+      hint: `At level ${subclassLevel}, you choose a subclass that defines your character's archetype. Each subclass grants unique features and abilities that shape how your character plays.`,
+      type: "subclass",
+      required: true,
+      completed: !!character.subclass,
+    });
+  }
 
   const featureSelections = getFeatureSelections(character);
   featureSelections.forEach((selection, index) => {
