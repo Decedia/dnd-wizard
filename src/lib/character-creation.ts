@@ -13,7 +13,45 @@ interface FeatureSelection {
   level: number;
 }
 
+export function getValidationMessage(step: CreationStep): string {
+  switch (step.type) {
+    case "identity":
+      return "Please enter your character's name, select a background, and choose an alignment.";
+    case "class":
+      return "Please select a class for your character.";
+    case "race":
+      return "Please select a race for your character.";
+    case "abilities":
+      return "Please set all six ability scores before continuing.";
+    case "skills":
+      return "Please select the required number of skills.";
+    case "equipment":
+      return "Please choose all required equipment options.";
+    case "spells":
+      return "Please select your starting spells.";
+    case "level":
+      return "Please choose a starting level.";
+    case "feature-selections":
+      return "Please make all required feature selections.";
+    case "appearance":
+    default:
+      return "Please complete this step before continuing.";
+  }
+}
+
 export function getCreationSteps(character: Character): CreationStep[] {
+  const classData = character.class ? getStaticClass(character.class) : null;
+
+  const identityCompleted = !!character.name.trim() && !!character.background && !!character.alignment;
+  const classCompleted = !!character.class;
+  const raceCompleted = !!character.race;
+  const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
+  const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
+  const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
+  const spellsCompleted = !classData?.spellcastingAbility || (character.spells && character.spells.length > 0);
+  const appearanceCompleted = true;
+  const levelCompleted = character.level >= 1;
+
   const steps: CreationStep[] = [
     {
       id: "identity",
@@ -22,7 +60,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Enter your character's name, choose a background, and set their alignment. This is who your character is in the world.",
       type: "identity",
       required: true,
-      completed: !!character.name.trim(),
+      completed: identityCompleted,
     },
     {
       id: "class",
@@ -31,7 +69,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Your class defines your character's core abilities, hit dice, and progression. Choose carefully - this determines what you can do in combat and exploration.",
       type: "class",
       required: true,
-      completed: !!character.class,
+      completed: classCompleted,
     },
     {
       id: "race",
@@ -40,7 +78,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Your race determines your character's base abilities, traits, and place in the world. Each race has unique features like darkvision, weapon proficiencies, or special abilities.",
       type: "race",
       required: true,
-      completed: !!character.race,
+      completed: raceCompleted,
     },
     {
       id: "abilities",
@@ -49,11 +87,9 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Ability scores represent your character's physical and mental capabilities. Strength for muscle, Dexterity for agility, Constitution for health, Intelligence for reasoning, Wisdom for perception, and Charisma for presence.",
       type: "abilities",
       required: true,
-      completed: [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0),
+      completed: abilitiesCompleted,
     },
   ];
-
-  const classData = character.class ? getStaticClass(character.class) : null;
 
   steps.push(
     {
@@ -63,7 +99,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Skills represent your character's training and expertise. Choose skills that match your character's background and class. Proficient skills add your proficiency bonus to related checks.",
       type: "skills",
       required: true,
-      completed: true,
+      completed: skillsCompleted,
     },
     {
       id: "equipment",
@@ -72,7 +108,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Your class determines your starting equipment. Choose weapons, armor, and gear that fit your character's playstyle.",
       type: "equipment",
       required: true,
-      completed: character.inventory.length > 0,
+      completed: equipmentCompleted,
     },
     {
       id: "spells",
@@ -81,7 +117,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "If your class can cast spells, choose your starting spells here. Spells are divided by level and can be changed when you level up.",
       type: "spells",
       required: classData?.spellcastingAbility ? true : false,
-      completed: true,
+      completed: spellsCompleted,
     },
     {
       id: "appearance",
@@ -90,7 +126,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Add the finishing touches to your character - appearance, personality, and any other details that bring them to life.",
       type: "appearance",
       required: false,
-      completed: true,
+      completed: appearanceCompleted,
     }
   );
 
@@ -102,7 +138,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
       hint: "Higher levels mean more abilities and power. Your subclass becomes available when you reach the required level for your class.",
       type: "level",
       required: true,
-      completed: character.level >= 1,
+      completed: levelCompleted,
     });
   }
 
@@ -110,10 +146,10 @@ export function getCreationSteps(character: Character): CreationStep[] {
   featureSelections.forEach((selection, index) => {
     const key = `feature-${selection.featureName}`;
     const existing = (character as any).featureSelections?.[key];
-    const isComplete = selection.type === "single" 
-      ? !!existing 
+    const isComplete = selection.type === "single"
+      ? !!existing
       : Array.isArray(existing) && existing.length >= (selection.count || 1);
-    
+
     steps.push({
       id: `feature-selection-${index}`,
       title: `${selection.featureName} (Level ${selection.level})`,
@@ -126,6 +162,53 @@ export function getCreationSteps(character: Character): CreationStep[] {
   });
 
   return steps;
+}
+
+function isEquipmentComplete(character: Character, classData: ReturnType<typeof getStaticClass> | null): boolean {
+  if (!classData?.startingEquipment) return character.inventory.length > 0;
+
+  const choiceGroups: { id: string; description: string; options: { description: string; items: { name: string }[]; isWeaponChoice?: boolean }[] }[] = [];
+  let groupCounter = 0;
+
+  classData.startingEquipment.forEach((entry: any) => {
+    if (entry.granted) return;
+    const desc = entry.description || "";
+    const items = entry.items || [];
+
+    if (desc.includes(" or ")) {
+      const parts = desc.split(" or ");
+      const options = parts.map((part: string) => {
+        const trimmed = part.trim();
+        const isWeaponChoice = trimmed.includes("any martial") || trimmed.includes("any simple");
+        return {
+          description: trimmed,
+          items: items.length > 0 ? [items[0]] : [],
+          isWeaponChoice,
+        };
+      });
+      choiceGroups.push({
+        id: `choice-${groupCounter++}`,
+        description: desc,
+        options,
+      });
+    } else if (items.length > 0) {
+      choiceGroups.push({
+        id: `choice-${groupCounter++}`,
+        description: desc || "Starting equipment",
+        options: items.map((item: any) => ({
+          description: item.name,
+          items: [item],
+        })),
+      });
+    }
+  });
+
+  if (choiceGroups.length === 0) return true;
+
+  return choiceGroups.every((group) => {
+    const groupIndex = parseInt(group.id.replace("choice-", ""), 10);
+    return character.inventory.some((item) => item.choiceGroupIndex === groupIndex);
+  });
 }
 
 export function getFeatureSelections(character: Character): FeatureSelection[] {

@@ -21,6 +21,7 @@ import {
   finalizeCreation,
   getCreationSteps,
   getFeatureSelections,
+  getValidationMessage,
   syncBaseFeatures,
   type Character,
 } from "@/lib/character-creation";
@@ -30,6 +31,8 @@ export default function CharacterCreate() {
   const router = useRouter();
   const [character, setCharacter] = useState<Character>(initializeCharacter);
   const [step, setStep] = useState(0);
+
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const steps = useMemo(() => getCreationSteps(character), [character]);
   const totalSteps = steps.length;
@@ -47,11 +50,17 @@ export default function CharacterCreate() {
   const canProceed = useCallback((): boolean => {
     if (!currentStep) return false;
     if (!currentStep.required) return true;
-    return currentStep.completed;
+    if (!currentStep.completed) {
+      setValidationError(getValidationMessage(currentStep));
+      return false;
+    }
+    setValidationError(null);
+    return true;
   }, [currentStep]);
 
   const handleNext = useCallback(() => {
     if (!canProceed()) return;
+    setValidationError(null);
     if (isLastStep) {
       const final = finalizeCreation(character);
       router.replace(`/character/${final.id}`);
@@ -61,6 +70,7 @@ export default function CharacterCreate() {
   }, [canProceed, isLastStep, character, router]);
 
   const handleBack = useCallback(() => {
+    setValidationError(null);
     if (step > 0) {
       setStep((s) => s - 1);
     }
@@ -104,6 +114,11 @@ export default function CharacterCreate() {
       <main className="px-4 py-6 pb-40">
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={step + 1} totalSteps={totalSteps} />
+          {validationError && (
+            <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
+              <p className="text-sm text-red-400 font-medium">{validationError}</p>
+            </div>
+          )}
           {renderStep()}
         </div>
       </main>
