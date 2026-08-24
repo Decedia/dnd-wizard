@@ -8,6 +8,7 @@ import { StepCard } from "@/components/character-creator/StepCard";
 import { StepIdentity } from "@/components/character-creator/StepIdentity";
 import { StepRace } from "@/components/character-creator/StepRace";
 import { StepClass } from "@/components/character-creator/StepClass";
+import { StepSubclass } from "@/components/character-creator/StepSubclass";
 import { StepLevel } from "@/components/character-creator/StepLevel";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
@@ -80,6 +81,8 @@ export default function CharacterCreate() {
         return <StepRace data={character} onChange={update} />;
       case "class":
         return <StepClass data={character} onChange={update} />;
+      case "subclass":
+        return <StepSubclass data={character} onChange={update} />;
       case "level":
         return <StepLevel data={character} onChange={update} />;
       case "abilities":

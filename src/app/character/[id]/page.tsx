@@ -204,6 +204,14 @@ export default function CharacterView() {
             <>
               <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
               <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
+              {character.level < 20 && (
+                <button
+                  onClick={() => router.push(`/character/${character.id}/level-up`)}
+                  className="w-full rounded-full border border-accent/30 bg-accent/10 px-4 py-3 text-sm font-semibold text-accent transition-all hover:border-accent/50 hover:bg-accent/20 active:scale-[0.98]"
+                >
+                  Level Up
+                </button>
+              )}
               <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}

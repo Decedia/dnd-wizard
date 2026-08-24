@@ -49,13 +49,17 @@
 - `AttacksAndSpellcastingSection`: Class-granted attacks shown with gold border, "class-granted" tag, read-only.
 
 ### Level Up Flow Updates
-- `generateLevelUpSteps` now generates `spellSelection` steps at levels where spell slots increase or cantrips known increases.
-- `LevelUpStep` type extended with `spellSelection` variant.
-- `LevelUpFlow` modal now includes `SpellSelectionStep` for post-creation level up.
-- `PerLevelStepsFlow` component created for inline per-level steps during character creation.
+- `generateLevelUpSteps` (src/lib/level-up.ts) generates per-level steps: HP, subclassSelection (at subclassLevel if no subclass), features (class + subclass features earned at that level), ASI, expertise (Rogue), spellSlots, spellSelection.
+- Subclass features/choices now included; subclass feature choices stored under `subclass-feature-<name>` key, consumed by `applySubclassFeatures`.
+- Real Level Up flow implemented as `/character/[id]/level-up` route + `src/components/LevelUpWizard.tsx` (target-level selector, per-level steps, applies HP/features/ASI/expertise/spells/subclass to the character on finish). "Level Up" button added to character bio tab.
 
 ## Recently Completed
 
+- [x] Fixed level up features, ASI, and subclass selection using 2014 SRD JSON as reference for what players gain per level
+- [x] Added `StepSubclass` component + `subclass` creation step (per class, shown at subclassLevel); subclass feature-choice selections wired into wizard via `getSubclassFeatureSelections`
+- [x] Built real Level Up flow: `src/components/LevelUpWizard.tsx` + `/character/[id]/level-up` route; "Level Up" button on character bio tab
+- [x] `generateLevelUpSteps` extended to include `subclassSelection` (when reaching subclass level w/o subclass) and per-level subclass features/choices; each subclass feature shown only at its own level
+- [x] ASI allocation applied during both creation (StepLevel) and Level Up; subclass feature choices stored under `subclass-feature-<name>` key consumed by `applySubclassFeatures`
 - [x] Rewrote StepEquipment: removed pending selection state, clicks immediately add to inventory, inline weapon list, info for all options, granted items auto-added, fixed double-selection bug; lint and typecheck pass
 - [x] Restructured DND-AN creation wizard end-to-end (Steps 1-8 fixes + new Steps 9+)
 - [x] Added `type: "feature" | "attack"` tags to all class features in srd.ts

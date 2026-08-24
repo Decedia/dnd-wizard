@@ -12,6 +12,8 @@ interface FeatureSelection {
   options: string[];
   count?: number;
   level: number;
+  storageKey: string;
+  source?: "class" | "subclass";
 }
 
 interface StepFeatureSelectionsProps {
@@ -24,7 +26,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
   const [selectedValues, setSelectedValues] = useState<Record<string, string[]>>(() => {
     const initial: Record<string, string[]> = {};
     selections.forEach((sel) => {
-      const key = `feature-${sel.featureName}`;
+      const key = sel.storageKey;
       const existing = (data as any).featureSelections?.[key];
       if (existing) {
         initial[key] = Array.isArray(existing) ? existing : [existing];
@@ -33,10 +35,9 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
     return initial;
   });
 
-  const handleSelect = (featureName: string, value: string, count: number = 1) => {
-    const key = `feature-${featureName}`;
+  const handleSelect = (storageKey: string, value: string, count: number = 1) => {
     setSelectedValues((prev) => {
-      const current = prev[key] || [];
+      const current = prev[storageKey] || [];
       let next: string[];
       
       if (current.includes(value)) {
@@ -49,17 +50,17 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
         }
       }
       
-      const newSelections = { ...prev, [key]: next };
+      const newSelections = { ...prev, [storageKey]: next };
       
       // Save to character
-      const featureSelections = { ...(data as any).featureSelections, [key]: next };
+      const featureSelections = { ...(data as any).featureSelections, [storageKey]: next };
       onChange({ featureSelections } as any);
       
       return newSelections;
     });
   };
 
-  const getSelectionKey = (featureName: string) => `feature-${featureName}`;
+  const getSelectionKey = (selection: FeatureSelection) => selection.storageKey;
 
   if (selections.length === 0) {
     return (
@@ -78,7 +79,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
     >
       <div className="space-y-6">
         {selections.map((selection) => {
-          const key = getSelectionKey(selection.featureName);
+          const key = getSelectionKey(selection);
           const selected = selectedValues[key] || [];
           const isMultiple = selection.type === "multiple" || selection.type === "skills" || selection.type === "invocations";
           const maxCount = selection.count || (isMultiple ? 2 : 1);
@@ -95,7 +96,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                   options={selection.options}
                   selected={selected}
                   maxCount={maxCount}
-                  onSelect={(value) => handleSelect(selection.featureName, value, maxCount)}
+                  onSelect={(value) => handleSelect(selection.storageKey, value, maxCount)}
                 />
               ) : (
                 <div className="grid grid-cols-1 gap-2">
@@ -107,7 +108,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                       <button
                         key={option}
                         type="button"
-                        onClick={() => handleSelect(selection.featureName, option, maxCount)}
+                        onClick={() => handleSelect(selection.storageKey, option, maxCount)}
                         disabled={isDisabled}
                         className={`w-full rounded-lg border px-3 py-2 text-left transition-all ${
                           isSelected

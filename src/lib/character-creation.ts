@@ -11,6 +11,8 @@ interface FeatureSelection {
   options: string[];
   count?: number;
   level: number;
+  storageKey: string;
+  source?: "class" | "subclass";
 }
 
 export function getValidationMessage(step: CreationStep, character?: Character): string {
@@ -158,6 +160,22 @@ export function getCreationSteps(character: Character): CreationStep[] {
     });
   }
 
+  const unlockLevel = classData?.subclassLevel ?? 3;
+  const hasSubclassOptions = !!classData && (classData.subclasses?.length ?? 0) > 0;
+  const subclassAvailable = !!character.class && hasSubclassOptions && character.level >= unlockLevel;
+
+  if (subclassAvailable) {
+    steps.push({
+      id: "subclass",
+      title: "Subclass",
+      description: "Choose your subclass",
+      hint: `Select a ${classData?.name} subclass. You gain its features as you level up.`,
+      type: "subclass",
+      required: true,
+      completed: isSubclassStepComplete(character),
+    });
+  }
+
   const featureSelections = getFeatureSelections(character);
   featureSelections.forEach((selection, index) => {
     const key = `feature-${selection.featureName}`;
@@ -246,10 +264,45 @@ export function getFeatureSelections(character: Character): FeatureSelection[] {
           options: feature.choices.options || [],
           count: feature.choices.count,
           level: levelNumber,
+          storageKey: `feature-${feature.name}`,
+          source: "class",
         });
       }
     });
   });
+
+  return [...selections, ...getSubclassFeatureSelections(character)];
+}
+
+/**
+ * Subclass feature choices (e.g. Barbarian Totem animal, Fighter fighting style).
+ * Only relevant once a subclass has actually been chosen.
+ */
+export function getSubclassFeatureSelections(character: Character): FeatureSelection[] {
+  if (!character.subclass || !character.class) return [];
+
+  const classData = getStaticClass(character.class);
+  const unlockLevel = classData?.subclassLevel ?? 3;
+  if (character.level < unlockLevel) return [];
+
+  const subclasses = getStaticSubclasses(character.class);
+  const subclass = subclasses.find((s) => s.name === character.subclass);
+  if (!subclass) return [];
+
+  const selections: FeatureSelection[] = [];
+  for (const feature of subclass.features) {
+    if (!feature.choices || feature.choices.length === 0) continue;
+    if (feature.level != null && feature.level > character.level) continue;
+    selections.push({
+      featureName: feature.name,
+      description: (feature.description as string) || `Make a selection for ${feature.name}`,
+      type: "single",
+      options: feature.choices.map((c: any) => c.name),
+      level: feature.level ?? unlockLevel,
+      storageKey: `subclass-feature-${feature.name}`,
+      source: "subclass",
+    });
+  }
 
   return selections;
 }

@@ -1,8 +1,8 @@
-import { getStaticClass } from "@/lib/srd-client";
-import { getClassLevel1Hp, getClassPerLevelHp, getModifier } from "@/lib/storage";
+import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
+import { getModifier } from "@/lib/storage";
 
 export interface LevelUpStepSection {
-  type: "hp" | "features" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
+  type: "hp" | "features" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection" | "subclassSelection";
   description?: string;
   features?: { name: string; description: string }[];
   featureChoices?: {
@@ -12,6 +12,7 @@ export interface LevelUpStepSection {
     optional?: boolean;
     tigerSkillOptions?: string[];
     tigerSkillCount?: number;
+    storageKey?: string;
   }[];
   asiCount?: number;
   expertiseCount?: number;
@@ -20,6 +21,7 @@ export interface LevelUpStepSection {
   spellSelectionLevel?: number;
   skillSelectionCount?: number;
   skillOptions?: string[];
+  subclassOptions?: { name: string; description: string }[];
   level?: number;
 }
 
@@ -37,13 +39,15 @@ export function generateLevelUpSteps(
   className: string,
   currentExpertise: string[] = [],
   currentSkills: Record<string, boolean> = {},
-  includeCurrentLevel: boolean = false
+  includeCurrentLevel: boolean = false,
+  currentSubclass?: string
 ): LevelUpStep[] {
   const classData = getStaticClass(className);
   if (!classData || !classData.levels) return [];
 
   const steps: LevelUpStep[] = [];
   const startLevel = includeCurrentLevel ? oldLevel : oldLevel + 1;
+  const unlockLevel = classData.subclassLevel ?? 3;
 
   for (let level = startLevel; level <= newLevel; level++) {
     const levelData = classData.levels[level - 1];
@@ -57,13 +61,45 @@ export function generateLevelUpSteps(
       });
     }
 
+    if (level === unlockLevel && !currentSubclass && (classData.subclasses?.length ?? 0) > 0) {
+      const subclasses = getStaticSubclasses(className);
+      sections.push({
+        type: "subclassSelection",
+        subclassOptions: subclasses.map((s) => ({ name: s.name, description: s.description })),
+      });
+    }
+
     let features = (levelData?.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+
+    let featureChoices = getFeatureChoices(className, features);
+
+    if (currentSubclass && level >= unlockLevel) {
+      const subclasses = getStaticSubclasses(className);
+      const sub = subclasses.find((s) => s.name === currentSubclass);
+      if (sub) {
+        const earned = sub.features.filter((f) => f.level === level);
+        features = [
+          ...features,
+          ...earned.map((f) => ({ name: f.name, description: normalizeDescription(f.description) })),
+        ];
+        const subChoices = earned
+          .filter((f) => f.choices && f.choices.length > 0)
+          .map((f) => ({
+            featureName: f.name,
+            options: f.choices!.map((c: any) => c.name),
+            storageKey: `subclass-feature-${f.name}`,
+          }));
+        if (subChoices.length > 0) {
+          featureChoices = [...(featureChoices || []), ...subChoices];
+        }
+      }
+    }
 
     if (features.length > 0) {
       sections.push({
         type: "features",
         features,
-        featureChoices: getFeatureChoices(className, features),
+        featureChoices,
       });
     }
 
@@ -162,6 +198,8 @@ export function sectionTitle(type: LevelUpStepSection["type"]): string {
       return "Spell Selection";
     case "skillSelection":
       return "Skill Selection";
+    case "subclassSelection":
+      return "Subclass Selection";
     default:
       return "";
   }
@@ -183,6 +221,8 @@ export function sectionIcon(type: LevelUpStepSection["type"]): string {
       return "🔮";
     case "skillSelection":
       return "🛡️";
+    case "subclassSelection":
+      return "🐉";
     default:
       return "📋";
   }
@@ -202,6 +242,8 @@ function sectionLabel(type: LevelUpStepSection["type"], className: string): stri
       return "Spell Slots";
     case "spellSelection":
       return "Spell Selection";
+    case "subclassSelection":
+      return "Subclass Selection";
     default:
       return "";
   }
@@ -219,6 +261,7 @@ function getFeatureChoices(className: string, features: { name: string; descript
       choices.push({
         featureName: feature.name,
         options: [...TOTEM_ANIMALS],
+        storageKey: `feature-${feature.name}`,
         tigerSkillOptions: feature.name === "Aspect of the Beast" ? [...TIGER_ASPECT_SKILLS] : undefined,
         tigerSkillCount: feature.name === "Aspect of the Beast" ? 2 : undefined,
       });
@@ -227,6 +270,7 @@ function getFeatureChoices(className: string, features: { name: string; descript
       choices.push({
         featureName: feature.name,
         options: ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"],
+        storageKey: `feature-${feature.name}`,
         optional: true,
       });
     }
