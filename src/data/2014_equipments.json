@@ -4508,6 +4508,19 @@
       },
       "weight": 0,
       "contents": []
+    },
+    {
+      "index": "pan-flute",
+      "name": "Pan Flute",
+      "equipment_category": "Adventuring Gear",
+      "description": "A wind instrument consisting of multiple pipes of graduated length bound together. Produces an airy, haunting tone.",
+      "special": "",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": []
     }
   ]
 }
