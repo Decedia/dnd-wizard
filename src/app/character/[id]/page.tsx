@@ -22,7 +22,7 @@ import { OtherProficienciesSection } from "@/components/character-sheet/OtherPro
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
-import { Trash2, Download, Upload, Save } from "lucide-react";
+import { Trash2, Download, Upload, ArrowUp, Save } from "lucide-react";
 import { exportCharacterToPdf } from "@/lib/pdf-visual";
 import { importCharacterFromPdf } from "@/lib/pdf";
 
@@ -99,6 +99,11 @@ export default function CharacterView() {
 
   const handleImportClick = () => {
     importInputRef.current?.click();
+  };
+
+  const handleLevelUpClick = () => {
+    if (!character || character.level >= 20) return;
+    router.push(`/character/${id}/level-up`);
   };
 
   const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -210,6 +215,14 @@ export default function CharacterView() {
 
           <div className="mt-6 space-y-3">
             <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={handleLevelUpClick}
+                disabled={character.level >= 20}
+                className="flex items-center justify-center gap-2 rounded-full border border-border bg-charcoal px-4 py-3 text-sm font-semibold text-parchment transition-all hover:border-text-muted hover:bg-charcoal-lighter active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100"
+              >
+                <ArrowUp className="h-4 w-4" />
+                Level Up
+              </button>
               <button
                 onClick={handleSave}
                 className="flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98]"
