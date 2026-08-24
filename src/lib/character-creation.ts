@@ -4,6 +4,15 @@ import type { CreationStep } from "./creation-types";
 
 export type { Character } from "./storage";
 
+interface FeatureSelection {
+  featureName: string;
+  description: string;
+  type: "single" | "multiple" | "skills" | "spells" | "invocations";
+  options: string[];
+  count?: number;
+  level: number;
+}
+
 export function getCreationSteps(character: Character): CreationStep[] {
   const steps: CreationStep[] = [
     {
@@ -98,7 +107,51 @@ export function getCreationSteps(character: Character): CreationStep[] {
     }
   );
 
+  const featureSelections = getFeatureSelections(character);
+  featureSelections.forEach((selection, index) => {
+    const key = `feature-${selection.featureName}`;
+    const existing = (character as any).featureSelections?.[key];
+    const isComplete = selection.type === "single" 
+      ? !!existing 
+      : Array.isArray(existing) && existing.length >= (selection.count || 1);
+    
+    steps.push({
+      id: `feature-selection-${index}`,
+      title: `${selection.featureName} (Level ${selection.level})`,
+      description: selection.description,
+      hint: `You must make a selection for ${selection.featureName}. This is a class feature that requires you to choose from the available options.`,
+      type: "feature-selections",
+      required: true,
+      completed: isComplete,
+    });
+  });
+
   return steps;
+}
+
+export function getFeatureSelections(character: Character): FeatureSelection[] {
+  const classData = character.class ? getStaticClass(character.class) : null;
+  if (!classData) return [];
+
+  const selections: FeatureSelection[] = [];
+
+  classData.levels.forEach((level, index) => {
+    const levelNumber = index + 1;
+    level.features?.forEach((feature: any) => {
+      if (feature.choices) {
+        selections.push({
+          featureName: feature.name,
+          description: feature.choices.description || feature.description || `Make a selection for ${feature.name}`,
+          type: feature.choices.type || "single",
+          options: feature.choices.options || [],
+          count: feature.choices.count,
+          level: levelNumber,
+        });
+      }
+    });
+  });
+
+  return selections;
 }
 
 export function initializeCharacter(): Character {

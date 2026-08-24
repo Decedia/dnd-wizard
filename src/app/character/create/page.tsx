@@ -14,10 +14,12 @@ import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
 import { StepSpells } from "@/components/character-creator/StepSpells";
 import { StepAppearance } from "@/components/character-creator/StepAppearance";
+import { StepFeatureSelections } from "@/components/character-creator/StepFeatureSelections";
 import {
   initializeCharacter,
   finalizeCreation,
   getCreationSteps,
+  getFeatureSelections,
   type Character,
 } from "@/lib/character-creation";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
@@ -31,6 +33,7 @@ export default function CharacterCreate() {
   const totalSteps = steps.length;
   const currentStep = steps[step];
   const isLastStep = step === totalSteps - 1;
+  const featureSelections = useMemo(() => getFeatureSelections(character), [character]);
 
   const update = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
@@ -82,10 +85,15 @@ export default function CharacterCreate() {
         return <StepSpells data={character} onChange={update} />;
       case "appearance":
         return <StepAppearance data={character} onChange={update} />;
+      case "feature-selections": {
+        const selectionIndex = parseInt(currentStep.id.replace("feature-selection-", ""), 10);
+        const selections = featureSelections[selectionIndex] ? [featureSelections[selectionIndex]] : [];
+        return <StepFeatureSelections data={character} onChange={update} selections={selections} />;
+      }
       default:
         return null;
     }
-  }, [currentStep, character, update]);
+  }, [currentStep, character, update, featureSelections]);
 
   return (
     <div className="min-h-screen bg-charcoal">
@@ -94,11 +102,7 @@ export default function CharacterCreate() {
       <main className="px-4 py-6 pb-40">
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={step + 1} totalSteps={totalSteps} />
-          {currentStep && (
-            <StepCard title={currentStep.title} hint={currentStep.hint}>
-              {renderStep()}
-            </StepCard>
-          )}
+          {renderStep()}
         </div>
       </main>
 

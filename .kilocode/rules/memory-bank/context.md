@@ -148,7 +148,8 @@ Wizard restructure complete. Next steps:
 2. Implement PDF export/import
 3. Add database persistence (via add-database recipe)
 4. Future: Refactor shared step rendering between PerLevelStepsFlow and LevelUpFlow to reduce duplication
-5. Future: Fighting Style choice, Action Surge tracker, Arcane Recovery tracker
+5. Future: Add more PHB subclass features to subclass JSON entries
+6. Future: Add more class feature choice options (e.g., Fighting Style variants, Expertise skills per class)
 
 ## Available Recipes
 
@@ -196,7 +197,17 @@ Wizard restructure complete. Next steps:
 | 2026-08-23 | Added descriptions for all inventory items: Shield now has proper static description in `2014_armor.json`; `InventorySection.getItemDescription` now generates fallback descriptions for weapons (to hit + damage + modifier), armor (AC value), and generic items when no static description exists; lint and typecheck pass |
 | 2026-08-23 | Improved subclass UX across creation and level-up: StepCard now supports `hint` prop for new-player guidance; all 9 creation steps have contextual hints; StepClass shows subclass availability and level; subclass selection step shows features inline with each option and clear descriptions; feature choices (e.g., Barbarian Totem) are always visible and selectable; lint and typecheck pass |
 | 2026-08-23 | Comprehensive SRD data refresh from D&D 5e API: created `fetch_srd_data.js` to fetch and transform all data; updated `2014_classes.json` (12 classes with full 20-level features, spell slots, subclasses), `2014_subclasses.json` (12 subclasses with full features), `2014_races.json` (9 races with trait descriptions), `2014_spells.json` (319 spells, new file), `2014_items.json` (549 items: 187 equipment + 362 magic items), `2014_equipments.json` (237 items), `2014_weapon.json` (37 weapons), `2014_armor.json` (13 armors); fixed `srd-client.ts` type issues (`description?: string | string[]`, `Record<string, number>`, `as unknown as` cast); lint and typecheck pass |
+| 2026-08-24 | Added all PHB subclasses (28 new) to `2014_subclasses.json` and updated class arrays; added `choices` data to class features (Fighting Style, Expertise, Eldritch Invocations, Favored Enemy, Natural Explorer); created `StepFeatureSelections.tsx` and integrated feature-selection steps into creation wizard; fixed nested StepCard visual bug in creation page; added `featureSelections` field to Character type; lint and typecheck pass |
 
 - [x] Comprehensive SRD data refresh from D&D 5e API
 - [x] Fixed TypeScript type issues in srd-client.ts for JSON imports
 - [x] All typechecks pass
+- [x] Added all PHB subclasses to `2014_subclasses.json` (28 new subclasses: Totem Warrior, Valor, Knowledge, Light, Nature, Tempest, Trickery, War, Moon, Battle Master, Eldritch Knight, Shadow, Four Elements, Ancients, Vengeance, Beast Master, Assassin, Arcane Trickster, Wild Magic, Great Old One, Undying, Abjuration, Conjuration, Divination, Enchantment, Illusion, Necromancy, Transmutation)
+- [x] Updated `2014_classes.json` subclass arrays to include all PHB subclasses
+- [x] Added `choices` data to class features requiring selection (Fighting Style, Expertise, Eldritch Invocations, Favored Enemy, Natural Explorer) via `scripts/add-feature-choices.js`
+- [x] Added `featureSelections: Record<string, string[]>` to Character type in `storage.ts`
+- [x] Added `getFeatureSelections()` to `character-creation.ts` to extract selection steps from SRD class features
+- [x] Added `feature-selections` step type to `CreationStep` union
+- [x] Created `StepFeatureSelections.tsx` component to render feature selection UI with multi-select support
+- [x] Fixed nested StepCard visual bug in creation page by removing outer wrapper (step components already render their own StepCard)
+- [x] Creation wizard now generates dynamic feature-selection steps after base steps when class has choice features; lint and typecheck pass
