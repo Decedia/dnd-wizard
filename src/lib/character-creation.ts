@@ -19,10 +19,19 @@ export function getCreationSteps(character: Character): CreationStep[] {
       id: "identity",
       title: "Identity",
       description: "Basic character information",
-      hint: "Enter your character's name, background, and alignment. This is who your character is in the world.",
+      hint: "Enter your character's name, choose a background, and set their alignment. This is who your character is in the world.",
       type: "identity",
       required: true,
       completed: !!character.name.trim(),
+    },
+    {
+      id: "class",
+      title: "Class",
+      description: "Choose your character's class",
+      hint: "Your class defines your character's core abilities, hit dice, and progression. Choose carefully - this determines what you can do in combat and exploration.",
+      type: "class",
+      required: true,
+      completed: !!character.class,
     },
     {
       id: "race",
@@ -34,13 +43,13 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: !!character.race,
     },
     {
-      id: "class",
-      title: "Class",
-      description: "Choose your character's class",
-      hint: "Your class defines your character's core abilities, hit dice, and progression. Choose carefully - this determines what you can do in combat and exploration.",
-      type: "class",
+      id: "abilities",
+      title: "Ability Scores",
+      description: "Set your character's abilities",
+      hint: "Ability scores represent your character's physical and mental capabilities. Strength for muscle, Dexterity for agility, Constitution for health, Intelligence for reasoning, Wisdom for perception, and Charisma for presence.",
+      type: "abilities",
       required: true,
-      completed: !!character.class,
+      completed: [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0),
     },
   ];
 
@@ -72,15 +81,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
   }
 
   steps.push(
-    {
-      id: "abilities",
-      title: "Ability Scores",
-      description: "Set your character's abilities",
-      hint: "Ability scores represent your character's physical and mental capabilities. Strength for muscle, Dexterity for agility, Constitution for health, Intelligence for reasoning, Wisdom for perception, and Charisma for presence.",
-      type: "abilities",
-      required: true,
-      completed: [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0),
-    },
     {
       id: "skills",
       title: "Skills & Proficiencies",

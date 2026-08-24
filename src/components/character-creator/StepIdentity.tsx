@@ -1,6 +1,7 @@
 "use client";
 
 import { StepCard } from "./StepCard";
+import { backgrounds } from "@/data/srd";
 import type { Character } from "@/lib/storage";
 
 interface StepIdentityProps {
@@ -10,7 +11,7 @@ interface StepIdentityProps {
 
 export function StepIdentity({ data, onChange }: StepIdentityProps) {
   return (
-    <StepCard title="Identity" hint="Enter your character's name and basic details. This is who your character is in the world.">
+    <StepCard title="Identity" hint="Enter your character's name, choose a background, and set their alignment. This is who your character is in the world.">
       <div className="space-y-4">
         <div>
           <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
@@ -26,27 +27,18 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
         </div>
         <div>
           <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
-            Player Name
-          </label>
-          <input
-            type="text"
-            value={data.playerName}
-            onChange={(e) => onChange({ playerName: e.target.value })}
-            className="input w-full"
-            placeholder="Your name"
-          />
-        </div>
-        <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
             Background
           </label>
-          <input
-            type="text"
+          <select
             value={data.background}
             onChange={(e) => onChange({ background: e.target.value })}
             className="input w-full"
-            placeholder="e.g., Soldier, Sage, Criminal"
-          />
+          >
+            <option value="">Select background</option>
+            {backgrounds.map((bg) => (
+              <option key={bg} value={bg}>{bg}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
@@ -66,7 +58,6 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
             <option value="Chaotic Neutral">Chaotic Neutral</option>
             <option value="Lawful Evil">Lawful Evil</option>
             <option value="Neutral Evil">Neutral Evil</option>
-            <option value="Chaotic Evil">Chaotic Evil</option>
           </select>
         </div>
       </div>
