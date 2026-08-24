@@ -18,7 +18,7 @@ export interface AbilityScoreChange {
 }
 
 export interface LevelUpStepSection {
-  type: "hp" | "features" | "subclass" | "subclassInfo" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
+  type: "hp" | "features" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection";
   description?: string;
   features?: { name: string; description: string }[];
   featureChoices?: {
@@ -29,21 +29,6 @@ export interface LevelUpStepSection {
     tigerSkillOptions?: string[];
     tigerSkillCount?: number;
   }[];
-  subclassOptions?: {
-    name: string;
-    description: string;
-    features: { name: string; description: string; level?: number }[];
-  }[];
-  subclassFeatureChoices?: {
-    featureName: string;
-    options: string[];
-    selected?: string;
-  }[];
-  subclassInfo?: {
-    name: string;
-    description?: string;
-    features: { name: string; description: string }[];
-  };
   asiCount?: number;
   expertiseCount?: number;
   spellSlots?: Record<number, number>;
@@ -125,8 +110,7 @@ export function generateLevelUpSteps(
   className: string,
   currentExpertise: string[] = [],
   currentSkills: Record<string, boolean> = {},
-  includeCurrentLevel: boolean = false,
-  currentSubclass?: string
+  includeCurrentLevel: boolean = false
 ): LevelUpStep[] {
   const classData = getStaticClass(className);
   if (!classData || !classData.levels) return [];
@@ -148,57 +132,11 @@ export function generateLevelUpSteps(
 
     let features = (levelData?.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
 
-    if (currentSubclass && classData.subclasses) {
-      const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
-      if (subclassData) {
-        const subclassFeaturesAtLevel = (subclassData.features || [])
-          .filter((f: any) => (f as any).level != null && (f as any).level === level && (f as any).level !== classData.subclassLevel)
-          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
-        features = [...features, ...subclassFeaturesAtLevel];
-      }
-    }
-
     if (features.length > 0) {
       sections.push({
         type: "features",
         features,
         featureChoices: getFeatureChoices(className, features),
-      });
-    }
-
-    if (currentSubclass && classData.subclasses) {
-      const subclassData = classData.subclasses.find((s: any) => s.name === currentSubclass);
-      if (subclassData) {
-        const subclassFeaturesAtLevel = (subclassData.features || [])
-          .filter((f: any) => (f as any).level != null && (f as any).level === level && (f as any).level !== classData.subclassLevel)
-          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
-        sections.push({
-          type: "subclassInfo",
-          description: `Your ${classData.name} subclass: ${currentSubclass}`,
-          subclassInfo: {
-            name: currentSubclass,
-            description: subclassData.description,
-            features: subclassFeaturesAtLevel,
-          },
-        });
-      }
-    }
-
-    if (level === classData.subclassLevel && classData.subclasses && classData.subclasses.length > 0) {
-      const subclassOptions = classData.subclasses.map((sub: any) => {
-        const levelFeatures = (sub.features || [])
-          .filter((f: any) => (f as any).level == null || (f as any).level === classData.subclassLevel)
-          .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description), level: f.level }));
-        return {
-          ...sub,
-          features: levelFeatures,
-        };
-      });
-      sections.push({
-        type: "subclass",
-        description: `Choose your ${classData.name} subclass at level ${classData.subclassLevel}. This choice defines your archetype and grants unique features.`,
-        subclassOptions,
-        subclassFeatureChoices: getSubclassFeatureChoices(className, subclassOptions),
       });
     }
 
@@ -287,8 +225,6 @@ function sectionLabel(type: LevelUpStepSection["type"], className: string): stri
       return "Hit Points";
     case "features":
       return "New Features";
-    case "subclass":
-      return "Choose Subclass";
     case "asi":
       return "Ability Score Improvement";
     case "expertise":
@@ -324,27 +260,6 @@ function getFeatureChoices(className: string, features: { name: string; descript
         options: ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"],
         optional: true,
       });
-    }
-  }
-  return choices.length > 0 ? choices : undefined;
-}
-
-function getSubclassFeatureChoices(
-  className: string,
-  subclassOptions: { name: string; description: string; features: { name: string; description: string; level?: number }[] }[]
-): LevelUpStepSection["subclassFeatureChoices"] {
-  if (className !== "Barbarian") return undefined;
-  const choices: LevelUpStepSection["subclassFeatureChoices"] = [];
-  for (const sub of subclassOptions) {
-    if (sub.name === "Totem Warrior") {
-      for (const feature of sub.features || []) {
-        if (TOTEM_FEATURES.includes(feature.name as any)) {
-          choices.push({
-            featureName: feature.name,
-            options: [...TOTEM_ANIMALS],
-          });
-        }
-      }
     }
   }
   return choices.length > 0 ? choices : undefined;

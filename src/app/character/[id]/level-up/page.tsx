@@ -32,8 +32,6 @@ export default function LevelUpPage() {
   const [levelTab, setLevelTab] = useState(0);
   const [hpGains, setHpGains] = useState<Record<number, number>>({});
   const [asiChoices, setAsiChoices] = useState<Record<number, { ability: string; delta: number }[]>>({});
-  const [subclassChoice, setSubclassChoice] = useState<string | null>(null);
-  const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<string, string>>({});
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>({});
   const [expertiseChoices, setExpertiseChoices] = useState<Record<number, string[]>>({});
   const [selectedSpells, setSelectedSpells] = useState<Record<number, string[]>>({});
@@ -50,9 +48,7 @@ export default function LevelUpPage() {
       newLevel,
       character.class,
       character.expertise || [],
-      character.skills || {},
-      false,
-      character.subclass
+      character.skills || {}
     );
   }, [character, classData, oldLevel, newLevel]);
 
@@ -90,9 +86,6 @@ export default function LevelUpPage() {
         case "hp":
           if (hpGains[currentStep.level] == null || hpGains[currentStep.level] <= 0) return false;
           break;
-        case "subclass":
-          if (!subclassChoice) return false;
-          break;
         case "asi":
           if (totalAsiAllocated(currentStep.level) !== 2) return false;
           break;
@@ -108,7 +101,7 @@ export default function LevelUpPage() {
       }
     }
     return true;
-  }, [currentStep, hpGains, subclassChoice, expertiseChoices, selectedSpells, skillChoices, totalAsiAllocated]);
+  }, [currentStep, hpGains, expertiseChoices, selectedSpells, skillChoices, totalAsiAllocated]);
 
   const handleFinish = useCallback(() => {
     if (!character) return;
@@ -122,10 +115,6 @@ export default function LevelUpPage() {
     if (totalHpGain > 0) {
       patch.maxHp = (character.maxHp || 0) + totalHpGain;
       patch.currentHp = (character.currentHp || 0) + totalHpGain;
-    }
-
-    if (subclassChoice && !character.subclass) {
-      patch.subclass = subclassChoice;
     }
 
     if (Object.keys(asiChoices).length > 0) {
@@ -168,7 +157,7 @@ export default function LevelUpPage() {
     const finalCharacter = { ...character, ...patch, ...derived };
     saveCharacter(finalCharacter);
     router.push(`/character/${id}`);
-  }, [character, newLevel, hpGains, subclassChoice, asiChoices, expertiseChoices, selectedSpells, router, id]);
+  }, [character, newLevel, hpGains, asiChoices, expertiseChoices, selectedSpells, router, id]);
 
   const handleNext = useCallback(() => {
     if (!canProceed()) return;
@@ -262,93 +251,6 @@ export default function LevelUpPage() {
                   )}
                 </div>
               ))}
-            </div>
-          );
-
-        case "subclass":
-          return (
-            <div key={section.type} className="space-y-3">
-              <p className="text-sm text-parchment/60">{section.description}</p>
-              {section.subclassOptions?.map((sub) => {
-                const isSelected = subclassChoice === sub.name;
-                return (
-                  <button
-                    key={sub.name}
-                    type="button"
-                    onClick={() => setSubclassChoice(sub.name)}
-                    className={`w-full rounded-lg border p-4 text-left transition-all ${
-                      isSelected
-                        ? "border-accent bg-accent/10"
-                        : "border-border bg-charcoal/40 hover:border-accent/30"
-                    }`}
-                  >
-                    <span className="text-sm font-medium text-parchment/80">{sub.name}</span>
-                    {sub.description && (
-                      <p className="text-xs text-parchment/50 mt-1">{sub.description}</p>
-                    )}
-                    {sub.features.length > 0 && (
-                      <div className="mt-2 space-y-1">
-                        {sub.features.map((f, i) => (
-                          <div key={i} className="text-xs text-parchment/40">
-                            <span className="font-medium text-parchment/60">{f.name}:</span>{" "}
-                            {f.description.slice(0, 100)}
-                            {f.description.length > 100 ? "..." : ""}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
-              {section.subclassFeatureChoices?.map((choice, i) => (
-                <div key={`sub-choice-${i}`} className="rounded-lg border border-accent/30 bg-accent/5 p-3 space-y-2">
-                  <p className="text-xs font-medium text-accent">{choice.featureName}</p>
-                  <p className="text-xs text-parchment/50">Choose one:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {choice.options.map((opt) => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() =>
-                          setSubclassFeatureChoices((prev) => ({ ...prev, [choice.featureName]: opt }))
-                        }
-                        className={`rounded-md border px-3 py-1 text-xs transition-colors ${
-                          subclassFeatureChoices[choice.featureName] === opt
-                            ? "border-accent bg-accent/20 text-accent"
-                            : "border-border bg-charcoal/40 text-parchment/60 hover:border-accent/30"
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          );
-
-        case "subclassInfo":
-          return (
-            <div key={section.type} className="space-y-3">
-              <p className="text-sm text-parchment/60">{section.description}</p>
-              {section.subclassInfo && (
-                <div className="rounded-lg border border-border bg-charcoal/40 p-3">
-                  <h4 className="text-sm font-medium text-parchment/80">{section.subclassInfo.name}</h4>
-                  {section.subclassInfo.description && (
-                    <p className="text-xs text-parchment/50 mt-1">{section.subclassInfo.description}</p>
-                  )}
-                  {section.subclassInfo.features.length > 0 && (
-                    <div className="mt-2 space-y-2">
-                      {section.subclassInfo.features.map((f, i) => (
-                        <div key={i} className="text-xs">
-                          <span className="font-medium text-parchment/70">{f.name}:</span>{" "}
-                          <span className="text-parchment/50">{f.description}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           );
 
@@ -576,8 +478,6 @@ export default function LevelUpPage() {
       currentStep,
       character,
       hpGains,
-      subclassChoice,
-      subclassFeatureChoices,
       featureChoices,
       asiChoices,
       expertiseChoices,
@@ -692,10 +592,6 @@ function sectionTitle(type: LevelUpStepSection["type"]): string {
       return "Hit Points";
     case "features":
       return "New Features";
-    case "subclass":
-      return "Choose Subclass";
-    case "subclassInfo":
-      return "Subclass Features";
     case "asi":
       return "Ability Score Improvement";
     case "expertise":
@@ -717,10 +613,6 @@ function sectionIcon(type: LevelUpStepSection["type"]): string {
       return "❤️";
     case "features":
       return "⚡";
-    case "subclass":
-      return "👑";
-    case "subclassInfo":
-      return "📜";
     case "asi":
       return "📊";
     case "expertise":
