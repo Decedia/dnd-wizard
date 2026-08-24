@@ -15,7 +15,7 @@ import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
 import { StepSpells } from "@/components/character-creator/StepSpells";
 import { StepAppearance } from "@/components/character-creator/StepAppearance";
-import { WizardNav } from "@/components/level-up/WizardNav";
+import { WizardNav } from "@/components/WizardNav";
 import { StepFeatureSelections } from "@/components/character-creator/StepFeatureSelections";
 import {
   initializeCharacter,
