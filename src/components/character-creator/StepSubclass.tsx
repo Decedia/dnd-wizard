@@ -35,24 +35,19 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
 
   const displaySubclass = subclasses.find((s) => s.name === selectedSubclass) || null;
 
-  // Pill tabs: one per level that has subclass features. Before a subclass is
-  // chosen we still show the level range (disabled) so the structure is visible.
+  // Pill tabs: one per character level, beginning at level 1 and running
+  // through the character's current level. Tabs are shown (disabled) until a
+  // subclass is chosen.
   const displayLevels = useMemo(() => {
-    if (displaySubclass) {
-      const levels = displaySubclass.features
-        .filter((f) => f.level == null || (f.level >= subclassUnlockLevel && f.level <= data.level))
-        .map((f) => (f.level == null ? subclassUnlockLevel : (f.level as number)));
-      return Array.from(new Set(levels)).sort((a, b) => a - b);
-    }
     const range: number[] = [];
-    for (let L = subclassUnlockLevel; L <= data.level; L++) range.push(L);
+    for (let L = 1; L <= data.level; L++) range.push(L);
     return range;
-  }, [displaySubclass, subclassUnlockLevel, data.level]);
+  }, [data.level]);
 
-  const [activeLevel, setActiveLevel] = useState<number>(displayLevels[0] ?? subclassUnlockLevel);
+  const [activeLevel, setActiveLevel] = useState<number>(1);
   const safeActiveLevel = displayLevels.includes(activeLevel)
     ? activeLevel
-    : displayLevels[0] ?? subclassUnlockLevel;
+    : displayLevels[0] ?? 1;
 
   const handleSubclassSelect = (name: string) => {
     setSelectedSubclass(name);
@@ -202,9 +197,9 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                 })}
               </div>
 
-              {/* Per-level pill tabs */}
+              {/* Per-level pill tabs (styled like the character sheet's SheetTabs) */}
               <div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex gap-2 overflow-x-auto scrollbar-hide">
                   {displayLevels.map((L) => {
                     const isDisabled = !selectedSubclass;
                     const isActive = L === safeActiveLevel;
@@ -214,12 +209,12 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                         type="button"
                         disabled={isDisabled}
                         onClick={() => setActiveLevel(L)}
-                        className={`rounded-full px-3 py-1.5 text-xs font-medium border transition-all ${
+                        className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
                           isActive
-                            ? "border-accent bg-accent/15 text-accent"
+                            ? "bg-accent text-white shadow-lg shadow-accent/20"
                             : isDisabled
-                              ? "border-border bg-charcoal/40 text-parchment/30 cursor-not-allowed"
-                              : "border-border bg-charcoal/40 text-parchment/70 hover:border-accent/30"
+                              ? "bg-charcoal-lighter text-text-muted opacity-40 cursor-not-allowed border border-border"
+                              : "bg-charcoal-lighter text-text-muted hover:text-parchment border border-border"
                         }`}
                       >
                         Level {L}
@@ -235,9 +230,15 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                       Choose your subclass above to unlock the features you gain at each level.
                     </p>
                   ) : activeFeatures.length === 0 ? (
-                    <p className="text-sm text-parchment/50">
-                      No subclass features are gained at level {safeActiveLevel}.
-                    </p>
+                    safeActiveLevel < subclassUnlockLevel ? (
+                      <p className="text-sm text-parchment/50">
+                        Your subclass features begin at level {subclassUnlockLevel}.
+                      </p>
+                    ) : (
+                      <p className="text-sm text-parchment/50">
+                        No subclass features are gained at level {safeActiveLevel}.
+                      </p>
+                    )
                   ) : (
                     <div className="space-y-3">
                       {activeFeatures.map((feature, idx) => {
