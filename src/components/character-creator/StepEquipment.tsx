@@ -94,8 +94,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, []);
 
   const getItemInfo = useCallback((itemName: string) => {
-    const normalized = itemName.toLowerCase();
-    const weapon = weapons.find((w: any) => w.name.toLowerCase() === normalized) as any;
+    const weapon = weapons.find((w: any) => w.name === itemName) as any;
     if (weapon) {
       return {
         type: "weapon",
@@ -106,7 +105,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       };
     }
 
-    const armor = armors.find((a: any) => a.name.toLowerCase() === normalized) as any;
+    const armor = armors.find((a: any) => a.name === itemName) as any;
     if (armor) {
       const armorType = armor.armor_category === "Light" ? "light" : armor.armor_category === "Medium" ? "medium" : armor.armor_category === "Heavy" ? "heavy" : armor.armor_category === "Shield" ? "shield" : "unknown";
       return {
@@ -137,16 +136,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [weapons, armors]);
 
   const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {
-    const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
 
-    if (option.isWeaponChoice) {
+    if (group.options[optionIndex].isWeaponChoice) {
       return data.inventory.some(item => item.choiceGroupIndex === groupIndex);
     }
 
-    const itemName = option.items[0]?.name;
-    if (!itemName) return false;
-    return data.inventory.some(item => item.name === itemName && item.choiceGroupIndex === groupIndex);
+    return data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === optionIndex);
   }, [data.inventory, getGroupIndex]);
 
   const getSelectedWeaponForGroup = useCallback((groupId: string) => {
@@ -163,31 +159,32 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       return;
     }
 
-    const itemName = option.items[0]?.name;
-    if (!itemName) return;
-
-    const itemInfo = getItemInfo(itemName);
     const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
 
-    const newItem: Character["inventory"][number] = {
-      id: generateId(),
-      name: itemName,
-      quantity: option.items[0]?.quantity || 1,
-      equipped: false,
-      source: "srd" as const,
-      description: itemInfo ? JSON.stringify(itemInfo) : "",
-      itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
-      choiceGroupIndex: groupIndex,
-      choiceOptionIndex: optionIndex,
-    };
+    const newItems = option.items.map(item => {
+      const itemInfo = getItemInfo(item.name);
+      const newItem: Character["inventory"][number] = {
+        id: generateId(),
+        name: item.name,
+        quantity: item.quantity || 1,
+        equipped: false,
+        source: "srd" as const,
+        description: itemInfo ? JSON.stringify(itemInfo) : "",
+        itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
+        choiceGroupIndex: groupIndex,
+        choiceOptionIndex: optionIndex,
+      };
 
-    if (itemInfo?.type === "weapon") {
-      newItem.damageDice = itemInfo.damageDice;
-      newItem.damageType = itemInfo.damageType;
-      newItem.category = itemInfo.category === "Melee" ? "melee" : itemInfo.category === "Ranged" ? "ranged" : undefined;
-    }
+      if (itemInfo?.type === "weapon") {
+        newItem.damageDice = itemInfo.damageDice;
+        newItem.damageType = itemInfo.damageType;
+        newItem.category = itemInfo.category === "Melee" ? "melee" : itemInfo.category === "Ranged" ? "ranged" : undefined;
+      }
 
-    onChange({ inventory: [...newInventory, newItem] });
+      return newItem;
+    });
+
+    onChange({ inventory: [...newInventory, ...newItems] });
     setExpandedGroupId(null);
   }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
@@ -379,10 +376,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                     {group.options.map((option, optionIndex) => {
                       const isSelected = isOptionSelected(group, optionIndex);
                       const isWeaponChoice = option.isWeaponChoice;
-                      const itemInfo = option.items[0]?.name ? getItemInfo(option.items[0].name) : null;
+                      const primaryItem = option.items[0];
+                      const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
                       const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
                       const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
-                       const isDisabled = hasSelection && !isSelected;
+                      const isDisabled = hasSelection && !isSelected;
+                      const optionItemNames = option.items.map(i => i.name).filter(Boolean);
+                      const optionItemInfos = optionItemNames.map(name => getItemInfo(name));
 
                       if (isWeaponChoice) {
                         const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
@@ -478,11 +478,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               <div className="flex-1">
                                 <div className="flex items-center gap-2">
                                   <span className="text-accent font-bold">✓</span>
-                                  <span className="font-medium">{option.description || option.items[0]?.name}</span>
+                                  <span className="font-medium">{option.description || primaryItem?.name}</span>
                                 </div>
-                                {itemInfo && (
+                                {optionItemInfos.length > 0 && (
                                   <div className="text-xs text-parchment/70 mt-1 ml-5">
-                                    {renderItemInfo(itemInfo)}
+                                    {optionItemInfos.map((info, idx) => (
+                                      <span key={idx}>
+                                        {renderItemInfo(info)}
+                                        {idx < optionItemInfos.length - 1 && <span className="mr-2" />}
+                                      </span>
+                                    ))}
                                   </div>
                                 )}
                               </div>
@@ -502,16 +507,21 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               className="w-full text-left"
                             >
                               <div className="flex items-center justify-between">
-                                <span>{option.description || option.items[0]?.name}</span>
-                                {itemInfo && (
+                                <span>{option.description || primaryItem?.name}</span>
+                                {primaryInfo && (
                                   <span className="text-xs text-parchment/50">
-                                    {renderItemInfo(itemInfo, true)}
+                                    {renderItemInfo(primaryInfo, true)}
                                   </span>
                                 )}
                               </div>
-                              {itemInfo && (
+                              {optionItemInfos.length > 0 && (
                                 <div className="text-xs text-parchment/60 mt-1">
-                                  {renderItemInfo(itemInfo)}
+                                  {optionItemInfos.map((info, idx) => (
+                                    <span key={idx}>
+                                      {renderItemInfo(info)}
+                                      {idx < optionItemInfos.length - 1 && <span className="mr-2" />}
+                                    </span>
+                                  ))}
                                 </div>
                               )}
                             </button>

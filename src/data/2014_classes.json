@@ -61,14 +61,8 @@
           "description": "(a) a greataxe or (b) any martial melee weapon",
           "items": [
             {
-              "name": "greataxe",
+              "name": "Greataxe",
               "description": "(a) a greataxe",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "martial_melee",
-              "description": "(b) any martial melee weapon",
               "quantity": 1
             }
           ]
@@ -77,14 +71,8 @@
           "description": "(a) two handaxes or (b) any simple weapon",
           "items": [
             {
-              "name": "two handaxes",
+              "name": "Handaxe",
               "description": "(a) two handaxes",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "simple",
-              "description": "(b) any simple weapon",
               "quantity": 1
             }
           ]
@@ -501,19 +489,13 @@
           "description": "(a) a rapier, (b) a longsword, or (c) any simple weapon",
           "items": [
             {
-              "name": "rapier",
+              "name": "Rapier",
               "description": "(a) a rapier",
               "quantity": 1
             },
             {
-              "name": "longsword",
+              "name": "Longsword",
               "description": "(b) a longsword",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "simple",
-              "description": "(c) any simple weapon",
               "quantity": 1
             }
           ]
@@ -537,7 +519,7 @@
           "description": "(a) a lute or (b) any other musical instrument",
           "items": [
             {
-              "name": "lute",
+              "name": "Lute",
               "description": "(a) a lute",
               "quantity": 1
             },
@@ -1941,7 +1923,7 @@
           "description": "(a) a mace or (b) a warhammer (if proficient)",
           "items": [
             {
-              "name": "mace",
+              "name": "Mace",
               "description": "(a) a mace",
               "quantity": 1
             },
@@ -1956,7 +1938,7 @@
           "description": "(a) scale mail, (b) leather armor, or (c) chain mail (if proficient)",
           "items": [
             {
-              "name": "scale mail",
+              "name": "Scale Mail",
               "description": "(a) scale mail, (b) leather armor,",
               "quantity": 1
             },
@@ -1971,15 +1953,12 @@
           "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
             {
-              "name": "light crossbow and 20 bolts",
-              "description": "(a) a light crossbow and 20 bolts",
+              "name": "Crossbow, light",
               "quantity": 1
             },
             {
-              "type": "weapon_choice",
-              "category": "simple",
-              "description": "(b) any simple weapon",
-              "quantity": 1
+              "name": "Crossbow bolt",
+              "quantity": 20
             }
           ]
         },
@@ -2606,14 +2585,8 @@
           "description": "(a) a wooden shield or (b) any simple weapon",
           "items": [
             {
-              "name": "wooden shield",
+              "name": "Shield",
               "description": "(a) a wooden shield",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "simple",
-              "description": "(b) any simple weapon",
               "quantity": 1
             }
           ]
@@ -2622,14 +2595,8 @@
           "description": "(a) a scimitar or (b) any simple melee weapon",
           "items": [
             {
-              "name": "scimitar",
+              "name": "Scimitar",
               "description": "(a) a scimitar",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "simple_melee",
-              "description": "(b) any simple melee weapon",
               "quantity": 1
             }
           ]
@@ -3117,12 +3084,12 @@
           "description": "(a) chain mail or (b) leather armor, longbow, and 20 arrows",
           "items": [
             {
-              "name": "chain mail",
+              "name": "Chain Mail",
               "description": "(a) chain mail",
               "quantity": 1
             },
             {
-              "name": "leather armor",
+              "name": "Leather Armor",
               "description": "(b) leather armor, longbow, and 20 arrows",
               "quantity": 1
             }
@@ -3132,20 +3099,8 @@
           "description": "(a) a martial weapon and a shield or (b) two martial weapons",
           "items": [
             {
-              "type": "weapon_choice",
-              "category": "martial",
-              "description": "(a) a martial weapon",
-              "quantity": 1
-            },
-            {
-              "name": "shield",
+              "name": "Shield",
               "description": "a shield",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "martial",
-              "description": "(b) two martial weapons",
               "quantity": 1
             }
           ]
@@ -3154,7 +3109,7 @@
           "description": "(a) a light crossbow and 20 bolts or (b) two handaxes",
           "items": [
             {
-              "name": "light crossbow",
+              "name": "Light Crossbow",
               "description": "(a) a light crossbow",
               "quantity": 1
             },
@@ -3164,7 +3119,7 @@
               "quantity": 1
             },
             {
-              "name": "two handaxes",
+              "name": "Handaxe",
               "description": "(b) two handaxes",
               "quantity": 1
             }
@@ -3574,14 +3529,8 @@
           "description": "(a) a shortsword or (b) any simple weapon",
           "items": [
             {
-              "name": "shortsword",
+              "name": "Shortsword",
               "description": "(a) a shortsword",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "simple",
-              "description": "(b) any simple weapon",
               "quantity": 1
             }
           ]
@@ -4051,20 +4000,8 @@
           "description": "(a) a martial weapon and a shield or (b) two martial weapons",
           "items": [
             {
-              "type": "weapon_choice",
-              "category": "martial",
-              "description": "(a) a martial weapon",
-              "quantity": 1
-            },
-            {
-              "name": "shield",
+              "name": "Shield",
               "description": "a shield",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "martial",
-              "description": "(b) two martial weapons",
               "quantity": 1
             }
           ]
@@ -4073,14 +4010,8 @@
           "description": "(a) five javelins or (b) any simple melee weapon",
           "items": [
             {
-              "name": "five javelins",
+              "name": "Javelin",
               "description": "(a) five javelins",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "simple_melee",
-              "description": "(b) any simple melee weapon",
               "quantity": 1
             }
           ]
@@ -4601,12 +4532,12 @@
           "description": "(a) scale mail or (b) leather armor",
           "items": [
             {
-              "name": "scale mail",
+              "name": "Scale Mail",
               "description": "(a) scale mail",
               "quantity": 1
             },
             {
-              "name": "leather armor",
+              "name": "Leather Armor",
               "description": "(b) leather armor",
               "quantity": 1
             }
@@ -4616,14 +4547,8 @@
           "description": "(a) two shortswords or (b) two simple melee weapons",
           "items": [
             {
-              "name": "two shortswords",
+              "name": "Shortsword",
               "description": "(a) two shortswords",
-              "quantity": 1
-            },
-            {
-              "type": "weapon_choice",
-              "category": "simple_melee",
-              "description": "(b) two simple melee weapons",
               "quantity": 1
             }
           ]
@@ -5186,12 +5111,12 @@
           "description": "(a) a rapier or (b) a shortsword",
           "items": [
             {
-              "name": "rapier",
+              "name": "Rapier",
               "description": "(a) a rapier",
               "quantity": 1
             },
             {
-              "name": "shortsword",
+              "name": "Shortsword",
               "description": "(b) a shortsword",
               "quantity": 1
             }
@@ -5201,12 +5126,15 @@
           "description": "(a) a shortbow and quiver of 20 arrows or (b) a shortsword",
           "items": [
             {
-              "name": "shortbow and quiver of 20 arrows",
-              "description": "(a) a shortbow and quiver of 20 arrows",
+              "name": "Shortbow",
               "quantity": 1
             },
             {
-              "name": "shortsword",
+              "name": "Arrow",
+              "quantity": 20
+            },
+            {
+              "name": "Shortsword",
               "description": "(b) a shortsword",
               "quantity": 1
             }
@@ -5653,15 +5581,12 @@
           "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
             {
-              "name": "light crossbow and 20 bolts",
-              "description": "(a) a light crossbow and 20 bolts",
+              "name": "Crossbow, light",
               "quantity": 1
             },
             {
-              "type": "weapon_choice",
-              "category": "simple",
-              "description": "(b) any simple weapon",
-              "quantity": 1
+              "name": "Crossbow bolt",
+              "quantity": 20
             }
           ]
         },
@@ -5669,12 +5594,12 @@
           "description": "(a) a component pouch or (b) an arcane focus",
           "items": [
             {
-              "name": "component pouch",
+              "name": "Component pouch",
               "description": "(a) a component pouch",
               "quantity": 1
             },
             {
-              "name": "arcane focus",
+              "name": "Arcane Focus",
               "description": "(b) an arcane focus",
               "quantity": 1
             }
@@ -6180,15 +6105,12 @@
           "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
             {
-              "name": "light crossbow and 20 bolts",
-              "description": "(a) a light crossbow and 20 bolts",
+              "name": "Crossbow, light",
               "quantity": 1
             },
             {
-              "type": "weapon_choice",
-              "category": "simple",
-              "description": "(b) any simple weapon",
-              "quantity": 1
+              "name": "Crossbow bolt",
+              "quantity": 20
             }
           ]
         },
@@ -6196,12 +6118,12 @@
           "description": "(a) a component pouch or (b) an arcane focus",
           "items": [
             {
-              "name": "component pouch",
+              "name": "Component pouch",
               "description": "(a) a component pouch",
               "quantity": 1
             },
             {
-              "name": "arcane focus",
+              "name": "Arcane Focus",
               "description": "(b) an arcane focus",
               "quantity": 1
             }
@@ -6710,12 +6632,12 @@
           "description": "(a) a quarterstaff or (b) a dagger",
           "items": [
             {
-              "name": "quarterstaff",
+              "name": "Quarterstaff",
               "description": "(a) a quarterstaff",
               "quantity": 1
             },
             {
-              "name": "dagger",
+              "name": "Dagger",
               "description": "(b) a dagger",
               "quantity": 1
             }
@@ -6725,12 +6647,12 @@
           "description": "(a) a component pouch or (b) an arcane focus",
           "items": [
             {
-              "name": "component pouch",
+              "name": "Component pouch",
               "description": "(a) a component pouch",
               "quantity": 1
             },
             {
-              "name": "arcane focus",
+              "name": "Arcane Focus",
               "description": "(b) an arcane focus",
               "quantity": 1
             }
