@@ -504,12 +504,12 @@
           "description": "(a) a diplomat’s pack or (b) an entertainer’s pack",
           "items": [
             {
-              "name": "diplomat’s pack",
+              "name": "Diplomat's Pack",
               "description": "(a) a diplomat’s pack",
               "quantity": 1
             },
             {
-              "name": "entertainer’s pack",
+              "name": "Entertainer's Pack",
               "description": "(b) an entertainer’s pack",
               "quantity": 1
             }
@@ -524,7 +524,7 @@
               "quantity": 1
             },
             {
-              "name": "any other musical instrument",
+              "name": "Musical Instrument",
               "description": "(b) any other musical instrument",
               "quantity": 1
             }
@@ -1928,7 +1928,7 @@
               "quantity": 1
             },
             {
-              "name": "warhammer (if proficient)",
+              "name": "Warhammer",
               "description": "(b) a warhammer (if proficient)",
               "quantity": 1
             }
@@ -1943,7 +1943,7 @@
               "quantity": 1
             },
             {
-              "name": "chain mail (if proficient)",
+              "name": "Chain Mail",
               "description": "(c) chain mail (if proficient)",
               "quantity": 1
             }
@@ -1966,12 +1966,12 @@
           "description": "(a) a priest’s pack or (b) an explorer’s pack",
           "items": [
             {
-              "name": "priest’s pack",
+              "name": "Priest's Pack",
               "description": "(a) a priest’s pack",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(b) an explorer’s pack",
               "quantity": 1
             }
@@ -3109,12 +3109,12 @@
           "description": "(a) a light crossbow and 20 bolts or (b) two handaxes",
           "items": [
             {
-              "name": "Light Crossbow",
+              "name": "Crossbow, light",
               "description": "(a) a light crossbow",
               "quantity": 1
             },
             {
-              "name": "20 bolts",
+              "name": "Crossbow bolt",
               "description": "20 bolts",
               "quantity": 1
             },
@@ -3129,12 +3129,12 @@
           "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
-              "name": "dungeoneer’s pack",
+              "name": "Dungeoneer's Pack",
               "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(b) an explorer’s pack",
               "quantity": 1
             }
@@ -3539,12 +3539,12 @@
           "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
-              "name": "dungeoneer’s pack",
+              "name": "Dungeoneer's Pack",
               "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(b) an explorer’s pack",
               "quantity": 1
             }
@@ -4020,12 +4020,12 @@
           "description": "(a) a priest’s pack or (b) an explorer’s pack",
           "items": [
             {
-              "name": "priest’s pack",
+              "name": "Priest's Pack",
               "description": "(a) a priest’s pack",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(b) an explorer’s pack",
               "quantity": 1
             }
@@ -4557,12 +4557,12 @@
           "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
-              "name": "dungeoneer’s pack",
+              "name": "Dungeoneer's Pack",
               "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(b) an explorer’s pack",
               "quantity": 1
             }
@@ -5144,12 +5144,12 @@
           "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack",
           "items": [
             {
-              "name": "burglar’s pack",
+              "name": "Burglar's Pack",
               "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack,",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(c) an explorer’s pack",
               "quantity": 1
             }
@@ -5609,12 +5609,12 @@
           "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
-              "name": "dungeoneer’s pack",
+              "name": "Dungeoneer's Pack",
               "description": "(a) a dungeoneer’s pack",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(b) an explorer’s pack",
               "quantity": 1
             }
@@ -6133,12 +6133,12 @@
           "description": "(a) a scholar’s pack or (b) a dungeoneer’s pack",
           "items": [
             {
-              "name": "scholar’s pack",
+              "name": "Scholar's Pack",
               "description": "(a) a scholar’s pack",
               "quantity": 1
             },
             {
-              "name": "dungeoneer’s pack",
+              "name": "Dungeoneer's Pack",
               "description": "(b) a dungeoneer’s pack",
               "quantity": 1
             }
@@ -6662,12 +6662,12 @@
           "description": "(a) a scholar’s pack or (b) an explorer’s pack",
           "items": [
             {
-              "name": "scholar’s pack",
+              "name": "Scholar's Pack",
               "description": "(a) a scholar’s pack",
               "quantity": 1
             },
             {
-              "name": "explorer’s pack",
+              "name": "Explorer's Pack",
               "description": "(b) an explorer’s pack",
               "quantity": 1
             }

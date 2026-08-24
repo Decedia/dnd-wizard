@@ -4482,6 +4482,32 @@
       },
       "weight": 1,
       "contents": []
+    },
+    {
+      "index": "arcane-focus",
+      "name": "Arcane Focus",
+      "equipment_category": "Adventuring Gear",
+      "description": "An arcane focus is a special item designed to channel arcane magic. A spellcaster can use a crystal, orb, rod, staff, or wand as an arcane focus.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": []
+    },
+    {
+      "index": "musical-instrument",
+      "name": "Musical Instrument",
+      "equipment_category": "Adventuring Gear",
+      "description": "A musical instrument. Bards use musical instruments as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": []
     }
   ]
 }
