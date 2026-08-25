@@ -1,9 +1,14 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass } from "@/lib/srd-client";
-import type { Character } from "@/lib/storage";
+import {
+  getModifier,
+  getHitDieAverage,
+  getMaxHpFromLevelHp,
+  type Character,
+} from "@/lib/storage";
 import { normalizeDescription } from "@/lib/level-up";
 
 interface StepLevelProps {
@@ -25,10 +30,12 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
 export function StepLevel({ data, onChange }: StepLevelProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const hitDie = classData?.hitDie || 10;
-  const conMod = Math.floor((data.con - 10) / 2);
+  const conMod = getModifier(data.con);
   const level = data.level || 1;
 
+  const levelHp = data.levelHp || {};
   const baselineHp = hitDie + conMod;
+  const averageHp = getHitDieAverage(hitDie) + conMod;
 
   const asiLevels = useMemo(() => {
     if (!classData?.levels) return [];
@@ -38,7 +45,9 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
       .map((entry) => entry.level);
   }, [classData]);
 
-  const pendingAsiLevels = asiLevels.filter((asiLevel) => !data.appliedAsi.includes(asiLevel) && asiLevel <= level);
+  const pendingAsiLevels = asiLevels.filter(
+    (asiLevel) => !data.appliedAsi.includes(asiLevel) && asiLevel <= level
+  );
 
   const [currentAsiIndex, setCurrentAsiIndex] = useState(0);
   const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({
@@ -47,8 +56,47 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
   const currentAsiLevel = pendingAsiLevels[currentAsiIndex];
 
-  const totalAsiPoints = useMemo(() => Object.values(asiAllocation).reduce((sum, val) => sum + val, 0), [asiAllocation]);
+  const totalAsiPoints = useMemo(
+    () => Object.values(asiAllocation).reduce((sum, val) => sum + val, 0),
+    [asiAllocation]
+  );
   const canApplyAsi = totalAsiPoints === 2;
+
+  useEffect(() => {
+    if (!classData) return;
+    const next: Record<number, number> = {};
+    let changed = false;
+    for (let lvl = 1; lvl <= level; lvl++) {
+      if (lvl === 1) {
+        const v = hitDie + conMod;
+        next[lvl] = v;
+        if ((levelHp[lvl] ?? null) !== v) changed = true;
+      } else if (levelHp[lvl] && levelHp[lvl] > 0) {
+        next[lvl] = levelHp[lvl];
+      } else {
+        next[lvl] = averageHp;
+        changed = true;
+      }
+    }
+    if (changed) {
+      const max = getMaxHpFromLevelHp(next);
+      onChange({ levelHp: next, maxHp: max, currentHp: max });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [classData, level, conMod, hitDie, averageHp, levelHp]);
+
+  const setLevelHpValue = (lvl: number, value: number) => {
+    const next = { ...levelHp, [lvl]: value };
+    const max = getMaxHpFromLevelHp(next);
+    onChange({ levelHp: next, maxHp: max, currentHp: max });
+  };
+
+  const rollHp = (lvl: number) => {
+    const die = Math.floor(Math.random() * hitDie) + 1;
+    setLevelHpValue(lvl, die + conMod);
+  };
+
+  const takeAverage = (lvl: number) => setLevelHpValue(lvl, averageHp);
 
   const adjustLevel = (newLevel: number) => {
     const clamped = Math.max(1, Math.min(20, newLevel));
@@ -59,13 +107,6 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     onChange(patch);
     setCurrentAsiIndex(0);
     setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
-  };
-
-  const handleHpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value || "0", 10);
-    if (!isNaN(value) && value >= 0) {
-      onChange({ maxHp: value, currentHp: value });
-    }
   };
 
   const applyAsi = () => {
@@ -106,24 +147,16 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     description: normalizeDescription(f.description),
   }));
 
-  return (
-    <StepCard title="Starting Level" hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity. Your subclass becomes available when you reach the required level for your class.">
-      <div className="space-y-5">
-        <div className="rounded-xl border border-border bg-charcoal/40 p-4">
-          <div className="text-xs text-parchment/50 uppercase tracking-wider mb-2">HP Roll *</div>
-          <input
-            type="number"
-            value={data.maxHp || ""}
-            onChange={handleHpChange}
-            className="input w-full text-center text-lg font-semibold"
-            placeholder={String(baselineHp)}
-          />
-          <div className="text-[11px] text-parchment/50 mt-2 text-center leading-relaxed">
-            Level 1: d{hitDie} + CON = <span className="text-accent font-semibold">{baselineHp}</span> max HP.
-            {" "}Each level after, add either a d{hitDie} roll or <span className="text-accent font-semibold">{Math.floor(hitDie / 2) + 1 + conMod}</span> average (+CON).
-          </div>
-        </div>
+  const totalHp = levelHp[1]
+    ? getMaxHpFromLevelHp(levelHp)
+    : baselineHp;
 
+  return (
+    <StepCard
+      title="Starting Level"
+      hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity. Your subclass becomes available when you reach the required level for your class."
+    >
+      <div className="space-y-5">
         <div>
           <div className="text-[10px] text-parchment/40 uppercase tracking-wider mb-2 font-medium">Select Level</div>
           <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
@@ -143,10 +176,82 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                   }`}
                 >
                   {lvl}
-                  {isAsi && isApplied && <span className="absolute -top-1 -right-1 text-[10px] leading-none">📊</span>}
+                  {isAsi && isApplied && (
+                    <span className="absolute -top-1 -right-1 text-[10px] leading-none">📊</span>
+                  )}
                 </button>
               );
             })}
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-border bg-charcoal/40 p-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="text-xs text-parchment/50 uppercase tracking-wider">HP Roll *</div>
+            <div className="text-xs text-parchment/60">
+              Total: <span className="text-accent font-semibold">{totalHp}</span> HP
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            {Array.from({ length: level }, (_, i) => i + 1).map((lvl) => {
+              const isFirst = lvl === 1;
+              const value = isFirst ? baselineHp : levelHp[lvl] || 0;
+              return (
+                <div
+                  key={lvl}
+                  className="flex items-center justify-between rounded-lg border border-border bg-charcoal/30 px-3 py-2"
+                >
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-parchment/90">
+                      Level {lvl}
+                    </span>
+                    <span className="text-[10px] text-text-muted">
+                      {isFirst
+                        ? `d${hitDie} + CON (no roll)`
+                        : `d${hitDie} roll + CON`}
+                    </span>
+                  </div>
+                  {isFirst ? (
+                    <span className="text-sm font-bold text-accent w-12 text-right">
+                      {value}
+                    </span>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => rollHp(lvl)}
+                        className="rounded-lg border border-border bg-charcoal/40 px-2.5 py-1.5 text-[11px] font-semibold text-parchment hover:border-accent/40"
+                      >
+                        Roll
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => takeAverage(lvl)}
+                        className="rounded-lg border border-border bg-charcoal/40 px-2.5 py-1.5 text-[11px] font-semibold text-parchment hover:border-accent/40"
+                      >
+                        Avg ({averageHp})
+                      </button>
+                      <input
+                        type="number"
+                        value={value || ""}
+                        onChange={(e) =>
+                          setLevelHpValue(lvl, Math.max(1, parseInt(e.target.value || "1", 10)))
+                        }
+                        className="input w-16 text-center text-sm font-semibold"
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-[11px] text-parchment/50 leading-relaxed">
+            Level 1 is fixed to d{hitDie} + CON ={" "}
+            <span className="text-accent font-semibold">{baselineHp}</span> (no dice roll per SRD).
+            Each level after, roll a d{hitDie} or take the average{" "}
+            <span className="text-accent font-semibold">{averageHp}</span> (+CON) and add it here.
           </div>
         </div>
 
@@ -176,7 +281,10 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 const allocated = asiAllocation[key] || 0;
                 const isAtCap = currentScore >= 20;
                 return (
-                  <div key={key} className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2.5">
+                  <div
+                    key={key}
+                    className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2.5"
+                  >
                     <div className="flex flex-col">
                       <span className="text-sm font-semibold text-parchment/90 w-12">{label}</span>
                       <span className="text-[10px] text-text-muted">{full}</span>

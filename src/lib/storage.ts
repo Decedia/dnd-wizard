@@ -11,6 +11,7 @@ export interface Character {
   experiencePoints: number;
   maxExperiencePoints: number;
   isCustomHp: boolean;
+  levelHp: Record<number, number>;
   personalityTrait1: string;
   personalityTrait2: string;
   ideal: string;
@@ -134,6 +135,11 @@ export function getHitDieAverage(hitDie: number): number {
   return Math.floor(hitDie / 2) + 1;
 }
 
+export function getMaxHpFromLevelHp(levelHp: Record<number, number> | undefined): number {
+  if (!levelHp) return 0;
+  return Object.values(levelHp).reduce((sum, v) => sum + (v || 0), 0);
+}
+
 export function getMaxExpertiseCount(character: Character): number {
   if (character.class !== "Rogue") return 0;
   const classData = getStaticClass("Rogue");
@@ -161,6 +167,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     experiencePoints: 0,
     maxExperiencePoints: 300,
     isCustomHp: false,
+    levelHp: {},
     personalityTrait1: "",
     personalityTrait2: "",
     ideal: "",
@@ -268,6 +275,7 @@ function normalizeCharacter(c: Character): Character {
       ...defaults.spellSlotsExpended,
       ...(c as any).spellSlotsExpended,
     },
+    levelHp: (c as any).levelHp || {},
     inventory: (c.inventory || []).map((item) => ({
       ...defaults.inventory[0],
       ...item,

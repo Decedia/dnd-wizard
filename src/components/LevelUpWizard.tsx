@@ -113,10 +113,25 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       ),
     };
 
-    // HP
+    // HP — record each level's gain into levelHp and derive maxHp from it.
+    // For characters created before per-level HP existed (no levelHp), keep
+    // the existing maxHp and just add the new gains.
+    const existingLevelHp = character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
     let totalHp = 0;
-    for (const [lvl, gain] of Object.entries(hpGains)) totalHp += gain;
-    draft.maxHp = (character.maxHp || 0) + totalHp;
+    for (const [, gain] of Object.entries(hpGains)) totalHp += gain;
+    if (existingLevelHp) {
+      const mergedLevelHp: Record<number, number> = { ...existingLevelHp };
+      for (const [lvlStr, gain] of Object.entries(hpGains)) {
+        const lvl = Number(lvlStr);
+        mergedLevelHp[lvl] = (mergedLevelHp[lvl] || 0) + gain;
+      }
+      let sum = 0;
+      for (const v of Object.values(mergedLevelHp)) sum += v;
+      draft.levelHp = mergedLevelHp;
+      draft.maxHp = sum;
+    } else {
+      draft.maxHp = (character.maxHp || 0) + totalHp;
+    }
     draft.currentHp = draft.maxHp;
 
     // ASI
