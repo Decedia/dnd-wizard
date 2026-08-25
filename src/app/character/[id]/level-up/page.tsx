@@ -18,8 +18,8 @@ export default function LevelUpPage() {
 
   if (!character) {
     return (
-      <div className="min-h-screen bg-ink flex items-center justify-center">
-        <div className="text-paper-muted font-bold">Character not found.</div>
+      <div className="min-h-screen bg-paper flex items-center justify-center">
+        <div className="text-ink-muted font-semibold text-sm">Character not found.</div>
       </div>
     );
   }

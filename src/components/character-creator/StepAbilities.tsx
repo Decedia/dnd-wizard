@@ -172,16 +172,16 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           {STANDARD_ARRAY.map((val) => {
             const isUsed = assignedValues.includes(val);
             return (
-              <span
-                key={val}
-                className={`px-3 py-1.5 rounded-lg text-sm font-bold ${
-                  isUsed
-                    ? "bg-paper-muted text-paper-muted line-through"
-                    : "bg-ink text-paper border-[3px] border-paper"
-                }`}
-              >
-                {val}
-              </span>
+               <span
+                 key={val}
+                 className={`px-3 py-1.5 rounded-lg text-sm font-bold ${
+                   isUsed
+                     ? "bg-paper-muted text-ink-muted line-through"
+                     : "bg-paper text-ink border border-border-strong"
+                 }`}
+               >
+                 {val}
+               </span>
             );
           })}
         </div>
@@ -198,8 +198,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-paper w-12">{label}</span>
-                  <span className="text-[10px] text-paper-muted font-medium">{full}</span>
+                  <span className="text-sm font-bold text-ink w-12">{label}</span>
+                  <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {raceBonus > 0 && (
@@ -221,7 +221,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
-                    <span className="text-[10px] text-paper-muted font-medium">mod</span>
+                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
                   </div>
                 </div>
               </div>
@@ -236,8 +236,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     return (
       <div className="space-y-4">
          <div className="flex items-center justify-between card px-4 py-2">
-          <span className="text-sm font-bold text-paper">Points Remaining</span>
-          <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-paper" : "text-paper-muted"}`}>
+          <span className="text-sm font-bold text-ink">Points Remaining</span>
+          <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-ink" : "text-ink-muted"}`}>
             {pointBuyRemaining} / {POINT_BUY_TOTAL}
           </span>
         </div>
@@ -257,8 +257,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-paper w-12">{label}</span>
-                  <span className="text-[10px] text-paper-muted font-medium">{full}</span>
+                  <span className="text-sm font-bold text-ink w-12">{label}</span>
+                  <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
@@ -270,8 +270,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     -
                   </button>
                   <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-paper">{score}</span>
-                    <span className="text-[10px] text-paper-muted font-medium">
+                    <span className="text-lg font-bold text-ink">{score}</span>
+                    <span className="text-[10px] text-ink-muted font-medium">
                       {raceBonus > 0 ? `final: ${finalScore}` : `cost: ${cost}`}
                     </span>
                   </div>
@@ -287,7 +287,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
-                    <span className="text-[10px] text-paper-muted font-medium">mod</span>
+                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
                   </div>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const renderDiceRoll = () => {
     return (
       <div className="space-y-4">
-        <p className="text-xs text-paper-muted font-medium">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
+        <p className="text-xs text-ink-muted font-medium">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
         <div className="space-y-3">
           {ABILITIES.map(({ key, label, full }) => {
             const score = diceRollScores[key];
@@ -315,8 +315,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-paper w-12">{label}</span>
-                  <span className="text-[10px] text-paper-muted font-medium">{full}</span>
+                  <span className="text-sm font-bold text-ink w-12">{label}</span>
+                  <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
@@ -328,8 +328,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     -
                   </button>
                   <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-paper">{score}</span>
-                    <span className="text-[10px] text-paper-muted font-medium">
+                    <span className="text-lg font-bold text-ink">{score}</span>
+                    <span className="text-[10px] text-ink-muted font-medium">
                       {raceBonus > 0 ? `final: ${finalScore}` : "max: 15"}
                     </span>
                   </div>
@@ -345,7 +345,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
-                    <span className="text-[10px] text-paper-muted font-medium">mod</span>
+                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
                   </div>
                 </div>
               </div>
@@ -375,7 +375,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       hint="Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced) or Point Buy (custom)."
     >
       <div className="space-y-4">
-         <div className="flex rounded-xl border-[3px] border-paper bg-ink p-1">
+         <div className="flex rounded-lg border border-border-strong bg-paper-muted p-1">
           {([
             { key: "standard" as AbilityMethod, label: "Standard Array" },
             { key: "pointbuy" as AbilityMethod, label: "Point Buy" },

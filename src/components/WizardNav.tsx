@@ -20,13 +20,13 @@ export function WizardNav({
   return (
     <div className="fixed bottom-20 left-0 right-0 z-50 flex justify-center">
       <div className="mx-auto max-w-lg px-4 w-full">
-         <div className="flex items-center gap-2 rounded-full bg-paper/90 backdrop-blur-sm p-2">
+         <div className="flex items-center gap-2 rounded-lg border border-border-strong bg-paper/90 backdrop-blur-sm p-2">
            {showBack && (
              <button
                type="button"
                onClick={onBack}
                className="btn-secondary px-4 py-2 text-xs"
-             >
+              >
               {backLabel}
             </button>
           )}

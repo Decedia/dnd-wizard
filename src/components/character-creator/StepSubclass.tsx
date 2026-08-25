@@ -26,7 +26,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
   if (!classData) {
     return (
       <StepCard title="Subclass">
-        <p className="text-sm text-paper-muted font-medium">Select a class first.</p>
+        <p className="text-sm text-ink-muted font-medium">Select a class first.</p>
       </StepCard>
     );
   }
@@ -68,16 +68,16 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               )}
                   {earnedFeatures.length > 0 && (
                     <div className="mt-3 space-y-2 divider pt-3">
-                      <div className="text-[10px] uppercase tracking-wider text-paper-muted font-bold">
+                      <div className="text-[10px] uppercase tracking-wider text-ink-muted font-bold">
                         Features
                       </div>
                       {earnedFeatures.map((f) => (
                         <div key={f.name} className="card px-3 py-2">
-                      <div className="text-xs font-bold text-paper">
+                      <div className="text-xs font-bold text-ink">
                         {f.name}
-                        {f.level ? <span className="ml-1 text-paper-muted font-medium">Lv {f.level}</span> : null}
+                        {f.level ? <span className="ml-1 text-ink-muted font-medium">Lv {f.level}</span> : null}
                       </div>
-                      <p className="mt-1 text-[11px] text-paper-muted leading-relaxed whitespace-pre-line">
+                      <p className="mt-1 text-[11px] text-ink-muted leading-relaxed whitespace-pre-line">
                         {normalizeDescription(f.description)}
                       </p>
                     </div>
