@@ -26,7 +26,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
   if (!classData) {
     return (
       <StepCard title="Subclass">
-        <p className="text-sm text-parchment/60">Select a class first.</p>
+        <p className="text-sm text-paper-muted font-medium">Select a class first.</p>
       </StepCard>
     );
   }
@@ -47,37 +47,37 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               key={sub.name}
               type="button"
               onClick={() => handleSelect(sub.name)}
-              className={`w-full rounded-lg border p-4 text-left transition-all ${
+              className={`w-full rounded-lg border-2 p-4 text-left transition-all ${
                 isSelected
-                  ? "border-accent bg-accent/10"
-                  : "border-border bg-charcoal/40 hover:border-accent/30"
+                  ? "border-paper bg-paper text-ink"
+                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-display font-semibold text-parchment">{sub.name}</span>
+                <span className="font-display font-bold text-inherit">{sub.name}</span>
                 {isSelected && (
-                  <svg className="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
+                  <svg className="h-4 w-4 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
                     <path d="M5 12l5 5L20 7" />
                   </svg>
                 )}
               </div>
               {sub.description && (
-                <p className="mt-1 text-xs text-parchment/80 whitespace-pre-line leading-relaxed">
+                <p className="mt-1 text-xs text-inherit opacity-80 whitespace-pre-line leading-relaxed">
                   {sub.description}
                 </p>
               )}
               {earnedFeatures.length > 0 && (
-                <div className="mt-3 space-y-2 border-t border-border pt-3">
-                  <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">
+                <div className="mt-3 space-y-2 divider pt-3">
+                  <div className="text-[10px] uppercase tracking-wider text-paper-muted font-bold">
                     Features
                   </div>
                   {earnedFeatures.map((f) => (
-                    <div key={f.name} className="rounded-lg border border-border bg-charcoal/40 px-3 py-2">
-                      <div className="text-xs font-semibold text-accent">
+                    <div key={f.name} className="rounded-lg border-2 border-paper bg-ink px-3 py-2">
+                      <div className="text-xs font-bold text-paper">
                         {f.name}
-                        {f.level ? <span className="ml-1 text-parchment/40 font-normal">Lv {f.level}</span> : null}
+                        {f.level ? <span className="ml-1 text-paper-muted font-medium">Lv {f.level}</span> : null}
                       </div>
-                      <p className="mt-1 text-[11px] text-parchment/70 leading-relaxed whitespace-pre-line">
+                      <p className="mt-1 text-[11px] text-paper-muted leading-relaxed whitespace-pre-line">
                         {normalizeDescription(f.description)}
                       </p>
                     </div>

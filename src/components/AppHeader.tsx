@@ -21,21 +21,21 @@ export function WizardHatIcon({ className }: { className?: string }) {
 
 export function AppHeader({ title, subtitle, editMode, onEditModeChange }: AppHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-charcoal/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b-2 border-paper bg-ink">
       <div className="mx-auto max-w-lg px-4 py-4">
         <div className="flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center gap-3 group">
             <div className="flex h-8 w-8 shrink-0 items-center justify-center">
-              <WizardHatIcon className="h-7 w-7 text-accent" />
+              <WizardHatIcon className="h-7 w-7 text-paper" />
             </div>
             <div className="flex flex-col">
               {title && (
-                <h1 className="font-display text-xl font-bold tracking-wide text-white">
+                <h1 className="font-display text-xl font-bold tracking-wide text-paper">
                   {title}
                 </h1>
               )}
               {subtitle && (
-                <p className="text-xs text-parchment/50 font-body">{subtitle}</p>
+                <p className="text-xs text-paper-muted font-body">{subtitle}</p>
               )}
             </div>
           </Link>

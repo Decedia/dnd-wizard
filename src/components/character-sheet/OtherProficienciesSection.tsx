@@ -27,7 +27,7 @@ export function OtherProficienciesSection({ otherProficiencies, onChange, editMo
         otherProficiencies ? (
           <DescriptionText>{otherProficiencies}</DescriptionText>
         ) : (
-          <p className="text-sm text-text-muted">None</p>
+          <p className="text-sm text-paper-muted font-medium">None</p>
         )
       )}
     </SectionCard>

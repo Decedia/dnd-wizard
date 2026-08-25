@@ -25,10 +25,10 @@ export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
             key={tab.id}
             type="button"
             onClick={() => onTabChange(tab.id)}
-            className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
+            className={`whitespace-nowrap rounded-lg border-2 px-4 py-1.5 text-sm font-bold transition-all ${
               isActive
-                ? "bg-accent text-white shadow-lg shadow-accent/20"
-                : "bg-charcoal-lighter text-text-muted hover:text-parchment border border-border"
+                ? "bg-paper text-ink border-ink"
+                : "bg-transparent text-paper-muted border-paper hover:text-paper"
             }`}
           >
             {tab.label}

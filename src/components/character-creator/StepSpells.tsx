@@ -1,13 +1,15 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useState, useMemo } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
-import type { Character } from "@/lib/storage";
+import { getStaticSpells } from "@/lib/srd-client";
 
 interface StepSpellsProps {
-  data: Character;
-  onChange: (patch: Partial<Character>) => void;
+  data: {
+    class: string;
+    spells: Array<{ id: string; name: string; level: number; source: string; description: string }>;
+  };
+  onChange: (patch: { spells: Array<{ id: string; name: string; level: number; source: string; description: string }> }) => void;
 }
 
 export function StepSpells({ data, onChange }: StepSpellsProps) {
@@ -52,7 +54,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
           .sort(([a], [b]) => Number(a) - Number(b))
           .map(([level, levelSpells]) => (
             <div key={level}>
-              <h3 className="text-xs font-medium text-parchment/60 uppercase tracking-wider mb-2">
+              <h3 className="text-xs font-bold text-paper-muted uppercase tracking-wider mb-2">
                 {level === "0" ? "Cantrips" : `Level ${level} Spells`}
               </h3>
               <div className="grid grid-cols-1 gap-2">
@@ -63,20 +65,20 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                       key={spell.name}
                       type="button"
                       onClick={() => toggleSpell(spell.name)}
-                      className={`w-full rounded-lg border px-3 py-2 text-left transition-all ${
+                      className={`w-full rounded-lg border-2 px-3 py-2 text-left transition-all ${
                         isSelected
-                          ? "border-accent/40 bg-accent/10"
-                          : "border-border bg-charcoal/40 hover:border-accent/30"
+                          ? "border-paper bg-paper/10 text-ink"
+                          : "border-paper bg-ink text-paper hover:bg-paper-muted"
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-parchment">{spell.name}</span>
-                        <span className="text-xs text-text-muted">
+                        <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                        <span className="text-xs text-ink-muted font-medium">
                           {spell.school || ""}
                         </span>
                       </div>
                       {spell.description && (
-                        <p className="text-xs text-parchment/50 mt-1 line-clamp-2">{spell.description}</p>
+                        <p className="text-xs text-ink-muted mt-1 leading-relaxed font-medium line-clamp-2">{spell.description}</p>
                       )}
                     </button>
                   );

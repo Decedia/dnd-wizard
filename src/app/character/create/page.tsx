@@ -106,15 +106,15 @@ export default function CharacterCreate() {
   }, [currentStep, character, update, featureSelections]);
 
   return (
-    <div className="min-h-screen bg-charcoal">
+    <div className="min-h-screen bg-ink">
       <AppHeader title="Character Creator" subtitle={`Step ${step + 1} of ${totalSteps}`} />
 
       <main className="px-4 py-6 pb-40">
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={step + 1} totalSteps={totalSteps} />
           {currentValidationError && (
-            <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
-              <p className="text-sm text-red-400 font-medium">{currentValidationError}</p>
+            <div className="mb-4 rounded-lg border-2 border-ink bg-paper px-4 py-3">
+              <p className="text-sm font-bold text-ink">{currentValidationError}</p>
             </div>
           )}
           {renderStep()}

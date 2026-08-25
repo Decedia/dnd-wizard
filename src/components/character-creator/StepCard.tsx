@@ -10,10 +10,10 @@ interface StepProps {
 
 export function StepCard({ title, hint, children }: StepProps) {
   return (
-    <SectionCard id="" title={title} icon={<span className="text-accent">{getStepIcon(title)}</span>}>
+    <SectionCard id="" title={title} icon={<span className="text-paper">{getStepIcon(title)}</span>}>
       {hint && (
-        <div className="mb-4 rounded-lg border border-accent/20 bg-accent/5 px-3 py-2">
-          <p className="text-xs text-accent/80">{hint}</p>
+        <div className="mb-4 hint-box-light">
+          <p className="text-xs text-paper">{hint}</p>
         </div>
       )}
       {children}
@@ -32,7 +32,7 @@ function getStepIcon(title: string) {
     Equipment: "🎒",
     Spells: "✨",
     "Final Touches": "🖌️",
-    "Subclass": "👑",
+    Subclass: "👑",
   };
   return icons[title] || "📋";
 }

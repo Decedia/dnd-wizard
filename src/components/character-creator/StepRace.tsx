@@ -30,19 +30,19 @@ export function StepRace({ data, onChange }: StepRaceProps) {
               key={race.name}
               type="button"
               onClick={() => handleSelect(race.name)}
-              className={`w-full rounded-lg border p-4 text-left transition-all ${
+              className={`w-full rounded-lg border-2 p-4 text-left transition-all ${
                 isSelected
-                  ? "border-accent bg-accent/10"
-                  : "border-border bg-charcoal/40 hover:border-accent/30"
+                  ? "border-paper bg-paper text-ink"
+                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-display font-semibold text-parchment">{race.name}</span>
-                <span className="text-xs text-parchment/80">
+                <span className="font-display font-bold text-inherit">{race.name}</span>
+                <span className="text-xs text-inherit">
                   {race.size} / Speed {race.speed} ft
                 </span>
               </div>
-              <p className="mt-1 text-xs text-parchment/80">
+              <p className="mt-1 text-xs text-inherit opacity-80">
                 {Object.entries(race.abilityScoreIncreases || {})
                   .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
                   .join(", ")}
@@ -50,8 +50,8 @@ export function StepRace({ data, onChange }: StepRaceProps) {
               {race.traits && race.traits.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {race.traits.map((trait) => (
-                    <div key={trait.name} className="text-xs text-parchment/80">
-                      <span className="font-medium text-accent">{trait.name}:</span> {trait.description}
+                    <div key={trait.name} className="text-xs text-inherit opacity-80">
+                      <span className="font-bold">{trait.name}:</span> {trait.description}
                     </div>
                   ))}
                 </div>

@@ -32,7 +32,7 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-sm safe-bottom">
-       <div className="flex items-center rounded-full border border-accent/20 bg-charcoal-light/90 shadow-2xl backdrop-blur-xl overflow-hidden relative">
+       <div className="flex items-center rounded-full border-2 border-paper bg-ink p-1 relative">
         {navItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = index === activeIndex;
@@ -42,7 +42,7 @@ export function BottomNav() {
               href={item.href}
               className={`
                 flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10
-                ${isActive ? "text-white" : "text-parchment/60 hover:text-parchment"}
+                ${isActive ? "text-ink font-bold" : "text-paper-muted hover:text-paper"}
               `}
               aria-current={isActive ? "page" : undefined}
             >
@@ -55,7 +55,7 @@ export function BottomNav() {
         })}
         {activeIndex >= 0 && (
           <div
-            className="absolute inset-0 rounded-full bg-burgundy transition-all duration-300 ease-out pointer-events-none"
+            className="absolute inset-y-1 rounded-full bg-paper transition-all duration-300 ease-out pointer-events-none border-2 border-ink"
             style={{
               left: `${(activeIndex / navItems.length) * 100}%`,
               width: `${(100 / navItems.length)}%`,

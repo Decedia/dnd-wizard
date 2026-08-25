@@ -34,14 +34,14 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-charcoal">
+    <div className="min-h-screen bg-ink">
       <AppHeader title="DND Wizard" subtitle="My Characters" />
 
       <main className="px-4 py-6 pb-28">
         <div className="mb-4">
           <Link
             href="/dice"
-            className="flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-white/50 hover:bg-white/20 active:scale-[0.98]"
+            className="flex items-center justify-center gap-2 rounded-lg border-2 border-paper bg-paper px-6 py-3 text-sm font-bold text-ink transition-all hover:bg-paper-muted active:scale-[0.98]"
           >
             <Dices className="h-5 w-5" />
             <span>Dice Roller</span>
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="mb-6">
           <button
             onClick={handleImportClick}
-            className="w-full rounded-full border border-white/20 bg-transparent px-6 py-3 text-sm font-semibold text-parchment transition-all hover:border-white/40 hover:bg-white/5 active:scale-[0.98]"
+            className="w-full rounded-lg border-2 border-paper bg-transparent px-6 py-3 text-sm font-bold text-paper transition-all hover:bg-paper/10 active:scale-[0.98]"
           >
             <Upload className="h-4 w-4 mr-2 inline" />
             Import from PDF
@@ -63,26 +63,26 @@ export default function Home() {
             className="hidden"
           />
           {importError && (
-            <div className="mt-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            <div className="mt-3 rounded-lg border-2 border-red-500 bg-paper px-4 py-3 text-sm font-bold text-red-500">
               {importError}
             </div>
           )}
           {importSuccess && (
-            <div className="mt-3 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-400">
+            <div className="mt-3 rounded-lg border-2 border-ink bg-paper px-4 py-3 text-sm font-bold text-ink">
               {importSuccess}
             </div>
           )}
         </div>
 
         <section>
-          <h2 className="font-display text-lg font-semibold text-white mb-3">
+          <h2 className="font-display text-lg font-bold text-paper mb-3">
             My Characters
           </h2>
 
           {characters.length === 0 ? (
-               <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-parchment/20 bg-charcoal-light/50 py-12 text-center">
+               <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-paper/20 bg-ink py-12 text-center">
               <div className="mb-3 text-4xl opacity-40">🐉</div>
-              <p className="text-sm text-parchment/50">
+              <p className="text-sm text-paper-muted">
                 No characters yet. Create your first hero to begin your adventure.
               </p>
             </div>
@@ -92,24 +92,24 @@ export default function Home() {
                 <li key={char.id}>
                   <Link
                     href={`/character/${char.id}`}
-                     className="block rounded-xl border border-white/10 bg-charcoal-light/60 p-4 transition-all active:scale-[0.98] hover:border-white/30"
+                     className="block rounded-lg border-2 border-paper bg-ink p-4 transition-all active:scale-[0.98] hover:bg-paper/5"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-burgundy/20 text-lg">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-paper-muted text-lg">
                           🧙
                         </div>
                         <div>
-                          <h3 className="font-display font-semibold text-parchment">
+                          <h3 className="font-display font-bold text-paper">
                             {char.name || "Unnamed Hero"}
                           </h3>
-                          <p className="text-xs text-parchment/40">
+                          <p className="text-xs text-paper-muted">
                             Created {formatDate(char.createdAt)}
                           </p>
                         </div>
                       </div>
                       <svg
-                        className="h-5 w-5 text-parchment/30"
+                        className="h-5 w-5 text-paper-muted"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"

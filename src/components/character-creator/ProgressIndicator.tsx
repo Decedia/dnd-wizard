@@ -11,16 +11,16 @@ export function ProgressIndicator({ currentStep, totalSteps }: ProgressIndicator
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-medium text-parchment/60 uppercase tracking-wider">
+        <span className="text-xs font-bold text-paper-muted uppercase tracking-wider">
           Step {currentStep} of {totalSteps}
         </span>
-        <span className="text-xs text-parchment/40">
+        <span className="text-xs text-paper-muted">
           {Math.round(progress)}% complete
         </span>
       </div>
-      <div className="h-1.5 w-full rounded-full bg-charcoal-lighter overflow-hidden">
+      <div className="progress-track">
         <div
-          className="h-full rounded-full bg-accent transition-all duration-300"
+          className="progress-fill"
           style={{ width: `${progress}%` }}
         />
       </div>

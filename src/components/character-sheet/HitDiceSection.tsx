@@ -27,7 +27,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               placeholder="e.g. 10d8"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment">{character.hitDiceTotal || "—"}</span>
+            <span className="text-sm font-bold text-paper">{character.hitDiceTotal || "—"}</span>
           )}
         </Field>
         <Field label="REMAINING">
@@ -40,7 +40,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               className="input"
             />
           ) : (
-            <span className="text-sm font-semibold text-accent">{character.hitDiceRemaining}</span>
+            <span className="text-sm font-bold text-paper">{character.hitDiceRemaining}</span>
           )}
         </Field>
       </div>
@@ -51,7 +51,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+      <span className="field-label-light">{label}</span>
       {children}
     </div>
   );

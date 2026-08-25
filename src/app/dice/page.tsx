@@ -40,14 +40,14 @@ export default function DiceRoller() {
   };
 
   return (
-    <div className="min-h-screen bg-charcoal">
+    <div className="min-h-screen bg-ink">
       <AppHeader title="Dice Roller" subtitle="Roll the bones" />
 
       <main className="px-4 py-6 pb-28">
         <div className="mx-auto max-w-lg">
           <button
             onClick={rollAll}
-            className="w-full rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-white/50 hover:bg-white/20 active:scale-[0.98] mb-6"
+            className="w-full rounded-lg border-2 border-paper bg-paper px-6 py-3 text-sm font-bold text-ink transition-all hover:bg-paper-muted active:scale-[0.98] mb-6"
           >
             Roll All Dice
           </button>
@@ -56,7 +56,7 @@ export default function DiceRoller() {
             {DICE_TYPES.map((type) => (
               <div
                 key={type}
-                 className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-charcoal/40 p-4"
+                 className="flex flex-col items-center gap-2 rounded-lg border-2 border-paper bg-ink p-4"
               >
                 <Dice
                   ref={(el) => {
@@ -66,11 +66,11 @@ export default function DiceRoller() {
                   size={100}
                   onRoll={(result) => handleRoll(type, result)}
                 />
-                   <span className="text-xs text-parchment/50 uppercase tracking-wider">
+                   <span className="text-xs text-paper-muted uppercase tracking-wider font-bold">
                     {type}
                   </span>
                   {lastResults[type] !== null && (
-                    <span className="text-sm font-semibold text-white">
+                    <span className="text-sm font-bold text-paper">
                     Last: {lastResults[type]}
                   </span>
                 )}

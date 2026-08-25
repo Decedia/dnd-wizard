@@ -1,21 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-parchment: #ffffff;
-  --color-charcoal: #0a0a0a;
-  --color-charcoal-light: #141414;
-  --color-charcoal-lighter: #1a1a1a;
-  --color-border: #2a2a2a;
-  --color-border-light: #333333;
-  --color-text-muted: #888888;
-  --color-accent: #ef4444;
-  --color-accent-light: #f87171;
-  --color-accent-dark: #dc2626;
-  --color-gold: #fbbf24;
-  --color-gold-light: #f59e0b;
-  --color-gold-dark: #d97706;
-  --color-burgundy: #7f1d1d;
-  --color-burgundy-light: #991b1b;
+  --color-paper: #ffffff;
+  --color-paper-muted: #f0f0f0;
+  --color-paper-dark: #e5e5e5;
+  --color-paper-darker: #cccccc;
+  --color-ink: #000000;
+  --color-ink-muted: #666666;
+  --color-ink-subtle: #333333;
+  --color-ink-heavy: #111111;
+  --color-border-strong: #ffffff;
+  --color-border-muted: #333333;
+  --color-accent: #ffffff;
+  --color-accent-muted: #cccccc;
   --font-display: "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
 }
@@ -25,26 +22,138 @@
     -webkit-tap-highlight-color: transparent;
   }
   body {
-    @apply bg-charcoal text-parchment font-body antialiased;
+    @apply bg-ink text-paper font-body antialiased;
     min-height: 100dvh;
   }
 }
 
 @layer components {
-  .input {
-    @apply rounded-lg border border-border-light bg-charcoal px-3 py-2 text-sm text-parchment outline-none transition-colors placeholder:text-text-muted focus:border-accent focus:ring-1 focus:ring-accent/50;
+  .surface {
+    @apply bg-paper text-ink rounded-lg border-2 border-ink;
   }
+
+  .surface-muted {
+    @apply bg-paper-muted text-ink rounded-lg border-2 border-ink;
+  }
+
+  .surface-dark {
+    @apply bg-ink-muted text-paper rounded-lg border-2 border-paper;
+  }
+
+  .input {
+    @apply bg-paper-muted text-ink rounded-lg border-2 border-ink px-3 py-2 text-sm font-medium outline-none transition-colors placeholder:text-ink-muted focus:border-ink-subtle;
+  }
+
   textarea.input {
     @apply resize-y rounded-lg;
   }
+
+  select.input {
+    @apply appearance-none rounded-lg;
+  }
+
+  .btn {
+    @apply rounded-lg border-2 px-4 py-2.5 text-sm font-bold transition-colors active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
+  }
+
   .btn-primary {
-    @apply rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
+    @apply btn bg-paper text-ink border-ink;
   }
+
+  .btn-primary:hover {
+    @apply bg-paper-muted;
+  }
+
   .btn-secondary {
-    @apply rounded-full border border-border bg-transparent px-4 py-2.5 text-sm font-semibold text-parchment transition-all hover:border-border-light hover:bg-charcoal-lighter active:scale-[0.98];
+    @apply btn bg-transparent text-paper border-paper;
   }
+
+  .btn-secondary:hover {
+    @apply bg-paper/10;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent border-transparent text-ink-muted hover:text-ink hover:border-ink;
+  }
+
   .btn-danger {
-    @apply rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-sm font-semibold text-red-400 transition-all hover:border-red-500/50 hover:bg-red-500/20 active:scale-[0.98];
+    @apply btn bg-paper text-ink border-ink;
+  }
+
+  .btn-danger:hover {
+    @apply bg-red-500 text-white border-red-500;
+  }
+
+  .field-label {
+    @apply text-[10px] font-bold text-ink-muted uppercase tracking-wider block mb-1.5;
+  }
+
+  .field-label-light {
+    @apply text-[10px] font-bold text-paper-muted uppercase tracking-wider block mb-1.5;
+  }
+
+  .badge {
+    @apply inline-flex items-center justify-center rounded-md border-2 border-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+  }
+
+  .badge-light {
+    @apply inline-flex items-center justify-center rounded-md border-2 border-paper px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+  }
+
+  .section-title {
+    @apply text-xs font-bold uppercase tracking-wider flex items-center gap-2 mb-3;
+  }
+
+  .section-title-light {
+    @apply text-xs font-bold uppercase tracking-wider flex items-center gap-2 mb-3 text-paper;
+  }
+
+  .hint-box {
+    @apply rounded-lg border-2 border-ink-subtle bg-paper-muted px-3 py-2;
+  }
+
+  .hint-box-light {
+    @apply rounded-lg border-2 border-paper/20 bg-paper/5 px-3 py-2;
+  }
+
+  .progress-track {
+    @apply h-2.5 w-full overflow-hidden rounded-lg bg-paper-muted border border-ink-subtle;
+  }
+
+  .progress-fill {
+    @apply h-full bg-ink transition-all duration-300;
+  }
+
+  .progress-track-light {
+    @apply h-2.5 w-full overflow-hidden rounded-lg bg-ink-muted border border-paper;
+  }
+
+  .progress-fill-light {
+    @apply h-full bg-paper transition-all duration-300;
+  }
+
+  .divider {
+    @apply border-t-2 border-ink-subtle;
+  }
+
+  .divider-light {
+    @apply border-t-2 border-paper/20;
+  }
+
+  .checkbox {
+    @apply h-4 w-4 rounded border-2 border-ink bg-paper text-ink focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-ink checked:border-ink checked:text-paper;
+  }
+
+  .checkbox-light {
+    @apply h-4 w-4 rounded border-2 border-paper bg-ink text-paper focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-paper checked:border-paper checked:text-ink;
+  }
+
+  .stat-box {
+    @apply flex flex-col items-center justify-center rounded-lg border-2 border-ink bg-paper p-3;
+  }
+
+  .stat-box-light {
+    @apply flex flex-col items-center justify-center rounded-lg border-2 border-paper bg-ink p-3;
   }
 }
 
@@ -94,16 +203,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1a1a1a;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
   transition: box-shadow 0.3s;
   overflow: hidden;
 }
 
 @keyframes dice-idle {
-  0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 rgba(239, 68, 68, 0); }
-  50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 12px rgba(239, 68, 68, 0.25); }
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.02); }
 }
 
 @keyframes dice-roll {
@@ -130,12 +239,20 @@
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   z-index: 1;
 }
 
 .dice-face.result {
-  color: #ef4444;
+  color: #ffffff;
+}
+
+.dice-face.result::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  border-radius: inherit;
 }
 
 .dice-badge {
@@ -143,7 +260,7 @@
   bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
-  background: #ef4444;
+  background: #000000;
   color: #ffffff;
   font-size: 9px;
   font-weight: 700;

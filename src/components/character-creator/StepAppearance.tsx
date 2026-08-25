@@ -25,7 +25,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
     >
       <div className="space-y-4">
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Height
           </label>
           <input
@@ -37,7 +37,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Weight
           </label>
           <input
@@ -49,7 +49,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Eyes
           </label>
           <input
@@ -61,7 +61,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Hair
           </label>
           <input
@@ -73,7 +73,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Skin
           </label>
           <input
@@ -85,7 +85,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Personality Traits
           </label>
           <textarea
@@ -97,7 +97,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Backstory
           </label>
           <textarea

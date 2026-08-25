@@ -57,10 +57,10 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               type="number"
               value={character.proficiencyBonus}
               readOnly
-              className="input bg-charcoal/60"
+              className="input bg-paper-muted"
             />
           ) : (
-            <span className="text-sm font-semibold text-accent">+{character.proficiencyBonus}</span>
+            <span className="text-sm font-bold text-ink">+{character.proficiencyBonus}</span>
           )}
         </Field>
         <Field label="INITIATIVE">
@@ -69,10 +69,10 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               type="number"
               value={character.initiative}
               readOnly
-              className="input bg-charcoal/60"
+              className="input bg-paper-muted"
             />
           ) : (
-            <span className="text-sm font-semibold text-parchment">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
+            <span className="text-sm font-bold text-paper">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
           )}
         </Field>
       </div>
@@ -84,34 +84,34 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             checked={character.inspiration}
             onChange={(e) => onChange({ inspiration: e.target.checked })}
             onBlur={onFieldBlur}
-            className="h-4 w-4 rounded border-border bg-charcoal text-accent focus:ring-accent/50"
+            className="checkbox"
           />
-          <span className="text-sm text-parchment">Inspiration</span>
+          <span className="text-sm text-paper">Inspiration</span>
         </label>
       </div>
 
       <div className="mt-4">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-2">Saving Throws</span>
+        <span className="text-[10px] font-bold text-paper-muted uppercase tracking-wider block mb-2">Saving Throws</span>
         <div className="space-y-2">
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             const abilityMod = getModifier(character[key]);
             return (
-              <div key={key} className="flex items-center justify-between rounded-lg border border-border bg-charcoal px-3 py-2">
+              <div key={key} className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-3 py-2">
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-text-muted w-10">{key.toUpperCase()}</span>
-                  <span className="text-text-muted">•</span>
-                  <span className="text-xs text-text-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
+                  <span className="text-sm text-paper-muted w-10 font-medium">{key.toUpperCase()}</span>
+                  <span className="text-paper-muted">•</span>
+                  <span className="text-xs text-paper-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
                 </div>
                 {editMode ? (
                   <input
                     type="number"
                     value={st.value}
                     readOnly
-                    className="input w-20 text-center bg-charcoal/60"
+                    className="input w-20 text-center bg-paper-muted"
                   />
                 ) : (
-                  <span className="text-sm font-semibold text-accent w-20 text-right">
+                  <span className="text-sm font-bold text-paper w-20 text-right">
                     {st.value >= 0 ? `+${st.value}` : st.value}
                   </span>
                 )}
@@ -127,7 +127,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+      <span className="field-label-light">{label}</span>
       {children}
     </div>
   );

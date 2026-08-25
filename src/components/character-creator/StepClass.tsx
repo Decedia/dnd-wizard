@@ -33,27 +33,27 @@ export function StepClass({ data, onChange }: StepClassProps) {
               key={cls.name}
               type="button"
               onClick={() => handleSelect(cls.name)}
-              className={`w-full rounded-lg border p-4 text-left transition-all ${
+              className={`w-full rounded-lg border-2 p-4 text-left transition-all ${
                 isSelected
-                  ? "border-accent bg-accent/10"
-                  : "border-border bg-charcoal/40 hover:border-accent/30"
+                  ? "border-paper bg-paper text-ink"
+                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-display font-semibold text-parchment">{cls.name}</span>
+                <span className="font-display font-bold text-inherit">{cls.name}</span>
                 {hasSubclasses && (
-                  <span className="text-[10px] font-medium text-accent/70 bg-accent/10 px-2 py-0.5 rounded-full">
+                  <span className="badge text-ink bg-paper-muted">
                     Subclass at Lv {subclassLevel}
                   </span>
                 )}
               </div>
-              <p className="mt-1 text-xs text-parchment/80">{cls.flavorText}</p>
+              <p className="mt-1 text-xs text-inherit opacity-80">{cls.flavorText}</p>
               {hasSubclasses && (
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {cls.subclasses!.map((sub) => (
                     <span
                       key={sub.name}
-                      className="text-[10px] font-medium text-parchment/60 bg-charcoal/60 border border-border rounded px-1.5 py-0.5"
+                      className="text-[10px] font-bold text-paper-muted bg-ink border-2 border-paper px-1.5 py-0.5 rounded-md"
                     >
                       {sub.name}
                     </span>

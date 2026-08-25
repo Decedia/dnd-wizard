@@ -35,8 +35,8 @@ export function ExpertisePicker({ character, selectedExpertise, onExpertiseChang
   return (
     <div className="mt-3">
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Expertise</span>
-        <span className="text-xs text-text-muted">{selectedExpertise.length} of {maxCount} selected</span>
+        <span className="field-label-light mb-0">Expertise</span>
+        <span className="text-xs text-paper-muted font-medium">{selectedExpertise.length} of {maxCount} selected</span>
       </div>
       <div className="space-y-2">
         {options.map((name) => {
@@ -45,12 +45,12 @@ export function ExpertisePicker({ character, selectedExpertise, onExpertiseChang
           return (
             <label
               key={name}
-              className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
+              className={`flex items-center gap-3 rounded-lg border-2 px-3 py-2 cursor-pointer transition-all ${
                 isSelected
-                  ? "border-accent/40 bg-accent/5"
+                  ? "border-paper bg-paper/10 text-ink"
                   : isDisabled
-                  ? "border-border bg-charcoal/20 opacity-50"
-                  : "border-border bg-charcoal/40 hover:border-text-muted"
+                  ? "border-paper/20 bg-ink-muted opacity-50"
+                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
               }`}
             >
               <input
@@ -58,11 +58,11 @@ export function ExpertisePicker({ character, selectedExpertise, onExpertiseChang
                 checked={isSelected}
                 onChange={() => toggleExpertise(name)}
                 disabled={isDisabled}
-                className="h-4 w-4 rounded border-border bg-charcoal text-accent focus:ring-accent/50 disabled:opacity-30"
+                className="checkbox disabled:opacity-30"
               />
-              <span className="text-sm text-parchment/80">{name}</span>
+              <span className="text-sm font-bold text-inherit">{name}</span>
               {isSelected && (
-                <span className="text-[10px] font-bold text-accent bg-accent/10 px-1.5 py-0.5 rounded ml-auto">EXPERTISE</span>
+                <span className="badge text-ink bg-paper-muted ml-auto">EXPERTISE</span>
               )}
             </label>
           );

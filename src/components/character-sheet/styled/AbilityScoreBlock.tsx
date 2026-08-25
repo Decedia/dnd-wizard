@@ -16,19 +16,19 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
 
   if (!editMode) {
     return (
-      <div className="flex flex-col items-center rounded-lg border border-border bg-charcoal p-3">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
-        <span className={`text-lg font-bold ${mod >= 0 ? "text-accent" : "text-red-300"}`}>
+      <div className="stat-box-light">
+        <span className="text-[10px] font-bold text-paper-muted uppercase tracking-wider">{label}</span>
+        <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-red-500"}`}>
           {mod >= 0 ? `+${mod}` : mod}
         </span>
-        <span className="text-[10px] font-semibold text-text-muted mt-1">{value}</span>
+        <span className="text-[10px] font-bold text-paper-muted mt-1">{value}</span>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center rounded-lg border border-border bg-charcoal p-3">
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+    <div className="stat-box-light">
+      <span className="text-[10px] font-bold text-paper-muted uppercase tracking-wider">{label}</span>
       {editing ? (
         <input
           type="number"
@@ -45,17 +45,17 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
               onBlur?.();
             }
           }}
-          className="w-10 bg-transparent text-center text-lg font-bold text-parchment outline-none"
+          className="w-10 bg-transparent text-center text-lg font-bold text-paper outline-none"
         />
       ) : (
         <>
-          <span className={`text-lg font-bold ${mod >= 0 ? "text-accent" : "text-red-300"}`}>
+          <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-red-500"}`}>
             {mod >= 0 ? `+${mod}` : mod}
           </span>
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="text-[10px] font-semibold text-text-muted mt-1 hover:text-parchment"
+            className="text-[10px] font-bold text-paper-muted mt-1 hover:text-paper"
           >
             {value}
           </button>

@@ -113,7 +113,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               const isCustom = spell.source === "custom";
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               return (
-                <div key={spell.id} className="flex flex-wrap items-center gap-2 rounded-lg border border-border bg-charcoal px-3 py-2">
+                <div key={spell.id} className="flex flex-wrap items-center gap-2 rounded-lg border-2 border-paper bg-ink px-3 py-2">
                   {editMode ? (
                     <>
                       <select
@@ -189,7 +189,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         <button
                           type="button"
                           onClick={() => setTooltip({ name: spell.name, description: descriptionText || "" })}
-                          className="text-text-muted hover:text-parchment shrink-0"
+                          className="text-paper-muted hover:text-paper shrink-0"
                           aria-label={`Info about ${spell.name}`}
                         >
                           <InfoIcon className="h-4 w-4" />
@@ -198,7 +198,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       <button
                         type="button"
                         onClick={() => removeItem(spell.id)}
-                        className="text-text-muted hover:text-parchment shrink-0"
+                        className="text-paper-muted hover:text-paper shrink-0"
                         aria-label="Remove spell"
                       >
                         <XIcon className="h-4 w-4" />
@@ -207,20 +207,20 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   ) : (
                     <div className="flex flex-col gap-1 w-full">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-sm font-semibold text-parchment">{spell.name}</span>
-                        <span className="text-xs text-text-muted">Level {spell.level}</span>
+                        <span className="text-sm font-bold text-paper">{spell.name}</span>
+                        <span className="text-xs text-paper-muted font-medium">Level {spell.level}</span>
                         {character.spellcastingAbility && (() => {
                           const castingAbility = character.spellcastingAbility as keyof Character;
                           const castingMod = getModifier(character[castingAbility] as number);
                           return (
-                            <span className="text-[10px] font-medium text-text-muted bg-charcoal px-1.5 py-0.5 rounded border border-border">
+                            <span className="badge text-ink bg-paper-muted">
                               {character.spellcastingAbility.toUpperCase()} {castingMod >= 0 ? `+${castingMod}` : castingMod}
                             </span>
                           );
                         })()}
                       </div>
                       {(spell.damageDice || spell.damageType) && (
-                        <span className="text-sm text-parchment">
+                        <span className="text-sm text-paper font-medium">
                           {spell.damageDice}{spell.damageType ? ` ${spell.damageType}` : ""}
                         </span>
                       )}
@@ -235,7 +235,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <button
               type="button"
               onClick={() => addItem()}
-              className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-accent/40 hover:text-parchment"
+              className="mt-3 rounded-lg border-2 border-dashed border-paper px-4 py-2 text-sm font-bold text-paper-muted transition-colors hover:border-ink hover:text-ink"
             >
               + Add Spell
             </button>
@@ -243,12 +243,12 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
 
           {character.costumeSpells.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-sm font-semibold text-parchment mb-2">Costume Spells</h3>
+              <h3 className="text-sm font-bold text-paper mb-2">Costume Spells</h3>
               <div className="space-y-2">
                 {character.costumeSpells.map((costumeSpell) => {
                   const isEditing = editingCostumeSpellId === costumeSpell.id;
                   return (
-                    <div key={costumeSpell.id} className="rounded-lg border border-border bg-charcoal/60 p-3">
+                    <div key={costumeSpell.id} className="rounded-lg border-2 border-paper bg-ink p-3">
                       {isEditing ? (
                         <div className="space-y-2">
                           <input
@@ -270,14 +270,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                             <button
                               type="button"
                               onClick={() => saveCostumeSpellEdit(costumeSpell.id)}
-                              className="rounded-lg border border-accent/40 px-3 py-1.5 text-xs font-medium text-accent transition-colors hover:border-accent hover:text-parchment"
+                              className="rounded-lg border-2 border-paper px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:bg-paper"
                             >
                               Save
                             </button>
                             <button
                               type="button"
                               onClick={() => setEditingCostumeSpellId(null)}
-                              className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-text-muted transition-colors hover:border-text-muted hover:text-parchment"
+                              className="rounded-lg border-2 border-paper px-3 py-1.5 text-xs font-bold text-paper transition-colors hover:bg-paper hover:text-ink"
                             >
                               Cancel
                             </button>
@@ -286,7 +286,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       ) : (
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1">
-                            <div className="text-sm font-semibold text-parchment">{costumeSpell.name || "Unnamed Costume Spell"}</div>
+                            <div className="text-sm font-bold text-paper">{costumeSpell.name || "Unnamed Costume Spell"}</div>
                             {costumeSpell.description && (
                               <DescriptionText>{costumeSpell.description}</DescriptionText>
                             )}
@@ -296,7 +296,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                               <button
                                 type="button"
                                 onClick={() => setEditingCostumeSpellId(costumeSpell.id)}
-                                className="text-text-muted hover:text-accent"
+                                className="text-paper-muted hover:text-paper"
                                 aria-label="Edit costume spell"
                               >
                                 <EditIcon className="h-4 w-4" />
@@ -304,7 +304,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                               <button
                                 type="button"
                                 onClick={() => removeCostumeSpell(costumeSpell.id)}
-                                className="text-text-muted hover:text-parchment"
+                                className="text-paper-muted hover:text-paper"
                                 aria-label="Remove costume spell"
                               >
                                 <XIcon className="h-4 w-4" />
@@ -321,13 +321,13 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <button
                   type="button"
                   onClick={() => setIsAddingCostumeSpell(true)}
-                  className="mt-3 rounded-lg border border-dashed border-border px-4 py-2 text-sm font-medium text-text-muted transition-colors hover:border-accent/40 hover:text-parchment"
+                  className="mt-3 rounded-lg border-2 border-dashed border-paper px-4 py-2 text-sm font-bold text-paper-muted transition-colors hover:border-ink hover:text-ink"
                 >
                   + Add Costume Spell
                 </button>
               )}
               {isAddingCostumeSpell && (
-                <div className="mt-3 rounded-lg border border-border bg-charcoal/60 p-3 space-y-2">
+                <div className="mt-3 rounded-lg border-2 border-paper bg-ink p-3 space-y-2">
                   <input
                     type="text"
                     value={newCostumeSpell.name}
@@ -347,7 +347,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     <button
                       type="button"
                       onClick={addCostumeSpell}
-                      className="rounded-lg border border-accent/40 px-3 py-1.5 text-xs font-medium text-accent transition-colors hover:border-accent hover:text-parchment"
+                      className="rounded-lg border-2 border-paper px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:bg-paper"
                     >
                       Add
                     </button>
@@ -357,7 +357,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         setIsAddingCostumeSpell(false);
                         setNewCostumeSpell({ name: "", description: "" });
                       }}
-                      className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-text-muted transition-colors hover:border-text-muted hover:text-parchment"
+                      className="rounded-lg border-2 border-paper px-3 py-1.5 text-xs font-bold text-paper transition-colors hover:bg-paper hover:text-ink"
                     >
                       Cancel
                     </button>
@@ -368,15 +368,15 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             )}
 
       {tooltip && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm rounded-lg border border-border bg-charcoal-light p-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80" onClick={() => setTooltip(null)}>
+          <div className="max-w-sm rounded-lg border-2 border-paper bg-ink p-4" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-display font-semibold text-accent">{tooltip.name}</h3>
-              <button onClick={() => setTooltip(null)} className="text-text-muted hover:text-parchment">
+              <h3 className="font-display font-bold text-paper">{tooltip.name}</h3>
+              <button onClick={() => setTooltip(null)} className="text-paper-muted hover:text-paper">
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-sm text-parchment">{tooltip.description}</p>
+            <p className="text-sm text-paper">{tooltip.description}</p>
           </div>
         </div>
       )}

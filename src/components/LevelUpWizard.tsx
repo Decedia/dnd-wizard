@@ -59,7 +59,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const [targetLevel, setTargetLevel] = useState(Math.min(20, currentLevel + 1));
   const [screenIndex, setScreenIndex] = useState(0);
 
-  // accumulated hp gains per level (total including CON)
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiState, setAsiState] = useState<Record<number, AsiState>>({});
   const [asiDismissedLevels, setAsiDismissedLevels] = useState<number[]>([]);
@@ -81,8 +80,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     [currentLevel, targetLevel, character.class, character.expertise, character.skills, subclassSelection, character.subclass]
   );
 
-  // BUG 1: Level 1 HP is never part of leveling up (it is always the fixed
-  // hitDie max + CON set automatically). HP screens are only for levels 2..N.
   const screens: Screen[] = useMemo(() => {
     const hpScreens: Screen[] = generated
       .map((step) => step.level)
@@ -129,7 +126,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     setAsiDismissedLevels((prev) => [...prev, screen.level]);
   };
 
-  // --- ASI helpers ---
   const buildAllocation = (st?: AsiState): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
     if (!st) return alloc;
@@ -168,7 +164,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
   };
 
-  // --- Navigation ---
   const canProceed = useCallback((): boolean => {
     if (!screen) return false;
     if (screen.kind === "hp") {
@@ -180,7 +175,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       if (!st?.confirmed) return asiIsValid(st);
       return true;
     }
-    // section
     const section = screen.section;
     if (section.type === "subclassSelection") return !!subclassSelection;
     if (section.type === "expertise") {
@@ -236,7 +230,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       ),
     };
 
-    // HP — record each level's gain into levelHp and derive maxHp from it.
     const existingLevelHp =
       character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
     if (existingLevelHp) {
@@ -256,7 +249,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     }
     draft.currentHp = draft.maxHp;
 
-    // ASI
     for (const [lvlStr, st] of Object.entries(asiState)) {
       const lvl = Number(lvlStr);
       if (!st.confirmed) continue;
@@ -268,12 +260,10 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       }
     }
 
-    // Expertise
     const allExpertise = new Set(character.expertise || []);
     for (const list of Object.values(expertiseSelections)) list.forEach((s) => allExpertise.add(s));
     draft.expertise = Array.from(allExpertise);
 
-    // Spells
     const spells = [...(character.spells || [])];
     for (const list of Object.values(spellSelections)) {
       for (const name of list) {
@@ -301,7 +291,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     onComplete(finalChar);
   };
 
-  // --- Next/back button labels ---
   let nextLabel = "Next";
   let showBack = screenIndex > 0;
   if (screen) {
@@ -313,18 +302,18 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   }
 
   return (
-    <div className="min-h-screen bg-charcoal">
-      <div className="sticky top-0 z-40 bg-charcoal/95 backdrop-blur-xl border-b border-border">
+    <div className="min-h-screen bg-ink">
+      <div className="sticky top-0 z-40 bg-ink border-b-2 border-paper">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
-            <button onClick={onCancel} className="text-sm text-parchment/70 hover:text-parchment">
+            <button onClick={onCancel} className="text-sm font-bold text-paper-muted hover:text-paper">
               Cancel
             </button>
-            <div className="text-sm font-semibold text-parchment">Level Up</div>
+            <div className="text-sm font-bold text-paper">Level Up</div>
             <div className="w-12" />
           </div>
           <div className="mt-2">
-            <label className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">
+            <label className="field-label-light">
               Target Level
             </label>
             <div className="mt-1 flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
@@ -340,10 +329,10 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     setExpertiseSelections({});
                     setSpellSelections({});
                   }}
-                  className={`h-9 min-w-[2.5rem] rounded-full px-3 text-sm font-semibold transition-all ${
+                  className={`h-9 min-w-[2.5rem] rounded-lg border-2 px-3 text-sm font-bold transition-all ${
                     lvl === targetLevel
-                      ? "bg-accent text-white"
-                      : "bg-charcoal-lighter text-text-muted hover:text-parchment border border-border"
+                      ? "bg-paper text-ink border-paper"
+                      : "bg-ink text-paper-muted hover:text-paper border-paper"
                   }`}
                 >
                   {lvl}
@@ -365,7 +354,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                 return (
                   <StepCard title={`Level ${screen.level} HP`} hint={`Roll, take the average, or enter your hit die result for level ${screen.level}.`}>
                     <div className="space-y-4">
-                      <div className="text-xs text-parchment/60 font-medium">
+                      <div className="text-xs text-paper-muted font-medium">
                         Level {screen.level} HP — Step {hpStepNumber} of {hpCount}
                       </div>
 
@@ -392,14 +381,14 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     hint="A popup is open to assign your Ability Score Improvement."
                   >
                     {isConfirmed ? (
-                      <div className="text-center text-sm text-green-400">
+                      <div className="text-center text-sm font-bold text-ink bg-paper py-2 rounded-lg border-2 border-paper">
                         ✓ {ABILITIES.filter(({ key }) => (buildAllocation(st)[key] || 0) > 0).map(({ full, key }) => `${full} increased to ${(character as any)[key] + buildAllocation(st)[key]}`).join(", ")}
                       </div>
                     ) : (
                       <button
                         type="button"
                         onClick={() => setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level))}
-                        className="rounded-xl border border-accent/25 bg-accent/5 p-4 text-center text-xs text-parchment/70 w-full"
+                        className="rounded-lg border-2 border-paper bg-ink p-4 text-center text-xs font-medium text-paper hover:bg-paper-muted w-full"
                       >
                         Complete your Ability Score Improvement
                       </button>
@@ -408,7 +397,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                 );
               }
 
-              // generic section
               return (
                 <StepCard title={sectionTitle(screen.section.type) || "Level Up"} hint={screen.section.description}>
                   <div className="space-y-5">
@@ -430,7 +418,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
             })()
           ) : (
             <StepCard title="No Levels">
-              <p className="text-sm text-parchment/60">Choose a target level above to begin leveling up.</p>
+              <p className="text-sm text-paper-muted font-medium">Choose a target level above to begin leveling up.</p>
             </StepCard>
           )}
         </div>
@@ -452,15 +440,15 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         const st = asiState[lvl] || {};
         return (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
-            <div className="w-full max-w-lg rounded-2xl border border-border bg-charcoal shadow-2xl">
-              <div className="flex items-center justify-between border-b border-border px-4 py-3">
-                <div className="text-sm font-semibold text-parchment">
+            <div className="w-full max-w-lg rounded-2xl border-2 border-paper bg-ink">
+              <div className="flex items-center justify-between border-b-2 border-paper px-4 py-3">
+                <div className="text-sm font-bold text-paper">
                   Level {lvl} — Ability Score Improvement
                 </div>
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="text-xl leading-none text-parchment/60 hover:text-parchment"
+                  className="text-xl leading-none text-paper-muted hover:text-paper"
                   aria-label="Close"
                 >
                   ×
@@ -474,11 +462,11 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   onChange={(patch) => setAsi(lvl, patch)}
                 />
               </div>
-              <div className="flex justify-between border-t border-border px-4 py-3">
+              <div className="flex justify-between border-t-2 border-paper px-4 py-3">
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="rounded-full border border-border bg-transparent px-5 py-2.5 text-sm font-semibold text-parchment hover:border-accent/40"
+                  className="rounded-lg border-2 border-paper bg-transparent px-5 py-2.5 text-sm font-bold text-paper hover:bg-paper hover:text-ink transition-colors"
                 >
                   Cancel
                 </button>
@@ -486,7 +474,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98]"
+                    className="btn-primary px-5 py-2.5"
                   >
                     Continue
                   </button>
@@ -495,7 +483,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     type="button"
                     disabled={!asiIsValid(st)}
                     onClick={handleNext}
-                    className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+                    className="btn-primary px-5 py-2.5 disabled:opacity-40"
                   >
                     Confirm ASI
                   </button>
@@ -534,10 +522,10 @@ function HpStep({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-lg border border-border bg-charcoal/30 px-3 py-3 text-center">
-        <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">Hit Die</div>
-        <div className="text-2xl font-display font-bold text-accent">d{hitDie}</div>
-        <div className="text-[11px] text-parchment/60 mt-1">
+      <div className="rounded-lg border-2 border-paper bg-ink px-3 py-3 text-center">
+        <div className="field-label-light">Hit Die</div>
+        <div className="text-2xl font-display font-bold text-ink bg-paper px-3 py-1 rounded-lg inline-block">d{hitDie}</div>
+        <div className="text-[11px] text-paper-muted font-medium mt-1">
           Roll the die, add your CON modifier ({conMod >= 0 ? `+${conMod}` : conMod}).
         </div>
       </div>
@@ -550,27 +538,27 @@ function HpStep({
         <button
           type="button"
           onClick={() => setValue(averageHp)}
-          className="rounded-lg border border-border bg-charcoal/40 px-3 py-2.5 text-sm font-semibold text-parchment hover:border-accent/40"
+          className="btn-secondary px-3 py-2.5 text-sm"
         >
           Take Average ({averageHp})
         </button>
 
-        <label className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">
+        <label className="field-label-light">
           Manual (rolled die + CON)
         </label>
         <input
           type="number"
           value={value || ""}
           onChange={(e) => setValue(parseInt(e.target.value || "0", 10))}
-          className="input w-full text-center text-lg font-semibold"
+          className="input w-full text-center text-lg font-bold"
           placeholder={String(averageHp)}
         />
       </div>
 
       {value > 0 && (
-        <div className="rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-center text-sm">
-          <span className="text-parchment/70">HP gained at level {level}: </span>
-          <span className="text-accent font-bold">{value}</span>
+        <div className="rounded-lg border-2 border-paper bg-ink px-3 py-2 text-center text-sm">
+          <span className="text-paper-muted font-medium">HP gained at level {level}: </span>
+          <span className="text-ink font-bold bg-paper px-2 py-0.5 rounded-md">{value}</span>
         </div>
       )}
     </div>
@@ -599,23 +587,23 @@ function AsiStep({
     const changes = (Object.keys(alloc) as AbilityKey[]).filter((k) => alloc[k] > 0);
     return (
       <div className="space-y-3">
-        <p className="text-xs text-parchment/70">
+        <p className="text-xs text-paper-muted font-medium">
           You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
           permanently when you confirm.
         </p>
-        <div className="rounded-lg border border-accent/30 bg-accent/5 px-3 py-3 space-y-1">
+        <div className="rounded-lg border-2 border-paper bg-ink px-3 py-3 space-y-1">
           {changes.map((k) => {
             const ab = ABILITIES.find((a) => a.key === k)!;
             return (
-              <div key={k} className="text-sm">
-                <span className="text-parchment/80">{ab.full}</span>{" "}
-                <span className="text-parchment/50">
-                  {baseScores[k]} → <span className="text-accent font-bold">{baseScores[k] + alloc[k]}</span>
+              <div key={k} className="text-sm font-medium text-paper">
+                <span className="font-bold">{ab.full}</span>{" "}
+                <span className="text-paper-muted">
+                  {baseScores[k]} → <span className="text-ink font-bold bg-paper px-1 rounded">{baseScores[k] + alloc[k]}</span>
                 </span>
               </div>
             );
           })}
-          <div className="pt-1 text-sm font-semibold text-accent">
+          <div className="pt-1 text-sm font-bold text-ink bg-paper px-2 py-1 rounded-lg inline-block">
             {changes.map((k) => ABILITIES.find((a) => a.key === k)!.full).join(" and ")} increased!
           </div>
         </div>
@@ -625,7 +613,7 @@ function AsiStep({
 
   return (
     <div className="space-y-4">
-      <p className="text-xs text-parchment/70">
+      <p className="text-xs text-paper-muted font-medium">
         You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
         permanently when you confirm.
       </p>
@@ -634,18 +622,14 @@ function AsiStep({
         <button
           type="button"
           onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
-          className={`rounded-lg border px-3 py-3 text-sm font-semibold transition-all ${
-            state.mode === "single" ? "border-accent bg-accent/10 text-parchment" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
-          }`}
+          className={`btn ${state.mode === "single" ? "btn-primary" : "btn-secondary"}`}
         >
           +2 to one ability
         </button>
         <button
           type="button"
           onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
-          className={`rounded-lg border px-3 py-3 text-sm font-semibold transition-all ${
-            state.mode === "double" ? "border-accent bg-accent/10 text-parchment" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
-          }`}
+          className={`btn ${state.mode === "double" ? "btn-primary" : "btn-secondary"}`}
         >
           +1 to two abilities
         </button>
@@ -653,7 +637,7 @@ function AsiStep({
 
       {state.mode === "single" && (
         <div className="space-y-2">
-          <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">Choose ability</div>
+          <div className="field-label-light">Choose ability</div>
           <select
             value={state.single || ""}
             onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined })}
@@ -710,7 +694,7 @@ function AbilitySelect({
 }) {
   return (
     <div className="space-y-2">
-      <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">{label}</div>
+      <div className="field-label-light">{label}</div>
       <select
         value={value || ""}
         onChange={(e) => onChange((e.target.value || undefined) as AbilityKey | undefined)}
@@ -758,7 +742,7 @@ function SectionRenderer({
   const header = (
     <div className="flex items-center gap-2">
       <span className="text-base">{sectionIcon(section.type)}</span>
-      <div className="text-xs font-semibold uppercase tracking-wider text-accent">
+      <div className="text-xs font-bold uppercase tracking-wider text-paper">
         {sectionTitle(section.type)}
       </div>
     </div>
@@ -776,13 +760,13 @@ function SectionRenderer({
                 key={opt.name}
                 type="button"
                 onClick={() => onSubclassSelect(opt.name)}
-                className={`w-full rounded-lg border p-3 text-left transition-all ${
-                  isSel ? "border-accent bg-accent/10" : "border-border bg-charcoal/40 hover:border-accent/30"
+                className={`w-full rounded-lg border-2 p-3 text-left transition-all ${
+                  isSel ? "border-paper bg-paper text-ink" : "border-paper bg-ink text-paper hover:bg-paper-muted"
                 }`}
               >
-                <div className="text-sm font-semibold text-parchment">{opt.name}</div>
+                <div className="text-sm font-bold text-inherit">{opt.name}</div>
                 {opt.description && (
-                  <p className="mt-1 text-[11px] text-parchment/70 whitespace-pre-line leading-relaxed">{opt.description}</p>
+                  <p className="mt-1 text-[11px] text-inherit opacity-80 whitespace-pre-line leading-relaxed font-medium">{opt.description}</p>
                 )}
               </button>
             );
@@ -798,14 +782,14 @@ function SectionRenderer({
         {header}
         <div className="space-y-3">
           {section.features?.map((f, i) => (
-            <div key={i} className="rounded-lg border border-border bg-charcoal/30 p-3">
-              <div className="text-sm font-bold text-accent tracking-wide">{f.name}</div>
-              <p className="mt-1 text-xs text-parchment/80 leading-relaxed whitespace-pre-line">{f.description}</p>
+            <div key={i} className="rounded-lg border-2 border-paper bg-ink p-3">
+              <div className="text-sm font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block tracking-wide">{f.name}</div>
+              <p className="mt-1 text-xs text-paper-muted leading-relaxed whitespace-pre-line font-medium">{f.description}</p>
               {section.featureChoices
                 ?.filter((fc) => fc.featureName === f.name)
                 .map((fc) => (
                   <div key={fc.featureName} className="mt-2">
-                    <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">Choose</div>
+                    <div className="field-label-light">Choose</div>
                     <div className="mt-1 grid grid-cols-1 gap-1.5">
                       {fc.options.map((opt) => {
                         const isSel = (featureChoices[fc.storageKey || fc.featureName] || "") === opt;
@@ -814,13 +798,13 @@ function SectionRenderer({
                         key={opt}
                         type="button"
                         onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
-                        className={`w-full rounded-lg border px-2.5 py-2 text-left transition-all ${
-                          isSel ? "border-accent/40 bg-accent/10 text-parchment" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
+                        className={`w-full rounded-lg border-2 px-2.5 py-2 text-left transition-all ${
+                          isSel ? "border-paper bg-paper/10 text-ink" : "border-paper bg-ink text-paper hover:bg-paper-muted"
                         }`}
                       >
-                        <div className="text-xs font-medium">{opt}</div>
+                        <div className="text-xs font-bold text-inherit">{opt}</div>
                         {fc.descriptions?.[opt] && (
-                          <div className="text-[10px] text-parchment/50 mt-0.5 leading-relaxed">{fc.descriptions[opt]}</div>
+                          <div className="text-[10px] text-ink-muted mt-0.5 leading-relaxed font-medium">{fc.descriptions[opt]}</div>
                         )}
                       </button>
                         );
@@ -844,7 +828,7 @@ function SectionRenderer({
     return (
       <div className="space-y-3">
         {header}
-        <p className="text-xs text-parchment/70">Choose {count} skill{count !== 1 ? "s" : ""} to gain expertise (double proficiency).</p>
+        <p className="text-xs text-paper-muted font-medium">Choose {count} skill{count !== 1 ? "s" : ""} to gain expertise (double proficiency).</p>
         <div className="grid grid-cols-2 gap-1.5">
           {SKILLS.map((s) => {
             const isSel = expertise.includes(s.name);
@@ -855,8 +839,8 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(s.name)}
                 disabled={disabled}
-                className={`rounded-lg border px-2.5 py-1.5 text-left text-xs transition-all ${
-                  isSel ? "border-accent/40 bg-accent/10 text-parchment" : disabled ? "border-border bg-charcoal/40 opacity-50" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
+                className={`rounded-lg border-2 px-2.5 py-1.5 text-left text-xs font-bold transition-all ${
+                  isSel ? "border-paper bg-paper/10 text-ink" : disabled ? "border-paper/20 bg-ink-muted opacity-50" : "border-paper bg-ink text-paper hover:bg-paper-muted"
                 }`}
               >
                 {s.name}
@@ -874,7 +858,7 @@ function SectionRenderer({
         {header}
         <div className="flex flex-wrap gap-2">
           {Object.entries(section.spellSlots || {}).map(([lvl, n]) => (
-            <span key={lvl} className="rounded-full border border-border bg-charcoal/40 px-3 py-1 text-xs text-parchment/80">
+            <span key={lvl} className="badge-light text-ink bg-paper-muted">
               Level {lvl}: {n} slots
             </span>
           ))}
@@ -893,7 +877,7 @@ function SectionRenderer({
     return (
       <div className="space-y-3">
         {header}
-        <p className="text-xs text-parchment/70">You may add up to {count} spell{count !== 1 ? "s" : ""}. (Optional)</p>
+        <p className="text-xs text-paper-muted font-medium">You may add up to {count} spell{count !== 1 ? "s" : ""}. (Optional)</p>
         <div className="max-h-64 overflow-y-auto space-y-1.5">
           {available.map((sp) => {
             const isSel = spells.includes(sp.name);
@@ -904,11 +888,11 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(sp.name)}
                 disabled={disabled}
-                className={`w-full rounded-lg border px-2.5 py-1.5 text-left text-xs transition-all ${
-                  isSel ? "border-accent/40 bg-accent/10 text-parchment" : disabled ? "border-border bg-charcoal/40 opacity-50" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
+                className={`w-full rounded-lg border-2 px-2.5 py-1.5 text-left text-xs font-bold transition-all ${
+                  isSel ? "border-paper bg-paper/10 text-ink" : disabled ? "border-paper/20 bg-ink-muted opacity-50" : "border-paper bg-ink text-paper hover:bg-paper-muted"
                 }`}
               >
-                {sp.name} <span className="text-parchment/40">Lv {sp.level}</span>
+                {sp.name} <span className="text-ink-muted font-medium">Lv {sp.level}</span>
               </button>
             );
           })}

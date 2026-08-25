@@ -7,7 +7,7 @@ interface DescriptionTextProps {
 
 export function DescriptionText({ children, className }: DescriptionTextProps) {
   return (
-    <p className={`text-sm text-parchment/70 leading-relaxed ${className || ""}`}>
+    <p className={`text-sm text-paper-muted leading-relaxed font-medium ${className || ""}`}>
       {children}
     </p>
   );

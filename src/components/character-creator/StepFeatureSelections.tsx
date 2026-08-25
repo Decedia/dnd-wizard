@@ -41,7 +41,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
     setSelectedValues((prev) => {
       const current = prev[storageKey] || [];
       let next: string[];
-      
+
       if (current.includes(value)) {
         next = current.filter((v) => v !== value);
       } else {
@@ -51,13 +51,12 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
           next = [...current, value];
         }
       }
-      
+
       const newSelections = { ...prev, [storageKey]: next };
-      
-      // Save to character
+
       const featureSelections = { ...(data as any).featureSelections, [storageKey]: next };
       onChange({ featureSelections } as any);
-      
+
       return newSelections;
     });
   };
@@ -67,7 +66,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
   if (selections.length === 0) {
     return (
       <StepCard title="Feature Selections">
-        <p className="text-sm text-parchment/60">No feature selections required at this time.</p>
+        <p className="text-sm text-paper-muted font-medium">No feature selections required at this time.</p>
       </StepCard>
     );
   }
@@ -75,8 +74,8 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
   const primarySelection = selections[0];
 
   return (
-    <StepCard 
-      title={primarySelection.featureName} 
+    <StepCard
+      title={primarySelection.featureName}
       hint={`You must make a selection for ${primarySelection.featureName}. This is a class feature that requires you to choose from the available options.`}
     >
       <div className="space-y-6">
@@ -89,10 +88,10 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
           return (
             <div key={key} className="space-y-3">
               <div>
-                <h3 className="text-sm font-medium text-parchment/80">{selection.featureName}</h3>
-                <p className="text-xs text-parchment/80 mt-1">{selection.description}</p>
+                <h3 className="text-sm font-bold text-paper">{selection.featureName}</h3>
+                <p className="text-xs text-paper-muted font-medium mt-1">{selection.description}</p>
               </div>
-              
+
               {selection.type === "spells" ? (
                 <SpellSelector
                   options={selection.options}
@@ -105,32 +104,32 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                   {selection.options.map((option) => {
                     const isSelected = selected.includes(option);
                     const isDisabled = !isSelected && selected.length >= maxCount;
-                    
+
                     return (
                       <button
                         key={option}
                         type="button"
                         onClick={() => handleSelect(selection.storageKey, option, maxCount)}
                         disabled={isDisabled}
-                        className={`w-full rounded-lg border px-3 py-2 text-left transition-all ${
+                        className={`w-full rounded-lg border-2 px-3 py-2 text-left transition-all ${
                           isSelected
-                            ? "border-accent/40 bg-accent/10"
+                            ? "border-paper bg-paper/10 text-ink"
                             : isDisabled
-                              ? "border-border bg-charcoal/40 opacity-50 cursor-not-allowed"
-                              : "border-border bg-charcoal/40 hover:border-accent/30"
+                              ? "border-paper/20 bg-ink-muted opacity-50 cursor-not-allowed"
+                              : "border-paper bg-ink text-paper hover:bg-paper-muted"
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div>
-                            <span className="text-sm text-parchment">{option}</span>
+                            <span className="text-sm font-bold text-inherit">{option}</span>
                             {selection.optionDescriptions?.[option] && (
-                              <span className="block text-[10px] text-parchment/50 mt-0.5 leading-relaxed">
+                              <span className="block text-[10px] text-ink-muted mt-0.5 leading-relaxed font-medium">
                                 {selection.optionDescriptions[option]}
                               </span>
                             )}
                           </div>
                           {isSelected && (
-                            <svg className="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
+                            <svg className="h-4 w-4 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
                               <path d="M5 12l5 5L20 7" />
                             </svg>
                           )}
@@ -140,9 +139,9 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                   })}
                 </div>
               )}
-              
+
               {(selection.count && selection.count > 1) && (
-                <p className="text-xs text-parchment/80">
+                <p className="text-xs text-paper-muted font-medium">
                   {selected.length} of {maxCount} selected
                 </p>
               )}
@@ -156,37 +155,37 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
 
 function SpellSelector({ options, selected, maxCount, onSelect }: { options: string[]; selected: string[]; maxCount: number; onSelect: (value: string) => void }) {
   const spells = getStaticSpells();
-  
+
   return (
     <div className="space-y-2">
       {options.map((spellName) => {
         const spell = spells.find((s) => s.name === spellName);
         const isSelected = selected.includes(spellName);
         const isDisabled = !isSelected && selected.length >= maxCount;
-        
+
         return (
           <button
             key={spellName}
             type="button"
             onClick={() => onSelect(spellName)}
             disabled={isDisabled}
-            className={`w-full rounded-lg border px-3 py-2 text-left transition-all ${
+            className={`w-full rounded-lg border-2 px-3 py-2 text-left transition-all ${
               isSelected
-                ? "border-accent/40 bg-accent/10"
+                ? "border-paper bg-paper/10 text-ink"
                 : isDisabled
-                  ? "border-border bg-charcoal/40 opacity-50 cursor-not-allowed"
-                  : "border-border bg-charcoal/40 hover:border-accent/30"
+                  ? "border-paper/20 bg-ink-muted opacity-50 cursor-not-allowed"
+                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
             }`}
           >
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-sm text-parchment">{spellName}</span>
+                <span className="text-sm font-bold text-inherit">{spellName}</span>
                 {spell && (
-                  <span className="text-xs text-text-muted ml-2">Level {spell.level}</span>
+                  <span className="text-xs text-ink-muted ml-2 font-medium">Level {spell.level}</span>
                 )}
               </div>
               {isSelected && (
-                <svg className="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
+                <svg className="h-4 w-4 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
                   <path d="M5 12l5 5L20 7" />
                 </svg>
               )}

@@ -9,14 +9,14 @@ interface ViewEditToggleProps {
 
 export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
   return (
-    <div className="flex items-center gap-1 rounded-full border border-border bg-charcoal/80 p-1 shrink-0">
+    <div className="flex items-center gap-1 rounded-lg border-2 border-paper bg-ink p-1 shrink-0">
       <button
         type="button"
         onClick={() => onModeChange("view")}
-        className={`rounded-full px-3 py-1 text-xs font-semibold transition-all ${
+        className={`rounded-md px-3 py-1 text-xs font-bold transition-all ${
           mode === "view"
-            ? "bg-charcoal-lighter text-parchment border border-border"
-            : "text-text-muted hover:text-parchment"
+            ? "bg-paper text-ink border-2 border-paper"
+            : "text-paper-muted hover:text-paper border-2 border-transparent"
         }`}
       >
         View
@@ -24,10 +24,10 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
       <button
         type="button"
         onClick={() => onModeChange("edit")}
-        className={`rounded-full px-3 py-1 text-xs font-semibold transition-all ${
+        className={`rounded-md px-3 py-1 text-xs font-bold transition-all ${
           mode === "edit"
-            ? "bg-accent text-white"
-            : "text-text-muted hover:text-parchment"
+            ? "bg-paper text-ink border-2 border-paper"
+            : "text-paper-muted hover:text-paper border-2 border-transparent"
         }`}
       >
         Edit

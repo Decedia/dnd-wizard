@@ -11,12 +11,12 @@ export function SectionCard({ id, title, icon, children }: SectionCardProps) {
   return (
     <section
       id={id}
-      className="rounded-xl border border-border bg-charcoal-light p-4 mb-4"
+      className="rounded-lg border-2 border-paper bg-ink p-4 mb-4"
     >
       {title && (
-        <div className="flex items-center gap-2 mb-3">
-          {icon && <span className="text-text-muted flex-shrink-0">{icon}</span>}
-          <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">{title}</span>
+        <div className="section-title-light text-paper">
+          {icon && <span className="flex-shrink-0">{icon}</span>}
+          {title}
         </div>
       )}
       {children}

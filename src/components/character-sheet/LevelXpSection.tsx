@@ -22,10 +22,10 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
     <SectionCard id="level-xp" title="LEVEL & EXPERIENCE" icon={<LevelIcon className="h-5 w-5" />}>
       <div className="flex items-center gap-5">
         <div className="relative flex flex-col items-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-accent bg-charcoal">
+          <div className="flex h-20 w-20 items-center justify-center rounded-lg border-2 border-paper bg-paper">
             <div className="flex flex-col items-center">
-              <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Level</span>
-              <span className="text-3xl font-bold text-accent">{level}</span>
+              <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">Level</span>
+              <span className="text-3xl font-bold text-ink">{level}</span>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
           {editMode ? (
             <div className="flex items-center gap-3">
               <div className="flex-1">
-                <label className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-1">
+                <label className="field-label-light">
                   Current XP
                 </label>
                 <input
@@ -47,10 +47,10 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
                 />
               </div>
               <div className="flex items-center justify-center pt-4">
-                <span className="text-accent font-bold text-lg">/</span>
+                <span className="text-paper-muted font-bold text-lg">/</span>
               </div>
               <div className="flex-1">
-                <label className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-1">
+                <label className="field-label-light">
                   Max XP
                 </label>
                 <input
@@ -66,28 +66,28 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
           ) : (
             <div className="flex items-center gap-3">
               <div className="flex-1 text-center">
-                <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-1">Current XP</span>
-                <span className="text-lg font-bold text-accent">{currentXp.toLocaleString()}</span>
+                <span className="field-label-light">Current XP</span>
+                <span className="text-lg font-bold text-paper">{currentXp.toLocaleString()}</span>
               </div>
               <div className="flex items-center justify-center pt-4">
-                <span className="text-accent font-bold text-lg">/</span>
+                <span className="text-paper-muted font-bold text-lg">/</span>
               </div>
               <div className="flex-1 text-center">
-                <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider block mb-1">Max XP</span>
-                <span className="text-lg font-bold text-accent">{maxXp.toLocaleString()}</span>
+                <span className="field-label-light">Max XP</span>
+                <span className="text-lg font-bold text-paper">{maxXp.toLocaleString()}</span>
               </div>
             </div>
           )}
 
           <div className="space-y-1">
-            <div className="h-3 w-full overflow-hidden rounded-full bg-charcoal border border-border">
+            <div className="progress-track-light">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-accent to-accent-light transition-all duration-300"
+                className="progress-fill-light"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <div className="flex items-center justify-between text-[10px] text-text-muted">
-              <span className="font-medium">
+            <div className="flex items-center justify-between text-[10px] text-paper-muted font-medium">
+              <span>
                 {progressPercent.toFixed(1)}% Complete
               </span>
               <span>

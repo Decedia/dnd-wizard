@@ -14,7 +14,7 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
     <StepCard title="Identity" hint="Enter your character's name, choose a background, and set their alignment. This is who your character is in the world.">
       <div className="space-y-4">
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Character Name *
           </label>
           <input
@@ -26,7 +26,7 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Background
           </label>
           <select
@@ -41,7 +41,7 @@ export function StepIdentity({ data, onChange }: StepIdentityProps) {
           </select>
         </div>
         <div>
-          <label className="text-xs font-medium text-text-muted uppercase tracking-wider block mb-2">
+          <label className="field-label-light">
             Alignment
           </label>
           <select

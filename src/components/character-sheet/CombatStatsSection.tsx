@@ -26,15 +26,15 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             checked={character.isCustomHp || false}
             onChange={(e) => onChange({ isCustomHp: e.target.checked })}
             onBlur={onFieldBlur}
-            className="h-4 w-4 rounded border-border bg-charcoal text-accent focus:ring-accent/50"
+            className="checkbox"
           />
-          <label htmlFor="custom-hp" className="text-xs font-medium text-parchment cursor-pointer select-none">
+          <label htmlFor="custom-hp" className="text-xs font-bold text-paper cursor-pointer select-none">
             Custom HP
           </label>
         </div>
       ) : (
         character.isCustomHp && (
-          <div className="mb-3 text-xs font-medium text-text-muted">Custom HP enabled</div>
+          <div className="mb-3 text-xs font-bold text-paper-muted">Custom HP enabled</div>
         )
       )}
 
@@ -46,14 +46,14 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
       <div className="space-y-2">
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">HP</span>
-            <span className="text-[10px] font-medium text-text-muted">
+            <span className="field-label-light mb-0">HP</span>
+            <span className="text-[10px] font-bold text-paper-muted">
               {character.currentHp} / {character.maxHp}
             </span>
           </div>
-          <div className="h-3 w-full rounded-full bg-charcoal border border-border overflow-hidden">
+          <div className="progress-track-light">
             <div
-              className="h-full rounded-full bg-accent transition-all"
+              className="progress-fill-light"
               style={{ width: `${hpPercent}%` }}
             />
           </div>
@@ -61,12 +61,12 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
 
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Temp HP</span>
-            <span className="text-[10px] font-medium text-text-muted">{character.temporaryHp}</span>
+            <span className="field-label-light mb-0">Temp HP</span>
+            <span className="text-[10px] font-bold text-paper-muted">{character.temporaryHp}</span>
           </div>
-          <div className="h-2.5 w-full rounded-full bg-charcoal border border-border overflow-hidden">
+          <div className="progress-track-light">
             <div
-              className="h-full rounded-full bg-parchment/80 transition-all"
+              className="progress-fill-light"
               style={{ width: character.temporaryHp > 0 ? "100%" : "0%" }}
             />
           </div>
@@ -120,7 +120,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+      <span className="field-label-light">{label}</span>
       {children}
     </div>
   );

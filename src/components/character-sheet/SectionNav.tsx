@@ -49,7 +49,7 @@ export function SectionNav() {
 
   return (
     <nav
-      className="fixed right-1 md:right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-1 md:gap-1.5 rounded-full border border-parchment/10 bg-charcoal-light/90 p-1 md:p-2 shadow-xl backdrop-blur-xl"
+      className="fixed right-1 md:right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-1 md:gap-1.5 rounded-full border-2 border-paper bg-ink p-1 md:p-2"
       aria-label="Section navigation"
     >
       {sections.map(({ id, label, Icon }) => (
@@ -58,10 +58,10 @@ export function SectionNav() {
           onClick={() => scrollTo(id)}
           aria-label={label}
           title={label}
-          className={`flex items-center justify-center rounded-full transition-all ${
+          className={`flex items-center justify-center rounded-lg transition-all ${
             active === id
-              ? "h-7 w-7 md:h-9 md:w-9 text-parchment bg-accent shadow-lg shadow-accent/30"
-              : "h-7 w-7 md:h-9 md:w-9 text-parchment/50 hover:text-parchment hover:bg-parchment/5"
+              ? "h-7 w-7 md:h-9 md:w-9 text-ink bg-paper border-2 border-paper"
+              : "h-7 w-7 md:h-9 md:w-9 text-paper-muted hover:text-paper border-2 border-transparent"
           }`}
         >
           <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />

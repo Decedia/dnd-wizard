@@ -174,10 +174,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <span
                 key={val}
-                className={`px-3 py-1.5 rounded-lg text-sm font-semibold ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-bold ${
                   isUsed
-                    ? "bg-charcoal/20 text-parchment/30 line-through"
-                    : "bg-accent/10 text-accent border border-accent/30"
+                    ? "bg-paper-muted text-paper-muted line-through"
+                    : "bg-ink text-paper border-2 border-paper"
                 }`}
               >
                 {val}
@@ -195,15 +195,15 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-4 py-3"
+                className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
-                  <span className="text-[10px] text-text-muted">{full}</span>
+                  <span className="text-sm font-bold text-paper w-12">{label}</span>
+                  <span className="text-[10px] text-paper-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {raceBonus > 0 && (
-                    <span className="text-xs text-accent font-medium">+{raceBonus}</span>
+                    <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-md">+{raceBonus}</span>
                   )}
                   <select
                     value={baseScore}
@@ -218,10 +218,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     ))}
                   </select>
                   <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-semibold text-accent">
+                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
-                    <span className="text-[10px] text-text-muted">mod</span>
+                    <span className="text-[10px] text-paper-muted font-medium">mod</span>
                   </div>
                 </div>
               </div>
@@ -235,9 +235,9 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const renderPointBuy = () => {
     return (
       <div className="space-y-4">
-        <div className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-4 py-2">
-          <span className="text-sm text-parchment/80">Points Remaining</span>
-          <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-accent" : "text-red-400"}`}>
+        <div className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-2">
+          <span className="text-sm font-bold text-paper">Points Remaining</span>
+          <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-paper" : "text-paper-muted"}`}>
             {pointBuyRemaining} / {POINT_BUY_TOTAL}
           </span>
         </div>
@@ -254,24 +254,24 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-4 py-3"
+                className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
-                  <span className="text-[10px] text-text-muted">{full}</span>
+                  <span className="text-sm font-bold text-paper w-12">{label}</span>
+                  <span className="text-[10px] text-paper-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => handlePointBuyChange(key, score - 1)}
                     disabled={!canDecrease}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
                   >
                     -
                   </button>
                   <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-parchment">{score}</span>
-                    <span className="text-[10px] text-text-muted">
+                    <span className="text-lg font-bold text-paper">{score}</span>
+                    <span className="text-[10px] text-paper-muted font-medium">
                       {raceBonus > 0 ? `final: ${finalScore}` : `cost: ${cost}`}
                     </span>
                   </div>
@@ -279,15 +279,15 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handlePointBuyChange(key, score + 1)}
                     disabled={!canIncrease}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
                   >
                     +
                   </button>
                   <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-semibold text-accent">
+                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
-                    <span className="text-[10px] text-text-muted">mod</span>
+                    <span className="text-[10px] text-paper-muted font-medium">mod</span>
                   </div>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const renderDiceRoll = () => {
     return (
       <div className="space-y-4">
-        <p className="text-xs text-parchment/50">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
+        <p className="text-xs text-paper-muted font-medium">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
         <div className="space-y-3">
           {ABILITIES.map(({ key, label, full }) => {
             const score = diceRollScores[key];
@@ -312,24 +312,24 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-4 py-3"
+                className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-parchment/80 w-12">{label}</span>
-                  <span className="text-[10px] text-text-muted">{full}</span>
+                  <span className="text-sm font-bold text-paper w-12">{label}</span>
+                  <span className="text-[10px] text-paper-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => handleDiceRollChange(key, score - 1)}
                     disabled={score <= 8}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
                   >
                     -
                   </button>
                   <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-parchment">{score}</span>
-                    <span className="text-[10px] text-text-muted">
+                    <span className="text-lg font-bold text-paper">{score}</span>
+                    <span className="text-[10px] text-paper-muted font-medium">
                       {raceBonus > 0 ? `final: ${finalScore}` : "max: 15"}
                     </span>
                   </div>
@@ -337,15 +337,15 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handleDiceRollChange(key, score + 1)}
                     disabled={score >= 15}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-parchment/60 disabled:opacity-30 hover:border-accent hover:text-accent transition-colors"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
                   >
                     +
                   </button>
                   <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-semibold text-accent">
+                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
-                    <span className="text-[10px] text-text-muted">mod</span>
+                    <span className="text-[10px] text-paper-muted font-medium">mod</span>
                   </div>
                 </div>
               </div>
@@ -375,7 +375,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       hint="Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced) or Point Buy (custom)."
     >
       <div className="space-y-4">
-        <div className="flex rounded-lg border border-border bg-charcoal/40 p-1">
+        <div className="flex rounded-lg border-2 border-paper bg-ink p-1">
           {([
             { key: "standard" as AbilityMethod, label: "Standard Array" },
             { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
@@ -385,10 +385,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
               key={tab.key}
               type="button"
               onClick={() => setMethod(tab.key)}
-              className={`flex-1 rounded-md px-3 py-2 text-xs font-medium transition-all ${
+              className={`flex-1 rounded-md px-3 py-2 text-xs font-bold transition-all ${
                 method === tab.key
-                  ? "bg-accent/10 text-accent border border-accent/30"
-                  : "text-parchment/60 hover:text-parchment/80"
+                  ? "bg-paper text-ink border-2 border-paper"
+                  : "text-paper-muted hover:text-paper border-2 border-transparent"
               }`}
             >
               {tab.label}

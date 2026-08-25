@@ -38,7 +38,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
     <SectionCard id="appearance" title="APPEARANCE & BIO" icon={<AppearanceIcon className="h-5 w-5" />}>
       {editMode ? (
         <>
-          <div className="grid grid-cols-2 divide-x divide-border">
+          <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
             <Field label="AGE">
               <input
                 type="text"
@@ -60,7 +60,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
               />
             </Field>
           </div>
-          <div className="grid grid-cols-2 divide-x divide-border">
+          <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
             <Field label="WEIGHT">
               <input
                 type="text"
@@ -82,7 +82,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
               />
             </Field>
           </div>
-          <div className="grid grid-cols-2 divide-x divide-border">
+          <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
             <Field label="SKIN">
               <input
                 type="text"
@@ -164,15 +164,15 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
         </>
       ) : (
         <>
-          <div className="grid grid-cols-2 divide-x divide-border">
+          <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
             <ViewField label="AGE" value={character.appearance.age} />
             <ViewField label="HEIGHT" value={character.appearance.height} className="pl-4" />
           </div>
-          <div className="grid grid-cols-2 divide-x divide-border">
+          <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
             <ViewField label="WEIGHT" value={character.appearance.weight} />
             <ViewField label="EYES" value={character.appearance.eyes} className="pl-4" />
           </div>
-          <div className="grid grid-cols-2 divide-x divide-border">
+          <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
             <ViewField label="SKIN" value={character.appearance.skin} />
             <ViewField label="HAIR" value={character.appearance.hair} className="pl-4" />
           </div>
@@ -206,7 +206,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
 function Field({ label, children, className }: { label: string; children: React.ReactNode; className?: string }) {
   return (
     <div className={`flex flex-col gap-1.5 ${className || ""}`}>
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
+      <span className="field-label-light">{label}</span>
       {children}
     </div>
   );
@@ -215,8 +215,8 @@ function Field({ label, children, className }: { label: string; children: React.
 function ViewField({ label, value, className }: { label: string; value: string; className?: string }) {
   return (
     <div className={`flex flex-col gap-1.5 ${className || ""}`}>
-      <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">{label}</span>
-      <span className="text-sm font-medium text-parchment">{value || "—"}</span>
+      <span className="field-label-light">{label}</span>
+      <span className="text-sm font-bold text-paper">{value || "—"}</span>
     </div>
   );
 }
