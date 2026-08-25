@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
 import { StepCard } from "./character-creator/StepCard";
 import { WizardNav } from "./WizardNav";
 import { ProgressIndicator } from "./character-creator/ProgressIndicator";
@@ -15,6 +15,7 @@ import {
 import { getStaticClass, getStaticSubclasses, getStaticSpells } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, SKILLS, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
+import { Dice, type DiceHandle, type DiceType } from "./Dice";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -26,6 +27,20 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
   { key: "wis", label: "WIS", full: "Wisdom" },
   { key: "cha", label: "CHA", full: "Charisma" },
 ];
+
+type AsiMode = "single" | "double";
+interface AsiState {
+  mode?: AsiMode;
+  single?: AbilityKey;
+  d1?: AbilityKey;
+  d2?: AbilityKey;
+  confirmed?: boolean;
+}
+
+type Screen =
+  | { kind: "hp"; level: number }
+  | { kind: "asi"; level: number; section: LevelUpStepSection }
+  | { kind: "section"; level: number; section: LevelUpStepSection };
 
 interface LevelUpWizardProps {
   character: Character;
@@ -39,12 +54,15 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(character.con);
   const averageHp = getHitDieAverage(hitDie) + conMod;
+  const diceType = `d${hitDie}` as DiceType;
 
   const [targetLevel, setTargetLevel] = useState(Math.min(20, currentLevel + 1));
-  const [stepIndex, setStepIndex] = useState(0);
+  const [screenIndex, setScreenIndex] = useState(0);
 
-  // accumulated hp gains per level
-  const [hpGains, setHpGains] = useState<Record<number, number>>({});
+  // accumulated hp gains per level (total including CON)
+  const [hpValues, setHpValues] = useState<Record<number, number>>({});
+  const [asiState, setAsiState] = useState<Record<number, AsiState>>({});
+
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>(() =>
     Object.fromEntries(
@@ -54,23 +72,44 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       ])
     )
   );
-  const [asiAllocations, setAsiAllocations] = useState<Record<number, Record<AbilityKey, number>>>({});
   const [expertiseSelections, setExpertiseSelections] = useState<Record<number, string[]>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
 
-  const steps = useMemo(
+  const generated: LevelUpStep[] = useMemo(
     () => generateLevelUpSteps(currentLevel, targetLevel, character.class, character.expertise, character.skills, false, subclassSelection || character.subclass),
     [currentLevel, targetLevel, character.class, character.expertise, character.skills, subclassSelection, character.subclass]
   );
 
-  const currentStep: LevelUpStep | undefined = steps[stepIndex];
-  const isLastStep = stepIndex === steps.length - 1;
+  // BUG 1: Level 1 HP is never part of leveling up (it is always the fixed
+  // hitDie max + CON set automatically). HP screens are only for levels 2..N.
+  const screens: Screen[] = useMemo(() => {
+    const hpScreens: Screen[] = generated
+      .map((step) => step.level)
+      .filter((lvl) => lvl !== 1)
+      .map((lvl) => ({ kind: "hp" as const, level: lvl }));
+
+    const detailScreens: Screen[] = generated.flatMap((step) =>
+      step.sections
+        .filter((s) => s.type !== "hp")
+        .map((s) =>
+          s.type === "asi"
+            ? ({ kind: "asi" as const, level: step.level, section: s })
+            : ({ kind: "section" as const, level: step.level, section: s })
+        )
+    );
+
+    return [...hpScreens, ...detailScreens];
+  }, [generated]);
+
+  const screen = screens[screenIndex];
+  const isLast = screenIndex === screens.length - 1;
+  const hpCount = screens.filter((s) => s.kind === "hp").length;
 
   const setHp = (level: number, value: number) =>
-    setHpGains((prev) => ({ ...prev, [level]: value }));
+    setHpValues((prev) => ({ ...prev, [level]: value }));
 
-  const setAsi = (level: number, alloc: Record<AbilityKey, number>) =>
-    setAsiAllocations((prev) => ({ ...prev, [level]: alloc }));
+  const setAsi = (level: number, patch: Partial<AsiState>) =>
+    setAsiState((prev) => ({ ...prev, [level]: { ...(prev[level] || {}), ...patch } }));
 
   const setExpertise = (level: number, list: string[]) =>
     setExpertiseSelections((prev) => ({ ...prev, [level]: list }));
@@ -78,29 +117,92 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const setSpells = (level: number, list: string[]) =>
     setSpellSelections((prev) => ({ ...prev, [level]: list }));
 
-  const finishedSteps = useMemo(() => Math.min(stepIndex + 1, steps.length), [stepIndex, steps.length]);
+  // --- ASI helpers ---
+  const buildAllocation = (st?: AsiState): Record<AbilityKey, number> => {
+    const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
+    if (!st) return alloc;
+    if (st.mode === "single" && st.single) alloc[st.single] = 2;
+    if (st.mode === "double") {
+      if (st.d1) alloc[st.d1] = 1;
+      if (st.d2) alloc[st.d2] = 1;
+    }
+    return alloc;
+  };
 
-  const canProceed = useCallback(() => {
-    if (!currentStep) return true;
-    for (const section of currentStep.sections) {
-      if (section.type === "hp") {
-        if (!hpGains[section.level!] || hpGains[section.level!] <= 0) return false;
+  const baseScores = useCallback(
+    (excludeLevel?: number): Record<AbilityKey, number> => {
+      const base: Record<AbilityKey, number> = {
+        str: character.str,
+        dex: character.dex,
+        con: character.con,
+        int: character.int,
+        wis: character.wis,
+        cha: character.cha,
+      };
+      for (const [lvlStr, st] of Object.entries(asiState)) {
+        const lvl = Number(lvlStr);
+        if (!st.confirmed || lvl === excludeLevel) continue;
+        const alloc = buildAllocation(st);
+        (Object.keys(alloc) as AbilityKey[]).forEach((k) => (base[k] += alloc[k]));
       }
-      if (section.type === "subclassSelection") {
-        if (!subclassSelection) return false;
-      }
-      if (section.type === "asi") {
-        const alloc = asiAllocations[section.level!] || {};
-        const total = Object.values(alloc).reduce((a, b) => a + b, 0);
-        if (total !== (section.asiCount || 2)) return false;
-      }
-      if (section.type === "expertise") {
-        const sel = expertiseSelections[section.level!] || [];
-        if (sel.length < (section.expertiseCount || 0)) return false;
-      }
+      return base;
+    },
+    [character, asiState]
+  );
+
+  const asiIsValid = (st?: AsiState): boolean => {
+    if (!st || !st.mode) return false;
+    if (st.mode === "single") return !!st.single;
+    return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
+  };
+
+  // --- Navigation ---
+  const canProceed = useCallback((): boolean => {
+    if (!screen) return false;
+    if (screen.kind === "hp") {
+      const v = hpValues[screen.level];
+      return !!v && v > 0;
+    }
+    if (screen.kind === "asi") {
+      const st = asiState[screen.level];
+      if (!st?.confirmed) return asiIsValid(st);
+      return true;
+    }
+    // section
+    const section = screen.section;
+    if (section.type === "subclassSelection") return !!subclassSelection;
+    if (section.type === "expertise") {
+      const sel = expertiseSelections[screen.level] || [];
+      return sel.length >= (section.expertiseCount || 0);
     }
     return true;
-  }, [currentStep, hpGains, subclassSelection, asiAllocations, expertiseSelections]);
+  }, [screen, hpValues, asiState, subclassSelection, expertiseSelections]);
+
+  const handleNext = () => {
+    if (!screen) return;
+    if (isLast) {
+      handleFinish();
+      return;
+    }
+    if (screen.kind === "asi" && !asiState[screen.level]?.confirmed) {
+      setAsi(screen.level, { confirmed: true });
+      return;
+    }
+    setScreenIndex((s) => Math.min(screens.length - 1, s + 1));
+  };
+
+  const handleBack = () => {
+    if (!screen) return;
+    if (screen.kind === "asi") {
+      // BUG 3: Back clears the pending ASI selection entirely.
+      setAsiState((prev) => {
+        const next = { ...prev };
+        delete next[screen.level];
+        return next;
+      });
+    }
+    setScreenIndex((s) => Math.max(0, s - 1));
+  };
 
   const handleFinish = () => {
     if (!classData) return;
@@ -114,14 +216,11 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     };
 
     // HP — record each level's gain into levelHp and derive maxHp from it.
-    // For characters created before per-level HP existed (no levelHp), keep
-    // the existing maxHp and just add the new gains.
-    const existingLevelHp = character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
-    let totalHp = 0;
-    for (const [, gain] of Object.entries(hpGains)) totalHp += gain;
+    const existingLevelHp =
+      character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
     if (existingLevelHp) {
       const mergedLevelHp: Record<number, number> = { ...existingLevelHp };
-      for (const [lvlStr, gain] of Object.entries(hpGains)) {
+      for (const [lvlStr, gain] of Object.entries(hpValues)) {
         const lvl = Number(lvlStr);
         mergedLevelHp[lvl] = (mergedLevelHp[lvl] || 0) + gain;
       }
@@ -130,14 +229,18 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       draft.levelHp = mergedLevelHp;
       draft.maxHp = sum;
     } else {
+      let totalHp = 0;
+      for (const v of Object.values(hpValues)) totalHp += v;
       draft.maxHp = (character.maxHp || 0) + totalHp;
     }
     draft.currentHp = draft.maxHp;
 
     // ASI
-    for (const [lvlStr, alloc] of Object.entries(asiAllocations)) {
+    for (const [lvlStr, st] of Object.entries(asiState)) {
       const lvl = Number(lvlStr);
+      if (!st.confirmed) continue;
       draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
+      const alloc = buildAllocation(st);
       for (const { key } of ABILITIES) {
         const add = alloc[key] || 0;
         if (add > 0) draft = { ...draft, [key]: ((draft[key] as number) || 0) + add };
@@ -170,13 +273,23 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
     draft.level = targetLevel;
 
-    // Rebuild features from class/subclass data and apply subclass features
     let finalChar = applySubclassFeatures(draft);
     finalChar = syncBaseFeatures(finalChar);
     finalChar = { ...finalChar, ...computeDerivedStats(finalChar) };
 
     onComplete(finalChar);
   };
+
+  // --- Next/back button labels ---
+  let nextLabel = "Next";
+  let showBack = screenIndex > 0;
+  if (screen) {
+    if (screen.kind === "hp") nextLabel = "Confirm";
+    else if (screen.kind === "asi") {
+      const st = asiState[screen.level];
+      nextLabel = st?.confirmed ? "Continue" : "Confirm ASI";
+    } else if (isLast) nextLabel = "Finish Level Up";
+  }
 
   return (
     <div className="min-h-screen bg-charcoal">
@@ -186,9 +299,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
             <button onClick={onCancel} className="text-sm text-parchment/70 hover:text-parchment">
               Cancel
             </button>
-            <div className="text-sm font-semibold text-parchment">
-              Level Up
-            </div>
+            <div className="text-sm font-semibold text-parchment">Level Up</div>
             <div className="w-12" />
           </div>
           <div className="mt-2">
@@ -200,7 +311,14 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                 <button
                   key={lvl}
                   type="button"
-                  onClick={() => { setTargetLevel(lvl); setStepIndex(0); setHpGains({}); setAsiAllocations({}); setExpertiseSelections({}); setSpellSelections({}); }}
+                  onClick={() => {
+                    setTargetLevel(lvl);
+                    setScreenIndex(0);
+                    setHpValues({});
+                    setAsiState({});
+                    setExpertiseSelections({});
+                    setSpellSelections({});
+                  }}
                   className={`h-9 min-w-[2.5rem] rounded-full px-3 text-sm font-semibold transition-all ${
                     lvl === targetLevel
                       ? "bg-accent text-white"
@@ -217,32 +335,70 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
       <main className="px-4 py-6 pb-40">
         <div className="mx-auto max-w-lg">
-          <ProgressIndicator currentStep={finishedSteps} totalSteps={Math.max(1, steps.length)} />
-          {currentStep ? (
-            <StepCard title={currentStep.title} hint={currentStep.description}>
-              <div className="space-y-5">
-                {currentStep.sections.map((section, idx) => (
-                  <SectionRenderer
-                    key={idx}
-                    section={section}
-                    character={character}
-                    subclassSelection={subclassSelection}
-                    onSubclassSelect={setSubclassSelection}
-                    hpGain={section.level ? (hpGains[section.level] || 0) : 0}
-                    onHpChange={(v) => section.level && setHp(section.level, v)}
-                    averageHp={averageHp}
-                    asiAllocation={section.level ? (asiAllocations[section.level] || { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }) : { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }}
-                    onAsiChange={(alloc) => section.level && setAsi(section.level, alloc)}
-                    featureChoices={featureChoices}
-                    onFeatureChoice={(name, value) => setFeatureChoices((prev) => ({ ...prev, [name]: value }))}
-                    expertise={section.level ? (expertiseSelections[section.level] || character.expertise || []) : (character.expertise || [])}
-                    onExpertiseChange={(list) => section.level && setExpertise(section.level, list)}
-                    spells={section.level ? (spellSelections[section.level] || []) : []}
-                    onSpellsChange={(list) => section.level && setSpells(section.level, list)}
-                  />
-                ))}
-              </div>
-            </StepCard>
+          <ProgressIndicator currentStep={Math.min(screenIndex + 1, screens.length)} totalSteps={Math.max(1, screens.length)} />
+
+          {screen ? (
+            (() => {
+              if (screen.kind === "hp") {
+                const hpStepNumber = screens.slice(0, screenIndex + 1).filter((s) => s.kind === "hp").length;
+                return (
+                  <StepCard title={`Level ${screen.level} HP`} hint={`Roll, take the average, or enter your hit die result for level ${screen.level}.`}>
+                    <div className="space-y-4">
+                      <div className="text-xs text-parchment/60 font-medium">
+                        Level {screen.level} HP — Step {hpStepNumber} of {hpCount}
+                      </div>
+
+                      <HpStep
+                        level={screen.level}
+                        hitDie={hitDie}
+                        diceType={diceType}
+                        conMod={conMod}
+                        averageHp={averageHp}
+                        value={hpValues[screen.level] || 0}
+                        onChange={(v) => setHp(screen.level, v)}
+                      />
+                    </div>
+                  </StepCard>
+                );
+              }
+
+              if (screen.kind === "asi") {
+                const st = asiState[screen.level] || {};
+                return (
+                  <StepCard
+                    title={`Level ${screen.level} — Ability Score Improvement`}
+                    hint="Improve your ability scores."
+                  >
+                    <AsiStep
+                      level={screen.level}
+                      state={st}
+                      baseScores={baseScores(screen.level)}
+                      onChange={(patch) => setAsi(screen.level, patch)}
+                    />
+                  </StepCard>
+                );
+              }
+
+              // generic section
+              return (
+                <StepCard title={sectionTitle(screen.section.type) || "Level Up"} hint={screen.section.description}>
+                  <div className="space-y-5">
+                    <SectionRenderer
+                      section={screen.section}
+                      character={character}
+                      subclassSelection={subclassSelection}
+                      onSubclassSelect={setSubclassSelection}
+                      featureChoices={featureChoices}
+                      onFeatureChoice={(name, value) => setFeatureChoices((prev) => ({ ...prev, [name]: value }))}
+                      expertise={expertiseSelections[screen.level] || character.expertise || []}
+                      onExpertiseChange={(list) => setExpertise(screen.level, list)}
+                      spells={spellSelections[screen.level] || []}
+                      onSpellsChange={(list) => setSpells(screen.level, list)}
+                    />
+                  </div>
+                </StepCard>
+              );
+            })()
           ) : (
             <StepCard title="No Levels">
               <p className="text-sm text-parchment/60">Choose a target level above to begin leveling up.</p>
@@ -252,36 +408,238 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       </main>
 
       <WizardNav
-        onBack={() => setStepIndex((s) => Math.max(0, s - 1))}
-        onNext={() => {
-          if (isLastStep) handleFinish();
-          else setStepIndex((s) => Math.min(steps.length - 1, s + 1));
-        }}
+        onBack={handleBack}
+        onNext={handleNext}
         backLabel="Back"
-        nextLabel={isLastStep ? "Finish Level Up" : "Next"}
+        nextLabel={nextLabel}
         canProceed={canProceed()}
-        showBack={stepIndex > 0}
+        showBack={showBack}
       />
     </div>
   );
 }
 
-interface SectionRendererProps {
-  section: LevelUpStepSection;
-  character: Character;
-  subclassSelection: string;
-  onSubclassSelect: (name: string) => void;
-  hpGain: number;
-  onHpChange: (v: number) => void;
+function HpStep({
+  level,
+  hitDie,
+  diceType,
+  conMod,
+  averageHp,
+  value,
+  onChange,
+}: {
+  level: number;
+  hitDie: number;
+  diceType: DiceType;
+  conMod: number;
   averageHp: number;
-  asiAllocation: Record<AbilityKey, number>;
-  onAsiChange: (alloc: Record<AbilityKey, number>) => void;
-  featureChoices: Record<string, string>;
-  onFeatureChoice: (name: string, value: string) => void;
-  expertise: string[];
-  onExpertiseChange: (list: string[]) => void;
-  spells: string[];
-  onSpellsChange: (list: string[]) => void;
+  value: number;
+  onChange: (v: number) => void;
+}) {
+  const diceRef = useRef<DiceHandle>(null);
+  const setValue = (v: number) => {
+    if (Number.isNaN(v)) return;
+    onChange(Math.max(1, Math.round(v)));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="rounded-lg border border-border bg-charcoal/30 px-3 py-3 text-center">
+        <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">Hit Die</div>
+        <div className="text-2xl font-display font-bold text-accent">d{hitDie}</div>
+        <div className="text-[11px] text-parchment/60 mt-1">
+          Roll the die, add your CON modifier ({conMod >= 0 ? `+${conMod}` : conMod}).
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <Dice ref={diceRef} type={diceType} size={84} onRoll={(result) => setValue(result + conMod)} />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <button
+          type="button"
+          onClick={() => setValue(averageHp)}
+          className="rounded-lg border border-border bg-charcoal/40 px-3 py-2.5 text-sm font-semibold text-parchment hover:border-accent/40"
+        >
+          Take Average ({averageHp})
+        </button>
+
+        <label className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">
+          Manual (rolled die + CON)
+        </label>
+        <input
+          type="number"
+          value={value || ""}
+          onChange={(e) => setValue(parseInt(e.target.value || "0", 10))}
+          className="input w-full text-center text-lg font-semibold"
+          placeholder={String(averageHp)}
+        />
+      </div>
+
+      {value > 0 && (
+        <div className="rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-center text-sm">
+          <span className="text-parchment/70">HP gained at level {level}: </span>
+          <span className="text-accent font-bold">{value}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AsiStep({
+  level,
+  state,
+  baseScores,
+  onChange,
+}: {
+  level: number;
+  state: AsiState;
+  baseScores: Record<AbilityKey, number>;
+  onChange: (patch: Partial<AsiState>) => void;
+}) {
+  const alloc = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } as Record<AbilityKey, number>;
+  if (state.mode === "single" && state.single) alloc[state.single] = 2;
+  if (state.mode === "double") {
+    if (state.d1) alloc[state.d1] = 1;
+    if (state.d2) alloc[state.d2] = 1;
+  }
+
+  if (state.confirmed) {
+    const changes = (Object.keys(alloc) as AbilityKey[]).filter((k) => alloc[k] > 0);
+    return (
+      <div className="space-y-3">
+        <p className="text-xs text-parchment/70">
+          You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
+          permanently when you confirm.
+        </p>
+        <div className="rounded-lg border border-accent/30 bg-accent/5 px-3 py-3 space-y-1">
+          {changes.map((k) => {
+            const ab = ABILITIES.find((a) => a.key === k)!;
+            return (
+              <div key={k} className="text-sm">
+                <span className="text-parchment/80">{ab.full}</span>{" "}
+                <span className="text-parchment/50">
+                  {baseScores[k]} → <span className="text-accent font-bold">{baseScores[k] + alloc[k]}</span>
+                </span>
+              </div>
+            );
+          })}
+          <div className="pt-1 text-sm font-semibold text-accent">
+            {changes.map((k) => ABILITIES.find((a) => a.key === k)!.full).join(" and ")} increased!
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <p className="text-xs text-parchment/70">
+        You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
+        permanently when you confirm.
+      </p>
+
+      <div className="grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
+          className={`rounded-lg border px-3 py-3 text-sm font-semibold transition-all ${
+            state.mode === "single" ? "border-accent bg-accent/10 text-parchment" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
+          }`}
+        >
+          +2 to one ability
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
+          className={`rounded-lg border px-3 py-3 text-sm font-semibold transition-all ${
+            state.mode === "double" ? "border-accent bg-accent/10 text-parchment" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
+          }`}
+        >
+          +1 to two abilities
+        </button>
+      </div>
+
+      {state.mode === "single" && (
+        <div className="space-y-2">
+          <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">Choose ability</div>
+          <select
+            value={state.single || ""}
+            onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined })}
+            className="input w-full"
+          >
+            <option value="">Select…</option>
+            {ABILITIES.map(({ key, label, full }) => {
+              const atCap = baseScores[key] + 2 > 20;
+              return (
+                <option key={key} value={key} disabled={atCap}>
+                  {label} — {full} ({baseScores[key]} → {baseScores[key] + 2})
+                  {atCap ? " (max)" : ""}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      )}
+
+      {state.mode === "double" && (
+        <div className="space-y-3">
+          <AbilitySelect
+            label="First ability (+1)"
+            value={state.d1}
+            exclude={state.d2}
+            baseScores={baseScores}
+            onChange={(v) => onChange({ d1: v })}
+          />
+          <AbilitySelect
+            label="Second ability (+1)"
+            value={state.d2}
+            exclude={state.d1}
+            baseScores={baseScores}
+            onChange={(v) => onChange({ d2: v })}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AbilitySelect({
+  label,
+  value,
+  exclude,
+  baseScores,
+  onChange,
+}: {
+  label: string;
+  value?: AbilityKey;
+  exclude?: AbilityKey;
+  baseScores: Record<AbilityKey, number>;
+  onChange: (v: AbilityKey | undefined) => void;
+}) {
+  return (
+    <div className="space-y-2">
+      <div className="text-[10px] uppercase tracking-wider text-parchment/40 font-medium">{label}</div>
+      <select
+        value={value || ""}
+        onChange={(e) => onChange((e.target.value || undefined) as AbilityKey | undefined)}
+        className="input w-full"
+      >
+        <option value="">Select…</option>
+        {ABILITIES.map(({ key, label: lbl, full }) => {
+          const atCap = baseScores[key] + 1 > 20;
+          const disabled = atCap || key === exclude;
+          return (
+            <option key={key} value={key} disabled={disabled}>
+              {lbl} — {full} ({baseScores[key]} → {baseScores[key] + 1})
+              {atCap ? " (max)" : ""}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
 }
 
 function SectionRenderer({
@@ -289,18 +647,24 @@ function SectionRenderer({
   character,
   subclassSelection,
   onSubclassSelect,
-  hpGain,
-  onHpChange,
-  averageHp,
-  asiAllocation,
-  onAsiChange,
   featureChoices,
   onFeatureChoice,
   expertise,
   onExpertiseChange,
   spells,
   onSpellsChange,
-}: SectionRendererProps) {
+}: {
+  section: LevelUpStepSection;
+  character: Character;
+  subclassSelection: string;
+  onSubclassSelect: (name: string) => void;
+  featureChoices: Record<string, string>;
+  onFeatureChoice: (name: string, value: string) => void;
+  expertise: string[];
+  onExpertiseChange: (list: string[]) => void;
+  spells: string[];
+  onSpellsChange: (list: string[]) => void;
+}) {
   const header = (
     <div className="flex items-center gap-2">
       <span className="text-base">{sectionIcon(section.type)}</span>
@@ -333,31 +697,6 @@ function SectionRenderer({
               </button>
             );
           })}
-        </div>
-      </div>
-    );
-  }
-
-  if (section.type === "hp") {
-    return (
-      <div className="space-y-3">
-        {header}
-        <p className="text-xs text-parchment/70">{section.description}</p>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => onHpChange(averageHp)}
-            className="rounded-lg border border-border bg-charcoal/40 px-3 py-2 text-xs font-semibold text-parchment hover:border-accent/40"
-          >
-            Average ({averageHp})
-          </button>
-          <input
-            type="number"
-            value={hpGain || ""}
-            onChange={(e) => onHpChange(Math.max(1, parseInt(e.target.value || "1", 10)))}
-            className="input w-28 text-center"
-            placeholder={String(averageHp)}
-          />
         </div>
       </div>
     );
@@ -398,44 +737,6 @@ function SectionRenderer({
                 ))}
             </div>
           ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (section.type === "asi") {
-    const total = Object.values(asiAllocation).reduce((a, b) => a + b, 0);
-    const max = section.asiCount || 2;
-    const allocate = (key: AbilityKey) =>
-      onAsiChange({ ...asiAllocation, [key]: Math.min(2, (asiAllocation[key] || 0) + 1) });
-    const remove = (key: AbilityKey) =>
-      onAsiChange({ ...asiAllocation, [key]: Math.max(0, (asiAllocation[key] || 0) - 1) });
-    return (
-      <div className="space-y-3">
-        {header}
-        <p className="text-xs text-parchment/70">Distribute {max} points: +2 to one ability, or +1 to two (max 20).</p>
-        <div className="space-y-2">
-          {ABILITIES.map(({ key, label, full }) => {
-            const current = character[key] as number;
-            const allocated = asiAllocation[key] || 0;
-            const atCap = current >= 20;
-            return (
-              <div key={key} className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2">
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-parchment/90 w-12">{label}</span>
-                  <span className="text-[10px] text-text-muted">{full}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-parchment w-8 text-center">{current}</span>
-                  <div className="flex items-center gap-1.5">
-                    <button type="button" onClick={() => remove(key)} disabled={allocated <= 0} className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-parchment/70 disabled:opacity-25 hover:border-accent">−</button>
-                    <span className="text-sm font-bold text-accent w-7 text-center">{allocated > 0 ? `+${allocated}` : "0"}</span>
-                    <button type="button" onClick={() => allocate(key)} disabled={allocated >= 2 || total >= max || atCap} className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-parchment/70 disabled:opacity-25 hover:border-accent">+</button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
         </div>
       </div>
     );
@@ -499,7 +800,7 @@ function SectionRenderer({
     return (
       <div className="space-y-3">
         {header}
-        <p className="text-xs text-parchment/70">You may add up to {count} spell{count !== 1 ? 's' : ''}. (Optional)</p>
+        <p className="text-xs text-parchment/70">You may add up to {count} spell{count !== 1 ? "s" : ""}. (Optional)</p>
         <div className="max-h-64 overflow-y-auto space-y-1.5">
           {available.map((sp) => {
             const isSel = spells.includes(sp.name);
