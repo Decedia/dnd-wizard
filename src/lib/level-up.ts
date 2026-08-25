@@ -13,6 +13,7 @@ export interface LevelUpStepSection {
     tigerSkillOptions?: string[];
     tigerSkillCount?: number;
     storageKey?: string;
+    descriptions?: Record<string, string>;
   }[];
   asiCount?: number;
   expertiseCount?: number;
@@ -71,12 +72,19 @@ export function generateLevelUpSteps(
 
     const classFeatureChoices = (levelData?.features || [])
       .filter((f: any) => f.choices && f.choices.options && f.choices.options.length > 0)
-      .map((f: any) => ({
-        featureName: f.name,
-        options: f.choices.options,
-        storageKey: `feature-${f.name}`,
-        count: f.choices.count,
-      }));
+      .map((f: any) => {
+        const descriptions: Record<string, string> = {};
+        (f.choices.options || []).forEach((opt: any) => {
+          if (opt && typeof opt === "object" && opt.name) descriptions[opt.name] = opt.description || "";
+        });
+        return {
+          featureName: f.name,
+          options: f.choices.options,
+          storageKey: `feature-${f.name}`,
+          count: f.choices.count,
+          descriptions,
+        };
+      });
 
     let features = (levelData?.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
 
@@ -93,11 +101,16 @@ export function generateLevelUpSteps(
         ];
         const subChoices = earned
           .filter((f) => f.choices && f.choices.length > 0)
-          .map((f) => ({
-            featureName: f.name,
-            options: f.choices!.map((c: any) => c.name),
-            storageKey: `subclass-feature-${f.name}`,
-          }));
+          .map((f) => {
+            const descriptions: Record<string, string> = {};
+            (f.choices || []).forEach((c: any) => { if (c?.name) descriptions[c.name] = c.description || ""; });
+            return {
+              featureName: f.name,
+              options: f.choices!.map((c: any) => c.name),
+              storageKey: `subclass-feature-${f.name}`,
+              descriptions,
+            };
+          });
         if (subChoices.length > 0) {
           featureChoices = [...(featureChoices || []), ...subChoices];
         }

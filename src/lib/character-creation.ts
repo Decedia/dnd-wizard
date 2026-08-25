@@ -9,6 +9,7 @@ interface FeatureSelection {
   description: string;
   type: "single" | "multiple" | "skills" | "spells" | "invocations";
   options: string[];
+  optionDescriptions?: Record<string, string>;
   count?: number;
   level: number;
   storageKey: string;
@@ -262,15 +263,27 @@ export function getFeatureSelections(character: Character): FeatureSelection[] {
     
     level.features?.forEach((feature: any) => {
       if (feature.choices) {
+        const raw = feature.choices;
+        const optionNames = Array.isArray(raw?.options) ? raw.options : [];
+        const descriptions: Record<string, string> = {};
+        if (Array.isArray(raw?.options)) {
+          raw.options.forEach((opt: any) => {
+            if (typeof opt === "string") return;
+            if (opt && typeof opt === "object" && opt.name) {
+              descriptions[opt.name] = opt.description || "";
+            }
+          });
+        }
         selections.push({
           featureName: feature.name,
-          description: feature.choices.description || feature.description || `Make a selection for ${feature.name}`,
-          type: feature.choices.type || "single",
-          options: feature.choices.options || [],
-          count: feature.choices.count,
+          description: raw?.description || feature.description || `Make a selection for ${feature.name}`,
+          type: raw?.type || "single",
+          options: optionNames,
+          optionDescriptions: descriptions,
+          count: raw?.count,
           level: levelNumber,
           storageKey: `feature-${feature.name}`,
-          optional: feature.choices.optional || false,
+          optional: raw?.optional || false,
           source: "class",
         });
       }
@@ -296,14 +309,19 @@ export function getSubclassFeatureSelections(character: Character): FeatureSelec
   if (!subclass) return [];
 
   const selections: FeatureSelection[] = [];
+  const optionDescriptions: Record<string, string> = {};
   for (const feature of subclass.features) {
     if (!feature.choices || feature.choices.length === 0) continue;
     if (feature.level != null && feature.level > character.level) continue;
+    feature.choices.forEach((c: any) => {
+      if (c?.name) optionDescriptions[c.name] = c.description || "";
+    });
     selections.push({
       featureName: feature.name,
       description: (feature.description as string) || `Make a selection for ${feature.name}`,
       type: "single",
       options: feature.choices.map((c: any) => c.name),
+      optionDescriptions,
       count: (feature as any).choicesCount,
       level: feature.level ?? unlockLevel,
       storageKey: `subclass-feature-${feature.name}`,

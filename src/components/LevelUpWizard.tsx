@@ -810,16 +810,19 @@ function SectionRenderer({
                       {fc.options.map((opt) => {
                         const isSel = (featureChoices[fc.storageKey || fc.featureName] || "") === opt;
                         return (
-                          <button
-                            key={opt}
-                            type="button"
-                            onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
-                            className={`rounded-lg border px-2.5 py-1.5 text-left text-xs transition-all ${
-                              isSel ? "border-accent/40 bg-accent/10 text-parchment" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
-                            }`}
-                          >
-                            {opt}
-                          </button>
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
+                        className={`w-full rounded-lg border px-2.5 py-2 text-left transition-all ${
+                          isSel ? "border-accent/40 bg-accent/10 text-parchment" : "border-border bg-charcoal/40 text-parchment/80 hover:border-accent/30"
+                        }`}
+                      >
+                        <div className="text-xs font-medium">{opt}</div>
+                        {fc.descriptions?.[opt] && (
+                          <div className="text-[10px] text-parchment/50 mt-0.5 leading-relaxed">{fc.descriptions[opt]}</div>
+                        )}
+                      </button>
                         );
                       })}
                     </div>

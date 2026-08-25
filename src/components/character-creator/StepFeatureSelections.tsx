@@ -10,9 +10,11 @@ interface FeatureSelection {
   description: string;
   type: "single" | "multiple" | "skills" | "spells" | "invocations";
   options: string[];
+  optionDescriptions?: Record<string, string>;
   count?: number;
   level: number;
   storageKey: string;
+  optional?: boolean;
   source?: "class" | "subclass";
 }
 
@@ -119,7 +121,14 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                         }`}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-parchment">{option}</span>
+                          <div>
+                            <span className="text-sm text-parchment">{option}</span>
+                            {selection.optionDescriptions?.[option] && (
+                              <span className="block text-[10px] text-parchment/50 mt-0.5 leading-relaxed">
+                                {selection.optionDescriptions[option]}
+                              </span>
+                            )}
+                          </div>
                           {isSelected && (
                             <svg className="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
                               <path d="M5 12l5 5L20 7" />
