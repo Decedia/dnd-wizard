@@ -463,15 +463,7 @@ export function isSubclassStepComplete(character: Character): boolean {
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return false;
 
-  const earnedFeatures = getEarnedSubclassFeatures(subclass, character.level, unlockLevel);
-
-  return earnedFeatures.every((feature) => {
-    if (!feature.choices || feature.choices.length === 0) return true;
-    const key = `subclass-feature-${feature.name}`;
-    const selected = (character as any).featureSelections?.[key];
-    const needed = (feature as any).choicesCount || feature.choices.length;
-    return Array.isArray(selected) && selected.length >= needed;
-  });
+  return true;
 }
 
 export function finalizeCreation(character: Character): Character {
