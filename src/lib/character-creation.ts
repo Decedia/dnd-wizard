@@ -35,6 +35,7 @@ export function getValidationMessage(step: CreationStep, character?: Character):
     case "level":
       if (!character?.level || character.level < 1) return "Please choose a starting level.";
       if (!character.maxHp || character.maxHp <= 0) return "Please enter your character's HP.";
+      if ((Object.keys(character.levelHp || {}).length) < (character.level || 1)) return "Please confirm HP for all levels.";
       const classData = character.class ? getStaticClass(character.class) : null;
       const asiLevels = classData?.levels
         .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
@@ -69,7 +70,11 @@ export function getCreationSteps(character: Character): CreationStep[] {
     .map((entry) => entry.level) || [];
 
   const pendingAsiCount = asiLevels.filter((asiLevel) => !character.appliedAsi.includes(asiLevel) && asiLevel <= character.level).length;
-  const levelCompleted = character.level >= 1 && character.maxHp > 0 && pendingAsiCount === 0;
+  const levelCompleted =
+    character.level >= 1 &&
+    character.maxHp > 0 &&
+    pendingAsiCount === 0 &&
+    (Object.keys(character.levelHp || {}).length >= character.level);
 
   const steps: CreationStep[] = [
     {
