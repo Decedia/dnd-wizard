@@ -103,6 +103,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
   const screen = screens[screenIndex];
   const isLast = screenIndex === screens.length - 1;
+  const isAsiScreen = screen?.kind === "asi";
   const hpCount = screens.filter((s) => s.kind === "hp").length;
 
   const setHp = (level: number, value: number) =>
@@ -363,18 +364,16 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
               }
 
               if (screen.kind === "asi") {
-                const st = asiState[screen.level] || {};
+                // The ASI interaction is shown as a popup (see AsiModal below),
+                // so the main flow just shows a dimmed placeholder behind it.
                 return (
                   <StepCard
                     title={`Level ${screen.level} — Ability Score Improvement`}
-                    hint="Improve your ability scores."
+                    hint="A popup is open to assign your Ability Score Improvement."
                   >
-                    <AsiStep
-                      level={screen.level}
-                      state={st}
-                      baseScores={baseScores(screen.level)}
-                      onChange={(patch) => setAsi(screen.level, patch)}
-                    />
+                    <div className="flex items-center justify-center py-10 text-sm text-parchment/40">
+                      Open the Ability Score Improvement popup to continue.
+                    </div>
                   </StepCard>
                 );
               }
@@ -407,14 +406,68 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         </div>
       </main>
 
-      <WizardNav
-        onBack={handleBack}
-        onNext={handleNext}
-        backLabel="Back"
-        nextLabel={nextLabel}
-        canProceed={canProceed()}
-        showBack={showBack}
-      />
+      {!isAsiScreen && (
+        <WizardNav
+          onBack={handleBack}
+          onNext={handleNext}
+          backLabel="Back"
+          nextLabel={nextLabel}
+          canProceed={canProceed()}
+          showBack={showBack}
+        />
+      )}
+
+      {isAsiScreen && screen && (() => {
+        const lvl = screen.level;
+        const st = asiState[lvl] || {};
+        return (
+          <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 sm:items-center sm:p-4">
+            <div className="w-full max-w-lg rounded-t-2xl border border-border bg-charcoal shadow-2xl sm:rounded-2xl">
+              <div className="flex items-center justify-between border-b border-border px-4 py-3">
+                <div className="text-sm font-semibold text-parchment">
+                  Level {lvl} — Ability Score Improvement
+                </div>
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="text-xl leading-none text-parchment/60 hover:text-parchment"
+                  aria-label="Close"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="max-h-[65vh] overflow-y-auto px-4 py-4">
+                <AsiStep
+                  level={lvl}
+                  state={st}
+                  baseScores={baseScores(lvl)}
+                  onChange={(patch) => setAsi(lvl, patch)}
+                />
+              </div>
+              <div className="flex justify-end border-t border-border px-4 py-3">
+                {st.confirmed ? (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98]"
+                  >
+                    Continue
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    disabled={!asiIsValid(st)}
+                    onClick={handleNext}
+                    className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+                  >
+                    Confirm ASI
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
