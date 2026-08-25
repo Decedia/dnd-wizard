@@ -62,6 +62,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   // accumulated hp gains per level (total including CON)
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiState, setAsiState] = useState<Record<number, AsiState>>({});
+  const [asiDismissedLevels, setAsiDismissedLevels] = useState<number[]>([]);
 
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>(() =>
@@ -117,6 +118,16 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
   const setSpells = (level: number, list: string[]) =>
     setSpellSelections((prev) => ({ ...prev, [level]: list }));
+
+  const cancelAsi = () => {
+    if (!screen || screen.kind !== "asi") return;
+    setAsiState((prev) => {
+      const next = { ...prev };
+      delete next[screen.level];
+      return next;
+    });
+    setAsiDismissedLevels((prev) => [...prev, screen.level]);
+  };
 
   // --- ASI helpers ---
   const buildAllocation = (st?: AsiState): Record<AbilityKey, number> => {
@@ -185,8 +196,17 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       handleFinish();
       return;
     }
-    if (screen.kind === "asi" && !asiState[screen.level]?.confirmed) {
-      setAsi(screen.level, { confirmed: true });
+    if (screen.kind === "asi") {
+      if (!asiState[screen.level]?.confirmed) {
+        setAsi(screen.level, { confirmed: true });
+        setAsiDismissedLevels((prev) => [...prev, screen.level]);
+        return;
+      }
+      if (!asiDismissedLevels.includes(screen.level)) {
+        setAsiDismissedLevels((prev) => [...prev, screen.level]);
+        return;
+      }
+      setScreenIndex((s) => Math.min(screens.length - 1, s + 1));
       return;
     }
     setScreenIndex((s) => Math.min(screens.length - 1, s + 1));
@@ -195,12 +215,12 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const handleBack = () => {
     if (!screen) return;
     if (screen.kind === "asi") {
-      // BUG 3: Back clears the pending ASI selection entirely.
       setAsiState((prev) => {
         const next = { ...prev };
         delete next[screen.level];
         return next;
       });
+      setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level));
     }
     setScreenIndex((s) => Math.max(0, s - 1));
   };
@@ -364,16 +384,26 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
               }
 
               if (screen.kind === "asi") {
-                // The ASI interaction is shown as a popup (see AsiModal below),
-                // so the main flow just shows a dimmed placeholder behind it.
+                const st = asiState[screen.level] || {};
+                const isConfirmed = !!st.confirmed;
                 return (
                   <StepCard
                     title={`Level ${screen.level} — Ability Score Improvement`}
                     hint="A popup is open to assign your Ability Score Improvement."
                   >
-                    <div className="flex items-center justify-center py-10 text-sm text-parchment/40">
-                      Open the Ability Score Improvement popup to continue.
-                    </div>
+                    {isConfirmed ? (
+                      <div className="text-center text-sm text-green-400">
+                        ✓ {ABILITIES.filter(({ key }) => (buildAllocation(st)[key] || 0) > 0).map(({ full, key }) => `${full} increased to ${(character as any)[key] + buildAllocation(st)[key]}`).join(", ")}
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level))}
+                        className="rounded-xl border border-accent/25 bg-accent/5 p-4 text-center text-xs text-parchment/70 w-full"
+                      >
+                        Complete your Ability Score Improvement
+                      </button>
+                    )}
                   </StepCard>
                 );
               }
@@ -417,7 +447,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         />
       )}
 
-      {isAsiScreen && screen && (() => {
+      {isAsiScreen && screen && !asiDismissedLevels.includes(screen.level) && (() => {
         const lvl = screen.level;
         const st = asiState[lvl] || {};
         return (
@@ -429,7 +459,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                 </div>
                 <button
                   type="button"
-                  onClick={handleBack}
+                  onClick={cancelAsi}
                   className="text-xl leading-none text-parchment/60 hover:text-parchment"
                   aria-label="Close"
                 >
@@ -444,7 +474,14 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   onChange={(patch) => setAsi(lvl, patch)}
                 />
               </div>
-              <div className="flex justify-end border-t border-border px-4 py-3">
+              <div className="flex justify-between border-t border-border px-4 py-3">
+                <button
+                  type="button"
+                  onClick={cancelAsi}
+                  className="rounded-full border border-border bg-transparent px-5 py-2.5 text-sm font-semibold text-parchment hover:border-accent/40"
+                >
+                  Cancel
+                </button>
                 {st.confirmed ? (
                   <button
                     type="button"

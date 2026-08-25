@@ -57,6 +57,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0,
   });
   const [asiModalOpen, setAsiModalOpen] = useState(false);
+  const [asiConfirmation, setAsiConfirmation] = useState<string | null>(null);
 
   const currentAsiLevel = pendingAsiLevels[currentAsiIndex];
 
@@ -138,15 +139,27 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     const patch: Partial<Character> = {
       appliedAsi: [...data.appliedAsi, currentAsiLevel],
     };
-    ABILITIES.forEach(({ key }) => {
+    const changed: string[] = [];
+    ABILITIES.forEach(({ key, full }) => {
       if (asiAllocation[key] > 0) {
         patch[key] = (data[key] as number) + asiAllocation[key];
+        changed.push(`${full} increased to ${patch[key]}`);
       }
     });
     onChange(patch);
+    setAsiConfirmation(changed.join(", "));
     setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
     setCurrentAsiIndex((prev) => prev + 1);
   };
+
+  useEffect(() => {
+    if (!asiConfirmation) return;
+    const timer = setTimeout(() => {
+      setAsiConfirmation(null);
+      setAsiModalOpen(!!currentAsiLevel);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [asiConfirmation, currentAsiLevel]);
 
   const allocateAsiPoint = (key: AbilityKey) => {
     setAsiAllocation((prev) => {
@@ -344,11 +357,17 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             )}
           </div>
 
-          {currentAsiLevel && !asiModalOpen && (
-            <div className="rounded-xl border border-accent/25 bg-accent/5 p-4 text-center text-xs text-parchment/70">
-              Open the Ability Score Improvement popup to continue.
-            </div>
-          )}
+        {currentAsiLevel && !asiModalOpen && (
+          <div className="rounded-xl border border-accent/25 bg-accent/5 p-4 text-center text-xs text-parchment/70">
+            {asiConfirmation ? (
+              <div className="text-green-400">✓ {asiConfirmation}</div>
+            ) : (
+              <button type="button" onClick={() => setAsiModalOpen(true)} className="w-full">
+                Complete your Ability Score Improvement
+              </button>
+            )}
+          </div>
+        )}
 
           {!currentAsiLevel && pendingAsiLevels.length > 0 && (
             <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
@@ -429,7 +448,17 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 })}
               </div>
             </div>
-            <div className="flex justify-end border-t border-border px-4 py-3">
+            <div className="flex justify-between border-t border-border px-4 py-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
+                  setAsiModalOpen(false);
+                }}
+                className="rounded-full border border-border bg-transparent px-5 py-2.5 text-sm font-semibold text-parchment hover:border-accent/40"
+              >
+                Cancel
+              </button>
               <button
                 type="button"
                 onClick={applyAsi}
