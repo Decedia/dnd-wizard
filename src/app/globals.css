@@ -29,139 +29,307 @@
 
 @layer components {
   .surface {
-    @apply bg-paper text-ink rounded-xl border-[3px] border-ink;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 0.75rem;
+    border: 3px solid #000000;
   }
 
   .surface-muted {
-    @apply bg-paper-muted text-ink rounded-xl border-[3px] border-ink;
+    background-color: #f5f5f5;
+    color: #000000;
+    border-radius: 0.75rem;
+    border: 3px solid #000000;
   }
 
   .surface-dark {
-    @apply bg-ink-muted text-paper rounded-xl border-[3px] border-paper;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 0.75rem;
+    border: 3px solid #ffffff;
   }
 
   .input {
-    @apply bg-paper-muted text-ink rounded-xl border-[3px] border-ink px-3 py-2 text-sm font-medium outline-none transition-colors placeholder:text-ink-muted focus:border-ink-subtle;
+    background-color: #f5f5f5;
+    color: #000000;
+    border-radius: 0.75rem;
+    border: 3px solid #000000;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .input::placeholder {
+    color: #666666;
+  }
+
+  .input:focus {
+    border-color: #333333;
   }
 
   textarea.input {
-    @apply resize-y rounded-xl;
+    resize: vertical;
+    border-radius: 0.75rem;
   }
 
   select.input {
-    @apply appearance-none rounded-xl;
+    appearance: none;
+    border-radius: 0.75rem;
   }
 
   .btn {
-    @apply rounded-xl border-[3px] px-4 py-2.5 text-sm font-bold transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
+    border-radius: 0.75rem;
+    border: 3px solid;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .btn:disabled:active {
+    transform: none;
   }
 
   .btn-primary {
-    @apply btn bg-paper text-ink border-ink;
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
   }
 
   .btn-primary:hover {
-    @apply bg-paper-muted;
+    background-color: #f5f5f5;
   }
 
   .btn-secondary {
-    @apply btn bg-transparent text-paper border-paper;
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
   }
 
   .btn-secondary:hover {
-    @apply bg-paper/10;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   .btn-ghost {
-    @apply btn bg-transparent border-transparent text-ink-muted hover:text-ink hover:border-ink;
+    background-color: transparent;
+    border-color: transparent;
+    color: #666666;
+  }
+
+  .btn-ghost:hover {
+    color: #000000;
+    border-color: #000000;
   }
 
   .btn-danger {
-    @apply btn bg-paper text-ink border-ink;
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
   }
 
   .btn-danger:hover {
-    @apply bg-paper-muted;
+    background-color: #f5f5f5;
   }
 
   .field-label {
-    @apply text-[10px] font-bold text-ink-muted uppercase tracking-wider block mb-1.5;
+    font-size: 10px;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.375rem;
   }
 
   .field-label-light {
-    @apply text-[10px] font-bold text-paper-muted uppercase tracking-wider block mb-1.5;
+    font-size: 10px;
+    font-weight: 700;
+    color: #cccccc;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.375rem;
   }
 
   .badge {
-    @apply inline-flex items-center justify-center rounded-md border-[3px] border-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    border: 3px solid #000000;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .badge-light {
-    @apply inline-flex items-center justify-center rounded-md border-[3px] border-paper px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    border: 3px solid #ffffff;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .section-title {
-    @apply text-xs font-bold uppercase tracking-wider flex items-center gap-2 mb-3;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .section-title-light {
-    @apply text-xs font-bold uppercase tracking-wider flex items-center gap-2 mb-3 text-paper;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
   }
 
   .hint-box {
-    @apply rounded-xl border-[3px] border-ink-subtle bg-paper-muted px-3 py-2;
+    border-radius: 0.75rem;
+    border: 3px solid #333333;
+    background-color: #f5f5f5;
+    padding: 0.5rem 0.75rem;
   }
 
   .hint-box-light {
-    @apply rounded-xl border-[3px] border-paper/20 bg-paper/5 px-3 py-2;
+    border-radius: 0.75rem;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 0.75rem;
   }
 
   .progress-track {
-    @apply h-2.5 w-full overflow-hidden rounded-xl bg-paper-muted border-[3px] border-ink-subtle;
+    height: 0.625rem;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background-color: #f5f5f5;
+    border: 3px solid #333333;
   }
 
   .progress-fill {
-    @apply h-full bg-ink transition-all duration-300;
+    height: 100%;
+    background-color: #000000;
+    transition: all 0.3s;
   }
 
   .progress-track-light {
-    @apply h-2.5 w-full overflow-hidden rounded-xl bg-ink-muted border-[3px] border-paper;
+    height: 0.625rem;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background-color: #333333;
+    border: 3px solid #ffffff;
   }
 
   .progress-fill-light {
-    @apply h-full bg-paper transition-all duration-300;
+    height: 100%;
+    background-color: #ffffff;
+    transition: all 0.3s;
   }
 
   .divider {
-    @apply border-t-[3px] border-ink-subtle;
+    border-top: 3px solid #333333;
   }
 
   .divider-light {
-    @apply border-t-[3px] border-paper/20;
+    border-top: 3px solid rgba(255, 255, 255, 0.2);
   }
 
   .checkbox {
-    @apply h-4 w-4 rounded border-[3px] border-ink bg-paper text-ink focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-ink checked:border-ink checked:text-paper;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
+    border: 3px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .checkbox:checked {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
   }
 
   .checkbox-light {
-    @apply h-4 w-4 rounded border-[3px] border-paper bg-ink text-paper focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-paper checked:border-paper checked:text-ink;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
+    border: 3px solid #ffffff;
+    background-color: #000000;
+    color: #ffffff;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .checkbox-light:checked {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
   }
 
   .stat-box {
-    @apply flex flex-col items-center justify-center rounded-xl border-[3px] border-ink bg-paper p-3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    border: 3px solid #000000;
+    background-color: #ffffff;
+    padding: 0.75rem;
   }
 
   .stat-box-light {
-    @apply flex flex-col items-center justify-center rounded-xl border-[3px] border-paper bg-ink p-3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    border: 3px solid #ffffff;
+    background-color: #000000;
+    padding: 0.75rem;
   }
 
   .card {
-    @apply rounded-xl border-[3px] border-paper bg-ink;
+    border-radius: 0.75rem;
+    border: 3px solid #ffffff;
+    background-color: #000000;
   }
 
   .card-light {
-    @apply rounded-xl border-[3px] border-ink bg-paper;
+    border-radius: 0.75rem;
+    border: 3px solid #000000;
+    background-color: #ffffff;
   }
 }
 
