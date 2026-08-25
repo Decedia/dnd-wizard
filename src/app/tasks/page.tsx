@@ -117,21 +117,21 @@ export default function TasksPage() {
         );
       case "in-progress":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-[10px] font-semibold text-blue-600 uppercase tracking-wider">
+          <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-ink uppercase tracking-wider">
             <Timer className="h-2.5 w-2.5" />
             In Progress
           </span>
         );
       case "done":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-0.5 text-[10px] font-semibold text-green-600 uppercase tracking-wider">
+          <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-ink uppercase tracking-wider">
             <CheckCircle2 className="h-2.5 w-2.5" />
             Done
           </span>
         );
       case "review":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-[10px] font-semibold text-amber-600 uppercase tracking-wider">
+          <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-ink uppercase tracking-wider">
             <AlertCircle className="h-2.5 w-2.5" />
             Review
           </span>
@@ -142,8 +142,8 @@ export default function TasksPage() {
   return (
     <div className="flex h-screen bg-paper">
       {/* Sidebar */}
-      <aside className="flex w-16 flex-col items-center border-r border-border-muted bg-white py-4">
-        <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-ink text-white">
+      <aside className="flex w-16 flex-col items-center bg-ink py-4">
+        <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-white text-ink">
           <span className="font-display text-lg font-bold">R</span>
         </div>
 
@@ -151,10 +151,10 @@ export default function TasksPage() {
           {sidebarItems.map((item) => (
             <button
               key={item.label}
-              className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
                 item.active
-                  ? "bg-ink text-white"
-                  : "text-ink-muted hover:bg-paper-muted hover:text-ink"
+                  ? "bg-white text-ink"
+                  : "text-white/60 hover:text-white hover:bg-white/10"
               }`}
               title={item.label}
             >
@@ -163,7 +163,7 @@ export default function TasksPage() {
           ))}
         </nav>
 
-        <button className="mt-auto flex h-10 w-10 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted hover:text-ink">
+        <button className="mt-auto flex h-10 w-10 items-center justify-center rounded-full text-white/60 hover:text-white hover:bg-white/10">
           <Bell className="h-5 w-5" />
         </button>
       </aside>
@@ -180,21 +180,21 @@ export default function TasksPage() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 rounded-lg border border-border-strong bg-white px-4 py-2 text-sm font-medium text-ink shadow-sm hover:bg-paper-muted transition-colors">
+              <button className="flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90 transition-colors">
                 <Settings className="h-4 w-4" />
                 <span>Upgrade</span>
               </button>
-              <button className="flex h-9 w-9 items-center justify-center rounded-lg border border-border-strong bg-white text-ink hover:bg-paper-muted transition-colors">
+              <button className="flex h-9 w-9 items-center justify-center rounded-full bg-paper-muted text-ink hover:bg-paper-dark transition-colors">
                 <Search className="h-4 w-4" />
               </button>
-              <button className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-border-strong bg-white text-ink hover:bg-paper-muted transition-colors">
+              <button className="relative flex h-9 w-9 items-center justify-center rounded-full bg-paper-muted text-ink hover:bg-paper-dark transition-colors">
                 <Bell className="h-4 w-4" />
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
                   30
                 </span>
               </button>
               <div className="h-9 w-9 rounded-full bg-ink/10" />
-              <button className="flex items-center gap-2 rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90 transition-colors">
+              <button className="flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90 transition-colors">
                 <Plus className="h-4 w-4" />
                 <span>Add Task</span>
               </button>
@@ -203,53 +203,53 @@ export default function TasksPage() {
 
           {/* Stats Cards */}
           <div className="mb-8 grid grid-cols-4 gap-4">
-            <div className="rounded-xl border border-border-muted bg-white p-5">
+            <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">To Do</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">0</p>
                   <p className="mt-1 text-xs text-ink-muted">Not started</p>
                 </div>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                   <Clock className="h-4 w-4" />
                 </button>
               </div>
             </div>
 
-            <div className="rounded-xl border border-border-muted bg-white p-5">
+            <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">In Progress</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">4</p>
                   <p className="mt-1 text-xs text-ink-muted">Active tasks</p>
                 </div>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                   <Clock className="h-4 w-4" />
                 </button>
               </div>
             </div>
 
-            <div className="rounded-xl border border-border-muted bg-white p-5">
+            <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">Done</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">6</p>
                   <p className="mt-1 text-xs text-ink-muted">Completed</p>
                 </div>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                   <CheckCircle2 className="h-4 w-4" />
                 </button>
               </div>
             </div>
 
-            <div className="rounded-xl border border-border-muted bg-white p-5">
+            <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">Total Tasks</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">12</p>
                   <p className="mt-1 text-xs text-ink-muted">All tasks</p>
                 </div>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                   <ListTodo className="h-4 w-4" />
                 </button>
               </div>
@@ -257,36 +257,36 @@ export default function TasksPage() {
           </div>
 
           {/* Task List */}
-          <div className="rounded-xl border border-border-muted bg-white">
+          <div className="rounded-2xl bg-paper-muted">
             {/* Filters */}
-            <div className="flex items-center justify-between border-b border-border-muted px-5 py-3">
+            <div className="flex items-center justify-between px-5 py-3">
               <div className="flex items-center gap-4">
                 <h2 className="text-sm font-medium text-ink">All tasks</h2>
                 <span className="text-xs text-ink-muted">{totalCount} tasks</span>
               </div>
               <div className="flex items-center gap-2">
-                <button className="flex items-center gap-2 rounded-lg border border-border-strong px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-muted transition-colors">
+                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-dark transition-colors">
                   <span>All Projects</span>
                   <ChevronDown className="h-3.5 w-3.5" />
                 </button>
-                <button className="flex items-center gap-2 rounded-lg border border-border-strong px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-muted transition-colors">
+                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-dark transition-colors">
                   <span>Date Created</span>
                   <ChevronDown className="h-3.5 w-3.5" />
                 </button>
-                <button className="flex items-center gap-2 rounded-lg border border-border-strong px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-muted transition-colors">
+                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-dark transition-colors">
                   <span>All</span>
                   <ChevronDown className="h-3.5 w-3.5" />
                 </button>
-                <div className="flex items-center gap-2 rounded-lg border border-border-strong px-3 py-1.5">
+                <div className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5">
                   <div className="h-1.5 w-16 rounded-full bg-paper-muted">
                     <div className="h-full w-[60%] rounded-full bg-ink" />
                   </div>
                   <span className="text-xs font-medium text-ink-muted">60%</span>
                 </div>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                   <ListTodo className="h-4 w-4" />
                 </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                   <KanbanSquare className="h-4 w-4" />
                 </button>
                 <div className="relative">
@@ -296,22 +296,22 @@ export default function TasksPage() {
                     placeholder="Search tasks..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="h-8 w-48 rounded-lg border border-border-strong pl-8 pr-3 text-xs text-ink placeholder:text-ink-subtle focus:border-ink focus:outline-none"
+                    className="h-8 w-48 rounded-full bg-white pl-8 pr-3 text-xs text-ink placeholder:text-ink-subtle focus:outline-none"
                   />
                 </div>
               </div>
             </div>
 
             {/* Task Items */}
-            <div className="divide-y divide-border-muted">
+            <div className="divide-y divide-paper-dark">
               {tasks.map((task) => (
                 <div
                   key={task.id}
-                  className="flex items-center gap-4 px-5 py-3.5 hover:bg-paper-muted/50 transition-colors"
+                  className="flex items-center gap-4 px-5 py-3.5 hover:bg-white/50 transition-colors"
                 >
                   <button
                     onClick={() => toggleTask(task.id)}
-                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-border-strong bg-white hover:border-ink transition-colors"
+                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white hover:bg-paper-muted transition-colors"
                   >
                     {task.status === "done" && (
                       <CheckCircle2 className="h-3.5 w-3.5 text-ink" />
@@ -333,11 +333,11 @@ export default function TasksPage() {
                       </span>
                     )}
                     {task.budget && (
-                      <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-600">
+                      <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-medium text-ink">
                         {task.budget}
                       </span>
                     )}
-                    <button className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-muted hover:bg-paper-muted">
+                    <button className="flex h-7 w-7 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                       <MoreHorizontal className="h-4 w-4" />
                     </button>
                   </div>

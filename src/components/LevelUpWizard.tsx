@@ -303,7 +303,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
   return (
     <div className="min-h-screen bg-paper">
-      <div className="sticky top-0 z-40 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
+      <div className="sticky top-0 z-40 bg-paper/90 backdrop-blur-sm">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
             <button onClick={onCancel} className="text-xs font-semibold text-ink-muted hover:text-ink transition-colors">
@@ -329,7 +329,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     setExpertiseSelections({});
                     setSpellSelections({});
                   }}
-                  className={`btn h-8 min-w-[2.25rem] px-2.5 text-xs ${
+                  className={`btn h-8 min-w-[2.25rem] px-2.5 text-xs rounded-full ${
                     lvl === targetLevel
                       ? "btn-primary"
                       : "btn-secondary"
@@ -440,8 +440,8 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         const st = asiState[lvl] || {};
         return (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-ink/5 p-4">
-            <div className="w-full max-w-lg rounded-xl border border-border-strong bg-paper">
-              <div className="flex items-center justify-between border-b border-border-strong px-4 py-2.5">
+            <div className="w-full max-w-lg rounded-2xl bg-paper">
+              <div className="flex items-center justify-between px-4 py-3">
                 <div className="text-xs font-semibold text-ink">
                   Level {lvl} — Ability Score Improvement
                 </div>
@@ -462,11 +462,11 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   onChange={(patch) => setAsi(lvl, patch)}
                 />
               </div>
-              <div className="flex justify-between border-t border-border-strong px-4 py-2.5">
+              <div className="flex justify-between px-4 py-3">
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="btn-secondary px-4 py-2 text-xs"
+                  className="btn-secondary px-4 py-2 text-xs rounded-full"
                 >
                   Cancel
                 </button>
@@ -474,7 +474,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="btn-primary px-4 py-2 text-xs"
+                    className="btn-primary px-4 py-2 text-xs rounded-full"
                   >
                     Continue
                   </button>
@@ -483,7 +483,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     type="button"
                     disabled={!asiIsValid(st)}
                     onClick={handleNext}
-                    className="btn-primary px-4 py-2 text-xs disabled:opacity-40"
+                    className="btn-primary px-4 py-2 text-xs rounded-full disabled:opacity-40"
                   >
                     Confirm ASI
                   </button>

@@ -174,10 +174,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
                <span
                  key={val}
-                 className={`px-3 py-1.5 rounded-lg text-sm font-bold ${
+                 className={`px-3 py-1.5 rounded-full text-sm font-bold ${
                    isUsed
                      ? "bg-paper-muted text-ink-muted line-through"
-                     : "bg-paper text-ink border border-border-strong"
+                     : "bg-paper text-ink"
                  }`}
                >
                  {val}
@@ -203,7 +203,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 </div>
                 <div className="flex items-center gap-2">
                   {raceBonus > 0 && (
-                    <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-md">+{raceBonus}</span>
+                    <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
                   )}
                   <select
                     value={baseScore}
@@ -218,7 +218,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     ))}
                   </select>
                   <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
+                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
                     <span className="text-[10px] text-ink-muted font-medium">mod</span>
@@ -265,7 +265,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handlePointBuyChange(key, score - 1)}
                     disabled={!canDecrease}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
                   >
                     -
                   </button>
@@ -279,12 +279,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handlePointBuyChange(key, score + 1)}
                     disabled={!canIncrease}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
                   >
                     +
                   </button>
                   <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
+                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
                     <span className="text-[10px] text-ink-muted font-medium">mod</span>
@@ -323,7 +323,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handleDiceRollChange(key, score - 1)}
                     disabled={score <= 8}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
                   >
                     -
                   </button>
@@ -337,12 +337,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handleDiceRollChange(key, score + 1)}
                     disabled={score >= 15}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
                   >
                     +
                   </button>
                   <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-md">
+                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
                       {modifier >= 0 ? `+${modifier}` : modifier}
                     </span>
                     <span className="text-[10px] text-ink-muted font-medium">mod</span>
@@ -375,7 +375,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       hint="Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced) or Point Buy (custom)."
     >
       <div className="space-y-4">
-         <div className="flex rounded-lg border border-border-strong bg-paper-muted p-1">
+         <div className="flex rounded-full bg-paper-muted p-1">
           {([
             { key: "standard" as AbilityMethod, label: "Standard Array" },
             { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
@@ -385,7 +385,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
               key={tab.key}
               type="button"
               onClick={() => setMethod(tab.key)}
-              className={`btn flex-1 px-3 py-2 ${
+              className={`btn flex-1 px-3 py-2 rounded-full ${
                 method === tab.key
                   ? "btn-primary"
                   : "btn-secondary"

@@ -33,7 +33,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
             key={cls.name}
             type="button"
             onClick={() => handleSelect(cls.name)}
-            className={`btn w-full p-4 text-left ${
+            className={`btn w-full p-4 text-left rounded-full ${
               isSelected
                 ? "btn-primary"
                 : "btn-secondary"
@@ -53,7 +53,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
                   {cls.subclasses!.map((sub) => (
                     <span
                       key={sub.name}
-                       className="text-[10px] font-bold text-paper-muted bg-ink border-[3px] border-paper px-1.5 py-0.5 rounded-md"
+                       className="text-[10px] font-bold text-paper-muted bg-ink px-1.5 py-0.5 rounded-full"
                     >
                       {sub.name}
                     </span>
