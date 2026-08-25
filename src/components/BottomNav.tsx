@@ -12,7 +12,7 @@ const navItems = [
     icon: Home,
   },
   {
-    name: "New Character",
+    name: "New",
     href: "/character/create",
     icon: WizardHatIcon,
   },
@@ -31,38 +31,38 @@ export function BottomNav() {
   });
 
   return (
-    <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-sm safe-bottom">
-       <div className="flex items-center rounded-full border-[3px] border-paper bg-ink p-1 relative">
-         {navItems.map((item, index) => {
-           const Icon = item.icon;
-           const isActive = index === activeIndex;
-           return (
-             <Link
-               key={item.name}
-               href={item.href}
-               className={`
-                 flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10 active:scale-[0.98]
-                 ${isActive ? "text-ink font-bold" : "text-paper-muted hover:text-paper"}
-               `}
-               aria-current={isActive ? "page" : undefined}
-             >
-              <Icon className={`h-5 w-5`} />
-              <span className={`font-medium text-[10px]`}>
-                {item.name}
-              </span>
-            </Link>
-          );
-        })}
-        {activeIndex >= 0 && (
-          <div
-            className="absolute inset-y-1 rounded-full bg-paper transition-all duration-300 ease-out pointer-events-none border-[3px] border-ink"
-            style={{
-              left: `${(activeIndex / navItems.length) * 100}%`,
-              width: `${(100 / navItems.length)}%`,
-            }}
-          />
-        )}
-      </div>
+    <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm safe-bottom">
+       <div className="flex items-center rounded-full border border-border-strong bg-ink/90 backdrop-blur-sm p-1 relative">
+          {navItems.map((item, index) => {
+            const Icon = item.icon;
+            const isActive = index === activeIndex;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`
+                  flex flex-col items-center justify-center gap-1 flex-1 py-2 transition-all duration-200 relative z-10 active:scale-[0.96]
+                  ${isActive ? "text-paper font-semibold" : "text-ink-muted hover:text-paper"}
+                `}
+                aria-current={isActive ? "page" : undefined}
+              >
+               <Icon className={`h-4 w-4`} />
+               <span className={`font-medium text-[10px]`}>
+                 {item.name}
+               </span>
+             </Link>
+           );
+         })}
+         {activeIndex >= 0 && (
+           <div
+             className="absolute inset-y-1 rounded-full bg-paper/10 border border-paper/20 transition-all duration-300 ease-out pointer-events-none"
+             style={{
+               left: `${(activeIndex / navItems.length) * 100}%`,
+               width: `${(100 / navItems.length)}%`,
+             }}
+           />
+         )}
+       </div>
     </nav>
   );
 }

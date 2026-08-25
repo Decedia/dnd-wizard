@@ -303,13 +303,13 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
   return (
     <div className="min-h-screen bg-ink">
-      <div className="sticky top-0 z-40 bg-ink border-b-[3px] border-paper">
+      <div className="sticky top-0 z-40 bg-ink/90 backdrop-blur-sm border-b border-border-muted">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
-            <button onClick={onCancel} className="text-sm font-bold text-paper-muted hover:text-paper">
+            <button onClick={onCancel} className="text-xs font-semibold text-ink-muted hover:text-paper transition-colors">
               Cancel
             </button>
-            <div className="text-sm font-bold text-paper">Level Up</div>
+            <div className="text-xs font-semibold text-paper">Level Up</div>
             <div className="w-12" />
           </div>
           <div className="mt-2">
@@ -329,7 +329,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     setExpertiseSelections({});
                     setSpellSelections({});
                   }}
-                  className={`btn h-9 min-w-[2.5rem] px-3 text-sm ${
+                  className={`btn h-8 min-w-[2.25rem] px-2.5 text-xs ${
                     lvl === targetLevel
                       ? "btn-primary"
                       : "btn-secondary"
@@ -343,7 +343,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         </div>
       </div>
 
-      <main className="px-4 py-6 pb-40">
+      <main className="px-4 py-5 pb-40">
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={Math.min(screenIndex + 1, screens.length)} totalSteps={Math.max(1, screens.length)} />
 
@@ -353,8 +353,8 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                 const hpStepNumber = screens.slice(0, screenIndex + 1).filter((s) => s.kind === "hp").length;
                 return (
                   <StepCard title={`Level ${screen.level} HP`} hint={`Roll, take the average, or enter your hit die result for level ${screen.level}.`}>
-                    <div className="space-y-4">
-                      <div className="text-xs text-paper-muted font-medium">
+                    <div className="space-y-3">
+                      <div className="text-[11px] text-ink-muted font-medium">
                         Level {screen.level} HP — Step {hpStepNumber} of {hpCount}
                       </div>
 
@@ -381,14 +381,14 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     hint="A popup is open to assign your Ability Score Improvement."
                   >
                     {isConfirmed ? (
-                      <div className="text-center text-sm font-bold text-ink bg-paper py-2 surface">
+                      <div className="text-center text-xs font-semibold text-ink bg-paper py-2 surface">
                         ✓ {ABILITIES.filter(({ key }) => (buildAllocation(st)[key] || 0) > 0).map(({ full, key }) => `${full} increased to ${(character as any)[key] + buildAllocation(st)[key]}`).join(", ")}
                       </div>
                     ) : (
                       <button
                         type="button"
                         onClick={() => setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level))}
-                        className="btn-secondary w-full p-4 text-center text-xs"
+                        className="btn-secondary w-full p-3.5 text-center text-xs"
                       >
                         Complete your Ability Score Improvement
                       </button>
@@ -399,7 +399,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
               return (
                 <StepCard title={sectionTitle(screen.section.type) || "Level Up"} hint={screen.section.description}>
-                  <div className="space-y-5">
+                  <div className="space-y-4">
                     <SectionRenderer
                       section={screen.section}
                       character={character}
@@ -418,7 +418,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
             })()
           ) : (
             <StepCard title="No Levels">
-              <p className="text-sm text-paper-muted font-medium">Choose a target level above to begin leveling up.</p>
+              <p className="text-xs text-ink-muted font-medium">Choose a target level above to begin leveling up.</p>
             </StepCard>
           )}
         </div>
@@ -440,21 +440,21 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         const st = asiState[lvl] || {};
         return (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
-            <div className="w-full max-w-lg rounded-2xl border-[3px] border-paper bg-ink">
-              <div className="flex items-center justify-between border-b-[3px] border-paper px-4 py-3">
-                <div className="text-sm font-bold text-paper">
+            <div className="w-full max-w-lg rounded-xl border border-border-strong bg-ink">
+              <div className="flex items-center justify-between border-b border-border-muted px-4 py-2.5">
+                <div className="text-xs font-semibold text-paper">
                   Level {lvl} — Ability Score Improvement
                 </div>
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="text-xl leading-none text-paper-muted hover:text-paper"
+                  className="text-lg leading-none text-ink-muted hover:text-paper transition-colors"
                   aria-label="Close"
                 >
                   ×
                 </button>
               </div>
-              <div className="max-h-[65vh] overflow-y-auto px-4 py-4">
+              <div className="max-h-[65vh] overflow-y-auto px-4 py-3.5">
                 <AsiStep
                   level={lvl}
                   state={st}
@@ -462,11 +462,11 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   onChange={(patch) => setAsi(lvl, patch)}
                 />
               </div>
-              <div className="flex justify-between border-t-[3px] border-paper px-4 py-3">
+              <div className="flex justify-between border-t border-border-muted px-4 py-2.5">
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="btn-secondary px-5 py-2.5"
+                  className="btn-secondary px-4 py-2 text-xs"
                 >
                   Cancel
                 </button>
@@ -474,7 +474,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="btn-primary px-5 py-2.5"
+                    className="btn-primary px-4 py-2 text-xs"
                   >
                     Continue
                   </button>
@@ -483,7 +483,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     type="button"
                     disabled={!asiIsValid(st)}
                     onClick={handleNext}
-                    className="btn-primary px-5 py-2.5 disabled:opacity-40"
+                    className="btn-primary px-4 py-2 text-xs disabled:opacity-40"
                   >
                     Confirm ASI
                   </button>
@@ -524,8 +524,8 @@ function HpStep({
     <div className="space-y-4">
       <div className="card px-3 py-3 text-center">
         <div className="field-label-light">Hit Die</div>
-        <div className="text-2xl font-display font-bold text-ink bg-paper px-3 py-1 rounded-lg inline-block">d{hitDie}</div>
-        <div className="text-[11px] text-paper-muted font-medium mt-1">
+        <div className="text-xl font-display font-bold text-ink bg-paper px-3 py-1 rounded-md inline-block">d{hitDie}</div>
+        <div className="text-[11px] text-ink-muted font-medium mt-1">
           Roll the die, add your CON modifier ({conMod >= 0 ? `+${conMod}` : conMod}).
         </div>
       </div>
@@ -538,7 +538,7 @@ function HpStep({
         <button
           type="button"
           onClick={() => setValue(averageHp)}
-          className="btn-secondary px-3 py-2.5 text-sm"
+          className="btn-secondary px-3 py-2 text-xs"
         >
           Take Average ({averageHp})
         </button>
@@ -556,8 +556,8 @@ function HpStep({
       </div>
 
       {value > 0 && (
-        <div className="card px-3 py-2 text-center text-sm">
-          <span className="text-paper-muted font-medium">HP gained at level {level}: </span>
+        <div className="card px-3 py-2 text-center text-xs">
+          <span className="text-ink-muted font-medium">HP gained at level {level}: </span>
           <span className="text-ink font-bold bg-paper px-2 py-0.5 rounded-md">{value}</span>
         </div>
       )}
@@ -587,7 +587,7 @@ function AsiStep({
     const changes = (Object.keys(alloc) as AbilityKey[]).filter((k) => alloc[k] > 0);
     return (
       <div className="space-y-3">
-        <p className="text-xs text-paper-muted font-medium">
+        <p className="text-[11px] text-ink-muted font-medium">
           You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
           permanently when you confirm.
         </p>
@@ -595,15 +595,15 @@ function AsiStep({
           {changes.map((k) => {
             const ab = ABILITIES.find((a) => a.key === k)!;
             return (
-              <div key={k} className="text-sm font-medium text-paper">
-                <span className="font-bold">{ab.full}</span>{" "}
-                <span className="text-paper-muted">
+              <div key={k} className="text-xs font-medium text-paper">
+                <span className="font-semibold">{ab.full}</span>{" "}
+                <span className="text-ink-muted">
                   {baseScores[k]} → <span className="text-ink font-bold bg-paper px-1 rounded">{baseScores[k] + alloc[k]}</span>
                 </span>
               </div>
             );
           })}
-          <div className="pt-1 text-sm font-bold text-ink bg-paper px-2 py-1 rounded-lg inline-block">
+          <div className="pt-1 text-xs font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block">
             {changes.map((k) => ABILITIES.find((a) => a.key === k)!.full).join(" and ")} increased!
           </div>
         </div>
@@ -612,8 +612,8 @@ function AsiStep({
   }
 
   return (
-    <div className="space-y-4">
-      <p className="text-xs text-paper-muted font-medium">
+    <div className="space-y-3">
+      <p className="text-[11px] text-ink-muted font-medium">
         You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
         permanently when you confirm.
       </p>
@@ -741,8 +741,8 @@ function SectionRenderer({
 }) {
   const header = (
     <div className="flex items-center gap-2">
-      <span className="text-base">{sectionIcon(section.type)}</span>
-      <div className="text-xs font-bold uppercase tracking-wider text-paper">
+      <span className="text-sm opacity-70">{sectionIcon(section.type)}</span>
+      <div className="text-[11px] font-bold uppercase tracking-wider text-paper">
         {sectionTitle(section.type)}
       </div>
     </div>
@@ -750,7 +750,7 @@ function SectionRenderer({
 
   if (section.type === "subclassSelection" && section.subclassOptions) {
     return (
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {header}
         <div className="space-y-2">
           {section.subclassOptions.map((opt) => {
@@ -760,13 +760,13 @@ function SectionRenderer({
                 key={opt.name}
                 type="button"
                 onClick={() => onSubclassSelect(opt.name)}
-                className={`btn w-full p-3 text-left ${
+                className={`btn w-full p-2.5 text-left ${
                   isSel ? "btn-primary" : "btn-secondary"
                 }`}
               >
-                <div className="text-sm font-bold text-inherit">{opt.name}</div>
+                <div className="text-xs font-semibold text-inherit">{opt.name}</div>
                 {opt.description && (
-                  <p className="mt-1 text-[11px] text-inherit opacity-80 whitespace-pre-line leading-relaxed font-medium">{opt.description}</p>
+                  <p className="mt-0.5 text-[10px] text-inherit opacity-75 whitespace-pre-line leading-relaxed font-medium">{opt.description}</p>
                 )}
               </button>
             );
@@ -778,13 +778,13 @@ function SectionRenderer({
 
   if (section.type === "features") {
     return (
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {header}
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {section.features?.map((f, i) => (
-            <div key={i} className="card p-3">
-              <div className="text-sm font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block tracking-wide">{f.name}</div>
-              <p className="mt-1 text-xs text-paper-muted leading-relaxed whitespace-pre-line font-medium">{f.description}</p>
+            <div key={i} className="card p-2.5">
+              <div className="text-xs font-semibold text-ink bg-paper px-2 py-0.5 rounded-md inline-block tracking-wide">{f.name}</div>
+              <p className="mt-1 text-[11px] text-ink-muted leading-relaxed whitespace-pre-line font-medium">{f.description}</p>
               {section.featureChoices
                 ?.filter((fc) => fc.featureName === f.name)
                 .map((fc) => (
@@ -798,11 +798,11 @@ function SectionRenderer({
                         key={opt}
                         type="button"
                         onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
-                        className={`btn w-full px-2.5 py-2 text-left ${
+                        className={`btn w-full px-2.5 py-1.5 text-left ${
                           isSel ? "btn-primary" : "btn-secondary"
                         }`}
                       >
-                        <div className="text-xs font-bold text-inherit">{opt}</div>
+                        <div className="text-[11px] font-semibold text-inherit">{opt}</div>
                         {fc.descriptions?.[opt] && (
                           <div className="text-[10px] text-ink-muted mt-0.5 leading-relaxed font-medium">{fc.descriptions[opt]}</div>
                         )}
@@ -826,9 +826,9 @@ function SectionRenderer({
       else if (expertise.length < count) onExpertiseChange([...expertise, skill]);
     };
     return (
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {header}
-        <p className="text-xs text-paper-muted font-medium">Choose {count} skill{count !== 1 ? "s" : ""} to gain expertise (double proficiency).</p>
+        <p className="text-[11px] text-ink-muted font-medium">Choose {count} skill{count !== 1 ? "s" : ""} to gain expertise (double proficiency).</p>
         <div className="grid grid-cols-2 gap-1.5">
           {SKILLS.map((s) => {
             const isSel = expertise.includes(s.name);
@@ -839,7 +839,7 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(s.name)}
                 disabled={disabled}
-                className={`btn px-2.5 py-1.5 text-left text-xs ${
+                className={`btn px-2 py-1.5 text-left text-[11px] ${
                   isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
                 }`}
               >
@@ -854,9 +854,9 @@ function SectionRenderer({
 
   if (section.type === "spellSlots") {
     return (
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {header}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {Object.entries(section.spellSlots || {}).map(([lvl, n]) => (
             <span key={lvl} className="badge-light text-ink bg-paper-muted">
               Level {lvl}: {n} slots
@@ -875,9 +875,9 @@ function SectionRenderer({
       else if (spells.length < count) onSpellsChange([...spells, name]);
     };
     return (
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {header}
-        <p className="text-xs text-paper-muted font-medium">You may add up to {count} spell{count !== 1 ? "s" : ""}. (Optional)</p>
+        <p className="text-[11px] text-ink-muted font-medium">You may add up to {count} spell{count !== 1 ? "s" : ""}. (Optional)</p>
         <div className="max-h-64 overflow-y-auto space-y-1.5">
           {available.map((sp) => {
             const isSel = spells.includes(sp.name);
@@ -888,7 +888,7 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(sp.name)}
                 disabled={disabled}
-                className={`btn w-full px-2.5 py-1.5 text-left text-xs ${
+                className={`btn w-full px-2.5 py-1.5 text-left text-[11px] ${
                   isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
                 }`}
               >

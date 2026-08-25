@@ -24,37 +24,37 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
   };
 
   return (
-    <div className="flex items-center gap-6">
-      <div className="flex flex-col items-center gap-1.5">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Successes</span>
-        <div className="flex items-center gap-2">
+    <div className="flex items-center gap-5">
+      <div className="flex flex-col items-center gap-1">
+        <span className="text-[10px] font-medium text-ink-muted uppercase tracking-wider">Successes</span>
+        <div className="flex items-center gap-1.5">
           {[0, 1, 2].map((i) => (
             <button
               key={`s-${i}`}
               type="button"
               onClick={() => handleSuccessClick(i)}
-              className="h-5 w-5 rounded-full border-[3px] transition-all duration-200"
+              className="h-4 w-4 rounded-full border transition-all duration-200"
               style={{
-                backgroundColor: successes > i ? "#ffffff" : "transparent",
-                borderColor: successes > i ? "#ffffff" : "rgba(255, 255, 255, 0.4)",
+                backgroundColor: successes > i ? "#52525b" : "transparent",
+                borderColor: successes > i ? "#52525b" : "#3f3f46",
               }}
               aria-label={`Success ${i + 1}`}
             />
           ))}
         </div>
       </div>
-      <div className="flex flex-col items-center gap-1.5">
-        <span className="text-[10px] font-medium text-text-muted uppercase tracking-wider">Failures</span>
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col items-center gap-1">
+        <span className="text-[10px] font-medium text-ink-muted uppercase tracking-wider">Failures</span>
+        <div className="flex items-center gap-1.5">
           {[0, 1, 2].map((i) => (
             <button
               key={`f-${i}`}
               type="button"
               onClick={() => handleFailureClick(i)}
-              className="h-5 w-5 rounded-full border-[3px] transition-all duration-200"
+              className="h-4 w-4 rounded-full border transition-all duration-200"
               style={{
-                backgroundColor: failures > i ? "#000000" : "transparent",
-                borderColor: failures > i ? "#000000" : "rgba(255, 255, 255, 0.4)",
+                backgroundColor: failures > i ? "#f87171" : "transparent",
+                borderColor: failures > i ? "#f87171" : "#3f3f46",
               }}
               aria-label={`Failure ${i + 1}`}
             />

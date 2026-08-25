@@ -28,13 +28,13 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             onBlur={onFieldBlur}
             className="checkbox"
           />
-          <label htmlFor="custom-hp" className="text-xs font-bold text-paper cursor-pointer select-none">
+          <label htmlFor="custom-hp" className="text-xs font-semibold text-paper cursor-pointer select-none">
             Custom HP
           </label>
         </div>
       ) : (
         character.isCustomHp && (
-          <div className="mb-3 text-xs font-bold text-paper-muted">Custom HP enabled</div>
+          <div className="mb-3 text-xs font-semibold text-ink-muted">Custom HP enabled</div>
         )
       )}
 
@@ -47,7 +47,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <div>
           <div className="flex items-center justify-between mb-1">
             <span className="field-label-light mb-0">HP</span>
-            <span className="text-[10px] font-bold text-paper-muted">
+            <span className="text-[10px] font-semibold text-ink-muted">
               {character.currentHp} / {character.maxHp}
             </span>
           </div>
@@ -62,7 +62,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <div>
           <div className="flex items-center justify-between mb-1">
             <span className="field-label-light mb-0">Temp HP</span>
-            <span className="text-[10px] font-bold text-paper-muted">{character.temporaryHp}</span>
+            <span className="text-[10px] font-semibold text-ink-muted">{character.temporaryHp}</span>
           </div>
           <div className="progress-track-light">
             <div
@@ -74,7 +74,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
       </div>
 
       {editMode && (
-        <div className="grid grid-cols-2 gap-3 mt-4">
+        <div className="grid grid-cols-2 gap-2.5 mt-3.5">
           <Field label="Current HP">
             <input
               type="number"
@@ -128,7 +128,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function CombatIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M14.5 17.5L3 6V3h3l11.5 11.5" />
       <path d="M13 19l6-6" />
       <path d="M16 16l4 4" />

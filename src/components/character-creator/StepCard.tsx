@@ -10,10 +10,10 @@ interface StepProps {
 
 export function StepCard({ title, hint, children }: StepProps) {
   return (
-    <SectionCard id="" title={title} icon={<span className="text-paper">{getStepIcon(title)}</span>}>
+    <SectionCard id="" title={title} icon={<span className="text-paper/70">{getStepIcon(title)}</span>}>
       {hint && (
-        <div className="mb-4 hint-box-light">
-          <p className="text-xs text-paper">{hint}</p>
+        <div className="mb-3 hint-box-light">
+          <p className="text-[11px] text-paper-muted">{hint}</p>
         </div>
       )}
       {children}

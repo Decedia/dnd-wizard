@@ -37,17 +37,17 @@ export default function Home() {
     <div className="min-h-screen bg-ink">
       <AppHeader title="DND Wizard" subtitle="My Characters" />
 
-      <main className="px-4 py-6 pb-28">
+      <main className="px-4 py-4 pb-28">
         <div className="mb-4">
           <Link
             href="/dice"
             className="btn-primary flex items-center justify-center gap-2"
           >
-            <Dices className="h-5 w-5" />
+            <Dices className="h-4 w-4" />
             <span>Dice Roller</span>
           </Link>
         </div>
-        <div className="mb-6">
+        <div className="mb-5">
           <button
             onClick={handleImportClick}
             className="btn-secondary w-full"
@@ -63,74 +63,74 @@ export default function Home() {
             className="hidden"
           />
           {importError && (
-            <div className="mt-3 surface border-red-500 bg-paper px-4 py-3 text-sm font-bold text-red-500">
+            <div className="mt-2.5 surface border-red-500/50 bg-paper/5 px-3 py-2.5 text-xs font-medium text-red-400">
               {importError}
             </div>
           )}
           {importSuccess && (
-            <div className="mt-3 surface bg-paper px-4 py-3 text-sm font-bold text-ink">
+            <div className="mt-2.5 surface bg-paper/5 px-3 py-2.5 text-xs font-medium text-ink">
               {importSuccess}
             </div>
           )}
         </div>
 
         <section>
-          <h2 className="font-display text-lg font-bold text-paper mb-3">
+          <h2 className="font-display text-sm font-semibold text-paper-muted mb-3">
             My Characters
           </h2>
 
           {characters.length === 0 ? (
-               <div className="flex flex-col items-center justify-center card border-dashed border-paper/20 bg-ink py-12 text-center">
-              <div className="mb-3 text-4xl opacity-40">🐉</div>
-              <p className="text-sm text-paper-muted">
+               <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-ink py-10 text-center">
+              <div className="mb-2.5 text-3xl opacity-40">🐉</div>
+              <p className="text-xs text-ink-muted">
                 No characters yet. Create your first hero to begin your adventure.
               </p>
             </div>
           ) : (
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {characters.map((char) => (
                 <li key={char.id}>
                    <Link
                      href={`/character/${char.id}`}
-                      className="card block p-4 transition-all active:scale-[0.98] hover:bg-paper/5"
+                      className="card block p-3.5 transition-all active:scale-[0.98] hover:bg-ink-heavy"
                    >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper-muted text-lg">
-                          🧙
-                        </div>
-                        <div>
-                          <h3 className="font-display font-bold text-paper">
-                            {char.name || "Unnamed Hero"}
-                          </h3>
-                          <p className="text-xs text-paper-muted">
-                            Created {formatDate(char.createdAt)}
-                          </p>
-                        </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-paper/5 text-base">
+                        🧙
                       </div>
-                      <svg
-                        className="h-5 w-5 text-paper-muted"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
+                      <div>
+                        <h3 className="font-display font-semibold text-paper text-sm">
+                          {char.name || "Unnamed Hero"}
+                        </h3>
+                        <p className="text-[11px] text-ink-muted">
+                          Created {formatDate(char.createdAt)}
+                        </p>
+                      </div>
                     </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      </main>
-    </div>
-  );
+                    <svg
+                      className="h-4 w-4 text-ink-muted"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </main>
+  </div>
+);
 }
 
 function formatDate(timestamp: number): string {

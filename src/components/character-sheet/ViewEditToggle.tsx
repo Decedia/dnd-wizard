@@ -9,11 +9,11 @@ interface ViewEditToggleProps {
 
 export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
   return (
-    <div className="flex items-center gap-1 rounded-xl border-[3px] border-paper bg-ink p-1 shrink-0">
+    <div className="flex items-center gap-1 rounded-lg border border-border-strong bg-ink p-0.5 shrink-0">
       <button
         type="button"
         onClick={() => onModeChange("view")}
-        className={`btn rounded-xl px-3 py-1 text-xs ${
+        className={`btn rounded-md px-2.5 py-1 text-[11px] ${
           mode === "view"
             ? "btn-primary"
             : "btn-secondary"
@@ -24,7 +24,7 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
       <button
         type="button"
         onClick={() => onModeChange("edit")}
-        className={`btn rounded-xl px-3 py-1 text-xs ${
+        className={`btn rounded-md px-2.5 py-1 text-[11px] ${
           mode === "edit"
             ? "btn-primary"
             : "btn-secondary"

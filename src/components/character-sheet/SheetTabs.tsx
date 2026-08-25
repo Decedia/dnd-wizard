@@ -17,7 +17,7 @@ const TABS: { id: TabId; label: string }[] = [
 
 export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
   return (
-    <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+    <div className="flex gap-1.5 overflow-x-auto scrollbar-hide">
       {TABS.map((tab) => {
         const isActive = activeTab === tab.id;
         return (
@@ -25,7 +25,7 @@ export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
             key={tab.id}
             type="button"
             onClick={() => onTabChange(tab.id)}
-            className={`btn whitespace-nowrap px-4 py-1.5 ${
+            className={`btn whitespace-nowrap px-3 py-1.5 text-xs ${
               isActive
                 ? "btn-primary"
                 : "btn-secondary"

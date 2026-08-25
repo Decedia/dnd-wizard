@@ -26,19 +26,19 @@ export function HitDicePips({ total, remaining, onChange }: HitDicePipsProps) {
             key={i}
             type="button"
             onClick={() => handleClick(i)}
-            className="h-5 w-5 transition-all duration-150"
+            className="h-4 w-4 transition-all duration-150"
             aria-label={`Hit die ${i + 1}${isUsed ? " used" : " available"}`}
             title={`Die ${i + 1}`}
           >
             <svg viewBox="0 0 20 20" className="h-full w-full">
               <polygon
                 points="10,1 18,5 18,15 10,19 2,15 2,5"
-                fill={isUsed ? "transparent" : "#ffffff"}
-                stroke={isUsed ? "#ffffff" : "#ffffff"}
-                strokeWidth="1.5"
-                opacity={isUsed ? 0.2 : 0.9}
+                fill={isUsed ? "transparent" : "#52525b"}
+                stroke="#52525b"
+                strokeWidth="1"
+                opacity={isUsed ? 0.3 : 0.9}
               />
-              <circle cx="10" cy="10" r="2" fill={isUsed ? "#ffffff" : "#000000"} opacity={isUsed ? 0.2 : 0.9} />
+              <circle cx="10" cy="10" r="1.5" fill={isUsed ? "#52525b" : "#18181b"} opacity={isUsed ? 0.3 : 0.9} />
             </svg>
           </button>
         );

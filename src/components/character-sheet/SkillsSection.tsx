@@ -15,7 +15,7 @@ interface SkillsSectionProps {
 
 function StarIcon({ className, filled = false }: { className?: string; filled?: false }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
   );
@@ -55,13 +55,13 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   return (
     <SectionCard id="skills" title="SKILLS" icon={<SkillsIcon className="h-5 w-5" />}>
       {skillChoices && editMode && (
-        <div className="mb-3 hint-box-light">
-          <span className="text-xs text-paper">
+        <div className="mb-2.5 hint-box-light">
+          <span className="text-[11px] text-paper-muted">
             Select {maxSelections} skills from your class list ({currentSelections} of {maxSelections} selected)
           </span>
         </div>
       )}
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-1.5">
         {srdSkills.map(({ name, ability, description }) => {
           const score = character[ability as keyof Character] as number;
           const mod = getModifier(score);
@@ -76,22 +76,22 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
           return (
             <div
               key={name}
-              className={`card px-3 py-2 ${
+              className={`card px-2.5 py-2 ${
                 isProficient
-                  ? "border-paper bg-paper/10"
+                  ? "border-paper/60 bg-paper/5"
                   : disabled
-                    ? "border-paper/20 bg-ink-muted opacity-50"
+                    ? "border-paper/10 bg-ink-muted/50 opacity-50"
                     : "border-paper bg-ink"
               }`}
             >
               {editMode ? (
                 <label className={`flex items-center justify-between gap-2 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-sm text-paper truncate">{name}</span>
-                    <span className="text-[10px] text-paper-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
+                    <span className="text-xs text-paper truncate">{name}</span>
+                    <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className={`text-sm font-bold ${isProficient ? "text-paper" : "text-paper-muted"}`}>
+                    <span className={`text-xs font-bold ${isProficient ? "text-paper" : "text-ink-muted"}`}>
                       {total >= 0 ? `+${total}` : total}
                     </span>
                     <input
@@ -107,19 +107,19 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               ) : (
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex flex-col min-w-0">
-                    <span className="text-sm text-paper truncate flex items-center gap-1.5">
+                    <span className="text-xs text-paper truncate flex items-center gap-1">
                       {name}
                       {(isProficient || isExpert) && (
                         <span className="flex items-center text-paper">
-                          {isExpert && <StarIcon className="h-3 w-3 filled" />}
-                          {isExpert && isProficient && <StarIcon className="h-3 w-3 -ml-1 filled" />}
-                          {!isExpert && isProficient && <StarIcon className="h-3 w-3 filled" />}
+                          {isExpert && <StarIcon className="h-2.5 w-2.5 filled" />}
+                          {isExpert && isProficient && <StarIcon className="h-2.5 w-2.5 -ml-0.5 filled" />}
+                          {!isExpert && isProficient && <StarIcon className="h-2.5 w-2.5 filled" />}
                         </span>
                       )}
                     </span>
-                    <span className="text-[10px] text-paper-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
+                    <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
-                  <span className={`text-sm font-bold ${isProficient ? "text-paper" : "text-paper-muted"}`}>
+                  <span className={`text-xs font-bold ${isProficient ? "text-paper" : "text-ink-muted"}`}>
                     {total >= 0 ? `+${total}` : total}
                   </span>
                 </div>
@@ -130,7 +130,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
       </div>
 
       {editMode && (
-        <div className="mt-4">
+        <div className="mt-3">
           <span className="field-label-light">Passive Wisdom (Perception)</span>
           <input
             type="number"
@@ -143,14 +143,14 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
 
       {tooltip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm surface bg-ink p-4" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="font-display font-bold text-paper">{tooltip.name}</h3>
-              <button onClick={() => setTooltip(null)} className="text-paper-muted hover:text-paper">
+          <div className="max-w-sm surface bg-ink p-3.5" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-1.5">
+              <h3 className="font-display font-semibold text-paper text-sm">{tooltip.name}</h3>
+              <button onClick={() => setTooltip(null)} className="text-ink-muted hover:text-paper">
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-sm text-paper">{tooltip.description}</p>
+            <p className="text-xs text-paper">{tooltip.description}</p>
           </div>
         </div>
       )}

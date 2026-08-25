@@ -15,7 +15,7 @@ export default function NewCharacter() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-ink">
-      <div className="text-paper-muted font-bold">Creating new character...</div>
+      <div className="text-ink-muted font-semibold text-sm">Creating new character...</div>
     </div>
   );
 }
