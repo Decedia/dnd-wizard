@@ -54,8 +54,13 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
   const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({
     str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0,
   });
+  const [asiModalOpen, setAsiModalOpen] = useState(false);
 
   const currentAsiLevel = pendingAsiLevels[currentAsiIndex];
+
+  useEffect(() => {
+    setAsiModalOpen(!!currentAsiLevel);
+  }, [currentAsiLevel]);
 
   const totalAsiPoints = useMemo(
     () => Object.values(asiAllocation).reduce((sum, val) => sum + val, 0),
@@ -153,10 +158,11 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     : baselineHp;
 
   return (
-    <StepCard
-      title="Starting Level"
-      hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity. Your subclass becomes available when you reach the required level for your class."
-    >
+    <>
+      <StepCard
+        title="Starting Level"
+        hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity. Your subclass becomes available when you reach the required level for your class."
+      >
       <div className="space-y-5">
         <div>
           <div className="text-[10px] text-parchment/40 uppercase tracking-wider mb-2 font-medium">Select Level</div>
@@ -267,15 +273,46 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
           )}
         </div>
 
-        {currentAsiLevel && (
-          <div className="rounded-xl border border-accent/25 bg-accent/5 p-4 space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-accent text-base">📊</span>
-              <div className="text-xs text-accent font-semibold uppercase tracking-wider">
-                Ability Score Improvement (Level {currentAsiLevel})
-              </div>
-            </div>
+        {currentAsiLevel && !asiModalOpen && (
+          <div className="rounded-xl border border-accent/25 bg-accent/5 p-4 text-center text-xs text-parchment/70">
+            Open the Ability Score Improvement popup to continue.
+          </div>
+        )}
+
+        {!currentAsiLevel && pendingAsiLevels.length > 0 && (
+          <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
             <p className="text-xs text-parchment/70 leading-relaxed">
+              Complete the current Ability Score Improvement to continue.
+            </p>
+          </div>
+        )}
+
+        {features.length > 0 && (
+          <div className="space-y-3">
+            <div className="text-[10px] text-parchment/40 uppercase tracking-wider font-medium">Class Features</div>
+            <div className="space-y-4">
+              {features.map((feature, idx) => (
+                <div key={idx} className="rounded-xl border border-border bg-charcoal/30 p-4 space-y-2">
+                  <div className="text-sm font-bold text-accent tracking-wide">{feature.name}</div>
+                  <p className="text-sm text-parchment/80 leading-[1.7] whitespace-pre-line">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </StepCard>
+
+    {asiModalOpen && currentAsiLevel && (
+      <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 sm:items-center sm:p-4">
+        <div className="w-full max-w-lg rounded-t-2xl border border-border bg-charcoal shadow-2xl sm:rounded-2xl">
+          <div className="flex items-center justify-between border-b border-border px-4 py-3">
+            <div className="text-sm font-semibold text-accent">
+              Ability Score Improvement (Level {currentAsiLevel})
+            </div>
+          </div>
+          <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
+            <p className="text-xs text-parchment/70">
               Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
             </p>
             <div className="space-y-2">
@@ -320,39 +357,20 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 );
               })}
             </div>
+          </div>
+          <div className="flex justify-end border-t border-border px-4 py-3">
             <button
               type="button"
               onClick={applyAsi}
               disabled={!canApplyAsi}
-              className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+              className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
             >
               Apply Ability Score Improvement
             </button>
           </div>
-        )}
-
-        {pendingAsiLevels.length > 0 && !currentAsiLevel && (
-          <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
-            <p className="text-xs text-parchment/70 leading-relaxed">
-              Complete the current Ability Score Improvement to continue.
-            </p>
-          </div>
-        )}
-
-        {features.length > 0 && (
-          <div className="space-y-3">
-            <div className="text-[10px] text-parchment/40 uppercase tracking-wider font-medium">Class Features</div>
-            <div className="space-y-4">
-              {features.map((feature, idx) => (
-                <div key={idx} className="rounded-xl border border-border bg-charcoal/30 p-4 space-y-2">
-                  <div className="text-sm font-bold text-accent tracking-wide">{feature.name}</div>
-                  <p className="text-sm text-parchment/80 leading-[1.7] whitespace-pre-line">{feature.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
-    </StepCard>
+    )}
+  </>
   );
 }
