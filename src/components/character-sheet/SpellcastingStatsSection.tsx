@@ -92,7 +92,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
         <span className="field-label-light">Cantrips</span>
         <div className="space-y-2">
           {character.cantrips.map((cantrip) => (
-            <div key={cantrip.id} className="flex items-center gap-2 rounded-lg border-2 border-paper bg-ink px-3 py-2">
+            <div key={cantrip.id} className="card flex items-center gap-2 px-3 py-2">
               {editMode ? (
                 <>
                   <input
@@ -122,7 +122,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
           <button
             type="button"
             onClick={addCantrip}
-            className="mt-2 rounded-lg border-2 border-dashed border-paper px-4 py-2 text-sm font-bold text-paper-muted transition-colors hover:border-ink hover:text-ink"
+            className="mt-2 btn-secondary border-dashed"
           >
             + Add Cantrip
           </button>
@@ -136,7 +136,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
             const total = character.spellSlots[level] ?? 0;
             const expended = character.spellSlotsExpended[level] ?? 0;
             return (
-              <div key={level} className="flex items-center gap-3 rounded-lg border-2 border-paper bg-ink px-3 py-2">
+               <div key={level} className="card flex items-center gap-3 px-3 py-2">
                 <span className="text-sm font-bold text-paper w-16">Level {level}</span>
                 {editMode ? (
                   <div className="flex items-center gap-2">

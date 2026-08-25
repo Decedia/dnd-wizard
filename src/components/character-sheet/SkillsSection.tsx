@@ -76,7 +76,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
           return (
             <div
               key={name}
-              className={`rounded-lg border-2 px-3 py-2 ${
+              className={`card px-3 py-2 ${
                 isProficient
                   ? "border-paper bg-paper/10"
                   : disabled
@@ -143,7 +143,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
 
       {tooltip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm rounded-lg border-2 border-paper bg-ink p-4" onClick={(e) => e.stopPropagation()}>
+          <div className="max-w-sm surface bg-ink p-4" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-display font-bold text-paper">{tooltip.name}</h3>
               <button onClick={() => setTooltip(null)} className="text-paper-muted hover:text-paper">

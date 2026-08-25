@@ -60,7 +60,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               className="input bg-paper-muted"
             />
           ) : (
-            <span className="text-sm font-bold text-ink">+{character.proficiencyBonus}</span>
+            <span className="text-sm font-bold text-paper">+{character.proficiencyBonus}</span>
           )}
         </Field>
         <Field label="INITIATIVE">
@@ -97,7 +97,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             const abilityMod = getModifier(character[key]);
             return (
-              <div key={key} className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-3 py-2">
+               <div key={key} className="card flex items-center justify-between px-3 py-2">
                 <div className="flex items-center gap-3">
                   <span className="text-sm text-paper-muted w-10 font-medium">{key.toUpperCase()}</span>
                   <span className="text-paper-muted">•</span>

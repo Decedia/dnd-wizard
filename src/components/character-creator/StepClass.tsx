@@ -29,16 +29,16 @@ export function StepClass({ data, onChange }: StepClassProps) {
           const subclassLevel = cls.subclassLevel;
 
           return (
-            <button
-              key={cls.name}
-              type="button"
-              onClick={() => handleSelect(cls.name)}
-              className={`w-full rounded-lg border-2 p-4 text-left transition-all ${
-                isSelected
-                  ? "border-paper bg-paper text-ink"
-                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
-              }`}
-            >
+          <button
+            key={cls.name}
+            type="button"
+            onClick={() => handleSelect(cls.name)}
+            className={`btn w-full p-4 text-left ${
+              isSelected
+                ? "btn-primary"
+                : "btn-secondary"
+            }`}
+          >
               <div className="flex items-center justify-between">
                 <span className="font-display font-bold text-inherit">{cls.name}</span>
                 {hasSubclasses && (
@@ -53,7 +53,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
                   {cls.subclasses!.map((sub) => (
                     <span
                       key={sub.name}
-                      className="text-[10px] font-bold text-paper-muted bg-ink border-2 border-paper px-1.5 py-0.5 rounded-md"
+                       className="text-[10px] font-bold text-paper-muted bg-ink border-[3px] border-paper px-1.5 py-0.5 rounded-md"
                     >
                       {sub.name}
                     </span>

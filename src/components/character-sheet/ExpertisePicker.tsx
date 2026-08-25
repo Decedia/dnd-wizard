@@ -45,7 +45,7 @@ export function ExpertisePicker({ character, selectedExpertise, onExpertiseChang
           return (
             <label
               key={name}
-              className={`flex items-center gap-3 rounded-lg border-2 px-3 py-2 cursor-pointer transition-all ${
+              className={`card flex items-center gap-3 px-3 py-2 cursor-pointer transition-all ${
                 isSelected
                   ? "border-paper bg-paper/10 text-ink"
                   : isDisabled

@@ -1,15 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticSpells } from "@/lib/srd-client";
+import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
+import type { Character } from "@/lib/storage";
 
 interface StepSpellsProps {
-  data: {
-    class: string;
-    spells: Array<{ id: string; name: string; level: number; source: string; description: string }>;
-  };
-  onChange: (patch: { spells: Array<{ id: string; name: string; level: number; source: string; description: string }> }) => void;
+  data: Character;
+  onChange: (patch: Partial<Character>) => void;
 }
 
 export function StepSpells({ data, onChange }: StepSpellsProps) {
@@ -65,10 +63,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                       key={spell.name}
                       type="button"
                       onClick={() => toggleSpell(spell.name)}
-                      className={`w-full rounded-lg border-2 px-3 py-2 text-left transition-all ${
+                      className={`btn w-full px-3 py-2 text-left ${
                         isSelected
-                          ? "border-paper bg-paper/10 text-ink"
-                          : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                          ? "btn-primary"
+                          : "btn-secondary"
                       }`}
                     >
                       <div className="flex items-center justify-between">

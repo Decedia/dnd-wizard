@@ -18,7 +18,7 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
     return (
       <div className="stat-box-light">
         <span className="text-[10px] font-bold text-paper-muted uppercase tracking-wider">{label}</span>
-        <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-red-500"}`}>
+        <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-paper-muted"}`}>
           {mod >= 0 ? `+${mod}` : mod}
         </span>
         <span className="text-[10px] font-bold text-paper-muted mt-1">{value}</span>
@@ -49,7 +49,7 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
         />
       ) : (
         <>
-          <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-red-500"}`}>
+          <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-paper-muted"}`}>
             {mod >= 0 ? `+${mod}` : mod}
           </span>
           <button

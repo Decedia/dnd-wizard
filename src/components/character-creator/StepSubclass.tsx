@@ -47,10 +47,10 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               key={sub.name}
               type="button"
               onClick={() => handleSelect(sub.name)}
-              className={`w-full rounded-lg border-2 p-4 text-left transition-all ${
+              className={`btn w-full p-4 text-left ${
                 isSelected
-                  ? "border-paper bg-paper text-ink"
-                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                  ? "btn-primary"
+                  : "btn-secondary"
               }`}
             >
               <div className="flex items-center justify-between">
@@ -66,13 +66,13 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                   {sub.description}
                 </p>
               )}
-              {earnedFeatures.length > 0 && (
-                <div className="mt-3 space-y-2 divider pt-3">
-                  <div className="text-[10px] uppercase tracking-wider text-paper-muted font-bold">
-                    Features
-                  </div>
-                  {earnedFeatures.map((f) => (
-                    <div key={f.name} className="rounded-lg border-2 border-paper bg-ink px-3 py-2">
+                  {earnedFeatures.length > 0 && (
+                    <div className="mt-3 space-y-2 divider pt-3">
+                      <div className="text-[10px] uppercase tracking-wider text-paper-muted font-bold">
+                        Features
+                      </div>
+                      {earnedFeatures.map((f) => (
+                        <div key={f.name} className="card px-3 py-2">
                       <div className="text-xs font-bold text-paper">
                         {f.name}
                         {f.level ? <span className="ml-1 text-paper-muted font-medium">Lv {f.level}</span> : null}

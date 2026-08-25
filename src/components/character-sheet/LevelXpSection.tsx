@@ -22,7 +22,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
     <SectionCard id="level-xp" title="LEVEL & EXPERIENCE" icon={<LevelIcon className="h-5 w-5" />}>
       <div className="flex items-center gap-5">
         <div className="relative flex flex-col items-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-lg border-2 border-paper bg-paper">
+          <div className="flex h-20 w-20 items-center justify-center rounded-xl border-[3px] border-paper bg-paper">
             <div className="flex flex-col items-center">
               <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">Level</span>
               <span className="text-3xl font-bold text-ink">{level}</span>

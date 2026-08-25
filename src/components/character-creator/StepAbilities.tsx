@@ -177,7 +177,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 className={`px-3 py-1.5 rounded-lg text-sm font-bold ${
                   isUsed
                     ? "bg-paper-muted text-paper-muted line-through"
-                    : "bg-ink text-paper border-2 border-paper"
+                    : "bg-ink text-paper border-[3px] border-paper"
                 }`}
               >
                 {val}
@@ -195,7 +195,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-3"
+                className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-paper w-12">{label}</span>
@@ -235,7 +235,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const renderPointBuy = () => {
     return (
       <div className="space-y-4">
-        <div className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-2">
+         <div className="flex items-center justify-between card px-4 py-2">
           <span className="text-sm font-bold text-paper">Points Remaining</span>
           <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-paper" : "text-paper-muted"}`}>
             {pointBuyRemaining} / {POINT_BUY_TOTAL}
@@ -254,7 +254,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-3"
+                className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-paper w-12">{label}</span>
@@ -265,7 +265,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handlePointBuyChange(key, score - 1)}
                     disabled={!canDecrease}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
                   >
                     -
                   </button>
@@ -279,7 +279,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handlePointBuyChange(key, score + 1)}
                     disabled={!canIncrease}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
                   >
                     +
                   </button>
@@ -312,7 +312,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="flex items-center justify-between rounded-lg border-2 border-paper bg-ink px-4 py-3"
+                className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-paper w-12">{label}</span>
@@ -323,7 +323,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handleDiceRollChange(key, score - 1)}
                     disabled={score <= 8}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
                   >
                     -
                   </button>
@@ -337,7 +337,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     type="button"
                     onClick={() => handleDiceRollChange(key, score + 1)}
                     disabled={score >= 15}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-paper text-paper disabled:opacity-30 hover:bg-paper hover:text-ink transition-colors"
+                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
                   >
                     +
                   </button>
@@ -375,7 +375,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       hint="Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced) or Point Buy (custom)."
     >
       <div className="space-y-4">
-        <div className="flex rounded-lg border-2 border-paper bg-ink p-1">
+         <div className="flex rounded-xl border-[3px] border-paper bg-ink p-1">
           {([
             { key: "standard" as AbilityMethod, label: "Standard Array" },
             { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
@@ -385,10 +385,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
               key={tab.key}
               type="button"
               onClick={() => setMethod(tab.key)}
-              className={`flex-1 rounded-md px-3 py-2 text-xs font-bold transition-all ${
+              className={`btn flex-1 px-3 py-2 ${
                 method === tab.key
-                  ? "bg-paper text-ink border-2 border-paper"
-                  : "text-paper-muted hover:text-paper border-2 border-transparent"
+                  ? "btn-primary"
+                  : "btn-secondary"
               }`}
             >
               {tab.label}

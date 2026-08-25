@@ -40,14 +40,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     <SectionCard id="features" title="FEATURES & TRAITS" icon={<FeaturesIcon className="h-5 w-5" />}>
       <div className="space-y-3">
         {character.subclass && (
-          <div key="subclass-header" className="rounded-lg border-2 border-paper bg-paper-muted px-3 py-2">
+          <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
             <span className="text-sm font-bold text-ink">{character.subclass}</span>
           </div>
         )}
         {character.features.map((feature) => {
           const isLocked = feature.locked === true;
           return (
-            <div key={feature.id} className={`rounded-lg border-2 p-3 ${isLocked ? "border-paper bg-paper-muted" : "border-paper bg-ink"}`}>
+            <div key={feature.id} className={`card p-3 ${isLocked ? "border-paper bg-paper-muted" : "border-paper bg-ink"}`}>
               {editMode ? (
                 <>
                   <div className="flex items-center justify-between gap-3">
@@ -96,13 +96,13 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         })}
       </div>
       {editMode && (
-        <button
-          type="button"
-          onClick={addItem}
-          className="mt-3 rounded-lg border-2 border-dashed border-paper px-4 py-2 text-sm font-bold text-paper-muted transition-colors hover:border-ink hover:text-ink"
-        >
-          + Add Feature
-        </button>
+          <button
+            type="button"
+            onClick={addItem}
+            className="mt-3 btn-secondary border-dashed"
+          >
+            + Add Feature
+          </button>
       )}
     </SectionCard>
   );

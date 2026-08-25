@@ -159,7 +159,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           const isCustom = item.source === "custom";
           const dropdownValue = isCustom ? "Custom Item" : (item.srdItemName || item.name || "");
           return (
-            <div key={item.id} className="flex flex-col gap-2 rounded-lg border-2 border-paper bg-ink px-3 py-2.5">
+            <div key={item.id} className="card flex flex-col gap-2 px-3 py-2.5">
               {editMode ? (
                 <>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -218,10 +218,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <button
                         type="button"
                         onClick={() => toggleEquip(item.id, item.itemType)}
-                        className={`rounded-md px-2.5 py-1 text-xs font-bold transition-colors ${
+                        className={`btn px-2.5 py-1 text-xs ${
                           item.equipped
-                            ? "bg-paper text-ink border-2 border-ink"
-                            : "border-2 border-paper text-paper hover:text-ink hover:bg-paper"
+                            ? "btn-primary"
+                            : "btn-secondary"
                         }`}
                       >
                         {item.equipped ? "Equipped" : "Equip"}
@@ -260,23 +260,23 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 <DescriptionText>{description}</DescriptionText>
               )}
               {getWeaponStats(item) && !editMode && (
-                <p className="text-sm font-bold text-ink bg-paper px-3 py-2.5 border-2 border-ink rounded-lg">{getWeaponStats(item)}</p>
+                <p className="text-sm font-bold text-ink bg-paper px-3 py-2.5 surface">{getWeaponStats(item)}</p>
               )}
               {getWeaponStats(item) && editMode && (
-                <p className="text-sm font-bold text-ink bg-paper px-3 py-2.5 border-2 border-ink rounded-lg">{getWeaponStats(item)}</p>
+                <p className="text-sm font-bold text-ink bg-paper px-3 py-2.5 surface">{getWeaponStats(item)}</p>
               )}
             </div>
           );
         })}
       </div>
       {editMode && (
-        <button
-          type="button"
-          onClick={addCustomItem}
-          className="mt-4 rounded-lg border-2 border-dashed border-paper px-4 py-2 text-sm font-bold text-paper-muted transition-colors hover:border-ink hover:text-ink"
-        >
-          + Add Custom Item
-        </button>
+          <button
+            type="button"
+            onClick={addCustomItem}
+            className="mt-4 btn-secondary border-dashed"
+          >
+            + Add Custom Item
+          </button>
       )}
 
       <div className="mt-5 flex flex-wrap items-center gap-3 divider pt-4">

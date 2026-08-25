@@ -21,7 +21,7 @@ export function WizardHatIcon({ className }: { className?: string }) {
 
 export function AppHeader({ title, subtitle, editMode, onEditModeChange }: AppHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 border-b-2 border-paper bg-ink">
+    <header className="sticky top-0 z-40 border-b-[3px] border-paper bg-ink">
       <div className="mx-auto max-w-lg px-4 py-4">
         <div className="flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center gap-3 group">

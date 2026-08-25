@@ -26,8 +26,8 @@ export function ShieldStat({ value, label = "AC" }: ShieldStatProps) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">{label}</span>
-          <span className="text-2xl font-bold text-ink">{value}</span>
+          <span className="text-[10px] font-bold text-paper-muted uppercase tracking-wider">{label}</span>
+          <span className="text-2xl font-bold text-paper">{value}</span>
         </div>
       </div>
     </div>

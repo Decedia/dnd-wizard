@@ -137,7 +137,7 @@ export default function CharacterView() {
       <div className="min-h-screen bg-ink">
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
-          <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-paper/20 bg-ink py-20 text-center">
+          <div className="flex flex-col items-center justify-center card border-dashed border-paper/20 bg-ink py-20 text-center">
             <div className="mb-4 text-5xl opacity-40">🐉</div>
             <h2 className="font-display text-xl font-bold text-paper mb-2">
               Character Not Found
@@ -147,7 +147,7 @@ export default function CharacterView() {
             </p>
             <Link
               href="/"
-              className="rounded-lg bg-paper px-6 py-3 text-sm font-bold text-ink transition-colors hover:bg-paper-muted border-2 border-ink"
+              className="btn-primary"
             >
               Return Home
             </Link>
@@ -161,7 +161,7 @@ export default function CharacterView() {
     <div className="min-h-screen bg-ink">
       <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} />
 
-      <div className="sticky top-[68px] z-30 bg-ink border-b-2 border-paper">
+      <div className="sticky top-[68px] z-30 bg-ink border-b-[3px] border-paper">
         <div className="mx-auto max-w-lg px-4 py-3">
           <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
         </div>
@@ -207,7 +207,7 @@ export default function CharacterView() {
               {character.level < 20 && (
                 <button
                   onClick={() => router.push(`/character/${character.id}/level-up`)}
-                  className="w-full rounded-lg border-2 border-paper bg-transparent px-4 py-3 text-sm font-bold text-paper transition-all hover:bg-paper hover:text-ink active:scale-[0.98]"
+                  className="btn-secondary w-full"
                 >
                   Level Up
                 </button>
@@ -220,7 +220,7 @@ export default function CharacterView() {
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={handleSave}
-                className="flex items-center justify-center gap-2 rounded-lg bg-paper px-4 py-3 text-sm font-bold text-ink transition-all hover:bg-paper-muted active:scale-[0.98] border-2 border-ink"
+                className="btn-primary flex items-center justify-center gap-2"
               >
                 <Save className="h-4 w-4" />
                 Save
@@ -228,7 +228,7 @@ export default function CharacterView() {
               <button
                 onClick={handleExport}
                 disabled={exportingPdf}
-                className="flex items-center justify-center gap-2 rounded-lg border-2 border-paper bg-transparent px-4 py-3 text-sm font-bold text-paper transition-all hover:bg-paper hover:text-ink active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
+                className="btn-secondary flex items-center justify-center gap-2 disabled:opacity-60"
               >
                 {exportingPdf ? (
                   <>
@@ -244,7 +244,7 @@ export default function CharacterView() {
               </button>
               <button
                 onClick={handleImportClick}
-                className="flex items-center justify-center gap-2 rounded-lg border-2 border-paper bg-transparent px-4 py-3 text-sm font-bold text-paper transition-all hover:bg-paper hover:text-ink active:scale-[0.98]"
+                className="btn-secondary flex items-center justify-center gap-2"
               >
                 <Upload className="h-4 w-4" />
                 Import PDF
@@ -252,13 +252,13 @@ export default function CharacterView() {
             </div>
             <button
               onClick={handleDelete}
-              className="flex items-center justify-center gap-2 w-full rounded-lg border-2 border-ink bg-paper px-4 py-3 text-sm font-bold text-ink transition-all hover:bg-red-500 hover:text-white hover:border-red-500 active:scale-[0.98]"
+              className="btn-danger w-full flex items-center justify-center gap-2"
             >
               <Trash2 className="h-4 w-4" />
               Delete Character
             </button>
             {savedAt && (
-              <div className="flex items-center justify-center gap-1.5 text-sm font-bold text-ink bg-paper py-2 rounded-lg border-2 border-ink">
+              <div className="flex items-center justify-center gap-1.5 text-sm font-bold text-ink bg-paper py-2 surface">
                 <CheckIcon className="h-4 w-4" />
                 Saved
               </div>

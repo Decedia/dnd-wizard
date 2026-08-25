@@ -53,14 +53,14 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   return (
     <SectionCard id="attacks" title="ATTACKS" icon={<AttacksIcon className="h-5 w-5" />}>
       {character.class === "Rogue" && sneakAttack && (
-        <div className="mb-4 rounded-lg border-2 border-paper bg-paper-muted px-4 py-3">
+        <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Sneak Attack: {sneakAttack}</span>
         </div>
       )}
       {classAttacks.length > 0 && (
         <div className="mb-4 space-y-3">
           {classAttacks.map((attack) => (
-            <div key={attack.id} className="flex flex-col gap-3 rounded-lg border-2 border-paper bg-paper-muted px-4 py-4">
+            <div key={attack.id} className="card bg-paper-muted px-4 py-4">
               <div className="flex items-center gap-3">
                 <span className="text-base font-bold text-ink flex-1">{attack.name}</span>
                 <span className="badge text-ink bg-paper-muted">class-granted</span>
@@ -68,7 +68,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
               <div className="flex items-center gap-3 flex-wrap">
                 <span className="text-sm text-ink">{attack.damageType}</span>
                 {attack.sneakAttack && (
-                  <span className="text-xs font-bold text-ink bg-paper-muted px-2.5 py-1.5 rounded border-2 border-ink">+{attack.sneakAttack} sneak</span>
+                    <span className="text-xs font-bold text-ink bg-paper-muted px-2.5 py-1.5 surface">+{attack.sneakAttack} sneak</span>
                 )}
               </div>
             </div>
@@ -82,11 +82,11 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
           {weaponAttacks.map((attack) => {
             const details = getWeaponAttackDetails(attack);
             return (
-              <div key={attack.id} className="flex flex-col gap-3 rounded-lg border-2 border-paper bg-ink px-4 py-4">
+              <div key={attack.id} className="card bg-ink px-4 py-4">
                 <div className="flex items-center gap-3">
                   <span className="text-base font-bold text-paper flex-1">{attack.name}</span>
                   {details && (
-                    <span className="text-sm font-bold text-ink bg-paper px-3 py-1.5 rounded-lg border-2 border-ink">
+                    <span className="text-sm font-bold text-ink bg-paper px-3 py-1.5 surface">
                       +{details.attackBonus} to hit ({details.abilityKey.toUpperCase()})
                     </span>
                   )}
@@ -106,7 +106,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                     <span className="text-sm text-paper font-bold">{attack.damageType}</span>
                   )}
                   {attack.sneakAttack && (
-                    <span className="text-xs font-bold text-ink bg-paper px-2.5 py-1.5 rounded-lg border-2 border-ink">
+                    <span className="text-xs font-bold text-ink bg-paper px-2.5 py-1.5 surface">
                       +{attack.sneakAttack} sneak
                     </span>
                   )}

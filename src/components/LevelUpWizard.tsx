@@ -303,7 +303,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
   return (
     <div className="min-h-screen bg-ink">
-      <div className="sticky top-0 z-40 bg-ink border-b-2 border-paper">
+      <div className="sticky top-0 z-40 bg-ink border-b-[3px] border-paper">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
             <button onClick={onCancel} className="text-sm font-bold text-paper-muted hover:text-paper">
@@ -329,10 +329,10 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     setExpertiseSelections({});
                     setSpellSelections({});
                   }}
-                  className={`h-9 min-w-[2.5rem] rounded-lg border-2 px-3 text-sm font-bold transition-all ${
+                  className={`btn h-9 min-w-[2.5rem] px-3 text-sm ${
                     lvl === targetLevel
-                      ? "bg-paper text-ink border-paper"
-                      : "bg-ink text-paper-muted hover:text-paper border-paper"
+                      ? "btn-primary"
+                      : "btn-secondary"
                   }`}
                 >
                   {lvl}
@@ -381,14 +381,14 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                     hint="A popup is open to assign your Ability Score Improvement."
                   >
                     {isConfirmed ? (
-                      <div className="text-center text-sm font-bold text-ink bg-paper py-2 rounded-lg border-2 border-paper">
+                      <div className="text-center text-sm font-bold text-ink bg-paper py-2 surface">
                         ✓ {ABILITIES.filter(({ key }) => (buildAllocation(st)[key] || 0) > 0).map(({ full, key }) => `${full} increased to ${(character as any)[key] + buildAllocation(st)[key]}`).join(", ")}
                       </div>
                     ) : (
                       <button
                         type="button"
                         onClick={() => setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level))}
-                        className="rounded-lg border-2 border-paper bg-ink p-4 text-center text-xs font-medium text-paper hover:bg-paper-muted w-full"
+                        className="btn-secondary w-full p-4 text-center text-xs"
                       >
                         Complete your Ability Score Improvement
                       </button>
@@ -440,8 +440,8 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         const st = asiState[lvl] || {};
         return (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
-            <div className="w-full max-w-lg rounded-2xl border-2 border-paper bg-ink">
-              <div className="flex items-center justify-between border-b-2 border-paper px-4 py-3">
+            <div className="w-full max-w-lg rounded-2xl border-[3px] border-paper bg-ink">
+              <div className="flex items-center justify-between border-b-[3px] border-paper px-4 py-3">
                 <div className="text-sm font-bold text-paper">
                   Level {lvl} — Ability Score Improvement
                 </div>
@@ -462,11 +462,11 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   onChange={(patch) => setAsi(lvl, patch)}
                 />
               </div>
-              <div className="flex justify-between border-t-2 border-paper px-4 py-3">
+              <div className="flex justify-between border-t-[3px] border-paper px-4 py-3">
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="rounded-lg border-2 border-paper bg-transparent px-5 py-2.5 text-sm font-bold text-paper hover:bg-paper hover:text-ink transition-colors"
+                  className="btn-secondary px-5 py-2.5"
                 >
                   Cancel
                 </button>
@@ -522,7 +522,7 @@ function HpStep({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-lg border-2 border-paper bg-ink px-3 py-3 text-center">
+      <div className="card px-3 py-3 text-center">
         <div className="field-label-light">Hit Die</div>
         <div className="text-2xl font-display font-bold text-ink bg-paper px-3 py-1 rounded-lg inline-block">d{hitDie}</div>
         <div className="text-[11px] text-paper-muted font-medium mt-1">
@@ -556,7 +556,7 @@ function HpStep({
       </div>
 
       {value > 0 && (
-        <div className="rounded-lg border-2 border-paper bg-ink px-3 py-2 text-center text-sm">
+        <div className="card px-3 py-2 text-center text-sm">
           <span className="text-paper-muted font-medium">HP gained at level {level}: </span>
           <span className="text-ink font-bold bg-paper px-2 py-0.5 rounded-md">{value}</span>
         </div>
@@ -591,7 +591,7 @@ function AsiStep({
           You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
           permanently when you confirm.
         </p>
-        <div className="rounded-lg border-2 border-paper bg-ink px-3 py-3 space-y-1">
+        <div className="card px-3 py-3 space-y-1">
           {changes.map((k) => {
             const ab = ABILITIES.find((a) => a.key === k)!;
             return (
@@ -760,8 +760,8 @@ function SectionRenderer({
                 key={opt.name}
                 type="button"
                 onClick={() => onSubclassSelect(opt.name)}
-                className={`w-full rounded-lg border-2 p-3 text-left transition-all ${
-                  isSel ? "border-paper bg-paper text-ink" : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                className={`btn w-full p-3 text-left ${
+                  isSel ? "btn-primary" : "btn-secondary"
                 }`}
               >
                 <div className="text-sm font-bold text-inherit">{opt.name}</div>
@@ -782,7 +782,7 @@ function SectionRenderer({
         {header}
         <div className="space-y-3">
           {section.features?.map((f, i) => (
-            <div key={i} className="rounded-lg border-2 border-paper bg-ink p-3">
+            <div key={i} className="card p-3">
               <div className="text-sm font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block tracking-wide">{f.name}</div>
               <p className="mt-1 text-xs text-paper-muted leading-relaxed whitespace-pre-line font-medium">{f.description}</p>
               {section.featureChoices
@@ -798,8 +798,8 @@ function SectionRenderer({
                         key={opt}
                         type="button"
                         onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
-                        className={`w-full rounded-lg border-2 px-2.5 py-2 text-left transition-all ${
-                          isSel ? "border-paper bg-paper/10 text-ink" : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                        className={`btn w-full px-2.5 py-2 text-left ${
+                          isSel ? "btn-primary" : "btn-secondary"
                         }`}
                       >
                         <div className="text-xs font-bold text-inherit">{opt}</div>
@@ -839,8 +839,8 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(s.name)}
                 disabled={disabled}
-                className={`rounded-lg border-2 px-2.5 py-1.5 text-left text-xs font-bold transition-all ${
-                  isSel ? "border-paper bg-paper/10 text-ink" : disabled ? "border-paper/20 bg-ink-muted opacity-50" : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                className={`btn px-2.5 py-1.5 text-left text-xs ${
+                  isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
                 }`}
               >
                 {s.name}
@@ -888,8 +888,8 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(sp.name)}
                 disabled={disabled}
-                className={`w-full rounded-lg border-2 px-2.5 py-1.5 text-left text-xs font-bold transition-all ${
-                  isSel ? "border-paper bg-paper/10 text-ink" : disabled ? "border-paper/20 bg-ink-muted opacity-50" : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                className={`btn w-full px-2.5 py-1.5 text-left text-xs ${
+                  isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
                 }`}
               >
                 {sp.name} <span className="text-ink-muted font-medium">Lv {sp.level}</span>

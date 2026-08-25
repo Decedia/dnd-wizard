@@ -36,11 +36,11 @@ export function ProficiencyDot({ proficient, onChange, size = "sm", editMode }: 
       aria-checked={proficient}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      className={`${sizeClasses} rounded-full border-2 transition-all duration-200 ${
+      className={`${sizeClasses} rounded-full border-[3px] transition-all duration-200 ${
          proficient
-           ? "border-accent bg-accent shadow-sm shadow-accent/40"
-           : "border-border bg-transparent hover:border-text-muted"
-      } ${interactive ? "cursor-pointer" : "cursor-default"}`}
+           ? "border-paper bg-paper"
+           : "border-paper/40 hover:border-paper"
+       } ${interactive ? "cursor-pointer" : "cursor-default"}`}
     />
   );
 }

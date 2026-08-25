@@ -106,19 +106,19 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                     const isDisabled = !isSelected && selected.length >= maxCount;
 
                     return (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => handleSelect(selection.storageKey, option, maxCount)}
-                        disabled={isDisabled}
-                        className={`w-full rounded-lg border-2 px-3 py-2 text-left transition-all ${
-                          isSelected
-                            ? "border-paper bg-paper/10 text-ink"
-                            : isDisabled
-                              ? "border-paper/20 bg-ink-muted opacity-50 cursor-not-allowed"
-                              : "border-paper bg-ink text-paper hover:bg-paper-muted"
-                        }`}
-                      >
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => handleSelect(selection.storageKey, option, maxCount)}
+                      disabled={isDisabled}
+                      className={`btn w-full px-3 py-2 text-left ${
+                        isSelected
+                          ? "btn-primary"
+                          : isDisabled
+                            ? "btn-secondary opacity-50 cursor-not-allowed"
+                            : "btn-secondary"
+                      }`}
+                    >
                         <div className="flex items-center justify-between">
                           <div>
                             <span className="text-sm font-bold text-inherit">{option}</span>
@@ -169,12 +169,12 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
             type="button"
             onClick={() => onSelect(spellName)}
             disabled={isDisabled}
-            className={`w-full rounded-lg border-2 px-3 py-2 text-left transition-all ${
+            className={`btn w-full px-3 py-2 text-left ${
               isSelected
-                ? "border-paper bg-paper/10 text-ink"
+                ? "btn-primary"
                 : isDisabled
-                  ? "border-paper/20 bg-ink-muted opacity-50 cursor-not-allowed"
-                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                  ? "btn-secondary opacity-50 cursor-not-allowed"
+                  : "btn-secondary"
             }`}
           >
             <div className="flex items-center justify-between">

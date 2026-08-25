@@ -41,7 +41,7 @@ export default function Home() {
         <div className="mb-4">
           <Link
             href="/dice"
-            className="flex items-center justify-center gap-2 rounded-lg border-2 border-paper bg-paper px-6 py-3 text-sm font-bold text-ink transition-all hover:bg-paper-muted active:scale-[0.98]"
+            className="btn-primary flex items-center justify-center gap-2"
           >
             <Dices className="h-5 w-5" />
             <span>Dice Roller</span>
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="mb-6">
           <button
             onClick={handleImportClick}
-            className="w-full rounded-lg border-2 border-paper bg-transparent px-6 py-3 text-sm font-bold text-paper transition-all hover:bg-paper/10 active:scale-[0.98]"
+            className="btn-secondary w-full"
           >
             <Upload className="h-4 w-4 mr-2 inline" />
             Import from PDF
@@ -63,12 +63,12 @@ export default function Home() {
             className="hidden"
           />
           {importError && (
-            <div className="mt-3 rounded-lg border-2 border-red-500 bg-paper px-4 py-3 text-sm font-bold text-red-500">
+            <div className="mt-3 surface border-red-500 bg-paper px-4 py-3 text-sm font-bold text-red-500">
               {importError}
             </div>
           )}
           {importSuccess && (
-            <div className="mt-3 rounded-lg border-2 border-ink bg-paper px-4 py-3 text-sm font-bold text-ink">
+            <div className="mt-3 surface bg-paper px-4 py-3 text-sm font-bold text-ink">
               {importSuccess}
             </div>
           )}
@@ -80,7 +80,7 @@ export default function Home() {
           </h2>
 
           {characters.length === 0 ? (
-               <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-paper/20 bg-ink py-12 text-center">
+               <div className="flex flex-col items-center justify-center card border-dashed border-paper/20 bg-ink py-12 text-center">
               <div className="mb-3 text-4xl opacity-40">🐉</div>
               <p className="text-sm text-paper-muted">
                 No characters yet. Create your first hero to begin your adventure.
@@ -90,13 +90,13 @@ export default function Home() {
             <ul className="space-y-3">
               {characters.map((char) => (
                 <li key={char.id}>
-                  <Link
-                    href={`/character/${char.id}`}
-                     className="block rounded-lg border-2 border-paper bg-ink p-4 transition-all active:scale-[0.98] hover:bg-paper/5"
-                  >
+                   <Link
+                     href={`/character/${char.id}`}
+                      className="card block p-4 transition-all active:scale-[0.98] hover:bg-paper/5"
+                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-paper-muted text-lg">
+                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper-muted text-lg">
                           🧙
                         </div>
                         <div>

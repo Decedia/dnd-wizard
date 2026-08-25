@@ -113,7 +113,7 @@ export default function CharacterCreate() {
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={step + 1} totalSteps={totalSteps} />
           {currentValidationError && (
-            <div className="mb-4 rounded-lg border-2 border-ink bg-paper px-4 py-3">
+            <div className="mb-4 surface border-ink bg-paper px-4 py-3">
               <p className="text-sm font-bold text-ink">{currentValidationError}</p>
             </div>
           )}

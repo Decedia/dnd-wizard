@@ -238,7 +238,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
       >
         <div className="space-y-5">
           <div>
-            <div className="text-[10px] text-parchment/40 uppercase tracking-wider mb-2 font-medium">Select Level</div>
+            <div className="text-[10px] text-paper-muted uppercase tracking-wider mb-2 font-medium">Select Level</div>
             <div className="grid grid-cols-5 gap-2">
               {Array.from({ length: 10 }, (_, i) => i + 1).map((lvl) => {
                 const isActive = lvl === level;
@@ -248,19 +248,19 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                     key={lvl}
                     type="button"
                     onClick={() => adjustLevel(lvl)}
-                    className={`relative aspect-square rounded-[10px] border flex items-center justify-center text-lg font-semibold transition-all ${
+                    className={`relative aspect-square rounded-[10px] border-[3px] flex items-center justify-center text-lg font-semibold transition-all ${
                       isActive
-                        ? "bg-red-600 text-white border-red-600"
-                        : "bg-charcoal-lighter text-white border-border"
+                        ? "bg-paper text-ink border-paper"
+                        : "bg-ink text-paper border-paper"
                     }`}
                   >
                     {lvl}
                     {isMilestone && (
-                      <span
-                        className={`absolute top-1 right-1 h-2 w-2 rounded-full ${
-                          isActive ? "bg-white" : "bg-red-500"
-                        }`}
-                      />
+                          <span
+                            className={`absolute top-1 right-1 h-2 w-2 rounded-full ${
+                              isActive ? "bg-ink" : "bg-paper"
+                            }`}
+                          />
                     )}
                   </button>
                 );
@@ -268,22 +268,22 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-charcoal/40 p-3 text-xs text-parchment/70">
+          <div className="card p-3 text-xs text-paper">
             Level {level} — {levelDescription || "No new features"}
           </div>
 
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <div className="text-xs text-parchment/50 uppercase tracking-wider">HP Roll</div>
-              <div className="text-xs text-parchment/60">
-                Total so far: <span className="text-accent font-semibold">{hpTotal}</span> HP
+              <div className="text-xs text-paper-muted uppercase tracking-wider">HP Roll</div>
+              <div className="text-xs text-paper-muted">
+                Total so far: <span className="text-ink font-semibold bg-paper px-1 rounded">{hpTotal}</span> HP
               </div>
             </div>
 
             {level >= 1 && (
-              <div className="text-[11px] text-parchment/50">
+              <div className="text-[11px] text-paper-muted">
                 Level 1 HP: {hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod}) ={" "}
-                <span className="text-accent font-semibold">{levelHp[1] || baselineHp}</span>
+                <span className="text-ink font-semibold bg-paper px-1 rounded">{levelHp[1] || baselineHp}</span>
               </div>
             )}
 
@@ -301,12 +301,12 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             )}
 
             {activeHpLevel && (
-              <div className="rounded-xl border border-border bg-charcoal/40 p-4 space-y-4">
-                <div className="text-xs text-parchment/60 text-center">
+              <div className="card p-4 space-y-4">
+                <div className="text-xs text-paper-muted text-center">
                   Level {activeHpLevel} — d{hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod})
                 </div>
 
-                <div className="text-center text-4xl font-display font-bold text-parchment">
+                <div className="text-center text-4xl font-display font-bold text-paper">
                   {currentHpValue > 0 ? currentHpValue : "—"}
                 </div>
 
@@ -314,7 +314,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                   <button
                     type="button"
                     onClick={takeAverage}
-                    className="rounded-full border border-border bg-charcoal/40 px-3 py-2 text-xs font-semibold text-parchment hover:border-accent/40"
+                    className="btn-secondary rounded-full px-3 py-2 text-xs"
                   >
                     Avg ({averageHp})
                   </button>
@@ -344,25 +344,25 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             )}
 
             {allHpConfirmed && hpLevelsToProcess.length > 0 && (
-              <div className="text-center text-xs text-parchment/50">All HP confirmed</div>
+              <div className="text-center text-xs text-paper-muted">All HP confirmed</div>
             )}
           </div>
 
           <div className="text-center py-2">
-            <div className="text-4xl font-display font-bold text-parchment tracking-tight">Level {level}</div>
+            <div className="text-4xl font-display font-bold text-paper tracking-tight">Level {level}</div>
             {classData && classData.subclassLevel && (
-              <div className="text-xs text-parchment/50 mt-1.5 font-medium">
+              <div className="text-xs text-paper-muted mt-1.5 font-medium">
                 Subclass available at Level {classData.subclassLevel}
               </div>
             )}
           </div>
 
         {currentAsiLevel && !asiModalOpen && (
-          <div className="rounded-xl border border-accent/25 bg-accent/5 p-4 text-center text-xs text-parchment/70">
+          <div className="card p-4 text-center text-xs text-paper">
             {asiConfirmation ? (
-              <div className="text-green-400">✓ {asiConfirmation}</div>
+              <div className="text-ink font-semibold bg-paper px-2 py-1 rounded-md inline-block">✓ {asiConfirmation}</div>
             ) : (
-              <button type="button" onClick={() => setAsiModalOpen(true)} className="w-full">
+              <button type="button" onClick={() => setAsiModalOpen(true)} className="btn-primary w-full">
                 Complete your Ability Score Improvement
               </button>
             )}
@@ -370,8 +370,8 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
         )}
 
           {!currentAsiLevel && pendingAsiLevels.length > 0 && (
-            <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
-              <p className="text-xs text-parchment/70 leading-relaxed">
+            <div className="surface p-4">
+              <p className="text-xs text-ink font-medium leading-relaxed">
                 Complete the current Ability Score Improvement to continue.
               </p>
             </div>
@@ -379,12 +379,12 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
           {features.length > 0 && (
             <div className="space-y-3">
-              <div className="text-[10px] text-parchment/40 uppercase tracking-wider font-medium">Class Features</div>
+              <div className="text-[10px] text-paper-muted uppercase tracking-wider font-medium">Class Features</div>
               <div className="space-y-4">
                 {features.map((feature, idx) => (
-                  <div key={idx} className="rounded-xl border border-border bg-charcoal/30 p-4 space-y-2">
-                    <div className="text-sm font-bold text-accent tracking-wide">{feature.name}</div>
-                    <p className="text-sm text-parchment/80 leading-[1.7] whitespace-pre-line">{feature.description}</p>
+                  <div key={idx} className="card p-4 space-y-2">
+                    <div className="text-sm font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block tracking-wide">{feature.name}</div>
+                    <p className="text-sm text-paper-muted leading-[1.7] whitespace-pre-line">{feature.description}</p>
                   </div>
                 ))}
               </div>
@@ -395,14 +395,14 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
       {asiModalOpen && currentAsiLevel && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-lg rounded-2xl border border-border bg-charcoal shadow-2xl">
-            <div className="flex items-center justify-between border-b border-border px-4 py-3">
-              <div className="text-sm font-semibold text-accent">
+          <div className="card p-4">
+            <div className="flex items-center justify-between border-b-[3px] border-paper px-4 py-3">
+              <div className="text-sm font-bold text-paper">
                 Ability Score Improvement (Level {currentAsiLevel})
               </div>
             </div>
             <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
-              <p className="text-xs text-parchment/70">
+              <p className="text-xs text-paper-muted">
                 Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
               </p>
               <div className="space-y-2">
@@ -413,31 +413,31 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                   return (
                     <div
                       key={key}
-                      className="flex items-center justify-between rounded-lg border border-border bg-charcoal/40 px-3 py-2.5"
+                      className="card flex items-center justify-between px-3 py-2.5"
                     >
                       <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-parchment/90 w-12">{label}</span>
-                        <span className="text-[10px] text-text-muted">{full}</span>
+                        <span className="text-sm font-bold text-paper w-12">{label}</span>
+                        <span className="text-[10px] text-paper-muted">{full}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-bold text-parchment w-8 text-center">{currentScore}</span>
+                        <span className="text-sm font-bold text-paper w-8 text-center">{currentScore}</span>
                         <div className="flex items-center gap-1.5">
                           <button
                             type="button"
                             onClick={() => removeAsiPoint(key)}
                             disabled={allocated <= 0 || isAtCap}
-                            className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-parchment/70 disabled:opacity-25 hover:border-accent hover:text-accent transition-colors"
+                            className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
                           >
                             −
                           </button>
-                          <span className="text-sm font-bold text-accent w-7 text-center">
+                          <span className="text-sm font-bold text-ink bg-paper w-7 text-center px-1 rounded-md">
                             {allocated > 0 ? `+${allocated}` : "0"}
                           </span>
                           <button
                             type="button"
                             onClick={() => allocateAsiPoint(key)}
                             disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
-                            className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-parchment/70 disabled:opacity-25 hover:border-accent hover:text-accent transition-colors"
+                            className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
                           >
                             +
                           </button>
@@ -448,14 +448,14 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 })}
               </div>
             </div>
-            <div className="flex justify-between border-t border-border px-4 py-3">
+            <div className="flex justify-between border-t-[3px] border-paper px-4 py-3">
               <button
                 type="button"
                 onClick={() => {
                   setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
                   setAsiModalOpen(false);
                 }}
-                className="rounded-full border border-border bg-transparent px-5 py-2.5 text-sm font-semibold text-parchment hover:border-accent/40"
+                className="btn-secondary px-5 py-2.5"
               >
                 Cancel
               </button>
@@ -463,7 +463,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 type="button"
                 onClick={applyAsi}
                 disabled={!canApplyAsi}
-                className="rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+                className="btn-primary px-5 py-2.5"
               >
                 Apply Ability Score Improvement
               </button>

@@ -33,11 +33,10 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
               key={`s-${i}`}
               type="button"
               onClick={() => handleSuccessClick(i)}
-              className="h-5 w-5 rounded-full border-2 transition-all duration-200"
+              className="h-5 w-5 rounded-full border-[3px] transition-all duration-200"
               style={{
-                backgroundColor: successes > i ? "#ef4444" : "transparent",
-                borderColor: successes > i ? "#ef4444" : "rgba(255, 255, 255, 0.3)",
-                boxShadow: successes > i ? "0 0 6px rgba(239, 68, 68, 0.5)" : "none",
+                backgroundColor: successes > i ? "#ffffff" : "transparent",
+                borderColor: successes > i ? "#ffffff" : "rgba(255, 255, 255, 0.4)",
               }}
               aria-label={`Success ${i + 1}`}
             />
@@ -52,11 +51,10 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
               key={`f-${i}`}
               type="button"
               onClick={() => handleFailureClick(i)}
-              className="h-5 w-5 rounded-full border-2 transition-all duration-200"
+              className="h-5 w-5 rounded-full border-[3px] transition-all duration-200"
               style={{
-                backgroundColor: failures > i ? "#dc2626" : "transparent",
-                borderColor: failures > i ? "#dc2626" : "rgba(255, 255, 255, 0.3)",
-                boxShadow: failures > i ? "0 0 6px rgba(220, 38, 38, 0.5)" : "none",
+                backgroundColor: failures > i ? "#000000" : "transparent",
+                borderColor: failures > i ? "#000000" : "rgba(255, 255, 255, 0.4)",
               }}
               aria-label={`Failure ${i + 1}`}
             />

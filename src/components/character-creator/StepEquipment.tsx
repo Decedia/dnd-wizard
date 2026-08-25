@@ -344,7 +344,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                         return (
                           <div
                             key={optionIndex}
-                            className={`w-full rounded-lg border-2 px-3 py-2 text-left text-sm transition-all ${
+                            className={`card w-full px-3 py-2 text-left text-sm ${
                               isSelected
                                 ? "border-paper bg-paper/10 text-ink"
                                 : "border-paper bg-ink text-paper hover:bg-paper-muted"
@@ -391,7 +391,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                       key={weapon.name}
                                       type="button"
                                       onClick={() => handleWeaponSelect(weapon, group.id, optionIndex)}
-                                    className="w-full rounded-lg border-2 border-paper bg-ink px-3 py-2 text-left text-sm hover:bg-paper-muted transition-colors"
+                                    className="card w-full px-3 py-2 text-left text-sm hover:bg-paper-muted transition-colors"
                                   >
                                     <div className="flex items-center justify-between">
                                       <span className="font-bold text-paper">{weapon.name}</span>
@@ -401,7 +401,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                       {weapon.damage?.damage_type?.name && <span>{weapon.damage.damage_type.name}</span>}
                                       {weapon.properties && weapon.properties.length > 0 && (
                                         <span className="ml-2 text-paper-muted">{weapon.properties.map((p: any) => p.name).join(", ")}</span>
-                                      )}
+          )}
                                     </div>
                                   </button>
                                 )}
@@ -417,16 +417,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       }
 
                       return (
-                        <div
-                          key={optionIndex}
-                          className={`w-full rounded-lg border-2 px-3 py-2 text-left text-sm transition-all ${
-                            isSelected
-                              ? "border-paper bg-paper/10 text-ink"
-                              : isDisabled
-                                ? "border-paper/20 bg-ink-muted text-paper-muted cursor-not-allowed opacity-50"
-                                : "border-paper bg-ink text-paper hover:bg-paper-muted"
-                          }`}
-                        >
+                          <div
+                            key={optionIndex}
+                            className={`card w-full px-3 py-2 text-left text-sm ${
+                              isSelected
+                                ? "border-paper bg-paper/10 text-ink"
+                                : isDisabled
+                                  ? "border-paper/20 bg-ink-muted text-paper-muted cursor-not-allowed opacity-50"
+                                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                            }`}
+                          >
                           {isSelected ? (
                             <div className="flex items-center justify-between">
                               <div className="flex-1">
@@ -504,7 +504,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const isGranted = item.isGranted;
 
               return (
-                <div key={item.id} className="flex flex-col gap-1 rounded-lg border-2 border-paper bg-ink px-3 py-2.5">
+                <div key={item.id} className="card flex flex-col gap-1 px-3 py-2.5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-bold text-paper">{item.name}</span>

@@ -26,16 +26,16 @@ export function StepRace({ data, onChange }: StepRaceProps) {
         {races.map((race) => {
           const isSelected = data.race === race.name;
           return (
-            <button
-              key={race.name}
-              type="button"
-              onClick={() => handleSelect(race.name)}
-              className={`w-full rounded-lg border-2 p-4 text-left transition-all ${
-                isSelected
-                  ? "border-paper bg-paper text-ink"
-                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
-              }`}
-            >
+          <button
+            key={race.name}
+            type="button"
+            onClick={() => handleSelect(race.name)}
+            className={`btn w-full p-4 text-left ${
+              isSelected
+                ? "btn-primary"
+                : "btn-secondary"
+            }`}
+          >
               <div className="flex items-center justify-between">
                 <span className="font-display font-bold text-inherit">{race.name}</span>
                 <span className="text-xs text-inherit">
