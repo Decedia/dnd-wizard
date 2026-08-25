@@ -69,9 +69,18 @@ export function generateLevelUpSteps(
       });
     }
 
+    const classFeatureChoices = (levelData?.features || [])
+      .filter((f: any) => f.choices && f.choices.options && f.choices.options.length > 0)
+      .map((f: any) => ({
+        featureName: f.name,
+        options: f.choices.options,
+        storageKey: `feature-${f.name}`,
+        count: f.choices.count,
+      }));
+
     let features = (levelData?.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
 
-    let featureChoices = getFeatureChoices(className, features);
+    let featureChoices = [...(getFeatureChoices(className, features) || []), ...classFeatureChoices];
 
     if (currentSubclass && level >= unlockLevel) {
       const subclasses = getStaticSubclasses(className);

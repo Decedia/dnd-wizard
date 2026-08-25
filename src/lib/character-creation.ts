@@ -464,7 +464,8 @@ export function isSubclassStepComplete(character: Character): boolean {
     if (!feature.choices || feature.choices.length === 0) return true;
     const key = `subclass-feature-${feature.name}`;
     const selected = (character as any).featureSelections?.[key];
-    return Array.isArray(selected) && selected.length > 0;
+    const needed = (feature as any).choicesCount || feature.choices.length;
+    return Array.isArray(selected) && selected.length >= needed;
   });
 }
 
