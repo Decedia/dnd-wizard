@@ -451,7 +451,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         const lvl = screen.level;
         const st = asiState[lvl] || {};
         return (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
             <div className="w-full max-w-lg rounded-2xl border border-border bg-charcoal shadow-2xl">
               <div className="flex items-center justify-between border-b border-border px-4 py-3">
                 <div className="text-sm font-semibold text-parchment">
