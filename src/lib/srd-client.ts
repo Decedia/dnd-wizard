@@ -2,7 +2,7 @@ import racesData from "@/data/2014_races.json";
 import classesData from "@/data/2014_classes.json";
 import subclassesData from "@/data/2014_subclasses.json";
 import subclassChoicesData from "@/data/subclass_feature_choices.json";
-import { spells as spellsData } from "@/data/srd";
+import spellsData from "@/data/2014_spells.json";
 import weaponsData from "@/data/2014_weapon.json";
 import armorsData from "@/data/2014_armor.json";
 import itemsData from "@/data/2014_items.json";
@@ -269,7 +269,7 @@ export function getStaticSubclasses(className: string): SRDSubclass[] {
 }
 
 export function getStaticSpells(): SRDSpell[] {
-  return spellsData as SRDSpell[];
+  return Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
 }
 
 export function getCachedSRDData(): SRDData | null {
