@@ -132,7 +132,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                 </div>
               )}
               
-              {isMultiple && (
+              {(selection.count && selection.count > 1) && (
                 <p className="text-xs text-parchment/80">
                   {selected.length} of {maxCount} selected
                 </p>

@@ -233,7 +233,7 @@ export function getStaticClass(name: string): SRDClass | undefined {
 export interface SRDSubclass {
   name: string;
   description: string;
-  features: { name: string; description: string; level?: number; choices?: { name: string; description: string }[] }[];
+  features: { name: string; description: string; level?: number; choices?: { name: string; description: string }[]; choicesCount?: number }[];
 }
 
 export function getStaticSubclasses(className: string): SRDSubclass[] {
@@ -258,6 +258,9 @@ export function getStaticSubclasses(className: string): SRDSubclass[] {
               name: opt.name,
               description: opt.description || "",
             }));
+            if (typeof featChoices.count === "number") {
+              out.choicesCount = featChoices.count;
+            }
           }
           return out;
         }),

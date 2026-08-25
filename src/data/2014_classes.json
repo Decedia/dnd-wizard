@@ -5749,7 +5749,46 @@
                 "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level.",
                 "You can use only one Metamagic option on a spell when you cast it, unless otherwise noted."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "count": 2,
+                "description": "You learn two Metamagics of your choice. You can use only one Metamagic on a spell at a time.",
+                "options": [
+                  {
+                    "name": "Careful Spell",
+                    "description": "Spend 1 sorcery point to exclude some creatures from your spell's saving throw."
+                  },
+                  {
+                    "name": "Distant Spell",
+                    "description": "Spend 1 sorcery point to double the range of a spell."
+                  },
+                  {
+                    "name": "Empowered Spell",
+                    "description": "Spend 1 sorcery point to reroll damage dice of a spell."
+                  },
+                  {
+                    "name": "Extended Spell",
+                    "description": "Spend 1 sorcery point to double a spell's duration."
+                  },
+                  {
+                    "name": "Heightened Spell",
+                    "description": "Spend 3 sorcery points to give a creature disadvantage on its first saving throw."
+                  },
+                  {
+                    "name": "Quickened Spell",
+                    "description": "Spend 2 sorcery points to cast a spell as a bonus action."
+                  },
+                  {
+                    "name": "Subtle Spell",
+                    "description": "Spend 1 sorcery point to cast without somatic or verbal components."
+                  },
+                  {
+                    "name": "Twin Spell",
+                    "description": "Spend sorcery points to target a second creature with a spell."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,
@@ -6300,7 +6339,25 @@
               "description": [
                 "At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service. You gain one of the following features of your choice."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "description": "Your otherworldly patron bestows a gift, a pact boon, that defines your pact. Choose one of the following.",
+                "options": [
+                  {
+                    "name": "Pact of the Chain",
+                    "description": "You gain the service of a familiar, a spirit that takes an animal form."
+                  },
+                  {
+                    "name": "Pact of the Blade",
+                    "description": "You can use your action to create a pact weapon in your hand, or bond to a weapon."
+                  },
+                  {
+                    "name": "Pact of the Tome",
+                    "description": "You are granted a grimoire, the Book of Shadows, and can inscribe spells of your choice."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,

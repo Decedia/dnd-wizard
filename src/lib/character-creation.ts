@@ -182,9 +182,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
     const existing = (character as any).featureSelections?.[selection.storageKey];
     const isComplete = selection.optional
       ? true
-      : selection.type === "single"
-        ? !!existing
-        : Array.isArray(existing) && existing.length >= (selection.count || 1);
+      : Array.isArray(existing) && existing.length >= (selection.count || 1);
 
     steps.push({
       id: `feature-selection-${index}`,
@@ -301,6 +299,7 @@ export function getSubclassFeatureSelections(character: Character): FeatureSelec
       description: (feature.description as string) || `Make a selection for ${feature.name}`,
       type: "single",
       options: feature.choices.map((c: any) => c.name),
+      count: (feature as any).choicesCount,
       level: feature.level ?? unlockLevel,
       storageKey: `subclass-feature-${feature.name}`,
       source: "subclass",

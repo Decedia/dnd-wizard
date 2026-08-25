@@ -36,6 +36,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
   const levelHp = data.levelHp || {};
   const baselineHp = hitDie + conMod;
   const averageHp = getHitDieAverage(hitDie) + conMod;
+  const avgNoCon = getHitDieAverage(hitDie);
 
   const asiLevels = useMemo(() => {
     if (!classData?.levels) return [];
@@ -248,10 +249,12 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
           </div>
 
           <div className="text-[11px] text-parchment/50 leading-relaxed">
-            Level 1 is fixed to d{hitDie} + CON ={" "}
-            <span className="text-accent font-semibold">{baselineHp}</span> (no dice roll per SRD).
-            Each level after, roll a d{hitDie} or take the average{" "}
-            <span className="text-accent font-semibold">{averageHp}</span> (+CON) and add it here.
+            Level 1 (per SRD): your max HP is the highest roll of your hit die (d
+            {hitDie} = <span className="text-accent font-semibold">{hitDie}</span>) + your CON
+            modifier = <span className="text-accent font-semibold">{baselineHp}</span>. No dice roll.
+            Each level after, add a d{hitDie} roll + CON, or take the average{" "}
+            <span className="text-accent font-semibold">{avgNoCon}</span> + CON ={" "}
+            <span className="text-accent font-semibold">{averageHp}</span>.
           </div>
         </div>
 
