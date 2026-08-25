@@ -194,7 +194,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="max-h-[55vh] space-y-2 overflow-y-auto pr-1">
             {Array.from({ length: level }, (_, i) => i + 1).map((lvl) => {
               const isFirst = lvl === 1;
               const value = isFirst ? baselineHp : levelHp[lvl] || 0;
