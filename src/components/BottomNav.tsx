@@ -32,20 +32,20 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-sm safe-bottom">
-       <div className="flex items-center rounded-full border-2 border-paper bg-ink p-1 relative">
-        {navItems.map((item, index) => {
-          const Icon = item.icon;
-          const isActive = index === activeIndex;
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`
-                flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10
-                ${isActive ? "text-ink font-bold" : "text-paper-muted hover:text-paper"}
-              `}
-              aria-current={isActive ? "page" : undefined}
-            >
+       <div className="flex items-center rounded-full border-[3px] border-paper bg-ink p-1 relative">
+         {navItems.map((item, index) => {
+           const Icon = item.icon;
+           const isActive = index === activeIndex;
+           return (
+             <Link
+               key={item.name}
+               href={item.href}
+               className={`
+                 flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10 active:scale-[0.98]
+                 ${isActive ? "text-ink font-bold" : "text-paper-muted hover:text-paper"}
+               `}
+               aria-current={isActive ? "page" : undefined}
+             >
               <Icon className={`h-5 w-5`} />
               <span className={`font-medium text-[10px]`}>
                 {item.name}

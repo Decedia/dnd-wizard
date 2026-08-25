@@ -2,7 +2,7 @@
 
 @theme {
   --color-paper: #ffffff;
-  --color-paper-muted: #f0f0f0;
+  --color-paper-muted: #f5f5f5;
   --color-paper-dark: #e5e5e5;
   --color-paper-darker: #cccccc;
   --color-ink: #000000;
@@ -29,31 +29,31 @@
 
 @layer components {
   .surface {
-    @apply bg-paper text-ink rounded-lg border-2 border-ink;
+    @apply bg-paper text-ink rounded-xl border-[3px] border-ink;
   }
 
   .surface-muted {
-    @apply bg-paper-muted text-ink rounded-lg border-2 border-ink;
+    @apply bg-paper-muted text-ink rounded-xl border-[3px] border-ink;
   }
 
   .surface-dark {
-    @apply bg-ink-muted text-paper rounded-lg border-2 border-paper;
+    @apply bg-ink-muted text-paper rounded-xl border-[3px] border-paper;
   }
 
   .input {
-    @apply bg-paper-muted text-ink rounded-lg border-2 border-ink px-3 py-2 text-sm font-medium outline-none transition-colors placeholder:text-ink-muted focus:border-ink-subtle;
+    @apply bg-paper-muted text-ink rounded-xl border-[3px] border-ink px-3 py-2 text-sm font-medium outline-none transition-colors placeholder:text-ink-muted focus:border-ink-subtle;
   }
 
   textarea.input {
-    @apply resize-y rounded-lg;
+    @apply resize-y rounded-xl;
   }
 
   select.input {
-    @apply appearance-none rounded-lg;
+    @apply appearance-none rounded-xl;
   }
 
   .btn {
-    @apply rounded-lg border-2 px-4 py-2.5 text-sm font-bold transition-colors active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
+    @apply rounded-xl border-[3px] px-4 py-2.5 text-sm font-bold transition-all active:scale-[0.98] disabled:opacity-40 disabled:active:scale-100;
   }
 
   .btn-primary {
@@ -81,7 +81,7 @@
   }
 
   .btn-danger:hover {
-    @apply bg-red-500 text-white border-red-500;
+    @apply bg-paper-muted;
   }
 
   .field-label {
@@ -93,11 +93,11 @@
   }
 
   .badge {
-    @apply inline-flex items-center justify-center rounded-md border-2 border-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+    @apply inline-flex items-center justify-center rounded-md border-[3px] border-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
   }
 
   .badge-light {
-    @apply inline-flex items-center justify-center rounded-md border-2 border-paper px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+    @apply inline-flex items-center justify-center rounded-md border-[3px] border-paper px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
   }
 
   .section-title {
@@ -109,15 +109,15 @@
   }
 
   .hint-box {
-    @apply rounded-lg border-2 border-ink-subtle bg-paper-muted px-3 py-2;
+    @apply rounded-xl border-[3px] border-ink-subtle bg-paper-muted px-3 py-2;
   }
 
   .hint-box-light {
-    @apply rounded-lg border-2 border-paper/20 bg-paper/5 px-3 py-2;
+    @apply rounded-xl border-[3px] border-paper/20 bg-paper/5 px-3 py-2;
   }
 
   .progress-track {
-    @apply h-2.5 w-full overflow-hidden rounded-lg bg-paper-muted border border-ink-subtle;
+    @apply h-2.5 w-full overflow-hidden rounded-xl bg-paper-muted border-[3px] border-ink-subtle;
   }
 
   .progress-fill {
@@ -125,7 +125,7 @@
   }
 
   .progress-track-light {
-    @apply h-2.5 w-full overflow-hidden rounded-lg bg-ink-muted border border-paper;
+    @apply h-2.5 w-full overflow-hidden rounded-xl bg-ink-muted border-[3px] border-paper;
   }
 
   .progress-fill-light {
@@ -133,27 +133,35 @@
   }
 
   .divider {
-    @apply border-t-2 border-ink-subtle;
+    @apply border-t-[3px] border-ink-subtle;
   }
 
   .divider-light {
-    @apply border-t-2 border-paper/20;
+    @apply border-t-[3px] border-paper/20;
   }
 
   .checkbox {
-    @apply h-4 w-4 rounded border-2 border-ink bg-paper text-ink focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-ink checked:border-ink checked:text-paper;
+    @apply h-4 w-4 rounded border-[3px] border-ink bg-paper text-ink focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-ink checked:border-ink checked:text-paper;
   }
 
   .checkbox-light {
-    @apply h-4 w-4 rounded border-2 border-paper bg-ink text-paper focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-paper checked:border-paper checked:text-ink;
+    @apply h-4 w-4 rounded border-[3px] border-paper bg-ink text-paper focus:ring-0 focus:ring-offset-0 appearance-none checked:bg-paper checked:border-paper checked:text-ink;
   }
 
   .stat-box {
-    @apply flex flex-col items-center justify-center rounded-lg border-2 border-ink bg-paper p-3;
+    @apply flex flex-col items-center justify-center rounded-xl border-[3px] border-ink bg-paper p-3;
   }
 
   .stat-box-light {
-    @apply flex flex-col items-center justify-center rounded-lg border-2 border-paper bg-ink p-3;
+    @apply flex flex-col items-center justify-center rounded-xl border-[3px] border-paper bg-ink p-3;
+  }
+
+  .card {
+    @apply rounded-xl border-[3px] border-paper bg-ink;
+  }
+
+  .card-light {
+    @apply rounded-xl border-[3px] border-ink bg-paper;
   }
 }
 
@@ -205,7 +213,7 @@
   justify-content: center;
   background: #ffffff;
   color: #000000;
-  border: 2px solid #000000;
+  border: 3px solid #000000;
   transition: box-shadow 0.3s;
   overflow: hidden;
 }
