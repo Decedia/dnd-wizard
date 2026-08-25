@@ -30,11 +30,14 @@ export function ProficiencyDot({ proficient, onChange, size = "sm", editMode }: 
       aria-checked={proficient}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      className={`${sizeClasses} rounded-full border transition-all duration-200 ${
+      className={`${sizeClasses} rounded-full transition-all duration-200 ${
          proficient
-           ? "border-ink bg-ink"
-           : "border-border-strong hover:border-ink"
+           ? "bg-ink"
+           : "bg-transparent"
       } ${interactive ? "cursor-pointer" : "cursor-default"}`}
+      style={{
+        border: proficient ? "none" : "1px solid #e5e5e5",
+      }}
     />
   );
 }

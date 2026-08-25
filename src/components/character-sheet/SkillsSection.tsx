@@ -78,10 +78,10 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               key={name}
               className={`card px-2.5 py-2 ${
                 isProficient
-                  ? "border-ink/30 bg-ink/[0.02]"
+                  ? "bg-ink/[0.02]"
                   : disabled
-                    ? "border-border-muted bg-paper-muted/50 opacity-50"
-                    : "border-border-strong bg-paper"
+                    ? "bg-paper-muted/50 opacity-50"
+                    : "bg-paper"
               }`}
             >
               {editMode ? (

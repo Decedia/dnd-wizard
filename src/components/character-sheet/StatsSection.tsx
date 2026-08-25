@@ -97,7 +97,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             const abilityMod = getModifier(character[key]);
             return (
-               <div key={key} className="card flex items-center justify-between px-3 py-2">
+               <div key={key} className="flex items-center justify-between px-3 py-2">
                 <div className="flex items-center gap-2.5">
                   <span className="text-sm font-medium text-ink-muted w-10">{key.toUpperCase()}</span>
                   <span className="text-ink-muted">•</span>
