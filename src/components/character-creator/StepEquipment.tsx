@@ -5,23 +5,11 @@ import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
+import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
 
 interface StepEquipmentProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
-}
-
-interface ChoiceGroup {
-  id: string;
-  description: string;
-  options: EquipmentOption[];
-}
-
-interface EquipmentOption {
-  description: string;
-  items: { name: string; quantity: number }[];
-  weaponType?: string;
-  isWeaponChoice?: boolean;
 }
 
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
@@ -34,59 +22,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const armors = useMemo(() => getStaticArmors(), []);
   const allEquipment = useMemo(() => getEquipmentNames(), []);
 
-  const choiceGroups = useMemo<ChoiceGroup[]>(() => {
-    const groups: ChoiceGroup[] = [];
-    let groupCounter = 0;
-
-    startingEquipment.forEach((entry: any) => {
-      if (entry.granted) return;
-
-      const desc = entry.description || "";
-      const items = entry.items || [];
-
-      if (desc.includes(" or ")) {
-        const parts = desc.split(" or ");
-        const options: EquipmentOption[] = parts.map((part: string) => {
-          const trimmed = part.trim();
-          const isWeaponChoice = trimmed.includes("any martial") || trimmed.includes("any simple");
-          let weaponType: string | undefined;
-
-          if (isWeaponChoice) {
-            if (trimmed.includes("martial melee")) weaponType = "martial_melee";
-            else if (trimmed.includes("martial ranged")) weaponType = "martial_ranged";
-            else if (trimmed.includes("martial")) weaponType = "martial";
-            else if (trimmed.includes("simple melee")) weaponType = "simple_melee";
-            else if (trimmed.includes("simple ranged")) weaponType = "simple_ranged";
-            else if (trimmed.includes("simple")) weaponType = "simple";
-          }
-
-          return {
-            description: trimmed,
-            items: items.length > 0 ? [items[0]] : [],
-            weaponType,
-            isWeaponChoice,
-          };
-        });
-
-        groups.push({
-          id: `choice-${groupCounter++}`,
-          description: desc,
-          options,
-        });
-      } else if (items.length > 0) {
-        groups.push({
-          id: `choice-${groupCounter++}`,
-          description: desc || "Starting equipment",
-          options: items.map((item: any) => ({
-            description: item.name,
-            items: [item],
-          })),
-        });
-      }
-    });
-
-    return groups;
-  }, [startingEquipment]);
+  const choiceGroups = useMemo<ChoiceGroup[]>(() => buildChoiceGroups(startingEquipment), [startingEquipment]);
 
   const getGroupIndex = useCallback((groupId: string) => {
     const match = groupId.match(/choice-(\d+)/);
@@ -138,10 +74,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {
     const groupIndex = getGroupIndex(group.id);
 
-    if (group.options[optionIndex].isWeaponChoice) {
-      return data.inventory.some(item => item.choiceGroupIndex === groupIndex);
-    }
-
     return data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === optionIndex);
   }, [data.inventory, getGroupIndex]);
 
@@ -188,16 +120,19 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     setExpandedGroupId(null);
   }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
-  const handleWeaponSelect = useCallback((weapon: any, groupId: string) => {
+  const handleWeaponSelect = useCallback((weapon: any, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
-
+    const option = choiceGroups.find(g => getGroupIndex(g.id) === groupIndex)?.options[optionIndex];
     const itemInfo = getItemInfo(weapon.name);
     const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+
+    const qtyMatch = option?.description?.toLowerCase().match(/^two\s+/);
+    const quantity = qtyMatch ? 2 : 1;
 
     const weaponItem: Character["inventory"][number] = {
       id: generateId(),
       name: weapon.name,
-      quantity: 1,
+      quantity,
       equipped: false,
       source: "srd" as const,
       description: itemInfo ? JSON.stringify(itemInfo) : "",
@@ -206,12 +141,31 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       damageType: weapon.damage?.damage_type?.name || "",
       category: weapon.category_range || weapon.weapon_category,
       choiceGroupIndex: groupIndex,
-      choiceOptionIndex: 0,
+      choiceOptionIndex: optionIndex,
     };
 
-    onChange({ inventory: [...newInventory, weaponItem] });
+    const nextInventory = [...newInventory, weaponItem];
+
+    if (option?.description?.toLowerCase().includes("shield")) {
+      const shieldInfo = getItemInfo("Shield");
+      if (shieldInfo) {
+        nextInventory.push({
+          id: generateId(),
+          name: "Shield",
+          quantity: 1,
+          equipped: false,
+          source: "srd" as const,
+          description: JSON.stringify(shieldInfo),
+          itemType: "armor" as const,
+          choiceGroupIndex: groupIndex,
+          choiceOptionIndex: optionIndex,
+        });
+      }
+    }
+
+    onChange({ inventory: nextInventory });
     setExpandedGroupId(null);
-  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+  }, [data.inventory, getGroupIndex, getItemInfo, onChange, choiceGroups]);
 
   const handleChoiceRemove = useCallback((group: ChoiceGroup) => {
     const groupIndex = getGroupIndex(group.id);
@@ -433,10 +387,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                             {isExpanded && !isSelected && (
                               <div className="mt-3 space-y-2">
                                 {categoryWeapons.map((weapon: any) => (
-                                  <button
-                                    key={weapon.name}
-                                    type="button"
-                                    onClick={() => handleWeaponSelect(weapon, group.id)}
+                                    <button
+                                      key={weapon.name}
+                                      type="button"
+                                      onClick={() => handleWeaponSelect(weapon, group.id, optionIndex)}
                                     className="w-full rounded-lg border border-border bg-charcoal/40 px-3 py-2 text-left text-sm hover:border-accent/30 transition-colors"
                                   >
                                     <div className="flex items-center justify-between">

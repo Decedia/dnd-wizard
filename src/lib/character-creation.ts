@@ -17,6 +17,139 @@ interface FeatureSelection {
   source?: "class" | "subclass";
 }
 
+export interface EquipmentItemRef {
+  name: string;
+  quantity: number;
+  description?: string;
+}
+
+export interface EquipmentOption {
+  description: string;
+  items: EquipmentItemRef[];
+  weaponType?: string;
+  isWeaponChoice?: boolean;
+}
+
+export interface ChoiceGroup {
+  id: string;
+  description: string;
+  options: EquipmentOption[];
+}
+
+export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
+  const groups: ChoiceGroup[] = [];
+  let groupCounter = 0;
+
+  startingEquipment.forEach((entry: any) => {
+    if (entry.granted) return;
+    const desc = entry.description || "";
+    const items = entry.items || [];
+
+    const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
+    if (optionMatches && optionMatches.length > 1) {
+      const options: EquipmentOption[] = optionMatches.map((part: string) => {
+        const trimmed = part.trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
+        const letterMatch = trimmed.match(/^\(([a-z])\)\s*/);
+        const optionLetter = letterMatch ? letterMatch[1] : "";
+
+        const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
+          trimmed
+        );
+
+        let weaponType: string | undefined;
+        if (isWeaponChoice) {
+          if (trimmed.includes("martial melee")) weaponType = "martial_melee";
+          else if (trimmed.includes("martial ranged")) weaponType = "martial_ranged";
+          else if (trimmed.includes("martial")) weaponType = "martial";
+          else if (trimmed.includes("simple melee")) weaponType = "simple_melee";
+          else if (trimmed.includes("simple ranged")) weaponType = "simple_ranged";
+          else if (trimmed.includes("simple")) weaponType = "simple";
+        }
+
+        const optionItems = items.filter((item: any) => {
+          const itemDesc = (item.description || "").toLowerCase();
+          return itemDesc.includes(`(${optionLetter})`) || itemDesc.includes(`(${optionLetter.toUpperCase()})`);
+        });
+
+        return {
+          description: trimmed,
+          items: optionItems,
+          weaponType,
+          isWeaponChoice,
+        };
+      });
+
+      const assignedLetters = new Set(
+        options.filter((o) => !o.isWeaponChoice).flatMap((o) => {
+          const m = o.description.match(/^\(([a-z])\)/);
+          return m ? [m[1]] : [];
+        })
+      );
+
+      const unmatched = items.filter((item: any) => {
+        const itemDesc = (item.description || "").toLowerCase();
+        return !Array.from(assignedLetters).some((l) => itemDesc.includes(`(${l})`) || itemDesc.includes(`(${l.toUpperCase()})`));
+      });
+
+      const firstNonWeaponIdx = options.findIndex((o) => !o.isWeaponChoice);
+      if (firstNonWeaponIdx >= 0 && unmatched.length > 0) {
+        options[firstNonWeaponIdx].items.push(...unmatched);
+      }
+
+      groups.push({
+        id: `choice-${groupCounter++}`,
+        description: desc,
+        options,
+      });
+      return;
+    }
+
+    if (desc.includes(" or ")) {
+      const parts = desc.split(" or ");
+      const options: EquipmentOption[] = parts.map((part: string) => {
+        const trimmed = part.trim();
+        const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
+          trimmed
+        );
+
+        let weaponType: string | undefined;
+        if (isWeaponChoice) {
+          if (trimmed.includes("martial melee")) weaponType = "martial_melee";
+          else if (trimmed.includes("martial ranged")) weaponType = "martial_ranged";
+          else if (trimmed.includes("martial")) weaponType = "martial";
+          else if (trimmed.includes("simple melee")) weaponType = "simple_melee";
+          else if (trimmed.includes("simple ranged")) weaponType = "simple_ranged";
+          else if (trimmed.includes("simple")) weaponType = "simple";
+        }
+
+        return {
+          description: trimmed,
+          items: items.length > 0 ? [items[0]] : [],
+          weaponType,
+          isWeaponChoice,
+        };
+      });
+
+      groups.push({
+        id: `choice-${groupCounter++}`,
+        description: desc,
+        options,
+      });
+    } else if (items.length > 0) {
+      groups.push({
+        id: `choice-${groupCounter++}`,
+        description: desc || "Starting equipment",
+        options: items.map((item: any) => ({
+          description: item.name,
+          items: [item],
+        })),
+      });
+    }
+  });
+
+  return groups;
+}
+
 export function getValidationMessage(step: CreationStep, character?: Character): string {
   switch (step.type) {
     case "identity":
@@ -207,41 +340,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
 function isEquipmentComplete(character: Character, classData: ReturnType<typeof getStaticClass> | null): boolean {
   if (!classData?.startingEquipment) return character.inventory.length > 0;
 
-  const choiceGroups: { id: string; description: string; options: { description: string; items: { name: string }[]; isWeaponChoice?: boolean }[] }[] = [];
-  let groupCounter = 0;
-
-  classData.startingEquipment.forEach((entry: any) => {
-    if (entry.granted) return;
-    const desc = entry.description || "";
-    const items = entry.items || [];
-
-    if (desc.includes(" or ")) {
-      const parts = desc.split(" or ");
-      const options = parts.map((part: string) => {
-        const trimmed = part.trim();
-        const isWeaponChoice = trimmed.includes("any martial") || trimmed.includes("any simple");
-        return {
-          description: trimmed,
-          items: items.length > 0 ? [items[0]] : [],
-          isWeaponChoice,
-        };
-      });
-      choiceGroups.push({
-        id: `choice-${groupCounter++}`,
-        description: desc,
-        options,
-      });
-    } else if (items.length > 0) {
-      choiceGroups.push({
-        id: `choice-${groupCounter++}`,
-        description: desc || "Starting equipment",
-        options: items.map((item: any) => ({
-          description: item.name,
-          items: [item],
-        })),
-      });
-    }
-  });
+  const choiceGroups = buildChoiceGroups(classData.startingEquipment);
 
   if (choiceGroups.length === 0) return true;
 

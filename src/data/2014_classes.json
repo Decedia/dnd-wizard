@@ -73,7 +73,7 @@
             {
               "name": "Handaxe",
               "description": "(a) two handaxes",
-              "quantity": 1
+              "quantity": 2
             }
           ]
         }
@@ -1988,7 +1988,12 @@
           "items": [
             {
               "name": "Scale Mail",
-              "description": "(a) scale mail, (b) leather armor,",
+              "description": "(a) scale mail",
+              "quantity": 1
+            },
+            {
+              "name": "Leather Armor",
+              "description": "(b) leather armor",
               "quantity": 1
             },
             {
@@ -3139,8 +3144,18 @@
             },
             {
               "name": "Leather Armor",
-              "description": "(b) leather armor, longbow, and 20 arrows",
+              "description": "(b) leather armor",
               "quantity": 1
+            },
+            {
+              "name": "Longbow",
+              "description": "(b) longbow",
+              "quantity": 1
+            },
+            {
+              "name": "Arrow",
+              "description": "(b) 20 arrows",
+              "quantity": 20
             }
           ]
         },
@@ -3165,12 +3180,12 @@
             {
               "name": "Crossbow bolt",
               "description": "20 bolts",
-              "quantity": 1
+              "quantity": 20
             },
             {
               "name": "Handaxe",
               "description": "(b) two handaxes",
-              "quantity": 1
+              "quantity": 2
             }
           ]
         },
@@ -4061,7 +4076,7 @@
             {
               "name": "Javelin",
               "description": "(a) five javelins",
-              "quantity": 1
+              "quantity": 5
             }
           ]
         },
@@ -4598,7 +4613,7 @@
             {
               "name": "Shortsword",
               "description": "(a) two shortswords",
-              "quantity": 1
+              "quantity": 2
             }
           ]
         },
@@ -5176,10 +5191,12 @@
           "items": [
             {
               "name": "Shortbow",
+              "description": "(a) a shortbow",
               "quantity": 1
             },
             {
               "name": "Arrow",
+              "description": "(a) quiver of 20 arrows",
               "quantity": 20
             },
             {
@@ -5194,7 +5211,12 @@
           "items": [
             {
               "name": "Burglar's Pack",
-              "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack,",
+              "description": "(a) a burglar’s pack",
+              "quantity": 1
+            },
+            {
+              "name": "Dungeoneer's Pack",
+              "description": "(b) a dungeoneer’s pack",
               "quantity": 1
             },
             {
