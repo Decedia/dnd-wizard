@@ -35,8 +35,8 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
               onClick={() => handleSuccessClick(i)}
               className="h-4 w-4 rounded-full border transition-all duration-200"
               style={{
-                backgroundColor: successes > i ? "#52525b" : "transparent",
-                borderColor: successes > i ? "#52525b" : "#3f3f46",
+                backgroundColor: successes > i ? "#171717" : "transparent",
+                borderColor: successes > i ? "#171717" : "#e5e5e5",
               }}
               aria-label={`Success ${i + 1}`}
             />
@@ -53,8 +53,8 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
               onClick={() => handleFailureClick(i)}
               className="h-4 w-4 rounded-full border transition-all duration-200"
               style={{
-                backgroundColor: failures > i ? "#f87171" : "transparent",
-                borderColor: failures > i ? "#f87171" : "#3f3f46",
+                backgroundColor: failures > i ? "#dc2626" : "transparent",
+                borderColor: failures > i ? "#dc2626" : "#e5e5e5",
               }}
               aria-label={`Failure ${i + 1}`}
             />

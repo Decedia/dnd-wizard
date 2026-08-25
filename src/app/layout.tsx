@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased bg-ink text-paper`}
+        className={`${inter.variable} antialiased bg-paper text-ink`}
       >
         <SRDProvider>
           <div className="mx-auto max-w-lg">

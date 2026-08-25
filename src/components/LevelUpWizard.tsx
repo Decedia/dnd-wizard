@@ -302,14 +302,14 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   }
 
   return (
-    <div className="min-h-screen bg-ink">
-      <div className="sticky top-0 z-40 bg-ink/90 backdrop-blur-sm border-b border-border-muted">
+    <div className="min-h-screen bg-paper">
+      <div className="sticky top-0 z-40 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
-            <button onClick={onCancel} className="text-xs font-semibold text-ink-muted hover:text-paper transition-colors">
+            <button onClick={onCancel} className="text-xs font-semibold text-ink-muted hover:text-ink transition-colors">
               Cancel
             </button>
-            <div className="text-xs font-semibold text-paper">Level Up</div>
+            <div className="text-xs font-semibold text-ink">Level Up</div>
             <div className="w-12" />
           </div>
           <div className="mt-2">
@@ -439,16 +439,16 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         const lvl = screen.level;
         const st = asiState[lvl] || {};
         return (
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
-            <div className="w-full max-w-lg rounded-xl border border-border-strong bg-ink">
-              <div className="flex items-center justify-between border-b border-border-muted px-4 py-2.5">
-                <div className="text-xs font-semibold text-paper">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-ink/5 p-4">
+            <div className="w-full max-w-lg rounded-xl border border-border-strong bg-paper">
+              <div className="flex items-center justify-between border-b border-border-strong px-4 py-2.5">
+                <div className="text-xs font-semibold text-ink">
                   Level {lvl} — Ability Score Improvement
                 </div>
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="text-lg leading-none text-ink-muted hover:text-paper transition-colors"
+                  className="text-lg leading-none text-ink-muted hover:text-ink transition-colors"
                   aria-label="Close"
                 >
                   ×
@@ -462,7 +462,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   onChange={(patch) => setAsi(lvl, patch)}
                 />
               </div>
-              <div className="flex justify-between border-t border-border-muted px-4 py-2.5">
+              <div className="flex justify-between border-t border-border-strong px-4 py-2.5">
                 <button
                   type="button"
                   onClick={cancelAsi}
@@ -595,7 +595,7 @@ function AsiStep({
           {changes.map((k) => {
             const ab = ABILITIES.find((a) => a.key === k)!;
             return (
-              <div key={k} className="text-xs font-medium text-paper">
+              <div key={k} className="text-xs font-medium text-ink">
                 <span className="font-semibold">{ab.full}</span>{" "}
                 <span className="text-ink-muted">
                   {baseScores[k]} → <span className="text-ink font-bold bg-paper px-1 rounded">{baseScores[k] + alloc[k]}</span>
@@ -742,7 +742,7 @@ function SectionRenderer({
   const header = (
     <div className="flex items-center gap-2">
       <span className="text-sm opacity-70">{sectionIcon(section.type)}</span>
-      <div className="text-[11px] font-bold uppercase tracking-wider text-paper">
+      <div className="text-[11px] font-bold uppercase tracking-wider text-ink">
         {sectionTitle(section.type)}
       </div>
     </div>

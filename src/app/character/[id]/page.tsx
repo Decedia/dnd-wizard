@@ -134,12 +134,12 @@ export default function CharacterView() {
 
   if (!character) {
     return (
-      <div className="min-h-screen bg-ink">
+      <div className="min-h-screen bg-paper">
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
-          <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-ink py-16 text-center">
+          <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-16 text-center">
             <div className="mb-3 text-4xl opacity-40">🐉</div>
-            <h2 className="font-display text-lg font-semibold text-paper mb-2">
+            <h2 className="font-display text-lg font-semibold text-ink mb-2">
               Character Not Found
             </h2>
             <p className="text-xs text-ink-muted max-w-xs mb-5">
@@ -158,10 +158,10 @@ export default function CharacterView() {
   }
 
   return (
-    <div className="min-h-screen bg-ink">
+    <div className="min-h-screen bg-paper">
       <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} />
 
-      <div className="sticky top-[52px] z-30 bg-ink/80 backdrop-blur-sm border-b border-border-muted">
+      <div className="sticky top-[52px] z-30 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
         <div className="mx-auto max-w-lg px-4 py-2.5">
           <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
         </div>
@@ -232,7 +232,7 @@ export default function CharacterView() {
               >
                 {exportingPdf ? (
                   <>
-                    <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border border-paper border-t-ink" />
+                    <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border border-ink border-t-transparent" />
                     <span className="text-xs">Generating...</span>
                   </>
                 ) : (
@@ -258,7 +258,7 @@ export default function CharacterView() {
               Delete Character
             </button>
             {savedAt && (
-              <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-ink bg-paper py-2 surface">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-ink py-2 surface">
                 <CheckIcon className="h-3.5 w-3.5" />
                 Saved
               </div>

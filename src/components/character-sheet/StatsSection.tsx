@@ -37,7 +37,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
 
   return (
     <SectionCard id="stats" title="STATS" icon={<StatsIcon className="h-5 w-5" />}>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2.5">
         {stats.map(({ key, label }) => (
           <AbilityScoreBlock
             key={key}
@@ -50,7 +50,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
         ))}
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-3">
+      <div className="mt-3.5 grid grid-cols-2 gap-2.5">
         <Field label="PROFICIENCY BONUS">
           {editMode ? (
             <input
@@ -60,7 +60,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               className="input bg-paper-muted"
             />
           ) : (
-            <span className="text-sm font-bold text-paper">+{character.proficiencyBonus}</span>
+            <span className="text-sm font-semibold text-ink">+{character.proficiencyBonus}</span>
           )}
         </Field>
         <Field label="INITIATIVE">
@@ -72,7 +72,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               className="input bg-paper-muted"
             />
           ) : (
-            <span className="text-sm font-bold text-paper">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
+            <span className="text-sm font-semibold text-ink">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
           )}
         </Field>
       </div>
@@ -86,22 +86,22 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             onBlur={onFieldBlur}
             className="checkbox"
           />
-          <span className="text-sm text-paper">Inspiration</span>
+          <span className="text-sm font-medium text-ink">Inspiration</span>
         </label>
       </div>
 
-      <div className="mt-4">
-        <span className="text-[10px] font-bold text-paper-muted uppercase tracking-wider block mb-2">Saving Throws</span>
-        <div className="space-y-2">
+      <div className="mt-3.5">
+        <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider block mb-2">Saving Throws</span>
+        <div className="space-y-1.5">
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             const abilityMod = getModifier(character[key]);
             return (
                <div key={key} className="card flex items-center justify-between px-3 py-2">
-                <div className="flex items-center gap-3">
-                  <span className="text-sm text-paper-muted w-10 font-medium">{key.toUpperCase()}</span>
-                  <span className="text-paper-muted">•</span>
-                  <span className="text-xs text-paper-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
+                <div className="flex items-center gap-2.5">
+                  <span className="text-sm font-medium text-ink-muted w-10">{key.toUpperCase()}</span>
+                  <span className="text-ink-muted">•</span>
+                  <span className="text-[11px] text-ink-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
                 </div>
                 {editMode ? (
                   <input
@@ -111,7 +111,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
                     className="input w-20 text-center bg-paper-muted"
                   />
                 ) : (
-                  <span className="text-sm font-bold text-paper w-20 text-right">
+                  <span className="text-sm font-semibold text-ink w-20 text-right">
                     {st.value >= 0 ? `+${st.value}` : st.value}
                   </span>
                 )}
@@ -135,7 +135,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function StatsIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M18 20V10" />
       <path d="M12 20V4" />
       <path d="M6 20v-6" />

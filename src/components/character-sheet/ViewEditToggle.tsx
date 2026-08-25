@@ -9,7 +9,7 @@ interface ViewEditToggleProps {
 
 export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
   return (
-    <div className="flex items-center gap-1 rounded-lg border border-border-strong bg-ink p-0.5 shrink-0">
+    <div className="flex items-center gap-0.5 rounded-lg border border-border-strong bg-paper p-0.5 shrink-0">
       <button
         type="button"
         onClick={() => onModeChange("view")}

@@ -15,8 +15,8 @@ export function SpeedStat({ value }: SpeedStatProps) {
             width="80"
             height="100"
             rx="12"
-            fill="#18181b"
-            stroke="#27272a"
+            fill="#ffffff"
+            stroke="#e5e5e5"
             strokeWidth="1"
           />
           <rect
@@ -26,14 +26,14 @@ export function SpeedStat({ value }: SpeedStatProps) {
             height="84"
             rx="8"
             fill="none"
-            stroke="#3f3f46"
+            stroke="#f0f0f0"
             strokeWidth="1"
-            opacity="0.5"
+            opacity="0.8"
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-[9px] font-semibold text-ink-muted uppercase tracking-wider">Speed</span>
-          <span className="text-xl font-bold text-paper">{value}</span>
+          <span className="text-xl font-bold text-ink">{value}</span>
         </div>
       </div>
     </div>

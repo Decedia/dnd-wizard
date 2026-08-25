@@ -14,7 +14,7 @@ export default function NewCharacter() {
   }, [router]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-ink">
+    <div className="flex items-center justify-center min-h-screen bg-paper">
       <div className="text-ink-muted font-semibold text-sm">Creating new character...</div>
     </div>
   );

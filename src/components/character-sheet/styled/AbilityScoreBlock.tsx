@@ -18,7 +18,7 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
     return (
       <div className="stat-box-light">
         <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">{label}</span>
-        <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-ink-muted"}`}>
+        <span className={`text-lg font-bold ${mod >= 0 ? "text-ink" : "text-ink-muted"}`}>
           {mod >= 0 ? `+${mod}` : mod}
         </span>
         <span className="text-[10px] font-semibold text-ink-muted mt-0.5">{value}</span>
@@ -45,17 +45,17 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode }: 
               onBlur?.();
             }
           }}
-          className="w-10 bg-transparent text-center text-lg font-bold text-paper outline-none"
+          className="w-10 bg-transparent text-center text-lg font-bold text-ink outline-none"
         />
       ) : (
         <>
-          <span className={`text-lg font-bold ${mod >= 0 ? "text-paper" : "text-ink-muted"}`}>
+          <span className={`text-lg font-bold ${mod >= 0 ? "text-ink" : "text-ink-muted"}`}>
             {mod >= 0 ? `+${mod}` : mod}
           </span>
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="text-[10px] font-semibold text-ink-muted mt-0.5 hover:text-paper transition-colors"
+            className="text-[10px] font-semibold text-ink-muted mt-0.5 hover:text-ink transition-colors"
           >
             {value}
           </button>

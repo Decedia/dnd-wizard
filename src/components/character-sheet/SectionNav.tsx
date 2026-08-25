@@ -49,7 +49,7 @@ export function SectionNav() {
 
   return (
     <nav
-      className="fixed right-1 md:right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-1 md:gap-1.5 rounded-full border border-border-strong bg-ink/80 backdrop-blur-sm p-1 md:p-2"
+      className="fixed right-1 md:right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-1 md:gap-1.5 rounded-full border border-border-strong bg-paper/90 backdrop-blur-sm p-1 md:p-2"
       aria-label="Section navigation"
     >
       {sections.map(({ id, label, Icon }) => (
@@ -60,8 +60,8 @@ export function SectionNav() {
           title={label}
           className={`flex items-center justify-center rounded-md transition-all ${
             active === id
-              ? "h-7 w-7 md:h-8 md:w-8 text-ink bg-paper border border-paper"
-              : "h-7 w-7 md:h-8 md:w-8 text-ink-muted hover:text-paper border border-transparent"
+              ? "h-7 w-7 md:h-8 md:w-8 text-white bg-ink border border-ink"
+              : "h-7 w-7 md:h-8 md:w-8 text-ink-muted hover:text-ink border border-transparent"
           }`}
         >
           <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />

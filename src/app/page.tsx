@@ -34,7 +34,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-ink">
+    <div className="min-h-screen bg-paper">
       <AppHeader title="DND Wizard" subtitle="My Characters" />
 
       <main className="px-4 py-4 pb-28">
@@ -63,24 +63,24 @@ export default function Home() {
             className="hidden"
           />
           {importError && (
-            <div className="mt-2.5 surface border-red-500/50 bg-paper/5 px-3 py-2.5 text-xs font-medium text-red-400">
+            <div className="mt-2.5 surface border-red-200 bg-red-50 px-3 py-2.5 text-xs font-medium text-red-600">
               {importError}
             </div>
           )}
           {importSuccess && (
-            <div className="mt-2.5 surface bg-paper/5 px-3 py-2.5 text-xs font-medium text-ink">
+            <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-xs font-medium text-ink">
               {importSuccess}
             </div>
           )}
         </div>
 
         <section>
-          <h2 className="font-display text-sm font-semibold text-paper-muted mb-3">
+          <h2 className="font-display text-sm font-semibold text-ink mb-3">
             My Characters
           </h2>
 
           {characters.length === 0 ? (
-               <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-ink py-10 text-center">
+               <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-10 text-center">
               <div className="mb-2.5 text-3xl opacity-40">🐉</div>
               <p className="text-xs text-ink-muted">
                 No characters yet. Create your first hero to begin your adventure.
@@ -92,15 +92,15 @@ export default function Home() {
                 <li key={char.id}>
                    <Link
                      href={`/character/${char.id}`}
-                      className="card block p-3.5 transition-all active:scale-[0.98] hover:bg-ink-heavy"
+                      className="card block p-3.5 transition-all active:scale-[0.98] hover:bg-paper-muted"
                    >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-paper/5 text-base">
+                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink/5 text-base">
                         🧙
                       </div>
                       <div>
-                        <h3 className="font-display font-semibold text-paper text-sm">
+                        <h3 className="font-display font-semibold text-ink text-sm">
                           {char.name || "Unnamed Hero"}
                         </h3>
                         <p className="text-[11px] text-ink-muted">

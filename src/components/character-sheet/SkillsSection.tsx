@@ -56,7 +56,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
     <SectionCard id="skills" title="SKILLS" icon={<SkillsIcon className="h-5 w-5" />}>
       {skillChoices && editMode && (
         <div className="mb-2.5 hint-box-light">
-          <span className="text-[11px] text-paper-muted">
+          <span className="text-[11px] text-ink-muted">
             Select {maxSelections} skills from your class list ({currentSelections} of {maxSelections} selected)
           </span>
         </div>
@@ -78,20 +78,20 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               key={name}
               className={`card px-2.5 py-2 ${
                 isProficient
-                  ? "border-paper/60 bg-paper/5"
+                  ? "border-ink/30 bg-ink/[0.02]"
                   : disabled
-                    ? "border-paper/10 bg-ink-muted/50 opacity-50"
-                    : "border-paper bg-ink"
+                    ? "border-border-muted bg-paper-muted/50 opacity-50"
+                    : "border-border-strong bg-paper"
               }`}
             >
               {editMode ? (
                 <label className={`flex items-center justify-between gap-2 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs text-paper truncate">{name}</span>
+                    <span className="text-xs font-medium text-ink truncate">{name}</span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className={`text-xs font-bold ${isProficient ? "text-paper" : "text-ink-muted"}`}>
+                    <span className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
                       {total >= 0 ? `+${total}` : total}
                     </span>
                     <input
@@ -107,10 +107,10 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               ) : (
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs text-paper truncate flex items-center gap-1">
+                    <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                       {name}
                       {(isProficient || isExpert) && (
-                        <span className="flex items-center text-paper">
+                        <span className="flex items-center text-ink">
                           {isExpert && <StarIcon className="h-2.5 w-2.5 filled" />}
                           {isExpert && isProficient && <StarIcon className="h-2.5 w-2.5 -ml-0.5 filled" />}
                           {!isExpert && isProficient && <StarIcon className="h-2.5 w-2.5 filled" />}
@@ -119,7 +119,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                     </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
-                  <span className={`text-xs font-bold ${isProficient ? "text-paper" : "text-ink-muted"}`}>
+                  <span className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
                     {total >= 0 ? `+${total}` : total}
                   </span>
                 </div>
@@ -142,29 +142,19 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
       )}
 
       {tooltip && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm surface bg-ink p-3.5" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/5" onClick={() => setTooltip(null)}>
+          <div className="max-w-sm surface bg-paper p-3.5" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-1.5">
-              <h3 className="font-display font-semibold text-paper text-sm">{tooltip.name}</h3>
-              <button onClick={() => setTooltip(null)} className="text-ink-muted hover:text-paper">
+              <h3 className="font-display font-semibold text-ink text-sm">{tooltip.name}</h3>
+              <button onClick={() => setTooltip(null)} className="text-ink-muted hover:text-ink">
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-xs text-paper">{tooltip.description}</p>
+            <p className="text-xs text-ink">{tooltip.description}</p>
           </div>
         </div>
       )}
     </SectionCard>
-  );
-}
-
-function InfoIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 16v-4" />
-      <path d="M12 8h.01" />
-    </svg>
   );
 }
 
@@ -178,7 +168,7 @@ function XIcon({ className }: { className?: string }) {
 
 function SkillsIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 11l3 3L22 4" />
       <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
     </svg>

@@ -28,7 +28,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             onBlur={onFieldBlur}
             className="checkbox"
           />
-          <label htmlFor="custom-hp" className="text-xs font-semibold text-paper cursor-pointer select-none">
+          <label htmlFor="custom-hp" className="text-xs font-semibold text-ink cursor-pointer select-none">
             Custom HP
           </label>
         </div>

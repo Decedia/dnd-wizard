@@ -25,10 +25,10 @@ export function StickyMiniHeader({ character }: StickyMiniHeaderProps) {
   const subtitle = `${character.class || "Adventurer"} • Level ${character.level || 1}`;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-30 bg-ink/90 backdrop-blur-sm border-b border-border-muted">
+    <div className="fixed top-0 left-0 right-0 z-30 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
       <div className="mx-auto max-w-lg px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-2 min-w-0">
-           <span className="font-display text-sm font-semibold text-paper truncate">{title}</span>
+           <span className="font-display text-sm font-semibold text-ink truncate">{title}</span>
           <span className="text-ink-muted">•</span>
           <span className="text-[11px] text-ink-muted font-medium truncate">{subtitle}</span>
         </div>
