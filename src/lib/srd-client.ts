@@ -8,6 +8,7 @@ import armorsData from "@/data/2014_armor.json";
 import itemsData from "@/data/2014_items.json";
 import equipmentsData from "@/data/2014_equipments.json";
 import wizardSpellsData from "@/data/2014_wizard_spells.json";
+import { equipment as srdEquipment } from "@/data/srd";
 
 export interface SRDRace {
   name: string;
@@ -341,9 +342,10 @@ export function getEquipmentData(name: string): SRDEquipment | undefined {
     : typeof contents === "string"
       ? contents
       : undefined;
+  const fallback = srdEquipment.find((e) => e.name === name);
   return {
     name: detail.name,
-    description: detail.description,
+    description: detail.description || fallback?.description || "",
     type: mapEquipmentCategory(detail.equipment_category),
     category: mapWeaponCategory(detail.category_range),
     damageDice: detail.damage?.damage_dice,
