@@ -1991,17 +1991,12 @@
           "features": [
             {
               "name": "Spellcasting: Cleric",
-              "description": [
-                "As a conduit for divine power, you can cast cleric spells."
-              ],
+              "description": "As a conduit for divine power, you can cast cleric spells. At 1st level, you know three cantrips of your choice from the cleric spell list. You learn additional cleric cantrips of your choice at higher levels. You prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum of one spell). The spells must be of a level for which you have spell slots. You can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list. Wisdom is your spellcasting ability for your cleric spells. You can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared. You can use a holy symbol as a spellcasting focus for your cleric spells.",
               "type": "feature"
             },
             {
               "name": "Divine Domain",
-              "description": [
-                "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Only the Life domain is detailed in the Open Game Licensed SRD. Additional Domains are described in the official rulebooks or products from other publishers.",
-                "Your domain grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels."
-              ],
+              "description": "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels. Each domain has a list of spells-its domain spells that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.",
               "type": "feature"
             },
             {
@@ -2033,18 +2028,12 @@
             },
             {
               "name": "Channel Divinity: Turn Undead",
-              "description": [
-                "As an action, you present your holy symbol and speak a prayer censuring the undead. Each undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes any damage.",
-                "A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action."
-              ],
+              "description": "As an action, you present your holy symbol and speak a prayer censuring the undead. Each undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes any damage. A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving.",
               "type": "feature"
             },
             {
               "name": "Divine Domain feature",
-              "description": [
-                "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Only the Life domain is detailed in the Open Game Licensed SRD. Additional Domains are described in the official rulebooks or products from other publishers.",
-                "Your domain grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels."
-              ],
+              "description": "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.",
               "type": "feature"
             }
           ],
@@ -2076,9 +2065,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2126,10 +2113,7 @@
             },
             {
               "name": "Divine Domain feature",
-              "description": [
-                "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Only the Life domain is detailed in the Open Game Licensed SRD. Additional Domains are described in the official rulebooks or products from other publishers.",
-                "Your domain grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels."
-              ],
+              "description": "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.",
               "type": "feature"
             }
           ],
@@ -2165,9 +2149,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             },
             {
@@ -2179,10 +2161,7 @@
             },
             {
               "name": "Divine Domain feature",
-              "description": [
-                "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Only the Life domain is detailed in the Open Game Licensed SRD. Additional Domains are described in the official rulebooks or products from other publishers.",
-                "Your domain grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels."
-              ],
+              "description": "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.",
               "type": "feature"
             }
           ],
@@ -2220,12 +2199,7 @@
           "features": [
             {
               "name": "Divine Intervention",
-              "description": [
-                "Beginning at 10th level, you can call on your deity to intervene on your behalf when your need is great.",
-                "Imploring your deity's aid requires you to use your action. Describe the assistance you seek, and roll percentile dice. If you roll a number equal to or lower than your cleric level, your deity intervenes. The GM chooses the nature of the intervention; the effect of any cleric spell or cleric domain spell would be appropriate.",
-                "If your deity intervenes, you can't use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest.",
-                "At 20th level, your call for intervention succeeds automatically, no roll required."
-              ],
+              "description": "Beginning at 10th level, you can call on your deity to intervene on your behalf when your need is great. Imploring your deity's aid requires you to use your action. Describe the assistance you seek, and roll percentile dice. If you roll a number equal to or lower than your cleric level, your deity intervenes. The DM chooses the nature of the intervention; the effect of any cleric spell or cleric domain spell would be appropriate. If your deity intervenes, you can't use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest. At 20th level, your call for intervention succeeds automatically, no roll required.",
               "type": "feature"
             }
           ],
@@ -2264,9 +2238,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2336,9 +2308,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2366,10 +2336,7 @@
             },
             {
               "name": "Divine Domain feature",
-              "description": [
-                "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Only the Life domain is detailed in the Open Game Licensed SRD. Additional Domains are described in the official rulebooks or products from other publishers.",
-                "Your domain grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels."
-              ],
+              "description": "At 1st level, you choose a domain shaped by your choice of Deity and the gifts they grant you. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.",
               "type": "feature"
             }
           ],
@@ -2415,9 +2382,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2639,9 +2604,7 @@
             },
             {
               "name": "Druidic",
-              "description": [
-                "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom (Perception) check but can't decipher it without magic."
-              ],
+              "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom (Perception) check but can't decipher it without magic.",
               "type": "feature"
             }
           ],
@@ -2670,9 +2633,7 @@
             },
             {
               "name": "Druid Circle",
-              "description": [
-                "At 2nd level, you choose to identify with a circle of druids, such as the Circle of the Land. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 2nd level, you choose to identify with a circle of druids. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -2710,9 +2671,7 @@
             },
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2737,9 +2696,7 @@
           "features": [
             {
               "name": "Druid Circle feature",
-              "description": [
-                "At 2nd level, you choose to identify with a circle of druids, such as the Circle of the Land. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 2nd level, you choose to identify with a circle of druids. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -2781,9 +2738,7 @@
             },
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2812,9 +2767,7 @@
           "features": [
             {
               "name": "Druid Circle feature",
-              "description": [
-                "At 2nd level, you choose to identify with a circle of druids, such as the Circle of the Land. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 2nd level, you choose to identify with a circle of druids. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -2845,9 +2798,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2880,9 +2831,7 @@
           "features": [
             {
               "name": "Druid Circle feature",
-              "description": [
-                "At 2nd level, you choose to identify with a circle of druids, such as the Circle of the Land. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 2nd level, you choose to identify with a circle of druids. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -2917,9 +2866,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -2956,16 +2903,12 @@
           "features": [
             {
               "name": "Timeless Body",
-              "description": [
-                "Starting at 18th level, the primal magic that you wield causes you to age more slowly. For every 10 years that pass, your body ages only 1 year."
-              ],
+              "description": "Starting at 18th level, the primal magic that you wield causes you to age more slowly. For every 10 years that pass, your body ages only 1 year.",
               "type": "feature"
             },
             {
               "name": "Beast Spells",
-              "description": [
-                "Beginning at 18th level, you can cast many of your druid spells in any shape you assume using Wild Shape. You can perform the somatic and verbal components of a druid spell while in a beast shape, but you aren't able to provide material components."
-              ],
+              "description": "Beginning at 18th level, you can cast many of your druid spells in any shape you assume using Wild Shape. You can perform the somatic and verbal components of a druid spell while in a beast shape, but you aren't able to provide material components.",
               "type": "feature"
             }
           ],
@@ -2987,9 +2930,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3011,10 +2952,7 @@
           "features": [
             {
               "name": "Archdruid",
-              "description": [
-                "At 20th level, you can use your Wild Shape an unlimited number of times.",
-                "Additionally, you can ignore the verbal and somatic components of your druid spells, as well as any material components that lack a cost and aren't consumed by a spell. You gain this benefit in both your normal shape and your beast shape from Wild Shape."
-              ],
+              "description": "At 20th level, you can use your Wild Shape an unlimited number of times. Additionally, you can ignore the verbal and somatic components of your druid spells, as well as any material components that lack a cost and aren't consumed by a spell.",
               "type": "feature"
             }
           ],
@@ -3203,9 +3141,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": [
-                "You adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again."
-              ],
+              "description": "You adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again. Archery: You gain a +2 bonus to attack rolls you make with ranged weapons. Defense: While you are wearing armor, you gain a +1 bonus to AC. Dueling: When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon. Great Weapon Fighting: When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll. Protection: When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. Two-Weapon Fighting: When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -3222,9 +3158,7 @@
             },
             {
               "name": "Second Wind",
-              "description": [
-                "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again."
-              ],
+              "description": "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again.",
               "type": "feature"
             }
           ],
@@ -3251,9 +3185,7 @@
           "features": [
             {
               "name": "Martial Archetype",
-              "description": [
-                "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -3265,9 +3197,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3279,9 +3209,7 @@
           "features": [
             {
               "name": "Extra Attack",
-              "description": [
-                "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. The number of attacks increases to three when you reach 11th level in this class and to four when you reach 20th level in this class."
-              ],
+              "description": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. The number of attacks increases to three when you reach 11th level in this class and to four when you reach 20th level in this class.",
               "type": "feature"
             }
           ],
@@ -3293,9 +3221,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3307,9 +3233,7 @@
           "features": [
             {
               "name": "Martial Archetype feature",
-              "description": [
-                "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -3321,9 +3245,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3349,9 +3271,7 @@
           "features": [
             {
               "name": "Martial Archetype feature",
-              "description": [
-                "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -3377,9 +3297,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3405,9 +3323,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3419,9 +3335,7 @@
           "features": [
             {
               "name": "Martial Archetype feature",
-              "description": [
-                "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -3433,9 +3347,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3469,9 +3381,7 @@
           "features": [
             {
               "name": "Martial Archetype feature",
-              "description": [
-                "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you strive to emulate in your combat styles and techniques. The archetype you choose grants you features at 3rd level and again at 7th, 10th, 15th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -3483,9 +3393,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 6th, 8th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3657,21 +3565,12 @@
           "features": [
             {
               "name": "Unarmored Defense",
-              "description": [
-                "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier."
-              ],
+              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
               "type": "feature"
             },
             {
               "name": "Martial Arts",
-              "description": [
-                "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two- handed or heavy property.",
-                "You gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:",
-                "- You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.",
-                "- You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of Table: The Monk.",
-                "- When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn.",
-                "Certain monasteries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called a nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics provided for the weapon."
-              ],
+              "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two-handed or heavy property. You gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield: You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons. You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the Monk table. When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action.",
               "type": "feature"
             }
           ],
@@ -3683,13 +3582,7 @@
           "features": [
             {
               "name": "Ki",
-              "description": [
-                "Starting at 2nd level, your training allows you to harness the mystic energy of ki. Your access to this energy is represented by a number of ki points. Your monk level determines the number of points you have, as shown in the Ki Points column of Table: The Monk.",
-                "You can spend these points to fuel various ki features. You start knowing three such features: Flurry of Blows, Patient Defense, and Step of the Wind. You learn more ki features as you gain levels in this class.",
-                "When you spend a ki point, it is unavailable until you finish a short or long rest, at the end of which you draw all of your expended ki back into yourself. You must spend at least 30 minutes of the rest meditating to regain your ki points.",
-                "Some of your ki features require your target to make a saving throw to resist the feature's effects. The saving throw DC is calculated as follows:",
-                "Ki save DC = 8 + your proficiency bonus + your Wisdom modifier"
-              ],
+              "description": "Starting at 2nd level, your training allows you to harness the mystic energy of ki. Your access to this energy is represented by a number of ki points. Your monk level determines the number of points you have. You can spend these points to fuel various ki features. You start knowing three such features: Flurry of Blows, Patient Defense, and Step of the Wind. When you spend a ki point, it is unavailable until you finish a short or long rest. Flurry of Blows: Immediately after you take the Attack action on your turn, you can spend 1 ki point to make two unarmed strikes as a bonus action. Patient Defense: You can spend 1 ki point to take the Dodge action as a bonus action on your turn. Step of the Wind: You can spend 1 ki point to take the Disengage or Dash action as a bonus action on your turn, and your jump distance is doubled for the turn.",
               "type": "feature"
             },
             {
@@ -3715,10 +3608,7 @@
             },
             {
               "name": "Unarmored Movement",
-              "description": [
-                "Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in Table: The Monk.",
-                "At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move."
-              ],
+              "description": "Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels. At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.",
               "type": "feature"
             }
           ],
@@ -3730,17 +3620,12 @@
           "features": [
             {
               "name": "Monastic Tradition",
-              "description": [
-                "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level."
-              ],
+              "description": "When you reach 3rd level, you commit yourself to a monastic tradition. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level.",
               "type": "feature"
             },
             {
               "name": "Deflect Missiles",
-              "description": [
-                "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.",
-                "If you reduce the damage to 0, you can catch the missile if it is small enough for you to hold in one hand and you have at least one hand free. If you catch a missile in this way, you can spend 1 ki point to make a ranged attack with the weapon or piece of ammunition you just caught, as part of the same reaction. You make this attack with proficiency, regardless of your weapon proficiencies, and the missile counts as a monk weapon for the attack, which has a normal range of 20 feet and a long range of 60 feet."
-              ],
+              "description": "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level. If you reduce the damage to 0, you can catch the missile if it is small enough for you to hold in one hand and you have at least one hand free. If you catch a missile in this way, you can spend 1 ki point to make a ranged attack with a range of 20/60 using the weapon or piece of ammunition you just caught.",
               "type": "feature"
             }
           ],
@@ -3752,16 +3637,12 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             },
             {
               "name": "Slow Fall",
-              "description": [
-                "Beginning at 4th level, you can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level."
-              ],
+              "description": "Beginning at 4th level, you can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.",
               "type": "feature"
             }
           ],
@@ -3773,16 +3654,12 @@
           "features": [
             {
               "name": "Extra Attack",
-              "description": [
-                "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
-              ],
+              "description": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.",
               "type": "feature"
             },
             {
               "name": "Stunning Strike",
-              "description": [
-                "Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 ki point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be stunned until the end of your next turn."
-              ],
+              "description": "Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 ki point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be stunned until the end of your next turn.",
               "type": "feature"
             }
           ],
@@ -3801,9 +3678,7 @@
             },
             {
               "name": "Monastic Tradition feature",
-              "description": [
-                "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level."
-              ],
+              "description": "When you reach 3rd level, you commit yourself to a monastic tradition. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level.",
               "type": "feature"
             }
           ],
@@ -3815,16 +3690,12 @@
           "features": [
             {
               "name": "Evasion",
-              "description": [
-                "At 7th level, your instinctive agility lets you dodge out of the way of certain area effects, such as a blue dragon's lightning breath or a fireball spell. When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
-              ],
+              "description": "At 7th level, your instinctive agility lets you dodge out of the way of certain area effects, such as a blue dragon's lightning breath or a fireball spell. When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail.",
               "type": "feature"
             },
             {
               "name": "Stillness of Mind",
-              "description": [
-                "Starting at 7th level, you can use your action to end one effect on yourself that is causing you to be charmed or frightened."
-              ],
+              "description": "Starting at 7th level, you can use your action to end one effect on yourself that is causing you to be charmed or frightened.",
               "type": "feature"
             }
           ],
@@ -3836,9 +3707,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3850,10 +3719,7 @@
           "features": [
             {
               "name": "Unarmored Movement",
-              "description": [
-                "Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in Table: The Monk.",
-                "At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move."
-              ],
+              "description": "Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels. At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.",
               "type": "feature"
             }
           ],
@@ -3865,9 +3731,7 @@
           "features": [
             {
               "name": "Purity of Body",
-              "description": [
-                "At 10th level, your mastery of the ki flowing through you makes you immune to disease and poison."
-              ],
+              "description": "At 10th level, your mastery of the ki flowing through you makes you immune to disease and poison.",
               "type": "feature"
             }
           ],
@@ -3879,9 +3743,7 @@
           "features": [
             {
               "name": "Monastic Tradition feature",
-              "description": [
-                "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level."
-              ],
+              "description": "When you reach 3rd level, you commit yourself to a monastic tradition. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level.",
               "type": "feature"
             }
           ],
@@ -3893,9 +3755,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3907,9 +3767,7 @@
           "features": [
             {
               "name": "Tongue of the Sun and Moon",
-              "description": [
-                "Starting at 13th level, you learn to touch the ki of other minds so that you understand all spoken languages. Moreover, any creature that can understand a language can understand what you say."
-              ],
+              "description": "Starting at 13th level, you learn to touch the ki of other minds so that you understand all spoken languages. Moreover, any creature that can understand a language can understand what you say.",
               "type": "feature"
             }
           ],
@@ -3921,10 +3779,7 @@
           "features": [
             {
               "name": "Diamond Soul",
-              "description": [
-                "Beginning at 14th level, your mastery of ki grants you proficiency in all saving throws.",
-                "Additionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result."
-              ],
+              "description": "Beginning at 14th level, your mastery of ki grants you proficiency in all saving throws. Additionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result.",
               "type": "feature"
             }
           ],
@@ -3936,9 +3791,7 @@
           "features": [
             {
               "name": "Timeless Body",
-              "description": [
-                "At 15th level, your ki sustains you so that you suffer none of the frailty of old age, and you can't be aged magically. You can still die of old age, however. In addition, you no longer need food or water."
-              ],
+              "description": "At 15th level, your ki sustains you so that you suffer none of the frailty of old age, and you can't be aged magically. You can still die of old age, however. In addition, you no longer need food or water.",
               "type": "feature"
             }
           ],
@@ -3950,9 +3803,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -3964,9 +3815,7 @@
           "features": [
             {
               "name": "Monastic Tradition feature",
-              "description": [
-                "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level."
-              ],
+              "description": "When you reach 3rd level, you commit yourself to a monastic tradition. Your tradition grants you features at 3rd level and again at 6th, 11th, and 17th level.",
               "type": "feature"
             }
           ],
@@ -3978,10 +3827,7 @@
           "features": [
             {
               "name": "Empty Body",
-              "description": [
-                "Beginning at 18th level, you can use your action to spend 4 ki points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage.",
-                "Additionally, you can spend 8 ki points to cast the astral projection spell, without needing material components. When you do so, you can't take any other creatures with you."
-              ],
+              "description": "Beginning at 18th level, you can use your action to spend 4 ki points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage. Additionally, you can spend 8 ki points to cast the astral projection spell, without needing material components.",
               "type": "feature"
             }
           ],
@@ -3993,9 +3839,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -4007,9 +3851,7 @@
           "features": [
             {
               "name": "Perfect Self",
-              "description": [
-                "At 20th level, when you roll for initiative and have no ki points remaining, you regain 4 ki points."
-              ],
+              "description": "At 20th level, when you roll for initiative and have no ki points remaining, you regain 4 ki points.",
               "type": "feature"
             }
           ],
@@ -4204,20 +4046,12 @@
           "features": [
             {
               "name": "Divine Sense",
-              "description": [
-                "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the hallow spell.",
-                "You can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses."
-              ],
+              "description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated. You can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses.",
               "type": "feature"
             },
             {
               "name": "Lay on Hands",
-              "description": [
-                "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level x 5.",
-                "As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.",
-                "Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.",
-                "This feature has no effect on undead and constructs."
-              ],
+              "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level x 5. As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool. Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. This feature has no effect on undead and constructs.",
               "type": "feature"
             }
           ],
@@ -4229,9 +4063,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": [
-                "At 2nd level, you adopt a style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again."
-              ],
+              "description": "Starting at 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again. Blessed Warrior: You learn two cantrips of your choice from the cleric spell list. They count as paladin spells for you, and Charisma is your spellcasting ability for them. Defense: While you are wearing armor, you gain a +1 bonus to AC. Dueling: When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon. Great Weapon Fighting: When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll. Protection: When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -4255,9 +4087,7 @@
             },
             {
               "name": "Divine Smite",
-              "description": [
-                "Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each spell level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an undead or a fiend."
-              ],
+              "description": "Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each spell level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an undead or a fiend, to a maximum of 6d8.",
               "type": "feature"
             }
           ],
@@ -4271,17 +4101,12 @@
           "features": [
             {
               "name": "Divine Health",
-              "description": [
-                "By 3rd level, the divine magic flowing through you makes you immune to disease."
-              ],
+              "description": "By 3rd level, the divine magic flowing through you makes you immune to disease.",
               "type": "feature"
             },
             {
               "name": "Sacred Oath",
-              "description": [
-                "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose an oath, such as the Oath of Devotion.",
-                "Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature."
-              ],
+              "description": "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature. Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared.",
               "type": "feature"
             },
             {
@@ -4312,9 +4137,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -4328,9 +4151,7 @@
           "features": [
             {
               "name": "Extra Attack",
-              "description": [
-                "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
-              ],
+              "description": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.",
               "type": "feature"
             }
           ],
@@ -4345,10 +4166,7 @@
           "features": [
             {
               "name": "Aura of Protection",
-              "description": [
-                "Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a minimum bonus of +1). You must be conscious to grant this bonus.",
-                "At 18th level, the range of this aura increases to 30 feet."
-              ],
+              "description": "Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a minimum bonus of +1). You must be conscious to grant this bonus. At 18th level, the range of this aura increases to 30 feet.",
               "type": "feature"
             }
           ],
@@ -4363,10 +4181,7 @@
           "features": [
             {
               "name": "Sacred Oath feature",
-              "description": [
-                "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose an oath, such as the Oath of Devotion.",
-                "Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature."
-              ],
+              "description": "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level.",
               "type": "feature"
             }
           ],
@@ -4381,9 +4196,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -4408,10 +4221,7 @@
           "features": [
             {
               "name": "Aura of Courage",
-              "description": [
-                "Starting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious.",
-                "At 18th level, the range of this aura increases to 30 feet."
-              ],
+              "description": "Starting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious. At 18th level, the range of this aura increases to 30 feet.",
               "type": "feature"
             }
           ],
@@ -4427,9 +4237,7 @@
           "features": [
             {
               "name": "Improved Divine Smite",
-              "description": [
-                "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra 1d8 radiant damage. If you also use your Divine Smite with an attack, you add this damage to the extra damage of your Divine Smite."
-              ],
+              "description": "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra 1d8 radiant damage.",
               "type": "feature"
             }
           ],
@@ -4445,9 +4253,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -4474,10 +4280,7 @@
           "features": [
             {
               "name": "Cleansing Touch",
-              "description": [
-                "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch.",
-                "You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain expended uses when you finish a long rest."
-              ],
+              "description": "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain expended uses when you finish a long rest.",
               "type": "feature"
             }
           ],
@@ -4494,10 +4297,7 @@
           "features": [
             {
               "name": "Sacred Oath feature",
-              "description": [
-                "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose an oath, such as the Oath of Devotion.",
-                "Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature."
-              ],
+              "description": "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level.",
               "type": "feature"
             }
           ],
@@ -4514,9 +4314,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -4565,9 +4363,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -4585,10 +4381,7 @@
           "features": [
             {
               "name": "Sacred Oath feature",
-              "description": [
-                "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose an oath, such as the Oath of Devotion.",
-                "Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature."
-              ],
+              "description": "When you reach 3rd level, you swear the oath that binds you as a paladin forever. Your choice grants you features at 3rd level and again at 7th, 15th, and 20th level.",
               "type": "feature"
             }
           ],
@@ -4774,9 +4567,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": [
-                "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again."
-              ],
+              "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once. Archery: You gain a +2 bonus to attack rolls you make with ranged weapons. Defense: While you are wearing armor, you gain a +1 bonus to AC. Druidic Warrior: You learn two cantrips of your choice from the Druid spell list. They count as ranger spells for you, and Wisdom is your spellcasting ability for them. Dueling: When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon. Two-Weapon Fighting: When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -4816,9 +4607,7 @@
             },
             {
               "name": "Primeval Awareness",
-              "description": [
-                "Beginning at 3rd level, you can use your action and expend one ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense whether the following types of creatures are present within 1 mile of you (or within up to 6 miles if you are in your favored terrain): aberrations, celestials, dragons, elementals, fey, fiends, and undead. This feature doesn't reveal the creatures' location or number."
-              ],
+              "description": "Beginning at 3rd level, you can use your action and expend one ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense whether the following types of creatures are present within 1 mile of you (or within up to 6 miles if you are in your favored terrain): aberrations, celestials, dragons, elementals, fey, fiends, and undead. This feature doesn't reveal the creatures' location or number.",
               "type": "feature"
             }
           ],
@@ -4832,9 +4621,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -4848,9 +4635,7 @@
           "features": [
             {
               "name": "Extra Attack",
-              "description": [
-                "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
-              ],
+              "description": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.",
               "type": "feature"
             }
           ],
@@ -4918,17 +4703,12 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             },
             {
               "name": "Land's Stride",
-              "description": [
-                "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.",
-                "In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the entangle spell."
-              ],
+              "description": "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard. In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement.",
               "type": "feature"
             }
           ],
@@ -4968,10 +4748,7 @@
             },
             {
               "name": "Hide in Plain Sight",
-              "description": [
-                "Starting at 10th level, you can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create your camouflage.",
-                "Once you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a +10 bonus to Dexterity (Stealth) checks as long as you remain there without moving or taking actions. Once you move or take an action or a reaction, you must camouflage yourself again to gain this benefit."
-              ],
+              "description": "Starting at 10th level, you can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create your camouflage. Once you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a +10 bonus to Dexterity (Stealth) checks as long as you remain there without moving or taking actions.",
               "type": "feature"
             }
           ],
@@ -5005,9 +4782,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5045,9 +4820,7 @@
             },
             {
               "name": "Vanish",
-              "description": [
-                "Starting at 14th level, you can use the Hide action as a bonus action on your turn. Also, you can't be tracked by nonmagical means, unless you choose to leave a trail."
-              ],
+              "description": "Starting at 14th level, you can use the Hide action as a bonus action on your turn. Also, you can't be tracked by nonmagical means, unless you choose to leave a trail.",
               "type": "feature"
             }
           ],
@@ -5083,9 +4856,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5114,10 +4885,7 @@
           "features": [
             {
               "name": "Feral Senses",
-              "description": [
-                "At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it.",
-                "You are also aware of the location of any invisible creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't blinded or deafened."
-              ],
+              "description": "At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it. You are also aware of the location of any invisible creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't blinded or deafened.",
               "type": "feature"
             }
           ],
@@ -5135,9 +4903,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5155,9 +4921,7 @@
           "features": [
             {
               "name": "Foe Slayer",
-              "description": [
-                "At 20th level, you become an unparalleled hunter of your enemies. Once on each of your turns, you can add your Wisdom modifier to the attack roll or the damage roll of an attack you make against one of your favored enemies. You can choose to use this feature before or after the roll, but before any effects of the roll are applied."
-              ],
+              "description": "At 20th level, you become an unparalleled hunter of your enemies. Once on each of your turns, you can add your Wisdom modifier to the attack roll or the damage roll of an attack you make against one of your favored enemies.",
               "type": "feature"
             }
           ],
@@ -5362,10 +5126,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": [
-                "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.",
-                "At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit"
-              ],
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -5389,19 +5150,12 @@
             },
             {
               "name": "Sneak Attack",
-              "description": [
-                "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.",
-                "You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.",
-                "The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table."
-              ],
+              "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon. You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll. The amount of the extra damage increases as you gain levels in this class.",
               "type": "feature"
             },
             {
               "name": "Thieves' Cant",
-              "description": [
-                "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly.",
-                "In addition, you understand a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves' guild, whether loot is nearby, or whether the people in an area are easy marks or will provide a safe house for thieves on the run."
-              ],
+              "description": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly. In addition, you understand a set of secret signs and symbols used to convey short, simple messages.",
               "type": "feature"
             }
           ],
@@ -5413,9 +5167,7 @@
           "features": [
             {
               "name": "Cunning Action",
-              "description": [
-                "Starting at 2nd level, your quick thinking and agility allow you to move and act quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Dash, Disengage, or Hide action."
-              ],
+              "description": "Starting at 2nd level, your quick thinking and agility allow you to move and act quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Dash, Disengage, or Hide action.",
               "type": "feature"
             }
           ],
@@ -5427,9 +5179,7 @@
           "features": [
             {
               "name": "Roguish Archetype",
-              "description": [
-                "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief. Additional archetypes are available in the original source material. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level.",
               "type": "feature"
             }
           ],
@@ -5441,9 +5191,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5455,9 +5203,7 @@
           "features": [
             {
               "name": "Uncanny Dodge",
-              "description": [
-                "Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you."
-              ],
+              "description": "Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you.",
               "type": "feature"
             }
           ],
@@ -5469,10 +5215,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": [
-                "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.",
-                "At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit"
-              ],
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -5503,9 +5246,7 @@
           "features": [
             {
               "name": "Evasion",
-              "description": [
-                "Beginning at 7th level, you can nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or an ice storm spell. When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
-              ],
+              "description": "Beginning at 7th level, you can nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or an Ice Storm spell. When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail.",
               "type": "feature"
             }
           ],
@@ -5517,9 +5258,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5531,9 +5270,7 @@
           "features": [
             {
               "name": "Roguish Archetype feature",
-              "description": [
-                "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief. Additional archetypes are available in the original source material. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level.",
               "type": "feature"
             }
           ],
@@ -5545,9 +5282,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5559,9 +5294,7 @@
           "features": [
             {
               "name": "Reliable Talent",
-              "description": [
-                "By 11th level, you have refined your chosen skills until they approach perfection. Whenever you make an ability check that lets you add your proficiency bonus, you can treat a d20 roll of 9 or lower as a 10."
-              ],
+              "description": "By 11th level, you have refined your chosen skills until they approach perfection. Whenever you make an ability check that lets you add your proficiency bonus, you can treat a d20 roll of 9 or lower as a 10.",
               "type": "feature"
             }
           ],
@@ -5573,9 +5306,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5587,9 +5318,7 @@
           "features": [
             {
               "name": "Roguish Archetype feature",
-              "description": [
-                "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief. Additional archetypes are available in the original source material. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level.",
               "type": "feature"
             }
           ],
@@ -5601,9 +5330,7 @@
           "features": [
             {
               "name": "Blindsense",
-              "description": [
-                "Starting at 14th level, if you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you."
-              ],
+              "description": "Starting at 14th level, if you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you.",
               "type": "feature"
             }
           ],
@@ -5615,9 +5342,7 @@
           "features": [
             {
               "name": "Slippery Mind",
-              "description": [
-                "By 15th level, you have acquired greater mental strength. You gain proficiency in Wisdom saving throws."
-              ],
+              "description": "By 15th level, you have acquired greater mental strength. You gain proficiency in Wisdom saving throws.",
               "type": "feature"
             }
           ],
@@ -5629,9 +5354,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5643,9 +5366,7 @@
           "features": [
             {
               "name": "Roguish Archetype feature",
-              "description": [
-                "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief. Additional archetypes are available in the original source material. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level."
-              ],
+              "description": "At 3rd level, you choose an archetype that you emulate in the exercise of your rogue abilities. Your archetype choice grants you features at 3rd level and then again at 9th, 13th, and 17th level.",
               "type": "feature"
             }
           ],
@@ -5657,9 +5378,7 @@
           "features": [
             {
               "name": "Elusive",
-              "description": [
-                "Beginning at 18th level, you are so evasive that attackers rarely gain the upper hand against you. No attack roll has advantage against you while you aren't incapacitated."
-              ],
+              "description": "Beginning at 18th level, you are so evasive that attackers rarely gain the upper hand against you. No attack roll has advantage against you while you aren't incapacitated.",
               "type": "feature"
             }
           ],
@@ -5671,9 +5390,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5685,10 +5402,7 @@
           "features": [
             {
               "name": "Stroke of Luck",
-              "description": [
-                "At 20th level, you have an uncanny knack for succeeding when you need to. If your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check, you can treat the d20 roll as a 20.",
-                "Once you use this feature, you can't use it again until you finish a short or long rest."
-              ],
+              "description": "At 20th level, you have an uncanny knack for succeeding when you need to. If your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check, you can treat the d20 roll as a 20. Once you use this feature, you can't use it again until you finish a short or long rest.",
               "type": "feature"
             }
           ],
@@ -5851,10 +5565,7 @@
             },
             {
               "name": "Sorcerous Origin",
-              "description": [
-                "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
-                "Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level."
-              ],
+              "description": "Choose a sorcerous origin, which describes the source of your innate magical power. Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -5868,11 +5579,7 @@
           "features": [
             {
               "name": "Font of Magic",
-              "description": [
-                "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects.",
-                "Sorcery Points",
-                "You have 2 sorcery points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Sorcerer table. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest."
-              ],
+              "description": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects. You have 2 sorcery points, and you gain more as you reach higher levels. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest. You can use your sorcery points to gain additional spell slots, or sacrifice spell slots to gain additional sorcery points. You can transform unexpended sorcery points into one spell slot as a bonus action on your turn. Any spell slot you create with this feature vanishes when you finish a long rest.",
               "type": "feature"
             },
             {
@@ -5901,10 +5608,7 @@
           "features": [
             {
               "name": "Metamagic",
-              "description": [
-                "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level.",
-                "You can use only one Metamagic option on a spell when you cast it, unless otherwise noted."
-              ],
+              "description": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use only one Metamagic option on a spell when you cast it, unless otherwise noted. Careful Spell: When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. Distant Spell: When you cast a spell that has a range of 5 feet or greater, you can spend 1 sorcery point to double the range of the spell. Empowered Spell: When you roll damage for a spell, you can spend 1 sorcery point to reroll a number of the damage dice up to your Charisma modifier. Extended Spell: When you cast a spell that has a duration of 1 minute or longer, you can spend 1 sorcery point to double its duration. Heightened Spell: When you cast a spell that forces a creature to make a saving throw to resist its effects, you can spend 3 sorcery points to give one target of the spell disadvantage on its first saving throw. Quickened Spell: When you cast a spell that has a casting time of 1 action, you can spend 2 sorcery points to change the casting time to 1 bonus action. Subtle Spell: When you cast a spell, you can spend 1 sorcery point to cast it without any somatic or verbal components. Twinned Spell: When you cast a spell that targets only one creature and doesn't have a range of self, you can spend a number of sorcery points equal to the spell's level to target a second creature in range with the same spell.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -5958,9 +5662,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -5985,10 +5687,7 @@
           "features": [
             {
               "name": "Sorcerous Origin feature",
-              "description": [
-                "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
-                "Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level."
-              ],
+              "description": "Choose a sorcerous origin, which describes the source of your innate magical power. Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -6015,9 +5714,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6046,10 +5743,7 @@
           "features": [
             {
               "name": "Metamagic",
-              "description": [
-                "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level.",
-                "You can use only one Metamagic option on a spell when you cast it, unless otherwise noted."
-              ],
+              "description": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use only one Metamagic option on a spell when you cast it, unless otherwise noted. Careful Spell: When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. Distant Spell: When you cast a spell that has a range of 5 feet or greater, you can spend 1 sorcery point to double the range of the spell. Empowered Spell: When you roll damage for a spell, you can spend 1 sorcery point to reroll a number of the damage dice up to your Charisma modifier. Extended Spell: When you cast a spell that has a duration of 1 minute or longer, you can spend 1 sorcery point to double its duration. Heightened Spell: When you cast a spell that forces a creature to make a saving throw to resist its effects, you can spend 3 sorcery points to give one target of the spell disadvantage on its first saving throw. Quickened Spell: When you cast a spell that has a casting time of 1 action, you can spend 2 sorcery points to change the casting time to 1 bonus action. Subtle Spell: When you cast a spell, you can spend 1 sorcery point to cast it without any somatic or verbal components. Twinned Spell: When you cast a spell that targets only one creature and doesn't have a range of self, you can spend a number of sorcery points equal to the spell's level to target a second creature in range with the same spell.",
               "type": "feature"
             }
           ],
@@ -6080,9 +5774,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6115,10 +5807,7 @@
           "features": [
             {
               "name": "Sorcerous Origin feature",
-              "description": [
-                "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
-                "Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level."
-              ],
+              "description": "Choose a sorcerous origin, which describes the source of your innate magical power. Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -6153,9 +5842,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6176,10 +5863,7 @@
           "features": [
             {
               "name": "Metamagic",
-              "description": [
-                "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level.",
-                "You can use only one Metamagic option on a spell when you cast it, unless otherwise noted."
-              ],
+              "description": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use only one Metamagic option on a spell when you cast it, unless otherwise noted. Careful Spell: When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. Distant Spell: When you cast a spell that has a range of 5 feet or greater, you can spend 1 sorcery point to double the range of the spell. Empowered Spell: When you roll damage for a spell, you can spend 1 sorcery point to reroll a number of the damage dice up to your Charisma modifier. Extended Spell: When you cast a spell that has a duration of 1 minute or longer, you can spend 1 sorcery point to double its duration. Heightened Spell: When you cast a spell that forces a creature to make a saving throw to resist its effects, you can spend 3 sorcery points to give one target of the spell disadvantage on its first saving throw. Quickened Spell: When you cast a spell that has a casting time of 1 action, you can spend 2 sorcery points to change the casting time to 1 bonus action. Subtle Spell: When you cast a spell, you can spend 1 sorcery point to cast it without any somatic or verbal components. Twinned Spell: When you cast a spell that targets only one creature and doesn't have a range of self, you can spend a number of sorcery points equal to the spell's level to target a second creature in range with the same spell.",
               "type": "feature"
             }
           ],
@@ -6201,10 +5885,7 @@
           "features": [
             {
               "name": "Sorcerous Origin feature",
-              "description": [
-                "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
-                "Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level."
-              ],
+              "description": "Choose a sorcerous origin, which describes the source of your innate magical power. Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level.",
               "type": "feature"
             }
           ],
@@ -6226,9 +5907,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6250,9 +5929,7 @@
           "features": [
             {
               "name": "Sorcerous Restoration",
-              "description": [
-                "At 20th level, you regain 4 expended sorcery points whenever you finish a short rest."
-              ],
+              "description": "At 20th level, you regain 4 expended sorcery points whenever you finish a short rest.",
               "type": "feature"
             }
           ],
@@ -6451,16 +6128,12 @@
           "features": [
             {
               "name": "Otherworldly Patron",
-              "description": [
-                "At 1st level, you have struck a bargain with an otherworldly being of your choice, such as the Fiend. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 1st level, you have struck a bargain with an otherworldly being of your choice. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             },
             {
               "name": "Pact Magic",
-              "description": [
-                "Your arcane research and the magic bestowed on you by your patron have given you facility with spells."
-              ],
+              "description": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells. You know two cantrips of your choice from the warlock spell list. At 1st level, you know two 1st-level spells of your choice from the warlock spell list. The Spells Known column of the Warlock table shows when you learn more warlock spells of your choice of 1st level or higher. A spell you choose must be of a level no higher than what's shown in the table's Slot Level column for your level. Additionally, when you gain a level in this class, you can choose one of the warlock spells you know and replace it with another spell from the warlock spell list, which also must be of a level for which you have spell slots. Charisma is your spellcasting ability for your warlock spells. You can use an arcane focus as a spellcasting focus for your warlock spells. You regain all expended spell slots when you finish a short or long rest.",
               "type": "feature"
             }
           ],
@@ -6474,11 +6147,7 @@
           "features": [
             {
               "name": "Eldritch Invocations",
-              "description": [
-                "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you with an abiding magical ability.",
-                "At 2nd level, you gain two eldritch invocations of your choice. Your invocation options are detailed at the end of the class description. When you gain certain warlock levels, you gain additional invocations of your choice, as shown in the Invocations Known column of the Warlock table.",
-                "Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level."
-              ],
+              "description": "In your study of occult lore, you have unearthed Eldritch Invocations, fragments of forbidden knowledge that imbue you with an abiding magical ability. At 2nd level, you gain two eldritch invocations of your choice. When you gain certain warlock levels, you gain additional invocations of your choice, as shown in the Invocations Known column of the Warlock table. Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -6536,9 +6205,7 @@
           "features": [
             {
               "name": "Pact Boon",
-              "description": [
-                "At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service. You gain one of the following features of your choice."
-              ],
+              "description": "At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service. You gain one of the following features of your choice. Pact of the Blade: You can use your action to create a pact weapon in your empty hand. You can choose the form that this melee weapon takes each time you create it. You are proficient with it while you wield it. Pact of the Chain: You learn the find familiar spell and can cast it as a ritual. The spell doesn't count against your number of spells known. Pact of the Tome: Your patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class's spell list.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -6570,9 +6237,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6594,9 +6259,7 @@
           "features": [
             {
               "name": "Otherworldly Patron feature",
-              "description": [
-                "At 1st level, you have struck a bargain with an otherworldly being of your choice, such as the Fiend. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 1st level, you have struck a bargain with an otherworldly being of your choice. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -6618,9 +6281,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6642,9 +6303,7 @@
           "features": [
             {
               "name": "Otherworldly Patron feature",
-              "description": [
-                "At 1st level, you have struck a bargain with an otherworldly being of your choice, such as the Fiend. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 1st level, you have struck a bargain with an otherworldly being of your choice. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -6690,9 +6349,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6735,9 +6392,7 @@
           "features": [
             {
               "name": "Otherworldly Patron feature",
-              "description": [
-                "At 1st level, you have struck a bargain with an otherworldly being of your choice, such as the Fiend. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "At 1st level, you have struck a bargain with an otherworldly being of your choice. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -6781,9 +6436,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6835,9 +6488,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -6851,10 +6502,7 @@
           "features": [
             {
               "name": "Eldritch Master",
-              "description": [
-                "At 20th level, you can draw on your inner reserve of mystical power while entreating your patron to regain expended spell slots. You can spend 1 minute entreating your patron for aid to regain all your expended spell slots from your Pact Magic feature.",
-                "Once you regain spell slots with this feature, you must finish a long rest before you can do so again."
-              ],
+              "description": "At 20th level, you can draw on your inner reserve of mystical power while entreating your patron to regain expended spell slots. You can spend 1 minute entreating your patron for aid to regain all your expended spell slots from your Pact Magic feature. Once you regain spell slots with this feature, you must finish a long rest before you can do so again.",
               "type": "feature"
             }
           ],
@@ -7049,10 +6697,7 @@
             },
             {
               "name": "Arcane Recovery",
-              "description": [
-                "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.",
-                "For example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots."
-              ],
+              "description": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.",
               "type": "feature"
             }
           ],
@@ -7066,10 +6711,7 @@
           "features": [
             {
               "name": "Arcane Tradition",
-              "description": [
-                "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
-                "Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of the following schools. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -7092,9 +6734,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -7119,10 +6759,7 @@
           "features": [
             {
               "name": "Arcane Tradition feature",
-              "description": [
-                "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
-                "Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of the following schools. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -7149,9 +6786,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -7180,10 +6815,7 @@
           "features": [
             {
               "name": "Arcane Tradition feature",
-              "description": [
-                "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
-                "Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of the following schools. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -7214,9 +6846,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -7249,10 +6879,7 @@
           "features": [
             {
               "name": "Arcane Tradition feature",
-              "description": [
-                "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
-                "Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
-              ],
+              "description": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of the following schools. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level.",
               "type": "feature"
             }
           ],
@@ -7287,9 +6914,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
@@ -7326,10 +6951,7 @@
           "features": [
             {
               "name": "Spell Mastery",
-              "description": [
-                "At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal.",
-                "By spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels."
-              ],
+              "description": "At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal. By spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -7385,9 +7007,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": [
-                "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
-              ],
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
             }
           ],
