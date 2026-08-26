@@ -22,6 +22,7 @@ import {
   Info,
   X,
 } from "phosphor-react";
+import { InfoButton } from "@/components/InfoButton";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -510,6 +511,8 @@ function LevelCard({
 }: LevelCardProps) {
   const [showSpellSelection, setShowSpellSelection] = useState(false);
   const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
+  const [showSubclassModal, setShowSubclassModal] = useState(false);
+  const [showSpellModal, setShowSpellModal] = useState(false);
   const lvl = info.level;
 
   const isHpComplete = hpValue > 0;
@@ -645,36 +648,13 @@ function LevelCard({
               <Crown weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Choose Subclass</div>
-                <div className="space-y-1.5 mt-1">
-                  {info.subclassOptions.map((opt) => (
-                    <div key={opt.name} className="flex gap-1.5">
-                      <button
-                        type="button"
-                        onClick={() => onSubclassSelect(opt.name)}
-                        className={`flex-1 p-2 text-left rounded-[var(--radius-sm)] border transition-all ${
-                          subclassSelection === opt.name
-                            ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
-                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                        }`}
-                      >
-                        <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
-                        {opt.description && (
-                          <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{opt.description}</p>
-                        )}
-                      </button>
-                      {opt.hasDetails && (
-                        <button
-                          type="button"
-                          onClick={() => setShowSubclassDetails(opt.name)}
-                          className="h-8 w-8 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:border-[var(--color-border-active)] hover:text-[var(--color-text-primary)] transition-all"
-                          title="View Details"
-                        >
-                          <Info className="h-4 w-4" />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowSubclassModal(true)}
+                  className="mt-1 w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
+                >
+                  {subclassSelection ? `Selected: ${subclassSelection}` : "Select Subclass"}
+                </button>
               </div>
             </div>
           )}
@@ -720,23 +700,13 @@ function LevelCard({
               <div className="flex-1">
                 <button
                   type="button"
-                  onClick={() => setShowSpellSelection(!showSpellSelection)}
+                  onClick={() => setShowSpellModal(true)}
                   className="text-xs font-semibold text-[var(--color-text-primary)] hover:underline"
                 >
-                  {showSpellSelection ? "Hide" : "Show"} Spell Selection
+                  Open Spell Selection
                   {info.cantripSelectionCount > 0 && ` (+${info.cantripSelectionCount} cantrips)`}
                   {info.spellSelectionCount > 0 && ` (+${info.spellSelectionCount} spells)`}
                 </button>
-                {showSpellSelection && (
-                  <SpellSelection
-                    character={character}
-                    count={info.spellSelectionCount}
-                    cantripCount={info.cantripSelectionCount}
-                    maxLevel={info.maxSpellLevel}
-                    spells={spells}
-                    onSpellsChange={onSpellsChange}
-                  />
-                )}
               </div>
             </div>
           )}
@@ -748,6 +718,27 @@ function LevelCard({
           subclass={showSubclassDetails}
           characterClass={character.class}
           onClose={() => setShowSubclassDetails(null)}
+        />
+      )}
+
+      {showSubclassModal && info.subclassOptions && (
+        <SubclassSelectionModal
+          options={info.subclassOptions}
+          selected={subclassSelection}
+          onSelect={(name) => { onSubclassSelect(name); setShowSubclassModal(false); }}
+          onClose={() => setShowSubclassModal(false)}
+        />
+      )}
+
+      {showSpellModal && info.hasSpellSelection && (
+        <SpellSelectionModal
+          character={character}
+          count={info.spellSelectionCount}
+          cantripCount={info.cantripSelectionCount}
+          maxLevel={info.maxSpellLevel}
+          spells={spells}
+          onSpellsChange={onSpellsChange}
+          onClose={() => setShowSpellModal(false)}
         />
       )}
     </div>
@@ -1005,6 +996,252 @@ function SpellSelection({
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function SubclassSelectionModal({
+  options,
+  selected,
+  onSelect,
+  onClose,
+}: {
+  options: { name: string; description: string; hasDetails: boolean }[];
+  selected: string;
+  onSelect: (name: string) => void;
+  onClose: () => void;
+}) {
+  const [detailsView, setDetailsView] = useState<string | null>(null);
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
+        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+          <div className="text-sm font-bold text-[var(--color-text-primary)]">Choose Subclass</div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        {detailsView ? (
+          <div className="flex-1 flex flex-col">
+            <div className="flex items-center gap-2 border-b border-[var(--color-border)] px-4 py-2">
+              <button
+                type="button"
+                onClick={() => setDetailsView(null)}
+                className="text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+              >
+                Back
+              </button>
+              <span className="text-xs font-bold text-[var(--color-text-primary)]">{detailsView}</span>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              {(() => {
+                const opt = options.find((o) => o.name === detailsView);
+                if (!opt) return null;
+                return (
+                  <div className="space-y-3">
+                    {opt.description && (
+                      <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{opt.description}</p>
+                    )}
+                    <SubclassDetailsModal subclass={detailsView} characterClass="" onClose={() => setDetailsView(null)} />
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+        ) : (
+          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+            {options.map((opt) => (
+              <div key={opt.name} className="flex gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => onSelect(opt.name)}
+                  className={`flex-1 p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                    selected === opt.name
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                </button>
+                {opt.hasDetails && (
+                  <button
+                    type="button"
+                    onClick={() => setDetailsView(opt.name)}
+                    className="h-10 w-10 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:border-[var(--color-border-active)] hover:text-[var(--color-text-primary)] transition-all"
+                  >
+                    <Info className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function SpellSelectionModal({
+  character,
+  count,
+  cantripCount,
+  maxLevel,
+  spells,
+  onSpellsChange,
+  onClose,
+}: {
+  character: Character;
+  count: number;
+  cantripCount: number;
+  maxLevel: number;
+  spells: string[];
+  onSpellsChange: (list: string[]) => void;
+  onClose: () => void;
+}) {
+  const [activeTab, setActiveTab] = useState<"cantrips" | number>("cantrips");
+  const allSpells = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+  const cantrips = allSpells.filter((s) => s.level === 0);
+  const levelSpells: { [key: number]: typeof allSpells } = {};
+  for (const sp of allSpells) {
+    if (sp.level > 0) {
+      if (!levelSpells[sp.level]) levelSpells[sp.level] = [];
+      levelSpells[sp.level].push(sp);
+    }
+  }
+  const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
+
+  const toggle = (name: string, level: number) => {
+    if (spells.some((s) => s === `${name}:${level}`)) {
+      onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
+    } else {
+      if (level === 0) {
+        const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
+        if (currentCantrips < cantripCount) onSpellsChange([...spells, `${name}:${level}`]);
+      } else {
+        const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
+        if (currentSpells < count) onSpellsChange([...spells, `${name}:${level}`]);
+      }
+    }
+  };
+
+  const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
+  const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
+        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+          <div className="text-sm font-bold text-[var(--color-text-primary)]">Select Spells</div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide">
+          <button
+            type="button"
+            onClick={() => setActiveTab("cantrips")}
+            className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+              activeTab === "cantrips"
+                ? "text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
+                : "text-[var(--color-text-muted)]"
+            }`}
+          >
+            Cantrips ({currentCantrips}/{cantripCount})
+          </button>
+          {spellLevels.map((lvl) => (
+            <button
+              key={lvl}
+              type="button"
+              onClick={() => setActiveTab(lvl)}
+              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+                activeTab === lvl
+                  ? "text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
+                  : "text-[var(--color-text-muted)]"
+              }`}
+            >
+              Level {lvl} ({currentSpells}/{count})
+            </button>
+          ))}
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 py-3">
+          {activeTab === "cantrips" ? (
+            <div className="space-y-1.5">
+              {cantrips.map((sp) => {
+                const isSel = spells.includes(`${sp.name}:0`);
+                const disabled = !isSel && currentCantrips >= cantripCount;
+                const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                return (
+                  <div key={sp.name} className="flex gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => toggle(sp.name, 0)}
+                      disabled={disabled}
+                      className={`flex-1 px-3 py-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                        isSel
+                          ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+                          : disabled
+                            ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                            : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="text-xs font-bold">{sp.name}</div>
+                      <div className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</div>
+                    </button>
+                    {desc && <InfoButton title={sp.name} description={desc} />}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="space-y-1.5">
+              {levelSpells[activeTab as number]?.map((sp) => {
+                const isSel = spells.includes(`${sp.name}:${sp.level}`);
+                const disabled = !isSel && currentSpells >= count;
+                const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                return (
+                  <div key={sp.name} className="flex gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => toggle(sp.name, sp.level)}
+                      disabled={disabled}
+                      className={`flex-1 px-3 py-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                        isSel
+                          ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+                          : disabled
+                            ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                            : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="text-xs font-bold">{sp.name}</div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                        <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
+                      </div>
+                    </button>
+                    {desc && <InfoButton title={sp.name} description={desc} />}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

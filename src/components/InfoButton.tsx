@@ -13,8 +13,12 @@ export function DescriptionModal({ title, content, onClose }: DescriptionModalPr
   const text = Array.isArray(content) ? content.join(" ") : content;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
-      <div className="w-full max-w-md max-h-[70vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col">
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      style={{ pointerEvents: 'auto' }}
+    >
+      <div className="w-full max-w-md max-h-[70vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
           <div className="text-sm font-bold text-[var(--color-text-primary)]">{title}</div>
           <button
