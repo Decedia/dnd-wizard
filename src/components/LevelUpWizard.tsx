@@ -62,6 +62,8 @@ interface LevelInfo {
   spellSelectionCount: number;
   cantripSelectionCount: number;
   maxSpellLevel: number;
+  spellsKnownChanged?: boolean;
+  prevSpellsKnown?: number;
 }
 
 function getProficiencyBonus(level: number): number {
@@ -176,8 +178,20 @@ function buildLevelInfos(
       Object.entries(spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v));
     const prevCantrips = prevLevelData ? (classData.cantripsKnown?.[level - 1] || 0) : 0;
     const cantripsChanged = cantripsKnown !== undefined && cantripsKnown > prevCantrips;
-    const hasSpellSelection = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged));
+
+    // Calculate spells known change
+    const prevSpellsKnown = prevLevelData ? ((classData as any)?.spellsKnown?.[String(level - 1)] || 0) : 0;
+    const spellsKnownChanged = spellsKnown !== undefined && spellsKnown > prevSpellsKnown;
+
+    const hasSpellSelection = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
     const maxSpellLevel = spellSlots ? Math.max(...Object.keys(spellSlots).map(Number)) : 0;
+
+    // Spell selection count is based on spells known (for classes like Sorcerer, Bard, Warlock)
+    // For prepared casters (Cleric, Dr Wizard), it's based on spell slots
+    const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger", "Paladin"].includes(className);
+    const spellSelectionCount = isSpellsKnownCaster
+      ? (spellsKnownChanged ? (spellsKnown || 0) - prevSpellsKnown : 0)
+      : (spellSlots ? Object.values(spellSlots).reduce((a, b) => a + b, 0) : 0);
 
     infos.push({
       level,
@@ -192,9 +206,11 @@ function buildLevelInfos(
       subclassOptions,
       subclassFeatureChoices: subclassFeatureChoices.length > 0 ? subclassFeatureChoices : undefined,
       hasSpellSelection,
-      spellSelectionCount: spellSlots ? Object.values(spellSlots).reduce((a, b) => a + b, 0) : 0,
+      spellSelectionCount,
       cantripSelectionCount: cantripsChanged ? (cantripsKnown || 0) - prevCantrips : 0,
       maxSpellLevel,
+      spellsKnownChanged,
+      prevSpellsKnown,
     });
   }
 
@@ -662,7 +678,12 @@ function LevelCard({
               <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
-                <div className="text-xs text-[var(--color-text-primary)]">{info.spellsKnown}</div>
+                <div className="text-xs text-[var(--color-text-primary)]">
+                  {info.spellsKnown}
+                  {info.spellsKnownChanged && info.prevSpellsKnown !== undefined && (
+                    <span className="ml-1 text-green-600">(+{info.spellsKnown - info.prevSpellsKnown})</span>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -727,10 +748,14 @@ function LevelCard({
                   onClick={() => setShowSpellModal(true)}
                   className="text-xs font-semibold text-[var(--color-text-primary)] hover:underline"
                 >
-                  Open Spell Selection
+                  {info.spellsKnownChanged
+                    ? `Choose ${info.spellSelectionCount} New Spell${info.spellSelectionCount > 1 ? "s" : ""}`
+                    : "Open Spell Selection"}
                   {info.cantripSelectionCount > 0 && ` (+${info.cantripSelectionCount} cantrips)`}
-                  {info.spellSelectionCount > 0 && ` (+${info.spellSelectionCount} spells)`}
                 </button>
+                <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
+                  You can replace one known spell when leveling up
+                </p>
               </div>
             </div>
           )}
@@ -764,6 +789,8 @@ function LevelCard({
           spells={spells}
           onSpellsChange={onSpellsChange}
           onClose={() => setShowSpellModal(false)}
+          existingSpells={character.spells?.filter((s) => s.level > 0) || []}
+          spellsKnownChanged={info.spellsKnownChanged}
         />
       )}
     </div>
@@ -1138,6 +1165,8 @@ function SpellSelectionModal({
   spells,
   onSpellsChange,
   onClose,
+  existingSpells,
+  spellsKnownChanged,
 }: {
   character: Character;
   count: number;
@@ -1146,6 +1175,8 @@ function SpellSelectionModal({
   spells: string[];
   onSpellsChange: (list: string[]) => void;
   onClose: () => void;
+  existingSpells?: { name: string; level: number }[];
+  spellsKnownChanged?: boolean;
 }) {
   const [activeTab, setActiveTab] = useState<"cantrips" | number>("cantrips");
 
@@ -1181,6 +1212,12 @@ function SpellSelectionModal({
     }
   };
 
+  const handleReplaceSpell = (oldSpell: { name: string; level: number }, newSpell: string) => {
+    const newList = spells.filter((s) => s !== `${oldSpell.name}:${oldSpell.level}`);
+    newList.push(`${newSpell}:${oldSpell.level}`);
+    onSpellsChange(newList);
+  };
+
   const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
   const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
 
@@ -1191,7 +1228,9 @@ function SpellSelectionModal({
     >
       <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-          <div className="text-sm font-bold text-[var(--color-text-primary)]">Select Spells</div>
+          <div className="text-sm font-bold text-[var(--color-text-primary)]">
+            {spellsKnownChanged ? `Choose ${count} New Spell${count > 1 ? "s" : ""}` : "Replace a Spell"}
+          </div>
           <button
             type="button"
             onClick={onClose}
@@ -1200,6 +1239,25 @@ function SpellSelectionModal({
             <X className="h-4 w-4" />
           </button>
         </div>
+        {spellsKnownChanged && (
+          <div className="px-4 py-2 bg-blue-50 border-b border-[var(--color-border)]">
+            <p className="text-[10px] text-blue-700">
+              You learned {count} new spell{count > 1 ? "s" : ""}. Select from the tabs below.
+            </p>
+          </div>
+        )}
+        {!spellsKnownChanged && existingSpells && existingSpells.length > 0 && (
+          <div className="px-4 py-2 bg-yellow-50 border-b border-[var(--color-border)]">
+            <p className="text-[10px] text-yellow-700 mb-1">Replace a spell (optional):</p>
+            <div className="flex flex-wrap gap-1">
+              {existingSpells.map((sp) => (
+                <span key={`${sp.name}:${sp.level}`} className="text-[10px] px-1.5 py-0.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-full">
+                  {sp.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide">
           <button
             type="button"
