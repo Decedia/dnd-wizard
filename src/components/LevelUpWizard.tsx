@@ -77,7 +77,8 @@ function buildLevelInfos(
   targetLevel: number,
   classData: ReturnType<typeof getStaticClass>,
   subclassSelection: string,
-  startLevel: number
+  startLevel: number,
+  showLevelOne: boolean
 ): LevelInfo[] {
   if (!classData) return [];
 
@@ -87,7 +88,9 @@ function buildLevelInfos(
   const averageHp = getHitDieAverage(hitDie) + conMod;
   const className = classData.name;
 
-  for (let level = startLevel + 1; level <= targetLevel; level++) {
+  const loopStart = showLevelOne ? 1 : startLevel + 1;
+
+  for (let level = loopStart; level <= targetLevel; level++) {
     const levelData = classData.levels[level - 1];
     const prevLevelData = level > 1 ? classData.levels[level - 2] : null;
 
@@ -217,8 +220,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
 
   const levelInfos = useMemo(
-    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel),
-    [character, targetLevel, classData, subclassSelection, currentLevel]
+    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne),
+    [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne]
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
@@ -263,6 +266,18 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   const allLevelsComplete = levelInfos.length === 0 || levelInfos.every((info) => {
     const lvl = info.level;
+    // Level 1 HP is automatic, no need to roll
+    if (lvl === 1 && startFromLevelOne) {
+      if (info.asi && !asiIsValid(asiSelections[lvl])) return false;
+      if (info.subclassOptions && !subclassSelection) return false;
+      if (info.subclassFeatureChoices) {
+        const choices = subclassFeatureChoices[lvl] || {};
+        for (const fc of info.subclassFeatureChoices) {
+          if (!choices[fc.name]) return false;
+        }
+      }
+      return true;
+    }
     if (!hpValues[lvl] || hpValues[lvl] <= 0) return false;
     if (info.asi && !asiIsValid(asiSelections[lvl])) return false;
     if (info.subclassOptions && !subclassSelection) return false;
@@ -453,6 +468,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               diceType={diceType}
               conMod={conMod}
               averageHp={averageHp}
+              startFromLevelOne={startFromLevelOne}
             />
           ))}
         </div>
@@ -488,6 +504,7 @@ interface LevelCardProps {
   diceType: any;
   conMod: number;
   averageHp: number;
+  startFromLevelOne?: boolean;
 }
 
 function LevelCard({
@@ -508,6 +525,7 @@ function LevelCard({
   diceType,
   conMod,
   averageHp,
+  startFromLevelOne,
 }: LevelCardProps) {
   const [showSpellSelection, setShowSpellSelection] = useState(false);
   const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
@@ -545,16 +563,22 @@ function LevelCard({
             <div className="flex-1">
               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
               <div className="text-xs text-[var(--color-text-primary)]">
-                d{hitDie} + {conMod >= 0 ? `+${conMod}` : conMod} (avg: {averageHp})
+                {lvl === 1 && startFromLevelOne
+                  ? `${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} = ${hitDie + conMod} HP (automatic)`
+                  : `d${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} (avg: ${averageHp})`}
               </div>
             </div>
-            <input
-              type="number"
-              value={hpValue || ""}
-              onChange={(e) => onHpChange(parseInt(e.target.value || "0", 10))}
-              className="w-16 text-center text-sm font-bold rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1"
-              placeholder={String(averageHp)}
-            />
+            {lvl === 1 && startFromLevelOne ? (
+              <span className="text-sm font-bold text-[var(--color-text-primary)]">{hitDie + conMod} HP</span>
+            ) : (
+              <input
+                type="number"
+                value={hpValue || ""}
+                onChange={(e) => onHpChange(parseInt(e.target.value || "0", 10))}
+                className="w-16 text-center text-sm font-bold rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1"
+                placeholder={String(averageHp)}
+              />
+            )}
           </div>
 
           <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
@@ -725,6 +749,7 @@ function LevelCard({
         <SubclassSelectionModal
           options={info.subclassOptions}
           selected={subclassSelection}
+          characterClass={character.class}
           onSelect={(name) => { onSubclassSelect(name); setShowSubclassModal(false); }}
           onClose={() => setShowSubclassModal(false)}
         />
@@ -1003,11 +1028,13 @@ function SpellSelection({
 function SubclassSelectionModal({
   options,
   selected,
+  characterClass,
   onSelect,
   onClose,
 }: {
   options: { name: string; description: string; hasDetails: boolean }[];
   selected: string;
+  characterClass: string;
   onSelect: (name: string) => void;
   onClose: () => void;
 }) {
@@ -1050,7 +1077,7 @@ function SubclassSelectionModal({
                     {opt.description && (
                       <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{opt.description}</p>
                     )}
-                    <SubclassDetailsModal subclass={detailsView} characterClass="" onClose={() => setDetailsView(null)} />
+                    <SubclassDetailsModal subclass={detailsView} characterClass={characterClass} onClose={() => setDetailsView(null)} />
                   </div>
                 );
               })()}
