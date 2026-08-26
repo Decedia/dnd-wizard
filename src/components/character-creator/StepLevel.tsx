@@ -20,7 +20,9 @@ import {
   MagicWand,
   Book,
   Star,
-  Shield,
+  Check,
+  Minus,
+  Plus,
 } from "phosphor-react";
 
 interface StepLevelProps {
@@ -39,12 +41,120 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
   { key: "cha", label: "CHA", full: "Charisma" },
 ];
 
+type AsiMode = "single" | "double";
+interface AsiState {
+  mode?: AsiMode;
+  single?: AbilityKey;
+  d1?: AbilityKey;
+  d2?: AbilityKey;
+  confirmed?: boolean;
+}
+
 function getProficiencyBonus(level: number): number {
   if (level <= 4) return 2;
   if (level <= 8) return 3;
   if (level <= 12) return 4;
   if (level <= 16) return 5;
   return 6;
+}
+
+interface LevelInfo {
+  level: number;
+  hp: { hitDie: number; conMod: number; average: number };
+  proficiencyBonus: number;
+  features: { name: string; description: string }[];
+  asi: boolean;
+  spellSlots?: Record<number, number>;
+  cantripsKnown?: number;
+  spellsKnown?: number;
+  classFeatures: { name: string; value: string }[];
+}
+
+function buildLevelInfos(
+  character: Character,
+  targetLevel: number,
+  classData: ReturnType<typeof getStaticClass>
+): LevelInfo[] {
+  if (!classData) return [];
+
+  const infos: LevelInfo[] = [];
+  const hitDie = classData.hitDie || 10;
+  const conMod = getModifier(character.con);
+  const averageHp = getHitDieAverage(hitDie) + conMod;
+  const className = classData.name;
+
+  for (let level = 2; level <= targetLevel; level++) {
+    const levelData = classData.levels[level - 1];
+
+    const features = (levelData?.features || []).map((f: any) => ({
+      name: f.name,
+      description: normalizeDescription(f.description),
+    }));
+
+    const asi = levelData?.asi || false;
+    const spellSlots = levelData?.spellSlots;
+
+    let cantripsKnown: number | undefined;
+    if (classData.cantripsKnown) {
+      const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
+      for (const l of levels) {
+        if (level >= l) cantripsKnown = classData.cantripsKnown[l];
+      }
+    }
+
+    let spellsKnown: number | undefined;
+    if ((classData as any)?.spellsKnown) {
+      const known = (classData as any).spellsKnown;
+      if (known[String(level)] !== undefined) {
+        spellsKnown = known[String(level)];
+      }
+    }
+
+    const classFeatures: { name: string; value: string }[] = [];
+    const classFeatureMap: Record<string, Record<string, any> | undefined> = {
+      Barbarian: { "Rage Uses": classData.rageUses, "Rage Damage": classData.rageDamageBonus },
+      Cleric: { "Channel Divinity": classData.channelDivinityUses },
+      Druid: { "Wild Shape": classData.wildShapeUses },
+      Fighter: { "Action Surge": classData.actionSurgeUses, Indomitable: classData.indomitableUses },
+      Monk: { "Ki Points": classData.kiPoints, "Movement": classData.unarmoredMovement, "Martial Arts": classData.martialArtsDie },
+      Rogue: { "Sneak Attack": classData.sneakAttackDice },
+      Sorcerer: { "Sorcery Points": classData.sorceryPoints },
+      Warlock: { "Invocations": classData.invocationsKnown },
+      Wizard: { "Spellbook": classData.spellbookSpells },
+      Ranger: {},
+      Paladin: {},
+    };
+
+    const featureValues = classFeatureMap[className];
+    if (featureValues) {
+      for (const [name, data] of Object.entries(featureValues)) {
+        if (data && typeof data === "object" && String(level) in data) {
+          const val = (data as Record<string, any>)[String(level)];
+          if (val !== undefined) {
+            if (name === "Martial Arts") classFeatures.push({ name, value: `d${val}` });
+            else if (name === "Movement") classFeatures.push({ name, value: `+${val} ft` });
+            else if (name === "Rage Damage") classFeatures.push({ name, value: `+${val}` });
+            else if (name === "Sneak Attack") classFeatures.push({ name, value: `${val}d6` });
+            else classFeatures.push({ name, value: String(val) });
+          }
+        }
+      }
+    }
+
+    infos.push({
+      level,
+      hp: { hitDie, conMod, average: averageHp },
+      proficiencyBonus: getProficiencyBonus(level),
+      features,
+      asi,
+      spellSlots,
+      cantripsKnown,
+      spellsKnown,
+      classFeatures,
+    });
+  }
+
+  return infos;
 }
 
 export function StepLevel({ data, onChange }: StepLevelProps) {
@@ -239,22 +349,20 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     }
   }
 
-  const hpLevelsToProcess = useMemo(() => {
-    const arr: number[] = [];
-    for (let lvl = 2; lvl <= level; lvl++) arr.push(lvl);
-    return arr;
-  }, [level]);
+  const levelInfos = useMemo(() => buildLevelInfos(data, level, classData ?? undefined), [data, level, classData]);
 
-  const hpProgress = confirmedHpLevels.length;
-  const hpTotal = useMemo(() => {
-    let total = levelHp[1] || baselineHp;
-    for (const lvl of confirmedHpLevels) {
-      total += levelHp[lvl] || 0;
+  const rollAllHp = () => {
+    const next = { ...levelHp };
+    for (let lvl = 2; lvl <= level; lvl++) {
+      if (!next[lvl]) {
+        const die = Math.floor(Math.random() * hitDie) + 1;
+        next[lvl] = die + conMod;
+      }
     }
-    return total;
-  }, [levelHp, confirmedHpLevels, baselineHp]);
-
-  const allHpConfirmed = activeHpLevel === null;
+    const max = getMaxHpFromLevelHp(next);
+    onChange({ levelHp: next, maxHp: max, currentHp: max });
+    setConfirmedHpLevels(Array.from({ length: level - 1 }, (_, i) => i + 2));
+  };
 
   return (
     <>
@@ -263,155 +371,150 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
         hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity."
       >
         <div className="space-y-5">
-          {/* Level Selection */}
-          <div>
-            <div className="text-[10px] text-[var(--color-text-secondary)] uppercase tracking-wider mb-2 font-medium">Select Level</div>
-            <div className="grid grid-cols-5 gap-2">
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((lvl) => {
-                const isActive = lvl === level;
-                const isMilestone = milestoneLevels.includes(lvl);
-                return (
-                  <button
-                    key={lvl}
-                    type="button"
-                    onClick={() => adjustLevel(lvl)}
-                    className={`relative aspect-square rounded-[var(--radius-md)] border flex items-center justify-center text-lg font-semibold transition-all ${
-                      isActive
-                        ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-                        : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                    }`}
-                  >
-                    {lvl}
-                    {isMilestone && (
-                      <span className={`absolute top-1 right-1 h-2 w-2 rounded-full ${isActive ? "bg-[var(--color-surface)]" : "bg-[var(--color-text-primary)]"}`} />
-                    )}
-                  </button>
-                );
-              })}
+          {/* Level Selector with +/- */}
+          <div className="flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => adjustLevel(level - 1)}
+              disabled={level <= 1}
+              className="h-10 w-10 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            >
+              <Minus className="h-5 w-5" />
+            </button>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-[var(--color-text-primary)]">{level}</div>
+              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Level</div>
             </div>
+            <button
+              type="button"
+              onClick={() => adjustLevel(level + 1)}
+              disabled={level >= 10}
+              className="h-10 w-10 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            >
+              <Plus className="h-5 w-5" />
+            </button>
           </div>
 
           {/* Level Summary */}
-          <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 space-y-3">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold text-[var(--color-text-primary)]">Level {level} Summary</h3>
-              <span className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-bg)] px-2 py-0.5 rounded-full">
-                +{getProficiencyBonus(level)} Proficiency
-              </span>
-            </div>
-
-            {/* HP */}
-            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <Heart weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
-              <div className="flex-1">
-                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
-                <div className="text-xs text-[var(--color-text-primary)]">
-                  {level === 1 ? `${hitDie} + CON (${conMod >= 0 ? `+${conMod}` : conMod}) = ${baselineHp}` : `Roll d${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} (avg: ${averageHp})`}
-                </div>
+          {level >= 1 && (
+            <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-[var(--color-text-primary)]">Level {level} Summary</h3>
+                <span className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-bg)] px-2 py-0.5 rounded-full">
+                  +{getProficiencyBonus(level)} Proficiency
+                </span>
               </div>
-              {level === 1 && (
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">{baselineHp} HP</span>
+
+              <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <Heart weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
+                  <div className="text-xs text-[var(--color-text-primary)]">
+                    {level === 1 ? `${hitDie} + CON (${conMod >= 0 ? `+${conMod}` : conMod}) = ${baselineHp}` : `Roll d${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} (avg: ${averageHp})`}
+                  </div>
+                </div>
+                {level === 1 && (
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{baselineHp} HP</span>
+                )}
+              </div>
+
+              {classFeatures.length > 0 && (
+                <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                  <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
+                    <div className="space-y-1 mt-1">
+                      {classFeatures.map((f) => (
+                        <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
+                          <span className="font-semibold">{f.name}:</span> {f.value}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {features.length > 0 && (
+                <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                  <Lightning weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
+                    <div className="space-y-1 mt-1">
+                      {features.map((f) => (
+                        <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
+                          <span className="font-semibold">{f.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {spellSlots && (
+                <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                  <Sparkle weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
+                    <div className="flex flex-wrap gap-1.5 mt-1">
+                      {Object.entries(spellSlots).map(([lvl, count]) => (
+                        <span key={lvl} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
+                          {lvl}st: {count}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {cantripsKnown !== undefined && (
+                <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                  <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
+                    <div className="text-xs text-[var(--color-text-primary)]">{cantripsKnown}</div>
+                  </div>
+                </div>
+              )}
+
+              {spellsKnown !== undefined && (
+                <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                  <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
+                    <div className="text-xs text-[var(--color-text-primary)]">{spellsKnown}</div>
+                  </div>
+                </div>
+              )}
+
+              {levelData?.asi && (
+                <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                  <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
+                    <div className="text-xs text-[var(--color-text-primary)]">+2 to one ability or +1 to two</div>
+                  </div>
+                </div>
               )}
             </div>
+          )}
 
-            {/* Class Features */}
-            {classFeatures.length > 0 && (
-              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-                <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
-                  <div className="space-y-1 mt-1">
-                    {classFeatures.map((f) => (
-                      <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
-                        <span className="font-semibold">{f.name}:</span> {f.value}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* New Features */}
-            {features.length > 0 && (
-              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                <Lightning weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-                <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
-                  <div className="space-y-1 mt-1">
-                    {features.map((f) => (
-                      <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
-                        <span className="font-semibold">{f.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Spell Slots */}
-            {spellSlots && (
-              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                <Sparkle weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-                <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
-                  <div className="flex flex-wrap gap-1.5 mt-1">
-                    {Object.entries(spellSlots).map(([lvl, count]) => (
-                      <span key={lvl} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
-                        {lvl}st: {count}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Cantrips Known */}
-            {cantripsKnown !== undefined && (
-              <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
-                <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
-                  <div className="text-xs text-[var(--color-text-primary)]">{cantripsKnown}</div>
-                </div>
-              </div>
-            )}
-
-            {/* Spells Known */}
-            {spellsKnown !== undefined && (
-              <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
-                <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
-                  <div className="text-xs text-[var(--color-text-primary)]">{spellsKnown}</div>
-                </div>
-              </div>
-            )}
-
-            {/* ASI */}
-            {levelData?.asi && (
-              <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
-                <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
-                  <div className="text-xs text-[var(--color-text-primary)]">+2 to one ability or +1 to two</div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* HP Rolling Section */}
+          {/* Multi-Level HP Rolling */}
           {level >= 2 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="text-xs text-[var(--color-text-secondary)] uppercase tracking-wider">HP Roll</div>
-                <div className="text-xs text-[var(--color-text-secondary)]">
-                  Total: <span className="text-[var(--color-text-primary)] font-semibold">{hpTotal}</span> HP
-                </div>
+                <button
+                  type="button"
+                  onClick={rollAllHp}
+                  className="text-[10px] font-semibold text-[var(--color-text-primary)] bg-[var(--color-bg)] px-2 py-1 rounded-full hover:bg-[var(--color-border)] transition-all"
+                >
+                  🎲 Roll All
+                </button>
               </div>
 
-              {hpLevelsToProcess.length > 0 && (
+              {hpLevelsToProcess(level).length > 0 && (
                 <div className="flex items-center justify-center gap-1.5">
-                  {hpLevelsToProcess.map((lvl) => (
+                  {hpLevelsToProcess(level).map((lvl) => (
                     <div
                       key={lvl}
                       className={`h-2 w-2 rounded-full ${
@@ -463,7 +566,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 </div>
               )}
 
-              {allHpConfirmed && hpLevelsToProcess.length > 0 && (
+              {allHpConfirmed(level, confirmedHpLevels) && hpLevelsToProcess(level).length > 0 && (
                 <div className="text-center text-xs text-green-600 font-semibold">✓ All HP confirmed</div>
               )}
             </div>
@@ -569,4 +672,17 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
       )}
     </>
   );
+}
+
+function hpLevelsToProcess(level: number): number[] {
+  const arr: number[] = [];
+  for (let lvl = 2; lvl <= level; lvl++) arr.push(lvl);
+  return arr;
+}
+
+function allHpConfirmed(level: number, confirmedHpLevels: number[]): boolean {
+  for (let lvl = 2; lvl <= level; lvl++) {
+    if (!confirmedHpLevels.includes(lvl)) return false;
+  }
+  return true;
 }

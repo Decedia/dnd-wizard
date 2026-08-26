@@ -17,6 +17,8 @@ import {
   Book,
   Star,
   Check,
+  Minus,
+  Plus,
 } from "phosphor-react";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
@@ -43,6 +45,9 @@ interface LevelUpWizardProps {
   character: Character;
   onCancel: () => void;
   onComplete: (character: Character) => void;
+  minLevel?: number;
+  maxLevel?: number;
+  title?: string;
 }
 
 interface LevelInfo {
@@ -75,18 +80,18 @@ function buildLevelInfos(
   character: Character,
   targetLevel: number,
   classData: ReturnType<typeof getStaticClass>,
-  subclassSelection: string
+  subclassSelection: string,
+  startLevel: number
 ): LevelInfo[] {
   if (!classData) return [];
 
   const infos: LevelInfo[] = [];
-  const currentLevel = character.level || 1;
   const hitDie = classData.hitDie || 10;
   const conMod = getModifier(character.con);
   const averageHp = getHitDieAverage(hitDie) + conMod;
   const className = classData.name;
 
-  for (let level = currentLevel + 1; level <= targetLevel; level++) {
+  for (let level = startLevel + 1; level <= targetLevel; level++) {
     const levelData = classData.levels[level - 1];
     const prevLevelData = level > 1 ? classData.levels[level - 2] : null;
 
@@ -198,7 +203,7 @@ function buildLevelInfos(
   return infos;
 }
 
-export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizardProps) {
+export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title }: LevelUpWizardProps) {
   const classData = character.class ? getStaticClass(character.class) : undefined;
   const currentLevel = character.level || 1;
   const hitDie = classData?.hitDie || 10;
@@ -206,7 +211,10 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const averageHp = getHitDieAverage(hitDie) + conMod;
   const diceType = `d${hitDie}` as any;
 
-  const [targetLevel, setTargetLevel] = useState(Math.min(20, currentLevel + 1));
+  const effectiveMinLevel = minLevel ?? currentLevel + 1;
+  const effectiveMaxLevel = maxLevel ?? 20;
+
+  const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, effectiveMinLevel));
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiState, setAsiState] = useState<Record<number, AsiState>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
@@ -214,8 +222,8 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
 
   const levelInfos = useMemo(
-    () => buildLevelInfos(character, targetLevel, classData, subclassSelection),
-    [character, targetLevel, classData, subclassSelection]
+    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel),
+    [character, targetLevel, classData, subclassSelection, currentLevel]
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
@@ -257,7 +265,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
   };
 
-  const allLevelsComplete = levelInfos.every((info) => {
+  const allLevelsComplete = levelInfos.length > 0 && levelInfos.every((info) => {
     const lvl = info.level;
     if (!hpValues[lvl]) return false;
     if (info.asi && !asiState[lvl]?.confirmed) return false;
@@ -350,6 +358,17 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     setHpValues(newHpValues);
   };
 
+  const adjustTargetLevel = (delta: number) => {
+    const newLevel = Math.max(effectiveMinLevel, Math.min(effectiveMaxLevel, targetLevel + delta));
+    if (newLevel !== targetLevel) {
+      setTargetLevel(newLevel);
+      setHpValues({});
+      setAsiState({});
+      setSpellSelections({});
+      setSubclassFeatureChoices({});
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
       <div className="sticky top-0 z-40 bg-[var(--color-surface)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
@@ -358,48 +377,45 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
             <button onClick={onCancel} className="text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">
               Cancel
             </button>
-            <div className="text-xs font-semibold text-[var(--color-text-primary)]">Level Up to {targetLevel}</div>
+            <div className="text-xs font-semibold text-[var(--color-text-primary)]">{title ?? "Level Up"}</div>
             <div className="w-12" />
           </div>
-          <div className="mt-2">
-            <label className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
-              Target Level
-            </label>
-            <div className="mt-1 flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
-              {Array.from({ length: 20 - currentLevel }, (_, i) => i + currentLevel + 1).map((lvl) => (
-                <button
-                  key={lvl}
-                  type="button"
-                  onClick={() => {
-                    setTargetLevel(lvl);
-                    setHpValues({});
-                    setAsiState({});
-                    setSpellSelections({});
-                    setSubclassFeatureChoices({});
-                  }}
-                  className={`h-8 min-w-[2.25rem] px-2.5 text-xs rounded-full transition-all ${
-                    lvl === targetLevel
-                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                      : "bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  {lvl}
-                </button>
-              ))}
+          <div className="mt-3 flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => adjustTargetLevel(-1)}
+              disabled={targetLevel <= effectiveMinLevel}
+              className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            >
+              <Minus className="h-4 w-4" />
+            </button>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-[var(--color-text-primary)]">{targetLevel}</div>
+              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Target Level</div>
             </div>
+            <button
+              type="button"
+              onClick={() => adjustTargetLevel(1)}
+              disabled={targetLevel >= effectiveMaxLevel}
+              className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            >
+              <Plus className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </div>
 
       <main className="px-4 py-5 pb-40">
         <div className="mx-auto max-w-lg space-y-4">
-          <button
-            type="button"
-            onClick={rollAllHp}
-            className="w-full py-2.5 text-xs font-semibold rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
-          >
-            🎲 Roll All HP
-          </button>
+          {levelInfos.length > 0 && (
+            <button
+              type="button"
+              onClick={rollAllHp}
+              className="w-full py-2.5 text-xs font-semibold rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
+            >
+              🎲 Roll All HP
+            </button>
+          )}
 
           {levelInfos.map((info) => (
             <LevelCard
@@ -435,7 +451,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
         onBack={onCancel}
         onNext={handleFinish}
         backLabel="Cancel"
-        nextLabel="Complete Level Up"
+        nextLabel="Complete"
         canProceed={allLevelsComplete}
         showBack={true}
       />
@@ -485,8 +501,10 @@ function LevelCard({
   const [showSpellSelection, setShowSpellSelection] = useState(false);
   const lvl = info.level;
 
-  const isComplete = hpValuesComplete(info, hpValue) && asiComplete(info, asiState) &&
-    subclassComplete(info, subclassSelection) && subclassFeatureChoicesComplete(info, subclassFeatureChoices);
+  const isComplete = hpValue > 0 &&
+    (!info.asi || asiState?.confirmed) &&
+    (!info.subclassOptions || !!subclassSelection) &&
+    (!info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]));
 
   return (
     <div className={`rounded-[var(--radius-md)] border transition-all ${
@@ -704,28 +722,6 @@ function LevelCard({
       </div>
     </div>
   );
-}
-
-function hpValuesComplete(info: LevelInfo, hpValue: number): boolean {
-  return hpValue > 0;
-}
-
-function asiComplete(info: LevelInfo, asiState?: AsiState): boolean {
-  if (!info.asi) return true;
-  return !!asiState?.confirmed;
-}
-
-function subclassComplete(info: LevelInfo, subclassSelection: string): boolean {
-  if (!info.subclassOptions) return true;
-  return !!subclassSelection;
-}
-
-function subclassFeatureChoicesComplete(info: LevelInfo, choices: Record<string, string>): boolean {
-  if (!info.subclassFeatureChoices) return true;
-  for (const fc of info.subclassFeatureChoices) {
-    if (!choices[fc.name]) return false;
-  }
-  return true;
 }
 
 function AsiSelector({
