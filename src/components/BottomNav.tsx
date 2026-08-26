@@ -55,7 +55,7 @@ export function BottomNav() {
          })}
          {activeIndex >= 0 && (
            <div
-             className="absolute inset-y-1 rounded-full bg-white/10 transition-all duration-300 ease-out pointer-events-none"
+             className="absolute inset-y-0 rounded-full bg-white/10 transition-all duration-300 ease-out pointer-events-none"
              style={{
                left: `${(activeIndex / navItems.length) * 100}%`,
                width: `${(100 / navItems.length)}%`,
