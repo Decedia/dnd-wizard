@@ -290,21 +290,8 @@ export function getCreationSteps(character: Character): CreationStep[] {
     });
   }
 
-  // Spell selection comes AFTER level selection (if class has spellcasting)
-  const hasSpellcasting = !!classData?.spellcastingAbility;
-  const spellsCompleted = !hasSpellcasting || (character.spells && character.spells.length > 0);
-
-  if (hasSpellcasting) {
-    steps.push({
-      id: "spells",
-      title: "Spells",
-      description: "Choose your starting spells",
-      hint: "If your class can cast spells, choose your starting spells here. Spells are divided by level and can be changed when you level up.",
-      type: "spells",
-      required: true,
-      completed: spellsCompleted,
-    });
-  }
+  // Note: Spell selection is now handled within the LevelUpWizard
+  // No separate spell selection step needed in character creation
 
   const featureSelections = getFeatureSelections(character).filter(s => s.source !== "subclass");
   featureSelections.forEach((selection, index) => {

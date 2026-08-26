@@ -12,7 +12,6 @@ import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
-import { StepSpells } from "@/components/character-creator/StepSpells";
 import { StepAppearance } from "@/components/character-creator/StepAppearance";
 import { WizardNav } from "@/components/WizardNav";
 import { StepFeatureSelections } from "@/components/character-creator/StepFeatureSelections";
@@ -86,8 +85,6 @@ export default function CharacterCreate() {
         return <StepSkills data={character} onChange={update} />;
       case "equipment":
         return <StepEquipment data={character} onChange={update} />;
-      case "spells":
-        return <StepSpells data={character} onChange={update} />;
       case "appearance":
         return <StepAppearance data={character} onChange={update} />;
       case "feature-selections": {
