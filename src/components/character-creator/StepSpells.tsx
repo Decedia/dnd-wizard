@@ -5,6 +5,7 @@ import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { getModifier } from "@/lib/storage";
+import { InfoButton } from "@/components/InfoButton";
 
 interface StepSpellsProps {
   data: Character;
@@ -149,32 +150,32 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
             {cantrips.map((spell) => {
               const isSelected = selectedSpells.some((s) => s.name === spell.name && s.level === 0);
               const isDisabled = !isSelected && selectedCantrips.length >= maxCantrips;
+              const spellDesc = Array.isArray(spell.description) ? spell.description.join(" ") : spell.description;
               return (
-                <button
-                  key={spell.name}
-                  type="button"
-                  onClick={() => toggleCantrip(spell.name)}
-                  disabled={isDisabled}
-                  className={`btn w-full px-3 py-2 text-left ${
-                    isSelected
-                      ? "btn-primary"
-                      : isDisabled
-                        ? "btn-secondary opacity-50 cursor-not-allowed"
-                        : "btn-secondary"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-inherit">{spell.name}</span>
-                    <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                      {spell.school || ""}
-                    </span>
-                  </div>
-                  {spell.description && (
-                    <p className="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed font-medium line-clamp-2">
-                      {Array.isArray(spell.description) ? spell.description.join(" ") : spell.description}
-                    </p>
+                <div key={spell.name} className="flex gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => toggleCantrip(spell.name)}
+                    disabled={isDisabled}
+                    className={`flex-1 btn w-full px-3 py-2 text-left ${
+                      isSelected
+                        ? "btn-primary"
+                        : isDisabled
+                          ? "btn-secondary opacity-50 cursor-not-allowed"
+                          : "btn-secondary"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                      <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                        {spell.school || ""}
+                      </span>
+                    </div>
+                  </button>
+                  {spellDesc && (
+                    <InfoButton title={spell.name} description={spellDesc} />
                   )}
-                </button>
+                </div>
               );
             })}
           </div>
@@ -197,41 +198,43 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                 {spells.map((spell) => {
                   const isSelected = selectedSpells.some((s) => s.name === spell.name && s.level === Number(level));
                   const isDisabled = !isSelected && selectedLevelSpells.length >= maxSpells;
+                  const spellDesc = Array.isArray(spell.description) ? spell.description.join(" ") : spell.description;
                   return (
-                    <button
-                      key={spell.name}
-                      type="button"
-                      onClick={() => toggleSpell(spell.name, Number(level))}
-                      disabled={isDisabled}
-                      className={`btn w-full px-3 py-2 text-left ${
-                        isSelected
-                          ? "btn-primary"
-                          : isDisabled
-                            ? "btn-secondary opacity-50 cursor-not-allowed"
-                            : "btn-secondary"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-bold text-inherit">{spell.name}</span>
-                        <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                          {spell.school || ""}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
-                          {spell.castingTime}
-                        </span>
-                        <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
-                        <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
-                          {spell.range}
-                        </span>
-                      </div>
-                      {spell.description && (
-                        <p className="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed font-medium line-clamp-2">
-                          {Array.isArray(spell.description) ? spell.description.join(" ") : spell.description}
-                        </p>
+                    <div key={spell.name} className="flex gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => toggleSpell(spell.name, Number(level))}
+                        disabled={isDisabled}
+                        className={`flex-1 btn w-full px-3 py-2 text-left ${
+                          isSelected
+                            ? "btn-primary"
+                            : isDisabled
+                              ? "btn-secondary opacity-50 cursor-not-allowed"
+                              : "btn-secondary"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                              {spell.school || ""}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
+                            {spell.castingTime}
+                          </span>
+                          <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+                          <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
+                            {spell.range}
+                          </span>
+                        </div>
+                      </button>
+                      {spellDesc && (
+                        <InfoButton title={spell.name} description={spellDesc} />
                       )}
-                    </button>
+                    </div>
                   );
                 })}
               </div>

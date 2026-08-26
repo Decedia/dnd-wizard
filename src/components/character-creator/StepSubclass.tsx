@@ -1,10 +1,11 @@
 "use client";
 
-import { CheckCircle } from "phosphor-react";
+import { CheckCircle, Info } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses, type SRDClass, type SRDSubclass } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { normalizeDescription } from "@/lib/level-up";
+import { InfoButton } from "@/components/InfoButton";
 
 interface StepSubclassProps {
   data: Character;
@@ -43,47 +44,47 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
           const earnedFeatures = sub.features.filter(
             (f) => f.level == null || (f.level >= unlockLevel && f.level <= data.level)
           );
+          const hasDetails = sub.description || earnedFeatures.length > 0;
           return (
-            <button
-              key={sub.name}
-              type="button"
-              onClick={() => handleSelect(sub.name)}
-              className={`w-full p-4 text-left rounded-[var(--radius-md)] transition-all ${
-                isSelected
-                  ? "bg-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
-                  : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-card-title">{sub.name}</span>
-                {isSelected && (
-                  <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
-                )}
-              </div>
-              {sub.description && (
-                <p className="mt-1 text-description whitespace-pre-line">
-                  {sub.description}
-                </p>
-              )}
-              {earnedFeatures.length > 0 && (
-                <div className="mt-3 space-y-2 border-t border-[var(--color-border)] pt-3">
-                  <div className="text-card-title">
-                    Features
-                  </div>
-                  {earnedFeatures.map((f) => (
-                    <div key={f.name} className="rounded-[var(--radius-sm)] border border-[var(--color-border)] px-3 py-2">
-                      <div className="text-body">
-                        {f.name}
-                        {f.level ? <span className="ml-1 text-muted font-medium">Lv {f.level}</span> : null}
-                      </div>
-                      <p className="mt-1 text-description leading-relaxed whitespace-pre-line">
-                        {normalizeDescription(f.description)}
-                      </p>
-                    </div>
-                  ))}
+            <div key={sub.name} className="flex gap-1.5">
+              <button
+                type="button"
+                onClick={() => handleSelect(sub.name)}
+                className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
+                  isSelected
+                    ? "bg-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
+                    : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-card-title">{sub.name}</span>
+                  {isSelected && (
+                    <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
+                  )}
                 </div>
+                {earnedFeatures.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {earnedFeatures.map((f) => (
+                      <span
+                        key={f.name}
+                        className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded-full"
+                      >
+                        {f.name} {f.level ? `Lv ${f.level}` : ""}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </button>
+              {hasDetails && (
+                <InfoButton
+                  title={sub.name}
+                  description={[
+                    sub.description || "",
+                    ...earnedFeatures.map((f) => `**${f.name}** (Lv ${f.level}): ${normalizeDescription(f.description)}`),
+                  ].filter(Boolean).join("\n\n")}
+                />
               )}
-            </button>
+            </div>
           );
         })}
       </div>

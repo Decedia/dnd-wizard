@@ -3,6 +3,7 @@
 import { useCallback } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticRaces, type SRDRace } from "@/lib/srd-client";
+import { InfoButton } from "@/components/InfoButton";
 import type { Character } from "@/lib/storage";
 
 interface StepRaceProps {
@@ -38,24 +39,23 @@ export function StepRace({ data, onChange }: StepRaceProps) {
           >
               <div className="flex items-center justify-between">
                 <span className="text-card-title">{race.name}</span>
-                <span className="text-muted">
-                  {race.size} / Speed {race.speed} ft
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-muted">
+                    {race.size} / Speed {race.speed} ft
+                  </span>
+                  {race.traits && race.traits.length > 0 && (
+                    <InfoButton
+                      title={`${race.name} Traits`}
+                      description={race.traits.map((t) => `${t.name}: ${t.description}`).join("\n\n")}
+                    />
+                  )}
+                </div>
               </div>
               <p className="mt-1 text-description">
                 {Object.entries(race.abilityScoreIncreases || {})
                   .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
                   .join(", ")}
               </p>
-              {race.traits && race.traits.length > 0 && (
-                <div className="mt-2 space-y-1">
-                  {race.traits.map((trait) => (
-                    <div key={trait.name} className="text-description">
-                      <span className="font-bold">{trait.name}:</span> {trait.description}
-                    </div>
-                  ))}
-                </div>
-              )}
             </button>
           );
         })}

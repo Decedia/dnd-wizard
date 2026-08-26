@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, type SRDClass } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
+import { InfoButton } from "@/components/InfoButton";
 
 interface StepClassProps {
   data: Character;
@@ -41,13 +42,17 @@ export function StepClass({ data, onChange }: StepClassProps) {
           >
               <div className="flex items-center justify-between">
                 <span className="text-card-title">{cls.name}</span>
-                {hasSubclasses && (
-                  <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">
-                    Subclass at Lv {subclassLevel}
-                  </span>
-                )}
+                <div className="flex items-center gap-2">
+                  {hasSubclasses && (
+                    <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">
+                      Subclass at Lv {subclassLevel}
+                    </span>
+                  )}
+                  {cls.flavorText && (
+                    <InfoButton title={cls.name} description={cls.flavorText} />
+                  )}
+                </div>
               </div>
-              <p className="mt-1 text-description">{cls.flavorText}</p>
               {hasSubclasses && (
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {cls.subclasses!.map((sub) => (

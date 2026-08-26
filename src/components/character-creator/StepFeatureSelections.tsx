@@ -5,6 +5,7 @@ import { CheckCircle } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
+import { InfoButton } from "@/components/InfoButton";
 
 interface FeatureSelection {
   featureName: string;
@@ -105,35 +106,33 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                   {selection.options.map((option) => {
                     const isSelected = selected.includes(option);
                     const isDisabled = !isSelected && selected.length >= maxCount;
+                    const optionDesc = selection.optionDescriptions?.[option];
 
                     return (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => handleSelect(selection.storageKey, option, maxCount)}
-                      disabled={isDisabled}
-                      className={`btn w-full px-3 py-2 text-left ${
-                        isSelected
-                          ? "bg-white text-ink border-2 border-ink"
-                          : isDisabled
-                            ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
-                            : "bg-white text-ink border border-border-muted"
-                      }`}
-                    >
+                    <div key={option} className="flex gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => handleSelect(selection.storageKey, option, maxCount)}
+                        disabled={isDisabled}
+                        className={`flex-1 btn w-full px-3 py-2 text-left ${
+                          isSelected
+                            ? "bg-white text-ink border-2 border-ink"
+                            : isDisabled
+                              ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
+                              : "bg-white text-ink border border-border-muted"
+                        }`}
+                      >
                         <div className="flex items-center justify-between">
-                          <div>
-                            <span className="text-body">{option}</span>
-                            {selection.optionDescriptions?.[option] && (
-                              <span className="block text-muted mt-0.5 leading-relaxed">
-                                {selection.optionDescriptions[option]}
-                              </span>
-                            )}
-                          </div>
+                          <span className="text-body">{option}</span>
                           {isSelected && (
                             <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
                           )}
                         </div>
                       </button>
+                      {optionDesc && (
+                        <InfoButton title={option} description={optionDesc} />
+                      )}
+                    </div>
                     );
                   })}
                 </div>
