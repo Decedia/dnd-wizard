@@ -147,7 +147,7 @@ export default function CharacterView() {
             </p>
             <Link
               href="/"
-              className="btn-primary"
+              className="btn btn-primary"
             >
               Return Home
             </Link>
@@ -207,7 +207,7 @@ export default function CharacterView() {
               {character.level < 20 && (
                 <button
                   onClick={() => router.push(`/character/${character.id}/level-up`)}
-                  className="btn-secondary w-full"
+                  className="btn btn-secondary w-full"
                 >
                   Level Up
                 </button>
@@ -220,7 +220,7 @@ export default function CharacterView() {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={handleSave}
-                className="btn-primary flex items-center justify-center gap-1.5"
+                className="btn btn-primary flex items-center justify-center gap-1.5"
               >
                 <Save className="h-3.5 w-3.5" />
                 Save
@@ -228,7 +228,7 @@ export default function CharacterView() {
               <button
                 onClick={handleExport}
                 disabled={exportingPdf}
-                className="btn-secondary flex items-center justify-center gap-1.5 disabled:opacity-50"
+                className="btn btn-secondary flex items-center justify-center gap-1.5 disabled:opacity-50"
               >
                 {exportingPdf ? (
                   <>
@@ -244,7 +244,7 @@ export default function CharacterView() {
               </button>
               <button
                 onClick={handleImportClick}
-                className="btn-secondary flex items-center justify-center gap-1.5"
+                className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
                 <Upload className="h-3.5 w-3.5" />
                 Import PDF

@@ -331,8 +331,8 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   }}
                   className={`btn h-8 min-w-[2.25rem] px-2.5 text-xs rounded-full ${
                     lvl === targetLevel
-                      ? "btn-primary"
-                      : "btn-secondary"
+                      ? "btn btn-primary"
+                      : "btn btn-secondary"
                   }`}
                 >
                   {lvl}
@@ -388,7 +388,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                       <button
                         type="button"
                         onClick={() => setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level))}
-                        className="btn-secondary w-full p-3.5 text-center text-xs"
+                        className="btn btn-secondary w-full p-3.5 text-center text-xs"
                       >
                         Complete your Ability Score Improvement
                       </button>
@@ -466,7 +466,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                 <button
                   type="button"
                   onClick={cancelAsi}
-                  className="btn-secondary px-4 py-2 text-xs rounded-full"
+                  className="btn btn-secondary px-4 py-2 text-xs rounded-full"
                 >
                   Cancel
                 </button>
@@ -474,7 +474,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="btn-primary px-4 py-2 text-xs rounded-full"
+                    className="btn btn-primary px-4 py-2 text-xs rounded-full"
                   >
                     Continue
                   </button>
@@ -538,7 +538,7 @@ function HpStep({
         <button
           type="button"
           onClick={() => setValue(averageHp)}
-          className="btn-secondary px-3 py-2 text-xs"
+          className="btn btn-secondary px-3 py-2 text-xs"
         >
           Take Average ({averageHp})
         </button>
@@ -622,14 +622,14 @@ function AsiStep({
         <button
           type="button"
           onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
-          className={`btn ${state.mode === "single" ? "btn-primary" : "btn-secondary"}`}
+          className={`btn ${state.mode === "single" ? "btn btn-primary" : "btn btn-secondary"}`}
         >
           +2 to one ability
         </button>
         <button
           type="button"
           onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
-          className={`btn ${state.mode === "double" ? "btn-primary" : "btn-secondary"}`}
+          className={`btn ${state.mode === "double" ? "btn btn-primary" : "btn btn-secondary"}`}
         >
           +1 to two abilities
         </button>
@@ -761,7 +761,7 @@ function SectionRenderer({
                 type="button"
                 onClick={() => onSubclassSelect(opt.name)}
                 className={`btn w-full p-2.5 text-left ${
-                  isSel ? "btn-primary" : "btn-secondary"
+                  isSel ? "btn btn-primary" : "btn btn-secondary"
                 }`}
               >
                 <div className="text-xs font-semibold text-inherit">{opt.name}</div>
@@ -799,7 +799,7 @@ function SectionRenderer({
                         type="button"
                         onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
                         className={`btn w-full px-2.5 py-1.5 text-left ${
-                          isSel ? "btn-primary" : "btn-secondary"
+                          isSel ? "btn btn-primary" : "btn btn-secondary"
                         }`}
                       >
                         <div className="text-[11px] font-semibold text-inherit">{opt}</div>
@@ -840,7 +840,7 @@ function SectionRenderer({
                 onClick={() => toggle(s.name)}
                 disabled={disabled}
                 className={`btn px-2 py-1.5 text-left text-[11px] ${
-                  isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
+                  isSel ? "btn btn-primary" : disabled ? "btn btn-secondary opacity-50" : "btn btn-secondary"
                 }`}
               >
                 {s.name}
@@ -889,7 +889,7 @@ function SectionRenderer({
                 onClick={() => toggle(sp.name)}
                 disabled={disabled}
                 className={`btn w-full px-2.5 py-1.5 text-left text-[11px] ${
-                  isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
+                  isSel ? "btn btn-primary" : disabled ? "btn btn-secondary opacity-50" : "btn btn-secondary"
                 }`}
               >
                 {sp.name} <span className="text-ink-muted font-medium">Lv {sp.level}</span>

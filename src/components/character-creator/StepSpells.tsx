@@ -65,8 +65,8 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                       onClick={() => toggleSpell(spell.name)}
                       className={`btn w-full px-3 py-2 text-left ${
                         isSelected
-                          ? "btn-primary"
-                          : "btn-secondary"
+                          ? "btn btn-primary"
+                          : "btn btn-secondary"
                       }`}
                     >
                       <div className="flex items-center justify-between">

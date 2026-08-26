@@ -47,7 +47,7 @@ export default function DiceRoller() {
         <div className="mx-auto max-w-lg">
           <button
             onClick={rollAll}
-            className="btn-primary w-full mb-6"
+            className="btn btn-primary w-full mb-6"
           >
             Roll All Dice
           </button>

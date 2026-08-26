@@ -25,7 +25,7 @@ export function WizardNav({
              <button
                type="button"
                onClick={onBack}
-               className="btn-secondary flex-1 px-4 py-2.5 text-xs rounded-full"
+               className="btn btn-secondary flex-1 px-4 py-2.5 text-xs rounded-full"
               >
               {backLabel}
             </button>
@@ -34,7 +34,7 @@ export function WizardNav({
             type="button"
             onClick={onNext}
             disabled={!canProceed}
-             className="btn-primary flex-1 px-5 py-2.5 text-xs rounded-full"
+             className="btn btn-primary flex-1 px-5 py-2.5 text-xs rounded-full"
           >
             {nextLabel}
           </button>

@@ -220,8 +220,8 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                         onClick={() => toggleEquip(item.id, item.itemType)}
                         className={`btn px-2.5 py-1 text-xs ${
                           item.equipped
-                            ? "btn-primary"
-                            : "btn-secondary"
+                            ? "btn btn-primary"
+                            : "btn btn-secondary"
                         }`}
                       >
                         {item.equipped ? "Equipped" : "Equip"}

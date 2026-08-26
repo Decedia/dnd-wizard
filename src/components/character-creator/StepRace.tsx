@@ -32,8 +32,8 @@ export function StepRace({ data, onChange }: StepRaceProps) {
             onClick={() => handleSelect(race.name)}
             className={`btn w-full p-4 text-left ${
               isSelected
-                ? "btn-primary"
-                : "btn-secondary"
+                ? "btn btn-primary"
+                : "btn btn-secondary"
             }`}
           >
               <div className="flex items-center justify-between">

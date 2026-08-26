@@ -41,7 +41,7 @@ export default function Home() {
         <div className="mb-4">
           <Link
             href="/dice"
-            className="btn-primary flex items-center justify-center gap-2"
+            className="btn btn-primary flex items-center justify-center gap-2"
           >
             <Dices className="h-4 w-4" />
             <span>Dice Roller</span>
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="mb-5">
           <button
             onClick={handleImportClick}
-            className="btn-secondary w-full"
+            className="btn btn-secondary w-full"
           >
             <Upload className="h-4 w-4 mr-2 inline" />
             Import from PDF

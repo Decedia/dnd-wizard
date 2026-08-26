@@ -277,7 +277,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                             <button
                               type="button"
                               onClick={() => setEditingCostumeSpellId(null)}
-                               className="btn-secondary px-3 py-1.5 text-xs"
+                               className="btn btn-secondary px-3 py-1.5 text-xs"
                             >
                               Cancel
                             </button>
@@ -357,7 +357,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         setIsAddingCostumeSpell(false);
                         setNewCostumeSpell({ name: "", description: "" });
                       }}
-                               className="btn-secondary px-3 py-1.5 text-xs"
+                               className="btn btn-secondary px-3 py-1.5 text-xs"
                     >
                       Cancel
                     </button>

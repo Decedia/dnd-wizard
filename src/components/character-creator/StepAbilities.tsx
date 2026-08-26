@@ -387,8 +387,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
               onClick={() => setMethod(tab.key)}
               className={`btn flex-1 px-3 py-2 rounded-full ${
                 method === tab.key
-                  ? "btn-primary"
-                  : "btn-secondary"
+                  ? "btn btn-primary"
+                  : "btn btn-secondary"
               }`}
             >
               {tab.label}

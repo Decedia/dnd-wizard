@@ -15,8 +15,8 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
         onClick={() => onModeChange("view")}
         className={`btn rounded-md px-2.5 py-1 text-[11px] ${
           mode === "view"
-            ? "btn-primary"
-            : "btn-secondary"
+            ? "btn btn-primary"
+            : "btn btn-secondary"
         }`}
       >
         View
@@ -26,8 +26,8 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
         onClick={() => onModeChange("edit")}
         className={`btn rounded-md px-2.5 py-1 text-[11px] ${
           mode === "edit"
-            ? "btn-primary"
-            : "btn-secondary"
+            ? "btn btn-primary"
+            : "btn btn-secondary"
         }`}
       >
         Edit

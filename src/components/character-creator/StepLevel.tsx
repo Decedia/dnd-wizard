@@ -314,7 +314,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                   <button
                     type="button"
                     onClick={takeAverage}
-                    className="btn-secondary rounded-full px-3 py-2 text-xs"
+                    className="btn btn-secondary rounded-full px-3 py-2 text-xs"
                   >
                     Avg ({averageHp})
                   </button>
@@ -362,7 +362,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             {asiConfirmation ? (
               <div className="text-ink font-semibold bg-paper px-2 py-1 rounded-md inline-block">✓ {asiConfirmation}</div>
             ) : (
-              <button type="button" onClick={() => setAsiModalOpen(true)} className="btn-primary w-full">
+              <button type="button" onClick={() => setAsiModalOpen(true)} className="btn btn-primary w-full">
                 Complete your Ability Score Improvement
               </button>
             )}
@@ -455,7 +455,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                   setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
                   setAsiModalOpen(false);
                 }}
-                className="btn-secondary px-5 py-2.5"
+                className="btn btn-secondary px-5 py-2.5"
               >
                 Cancel
               </button>
@@ -463,7 +463,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 type="button"
                 onClick={applyAsi}
                 disabled={!canApplyAsi}
-                className="btn-primary px-5 py-2.5"
+                className="btn btn-primary px-5 py-2.5"
               >
                 Apply Ability Score Improvement
               </button>
