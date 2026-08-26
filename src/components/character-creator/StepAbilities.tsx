@@ -158,26 +158,23 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   }, [onChange]);
 
   const renderStandardArray = () => {
-    const assignedValues = Object.values(
-      ABILITIES.reduce((acc, ability) => {
-        acc[ability.key] = pointBuyScores[ability.key];
-        return acc;
-      }, {} as Record<AbilityKey, number>)
-    );
-    const availableValues = STANDARD_ARRAY.filter(val => !assignedValues.includes(val));
+    const currentAbilityValues = ABILITIES.reduce((acc, ability) => {
+      acc[ability.key] = (data[ability.key] as number) || 10;
+      return acc;
+    }, {} as Record<AbilityKey, number>);
 
     return (
       <div className="space-y-4">
         <div className="flex flex-wrap gap-2 mb-4">
           {STANDARD_ARRAY.map((val) => {
-            const isUsed = assignedValues.includes(val);
+            const isUsed = Object.values(currentAbilityValues).includes(val);
             return (
                <span
                  key={val}
                  className={`px-3 py-1.5 rounded-full text-sm font-bold ${
                    isUsed
                      ? "bg-paper-muted text-ink-muted line-through"
-                     : "bg-paper text-ink"
+                     : "bg-paper text-ink border border-border-strong"
                  }`}
                >
                  {val}
@@ -191,6 +188,11 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             const baseScore = getBaseScore(key);
             const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
+
+            const valuesUsedByOthers = ABILITIES
+              .filter(({ key: otherKey }) => otherKey !== key)
+              .map(({ key: otherKey }) => currentAbilityValues[otherKey])
+              .filter((val, idx, arr) => arr.indexOf(val) === idx);
 
             return (
               <div
@@ -211,11 +213,14 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                       const val = parseInt(e.target.value);
                       onChange({ [key]: val } as Partial<Character>);
                     }}
-                    className="input w-16 text-center"
+                    className="input w-16 text-center border border-border-strong rounded-full"
                   >
-                    {STANDARD_ARRAY.map((val) => (
-                      <option key={val} value={val}>{val}</option>
-                    ))}
+                    {STANDARD_ARRAY.map((val) => {
+                      const isTakenByOther = valuesUsedByOthers.includes(val) && baseScore !== val;
+                      return (
+                        <option key={val} value={val} disabled={isTakenByOther}>{val}</option>
+                      );
+                    })}
                   </select>
                   <div className="flex flex-col items-center w-12">
                     <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
