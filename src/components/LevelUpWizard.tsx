@@ -1,21 +1,25 @@
 "use client";
 
 import { useState, useMemo, useRef, useCallback } from "react";
-import { StepCard } from "./character-creator/StepCard";
 import { WizardNav } from "./WizardNav";
-import { ProgressIndicator } from "./character-creator/ProgressIndicator";
-import {
-  generateLevelUpSteps,
-  sectionTitle,
-  sectionIcon,
-  normalizeDescription,
-  type LevelUpStep,
-  type LevelUpStepSection,
-} from "@/lib/level-up";
 import { getStaticClass, getStaticSubclasses, getStaticSpells } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, SKILLS, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
-import { Dice, type DiceHandle, type DiceType } from "./Dice";
+import { normalizeDescription } from "@/lib/level-up";
+import {
+  Heart,
+  Lightning,
+  ChartBar,
+  Target,
+  Sparkle,
+  MagicWand,
+  Shield,
+  Crown,
+  ClipboardText,
+  Sword,
+  Book,
+  Star,
+} from "phosphor-react";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -37,15 +41,157 @@ interface AsiState {
   confirmed?: boolean;
 }
 
-type Screen =
-  | { kind: "hp"; level: number }
-  | { kind: "asi"; level: number; section: LevelUpStepSection }
-  | { kind: "section"; level: number; section: LevelUpStepSection };
-
 interface LevelUpWizardProps {
   character: Character;
   onCancel: () => void;
   onComplete: (character: Character) => void;
+}
+
+interface LevelSummary {
+  level: number;
+  hp: { hitDie: number; conMod: number; average: number };
+  proficiencyBonus: number;
+  features: { name: string; description: string }[];
+  asi: boolean;
+  spellSlots?: Record<number, number>;
+  cantripsKnown?: number;
+  spellsKnown?: number;
+  classFeatures: { name: string; value: string }[];
+  subclassOptions?: { name: string; description: string }[];
+  expertiseCount?: number;
+  hasSpellSelection: boolean;
+  spellSelectionCount: number;
+  cantripSelectionCount: number;
+  maxSpellLevel: number;
+}
+
+function getProficiencyBonus(level: number): number {
+  if (level <= 4) return 2;
+  if (level <= 8) return 3;
+  if (level <= 12) return 4;
+  if (level <= 16) return 5;
+  return 6;
+}
+
+function buildLevelSummaries(
+  character: Character,
+  targetLevel: number,
+  classData: ReturnType<typeof getStaticClass>
+): LevelSummary[] {
+  if (!classData) return [];
+
+  const summaries: LevelSummary[] = [];
+  const currentLevel = character.level || 1;
+  const hitDie = classData.hitDie || 10;
+  const conMod = getModifier(character.con);
+  const averageHp = getHitDieAverage(hitDie) + conMod;
+  const className = classData.name;
+
+  for (let level = currentLevel + 1; level <= targetLevel; level++) {
+    const levelData = classData.levels[level - 1];
+    const prevLevelData = level > 1 ? classData.levels[level - 2] : null;
+
+    const features = (levelData?.features || []).map((f: any) => ({
+      name: f.name,
+      description: normalizeDescription(f.description),
+    }));
+
+    const asi = levelData?.asi || false;
+    const spellSlots = levelData?.spellSlots;
+
+    // Calculate cantrips known
+    let cantripsKnown: number | undefined;
+    if (classData.cantripsKnown) {
+      const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
+      for (const l of levels) {
+        if (level >= l) cantripsKnown = classData.cantripsKnown[l];
+      }
+    }
+
+    // Calculate spells known
+    let spellsKnown: number | undefined;
+    const spellsKnownKey = "spellsKnown";
+    if ((classData as any)[spellsKnownKey]) {
+      const known = (classData as any)[spellsKnownKey];
+      if (known[String(level)] !== undefined) {
+        spellsKnown = known[String(level)];
+      }
+    }
+
+    // Class-specific features
+    const classFeatures: { name: string; value: string }[] = [];
+    const classFeatureMap: Record<string, Record<string, any> | undefined> = {
+      Barbarian: { "Rage Uses": classData.rageUses, "Rage Damage": classData.rageDamageBonus },
+      Cleric: { "Channel Divinity": classData.channelDivinityUses },
+      Druid: { "Wild Shape": classData.wildShapeUses },
+      Fighter: { "Action Surge": classData.actionSurgeUses, Indomitable: classData.indomitableUses },
+      Monk: { "Ki Points": classData.kiPoints, "Movement": classData.unarmoredMovement, "Martial Arts": classData.martialArtsDie },
+      Rogue: { "Sneak Attack": classData.sneakAttackDice },
+      Sorcerer: { "Sorcery Points": classData.sorceryPoints },
+      Warlock: { "Invocations": classData.invocationsKnown },
+      Wizard: { "Spellbook": classData.spellbookSpells },
+      Ranger: {},
+      Paladin: {},
+    };
+
+    const featureValues = classFeatureMap[className];
+    if (featureValues) {
+      for (const [name, data] of Object.entries(featureValues)) {
+        if (data && typeof data === "object" && String(level) in data) {
+          const val = (data as Record<string, any>)[String(level)];
+          if (val !== undefined) {
+            if (name === "Martial Arts") {
+              classFeatures.push({ name, value: `d${val}` });
+            } else if (name === "Movement") {
+              classFeatures.push({ name, value: `+${val} ft` });
+            } else if (name === "Rage Damage") {
+              classFeatures.push({ name, value: `+${val}` });
+            } else if (name === "Sneak Attack") {
+              classFeatures.push({ name, value: `${val}d6` });
+            } else {
+              classFeatures.push({ name, value: String(val) });
+            }
+          }
+        }
+      }
+    }
+
+    // Subclass selection
+    const unlockLevel = classData.subclassLevel ?? 3;
+    const subclasses = getStaticSubclasses(className);
+    const subclassOptions = level === unlockLevel && !character.subclass && subclasses.length > 0
+      ? subclasses.map((s) => ({ name: s.name, description: s.description }))
+      : undefined;
+
+    // Spell selection
+    const prevSlots = prevLevelData?.spellSlots || {};
+    const slotsChanged = spellSlots && (Object.keys(spellSlots).length !== Object.keys(prevSlots).length ||
+      Object.entries(spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v));
+    const prevCantrips = prevLevelData ? (classData.cantripsKnown?.[level - 1] || 0) : 0;
+    const cantripsChanged = cantripsKnown !== undefined && cantripsKnown > prevCantrips;
+    const hasSpellSelection = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged));
+    const maxSpellLevel = spellSlots ? Math.max(...Object.keys(spellSlots).map(Number)) : 0;
+
+    summaries.push({
+      level,
+      hp: { hitDie, conMod, average: averageHp },
+      proficiencyBonus: getProficiencyBonus(level),
+      features,
+      asi,
+      spellSlots,
+      cantripsKnown,
+      spellsKnown,
+      classFeatures,
+      subclassOptions,
+      expertiseCount: className === "Rogue" && level === 1 ? 2 : undefined,
+      hasSpellSelection,
+      spellSelectionCount: spellSlots ? Object.values(spellSlots).reduce((a, b) => a + b, 0) : 0,
+      cantripSelectionCount: cantripsChanged ? (cantripsKnown || 0) - prevCantrips : 0,
+      maxSpellLevel,
+    });
+  }
+
+  return summaries;
 }
 
 export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizardProps) {
@@ -54,77 +200,35 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(character.con);
   const averageHp = getHitDieAverage(hitDie) + conMod;
-  const diceType = `d${hitDie}` as DiceType;
+  const diceType = `d${hitDie}` as any;
 
   const [targetLevel, setTargetLevel] = useState(Math.min(20, currentLevel + 1));
-  const [screenIndex, setScreenIndex] = useState(0);
+  const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
 
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiState, setAsiState] = useState<Record<number, AsiState>>({});
-  const [asiDismissedLevels, setAsiDismissedLevels] = useState<number[]>([]);
-
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [featureChoices, setFeatureChoices] = useState<Record<string, string>>(() =>
     Object.fromEntries(
-      Object.entries(character.featureSelections || {}).map(([k, v]) => [
-        k,
-        Array.isArray(v) ? v[0] || "" : v,
-      ])
+      Object.entries(character.featureSelections || {}).map(([k, v]) => [k, Array.isArray(v) ? v[0] || "" : v])
     )
   );
   const [expertiseSelections, setExpertiseSelections] = useState<Record<number, string[]>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
 
-  const generated: LevelUpStep[] = useMemo(
-    () => generateLevelUpSteps(currentLevel, targetLevel, character.class, character.expertise, character.skills, false, subclassSelection || character.subclass),
-    [currentLevel, targetLevel, character.class, character.expertise, character.skills, subclassSelection, character.subclass]
+  const levelSummaries = useMemo(
+    () => buildLevelSummaries(character, targetLevel, classData),
+    [character, targetLevel, classData]
   );
 
-  const screens: Screen[] = useMemo(() => {
-    const hpScreens: Screen[] = generated
-      .map((step) => step.level)
-      .filter((lvl) => lvl !== 1)
-      .map((lvl) => ({ kind: "hp" as const, level: lvl }));
+  const currentSummary = levelSummaries[currentLevelIndex];
+  const isLastLevel = currentLevelIndex === levelSummaries.length - 1;
 
-    const detailScreens: Screen[] = generated.flatMap((step) =>
-      step.sections
-        .filter((s) => s.type !== "hp")
-        .map((s) =>
-          s.type === "asi"
-            ? ({ kind: "asi" as const, level: step.level, section: s })
-            : ({ kind: "section" as const, level: step.level, section: s })
-        )
-    );
-
-    return [...hpScreens, ...detailScreens];
-  }, [generated]);
-
-  const screen = screens[screenIndex];
-  const isLast = screenIndex === screens.length - 1;
-  const isAsiScreen = screen?.kind === "asi";
-  const hpCount = screens.filter((s) => s.kind === "hp").length;
-
-  const setHp = (level: number, value: number) =>
-    setHpValues((prev) => ({ ...prev, [level]: value }));
-
+  const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
   const setAsi = (level: number, patch: Partial<AsiState>) =>
     setAsiState((prev) => ({ ...prev, [level]: { ...(prev[level] || {}), ...patch } }));
-
-  const setExpertise = (level: number, list: string[]) =>
-    setExpertiseSelections((prev) => ({ ...prev, [level]: list }));
-
-  const setSpells = (level: number, list: string[]) =>
-    setSpellSelections((prev) => ({ ...prev, [level]: list }));
-
-  const cancelAsi = () => {
-    if (!screen || screen.kind !== "asi") return;
-    setAsiState((prev) => {
-      const next = { ...prev };
-      delete next[screen.level];
-      return next;
-    });
-    setAsiDismissedLevels((prev) => [...prev, screen.level]);
-  };
+  const setExpertise = (level: number, list: string[]) => setExpertiseSelections((prev) => ({ ...prev, [level]: list }));
+  const setSpells = (level: number, list: string[]) => setSpellSelections((prev) => ({ ...prev, [level]: list }));
 
   const buildAllocation = (st?: AsiState): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
@@ -140,12 +244,8 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const baseScores = useCallback(
     (excludeLevel?: number): Record<AbilityKey, number> => {
       const base: Record<AbilityKey, number> = {
-        str: character.str,
-        dex: character.dex,
-        con: character.con,
-        int: character.int,
-        wis: character.wis,
-        cha: character.cha,
+        str: character.str, dex: character.dex, con: character.con,
+        int: character.int, wis: character.wis, cha: character.cha,
       };
       for (const [lvlStr, st] of Object.entries(asiState)) {
         const lvl = Number(lvlStr);
@@ -165,63 +265,16 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   };
 
   const canProceed = useCallback((): boolean => {
-    if (!screen) return false;
-    if (screen.kind === "hp") {
-      const v = hpValues[screen.level];
-      return !!v && v > 0;
-    }
-    if (screen.kind === "asi") {
-      const st = asiState[screen.level];
-      if (!st?.confirmed) return asiIsValid(st);
-      return true;
-    }
-    const section = screen.section;
-    if (section.type === "subclassSelection") return !!subclassSelection;
-    if (section.type === "expertise") {
-      const sel = expertiseSelections[screen.level] || [];
-      return sel.length >= (section.expertiseCount || 0);
-    }
+    if (!currentSummary) return false;
+    const lvl = currentSummary.level;
+    if (!hpValues[lvl]) return false;
+    if (currentSummary.asi && !asiState[lvl]?.confirmed) return false;
+    if (currentSummary.subclassOptions && !subclassSelection) return false;
     return true;
-  }, [screen, hpValues, asiState, subclassSelection, expertiseSelections]);
-
-  const handleNext = () => {
-    if (!screen) return;
-    if (isLast) {
-      handleFinish();
-      return;
-    }
-    if (screen.kind === "asi") {
-      if (!asiState[screen.level]?.confirmed) {
-        setAsi(screen.level, { confirmed: true });
-        setAsiDismissedLevels((prev) => [...prev, screen.level]);
-        return;
-      }
-      if (!asiDismissedLevels.includes(screen.level)) {
-        setAsiDismissedLevels((prev) => [...prev, screen.level]);
-        return;
-      }
-      setScreenIndex((s) => Math.min(screens.length - 1, s + 1));
-      return;
-    }
-    setScreenIndex((s) => Math.min(screens.length - 1, s + 1));
-  };
-
-  const handleBack = () => {
-    if (!screen) return;
-    if (screen.kind === "asi") {
-      setAsiState((prev) => {
-        const next = { ...prev };
-        delete next[screen.level];
-        return next;
-      });
-      setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level));
-    }
-    setScreenIndex((s) => Math.max(0, s - 1));
-  };
+  }, [currentSummary, hpValues, asiState, subclassSelection]);
 
   const handleFinish = () => {
     if (!classData) return;
-
     let draft: Character = {
       ...character,
       subclass: subclassSelection || character.subclass,
@@ -230,8 +283,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       ),
     };
 
-    const existingLevelHp =
-      character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
+    const existingLevelHp = character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
     if (existingLevelHp) {
       const mergedLevelHp: Record<number, number> = { ...existingLevelHp };
       for (const [lvlStr, gain] of Object.entries(hpValues)) {
@@ -273,49 +325,57 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
           const spell = getStaticSpells().find((s) => s.name === name);
           spells.push({
             id: `spell-${name}-${level}`.replace(/\s+/g, "-"),
-            name,
-            level,
-            source: "srd",
-            srdSpellName: name,
+            name, level, source: "srd", srdSpellName: name,
             description: normalizeDescription(spell?.description),
           });
         }
       }
     }
     draft.spells = spells;
-
     draft.level = targetLevel;
 
     let finalChar = applySubclassFeatures(draft);
     finalChar = syncBaseFeatures(finalChar);
     finalChar = { ...finalChar, ...computeDerivedStats(finalChar) };
-
     onComplete(finalChar);
   };
 
-  let nextLabel = "Next";
-  let showBack = screenIndex > 0;
-  if (screen) {
-    if (screen.kind === "hp") nextLabel = "Confirm";
-    else if (screen.kind === "asi") {
-      const st = asiState[screen.level];
-      nextLabel = st?.confirmed ? "Continue" : "Confirm ASI";
-    } else if (isLast) nextLabel = "Finish Level Up";
+  const handleNext = () => {
+    if (!canProceed()) return;
+    if (isLastLevel) {
+      handleFinish();
+    } else {
+      setCurrentLevelIndex((i) => i + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentLevelIndex > 0) {
+      setCurrentLevelIndex((i) => i - 1);
+    }
+  };
+
+  if (!currentSummary) {
+    return (
+      <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
+        <p className="text-[var(--color-text-muted)]">No levels to display.</p>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-paper">
-      <div className="sticky top-0 z-40 bg-paper/90 backdrop-blur-sm">
+    <div className="min-h-screen bg-[var(--color-bg)]">
+      <div className="sticky top-0 z-40 bg-[var(--color-surface)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
-            <button onClick={onCancel} className="text-xs font-semibold text-ink-muted hover:text-ink transition-colors">
+            <button onClick={onCancel} className="text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">
               Cancel
             </button>
-            <div className="text-xs font-semibold text-ink">Level Up</div>
+            <div className="text-xs font-semibold text-[var(--color-text-primary)]">Level Up</div>
             <div className="w-12" />
           </div>
           <div className="mt-2">
-            <label className="field-label-light">
+            <label className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
               Target Level
             </label>
             <div className="mt-1 flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
@@ -325,16 +385,16 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   type="button"
                   onClick={() => {
                     setTargetLevel(lvl);
-                    setScreenIndex(0);
+                    setCurrentLevelIndex(0);
                     setHpValues({});
                     setAsiState({});
                     setExpertiseSelections({});
                     setSpellSelections({});
                   }}
-                  className={`btn h-8 min-w-[2.25rem] px-2.5 text-xs rounded-full ${
+                  className={`h-8 min-w-[2.25rem] px-2.5 text-xs rounded-full transition-all ${
                     lvl === targetLevel
-                      ? "btn btn-primary"
-                      : "btn btn-secondary"
+                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                      : "bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
                   }`}
                 >
                   {lvl}
@@ -346,392 +406,57 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       </div>
 
       <main className="px-4 py-5 pb-40">
-        <div className="mx-auto max-w-lg">
-          <ProgressIndicator currentStep={Math.min(screenIndex + 1, screens.length)} totalSteps={Math.max(1, screens.length)} />
-
-          {screen ? (
-            (() => {
-              if (screen.kind === "hp") {
-                const hpStepNumber = screens.slice(0, screenIndex + 1).filter((s) => s.kind === "hp").length;
-                return (
-                  <StepCard title={`Level ${screen.level} HP`} hint={`Roll, take the average, or enter your hit die result for level ${screen.level}.`}>
-                    <div className="space-y-3">
-                      <div className="text-[11px] text-ink-muted font-medium">
-                        Level {screen.level} HP — Step {hpStepNumber} of {hpCount}
-                      </div>
-
-                      <HpStep
-                        level={screen.level}
-                        hitDie={hitDie}
-                        diceType={diceType}
-                        conMod={conMod}
-                        averageHp={averageHp}
-                        value={hpValues[screen.level] || 0}
-                        onChange={(v) => setHp(screen.level, v)}
-                      />
-                    </div>
-                  </StepCard>
-                );
-              }
-
-              if (screen.kind === "asi") {
-                const st = asiState[screen.level] || {};
-                const isConfirmed = !!st.confirmed;
-                return (
-                  <StepCard
-                    title={`Level ${screen.level} — Ability Score Improvement`}
-                    hint="A popup is open to assign your Ability Score Improvement."
-                  >
-                    {isConfirmed ? (
-                      <div className="text-center text-xs font-semibold text-ink bg-paper py-2 surface">
-                        ✓ {ABILITIES.filter(({ key }) => (buildAllocation(st)[key] || 0) > 0).map(({ full, key }) => `${full} increased to ${(character as any)[key] + buildAllocation(st)[key]}`).join(", ")}
-                      </div>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => setAsiDismissedLevels((prev) => prev.filter((l) => l !== screen.level))}
-                        className="btn btn-secondary w-full p-3.5 text-center text-xs"
-                      >
-                        Complete your Ability Score Improvement
-                      </button>
-                    )}
-                  </StepCard>
-                );
-              }
-
-              return (
-                <StepCard title={sectionTitle(screen.section.type) || "Level Up"} hint={screen.section.description}>
-                  <div className="space-y-4">
-                    <SectionRenderer
-                      section={screen.section}
-                      character={character}
-                      subclassSelection={subclassSelection}
-                      onSubclassSelect={setSubclassSelection}
-                      featureChoices={featureChoices}
-                      onFeatureChoice={(name, value) => setFeatureChoices((prev) => ({ ...prev, [name]: value }))}
-                      expertise={expertiseSelections[screen.level] || character.expertise || []}
-                      onExpertiseChange={(list) => setExpertise(screen.level, list)}
-                      spells={spellSelections[screen.level] || []}
-                      onSpellsChange={(list) => setSpells(screen.level, list)}
-                    />
-                  </div>
-                </StepCard>
-              );
-            })()
-          ) : (
-            <StepCard title="No Levels">
-              <p className="text-xs text-ink-muted font-medium">Choose a target level above to begin leveling up.</p>
-            </StepCard>
-          )}
+        <div className="mx-auto max-w-lg space-y-4">
+          {levelSummaries.map((summary, idx) => (
+            <LevelCard
+              key={summary.level}
+              summary={summary}
+              isActive={idx === currentLevelIndex}
+              isCompleted={idx < currentLevelIndex}
+              hpValue={hpValues[summary.level] || 0}
+              onHpChange={(v) => setHp(summary.level, v)}
+              asiState={asiState[summary.level]}
+              onAsiChange={(patch) => setAsi(summary.level, patch)}
+              baseScores={baseScores(summary.level)}
+              subclassSelection={subclassSelection}
+              onSubclassSelect={setSubclassSelection}
+              featureChoices={featureChoices}
+              onFeatureChoice={(name, value) => setFeatureChoices((prev) => ({ ...prev, [name]: value }))}
+              expertise={expertiseSelections[summary.level] || character.expertise || []}
+              onExpertiseChange={(list) => setExpertise(summary.level, list)}
+              spells={spellSelections[summary.level] || []}
+              onSpellsChange={(list) => setSpells(summary.level, list)}
+              character={character}
+              hitDie={hitDie}
+              diceType={diceType}
+              conMod={conMod}
+              averageHp={averageHp}
+            />
+          ))}
         </div>
       </main>
 
-      {!isAsiScreen && (
-        <WizardNav
-          onBack={handleBack}
-          onNext={handleNext}
-          backLabel="Back"
-          nextLabel={nextLabel}
-          canProceed={canProceed()}
-          showBack={showBack}
-        />
-      )}
-
-      {isAsiScreen && screen && !asiDismissedLevels.includes(screen.level) && (() => {
-        const lvl = screen.level;
-        const st = asiState[lvl] || {};
-        return (
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-ink/5 p-4">
-            <div className="w-full max-w-lg rounded-2xl bg-paper">
-              <div className="flex items-center justify-between px-4 py-3">
-                <div className="text-xs font-semibold text-ink">
-                  Level {lvl} — Ability Score Improvement
-                </div>
-                <button
-                  type="button"
-                  onClick={cancelAsi}
-                  className="text-lg leading-none text-ink-muted hover:text-ink transition-colors"
-                  aria-label="Close"
-                >
-                  ×
-                </button>
-              </div>
-              <div className="max-h-[65vh] overflow-y-auto px-4 py-3.5">
-                <AsiStep
-                  level={lvl}
-                  state={st}
-                  baseScores={baseScores(lvl)}
-                  onChange={(patch) => setAsi(lvl, patch)}
-                />
-              </div>
-              <div className="flex justify-between px-4 py-3">
-                <button
-                  type="button"
-                  onClick={cancelAsi}
-                  className="btn btn-secondary px-4 py-2 text-xs rounded-full"
-                >
-                  Cancel
-                </button>
-                {st.confirmed ? (
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="btn btn-primary px-4 py-2 text-xs rounded-full"
-                  >
-                    Continue
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    disabled={!asiIsValid(st)}
-                    onClick={handleNext}
-                    className="btn-primary px-4 py-2 text-xs rounded-full disabled:opacity-40"
-                  >
-                    Confirm ASI
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        );
-      })()}
+      <WizardNav
+        onBack={handleBack}
+        onNext={handleNext}
+        backLabel="Back"
+        nextLabel={isLastLevel ? "Finish Level Up" : "Next Level"}
+        canProceed={canProceed()}
+        showBack={currentLevelIndex > 0}
+      />
     </div>
   );
 }
 
-function HpStep({
-  level,
-  hitDie,
-  diceType,
-  conMod,
-  averageHp,
-  value,
-  onChange,
-}: {
-  level: number;
-  hitDie: number;
-  diceType: DiceType;
-  conMod: number;
-  averageHp: number;
-  value: number;
-  onChange: (v: number) => void;
-}) {
-  const diceRef = useRef<DiceHandle>(null);
-  const setValue = (v: number) => {
-    if (Number.isNaN(v)) return;
-    onChange(Math.max(1, Math.round(v)));
-  };
-
-  return (
-    <div className="space-y-4">
-      <div className="card px-3 py-3 text-center">
-        <div className="field-label-light">Hit Die</div>
-        <div className="text-xl font-display font-bold text-ink bg-paper px-3 py-1 rounded-md inline-block">d{hitDie}</div>
-        <div className="text-[11px] text-ink-muted font-medium mt-1">
-          Roll the die, add your CON modifier ({conMod >= 0 ? `+${conMod}` : conMod}).
-        </div>
-      </div>
-
-      <div className="flex justify-center">
-        <Dice ref={diceRef} type={diceType} size={84} onRoll={(result) => setValue(result + conMod)} />
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <button
-          type="button"
-          onClick={() => setValue(averageHp)}
-          className="btn btn-secondary px-3 py-2 text-xs"
-        >
-          Take Average ({averageHp})
-        </button>
-
-        <label className="field-label-light">
-          Manual (rolled die + CON)
-        </label>
-        <input
-          type="number"
-          value={value || ""}
-          onChange={(e) => setValue(parseInt(e.target.value || "0", 10))}
-          className="input w-full text-center text-lg font-bold"
-          placeholder={String(averageHp)}
-        />
-      </div>
-
-      {value > 0 && (
-        <div className="card px-3 py-2 text-center text-xs">
-          <span className="text-ink-muted font-medium">HP gained at level {level}: </span>
-          <span className="text-ink font-bold bg-paper px-2 py-0.5 rounded-md">{value}</span>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function AsiStep({
-  level,
-  state,
-  baseScores,
-  onChange,
-}: {
-  level: number;
-  state: AsiState;
+interface LevelCardProps {
+  summary: LevelSummary;
+  isActive: boolean;
+  isCompleted: boolean;
+  hpValue: number;
+  onHpChange: (v: number) => void;
+  asiState?: AsiState;
+  onAsiChange: (patch: Partial<AsiState>) => void;
   baseScores: Record<AbilityKey, number>;
-  onChange: (patch: Partial<AsiState>) => void;
-}) {
-  const alloc = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } as Record<AbilityKey, number>;
-  if (state.mode === "single" && state.single) alloc[state.single] = 2;
-  if (state.mode === "double") {
-    if (state.d1) alloc[state.d1] = 1;
-    if (state.d2) alloc[state.d2] = 1;
-  }
-
-  if (state.confirmed) {
-    const changes = (Object.keys(alloc) as AbilityKey[]).filter((k) => alloc[k] > 0);
-    return (
-      <div className="space-y-3">
-        <p className="text-[11px] text-ink-muted font-medium">
-          You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
-          permanently when you confirm.
-        </p>
-        <div className="card px-3 py-3 space-y-1">
-          {changes.map((k) => {
-            const ab = ABILITIES.find((a) => a.key === k)!;
-            return (
-              <div key={k} className="text-xs font-medium text-ink">
-                <span className="font-semibold">{ab.full}</span>{" "}
-                <span className="text-ink-muted">
-                  {baseScores[k]} → <span className="text-ink font-bold bg-paper px-1 rounded">{baseScores[k] + alloc[k]}</span>
-                </span>
-              </div>
-            );
-          })}
-          <div className="pt-1 text-xs font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block">
-            {changes.map((k) => ABILITIES.find((a) => a.key === k)!.full).join(" and ")} increased!
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-3">
-      <p className="text-[11px] text-ink-muted font-medium">
-        You can increase one ability score by 2, or two ability scores by 1 each. These changes apply
-        permanently when you confirm.
-      </p>
-
-      <div className="grid grid-cols-2 gap-2">
-        <button
-          type="button"
-          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
-          className={`btn ${state.mode === "single" ? "btn btn-primary" : "btn btn-secondary"}`}
-        >
-          +2 to one ability
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
-          className={`btn ${state.mode === "double" ? "btn btn-primary" : "btn btn-secondary"}`}
-        >
-          +1 to two abilities
-        </button>
-      </div>
-
-      {state.mode === "single" && (
-        <div className="space-y-2">
-          <div className="field-label-light">Choose ability</div>
-          <select
-            value={state.single || ""}
-            onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined })}
-            className="input w-full"
-          >
-            <option value="">Select…</option>
-            {ABILITIES.map(({ key, label, full }) => {
-              const atCap = baseScores[key] + 2 > 20;
-              return (
-                <option key={key} value={key} disabled={atCap}>
-                  {label} — {full} ({baseScores[key]} → {baseScores[key] + 2})
-                  {atCap ? " (max)" : ""}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      )}
-
-      {state.mode === "double" && (
-        <div className="space-y-3">
-          <AbilitySelect
-            label="First ability (+1)"
-            value={state.d1}
-            exclude={state.d2}
-            baseScores={baseScores}
-            onChange={(v) => onChange({ d1: v })}
-          />
-          <AbilitySelect
-            label="Second ability (+1)"
-            value={state.d2}
-            exclude={state.d1}
-            baseScores={baseScores}
-            onChange={(v) => onChange({ d2: v })}
-          />
-        </div>
-      )}
-    </div>
-  );
-}
-
-function AbilitySelect({
-  label,
-  value,
-  exclude,
-  baseScores,
-  onChange,
-}: {
-  label: string;
-  value?: AbilityKey;
-  exclude?: AbilityKey;
-  baseScores: Record<AbilityKey, number>;
-  onChange: (v: AbilityKey | undefined) => void;
-}) {
-  return (
-    <div className="space-y-2">
-      <div className="field-label-light">{label}</div>
-      <select
-        value={value || ""}
-        onChange={(e) => onChange((e.target.value || undefined) as AbilityKey | undefined)}
-        className="input w-full"
-      >
-        <option value="">Select…</option>
-        {ABILITIES.map(({ key, label: lbl, full }) => {
-          const atCap = baseScores[key] + 1 > 20;
-          const disabled = atCap || key === exclude;
-          return (
-            <option key={key} value={key} disabled={disabled}>
-              {lbl} — {full} ({baseScores[key]} → {baseScores[key] + 1})
-              {atCap ? " (max)" : ""}
-            </option>
-          );
-        })}
-      </select>
-    </div>
-  );
-}
-
-function SectionRenderer({
-  section,
-  character,
-  subclassSelection,
-  onSubclassSelect,
-  featureChoices,
-  onFeatureChoice,
-  expertise,
-  onExpertiseChange,
-  spells,
-  onSpellsChange,
-}: {
-  section: LevelUpStepSection;
-  character: Character;
   subclassSelection: string;
   onSubclassSelect: (name: string) => void;
   featureChoices: Record<string, string>;
@@ -740,216 +465,440 @@ function SectionRenderer({
   onExpertiseChange: (list: string[]) => void;
   spells: string[];
   onSpellsChange: (list: string[]) => void;
-}) {
-  const header = (
-    <div className="flex items-center gap-2">
-      <span className="text-sm opacity-70">{sectionIcon(section.type)}</span>
-      <div className="text-[11px] font-bold uppercase tracking-wider text-ink">
-        {sectionTitle(section.type)}
+  character: Character;
+  hitDie: number;
+  diceType: any;
+  conMod: number;
+  averageHp: number;
+}
+
+function LevelCard({
+  summary,
+  isActive,
+  isCompleted,
+  hpValue,
+  onHpChange,
+  asiState,
+  onAsiChange,
+  baseScores,
+  subclassSelection,
+  onSubclassSelect,
+  featureChoices,
+  onFeatureChoice,
+  expertise,
+  onExpertiseChange,
+  spells,
+  onSpellsChange,
+  character,
+  hitDie,
+  diceType,
+  conMod,
+  averageHp,
+}: LevelCardProps) {
+  const [showSpellSelection, setShowSpellSelection] = useState(false);
+  const lvl = summary.level;
+
+  if (!isActive && !isCompleted) return null;
+
+  return (
+    <div className={`rounded-[var(--radius-md)] border transition-all ${
+      isActive
+        ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
+        : "border-[var(--color-border)] bg-[var(--color-surface)] opacity-60"
+    }`}>
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-bold text-[var(--color-text-primary)]">
+            Level {lvl}
+          </h3>
+          {isCompleted && (
+            <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
+              ✓ Complete
+            </span>
+          )}
+        </div>
+
+        <div className="space-y-3">
+          {/* HP Section */}
+          <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+            <Heart weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+            <div className="flex-1">
+              <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
+              <div className="text-xs text-[var(--color-text-primary)]">
+                Roll d{hitDie} + {conMod >= 0 ? `+${conMod}` : conMod} (avg: {averageHp})
+              </div>
+            </div>
+            {isActive && (
+              <input
+                type="number"
+                value={hpValue || ""}
+                onChange={(e) => onHpChange(parseInt(e.target.value || "0", 10))}
+                className="w-16 text-center text-sm font-bold rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1"
+                placeholder={String(averageHp)}
+              />
+            )}
+            {isCompleted && hpValue > 0 && (
+              <span className="text-sm font-bold text-[var(--color-text-primary)]">+{hpValue}</span>
+            )}
+          </div>
+
+          {/* Proficiency Bonus */}
+          <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+            <Star weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+            <div className="flex-1">
+              <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Proficiency Bonus</div>
+              <div className="text-xs text-[var(--color-text-primary)]">+{summary.proficiencyBonus}</div>
+            </div>
+          </div>
+
+          {/* Class Features */}
+          {summary.classFeatures.length > 0 && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
+                <div className="space-y-1 mt-1">
+                  {summary.classFeatures.map((f) => (
+                    <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
+                      <span className="font-semibold">{f.name}:</span> {f.value}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* New Features */}
+          {summary.features.length > 0 && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Lightning weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
+                <div className="space-y-1 mt-1">
+                  {summary.features.map((f) => (
+                    <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
+                      <span className="font-semibold">{f.name}</span>
+                      {f.description && (
+                        <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{f.description}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ASI */}
+          {summary.asi && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
+                {isActive && !asiState?.confirmed ? (
+                  <AsiSelector state={asiState} baseScores={baseScores} onChange={onAsiChange} />
+                ) : asiState?.confirmed ? (
+                  <div className="text-xs text-green-600 font-semibold">✓ Confirmed</div>
+                ) : (
+                  <div className="text-xs text-[var(--color-text-muted)]">+2 to one ability or +1 to two</div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Spell Slots */}
+          {summary.spellSlots && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Sparkle weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {Object.entries(summary.spellSlots).map(([level, count]) => (
+                    <span key={level} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
+                      {level}st: {count}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Cantrips Known */}
+          {summary.cantripsKnown !== undefined && (
+            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
+                <div className="text-xs text-[var(--color-text-primary)]">{summary.cantripsKnown}</div>
+              </div>
+            </div>
+          )}
+
+          {/* Spells Known */}
+          {summary.spellsKnown !== undefined && (
+            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
+                <div className="text-xs text-[var(--color-text-primary)]">{summary.spellsKnown}</div>
+              </div>
+            </div>
+          )}
+
+          {/* Subclass Selection */}
+          {summary.subclassOptions && isActive && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Crown weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Choose Subclass</div>
+                <div className="space-y-1.5 mt-1">
+                  {summary.subclassOptions.map((opt) => (
+                    <button
+                      key={opt.name}
+                      type="button"
+                      onClick={() => onSubclassSelect(opt.name)}
+                      className={`w-full p-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                        subclassSelection === opt.name
+                          ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
+                          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                      {opt.description && (
+                        <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{opt.description}</p>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Spell Selection */}
+          {summary.hasSpellSelection && isActive && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <button
+                  type="button"
+                  onClick={() => setShowSpellSelection(!showSpellSelection)}
+                  className="text-xs font-semibold text-[var(--color-text-primary)] hover:underline"
+                >
+                  {showSpellSelection ? "Hide" : "Show"} Spell Selection
+                  {summary.cantripSelectionCount > 0 && ` (+${summary.cantripSelectionCount} cantrips)`}
+                  {summary.spellSelectionCount > 0 && ` (+${summary.spellSelectionCount} spells)`}
+                </button>
+                {showSpellSelection && (
+                  <SpellSelection
+                    character={character}
+                    count={summary.spellSelectionCount}
+                    cantripCount={summary.cantripSelectionCount}
+                    maxLevel={summary.maxSpellLevel}
+                    spells={spells}
+                    onSpellsChange={onSpellsChange}
+                  />
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
+}
 
-  if (section.type === "subclassSelection" && section.subclassOptions) {
-    return (
-      <div className="space-y-2.5">
-        {header}
-        <div className="space-y-2">
-          {section.subclassOptions.map((opt) => {
-            const isSel = subclassSelection === opt.name;
+function AsiSelector({
+  state,
+  baseScores,
+  onChange,
+}: {
+  state?: AsiState;
+  baseScores: Record<AbilityKey, number>;
+  onChange: (patch: Partial<AsiState>) => void;
+}) {
+  const alloc = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } as Record<AbilityKey, number>;
+  if (state?.mode === "single" && state.single) alloc[state.single] = 2;
+  if (state?.mode === "double") {
+    if (state.d1) alloc[state.d1] = 1;
+    if (state.d2) alloc[state.d2] = 1;
+  }
+
+  return (
+    <div className="space-y-2 mt-1">
+      <div className="grid grid-cols-2 gap-1.5">
+        <button
+          type="button"
+          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
+          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
+            state?.mode === "single"
+              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
+          }`}
+        >
+          +2 to one
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
+          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
+            state?.mode === "double"
+              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
+          }`}
+        >
+          +1 to two
+        </button>
+      </div>
+
+      {state?.mode === "single" && (
+        <select
+          value={state.single || ""}
+          onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined })}
+          className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
+        >
+          <option value="">Select ability…</option>
+          {ABILITIES.map(({ key, label, full }) => {
+            const atCap = baseScores[key] + 2 > 20;
             return (
-              <button
-                key={opt.name}
-                type="button"
-                onClick={() => onSubclassSelect(opt.name)}
-                className={`btn w-full p-2.5 text-left rounded-xl border ${
-                  isSel
-                    ? "bg-ink text-white border-ink"
-                    : "bg-white text-ink border-border-muted"
-                }`}
-              >
-                <div className="text-xs font-semibold text-ink">{opt.name}</div>
-                {opt.description && (
-                  <p className="mt-0.5 text-[10px] text-ink-muted whitespace-pre-line leading-relaxed font-medium">{opt.description}</p>
-                )}
-              </button>
+              <option key={key} value={key} disabled={atCap}>
+                {label} ({baseScores[key]} → {baseScores[key] + 2}){atCap ? " (max)" : ""}
+              </option>
             );
           })}
-        </div>
-      </div>
-    );
-  }
+        </select>
+      )}
 
-  if (section.type === "features") {
-    return (
-      <div className="space-y-2.5">
-        {header}
-        <div className="space-y-2.5">
-          {section.features?.map((f, i) => (
-            <div key={i} className="card p-2.5">
-              <div className="text-xs font-semibold text-ink bg-paper px-2 py-0.5 rounded-md inline-block tracking-wide">{f.name}</div>
-              <p className="mt-1 text-[11px] text-ink-muted leading-relaxed whitespace-pre-line font-medium">{f.description}</p>
-              {section.featureChoices
-                ?.filter((fc) => fc.featureName === f.name)
-                .map((fc) => (
-                  <div key={fc.featureName} className="mt-2">
-                    <div className="field-label-light">Choose</div>
-                    <div className="mt-1 grid grid-cols-1 gap-1.5">
-                      {fc.options.map((opt) => {
-                        const isSel = (featureChoices[fc.storageKey || fc.featureName] || "") === opt;
-                        return (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
-                        className={`btn w-full px-2.5 py-1.5 text-left rounded-xl border ${
-                          isSel ? "bg-ink text-white border-ink" : "bg-white text-ink border-border-muted"
-                        }`}
-                      >
-                        <div className="text-[11px] font-semibold text-ink">{opt}</div>
-                        {fc.descriptions?.[opt] && (
-                          <div className="text-[10px] text-ink-muted mt-0.5 leading-relaxed font-medium">{fc.descriptions[opt]}</div>
-                        )}
-                      </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          ))}
+      {state?.mode === "double" && (
+        <div className="space-y-1.5">
+          <select
+            value={state.d1 || ""}
+            onChange={(e) => onChange({ d1: (e.target.value || undefined) as AbilityKey | undefined })}
+            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
+          >
+            <option value="">First ability…</option>
+            {ABILITIES.map(({ key, label, full }) => {
+              const atCap = baseScores[key] + 1 > 20;
+              const disabled = atCap || key === state.d2;
+              return (
+                <option key={key} value={key} disabled={disabled}>
+                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
+                </option>
+              );
+            })}
+          </select>
+          <select
+            value={state.d2 || ""}
+            onChange={(e) => onChange({ d2: (e.target.value || undefined) as AbilityKey | undefined })}
+            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
+          >
+            <option value="">Second ability…</option>
+            {ABILITIES.map(({ key, label, full }) => {
+              const atCap = baseScores[key] + 1 > 20;
+              const disabled = atCap || key === state.d1;
+              return (
+                <option key={key} value={key} disabled={disabled}>
+                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
+                </option>
+              );
+            })}
+          </select>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
+}
 
-  if (section.type === "expertise") {
-    const count = section.expertiseCount || 0;
-    const toggle = (skill: string) => {
-      if (expertise.includes(skill)) onExpertiseChange(expertise.filter((s) => s !== skill));
-      else if (expertise.length < count) onExpertiseChange([...expertise, skill]);
-    };
-    return (
-      <div className="space-y-2.5">
-        {header}
-        <p className="text-[11px] text-ink-muted font-medium">Choose {count} skill{count !== 1 ? "s" : ""} to gain expertise (double proficiency).</p>
-        <div className="grid grid-cols-2 gap-1.5">
-          {SKILLS.map((s) => {
-            const isSel = expertise.includes(s.name);
-            const disabled = !isSel && expertise.length >= count;
-            return (
-              <button
-                key={s.name}
-                type="button"
-                onClick={() => toggle(s.name)}
-                disabled={disabled}
-                className={`btn px-2 py-1.5 text-left text-[11px] rounded-xl border ${
-                  isSel ? "bg-ink text-white border-ink" : disabled ? "bg-white text-ink border-border-muted opacity-50" : "bg-white text-ink border-border-muted"
-                }`}
-              >
-                {s.name}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-
-  if (section.type === "spellSlots") {
-    return (
-      <div className="space-y-2.5">
-        {header}
-        <div className="flex flex-wrap gap-1.5">
-          {Object.entries(section.spellSlots || {}).map(([lvl, n]) => (
-            <span key={lvl} className="badge-light text-ink bg-paper-muted">
-              Level {lvl}: {n} slots
-            </span>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (section.type === "spellSelection") {
-    const maxLevel = section.spellSelectionMaxLevel || 9;
-    const available = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
-    const count = section.spellSelectionCount || 0;
-    const cantripCount = section.cantripSelectionCount || 0;
-    const toggle = (name: string, level: number) => {
-      if (spells.some((s) => s === `${name}:${level}`)) {
-        onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
+function SpellSelection({
+  character,
+  count,
+  cantripCount,
+  maxLevel,
+  spells,
+  onSpellsChange,
+}: {
+  character: Character;
+  count: number;
+  cantripCount: number;
+  maxLevel: number;
+  spells: string[];
+  onSpellsChange: (list: string[]) => void;
+}) {
+  const available = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+  const toggle = (name: string, level: number) => {
+    if (spells.some((s) => s === `${name}:${level}`)) {
+      onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
+    } else {
+      if (level === 0) {
+        const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
+        if (currentCantrips < cantripCount) onSpellsChange([...spells, `${name}:${level}`]);
       } else {
-        if (level === 0) {
-          const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
-          if (currentCantrips < cantripCount) onSpellsChange([...spells, `${name}:${level}`]);
-        } else {
-          const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
-          if (currentSpells < count) onSpellsChange([...spells, `${name}:${level}`]);
-        }
+        const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
+        if (currentSpells < count) onSpellsChange([...spells, `${name}:${level}`]);
       }
-    };
-    const cantrips = available.filter((s) => s.level === 0);
-    const levelSpells = available.filter((s) => s.level > 0);
-    return (
-      <div className="space-y-2.5">
-        {header}
-        <p className="text-[11px] text-[var(--color-text-muted)] font-medium">
-          You may add up to {count} spell{count !== 1 ? "s" : ""}{cantripCount > 0 ? ` and ${cantripCount} cantrip${cantripCount !== 1 ? "s" : ""}` : ""}. (Optional)
-        </p>
-        {cantripCount > 0 && cantrips.length > 0 && (
-          <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Cantrips</div>
-            <div className="max-h-32 overflow-y-auto space-y-1.5">
-              {cantrips.map((sp) => {
-                const isSel = spells.includes(`${sp.name}:0`);
-                const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
-                const disabled = !isSel && currentCantrips >= cantripCount;
-                return (
-                  <button
-                    key={sp.name}
-                    type="button"
-                    onClick={() => toggle(sp.name, 0)}
-                    disabled={disabled}
-                    className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl border ${
-                      isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
-                    }`}
-                  >
-                    {sp.name} <span className="text-[var(--color-text-muted)] font-medium">{sp.school}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-        {count > 0 && levelSpells.length > 0 && (
-          <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Spells</div>
-            <div className="max-h-48 overflow-y-auto space-y-1.5">
-              {levelSpells.map((sp) => {
-                const isSel = spells.includes(`${sp.name}:${sp.level}`);
-                const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
-                const disabled = !isSel && currentSpells >= count;
-                return (
-                  <button
-                    key={sp.name}
-                    type="button"
-                    onClick={() => toggle(sp.name, sp.level)}
-                    disabled={disabled}
-                    className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl border ${
-                      isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
-                    }`}
-                  >
-                    {sp.name} <span className="text-[var(--color-text-muted)] font-medium">Lv {sp.level}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
+    }
+  };
+  const cantrips = available.filter((s) => s.level === 0);
+  const levelSpells = available.filter((s) => s.level > 0);
 
-  return null;
+  return (
+    <div className="mt-2 space-y-2">
+      {cantripCount > 0 && cantrips.length > 0 && (
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Cantrips</div>
+          <div className="max-h-24 overflow-y-auto space-y-1">
+            {cantrips.map((sp) => {
+              const isSel = spells.includes(`${sp.name}:0`);
+              const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
+              const disabled = !isSel && currentCantrips >= cantripCount;
+              return (
+                <button
+                  key={sp.name}
+                  type="button"
+                  onClick={() => toggle(sp.name, 0)}
+                  disabled={disabled}
+                  className={`w-full px-2 py-1 text-left text-[10px] rounded-[var(--radius-sm)] border transition-all ${
+                    isSel
+                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+                      : disabled
+                        ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                        : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  {sp.name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {count > 0 && levelSpells.length > 0 && (
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Spells</div>
+          <div className="max-h-32 overflow-y-auto space-y-1">
+            {levelSpells.map((sp) => {
+              const isSel = spells.includes(`${sp.name}:${sp.level}`);
+              const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
+              const disabled = !isSel && currentSpells >= count;
+              return (
+                <button
+                  key={sp.name}
+                  type="button"
+                  onClick={() => toggle(sp.name, sp.level)}
+                  disabled={disabled}
+                  className={`w-full px-2 py-1 text-left text-[10px] rounded-[var(--radius-sm)] border transition-all ${
+                    isSel
+                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+                      : disabled
+                        ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                        : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  {sp.name} <span className="text-[var(--color-text-muted)]">Lv {sp.level}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
