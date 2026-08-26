@@ -290,28 +290,11 @@ export function getCreationSteps(character: Character): CreationStep[] {
     });
   }
 
-  const unlockLevel = classData?.subclassLevel ?? 3;
-  const hasSubclassOptions = !!classData && (classData.subclasses?.length ?? 0) > 0;
-  const subclassAvailable = !!character.class && hasSubclassOptions && character.level >= unlockLevel;
-
-  if (subclassAvailable) {
-    steps.push({
-      id: "subclass",
-      title: "Subclass",
-      description: "Choose your subclass",
-      hint: `Select a ${classData?.name} subclass. You gain its features as you level up.`,
-      type: "subclass",
-      required: true,
-      completed: isSubclassStepComplete(character),
-    });
-  }
-
-  // Spell selection comes AFTER subclass selection (if class has spellcasting)
+  // Spell selection comes AFTER level selection (if class has spellcasting)
   const hasSpellcasting = !!classData?.spellcastingAbility;
-  const subclassChosen = !subclassAvailable || !!character.subclass;
   const spellsCompleted = !hasSpellcasting || (character.spells && character.spells.length > 0);
 
-  if (hasSpellcasting && subclassChosen) {
+  if (hasSpellcasting) {
     steps.push({
       id: "spells",
       title: "Spells",

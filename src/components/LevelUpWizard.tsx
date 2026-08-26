@@ -901,7 +901,6 @@ function SubclassDetailsModal({
   onClose: () => void;
 }) {
   const details = getStaticSubclassDetails(characterClass, subclass);
-  if (!details) return null;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -909,6 +908,8 @@ function SubclassDetailsModal({
       document.body.style.overflow = "";
     };
   }, []);
+
+  if (!details) return null;
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
