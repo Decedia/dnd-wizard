@@ -258,9 +258,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         <span>
           {itemInfo.damageDice && <span>{itemInfo.damageDice} {itemInfo.damageType}</span>}
           {itemInfo.properties && itemInfo.properties.length > 0 && (
-            <span className="ml-2 text-paper-muted font-medium">{itemInfo.properties.join(", ")}</span>
+            <span className="ml-2 text-[var(--color-text-secondary)] font-medium">{itemInfo.properties.join(", ")}</span>
           )}
-          {itemInfo.category && <span className="ml-2 text-paper-muted font-medium">({itemInfo.category})</span>}
+          {itemInfo.category && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">({itemInfo.category})</span>}
         </span>
       );
     }
@@ -269,9 +269,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       return (
         <span>
           AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}
-          {itemInfo.armorType && <span className="ml-2 text-paper-muted font-medium">({itemInfo.armorType})</span>}
-          {itemInfo.description && compact && <span className="ml-2 text-paper-muted font-medium">— {itemInfo.description}</span>}
-          {itemInfo.description && !compact && <span className="ml-2 text-paper/60 font-medium">— {itemInfo.description}</span>}
+          {itemInfo.armorType && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">({itemInfo.armorType})</span>}
+          {itemInfo.description && compact && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">— {itemInfo.description}</span>}
+          {itemInfo.description && !compact && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">— {itemInfo.description}</span>}
         </span>
       );
     }
@@ -281,7 +281,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         <span>
           {itemInfo.description && <span>{itemInfo.description}</span>}
           {itemInfo.contents && (
-            <span className="ml-2 text-paper-muted font-medium">Contains: {itemInfo.contents}</span>
+            <span className="ml-2 text-[var(--color-text-secondary)] font-medium">Contains: {itemInfo.contents}</span>
           )}
         </span>
       );
@@ -394,15 +394,15 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                     className="card w-full px-3 py-2 text-left text-sm hover:bg-paper-muted transition-colors"
                                   >
                                     <div className="flex items-center justify-between">
-                                       <span className="text-body text-paper">{weapon.name}</span>
-                                       <span className="text-xs font-bold text-ink bg-paper px-2 py-0.5 rounded-md">{weapon.damage?.damage_dice || "-"}</span>
-                                    </div>
-                                     <div className="text-description mt-1">
-                                      {weapon.damage?.damage_type?.name && <span>{weapon.damage.damage_type.name}</span>}
-                                      {weapon.properties && weapon.properties.length > 0 && (
-                                        <span className="ml-2 text-paper-muted">{weapon.properties.map((p: any) => p.name).join(", ")}</span>
-          )}
-                                    </div>
+                                        <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
+                                        <span className="text-xs font-bold text-ink bg-paper px-2 py-0.5 rounded-md">{weapon.damage?.damage_dice || "-"}</span>
+                                     </div>
+                                      <div className="text-description mt-1">
+                                       {weapon.damage?.damage_type?.name && <span>{weapon.damage.damage_type.name}</span>}
+                                       {weapon.properties && weapon.properties.length > 0 && (
+                                         <span className="ml-2 text-[var(--color-text-secondary)]">{weapon.properties.map((p: any) => p.name).join(", ")}</span>
+               )}
+                                     </div>
                                   </button>
                                 )}
                                 {categoryWeapons.length === 0 && (
