@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  House, 
-  Folder, 
-  ListChecks, 
-  Kanban, 
-  ChartBar, 
-  Gear, 
-  Bell, 
-  MagnifyingGlass, 
+import {
+  House,
+  Folder,
+  ListChecks,
+  Kanban,
+  ChartBar,
+  Gear,
+  Bell,
+  MagnifyingGlass,
   Plus,
   Clock,
   Timer,
@@ -17,7 +17,12 @@ import {
   CaretDown,
   CheckCircle,
   Circle,
-  WarningCircle
+  WarningCircle,
+  Package,
+  Target,
+  ShoppingCart,
+  Rocket,
+  PuzzlePiece,
 } from "phosphor-react";
 
 interface Task {
@@ -29,51 +34,60 @@ interface Task {
   budget?: string;
 }
 
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string; weight?: "regular" | "fill" | "bold" | "duotone" }>> = {
+  "Clock": Clock,
+  "Package": Package,
+  "Target": Target,
+  "ShoppingCart": ShoppingCart,
+  "Rocket": Rocket,
+  "PuzzlePiece": PuzzlePiece,
+};
+
 const initialTasks: Task[] = [
   {
     id: "1",
     title: "Time tracking",
     status: "in-progress",
-    icon: "🕐",
+    icon: "Clock",
     timeSpent: "03:41:39"
   },
   {
     id: "2",
     title: "Time tracking",
     status: "in-progress",
-    icon: "🕐",
+    icon: "Clock",
     timeSpent: "00:06:16"
   },
   {
     id: "3",
     title: "Export finalized assets and documentation for the development team.",
     status: "review",
-    icon: "📦"
+    icon: "Package",
   },
   {
     id: "4",
     title: "Prepare an interactive prototype for stakeholder review and usability testing.",
     status: "in-progress",
-    icon: "🎯"
+    icon: "Target",
   },
   {
     id: "5",
     title: "Redesign the checkout/contact flow to minimize friction and reduce the bounce rate.",
     status: "done",
-    icon: "🛒",
+    icon: "ShoppingCart",
     budget: "$1,000"
   },
   {
     id: "6",
     title: "Optimize the hero section with a clear value proposition and a high-impact call-to-action (CTA).",
     status: "in-progress",
-    icon: "🚀"
+    icon: "Rocket",
   },
   {
     id: "7",
     title: "Develop a reusable component library (buttons, inputs, cards) to maintain design consistency across the site.",
     status: "todo",
-    icon: "🧩"
+    icon: "PuzzlePiece",
   }
 ];
 
@@ -318,7 +332,15 @@ export default function TasksPage() {
                     )}
                   </button>
 
-                  <span className="text-lg">{task.icon}</span>
+                  <span className="text-lg">
+                    {(() => {
+                      const Icon = ICON_MAP[task.icon];
+                      if (Icon) {
+                        return <Icon weight="regular" className="h-5 w-5" />;
+                      }
+                      return task.icon;
+                    })()}
+                  </span>
 
                   <p className={`flex-1 text-sm ${task.status === "done" ? "text-ink-muted line-through" : "text-ink"}`}>
                     {task.title}

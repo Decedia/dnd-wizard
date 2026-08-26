@@ -2,6 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { DiceFive } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface HitDiceSectionProps {
@@ -14,7 +15,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
   const { onFieldBlur } = useCharacterSheet();
 
   return (
-    <SectionCard id="hit-dice" title="HIT DICE" icon={<DiceIcon className="h-5 w-5" />}>
+    <SectionCard id="hit-dice" title="HIT DICE" icon={<DiceFive weight="regular" className="h-5 w-5" />}>
       <div className="grid grid-cols-2 gap-3">
         <Field label="TOTAL">
           {editMode ? (
@@ -57,14 +58,3 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function DiceIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <circle cx="8.5" cy="8.5" r="1.5" />
-      <circle cx="15.5" cy="8.5" r="1.5" />
-      <circle cx="8.5" cy="15.5" r="1.5" />
-      <circle cx="15.5" cy="15.5" r="1.5" />
-    </svg>
-  );
-}

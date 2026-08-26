@@ -2,6 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { Star } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface LevelXpSectionProps {
@@ -19,7 +20,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
   const progressPercent = maxXp > 0 ? Math.min(100, Math.max(0, (currentXp / maxXp) * 100)) : 0;
 
   return (
-    <SectionCard id="level-xp" title="LEVEL & EXPERIENCE" icon={<LevelIcon className="h-5 w-5" />}>
+    <SectionCard id="level-xp" title="LEVEL & EXPERIENCE" icon={<Star weight="regular" className="h-5 w-5" />}>
       <div className="flex items-center gap-5">
         <div className="relative flex flex-col items-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-xl border-[3px] border-paper bg-paper">
@@ -98,13 +99,5 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
         </div>
       </div>
     </SectionCard>
-  );
-}
-
-function LevelIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
   );
 }

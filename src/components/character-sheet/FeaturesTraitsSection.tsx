@@ -3,6 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
+import { Star, X, Plus } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface FeaturesTraitsSectionProps {
@@ -37,7 +38,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   };
 
   return (
-    <SectionCard id="features" title="FEATURES & TRAITS" icon={<FeaturesIcon className="h-5 w-5" />}>
+    <SectionCard id="features" title="FEATURES & TRAITS" icon={<Star weight="regular" className="h-5 w-5" />}>
       <div className="space-y-3">
         {character.subclass && (
           <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
@@ -72,7 +73,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                         className="text-paper-muted hover:text-paper"
                         aria-label="Remove feature"
                       >
-                        <XIcon className="h-4 w-4" />
+                        <X weight="regular" className="h-4 w-4" />
                       </button>
                     )}
                   </div>
@@ -99,27 +100,13 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           <button
             type="button"
             onClick={addItem}
-            className="mt-3 btn-secondary border-dashed"
+            className="mt-3 btn-secondary border-dashed flex items-center gap-1.5"
           >
-            + Add Feature
+            <Plus weight="regular" size={16} />
+            Add Feature
           </button>
       )}
     </SectionCard>
   );
 }
 
-function FeaturesIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  );
-}
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
-  );
-}

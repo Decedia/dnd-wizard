@@ -6,19 +6,12 @@ import { SectionCard } from "./SectionCard";
 import { skills as srdSkills } from "@/data/srd";
 import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
+import { Star, X, ListChecks, Circle } from "phosphor-react";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
   onChange: (patch: Partial<Character & { passivePerception: number }>) => void;
   editMode?: boolean;
-}
-
-function StarIcon({ className, filled = false }: { className?: string; filled?: false }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  );
 }
 
 export function SkillsSection({ character, onChange, editMode = true }: SkillsSectionProps) {
@@ -53,7 +46,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   }, [character.skills, isAtMaxSelections, onChange]);
 
   return (
-    <SectionCard id="skills" title="SKILLS" icon={<SkillsIcon className="h-5 w-5" />}>
+    <SectionCard id="skills" title="SKILLS" icon={<ListChecks weight="regular" className="h-5 w-5" />}>
       {skillChoices && editMode && (
         <div className="mb-2.5 hint-box-light">
           <span className="text-[11px] text-ink-muted">
@@ -110,10 +103,10 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                     <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                       {name}
                       {(isProficient || isExpert) && (
-                        <span className="flex items-center text-ink">
-                          {isExpert && <StarIcon className="h-2.5 w-2.5 filled" />}
-                          {isExpert && isProficient && <StarIcon className="h-2.5 w-2.5 -ml-0.5 filled" />}
-                          {!isExpert && isProficient && <StarIcon className="h-2.5 w-2.5 filled" />}
+                         <span className="flex items-center text-ink">
+                          {isExpert && <Star weight="fill" size={12} color="#111111" />}
+                          {isExpert && isProficient && <Circle weight="fill" size={12} color="#111111" className="-ml-0.5" />}
+                          {!isExpert && isProficient && <Circle weight="fill" size={12} color="#111111" />}
                         </span>
                       )}
                     </span>
@@ -147,7 +140,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
             <div className="flex items-center justify-between mb-1.5">
               <h3 className="font-display font-semibold text-ink text-sm">{tooltip.name}</h3>
               <button onClick={() => setTooltip(null)} className="text-ink-muted hover:text-ink">
-                <XIcon className="h-4 w-4" />
+                <X weight="regular" className="h-4 w-4" />
               </button>
             </div>
             <p className="text-xs text-ink">{tooltip.description}</p>
@@ -155,22 +148,5 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
         </div>
       )}
     </SectionCard>
-  );
-}
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
-  );
-}
-
-function SkillsIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 11l3 3L22 4" />
-      <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-    </svg>
   );
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { Eye, PencilSimple } from "phosphor-react";
+
 type Mode = "view" | "edit";
 
 interface ViewEditToggleProps {
@@ -19,7 +21,7 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
             : "btn btn-secondary"
         }`}
       >
-        View
+        <Eye className="h-3.5 w-3.5" weight={mode === "view" ? "fill" : "regular"} />
       </button>
       <button
         type="button"
@@ -30,7 +32,7 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
             : "btn btn-secondary"
         }`}
       >
-        Edit
+        <PencilSimple className="h-3.5 w-3.5" weight={mode === "edit" ? "fill" : "regular"} />
       </button>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { X, Sparkle, Plus } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface SpellcastingStatsSectionProps {
@@ -46,7 +47,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
   };
 
   return (
-    <SectionCard id="spellcasting" title="SPELLCASTING STATS" icon={<SpellcastingIcon className="h-5 w-5" />}>
+    <SectionCard id="spellcasting" title="SPELLCASTING STATS" icon={<Sparkle weight="regular" className="h-5 w-5" />}>
       <div className="grid grid-cols-1 gap-4">
         <Field label="SPELLCASTING ABILITY">
           {editMode ? (
@@ -109,7 +110,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                     className="text-paper-muted hover:text-paper"
                     aria-label="Remove cantrip"
                   >
-                    <XIcon className="h-4 w-4" />
+                    <X weight="regular" className="h-4 w-4" />
                   </button>
                 </>
               ) : (
@@ -122,9 +123,10 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
           <button
             type="button"
             onClick={addCantrip}
-            className="mt-2 btn-secondary border-dashed"
+            className="mt-2 btn-secondary border-dashed flex items-center gap-1.5"
           >
-            + Add Cantrip
+            <Plus weight="regular" size={16} />
+            Add Cantrip
           </button>
         )}
       </div>
@@ -178,21 +180,5 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="field-label-light">{label}</span>
       {children}
     </div>
-  );
-}
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
-  );
-}
-
-function SpellcastingIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-    </svg>
   );
 }

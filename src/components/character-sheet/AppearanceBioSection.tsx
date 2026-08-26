@@ -3,6 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
+import { Sun } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface AppearanceBioSectionProps {
@@ -35,7 +36,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
   };
 
   return (
-    <SectionCard id="appearance" title="APPEARANCE & BIO" icon={<AppearanceIcon className="h-5 w-5" />}>
+    <SectionCard id="appearance" title="APPEARANCE & BIO" icon={<Sun weight="regular" className="h-5 w-5" />}>
       {editMode ? (
         <>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
@@ -218,14 +219,5 @@ function ViewField({ label, value, className }: { label: string; value: string; 
       <span className="field-label-light">{label}</span>
       <span className="text-sm font-bold text-paper">{value || "—"}</span>
     </div>
-  );
-}
-
-function AppearanceIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="3" />
-      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-    </svg>
   );
 }

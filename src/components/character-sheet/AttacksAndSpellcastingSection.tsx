@@ -4,6 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
+import { Sword } from "phosphor-react";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -51,7 +52,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   };
 
   return (
-    <SectionCard id="attacks" title="ATTACKS" icon={<AttacksIcon className="h-5 w-5" />}>
+    <SectionCard id="attacks" title="ATTACKS" icon={<Sword weight="regular" className="h-5 w-5" />}>
       {character.class === "Rogue" && sneakAttack && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Sneak Attack: {sneakAttack}</span>
@@ -118,16 +119,5 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
       )}
       <p className="text-xs text-paper-muted font-medium mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
     </SectionCard>
-  );
-}
-
-function AttacksIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.5 17.5L3 6V3h3l11.5 11.5" />
-      <path d="M13 19l6-6" />
-      <path d="M16 16l4 4" />
-      <path d="M19 21l2-2" />
-    </svg>
   );
 }

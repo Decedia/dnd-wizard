@@ -7,6 +7,7 @@ import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier } from "@/lib/storage";
+import { PencilSimple, Info, X, Lightning, Plus } from "phosphor-react";
 
 interface SpellsSectionProps {
   character: Character;
@@ -105,7 +106,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   }, []);
 
   return (
-    <SectionCard id="spells" title="SPELLS" icon={<SpellsIcon className="h-5 w-5" />}>
+    <SectionCard id="spells" title="SPELLS" icon={<Lightning weight="regular" className="h-5 w-5" />}>
       <div className="mt-3 space-y-2">
             {character.spells.map((spell) => {
               const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
@@ -192,7 +193,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                           className="text-paper-muted hover:text-paper shrink-0"
                           aria-label={`Info about ${spell.name}`}
                         >
-                          <InfoIcon className="h-4 w-4" />
+                          <Info weight="regular" className="h-4 w-4" />
                         </button>
                       )}
                       <button
@@ -201,7 +202,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         className="text-paper-muted hover:text-paper shrink-0"
                         aria-label="Remove spell"
                       >
-                        <XIcon className="h-4 w-4" />
+                                <X weight="regular" className="h-4 w-4" />
                       </button>
                     </>
                   ) : (
@@ -235,9 +236,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <button
               type="button"
               onClick={() => addItem()}
-              className="mt-3 btn-secondary border-dashed"
+              className="mt-3 btn-secondary border-dashed flex items-center gap-1.5"
             >
-              + Add Spell
+              <Plus weight="regular" size={16} />
+              Add Spell
             </button>
           )}
 
@@ -299,7 +301,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                                 className="text-paper-muted hover:text-paper"
                                 aria-label="Edit costume spell"
                               >
-                                <EditIcon className="h-4 w-4" />
+                                <PencilSimple weight="regular" className="h-4 w-4" />
                               </button>
                               <button
                                 type="button"
@@ -307,7 +309,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                                 className="text-paper-muted hover:text-paper"
                                 aria-label="Remove costume spell"
                               >
-                                <XIcon className="h-4 w-4" />
+                        <X weight="regular" className="h-4 w-4" />
                               </button>
                             </div>
                           )}
@@ -321,9 +323,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <button
                   type="button"
                   onClick={() => setIsAddingCostumeSpell(true)}
-                  className="mt-3 btn-secondary border-dashed"
+                  className="mt-3 btn-secondary border-dashed flex items-center gap-1.5"
                 >
-                  + Add Costume Spell
+                  <Plus weight="regular" size={16} />
+                  Add Costume Spell
                 </button>
               )}
               {isAddingCostumeSpell && (
@@ -373,7 +376,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-display font-bold text-paper">{tooltip.name}</h3>
               <button onClick={() => setTooltip(null)} className="text-paper-muted hover:text-paper">
-                <XIcon className="h-4 w-4" />
+                <X weight="regular" className="h-4 w-4" />
               </button>
             </div>
             <p className="text-sm text-paper">{tooltip.description}</p>
@@ -381,40 +384,5 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         </div>
       )}
     </SectionCard>
-  );
-}
-
-function EditIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-    </svg>
-  );
-}
-
-function InfoIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 16v-4" />
-      <path d="M12 8h.01" />
-    </svg>
-  );
-}
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
-  );
-}
-
-function SpellsIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-    </svg>
   );
 }

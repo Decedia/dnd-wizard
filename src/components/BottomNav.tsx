@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { House, Dice5, PlusCircle } from "phosphor-react";
+import { House, DiceFive, PlusCircle } from "phosphor-react";
 import { WizardHatIcon } from "@/components/AppHeader";
 
 const navItems = [
@@ -19,7 +19,7 @@ const navItems = [
   {
     name: "Dice",
     href: "/dice",
-    icon: Dice5,
+    icon: DiceFive,
   },
 ];
 

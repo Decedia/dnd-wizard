@@ -8,6 +8,7 @@ import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/
 import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
 import { useEffect, useCallback } from "react";
+import { Backpack, Plus, CheckCircle, Circle } from "phosphor-react";
 
 interface InventorySectionProps {
   character: Character;
@@ -151,7 +152,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   };
 
   return (
-    <SectionCard id="inventory" title="INVENTORY" icon={<InventoryIcon className="h-5 w-5" />}>
+    <SectionCard id="inventory" title="INVENTORY" icon={<Backpack weight="regular" className="h-5 w-5" />}>
       <div className="space-y-2">
         {character.inventory.map((item) => {
           const description = getItemDescription(item);
@@ -218,12 +219,15 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <button
                         type="button"
                         onClick={() => toggleEquip(item.id, item.itemType)}
-                        className={`btn px-2.5 py-1 text-xs ${
+                        className={`btn px-2.5 py-1 text-xs flex items-center gap-1.5 ${
                           item.equipped
                             ? "btn btn-primary"
                             : "btn btn-secondary"
                         }`}
                       >
+                        {item.equipped
+                          ? <CheckCircle weight="fill" size={16} color="#111111" />
+                          : <Circle weight="regular" size={16} color="#cccccc" />}
                         {item.equipped ? "Equipped" : "Equip"}
                       </button>
                     )}
@@ -273,9 +277,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           <button
             type="button"
             onClick={addCustomItem}
-            className="mt-4 btn-secondary border-dashed"
+            className="mt-4 btn-secondary border-dashed flex items-center gap-1.5"
           >
-            + Add Custom Item
+            <Plus weight="regular" size={16} />
+            Add Custom Item
           </button>
       )}
 
@@ -307,14 +312,5 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="field-label-light">{label}</span>
       {children}
     </div>
-  );
-}
-
-function InventoryIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-      <path d="M3.3 7l8.7 5 8.7-5M12 22V12" />
-    </svg>
   );
 }
