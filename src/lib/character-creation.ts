@@ -195,7 +195,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
   const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
-  const spellsCompleted = !classData?.spellcastingAbility || (character.spells && character.spells.length > 0);
   const appearanceCompleted = true;
 
   const asiLevels = classData?.levels
@@ -269,15 +268,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: equipmentCompleted,
     },
     {
-      id: "spells",
-      title: "Spells",
-      description: "Choose your starting spells",
-      hint: "If your class can cast spells, choose your starting spells here. Spells are divided by level and can be changed when you level up.",
-      type: "spells",
-      required: classData?.spellcastingAbility ? true : false,
-      completed: spellsCompleted,
-    },
-    {
       id: "appearance",
       title: "Appearance",
       description: "Final details",
@@ -313,6 +303,23 @@ export function getCreationSteps(character: Character): CreationStep[] {
       type: "subclass",
       required: true,
       completed: isSubclassStepComplete(character),
+    });
+  }
+
+  // Spell selection comes AFTER subclass selection (if class has spellcasting)
+  const hasSpellcasting = !!classData?.spellcastingAbility;
+  const subclassChosen = !subclassAvailable || !!character.subclass;
+  const spellsCompleted = !hasSpellcasting || (character.spells && character.spells.length > 0);
+
+  if (hasSpellcasting && subclassChosen) {
+    steps.push({
+      id: "spells",
+      title: "Spells",
+      description: "Choose your starting spells",
+      hint: "If your class can cast spells, choose your starting spells here. Spells are divided by level and can be changed when you level up.",
+      type: "spells",
+      required: true,
+      completed: spellsCompleted,
     });
   }
 

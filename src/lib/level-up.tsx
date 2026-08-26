@@ -31,6 +31,8 @@ export interface LevelUpStepSection {
   spellSlots?: Record<number, number>;
   spellSelectionCount?: number;
   spellSelectionLevel?: number;
+  spellSelectionMaxLevel?: number;
+  cantripSelectionCount?: number;
   skillSelectionCount?: number;
   skillOptions?: string[];
   subclassOptions?: { name: string; description: string }[];
@@ -185,6 +187,7 @@ export function generateLevelUpSteps(
       const slotsChanged = Object.keys(levelData.spellSlots).length !== Object.keys(prevSlots).length ||
         Object.entries(levelData.spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v);
       const cantripsChanged = cantripsKnown > prevCantripsKnown;
+      const maxSpellLevel = Math.max(...Object.keys(levelData.spellSlots).map(Number));
       if (slotsChanged || cantripsChanged) {
         sections.push({
           type: "spellSelection",
@@ -192,6 +195,8 @@ export function generateLevelUpSteps(
           spellSlots: levelData.spellSlots,
           spellSelectionCount: Object.values(levelData.spellSlots).reduce((a, b) => a + b, 0),
           spellSelectionLevel: level,
+          spellSelectionMaxLevel: maxSpellLevel,
+          cantripSelectionCount: cantripsChanged ? cantripsKnown - prevCantripsKnown : 0,
         });
       }
     }

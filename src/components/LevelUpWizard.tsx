@@ -266,13 +266,15 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
     const spells = [...(character.spells || [])];
     for (const list of Object.values(spellSelections)) {
-      for (const name of list) {
-        if (!spells.some((s) => s.name === name)) {
+      for (const entry of list) {
+        const [name, levelStr] = entry.split(":");
+        const level = Number(levelStr);
+        if (!spells.some((s) => s.name === name && s.level === level)) {
           const spell = getStaticSpells().find((s) => s.name === name);
           spells.push({
-            id: `spell-${name}`.replace(/\s+/g, "-"),
+            id: `spell-${name}-${level}`.replace(/\s+/g, "-"),
             name,
-            level: spell?.level ?? 1,
+            level,
             source: "srd",
             srdSpellName: name,
             description: normalizeDescription(spell?.description),
@@ -870,35 +872,81 @@ function SectionRenderer({
   }
 
   if (section.type === "spellSelection") {
-    const available = getStaticSpells().filter((s) => s.classes?.includes(character.class));
+    const maxLevel = section.spellSelectionMaxLevel || 9;
+    const available = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
     const count = section.spellSelectionCount || 0;
-    const toggle = (name: string) => {
-      if (spells.includes(name)) onSpellsChange(spells.filter((s) => s !== name));
-      else if (spells.length < count) onSpellsChange([...spells, name]);
+    const cantripCount = section.cantripSelectionCount || 0;
+    const toggle = (name: string, level: number) => {
+      if (spells.some((s) => s === `${name}:${level}`)) {
+        onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
+      } else {
+        if (level === 0) {
+          const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
+          if (currentCantrips < cantripCount) onSpellsChange([...spells, `${name}:${level}`]);
+        } else {
+          const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
+          if (currentSpells < count) onSpellsChange([...spells, `${name}:${level}`]);
+        }
+      }
     };
+    const cantrips = available.filter((s) => s.level === 0);
+    const levelSpells = available.filter((s) => s.level > 0);
     return (
       <div className="space-y-2.5">
         {header}
-        <p className="text-[11px] text-ink-muted font-medium">You may add up to {count} spell{count !== 1 ? "s" : ""}. (Optional)</p>
-        <div className="max-h-64 overflow-y-auto space-y-1.5">
-          {available.map((sp) => {
-            const isSel = spells.includes(sp.name);
-            const disabled = !isSel && spells.length >= count;
-            return (
-              <button
-                key={sp.name}
-                type="button"
-                onClick={() => toggle(sp.name)}
-                disabled={disabled}
-                className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl border ${
-                  isSel ? "bg-ink text-white border-ink" : disabled ? "bg-white text-ink border-border-muted opacity-50" : "bg-white text-ink border-border-muted"
-                }`}
-              >
-                {sp.name} <span className="text-ink-muted font-medium">Lv {sp.level}</span>
-              </button>
-            );
-          })}
-        </div>
+        <p className="text-[11px] text-[var(--color-text-muted)] font-medium">
+          You may add up to {count} spell{count !== 1 ? "s" : ""}{cantripCount > 0 ? ` and ${cantripCount} cantrip${cantripCount !== 1 ? "s" : ""}` : ""}. (Optional)
+        </p>
+        {cantripCount > 0 && cantrips.length > 0 && (
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Cantrips</div>
+            <div className="max-h-32 overflow-y-auto space-y-1.5">
+              {cantrips.map((sp) => {
+                const isSel = spells.includes(`${sp.name}:0`);
+                const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
+                const disabled = !isSel && currentCantrips >= cantripCount;
+                return (
+                  <button
+                    key={sp.name}
+                    type="button"
+                    onClick={() => toggle(sp.name, 0)}
+                    disabled={disabled}
+                    className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl border ${
+                      isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
+                    }`}
+                  >
+                    {sp.name} <span className="text-[var(--color-text-muted)] font-medium">{sp.school}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        {count > 0 && levelSpells.length > 0 && (
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Spells</div>
+            <div className="max-h-48 overflow-y-auto space-y-1.5">
+              {levelSpells.map((sp) => {
+                const isSel = spells.includes(`${sp.name}:${sp.level}`);
+                const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
+                const disabled = !isSel && currentSpells >= count;
+                return (
+                  <button
+                    key={sp.name}
+                    type="button"
+                    onClick={() => toggle(sp.name, sp.level)}
+                    disabled={disabled}
+                    className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl border ${
+                      isSel ? "btn-primary" : disabled ? "btn-secondary opacity-50" : "btn-secondary"
+                    }`}
+                  >
+                    {sp.name} <span className="text-[var(--color-text-muted)] font-medium">Lv {sp.level}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
