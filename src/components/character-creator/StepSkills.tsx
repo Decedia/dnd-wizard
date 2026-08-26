@@ -96,11 +96,11 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
               disabled={disabled}
               className={`btn w-full px-3 py-2 text-left transition-all ${
                 isProficient
-                  ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-2 border-green-500"
+                  ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border border-green-500"
                   : disabled
                     ? "bg-transparent text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
                     : isAllowed
-                      ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-green-500 hover:bg-[var(--color-bg)]"
+                      ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-green-500 hover:bg-[var(--color-bg)]"
                       : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
               }`}
             >

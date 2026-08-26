@@ -415,43 +415,45 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                  {categoryWeapons.map((weapon: any) => {
                                    const wStats = getWeaponStats(weapon.name, weapon.category_range);
                                    return (
-                                     <button
+                                     <div
                                        key={weapon.name}
-                                       type="button"
-                                       onClick={() => handleWeaponSelect(weapon, group.id, optionIndex)}
-                                       className="card w-full px-3 py-2 text-left text-sm hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                                       className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
                                      >
-                                       <div className="flex items-center justify-between">
-                                         <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
-                                         <div className="flex items-center gap-2">
+                                       <button
+                                         type="button"
+                                         onClick={() => handleWeaponSelect(weapon, group.id, optionIndex)}
+                                         className="flex-1 text-left"
+                                       >
+                                         <div className="flex items-center justify-between">
+                                           <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
                                            {wStats && (
                                              <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
                                                {wStats.attackBonus} to hit
                                              </span>
                                            )}
-                                           <InfoButton
-                                             title={weapon.name}
-                                             description={[
-                                               weapon.damage?.damage_dice && `Damage: ${weapon.damage.damage_dice} ${weapon.damage?.damage_type?.name || ""}`,
-                                               weapon.properties?.length > 0 && `Properties: ${weapon.properties.map((p: any) => p.name).join(", ")}`,
-                                               weapon.category_range && `Category: ${weapon.category_range}`,
-                                               weapon.weapon_category && `Type: ${weapon.weapon_category}`,
-                                             ].filter(Boolean).join("\n")}
-                                             size="sm"
-                                           />
                                          </div>
-                                       </div>
-                                       {wStats && (
-                                         <div className="flex items-center gap-2 mt-1.5">
-                                           <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
-                                             {wStats.damageDice} {wStats.damageType}
-                                           </span>
-                                           <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                             {wStats.abilityKey} +{wStats.damageBonus}
-                                           </span>
-                                         </div>
-                                       )}
-                                     </button>
+                                         {wStats && (
+                                           <div className="flex items-center gap-2 mt-1.5">
+                                             <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                               {wStats.damageDice} {wStats.damageType}
+                                             </span>
+                                             <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                               {wStats.abilityKey} +{wStats.damageBonus}
+                                             </span>
+                                           </div>
+                                         )}
+                                       </button>
+                                       <InfoButton
+                                         title={weapon.name}
+                                         description={[
+                                           weapon.damage?.damage_dice && `Damage: ${weapon.damage.damage_dice} ${weapon.damage?.damage_type?.name || ""}`,
+                                           weapon.properties?.length > 0 && `Properties: ${weapon.properties.map((p: any) => p.name).join(", ")}`,
+                                           weapon.category_range && `Category: ${weapon.category_range}`,
+                                           weapon.weapon_category && `Type: ${weapon.weapon_category}`,
+                                         ].filter(Boolean).join("\n")}
+                                         size="sm"
+                                       />
+                                     </div>
                                    );
                                  })}
                                  {categoryWeapons.length === 0 && (
@@ -465,61 +467,56 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                         );
                       }
 
-                       return (
-                         <div
-                           key={optionIndex}
-                           className={`card w-full px-3 py-2 text-left text-sm transition-all ${
-                             isSelected
-                               ? "border-2 border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
-                               : isDisabled
-                                 ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
-                                 : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                           }`}
-                         >
-                          {isSelected ? (
-                            <div className="flex items-center justify-between">
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2">
-                                  <span className="text-green-600 font-bold">✓</span>
-                                  <span className="text-body font-semibold text-[var(--color-text-primary)]">{option.description || primaryItem?.name}</span>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                {primaryInfo && (
-                                  <InfoButton
-                                    title={primaryItem?.name || option.description || "Item"}
-                                    description={getItemDescription(primaryInfo)}
-                                    size="sm"
-                                  />
-                                )}
-                                <button
-                                  type="button"
-                                  onClick={() => handleChoiceRemove(group)}
-                                  className="text-[var(--color-text-muted)] hover:text-red-500 ml-1 text-lg leading-none"
-                                >
-                                  ×
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <button
-                              type="button"
-                              onClick={() => handleOptionClick(group, optionIndex)}
-                              disabled={isDisabled}
-                              className="w-full text-left flex items-center justify-between"
-                            >
-                              <span className="text-body">{option.description || primaryItem?.name}</span>
-                              {primaryInfo && (
-                                <InfoButton
-                                  title={primaryItem?.name || option.description || "Item"}
-                                  description={getItemDescription(primaryInfo)}
-                                  size="sm"
-                                />
-                              )}
-                            </button>
-                          )}
-                        </div>
-                      );
+                        return (
+                          <div
+                            key={optionIndex}
+                            className={`card w-full px-3 py-2 text-left text-sm transition-all ${
+                              isSelected
+                                ? "border-2 border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
+                                : isDisabled
+                                  ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
+                                  : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                            }`}
+                          >
+                           {isSelected ? (
+                             <div className="flex items-center justify-between">
+                               <div className="flex-1">
+                                 <div className="flex items-center gap-2">
+                                   <span className="text-green-600 font-bold">✓</span>
+                                   <span className="text-body font-semibold text-[var(--color-text-primary)]">{option.description || primaryItem?.name}</span>
+                                 </div>
+                               </div>
+                               <div className="flex items-center gap-1">
+                                 <button
+                                   type="button"
+                                   onClick={() => handleChoiceRemove(group)}
+                                   className="text-[var(--color-text-muted)] hover:text-red-500 ml-1 text-lg leading-none"
+                                 >
+                                   ×
+                                 </button>
+                               </div>
+                             </div>
+                           ) : (
+                             <div className="flex items-center justify-between gap-2">
+                               <button
+                                 type="button"
+                                 onClick={() => handleOptionClick(group, optionIndex)}
+                                 disabled={isDisabled}
+                                 className="flex-1 text-left"
+                               >
+                                 <span className="text-body">{option.description || primaryItem?.name}</span>
+                               </button>
+                               {primaryInfo && (
+                                 <InfoButton
+                                   title={primaryItem?.name || option.description || "Item"}
+                                   description={getItemDescription(primaryInfo)}
+                                   size="sm"
+                                 />
+                               )}
+                             </div>
+                           )}
+                          </div>
+                        );
                     })}
                   </div>
                 </div>
