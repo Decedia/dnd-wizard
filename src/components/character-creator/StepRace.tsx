@@ -30,10 +30,10 @@ export function StepRace({ data, onChange }: StepRaceProps) {
             key={race.name}
             type="button"
             onClick={() => handleSelect(race.name)}
-            className={`btn w-full p-4 text-left rounded-xl ${
+            className={`btn w-full p-4 text-left rounded-xl border ${
               isSelected
-                ? "bg-paper-muted border-l-2 border-ink"
-                : "bg-white border border-border-muted"
+                ? "bg-ink text-white border-ink"
+                : "bg-white text-ink border-border-muted"
             }`}
           >
               <div className="flex items-center justify-between">

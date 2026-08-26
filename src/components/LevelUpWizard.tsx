@@ -760,10 +760,10 @@ function SectionRenderer({
                 key={opt.name}
                 type="button"
                 onClick={() => onSubclassSelect(opt.name)}
-                className={`btn w-full p-2.5 text-left rounded-xl ${
+                className={`btn w-full p-2.5 text-left rounded-xl border ${
                   isSel
-                    ? "bg-paper-muted border-l-2 border-ink"
-                    : "bg-white border border-border-muted"
+                    ? "bg-ink text-white border-ink"
+                    : "bg-white text-ink border-border-muted"
                 }`}
               >
                 <div className="text-xs font-semibold text-ink">{opt.name}</div>
@@ -800,8 +800,8 @@ function SectionRenderer({
                         key={opt}
                         type="button"
                         onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
-                        className={`btn w-full px-2.5 py-1.5 text-left rounded-xl ${
-                          isSel ? "bg-paper-muted border-l-2 border-ink" : "bg-white border border-border-muted"
+                        className={`btn w-full px-2.5 py-1.5 text-left rounded-xl border ${
+                          isSel ? "bg-ink text-white border-ink" : "bg-white text-ink border-border-muted"
                         }`}
                       >
                         <div className="text-[11px] font-semibold text-ink">{opt}</div>
@@ -841,8 +841,8 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(s.name)}
                 disabled={disabled}
-                className={`btn px-2 py-1.5 text-left text-[11px] rounded-xl ${
-                  isSel ? "bg-paper-muted border-l-2 border-ink" : disabled ? "bg-white border border-border-muted opacity-50" : "bg-white border border-border-muted"
+                className={`btn px-2 py-1.5 text-left text-[11px] rounded-xl border ${
+                  isSel ? "bg-ink text-white border-ink" : disabled ? "bg-white text-ink border-border-muted opacity-50" : "bg-white text-ink border-border-muted"
                 }`}
               >
                 {s.name}
@@ -890,8 +890,8 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(sp.name)}
                 disabled={disabled}
-                className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl ${
-                  isSel ? "bg-paper-muted border-l-2 border-ink" : disabled ? "bg-white border border-border-muted opacity-50" : "bg-white border border-border-muted"
+                className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl border ${
+                  isSel ? "bg-ink text-white border-ink" : disabled ? "bg-white text-ink border-border-muted opacity-50" : "bg-white text-ink border-border-muted"
                 }`}
               >
                 {sp.name} <span className="text-ink-muted font-medium">Lv {sp.level}</span>

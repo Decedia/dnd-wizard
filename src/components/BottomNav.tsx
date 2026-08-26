@@ -41,8 +41,8 @@ export function BottomNav() {
                 key={item.name}
                 href={item.href}
                 className={`
-                  flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10
-                  ${isActive ? "text-white font-semibold" : "text-white/60 hover:text-white"}
+                  flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10 rounded-full
+                  ${isActive ? "text-white font-semibold bg-white/10" : "text-white/70 hover:text-white hover:bg-white/5"}
                 `}
                 aria-current={isActive ? "page" : undefined}
               >

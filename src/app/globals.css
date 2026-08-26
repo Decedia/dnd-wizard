@@ -88,7 +88,7 @@
 
   .btn {
     border-radius: 9999px;
-    border: 1px solid transparent;
+    border: 1px solid #e5e5e5;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 600;
@@ -104,6 +104,7 @@
     color: #a3a3a3;
     cursor: not-allowed;
     opacity: 1;
+    border-color: #e5e5e5;
   }
 
   .btn:disabled:active {
@@ -113,31 +114,35 @@
   .btn-primary {
     background-color: #171717;
     color: #ffffff;
-    border-color: transparent;
+    border-color: #171717;
   }
 
   .btn-primary:hover {
     background-color: #262626;
+    border-color: #262626;
   }
 
   .btn-primary:disabled {
     background-color: #e5e5e5;
     color: #a3a3a3;
+    border-color: #e5e5e5;
   }
 
   .btn-secondary {
     background-color: #ffffff;
     color: #171717;
-    border-color: transparent;
+    border-color: #e5e5e5;
   }
 
   .btn-secondary:hover {
     background-color: #f5f5f5;
+    border-color: #d4d4d4;
   }
 
   .btn-secondary:disabled {
     background-color: #f5f5f5;
     color: #a3a3a3;
+    border-color: #e5e5e5;
   }
 
   .btn-ghost {
@@ -153,11 +158,12 @@
   .btn-danger {
     background-color: #ffffff;
     color: #dc2626;
-    border-color: transparent;
+    border-color: #fecaca;
   }
 
   .btn-danger:hover {
     background-color: #fef2f2;
+    border-color: #f87171;
   }
 
   .field-label {

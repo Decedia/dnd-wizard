@@ -151,10 +151,10 @@ export default function TasksPage() {
           {sidebarItems.map((item) => (
             <button
               key={item.label}
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+              className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
                 item.active
-                  ? "bg-white text-ink"
-                  : "text-white/60 hover:text-white hover:bg-white/10"
+                  ? "border-white bg-white text-ink"
+                  : "border-white/20 text-white/70 hover:text-white hover:bg-white/10"
               }`}
               title={item.label}
             >
@@ -163,7 +163,7 @@ export default function TasksPage() {
           ))}
         </nav>
 
-        <button className="mt-auto flex h-10 w-10 items-center justify-center rounded-full text-white/60 hover:text-white hover:bg-white/10">
+        <button className="mt-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors">
           <Bell className="h-5 w-5" />
         </button>
       </aside>
@@ -184,10 +184,10 @@ export default function TasksPage() {
                 <Settings className="h-4 w-4" />
                 <span>Upgrade</span>
               </button>
-              <button className="flex h-9 w-9 items-center justify-center rounded-full bg-paper-muted text-ink hover:bg-paper-dark transition-colors">
+              <button className="flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-white text-ink hover:bg-paper-muted transition-colors">
                 <Search className="h-4 w-4" />
               </button>
-              <button className="relative flex h-9 w-9 items-center justify-center rounded-full bg-paper-muted text-ink hover:bg-paper-dark transition-colors">
+              <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-white text-ink hover:bg-paper-muted transition-colors">
                 <Bell className="h-4 w-4" />
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
                   30
@@ -265,28 +265,28 @@ export default function TasksPage() {
                 <span className="text-xs text-ink-muted">{totalCount} tasks</span>
               </div>
               <div className="flex items-center gap-2">
-                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-dark transition-colors">
+                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>All Projects</span>
                   <ChevronDown className="h-3.5 w-3.5" />
                 </button>
-                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-dark transition-colors">
+                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>Date Created</span>
                   <ChevronDown className="h-3.5 w-3.5" />
                 </button>
-                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink hover:bg-paper-dark transition-colors">
+                <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>All</span>
                   <ChevronDown className="h-3.5 w-3.5" />
                 </button>
-                <div className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5">
+                <div className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 border border-border-strong">
                   <div className="h-1.5 w-16 rounded-full bg-paper-muted">
                     <div className="h-full w-[60%] rounded-full bg-ink" />
                   </div>
                   <span className="text-xs font-medium text-ink-muted">60%</span>
                 </div>
-                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-ink-muted hover:bg-paper-muted transition-colors">
                   <ListTodo className="h-4 w-4" />
                 </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-ink-muted hover:bg-paper-muted transition-colors">
                   <KanbanSquare className="h-4 w-4" />
                 </button>
                 <div className="relative">
@@ -296,7 +296,7 @@ export default function TasksPage() {
                     placeholder="Search tasks..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="h-8 w-48 rounded-full bg-white pl-8 pr-3 text-xs text-ink placeholder:text-ink-subtle focus:outline-none"
+                    className="h-8 w-48 rounded-full bg-white pl-8 pr-3 text-xs text-ink placeholder:text-ink-subtle border border-border-strong focus:outline-none"
                   />
                 </div>
               </div>
@@ -311,7 +311,7 @@ export default function TasksPage() {
                 >
                   <button
                     onClick={() => toggleTask(task.id)}
-                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white hover:bg-paper-muted transition-colors"
+                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border-strong bg-white hover:border-ink transition-colors"
                   >
                     {task.status === "done" && (
                       <CheckCircle2 className="h-3.5 w-3.5 text-ink" />
@@ -333,11 +333,11 @@ export default function TasksPage() {
                       </span>
                     )}
                     {task.budget && (
-                      <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-medium text-ink">
+                      <span className="rounded-full bg-white border border-border-strong px-2.5 py-0.5 text-xs font-medium text-ink">
                         {task.budget}
                       </span>
                     )}
-                    <button className="flex h-7 w-7 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
+                    <button className="flex h-7 w-7 items-center justify-center rounded-full border border-border-strong text-ink-muted hover:bg-paper transition-colors">
                       <MoreHorizontal className="h-4 w-4" />
                     </button>
                   </div>
