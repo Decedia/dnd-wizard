@@ -9,7 +9,7 @@ import { StepIdentity } from "@/components/character-creator/StepIdentity";
 import { StepRace } from "@/components/character-creator/StepRace";
 import { StepClass } from "@/components/character-creator/StepClass";
 import { StepSubclass } from "@/components/character-creator/StepSubclass";
-import { StepLevel } from "@/components/character-creator/StepLevel";
+import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
@@ -84,7 +84,39 @@ export default function CharacterCreate() {
       case "subclass":
         return <StepSubclass data={character} onChange={update} />;
       case "level":
-        return <StepLevel data={character} onChange={update} />;
+  const isLevelStep = currentStep?.type === "level";
+
+  if (isLevelStep) {
+    return (
+      <LevelUpWizard
+        character={character}
+        onCancel={() => setStep((s) => Math.max(0, s - 1))}
+        onComplete={(updated) => {
+          setCharacter(updated);
+          setStep((s) => s + 1);
+        }}
+        minLevel={2}
+        maxLevel={10}
+        title="Starting Level"
+        subtitle="Choose your starting level and roll HP"
+      />
+    );
+  }
+
+  return (
+          <LevelUpWizard
+            character={character}
+            onCancel={() => setStep((s) => Math.max(0, s - 1))}
+            onComplete={(updated) => {
+              setCharacter(updated);
+              setStep((s) => s + 1);
+            }}
+            minLevel={2}
+            maxLevel={10}
+            title="Starting Level"
+            subtitle="Choose your starting level and roll HP"
+          />
+        );
       case "abilities":
         return <StepAbilities data={character} onChange={update} />;
       case "skills":

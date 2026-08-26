@@ -34,15 +34,6 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
   { key: "cha", label: "CHA", full: "Charisma" },
 ];
 
-type AsiMode = "single" | "double";
-interface AsiState {
-  mode?: AsiMode;
-  single?: AbilityKey;
-  d1?: AbilityKey;
-  d2?: AbilityKey;
-  confirmed?: boolean;
-}
-
 interface LevelUpWizardProps {
   character: Character;
   onCancel: () => void;
@@ -50,6 +41,7 @@ interface LevelUpWizardProps {
   minLevel?: number;
   maxLevel?: number;
   title?: string;
+  subtitle?: string;
 }
 
 interface LevelInfo {
@@ -63,7 +55,7 @@ interface LevelInfo {
   spellsKnown?: number;
   classFeatures: { name: string; value: string }[];
   subclassOptions?: { name: string; description: string; hasDetails: boolean }[];
-  subclassFeatureChoices?: { name: string; options: string[]; count?: number }[];
+  subclassFeatureChoices?: { name: string; options: { name: string; description: string }[] }[];
   hasSpellSelection: boolean;
   spellSelectionCount: number;
   cantripSelectionCount: number;
@@ -158,7 +150,7 @@ function buildLevelInfos(
       ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true }))
       : undefined;
 
-    const subclassFeatureChoices: { name: string; options: string[]; count?: number }[] = [];
+    const subclassFeatureChoices: { name: string; options: { name: string; description: string }[] }[] = [];
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
       if (selectedSubclass) {
@@ -168,8 +160,7 @@ function buildLevelInfos(
         for (const f of earnedFeatures) {
           subclassFeatureChoices.push({
             name: f.name,
-            options: f.choices!.map((c: any) => c.name),
-            count: (f as any).choicesCount,
+            options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "" })),
           });
         }
       }
@@ -205,7 +196,7 @@ function buildLevelInfos(
   return infos;
 }
 
-export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title }: LevelUpWizardProps) {
+export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle }: LevelUpWizardProps) {
   const classData = character.class ? getStaticClass(character.class) : undefined;
   const currentLevel = character.level || 1;
   const hitDie = classData?.hitDie || 10;
@@ -216,9 +207,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const effectiveMinLevel = minLevel ?? currentLevel + 1;
   const effectiveMaxLevel = maxLevel ?? 20;
 
-  const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, effectiveMinLevel));
+  const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
-  const [asiState, setAsiState] = useState<Record<number, AsiState>>({});
+  const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
@@ -229,11 +220,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
-  const setAsi = (level: number, patch: Partial<AsiState>) =>
-    setAsiState((prev) => ({ ...prev, [level]: { ...(prev[level] || {}), ...patch } }));
+  const setAsi = (level: number, patch: Partial<{ mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>) =>
+    setAsiSelections((prev) => ({ ...prev, [level]: { ...(prev[level] || { mode: "single" }), ...patch } as any }));
   const setSpells = (level: number, list: string[]) => setSpellSelections((prev) => ({ ...prev, [level]: list }));
 
-  const buildAllocation = (st?: AsiState): Record<AbilityKey, number> => {
+  const buildAllocation = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
     if (!st) return alloc;
     if (st.mode === "single" && st.single) alloc[st.single] = 2;
@@ -250,18 +241,19 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         str: character.str, dex: character.dex, con: character.con,
         int: character.int, wis: character.wis, cha: character.cha,
       };
-      for (const [lvlStr, st] of Object.entries(asiState)) {
+      for (const [lvlStr, st] of Object.entries(asiSelections)) {
         const lvl = Number(lvlStr);
-        if (!st.confirmed || lvl === excludeLevel) continue;
+        if (lvl === excludeLevel) continue;
+        if (!st || !st.mode) continue;
         const alloc = buildAllocation(st);
         (Object.keys(alloc) as AbilityKey[]).forEach((k) => (base[k] += alloc[k]));
       }
       return base;
     },
-    [character, asiState]
+    [character, asiSelections]
   );
 
-  const asiIsValid = (st?: AsiState): boolean => {
+  const asiIsValid = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): boolean => {
     if (!st || !st.mode) return false;
     if (st.mode === "single") return !!st.single;
     return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
@@ -269,8 +261,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   const allLevelsComplete = levelInfos.length > 0 && levelInfos.every((info) => {
     const lvl = info.level;
-    if (!hpValues[lvl]) return false;
-    if (info.asi && !asiState[lvl]?.confirmed) return false;
+    if (!hpValues[lvl] || hpValues[lvl] <= 0) return false;
+    if (info.asi && !asiIsValid(asiSelections[lvl])) return false;
     if (info.subclassOptions && !subclassSelection) return false;
     if (info.subclassFeatureChoices) {
       const choices = subclassFeatureChoices[lvl] || {};
@@ -314,11 +306,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
     draft.currentHp = draft.maxHp;
 
-    for (const [lvlStr, st] of Object.entries(asiState)) {
+    for (const [lvlStr, st] of Object.entries(asiSelections)) {
       const lvl = Number(lvlStr);
-      if (!st.confirmed) continue;
-      draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
+      if (!st || !st.mode) continue;
       const alloc = buildAllocation(st);
+      const hasAlloc = Object.values(alloc).some((v) => v > 0);
+      if (!hasAlloc) continue;
+      draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
       for (const { key } of ABILITIES) {
         const add = alloc[key] || 0;
         if (add > 0) draft = { ...draft, [key]: ((draft[key] as number) || 0) + add };
@@ -352,7 +346,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const rollAllHp = () => {
     const newHpValues: Record<number, number> = { ...hpValues };
     for (const info of levelInfos) {
-      if (!newHpValues[info.level]) {
+      if (!newHpValues[info.level] || newHpValues[info.level] <= 0) {
         const die = Math.floor(Math.random() * hitDie) + 1;
         newHpValues[info.level] = die + conMod;
       }
@@ -365,7 +359,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (newLevel !== targetLevel) {
       setTargetLevel(newLevel);
       setHpValues({});
-      setAsiState({});
+      setAsiSelections({});
       setSpellSelections({});
       setSubclassFeatureChoices({});
     }
@@ -382,6 +376,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
             <div className="text-xs font-semibold text-[var(--color-text-primary)]">{title ?? "Level Up"}</div>
             <div className="w-12" />
           </div>
+          {subtitle && <div className="text-[10px] text-[var(--color-text-muted)] text-center mt-0.5">{subtitle}</div>}
           <div className="mt-3 flex items-center justify-center gap-4">
             <button
               type="button"
@@ -425,7 +420,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               info={info}
               hpValue={hpValues[info.level] || 0}
               onHpChange={(v) => setHp(info.level, v)}
-              asiState={asiState[info.level]}
+              asiSelection={asiSelections[info.level]}
               onAsiChange={(patch) => setAsi(info.level, patch)}
               baseScores={baseScores(info.level)}
               subclassSelection={subclassSelection}
@@ -465,8 +460,8 @@ interface LevelCardProps {
   info: LevelInfo;
   hpValue: number;
   onHpChange: (v: number) => void;
-  asiState?: AsiState;
-  onAsiChange: (patch: Partial<AsiState>) => void;
+  asiSelection?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey };
+  onAsiChange: (patch: Partial<{ mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>) => void;
   baseScores: Record<AbilityKey, number>;
   subclassSelection: string;
   onSubclassSelect: (name: string) => void;
@@ -485,7 +480,7 @@ function LevelCard({
   info,
   hpValue,
   onHpChange,
-  asiState,
+  asiSelection,
   onAsiChange,
   baseScores,
   subclassSelection,
@@ -504,10 +499,11 @@ function LevelCard({
   const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
   const lvl = info.level;
 
-  const isComplete = hpValue > 0 &&
-    (!info.asi || asiState?.confirmed) &&
-    (!info.subclassOptions || !!subclassSelection) &&
-    (!info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]));
+  const isHpComplete = hpValue > 0;
+  const isAsiComplete = !info.asi || (asiSelection?.mode === "single" && !!asiSelection?.single) || (asiSelection?.mode === "double" && !!asiSelection?.d1 && !!asiSelection?.d2 && asiSelection?.d1 !== asiSelection?.d2);
+  const isSubclassComplete = !info.subclassOptions || !!subclassSelection;
+  const isFeatureChoicesComplete = !info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]);
+  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete;
 
   return (
     <div className={`rounded-[var(--radius-md)] border transition-all ${
@@ -590,11 +586,7 @@ function LevelCard({
               <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
-                {!asiState?.confirmed ? (
-                  <AsiSelector state={asiState} baseScores={baseScores} onChange={onAsiChange} />
-                ) : (
-                  <div className="text-xs text-green-600 font-semibold mt-1">✓ Confirmed</div>
-                )}
+                <AsiSelectorInline state={asiSelection} baseScores={baseScores} onChange={onAsiChange} />
               </div>
             </div>
           )}
@@ -679,23 +671,26 @@ function LevelCard({
               <Crown weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Subclass Choices</div>
-                <div className="space-y-2 mt-1">
+                <div className="space-y-3 mt-1">
                   {info.subclassFeatureChoices.map((fc) => (
                     <div key={fc.name}>
                       <div className="text-xs font-semibold text-[var(--color-text-primary)] mb-1">{fc.name}</div>
                       <div className="space-y-1">
                         {fc.options.map((opt) => (
                           <button
-                            key={opt}
+                            key={opt.name}
                             type="button"
-                            onClick={() => onSubclassFeatureChoice(fc.name, opt)}
-                            className={`w-full p-1.5 text-left text-[10px] rounded-[var(--radius-sm)] border transition-all ${
-                              subclassFeatureChoices[fc.name] === opt
+                            onClick={() => onSubclassFeatureChoice(fc.name, opt.name)}
+                            className={`w-full p-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                              subclassFeatureChoices[fc.name] === opt.name
                                 ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
                                 : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                             }`}
                           >
-                            {opt}
+                            <div className="text-[10px] font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                            {opt.description && (
+                              <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{opt.description}</p>
+                            )}
                           </button>
                         ))}
                       </div>
@@ -741,6 +736,100 @@ function LevelCard({
           characterClass={character.class}
           onClose={() => setShowSubclassDetails(null)}
         />
+      )}
+    </div>
+  );
+}
+
+function AsiSelectorInline({
+  state,
+  baseScores,
+  onChange,
+}: {
+  state?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey };
+  baseScores: Record<AbilityKey, number>;
+  onChange: (patch: Partial<{ mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>) => void;
+}) {
+  return (
+    <div className="space-y-2 mt-1">
+      <div className="grid grid-cols-2 gap-1.5">
+        <button
+          type="button"
+          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
+          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
+            state?.mode === "single"
+              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
+          }`}
+        >
+          +2 to one
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
+          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
+            state?.mode === "double"
+              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
+          }`}
+        >
+          +1 to two
+        </button>
+      </div>
+
+      {state?.mode === "single" && (
+        <select
+          value={state.single || ""}
+          onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined })}
+          className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
+        >
+          <option value="">Select ability…</option>
+          {ABILITIES.map(({ key, label, full }) => {
+            const atCap = baseScores[key] + 2 > 20;
+            return (
+              <option key={key} value={key} disabled={atCap}>
+                {label} ({baseScores[key]} → {baseScores[key] + 2}){atCap ? " (max)" : ""}
+              </option>
+            );
+          })}
+        </select>
+      )}
+
+      {state?.mode === "double" && (
+        <div className="space-y-1.5">
+          <select
+            value={state.d1 || ""}
+            onChange={(e) => onChange({ d1: (e.target.value || undefined) as AbilityKey | undefined })}
+            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
+          >
+            <option value="">First ability…</option>
+            {ABILITIES.map(({ key, label, full }) => {
+              const atCap = baseScores[key] + 1 > 20;
+              const disabled = atCap || key === state.d2;
+              return (
+                <option key={key} value={key} disabled={disabled}>
+                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
+                </option>
+              );
+            })}
+          </select>
+          <select
+            value={state.d2 || ""}
+            onChange={(e) => onChange({ d2: (e.target.value || undefined) as AbilityKey | undefined })}
+            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
+          >
+            <option value="">Second ability…</option>
+            {ABILITIES.map(({ key, label, full }) => {
+              const atCap = baseScores[key] + 1 > 20;
+              const disabled = atCap || key === state.d1;
+              return (
+                <option key={key} value={key} disabled={disabled}>
+                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       )}
     </div>
   );
@@ -807,122 +896,6 @@ function SubclassDetailsModal({
           )}
         </div>
       </div>
-    </div>
-  );
-}
-
-function AsiSelector({
-  state,
-  baseScores,
-  onChange,
-}: {
-  state?: AsiState;
-  baseScores: Record<AbilityKey, number>;
-  onChange: (patch: Partial<AsiState>) => void;
-}) {
-  const isValid = (st?: AsiState): boolean => {
-    if (!st || !st.mode) return false;
-    if (st.mode === "single") return !!st.single;
-    return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
-  };
-
-  return (
-    <div className="space-y-2 mt-1">
-      <div className="grid grid-cols-2 gap-1.5">
-        <button
-          type="button"
-          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined, confirmed: false })}
-          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
-            state?.mode === "single"
-              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
-          }`}
-        >
-          +2 to one
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined, confirmed: false })}
-          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
-            state?.mode === "double"
-              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
-          }`}
-        >
-          +1 to two
-        </button>
-      </div>
-
-      {state?.mode === "single" && (
-        <select
-          value={state.single || ""}
-          onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined, confirmed: false })}
-          className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
-        >
-          <option value="">Select ability…</option>
-          {ABILITIES.map(({ key, label, full }) => {
-            const atCap = baseScores[key] + 2 > 20;
-            return (
-              <option key={key} value={key} disabled={atCap}>
-                {label} ({baseScores[key]} → {baseScores[key] + 2}){atCap ? " (max)" : ""}
-              </option>
-            );
-          })}
-        </select>
-      )}
-
-      {state?.mode === "double" && (
-        <div className="space-y-1.5">
-          <select
-            value={state.d1 || ""}
-            onChange={(e) => onChange({ d1: (e.target.value || undefined) as AbilityKey | undefined, confirmed: false })}
-            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
-          >
-            <option value="">First ability…</option>
-            {ABILITIES.map(({ key, label, full }) => {
-              const atCap = baseScores[key] + 1 > 20;
-              const disabled = atCap || key === state.d2;
-              return (
-                <option key={key} value={key} disabled={disabled}>
-                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
-                </option>
-              );
-            })}
-          </select>
-          <select
-            value={state.d2 || ""}
-            onChange={(e) => onChange({ d2: (e.target.value || undefined) as AbilityKey | undefined, confirmed: false })}
-            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
-          >
-            <option value="">Second ability…</option>
-            {ABILITIES.map(({ key, label, full }) => {
-              const atCap = baseScores[key] + 1 > 20;
-              const disabled = atCap || key === state.d1;
-              return (
-                <option key={key} value={key} disabled={disabled}>
-                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      )}
-
-      {isValid(state) && !state?.confirmed && (
-        <button
-          type="button"
-          onClick={() => onChange({ confirmed: true })}
-          className="w-full py-2 text-xs font-semibold rounded-[var(--radius-sm)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90 transition-all"
-        >
-          Confirm ASI
-        </button>
-      )}
-
-      {state?.confirmed && (
-        <div className="text-xs text-green-600 font-semibold flex items-center gap-1">
-          <Check className="h-3 w-3" /> ASI Confirmed
-        </div>
-      )}
     </div>
   );
 }
