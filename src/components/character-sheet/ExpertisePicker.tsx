@@ -36,7 +36,7 @@ export function ExpertisePicker({ character, selectedExpertise, onExpertiseChang
     <div className="mt-3">
       <div className="mb-2 flex items-center justify-between">
         <span className="field-label-light mb-0">Expertise</span>
-        <span className="text-xs text-paper-muted font-medium">{selectedExpertise.length} of {maxCount} selected</span>
+        <span className="text-xs text-[var(--color-text-secondary)] font-medium">{selectedExpertise.length} of {maxCount} selected</span>
       </div>
       <div className="space-y-2">
         {options.map((name) => {

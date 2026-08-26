@@ -89,7 +89,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
           return (
             <div key={key} className="space-y-3">
               <div>
-                <h3 className="text-card-title text-paper">{selection.featureName}</h3>
+                <h3 className="text-card-title text-[var(--color-text-primary)]">{selection.featureName}</h3>
                 <p className="text-description mt-1">{selection.description}</p>
               </div>
 

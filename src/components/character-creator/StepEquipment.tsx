@@ -314,7 +314,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     <StepCard title="Equipment" hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.">
       {choiceGroups.length > 0 && (
         <div className="mb-5">
-          <span className="text-card-title text-paper">
+          <span className="text-card-title text-[var(--color-text-primary)]">
             Choose Your Equipment
           </span>
           <div className="space-y-4">
@@ -346,16 +346,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                             key={optionIndex}
                             className={`card w-full px-3 py-2 text-left text-sm ${
                               isSelected
-                                ? "border-2 border-paper bg-transparent text-paper"
-                                : "border border-paper bg-transparent text-paper hover:bg-paper-muted"
+                                ? "border-2 border-[var(--color-border-active)] bg-transparent text-[var(--color-text-primary)]"
+                                : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:bg-paper-muted"
                             }`}
                           >
                             {isSelected && selectedWeapon ? (
                               <div className="flex items-start justify-between">
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2">
-                                    <span className="text-paper font-bold">✓</span>
-                                    <span className="text-body text-paper">{selectedWeapon.name}</span>
+                                    <span className="text-[var(--color-text-primary)] font-bold">✓</span>
+                                    <span className="text-body text-[var(--color-text-primary)]">{selectedWeapon.name}</span>
                                   </div>
                                   {weaponStats && (
                                      <div className="text-description mt-1 ml-5">
@@ -418,21 +418,21 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
                       return (
                            <div
-                             key={optionIndex}
-                             className={`card w-full px-3 py-2 text-left text-sm ${
-                               isSelected
-                                 ? "border-2 border-paper bg-transparent text-paper"
-                                 : isDisabled
-                                   ? "border border-paper/20 bg-transparent text-paper-muted cursor-not-allowed opacity-50"
-                                   : "border border-paper bg-transparent text-paper hover:bg-paper-muted"
-                             }`}
-                           >
-                          {isSelected ? (
-                            <div className="flex items-center justify-between">
-                              <div className="flex-1">
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-paper font-bold">✓</span>
-                                    <span className="text-body text-paper">{option.description || primaryItem?.name}</span>
+                              key={optionIndex}
+                              className={`card w-full px-3 py-2 text-left text-sm ${
+                                isSelected
+                                  ? "border-2 border-[var(--color-border-active)] bg-transparent text-[var(--color-text-primary)]"
+                                  : isDisabled
+                                    ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
+                                    : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:bg-paper-muted"
+                              }`}
+                            >
+                           {isSelected ? (
+                             <div className="flex items-center justify-between">
+                               <div className="flex-1">
+                                   <div className="flex items-center gap-2">
+                                     <span className="text-[var(--color-text-primary)] font-bold">✓</span>
+                                     <span className="text-body text-[var(--color-text-primary)]">{option.description || primaryItem?.name}</span>
                                   </div>
                                 {optionItemInfos.length > 0 && (
                                    <div className="text-description mt-1 ml-5">
@@ -492,7 +492,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       )}
 
       <div>
-         <span className="text-card-title text-paper">
+         <span className="text-card-title text-[var(--color-text-primary)]">
           Current Inventory
         </span>
         {data.inventory.length === 0 ? (
@@ -507,7 +507,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <div key={item.id} className="card flex flex-col gap-1 px-3 py-2.5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-body text-paper">{item.name}</span>
+                      <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
                       {isGranted && (
                         <span className="badge text-ink bg-paper-muted">GRANTED</span>
                       )}

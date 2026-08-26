@@ -268,20 +268,20 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             </div>
           </div>
 
-          <div className="card p-3 text-xs text-paper">
+          <div className="card p-3 text-xs text-[var(--color-text-primary)]">
             Level {level} — {levelDescription || "No new features"}
           </div>
 
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <div className="text-xs text-paper-muted uppercase tracking-wider">HP Roll</div>
-              <div className="text-xs text-paper-muted">
+              <div className="text-xs text-[var(--color-text-secondary)] uppercase tracking-wider">HP Roll</div>
+              <div className="text-xs text-[var(--color-text-secondary)]">
                 Total so far: <span className="text-ink font-semibold bg-paper px-1 rounded">{hpTotal}</span> HP
               </div>
             </div>
 
             {level >= 1 && (
-              <div className="text-[11px] text-paper-muted">
+              <div className="text-[11px] text-[var(--color-text-secondary)]">
                 Level 1 HP: {hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod}) ={" "}
                 <span className="text-ink font-semibold bg-paper px-1 rounded">{levelHp[1] || baselineHp}</span>
               </div>
@@ -302,11 +302,11 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
             {activeHpLevel && (
               <div className="card p-4 space-y-4">
-                <div className="text-xs text-paper-muted text-center">
+                <div className="text-xs text-[var(--color-text-secondary)] text-center">
                   Level {activeHpLevel} — d{hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod})
                 </div>
 
-                <div className="text-center text-4xl font-display font-bold text-paper">
+                <div className="text-center text-4xl font-display font-bold text-[var(--color-text-primary)]">
                   {currentHpValue > 0 ? currentHpValue : "—"}
                 </div>
 
@@ -344,21 +344,21 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             )}
 
             {allHpConfirmed && hpLevelsToProcess.length > 0 && (
-              <div className="text-center text-xs text-paper-muted">All HP confirmed</div>
+              <div className="text-center text-xs text-[var(--color-text-secondary)]">All HP confirmed</div>
             )}
           </div>
 
           <div className="text-center py-2">
-            <div className="text-4xl font-display font-bold text-paper tracking-tight">Level {level}</div>
+            <div className="text-4xl font-display font-bold text-[var(--color-text-primary)] tracking-tight">Level {level}</div>
             {classData && classData.subclassLevel && (
-              <div className="text-xs text-paper-muted mt-1.5 font-medium">
+              <div className="text-xs text-[var(--color-text-secondary)] mt-1.5 font-medium">
                 Subclass available at Level {classData.subclassLevel}
               </div>
             )}
           </div>
 
         {currentAsiLevel && !asiModalOpen && (
-          <div className="card p-4 text-center text-xs text-paper">
+          <div className="card p-4 text-center text-xs text-[var(--color-text-primary)]">
             {asiConfirmation ? (
               <div className="text-ink font-semibold bg-paper px-2 py-1 rounded-md inline-block">✓ {asiConfirmation}</div>
             ) : (
@@ -379,12 +379,12 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
           {features.length > 0 && (
             <div className="space-y-3">
-              <div className="text-[10px] text-paper-muted uppercase tracking-wider font-medium">Class Features</div>
+              <div className="text-[10px] text-[var(--color-text-secondary)] uppercase tracking-wider font-medium">Class Features</div>
               <div className="space-y-4">
                 {features.map((feature, idx) => (
                   <div key={idx} className="card p-4 space-y-2">
                     <div className="text-sm font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block tracking-wide">{feature.name}</div>
-                    <p className="text-sm text-paper-muted leading-[1.7] whitespace-pre-line">{feature.description}</p>
+                    <p className="text-sm text-[var(--color-text-secondary)] leading-[1.7] whitespace-pre-line">{feature.description}</p>
                   </div>
                 ))}
               </div>
@@ -396,13 +396,13 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
       {asiModalOpen && currentAsiLevel && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
           <div className="card p-4">
-            <div className="flex items-center justify-between border-b-[3px] border-paper px-4 py-3">
-              <div className="text-sm font-bold text-paper">
+            <div className="flex items-center justify-between border-b-[3px] border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">
                 Ability Score Improvement (Level {currentAsiLevel})
               </div>
             </div>
             <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
-              <p className="text-xs text-paper-muted">
+              <p className="text-xs text-[var(--color-text-secondary)]">
                 Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
               </p>
               <div className="space-y-2">
@@ -416,11 +416,11 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                       className="card flex items-center justify-between px-3 py-2.5"
                     >
                       <div className="flex flex-col">
-                        <span className="text-sm font-bold text-paper w-12">{label}</span>
-                        <span className="text-[10px] text-paper-muted">{full}</span>
+                        <span className="text-sm font-bold text-[var(--color-text-primary)] w-12">{label}</span>
+                        <span className="text-[10px] text-[var(--color-text-secondary)]">{full}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-bold text-paper w-8 text-center">{currentScore}</span>
+                        <span className="text-sm font-bold text-[var(--color-text-primary)] w-8 text-center">{currentScore}</span>
                         <div className="flex items-center gap-1.5">
                           <button
                             type="button"
