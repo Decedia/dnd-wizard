@@ -75,9 +75,9 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
     >
       {skillChoices && (
         <div className="mb-4 hint-box-light">
-          <p className="text-xs text-ink">
+          <p className="text-body">
             Select <span className="font-bold">{skillChoices.count}</span> skills from your class list.
-            <span className="text-ink-muted">({selectedCount} of {skillChoices.count} selected)</span>
+            <span className="text-muted">({selectedCount} of {skillChoices.count} selected)</span>
           </p>
         </div>
       )}
@@ -96,29 +96,27 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
               disabled={disabled}
               className={`btn w-full px-3 py-2 text-left ${
                 isProficient
-                  ? "btn-primary"
+                  ? "bg-white text-ink border-2 border-ink"
                   : disabled
-                    ? "btn-secondary opacity-50 cursor-not-allowed"
-                    : "btn-secondary"
+                    ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
+                    : "bg-white text-ink border border-border-muted"
               }`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-inherit">{name}</span>
-                  <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {getAbilityModifier(ability)}</span>
+                  <span className="text-body">{name}</span>
+                  <span className="text-muted">{ability.toUpperCase()} {getAbilityModifier(ability)}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {isProficient && (
-                    <span className="text-xs font-bold text-ink">
-                      +{profBonus}
-                    </span>
+                    <span className="text-body">+{profBonus}</span>
                   )}
                   {isAllowed && (
-                    <div className={`h-4 w-4 rounded border-2 ${isProficient ? "bg-paper border-paper" : "border-paper"}`}>
-                      {isProficient && (
-                        <CheckCircle weight="fill" color="#111111" className="h-4 w-4" />
-                      )}
-                    </div>
+                     <div className={`h-4 w-4 rounded border-2 ${isProficient ? "bg-paper border-paper" : "border-paper"}`}>
+                       {isProficient && (
+                         <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
+                       )}
+                     </div>
                   )}
                 </div>
               </div>

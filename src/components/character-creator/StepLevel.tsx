@@ -248,7 +248,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                     key={lvl}
                     type="button"
                     onClick={() => adjustLevel(lvl)}
-                    className={`relative aspect-square rounded-[10px] border-[3px] flex items-center justify-center text-lg font-semibold transition-all ${
+                    className={`relative aspect-square rounded-[var(--radius-md)] border-[var(--border-active)] flex items-center justify-center text-lg font-semibold transition-all ${
                       isActive
                         ? "bg-paper text-ink border-paper"
                         : "bg-ink text-paper border-paper"

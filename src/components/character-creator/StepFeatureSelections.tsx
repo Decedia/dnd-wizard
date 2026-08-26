@@ -67,7 +67,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
   if (selections.length === 0) {
     return (
       <StepCard title="Feature Selections">
-        <p className="text-sm text-paper-muted font-medium">No feature selections required at this time.</p>
+        <p className="text-description">No feature selections required at this time.</p>
       </StepCard>
     );
   }
@@ -89,8 +89,8 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
           return (
             <div key={key} className="space-y-3">
               <div>
-                <h3 className="text-sm font-bold text-paper">{selection.featureName}</h3>
-                <p className="text-xs text-paper-muted font-medium mt-1">{selection.description}</p>
+                <h3 className="text-card-title text-paper">{selection.featureName}</h3>
+                <p className="text-description mt-1">{selection.description}</p>
               </div>
 
               {selection.type === "spells" ? (
@@ -114,23 +114,23 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                       disabled={isDisabled}
                       className={`btn w-full px-3 py-2 text-left ${
                         isSelected
-                          ? "btn-primary"
+                          ? "bg-white text-ink border-2 border-ink"
                           : isDisabled
-                            ? "btn-secondary opacity-50 cursor-not-allowed"
-                            : "btn-secondary"
+                            ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
+                            : "bg-white text-ink border border-border-muted"
                       }`}
                     >
                         <div className="flex items-center justify-between">
                           <div>
-                            <span className="text-sm font-bold text-inherit">{option}</span>
+                            <span className="text-body">{option}</span>
                             {selection.optionDescriptions?.[option] && (
-                              <span className="block text-[10px] text-ink-muted mt-0.5 leading-relaxed font-medium">
+                              <span className="block text-muted mt-0.5 leading-relaxed">
                                 {selection.optionDescriptions[option]}
                               </span>
                             )}
                           </div>
                           {isSelected && (
-                            <CheckCircle weight="fill" color="#111111" className="h-4 w-4" />
+                            <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
                           )}
                         </div>
                       </button>
@@ -140,7 +140,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
               )}
 
               {(selection.count && selection.count > 1) && (
-                <p className="text-xs text-paper-muted font-medium">
+                <p className="text-description">
                   {selected.length} of {maxCount} selected
                 </p>
               )}
@@ -170,21 +170,21 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
             disabled={isDisabled}
             className={`btn w-full px-3 py-2 text-left ${
               isSelected
-                ? "btn-primary"
+                ? "bg-white text-ink border-2 border-ink"
                 : isDisabled
-                  ? "btn-secondary opacity-50 cursor-not-allowed"
-                  : "btn-secondary"
+                  ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
+                  : "bg-white text-ink border border-border-muted"
             }`}
           >
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-sm font-bold text-inherit">{spellName}</span>
+                <span className="text-body">{spellName}</span>
                 {spell && (
-                  <span className="text-xs text-ink-muted ml-2 font-medium">Level {spell.level}</span>
+                  <span className="text-description ml-2">Level {spell.level}</span>
                 )}
               </div>
               {isSelected && (
-                <CheckCircle weight="fill" color="#111111" className="h-4 w-4" />
+                <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
               )}
             </div>
           </button>

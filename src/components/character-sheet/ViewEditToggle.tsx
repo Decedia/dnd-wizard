@@ -15,24 +15,24 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
       <button
         type="button"
         onClick={() => onModeChange("view")}
-        className={`btn rounded-md px-2.5 py-1 text-[11px] ${
+        className={`btn rounded-md px-2.5 py-1 text-[var(--font-size-xs)] ${
           mode === "view"
             ? "btn btn-primary"
             : "btn btn-secondary"
         }`}
       >
-        <Eye className="h-3.5 w-3.5" weight={mode === "view" ? "fill" : "regular"} />
+        <Eye className="h-4 w-4" weight={mode === "view" ? "fill" : "regular"} />
       </button>
       <button
         type="button"
         onClick={() => onModeChange("edit")}
-        className={`btn rounded-md px-2.5 py-1 text-[11px] ${
+        className={`btn rounded-md px-2.5 py-1 text-[var(--font-size-xs)] ${
           mode === "edit"
             ? "btn btn-primary"
             : "btn btn-secondary"
         }`}
       >
-        <PencilSimple className="h-3.5 w-3.5" weight={mode === "edit" ? "fill" : "regular"} />
+        <PencilSimple className="h-4 w-4" weight={mode === "edit" ? "fill" : "regular"} />
       </button>
     </div>
   );

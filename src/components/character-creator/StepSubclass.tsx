@@ -27,7 +27,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
   if (!classData) {
     return (
       <StepCard title="Subclass">
-        <p className="text-sm text-ink-muted font-medium">Select a class first.</p>
+        <p className="text-description">Select a class first.</p>
       </StepCard>
     );
   }
@@ -48,42 +48,42 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               key={sub.name}
               type="button"
               onClick={() => handleSelect(sub.name)}
-              className={`btn w-full p-4 text-left rounded-xl border ${
+              className={`btn w-full p-4 text-left rounded-xl ${
                 isSelected
-                  ? "bg-ink text-white border-ink"
-                  : "bg-white text-ink border-border-muted"
+                  ? "bg-white text-ink border-2 border-ink"
+                  : "bg-white text-ink border border-border-muted"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-display font-bold text-ink">{sub.name}</span>
+                <span className="text-card-title">{sub.name}</span>
                 {isSelected && (
-                  <CheckCircle weight="fill" color="#111111" className="h-4 w-4" />
+                  <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
                 )}
               </div>
               {sub.description && (
-                <p className="mt-1 text-xs text-ink-muted whitespace-pre-line leading-relaxed">
+                <p className="mt-1 text-description whitespace-pre-line">
                   {sub.description}
                 </p>
               )}
-                  {earnedFeatures.length > 0 && (
-                    <div className="mt-3 space-y-2 divider pt-3">
-                      <div className="text-[10px] uppercase tracking-wider text-ink-muted font-bold">
-                        Features
-                      </div>
-                      {earnedFeatures.map((f) => (
-                        <div key={f.name} className="card px-3 py-2">
-                      <div className="text-xs font-bold text-ink">
-                        {f.name}
-                        {f.level ? <span className="ml-1 text-ink-muted font-medium">Lv {f.level}</span> : null}
-                      </div>
-                      <p className="mt-1 text-[11px] text-ink-muted leading-relaxed whitespace-pre-line">
-                        {normalizeDescription(f.description)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </button>
+                   {earnedFeatures.length > 0 && (
+                     <div className="mt-3 space-y-2 divider pt-3">
+                       <div className="text-card-title">
+                         Features
+                       </div>
+                       {earnedFeatures.map((f) => (
+                         <div key={f.name} className="card px-3 py-2">
+                       <div className="text-body">
+                         {f.name}
+                         {f.level ? <span className="ml-1 text-muted font-medium">Lv {f.level}</span> : null}
+                       </div>
+                       <p className="mt-1 text-description leading-relaxed whitespace-pre-line">
+                         {normalizeDescription(f.description)}
+                       </p>
+                     </div>
+                   ))}
+                 </div>
+               )}
+             </button>
           );
         })}
       </div>

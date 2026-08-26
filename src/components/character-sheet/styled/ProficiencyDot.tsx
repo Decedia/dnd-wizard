@@ -36,7 +36,7 @@ export function ProficiencyDot({ proficient, onChange, size = "sm", editMode }: 
            : "bg-transparent"
       } ${interactive ? "cursor-pointer" : "cursor-default"}`}
       style={{
-        border: proficient ? "none" : "1px solid #e5e5e5",
+        border: proficient ? "none" : "1px solid var(--color-border)",
       }}
     />
   );

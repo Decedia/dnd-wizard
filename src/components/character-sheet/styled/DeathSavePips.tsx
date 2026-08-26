@@ -35,8 +35,8 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
               onClick={() => handleSuccessClick(i)}
               className="h-4 w-4 rounded-full border transition-all duration-200"
               style={{
-                backgroundColor: successes > i ? "#171717" : "transparent",
-                borderColor: successes > i ? "#171717" : "#e5e5e5",
+                backgroundColor: successes > i ? "var(--color-text-primary)" : "transparent",
+                borderColor: successes > i ? "var(--color-text-primary)" : "var(--color-border)",
               }}
               aria-label={`Success ${i + 1}`}
             />

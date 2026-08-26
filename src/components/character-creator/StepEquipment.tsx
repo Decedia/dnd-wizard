@@ -314,7 +314,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     <StepCard title="Equipment" hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.">
       {choiceGroups.length > 0 && (
         <div className="mb-5">
-          <span className="section-title-light text-paper">
+          <span className="text-card-title text-paper">
             Choose Your Equipment
           </span>
           <div className="space-y-4">
@@ -325,7 +325,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
               return (
                 <div key={group.id} className="space-y-2">
-                  <p className="text-xs text-paper-muted font-medium mb-2">{group.description}</p>
+                   <p className="text-description mb-2">{group.description}</p>
                   <div className="space-y-2">
                     {group.options.map((option, optionIndex) => {
                       const isSelected = isOptionSelected(group, optionIndex);
@@ -346,19 +346,19 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                             key={optionIndex}
                             className={`card w-full px-3 py-2 text-left text-sm ${
                               isSelected
-                                ? "border-paper bg-paper/10 text-ink"
-                                : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                                ? "border-2 border-paper bg-transparent text-paper"
+                                : "border border-paper bg-transparent text-paper hover:bg-paper-muted"
                             }`}
                           >
                             {isSelected && selectedWeapon ? (
                               <div className="flex items-start justify-between">
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2">
-                                    <span className="text-ink font-bold">✓</span>
-                                    <span className="font-bold">{selectedWeapon.name}</span>
+                                    <span className="text-paper font-bold">✓</span>
+                                    <span className="text-body text-paper">{selectedWeapon.name}</span>
                                   </div>
                                   {weaponStats && (
-                                    <div className="text-xs text-ink-muted font-medium mt-1 ml-5">
+                                     <div className="text-description mt-1 ml-5">
                                       {weaponStats.damageDice && <span>{weaponStats.damageDice} {weaponStats.damageType}</span>}
                                       <span className="ml-2 text-ink font-bold">
                                         {weaponStats.attackBonus} to hit · {weaponStats.damageBonus} damage · {weaponStats.abilityKey}
@@ -369,7 +369,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                 <button
                                   type="button"
                                   onClick={() => handleChoiceRemove(group)}
-                                  className="text-xs text-paper-muted hover:text-paper ml-2"
+                                   className="text-muted hover:text-paper ml-2"
                                 >
                                   ✕
                                 </button>
@@ -378,7 +378,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               <button
                                 type="button"
                                 onClick={() => handleOptionClick(group, optionIndex)}
-                                className="w-full text-left font-medium"
+                                 className="w-full text-left text-body"
                               >
                                 Choose a {option.weaponType?.replace('_', ' ')} weapon →
                               </button>
@@ -394,10 +394,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                     className="card w-full px-3 py-2 text-left text-sm hover:bg-paper-muted transition-colors"
                                   >
                                     <div className="flex items-center justify-between">
-                                      <span className="font-bold text-paper">{weapon.name}</span>
-                                      <span className="text-xs font-bold text-ink bg-paper px-2 py-0.5 rounded-md">{weapon.damage?.damage_dice || "-"}</span>
+                                       <span className="text-body text-paper">{weapon.name}</span>
+                                       <span className="text-xs font-bold text-ink bg-paper px-2 py-0.5 rounded-md">{weapon.damage?.damage_dice || "-"}</span>
                                     </div>
-                                    <div className="text-xs text-paper-muted font-medium mt-1">
+                                     <div className="text-description mt-1">
                                       {weapon.damage?.damage_type?.name && <span>{weapon.damage.damage_type.name}</span>}
                                       {weapon.properties && weapon.properties.length > 0 && (
                                         <span className="ml-2 text-paper-muted">{weapon.properties.map((p: any) => p.name).join(", ")}</span>
@@ -406,7 +406,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   </button>
                                 )}
                                 {categoryWeapons.length === 0 && (
-                                  <p className="text-xs text-paper-muted text-center py-3">
+                                  <p className="text-muted text-center py-3">
                                     No weapons available in this category.
                                   </p>
                                 )}
@@ -417,25 +417,25 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       }
 
                       return (
-                          <div
-                            key={optionIndex}
-                            className={`card w-full px-3 py-2 text-left text-sm ${
-                              isSelected
-                                ? "border-paper bg-paper/10 text-ink"
-                                : isDisabled
-                                  ? "border-paper/20 bg-ink-muted text-paper-muted cursor-not-allowed opacity-50"
-                                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
-                            }`}
-                          >
+                           <div
+                             key={optionIndex}
+                             className={`card w-full px-3 py-2 text-left text-sm ${
+                               isSelected
+                                 ? "border-2 border-paper bg-transparent text-paper"
+                                 : isDisabled
+                                   ? "border border-paper/20 bg-transparent text-paper-muted cursor-not-allowed opacity-50"
+                                   : "border border-paper bg-transparent text-paper hover:bg-paper-muted"
+                             }`}
+                           >
                           {isSelected ? (
                             <div className="flex items-center justify-between">
                               <div className="flex-1">
-                                <div className="flex items-center gap-2">
-                                  <span className="text-ink font-bold">✓</span>
-                                  <span className="font-bold">{option.description || primaryItem?.name}</span>
-                                </div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-paper font-bold">✓</span>
+                                    <span className="text-body text-paper">{option.description || primaryItem?.name}</span>
+                                  </div>
                                 {optionItemInfos.length > 0 && (
-                                  <div className="text-xs text-ink-muted font-medium mt-1 ml-5">
+                                   <div className="text-description mt-1 ml-5">
                                     {optionItemInfos.map((info, idx) => (
                                       <span key={idx}>
                                         {renderItemInfo(info)}
@@ -448,7 +448,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               <button
                                 type="button"
                                 onClick={() => handleChoiceRemove(group)}
-                                className="text-xs text-paper-muted hover:text-paper ml-2"
+                                 className="text-muted hover:text-paper ml-2"
                               >
                                 ✕
                               </button>
@@ -461,15 +461,15 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               className="w-full text-left"
                             >
                               <div className="flex items-center justify-between">
-                                <span className="font-medium">{option.description || primaryItem?.name}</span>
-                                {primaryInfo && (
-                                  <span className="text-xs text-paper-muted">
-                                    {renderItemInfo(primaryInfo, true)}
-                                  </span>
-                                )}
+                                 <span className="text-body">{option.description || primaryItem?.name}</span>
+                                 {primaryInfo && (
+                                   <span className="text-muted">
+                                     {renderItemInfo(primaryInfo, true)}
+                                   </span>
+                                 )}
                               </div>
                               {optionItemInfos.length > 0 && (
-                                <div className="text-xs text-paper-muted mt-1">
+                                 <div className="text-description mt-1">
                                   {optionItemInfos.map((info, idx) => (
                                     <span key={idx}>
                                       {renderItemInfo(info)}
@@ -492,11 +492,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       )}
 
       <div>
-        <span className="section-title-light text-paper">
+         <span className="text-card-title text-paper">
           Current Inventory
         </span>
         {data.inventory.length === 0 ? (
-          <p className="text-xs text-paper-muted font-medium">No equipment yet.</p>
+          <p className="text-description">No equipment yet.</p>
         ) : (
           <div className="space-y-2">
             {data.inventory.map((item) => {
@@ -507,15 +507,15 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <div key={item.id} className="card flex flex-col gap-1 px-3 py-2.5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-paper">{item.name}</span>
+                      <span className="text-body text-paper">{item.name}</span>
                       {isGranted && (
                         <span className="badge text-ink bg-paper-muted">GRANTED</span>
                       )}
                     </div>
-                    <span className="text-xs text-paper-muted font-bold">x{item.quantity || 1}</span>
+                     <span className="text-muted">x{item.quantity || 1}</span>
                   </div>
                   {itemInfo && (
-                    <div className="text-xs text-paper-muted font-medium">
+                    <div className="text-description">
                       {itemInfo.type === "weapon" && itemInfo.damageDice && (
                         <span>{itemInfo.damageDice} {itemInfo.damageType} · {getWeaponStats(item.name, itemInfo.category)?.attackBonus} to hit · {getWeaponStats(item.name, itemInfo.category)?.damageBonus} damage · {getWeaponStats(item.name, itemInfo.category)?.abilityKey}</span>
                       )}

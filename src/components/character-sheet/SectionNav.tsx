@@ -79,7 +79,7 @@ export function SectionNav() {
               : "h-7 w-7 md:h-8 md:w-8 text-ink-muted hover:text-ink border border-transparent"
           }`}
         >
-          <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" weight={active === id ? "fill" : "regular"} />
+          <Icon className="h-4 w-4 md:h-5 md:w-5" weight={active === id ? "fill" : "regular"} />
         </button>
       ))}
     </nav>

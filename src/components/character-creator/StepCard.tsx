@@ -26,7 +26,7 @@ export function StepCard({ title, hint, children }: StepProps) {
     <SectionCard id="" title={title} icon={<span className="text-ink/70">{getStepIcon(title)}</span>}>
       {hint && (
         <div className="mb-3 hint-box-light">
-          <p className="text-[11px] text-ink-muted">{hint}</p>
+          <p className="text-muted">{hint}</p>
         </div>
       )}
       {children}

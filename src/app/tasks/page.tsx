@@ -163,12 +163,12 @@ export default function TasksPage() {
 
         <nav className="flex flex-1 flex-col items-center gap-1">
           {sidebarItems.map((item) => (
-            <button
+              <button
               key={item.label}
-              className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
                 item.active
-                  ? "border-white bg-white text-ink"
-                  : "border-white/20 text-white/70 hover:text-white hover:bg-white/10"
+                  ? "border-2 border-white bg-transparent text-white"
+                  : "border border-white/20 bg-transparent text-white/70 hover:text-white hover:bg-white/10"
               }`}
               title={item.label}
             >
@@ -188,8 +188,8 @@ export default function TasksPage() {
           {/* Header */}
           <div className="mb-8 flex items-center justify-between">
             <div>
-              <h1 className="font-display text-2xl font-semibold text-ink">Tasks</h1>
-              <p className="mt-1 text-sm text-ink-muted">
+              <h1 className="text-page-title">Tasks</h1>
+              <p className="mt-1 text-description">
                 {doneCount} of {totalCount} done across all projects
               </p>
             </div>
@@ -220,9 +220,9 @@ export default function TasksPage() {
             <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">To Do</p>
+                  <p className="text-muted uppercase tracking-wider">To Do</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">0</p>
-                  <p className="mt-1 text-xs text-ink-muted">Not started</p>
+                  <p className="mt-1 text-muted">Not started</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                    <Clock weight="regular" className="h-4 w-4" />
@@ -233,9 +233,9 @@ export default function TasksPage() {
             <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">In Progress</p>
+                  <p className="text-muted uppercase tracking-wider">In Progress</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">4</p>
-                  <p className="mt-1 text-xs text-ink-muted">Active tasks</p>
+                  <p className="mt-1 text-muted">Active tasks</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                    <Clock weight="regular" className="h-4 w-4" />
@@ -246,9 +246,9 @@ export default function TasksPage() {
             <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">Done</p>
+                  <p className="text-muted uppercase tracking-wider">Done</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">6</p>
-                  <p className="mt-1 text-xs text-ink-muted">Completed</p>
+                  <p className="mt-1 text-muted">Completed</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                    <CheckCircle weight="regular" className="h-4 w-4" />
@@ -259,9 +259,9 @@ export default function TasksPage() {
             <div className="rounded-2xl bg-paper-muted p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-ink-muted uppercase tracking-wider">Total Tasks</p>
+                  <p className="text-muted uppercase tracking-wider">Total Tasks</p>
                   <p className="mt-2 text-3xl font-semibold text-ink">12</p>
-                  <p className="mt-1 text-xs text-ink-muted">All tasks</p>
+                  <p className="mt-1 text-muted">All tasks</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
                    <ListChecks weight="regular" className="h-4 w-4" />
@@ -275,8 +275,8 @@ export default function TasksPage() {
             {/* Filters */}
             <div className="flex items-center justify-between px-5 py-3">
               <div className="flex items-center gap-4">
-                <h2 className="text-sm font-medium text-ink">All tasks</h2>
-                <span className="text-xs text-ink-muted">{totalCount} tasks</span>
+                <h2 className="text-card-title">All tasks</h2>
+                <span className="text-muted">{totalCount} tasks</span>
               </div>
               <div className="flex items-center gap-2">
                 <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink border border-border-strong hover:bg-paper-muted transition-colors">
@@ -342,7 +342,7 @@ export default function TasksPage() {
                     })()}
                   </span>
 
-                  <p className={`flex-1 text-sm ${task.status === "done" ? "text-ink-muted line-through" : "text-ink"}`}>
+                  <p className={`flex-1 text-body ${task.status === "done" ? "text-ink-muted line-through" : ""}`}>
                     {task.title}
                   </p>
 

@@ -34,7 +34,7 @@ export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
                 : "btn btn-secondary"
             }`}
           >
-            <Icon className="h-3.5 w-3.5 mr-1.5" weight={isActive ? "fill" : "regular"} />
+            <Icon className="h-4 w-4 mr-1.5" weight={isActive ? "fill" : "regular"} />
             {tab.label}
           </button>
         );

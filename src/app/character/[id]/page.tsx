@@ -138,11 +138,11 @@ export default function CharacterView() {
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
           <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-16 text-center">
-             <UserPlus weight="regular" size={48} color="#cccccc" className="mb-3 opacity-40" />
-            <h2 className="font-display text-lg font-semibold text-ink mb-2">
+             <UserPlus weight="regular" size={48} color="var(--color-text-muted)" className="mb-3 opacity-40" />
+            <h2 className="text-page-title mb-2">
               Character Not Found
             </h2>
-            <p className="text-xs text-ink-muted max-w-xs mb-5">
+            <p className="text-description max-w-xs mb-5">
               This character could not be found. It may have been deleted.
             </p>
             <Link
@@ -222,7 +222,7 @@ export default function CharacterView() {
                 onClick={handleSave}
                 className="btn btn-primary flex items-center justify-center gap-1.5"
               >
-                <FloppyDisk weight="regular" className="h-3.5 w-3.5" />
+                <FloppyDisk weight="regular" className="h-4 w-4" />
                 Save
               </button>
               <button
@@ -237,7 +237,7 @@ export default function CharacterView() {
                   </>
                 ) : (
                   <>
-                    <Export weight="regular" className="h-3.5 w-3.5" />
+                    <Export weight="regular" className="h-4 w-4" />
                     Export PDF
                   </>
                 )}
@@ -246,7 +246,7 @@ export default function CharacterView() {
                 onClick={handleImportClick}
                 className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
-                <Upload weight="regular" className="h-3.5 w-3.5" />
+                <Upload weight="regular" className="h-4 w-4" />
                 Import PDF
               </button>
             </div>
@@ -254,12 +254,12 @@ export default function CharacterView() {
               onClick={handleDelete}
               className="btn-danger w-full flex items-center justify-center gap-1.5"
             >
-              <Trash weight="regular" className="h-3.5 w-3.5" />
+              <Trash weight="regular" className="h-4 w-4" />
               Delete Character
             </button>
             {savedAt && (
               <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-ink py-2 surface">
-                <CheckCircle weight="fill" className="h-3.5 w-3.5" />
+                <CheckCircle weight="fill" className="h-4 w-4" />
                 Saved
               </div>
             )}

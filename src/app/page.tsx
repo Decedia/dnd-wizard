@@ -59,21 +59,21 @@ export default function Home() {
             </div>
           )}
           {importSuccess && (
-            <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-xs font-medium text-ink">
+            <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
               {importSuccess}
             </div>
           )}
         </div>
 
         <section>
-          <h2 className="font-display text-sm font-semibold text-ink mb-3">
+          <h2 className="text-card-title mb-3">
             My Characters
           </h2>
 
           {characters.length === 0 ? (
                <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-10 text-center">
-               <UserPlus weight="regular" size={48} color="#cccccc" className="mb-2.5 opacity-40" />
-              <p className="text-xs text-ink-muted">
+                <UserPlus weight="regular" size={48} color="var(--color-text-muted)" className="mb-2.5 opacity-40" />
+              <p className="text-muted">
                 No characters yet. Create your first hero to begin your adventure.
               </p>
             </div>
@@ -91,10 +91,10 @@ export default function Home() {
                          <User weight="regular" size={20} />
                        </div>
                       <div>
-                        <h3 className="font-display font-semibold text-ink text-sm">
+                        <h3 className="text-card-title">
                           {char.name || "Unnamed Hero"}
                         </h3>
-                        <p className="text-[11px] text-ink-muted">
+                        <p className="text-muted">
                           Created {formatDate(char.createdAt)}
                         </p>
                       </div>

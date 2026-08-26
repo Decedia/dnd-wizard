@@ -1,0 +1,196 @@
+:root {
+  /* === COLORS === */
+  --color-bg: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-border: #e0e0e0;
+  --color-border-active: #111111;
+  --color-text-primary: #111111;
+  --color-text-secondary: #666666;
+  --color-text-muted: #aaaaaa;
+  --color-nav-bg: #111111;
+  --color-nav-icon: #ffffff;
+
+  /* === TYPOGRAPHY === */
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 15px;
+  --font-size-lg: 18px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --line-height-body: 1.6;
+  --letter-spacing-label: 0.05em;
+
+  /* === SPACING === */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+
+  /* === BORDERS === */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+  --border-default: 1px solid var(--color-border);
+  --border-active: 2px solid var(--color-border-active);
+}
+
+/* === TEXT CLASSES === */
+
+.text-page-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.text-card-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+.text-body {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-body);
+}
+
+.text-description {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-body);
+}
+
+.text-muted {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* === CARD === */
+
+.card {
+  background: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+/* === BUTTONS === */
+
+.btn-primary {
+  background: var(--color-border-active);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-primary:hover {
+  background: #262626;
+}
+
+.btn-primary:disabled {
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border: var(--border-active);
+  border-radius: var(--radius-pill);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg);
+}
+
+.btn-secondary:disabled {
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* === INPUTS === */
+
+.input {
+  background: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: all 0.15s;
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:focus {
+  border: var(--border-active);
+}
+
+.textarea {
+  background: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: all 0.15s;
+  min-height: 80px;
+  resize: vertical;
+}
+
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.textarea:focus {
+  border: var(--border-active);
+}
+
+/* === LIST ROW === */
+
+.list-row {
+  background: var(--color-surface);
+  border-bottom: var(--border-default);
+  padding: var(--space-md) var(--space-lg);
+}
+
+/* === SELECTION STATES === */
+
+.selectable {
+  background: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.selectable:hover {
+  border-color: var(--color-border-active);
+}
+
+.selectable.selected {
+  border: var(--border-active);
+}

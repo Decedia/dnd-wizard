@@ -44,8 +44,8 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             : [0, 1, 2].map((i) => (
                 <span key={`ds-s-${i}`}>
                   {character.deathSaveSuccesses > i
-                    ? <Circle weight="fill" size={12} color="#111111" />
-                    : <Circle weight="regular" size={12} color="#cccccc" />}
+                     ? <Circle weight="fill" size={12} color="var(--color-text-primary)" />
+                     : <Circle weight="regular" size={12} color="var(--color-border)" />}
                 </span>
               ))}
         </div>
@@ -66,8 +66,8 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             : [0, 1, 2].map((i) => (
                 <span key={`ds-f-${i}`}>
                   {character.deathSaveFailures > i
-                    ? <Circle weight="fill" size={12} color="#111111" />
-                    : <Circle weight="regular" size={12} color="#cccccc" />}
+                     ? <Circle weight="fill" size={12} color="var(--color-text-primary)" />
+                     : <Circle weight="regular" size={12} color="var(--color-border)" />}
                 </span>
               ))}
         </div>

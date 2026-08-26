@@ -15,8 +15,8 @@ export function SpeedStat({ value }: SpeedStatProps) {
             width="80"
             height="100"
             rx="12"
-            fill="#ffffff"
-            stroke="#e5e5e5"
+            fill="var(--color-surface)"
+            stroke="var(--color-border)"
             strokeWidth="1"
           />
           <rect
@@ -26,7 +26,7 @@ export function SpeedStat({ value }: SpeedStatProps) {
             height="84"
             rx="8"
             fill="none"
-            stroke="#f0f0f0"
+            stroke="var(--color-bg)"
             strokeWidth="1"
             opacity="0.8"
           />
