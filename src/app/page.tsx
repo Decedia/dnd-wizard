@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromPdf } from "@/lib/pdf";
-import { Upload, Dices } from "lucide-react";
+import { Upload } from "lucide-react";
 
 export default function Home() {
   const characters = getCharacters();
@@ -38,15 +38,6 @@ export default function Home() {
       <AppHeader title="DND Wizard" subtitle="My Characters" />
 
       <main className="px-4 py-4 pb-28">
-        <div className="mb-4">
-          <Link
-            href="/dice"
-            className="btn btn-primary flex items-center justify-center gap-2"
-          >
-            <Dices className="h-4 w-4" />
-            <span>Dice Roller</span>
-          </Link>
-        </div>
         <div className="mb-5">
           <button
             onClick={handleImportClick}
