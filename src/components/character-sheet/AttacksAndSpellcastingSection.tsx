@@ -83,9 +83,9 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
           {weaponAttacks.map((attack) => {
             const details = getWeaponAttackDetails(attack);
             return (
-              <div key={attack.id} className="card bg-ink px-4 py-4">
+              <div key={attack.id} className="list-row">
                 <div className="flex items-center gap-3">
-                  <span className="text-base font-bold text-paper flex-1">{attack.name}</span>
+                  <span className="text-base font-bold text-[var(--color-text-primary)] flex-1">{attack.name}</span>
                   {details && (
                     <span className="text-sm font-bold text-ink bg-paper px-3 py-1.5 surface">
                       +{details.attackBonus} to hit ({details.abilityKey.toUpperCase()})
@@ -95,7 +95,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <div className="flex items-center gap-3 flex-wrap">
                   {details && (
                     <>
-                      <span className="text-sm text-paper">
+                      <span className="text-sm text-[var(--color-text-primary)]">
                         {details.damageDice || "—"}
                         {details.damageBonus ? ` +${details.damageBonus}` : ""}
                       </span>
@@ -103,8 +103,8 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                       <span className="text-sm text-paper-muted font-medium">{details.damageType}</span>
                     </>
                   )}
-                  {!details && attack.damageType && (
-                    <span className="text-sm text-paper font-bold">{attack.damageType}</span>
+                    {!details && attack.damageType && (
+                    <span className="text-sm text-[var(--color-text-primary)] font-bold">{attack.damageType}</span>
                   )}
                   {attack.sneakAttack && (
                     <span className="text-xs font-bold text-ink bg-paper px-2.5 py-1.5 surface">

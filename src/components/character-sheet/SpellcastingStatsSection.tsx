@@ -93,7 +93,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
         <span className="field-label-light">Cantrips</span>
         <div className="space-y-2">
           {character.cantrips.map((cantrip) => (
-            <div key={cantrip.id} className="card flex items-center gap-2 px-3 py-2">
+            <div key={cantrip.id} className="list-row flex items-center gap-2">
               {editMode ? (
                 <>
                   <input
@@ -114,7 +114,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                   </button>
                 </>
               ) : (
-                <span className="text-sm font-bold text-paper">{cantrip.name || "Unnamed Cantrip"}</span>
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">{cantrip.name || "Unnamed Cantrip"}</span>
               )}
             </div>
           ))}
@@ -123,7 +123,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
           <button
             type="button"
             onClick={addCantrip}
-            className="mt-2 btn-secondary border-dashed flex items-center gap-1.5"
+            className="mt-2 btn-secondary flex items-center gap-1.5"
           >
             <Plus weight="regular" size={16} />
             Add Cantrip
@@ -138,8 +138,8 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
             const total = character.spellSlots[level] ?? 0;
             const expended = character.spellSlotsExpended[level] ?? 0;
             return (
-               <div key={level} className="card flex items-center gap-3 px-3 py-2">
-                <span className="text-sm font-bold text-paper w-16">Level {level}</span>
+               <div key={level} className="list-row flex items-center gap-3">
+                 <span className="text-sm font-bold text-[var(--color-text-primary)] w-16">Level {level}</span>
                 {editMode ? (
                   <div className="flex items-center gap-2">
                     <input
@@ -161,7 +161,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                     />
                   </div>
                 ) : (
-                  <span className="text-sm font-bold text-paper">
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">
                     {total} / {expended} used
                   </span>
                 )}

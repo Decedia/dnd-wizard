@@ -103,11 +103,11 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                     <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                       {name}
                       {(isProficient || isExpert) && (
-                         <span className="flex items-center text-ink">
-                          {isExpert && <Star weight="fill" size={12} color="#111111" />}
-                          {isExpert && isProficient && <Circle weight="fill" size={12} color="#111111" className="-ml-0.5" />}
-                          {!isExpert && isProficient && <Circle weight="fill" size={12} color="#111111" />}
-                        </span>
+                          <span className="flex items-center text-ink">
+                           {isExpert && <Star weight="fill" size={12} color="var(--color-text-primary)" />}
+                           {isExpert && isProficient && <Circle weight="fill" size={12} color="var(--color-text-primary)" className="-ml-0.5" />}
+                           {!isExpert && isProficient && <Circle weight="fill" size={12} color="var(--color-text-primary)" />}
+                         </span>
                       )}
                     </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
@@ -129,7 +129,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
             type="number"
             value={character.passivePerception}
             readOnly
-            className="input max-w-[120px] bg-paper-muted"
+            className="input max-w-[120px]"
           />
         </div>
       )}

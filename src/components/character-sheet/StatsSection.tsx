@@ -58,7 +58,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               type="number"
               value={character.proficiencyBonus}
               readOnly
-              className="input bg-paper-muted"
+              className="input"
             />
           ) : (
             <span className="text-sm font-semibold text-ink">+{character.proficiencyBonus}</span>
@@ -70,7 +70,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
               type="number"
               value={character.initiative}
               readOnly
-              className="input bg-paper-muted"
+              className="input"
             />
           ) : (
             <span className="text-sm font-semibold text-ink">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
@@ -109,7 +109,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
                     type="number"
                     value={st.value}
                     readOnly
-                    className="input w-20 text-center bg-paper-muted"
+                    className="input w-20 text-center"
                   />
                 ) : (
                   <span className="text-sm font-semibold text-ink w-20 text-right">

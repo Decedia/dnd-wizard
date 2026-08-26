@@ -160,7 +160,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           const isCustom = item.source === "custom";
           const dropdownValue = isCustom ? "Custom Item" : (item.srdItemName || item.name || "");
           return (
-            <div key={item.id} className="card flex flex-col gap-2 px-3 py-2.5">
+            <div key={item.id} className="list-row flex flex-col gap-2">
               {editMode ? (
                 <>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -219,15 +219,15 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <button
                         type="button"
                         onClick={() => toggleEquip(item.id, item.itemType)}
-                        className={`btn px-2.5 py-1 text-xs flex items-center gap-1.5 ${
+                        className={`px-2.5 py-1 text-xs flex items-center gap-1.5 ${
                           item.equipped
-                            ? "btn btn-primary"
-                            : "btn btn-secondary"
+                            ? "btn-primary"
+                            : "btn-secondary"
                         }`}
                       >
-                        {item.equipped
-                          ? <CheckCircle weight="fill" size={16} color="#111111" />
-                          : <Circle weight="regular" size={16} color="#cccccc" />}
+                         {item.equipped
+                           ? <CheckCircle weight="fill" size={16} color="var(--color-text-primary)" />
+                           : <Circle weight="regular" size={16} color="var(--color-border)" />}
                         {item.equipped ? "Equipped" : "Equip"}
                       </button>
                     )}
@@ -244,19 +244,19 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       value={item.description || ""}
                       onChange={(e) => updateItem(item.id, { description: e.target.value })}
                       onBlur={onFieldBlur}
-                      className="input min-h-[60px] mt-2 rounded-lg"
+                      className="textarea min-h-[60px] mt-2"
                       placeholder="Item description"
                     />
                   )}
                 </>
               ) : (
                 <div className="flex items-center gap-3 flex-wrap">
-                  <span className="text-sm font-bold text-paper">{item.name || "Unnamed Item"}</span>
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name || "Unnamed Item"}</span>
                   {item.quantity > 1 && (
                     <span className="text-xs text-paper-muted font-medium">x{item.quantity}</span>
                   )}
                   {item.equipped && (
-                    <span className="badge-light text-paper bg-paper/10">EQUIPPED</span>
+                    <span className="badge-light text-[var(--color-text-primary)] bg-paper/10">EQUIPPED</span>
                   )}
                 </div>
               )}
@@ -277,7 +277,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           <button
             type="button"
             onClick={addCustomItem}
-            className="mt-4 btn-secondary border-dashed flex items-center gap-1.5"
+            className="mt-4 btn-secondary flex items-center gap-1.5"
           >
             <Plus weight="regular" size={16} />
             Add Custom Item

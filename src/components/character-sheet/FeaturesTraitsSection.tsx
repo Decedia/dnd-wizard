@@ -48,7 +48,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         {character.features.map((feature) => {
           const isLocked = feature.locked === true;
           return (
-            <div key={feature.id} className={`card p-3 ${isLocked ? "border-paper bg-paper-muted" : "border-paper bg-ink"}`}>
+            <div key={feature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`}>
               {editMode ? (
                 <>
                   <div className="flex items-center justify-between gap-3">
@@ -77,18 +77,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                       </button>
                     )}
                   </div>
-                  <textarea
+                    <textarea
                     value={feature.description}
                     readOnly={isLocked}
                     onChange={(e) => !isLocked && updateItem(feature.id, { description: e.target.value })}
                     onBlur={isLocked ? undefined : onFieldBlur}
-                    className={`textarea.input mt-2 min-h-[80px] ${isLocked ? "bg-paper-muted" : ""}`}
+                    className={`textarea mt-2 min-h-[80px] ${isLocked ? "bg-paper-muted" : ""}`}
                     placeholder="Description"
                   />
                 </>
               ) : (
                 <div>
-                  <h3 className="text-sm font-bold text-paper">{feature.name}</h3>
+                  <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>
                   {feature.description && <DescriptionText>{feature.description}</DescriptionText>}
                 </div>
               )}
@@ -100,7 +100,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           <button
             type="button"
             onClick={addItem}
-            className="mt-3 btn-secondary border-dashed flex items-center gap-1.5"
+            className="mt-3 btn-secondary flex items-center gap-1.5"
           >
             <Plus weight="regular" size={16} />
             Add Feature

@@ -114,7 +114,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               const isCustom = spell.source === "custom";
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               return (
-                <div key={spell.id} className="card flex flex-wrap items-center gap-2 px-3 py-2">
+                <div key={spell.id} className="list-row flex flex-wrap items-center gap-2">
                   {editMode ? (
                     <>
                       <select
@@ -236,7 +236,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <button
               type="button"
               onClick={() => addItem()}
-              className="mt-3 btn-secondary border-dashed flex items-center gap-1.5"
+              className="mt-3 btn-secondary flex items-center gap-1.5"
             >
               <Plus weight="regular" size={16} />
               Add Spell
@@ -250,7 +250,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 {character.costumeSpells.map((costumeSpell) => {
                   const isEditing = editingCostumeSpellId === costumeSpell.id;
                   return (
-                    <div key={costumeSpell.id} className="card bg-ink p-3">
+                    <div key={costumeSpell.id} className="card p-3">
                       {isEditing ? (
                         <div className="space-y-2">
                           <input
@@ -265,14 +265,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                             value={costumeSpell.description}
                             onChange={(e) => updateCostumeSpell(costumeSpell.id, { description: e.target.value })}
                             onBlur={onFieldBlur}
-                            className="textarea.input min-h-[60px]"
+                            className="textarea min-h-[60px]"
                             placeholder="Description"
                           />
                           <div className="flex gap-2">
                             <button
                               type="button"
                               onClick={() => saveCostumeSpellEdit(costumeSpell.id)}
-                               className="btn px-3 py-1.5 text-xs text-ink"
+                               className="btn-primary px-3 py-1.5 text-xs"
                             >
                               Save
                             </button>
@@ -288,7 +288,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       ) : (
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1">
-                            <div className="text-sm font-bold text-paper">{costumeSpell.name || "Unnamed Costume Spell"}</div>
+                            <div className="text-sm font-bold text-[var(--color-text-primary)]">{costumeSpell.name || "Unnamed Costume Spell"}</div>
                             {costumeSpell.description && (
                               <DescriptionText>{costumeSpell.description}</DescriptionText>
                             )}
@@ -323,7 +323,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <button
                   type="button"
                   onClick={() => setIsAddingCostumeSpell(true)}
-                  className="mt-3 btn-secondary border-dashed flex items-center gap-1.5"
+                  className="mt-3 btn-secondary flex items-center gap-1.5"
                 >
                   <Plus weight="regular" size={16} />
                   Add Costume Spell
@@ -343,14 +343,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     value={newCostumeSpell.description}
                     onChange={(e) => setNewCostumeSpell({ ...newCostumeSpell, description: e.target.value })}
                     onBlur={onFieldBlur}
-                    className="textarea.input min-h-[60px]"
+                    className="textarea min-h-[60px]"
                     placeholder="Description"
                   />
                   <div className="flex gap-2">
                     <button
                       type="button"
                       onClick={addCostumeSpell}
-                               className="btn px-3 py-1.5 text-xs text-ink"
+                               className="btn-primary px-3 py-1.5 text-xs"
                     >
                       Add
                     </button>
