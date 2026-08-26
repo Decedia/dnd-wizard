@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { WizardNav } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
@@ -19,6 +19,8 @@ import {
   Check,
   Minus,
   Plus,
+  Info,
+  X,
 } from "phosphor-react";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
@@ -60,7 +62,7 @@ interface LevelInfo {
   cantripsKnown?: number;
   spellsKnown?: number;
   classFeatures: { name: string; value: string }[];
-  subclassOptions?: { name: string; description: string }[];
+  subclassOptions?: { name: string; description: string; hasDetails: boolean }[];
   subclassFeatureChoices?: { name: string; options: string[]; count?: number }[];
   hasSpellSelection: boolean;
   spellSelectionCount: number;
@@ -153,7 +155,7 @@ function buildLevelInfos(
     const unlockLevel = classData.subclassLevel ?? 3;
     const subclasses = getStaticSubclasses(className);
     const subclassOptions = level === unlockLevel && !character.subclass && subclasses.length > 0
-      ? subclasses.map((s) => ({ name: s.name, description: s.description }))
+      ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true }))
       : undefined;
 
     const subclassFeatureChoices: { name: string; options: string[]; count?: number }[] = [];
@@ -499,6 +501,7 @@ function LevelCard({
   averageHp,
 }: LevelCardProps) {
   const [showSpellSelection, setShowSpellSelection] = useState(false);
+  const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
   const lvl = info.level;
 
   const isComplete = hpValue > 0 &&
@@ -639,21 +642,32 @@ function LevelCard({
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Choose Subclass</div>
                 <div className="space-y-1.5 mt-1">
                   {info.subclassOptions.map((opt) => (
-                    <button
-                      key={opt.name}
-                      type="button"
-                      onClick={() => onSubclassSelect(opt.name)}
-                      className={`w-full p-2 text-left rounded-[var(--radius-sm)] border transition-all ${
-                        subclassSelection === opt.name
-                          ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
-                          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
-                      {opt.description && (
-                        <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{opt.description}</p>
+                    <div key={opt.name} className="flex gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => onSubclassSelect(opt.name)}
+                        className={`flex-1 p-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                          subclassSelection === opt.name
+                            ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
+                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                        {opt.description && (
+                          <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{opt.description}</p>
+                        )}
+                      </button>
+                      {opt.hasDetails && (
+                        <button
+                          type="button"
+                          onClick={() => setShowSubclassDetails(opt.name)}
+                          className="h-8 w-8 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:border-[var(--color-border-active)] hover:text-[var(--color-text-primary)] transition-all"
+                          title="View Details"
+                        >
+                          <Info className="h-4 w-4" />
+                        </button>
                       )}
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -720,6 +734,79 @@ function LevelCard({
           )}
         </div>
       </div>
+
+      {showSubclassDetails && (
+        <SubclassDetailsModal
+          subclass={showSubclassDetails}
+          characterClass={character.class}
+          onClose={() => setShowSubclassDetails(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+function SubclassDetailsModal({
+  subclass,
+  characterClass,
+  onClose,
+}: {
+  subclass: string;
+  characterClass: string;
+  onClose: () => void;
+}) {
+  const details = getStaticSubclassDetails(characterClass, subclass);
+  if (!details) return null;
+
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
+      <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col">
+        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+          <div className="text-sm font-bold text-[var(--color-text-primary)]">{subclass}</div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+          {details.description && details.description.length > 0 && (
+            <div className="space-y-2">
+              {details.description.map((desc: string, idx: number) => (
+                <p key={idx} className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
+                  {desc}
+                </p>
+              ))}
+            </div>
+          )}
+          {details.features && details.features.length > 0 && (
+            <div className="space-y-3">
+              <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
+                Features
+              </div>
+              {details.features.map((f: any, idx: number) => (
+                <div key={idx} className="rounded-[var(--radius-sm)] border border-[var(--color-border)] p-3 space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-[var(--color-text-primary)]">{f.name}</span>
+                    {f.level && (
+                      <span className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded-full">
+                        Lv {f.level}
+                      </span>
+                    )}
+                  </div>
+                  {f.description && f.description.length > 0 && (
+                    <p className="text-[10px] text-[var(--color-text-muted)] leading-relaxed">
+                      {f.description.join(" ")}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -733,12 +820,18 @@ function AsiSelector({
   baseScores: Record<AbilityKey, number>;
   onChange: (patch: Partial<AsiState>) => void;
 }) {
+  const isValid = (st?: AsiState): boolean => {
+    if (!st || !st.mode) return false;
+    if (st.mode === "single") return !!st.single;
+    return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
+  };
+
   return (
     <div className="space-y-2 mt-1">
       <div className="grid grid-cols-2 gap-1.5">
         <button
           type="button"
-          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
+          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined, confirmed: false })}
           className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
             state?.mode === "single"
               ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
@@ -749,7 +842,7 @@ function AsiSelector({
         </button>
         <button
           type="button"
-          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
+          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined, confirmed: false })}
           className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
             state?.mode === "double"
               ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
@@ -763,7 +856,7 @@ function AsiSelector({
       {state?.mode === "single" && (
         <select
           value={state.single || ""}
-          onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined })}
+          onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined, confirmed: false })}
           className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
         >
           <option value="">Select ability…</option>
@@ -782,7 +875,7 @@ function AsiSelector({
         <div className="space-y-1.5">
           <select
             value={state.d1 || ""}
-            onChange={(e) => onChange({ d1: (e.target.value || undefined) as AbilityKey | undefined })}
+            onChange={(e) => onChange({ d1: (e.target.value || undefined) as AbilityKey | undefined, confirmed: false })}
             className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
           >
             <option value="">First ability…</option>
@@ -798,7 +891,7 @@ function AsiSelector({
           </select>
           <select
             value={state.d2 || ""}
-            onChange={(e) => onChange({ d2: (e.target.value || undefined) as AbilityKey | undefined })}
+            onChange={(e) => onChange({ d2: (e.target.value || undefined) as AbilityKey | undefined, confirmed: false })}
             className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
           >
             <option value="">Second ability…</option>
@@ -812,6 +905,22 @@ function AsiSelector({
               );
             })}
           </select>
+        </div>
+      )}
+
+      {isValid(state) && !state?.confirmed && (
+        <button
+          type="button"
+          onClick={() => onChange({ confirmed: true })}
+          className="w-full py-2 text-xs font-semibold rounded-[var(--radius-sm)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90 transition-all"
+        >
+          Confirm ASI
+        </button>
+      )}
+
+      {state?.confirmed && (
+        <div className="text-xs text-green-600 font-semibold flex items-center gap-1">
+          <Check className="h-3 w-3" /> ASI Confirmed
         </div>
       )}
     </div>

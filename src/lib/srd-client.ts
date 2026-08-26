@@ -289,6 +289,22 @@ export function getStaticSubclasses(className: string): SRDSubclass[] {
     });
 }
 
+export function getStaticSubclassDetails(className: string, subclassName: string): { name: string; description: string[]; features: { name: string; description: string[]; level?: number }[] } | null {
+  const all = (subclassesData as any).subclasses as any[];
+  const found = all.find((s) => s.class === className && s.name === subclassName);
+  if (!found) return null;
+
+  return {
+    name: found.name,
+    description: Array.isArray(found.description) ? found.description : [found.description || ""],
+    features: (found.features || []).map((f: any) => ({
+      name: f.name,
+      description: Array.isArray(f.description) ? f.description : [f.description || ""],
+      level: f.level,
+    })),
+  };
+}
+
 export function getStaticSpells(): SRDSpell[] {
   return Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
 }
