@@ -14,12 +14,10 @@ import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
 import { StepAppearance } from "@/components/character-creator/StepAppearance";
 import { WizardNav } from "@/components/WizardNav";
-import { StepFeatureSelections } from "@/components/character-creator/StepFeatureSelections";
 import {
   initializeCharacter,
   finalizeCreation,
   getCreationSteps,
-  getFeatureSelections,
   getValidationMessage,
   syncBaseFeatures,
   type Character,
@@ -35,7 +33,6 @@ export default function CharacterCreate() {
   const totalSteps = steps.length;
   const currentStep = steps[step];
   const isLastStep = step === totalSteps - 1;
-  const featureSelections = useMemo(() => getFeatureSelections(character), [character]);
 
   const currentValidationError = currentStep?.required && !currentStep.completed
     ? getValidationMessage(currentStep, character)
@@ -87,15 +84,10 @@ export default function CharacterCreate() {
         return <StepEquipment data={character} onChange={update} />;
       case "appearance":
         return <StepAppearance data={character} onChange={update} />;
-      case "feature-selections": {
-        const selectionIndex = parseInt(currentStep.id.replace("feature-selection-", ""), 10);
-        const selections = featureSelections[selectionIndex] ? [featureSelections[selectionIndex]] : [];
-        return <StepFeatureSelections data={character} onChange={update} selections={selections} />;
-      }
       default:
         return null;
     }
-  }, [currentStep, character, update, featureSelections]);
+  }, [currentStep, character, update]);
 
   const isLevelStep = currentStep?.type === "level";
 
