@@ -47,7 +47,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               key={sub.name}
               type="button"
               onClick={() => handleSelect(sub.name)}
-              className={`btn w-full p-4 text-left rounded-full ${
+              className={`btn w-full p-4 text-left rounded-xl ${
                 isSelected
                   ? "bg-paper-muted border-l-2 border-ink"
                   : "bg-white border border-border-muted"

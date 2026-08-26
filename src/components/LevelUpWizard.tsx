@@ -760,7 +760,7 @@ function SectionRenderer({
                 key={opt.name}
                 type="button"
                 onClick={() => onSubclassSelect(opt.name)}
-                className={`btn w-full p-2.5 text-left ${
+                className={`btn w-full p-2.5 text-left rounded-xl ${
                   isSel
                     ? "bg-paper-muted border-l-2 border-ink"
                     : "bg-white border border-border-muted"
@@ -800,7 +800,7 @@ function SectionRenderer({
                         key={opt}
                         type="button"
                         onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
-                        className={`btn w-full px-2.5 py-1.5 text-left ${
+                        className={`btn w-full px-2.5 py-1.5 text-left rounded-xl ${
                           isSel ? "bg-paper-muted border-l-2 border-ink" : "bg-white border border-border-muted"
                         }`}
                       >
@@ -841,7 +841,7 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(s.name)}
                 disabled={disabled}
-                className={`btn px-2 py-1.5 text-left text-[11px] ${
+                className={`btn px-2 py-1.5 text-left text-[11px] rounded-xl ${
                   isSel ? "bg-paper-muted border-l-2 border-ink" : disabled ? "bg-white border border-border-muted opacity-50" : "bg-white border border-border-muted"
                 }`}
               >
@@ -890,7 +890,7 @@ function SectionRenderer({
                 type="button"
                 onClick={() => toggle(sp.name)}
                 disabled={disabled}
-                className={`btn w-full px-2.5 py-1.5 text-left text-[11px] ${
+                className={`btn w-full px-2.5 py-1.5 text-left text-[11px] rounded-xl ${
                   isSel ? "bg-paper-muted border-l-2 border-ink" : disabled ? "bg-white border border-border-muted opacity-50" : "bg-white border border-border-muted"
                 }`}
               >
