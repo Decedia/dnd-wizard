@@ -9,7 +9,7 @@
         "str",
         "con"
       ],
-      "flavorText": "A fierce warrior of primitive background who can enter a battle rage.",
+      "flavorText": "Barbarians are mighty warriors who are powered by primal forces of the multiverse that manifest as a Rage. People of towns and cities take pride in their settled ways, but to a barbarian, a settled life is a sign of weakness. The strong embrace nature\u2014valuing keen instincts, primal physicality, and ferocious rage. Barbarians come alive in the chaos of combat. They can enter a berserk state where rage takes over, giving them superhuman strength and resilience.",
       "proficiencies": {
         "armor": [
           "light",
@@ -517,7 +517,7 @@
         "dex",
         "cha"
       ],
-      "flavorText": "An inspiring magician whose power echoes the music of creation.",
+      "flavorText": "Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions. Whether scholar, skald, or scoundrel, a bard weaves magic through words and music to inspire allies, demoralize foes, manipulate minds, create illusions, and even heal wounds. The greatest strength of bards is their sheer versatility. Many bards prefer to stick to the sidelines in combat, using their magic to inspire their allies and hinder their foes from a distance.",
       "proficiencies": {
         "armor": [
           "light"
@@ -1998,7 +1998,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "A priestly champion who wields divine magic in service of a higher power.",
+      "flavorText": "Clerics can reach out to the divine magic of the Outer Planes and channel it to bolster people and battle foes. Clerics combine the helpful magic of healing and inspiring their allies with spells that harm and hinder foes. They can provoke awe and dread, lay curses of plague or poison, and even call down flames from heaven to consume their enemies. For those evildoers who will benefit most from a mace to the head, clerics depend on their combat training to let them wade into melee with the power of the gods on their side.",
       "proficiencies": {
         "armor": [
           "light",
@@ -2665,7 +2665,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "A priest of the Old Faith, wielding the powers of nature and adopting animal forms.",
+      "flavorText": "Druids call on the forces of nature, harnessing magic to heal, transform into animals, and wield elemental destruction. Druids are priests of the Old Faith, wielding the powers of nature and adopting animal forms. They are at home in the wilds, serving as guardians of the natural world and protectors of the balance between civilization and nature.",
       "proficiencies": {
         "armor": [
           "light",
@@ -3213,7 +3213,7 @@
         "str",
         "con"
       ],
-      "flavorText": "A master of martial combat, skilled with weapons and armor.",
+      "flavorText": "Fighters all share an unparalleled prowess with weapons and armor, and are well acquainted with death, both meting it out and defying it. A master of martial combat, skilled with weapons and armor. Fighters are the most versatile and adaptable of the martial classes, capable of fighting in any situation with the right tools and training.",
       "proficiencies": {
         "armor": [
           "light",
@@ -3709,7 +3709,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection.",
+      "flavorText": "Monks focus their internal reservoirs of power to create extraordinary, even supernatural, effects. A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection. Monks use discipline and training to channel their inner energy into devastating attacks and incredible feats of agility.",
       "proficiencies": {
         "armor": [],
         "weapons": [
@@ -4241,7 +4241,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "A holy warrior bound to a sacred oath of justice and devotion.",
+      "flavorText": "Paladins live on the front lines of the cosmic struggle, united by their oaths against the forces of annihilation. A devout warrior bound to a sacred oath of justice and devotion. Paladins combine the helpful magic of healing and inspiring their allies with spells that harm and hinder foes, all while standing as bulwarks against the forces of evil.",
       "proficiencies": {
         "armor": [
           "light",
@@ -4762,7 +4762,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "A warrior who combats threats on the edges of civilization.",
+      "flavorText": "Rangers are honed with deadly focus and harness primal powers to protect the world from the ravages of monsters and tyrants. A warrior who combats threats on the edges of civilization. Rangers are skilled hunters and trackers, using their knowledge of the wilderness to protect the innocent from the dangers that lurk in the wild.",
       "proficiencies": {
         "armor": [
           "light",
@@ -5348,7 +5348,7 @@
         "dex",
         "int"
       ],
-      "flavorText": "A scoundrel who uses stealth and trickery to overcome obstacles and enemies.",
+      "flavorText": "Rogues have a knack for finding the solution to just about any problem, prioritizing subtle strikes over brute strength. A scoundrel who uses stealth and trickery to overcome obstacles and enemies. Rogues are skilled in the arts of stealth, deception, and infiltration, making them invaluable members of any adventuring party.",
       "proficiencies": {
         "armor": [
           "light"
@@ -5876,7 +5876,7 @@
         "con",
         "cha"
       ],
-      "flavorText": "A spellcaster who draws on inherent magic from a gift or bloodline.",
+      "flavorText": "Sorcerers harness and channel the raw, roiling power of innate magic that is stamped into their very being. A spellcaster who draws on inherent magic from a gift or bloodline. Sorcerers carry a magical birthright conferred upon them by an exotic bloodline, some otherworldly influence, or exposure to unknown cosmic forces.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -6473,7 +6473,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "A wielder of magic that is derived from a bargain with an extraplanar entity.",
+      "flavorText": "Warlocks quest for knowledge that lies hidden in the fabric of the multiverse, piecing together arcane secrets to bolster their own power. A wielder of magic that is derived from a bargain with an extraplanar entity. Warlocks are seekers of the arcane secrets that lie hidden in the fabric of the multiverse, making pacts with otherworldly beings to gain power.",
       "proficiencies": {
         "armor": [
           "light"
@@ -7072,7 +7072,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "A scholarly spellcaster who wields magic through study and arcane knowledge.",
+      "flavorText": "Wizards cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. A scholarly spellcaster who wields magic through study and arcane knowledge. Wizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of all kinds.",
       "proficiencies": {
         "armor": [],
         "weapons": [],

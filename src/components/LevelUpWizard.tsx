@@ -42,6 +42,7 @@ interface LevelUpWizardProps {
   maxLevel?: number;
   title?: string;
   subtitle?: string;
+  startFromLevelOne?: boolean;
 }
 
 interface LevelInfo {
@@ -196,9 +197,9 @@ function buildLevelInfos(
   return infos;
 }
 
-export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle }: LevelUpWizardProps) {
+export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
   const classData = character.class ? getStaticClass(character.class) : undefined;
-  const currentLevel = character.level || 1;
+  const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(character.con);
   const averageHp = getHitDieAverage(hitDie) + conMod;
@@ -259,7 +260,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
   };
 
-  const allLevelsComplete = levelInfos.length > 0 && levelInfos.every((info) => {
+  const allLevelsComplete = levelInfos.length === 0 || levelInfos.every((info) => {
     const lvl = info.level;
     if (!hpValues[lvl] || hpValues[lvl] <= 0) return false;
     if (info.asi && !asiIsValid(asiSelections[lvl])) return false;
@@ -288,21 +289,33 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       },
     };
 
-    const existingLevelHp = character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
-    if (existingLevelHp) {
-      const mergedLevelHp: Record<number, number> = { ...existingLevelHp };
+    if (startFromLevelOne) {
+      const levelHp: Record<number, number> = { 1: hitDie + conMod };
       for (const [lvlStr, gain] of Object.entries(hpValues)) {
         const lvl = Number(lvlStr);
-        mergedLevelHp[lvl] = (mergedLevelHp[lvl] || 0) + gain;
+        levelHp[lvl] = gain;
       }
       let sum = 0;
-      for (const v of Object.values(mergedLevelHp)) sum += v;
-      draft.levelHp = mergedLevelHp;
+      for (const v of Object.values(levelHp)) sum += v;
+      draft.levelHp = levelHp;
       draft.maxHp = sum;
     } else {
-      let totalHp = 0;
-      for (const v of Object.values(hpValues)) totalHp += v;
-      draft.maxHp = (character.maxHp || 0) + totalHp;
+      const existingLevelHp = character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
+      if (existingLevelHp) {
+        const mergedLevelHp: Record<number, number> = { ...existingLevelHp };
+        for (const [lvlStr, gain] of Object.entries(hpValues)) {
+          const lvl = Number(lvlStr);
+          mergedLevelHp[lvl] = (mergedLevelHp[lvl] || 0) + gain;
+        }
+        let sum = 0;
+        for (const v of Object.values(mergedLevelHp)) sum += v;
+        draft.levelHp = mergedLevelHp;
+        draft.maxHp = sum;
+      } else {
+        let totalHp = 0;
+        for (const v of Object.values(hpValues)) totalHp += v;
+        draft.maxHp = (character.maxHp || 0) + totalHp;
+      }
     }
     draft.currentHp = draft.maxHp;
 

@@ -72,18 +72,6 @@ export default function CharacterCreate() {
     }
   }, [step]);
 
-  const renderStep = useCallback(() => {
-    if (!currentStep) return null;
-    switch (currentStep.type) {
-      case "identity":
-        return <StepIdentity data={character} onChange={update} />;
-      case "race":
-        return <StepRace data={character} onChange={update} />;
-      case "class":
-        return <StepClass data={character} onChange={update} />;
-      case "subclass":
-        return <StepSubclass data={character} onChange={update} />;
-      case "level":
   const isLevelStep = currentStep?.type === "level";
 
   if (isLevelStep) {
@@ -95,28 +83,26 @@ export default function CharacterCreate() {
           setCharacter(updated);
           setStep((s) => s + 1);
         }}
-        minLevel={2}
+        minLevel={1}
         maxLevel={10}
         title="Starting Level"
         subtitle="Choose your starting level and roll HP"
+        startFromLevelOne
       />
     );
   }
 
-  return (
-          <LevelUpWizard
-            character={character}
-            onCancel={() => setStep((s) => Math.max(0, s - 1))}
-            onComplete={(updated) => {
-              setCharacter(updated);
-              setStep((s) => s + 1);
-            }}
-            minLevel={2}
-            maxLevel={10}
-            title="Starting Level"
-            subtitle="Choose your starting level and roll HP"
-          />
-        );
+  const renderStep = useCallback(() => {
+    if (!currentStep) return null;
+    switch (currentStep.type) {
+      case "identity":
+        return <StepIdentity data={character} onChange={update} />;
+      case "race":
+        return <StepRace data={character} onChange={update} />;
+      case "class":
+        return <StepClass data={character} onChange={update} />;
+      case "subclass":
+        return <StepSubclass data={character} onChange={update} />;
       case "abilities":
         return <StepAbilities data={character} onChange={update} />;
       case "skills":
