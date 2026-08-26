@@ -58,7 +58,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
               className="input bg-paper-muted"
             />
           ) : (
-            <span className="text-sm font-bold text-paper">{character.spellcastingAbility || "—"}</span>
+            <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.spellcastingAbility || "—"}</span>
           )}
         </Field>
         <div className="grid grid-cols-2 gap-3">
@@ -107,7 +107,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                   <button
                     type="button"
                     onClick={() => removeCantrip(cantrip.id)}
-                    className="text-paper-muted hover:text-paper"
+                    className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                     aria-label="Remove cantrip"
                   >
                     <X weight="regular" className="h-4 w-4" />
@@ -150,7 +150,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                       className="input w-16 text-center"
                       placeholder="Total"
                     />
-                    <span className="text-paper-muted font-bold">/</span>
+                    <span className="text-[var(--color-text-secondary)] font-bold">/</span>
                     <input
                       type="number"
                       value={expended}

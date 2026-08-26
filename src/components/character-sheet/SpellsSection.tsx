@@ -190,7 +190,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         <button
                           type="button"
                           onClick={() => setTooltip({ name: spell.name, description: descriptionText || "" })}
-                          className="text-paper-muted hover:text-paper shrink-0"
+                          className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] shrink-0"
                           aria-label={`Info about ${spell.name}`}
                         >
                           <Info weight="regular" className="h-4 w-4" />
@@ -199,7 +199,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       <button
                         type="button"
                         onClick={() => removeItem(spell.id)}
-                        className="text-paper-muted hover:text-paper shrink-0"
+                        className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] shrink-0"
                         aria-label="Remove spell"
                       >
                                 <X weight="regular" className="h-4 w-4" />
@@ -208,8 +208,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   ) : (
                     <div className="flex flex-col gap-1 w-full">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-sm font-bold text-paper">{spell.name}</span>
-                        <span className="text-xs text-paper-muted font-medium">Level {spell.level}</span>
+                        <span className="text-sm font-bold text-[var(--color-text-primary)]">{spell.name}</span>
+                        <span className="text-xs text-[var(--color-text-secondary)] font-medium">Level {spell.level}</span>
                         {character.spellcastingAbility && (() => {
                           const castingAbility = character.spellcastingAbility as keyof Character;
                           const castingMod = getModifier(character[castingAbility] as number);
@@ -221,7 +221,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         })()}
                       </div>
                       {(spell.damageDice || spell.damageType) && (
-                        <span className="text-sm text-paper font-medium">
+                        <span className="text-sm text-[var(--color-text-primary)] font-medium">
                           {spell.damageDice}{spell.damageType ? ` ${spell.damageType}` : ""}
                         </span>
                       )}
@@ -245,7 +245,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
 
           {character.costumeSpells.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-sm font-bold text-paper mb-2">Costume Spells</h3>
+              <h3 className="text-sm font-bold text-[var(--color-text-primary)] mb-2">Costume Spells</h3>
               <div className="space-y-2">
                 {character.costumeSpells.map((costumeSpell) => {
                   const isEditing = editingCostumeSpellId === costumeSpell.id;
@@ -298,7 +298,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                               <button
                                 type="button"
                                 onClick={() => setEditingCostumeSpellId(costumeSpell.id)}
-                                className="text-paper-muted hover:text-paper"
+                                className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                                 aria-label="Edit costume spell"
                               >
                                 <PencilSimple weight="regular" className="h-4 w-4" />
@@ -306,7 +306,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                               <button
                                 type="button"
                                 onClick={() => removeCostumeSpell(costumeSpell.id)}
-                                className="text-paper-muted hover:text-paper"
+                                className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                                 aria-label="Remove costume spell"
                               >
                         <X weight="regular" className="h-4 w-4" />

@@ -217,7 +217,7 @@ function ViewField({ label, value, className }: { label: string; value: string; 
   return (
     <div className={`flex flex-col gap-1.5 ${className || ""}`}>
       <span className="field-label-light">{label}</span>
-      <span className="text-sm font-bold text-paper">{value || "—"}</span>
+      <span className="text-sm font-bold text-[var(--color-text-primary)]">{value || "—"}</span>
     </div>
   );
 }

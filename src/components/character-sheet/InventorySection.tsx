@@ -234,7 +234,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                     <button
                       type="button"
                       onClick={() => removeItem(item.id)}
-                      className="text-xs font-bold text-paper hover:text-paper-muted transition-colors"
+                      className="text-xs font-bold text-[var(--color-text-primary)] hover:text-[var(--color-text-secondary)] transition-colors"
                     >
                       Remove
                     </button>
@@ -253,7 +253,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 <div className="flex items-center gap-3 flex-wrap">
                   <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name || "Unnamed Item"}</span>
                   {item.quantity > 1 && (
-                    <span className="text-xs text-paper-muted font-medium">x{item.quantity}</span>
+                    <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
                   )}
                   {item.equipped && (
                     <span className="badge-light text-[var(--color-text-primary)] bg-paper/10">EQUIPPED</span>
@@ -285,7 +285,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       )}
 
       <div className="mt-5 flex flex-wrap items-center gap-3 divider pt-4">
-        <span className="text-xs font-bold text-paper uppercase tracking-wider w-full mb-2">Currency</span>
+        <span className="text-xs font-bold text-[var(--color-text-primary)] uppercase tracking-wider w-full mb-2">Currency</span>
         {(["copper", "silver", "electrum", "gold", "platinum"] as const).map((field) => (
           <Field key={field} label={field.toUpperCase().slice(0, 2)}>
             {editMode ? (
@@ -297,7 +297,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 className="input w-20 text-center"
               />
             ) : (
-              <span className="text-sm font-bold text-paper">{character.currency[field]}</span>
+              <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.currency[field]}</span>
             )}
           </Field>
         ))}

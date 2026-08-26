@@ -48,7 +48,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
                 />
               </div>
               <div className="flex items-center justify-center pt-4">
-                <span className="text-paper-muted font-bold text-lg">/</span>
+                <span className="text-[var(--color-text-secondary)] font-bold text-lg">/</span>
               </div>
               <div className="flex-1">
                 <label className="field-label-light">
@@ -68,14 +68,14 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
             <div className="flex items-center gap-3">
               <div className="flex-1 text-center">
                 <span className="field-label-light">Current XP</span>
-                <span className="text-lg font-bold text-paper">{currentXp.toLocaleString()}</span>
+                <span className="text-lg font-bold text-[var(--color-text-primary)]">{currentXp.toLocaleString()}</span>
               </div>
               <div className="flex items-center justify-center pt-4">
-                <span className="text-paper-muted font-bold text-lg">/</span>
+                <span className="text-[var(--color-text-secondary)] font-bold text-lg">/</span>
               </div>
               <div className="flex-1 text-center">
                 <span className="field-label-light">Max XP</span>
-                <span className="text-lg font-bold text-paper">{maxXp.toLocaleString()}</span>
+                <span className="text-lg font-bold text-[var(--color-text-primary)]">{maxXp.toLocaleString()}</span>
               </div>
             </div>
           )}
@@ -87,7 +87,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <div className="flex items-center justify-between text-[10px] text-paper-muted font-medium">
+            <div className="flex items-center justify-between text-[10px] text-[var(--color-text-secondary)] font-medium">
               <span>
                 {progressPercent.toFixed(1)}% Complete
               </span>

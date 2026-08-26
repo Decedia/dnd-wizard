@@ -28,7 +28,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               placeholder="e.g. 10d8"
             />
           ) : (
-            <span className="text-sm font-bold text-paper">{character.hitDiceTotal || "—"}</span>
+            <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.hitDiceTotal || "—"}</span>
           )}
         </Field>
         <Field label="REMAINING">
@@ -41,7 +41,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               className="input"
             />
           ) : (
-            <span className="text-sm font-bold text-paper">{character.hitDiceRemaining}</span>
+            <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.hitDiceRemaining}</span>
           )}
         </Field>
       </div>

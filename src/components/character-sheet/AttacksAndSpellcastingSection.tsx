@@ -77,7 +77,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
         </div>
       )}
       {weaponAttacks.length === 0 && classAttacks.length === 0 ? (
-        <p className="text-sm text-paper-muted font-medium">Equip weapons in Inventory to auto-populate attacks.</p>
+        <p className="text-sm text-[var(--color-text-secondary)] font-medium">Equip weapons in Inventory to auto-populate attacks.</p>
       ) : (
         <div className="space-y-3">
           {weaponAttacks.map((attack) => {
@@ -99,8 +99,8 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                         {details.damageDice || "—"}
                         {details.damageBonus ? ` +${details.damageBonus}` : ""}
                       </span>
-                      <span className="text-sm text-paper-muted font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
-                      <span className="text-sm text-paper-muted font-medium">{details.damageType}</span>
+                      <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
+                      <span className="text-sm text-[var(--color-text-secondary)] font-medium">{details.damageType}</span>
                     </>
                   )}
                     {!details && attack.damageType && (

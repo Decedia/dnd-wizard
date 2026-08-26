@@ -28,7 +28,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
     <SectionCard id="death-saves" title="DEATH SAVES" icon={<Skull weight="regular" className="h-5 w-5" />}>
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-bold text-paper-muted uppercase tracking-wider">Successes</span>
+          <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Successes</span>
           {editMode
             ? [0, 1, 2].map((i) => (
                 <label key={`ds-s-${i}`} className="flex items-center cursor-pointer">
@@ -50,7 +50,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
               ))}
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs font-bold text-paper-muted uppercase tracking-wider">Failures</span>
+          <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Failures</span>
           {editMode
             ? [0, 1, 2].map((i) => (
                 <label key={`ds-f-${i}`} className="flex items-center cursor-pointer">

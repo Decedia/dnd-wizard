@@ -70,7 +70,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                       <button
                         type="button"
                         onClick={() => removeItem(feature.id)}
-                        className="text-paper-muted hover:text-paper"
+                        className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                         aria-label="Remove feature"
                       >
                         <X weight="regular" className="h-4 w-4" />
