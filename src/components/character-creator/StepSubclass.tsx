@@ -48,10 +48,10 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               key={sub.name}
               type="button"
               onClick={() => handleSelect(sub.name)}
-              className={`btn w-full p-4 text-left rounded-xl ${
+              className={`w-full p-4 text-left rounded-[var(--radius-md)] transition-all ${
                 isSelected
-                  ? "bg-white text-ink border-2 border-ink"
-                  : "bg-white text-ink border border-border-muted"
+                  ? "bg-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
+                  : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
               }`}
             >
               <div className="flex items-center justify-between">
@@ -65,25 +65,25 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                   {sub.description}
                 </p>
               )}
-                   {earnedFeatures.length > 0 && (
-                     <div className="mt-3 space-y-2 divider pt-3">
-                       <div className="text-card-title">
-                         Features
-                       </div>
-                       {earnedFeatures.map((f) => (
-                         <div key={f.name} className="card px-3 py-2">
-                       <div className="text-body">
-                         {f.name}
-                         {f.level ? <span className="ml-1 text-muted font-medium">Lv {f.level}</span> : null}
-                       </div>
-                       <p className="mt-1 text-description leading-relaxed whitespace-pre-line">
-                         {normalizeDescription(f.description)}
-                       </p>
-                     </div>
-                   ))}
-                 </div>
-               )}
-             </button>
+              {earnedFeatures.length > 0 && (
+                <div className="mt-3 space-y-2 border-t border-[var(--color-border)] pt-3">
+                  <div className="text-card-title">
+                    Features
+                  </div>
+                  {earnedFeatures.map((f) => (
+                    <div key={f.name} className="rounded-[var(--radius-sm)] border border-[var(--color-border)] px-3 py-2">
+                      <div className="text-body">
+                        {f.name}
+                        {f.level ? <span className="ml-1 text-muted font-medium">Lv {f.level}</span> : null}
+                      </div>
+                      <p className="mt-1 text-description leading-relaxed whitespace-pre-line">
+                        {normalizeDescription(f.description)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </button>
           );
         })}
       </div>
