@@ -1,6 +1,4 @@
 {
-  "generated": "2026-08-23T19:56:14.205Z",
-  "total": 319,
   "spells": [
     {
       "index": "acid-arrow",
@@ -31,7 +29,12 @@
       "subclasses": [
         "Lore",
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Acid",
+        "damageDice": "4d4"
+      },
+      "attackType": "ranged"
     },
     {
       "index": "acid-splash",
@@ -60,7 +63,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Acid",
+        "damageDice": "{'1': '1d6', '5': '2d6', '11': '3d6', '17': '4d6'}"
+      }
     },
     {
       "index": "aid",
@@ -529,7 +536,12 @@
         "Bard",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Force",
+        "damageDice": "3d10"
+      },
+      "attackType": "melee"
     },
     {
       "index": "arcanists-magic-aura",
@@ -843,7 +855,11 @@
       "classes": [
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Bludgeoning",
+        "damageDice": "3d6"
+      }
     },
     {
       "index": "blade-barrier",
@@ -869,7 +885,11 @@
       "classes": [
         "Cleric"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Slashing",
+        "damageDice": "6d10"
+      }
     },
     {
       "index": "bless",
@@ -935,7 +955,11 @@
       ],
       "subclasses": [
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Necrotic",
+        "damageDice": "8d8"
+      }
     },
     {
       "index": "blindness-deafness",
@@ -1050,7 +1074,11 @@
       "classes": [
         "Paladin"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "2d6"
+      }
     },
     {
       "index": "burning-hands",
@@ -1082,7 +1110,11 @@
       "subclasses": [
         "Lore",
         "Fiend"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "3d6"
+      }
     },
     {
       "index": "call-lightning",
@@ -1114,7 +1146,11 @@
       "subclasses": [
         "Lore",
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Lightning",
+        "damageDice": "3d10"
+      }
     },
     {
       "index": "calm-emotions",
@@ -1173,7 +1209,11 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Lightning",
+        "damageDice": "10d8"
+      }
     },
     {
       "index": "charm-person",
@@ -1237,7 +1277,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Necrotic",
+        "damageDice": "{'1': '1d8', '5': '2d8', '11': '3d8', '17': '4d8'}"
+      },
+      "attackType": "ranged"
     },
     {
       "index": "circle-of-death",
@@ -1267,7 +1312,11 @@
         "Warlock",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Necrotic",
+        "damageDice": "8d6"
+      }
     },
     {
       "index": "clairvoyance",
@@ -1359,7 +1408,11 @@
       ],
       "subclasses": [
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Poison",
+        "damageDice": "5d8"
+      }
     },
     {
       "index": "color-spray",
@@ -1582,7 +1635,11 @@
       ],
       "subclasses": [
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Cold",
+        "damageDice": "8d8"
+      }
     },
     {
       "index": "confusion",
@@ -1883,7 +1940,8 @@
         "Cleric",
         "Druid"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "attackType": "melee"
     },
     {
       "index": "contingency",
@@ -1976,7 +2034,11 @@
         "Druid",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Bludgeoning",
+        "damageDice": "2d8"
+      }
     },
     {
       "index": "control-weather",
@@ -2418,7 +2480,11 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "12d6"
+      }
     },
     {
       "index": "demiplane",
@@ -2602,7 +2668,11 @@
         "Warlock",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Force",
+        "damageDice": "4d6"
+      }
     },
     {
       "index": "disguise-self",
@@ -2665,7 +2735,11 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Force",
+        "damageDice": "10d6 + 40"
+      }
     },
     {
       "index": "dispel-evil-and-good",
@@ -2788,7 +2862,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "1d4"
+      }
     },
     {
       "index": "divine-word",
@@ -2946,7 +3024,11 @@
       ],
       "subclasses": [
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Psychic",
+        "damageDice": "3d6"
+      }
     },
     {
       "index": "druidcraft",
@@ -3036,7 +3118,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Force",
+        "damageDice": "{'1': '1d10', '5': '1d10', '11': '1d10', '17': '1d10'}"
+      },
+      "attackType": "ranged"
     },
     {
       "index": "enhance-ability",
@@ -3341,7 +3428,12 @@
       "classes": [
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Piercing",
+        "damageDice": "4d8"
+      },
+      "attackType": "melee"
     },
     {
       "index": "false-life",
@@ -3465,7 +3557,11 @@
         "Warlock",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Psychic",
+        "damageDice": "4d6"
+      }
     },
     {
       "index": "find-familiar",
@@ -3615,7 +3711,11 @@
         "Warlock",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Necrotic",
+        "damageDice": "7d8 + 30"
+      }
     },
     {
       "index": "fire-bolt",
@@ -3642,7 +3742,12 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "{'1': '1d10', '5': '2d10', '11': '3d10', '17': '4d10'}"
+      },
+      "attackType": "ranged"
     },
     {
       "index": "fire-shield",
@@ -3672,7 +3777,11 @@
       ],
       "subclasses": [
         "Fiend"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "2d8"
+      }
     },
     {
       "index": "fire-storm",
@@ -3700,7 +3809,11 @@
         "Druid",
         "Sorcerer"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "7d10"
+      }
     },
     {
       "index": "fireball",
@@ -3733,7 +3846,11 @@
       "subclasses": [
         "Lore",
         "Fiend"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "8d6"
+      }
     },
     {
       "index": "flame-blade",
@@ -3765,7 +3882,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "3d6"
+      }
     },
     {
       "index": "flame-strike",
@@ -3796,7 +3917,11 @@
       "subclasses": [
         "Devotion",
         "Fiend"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "4d6 + 4d6"
+      }
     },
     {
       "index": "flaming-sphere",
@@ -3829,7 +3954,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "2d6"
+      }
     },
     {
       "index": "flesh-to-stone",
@@ -4108,7 +4237,11 @@
       "classes": [
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Cold",
+        "damageDice": "10d6"
+      }
     },
     {
       "index": "gaseous-form",
@@ -4498,7 +4631,11 @@
       "classes": [
         "Cleric"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "20"
+      }
     },
     {
       "index": "guards-and-wards",
@@ -4595,7 +4732,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "4d6"
+      },
+      "attackType": "ranged"
     },
     {
       "index": "gust-of-wind",
@@ -4725,7 +4867,11 @@
       "classes": [
         "Cleric"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Necrotic",
+        "damageDice": "14d6"
+      }
     },
     {
       "index": "haste",
@@ -4846,7 +4992,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "2d8"
+      }
     },
     {
       "index": "hellish-rebuke",
@@ -4873,7 +5023,11 @@
       "classes": [
         "Warlock"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "2d10"
+      }
     },
     {
       "index": "heroes-feast",
@@ -5142,7 +5296,11 @@
       ],
       "subclasses": [
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Bludgeoning",
+        "damageDice": "2d8 + 4d6"
+      }
     },
     {
       "index": "identify",
@@ -5273,7 +5431,11 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "10d8"
+      }
     },
     {
       "index": "inflict-wounds",
@@ -5302,7 +5464,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Necrotic",
+        "damageDice": "3d10"
+      },
+      "attackType": "melee"
     },
     {
       "index": "insect-plague",
@@ -5335,7 +5502,11 @@
       ],
       "subclasses": [
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Piercing",
+        "damageDice": "4d10"
+      }
     },
     {
       "index": "instant-summons",
@@ -5643,7 +5814,11 @@
       "subclasses": [
         "Lore",
         "Land"
-      ]
+      ],
+      "damage": {
+        "damageType": "Lightning",
+        "damageDice": "8d6"
+      }
     },
     {
       "index": "locate-animals-or-plants",
@@ -5937,7 +6112,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Force",
+        "damageDice": "3d4 + 3"
+      }
     },
     {
       "index": "magic-mouth",
@@ -6328,7 +6507,11 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "20d6 + 20d6"
+      }
     },
     {
       "index": "mind-blank",
@@ -6572,7 +6755,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "2d10"
+      }
     },
     {
       "index": "move-earth",
@@ -6720,7 +6907,11 @@
       "classes": [
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Psychic",
+        "damageDice": "4d10"
+      }
     },
     {
       "index": "phantom-steed",
@@ -6842,7 +7033,8 @@
         "Warlock",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "attackType": "melee"
     },
     {
       "index": "plant-growth",
@@ -6904,7 +7096,11 @@
         "Wizard",
         "Druid"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Poison",
+        "damageDice": "{'1': '1d12', '5': '2d12', '11': '3d12', '17': '4d12'}"
+      }
     },
     {
       "index": "polymorph",
@@ -7091,7 +7287,10 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageDice": "10d6"
+      }
     },
     {
       "index": "prismatic-wall",
@@ -7192,7 +7391,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "{'1': '1d8', '5': '2d8', '11': '3d8', '17': '4d8'}"
+      },
+      "attackType": "ranged"
     },
     {
       "index": "programmed-illusion",
@@ -7439,7 +7643,8 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "attackType": "ranged"
     },
     {
       "index": "ray-of-frost",
@@ -7468,7 +7673,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Cold",
+        "damageDice": "{'1': '1d8', '5': '2d8', '11': '3d8', '17': '4d8'}"
+      },
+      "attackType": "ranged"
     },
     {
       "index": "regenerate",
@@ -7779,7 +7989,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "{'1': '1d8', '5': '2d8', '11': '3d8', '17': '4d8'}"
+      }
     },
     {
       "index": "sanctuary",
@@ -7841,7 +8055,11 @@
       "subclasses": [
         "Lore",
         "Fiend"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "2d6"
+      }
     },
     {
       "index": "scrying",
@@ -8100,7 +8318,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Thunder",
+        "damageDice": "3d8"
+      }
     },
     {
       "index": "shield",
@@ -8214,7 +8436,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Lightning",
+        "damageDice": "{'1': '1d8', '5': '2d8', '11': '3d8', '17': '4d8'}"
+      },
+      "attackType": "melee"
     },
     {
       "index": "silence",
@@ -8340,7 +8567,10 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageDice": "5d8"
+      }
     },
     {
       "index": "sleet-storm",
@@ -8648,7 +8878,12 @@
       "subclasses": [
         "Lore",
         "Life"
-      ]
+      ],
+      "damage": {
+        "damageType": "Force",
+        "damageDice": "1d8 + MOD"
+      },
+      "attackType": "melee"
     },
     {
       "index": "stinking-cloud",
@@ -8773,7 +9008,11 @@
       "classes": [
         "Druid"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Thunder",
+        "damageDice": "2d6"
+      }
     },
     {
       "index": "suggestion",
@@ -8836,7 +9075,11 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "6d8"
+      }
     },
     {
       "index": "sunburst",
@@ -8866,7 +9109,11 @@
         "Sorcerer",
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Radiant",
+        "damageDice": "12d6"
+      }
     },
     {
       "index": "symbol",
@@ -9106,7 +9353,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Thunder",
+        "damageDice": "2d8"
+      }
     },
     {
       "index": "time-stop",
@@ -9434,7 +9685,12 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Necrotic",
+        "damageDice": "3d6"
+      },
+      "attackType": "melee"
     },
     {
       "index": "vicious-mockery",
@@ -9459,7 +9715,11 @@
       "classes": [
         "Bard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Psychic",
+        "damageDice": "{'1': '1d4', '5': '2d4', '11': '3d4', '17': '4d4'}"
+      }
     },
     {
       "index": "wall-of-fire",
@@ -9494,7 +9754,11 @@
       ],
       "subclasses": [
         "Fiend"
-      ]
+      ],
+      "damage": {
+        "damageType": "Fire",
+        "damageDice": "5d8"
+      }
     },
     {
       "index": "wall-of-force",
@@ -9551,7 +9815,11 @@
       "classes": [
         "Wizard"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Cold",
+        "damageDice": "10d6"
+      }
     },
     {
       "index": "wall-of-stone",
@@ -9616,7 +9884,11 @@
       "classes": [
         "Druid"
       ],
-      "subclasses": []
+      "subclasses": [],
+      "damage": {
+        "damageType": "Piercing",
+        "damageDice": "7d8"
+      }
     },
     {
       "index": "warding-bond",
@@ -9828,7 +10100,11 @@
       ],
       "subclasses": [
         "Lore"
-      ]
+      ],
+      "damage": {
+        "damageType": "Bludgeoning",
+        "damageDice": "3d8"
+      }
     },
     {
       "index": "wish",

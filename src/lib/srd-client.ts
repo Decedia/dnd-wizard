@@ -86,6 +86,11 @@ export interface SRDSpell {
   concentration: boolean;
   classes: string[];
   subclasses?: string[];
+  damage?: {
+    damageType?: string;
+    damageDice?: string;
+  };
+  attackType?: string;
 }
 
 export interface SRDWizardSpell {
