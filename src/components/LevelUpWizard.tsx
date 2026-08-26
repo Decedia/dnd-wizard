@@ -1,24 +1,22 @@
 "use client";
 
-import { useState, useMemo, useRef, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells } from "@/lib/srd-client";
-import { getHitDieAverage, getModifier, computeDerivedStats, SKILLS, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import {
   Heart,
   Lightning,
   ChartBar,
-  Target,
   Sparkle,
   MagicWand,
-  Shield,
   Crown,
-  ClipboardText,
   Sword,
   Book,
   Star,
+  Check,
 } from "phosphor-react";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
@@ -47,7 +45,7 @@ interface LevelUpWizardProps {
   onComplete: (character: Character) => void;
 }
 
-interface LevelSummary {
+interface LevelInfo {
   level: number;
   hp: { hitDie: number; conMod: number; average: number };
   proficiencyBonus: number;
@@ -58,7 +56,7 @@ interface LevelSummary {
   spellsKnown?: number;
   classFeatures: { name: string; value: string }[];
   subclassOptions?: { name: string; description: string }[];
-  expertiseCount?: number;
+  subclassFeatureChoices?: { name: string; options: string[]; count?: number }[];
   hasSpellSelection: boolean;
   spellSelectionCount: number;
   cantripSelectionCount: number;
@@ -73,14 +71,15 @@ function getProficiencyBonus(level: number): number {
   return 6;
 }
 
-function buildLevelSummaries(
+function buildLevelInfos(
   character: Character,
   targetLevel: number,
-  classData: ReturnType<typeof getStaticClass>
-): LevelSummary[] {
+  classData: ReturnType<typeof getStaticClass>,
+  subclassSelection: string
+): LevelInfo[] {
   if (!classData) return [];
 
-  const summaries: LevelSummary[] = [];
+  const infos: LevelInfo[] = [];
   const currentLevel = character.level || 1;
   const hitDie = classData.hitDie || 10;
   const conMod = getModifier(character.con);
@@ -99,7 +98,6 @@ function buildLevelSummaries(
     const asi = levelData?.asi || false;
     const spellSlots = levelData?.spellSlots;
 
-    // Calculate cantrips known
     let cantripsKnown: number | undefined;
     if (classData.cantripsKnown) {
       const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
@@ -108,17 +106,14 @@ function buildLevelSummaries(
       }
     }
 
-    // Calculate spells known
     let spellsKnown: number | undefined;
-    const spellsKnownKey = "spellsKnown";
-    if ((classData as any)[spellsKnownKey]) {
-      const known = (classData as any)[spellsKnownKey];
+    if ((classData as any)?.spellsKnown) {
+      const known = (classData as any).spellsKnown;
       if (known[String(level)] !== undefined) {
         spellsKnown = known[String(level)];
       }
     }
 
-    // Class-specific features
     const classFeatures: { name: string; value: string }[] = [];
     const classFeatureMap: Record<string, Record<string, any> | undefined> = {
       Barbarian: { "Rage Uses": classData.rageUses, "Rage Damage": classData.rageDamageBonus },
@@ -140,30 +135,39 @@ function buildLevelSummaries(
         if (data && typeof data === "object" && String(level) in data) {
           const val = (data as Record<string, any>)[String(level)];
           if (val !== undefined) {
-            if (name === "Martial Arts") {
-              classFeatures.push({ name, value: `d${val}` });
-            } else if (name === "Movement") {
-              classFeatures.push({ name, value: `+${val} ft` });
-            } else if (name === "Rage Damage") {
-              classFeatures.push({ name, value: `+${val}` });
-            } else if (name === "Sneak Attack") {
-              classFeatures.push({ name, value: `${val}d6` });
-            } else {
-              classFeatures.push({ name, value: String(val) });
-            }
+            if (name === "Martial Arts") classFeatures.push({ name, value: `d${val}` });
+            else if (name === "Movement") classFeatures.push({ name, value: `+${val} ft` });
+            else if (name === "Rage Damage") classFeatures.push({ name, value: `+${val}` });
+            else if (name === "Sneak Attack") classFeatures.push({ name, value: `${val}d6` });
+            else classFeatures.push({ name, value: String(val) });
           }
         }
       }
     }
 
-    // Subclass selection
     const unlockLevel = classData.subclassLevel ?? 3;
     const subclasses = getStaticSubclasses(className);
     const subclassOptions = level === unlockLevel && !character.subclass && subclasses.length > 0
       ? subclasses.map((s) => ({ name: s.name, description: s.description }))
       : undefined;
 
-    // Spell selection
+    const subclassFeatureChoices: { name: string; options: string[]; count?: number }[] = [];
+    if (subclassSelection && level >= unlockLevel) {
+      const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
+      if (selectedSubclass) {
+        const earnedFeatures = selectedSubclass.features.filter(
+          (f) => f.level != null && f.level === level && f.choices && f.choices.length > 0
+        );
+        for (const f of earnedFeatures) {
+          subclassFeatureChoices.push({
+            name: f.name,
+            options: f.choices!.map((c: any) => c.name),
+            count: (f as any).choicesCount,
+          });
+        }
+      }
+    }
+
     const prevSlots = prevLevelData?.spellSlots || {};
     const slotsChanged = spellSlots && (Object.keys(spellSlots).length !== Object.keys(prevSlots).length ||
       Object.entries(spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v));
@@ -172,7 +176,7 @@ function buildLevelSummaries(
     const hasSpellSelection = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged));
     const maxSpellLevel = spellSlots ? Math.max(...Object.keys(spellSlots).map(Number)) : 0;
 
-    summaries.push({
+    infos.push({
       level,
       hp: { hitDie, conMod, average: averageHp },
       proficiencyBonus: getProficiencyBonus(level),
@@ -183,7 +187,7 @@ function buildLevelSummaries(
       spellsKnown,
       classFeatures,
       subclassOptions,
-      expertiseCount: className === "Rogue" && level === 1 ? 2 : undefined,
+      subclassFeatureChoices: subclassFeatureChoices.length > 0 ? subclassFeatureChoices : undefined,
       hasSpellSelection,
       spellSelectionCount: spellSlots ? Object.values(spellSlots).reduce((a, b) => a + b, 0) : 0,
       cantripSelectionCount: cantripsChanged ? (cantripsKnown || 0) - prevCantrips : 0,
@@ -191,7 +195,7 @@ function buildLevelSummaries(
     });
   }
 
-  return summaries;
+  return infos;
 }
 
 export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizardProps) {
@@ -203,31 +207,20 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
   const diceType = `d${hitDie}` as any;
 
   const [targetLevel, setTargetLevel] = useState(Math.min(20, currentLevel + 1));
-  const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
-
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiState, setAsiState] = useState<Record<number, AsiState>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
-  const [featureChoices, setFeatureChoices] = useState<Record<string, string>>(() =>
-    Object.fromEntries(
-      Object.entries(character.featureSelections || {}).map(([k, v]) => [k, Array.isArray(v) ? v[0] || "" : v])
-    )
-  );
-  const [expertiseSelections, setExpertiseSelections] = useState<Record<number, string[]>>({});
+  const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
 
-  const levelSummaries = useMemo(
-    () => buildLevelSummaries(character, targetLevel, classData),
-    [character, targetLevel, classData]
+  const levelInfos = useMemo(
+    () => buildLevelInfos(character, targetLevel, classData, subclassSelection),
+    [character, targetLevel, classData, subclassSelection]
   );
-
-  const currentSummary = levelSummaries[currentLevelIndex];
-  const isLastLevel = currentLevelIndex === levelSummaries.length - 1;
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
   const setAsi = (level: number, patch: Partial<AsiState>) =>
     setAsiState((prev) => ({ ...prev, [level]: { ...(prev[level] || {}), ...patch } }));
-  const setExpertise = (level: number, list: string[]) => setExpertiseSelections((prev) => ({ ...prev, [level]: list }));
   const setSpells = (level: number, list: string[]) => setSpellSelections((prev) => ({ ...prev, [level]: list }));
 
   const buildAllocation = (st?: AsiState): Record<AbilityKey, number> => {
@@ -264,23 +257,33 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
   };
 
-  const canProceed = useCallback((): boolean => {
-    if (!currentSummary) return false;
-    const lvl = currentSummary.level;
+  const allLevelsComplete = levelInfos.every((info) => {
+    const lvl = info.level;
     if (!hpValues[lvl]) return false;
-    if (currentSummary.asi && !asiState[lvl]?.confirmed) return false;
-    if (currentSummary.subclassOptions && !subclassSelection) return false;
+    if (info.asi && !asiState[lvl]?.confirmed) return false;
+    if (info.subclassOptions && !subclassSelection) return false;
+    if (info.subclassFeatureChoices) {
+      const choices = subclassFeatureChoices[lvl] || {};
+      for (const fc of info.subclassFeatureChoices) {
+        if (!choices[fc.name]) return false;
+      }
+    }
     return true;
-  }, [currentSummary, hpValues, asiState, subclassSelection]);
+  });
 
   const handleFinish = () => {
     if (!classData) return;
     let draft: Character = {
       ...character,
       subclass: subclassSelection || character.subclass,
-      featureSelections: Object.fromEntries(
-        Object.entries(featureChoices).map(([k, v]) => [k, [v]])
-      ),
+      featureSelections: {
+        ...character.featureSelections,
+        ...Object.fromEntries(
+          Object.entries(subclassFeatureChoices).flatMap(([lvl, choices]) =>
+            Object.entries(choices).map(([name, value]) => [`subclass-feature-${lvl}-${name}`, [value]])
+          )
+        ),
+      },
     };
 
     const existingLevelHp = character.levelHp && Object.keys(character.levelHp).length > 0 ? character.levelHp : null;
@@ -312,10 +315,6 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       }
     }
 
-    const allExpertise = new Set(character.expertise || []);
-    for (const list of Object.values(expertiseSelections)) list.forEach((s) => allExpertise.add(s));
-    draft.expertise = Array.from(allExpertise);
-
     const spells = [...(character.spells || [])];
     for (const list of Object.values(spellSelections)) {
       for (const entry of list) {
@@ -340,28 +339,16 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
     onComplete(finalChar);
   };
 
-  const handleNext = () => {
-    if (!canProceed()) return;
-    if (isLastLevel) {
-      handleFinish();
-    } else {
-      setCurrentLevelIndex((i) => i + 1);
+  const rollAllHp = () => {
+    const newHpValues: Record<number, number> = { ...hpValues };
+    for (const info of levelInfos) {
+      if (!newHpValues[info.level]) {
+        const die = Math.floor(Math.random() * hitDie) + 1;
+        newHpValues[info.level] = die + conMod;
+      }
     }
+    setHpValues(newHpValues);
   };
-
-  const handleBack = () => {
-    if (currentLevelIndex > 0) {
-      setCurrentLevelIndex((i) => i - 1);
-    }
-  };
-
-  if (!currentSummary) {
-    return (
-      <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
-        <p className="text-[var(--color-text-muted)]">No levels to display.</p>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
@@ -371,7 +358,7 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
             <button onClick={onCancel} className="text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">
               Cancel
             </button>
-            <div className="text-xs font-semibold text-[var(--color-text-primary)]">Level Up</div>
+            <div className="text-xs font-semibold text-[var(--color-text-primary)]">Level Up to {targetLevel}</div>
             <div className="w-12" />
           </div>
           <div className="mt-2">
@@ -385,11 +372,10 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
                   type="button"
                   onClick={() => {
                     setTargetLevel(lvl);
-                    setCurrentLevelIndex(0);
                     setHpValues({});
                     setAsiState({});
-                    setExpertiseSelections({});
                     setSpellSelections({});
+                    setSubclassFeatureChoices({});
                   }}
                   className={`h-8 min-w-[2.25rem] px-2.5 text-xs rounded-full transition-all ${
                     lvl === targetLevel
@@ -407,25 +393,34 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
 
       <main className="px-4 py-5 pb-40">
         <div className="mx-auto max-w-lg space-y-4">
-          {levelSummaries.map((summary, idx) => (
+          <button
+            type="button"
+            onClick={rollAllHp}
+            className="w-full py-2.5 text-xs font-semibold rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
+          >
+            🎲 Roll All HP
+          </button>
+
+          {levelInfos.map((info) => (
             <LevelCard
-              key={summary.level}
-              summary={summary}
-              isActive={idx === currentLevelIndex}
-              isCompleted={idx < currentLevelIndex}
-              hpValue={hpValues[summary.level] || 0}
-              onHpChange={(v) => setHp(summary.level, v)}
-              asiState={asiState[summary.level]}
-              onAsiChange={(patch) => setAsi(summary.level, patch)}
-              baseScores={baseScores(summary.level)}
+              key={info.level}
+              info={info}
+              hpValue={hpValues[info.level] || 0}
+              onHpChange={(v) => setHp(info.level, v)}
+              asiState={asiState[info.level]}
+              onAsiChange={(patch) => setAsi(info.level, patch)}
+              baseScores={baseScores(info.level)}
               subclassSelection={subclassSelection}
               onSubclassSelect={setSubclassSelection}
-              featureChoices={featureChoices}
-              onFeatureChoice={(name, value) => setFeatureChoices((prev) => ({ ...prev, [name]: value }))}
-              expertise={expertiseSelections[summary.level] || character.expertise || []}
-              onExpertiseChange={(list) => setExpertise(summary.level, list)}
-              spells={spellSelections[summary.level] || []}
-              onSpellsChange={(list) => setSpells(summary.level, list)}
+              subclassFeatureChoices={subclassFeatureChoices[info.level] || {}}
+              onSubclassFeatureChoice={(name, value) =>
+                setSubclassFeatureChoices((prev) => ({
+                  ...prev,
+                  [info.level]: { ...(prev[info.level] || {}), [name]: value },
+                }))
+              }
+              spells={spellSelections[info.level] || []}
+              onSpellsChange={(list) => setSpells(info.level, list)}
               character={character}
               hitDie={hitDie}
               diceType={diceType}
@@ -437,21 +432,19 @@ export function LevelUpWizard({ character, onCancel, onComplete }: LevelUpWizard
       </main>
 
       <WizardNav
-        onBack={handleBack}
-        onNext={handleNext}
-        backLabel="Back"
-        nextLabel={isLastLevel ? "Finish Level Up" : "Next Level"}
-        canProceed={canProceed()}
-        showBack={currentLevelIndex > 0}
+        onBack={onCancel}
+        onNext={handleFinish}
+        backLabel="Cancel"
+        nextLabel="Complete Level Up"
+        canProceed={allLevelsComplete}
+        showBack={true}
       />
     </div>
   );
 }
 
 interface LevelCardProps {
-  summary: LevelSummary;
-  isActive: boolean;
-  isCompleted: boolean;
+  info: LevelInfo;
   hpValue: number;
   onHpChange: (v: number) => void;
   asiState?: AsiState;
@@ -459,10 +452,8 @@ interface LevelCardProps {
   baseScores: Record<AbilityKey, number>;
   subclassSelection: string;
   onSubclassSelect: (name: string) => void;
-  featureChoices: Record<string, string>;
-  onFeatureChoice: (name: string, value: string) => void;
-  expertise: string[];
-  onExpertiseChange: (list: string[]) => void;
+  subclassFeatureChoices: Record<string, string>;
+  onSubclassFeatureChoice: (name: string, value: string) => void;
   spells: string[];
   onSpellsChange: (list: string[]) => void;
   character: Character;
@@ -473,9 +464,7 @@ interface LevelCardProps {
 }
 
 function LevelCard({
-  summary,
-  isActive,
-  isCompleted,
+  info,
   hpValue,
   onHpChange,
   asiState,
@@ -483,10 +472,8 @@ function LevelCard({
   baseScores,
   subclassSelection,
   onSubclassSelect,
-  featureChoices,
-  onFeatureChoice,
-  expertise,
-  onExpertiseChange,
+  subclassFeatureChoices,
+  onSubclassFeatureChoice,
   spells,
   onSpellsChange,
   character,
@@ -496,69 +483,62 @@ function LevelCard({
   averageHp,
 }: LevelCardProps) {
   const [showSpellSelection, setShowSpellSelection] = useState(false);
-  const lvl = summary.level;
+  const lvl = info.level;
 
-  if (!isActive && !isCompleted) return null;
+  const isComplete = hpValuesComplete(info, hpValue) && asiComplete(info, asiState) &&
+    subclassComplete(info, subclassSelection) && subclassFeatureChoicesComplete(info, subclassFeatureChoices);
 
   return (
     <div className={`rounded-[var(--radius-md)] border transition-all ${
-      isActive
-        ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
-        : "border-[var(--color-border)] bg-[var(--color-surface)] opacity-60"
+      isComplete
+        ? "border-green-300 bg-green-50/30"
+        : "border-[var(--color-border)] bg-[var(--color-surface)]"
     }`}>
       <div className="p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-bold text-[var(--color-text-primary)]">
             Level {lvl}
           </h3>
-          {isCompleted && (
-            <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
-              ✓ Complete
+          {isComplete && (
+            <span className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
+              <Check className="h-3 w-3" /> Complete
             </span>
           )}
         </div>
 
-        <div className="space-y-3">
-          {/* HP Section */}
+        <div className="space-y-2.5">
           <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
             <Heart weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
             <div className="flex-1">
               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
               <div className="text-xs text-[var(--color-text-primary)]">
-                Roll d{hitDie} + {conMod >= 0 ? `+${conMod}` : conMod} (avg: {averageHp})
+                d{hitDie} + {conMod >= 0 ? `+${conMod}` : conMod} (avg: {averageHp})
               </div>
             </div>
-            {isActive && (
-              <input
-                type="number"
-                value={hpValue || ""}
-                onChange={(e) => onHpChange(parseInt(e.target.value || "0", 10))}
-                className="w-16 text-center text-sm font-bold rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1"
-                placeholder={String(averageHp)}
-              />
-            )}
-            {isCompleted && hpValue > 0 && (
-              <span className="text-sm font-bold text-[var(--color-text-primary)]">+{hpValue}</span>
-            )}
+            <input
+              type="number"
+              value={hpValue || ""}
+              onChange={(e) => onHpChange(parseInt(e.target.value || "0", 10))}
+              className="w-16 text-center text-sm font-bold rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1"
+              placeholder={String(averageHp)}
+            />
           </div>
 
-          {/* Proficiency Bonus */}
           <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
             <Star weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
             <div className="flex-1">
               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Proficiency Bonus</div>
-              <div className="text-xs text-[var(--color-text-primary)]">+{summary.proficiencyBonus}</div>
+              <div className="text-xs text-[var(--color-text-primary)]">+{info.proficiencyBonus}</div>
             </div>
           </div>
 
-          {/* Class Features */}
-          {summary.classFeatures.length > 0 && (
+          {info.classFeatures.length > 0 && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
                 <div className="space-y-1 mt-1">
-                  {summary.classFeatures.map((f) => (
+                  {info.classFeatures.map((f) => (
                     <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
                       <span className="font-semibold">{f.name}:</span> {f.value}
                     </div>
@@ -568,19 +548,15 @@ function LevelCard({
             </div>
           )}
 
-          {/* New Features */}
-          {summary.features.length > 0 && (
+          {info.features.length > 0 && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Lightning weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
                 <div className="space-y-1 mt-1">
-                  {summary.features.map((f) => (
+                  {info.features.map((f) => (
                     <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
                       <span className="font-semibold">{f.name}</span>
-                      {f.description && (
-                        <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{f.description}</p>
-                      )}
                     </div>
                   ))}
                 </div>
@@ -588,31 +564,27 @@ function LevelCard({
             </div>
           )}
 
-          {/* ASI */}
-          {summary.asi && (
+          {info.asi && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
-                {isActive && !asiState?.confirmed ? (
+                {!asiState?.confirmed ? (
                   <AsiSelector state={asiState} baseScores={baseScores} onChange={onAsiChange} />
-                ) : asiState?.confirmed ? (
-                  <div className="text-xs text-green-600 font-semibold">✓ Confirmed</div>
                 ) : (
-                  <div className="text-xs text-[var(--color-text-muted)]">+2 to one ability or +1 to two</div>
+                  <div className="text-xs text-green-600 font-semibold mt-1">✓ Confirmed</div>
                 )}
               </div>
             </div>
           )}
 
-          {/* Spell Slots */}
-          {summary.spellSlots && (
+          {info.spellSlots && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Sparkle weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
                 <div className="flex flex-wrap gap-1.5 mt-1">
-                  {Object.entries(summary.spellSlots).map(([level, count]) => (
+                  {Object.entries(info.spellSlots).map(([level, count]) => (
                     <span key={level} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
                       {level}st: {count}
                     </span>
@@ -622,36 +594,33 @@ function LevelCard({
             </div>
           )}
 
-          {/* Cantrips Known */}
-          {summary.cantripsKnown !== undefined && (
+          {info.cantripsKnown !== undefined && (
             <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
-                <div className="text-xs text-[var(--color-text-primary)]">{summary.cantripsKnown}</div>
+                <div className="text-xs text-[var(--color-text-primary)]">{info.cantripsKnown}</div>
               </div>
             </div>
           )}
 
-          {/* Spells Known */}
-          {summary.spellsKnown !== undefined && (
+          {info.spellsKnown !== undefined && (
             <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
-                <div className="text-xs text-[var(--color-text-primary)]">{summary.spellsKnown}</div>
+                <div className="text-xs text-[var(--color-text-primary)]">{info.spellsKnown}</div>
               </div>
             </div>
           )}
 
-          {/* Subclass Selection */}
-          {summary.subclassOptions && isActive && (
+          {info.subclassOptions && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Crown weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Choose Subclass</div>
                 <div className="space-y-1.5 mt-1">
-                  {summary.subclassOptions.map((opt) => (
+                  {info.subclassOptions.map((opt) => (
                     <button
                       key={opt.name}
                       type="button"
@@ -673,8 +642,39 @@ function LevelCard({
             </div>
           )}
 
-          {/* Spell Selection */}
-          {summary.hasSpellSelection && isActive && (
+          {info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0 && subclassSelection && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Crown weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Subclass Choices</div>
+                <div className="space-y-2 mt-1">
+                  {info.subclassFeatureChoices.map((fc) => (
+                    <div key={fc.name}>
+                      <div className="text-xs font-semibold text-[var(--color-text-primary)] mb-1">{fc.name}</div>
+                      <div className="space-y-1">
+                        {fc.options.map((opt) => (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => onSubclassFeatureChoice(fc.name, opt)}
+                            className={`w-full p-1.5 text-left text-[10px] rounded-[var(--radius-sm)] border transition-all ${
+                              subclassFeatureChoices[fc.name] === opt
+                                ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
+                                : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {info.hasSpellSelection && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
@@ -684,15 +684,15 @@ function LevelCard({
                   className="text-xs font-semibold text-[var(--color-text-primary)] hover:underline"
                 >
                   {showSpellSelection ? "Hide" : "Show"} Spell Selection
-                  {summary.cantripSelectionCount > 0 && ` (+${summary.cantripSelectionCount} cantrips)`}
-                  {summary.spellSelectionCount > 0 && ` (+${summary.spellSelectionCount} spells)`}
+                  {info.cantripSelectionCount > 0 && ` (+${info.cantripSelectionCount} cantrips)`}
+                  {info.spellSelectionCount > 0 && ` (+${info.spellSelectionCount} spells)`}
                 </button>
                 {showSpellSelection && (
                   <SpellSelection
                     character={character}
-                    count={summary.spellSelectionCount}
-                    cantripCount={summary.cantripSelectionCount}
-                    maxLevel={summary.maxSpellLevel}
+                    count={info.spellSelectionCount}
+                    cantripCount={info.cantripSelectionCount}
+                    maxLevel={info.maxSpellLevel}
                     spells={spells}
                     onSpellsChange={onSpellsChange}
                   />
@@ -706,6 +706,28 @@ function LevelCard({
   );
 }
 
+function hpValuesComplete(info: LevelInfo, hpValue: number): boolean {
+  return hpValue > 0;
+}
+
+function asiComplete(info: LevelInfo, asiState?: AsiState): boolean {
+  if (!info.asi) return true;
+  return !!asiState?.confirmed;
+}
+
+function subclassComplete(info: LevelInfo, subclassSelection: string): boolean {
+  if (!info.subclassOptions) return true;
+  return !!subclassSelection;
+}
+
+function subclassFeatureChoicesComplete(info: LevelInfo, choices: Record<string, string>): boolean {
+  if (!info.subclassFeatureChoices) return true;
+  for (const fc of info.subclassFeatureChoices) {
+    if (!choices[fc.name]) return false;
+  }
+  return true;
+}
+
 function AsiSelector({
   state,
   baseScores,
@@ -715,13 +737,6 @@ function AsiSelector({
   baseScores: Record<AbilityKey, number>;
   onChange: (patch: Partial<AsiState>) => void;
 }) {
-  const alloc = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } as Record<AbilityKey, number>;
-  if (state?.mode === "single" && state.single) alloc[state.single] = 2;
-  if (state?.mode === "double") {
-    if (state.d1) alloc[state.d1] = 1;
-    if (state.d2) alloc[state.d2] = 1;
-  }
-
   return (
     <div className="space-y-2 mt-1">
       <div className="grid grid-cols-2 gap-1.5">
