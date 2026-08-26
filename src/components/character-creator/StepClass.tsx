@@ -33,16 +33,16 @@ export function StepClass({ data, onChange }: StepClassProps) {
             key={cls.name}
             type="button"
             onClick={() => handleSelect(cls.name)}
-            className={`btn w-full p-4 text-left rounded-xl ${
+            className={`w-full p-4 text-left rounded-[var(--radius-md)] transition-all ${
               isSelected
-                ? "bg-white text-ink border-2 border-ink"
-                : "bg-white text-ink border border-border-muted"
+                ? "bg-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
+                : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
             }`}
           >
               <div className="flex items-center justify-between">
                 <span className="text-card-title">{cls.name}</span>
                 {hasSubclasses && (
-                  <span className="badge text-ink bg-paper">
+                  <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">
                     Subclass at Lv {subclassLevel}
                   </span>
                 )}
@@ -53,7 +53,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
                   {cls.subclasses!.map((sub) => (
                     <span
                       key={sub.name}
-                       className="text-[10px] font-bold text-paper-muted bg-ink px-1.5 py-0.5 rounded-full"
+                       className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-text-primary)] px-1.5 py-0.5 rounded-full"
                     >
                       {sub.name}
                     </span>
