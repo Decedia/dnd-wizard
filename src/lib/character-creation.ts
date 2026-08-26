@@ -306,7 +306,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
     });
   }
 
-  const featureSelections = getFeatureSelections(character);
+  const featureSelections = getFeatureSelections(character).filter(s => s.source !== "subclass");
   featureSelections.forEach((selection, index) => {
     const existing = (character as any).featureSelections?.[selection.storageKey];
     const isComplete = selection.optional
