@@ -50,6 +50,7 @@ export interface SRDClass {
   }[];
   spellcastingAbility?: string;
   cantripsKnown?: Record<number, number>;
+  spellsKnown?: Record<number, number>;
   subclassLevel?: number;
   subclasses: {
     name: string;
@@ -62,6 +63,20 @@ export interface SRDClass {
     type: "feature" | "attack";
     values: Record<number, number>;
   }[];
+  // Level-up progression features
+  rageUses?: Record<string, number | string>;
+  rageDamageBonus?: Record<string, number>;
+  channelDivinityUses?: Record<string, number>;
+  wildShapeUses?: Record<string, number | string>;
+  actionSurgeUses?: Record<string, number>;
+  indomitableUses?: Record<string, number>;
+  kiPoints?: Record<string, number>;
+  unarmoredMovement?: Record<string, number>;
+  martialArtsDie?: Record<string, number>;
+  sneakAttackDice?: Record<string, number>;
+  sorceryPoints?: Record<string, number>;
+  invocationsKnown?: Record<string, number>;
+  spellbookSpells?: Record<string, number>;
 }
 
 export interface SRDClassSelection {
