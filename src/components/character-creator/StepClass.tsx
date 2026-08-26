@@ -35,19 +35,19 @@ export function StepClass({ data, onChange }: StepClassProps) {
             onClick={() => handleSelect(cls.name)}
             className={`btn w-full p-4 text-left rounded-full ${
               isSelected
-                ? "btn-primary"
-                : "btn-secondary"
+                ? "bg-paper-muted border-l-2 border-ink"
+                : "bg-white border border-border-muted"
             }`}
           >
               <div className="flex items-center justify-between">
-                <span className="font-display font-bold text-inherit">{cls.name}</span>
+                <span className="font-display font-bold text-ink">{cls.name}</span>
                 {hasSubclasses && (
-                  <span className="badge text-ink bg-paper-muted">
+                  <span className="badge text-ink bg-paper">
                     Subclass at Lv {subclassLevel}
                   </span>
                 )}
               </div>
-              <p className="mt-1 text-xs text-inherit opacity-80">{cls.flavorText}</p>
+              <p className="mt-1 text-xs text-ink-muted">{cls.flavorText}</p>
               {hasSubclasses && (
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {cls.subclasses!.map((sub) => (

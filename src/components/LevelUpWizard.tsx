@@ -761,12 +761,14 @@ function SectionRenderer({
                 type="button"
                 onClick={() => onSubclassSelect(opt.name)}
                 className={`btn w-full p-2.5 text-left ${
-                  isSel ? "btn btn-primary" : "btn btn-secondary"
+                  isSel
+                    ? "bg-paper-muted border-l-2 border-ink"
+                    : "bg-white border border-border-muted"
                 }`}
               >
-                <div className="text-xs font-semibold text-inherit">{opt.name}</div>
+                <div className="text-xs font-semibold text-ink">{opt.name}</div>
                 {opt.description && (
-                  <p className="mt-0.5 text-[10px] text-inherit opacity-75 whitespace-pre-line leading-relaxed font-medium">{opt.description}</p>
+                  <p className="mt-0.5 text-[10px] text-ink-muted whitespace-pre-line leading-relaxed font-medium">{opt.description}</p>
                 )}
               </button>
             );
@@ -799,10 +801,10 @@ function SectionRenderer({
                         type="button"
                         onClick={() => onFeatureChoice(fc.storageKey || fc.featureName, opt)}
                         className={`btn w-full px-2.5 py-1.5 text-left ${
-                          isSel ? "btn btn-primary" : "btn btn-secondary"
+                          isSel ? "bg-paper-muted border-l-2 border-ink" : "bg-white border border-border-muted"
                         }`}
                       >
-                        <div className="text-[11px] font-semibold text-inherit">{opt}</div>
+                        <div className="text-[11px] font-semibold text-ink">{opt}</div>
                         {fc.descriptions?.[opt] && (
                           <div className="text-[10px] text-ink-muted mt-0.5 leading-relaxed font-medium">{fc.descriptions[opt]}</div>
                         )}
@@ -840,7 +842,7 @@ function SectionRenderer({
                 onClick={() => toggle(s.name)}
                 disabled={disabled}
                 className={`btn px-2 py-1.5 text-left text-[11px] ${
-                  isSel ? "btn btn-primary" : disabled ? "btn btn-secondary opacity-50" : "btn btn-secondary"
+                  isSel ? "bg-paper-muted border-l-2 border-ink" : disabled ? "bg-white border border-border-muted opacity-50" : "bg-white border border-border-muted"
                 }`}
               >
                 {s.name}
@@ -889,7 +891,7 @@ function SectionRenderer({
                 onClick={() => toggle(sp.name)}
                 disabled={disabled}
                 className={`btn w-full px-2.5 py-1.5 text-left text-[11px] ${
-                  isSel ? "btn btn-primary" : disabled ? "btn btn-secondary opacity-50" : "btn btn-secondary"
+                  isSel ? "bg-paper-muted border-l-2 border-ink" : disabled ? "bg-white border border-border-muted opacity-50" : "bg-white border border-border-muted"
                 }`}
               >
                 {sp.name} <span className="text-ink-muted font-medium">Lv {sp.level}</span>

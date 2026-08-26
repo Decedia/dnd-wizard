@@ -30,19 +30,19 @@ export function StepRace({ data, onChange }: StepRaceProps) {
             key={race.name}
             type="button"
             onClick={() => handleSelect(race.name)}
-            className={`btn w-full p-4 text-left ${
+            className={`btn w-full p-4 text-left rounded-full ${
               isSelected
-                ? "btn btn-primary"
-                : "btn btn-secondary"
+                ? "bg-paper-muted border-l-2 border-ink"
+                : "bg-white border border-border-muted"
             }`}
           >
               <div className="flex items-center justify-between">
-                <span className="font-display font-bold text-inherit">{race.name}</span>
-                <span className="text-xs text-inherit">
+                <span className="font-display font-bold text-ink">{race.name}</span>
+                <span className="text-xs text-ink-muted">
                   {race.size} / Speed {race.speed} ft
                 </span>
               </div>
-              <p className="mt-1 text-xs text-inherit opacity-80">
+              <p className="mt-1 text-xs text-ink-muted">
                 {Object.entries(race.abilityScoreIncreases || {})
                   .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
                   .join(", ")}
@@ -50,7 +50,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
               {race.traits && race.traits.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {race.traits.map((trait) => (
-                    <div key={trait.name} className="text-xs text-inherit opacity-80">
+                    <div key={trait.name} className="text-xs text-ink-muted">
                       <span className="font-bold">{trait.name}:</span> {trait.description}
                     </div>
                   ))}

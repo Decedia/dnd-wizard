@@ -49,12 +49,12 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               onClick={() => handleSelect(sub.name)}
               className={`btn w-full p-4 text-left rounded-full ${
                 isSelected
-                  ? "btn-primary"
-                  : "btn-secondary"
+                  ? "bg-paper-muted border-l-2 border-ink"
+                  : "bg-white border border-border-muted"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-display font-bold text-inherit">{sub.name}</span>
+                <span className="font-display font-bold text-ink">{sub.name}</span>
                 {isSelected && (
                   <svg className="h-4 w-4 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
                     <path d="M5 12l5 5L20 7" />
@@ -62,7 +62,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                 )}
               </div>
               {sub.description && (
-                <p className="mt-1 text-xs text-inherit opacity-80 whitespace-pre-line leading-relaxed">
+                <p className="mt-1 text-xs text-ink-muted whitespace-pre-line leading-relaxed">
                   {sub.description}
                 </p>
               )}
