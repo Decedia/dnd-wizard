@@ -6,6 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { getStaticRaces, getStaticClasses } from "@/lib/srd-client";
 import { languageNames } from "@/data/srd";
 import { ALIGNMENTS } from "@/lib/storage";
+import { User } from "phosphor-react";
 
 interface IdentitySectionProps {
   character: {
@@ -49,7 +50,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
   }, [character.languages, onChange]);
 
   return (
-    <SectionCard id="identity" title="IDENTITY" icon={<UserIcon className="h-5 w-5" />}>
+    <SectionCard id="identity" title="IDENTITY" icon={<User weight="regular" className="h-5 w-5" />}>
       <div className="space-y-3.5">
         {editMode ? (
           <>
@@ -183,14 +184,5 @@ function ViewField({ label, value, className }: { label: string; value: string; 
       <span className="field-label-light">{label}</span>
       <span className="text-sm font-semibold text-ink">{value || "—"}</span>
     </div>
-  );
-}
-
-function UserIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
   );
 }

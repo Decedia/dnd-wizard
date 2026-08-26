@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromPdf } from "@/lib/pdf";
-import { Upload } from "lucide-react";
+import { Upload, CaretRight, UserPlus, User } from "phosphor-react";
 
 export default function Home() {
   const characters = getCharacters();
@@ -43,7 +43,7 @@ export default function Home() {
             onClick={handleImportClick}
             className="btn btn-secondary w-full"
           >
-            <Upload className="h-4 w-4 mr-2 inline" />
+            <Upload weight="regular" className="h-4 w-4 mr-2 inline" />
             Import from PDF
           </button>
           <input
@@ -72,7 +72,7 @@ export default function Home() {
 
           {characters.length === 0 ? (
                <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-10 text-center">
-              <div className="mb-2.5 text-3xl opacity-40">🐉</div>
+               <UserPlus weight="regular" size={48} color="#cccccc" className="mb-2.5 opacity-40" />
               <p className="text-xs text-ink-muted">
                 No characters yet. Create your first hero to begin your adventure.
               </p>
@@ -87,9 +87,9 @@ export default function Home() {
                    >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink/5 text-base">
-                        🧙
-                      </div>
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink/5">
+                         <User weight="regular" size={20} />
+                       </div>
                       <div>
                         <h3 className="font-display font-semibold text-ink text-sm">
                           {char.name || "Unnamed Hero"}
@@ -99,19 +99,7 @@ export default function Home() {
                         </p>
                       </div>
                     </div>
-                    <svg
-                      className="h-4 w-4 text-ink-muted"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                    <CaretRight weight="regular" size={16} className="text-ink-muted" />
                   </div>
                 </Link>
               </li>

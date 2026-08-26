@@ -2,23 +2,23 @@
 
 import { useState } from "react";
 import { 
-  LayoutDashboard, 
-  FolderOpen, 
-  ListTodo, 
-  KanbanSquare, 
-  BarChart3, 
-  Settings, 
+  House, 
+  Folder, 
+  ListChecks, 
+  Kanban, 
+  ChartBar, 
+  Gear, 
   Bell, 
-  Search, 
+  MagnifyingGlass, 
   Plus,
   Clock,
   Timer,
-  MoreHorizontal,
-  ChevronDown,
-  CheckCircle2,
+  DotsThree,
+  CaretDown,
+  CheckCircle,
   Circle,
-  AlertCircle
-} from "lucide-react";
+  WarningCircle
+} from "phosphor-react";
 
 interface Task {
   id: string;
@@ -78,12 +78,12 @@ const initialTasks: Task[] = [
 ];
 
 const sidebarItems = [
-  { icon: LayoutDashboard, label: "Dashboard", active: false },
-  { icon: FolderOpen, label: "Projects", active: false },
-  { icon: ListTodo, label: "Tasks", active: true },
-  { icon: KanbanSquare, label: "Board", active: false },
-  { icon: BarChart3, label: "Analytics", active: false },
-  { icon: Settings, label: "Settings", active: false },
+  { icon: House, label: "Dashboard", active: false },
+  { icon: Folder, label: "Projects", active: false },
+  { icon: ListChecks, label: "Tasks", active: true },
+  { icon: Kanban, label: "Board", active: false },
+  { icon: ChartBar, label: "Analytics", active: false },
+  { icon: Gear, label: "Settings", active: false },
 ];
 
 export default function TasksPage() {
@@ -111,28 +111,28 @@ export default function TasksPage() {
       case "todo":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-ink-muted uppercase tracking-wider">
-            <Circle className="h-2.5 w-2.5" />
+             <Circle weight="regular" className="h-2.5 w-2.5" />
             Todo
           </span>
         );
       case "in-progress":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-ink uppercase tracking-wider">
-            <Timer className="h-2.5 w-2.5" />
+             <Timer weight="regular" className="h-2.5 w-2.5" />
             In Progress
           </span>
         );
       case "done":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-ink uppercase tracking-wider">
-            <CheckCircle2 className="h-2.5 w-2.5" />
+             <CheckCircle weight="regular" className="h-2.5 w-2.5" />
             Done
           </span>
         );
       case "review":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-ink uppercase tracking-wider">
-            <AlertCircle className="h-2.5 w-2.5" />
+             <WarningCircle weight="regular" className="h-2.5 w-2.5" />
             Review
           </span>
         );
@@ -158,13 +158,13 @@ export default function TasksPage() {
               }`}
               title={item.label}
             >
-              <item.icon className="h-5 w-5" />
+               <item.icon weight={item.active ? "fill" : "regular"} className="h-5 w-5" />
             </button>
           ))}
         </nav>
 
         <button className="mt-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors">
-          <Bell className="h-5 w-5" />
+           <Bell weight="regular" className="h-5 w-5" />
         </button>
       </aside>
 
@@ -181,21 +181,21 @@ export default function TasksPage() {
             </div>
             <div className="flex items-center gap-3">
               <button className="flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90 transition-colors">
-                <Settings className="h-4 w-4" />
+                 <Gear weight="regular" className="h-4 w-4" />
                 <span>Upgrade</span>
               </button>
               <button className="flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-white text-ink hover:bg-paper-muted transition-colors">
-                <Search className="h-4 w-4" />
+                 <MagnifyingGlass weight="regular" className="h-4 w-4" />
               </button>
               <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-white text-ink hover:bg-paper-muted transition-colors">
-                <Bell className="h-4 w-4" />
+                 <Bell weight="regular" className="h-4 w-4" />
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
                   30
                 </span>
               </button>
               <div className="h-9 w-9 rounded-full bg-ink/10" />
               <button className="flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-ink/90 transition-colors">
-                <Plus className="h-4 w-4" />
+                 <Plus weight="regular" className="h-4 w-4" />
                 <span>Add Task</span>
               </button>
             </div>
@@ -211,7 +211,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-xs text-ink-muted">Not started</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
-                  <Clock className="h-4 w-4" />
+                   <Clock weight="regular" className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -224,7 +224,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-xs text-ink-muted">Active tasks</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
-                  <Clock className="h-4 w-4" />
+                   <Clock weight="regular" className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -237,7 +237,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-xs text-ink-muted">Completed</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
-                  <CheckCircle2 className="h-4 w-4" />
+                   <CheckCircle weight="regular" className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -250,7 +250,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-xs text-ink-muted">All tasks</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted hover:bg-paper transition-colors">
-                  <ListTodo className="h-4 w-4" />
+                   <ListChecks weight="regular" className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -267,15 +267,15 @@ export default function TasksPage() {
               <div className="flex items-center gap-2">
                 <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>All Projects</span>
-                  <ChevronDown className="h-3.5 w-3.5" />
+                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </button>
                 <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>Date Created</span>
-                  <ChevronDown className="h-3.5 w-3.5" />
+                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </button>
                 <button className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>All</span>
-                  <ChevronDown className="h-3.5 w-3.5" />
+                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </button>
                 <div className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 border border-border-strong">
                   <div className="h-1.5 w-16 rounded-full bg-paper-muted">
@@ -284,13 +284,13 @@ export default function TasksPage() {
                   <span className="text-xs font-medium text-ink-muted">60%</span>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-ink-muted hover:bg-paper-muted transition-colors">
-                  <ListTodo className="h-4 w-4" />
+                   <ListChecks weight="regular" className="h-4 w-4" />
                 </button>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-ink-muted hover:bg-paper-muted transition-colors">
-                  <KanbanSquare className="h-4 w-4" />
+                   <Kanban weight="regular" className="h-4 w-4" />
                 </button>
                 <div className="relative">
-                  <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-muted" />
+                   <MagnifyingGlass weight="regular" className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-muted" />
                   <input
                     type="text"
                     placeholder="Search tasks..."
@@ -314,7 +314,7 @@ export default function TasksPage() {
                     className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border-strong bg-white hover:border-ink transition-colors"
                   >
                     {task.status === "done" && (
-                      <CheckCircle2 className="h-3.5 w-3.5 text-ink" />
+                      <CheckCircle weight="regular" className="h-3.5 w-3.5 text-ink" />
                     )}
                   </button>
 
@@ -328,7 +328,7 @@ export default function TasksPage() {
                     {getStatusBadge(task.status)}
                     {task.timeSpent && (
                       <span className="flex items-center gap-1 text-xs text-ink-muted">
-                        <Clock className="h-3 w-3" />
+                         <Clock weight="regular" className="h-3 w-3" />
                         {task.timeSpent}
                       </span>
                     )}
@@ -338,7 +338,7 @@ export default function TasksPage() {
                       </span>
                     )}
                     <button className="flex h-7 w-7 items-center justify-center rounded-full border border-border-strong text-ink-muted hover:bg-paper transition-colors">
-                      <MoreHorizontal className="h-4 w-4" />
+                       <DotsThree weight="regular" className="h-4 w-4" />
                     </button>
                   </div>
                 </div>

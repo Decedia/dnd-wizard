@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
+import { WizardHat } from "phosphor-react";
 
 interface AppHeaderProps {
   title?: string;
@@ -11,12 +12,7 @@ interface AppHeaderProps {
 }
 
 export function WizardHatIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M2 18h20v2H2z" />
-      <path d="M5 18l7-14 7 14z" />
-    </svg>
-  );
+  return <WizardHat className={className} weight="fill" />;
 }
 
 export function AppHeader({ title, subtitle, editMode, onEditModeChange }: AppHeaderProps) {

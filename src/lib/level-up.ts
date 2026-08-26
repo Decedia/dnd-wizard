@@ -1,5 +1,16 @@
 import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
 import { getModifier } from "@/lib/storage";
+import {
+  Heart,
+  Lightning,
+  ChartBar,
+  Target,
+  Sparkle,
+  MagicWand,
+  Shield,
+  Crown,
+  ClipboardText,
+} from "phosphor-react";
 
 export interface LevelUpStepSection {
   type: "hp" | "features" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection" | "subclassSelection";
@@ -227,26 +238,26 @@ export function sectionTitle(type: LevelUpStepSection["type"]): string {
   }
 }
 
-export function sectionIcon(type: LevelUpStepSection["type"]): string {
+export function sectionIcon(type: LevelUpStepSection["type"]): React.ReactNode {
   switch (type) {
     case "hp":
-      return "❤️";
+      return <Heart weight="regular" className="h-4 w-4" />;
     case "features":
-      return "⚡";
+      return <Lightning weight="regular" className="h-4 w-4" />;
     case "asi":
-      return "📊";
+      return <ChartBar weight="regular" className="h-4 w-4" />;
     case "expertise":
-      return "🎯";
+      return <Target weight="regular" className="h-4 w-4" />;
     case "spellSlots":
-      return "✨";
+      return <Sparkle weight="regular" className="h-4 w-4" />;
     case "spellSelection":
-      return "🔮";
+      return <MagicWand weight="regular" className="h-4 w-4" />;
     case "skillSelection":
-      return "🛡️";
+      return <Shield weight="regular" className="h-4 w-4" />;
     case "subclassSelection":
-      return "🐉";
+      return <Crown weight="regular" className="h-4 w-4" />;
     default:
-      return "📋";
+      return <ClipboardText weight="regular" className="h-4 w-4" />;
   }
 }
 

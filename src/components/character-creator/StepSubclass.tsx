@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckCircle } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses, type SRDClass, type SRDSubclass } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
@@ -56,9 +57,7 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               <div className="flex items-center justify-between">
                 <span className="font-display font-bold text-ink">{sub.name}</span>
                 {isSelected && (
-                  <svg className="h-4 w-4 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
-                    <path d="M5 12l5 5L20 7" />
-                  </svg>
+                  <CheckCircle weight="fill" color="#111111" className="h-4 w-4" />
                 )}
               </div>
               {sub.description && (

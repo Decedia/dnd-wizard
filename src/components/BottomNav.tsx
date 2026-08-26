@@ -2,24 +2,24 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Home, Dices } from "lucide-react";
+import { House, Dice5, PlusCircle } from "phosphor-react";
 import { WizardHatIcon } from "@/components/AppHeader";
 
 const navItems = [
   {
     name: "Home",
     href: "/",
-    icon: Home,
+    icon: House,
   },
   {
     name: "New",
     href: "/character/create",
-    icon: WizardHatIcon,
+    icon: PlusCircle,
   },
   {
     name: "Dice",
     href: "/dice",
-    icon: Dices,
+    icon: Dice5,
   },
 ];
 
@@ -42,11 +42,11 @@ export function BottomNav() {
                 href={item.href}
                 className={`
                   flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10 rounded-full
-                  ${isActive ? "text-white font-semibold bg-white/10" : "text-white/70 hover:text-white hover:bg-white/5"}
+                  ${isActive ? "text-ink font-semibold bg-white" : "text-white/70 hover:text-white hover:bg-white/5"}
                 `}
                 aria-current={isActive ? "page" : undefined}
               >
-               <Icon className={`h-4 w-4`} />
+               <Icon className={`h-5 w-5`} weight={isActive ? "fill" : "regular"} />
                <span className={`font-medium text-[10px]`}>
                  {item.name}
                </span>
@@ -55,7 +55,7 @@ export function BottomNav() {
          })}
          {activeIndex >= 0 && (
            <div
-             className="absolute inset-y-0 rounded-full bg-white/10 transition-all duration-300 ease-out pointer-events-none"
+             className="absolute inset-y-0 rounded-full bg-white transition-all duration-300 ease-out pointer-events-none"
              style={{
                left: `${(activeIndex / navItems.length) * 100}%`,
                width: `${(100 / navItems.length)}%`,

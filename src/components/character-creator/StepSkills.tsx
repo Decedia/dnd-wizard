@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { CheckCircle } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClass } from "@/lib/srd-client";
 import { getProficiencyBonus } from "@/lib/storage";
@@ -115,9 +116,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                   {isAllowed && (
                     <div className={`h-4 w-4 rounded border-2 ${isProficient ? "bg-paper border-paper" : "border-paper"}`}>
                       {isProficient && (
-                        <svg className="h-4 w-4 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
-                          <path d="M5 12l5 5L20 7" />
-                        </svg>
+                        <CheckCircle weight="fill" color="#111111" className="h-4 w-4" />
                       )}
                     </div>
                   )}

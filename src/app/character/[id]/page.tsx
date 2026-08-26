@@ -22,7 +22,7 @@ import { OtherProficienciesSection } from "@/components/character-sheet/OtherPro
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
-import { Trash2, Download, Upload, Save } from "lucide-react";
+import { Trash, Export, Upload, FloppyDisk, CheckCircle, UserPlus } from "phosphor-react";
 import { exportCharacterToPdf } from "@/lib/pdf-visual";
 import { importCharacterFromPdf } from "@/lib/pdf";
 
@@ -138,7 +138,7 @@ export default function CharacterView() {
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
           <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-16 text-center">
-            <div className="mb-3 text-4xl opacity-40">🐉</div>
+             <UserPlus weight="regular" size={48} color="#cccccc" className="mb-3 opacity-40" />
             <h2 className="font-display text-lg font-semibold text-ink mb-2">
               Character Not Found
             </h2>
@@ -222,7 +222,7 @@ export default function CharacterView() {
                 onClick={handleSave}
                 className="btn btn-primary flex items-center justify-center gap-1.5"
               >
-                <Save className="h-3.5 w-3.5" />
+                <FloppyDisk weight="regular" className="h-3.5 w-3.5" />
                 Save
               </button>
               <button
@@ -237,7 +237,7 @@ export default function CharacterView() {
                   </>
                 ) : (
                   <>
-                    <Download className="h-3.5 w-3.5" />
+                    <Export weight="regular" className="h-3.5 w-3.5" />
                     Export PDF
                   </>
                 )}
@@ -246,7 +246,7 @@ export default function CharacterView() {
                 onClick={handleImportClick}
                 className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
-                <Upload className="h-3.5 w-3.5" />
+                <Upload weight="regular" className="h-3.5 w-3.5" />
                 Import PDF
               </button>
             </div>
@@ -254,12 +254,12 @@ export default function CharacterView() {
               onClick={handleDelete}
               className="btn-danger w-full flex items-center justify-center gap-1.5"
             >
-              <Trash2 className="h-3.5 w-3.5" />
+              <Trash weight="regular" className="h-3.5 w-3.5" />
               Delete Character
             </button>
             {savedAt && (
               <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-ink py-2 surface">
-                <CheckIcon className="h-3.5 w-3.5" />
+                <CheckCircle weight="fill" className="h-3.5 w-3.5" />
                 Saved
               </div>
             )}
@@ -279,10 +279,4 @@ export default function CharacterView() {
   );
 }
 
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6L9 17l-5-5" />
-    </svg>
-  );
-}
+

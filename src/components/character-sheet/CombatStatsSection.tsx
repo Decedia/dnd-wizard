@@ -4,6 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
+import { Sword } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface CombatStatsSectionProps {
@@ -17,7 +18,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
   const hpPercent = character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0;
 
   return (
-    <SectionCard id="combat-stats" title="COMBAT STATS" icon={<CombatIcon className="h-5 w-5" />}>
+    <SectionCard id="combat-stats" title="COMBAT STATS" icon={<Sword weight="regular" className="h-5 w-5" />}>
       {editMode ? (
         <div className="flex items-center gap-2 mb-3">
           <input
