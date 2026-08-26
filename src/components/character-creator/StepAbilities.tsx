@@ -65,6 +65,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     });
     return initial;
   });
+  const [standardArraySelections, setStandardArraySelections] = useState<Record<AbilityKey, number | null>>(() => {
+    const initial: Record<AbilityKey, number | null> = {
+      str: null, dex: null, con: null, int: null, wis: null, cha: null
+    };
+    return initial;
+  });
 
   const classData = data.class ? getStaticClass(data.class) : null;
   const raceData = data.race ? getStaticRace(data.race) : null;
@@ -158,16 +164,13 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   }, [onChange]);
 
   const renderStandardArray = () => {
-    const currentAbilityValues = ABILITIES.reduce((acc, ability) => {
-      acc[ability.key] = (data[ability.key] as number) || 10;
-      return acc;
-    }, {} as Record<AbilityKey, number>);
+    const currentSelections = standardArraySelections;
 
     return (
       <div className="space-y-4">
         <div className="flex flex-wrap gap-2 mb-4">
           {STANDARD_ARRAY.map((val) => {
-            const isUsed = Object.values(currentAbilityValues).includes(val);
+            const isUsed = Object.values(currentSelections).includes(val);
             return (
                <span
                  key={val}
@@ -188,11 +191,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             const baseScore = getBaseScore(key);
             const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
+            const currentSelection = currentSelections[key];
 
             const valuesUsedByOthers = ABILITIES
               .filter(({ key: otherKey }) => otherKey !== key)
-              .map(({ key: otherKey }) => currentAbilityValues[otherKey])
-              .filter((val, idx, arr) => arr.indexOf(val) === idx);
+              .map(({ key: otherKey }) => currentSelections[otherKey])
+              .filter((val): val is number => val !== null);
 
             return (
               <div
@@ -208,15 +212,19 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                     <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
                   )}
                   <select
-                    value={baseScore}
+                    value={currentSelection ?? "-"}
                     onChange={(e) => {
-                      const val = parseInt(e.target.value);
-                      onChange({ [key]: val } as Partial<Character>);
+                      const val = e.target.value === "-" ? null : parseInt(e.target.value);
+                      setStandardArraySelections(prev => ({ ...prev, [key]: val }));
+                      if (val !== null) {
+                        onChange({ [key]: val } as Partial<Character>);
+                      }
                     }}
                     className="input w-16 text-center border border-border-strong rounded-full"
                   >
+                    <option value="-">-</option>
                     {STANDARD_ARRAY.map((val) => {
-                      const isTakenByOther = valuesUsedByOthers.includes(val) && baseScore !== val;
+                      const isTakenByOther = valuesUsedByOthers.includes(val);
                       return (
                         <option key={val} value={val} disabled={isTakenByOther}>{val}</option>
                       );
