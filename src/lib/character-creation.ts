@@ -45,16 +45,20 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
     const desc = entry.description || "";
     const items = entry.items || [];
 
-    const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
-    if (optionMatches && optionMatches.length > 1) {
-      const options: EquipmentOption[] = optionMatches.map((part: string) => {
-        const trimmed = part.trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
-        const letterMatch = trimmed.match(/^\(([a-z])\)\s*/);
-        const optionLetter = letterMatch ? letterMatch[1] : "";
+      const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
+      if (optionMatches && optionMatches.length > 1) {
+        const options: EquipmentOption[] = optionMatches.map((part: string) => {
+          const trimmed = part.trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
+          const letterMatch = trimmed.match(/^\(([a-z])\)\s*/);
+          const optionLetter = letterMatch ? letterMatch[1] : "";
+          // Format as "(a) ItemName" with capitalized name
+          const nameWithoutLetter = trimmed.replace(/^\(([a-z])\)\s*/, "").trim();
+          const capitalizedName = nameWithoutLetter.charAt(0).toUpperCase() + nameWithoutLetter.slice(1);
+          const formattedDescription = `(${optionLetter}) ${capitalizedName}`;
 
-        const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
-          trimmed
-        );
+          const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
+            trimmed
+          );
 
         let weaponType: string | undefined;
         if (isWeaponChoice) {
@@ -72,7 +76,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         });
 
         return {
-          description: trimmed,
+          description: formattedDescription,
           items: optionItems,
           weaponType,
           isWeaponChoice,
@@ -108,6 +112,8 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
       const parts = desc.split(" or ");
       const options: EquipmentOption[] = parts.map((part: string) => {
         const trimmed = part.trim();
+        // Capitalize first letter of item name
+        const capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
         const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
           trimmed
         );
@@ -123,7 +129,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         }
 
         return {
-          description: trimmed,
+          description: capitalized,
           items: items.length > 0 ? [items[0]] : [],
           weaponType,
           isWeaponChoice,

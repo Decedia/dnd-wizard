@@ -530,7 +530,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
          <span className="text-card-title text-[var(--color-text-primary)]">
           Current Inventory
         </span>
-        {data.inventory.length === 0 ? (
+         {data.inventory.length === 0 ? (
           <p className="text-description">No equipment yet.</p>
         ) : (
           <div className="space-y-2">
@@ -548,7 +548,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                         <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">GRANTED</span>
                       )}
                     </div>
-                     <span className="text-[var(--color-text-muted)]">x{item.quantity || 1}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[var(--color-text-muted)]">x{item.quantity || 1}</span>
+                      {itemInfo && (
+                        <InfoButton
+                          title={item.name}
+                          description={getItemDescription(itemInfo)}
+                          size="sm"
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               );

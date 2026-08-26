@@ -8,7 +8,8 @@ import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/
 import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
 import { useEffect, useCallback } from "react";
-import { Backpack, Plus, CheckCircle, Circle } from "phosphor-react";
+import { Backpack, Plus, CheckCircle, Circle, Info } from "phosphor-react";
+import { InfoButton } from "@/components/InfoButton";
 
 interface InventorySectionProps {
   character: Character;
@@ -58,7 +59,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     return item.itemType === "weapon" || item.itemType === "armor";
   };
 
-  const getWeaponStats = (item: Character["inventory"][number]): string | null => {
+  const getWeaponStats = (item: Character["inventory"][number]): { attackBonus: string; damage: string; ability: string; damageBonus: number } | null => {
     if (item.itemType !== "weapon") return null;
     const profBonus = getProficiencyBonus(character.level);
     const isFinesseOrRanged = item.category === "ranged" || item.name === "Dagger" || item.name === "Rapier" || item.name === "Shortsword";
@@ -73,14 +74,12 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const attackBonus = abilityMod + profBonus;
     const damageBonus = abilityMod;
-    const damageDice = item.damageDice || "";
-    const damageTypeName = item.damageType || "";
-    const parts = [
-      `+${attackBonus} to hit`,
-      [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" "),
-      `(${abilityKey.toUpperCase()} modifier)`,
-    ];
-    return parts.join(" · ");
+    return {
+      attackBonus: attackBonus >= 0 ? `+${attackBonus}` : `${attackBonus}`,
+      damage: `${item.damageDice || ""} ${item.damageType || ""}`.trim(),
+      ability: abilityKey.toUpperCase(),
+      damageBonus,
+    };
   };
 
   const addCustomItem = useCallback(() => {
@@ -104,51 +103,25 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   }, [character, onChange]);
 
   const getItemDescription = (item: Character["inventory"][number]): string => {
-    const srdData = getEquipmentData(item.srdItemName || item.name);
-    const baseDescription = item.description || srdData?.description || "";
-
-    if (baseDescription) return baseDescription;
-
-    const fallbackParts: string[] = [];
-    const itemName = item.name || srdData?.name || "Item";
+    const itemInfo = item.description ? JSON.parse(item.description) : null;
+    const parts: string[] = [];
 
     if (item.itemType === "weapon") {
-      const dice = item.damageDice || srdData?.damageDice || "";
-      const type = item.damageType || srdData?.damageType || "";
-      const profBonus = getProficiencyBonus(character.level);
-      const abilityKey = item.category === "ranged" ? "dex" : "str";
-      const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
-      const attackBonus = abilityMod + profBonus;
-      const damageBonus = abilityMod;
-
-      fallbackParts.push(`${itemName}`);
-      if (dice || type) {
-        const damagePart = [dice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, type].filter(Boolean).join(" ");
-        fallbackParts.push(`${attackBonus >= 0 ? `+${attackBonus}` : attackBonus} to hit · ${damagePart} · ${abilityKey.toUpperCase()} modifier`);
-      }
+      if (item.damageDice) parts.push(`Damage: ${item.damageDice} ${item.damageType || ""}`);
+      if (item.category) parts.push(`Category: ${item.category}`);
+      if (itemInfo?.properties && itemInfo.properties.length > 0) parts.push(`Properties: ${itemInfo.properties.join(", ")}`);
     } else if (item.itemType === "armor") {
-      const baseAC = item.baseAC ?? srdData?.baseAC;
-      const armorType = item.armorType || srdData?.armorType;
-
-      if (armorType === "shield") {
-        fallbackParts.push(`${itemName}. +2 AC`);
-      } else if (baseAC !== undefined) {
-        const maxDex = item.maxDexBonus ?? srdData?.maxDexBonus;
-        if (maxDex === null) {
-          fallbackParts.push(`${itemName}. AC ${baseAC} + Dex modifier`);
-        } else if (maxDex === 0) {
-          fallbackParts.push(`${itemName}. AC ${baseAC}`);
-        } else {
-          fallbackParts.push(`${itemName}. AC ${baseAC} + Dex modifier (max +${maxDex})`);
-        }
-      }
-    } else if (srdData?.damageDice || srdData?.damageType) {
-      const dice = srdData.damageDice || "";
-      const type = srdData.damageType || "";
-      fallbackParts.push(`${itemName}: ${[dice, type].filter(Boolean).join(" ")}`);
+      const baseAC = item.baseAC ?? itemInfo?.baseAC;
+      const armorType = item.armorType || itemInfo?.armorType;
+      const maxDex = item.maxDexBonus ?? itemInfo?.maxDex;
+      parts.push(`AC: ${baseAC} + Dex${maxDex !== undefined && maxDex !== null ? ` (max +${maxDex})` : ""}`);
+      if (armorType) parts.push(`Type: ${armorType}`);
+    } else {
+      if (itemInfo?.description) parts.push(itemInfo.description);
+      if (itemInfo?.contents) parts.push(`Contains: ${itemInfo.contents}`);
     }
 
-    return fallbackParts.join(" · ");
+    return parts.join("\n");
   };
 
   return (
@@ -234,11 +207,24 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                     <button
                       type="button"
                       onClick={() => removeItem(item.id)}
-                      className="text-xs font-bold text-[var(--color-text-primary)] hover:text-[var(--color-text-secondary)] transition-colors"
+                      className="text-xs font-bold text-[var(--color-text-primary)] hover:text-red-500 transition-colors"
                     >
                       Remove
                     </button>
                   </div>
+                  {getWeaponStats(item) && (
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.damage}
+                      </span>
+                      <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
+                      </span>
+                      <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.attackBonus} to hit
+                      </span>
+                    </div>
+                  )}
                   {isCustom && item.source === "custom" && (
                     <textarea
                       value={item.description || ""}
@@ -250,30 +236,49 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                   )}
                 </>
               ) : (
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name || "Unnamed Item"}</span>
-                  {item.quantity > 1 && (
-                    <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
-                  )}
-                  {item.equipped && (
-                    <span className="badge-light text-[var(--color-text-primary)] bg-paper/10">EQUIPPED</span>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name || "Unnamed Item"}</span>
+                      {item.quantity > 1 && (
+                        <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
+                      )}
+                      {item.equipped && (
+                        <span className="badge-light text-[var(--color-text-primary)] bg-paper/10">EQUIPPED</span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <InfoButton
+                        title={item.name || "Item"}
+                        description={getItemDescription(item)}
+                        size="sm"
+                      />
+                    </div>
+                  </div>
+                  {getWeaponStats(item) && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.damage}
+                      </span>
+                      <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
+                      </span>
+                      <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.attackBonus} to hit
+                      </span>
+                    </div>
                   )}
                 </div>
               )}
               {description && (
-                <DescriptionText>{description}</DescriptionText>
-              )}
-              {getWeaponStats(item) && !editMode && (
-                <p className="text-sm font-bold text-ink bg-paper px-3 py-2.5 surface">{getWeaponStats(item)}</p>
-              )}
-              {getWeaponStats(item) && editMode && (
-                <p className="text-sm font-bold text-ink bg-paper px-3 py-2.5 surface">{getWeaponStats(item)}</p>
-              )}
-            </div>
-          );
-        })}
-      </div>
-      {editMode && (
+                 <DescriptionText>{description}</DescriptionText>
+               )}
+             </div>
+           );
+         })}
+       </div>
+       {editMode && (
           <button
             type="button"
             onClick={addCustomItem}

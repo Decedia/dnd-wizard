@@ -58,6 +58,7 @@ interface LevelInfo {
   classFeatures: { name: string; value: string }[];
   subclassOptions?: { name: string; description: string; hasDetails: boolean }[];
   subclassFeatureChoices?: { name: string; options: { name: string; description: string }[] }[];
+  classFeatureChoices?: { name: string; options: { name: string; description: string }[] }[];
   hasSpellSelection: boolean;
   spellSelectionCount: number;
   cantripSelectionCount: number;
@@ -173,6 +174,22 @@ function buildLevelInfos(
       }
     }
 
+    // Class feature choices (e.g., Primal Knowledge for Barbarian)
+    const classFeatureChoices: { name: string; options: { name: string; description: string }[] }[] = [];
+    const levelFeatures = classData.levels[level - 1]?.features || [];
+    for (const feature of levelFeatures) {
+      const f = feature as any;
+      if (f.choices && f.choices.options && f.choices.options.length > 0) {
+        classFeatureChoices.push({
+          name: f.name,
+          options: f.choices.options.map((opt: any) => ({
+            name: typeof opt === "string" ? opt : opt.name,
+            description: typeof opt === "string" ? "" : (opt.description || ""),
+          })),
+        });
+      }
+    }
+
     const prevSlots = prevLevelData?.spellSlots || {};
     const slotsChanged = spellSlots && (Object.keys(spellSlots).length !== Object.keys(prevSlots).length ||
       Object.entries(spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v));
@@ -205,6 +222,7 @@ function buildLevelInfos(
       classFeatures,
       subclassOptions,
       subclassFeatureChoices: subclassFeatureChoices.length > 0 ? subclassFeatureChoices : undefined,
+      classFeatureChoices: classFeatureChoices.length > 0 ? classFeatureChoices : undefined,
       hasSpellSelection,
       spellSelectionCount,
       cantripSelectionCount: cantripsChanged ? (cantripsKnown || 0) - prevCantrips : 0,
@@ -233,6 +251,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
+  const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
 
   const levelInfos = useMemo(
@@ -292,6 +311,12 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           if (!choices[fc.name]) return false;
         }
       }
+      if (info.classFeatureChoices) {
+        const choices = classFeatureChoices[lvl] || {};
+        for (const fc of info.classFeatureChoices) {
+          if (!choices[fc.name]) return false;
+        }
+      }
       return true;
     }
     if (!hpValues[lvl] || hpValues[lvl] <= 0) return false;
@@ -300,6 +325,12 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (info.subclassFeatureChoices) {
       const choices = subclassFeatureChoices[lvl] || {};
       for (const fc of info.subclassFeatureChoices) {
+        if (!choices[fc.name]) return false;
+      }
+    }
+    if (info.classFeatureChoices) {
+      const choices = classFeatureChoices[lvl] || {};
+      for (const fc of info.classFeatureChoices) {
         if (!choices[fc.name]) return false;
       }
     }
@@ -316,6 +347,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         ...Object.fromEntries(
           Object.entries(subclassFeatureChoices).flatMap(([lvl, choices]) =>
             Object.entries(choices).map(([name, value]) => [`subclass-feature-${lvl}-${name}`, [value]])
+          )
+        ),
+        ...Object.fromEntries(
+          Object.entries(classFeatureChoices).flatMap(([lvl, choices]) =>
+            Object.entries(choices).map(([name, value]) => [`class-feature-${lvl}-${name}`, [value]])
           )
         ),
       },
@@ -407,6 +443,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       setAsiSelections({});
       setSpellSelections({});
       setSubclassFeatureChoices({});
+      setClassFeatureChoices({});
     }
   };
 
@@ -477,6 +514,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                   [info.level]: { ...(prev[info.level] || {}), [name]: value },
                 }))
               }
+              classFeatureChoices={classFeatureChoices[info.level] || {}}
+              onClassFeatureChoice={(name, value) =>
+                setClassFeatureChoices((prev) => ({
+                  ...prev,
+                  [info.level]: { ...(prev[info.level] || {}), [name]: value },
+                }))
+              }
               spells={spellSelections[info.level] || []}
               onSpellsChange={(list) => setSpells(info.level, list)}
               character={character}
@@ -513,6 +557,8 @@ interface LevelCardProps {
   onSubclassSelect: (name: string) => void;
   subclassFeatureChoices: Record<string, string>;
   onSubclassFeatureChoice: (name: string, value: string) => void;
+  classFeatureChoices: Record<string, string>;
+  onClassFeatureChoice: (name: string, value: string) => void;
   spells: string[];
   onSpellsChange: (list: string[]) => void;
   character: Character;
@@ -534,6 +580,8 @@ function LevelCard({
   onSubclassSelect,
   subclassFeatureChoices,
   onSubclassFeatureChoice,
+  classFeatureChoices,
+  onClassFeatureChoice,
   spells,
   onSpellsChange,
   character,
@@ -553,7 +601,8 @@ function LevelCard({
   const isAsiComplete = !info.asi || (asiSelection?.mode === "single" && !!asiSelection?.single) || (asiSelection?.mode === "double" && !!asiSelection?.d1 && !!asiSelection?.d2 && asiSelection?.d1 !== asiSelection?.d2);
   const isSubclassComplete = !info.subclassOptions || !!subclassSelection;
   const isFeatureChoicesComplete = !info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]);
-  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete;
+  const isClassFeatureChoicesComplete = !info.classFeatureChoices || info.classFeatureChoices.every((fc) => classFeatureChoices[fc.name]);
+  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete;
 
   return (
     <div className={`rounded-[var(--radius-md)] border transition-all ${
@@ -721,6 +770,41 @@ function LevelCard({
                             onClick={() => onSubclassFeatureChoice(fc.name, opt.name)}
                             className={`w-full p-2 text-left rounded-[var(--radius-sm)] border transition-all ${
                               subclassFeatureChoices[fc.name] === opt.name
+                                ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
+                                : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            <div className="text-[10px] font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                            {opt.description && (
+                              <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 line-clamp-2">{opt.description}</p>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {info.classFeatureChoices && info.classFeatureChoices.length > 0 && (
+            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Choices</div>
+                <div className="space-y-3 mt-1">
+                  {info.classFeatureChoices.map((fc) => (
+                    <div key={fc.name}>
+                      <div className="text-xs font-semibold text-[var(--color-text-primary)] mb-1">{fc.name}</div>
+                      <div className="space-y-1">
+                        {fc.options.map((opt) => (
+                          <button
+                            key={opt.name}
+                            type="button"
+                            onClick={() => onClassFeatureChoice(fc.name, opt.name)}
+                            className={`w-full p-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                              classFeatureChoices[fc.name] === opt.name
                                 ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
                                 : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                             }`}
