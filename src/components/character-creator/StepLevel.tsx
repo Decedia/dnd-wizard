@@ -11,6 +11,17 @@ import {
 } from "@/lib/storage";
 import { normalizeDescription } from "@/lib/level-up";
 import { Dice, type DiceType } from "@/components/Dice";
+import {
+  Heart,
+  Lightning,
+  ChartBar,
+  Sword,
+  Sparkle,
+  MagicWand,
+  Book,
+  Star,
+  Shield,
+} from "phosphor-react";
 
 interface StepLevelProps {
   data: Character;
@@ -28,6 +39,14 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
   { key: "cha", label: "CHA", full: "Charisma" },
 ];
 
+function getProficiencyBonus(level: number): number {
+  if (level <= 4) return 2;
+  if (level <= 8) return 3;
+  if (level <= 12) return 4;
+  if (level <= 16) return 5;
+  return 6;
+}
+
 export function StepLevel({ data, onChange }: StepLevelProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const hitDie = classData?.hitDie || 10;
@@ -37,7 +56,6 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
   const levelHp = data.levelHp || {};
   const baselineHp = hitDie + conMod;
   const averageHp = getHitDieAverage(hitDie) + conMod;
-  const avgNoCon = getHitDieAverage(hitDie);
   const diceType = `d${hitDie}` as DiceType;
 
   const asiLevels = useMemo(() => {
@@ -57,7 +75,6 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0,
   });
   const [asiModalOpen, setAsiModalOpen] = useState(false);
-  const [asiConfirmation, setAsiConfirmation] = useState<string | null>(null);
 
   const currentAsiLevel = pendingAsiLevels[currentAsiIndex];
 
@@ -139,27 +156,15 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     const patch: Partial<Character> = {
       appliedAsi: [...data.appliedAsi, currentAsiLevel],
     };
-    const changed: string[] = [];
-    ABILITIES.forEach(({ key, full }) => {
+    ABILITIES.forEach(({ key }) => {
       if (asiAllocation[key] > 0) {
         patch[key] = (data[key] as number) + asiAllocation[key];
-        changed.push(`${full} increased to ${patch[key]}`);
       }
     });
     onChange(patch);
-    setAsiConfirmation(changed.join(", "));
     setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
     setCurrentAsiIndex((prev) => prev + 1);
   };
-
-  useEffect(() => {
-    if (!asiConfirmation) return;
-    const timer = setTimeout(() => {
-      setAsiConfirmation(null);
-      setAsiModalOpen(!!currentAsiLevel);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [asiConfirmation, currentAsiLevel]);
 
   const allocateAsiPoint = (key: AbilityKey) => {
     setAsiAllocation((prev) => {
@@ -191,21 +196,48 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     return Array.from(levels).sort((a, b) => a - b);
   }, [classData, data.class]);
 
-  const levelFeatures = classData?.levels[level - 1]?.features || [];
-  const levelDescription = useMemo(() => {
-    const names = levelFeatures.map((f) => f.name);
-    if (names.includes("Ability Score Improvement")) return "Ability Score Improvement available";
-    if (names.includes("Extra Attack")) return "Extra Attack: you can attack twice per action";
-    const subclassKeywords = [
-      "Primal Path", "Martial Archetype", "Monastic Tradition", "Sorcerous Origin",
-      "Otherworldly Patron", "Druid Circle", "Divine Domain", "Bard College",
-      "Rogue Archetype", "Ranger Archetype", "Arcane Tradition", "Sacred Oath",
-    ];
-    const match = names.find((n) => subclassKeywords.includes(n));
-    if (match) return `${match} subclass unlocks`;
-    if (names.length === 0) return "No new features";
-    return names.slice(0, 2).join(", ") + (names.length > 2 ? "..." : "");
-  }, [levelFeatures]);
+  const levelData = classData?.levels[level - 1];
+  const features = (levelData?.features || []).map((f: any) => ({
+    name: f.name,
+    description: normalizeDescription(f.description),
+  }));
+
+  const spellSlots = levelData?.spellSlots;
+  const cantripsKnown = classData?.cantripsKnown?.[level];
+  const spellsKnown = (classData as any)?.spellsKnown?.[String(level)];
+
+  const classFeatures: { name: string; value: string }[] = [];
+  if (classData) {
+    const className = classData.name;
+    const classFeatureMap: Record<string, Record<string, any> | undefined> = {
+      Barbarian: { "Rage Uses": classData.rageUses, "Rage Damage": classData.rageDamageBonus },
+      Cleric: { "Channel Divinity": classData.channelDivinityUses },
+      Druid: { "Wild Shape": classData.wildShapeUses },
+      Fighter: { "Action Surge": classData.actionSurgeUses, Indomitable: classData.indomitableUses },
+      Monk: { "Ki Points": classData.kiPoints, "Movement": classData.unarmoredMovement, "Martial Arts": classData.martialArtsDie },
+      Rogue: { "Sneak Attack": classData.sneakAttackDice },
+      Sorcerer: { "Sorcery Points": classData.sorceryPoints },
+      Warlock: { "Invocations": classData.invocationsKnown },
+      Wizard: { "Spellbook": classData.spellbookSpells },
+      Ranger: {},
+      Paladin: {},
+    };
+    const featureValues = classFeatureMap[className];
+    if (featureValues) {
+      for (const [name, data] of Object.entries(featureValues)) {
+        if (data && typeof data === "object" && String(level) in data) {
+          const val = (data as Record<string, any>)[String(level)];
+          if (val !== undefined) {
+            if (name === "Martial Arts") classFeatures.push({ name, value: `d${val}` });
+            else if (name === "Movement") classFeatures.push({ name, value: `+${val} ft` });
+            else if (name === "Rage Damage") classFeatures.push({ name, value: `+${val}` });
+            else if (name === "Sneak Attack") classFeatures.push({ name, value: `${val}d6` });
+            else classFeatures.push({ name, value: String(val) });
+          }
+        }
+      }
+    }
+  }
 
   const hpLevelsToProcess = useMemo(() => {
     const arr: number[] = [];
@@ -224,21 +256,16 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
   const allHpConfirmed = activeHpLevel === null;
 
-  const levelData = classData?.levels[level - 1];
-  const features = (levelData?.features || []).map((f: any) => ({
-    name: f.name,
-    description: normalizeDescription(f.description),
-  }));
-
   return (
     <>
       <StepCard
         title="Starting Level"
-        hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity. Your subclass becomes available when you reach the required level for your class."
+        hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity."
       >
         <div className="space-y-5">
+          {/* Level Selection */}
           <div>
-            <div className="text-[10px] text-paper-muted uppercase tracking-wider mb-2 font-medium">Select Level</div>
+            <div className="text-[10px] text-[var(--color-text-secondary)] uppercase tracking-wider mb-2 font-medium">Select Level</div>
             <div className="grid grid-cols-5 gap-2">
               {Array.from({ length: 10 }, (_, i) => i + 1).map((lvl) => {
                 const isActive = lvl === level;
@@ -248,19 +275,15 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                     key={lvl}
                     type="button"
                     onClick={() => adjustLevel(lvl)}
-                    className={`relative aspect-square rounded-[var(--radius-md)] border-[var(--border-active)] flex items-center justify-center text-lg font-semibold transition-all ${
+                    className={`relative aspect-square rounded-[var(--radius-md)] border flex items-center justify-center text-lg font-semibold transition-all ${
                       isActive
-                        ? "bg-paper text-ink border-paper"
-                        : "bg-ink text-paper border-paper"
+                        ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
+                        : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
                   >
                     {lvl}
                     {isMilestone && (
-                          <span
-                            className={`absolute top-1 right-1 h-2 w-2 rounded-full ${
-                              isActive ? "bg-ink" : "bg-paper"
-                            }`}
-                          />
+                      <span className={`absolute top-1 right-1 h-2 w-2 rounded-full ${isActive ? "bg-[var(--color-surface)]" : "bg-[var(--color-text-primary)]"}`} />
                     )}
                   </button>
                 );
@@ -268,135 +291,208 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             </div>
           </div>
 
-          <div className="card p-3 text-xs text-[var(--color-text-primary)]">
-            Level {level} — {levelDescription || "No new features"}
-          </div>
-
-          <div className="space-y-3">
+          {/* Level Summary */}
+          <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <div className="text-xs text-[var(--color-text-secondary)] uppercase tracking-wider">HP Roll</div>
-              <div className="text-xs text-[var(--color-text-secondary)]">
-                Total so far: <span className="text-ink font-semibold bg-paper px-1 rounded">{hpTotal}</span> HP
-              </div>
+              <h3 className="text-sm font-bold text-[var(--color-text-primary)]">Level {level} Summary</h3>
+              <span className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-bg)] px-2 py-0.5 rounded-full">
+                +{getProficiencyBonus(level)} Proficiency
+              </span>
             </div>
 
-            {level >= 1 && (
-              <div className="text-[11px] text-[var(--color-text-secondary)]">
-                Level 1 HP: {hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod}) ={" "}
-                <span className="text-ink font-semibold bg-paper px-1 rounded">{levelHp[1] || baselineHp}</span>
+            {/* HP */}
+            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+              <Heart weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
+                <div className="text-xs text-[var(--color-text-primary)]">
+                  {level === 1 ? `${hitDie} + CON (${conMod >= 0 ? `+${conMod}` : conMod}) = ${baselineHp}` : `Roll d${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} (avg: ${averageHp})`}
+                </div>
               </div>
-            )}
+              {level === 1 && (
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">{baselineHp} HP</span>
+              )}
+            </div>
 
-            {hpLevelsToProcess.length > 0 && (
-              <div className="flex items-center justify-center gap-1.5">
-                {hpLevelsToProcess.map((lvl) => (
-                  <div
-                    key={lvl}
-                    className={`h-2 w-2 rounded-full ${
-                      confirmedHpLevels.includes(lvl) ? "bg-red-500" : "bg-border"
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-
-            {activeHpLevel && (
-              <div className="card p-4 space-y-4">
-                <div className="text-xs text-[var(--color-text-secondary)] text-center">
-                  Level {activeHpLevel} — d{hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod})
-                </div>
-
-                <div className="text-center text-4xl font-display font-bold text-[var(--color-text-primary)]">
-                  {currentHpValue > 0 ? currentHpValue : "—"}
-                </div>
-
-                <div className="flex items-center justify-center gap-2">
-                  <button
-                    type="button"
-                    onClick={takeAverage}
-                    className="btn btn-secondary rounded-full px-3 py-2 text-xs"
-                  >
-                    Avg ({averageHp})
-                  </button>
-                  <Dice type={diceType} size={72} onRoll={(result) => setCurrentHpValue(result + conMod)} />
-                  <input
-                    type="number"
-                    value={currentHpValue || ""}
-                    onChange={(e) =>
-                      setCurrentHpValue(Math.max(1, parseInt(e.target.value || "0", 10)))
-                    }
-                    className="input w-20 text-center text-sm font-semibold"
-                    placeholder="—"
-                  />
-                </div>
-
-                <div className="flex justify-center">
-                  <button
-                    type="button"
-                    onClick={confirmHp}
-                    disabled={currentHpValue <= 0}
-                    className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-dark active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
-                  >
-                    Confirm Level {currentHpValue > 0 ? activeHpLevel : ""} HP
-                  </button>
+            {/* Class Features */}
+            {classFeatures.length > 0 && (
+              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
+                  <div className="space-y-1 mt-1">
+                    {classFeatures.map((f) => (
+                      <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
+                        <span className="font-semibold">{f.name}:</span> {f.value}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
 
-            {allHpConfirmed && hpLevelsToProcess.length > 0 && (
-              <div className="text-center text-xs text-[var(--color-text-secondary)]">All HP confirmed</div>
+            {/* New Features */}
+            {features.length > 0 && (
+              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <Lightning weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
+                  <div className="space-y-1 mt-1">
+                    {features.map((f) => (
+                      <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
+                        <span className="font-semibold">{f.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Spell Slots */}
+            {spellSlots && (
+              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <Sparkle weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {Object.entries(spellSlots).map(([lvl, count]) => (
+                      <span key={lvl} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
+                        {lvl}st: {count}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Cantrips Known */}
+            {cantripsKnown !== undefined && (
+              <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
+                  <div className="text-xs text-[var(--color-text-primary)]">{cantripsKnown}</div>
+                </div>
+              </div>
+            )}
+
+            {/* Spells Known */}
+            {spellsKnown !== undefined && (
+              <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
+                  <div className="text-xs text-[var(--color-text-primary)]">{spellsKnown}</div>
+                </div>
+              </div>
+            )}
+
+            {/* ASI */}
+            {levelData?.asi && (
+              <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
+                  <div className="text-xs text-[var(--color-text-primary)]">+2 to one ability or +1 to two</div>
+                </div>
+              </div>
             )}
           </div>
 
-          <div className="text-center py-2">
-            <div className="text-4xl font-display font-bold text-[var(--color-text-primary)] tracking-tight">Level {level}</div>
-            {classData && classData.subclassLevel && (
-              <div className="text-xs text-[var(--color-text-secondary)] mt-1.5 font-medium">
-                Subclass available at Level {classData.subclassLevel}
+          {/* HP Rolling Section */}
+          {level >= 2 && (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="text-xs text-[var(--color-text-secondary)] uppercase tracking-wider">HP Roll</div>
+                <div className="text-xs text-[var(--color-text-secondary)]">
+                  Total: <span className="text-[var(--color-text-primary)] font-semibold">{hpTotal}</span> HP
+                </div>
               </div>
-            )}
-          </div>
 
-        {currentAsiLevel && !asiModalOpen && (
-          <div className="card p-4 text-center text-xs text-[var(--color-text-primary)]">
-            {asiConfirmation ? (
-              <div className="text-ink font-semibold bg-paper px-2 py-1 rounded-md inline-block">✓ {asiConfirmation}</div>
-            ) : (
-              <button type="button" onClick={() => setAsiModalOpen(true)} className="btn btn-primary w-full">
-                Complete your Ability Score Improvement
-              </button>
-            )}
-          </div>
-        )}
+              {hpLevelsToProcess.length > 0 && (
+                <div className="flex items-center justify-center gap-1.5">
+                  {hpLevelsToProcess.map((lvl) => (
+                    <div
+                      key={lvl}
+                      className={`h-2 w-2 rounded-full ${
+                        confirmedHpLevels.includes(lvl) ? "bg-green-500" : "bg-[var(--color-border)]"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
 
-          {!currentAsiLevel && pendingAsiLevels.length > 0 && (
-            <div className="surface p-4">
-              <p className="text-xs text-ink font-medium leading-relaxed">
-                Complete the current Ability Score Improvement to continue.
-              </p>
+              {activeHpLevel && (
+                <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 space-y-4">
+                  <div className="text-xs text-[var(--color-text-secondary)] text-center">
+                    Level {activeHpLevel} — d{hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod})
+                  </div>
+
+                  <div className="text-center text-4xl font-display font-bold text-[var(--color-text-primary)]">
+                    {currentHpValue > 0 ? currentHpValue : "—"}
+                  </div>
+
+                  <div className="flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={takeAverage}
+                      className="btn btn-secondary rounded-full px-3 py-2 text-xs"
+                    >
+                      Avg ({averageHp})
+                    </button>
+                    <Dice type={diceType} size={72} onRoll={(result) => setCurrentHpValue(result + conMod)} />
+                    <input
+                      type="number"
+                      value={currentHpValue || ""}
+                      onChange={(e) => setCurrentHpValue(Math.max(1, parseInt(e.target.value || "0", 10)))}
+                      className="input w-20 text-center text-sm font-semibold"
+                      placeholder="—"
+                    />
+                  </div>
+
+                  <div className="flex justify-center">
+                    <button
+                      type="button"
+                      onClick={confirmHp}
+                      disabled={currentHpValue <= 0}
+                      className="rounded-full bg-[var(--color-text-primary)] px-5 py-2.5 text-sm font-semibold text-[var(--color-surface)] transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+                    >
+                      Confirm Level {currentHpValue > 0 ? activeHpLevel : ""} HP
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {allHpConfirmed && hpLevelsToProcess.length > 0 && (
+                <div className="text-center text-xs text-green-600 font-semibold">✓ All HP confirmed</div>
+              )}
             </div>
           )}
 
-          {features.length > 0 && (
-            <div className="space-y-3">
-              <div className="text-[10px] text-[var(--color-text-secondary)] uppercase tracking-wider font-medium">Class Features</div>
-              <div className="space-y-4">
-                {features.map((feature, idx) => (
-                  <div key={idx} className="card p-4 space-y-2">
-                    <div className="text-sm font-bold text-ink bg-paper px-2 py-1 rounded-md inline-block tracking-wide">{feature.name}</div>
-                    <p className="text-sm text-[var(--color-text-secondary)] leading-[1.7] whitespace-pre-line">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
+          {/* ASI Section */}
+          {currentAsiLevel && !asiModalOpen && (
+            <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-center">
+              <button type="button" onClick={() => setAsiModalOpen(true)} className="btn btn-primary w-full">
+                Complete Ability Score Improvement (Level {currentAsiLevel})
+              </button>
+            </div>
+          )}
+
+          {!currentAsiLevel && pendingAsiLevels.length > 0 && (
+            <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+              <p className="text-xs text-[var(--color-text-primary)] font-medium leading-relaxed">
+                Complete the current Ability Score Improvement to continue.
+              </p>
             </div>
           )}
         </div>
       </StepCard>
 
+      {/* ASI Modal */}
       {asiModalOpen && currentAsiLevel && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
-          <div className="card p-4">
-            <div className="flex items-center justify-between border-b-[3px] border-[var(--color-border)] px-4 py-3">
+          <div className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">
                 Ability Score Improvement (Level {currentAsiLevel})
               </div>
@@ -413,7 +509,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                   return (
                     <div
                       key={key}
-                      className="card flex items-center justify-between px-3 py-2.5"
+                      className="flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)]"
                     >
                       <div className="flex flex-col">
                         <span className="text-sm font-bold text-[var(--color-text-primary)] w-12">{label}</span>
@@ -426,18 +522,18 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                             type="button"
                             onClick={() => removeAsiPoint(key)}
                             disabled={allocated <= 0 || isAtCap}
-                            className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
+                            className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
                           >
                             −
                           </button>
-                          <span className="text-sm font-bold text-ink bg-paper w-7 text-center px-1 rounded-md">
+                          <span className="text-sm font-bold text-[var(--color-text-primary)] w-7 text-center">
                             {allocated > 0 ? `+${allocated}` : "0"}
                           </span>
                           <button
                             type="button"
                             onClick={() => allocateAsiPoint(key)}
                             disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
-                            className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30"
+                            className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
                           >
                             +
                           </button>
@@ -448,7 +544,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 })}
               </div>
             </div>
-            <div className="flex justify-between border-t-[3px] border-paper px-4 py-3">
+            <div className="flex justify-between border-t border-[var(--color-border)] px-4 py-3">
               <button
                 type="button"
                 onClick={() => {
@@ -465,7 +561,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 disabled={!canApplyAsi}
                 className="btn btn-primary px-5 py-2.5"
               >
-                Apply Ability Score Improvement
+                Apply ASI
               </button>
             </div>
           </div>
