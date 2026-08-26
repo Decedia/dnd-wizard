@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, type Character } from "@/lib/storage";
@@ -876,6 +876,13 @@ function SubclassDetailsModal({
   const details = getStaticSubclassDetails(characterClass, subclass);
   if (!details) return null;
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
       <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col">
@@ -1040,6 +1047,13 @@ function SubclassSelectionModal({
 }) {
   const [detailsView, setDetailsView] = useState<string | null>(null);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   return (
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
@@ -1134,6 +1148,14 @@ function SpellSelectionModal({
   onClose: () => void;
 }) {
   const [activeTab, setActiveTab] = useState<"cantrips" | number>("cantrips");
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   const allSpells = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
   const cantrips = allSpells.filter((s) => s.level === 0);
   const levelSpells: { [key: number]: typeof allSpells } = {};

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Info, X } from "phosphor-react";
 
 interface DescriptionModalProps {
@@ -11,6 +11,13 @@ interface DescriptionModalProps {
 
 export function DescriptionModal({ title, content, onClose }: DescriptionModalProps) {
   const text = Array.isArray(content) ? content.join(" ") : content;
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
     <div
