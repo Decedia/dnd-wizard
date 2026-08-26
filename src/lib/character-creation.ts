@@ -299,7 +299,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
   // Note: Spell selection is now handled within the LevelUpWizard
   // No separate spell selection step needed in character creation
 
-  const featureSelections = getFeatureSelections(character).filter(s => s.source !== "subclass");
+  const featureSelections = getFeatureSelections(character).filter(s => s.source !== "subclass" && s.source !== "class");
   featureSelections.forEach((selection, index) => {
     const existing = (character as any).featureSelections?.[selection.storageKey];
     const isComplete = selection.optional
