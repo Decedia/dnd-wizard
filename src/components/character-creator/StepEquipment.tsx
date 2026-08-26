@@ -6,6 +6,7 @@ import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData, ge
 import { getModifier, getProficiencyBonus, generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
+import { InfoButton } from "@/components/InfoButton";
 
 interface StepEquipmentProps {
   data: Character;
@@ -289,6 +290,27 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return null;
   }, []);
 
+  const getItemDescription = useCallback((itemInfo: any): string => {
+    if (!itemInfo) return "";
+
+    const parts: string[] = [];
+
+    if (itemInfo.type === "weapon") {
+      if (itemInfo.damageDice) parts.push(`Damage: ${itemInfo.damageDice} ${itemInfo.damageType || ""}`);
+      if (itemInfo.category) parts.push(`Category: ${itemInfo.category}`);
+      if (itemInfo.properties && itemInfo.properties.length > 0) parts.push(`Properties: ${itemInfo.properties.join(", ")}`);
+    } else if (itemInfo.type === "armor") {
+      parts.push(`AC: ${itemInfo.baseAC} + Dex${itemInfo.maxDex !== null ? ` (max +${itemInfo.maxDex})` : ""}`);
+      if (itemInfo.armorType) parts.push(`Type: ${itemInfo.armorType}`);
+      if (itemInfo.description) parts.push(itemInfo.description);
+    } else if (itemInfo.type === "item") {
+      if (itemInfo.description) parts.push(itemInfo.description);
+      if (itemInfo.contents) parts.push(`Contains: ${itemInfo.contents}`);
+    }
+
+    return parts.join("\n");
+  }, []);
+
   const getWeaponsByCategory = useCallback((weaponType: string) => {
     return weapons.filter((w: any) => {
       if (weaponType === "martial") return w.weapon_category === "Martial";
@@ -349,31 +371,36 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                 : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
                             }`}
                           >
-                            {isSelected && selectedWeapon ? (
-                              <div className="flex items-start justify-between">
-                                <div className="flex-1">
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-green-600 font-bold">✓</span>
-                                    <span className="text-body font-semibold text-[var(--color-text-primary)]">{selectedWeapon.name}</span>
-                                  </div>
-                                  {weaponStats && (
-                                     <div className="text-description mt-1 ml-5">
-                                      {weaponStats.damageDice && <span>{weaponStats.damageDice} {weaponStats.damageType}</span>}
-                                      <span className="ml-2 text-[var(--color-text-primary)] font-bold">
-                                        {weaponStats.attackBonus} to hit · {weaponStats.damageBonus} damage · {weaponStats.abilityKey}
-                                      </span>
-                                    </div>
-                                  )}
-                                </div>
-                                <button
-                                  type="button"
-                                  onClick={() => handleChoiceRemove(group)}
-                                   className="text-[var(--color-text-muted)] hover:text-red-500 ml-2 text-lg leading-none"
-                                >
-                                  ×
-                                </button>
-                              </div>
-                            ) : (
+                             {isSelected && selectedWeapon ? (
+                               <div className="flex items-start justify-between">
+                                 <div className="flex-1">
+                                   <div className="flex items-center gap-2">
+                                     <span className="text-green-600 font-bold">✓</span>
+                                     <span className="text-body font-semibold text-[var(--color-text-primary)]">{selectedWeapon.name}</span>
+                                   </div>
+                                   {weaponStats && (
+                                     <div className="flex items-center gap-2 mt-1.5 ml-5">
+                                       <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                         {weaponStats.damageDice} {weaponStats.damageType}
+                                       </span>
+                                       <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                         {weaponStats.abilityKey} +{weaponStats.damageBonus}
+                                       </span>
+                                       <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                         {weaponStats.attackBonus} to hit
+                                       </span>
+                                     </div>
+                                   )}
+                                 </div>
+                                 <button
+                                   type="button"
+                                   onClick={() => handleChoiceRemove(group)}
+                                    className="text-[var(--color-text-muted)] hover:text-red-500 ml-2 text-lg leading-none"
+                                 >
+                                   ×
+                                 </button>
+                               </div>
+                             ) : (
                               <button
                                 type="button"
                                 onClick={() => handleOptionClick(group, optionIndex)}
@@ -383,39 +410,62 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               </button>
                             )}
 
-                            {isExpanded && !isSelected && (
-                              <div className="mt-3 space-y-2">
-                                {categoryWeapons.map((weapon: any) =>
-                                    <button
-                                      key={weapon.name}
-                                      type="button"
-                                      onClick={() => handleWeaponSelect(weapon, group.id, optionIndex)}
-                                      className="card w-full px-3 py-2 text-left text-sm hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-                                    >
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
-                                        <span className="text-xs font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] px-2 py-0.5 rounded-md">{weapon.damage?.damage_dice || "-"}</span>
-                                      </div>
-                                      <div className="text-description mt-1">
-                                       {weapon.damage?.damage_type?.name && <span>{weapon.damage.damage_type.name}</span>}
-                                       {weapon.properties && weapon.properties.length > 0 && (
-                                         <span className="ml-2 text-[var(--color-text-secondary)]">{weapon.properties.map((p: any) => p.name).join(", ")}</span>
+                             {isExpanded && !isSelected && (
+                               <div className="mt-3 space-y-2">
+                                 {categoryWeapons.map((weapon: any) => {
+                                   const wStats = getWeaponStats(weapon.name, weapon.category_range);
+                                   return (
+                                     <button
+                                       key={weapon.name}
+                                       type="button"
+                                       onClick={() => handleWeaponSelect(weapon, group.id, optionIndex)}
+                                       className="card w-full px-3 py-2 text-left text-sm hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                                     >
+                                       <div className="flex items-center justify-between">
+                                         <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
+                                         <div className="flex items-center gap-2">
+                                           {wStats && (
+                                             <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                               {wStats.attackBonus} to hit
+                                             </span>
+                                           )}
+                                           <InfoButton
+                                             title={weapon.name}
+                                             description={[
+                                               weapon.damage?.damage_dice && `Damage: ${weapon.damage.damage_dice} ${weapon.damage?.damage_type?.name || ""}`,
+                                               weapon.properties?.length > 0 && `Properties: ${weapon.properties.map((p: any) => p.name).join(", ")}`,
+                                               weapon.category_range && `Category: ${weapon.category_range}`,
+                                               weapon.weapon_category && `Type: ${weapon.weapon_category}`,
+                                             ].filter(Boolean).join("\n")}
+                                             size="sm"
+                                           />
+                                         </div>
+                                       </div>
+                                       {wStats && (
+                                         <div className="flex items-center gap-2 mt-1.5">
+                                           <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                             {wStats.damageDice} {wStats.damageType}
+                                           </span>
+                                           <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                             {wStats.abilityKey} +{wStats.damageBonus}
+                                           </span>
+                                         </div>
                                        )}
-                                     </div>
-                                    </button>
-                                )}
-                                {categoryWeapons.length === 0 && (
-                                  <p className="text-[var(--color-text-muted)] text-center py-3">
-                                    No weapons available in this category.
-                                  </p>
-                                )}
-                              </div>
-                            )}
+                                     </button>
+                                   );
+                                 })}
+                                 {categoryWeapons.length === 0 && (
+                                   <p className="text-[var(--color-text-muted)] text-center py-3">
+                                     No weapons available in this category.
+                                   </p>
+                                 )}
+                               </div>
+                             )}
                           </div>
                         );
                       }
 
-                      return (
+                       return (
                          <div
                            key={optionIndex}
                            className={`card w-full px-3 py-2 text-left text-sm transition-all ${
@@ -434,22 +484,38 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   <span className="text-body font-semibold text-[var(--color-text-primary)]">{option.description || primaryItem?.name}</span>
                                 </div>
                               </div>
-                              <button
-                                type="button"
-                                onClick={() => handleChoiceRemove(group)}
-                                className="text-[var(--color-text-muted)] hover:text-red-500 ml-2 text-lg leading-none"
-                              >
-                                ×
-                              </button>
+                              <div className="flex items-center gap-1">
+                                {primaryInfo && (
+                                  <InfoButton
+                                    title={primaryItem?.name || option.description || "Item"}
+                                    description={getItemDescription(primaryInfo)}
+                                    size="sm"
+                                  />
+                                )}
+                                <button
+                                  type="button"
+                                  onClick={() => handleChoiceRemove(group)}
+                                  className="text-[var(--color-text-muted)] hover:text-red-500 ml-1 text-lg leading-none"
+                                >
+                                  ×
+                                </button>
+                              </div>
                             </div>
                           ) : (
                             <button
                               type="button"
                               onClick={() => handleOptionClick(group, optionIndex)}
                               disabled={isDisabled}
-                              className="w-full text-left"
+                              className="w-full text-left flex items-center justify-between"
                             >
                               <span className="text-body">{option.description || primaryItem?.name}</span>
+                              {primaryInfo && (
+                                <InfoButton
+                                  title={primaryItem?.name || option.description || "Item"}
+                                  description={getItemDescription(primaryInfo)}
+                                  size="sm"
+                                />
+                              )}
                             </button>
                           )}
                         </div>

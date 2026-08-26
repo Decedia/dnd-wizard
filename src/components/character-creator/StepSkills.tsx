@@ -77,7 +77,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
         <div className="mb-4 hint-box-light">
           <p className="text-body">
             Select <span className="font-bold">{skillChoices.count}</span> skills from your class list.
-            <span className="text-muted">({selectedCount} of {skillChoices.count} selected)</span>
+            <span className="text-[var(--color-text-muted)]">({selectedCount} of {skillChoices.count} selected)</span>
           </p>
         </div>
       )}
@@ -94,29 +94,34 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
               type="button"
               onClick={() => toggleSkill(name)}
               disabled={disabled}
-              className={`btn w-full px-3 py-2 text-left ${
+              className={`btn w-full px-3 py-2 text-left transition-all ${
                 isProficient
-                  ? "bg-white text-ink border-2 border-ink"
+                  ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-2 border-[var(--color-border-active)]"
                   : disabled
-                    ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
-                    : "bg-white text-ink border border-border-muted"
+                    ? "bg-transparent text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
+                    : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
               }`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
-                  <span className="text-body">{name}</span>
-                  <span className="text-muted">{ability.toUpperCase()} {getAbilityModifier(ability)}</span>
+                  <span className={`text-body ${isProficient ? "font-semibold" : ""}`}>{name}</span>
+                  <span className={`text-[10px] ${isAllowed ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
+                    {ability.toUpperCase()} {getAbilityModifier(ability)}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   {isProficient && (
-                    <span className="text-body">+{profBonus}</span>
+                    <span className="text-green-600 text-sm font-bold">+{profBonus}</span>
                   )}
                   {isAllowed && (
-                     <div className={`h-4 w-4 rounded border-2 ${isProficient ? "bg-paper border-paper" : "border-paper"}`}>
+                     <div className={`h-5 w-5 rounded border-2 flex items-center justify-center ${isProficient ? "bg-green-600 border-green-600" : "border-[var(--color-border)] bg-[var(--color-surface)]"}`}>
                        {isProficient && (
-                         <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
+                         <CheckCircle weight="fill" color="#ffffff" className="h-3 w-3" />
                        )}
                      </div>
+                  )}
+                  {!isAllowed && (
+                    <span className="text-[10px] text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">N/A</span>
                   )}
                 </div>
               </div>
