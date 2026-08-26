@@ -9,7 +9,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Barbarians are mighty warriors who are powered by primal forces of the multiverse that manifest as a Rage. People of towns and cities take pride in their settled ways, but to a barbarian, a settled life is a sign of weakness. The strong embrace nature\u2014valuing keen instincts, primal physicality, and ferocious rage. Barbarians come alive in the chaos of combat. They can enter a berserk state where rage takes over, giving them superhuman strength and resilience.",
+      "flavorText": "Barbarians are mighty warriors who are powered by primal forces of the multiverse that manifest as a Rage. People of towns and cities take pride in their settled ways, but to a barbarian, a settled life is a sign of weakness. The strong embrace nature\u2014valuing keen instincts, primal physicality, and ferocious rage.\n\nBarbarians come alive in the chaos of combat. They can enter a berserk state where rage takes over, giving them superhuman strength and resilience. A barbarian can draw on this reservoir of fury only a few times without resting, but those few rages are usually sufficient to defeat whatever threats arise.\n\nA barbarian plays an important role as a protector of their people and a leader in times of war. Life in the wild places of the world is fraught with peril: rival tribes, deadly weather, and terrifying monsters. Barbarians charge headlong into that danger so that their people don't have to.",
       "proficiencies": {
         "armor": [
           "light",
@@ -517,7 +517,7 @@
         "dex",
         "cha"
       ],
-      "flavorText": "Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions. Whether scholar, skald, or scoundrel, a bard weaves magic through words and music to inspire allies, demoralize foes, manipulate minds, create illusions, and even heal wounds. The greatest strength of bards is their sheer versatility. Many bards prefer to stick to the sidelines in combat, using their magic to inspire their allies and hinder their foes from a distance.",
+      "flavorText": "Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions. Whether scholar, skald, or scoundrel, a bard weaves magic through words and music to inspire allies, demoralize foes, manipulate minds, create illusions, and even heal wounds.\n\nIn the worlds of D&D, words and music are not just vibrations of air, but vocalizations with power all their own. The bard is a master of song, speech, and the magic they contain. Bards say that the multiverse was spoken into existence, that the words of the gods gave it shape, and that echoes of these primordial Words of Creation still resound throughout the cosmos.\n\nThe greatest strength of bards is their sheer versatility. Many bards prefer to stick to the sidelines in combat, using their magic to inspire their allies and hinder their foes from a distance. But bards are capable of defending themselves in melee if necessary, using their magic to bolster their swords and armor.",
       "proficiencies": {
         "armor": [
           "light"
@@ -1998,7 +1998,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Clerics can reach out to the divine magic of the Outer Planes and channel it to bolster people and battle foes. Clerics combine the helpful magic of healing and inspiring their allies with spells that harm and hinder foes. They can provoke awe and dread, lay curses of plague or poison, and even call down flames from heaven to consume their enemies. For those evildoers who will benefit most from a mace to the head, clerics depend on their combat training to let them wade into melee with the power of the gods on their side.",
+      "flavorText": "Clerics can reach out to the divine magic of the Outer Planes and channel it to bolster people and battle foes. Clerics combine the helpful magic of healing and inspiring their allies with spells that harm and hinder foes. They can provoke awe and dread, lay curses of plague or poison, and even call down flames from heaven to consume their enemies.\n\nDivine magic, as the name suggests, is the power of the gods, flowing from them into the world. Clerics are conduits for that power, manifesting it as miraculous effects. The gods don't grant this power to everyone who seeks it, but only to those chosen to fulfill a high calling.\n\nClerics are intermediaries between the mortal world and the distant planes of the gods. As varied as the gods they serve, clerics strive to embody the handiwork of their deities. No ordinary priest, a cleric is imbued with divine magic.",
       "proficiencies": {
         "armor": [
           "light",
@@ -2665,7 +2665,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Druids call on the forces of nature, harnessing magic to heal, transform into animals, and wield elemental destruction. Druids are priests of the Old Faith, wielding the powers of nature and adopting animal forms. They are at home in the wilds, serving as guardians of the natural world and protectors of the balance between civilization and nature.",
+      "flavorText": "Druids call on the forces of nature, harnessing magic to heal, transform into animals, and wield elemental destruction. Druids are priests of the Old Faith, wielding the powers of nature and adopting animal forms. They are at home in the wilds, serving as guardians of the natural world and protectors of the balance between civilization and nature.\n\nDruids revere nature above all, gaining their spells and other magic from the natural world itself or from a nature deity. Many druids pursue a mystic spirituality of transcendent union with nature rather than devotion to a divine entity. Druidic rites are typically performed at sacred sites or in hallowed groves.\n\nThe magic of druids is influenced by the land where they were initiated. Some druids learn to take on animal forms, while others develop the ability to control the weather or speak with animals.",
       "proficiencies": {
         "armor": [
           "light",
@@ -3213,7 +3213,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Fighters all share an unparalleled prowess with weapons and armor, and are well acquainted with death, both meting it out and defying it. A master of martial combat, skilled with weapons and armor. Fighters are the most versatile and adaptable of the martial classes, capable of fighting in any situation with the right tools and training.",
+      "flavorText": "Fighters all share an unparalleled prowess with weapons and armor, and are well acquainted with death, both meting it out and defying it. A master of martial combat, skilled with weapons and armor. Fighters are the most versatile and adaptable of the martial classes, capable of fighting in any situation with the right tools and training.\n\nFighters share an unparalleled mastery with weapons and armor, and a thorough familiarity with the skills of combat. They have survived years of warfare, facing down death with every swing of a sword or loosed arrow.\n\nFighters are the most diverse class of characters. Questing knights, conquering overlords, royal champions, elite foot soldiers, hardened mercenaries, and bandit kings\u2014as a fighter, you could be any one of these.",
       "proficiencies": {
         "armor": [
           "light",
@@ -3709,7 +3709,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Monks focus their internal reservoirs of power to create extraordinary, even supernatural, effects. A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection. Monks use discipline and training to channel their inner energy into devastating attacks and incredible feats of agility.",
+      "flavorText": "Monks focus their internal reservoirs of power to create extraordinary, even supernatural, effects. A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection. Monks use discipline and training to channel their inner energy into devastating attacks and incredible feats of agility.\n\nMonks make careful study of their inner energy, known as ki. This energy fuels many of the supernatural abilities that monks channel. They use this power to create magical effects and exceed their bodies' physical capabilities, and some of their special attacks can hinder their foes' ability to move and fight.\n\nMonks devote themselves to the pursuit of physical and spiritual perfection through rigorous combat training and meditation. Their monasteries are found in secluded locations, where they can train without distraction.",
       "proficiencies": {
         "armor": [],
         "weapons": [
@@ -4241,7 +4241,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Paladins live on the front lines of the cosmic struggle, united by their oaths against the forces of annihilation. A devout warrior bound to a sacred oath of justice and devotion. Paladins combine the helpful magic of healing and inspiring their allies with spells that harm and hinder foes, all while standing as bulwarks against the forces of evil.",
+      "flavorText": "Paladins live on the front lines of the cosmic struggle, united by their oaths against the forces of annihilation. A devout warrior bound to a sacred oath of justice and devotion. Paladins combine the helpful magic of healing and inspiring their allies with spells that harm and hinder foes, all while standing as bulwarks against the forces of evil.\n\nPaladins are holy warriors bound to sacred oaths of justice and devotion. They are champions of righteousness, answering to a power higher than themselves. A paladin's magic is a divine gift, a blessing granted to those who pledge their lives to a higher calling.\n\nThe life of a paladin is a life of service to the weak and the innocent. They are bound by their oaths to protect the helpless, to fight evil wherever it lurks, and to uphold the highest ideals of justice and honor.",
       "proficiencies": {
         "armor": [
           "light",
@@ -4762,7 +4762,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Rangers are honed with deadly focus and harness primal powers to protect the world from the ravages of monsters and tyrants. A warrior who combats threats on the edges of civilization. Rangers are skilled hunters and trackers, using their knowledge of the wilderness to protect the innocent from the dangers that lurk in the wild.",
+      "flavorText": "Rangers are honed with deadly focus and harness primal powers to protect the world from the ravages of monsters and tyrants. A warrior who combats threats on the edges of civilization. Rangers are skilled hunters and trackers, using their knowledge of the wilderness to protect the innocent from the dangers that lurk in the wild.\n\nRangers are warriors of the wilderness, living off the land and moving unseen through the shadows. They are skilled hunters and trackers, using their knowledge of the wilderness to protect the innocent from the dangers that lurk in the wild.\n\nRangers specialize in hunting the monsters that threaten the edges of civilization\u2014humanoid raiders, monstrous beasts, and terrible giants. They learn to track their prey as a predator does, moving quietly and hiding themselves in the shadows.",
       "proficiencies": {
         "armor": [
           "light",
@@ -5348,7 +5348,7 @@
         "dex",
         "int"
       ],
-      "flavorText": "Rogues have a knack for finding the solution to just about any problem, prioritizing subtle strikes over brute strength. A scoundrel who uses stealth and trickery to overcome obstacles and enemies. Rogues are skilled in the arts of stealth, deception, and infiltration, making them invaluable members of any adventuring party.",
+      "flavorText": "Rogues have a knack for finding the solution to just about any problem, prioritizing subtle strikes over brute strength. A scoundrel who uses stealth and trickery to overcome obstacles and enemies. Rogues are skilled in the arts of stealth, deception, and infiltration, making them invaluable members of any adventuring party.\n\nRogues devote as much effort to mastering the art of stealth and infiltration as a thief does to picking locks and opening safes. Many rogues are as much about cunning and trickery as they are about agility and stealth. They are the shadowy figures who slip through the cracks in the world's defenses.\n\nRogues rely on skill, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem, demonstrating a resourcefulness and versatility that is the cornerstone of any successful adventuring party.",
       "proficiencies": {
         "armor": [
           "light"
@@ -5876,7 +5876,7 @@
         "con",
         "cha"
       ],
-      "flavorText": "Sorcerers harness and channel the raw, roiling power of innate magic that is stamped into their very being. A spellcaster who draws on inherent magic from a gift or bloodline. Sorcerers carry a magical birthright conferred upon them by an exotic bloodline, some otherworldly influence, or exposure to unknown cosmic forces.",
+      "flavorText": "Sorcerers harness and channel the raw, roiling power of innate magic that is stamped into their very being. A spellcaster who draws on inherent magic from a gift or bloodline. Sorcerers carry a magical birthright conferred upon them by an exotic bloodline, some otherworldly influence, or exposure to unknown cosmic forces.\n\nMagic is a part of every sorcerer, suffusing body, mind, and spirit with a latent power that waits to be tapped. Some sorcerers wield magic that springs from an ancient bloodline infused with the magic of dragons. Others carry a raw, uncontrolled magic within them, a chaotic storm that manifests in unexpected ways.\n\nSorcerers have no use for the spellbooks and ancient tomes of magic lore that wizards rely on, nor do they rely on a patron to grant their spells as warlocks do. By learning to harness and channel their own inborn magic, they can discover new and staggering ways to unleash that power.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -6473,7 +6473,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Warlocks quest for knowledge that lies hidden in the fabric of the multiverse, piecing together arcane secrets to bolster their own power. A wielder of magic that is derived from a bargain with an extraplanar entity. Warlocks are seekers of the arcane secrets that lie hidden in the fabric of the multiverse, making pacts with otherworldly beings to gain power.",
+      "flavorText": "Warlocks quest for knowledge that lies hidden in the fabric of the multiverse, piecing together arcane secrets to bolster their own power. A wielder of magic that is derived from a bargain with an extraplanar entity. Warlocks are seekers of the arcane secrets that lie hidden in the fabric of the multiverse, making pacts with otherworldly beings to gain power.\n\nWarlocks are seekers of the arcane secrets that lie hidden in the fabric of the multiverse. By making pacts with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular. Warlocks are driven by an insatiable need for knowledge and power.\n\nWarlocks forge pacts with beings of supernatural power\u2014fey fiends, and other entities that grant them their magic. These pacts can take many forms, from a simple bargain to a complex agreement that binds the warlock to their patron's service.",
       "proficiencies": {
         "armor": [
           "light"
@@ -7072,7 +7072,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Wizards cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. A scholarly spellcaster who wields magic through study and arcane knowledge. Wizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of all kinds.",
+      "flavorText": "Wizards cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. A scholarly spellcaster who wields magic through study and arcane knowledge. Wizards are supreme magic-users, defined and united as a class by the spells they cast.\n\nWizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of explosive fire, arcing lightning, subtle deception, and brute-force mind control. Their magic conjures monsters from other planes of existence, glimpses the future, or turns slain foes into zombies.\n\nWizards live and breathe magic. They learn it, they shape it, they call it from beyond the boundaries of the mundane world. The wizard is a scholar of the arcane, a spellcaster who wields magic through study and arcane knowledge.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
