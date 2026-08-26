@@ -34,6 +34,10 @@
     @apply bg-paper text-ink font-body antialiased;
     min-height: 100dvh;
   }
+
+  nav {
+    color: #000000;
+  }
 }
 
 @layer components {
