@@ -580,41 +580,50 @@
       "index": "totem",
       "flavorText": "Primal Path",
       "description": [
-        "For some barbarians, the spirit of the totem animal calls to them, granting them the might and ferocity of the beast."
+        "The Path of the Totem Warrior is a spiritual journey, as the barbarian accepts a spirit animal as guide, protector, and inspiration. In battle, your totem spirit fills you with supernatural might, adding magical fuel to your barbarian rage."
       ],
       "features": [
         {
           "name": "Spirit Seeker",
           "description": [
-            "Starting when you choose this path at 3rd level, you gain the ability to cast the beast sense and speak with animals spells, but only as rituals."
+            "Yours is a path that seeks attunement with the natural world, granting you a kinship with beasts. At 3rd level when you adopt this path, you gain the ability to cast the beast sense and speak with animals spells, but only as rituals."
           ],
           "level": 3
         },
         {
           "name": "Totem Spirit",
           "description": [
-            "At 3rd level, you choose a spirit animal and gain its feature. You choose the animal that suits your totem and that your spirit is drawn to."
+            "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object — an amulet or similar adornment — that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are:",
+            "Bear. While raging, you have resistance to all damage except psychic damage.",
+            "Eagle. While raging, other creatures have disadvantage on opportunity attacks against you, and you can use the Dash action as a bonus action on your turn.",
+            "Wolf. While raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you."
           ],
           "level": 3
         },
         {
           "name": "Aspect of the Beast",
           "description": [
-            "At 6th level, you gain a physical feature based on the animal you choose as your totem spirit."
+            "At 6th level, you gain a magical benefit based on the totem animal you choose. You can choose the same animal you chose at 3rd level or a different one.",
+            "Bear. You gain the might of a bear. Your carrying capacity (including load, lift, and push) is doubled, and you have advantage on Strength checks made to push, pull, lift, or break objects.",
+            "Eagle. You gain the eyesight of an eagle. You can see up to 1 mile away with no difficulty, able to discern even fine details as though looking at something no more than 100 feet away from you. Additionally, dim light doesn't impose disadvantage on your Wisdom (Perception) checks.",
+            "Wolf. You gain the hunting sensibilities of a wolf. You can track other creatures while traveling at a brisk pace, and you can move stealthily while traveling at a normal pace."
           ],
           "level": 6
         },
         {
           "name": "Spirit Walker",
           "description": [
-            "At 10th level, you can cast the commune with nature spell, but only as a ritual."
+            "At 10th level, you can cast the commune with nature spell, but only as a ritual. When you do so, a spiritual version of one of the animals you chose for Totem Spirit or Aspect of the Beast makes itself known to you and appears somewhere on the land you are in."
           ],
           "level": 10
         },
         {
           "name": "Totemic Attunement",
           "description": [
-            "At 14th level, you gain a magical benefit based on the totem animal you chose."
+            "At 14th level, you gain a magical benefit based on a totem animal you choose. You can choose the same animal you chose at 3rd level or a different one.",
+            "Bear. While raging, any creature within 5 feet of you that's hostile to you has disadvantage on attack rolls against targets other than you or another character with this feature. An enemy is immune to this effect if it can't see or hear you or if it can't be frightened.",
+            "Eagle. While raging, you have a flying speed equal to your current speed. This benefit works only in short bursts; you fall if you end your turn in the air and nothing else is holding you aloft.",
+            "Wolf. While raging, you can use a bonus action on your turn to knock a Large or smaller creature prone when you hit it with a melee weapon attack."
           ],
           "level": 14
         }

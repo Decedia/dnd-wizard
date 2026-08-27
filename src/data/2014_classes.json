@@ -13,17 +13,14 @@
       "proficiencies": {
         "armor": [
           "light",
-          "medium"
+          "medium",
+          "shields"
         ],
         "weapons": [
           "simple",
           "martial"
         ],
-        "tools": [
-          "shields",
-          "Saving Throw: STR",
-          "Saving Throw: CON"
-        ]
+        "tools": []
       },
       "skillChoices": {
         "count": 2,
@@ -132,25 +129,6 @@
               "name": "Primal Path",
               "description": "At 3rd level, you choose a path that shapes the nature of your rage. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels.",
               "type": "feature"
-            },
-            {
-              "name": "Primal Knowledge",
-              "description": "When you reach 3rd level and again at 10th level, you gain proficiency in one skill of your choice from the list of skills available to barbarians at 1st level.",
-              "type": "feature",
-              "choices": {
-                "type": "skills",
-                "count": 1,
-                "optional": true,
-                "description": "Choose one barbarian skill to gain proficiency in.",
-                "options": [
-                  "Animal Handling",
-                  "Athletics",
-                  "Intimidation",
-                  "Nature",
-                  "Perception",
-                  "Survival"
-                ]
-              }
             }
           ],
           "asi": false,
@@ -204,11 +182,6 @@
               "name": "Feral Instinct",
               "description": "By 7th level, your instincts are so honed that you have advantage on initiative rolls. Additionally, if you are surprised at the beginning of combat and aren't incapacitated, you can act normally on your first turn, but only if you enter your rage before doing anything else on that turn.",
               "type": "feature"
-            },
-            {
-              "name": "Instinctive Pounce",
-              "description": "At 7th level, as part of the bonus action you take to enter your rage, you can move up to half your speed.",
-              "type": "feature"
             }
           ],
           "asi": false,
@@ -245,25 +218,6 @@
               "name": "Path feature",
               "description": "At 3rd level, you choose a path that shapes the nature of your rage. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels.",
               "type": "feature"
-            },
-            {
-              "name": "Primal Knowledge",
-              "description": "When you reach 3rd level and again at 10th level, you gain proficiency in one skill of your choice from the list of skills available to barbarians at 1st level.",
-              "type": "feature",
-              "choices": {
-                "type": "skills",
-                "count": 1,
-                "optional": true,
-                "description": "Choose one barbarian skill to gain proficiency in.",
-                "options": [
-                  "Animal Handling",
-                  "Athletics",
-                  "Intimidation",
-                  "Nature",
-                  "Perception",
-                  "Survival"
-                ]
-              }
             }
           ],
           "asi": false,
