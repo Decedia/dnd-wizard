@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback } from "react";
+import { useState, useCallback } from "react";
 import { StepCard } from "./StepCard";
 import { backgroundsData, alignmentOptions, getBackgroundData } from "@/data/backgrounds";
 import { languages as languageList } from "@/data/srd";
 import type { Character } from "@/lib/storage";
+import { CaretDown, X } from "phosphor-react";
 
 interface StepPersonalityProps {
   data: Character;
@@ -69,20 +70,67 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
   const bonds = selectedBackground?.bonds || [];
   const flaws = selectedBackground?.flaws || [];
 
-  return (
-    <StepCard title="Personality" hint="Define your character's name, personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
-      <div className="space-y-6">
+  const [popupType, setPopupType] = useState<"personality" | "ideal" | "bond" | "flaw" | null>(null);
 
-        <div>
-          <label className="field-label-light">Character Name *</label>
-          <input
-            type="text"
-            value={data.name}
-            onChange={(e) => onChange({ name: e.target.value })}
-            className="input w-full text-lg font-semibold mt-1"
-            placeholder="Enter character name"
-          />
-        </div>
+  const getPopupOptions = () => {
+    switch (popupType) {
+      case "personality": return personalityTraits;
+      case "ideal": return ideals;
+      case "bond": return bonds;
+      case "flaw": return flaws;
+      default: return [];
+    }
+  };
+
+  const getPopupTitle = () => {
+    switch (popupType) {
+      case "personality": return "Choose Personality Trait";
+      case "ideal": return "Choose Ideal";
+      case "bond": return "Choose Bond";
+      case "flaw": return "Choose Flaw";
+      default: return "";
+    }
+  };
+
+  const getCurrentValue = () => {
+    switch (popupType) {
+      case "personality": return data.personalityTrait1;
+      case "ideal": return data.ideal;
+      case "bond": return data.bond;
+      case "flaw": return data.flaw;
+      default: return "";
+    }
+  };
+
+  const handleSelect = (value: string) => {
+    switch (popupType) {
+      case "personality": onChange({ personalityTrait1: value }); break;
+      case "ideal": onChange({ ideal: value }); break;
+      case "bond": onChange({ bond: value }); break;
+      case "flaw": onChange({ flaw: value }); break;
+    }
+    setPopupType(null);
+  };
+
+  const renderSelectButton = (label: string, value: string, placeholder: string, type: "personality" | "ideal" | "bond" | "flaw") => (
+    <div>
+      <label className="field-label-light">{label}</label>
+      <button
+        type="button"
+        onClick={() => setPopupType(type)}
+        className="w-full mt-1 p-3 text-left rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)] transition-all flex items-center justify-between gap-2"
+      >
+        <span className={"text-sm " + (value ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-muted)]")}>
+          {value || placeholder}
+        </span>
+        <CaretDown className="h-4 w-4 text-[var(--color-text-muted)]" />
+      </button>
+    </div>
+  );
+
+  return (
+    <StepCard title="Personality" hint="Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
+      <div className="space-y-6">
 
         <div>
           <label className="field-label-light">Alignment</label>
@@ -188,94 +236,54 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
           </div>
         </div>
 
-        {personalityTraits.length > 0 && (
-          <div>
-            <label className="field-label-light">Personality Traits</label>
-            <div className="space-y-2 mt-2">
-              {personalityTraits.map((trait, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => onChange({ personalityTrait1: trait })}
-                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                    data.personalityTrait1 === trait
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  <span className="text-xs text-[var(--color-text-primary)]">{trait}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {ideals.length > 0 && (
-          <div>
-            <label className="field-label-light">Ideal</label>
-            <div className="space-y-2 mt-2">
-              {ideals.map((ideal, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => onChange({ ideal: ideal })}
-                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                    data.ideal === ideal
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  <span className="text-xs text-[var(--color-text-primary)]">{ideal}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {bonds.length > 0 && (
-          <div>
-            <label className="field-label-light">Bond</label>
-            <div className="space-y-2 mt-2">
-              {bonds.map((bond, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => onChange({ bond: bond })}
-                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                    data.bond === bond
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  <span className="text-xs text-[var(--color-text-primary)]">{bond}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {flaws.length > 0 && (
-          <div>
-            <label className="field-label-light">Flaw</label>
-            <div className="space-y-2 mt-2">
-              {flaws.map((flaw, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => onChange({ flaw: flaw })}
-                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                    data.flaw === flaw
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  <span className="text-xs text-[var(--color-text-primary)]">{flaw}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        {personalityTraits.length > 0 && renderSelectButton("Personality Trait", data.personalityTrait1, "Select a personality trait...", "personality")}
+        {ideals.length > 0 && renderSelectButton("Ideal", data.ideal, "Select an ideal...", "ideal")}
+        {bonds.length > 0 && renderSelectButton("Bond", data.bond, "Select a bond...", "bond")}
+        {flaws.length > 0 && renderSelectButton("Flaw", data.flaw, "Select a flaw...", "flaw")}
       </div>
+
+      {popupType && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setPopupType(null); }}
+        >
+          <div
+            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">
+                {getPopupTitle()}
+              </div>
+              <button
+                type="button"
+                onClick={() => setPopupType(null)}
+                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              <div className="space-y-2">
+                {getPopupOptions().map((option, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => handleSelect(option)}
+                    className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                      getCurrentValue() === option
+                        ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                        : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                    }`}
+                  >
+                    <span className="text-xs text-[var(--color-text-primary)] leading-relaxed">{option}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </StepCard>
   );
 }

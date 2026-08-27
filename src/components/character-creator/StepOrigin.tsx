@@ -77,6 +77,17 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   return (
     <StepCard title="Origin" hint="Choose your character's class and race. Your class defines your abilities and role, while your race provides unique traits and ability bonuses.">
       <div className="space-y-4">
+        <div className="card p-4">
+          <label className="field-label-light">Character Name *</label>
+          <input
+            type="text"
+            value={data.name}
+            onChange={(e) => onChange({ name: e.target.value })}
+            className="input w-full text-lg font-semibold mt-1"
+            placeholder="Enter character name"
+          />
+        </div>
+
         <button
           type="button"
           onClick={() => setPopupType("class")}
