@@ -391,9 +391,10 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
 export function getValidationMessage(step: CreationStep, character?: Character): string {
   switch (step.type) {
     case "origin":
+      if (!character?.name?.trim()) return "Please enter your character's name.";
       return "Please select a class and race for your character.";
     case "personality":
-      return "Please enter your character's name, select a background, and choose an alignment.";
+      return "Please select a background and choose an alignment.";
     case "abilities":
       return "Please set all six ability scores before continuing.";
     case "skills":
@@ -425,8 +426,8 @@ export function getValidationMessage(step: CreationStep, character?: Character):
 export function getCreationSteps(character: Character): CreationStep[] {
   const classData = character.class ? getStaticClass(character.class) : null;
 
-  const originCompleted = !!character.class && !!character.race;
-  const personalityCompleted = !!character.name.trim() && !!character.background && !!character.alignment;
+  const originCompleted = !!character.name.trim() && !!character.class && !!character.race;
+  const personalityCompleted = !!character.background && !!character.alignment;
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
   const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
