@@ -175,12 +175,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
                             <span className="text-card-title">{cls.name}</span>
-                            {hasSubclasses && (
-                              <span className="badge text-[var(--color-text-primary)] bg-[var(--color-surface)]">
-                                Subclass at Lv {cls.subclassLevel}
-                              </span>
-                            )}
                           </div>
+                          {hasSubclasses && (
+                            <div className="mt-1 flex items-center gap-2">
+                              <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">Subclass at Lv {cls.subclassLevel}</span>
+                            </div>
+                          )}
                           {hasSubclasses && (
                             <div className="mt-2 flex flex-wrap gap-1.5">
                               {cls.subclasses!.map((sub) => (
