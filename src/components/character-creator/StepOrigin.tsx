@@ -132,49 +132,48 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 const Icon = classIcons[cls.name] || Sparkle;
 
                 return (
-                  <button
-                    key={cls.name}
-                    type="button"
-                    onClick={() => handleClassSelect(cls.name)}
-                    className={`w-full p-4 text-left rounded-[var(--radius-md)] transition-all ${
-                      isSelected
-                        ? "bg-[var(--color-bg)] border-2 border-[var(--color-border-active)]"
-                        : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <span className="text-card-title">{cls.name}</span>
-                          <div className="flex items-center gap-2">
+                  <div key={cls.name} className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleClassSelect(cls.name)}
+                      className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
+                        isSelected
+                          ? "bg-[var(--color-bg)] border-2 border-[var(--color-border-active)]"
+                          : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-card-title">{cls.name}</span>
                             {hasSubclasses && (
                               <span className="badge text-[var(--color-text-primary)] bg-[var(--color-surface)]">
                                 Subclass at Lv {cls.subclassLevel}
                               </span>
                             )}
-                            {cls.flavorText && (
-                              <InfoButton title={cls.name} description={cls.flavorText} />
-                            )}
                           </div>
+                          {hasSubclasses && (
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {cls.subclasses!.map((sub) => (
+                                <span
+                                  key={sub.name}
+                                  className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-1.5 py-0.5 rounded-full"
+                                >
+                                  {sub.name}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                        {hasSubclasses && (
-                          <div className="mt-2 flex flex-wrap gap-1.5">
-                            {cls.subclasses!.map((sub) => (
-                              <span
-                                key={sub.name}
-                                className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-1.5 py-0.5 rounded-full"
-                              >
-                                {sub.name}
-                              </span>
-                            ))}
-                          </div>
-                        )}
                       </div>
-                    </div>
-                  </button>
+                    </button>
+                    {cls.flavorText && (
+                      <InfoButton title={cls.name} description={cls.flavorText} />
+                    )}
+                  </div>
                 );
               })}
             </div>
@@ -202,36 +201,35 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               {races.map((race) => {
                 const isSelected = data.race === race.name;
                 return (
-                  <button
-                    key={race.name}
-                    type="button"
-                    onClick={() => handleRaceSelect(race.name)}
-                    className={`w-full p-4 text-left rounded-[var(--radius-md)] transition-all ${
-                      isSelected
-                        ? "bg-[var(--color-bg)] border-2 border-[var(--color-border-active)]"
-                        : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-card-title">{race.name}</span>
-                      <div className="flex items-center gap-2">
+                  <div key={race.name} className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleRaceSelect(race.name)}
+                      className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
+                        isSelected
+                          ? "bg-[var(--color-bg)] border-2 border-[var(--color-border-active)]"
+                          : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-card-title">{race.name}</span>
                         <span className="text-muted">
                           {race.size} / Speed {race.speed} ft
                         </span>
-                        {race.traits && race.traits.length > 0 && (
-                          <InfoButton
-                            title={`${race.name} Traits`}
-                            description={race.traits.map((t) => `${t.name}: ${t.description}`).join("\n\n")}
-                          />
-                        )}
                       </div>
-                    </div>
-                    <p className="mt-1 text-description">
-                      {Object.entries(race.abilityScoreIncreases || {})
-                        .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
-                        .join(", ")}
-                    </p>
-                  </button>
+                      <p className="mt-1 text-description">
+                        {Object.entries(race.abilityScoreIncreases || {})
+                          .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
+                          .join(", ")}
+                      </p>
+                    </button>
+                    {race.traits && race.traits.length > 0 && (
+                      <InfoButton
+                        title={`${race.name} Traits`}
+                        description={race.traits.map((t) => `${t.name}: ${t.description}`).join("\n\n")}
+                      />
+                    )}
+                  </div>
                 );
               })}
             </div>
