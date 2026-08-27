@@ -163,12 +163,10 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
 
 export function getValidationMessage(step: CreationStep, character?: Character): string {
   switch (step.type) {
-    case "identity":
+    case "origin":
+      return "Please select a class and race for your character.";
+    case "personality":
       return "Please enter your character's name, select a background, and choose an alignment.";
-    case "class":
-      return "Please select a class for your character.";
-    case "race":
-      return "Please select a race for your character.";
     case "abilities":
       return "Please set all six ability scores before continuing.";
     case "skills":
@@ -200,9 +198,8 @@ export function getValidationMessage(step: CreationStep, character?: Character):
 export function getCreationSteps(character: Character): CreationStep[] {
   const classData = character.class ? getStaticClass(character.class) : null;
 
-  const identityCompleted = !!character.name.trim() && !!character.background && !!character.alignment;
-  const classCompleted = !!character.class;
-  const raceCompleted = !!character.race;
+  const originCompleted = !!character.class && !!character.race;
+  const personalityCompleted = !!character.name.trim() && !!character.background && !!character.alignment;
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
   const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
@@ -222,31 +219,22 @@ export function getCreationSteps(character: Character): CreationStep[] {
 
   const steps: CreationStep[] = [
     {
-      id: "identity",
-      title: "Identity",
-      description: "Basic character information",
-      hint: "Enter your character's name, choose a background, and set their alignment. This is who your character is in the world.",
-      type: "identity",
+      id: "origin",
+      title: "Origin",
+      description: "Choose class and race",
+      hint: "Choose your character's class and race. Your class defines your abilities and role, while your race provides unique traits and ability bonuses.",
+      type: "origin",
       required: true,
-      completed: identityCompleted,
+      completed: originCompleted,
     },
     {
-      id: "class",
-      title: "Class",
-      description: "Choose your character's class",
-      hint: "Your class defines your character's core abilities, hit dice, and progression. Choose carefully - this determines what you can do in combat and exploration.",
-      type: "class",
+      id: "personality",
+      title: "Personality",
+      description: "Background and traits",
+      hint: "Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.",
+      type: "personality",
       required: true,
-      completed: classCompleted,
-    },
-    {
-      id: "race",
-      title: "Race",
-      description: "Choose your character's race",
-      hint: "Your race determines your character's base abilities, traits, and place in the world. Each race has unique features like darkvision, weapon proficiencies, or special abilities.",
-      type: "race",
-      required: true,
-      completed: raceCompleted,
+      completed: personalityCompleted,
     },
     {
       id: "abilities",

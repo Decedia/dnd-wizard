@@ -4,10 +4,8 @@ import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
-import { StepCard } from "@/components/character-creator/StepCard";
-import { StepIdentity } from "@/components/character-creator/StepIdentity";
-import { StepRace } from "@/components/character-creator/StepRace";
-import { StepClass } from "@/components/character-creator/StepClass";
+import { StepOrigin } from "@/components/character-creator/StepOrigin";
+import { StepPersonality } from "@/components/character-creator/StepPersonality";
 import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
@@ -22,7 +20,6 @@ import {
   syncBaseFeatures,
   type Character,
 } from "@/lib/character-creation";
-import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 
 export default function CharacterCreate() {
   const router = useRouter();
@@ -70,12 +67,10 @@ export default function CharacterCreate() {
   const renderStep = useCallback(() => {
     if (!currentStep) return null;
     switch (currentStep.type) {
-      case "identity":
-        return <StepIdentity data={character} onChange={update} />;
-      case "race":
-        return <StepRace data={character} onChange={update} />;
-      case "class":
-        return <StepClass data={character} onChange={update} />;
+      case "origin":
+        return <StepOrigin data={character} onChange={update} />;
+      case "personality":
+        return <StepPersonality data={character} onChange={update} />;
       case "abilities":
         return <StepAbilities data={character} onChange={update} />;
       case "skills":
