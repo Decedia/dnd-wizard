@@ -1306,7 +1306,7 @@ function SpellSelectionModal({
             </div>
           </div>
         )}
-        <div className="flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide">
+        <div className="flex-shrink-0 flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide">
           <button
             type="button"
             onClick={() => setActiveTab("cantrips")}
@@ -1333,7 +1333,7 @@ function SpellSelectionModal({
             </button>
           ))}
         </div>
-        <div className="flex-1 overflow-y-auto px-4 py-3">
+        <div className="flex-1 min-h-0 overflow-y-auto px-4 py-3">
           {activeTab === "cantrips" ? (
             <div className="space-y-1.5">
               {cantrips.map((sp) => {
