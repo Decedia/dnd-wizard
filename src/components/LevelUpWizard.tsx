@@ -240,6 +240,7 @@ function buildLevelInfos(
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
     const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger", "Paladin"].includes(className);
+    const isPrepCaster = ["Cleric", "Druid"].includes(className);
     let spellSelectionCount = isSpellsKnownCaster
       ? (spellsKnownChanged ? (spellsKnown || 0) - prevSpellsKnown : 0)
       : (className === "Wizard" ? 2 : 0);
@@ -250,6 +251,15 @@ function buildLevelInfos(
       const currentTotal = sb[String(level)] || 0;
       const prevTotal = level > 1 ? (sb[String(level - 1)] || 0) : 0;
       spellSelectionCount = currentTotal - prevTotal;
+    }
+
+    // Preparation casters (Cleric, Druid): prepare Wisdom mod + level spells
+    if (isPrepCaster && classData.spellcastingAbility) {
+      const abilityMod = getModifier(character[classData.spellcastingAbility as keyof Character] as number);
+      const maxPrepared = Math.max(1, abilityMod + level);
+      const prevMaxPrepared = level > 1 ? Math.max(1, abilityMod + (level - 1)) : 0;
+      spellSelectionCount = maxPrepared - prevMaxPrepared;
+      if (spellSelectionCount <= 0) spellSelectionCount = 0;
     }
 
     infos.push({
