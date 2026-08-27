@@ -685,7 +685,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   <InfoButton
                                     title={primaryItem?.name || option.description || "Item"}
                                     description={getItemDescription(primaryInfo)}
-                                    size="sm"
                                   />
                                 )}
                               </div>
@@ -729,7 +728,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                         <InfoButton
                           title={item.name}
                           description={getItemDescription(itemInfo)}
-                          size="sm"
                         />
                       )}
                     </div>
@@ -787,7 +785,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       weapon.category_range && `Category: ${weapon.category_range}`,
                       weapon.weapon_category && `Type: ${weapon.weapon_category}`,
                     ].filter(Boolean).join("\n")}
-                    size="sm"
                   />
                 </div>
               );
@@ -807,7 +804,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <InfoButton
                   title={instrument}
                   description="Musical instrument. Bards use musical instruments as a spellcasting focus."
-                  size="sm"
                 />
               </div>
             ))}
@@ -826,7 +822,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <InfoButton
                   title={focus}
                   description="An arcane focus is a special item designed to channel arcane magic. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
-                  size="sm"
                 />
               </div>
             ))}
@@ -845,7 +840,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <InfoButton
                   title={symbol}
                   description="A holy symbol is a representation of a deity or pantheon. A cleric or paladin can use a holy symbol as a spellcasting focus."
-                  size="sm"
                 />
               </div>
             ))}
@@ -864,7 +858,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <InfoButton
                   title={focus}
                   description="A druidic focus is a special item used by druids to channel nature magic. It can be a sprig of mistletoe, a totem, a wooden staff, or a yew wand."
-                  size="sm"
                 />
               </div>
             ))}

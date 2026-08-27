@@ -246,7 +246,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <InfoButton
                         title={item.name || "Item"}
                         description={getItemDescription(item)}
-                        size="sm"
                       />
                     </div>
                   </div>
