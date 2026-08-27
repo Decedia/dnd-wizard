@@ -635,12 +635,14 @@ function LevelCard({
   startFromLevelOne,
   allSpellSelections,
 }: LevelCardProps) {
-   const [showSpellSelection, setShowSpellSelection] = useState(false);
-   const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
-   const [showSubclassModal, setShowSubclassModal] = useState(false);
-   const [showSpellModal, setShowSpellModal] = useState(false);
-   const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean } | null>(null);
-   const lvl = info.level;
+    const [showSpellSelection, setShowSpellSelection] = useState(false);
+    const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
+    const [showSubclassModal, setShowSubclassModal] = useState(false);
+    const [showSpellModal, setShowSpellModal] = useState(false);
+    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean } | null>(null);
+    const [showAsiModal, setShowAsiModal] = useState(false);
+    const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
+    const lvl = info.level;
 
   const isHpComplete = hpValue > 0;
   const isAsiComplete = !info.asi || (asiSelection?.mode === "single" && !!asiSelection?.single) || (asiSelection?.mode === "double" && !!asiSelection?.d1 && !!asiSelection?.d2 && asiSelection?.d1 !== asiSelection?.d2);
@@ -648,6 +650,57 @@ function LevelCard({
   const isFeatureChoicesComplete = !info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]);
   const isClassFeatureChoicesComplete = !info.classFeatureChoices || info.classFeatureChoices.every((fc) => classFeatureChoices[fc.name]);
   const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete;
+
+  const totalAsiPoints = Object.values(asiAllocation).reduce((sum, val) => sum + val, 0);
+  const canApplyAsi = totalAsiPoints === 2;
+
+  const openAsiModal = () => {
+    const sel = asiSelection;
+    const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
+    if (sel?.mode === "single" && sel.single) alloc[sel.single] = 2;
+    if (sel?.mode === "double") {
+      if (sel.d1) alloc[sel.d1] = 1;
+      if (sel.d2) alloc[sel.d2] = 1;
+    }
+    setAsiAllocation(alloc);
+    setShowAsiModal(true);
+  };
+
+  const allocateAsiPoint = (key: AbilityKey) => {
+    setAsiAllocation((prev) => {
+      const current = prev[key] || 0;
+      if (current >= 2) return prev;
+      if (totalAsiPoints >= 2) return prev;
+      return { ...prev, [key]: current + 1 };
+    });
+  };
+
+  const removeAsiPoint = (key: AbilityKey) => {
+    setAsiAllocation((prev) => {
+      const current = prev[key] || 0;
+      if (current <= 0) return prev;
+      return { ...prev, [key]: current - 1 };
+    });
+  };
+
+  const applyAsi = () => {
+    if (!canApplyAsi) return;
+    let mode: "single" | "double" = "single";
+    let single: AbilityKey | undefined;
+    let d1: AbilityKey | undefined;
+    let d2: AbilityKey | undefined;
+    const entries = Object.entries(asiAllocation).filter(([, v]) => v > 0) as [AbilityKey, number][];
+    if (entries.length === 1 && entries[0][1] === 2) {
+      mode = "single";
+      single = entries[0][0];
+    } else if (entries.length === 2 && entries[0][1] === 1 && entries[1][1] === 1) {
+      mode = "double";
+      d1 = entries[0][0];
+      d2 = entries[1][0];
+    }
+    onAsiChange({ mode, single, d1, d2 });
+    setShowAsiModal(false);
+  };
 
   return (
     <div className={`rounded-[var(--radius-md)] border transition-all ${
@@ -734,15 +787,28 @@ function LevelCard({
              </div>
            )}
 
-          {info.asi && (
-            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-              <div className="flex-1">
-                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
-                <AsiSelectorInline state={asiSelection} baseScores={baseScores} onChange={onAsiChange} />
-              </div>
-            </div>
-          )}
+           {info.asi && (
+             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+               <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+               <div className="flex-1">
+                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
+                 <button
+                   type="button"
+                   onClick={openAsiModal}
+                   className="mt-1 w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                 >
+                   <span>
+                     {asiSelection?.mode === "single" && asiSelection.single
+                       ? `+2 ${asiSelection.single.toUpperCase()}`
+                       : asiSelection?.mode === "double" && asiSelection.d1 && asiSelection.d2
+                         ? `+1 ${asiSelection.d1.toUpperCase()}, +1 ${asiSelection.d2.toUpperCase()}`
+                         : "Select ability scores…"}
+                   </span>
+                   <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                 </button>
+               </div>
+             </div>
+           )}
 
           {info.spellSlots && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
@@ -906,6 +972,88 @@ function LevelCard({
         />
       )}
 
+      {showAsiModal && info.asi && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowAsiModal(false); }}
+        >
+          <div className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">
+                Ability Score Improvement (Level {lvl})
+              </div>
+            </div>
+            <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
+              <p className="text-xs text-[var(--color-text-secondary)]">
+                Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
+              </p>
+              <div className="space-y-2">
+                {ABILITIES.map(({ key, label, full }) => {
+                  const currentScore = baseScores[key];
+                  const allocated = asiAllocation[key] || 0;
+                  const isAtCap = currentScore >= 20;
+                  return (
+                    <div
+                      key={key}
+                      className="flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)]"
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-sm font-bold text-[var(--color-text-primary)] w-12">{label}</span>
+                        <span className="text-[10px] text-[var(--color-text-secondary)]">{full}</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-bold text-[var(--color-text-primary)] w-8 text-center">{currentScore}</span>
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => removeAsiPoint(key)}
+                            disabled={allocated <= 0 || isAtCap}
+                            className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
+                          >
+                            −
+                          </button>
+                          <span className="text-sm font-bold text-[var(--color-text-primary)] w-7 text-center">
+                            {allocated > 0 ? `+${allocated}` : "0"}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => allocateAsiPoint(key)}
+                            disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
+                            className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex justify-between border-t border-[var(--color-border)] px-4 py-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
+                  setShowAsiModal(false);
+                }}
+                className="btn btn-secondary px-5 py-2.5"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={applyAsi}
+                disabled={!canApplyAsi}
+                className="btn btn-primary px-5 py-2.5"
+              >
+                Apply ASI
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showFeaturePopup && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
@@ -967,100 +1115,6 @@ function LevelCard({
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function AsiSelectorInline({
-  state,
-  baseScores,
-  onChange,
-}: {
-  state?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey };
-  baseScores: Record<AbilityKey, number>;
-  onChange: (patch: Partial<{ mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>) => void;
-}) {
-  return (
-    <div className="space-y-2 mt-1">
-      <div className="grid grid-cols-2 gap-1.5">
-        <button
-          type="button"
-          onClick={() => onChange({ mode: "single", single: undefined, d1: undefined, d2: undefined })}
-          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
-            state?.mode === "single"
-              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
-          }`}
-        >
-          +2 to one
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange({ mode: "double", single: undefined, d1: undefined, d2: undefined })}
-          className={`px-2 py-1.5 text-[10px] rounded-full border transition-all ${
-            state?.mode === "double"
-              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-              : "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)]"
-          }`}
-        >
-          +1 to two
-        </button>
-      </div>
-
-      {state?.mode === "single" && (
-        <select
-          value={state.single || ""}
-          onChange={(e) => onChange({ single: (e.target.value || undefined) as AbilityKey | undefined })}
-          className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
-        >
-          <option value="">Select ability…</option>
-          {ABILITIES.map(({ key, label, full }) => {
-            const atCap = baseScores[key] + 2 > 20;
-            return (
-              <option key={key} value={key} disabled={atCap}>
-                {label} ({baseScores[key]} → {baseScores[key] + 2}){atCap ? " (max)" : ""}
-              </option>
-            );
-          })}
-        </select>
-      )}
-
-      {state?.mode === "double" && (
-        <div className="space-y-1.5">
-          <select
-            value={state.d1 || ""}
-            onChange={(e) => onChange({ d1: (e.target.value || undefined) as AbilityKey | undefined })}
-            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
-          >
-            <option value="">First ability…</option>
-            {ABILITIES.map(({ key, label, full }) => {
-              const atCap = baseScores[key] + 1 > 20;
-              const disabled = atCap || key === state.d2;
-              return (
-                <option key={key} value={key} disabled={disabled}>
-                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
-                </option>
-              );
-            })}
-          </select>
-          <select
-            value={state.d2 || ""}
-            onChange={(e) => onChange({ d2: (e.target.value || undefined) as AbilityKey | undefined })}
-            className="w-full text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1.5"
-          >
-            <option value="">Second ability…</option>
-            {ABILITIES.map(({ key, label, full }) => {
-              const atCap = baseScores[key] + 1 > 20;
-              const disabled = atCap || key === state.d1;
-              return (
-                <option key={key} value={key} disabled={disabled}>
-                  {label} ({baseScores[key]} → {baseScores[key] + 1}){atCap ? " (max)" : ""}
-                </option>
-              );
-            })}
-          </select>
         </div>
       )}
     </div>
