@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { getModifier } from "@/lib/storage";
+import { getModifier, isPreparationCaster } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
 
 interface StepSpellsProps {
@@ -119,15 +119,19 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   const toggleSpell = (spellName: string, level: number) => {
     const isSelected = selectedSpells.some((s) => s.name === spellName && s.level === level);
     if (isSelected) {
+      const spellId = selectedSpells.find((s) => s.name === spellName && s.level === level)?.id;
       onChange({
         spells: selectedSpells.filter((s) => !(s.name === spellName && s.level === level)),
+        preparedSpells: (data.preparedSpells || []).filter((id) => id !== spellId),
       });
     } else {
       if (selectedLevelSpells.length >= maxSpells) return;
       const id = `spell-${idCounter.current++}`;
       const spell = levelSpells.find((s) => s.name === spellName);
+      const prepCaster = isPreparationCaster(data);
       onChange({
         spells: [...selectedSpells, { id, name: spellName, level, source: "srd" as const, description: Array.isArray(spell?.description) ? spell.description.join("\n") : (spell?.description || "") }],
+        preparedSpells: prepCaster ? [...(data.preparedSpells || []), id] : data.preparedSpells,
       });
     }
   };
@@ -140,10 +144,15 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
     );
   }
 
+  const prepCaster = isPreparationCaster(data);
+
   return (
     <StepCard
       title="Spells"
-      hint={`Choose your starting spells. You know ${maxCantrips} cantrips and ${maxSpells} spells. Spells are from the D&D 5e SRD.`}
+      hint={prepCaster
+        ? `Choose your prepared spells. You prepare ${maxCantrips} cantrips and ${maxSpells} spells (Wisdom mod + level). You can change prepared spells after a long rest.`
+        : `Choose your starting spells. You know ${maxCantrips} cantrips and ${maxSpells} spells. Spells are from the D&D 5e SRD.`
+      }
     >
       <div className="space-y-6">
         {/* Cantrips Section */}

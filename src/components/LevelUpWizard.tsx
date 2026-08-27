@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
-import { getHitDieAverage, getModifier, computeDerivedStats, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import {
@@ -509,6 +509,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
     const spells = [...(character.spells || [])];
     const cantrips = [...(character.cantrips || [])];
+    const newPreparedIds: string[] = [];
     for (const list of Object.values(spellSelections)) {
       for (const entry of list) {
         const [name, levelStr] = entry.split(":");
@@ -520,16 +521,21 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         }
         if (!spells.some((s) => s.name === name && s.level === level)) {
           const spell = getStaticSpells().find((s) => s.name === name);
+          const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
           spells.push({
-            id: `spell-${name}-${level}`.replace(/\s+/g, "-"),
+            id,
             name, level, source: "srd", srdSpellName: name,
             description: normalizeDescription(spell?.description),
           });
+          if (level > 0) newPreparedIds.push(id);
         }
       }
     }
     draft.spells = spells;
     draft.cantrips = cantrips;
+    if (isPreparationCaster(draft)) {
+      draft.preparedSpells = [...(character.preparedSpells || []), ...newPreparedIds];
+    }
     draft.level = targetLevel;
 
     let finalChar = applySubclassFeatures(draft);
