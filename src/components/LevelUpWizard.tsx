@@ -422,10 +422,16 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
 
     const spells = [...(character.spells || [])];
+    const cantrips = [...(character.cantrips || [])];
     for (const list of Object.values(spellSelections)) {
       for (const entry of list) {
         const [name, levelStr] = entry.split(":");
         const level = Number(levelStr);
+        if (level === 0) {
+          if (!cantrips.some((c) => c.name === name)) {
+            cantrips.push({ id: `cantrip-${name}`.replace(/\s+/g, "-"), name });
+          }
+        }
         if (!spells.some((s) => s.name === name && s.level === level)) {
           const spell = getStaticSpells().find((s) => s.name === name);
           spells.push({
@@ -437,6 +443,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
     draft.spells = spells;
+    draft.cantrips = cantrips;
     draft.level = targetLevel;
 
     let finalChar = applySubclassFeatures(draft);

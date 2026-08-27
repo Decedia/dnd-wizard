@@ -4,6 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { Star, X, Plus } from "phosphor-react";
+import { InfoButton } from "@/components/InfoButton";
 import type { Character } from "@/lib/storage";
 
 interface FeaturesTraitsSectionProps {
@@ -88,7 +89,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 </>
               ) : (
                 <div>
-                  <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>
+                    {feature.description && (
+                      <InfoButton title={feature.name} description={feature.description} />
+                    )}
+                  </div>
                   {feature.description && <DescriptionText>{feature.description}</DescriptionText>}
                 </div>
               )}

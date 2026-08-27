@@ -104,6 +104,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
     if (isSelected) {
       onChange({
         spells: selectedSpells.filter((s) => !(s.name === spellName && s.level === 0)),
+        cantrips: (data.cantrips || []).filter((c) => c.name !== spellName),
       });
     } else {
       if (selectedCantrips.length >= maxCantrips) return;
@@ -111,6 +112,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       const spell = cantrips.find((s) => s.name === spellName);
       onChange({
         spells: [...selectedSpells, { id, name: spellName, level: 0, source: "srd" as const, description: Array.isArray(spell?.description) ? spell.description.join("\n") : (spell?.description || "") }],
+        cantrips: [...(data.cantrips || []), { id, name: spellName }],
       });
     }
   };

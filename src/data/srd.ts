@@ -59,7 +59,7 @@ export interface SRDClass {
   subclasses?: {
     name: string;
     description: string;
-    features: { name: string; description: string }[];
+    features: { level?: number; name: string; description: string }[];
   }[];
 }
 
@@ -405,66 +405,32 @@ export const classes: SRDClass[] = [
     subclasses: [
       {
         name: "School of Abjuration",
-        description: "A wizard who specializes in protective magic.",
+        description: "Abjurers specialize in protective magic, creating wards and barriers to shield themselves and their allies. They are the ultimate defenders among wizards, capable of turning enemy magic against them and creating nearly impenetrable defenses.",
         features: [
-          { name: "Abjuration Savant", description: "You gain expertise in abjuration spells." },
-          { name: "Arcane Ward", description: "You can create a magical ward that absorbs damage." },
-        ],
-      },
-      {
-        name: "School of Conjuration",
-        description: "A wizard who specializes in creating objects and creatures from magic.",
-        features: [
-          { name: "Conjuration Savant", description: "You gain expertise in conjuration spells." },
-          { name: "Minor Conjuration", description: "You can conjure a small object with your magic." },
-        ],
-      },
-      {
-        name: "School of Divination",
-        description: "A wizard who specializes in gaining knowledge and foresight.",
-        features: [
-          { name: "Divination Savant", description: "You gain expertise in divination spells." },
-          { name: "Portent", description: "You can glimpse the future and influence the rolls of fate." },
-        ],
-      },
-      {
-        name: "School of Enchantment",
-        description: "A wizard who specializes in charming and beguiling others.",
-        features: [
-          { name: "Enchantment Savant", description: "You gain expertise in enchantment spells." },
-          { name: "Hypnotic Gaze", description: "You can charm a creature with your gaze." },
+          { level: 2, name: "Abjuration Savant", description: "The gold and time you must spend to copy an abjuration spell into your spellbook is halved." },
+          { level: 2, name: "Arcane Ward", description: "When you cast an abjuration spell of 1st level or higher, you can use a strand of the spell's magic to create a magical ward around yourself. The ward has a maximum hit point total equal to twice your wizard level + your Intelligence modifier, and it starts with hit points equal to that maximum. Whenever you take damage, the ward takes the damage instead. If this damage reduces the ward to 0 hit points, you take any remaining damage. When you cast an abjuration spell of 1st level or higher, the ward regains a number of hit points equal to twice the level of the spell. Once you create the ward, you can't do so again until you finish a long rest." },
+          { level: 6, name: "Projected Ward", description: "When a creature that you can see within 30 feet of you takes damage, you can use your reaction to cause your Arcane Ward to absorb that damage. If this damage reduces the ward to 0 hit points, the warded creature takes any remaining damage." },
+          { level: 10, name: "Improved Abjuration", description: "When you cast an abjuration spell of 1st level or higher that requires you to make an ability check as a part of casting the spell (as in Counterspell and Dispel Magic), you can add your proficiency bonus to that ability check." },
         ],
       },
       {
         name: "School of Evocation",
-        description: "A wizard who specializes in raw destructive magic.",
+        description: "Evokers specialize in raw destructive magic, hurling fireballs, lightning bolts, and other devastating spells. They are masters of offensive magic who can sculpt their spells to avoid harming allies caught in the blast.",
         features: [
-          { name: "Evocation Savant", description: "You gain expertise in evocation spells." },
-          { name: "Sculpt Spells", description: "You can protect your allies from your own evocation spells." },
+          { level: 2, name: "Evocation Savant", description: "The gold and time you must spend to copy an evocation spell into your spellbook is halved." },
+          { level: 2, name: "Sculpt Spells", description: "When you cast an evocation spell that affects other creatures that you can see, you can choose a number of them equal to 1 + the spell's level. The chosen creatures automatically succeed on their saving throws against the spell, and they take no damage if they would normally take half damage on a successful save." },
+          { level: 6, name: "Potent Cantrip", description: "Your damaging cantrips affect even creatures that avoid the brunt of the effect. When a creature succeeds on its saving throw against your cantrip, the creature takes half the cantrip's damage (if any) but suffers no other effect from the cantrip." },
+          { level: 10, name: "Empowered Evocation", description: "You can add your Intelligence modifier to one damage roll of any wizard evocation spell you cast." },
         ],
       },
       {
         name: "School of Illusion",
-        description: "A wizard who specializes in creating deceptive images and phantasms.",
+        description: "Illusionists specialize in creating deceptive images, phantasms, and mind-bending magic. They are masters of misdirection who can make the impossible seem real and alter their illusions on the fly.",
         features: [
-          { name: "Illusion Savant", description: "You gain expertise in illusion spells." },
-          { name: "Malleable Illusion", description: "You can alter your illusions on the fly." },
-        ],
-      },
-      {
-        name: "School of Necromancy",
-        description: "A wizard who specializes in the magic of death and undeath.",
-        features: [
-          { name: "Necromancy Savant", description: "You gain expertise in necromancy spells." },
-          { name: "Grim Harvest", description: "You can regain hit points when you kill creatures with your spells." },
-        ],
-      },
-      {
-        name: "School of Transmutation",
-        description: "A wizard who specializes in altering the physical world.",
-        features: [
-          { name: "Transmutation Savant", description: "You gain expertise in transmutation spells." },
-          { name: "Minor Alchemy", description: "You can transmute materials into other materials." },
+          { level: 2, name: "Illusion Savant", description: "The gold and time you must spend to copy an illusion spell into your spellbook is halved." },
+          { level: 2, name: "Improved Minor Illusion", description: "You learn the Minor Illusion cantrip. If you already know it, you learn a different wizard cantrip of your choice. The cantrip doesn't count against your cantrips known. When you cast Minor Illusion, you can create both sound and image with a single casting of the spell." },
+          { level: 6, name: "Malleable Illusions", description: "While a creature is concentrating on an illusion spell you cast, you can use your action to change the nature of that illusion provided that its duration is not instantaneous." },
+          { level: 10, name: "Illusory Self", description: "When a creature makes an attack roll against you, you can use your reaction to interpose an illusory duplicate of yourself between the attacker and yourself. The attack automatically misses you, and then the illusion dissipates. Once you use this feature, you can't use it again until you finish a short or long rest." },
         ],
       },
     ],
