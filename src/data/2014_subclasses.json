@@ -360,6 +360,17 @@
           "level": 2
         },
         {
+          "name": "Circle Spells",
+          "description": [
+            "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became druid. Choose that land - arctic, coast, desert, forest, grassland, mountain, swamp, or Underdark - and consult the associated list of spells.",
+            "Once you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you."
+          ],
+          "level": 3,
+          "choices": [
+            { "name": "terrain", "description": "Choose your terrain type (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)" }
+          ]
+        },
+        {
           "name": "Land's Stride",
           "description": [
             "Starting at 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.",

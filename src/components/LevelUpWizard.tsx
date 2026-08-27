@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
-import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import {
@@ -23,6 +23,7 @@ import {
   X,
   CaretDown,
   Bell,
+  Leaf,
 } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 
@@ -70,6 +71,7 @@ interface LevelInfo {
   magicalSecretsCount: number;
   canReplaceSpell: boolean;
   subclassSpellSelectionCount: number;
+  circleTerrainSelection: boolean;
 }
 
 function getProficiencyBonus(level: number): number {
@@ -310,6 +312,7 @@ function buildLevelInfos(
       magicalSecretsCount,
       canReplaceSpell,
       subclassSpellSelectionCount,
+      circleTerrainSelection: className === "Druid" && subclassSelection === "Land" && [3, 5, 7, 9].includes(level),
     });
   }
 
@@ -336,6 +339,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
   const [magicalSecretsSelections, setMagicalSecretsSelections] = useState<Record<number, string[]>>({});
   const [subclassSpellSelections, setSubclassSpellSelections] = useState<Record<number, string[]>>({});
+  const [circleTerrainSelections, setCircleTerrainSelections] = useState<Record<number, string>>({});
   const [replacedSpells, setReplacedSpells] = useState<Record<number, string>>({});
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
@@ -364,6 +368,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setMagicalSecrets = (level: number, list: string[]) => setMagicalSecretsSelections((prev) => ({ ...prev, [level]: list }));
   const setSubclassSpells = (level: number, list: string[]) => setSubclassSpellSelections((prev) => ({ ...prev, [level]: list }));
   const setReplacedSpell = (level: number, spellId: string) => setReplacedSpells((prev) => ({ ...prev, [level]: spellId }));
+  const setCircleTerrain = (level: number, terrain: string) => setCircleTerrainSelections((prev) => ({ ...prev, [level]: terrain }));
 
   const buildAllocation = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
@@ -672,6 +677,39 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
 
+    if (draft.class === "Druid" && draft.subclass === "Land") {
+      const selectedTerrain = circleTerrainSelections[targetLevel] || draft.circleTerrain;
+      if (selectedTerrain) {
+        draft.circleTerrain = selectedTerrain;
+        const circleSpellNames = getCircleSpells(selectedTerrain, draft.level);
+        const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
+
+        for (const name of circleSpellNames) {
+          if (!currentSpellNames.includes(name.toLowerCase())) {
+            const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+            if (spell) {
+              const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+              spells.push({
+                id,
+                name: spell.name,
+                level: spell.level || 0,
+                source: "srd" as const,
+                srdSpellName: spell.name,
+                description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+              });
+              if ((spell.level || 0) > 0) newPreparedIds.push(id);
+            }
+          }
+        }
+
+        const existingCircleSpells = draft.circleSpells || [];
+        const newCircleSpells = circleSpellNames.filter((name) => !existingCircleSpells.includes(name));
+        if (newCircleSpells.length > 0) {
+          draft.circleSpells = [...existingCircleSpells, ...newCircleSpells];
+        }
+      }
+    }
+
     let finalChar = applySubclassFeatures(draft);
     finalChar = syncBaseFeatures(finalChar);
     finalChar = { ...finalChar, ...computeDerivedStats(finalChar) };
@@ -835,6 +873,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onSubclassSpellSelectionsChange={(list) => setSubclassSpells(info.level, list)}
               replacedSpell={replacedSpells[info.level] || ""}
               onReplacedSpellChange={(id) => setReplacedSpell(info.level, id)}
+              circleTerrain={circleTerrainSelections[info.level] || ""}
+              onCircleTerrainChange={(terrain) => setCircleTerrain(info.level, terrain)}
               character={character}
               hitDie={hitDie}
               diceType={diceType}
@@ -880,6 +920,8 @@ interface LevelCardProps {
   onSubclassSpellSelectionsChange: (list: string[]) => void;
   replacedSpell: string;
   onReplacedSpellChange: (id: string) => void;
+  circleTerrain: string;
+  onCircleTerrainChange: (terrain: string) => void;
   character: Character;
   hitDie: number;
   diceType: any;
@@ -910,6 +952,8 @@ function LevelCard({
   onSubclassSpellSelectionsChange,
   replacedSpell,
   onReplacedSpellChange,
+  circleTerrain,
+  onCircleTerrainChange,
   character,
   hitDie,
   diceType,
@@ -1305,6 +1349,26 @@ function LevelCard({
                 <option value="">No replacement</option>
                 {(character.spells || []).filter((s) => s.level > 0).map((s) => (
                   <option key={s.id} value={s.id}>{s.name} (Level {s.level})</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {info.circleTerrainSelection && (
+            <div className="p-3 rounded-lg border border-green-300 bg-green-50/30">
+              <div className="flex items-center gap-2 mb-1">
+                <Leaf weight="regular" className="h-3.5 w-3.5 text-green-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells - Choose Terrain</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your terrain type to gain circle spells</p>
+              <select
+                value={circleTerrain}
+                onChange={(e) => onCircleTerrainChange(e.target.value)}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              >
+                <option value="">Select terrain...</option>
+                {getCircleTerrainTypes().map((terrain) => (
+                  <option key={terrain} value={terrain}>{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</option>
                 ))}
               </select>
             </div>

@@ -59,6 +59,8 @@ export interface Character {
   spellSlotsExpended: Record<number, number>;
   preparedSpells: string[];
   domainSpells: string[];
+  circleTerrain: string;
+  circleSpells: string[];
   bardicInspirationUses: number;
   maxBardicInspirationUses: number;
   magicalSecretsSpells: string[];
@@ -220,6 +222,8 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     spellSlotsExpended: {},
     preparedSpells: [],
     domainSpells: [],
+    circleTerrain: "",
+    circleSpells: [],
     bardicInspirationUses: 0,
     maxBardicInspirationUses: 0,
     magicalSecretsSpells: [],
@@ -530,4 +534,32 @@ export function getDomainSpellNames(character: Character): string[] {
     war: ["divine favor", "shield of faith", "magic weapon", "spiritual weapon", "freedom of movement", "stoneskin", "flame strike", "hold monster"],
   };
   return domainSpells[character.subclass] || [];
+}
+
+export function getCircleSpells(terrain: string, level: number): string[] {
+  const circleSpells: Record<string, Record<number, string[]>> = {
+    arctic: { 3: ["hold person", "spike growth"], 5: ["sleet storm", "slow"], 7: ["freedom of movement", "ice storm"], 9: ["commune with nature", "cone of cold"] },
+    coast: { 3: ["mirror image", "misty step"], 5: ["water breathing", "water walk"], 7: ["control water", "freedom of movement"], 9: ["conjure elemental", "scrying"] },
+    desert: { 3: ["blur", "silence"], 5: ["create food and water", "protection from energy"], 7: ["blight", "hallucinatory terrain"], 9: ["insect plague", "wall of stone"] },
+    forest: { 3: ["barkskin", "spider climb"], 5: ["call lightning", "plant growth"], 7: ["divination", "freedom of movement"], 9: ["commune with nature", "tree stride"] },
+    grassland: { 3: ["invisibility", "pass without trace"], 5: ["daylight", "haste"], 7: ["divination", "freedom of movement"], 9: ["dream", "insect plague"] },
+    mountain: { 3: ["spider climb", "spike growth"], 5: ["lightning bolt", "meld into stone"], 7: ["stone shape", "stoneskin"], 9: ["passwall", "wall of stone"] },
+    swamp: { 3: ["darkness", "melf's acid arrow"], 5: ["water walk", "stinking cloud"], 7: ["freedom of movement", "locate creature"], 9: ["insect plague", "scrying"] },
+    underdark: { 3: ["spider climb", "web"], 5: ["gaseous form", "stinking cloud"], 7: ["greater invisibility", "stone shape"], 9: ["cloudkill", "insect plague"] },
+  };
+
+  const terrainSpells = circleSpells[terrain.toLowerCase()];
+  if (!terrainSpells) return [];
+
+  const spells: string[] = [];
+  for (const [lvlStr, lvlSpells] of Object.entries(terrainSpells)) {
+    if (level >= Number(lvlStr)) {
+      spells.push(...lvlSpells);
+    }
+  }
+  return spells;
+}
+
+export function getCircleTerrainTypes(): string[] {
+  return ["arctic", "coast", "desert", "forest", "grassland", "mountain", "swamp", "underdark"];
 }
