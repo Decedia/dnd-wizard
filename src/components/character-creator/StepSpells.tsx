@@ -35,7 +35,7 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
   const classNameLower = className.toLowerCase();
 
   if (classNameLower === "wizard") {
-    spells = 6 + abilityMod;
+    spells = 6;
   } else if (classNameLower === "sorcerer") {
     const spellsKnownByLevel: Record<number, number> = { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 };
     spells = spellsKnownByLevel[level] || 2;
@@ -46,7 +46,10 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
     spells = abilityMod + level;
   } else if (classNameLower === "paladin") {
     if (level < 2) spells = 0;
-    else spells = Math.floor(level / 2) + abilityMod;
+    else {
+      const spellsKnownByLevel: Record<number, number> = { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 };
+      spells = spellsKnownByLevel[level] || 2;
+    }
   } else if (classNameLower === "ranger") {
     if (level < 2) spells = 0;
     else {

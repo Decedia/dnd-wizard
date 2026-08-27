@@ -225,12 +225,11 @@ function buildLevelInfos(
     const hasSpellSelection = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
     const maxSpellLevel = spellSlots ? Math.max(...Object.keys(spellSlots).map(Number)) : 0;
 
-    // Spell selection count is based on spells known (for classes like Sorcerer, Bard, Warlock)
-    // For prepared casters (Cleric, Dr Wizard), it's based on spell slots
+    // Spell selection count is based on class-specific rules, NEVER on slot counts
     const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger", "Paladin"].includes(className);
     const spellSelectionCount = isSpellsKnownCaster
       ? (spellsKnownChanged ? (spellsKnown || 0) - prevSpellsKnown : 0)
-      : (spellSlots ? Object.values(spellSlots).reduce((a, b) => a + b, 0) : 0);
+      : (className === "Wizard" ? 2 : 0);
 
     infos.push({
       level,
