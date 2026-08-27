@@ -19,9 +19,15 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
   const cantripsKnown = classData.cantripsKnown;
   let cantrips = 0;
   if (cantripsKnown) {
-    const levels = Object.keys(cantripsKnown).map(Number).sort((a, b) => a - b);
-    for (const l of levels) {
-      if (level >= l) cantrips = cantripsKnown[l];
+    if (Array.isArray(cantripsKnown)) {
+      if (level >= 1 && level <= cantripsKnown.length) {
+        cantrips = cantripsKnown[level - 1];
+      }
+    } else {
+      const levels = Object.keys(cantripsKnown).map(Number).sort((a, b) => a - b);
+      for (const l of levels) {
+        if (level >= l) cantrips = (cantripsKnown as Record<number, number>)[l];
+      }
     }
   }
 

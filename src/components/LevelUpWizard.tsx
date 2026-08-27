@@ -107,9 +107,15 @@ function buildLevelInfos(
 
     let cantripsKnown: number | undefined;
     if (classData.cantripsKnown) {
-      const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
-      for (const l of levels) {
-        if (level >= l) cantripsKnown = classData.cantripsKnown[l];
+      if (Array.isArray(classData.cantripsKnown)) {
+        if (level >= 1 && level <= classData.cantripsKnown.length) {
+          cantripsKnown = classData.cantripsKnown[level - 1];
+        }
+      } else {
+        const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
+        for (const l of levels) {
+          if (level >= l) cantripsKnown = (classData.cantripsKnown as Record<number, number>)[l];
+        }
       }
     }
 
@@ -193,8 +199,22 @@ function buildLevelInfos(
     const prevSlots = prevLevelData?.spellSlots || {};
     const slotsChanged = spellSlots && (Object.keys(spellSlots).length !== Object.keys(prevSlots).length ||
       Object.entries(spellSlots).some(([k, v]) => prevSlots[Number(k)] !== v));
-    const prevCantrips = prevLevelData ? (classData.cantripsKnown?.[level - 1] || 0) : 0;
-    const cantripsChanged = cantripsKnown !== undefined && cantripsKnown > prevCantrips;
+
+    let prevCantrips = 0;
+    if (prevLevelData && classData.cantripsKnown) {
+      if (Array.isArray(classData.cantripsKnown)) {
+        if (level - 1 >= 1 && level - 1 <= classData.cantripsKnown.length) {
+          prevCantrips = classData.cantripsKnown[level - 2] || 0;
+        }
+      } else {
+        const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
+        for (const l of levels) {
+          if (level - 1 >= l) prevCantrips = (classData.cantripsKnown as Record<number, number>)[l] || 0;
+        }
+      }
+    }
+    const cantripsDelta = cantripsKnown !== undefined ? cantripsKnown - prevCantrips : 0;
+    const cantripsChanged = cantripsDelta > 0;
 
     // Calculate spells known change
     const prevSpellsKnown = prevLevelData ? ((classData as any)?.spellsKnown?.[String(level - 1)] || 0) : 0;
@@ -225,7 +245,7 @@ function buildLevelInfos(
       classFeatureChoices: classFeatureChoices.length > 0 ? classFeatureChoices : undefined,
       hasSpellSelection,
       spellSelectionCount,
-      cantripSelectionCount: cantripsChanged ? (cantripsKnown || 0) - prevCantrips : 0,
+      cantripSelectionCount: cantripsDelta,
       maxSpellLevel,
       spellsKnownChanged,
       prevSpellsKnown,
@@ -1236,7 +1256,8 @@ function SpellSelectionModal({
   }, []);
 
   const allSpells = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
-  const cantrips = allSpells.filter((s) => s.level === 0);
+  const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
+  const cantrips = allSpells.filter((s) => s.level === 0 && !existingCantripNames.has(s.name));
   const levelSpells: { [key: number]: typeof allSpells } = {};
   for (const sp of allSpells) {
     if (sp.level > 0) {
@@ -1277,7 +1298,11 @@ function SpellSelectionModal({
       <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
           <div className="text-sm font-bold text-[var(--color-text-primary)]">
-            {spellsKnownChanged ? `Choose ${count} New Spell${count > 1 ? "s" : ""}` : "Replace a Spell"}
+            {cantripCount > 0 && count === 0
+              ? `Learn ${cantripCount} Additional Cantrip${cantripCount > 1 ? "s" : ""}`
+              : spellsKnownChanged
+                ? `Choose ${count} New Spell${count > 1 ? "s" : ""}`
+                : "Replace a Spell"}
           </div>
           <button
             type="button"
@@ -1287,14 +1312,21 @@ function SpellSelectionModal({
             <X className="h-4 w-4" />
           </button>
         </div>
-        {spellsKnownChanged && (
+        {cantripCount > 0 && count === 0 && (
+          <div className="px-4 py-2 bg-blue-50 border-b border-[var(--color-border)]">
+            <p className="text-[10px] text-blue-700">
+              You can now learn {cantripCount} additional cantrip{cantripCount > 1 ? "s" : ""}. Select from the tab below.
+            </p>
+          </div>
+        )}
+        {spellsKnownChanged && !(cantripCount > 0 && count === 0) && (
           <div className="px-4 py-2 bg-blue-50 border-b border-[var(--color-border)]">
             <p className="text-[10px] text-blue-700">
               You learned {count} new spell{count > 1 ? "s" : ""}. Select from the tabs below.
             </p>
           </div>
         )}
-        {!spellsKnownChanged && existingSpells && existingSpells.length > 0 && (
+        {!spellsKnownChanged && existingSpells && existingSpells.length > 0 && !(cantripCount > 0 && count === 0) && (
           <div className="px-4 py-2 bg-yellow-50 border-b border-[var(--color-border)]">
             <p className="text-[10px] text-yellow-700 mb-1">Replace a spell (optional):</p>
             <div className="flex flex-wrap gap-1">

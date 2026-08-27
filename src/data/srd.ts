@@ -53,7 +53,7 @@ export interface SRDClass {
   features: { name: string; description: string; type?: string }[];
   levels: SRDClassLevel[];
   spellcastingAbility?: string;
-  cantripsKnown?: Record<number, number>;
+  cantripsKnown?: Record<number, number> | number[];
   scalingFeatures?: SRDScalingFeature[];
   subclassLevel?: number;
   subclasses?: {
@@ -400,7 +400,7 @@ export const classes: SRDClass[] = [
       { features: [{ name: "Arcane Tradition feature", description: "You gain a feature from your chosen Arcane Tradition." }], asi: false, spellSlots: { 1: 4, 2: 3, 3: 3, 4: 3, 5: 2 } },
     ],
     spellcastingAbility: "int",
-    cantripsKnown: { 1: 3, 4: 4, 10: 5 },
+    cantripsKnown: [3, 3, 3, 4, 4, 4, 4, 4, 4, 5],
     subclassLevel: 2,
     subclasses: [
       {

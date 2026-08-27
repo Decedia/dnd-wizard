@@ -49,7 +49,7 @@ export interface SRDClass {
     spellSlots?: Record<string, number>;
   }[];
   spellcastingAbility?: string;
-  cantripsKnown?: Record<number, number>;
+  cantripsKnown?: Record<number, number> | number[];
   spellsKnown?: Record<number, number>;
   subclassLevel?: number;
   subclasses: {
