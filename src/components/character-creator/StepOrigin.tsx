@@ -243,9 +243,9 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center justify-between">
-                            <span className="text-card-title">{race.name}</span>
-                            <span className="text-muted">
+                          <span className="text-card-title">{race.name}</span>
+                          <div className="mt-0.5">
+                            <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
                               {race.size} / Speed {race.speed} ft
                             </span>
                           </div>
