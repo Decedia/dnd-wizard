@@ -163,6 +163,55 @@ export interface ChoiceGroup {
   options: EquipmentOption[];
 }
 
+function parseOptionLetter(part: string): string {
+  const letterMatch = part.match(/^\(([a-z])\)/);
+  return letterMatch ? letterMatch[1] : "";
+}
+
+function getOptionDisplayText(part: string): string {
+  const withoutLetter = part.replace(/^\(([a-z])\)\s*/, "").trim();
+  const withoutTrailingOr = withoutLetter.replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
+  return withoutTrailingOr;
+}
+
+function findOptionItems(optionLetter: string, allItems: any[], optionText: string): any[] {
+  const matched: any[] = [];
+  const usedIndices = new Set<number>();
+
+  for (let i = 0; i < allItems.length; i++) {
+    const item = allItems[i];
+    const itemDesc = (item.description || "").toLowerCase();
+    if (itemDesc.includes(`(${optionLetter})`) || itemDesc.includes(`(${optionLetter.toUpperCase()})`)) {
+      matched.push(item);
+      usedIndices.add(i);
+    }
+  }
+
+  if (matched.length > 0) {
+    return matched;
+  }
+
+  const normalizedOption = normalizeItemName(optionText);
+  const optionWords = normalizedOption.split(/\s+/).filter(w => w.length > 2);
+
+  for (let i = 0; i < allItems.length; i++) {
+    if (usedIndices.has(i)) continue;
+    const item = allItems[i];
+    const itemName = normalizeItemName(item.name);
+    const itemDesc = normalizeItemName(item.description || "");
+
+    for (const word of optionWords) {
+      if (itemName.includes(word) || itemDesc.includes(word)) {
+        matched.push(item);
+        usedIndices.add(i);
+        break;
+      }
+    }
+  }
+
+  return matched;
+}
+
 export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
   const groups: ChoiceGroup[] = [];
   let groupCounter = 0;
@@ -174,11 +223,15 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
 
     const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
     if (optionMatches && optionMatches.length > 1) {
-      const options: EquipmentOption[] = optionMatches.map((part: string) => {
-        const trimmed = part.trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
-        const letterMatch = trimmed.match(/^\(([a-z])\)\s*/);
-        const optionLetter = letterMatch ? letterMatch[1] : "";
-        const nameWithoutLetter = trimmed.replace(/^\(([a-z])\)\s*/, "").trim();
+      const optionTexts = optionMatches.map(getOptionDisplayText);
+      const optionLetters = optionMatches.map(parseOptionLetter);
+
+      const options: EquipmentOption[] = optionMatches.map((part: string, idx: number) => {
+        const optionLetter = optionLetters[idx];
+        const optionText = optionTexts[idx];
+        const nameWithoutLetter = part.trim().replace(/^\(([a-z])\)\s*/, "").trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
+
+        const optionItems = findOptionItems(optionLetter, items, optionText);
 
         const srdMatch = findSRDItemMatch(nameWithoutLetter);
 
@@ -202,11 +255,6 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           isDruidicFocusChoice = true;
         }
 
-        const optionItems = items.filter((item: any) => {
-          const itemDesc = (item.description || "").toLowerCase();
-          return itemDesc.includes(`(${optionLetter})`) || itemDesc.includes(`(${optionLetter.toUpperCase()})`);
-        });
-
         const displayDescription = srdMatch ? srdMatch.name : nameWithoutLetter.charAt(0).toUpperCase() + nameWithoutLetter.slice(1);
 
         return {
@@ -221,21 +269,14 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         };
       });
 
-      const assignedLetters = new Set(
-        options.filter((o) => !o.isWeaponChoice).flatMap((o) => {
-          const m = o.description.match(/^\(([a-z])\)/);
-          return m ? [m[1]] : [];
-        })
-      );
+      const assignedItems = new Set(options.flatMap(o => o.items));
+      const unmatched = items.filter((item: any) => !assignedItems.has(item));
 
-      const unmatched = items.filter((item: any) => {
-        const itemDesc = (item.description || "").toLowerCase();
-        return !Array.from(assignedLetters).some((l) => itemDesc.includes(`(${l})`) || itemDesc.includes(`(${l.toUpperCase()})`));
-      });
-
-      const firstNonWeaponIdx = options.findIndex((o) => !o.isWeaponChoice);
-      if (firstNonWeaponIdx >= 0 && unmatched.length > 0) {
-        options[firstNonWeaponIdx].items.push(...unmatched);
+      if (unmatched.length > 0) {
+        const firstNonWeaponIdx = options.findIndex((o) => !o.isWeaponChoice && !o.isArcaneFocusChoice && !o.isHolySymbolChoice && !o.isDruidicFocusChoice && !o.isInstrumentChoice);
+        if (firstNonWeaponIdx >= 0) {
+          options[firstNonWeaponIdx].items.push(...unmatched);
+        }
       }
 
       groups.push({
@@ -250,8 +291,12 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
       const parts = desc.split(" or ");
       const options: EquipmentOption[] = parts.map((part: string) => {
         const trimmed = part.trim();
+        const optionLetter = parseOptionLetter(trimmed);
+        const displayText = getOptionDisplayText(trimmed);
 
-        const srdMatch = findSRDItemMatch(trimmed);
+        const optionItems = optionLetter ? findOptionItems(optionLetter, items, displayText) : [];
+
+        const srdMatch = findSRDItemMatch(displayText);
 
         let isWeaponChoice = false;
         let isInstrumentChoice = false;
@@ -273,11 +318,11 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           isDruidicFocusChoice = true;
         }
 
-        const displayDescription = srdMatch ? srdMatch.name : trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+        const displayDescription = srdMatch ? srdMatch.name : displayText.charAt(0).toUpperCase() + displayText.slice(1);
 
         return {
           description: displayDescription,
-          items: items.length > 0 ? [items[0]] : [],
+          items: optionItems,
           weaponType,
           isWeaponChoice,
           isInstrumentChoice,
@@ -286,6 +331,16 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           isDruidicFocusChoice,
         };
       });
+
+      const assignedItems = new Set(options.flatMap(o => o.items));
+      const unmatched = items.filter((item: any) => !assignedItems.has(item));
+
+      if (unmatched.length > 0) {
+        const firstNonWeaponIdx = options.findIndex((o) => !o.isWeaponChoice && !o.isArcaneFocusChoice && !o.isHolySymbolChoice && !o.isDruidicFocusChoice && !o.isInstrumentChoice);
+        if (firstNonWeaponIdx >= 0) {
+          options[firstNonWeaponIdx].items.push(...unmatched);
+        }
+      }
 
       groups.push({
         id: `choice-${groupCounter++}`,

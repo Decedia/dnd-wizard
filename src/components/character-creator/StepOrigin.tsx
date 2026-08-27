@@ -46,10 +46,24 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
   const handleClassSelect = useCallback(
     (className: string) => {
-      onChange({ class: className, subclass: undefined });
+      if (className !== data.class) {
+        onChange({
+          class: className,
+          subclass: undefined,
+          inventory: [],
+          skills: {},
+          spells: [],
+          cantrips: [],
+          features: [],
+          featureSelections: {},
+          appliedAsi: [],
+          attacks: [],
+          costumeSpells: [],
+        });
+      }
       setPopupType(null);
     },
-    [onChange]
+    [onChange, data.class]
   );
 
   const handleRaceSelect = useCallback(
