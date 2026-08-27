@@ -57,6 +57,8 @@ export interface Character {
   cantrips: { id: string; name: string }[];
   spellSlots: Record<number, number>;
   spellSlotsExpended: Record<number, number>;
+  preparedSpells: string[];
+  domainSpells: string[];
   featureSelections: Record<string, string[]>;
   appliedAsi: number[];
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
@@ -213,6 +215,8 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     cantrips: [],
     spellSlots: {},
     spellSlotsExpended: {},
+    preparedSpells: [],
+    domainSpells: [],
     featureSelections: {},
     appliedAsi: [],
     currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
@@ -464,4 +468,38 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     rageDamage,
     ac,
   };
+}
+
+export function getMaxPreparedSpells(character: Character): number {
+  const classData = getStaticClass(character.class);
+  if (!classData?.spellcastingAbility) return 0;
+  const abilityMod = getModifier(character[classData.spellcastingAbility as keyof Character] as number);
+  if (character.class === "Cleric" || character.class === "Druid") {
+    return Math.max(1, abilityMod + character.level);
+  }
+  if (character.class === "Paladin") {
+    return Math.max(1, abilityMod + Math.floor(character.level / 2));
+  }
+  if (character.class === "Wizard") {
+    return Math.max(1, abilityMod + character.level);
+  }
+  return 0;
+}
+
+export function isPreparationCaster(character: Character): boolean {
+  return ["Cleric", "Druid", "Paladin", "Wizard"].includes(character.class);
+}
+
+export function getDomainSpellNames(character: Character): string[] {
+  if (character.class !== "Cleric" || !character.subclass) return [];
+  const domainSpells: Record<string, string[]> = {
+    life: ["bless", "cure wounds", "lesser restoration", "spiritual weapon", "beacon of hope", "death ward", "guardian of faith", "healing word"],
+    knowledge: ["command", "identify", "augury", "suggestion", "nondetection", "speak with dead", "arcane eye", "confusion"],
+    light: ["burning hands", "faerie fire", "flaming sphere", "scorching ray", "fireball", "daylight", "flame strike", "wall of fire"],
+    nature: ["animal friendship", "speak with animals", "barkskin", "spike growth", "plant growth", "wall of stone", "dominate beast", "insect plague"],
+    tempest: ["fog cloud", "gust of wind", "shatter", "call lightning", "sleet storm", "control water", "ice storm", "destructive wave"],
+    trickery: ["charm person", "disguise self", "mirror image", "pass without trace", "blink", "dimension door", "polymorph", "dominate person"],
+    war: ["divine favor", "shield of faith", "magic weapon", "spiritual weapon", "freedom of movement", "stoneskin", "flame strike", "hold monster"],
+  };
+  return domainSpells[character.subclass] || [];
 }

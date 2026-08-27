@@ -689,14 +689,14 @@
         {
           "name": "Channel Divinity: Knowledge of the Ages",
           "description": [
-            "Starting at 2nd level, you can use your Channel Divinity to tap into a reservoir of knowledge."
+            "Starting at 2nd level, you can use your Channel Divinity to tap into a reservoir of knowledge. As an action, you become proficient in one skill or tool of your choice until you finish a short or long rest. You can use this feature again after a short or long rest."
           ],
           "level": 2
         },
         {
           "name": "Channel Divinity: Read Thoughts",
           "description": [
-            "At 6th level, you can use your Channel Divinity to read minds."
+            "At 6th level, you can use your Channel Divinity to read a creature's thoughts. You can then use your access to the creature's mind to command it, probe it, or probe its memories."
           ],
           "level": 6
         },
@@ -710,7 +710,7 @@
         {
           "name": "Visions of the Past",
           "description": [
-            "Starting at 17th level, you can call upon your deity to reveal visions of the past."
+            "Starting at 17th level, you can call upon your deity to reveal visions of the past. You can receive visions of the past by spending at least 1 minute in meditation and prayer, and you can receive visions of the past of a specific object, creature, or location."
           ],
           "level": 17
         }
@@ -734,9 +734,9 @@
           "level": 1
         },
         {
-          "name": "Radiance of the Dawn",
+          "name": "Warding Flare",
           "description": [
-            "Starting at 1st level, you can use your action to end one effect on yourself that is causing you to be blinded or deafened."
+            "At 1st level, you can interpose divine light between yourself and an enemy. When you are attacked by a creature within 30 feet of you that you can see, you can use your reaction to impose disadvantage on the attack roll, causing light to flare before the attacker. An attacker can't benefit from this feature if it can't see or is immune to being blinded. You can use this number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest."
           ],
           "level": 1
         },
@@ -764,7 +764,7 @@
         {
           "name": "Corona of Light",
           "description": [
-            "Starting at 17th level, you can use your action to emanate a bright light."
+            "Starting at 17th level, you can use your action to emanate a bright light. For 1 minute, bright light shines from you in a 30-foot radius, and dim light shines 30 feet beyond that. Creatures of your choice in the bright light have disadvantage on Dexterity (Stealth) checks and on saving throws against spells that deal fire or radiant damage. You can end this effect on yourself early by using a bonus action to dismiss it."
           ],
           "level": 17
         }
@@ -788,23 +788,23 @@
           "level": 1
         },
         {
-          "name": "Nature's Savagery",
+          "name": "Charm Animals and Plants",
           "description": [
-            "At 1st level, you gain the ability to channel divine power to damage a creature."
+            "Starting at 1st level, you can use your action to charm one beast or plant creature within 30 feet of you that can see or hear you. The target must succeed on a Wisdom saving throw or be charmed by you for 1 minute or until you or your allies damage it."
           ],
           "level": 1
         },
         {
           "name": "Channel Divinity: Charm Animals and Plants",
           "description": [
-            "Starting at 2nd level, you can use your Channel Divinity to charm animals and plants."
+            "Starting at 2nd level, you can use your Channel Divinity to charm animals and plants. As an action, you touch a beast or plant creature within 30 feet of you that can see or hear you. The target must succeed on a Wisdom saving throw or be charmed by you for 1 minute or until you or your allies damage it."
           ],
           "level": 2
         },
         {
           "name": "Dampen Elements",
           "description": [
-            "Starting at 6th level, you can use your reaction to reduce damage."
+            "Starting at 6th level, you can use your reaction to reduce damage. When you or a creature within 30 feet of you takes acid, cold, fire, lightning, or thunder damage, you can use your reaction to grant resistance to the creature against that instance of damage."
           ],
           "level": 6
         },
@@ -818,7 +818,7 @@
         {
           "name": "Master of Nature",
           "description": [
-            "Starting at 17th level, you can use your action to charm beasts and plants."
+            "Starting at 17th level, you can use your action to charm beasts and plants. When you use your Channel Divinity to charm animals and plants, the target must succeed on a Wisdom saving throw or be charmed by you for 10 minutes or until you or your allies damage it."
           ],
           "level": 17
         }
@@ -844,7 +844,7 @@
         {
           "name": "Wrath of the Storm",
           "description": [
-            "Also at 1st level, you can use your reaction to deal lightning damage to a creature within 5 feet of you."
+            "Also at 1st level, you can use your reaction to deal lightning damage to a creature within 5 feet of you that you can see. When a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to deal 2d8 lightning damage to the attacker. You can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest."
           ],
           "level": 1
         },
@@ -872,7 +872,7 @@
         {
           "name": "Stormborn",
           "description": [
-            "Starting at 17th level, you gain resistance to lightning and thunder damage."
+            "Starting at 17th level, you gain resistance to lightning and thunder damage. Additionally, whenever you cast a spell of 1st level or higher that deals lightning or thunder damage, you can fly up to 10 feet without provoking opportunity attacks."
           ],
           "level": 17
         }
@@ -898,14 +898,14 @@
         {
           "name": "Channel Divinity: Invoke Duplicity",
           "description": [
-            "Starting at 2nd level, you can use your Channel Divinity to create an illusory duplicate of yourself."
+            "Starting at 2nd level, you can use your Channel Divinity to create an illusory duplicate of yourself. As an action, you create a perfect illusion of yourself that lasts for 1 minute, or until you lose concentration (as if you were concentrating on a spell). You can use your action to move the illusion up to 30 feet to a space you can see. The illusion is intangible and can't attack or take damage."
           ],
           "level": 2
         },
         {
           "name": "Channel Divinity: Cloak of Shadows",
           "description": [
-            "At 6th level, you can use your Channel Divinity to become invisible."
+            "At 6th level, you can use your Channel Divinity to become invisible. As an action, you become invisible until the end of your next turn, or until you attack or force a creature to make a saving throw."
           ],
           "level": 6
         },
@@ -919,14 +919,14 @@
         {
           "name": "Divine Strike",
           "description": [
-            "At 8th level, you gain the ability to infuse your weapon strikes with poison."
+            "At 8th level, you gain the ability to infuse your weapon strikes with poison. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d6 poison damage to the target."
           ],
           "level": 8
         },
         {
           "name": "Improved Duplicity",
           "description": [
-            "At 17th level, you can create more than one illusory duplicate."
+            "At 17th level, you can create up to four illusory duplicates of yourself instead of one. You can use your action to move any number of them up to 30 feet, to spaces you can see."
           ],
           "level": 17
         }
@@ -952,7 +952,7 @@
         {
           "name": "War Priest",
           "description": [
-            "Also at 1st level, you can make a bonus action attack when you use the Attack action."
+            "Also at 1st level, you can make a bonus action attack when you use the Attack action. When you take the Attack action on your turn, you can make one weapon attack as a bonus action. You can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest."
           ],
           "level": 1
         },
@@ -966,7 +966,7 @@
         {
           "name": "Channel Divinity: War God's Blessing",
           "description": [
-            "At 6th level, you can use your Channel Divinity to grant resistance to an ally."
+            "At 6th level, you can use your Channel Divinity to grant resistance to an ally. When a creature you can see within 30 feet of you makes an attack roll, you can use your reaction to grant that creature a +10 bonus to its attack roll."
           ],
           "level": 6
         },
@@ -980,7 +980,7 @@
         {
           "name": "Avatar of Battle",
           "description": [
-            "At 17th level, you gain resistance to bludgeoning, piercing, and slashing damage."
+            "At 17th level, you gain resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons."
           ],
           "level": 17
         }

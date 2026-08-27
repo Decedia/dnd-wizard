@@ -1824,16 +1824,13 @@
       "proficiencies": {
         "armor": [
           "light",
-          "medium"
+          "medium",
+          "shields"
         ],
         "weapons": [
           "simple"
         ],
-        "tools": [
-          "shields",
-          "Saving Throw: WIS",
-          "Saving Throw: CHA"
-        ]
+        "tools": []
       },
       "skillChoices": {
         "count": 2,

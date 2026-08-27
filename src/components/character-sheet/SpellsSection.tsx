@@ -6,8 +6,8 @@ import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
-import { getModifier } from "@/lib/storage";
-import { PencilSimple, Info, X, Lightning, Plus } from "phosphor-react";
+import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames } from "@/lib/storage";
+import { PencilSimple, Info, X, Lightning, Plus, Check, Circle } from "phosphor-react";
 
 interface SpellsSectionProps {
   character: Character;
@@ -23,6 +23,36 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const [editingCostumeSpellId, setEditingCostumeSpellId] = useState<string | null>(null);
   const [isAddingCostumeSpell, setIsAddingCostumeSpell] = useState(false);
   const [newCostumeSpell, setNewCostumeSpell] = useState({ name: "", description: "" });
+
+  const preparationCaster = isPreparationCaster(character);
+  const maxPrepared = getMaxPreparedSpells(character);
+  const domainSpells = getDomainSpellNames(character);
+  const preparedCount = (character.preparedSpells || []).filter(id => {
+    const spell = character.spells.find(s => s.id === id);
+    return spell && spell.level > 0;
+  }).length;
+
+  const togglePrepared = useCallback((spellId: string) => {
+    const current = character.preparedSpells || [];
+    const isPrepared = current.includes(spellId);
+    const spell = character.spells.find(s => s.id === spellId);
+    if (spell && domainSpells.some(d => d.toLowerCase() === spell.name?.toLowerCase())) return;
+
+    if (isPrepared) {
+      onChange({ preparedSpells: current.filter(id => id !== spellId) });
+    } else {
+      if (preparedCount >= maxPrepared && spell && spell.level > 0) return;
+      onChange({ preparedSpells: [...current, spellId] });
+    }
+  }, [character.preparedSpells, character.spells, preparedCount, maxPrepared, domainSpells, onChange]);
+
+  const isDomainSpell = useCallback((spell: Character["spells"][number]) => {
+    return domainSpells.some(d => d.toLowerCase() === spell.name?.toLowerCase());
+  }, [domainSpells]);
+
+  const isPrepared = useCallback((spellId: string) => {
+    return (character.preparedSpells || []).includes(spellId);
+  }, [character.preparedSpells]);
 
   const updateItem = useCallback((id: string, patch: Partial<Character["spells"][number]>) => {
     onChange({
@@ -107,16 +137,39 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
 
   return (
     <SectionCard id="spells" title="SPELLS" icon={<Lightning weight="regular" className="h-5 w-5" />}>
+      {preparationCaster && (
+        <div className="mb-4 surface bg-paper-muted px-4 py-3">
+          <span className="text-sm font-bold text-ink">Prepared Spells: {preparedCount}/{maxPrepared}</span>
+          <span className="text-xs text-ink ml-2">(Wisdom mod + level; domain spells always prepared)</span>
+        </div>
+      )}
       <div className="mt-3 space-y-2">
             {character.spells.map((spell) => {
               const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
               const descriptionText = typeof description === "string" ? description : Array.isArray(description) ? description.join("\n") : undefined;
               const isCustom = spell.source === "custom";
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
+              const domainSpell = isDomainSpell(spell);
+              const spellPrepared = isPrepared(spell.id);
               return (
-                <div key={spell.id} className="list-row flex flex-wrap items-center gap-2">
+                <div key={spell.id} className={`list-row flex flex-wrap items-center gap-2 ${spellPrepared ? "border-l-4 border-green-500" : ""}`}>
                   {editMode ? (
                     <>
+                      {preparationCaster && spell.level > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => togglePrepared(spell.id)}
+                          className={`shrink-0 ${domainSpell ? "cursor-default" : "cursor-pointer"}`}
+                          title={domainSpell ? "Domain spell (always prepared)" : (spellPrepared ? "Click to unprepare" : "Click to prepare")}
+                          disabled={domainSpell}
+                        >
+                          {spellPrepared ? (
+                            <Check weight="fill" size={18} className={domainSpell ? "text-yellow-500" : "text-green-500"} />
+                          ) : (
+                            <Circle weight="regular" size={18} className="text-gray-400" />
+                          )}
+                        </button>
+                      )}
                       <select
                         value={dropdownValue}
                         onChange={(e) => {
@@ -208,6 +261,18 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   ) : (
                     <div className="flex flex-col gap-1 w-full">
                       <div className="flex items-center gap-2 flex-wrap">
+                        {preparationCaster && spell.level > 0 && (
+                          <>
+                            {spellPrepared ? (
+                              <Check weight="fill" size={16} className="text-green-500 shrink-0" />
+                            ) : (
+                              <Circle weight="regular" size={16} className="text-gray-400 shrink-0" />
+                            )}
+                          </>
+                        )}
+                        {domainSpell && (
+                          <span className="text-[10px] font-bold text-yellow-600 bg-yellow-50 px-1.5 py-0.5 rounded">DOMAIN</span>
+                        )}
                         <span className="text-sm font-bold text-[var(--color-text-primary)]">{spell.name}</span>
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">Level {spell.level}</span>
                         {character.spellcastingAbility && (() => {
