@@ -97,8 +97,8 @@ export default function CharacterCreate() {
         character={character}
         onCancel={() => setStep((s) => Math.max(0, s - 1))}
         onComplete={(updated) => {
-          setCharacter(updated);
-          setStep((s) => s + 1);
+          const final = finalizeCreation(updated);
+          router.replace(`/character/${final.id}`);
         }}
         minLevel={1}
         maxLevel={10}
