@@ -109,9 +109,8 @@ function buildLevelInfos(
     let cantripsKnown: number | undefined;
     if (classData.cantripsKnown) {
       if (Array.isArray(classData.cantripsKnown)) {
-        if (level >= 1 && level <= classData.cantripsKnown.length) {
-          cantripsKnown = classData.cantripsKnown[level - 1];
-        }
+        const idx = Math.min(level - 1, classData.cantripsKnown.length - 1);
+        cantripsKnown = classData.cantripsKnown[idx >= 0 ? idx : 0];
       } else {
         const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
         for (const l of levels) {
@@ -206,9 +205,8 @@ function buildLevelInfos(
     let prevCantrips = 0;
     if (prevLevelData && classData.cantripsKnown) {
       if (Array.isArray(classData.cantripsKnown)) {
-        if (level - 1 >= 1 && level - 1 <= classData.cantripsKnown.length) {
-          prevCantrips = classData.cantripsKnown[level - 2] || 0;
-        }
+        const prevIdx = Math.min(level - 2, classData.cantripsKnown.length - 1);
+        prevCantrips = classData.cantripsKnown[prevIdx >= 0 ? prevIdx : 0] || 0;
       } else {
         const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
         for (const l of levels) {
