@@ -18,6 +18,10 @@ const MUSICAL_INSTRUMENTS = [
   "Bagpipes", "Drum", "Flute", "Horn", "Lute", "Lyre", "Pan flute", "Shawm", "Viol"
 ];
 
+const ARCANE_FOCUS_TYPES = [
+  "Crystal", "Orb", "Rod", "Staff", "Wand"
+];
+
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
@@ -103,7 +107,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
 
-    if (option.isWeaponChoice || option.isInstrumentChoice) {
+    if (option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice) {
       setPopupGroup({ group, optionIndex });
       return;
     }
@@ -196,6 +200,27 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       source: "srd" as const,
       description: itemInfo ? JSON.stringify(itemInfo) : "",
       itemType: "instrument" as const,
+      choiceGroupIndex: groupIndex,
+      choiceOptionIndex: optionIndex,
+    };
+
+    onChange({ inventory: [...newInventory, newItem] });
+    setPopupGroup(null);
+  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+
+  const handleArcaneFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
+    const groupIndex = getGroupIndex(groupId);
+    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+
+    const itemInfo = getItemInfo(focusName);
+    const newItem: Character["inventory"][number] = {
+      id: generateId(),
+      name: focusName,
+      quantity: 1,
+      equipped: false,
+      source: "srd" as const,
+      description: itemInfo ? JSON.stringify(itemInfo) : "",
+      itemType: "item" as const,
       choiceGroupIndex: groupIndex,
       choiceOptionIndex: optionIndex,
     };
@@ -612,7 +637,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
       {popupGroup && popupOption && (
         <DescriptionModal
-          title={popupOption.isWeaponChoice ? `Choose a ${popupOption.weaponType?.replace('_', ' ')} weapon` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : "Select an item"}
+          title={popupOption.isWeaponChoice ? `Choose a ${popupOption.weaponType?.replace('_', ' ')} weapon` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : "Select an item"}
           content=""
           onClose={() => setPopupGroup(null)}
         >
@@ -676,6 +701,25 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <InfoButton
                   title={instrument}
                   description="Musical instrument. Bards use musical instruments as a spellcasting focus."
+                  size="sm"
+                />
+              </div>
+            ))}
+            {popupOption.isArcaneFocusChoice && ARCANE_FOCUS_TYPES.map((focus) => (
+              <div
+                key={focus}
+                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+              >
+                <button
+                  type="button"
+                  onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="flex-1 text-left"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
+                </button>
+                <InfoButton
+                  title={focus}
+                  description="An arcane focus is a special item designed to channel arcane magic. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
                   size="sm"
                 />
               </div>

@@ -29,6 +29,7 @@ export interface EquipmentOption {
   weaponType?: string;
   isWeaponChoice?: boolean;
   isInstrumentChoice?: boolean;
+  isArcaneFocusChoice?: boolean;
 }
 
 export interface ChoiceGroup {
@@ -61,6 +62,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
             trimmed
           );
           const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
+          const isArcaneFocusChoice = /(?:arcane\s+focus|a\s+(?:crystal|orb|rod|staff|wand)\s+as\s+an?\s+arcane\s+focus|an?\s+arcane\s+focus\s+\((?:crystal|orb|rod|staff|wand))\)/.test(trimmed);
 
         let weaponType: string | undefined;
         if (isWeaponChoice) {
@@ -83,6 +85,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           weaponType,
           isWeaponChoice,
           isInstrumentChoice,
+          isArcaneFocusChoice,
         };
       });
 
@@ -121,6 +124,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           trimmed
         );
         const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
+        const isArcaneFocusChoice = /(?:arcane\s+focus|a\s+(?:crystal|orb|rod|staff|wand)\s+as\s+an?\s+arcane\s+focus|an?\s+arcane\s+focus\s+\((?:crystal|orb|rod|staff|wand))\)/.test(trimmed);
 
         let weaponType: string | undefined;
         if (isWeaponChoice) {
@@ -138,6 +142,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           weaponType,
           isWeaponChoice,
           isInstrumentChoice,
+          isArcaneFocusChoice,
         };
       });
 
