@@ -478,24 +478,40 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
                             }`}
                           >
-                           {isSelected ? (
-                             <div className="flex items-center justify-between">
-                               <div className="flex-1">
-                                 <div className="flex items-center gap-2">
-                                   <span className="text-green-600 font-bold">✓</span>
-                                   <span className="text-body font-semibold text-[var(--color-text-primary)]">{option.description || primaryItem?.name}</span>
-                                 </div>
-                               </div>
-                               <div className="flex items-center gap-1">
-                                 <button
-                                   type="button"
-                                   onClick={() => handleChoiceRemove(group)}
-                                   className="text-[var(--color-text-muted)] hover:text-red-500 ml-1 text-lg leading-none"
-                                 >
-                                   ×
-                                 </button>
-                               </div>
-                             </div>
+                            {isSelected ? (
+                              <div className="flex items-center justify-between">
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-green-600 font-bold">✓</span>
+                                    <span className="text-body font-semibold text-[var(--color-text-primary)]">{option.description || primaryItem?.name}</span>
+                                  </div>
+                                  {primaryInfo?.type === "weapon" && (() => {
+                                    const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
+                                    return wStats ? (
+                                      <div className="flex items-center gap-2 mt-1.5 ml-5">
+                                        <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                          {wStats.damageDice} {wStats.damageType}
+                                        </span>
+                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                          {wStats.abilityKey} +{wStats.damageBonus}
+                                        </span>
+                                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                          {wStats.attackBonus} to hit
+                                        </span>
+                                      </div>
+                                    ) : null;
+                                  })()}
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleChoiceRemove(group)}
+                                    className="text-[var(--color-text-muted)] hover:text-red-500 ml-1 text-lg leading-none"
+                                  >
+                                    ×
+                                  </button>
+                                </div>
+                              </div>
                            ) : (
                              <div className="flex items-center justify-between gap-2">
                                <button
