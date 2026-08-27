@@ -524,25 +524,41 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   </button>
                                 </div>
                               </div>
-                           ) : (
-                             <div className="flex items-center justify-between gap-2">
-                               <button
-                                 type="button"
-                                 onClick={() => handleOptionClick(group, optionIndex)}
-                                 disabled={isDisabled}
-                                 className="flex-1 text-left"
-                               >
-                                 <span className="text-body">{option.description || primaryItem?.name}</span>
-                               </button>
-                               {primaryInfo && (
-                                 <InfoButton
-                                   title={primaryItem?.name || option.description || "Item"}
-                                   description={getItemDescription(primaryInfo)}
-                                   size="sm"
-                                 />
-                               )}
-                             </div>
-                           )}
+                            ) : (
+                              <div className="flex items-center justify-between gap-2">
+                                <button
+                                  type="button"
+                                  onClick={() => handleOptionClick(group, optionIndex)}
+                                  disabled={isDisabled}
+                                  className="flex-1 text-left"
+                                >
+                                  <span className="text-body">{option.description || primaryItem?.name}</span>
+                                  {primaryInfo?.type === "weapon" && (() => {
+                                    const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
+                                    return wStats ? (
+                                      <div className="flex items-center gap-2 mt-1.5">
+                                        <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                          {wStats.damageDice} {wStats.damageType}
+                                        </span>
+                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                          {wStats.abilityKey} {wStats.damageBonus}
+                                        </span>
+                                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                          {wStats.attackBonus} to hit
+                                        </span>
+                                      </div>
+                                    ) : null;
+                                  })()}
+                                </button>
+                                {primaryInfo && (
+                                  <InfoButton
+                                    title={primaryItem?.name || option.description || "Item"}
+                                    description={getItemDescription(primaryInfo)}
+                                    size="sm"
+                                  />
+                                )}
+                              </div>
+                            )}
                           </div>
                         );
                     })}
