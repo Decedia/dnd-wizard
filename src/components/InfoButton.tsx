@@ -7,9 +7,10 @@ interface DescriptionModalProps {
   title: string;
   content: string | string[];
   onClose: () => void;
+  children?: React.ReactNode;
 }
 
-export function DescriptionModal({ title, content, onClose }: DescriptionModalProps) {
+export function DescriptionModal({ title, content, onClose, children }: DescriptionModalProps) {
   const text = Array.isArray(content) ? content.join(" ") : content;
 
   useEffect(() => {
@@ -37,7 +38,9 @@ export function DescriptionModal({ title, content, onClose }: DescriptionModalPr
           </button>
         </div>
         <div className="flex-1 overflow-y-auto px-4 py-4">
-          <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{text}</p>
+          {children || (
+            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{text}</p>
+          )}
         </div>
       </div>
     </div>

@@ -28,6 +28,7 @@ export interface EquipmentOption {
   items: EquipmentItemRef[];
   weaponType?: string;
   isWeaponChoice?: boolean;
+  isInstrumentChoice?: boolean;
 }
 
 export interface ChoiceGroup {
@@ -59,6 +60,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
             trimmed
           );
+          const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
 
         let weaponType: string | undefined;
         if (isWeaponChoice) {
@@ -80,6 +82,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           items: optionItems,
           weaponType,
           isWeaponChoice,
+          isInstrumentChoice,
         };
       });
 
@@ -117,6 +120,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
           trimmed
         );
+        const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
 
         let weaponType: string | undefined;
         if (isWeaponChoice) {
@@ -133,6 +137,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           items: items.length > 0 ? [items[0]] : [],
           weaponType,
           isWeaponChoice,
+          isInstrumentChoice,
         };
       });
 

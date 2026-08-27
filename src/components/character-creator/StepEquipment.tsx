@@ -7,15 +7,20 @@ import { getModifier, getProficiencyBonus, generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
 import { InfoButton } from "@/components/InfoButton";
+import { DescriptionModal } from "@/components/InfoButton";
 
 interface StepEquipmentProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
 }
 
+const MUSICAL_INSTRUMENTS = [
+  "Bagpipes", "Drum", "Flute", "Horn", "Lute", "Lyre", "Pan flute", "Shawm", "Viol"
+];
+
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
-  const [expandedGroupId, setExpandedGroupId] = useState<string | null>(null);
+  const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
@@ -28,6 +33,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const getGroupIndex = useCallback((groupId: string) => {
     const match = groupId.match(/choice-(\d+)/);
     return match ? parseInt(match[1], 10) : -1;
+  }, []);
+
+  const isMusicalInstrument = useCallback((itemName: string) => {
+    return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
   }, []);
 
   const getItemInfo = useCallback((itemName: string) => {
@@ -54,6 +63,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       };
     }
 
+    if (isMusicalInstrument(itemName)) {
+      return {
+        type: "instrument",
+        description: "Musical instrument. Bards use musical instruments as a spellcasting focus.",
+      };
+    }
+
     const equipmentData = getEquipmentData(itemName);
     if (equipmentData) {
       return {
@@ -70,7 +86,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     }
 
     return null;
-  }, [weapons, armors]);
+  }, [weapons, armors, isMusicalInstrument]);
 
   const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {
     const groupIndex = getGroupIndex(group.id);
@@ -87,8 +103,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
 
-    if (option.isWeaponChoice) {
-      setExpandedGroupId(prev => prev === group.id ? null : group.id);
+    if (option.isWeaponChoice || option.isInstrumentChoice) {
+      setPopupGroup({ group, optionIndex });
       return;
     }
 
@@ -103,7 +119,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         equipped: false,
         source: "srd" as const,
         description: itemInfo ? JSON.stringify(itemInfo) : "",
-        itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
+        itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
         choiceGroupIndex: groupIndex,
         choiceOptionIndex: optionIndex,
       };
@@ -118,7 +134,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     });
 
     onChange({ inventory: [...newInventory, ...newItems] });
-    setExpandedGroupId(null);
   }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
   const handleWeaponSelect = useCallback((weapon: any, groupId: string, optionIndex: number) => {
@@ -165,14 +180,34 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     }
 
     onChange({ inventory: nextInventory });
-    setExpandedGroupId(null);
+    setPopupGroup(null);
   }, [data.inventory, getGroupIndex, getItemInfo, onChange, choiceGroups]);
+
+  const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
+    const groupIndex = getGroupIndex(groupId);
+    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+
+    const itemInfo = getItemInfo(instrumentName);
+    const newItem: Character["inventory"][number] = {
+      id: generateId(),
+      name: instrumentName,
+      quantity: 1,
+      equipped: false,
+      source: "srd" as const,
+      description: itemInfo ? JSON.stringify(itemInfo) : "",
+      itemType: "instrument" as const,
+      choiceGroupIndex: groupIndex,
+      choiceOptionIndex: optionIndex,
+    };
+
+    onChange({ inventory: [...newInventory, newItem] });
+    setPopupGroup(null);
+  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
   const handleChoiceRemove = useCallback((group: ChoiceGroup) => {
     const groupIndex = getGroupIndex(group.id);
     const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
     onChange({ inventory: newInventory });
-    setExpandedGroupId(prev => prev === group.id ? null : prev);
   }, [data.inventory, getGroupIndex, onChange]);
 
   const autoGrantItems = useCallback(() => {
@@ -192,7 +227,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               equipped: false,
               source: "srd" as const,
               description: itemInfo ? JSON.stringify(itemInfo) : "",
-              itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
+              itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
               isGranted: true,
             };
 
@@ -251,6 +286,35 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     };
   }, [weapons, data]);
 
+  const getWeaponsByCategory = useCallback((weaponType: string) => {
+    return weapons.filter((w: any) => {
+      if (weaponType === "martial") return w.weapon_category === "Martial";
+      if (weaponType === "simple") return w.weapon_category === "Simple";
+      if (weaponType === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
+      if (weaponType === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
+      if (weaponType === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
+      if (weaponType === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
+      return false;
+    });
+  }, [weapons]);
+
+  const getCategoryDamagePreview = useCallback((weaponType: string) => {
+    const categoryWeapons = getWeaponsByCategory(weaponType);
+    if (categoryWeapons.length === 0) return null;
+
+    const diceSet = new Set<string>();
+    const typesSet = new Set<string>();
+    categoryWeapons.forEach((w: any) => {
+      if (w.damage?.damage_dice) diceSet.add(w.damage.damage_dice);
+      if (w.damage?.damage_type?.name) typesSet.add(w.damage.damage_type.name);
+    });
+
+    return {
+      dice: Array.from(diceSet).join("/"),
+      types: Array.from(typesSet).join("/"),
+    };
+  }, [getWeaponsByCategory]);
+
   const renderItemInfo = useCallback((itemInfo: any, compact: boolean = false) => {
     if (!itemInfo) return null;
 
@@ -274,6 +338,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           {!compact && itemInfo.description && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">— {itemInfo.description}</span>}
         </span>
       );
+    }
+
+    if (itemInfo.type === "instrument") {
+      return <span>Musical instrument</span>;
     }
 
     if (itemInfo.type === "item") {
@@ -303,6 +371,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       parts.push(`AC: ${itemInfo.baseAC} + Dex${itemInfo.maxDex !== null ? ` (max +${itemInfo.maxDex})` : ""}`);
       if (itemInfo.armorType) parts.push(`Type: ${itemInfo.armorType}`);
       if (itemInfo.description) parts.push(itemInfo.description);
+    } else if (itemInfo.type === "instrument") {
+      parts.push("Musical instrument. Bards use musical instruments as a spellcasting focus.");
     } else if (itemInfo.type === "item") {
       if (itemInfo.description) parts.push(itemInfo.description);
       if (itemInfo.contents) parts.push(`Contains: ${itemInfo.contents}`);
@@ -310,18 +380,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
     return parts.join("\n");
   }, []);
-
-  const getWeaponsByCategory = useCallback((weaponType: string) => {
-    return weapons.filter((w: any) => {
-      if (weaponType === "martial") return w.weapon_category === "Martial";
-      if (weaponType === "simple") return w.weapon_category === "Simple";
-      if (weaponType === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
-      if (weaponType === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
-      if (weaponType === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
-      if (weaponType === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
-      return false;
-    });
-  }, [weapons]);
 
   const isAllRequiredSelected = useMemo(() => {
     if (choiceGroups.length === 0) return true;
@@ -331,6 +389,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     });
   }, [choiceGroups, data.inventory, getGroupIndex]);
 
+  const popupOption = popupGroup ? popupGroup.group.options[popupGroup.optionIndex] : null;
+  const popupCategoryWeapons = popupOption?.isWeaponChoice ? getWeaponsByCategory(popupOption.weaponType || "") : [];
+
   return (
     <StepCard title="Equipment" hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.">
       {choiceGroups.length > 0 && (
@@ -339,10 +400,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
             Choose Your Equipment
           </span>
           <div className="space-y-4">
-            {choiceGroups.map((group) => {
-              const isExpanded = expandedGroupId === group.id;
-              const groupIndex = getGroupIndex(group.id);
-              const hasSelection = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
+             {choiceGroups.map((group) => {
+               const groupIndex = getGroupIndex(group.id);
+               const hasSelection = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
 
                return (
                  <div key={group.id} className="space-y-2">
@@ -361,6 +421,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
                       if (isWeaponChoice) {
                         const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
+                        const damagePreview = getCategoryDamagePreview(option.weaponType || "");
 
                         return (
                           <div
@@ -384,8 +445,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                          {weaponStats.damageDice} {weaponStats.damageType}
                                        </span>
                                         <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                          {weaponStats.abilityKey} {weaponStats.damageBonus}
-                                        </span>
+                                         {weaponStats.abilityKey} {weaponStats.damageBonus}
+                                       </span>
                                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
                                          {weaponStats.attackBonus} to hit
                                        </span>
@@ -406,62 +467,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                  onClick={() => handleOptionClick(group, optionIndex)}
                                   className="w-full text-left text-body"
                                >
-                                 Choose a {option.weaponType?.replace('_', ' ')} weapon →
+                                 <span>Choose a {option.weaponType?.replace('_', ' ')} weapon</span>
+                                 {damagePreview && (
+                                   <span className="ml-2 text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                     {damagePreview.dice} {damagePreview.types}
+                                   </span>
+                                 )}
                                </button>
-                             )}
-
-                              {!isSelected && (
-                                <div className="mt-3 space-y-2">
-                                 {categoryWeapons.map((weapon: any) => {
-                                   const wStats = getWeaponStats(weapon.name, weapon.category_range);
-                                   return (
-                                     <div
-                                       key={weapon.name}
-                                       className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-                                     >
-                                       <button
-                                         type="button"
-                                         onClick={() => handleWeaponSelect(weapon, group.id, optionIndex)}
-                                         className="flex-1 text-left"
-                                       >
-                                         <div className="flex items-center justify-between">
-                                           <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
-                                           {wStats && (
-                                             <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
-                                               {wStats.attackBonus} to hit
-                                             </span>
-                                           )}
-                                         </div>
-                                          {wStats && (
-                                            <div className="flex items-center gap-2 mt-1.5">
-                                              <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
-                                                {wStats.damageDice} {wStats.damageType}
-                                              </span>
-                                              <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                                {wStats.abilityKey} {wStats.damageBonus}
-                                              </span>
-                                            </div>
-                                          )}
-                                        </button>
-                                        <InfoButton
-                                          title={weapon.name}
-                                          description={[
-                                            weapon.damage?.damage_dice && `Damage: ${weapon.damage.damage_dice} ${weapon.damage?.damage_type?.name || ""}`,
-                                            weapon.properties?.length > 0 && `Properties: ${weapon.properties.map((p: any) => p.name).join(", ")}`,
-                                            weapon.category_range && `Category: ${weapon.category_range}`,
-                                            weapon.weapon_category && `Type: ${weapon.weapon_category}`,
-                                          ].filter(Boolean).join("\n")}
-                                          size="sm"
-                                        />
-                                      </div>
-                                    );
-                                  })}
-                                  {categoryWeapons.length === 0 && (
-                                    <p className="text-[var(--color-text-muted)] text-center py-3">
-                                      No weapons available in this category.
-                                    </p>
-                                  )}
-                                </div>
                               )}
                            </div>
                         );
@@ -581,6 +593,80 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           </div>
         )}
       </div>
+
+      {popupGroup && popupOption && (
+        <DescriptionModal
+          title={popupOption.isWeaponChoice ? `Choose a ${popupOption.weaponType?.replace('_', ' ')} weapon` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : "Select an item"}
+          content=""
+          onClose={() => setPopupGroup(null)}
+        >
+          <div className="space-y-2">
+            {popupOption.isWeaponChoice && popupCategoryWeapons.map((weapon: any) => {
+              const wStats = getWeaponStats(weapon.name, weapon.category_range);
+              return (
+                <div
+                  key={weapon.name}
+                  className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleWeaponSelect(weapon, popupGroup.group.id, popupGroup.optionIndex)}
+                    className="flex-1 text-left"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
+                      {wStats && (
+                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                          {wStats.attackBonus} to hit
+                        </span>
+                      )}
+                    </div>
+                    {wStats && (
+                      <div className="flex items-center gap-2 mt-1.5">
+                        <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                          {wStats.damageDice} {wStats.damageType}
+                        </span>
+                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                          {wStats.abilityKey} {wStats.damageBonus}
+                        </span>
+                      </div>
+                    )}
+                  </button>
+                  <InfoButton
+                    title={weapon.name}
+                    description={[
+                      weapon.damage?.damage_dice && `Damage: ${weapon.damage.damage_dice} ${weapon.damage?.damage_type?.name || ""}`,
+                      weapon.properties?.length > 0 && `Properties: ${weapon.properties.map((p: any) => p.name).join(", ")}`,
+                      weapon.category_range && `Category: ${weapon.category_range}`,
+                      weapon.weapon_category && `Type: ${weapon.weapon_category}`,
+                    ].filter(Boolean).join("\n")}
+                    size="sm"
+                  />
+                </div>
+              );
+            })}
+            {popupOption.isInstrumentChoice && MUSICAL_INSTRUMENTS.map((instrument) => (
+              <div
+                key={instrument}
+                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+              >
+                <button
+                  type="button"
+                  onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="flex-1 text-left"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{instrument}</span>
+                </button>
+                <InfoButton
+                  title={instrument}
+                  description="Musical instrument. Bards use musical instruments as a spellcasting focus."
+                  size="sm"
+                />
+              </div>
+            ))}
+          </div>
+        </DescriptionModal>
+      )}
     </StepCard>
   );
 }
