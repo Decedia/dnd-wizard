@@ -1312,8 +1312,8 @@ function SpellSelectionModal({
             onClick={() => setActiveTab("cantrips")}
             className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
               activeTab === "cantrips"
-                ? "text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
-                : "text-[var(--color-text-muted)]"
+                ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
+                : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
             }`}
           >
             Cantrips ({currentCantrips}/{cantripCount})
@@ -1325,8 +1325,8 @@ function SpellSelectionModal({
               onClick={() => setActiveTab(lvl)}
               className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
                 activeTab === lvl
-                  ? "text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
-                  : "text-[var(--color-text-muted)]"
+                  ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
               }`}
             >
               Level {lvl} ({currentSpells}/{count})
@@ -1346,7 +1346,7 @@ function SpellSelectionModal({
                       type="button"
                       onClick={() => toggle(sp.name, 0)}
                       disabled={disabled}
-                      className={`flex-1 px-3 py-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                      className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
                         isSel
                           ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
                           : disabled
@@ -1374,31 +1374,40 @@ function SpellSelectionModal({
                       type="button"
                       onClick={() => toggle(sp.name, sp.level)}
                       disabled={disabled}
-                      className={`flex-1 px-3 py-2 text-left rounded-[var(--radius-sm)] border transition-all ${
+                      className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
                         isSel
                           ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-                       : disabled
-                             ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                             : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                       }`}
-                     >
-                       <div className="text-xs font-bold">{sp.name}</div>
-                       <div className="flex items-center gap-2">
-                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
-                         <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
-                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
-                       </div>
-                     </button>
-                     {desc && <InfoButton title={sp.name} description={desc} />}
-                   </div>
-                 );
-               })}
-             </div>
-           )}
-         </div>
-       </div>
-     </div>
-   );
+                          : disabled
+                            ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                            : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="text-xs font-bold">{sp.name}</div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                        <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
+                      </div>
+                    </button>
+                    {desc && <InfoButton title={sp.name} description={desc} />}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+        <div className="border-t border-[var(--color-border)] px-4 py-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-full py-2.5 text-sm font-semibold rounded-lg bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90 transition-all"
+          >
+            Confirm Selection
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function FeatureSelectionModal({

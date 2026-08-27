@@ -155,6 +155,7 @@ export interface EquipmentOption {
   isHolySymbolChoice?: boolean;
   isDruidicFocusChoice?: boolean;
   isSimpleChoice?: boolean;
+  selectionCount?: number;
 }
 
 export interface ChoiceGroup {
@@ -172,6 +173,22 @@ function getOptionDisplayText(part: string): string {
   const withoutLetter = part.replace(/^\(([a-z])\)\s*/, "").trim();
   const withoutTrailingOr = withoutLetter.replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
   return withoutTrailingOr;
+}
+
+function parseSelectionCount(text: string): number {
+  const lower = text.toLowerCase();
+  if (lower.startsWith("two ")) return 2;
+  if (lower.startsWith("three ")) return 3;
+  if (lower.startsWith("four ")) return 4;
+  if (lower.startsWith("five ")) return 5;
+  if (lower.startsWith("six ")) return 6;
+  if (lower.startsWith("seven ")) return 7;
+  if (lower.startsWith("eight ")) return 8;
+  if (lower.startsWith("nine ")) return 9;
+  if (lower.startsWith("ten ")) return 10;
+  const numMatch = lower.match(/^(\d+)\s+/);
+  if (numMatch) return parseInt(numMatch[1], 10);
+  return 1;
 }
 
 function findOptionItems(optionLetter: string, allItems: any[], optionText: string): any[] {
@@ -241,10 +258,12 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         let isHolySymbolChoice = false;
         let isDruidicFocusChoice = false;
         let weaponType: string | undefined;
+        let selectionCount: number | undefined;
 
         if (srdMatch?.isChoice && srdMatch.choiceType === "weapon") {
           isWeaponChoice = true;
           weaponType = srdMatch.weaponType;
+          selectionCount = parseSelectionCount(nameWithoutLetter);
         } else if (srdMatch?.isChoice && srdMatch.choiceType === "instrument") {
           isInstrumentChoice = true;
         } else if (srdMatch?.isChoice && srdMatch.choiceType === "arcane_focus") {
@@ -266,6 +285,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           isArcaneFocusChoice,
           isHolySymbolChoice,
           isDruidicFocusChoice,
+          selectionCount,
         };
       });
 
@@ -304,10 +324,12 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         let isHolySymbolChoice = false;
         let isDruidicFocusChoice = false;
         let weaponType: string | undefined;
+        let selectionCount: number | undefined;
 
         if (srdMatch?.isChoice && srdMatch.choiceType === "weapon") {
           isWeaponChoice = true;
           weaponType = srdMatch.weaponType;
+          selectionCount = parseSelectionCount(displayText);
         } else if (srdMatch?.isChoice && srdMatch.choiceType === "instrument") {
           isInstrumentChoice = true;
         } else if (srdMatch?.isChoice && srdMatch.choiceType === "arcane_focus") {
@@ -329,6 +351,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           isArcaneFocusChoice,
           isHolySymbolChoice,
           isDruidicFocusChoice,
+          selectionCount,
         };
       });
 

@@ -111,10 +111,17 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return data.inventory.find(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
   }, [data.inventory, getGroupIndex]);
 
+  const getSelectedWeaponsForGroup = useCallback((groupId: string) => {
+    const groupIndex = getGroupIndex(groupId);
+    return data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
+  }, [data.inventory, getGroupIndex]);
+
   const getSelectedItemForGroup = useCallback((groupId: string) => {
     const groupIndex = getGroupIndex(groupId);
     return data.inventory.find(item => item.choiceGroupIndex === groupIndex);
   }, [data.inventory, getGroupIndex]);
+
+  const selectedWeaponsForGroup = popupGroup ? getSelectedWeaponsForGroup(popupGroup.group.id) : [];
 
   const handleOptionClick = useCallback((group: ChoiceGroup, optionIndex: number) => {
     const option = group.options[optionIndex];
@@ -157,15 +164,20 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const groupIndex = getGroupIndex(groupId);
     const option = choiceGroups.find(g => getGroupIndex(g.id) === groupIndex)?.options[optionIndex];
     const itemInfo = getItemInfo(weapon.name);
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+    const selectionCount = option?.selectionCount || 1;
 
-    const qtyMatch = option?.description?.toLowerCase().match(/^two\s+/);
-    const quantity = qtyMatch ? 2 : 1;
+    const existingWeapons = data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
+
+    if (existingWeapons.length >= selectionCount) {
+      return;
+    }
+
+    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex || item.itemType !== "weapon");
 
     const weaponItem: Character["inventory"][number] = {
       id: generateId(),
       name: weapon.name,
-      quantity,
+      quantity: 1,
       equipped: false,
       source: "srd" as const,
       description: itemInfo ? JSON.stringify(itemInfo) : "",
@@ -197,6 +209,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     }
 
     onChange({ inventory: nextInventory });
+
+    if (existingWeapons.length + 1 < selectionCount) {
+      return;
+    }
     setPopupGroup(null);
   }, [data.inventory, getGroupIndex, getItemInfo, onChange, choiceGroups]);
 
@@ -488,78 +504,109 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                  <div key={group.id} className="space-y-2">
                    <p className="text-description mb-2">{group.description}</p>
                    <div className="space-y-2">
-                     {group.options.map((option, optionIndex) => {
-                       const isSelected = isOptionSelected(group, optionIndex);
-                       const isWeaponChoice = option.isWeaponChoice;
-                       const isPopupChoice = option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice;
-                       const primaryItem = option.items[0];
-                       const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
-                       const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
-                       const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
-                       const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
-                       const isDisabled = hasSelection && !isSelected;
-                       const optionItemNames = option.items.map(i => i.name).filter(Boolean);
-                       const optionItemInfos = optionItemNames.map(name => getItemInfo(name));
+                       {group.options.map((option, optionIndex) => {
+                        const isSelected = isOptionSelected(group, optionIndex);
+                        const isWeaponChoice = option.isWeaponChoice;
+                        const isPopupChoice = option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice;
+                        const primaryItem = option.items[0];
+                        const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
+                        const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
+                        const selectedWeapons = isWeaponChoice ? getSelectedWeaponsForGroup(group.id) : [];
+                        const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
+                        const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
+                        const isDisabled = hasSelection && !isSelected;
+                        const optionItemNames = option.items.map(i => i.name).filter(Boolean);
+                        const optionItemInfos = optionItemNames.map(name => getItemInfo(name));
+                        const selectionCount = option.selectionCount || 1;
 
-                      if (isWeaponChoice) {
-                        const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
-                        const damagePreview = getCategoryDamagePreview(option.weaponType || "");
+                       if (isWeaponChoice) {
+                         const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
+                         const damagePreview = getCategoryDamagePreview(option.weaponType || "");
+                         const needsMoreSelections = selectedWeapons.length < selectionCount;
 
-                        return (
-                          <div
-                            key={optionIndex}
-                            className={`card w-full px-3 py-2 text-left text-sm transition-all ${
-                              isSelected
-                                ? "border-2 border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
-                                : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                            }`}
-                          >
-                             {isSelected && selectedWeapon ? (
-                               <div className="flex items-start justify-between">
-                                 <div className="flex-1">
-                                   <div className="flex items-center gap-2">
-                                     <span className="text-green-600 font-bold">✓</span>
-                                     <span className="text-body font-semibold text-[var(--color-text-primary)]">{selectedWeapon.name}</span>
-                                   </div>
-                                   {weaponStats && (
-                                     <div className="flex items-center gap-2 mt-1.5 ml-5">
-                                       <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
-                                         {weaponStats.damageDice} {weaponStats.damageType}
-                                       </span>
-                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                         {weaponStats.abilityKey} {weaponStats.damageBonus}
-                                       </span>
-                                       <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
-                                         {weaponStats.attackBonus} to hit
-                                       </span>
-                                     </div>
-                                   )}
-                                 </div>
-                                 <button
-                                   type="button"
-                                   onClick={() => handleChoiceRemove(group)}
-                                    className="text-[var(--color-text-muted)] hover:text-red-500 ml-2 text-lg leading-none"
-                                 >
-                                   ×
-                                 </button>
-                               </div>
-                              ) : (
-                               <button
-                                 type="button"
-                                 onClick={() => handleOptionClick(group, optionIndex)}
-                                  className="w-full text-left text-body"
-                               >
-                                 <span>Choose a {option.weaponType?.replace('_', ' ')} weapon</span>
-                                 {damagePreview && (
-                                   <span className="ml-2 text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
-                                     {damagePreview.dice} {damagePreview.types}
-                                   </span>
-                                 )}
-                               </button>
-                              )}
-                           </div>
-                        );
-                      }
+                         return (
+                           <div
+                             key={optionIndex}
+                             className={`card w-full px-3 py-2 text-left text-sm transition-all ${
+                               isSelected
+                                 ? "border-2 border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
+                                 : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                             }`}
+                           >
+                              {isSelected && selectedWeapons.length > 0 ? (
+                                <div className="space-y-2">
+                                  {selectedWeapons.map((weapon, wIdx) => {
+                                    const wStats = getWeaponStats(weapon.name, weapon.category);
+                                    return (
+                                      <div key={weapon.id || wIdx} className="flex items-start justify-between">
+                                        <div className="flex-1">
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-green-600 font-bold">✓</span>
+                                            <span className="text-body font-semibold text-[var(--color-text-primary)]">{weapon.name}</span>
+                                          </div>
+                                          {wStats && (
+                                            <div className="flex items-center gap-2 mt-1.5 ml-5">
+                                              <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                                {wStats.damageDice} {wStats.damageType}
+                                              </span>
+                                              <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                                {wStats.abilityKey} {wStats.damageBonus}
+                                              </span>
+                                              <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                                {wStats.attackBonus} to hit
+                                              </span>
+                                            </div>
+                                          )}
+                                        </div>
+                                        <button
+                                          type="button"
+                                          onClick={() => {
+                                            const newInventory = data.inventory.filter(item => item.id !== weapon.id);
+                                            onChange({ inventory: newInventory });
+                                          }}
+                                          className="text-[var(--color-text-muted)] hover:text-red-500 ml-2 text-lg leading-none"
+                                        >
+                                          ×
+                                        </button>
+                                      </div>
+                                    );
+                                  })}
+                                  {needsMoreSelections && (
+                                    <button
+                                      type="button"
+                                      onClick={() => setPopupGroup({ group, optionIndex })}
+                                      className="w-full py-1.5 text-left text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] border border-dashed border-[var(--color-border)] rounded px-2"
+                                    >
+                                      + Add weapon ({selectedWeapons.length}/{selectionCount})
+                                    </button>
+                                  )}
+                                  {selectionCount > 1 && selectedWeapons.length >= selectionCount && (
+                                    <button
+                                      type="button"
+                                      onClick={() => handleChoiceRemove(group)}
+                                      className="text-[var(--color-text-muted)] hover:text-red-500 text-xs"
+                                    >
+                                      Clear all
+                                    </button>
+                                  )}
+                                </div>
+                               ) : (
+                                <button
+                                  type="button"
+                                  onClick={() => handleOptionClick(group, optionIndex)}
+                                   className="w-full text-left text-body"
+                                >
+                                  <span>Choose {selectionCount > 1 ? `${selectionCount} ` : "a "}{option.weaponType?.replace('_', ' ')} weapon{selectionCount > 1 ? "s" : ""}</span>
+                                  {damagePreview && (
+                                    <span className="ml-2 text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                      {damagePreview.dice} {damagePreview.types}
+                                    </span>
+                                  )}
+                                </button>
+                               )}
+                            </div>
+                         );
+                       }
 
                         return (
                           <div
