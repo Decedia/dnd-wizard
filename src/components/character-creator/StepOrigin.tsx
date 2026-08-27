@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { Sword, Users } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
@@ -35,6 +36,17 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   return (
     <StepCard title="Origin" hint="Choose your character's class and race. Your class defines your abilities and role, while your race provides unique traits and ability bonuses.">
       <div className="space-y-4">
+        <div>
+          <label className="field-label-light">Character Name</label>
+          <input
+            type="text"
+            value={data.name}
+            onChange={(e) => onChange({ name: e.target.value })}
+            className="input w-full"
+            placeholder="Enter character name"
+          />
+        </div>
+
         <button
           type="button"
           onClick={() => setPopupType("class")}
@@ -44,8 +56,11 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
           }`}
         >
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex items-center gap-4">
+            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.class ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+              <Sword className="h-7 w-7" />
+            </div>
+            <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Class</div>
               <div className="text-lg font-bold text-[var(--color-text-primary)] mt-1">
                 {data.class || "Select Class"}
@@ -64,8 +79,11 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
           }`}
         >
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex items-center gap-4">
+            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.race ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+              <Users className="h-7 w-7" />
+            </div>
+            <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Race</div>
               <div className="text-lg font-bold text-[var(--color-text-primary)] mt-1">
                 {data.race || "Select Race"}

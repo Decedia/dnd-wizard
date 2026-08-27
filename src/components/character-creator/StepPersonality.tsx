@@ -67,16 +67,6 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
   return (
     <StepCard title="Personality" hint="Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
       <div className="space-y-6">
-        <div>
-          <label className="field-label-light">Character Name</label>
-          <input
-            type="text"
-            value={data.name}
-            onChange={(e) => onChange({ name: e.target.value })}
-            className="input w-full"
-            placeholder="Enter character name"
-          />
-        </div>
 
         <div>
           <label className="field-label-light">Alignment</label>
