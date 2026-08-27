@@ -1,11 +1,26 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Sword, Users } from "phosphor-react";
+import { Sword, Users, Sparkle, MusicNotes, Shield, Flame, Skull, HandFist, Leaf, Eye, MagicWand, Heart } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
 import type { Character } from "@/lib/storage";
+
+const classIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  Barbarian: Flame,
+  Bard: MusicNotes,
+  Cleric: Heart,
+  Druid: Leaf,
+  Fighter: Sword,
+  Monk: HandFist,
+  Paladin: Shield,
+  Ranger: Eye,
+  Rogue: Eye,
+  Sorcerer: Sparkle,
+  Warlock: Skull,
+  Wizard: MagicWand,
+};
 
 interface StepOriginProps {
   data: Character;
@@ -114,6 +129,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               {classes.map((cls) => {
                 const isSelected = data.class === cls.name;
                 const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
+                const Icon = classIcons[cls.name] || Sparkle;
 
                 return (
                   <button
@@ -126,31 +142,38 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
                   >
-                    <div className="flex items-center justify-between">
-                      <span className="text-card-title">{cls.name}</span>
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-card-title">{cls.name}</span>
+                          <div className="flex items-center gap-2">
+                            {hasSubclasses && (
+                              <span className="badge text-[var(--color-text-primary)] bg-[var(--color-surface)]">
+                                Subclass at Lv {cls.subclassLevel}
+                              </span>
+                            )}
+                            {cls.flavorText && (
+                              <InfoButton title={cls.name} description={cls.flavorText} />
+                            )}
+                          </div>
+                        </div>
                         {hasSubclasses && (
-                          <span className="badge text-[var(--color-text-primary)] bg-[var(--color-surface)]">
-                            Subclass at Lv {cls.subclassLevel}
-                          </span>
-                        )}
-                        {cls.flavorText && (
-                          <InfoButton title={cls.name} description={cls.flavorText} />
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {cls.subclasses!.map((sub) => (
+                              <span
+                                key={sub.name}
+                                className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-1.5 py-0.5 rounded-full"
+                              >
+                                {sub.name}
+                              </span>
+                            ))}
+                          </div>
                         )}
                       </div>
                     </div>
-                    {hasSubclasses && (
-                      <div className="mt-2 flex flex-wrap gap-1.5">
-                        {cls.subclasses!.map((sub) => (
-                          <span
-                            key={sub.name}
-                            className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-1.5 py-0.5 rounded-full"
-                          >
-                            {sub.name}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </button>
                 );
               })}
