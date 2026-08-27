@@ -244,7 +244,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
     return {
       attackBonus: attackBonus >= 0 ? `+${attackBonus}` : `${attackBonus}`,
-      damageBonus: damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`,
+      damageBonus: `${damageBonus}`,
       abilityKey: abilityKey.toUpperCase(),
       damageDice: weapon.damage?.damage_dice || "",
       damageType: weapon.damage?.damage_type?.name || "",
@@ -383,9 +383,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                        <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
                                          {weaponStats.damageDice} {weaponStats.damageType}
                                        </span>
-                                       <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                         {weaponStats.abilityKey} +{weaponStats.damageBonus}
-                                       </span>
+                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                          {weaponStats.abilityKey} {weaponStats.damageBonus}
+                                        </span>
                                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
                                          {weaponStats.attackBonus} to hit
                                        </span>
@@ -400,18 +400,18 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                    ×
                                  </button>
                                </div>
-                             ) : (
-                              <button
-                                type="button"
-                                onClick={() => handleOptionClick(group, optionIndex)}
-                                 className="w-full text-left text-body"
-                              >
-                                Choose a {option.weaponType?.replace('_', ' ')} weapon →
-                              </button>
-                            )}
+                              ) : (
+                               <button
+                                 type="button"
+                                 onClick={() => handleOptionClick(group, optionIndex)}
+                                  className="w-full text-left text-body"
+                               >
+                                 Choose a {option.weaponType?.replace('_', ' ')} weapon →
+                               </button>
+                             )}
 
-                             {isExpanded && !isSelected && (
-                               <div className="mt-3 space-y-2">
+                              {!isSelected && (
+                                <div className="mt-3 space-y-2">
                                  {categoryWeapons.map((weapon: any) => {
                                    const wStats = getWeaponStats(weapon.name, weapon.category_range);
                                    return (
@@ -432,38 +432,38 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                              </span>
                                            )}
                                          </div>
-                                         {wStats && (
-                                           <div className="flex items-center gap-2 mt-1.5">
-                                             <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
-                                               {wStats.damageDice} {wStats.damageType}
-                                             </span>
-                                             <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                               {wStats.abilityKey} +{wStats.damageBonus}
-                                             </span>
-                                           </div>
-                                         )}
-                                       </button>
-                                       <InfoButton
-                                         title={weapon.name}
-                                         description={[
-                                           weapon.damage?.damage_dice && `Damage: ${weapon.damage.damage_dice} ${weapon.damage?.damage_type?.name || ""}`,
-                                           weapon.properties?.length > 0 && `Properties: ${weapon.properties.map((p: any) => p.name).join(", ")}`,
-                                           weapon.category_range && `Category: ${weapon.category_range}`,
-                                           weapon.weapon_category && `Type: ${weapon.weapon_category}`,
-                                         ].filter(Boolean).join("\n")}
-                                         size="sm"
-                                       />
-                                     </div>
-                                   );
-                                 })}
-                                 {categoryWeapons.length === 0 && (
-                                   <p className="text-[var(--color-text-muted)] text-center py-3">
-                                     No weapons available in this category.
-                                   </p>
-                                 )}
-                               </div>
-                             )}
-                          </div>
+                                          {wStats && (
+                                            <div className="flex items-center gap-2 mt-1.5">
+                                              <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                                {wStats.damageDice} {wStats.damageType}
+                                              </span>
+                                              <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                                {wStats.abilityKey} {wStats.damageBonus}
+                                              </span>
+                                            </div>
+                                          )}
+                                        </button>
+                                        <InfoButton
+                                          title={weapon.name}
+                                          description={[
+                                            weapon.damage?.damage_dice && `Damage: ${weapon.damage.damage_dice} ${weapon.damage?.damage_type?.name || ""}`,
+                                            weapon.properties?.length > 0 && `Properties: ${weapon.properties.map((p: any) => p.name).join(", ")}`,
+                                            weapon.category_range && `Category: ${weapon.category_range}`,
+                                            weapon.weapon_category && `Type: ${weapon.weapon_category}`,
+                                          ].filter(Boolean).join("\n")}
+                                          size="sm"
+                                        />
+                                      </div>
+                                    );
+                                  })}
+                                  {categoryWeapons.length === 0 && (
+                                    <p className="text-[var(--color-text-muted)] text-center py-3">
+                                      No weapons available in this category.
+                                    </p>
+                                  )}
+                                </div>
+                              )}
+                           </div>
                         );
                       }
 
@@ -492,8 +492,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                         <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
                                           {wStats.damageDice} {wStats.damageType}
                                         </span>
-                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                          {wStats.abilityKey} +{wStats.damageBonus}
+                                         <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                          {wStats.abilityKey} {wStats.damageBonus}
                                         </span>
                                         <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
                                           {wStats.attackBonus} to hit
