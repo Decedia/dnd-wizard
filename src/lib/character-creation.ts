@@ -228,15 +228,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: originCompleted,
     },
     {
-      id: "personality",
-      title: "Personality",
-      description: "Background and traits",
-      hint: "Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.",
-      type: "personality",
-      required: true,
-      completed: personalityCompleted,
-    },
-    {
       id: "abilities",
       title: "Ability Scores",
       description: "Set your character's abilities",
@@ -274,6 +265,15 @@ export function getCreationSteps(character: Character): CreationStep[] {
       type: "appearance",
       required: false,
       completed: appearanceCompleted,
+    },
+    {
+      id: "personality",
+      title: "Personality",
+      description: "Background and traits",
+      hint: "Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.",
+      type: "personality",
+      required: true,
+      completed: personalityCompleted,
     }
   );
 
