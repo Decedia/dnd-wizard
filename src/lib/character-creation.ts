@@ -398,8 +398,8 @@ export function getValidationMessage(step: CreationStep, character?: Character):
       return "Please set all six ability scores before continuing.";
     case "skills":
       return "Please select the required number of skills.";
-    case "equipment":
-      return "Please choose all required equipment options.";
+    case "spells":
+      return "Please select your starting spells and cantrips.";
     case "spells":
       return "Please select your starting spells.";
     case "level":
@@ -431,6 +431,57 @@ export function getCreationSteps(character: Character): CreationStep[] {
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
   const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
   const appearanceCompleted = true;
+
+  const spellcastingClass = !!classData?.spellcastingAbility;
+  const selectedSpells = character.spells || [];
+  const selectedCantrips = selectedSpells.filter((s) => s.level === 0);
+  const selectedLevelSpells = selectedSpells.filter((s) => s.level > 0);
+
+  let cantripTarget = 0;
+  let spellTarget = 0;
+  if (spellcastingClass && classData) {
+    const cn = classData.cantripsKnown;
+    if (cn) {
+      if (Array.isArray(cn)) {
+        const idx = Math.min(character.level - 1, cn.length - 1);
+        cantripTarget = cn[idx >= 0 ? idx : 0];
+      } else {
+        const levels = Object.keys(cn).map(Number).sort((a, b) => a - b);
+        for (const l of levels) {
+          if (character.level >= l) cantripTarget = (cn as Record<number, number>)[l];
+        }
+      }
+    }
+    const classNameLower = (character.class || "").toLowerCase();
+    if (classNameLower === "wizard") {
+      spellTarget = 6;
+    } else if (classNameLower === "sorcerer") {
+      const m: Record<number, number> = { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 };
+      spellTarget = m[character.level] || 2;
+    } else if (classNameLower === "bard") {
+      const m: Record<number, number> = { 1: 4, 2: 5, 3: 6, 4: 7, 5: 8, 6: 9, 7: 10, 8: 11, 9: 12, 10: 14, 11: 15, 12: 15, 13: 16, 14: 16, 15: 18, 16: 18, 17: 19, 18: 19, 19: 20, 20: 22 };
+      spellTarget = m[character.level] || 4;
+    } else if (classNameLower === "cleric" || classNameLower === "druid") {
+      const abi = classData.spellcastingAbility || "wis";
+      const abiScore = character[abi as keyof Character] as number || 10;
+      const mod = Math.floor((abiScore - 10) / 2);
+      spellTarget = mod + character.level;
+    } else if (classNameLower === "paladin") {
+      if (character.level >= 2) {
+        const m: Record<number, number> = { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 };
+        spellTarget = m[character.level] || 2;
+      }
+    } else if (classNameLower === "ranger") {
+      if (character.level >= 2) {
+        const m: Record<number, number> = { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 };
+        spellTarget = m[character.level] || 2;
+      }
+    } else if (classNameLower === "warlock") {
+      const m: Record<number, number> = { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 };
+      spellTarget = m[character.level] || 2;
+    }
+  }
+  const spellsCompleted = !spellcastingClass || (selectedCantrips.length >= cantripTarget && selectedLevelSpells.length >= spellTarget);
 
   const asiLevels = classData?.levels
     .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
@@ -504,6 +555,18 @@ export function getCreationSteps(character: Character): CreationStep[] {
     }
   );
 
+  if (spellcastingClass) {
+    steps.push({
+      id: "spells",
+      title: "Spells",
+      description: "Choose starting spells and cantrips",
+      hint: "Select your starting cantrips and spells. Cantrips are always available, while spells require spell slots to cast.",
+      type: "spells",
+      required: true,
+      completed: spellsCompleted,
+    });
+  }
+
   if (character.class) {
     steps.push({
       id: "level",
@@ -515,9 +578,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: levelCompleted,
     });
   }
-
-  // Note: Spell selection is now handled within the LevelUpWizard
-  // No separate spell selection step needed in character creation
 
   const featureSelections = getFeatureSelections(character).filter(s => s.source !== "subclass" && s.source !== "class");
   featureSelections.forEach((selection, index) => {

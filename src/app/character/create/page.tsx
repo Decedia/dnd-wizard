@@ -6,6 +6,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepOrigin } from "@/components/character-creator/StepOrigin";
 import { StepPersonality } from "@/components/character-creator/StepPersonality";
+import { StepSpells } from "@/components/character-creator/StepSpells";
 import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
@@ -79,6 +80,8 @@ export default function CharacterCreate() {
         return <StepEquipment data={character} onChange={update} />;
       case "appearance":
         return <StepAppearance data={character} onChange={update} />;
+      case "spells":
+        return <StepSpells data={character} onChange={update} />;
       default:
         return null;
     }

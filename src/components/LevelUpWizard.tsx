@@ -228,9 +228,14 @@ function buildLevelInfos(
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
     const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger", "Paladin"].includes(className);
-    const spellSelectionCount = isSpellsKnownCaster
+    let spellSelectionCount = isSpellsKnownCaster
       ? (spellsKnownChanged ? (spellsKnown || 0) - prevSpellsKnown : 0)
       : (className === "Wizard" ? 2 : 0);
+
+    // For Wizard starting at level 1 in creation flow, starting spells are handled in StepSpells
+    if (className === "Wizard" && level === 1 && showLevelOne) {
+      spellSelectionCount = 0;
+    }
 
     infos.push({
       level,
@@ -323,10 +328,15 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   const allLevelsComplete = levelInfos.length === 0 || levelInfos.every((info) => {
     const lvl = info.level;
+    const lvlSpells = spellSelections[lvl] || [];
+    const selectedCantripsCount = lvlSpells.filter((s) => s.endsWith(":0")).length;
+    const selectedSpellsCount = lvlSpells.filter((s) => !s.endsWith(":0")).length;
+    const spellSelectionComplete = !info.hasSpellSelection || (selectedCantripsCount >= info.cantripSelectionCount && selectedSpellsCount >= info.spellSelectionCount);
     // Level 1 HP is automatic, no need to roll
     if (lvl === 1 && startFromLevelOne) {
       if (info.asi && !asiIsValid(asiSelections[lvl])) return false;
       if (info.subclassOptions && !subclassSelection) return false;
+      if (!spellSelectionComplete) return false;
       if (info.subclassFeatureChoices) {
         const choices = subclassFeatureChoices[lvl] || {};
         for (const fc of info.subclassFeatureChoices) {
@@ -344,6 +354,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (!hpValues[lvl] || hpValues[lvl] <= 0) return false;
     if (info.asi && !asiIsValid(asiSelections[lvl])) return false;
     if (info.subclassOptions && !subclassSelection) return false;
+    if (!spellSelectionComplete) return false;
     if (info.subclassFeatureChoices) {
       const choices = subclassFeatureChoices[lvl] || {};
       for (const fc of info.subclassFeatureChoices) {
