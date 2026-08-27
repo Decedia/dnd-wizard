@@ -64,9 +64,25 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
   const availableLanguages = languageList.map(l => l.name).filter(l => !raceLanguages.includes(l));
   const canAddMoreLanguages = (data.languages?.length || defaultLanguages.length) < raceLanguages.length + totalBonusLanguages;
 
+  const personalityTraits = selectedBackground?.personalityTraits || [];
+  const ideals = selectedBackground?.ideals || [];
+  const bonds = selectedBackground?.bonds || [];
+  const flaws = selectedBackground?.flaws || [];
+
   return (
-    <StepCard title="Personality" hint="Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
+    <StepCard title="Personality" hint="Define your character's name, personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
       <div className="space-y-6">
+
+        <div>
+          <label className="field-label-light">Character Name *</label>
+          <input
+            type="text"
+            value={data.name}
+            onChange={(e) => onChange({ name: e.target.value })}
+            className="input w-full text-lg font-semibold mt-1"
+            placeholder="Enter character name"
+          />
+        </div>
 
         <div>
           <label className="field-label-light">Alignment</label>
@@ -172,49 +188,93 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
           </div>
         </div>
 
-        <div>
-          <label className="field-label-light">Personality Traits</label>
-          <textarea
-            value={data.personalityTrait1}
-            onChange={(e) => onChange({ personalityTrait1: e.target.value })}
-            className="input w-full"
-            rows={2}
-            placeholder="Describe your character's personality..."
-          />
-        </div>
+        {personalityTraits.length > 0 && (
+          <div>
+            <label className="field-label-light">Personality Traits</label>
+            <div className="space-y-2 mt-2">
+              {personalityTraits.map((trait, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => onChange({ personalityTrait1: trait })}
+                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                    data.personalityTrait1 === trait
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  <span className="text-xs text-[var(--color-text-primary)]">{trait}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
-        <div>
-          <label className="field-label-light">Ideal</label>
-          <textarea
-            value={data.ideal}
-            onChange={(e) => onChange({ ideal: e.target.value })}
-            className="input w-full"
-            rows={2}
-            placeholder="What drives your character?"
-          />
-        </div>
+        {ideals.length > 0 && (
+          <div>
+            <label className="field-label-light">Ideal</label>
+            <div className="space-y-2 mt-2">
+              {ideals.map((ideal, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => onChange({ ideal: ideal })}
+                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                    data.ideal === ideal
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  <span className="text-xs text-[var(--color-text-primary)]">{ideal}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
-        <div>
-          <label className="field-label-light">Bond</label>
-          <textarea
-            value={data.bond}
-            onChange={(e) => onChange({ bond: e.target.value })}
-            className="input w-full"
-            rows={2}
-            placeholder="What connects your character to the world?"
-          />
-        </div>
+        {bonds.length > 0 && (
+          <div>
+            <label className="field-label-light">Bond</label>
+            <div className="space-y-2 mt-2">
+              {bonds.map((bond, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => onChange({ bond: bond })}
+                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                    data.bond === bond
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  <span className="text-xs text-[var(--color-text-primary)]">{bond}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
-        <div>
-          <label className="field-label-light">Flaw</label>
-          <textarea
-            value={data.flaw}
-            onChange={(e) => onChange({ flaw: e.target.value })}
-            className="input w-full"
-            rows={2}
-            placeholder="What is your character's weakness?"
-          />
-        </div>
+        {flaws.length > 0 && (
+          <div>
+            <label className="field-label-light">Flaw</label>
+            <div className="space-y-2 mt-2">
+              {flaws.map((flaw, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => onChange({ flaw: flaw })}
+                  className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                    data.flaw === flaw
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  <span className="text-xs text-[var(--color-text-primary)]">{flaw}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </StepCard>
   );
