@@ -57,8 +57,8 @@ interface LevelInfo {
   spellsKnown?: number;
   classFeatures: { name: string; value: string }[];
   subclassOptions?: { name: string; description: string; hasDetails: boolean }[];
-  subclassFeatureChoices?: { name: string; options: { name: string; description: string }[] }[];
-  classFeatureChoices?: { name: string; options: { name: string; description: string }[] }[];
+  subclassFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[] }[];
+  classFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[] }[];
   hasSpellSelection: boolean;
   spellSelectionCount: number;
   cantripSelectionCount: number;
@@ -164,7 +164,7 @@ function buildLevelInfos(
       ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true }))
       : undefined;
 
-    const subclassFeatureChoices: { name: string; options: { name: string; description: string }[] }[] = [];
+    const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[] }[] = [];
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
       if (selectedSubclass) {
@@ -174,6 +174,7 @@ function buildLevelInfos(
         for (const f of earnedFeatures) {
           subclassFeatureChoices.push({
             name: f.name,
+            description: f.description || "",
             options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "" })),
           });
         }
@@ -181,13 +182,14 @@ function buildLevelInfos(
     }
 
     // Class feature choices (e.g., Primal Knowledge for Barbarian)
-    const classFeatureChoices: { name: string; options: { name: string; description: string }[] }[] = [];
+    const classFeatureChoices: { name: string; description: string; options: { name: string; description: string }[] }[] = [];
     const levelFeatures = classData.levels[level - 1]?.features || [];
     for (const feature of levelFeatures) {
       const f = feature as any;
       if (f.choices && f.choices.options && f.choices.options.length > 0) {
         classFeatureChoices.push({
           name: f.name,
+          description: f.description || "",
           options: f.choices.options.map((opt: any) => ({
             name: typeof opt === "string" ? opt : opt.name,
             description: typeof opt === "string" ? "" : (opt.description || ""),
@@ -618,7 +620,6 @@ function LevelCard({
   const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
   const [showSubclassModal, setShowSubclassModal] = useState(false);
   const [showSpellModal, setShowSpellModal] = useState(false);
-  const [showFeatureModal, setShowFeatureModal] = useState(false);
   const lvl = info.level;
 
   const isHpComplete = hpValue > 0;
@@ -778,22 +779,77 @@ function LevelCard({
           )}
 
           {(info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0 && subclassSelection) || (info.classFeatureChoices && info.classFeatureChoices.length > 0) ? (
-            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <Crown weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-              <div className="flex-1">
-                <button
-                  type="button"
-                  onClick={() => setShowFeatureModal(true)}
-                  className="text-xs font-semibold text-[var(--color-text-primary)] hover:underline"
-                >
-                  Open Feature Choices
-                  {info.subclassFeatureChoices && info.classFeatureChoices
-                    ? ` (${info.subclassFeatureChoices.length + info.classFeatureChoices.length} choices)`
-                    : info.subclassFeatureChoices
-                      ? ` (${info.subclassFeatureChoices.length} choices)`
-                      : ` (${info.classFeatureChoices?.length || 0} choices)`}
-                </button>
-              </div>
+            <div className="space-y-4">
+              {info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0 && subclassSelection && (
+                <div className="space-y-3">
+                  {info.subclassFeatureChoices.map((fc) => (
+                    <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Crown weight="regular" className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                        <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                      </div>
+                      {fc.description && (
+                        <p className="text-[10px] text-[var(--color-text-muted)] mb-2 leading-relaxed">{fc.description}</p>
+                      )}
+                      <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
+                      <div className="space-y-1">
+                        {fc.options.map((opt) => (
+                          <button
+                            key={opt.name}
+                            type="button"
+                            onClick={() => onSubclassFeatureChoice(fc.name, opt.name)}
+                            className={`w-full p-2.5 text-left rounded-lg border transition-all ${
+                              subclassFeatureChoices[fc.name] === opt.name
+                                ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
+                                : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                            {opt.description && (
+                              <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{opt.description}</p>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {info.classFeatureChoices && info.classFeatureChoices.length > 0 && (
+                <div className="space-y-3">
+                  {info.classFeatureChoices.map((fc) => (
+                    <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Sword weight="regular" className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                        <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                      </div>
+                      {fc.description && (
+                        <p className="text-[10px] text-[var(--color-text-muted)] mb-2 leading-relaxed">{fc.description}</p>
+                      )}
+                      <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
+                      <div className="space-y-1">
+                        {fc.options.map((opt) => (
+                          <button
+                            key={opt.name}
+                            type="button"
+                            onClick={() => onClassFeatureChoice(fc.name, opt.name)}
+                            className={`w-full p-2.5 text-left rounded-lg border transition-all ${
+                              classFeatureChoices[fc.name] === opt.name
+                                ? "border-[var(--color-border-active)] bg-[var(--color-surface)]"
+                                : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                            {opt.description && (
+                              <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{opt.description}</p>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ) : null}
 
@@ -850,18 +906,6 @@ function LevelCard({
           existingSpells={character.spells?.filter((s) => s.level > 0) || []}
           spellsKnownChanged={info.spellsKnownChanged}
           earlierSelections={Object.entries(allSpellSelections).filter(([l]) => Number(l) < info.level).flatMap(([, s]) => s)}
-        />
-      )}
-
-      {showFeatureModal && ((info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0) || (info.classFeatureChoices && info.classFeatureChoices.length > 0)) && (
-        <FeatureSelectionModal
-          subclassFeatureChoices={info.subclassFeatureChoices || []}
-          classFeatureChoices={info.classFeatureChoices || []}
-          subclassFeatureChoicesSelected={subclassFeatureChoices}
-          classFeatureChoicesSelected={classFeatureChoices}
-          onSubclassFeatureChoice={onSubclassFeatureChoice}
-          onClassFeatureChoice={onClassFeatureChoice}
-          onClose={() => setShowFeatureModal(false)}
         />
       )}
     </div>
@@ -1500,114 +1544,4 @@ function SpellSelectionModal({
   );
 }
 
-function FeatureSelectionModal({
-  subclassFeatureChoices,
-  classFeatureChoices,
-  subclassFeatureChoicesSelected,
-  classFeatureChoicesSelected,
-  onSubclassFeatureChoice,
-  onClassFeatureChoice,
-  onClose,
-}: {
-  subclassFeatureChoices: { name: string; options: { name: string; description: string }[] }[];
-  classFeatureChoices: { name: string; options: { name: string; description: string }[] }[];
-  subclassFeatureChoicesSelected: Record<string, string>;
-  classFeatureChoicesSelected: Record<string, string>;
-  onSubclassFeatureChoice: (name: string, value: string) => void;
-  onClassFeatureChoice: (name: string, value: string) => void;
-  onClose: () => void;
-}) {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
 
-  return (
-    <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-    >
-      <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-          <div className="text-sm font-bold text-[var(--color-text-primary)]">Feature Choices</div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-5">
-          {subclassFeatureChoices.length > 0 && (
-            <div className="space-y-3">
-              <div className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider flex items-center gap-2">
-                <Crown weight="regular" className="h-3 w-3" />
-                Subclass Choices
-              </div>
-              {subclassFeatureChoices.map((fc) => (
-                <div key={fc.name} className="space-y-2">
-                  <div className="text-sm font-semibold text-[var(--color-text-primary)]">{fc.name}</div>
-                  <div className="space-y-1">
-                    {fc.options.map((opt) => (
-                      <button
-                        key={opt.name}
-                        type="button"
-                        onClick={() => onSubclassFeatureChoice(fc.name, opt.name)}
-                        className={`w-full p-2.5 text-left rounded-[var(--radius-sm)] border transition-all ${
-                          subclassFeatureChoicesSelected[fc.name] === opt.name
-                            ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                        }`}
-                      >
-                        <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
-                        {opt.description && (
-                          <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{opt.description}</p>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {classFeatureChoices.length > 0 && (
-            <div className="space-y-3">
-              <div className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider flex items-center gap-2">
-                <Sword weight="regular" className="h-3 w-3" />
-                Class Choices
-              </div>
-              {classFeatureChoices.map((fc) => (
-                <div key={fc.name} className="space-y-2">
-                  <div className="text-sm font-semibold text-[var(--color-text-primary)]">{fc.name}</div>
-                  <div className="space-y-1">
-                    {fc.options.map((opt) => (
-                      <button
-                        key={opt.name}
-                        type="button"
-                        onClick={() => onClassFeatureChoice(fc.name, opt.name)}
-                        className={`w-full p-2.5 text-left rounded-[var(--radius-sm)] border transition-all ${
-                          classFeatureChoicesSelected[fc.name] === opt.name
-                            ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                        }`}
-                      >
-                        <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
-                        {opt.description && (
-                          <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{opt.description}</p>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
