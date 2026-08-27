@@ -470,7 +470,11 @@
           "description": [
             "At 6th level, you learn two spells of your choice from any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you but don't count against the number of bard spells you know."
           ],
-          "level": 6
+          "level": 6,
+          "choices": [
+            { "name": "spell1", "description": "Choose one spell from any class" },
+            { "name": "spell2", "description": "Choose another spell from any class" }
+          ]
         },
         {
           "name": "Peerless Skill",

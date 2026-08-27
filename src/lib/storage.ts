@@ -59,6 +59,9 @@ export interface Character {
   spellSlotsExpended: Record<number, number>;
   preparedSpells: string[];
   domainSpells: string[];
+  bardicInspirationUses: number;
+  maxBardicInspirationUses: number;
+  magicalSecretsSpells: string[];
   featureSelections: Record<string, string[]>;
   appliedAsi: number[];
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
@@ -217,6 +220,9 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     spellSlotsExpended: {},
     preparedSpells: [],
     domainSpells: [],
+    bardicInspirationUses: 0,
+    maxBardicInspirationUses: 0,
+    magicalSecretsSpells: [],
     featureSelections: {},
     appliedAsi: [],
     currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
@@ -488,6 +494,28 @@ export function getMaxPreparedSpells(character: Character): number {
 
 export function isPreparationCaster(character: Character): boolean {
   return ["Cleric", "Druid", "Paladin", "Wizard"].includes(character.class);
+}
+
+export function getBardicInspirationDie(character: Character): string {
+  if (character.level >= 15) return "d12";
+  if (character.level >= 10) return "d10";
+  if (character.level >= 5) return "d8";
+  return "d6";
+}
+
+export function getMaxBardicInspirationUses(character: Character): number {
+  return Math.max(1, getModifier(character.cha));
+}
+
+export function getSongOfRestDie(character: Character): string {
+  if (character.level >= 17) return "d12";
+  if (character.level >= 13) return "d10";
+  if (character.level >= 9) return "d8";
+  return "d6";
+}
+
+export function hasFontOfInspiration(character: Character): boolean {
+  return character.level >= 5;
 }
 
 export function getDomainSpellNames(character: Character): string[] {

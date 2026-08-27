@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
-import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import {
@@ -67,6 +67,9 @@ interface LevelInfo {
   maxSpellLevel: number;
   spellsKnownChanged?: boolean;
   prevSpellsKnown?: number;
+  magicalSecretsCount: number;
+  canReplaceSpell: boolean;
+  subclassSpellSelectionCount: number;
 }
 
 function getProficiencyBonus(level: number): number {
@@ -152,7 +155,15 @@ function buildLevelInfos(
       Wizard: { "Spellbook": classData.spellbookSpells },
       Ranger: {},
       Paladin: {},
+      Bard: {},
     };
+
+    if (className === "Bard") {
+      classFeatures.push({ name: "Bardic Inspiration", value: `${getBardicInspirationDie({ ...character, level } as Character)}` });
+      classFeatures.push({ name: "Song of Rest", value: `${getSongOfRestDie({ ...character, level } as Character)}` });
+      const chaMod = getModifier(character.cha);
+      classFeatures.push({ name: "Bardic Inspiration Uses", value: `${Math.max(1, chaMod)}` });
+    }
 
     const featureValues = classFeatureMap[className];
     if (featureValues) {
@@ -262,6 +273,13 @@ function buildLevelInfos(
       if (spellSelectionCount <= 0) spellSelectionCount = 0;
     }
 
+    const isBard = className === "Bard";
+    const magicalSecretsLevels = [10, 14, 18];
+    const magicalSecretsCount = isBard && magicalSecretsLevels.includes(level) ? 2 : 0;
+    const canReplaceSpell = isBard && level > 1 && (character.spells || []).length > 0;
+    const isLoreBard = isBard && subclassSelection === "Lore";
+    const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
+
     infos.push({
       level,
       hp: { hitDie, conMod, average: averageHp },
@@ -281,6 +299,9 @@ function buildLevelInfos(
       maxSpellLevel,
       spellsKnownChanged,
       prevSpellsKnown,
+      magicalSecretsCount,
+      canReplaceSpell,
+      subclassSpellSelectionCount,
     });
   }
 
@@ -305,6 +326,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
+  const [magicalSecretsSelections, setMagicalSecretsSelections] = useState<Record<number, string[]>>({});
+  const [subclassSpellSelections, setSubclassSpellSelections] = useState<Record<number, string[]>>({});
+  const [replacedSpells, setReplacedSpells] = useState<Record<number, string>>({});
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
   const prevTargetLevelRef = useRef(targetLevel);
@@ -329,6 +353,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setAsi = (level: number, patch: Partial<{ mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>) =>
     setAsiSelections((prev) => ({ ...prev, [level]: { ...(prev[level] || { mode: "single" }), ...patch } as any }));
   const setSpells = (level: number, list: string[]) => setSpellSelections((prev) => ({ ...prev, [level]: list }));
+  const setMagicalSecrets = (level: number, list: string[]) => setMagicalSecretsSelections((prev) => ({ ...prev, [level]: list }));
+  const setSubclassSpells = (level: number, list: string[]) => setSubclassSpellSelections((prev) => ({ ...prev, [level]: list }));
+  const setReplacedSpell = (level: number, spellId: string) => setReplacedSpells((prev) => ({ ...prev, [level]: spellId }));
 
   const buildAllocation = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
@@ -520,6 +547,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const spells = [...(character.spells || [])];
     const cantrips = [...(character.cantrips || [])];
     const newPreparedIds: string[] = [];
+    const magicalSecretsIds: string[] = [];
+
     for (const list of Object.values(spellSelections)) {
       for (const entry of list) {
         const [name, levelStr] = entry.split(":");
@@ -541,12 +570,62 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         }
       }
     }
+
+    for (const list of Object.values(magicalSecretsSelections)) {
+      for (const entry of list) {
+        const [name, levelStr] = entry.split(":");
+        const level = Number(levelStr);
+        if (!spells.some((s) => s.name === name && s.level === level)) {
+          const spell = getStaticSpells().find((s) => s.name === name);
+          const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
+          spells.push({
+            id,
+            name, level, source: "srd", srdSpellName: name,
+            description: normalizeDescription(spell?.description),
+          });
+          magicalSecretsIds.push(id);
+        }
+      }
+    }
+
+    for (const list of Object.values(subclassSpellSelections)) {
+      for (const entry of list) {
+        const [name, levelStr] = entry.split(":");
+        const level = Number(levelStr);
+        if (!spells.some((s) => s.name === name && s.level === level)) {
+          const spell = getStaticSpells().find((s) => s.name === name);
+          const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
+          spells.push({
+            id,
+            name, level, source: "srd", srdSpellName: name,
+            description: normalizeDescription(spell?.description),
+          });
+          magicalSecretsIds.push(id);
+        }
+      }
+    }
+
+    for (const [lvlStr, spellId] of Object.entries(replacedSpells)) {
+      if (spellId) {
+        const idx = spells.findIndex((s) => s.id === spellId);
+        if (idx >= 0) {
+          spells.splice(idx, 1);
+        }
+      }
+    }
+
     draft.spells = spells;
     draft.cantrips = cantrips;
+    draft.magicalSecretsSpells = [...(character.magicalSecretsSpells || []), ...magicalSecretsIds];
     if (isPreparationCaster(draft)) {
       draft.preparedSpells = [...(character.preparedSpells || []), ...newPreparedIds];
     }
     draft.level = targetLevel;
+
+    if (draft.class === "Bard") {
+      draft.maxBardicInspirationUses = getMaxBardicInspirationUses(draft);
+      draft.bardicInspirationUses = draft.maxBardicInspirationUses;
+    }
 
     let finalChar = applySubclassFeatures(draft);
     finalChar = syncBaseFeatures(finalChar);
@@ -572,6 +651,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       setHpValues({});
       setAsiSelections({});
       setSpellSelections({});
+      setMagicalSecretsSelections({});
+      setReplacedSpells({});
       setSubclassFeatureChoices({});
       setClassFeatureChoices({});
     }
@@ -703,6 +784,12 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               }
               spells={spellSelections[info.level] || []}
               onSpellsChange={(list) => setSpells(info.level, list)}
+              magicalSecretsSpells={magicalSecretsSelections[info.level] || []}
+              onMagicalSecretsChange={(list) => setMagicalSecrets(info.level, list)}
+              subclassSpellSelections={subclassSpellSelections[info.level] || []}
+              onSubclassSpellSelectionsChange={(list) => setSubclassSpells(info.level, list)}
+              replacedSpell={replacedSpells[info.level] || ""}
+              onReplacedSpellChange={(id) => setReplacedSpell(info.level, id)}
               character={character}
               hitDie={hitDie}
               diceType={diceType}
@@ -742,6 +829,12 @@ interface LevelCardProps {
   onClassFeatureChoice: (name: string, value: string) => void;
   spells: string[];
   onSpellsChange: (list: string[]) => void;
+  magicalSecretsSpells: string[];
+  onMagicalSecretsChange: (list: string[]) => void;
+  subclassSpellSelections: string[];
+  onSubclassSpellSelectionsChange: (list: string[]) => void;
+  replacedSpell: string;
+  onReplacedSpellChange: (id: string) => void;
   character: Character;
   hitDie: number;
   diceType: any;
@@ -766,6 +859,12 @@ function LevelCard({
   onClassFeatureChoice,
   spells,
   onSpellsChange,
+  magicalSecretsSpells,
+  onMagicalSecretsChange,
+  subclassSpellSelections,
+  onSubclassSpellSelectionsChange,
+  replacedSpell,
+  onReplacedSpellChange,
   character,
   hitDie,
   diceType,
@@ -1075,6 +1174,96 @@ function LevelCard({
               </div>
             </div>
           )}
+
+          {info.magicalSecretsCount > 0 && (
+            <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
+              <div className="flex items-center gap-2 mb-1">
+                <Sparkle weight="regular" className="h-3.5 w-3.5 text-purple-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Magical Secrets</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {info.magicalSecretsCount} spell{info.magicalSecretsCount > 1 ? "s" : ""} from any class</p>
+              <button
+                type="button"
+                onClick={() => setShowSpellModal(true)}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+              >
+                <span>
+                  {magicalSecretsSpells.length > 0
+                    ? `${magicalSecretsSpells.length} of ${info.magicalSecretsCount} selected`
+                    : `Select ${info.magicalSecretsCount} spells from any class...`}
+                </span>
+                <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+              </button>
+              {magicalSecretsSpells.length > 0 && (
+                <div className="mt-2 space-y-1">
+                  {magicalSecretsSpells.map((s) => {
+                    const [name, level] = s.split(":");
+                    return (
+                      <div key={s} className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
+                        <span className="font-semibold">{name}</span>
+                        <span className="text-[10px] text-[var(--color-text-muted)]">Level {level}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {info.subclassSpellSelectionCount > 0 && (
+            <div className="p-3 rounded-lg border border-indigo-300 bg-indigo-50/30">
+              <div className="flex items-center gap-2 mb-1">
+                <Sparkle weight="regular" className="h-3.5 w-3.5 text-indigo-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Additional Magical Secrets</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {info.subclassSpellSelectionCount} spell{info.subclassSpellSelectionCount > 1 ? "s" : ""} from any class (Lore feature)</p>
+              <button
+                type="button"
+                onClick={() => setShowSpellModal(true)}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+              >
+                <span>
+                  {subclassSpellSelections.length > 0
+                    ? `${subclassSpellSelections.length} of ${info.subclassSpellSelectionCount} selected`
+                    : `Select ${info.subclassSpellSelectionCount} spells from any class...`}
+                </span>
+                <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+              </button>
+              {subclassSpellSelections.length > 0 && (
+                <div className="mt-2 space-y-1">
+                  {subclassSpellSelections.map((s) => {
+                    const [name, level] = s.split(":");
+                    return (
+                      <div key={s} className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
+                        <span className="font-semibold">{name}</span>
+                        <span className="text-[10px] text-[var(--color-text-muted)]">Level {level}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {info.canReplaceSpell && (
+            <div className="p-3 rounded-lg border border-orange-300 bg-orange-50/30">
+              <div className="flex items-center gap-2 mb-1">
+                <Book weight="regular" className="h-3.5 w-3.5 text-orange-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Replace Known Spell</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Optionally replace one known spell with another from the Bard list</p>
+              <select
+                value={replacedSpell}
+                onChange={(e) => onReplacedSpellChange(e.target.value)}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              >
+                <option value="">No replacement</option>
+                {(character.spells || []).filter((s) => s.level > 0).map((s) => (
+                  <option key={s.id} value={s.id}>{s.name} (Level {s.level})</option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
       </div>
 
@@ -1108,6 +1297,12 @@ function LevelCard({
           existingSpells={character.spells?.filter((s) => s.level > 0) || []}
           spellsKnownChanged={info.spellsKnownChanged}
           earlierSelections={Object.entries(allSpellSelections).filter(([l]) => Number(l) < info.level).flatMap(([, s]) => s)}
+          magicalSecretsCount={info.magicalSecretsCount}
+          magicalSecretsSpells={magicalSecretsSpells}
+          onMagicalSecretsChange={onMagicalSecretsChange}
+          subclassSpellSelectionCount={info.subclassSpellSelectionCount}
+          subclassSpellSelections={subclassSpellSelections}
+          onSubclassSpellSelectionsChange={onSubclassSpellSelectionsChange}
         />
       )}
 
@@ -1538,6 +1733,12 @@ function SpellSelectionModal({
   existingSpells,
   spellsKnownChanged,
   earlierSelections,
+  magicalSecretsCount,
+  magicalSecretsSpells,
+  onMagicalSecretsChange,
+  subclassSpellSelectionCount,
+  subclassSpellSelections,
+  onSubclassSpellSelectionsChange,
 }: {
   character: Character;
   count: number;
@@ -1549,8 +1750,14 @@ function SpellSelectionModal({
   existingSpells?: { name: string; level: number }[];
   spellsKnownChanged?: boolean;
   earlierSelections?: string[];
+  magicalSecretsCount?: number;
+  magicalSecretsSpells?: string[];
+  onMagicalSecretsChange?: (list: string[]) => void;
+  subclassSpellSelectionCount?: number;
+  subclassSpellSelections?: string[];
+  onSubclassSpellSelectionsChange?: (list: string[]) => void;
 }) {
-  const [activeTab, setActiveTab] = useState<"cantrips" | number>("cantrips");
+  const [activeTab, setActiveTab] = useState<"cantrips" | number | "magical-secrets" | "subclass-spells">("cantrips");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -1560,6 +1767,7 @@ function SpellSelectionModal({
   }, []);
 
   const allSpells = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+  const allClassSpells = getStaticSpells().filter((s) => s.level > 0 && s.level <= maxLevel);
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
   const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
@@ -1573,8 +1781,18 @@ function SpellSelectionModal({
   }
   const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
 
+  const msLevelSpells: { [key: number]: typeof allClassSpells } = {};
+  for (const sp of allClassSpells) {
+    if (!msLevelSpells[sp.level]) msLevelSpells[sp.level] = [];
+    msLevelSpells[sp.level].push(sp);
+  }
+  const msSpellLevels = Object.keys(msLevelSpells).map(Number).sort((a, b) => a - b);
+
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
   const alreadyKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
+
+  const msExistingSpellNames = new Set((character.spells || []).map(s => s.name));
+  const msAlreadyKnown = new Set([...msExistingSpellNames, ...new Set((magicalSecretsSpells || []).map(s => s.split(":")[0]))]);
 
   const toggle = (name: string, level: number) => {
     if (spells.some((s) => s === `${name}:${level}`)) {
@@ -1590,11 +1808,34 @@ function SpellSelectionModal({
     }
   };
 
+  const toggleMagicalSecrets = (name: string, level: number) => {
+    if (!magicalSecretsSpells || !onMagicalSecretsChange) return;
+    if (magicalSecretsSpells.some((s) => s === `${name}:${level}`)) {
+      onMagicalSecretsChange(magicalSecretsSpells.filter((s) => s !== `${name}:${level}`));
+    } else {
+      if (magicalSecretsSpells.length < (magicalSecretsCount || 0)) {
+        onMagicalSecretsChange([...magicalSecretsSpells, `${name}:${level}`]);
+      }
+    }
+  };
+
+  const toggleSubclassSpells = (name: string, level: number) => {
+    if (!subclassSpellSelections || !onSubclassSpellSelectionsChange) return;
+    if (subclassSpellSelections.some((s) => s === `${name}:${level}`)) {
+      onSubclassSpellSelectionsChange(subclassSpellSelections.filter((s) => s !== `${name}:${level}`));
+    } else {
+      if (subclassSpellSelections.length < (subclassSpellSelectionCount || 0)) {
+        onSubclassSpellSelectionsChange([...subclassSpellSelections, `${name}:${level}`]);
+      }
+    }
+  };
+
   const currentCantrips = spells.filter((s) => s.endsWith(":0"));
   const currentSpells = spells.filter((s) => !s.endsWith(":0"));
 
   const selectedCantripNames = new Set(currentCantrips.map(s => s.split(":")[0]));
   const selectedSpellNames = new Set(currentSpells.map(s => s.split(":")[0]));
+  const msSelectedNames = new Set((magicalSecretsSpells || []).map(s => s.split(":")[0]));
 
   return (
     <div
@@ -1700,6 +1941,32 @@ function SpellSelectionModal({
               Level {lvl} ({currentSpells.length}/{count})
             </button>
           ))}
+          {(magicalSecretsCount || 0) > 0 && (
+            <button
+              type="button"
+              onClick={() => setActiveTab("magical-secrets")}
+              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+                activeTab === "magical-secrets"
+                  ? "text-purple-700 bg-purple-50 border-b-2 border-purple-600"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
+              }`}
+            >
+              Magical Secrets ({(magicalSecretsSpells || []).length}/{magicalSecretsCount})
+            </button>
+          )}
+          {(subclassSpellSelectionCount || 0) > 0 && (
+            <button
+              type="button"
+              onClick={() => setActiveTab("subclass-spells")}
+              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+                activeTab === "subclass-spells"
+                  ? "text-indigo-700 bg-indigo-50 border-b-2 border-indigo-600"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
+              }`}
+            >
+              Lore Spells ({(subclassSpellSelections || []).length}/{subclassSpellSelectionCount})
+            </button>
+          )}
         </div>
         <div className="flex-1 min-h-0 overflow-y-auto px-4 py-3">
           {activeTab === "cantrips" ? (
@@ -1740,6 +2007,110 @@ function SpellSelectionModal({
                   </div>
                 );
               })}
+            </div>
+          ) : activeTab === "magical-secrets" ? (
+            <div className="space-y-3">
+              <div className="p-2 bg-purple-50 border border-purple-200 rounded-lg">
+                <p className="text-[10px] text-purple-700">
+                  Choose {magicalSecretsCount} spell{magicalSecretsCount! > 1 ? "s" : ""} from any class. These count as bard spells.
+                </p>
+              </div>
+              {msSpellLevels.map((lvl) => (
+                <div key={lvl}>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] mb-1">Level {lvl}</div>
+                  <div className="space-y-1.5">
+                    {msLevelSpells[lvl]?.map((sp) => {
+                      const isSel = msSelectedNames.has(sp.name);
+                      const isAlreadyKnown = msAlreadyKnown.has(sp.name) && !isSel;
+                      const disabled = !isSel && (magicalSecretsSpells || []).length >= (magicalSecretsCount || 0);
+                      const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                      return (
+                        <div key={sp.name} className="flex gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => !isAlreadyKnown && toggleMagicalSecrets(sp.name, sp.level)}
+                            disabled={disabled || isAlreadyKnown}
+                            className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
+                              isAlreadyKnown
+                                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
+                                : isSel
+                                  ? "bg-purple-600 text-white border-2 border-purple-700"
+                                  : disabled
+                                    ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                                    : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2">
+                              {isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                              {isSel && !isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-white" />}
+                              <span className={`text-xs font-bold ${isAlreadyKnown ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                            </div>
+                            <div className="flex items-center gap-2 mt-0.5 ml-5">
+                              <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                              <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+                              <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
+                              {sp.classes && <span className="text-[10px] text-purple-600 ml-1">[{sp.classes.join(", ")}]</span>}
+                            </div>
+                          </button>
+                          {desc && <InfoButton title={sp.name} description={desc} />}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : activeTab === "subclass-spells" ? (
+            <div className="space-y-3">
+              <div className="p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
+                <p className="text-[10px] text-indigo-700">
+                  Choose {subclassSpellSelectionCount} spell{subclassSpellSelectionCount! > 1 ? "s" : ""} from any class (Lore feature). These do not count against spells known.
+                </p>
+              </div>
+              {msSpellLevels.map((lvl) => (
+                <div key={lvl}>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] mb-1">Level {lvl}</div>
+                  <div className="space-y-1.5">
+                    {msLevelSpells[lvl]?.map((sp) => {
+                      const isSel = (subclassSpellSelections || []).some((s) => s.split(":")[0] === sp.name);
+                      const isAlreadyKnown = msAlreadyKnown.has(sp.name) && !isSel;
+                      const disabled = !isSel && (subclassSpellSelections || []).length >= (subclassSpellSelectionCount || 0);
+                      const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                      return (
+                        <div key={sp.name} className="flex gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => !isAlreadyKnown && toggleSubclassSpells(sp.name, sp.level)}
+                            disabled={disabled || isAlreadyKnown}
+                            className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
+                              isAlreadyKnown
+                                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
+                                : isSel
+                                  ? "bg-indigo-600 text-white border-2 border-indigo-700"
+                                  : disabled
+                                    ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                                    : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2">
+                              {isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                              {isSel && !isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-white" />}
+                              <span className={`text-xs font-bold ${isAlreadyKnown ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                            </div>
+                            <div className="flex items-center gap-2 mt-0.5 ml-5">
+                              <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                              <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+                              <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
+                              {sp.classes && <span className="text-[10px] text-indigo-600 ml-1">[{sp.classes.join(", ")}]</span>}
+                            </div>
+                          </button>
+                          {desc && <InfoButton title={sp.name} description={desc} />}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           ) : (
             <div className="space-y-1.5">
