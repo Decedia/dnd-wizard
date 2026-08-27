@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { getModifier, isPreparationCaster } from "@/lib/storage";
+import { getModifier, isPreparationCaster, getDomainSpellNames } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
 
 interface StepSpellsProps {
@@ -128,13 +128,48 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       if (selectedLevelSpells.length >= maxSpells) return;
       const id = `spell-${idCounter.current++}`;
       const spell = levelSpells.find((s) => s.name === spellName);
-      const prepCaster = isPreparationCaster(data);
       onChange({
         spells: [...selectedSpells, { id, name: spellName, level, source: "srd" as const, description: Array.isArray(spell?.description) ? spell.description.join("\n") : (spell?.description || "") }],
         preparedSpells: prepCaster ? [...(data.preparedSpells || []), id] : data.preparedSpells,
       });
     }
   };
+
+  useEffect(() => {
+    if (data.class !== "Cleric" || !data.subclass) return;
+    const domainSpellNames = getDomainSpellNames(data);
+    if (domainSpellNames.length === 0) return;
+
+    const currentSpellNames = (data.spells || []).map((s) => s.name?.toLowerCase());
+    const missingDomainSpells = domainSpellNames.filter(
+      (name) => !currentSpellNames.includes(name.toLowerCase())
+    );
+
+    if (missingDomainSpells.length > 0) {
+      const newSpells: Character["spells"] = [];
+      const newPreparedIds: string[] = [];
+      for (const name of missingDomainSpells) {
+        const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+        if (spell) {
+          const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+          newSpells.push({
+            id,
+            name: spell.name,
+            level: spell.level || 0,
+            source: "srd" as const,
+            srdSpellName: spell.name,
+            description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+          });
+          if ((spell.level || 0) > 0) newPreparedIds.push(id);
+        }
+      }
+      onChange({
+        spells: [...(data.spells || []), ...newSpells],
+        preparedSpells: [...(data.preparedSpells || []), ...newPreparedIds],
+        domainSpells: domainSpellNames,
+      });
+    }
+  }, [data.subclass]);
 
   if (!classData?.spellcastingAbility) {
     return (

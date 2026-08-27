@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
-import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import {
@@ -638,6 +638,38 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (draft.class === "Barbarian" && draft.level >= 20) {
       draft.str = Math.min(24, draft.str + 4);
       draft.con = Math.min(24, draft.con + 4);
+    }
+
+    if (draft.class === "Cleric" && draft.subclass) {
+      const domainSpellNames = getDomainSpellNames(draft);
+      const currentSpellNames = (draft.spells || []).map((s) => s.name?.toLowerCase());
+      const existingDomainSpells = (draft.domainSpells || []);
+      const newDomainSpells: string[] = [];
+
+      for (const name of domainSpellNames) {
+        if (!currentSpellNames.includes(name.toLowerCase())) {
+          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          if (spell) {
+            const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+            spells.push({
+              id,
+              name: spell.name,
+              level: spell.level || 0,
+              source: "srd" as const,
+              srdSpellName: spell.name,
+              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+            });
+            if ((spell.level || 0) > 0) newPreparedIds.push(id);
+          }
+        }
+        if (!existingDomainSpells.includes(name)) {
+          newDomainSpells.push(name);
+        }
+      }
+
+      if (newDomainSpells.length > 0) {
+        draft.domainSpells = [...existingDomainSpells, ...newDomainSpells];
+      }
     }
 
     let finalChar = applySubclassFeatures(draft);
