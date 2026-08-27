@@ -22,6 +22,14 @@ const ARCANE_FOCUS_TYPES = [
   "Crystal", "Orb", "Rod", "Staff", "Wand"
 ];
 
+const HOLY_SYMBOL_TYPES = [
+  "Amulet", "Emblem", "Reliquary"
+];
+
+const DRUIDIC_FOCUS_TYPES = [
+  "Sprig of Mistletoe", "Totem", "Wooden Staff", "Yew Wand"
+];
+
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
@@ -107,7 +115,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
 
-    if (option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice) {
+    if (option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
       setPopupGroup({ group, optionIndex });
       return;
     }
@@ -209,6 +217,48 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
   const handleArcaneFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
+    const groupIndex = getGroupIndex(groupId);
+    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+
+    const itemInfo = getItemInfo(focusName);
+    const newItem: Character["inventory"][number] = {
+      id: generateId(),
+      name: focusName,
+      quantity: 1,
+      equipped: false,
+      source: "srd" as const,
+      description: itemInfo ? JSON.stringify(itemInfo) : "",
+      itemType: "item" as const,
+      choiceGroupIndex: groupIndex,
+      choiceOptionIndex: optionIndex,
+    };
+
+    onChange({ inventory: [...newInventory, newItem] });
+    setPopupGroup(null);
+  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+
+  const handleHolySymbolSelect = useCallback((symbolName: string, groupId: string, optionIndex: number) => {
+    const groupIndex = getGroupIndex(groupId);
+    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+
+    const itemInfo = getItemInfo(symbolName);
+    const newItem: Character["inventory"][number] = {
+      id: generateId(),
+      name: symbolName,
+      quantity: 1,
+      equipped: false,
+      source: "srd" as const,
+      description: itemInfo ? JSON.stringify(itemInfo) : "",
+      itemType: "item" as const,
+      choiceGroupIndex: groupIndex,
+      choiceOptionIndex: optionIndex,
+    };
+
+    onChange({ inventory: [...newInventory, newItem] });
+    setPopupGroup(null);
+  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+
+  const handleDruidicFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
     const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
 
@@ -637,7 +687,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
       {popupGroup && popupOption && (
         <DescriptionModal
-          title={popupOption.isWeaponChoice ? `Choose a ${popupOption.weaponType?.replace('_', ' ')} weapon` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : "Select an item"}
+          title={popupOption.isWeaponChoice ? `Choose a ${popupOption.weaponType?.replace('_', ' ')} weapon` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : popupOption.isHolySymbolChoice ? "Choose a holy symbol" : popupOption.isDruidicFocusChoice ? "Choose a druidic focus" : "Select an item"}
           content=""
           onClose={() => setPopupGroup(null)}
         >
@@ -720,6 +770,44 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                 <InfoButton
                   title={focus}
                   description="An arcane focus is a special item designed to channel arcane magic. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+                  size="sm"
+                />
+              </div>
+            ))}
+            {popupOption.isHolySymbolChoice && HOLY_SYMBOL_TYPES.map((symbol) => (
+              <div
+                key={symbol}
+                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+              >
+                <button
+                  type="button"
+                  onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="flex-1 text-left"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{symbol}</span>
+                </button>
+                <InfoButton
+                  title={symbol}
+                  description="A holy symbol is a representation of a deity or pantheon. A cleric or paladin can use a holy symbol as a spellcasting focus."
+                  size="sm"
+                />
+              </div>
+            ))}
+            {popupOption.isDruidicFocusChoice && DRUIDIC_FOCUS_TYPES.map((focus) => (
+              <div
+                key={focus}
+                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+              >
+                <button
+                  type="button"
+                  onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="flex-1 text-left"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
+                </button>
+                <InfoButton
+                  title={focus}
+                  description="A druidic focus is a special item used by druids to channel nature magic. It can be a sprig of mistletoe, a totem, a wooden staff, or a yew wand."
                   size="sm"
                 />
               </div>

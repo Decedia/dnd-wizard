@@ -30,6 +30,9 @@ export interface EquipmentOption {
   isWeaponChoice?: boolean;
   isInstrumentChoice?: boolean;
   isArcaneFocusChoice?: boolean;
+  isHolySymbolChoice?: boolean;
+  isDruidicFocusChoice?: boolean;
+  isSimpleChoice?: boolean;
 }
 
 export interface ChoiceGroup {
@@ -63,6 +66,8 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           );
           const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
           const isArcaneFocusChoice = /(?:arcane\s+focus|a\s+(?:crystal|orb|rod|staff|wand)\s+as\s+an?\s+arcane\s+focus|an?\s+arcane\s+focus\s+\((?:crystal|orb|rod|staff|wand))\)/.test(trimmed);
+          const isHolySymbolChoice = /(?:holy\s+symbol|a\s+(?:amulet|emblem|reliquary)\s+as\s+a?\s+holy\s+symbol|a?\s+holy\s+symbol\s+\((?:amulet|emblem|reliquary))\)/.test(trimmed);
+          const isDruidicFocusChoice = /(?:druidic\s+focus|a\s+(?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand)\s+as\s+a?\s+druidic\s+focus|a?\s+druidic\s+focus\s+\((?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand))\)/.test(trimmed);
 
         let weaponType: string | undefined;
         if (isWeaponChoice) {
@@ -86,6 +91,8 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           isWeaponChoice,
           isInstrumentChoice,
           isArcaneFocusChoice,
+          isHolySymbolChoice,
+          isDruidicFocusChoice,
         };
       });
 
@@ -125,6 +132,8 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         );
         const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
         const isArcaneFocusChoice = /(?:arcane\s+focus|a\s+(?:crystal|orb|rod|staff|wand)\s+as\s+an?\s+arcane\s+focus|an?\s+arcane\s+focus\s+\((?:crystal|orb|rod|staff|wand))\)/.test(trimmed);
+        const isHolySymbolChoice = /(?:holy\s+symbol|a\s+(?:amulet|emblem|reliquary)\s+as\s+a?\s+holy\s+symbol|a?\s+holy\s+symbol\s+\((?:amulet|emblem|reliquary))\)/.test(trimmed);
+        const isDruidicFocusChoice = /(?:druidic\s+focus|a\s+(?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand)\s+as\s+a?\s+druidic\s+focus|a?\s+druidic\s+focus\s+\((?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand))\)/.test(trimmed);
 
         let weaponType: string | undefined;
         if (isWeaponChoice) {
@@ -143,6 +152,8 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           isWeaponChoice,
           isInstrumentChoice,
           isArcaneFocusChoice,
+          isHolySymbolChoice,
+          isDruidicFocusChoice,
         };
       });
 
