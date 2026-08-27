@@ -232,9 +232,12 @@ function buildLevelInfos(
       ? (spellsKnownChanged ? (spellsKnown || 0) - prevSpellsKnown : 0)
       : (className === "Wizard" ? 2 : 0);
 
-    // For Wizard starting at level 1 in creation flow, starting spells are handled in StepSpells
-    if (className === "Wizard" && level === 1 && showLevelOne) {
-      spellSelectionCount = 0;
+    // Wizard uses spellbookSpells for starting spell count: 6 at level 1, +2 per additional level
+    if (className === "Wizard" && (classData as any)?.spellbookSpells) {
+      const sb = (classData as any).spellbookSpells as Record<string, number>;
+      const currentTotal = sb[String(level)] || 0;
+      const prevTotal = level > 1 ? (sb[String(level - 1)] || 0) : 0;
+      spellSelectionCount = currentTotal - prevTotal;
     }
 
     infos.push({
