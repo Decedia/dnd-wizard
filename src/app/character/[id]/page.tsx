@@ -22,6 +22,8 @@ import { OtherProficienciesSection } from "@/components/character-sheet/OtherPro
 import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
+import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
+import { CurrencySection } from "@/components/character-sheet/CurrencySection";
 import { Trash, Export, Upload, FloppyDisk, CheckCircle, UserPlus } from "phosphor-react";
 import { exportCharacterToPdf } from "@/lib/pdf-visual";
 import { importCharacterFromPdf } from "@/lib/pdf";
@@ -173,6 +175,7 @@ export default function CharacterView() {
             <>
               <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
               <StatsSection character={character} onChange={handleChange} editMode={editMode} />
+              <PassiveStatsSection character={character} />
               <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
               <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
               <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
@@ -188,6 +191,7 @@ export default function CharacterView() {
           {activeTab === "gear" && (
             <>
               <InventorySection character={character} onChange={handleChange} editMode={editMode} />
+              <CurrencySection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
           {activeTab === "spells" && (

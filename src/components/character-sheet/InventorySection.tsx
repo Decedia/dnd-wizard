@@ -47,12 +47,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     }
   }, [character, onChange]);
 
-  const updateCurrency = useCallback((field: "copper" | "silver" | "electrum" | "gold" | "platinum", value: number) => {
-    onChange({
-      currency: { ...character.currency, [field]: Math.max(0, value) },
-    });
-  }, [character.currency, onChange]);
-
   const classData = character.class ? getStaticClass(character.class) : null;
 
   const canEquip = (item: Character["inventory"][number]): boolean => {
@@ -278,35 +272,16 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
            );
          })}
        </div>
-       {editMode && (
-          <button
-            type="button"
-            onClick={addCustomItem}
-            className="mt-4 btn-secondary flex items-center gap-1.5"
-          >
-            <Plus weight="regular" size={16} />
-            Add Custom Item
-          </button>
+      {editMode && (
+        <button
+          type="button"
+          onClick={addCustomItem}
+          className="mt-4 btn-secondary flex items-center gap-1.5"
+        >
+          <Plus weight="regular" size={16} />
+          Add Custom Item
+        </button>
       )}
-
-      <div className="mt-5 flex flex-wrap items-center gap-3 divider pt-4">
-        <span className="text-xs font-bold text-[var(--color-text-primary)] uppercase tracking-wider w-full mb-2">Currency</span>
-        {(["copper", "silver", "electrum", "gold", "platinum"] as const).map((field) => (
-          <Field key={field} label={field.toUpperCase().slice(0, 2)}>
-            {editMode ? (
-              <input
-                type="number"
-                value={character.currency[field]}
-                onChange={(e) => updateCurrency(field, parseInt(e.target.value || "0", 10))}
-                onBlur={onFieldBlur}
-                className="input w-20 text-center"
-              />
-            ) : (
-              <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.currency[field]}</span>
-            )}
-          </Field>
-        ))}
-      </div>
     </SectionCard>
   );
 }
