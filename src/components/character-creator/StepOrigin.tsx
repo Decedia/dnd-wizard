@@ -22,6 +22,18 @@ const classIcons: Record<string, React.ComponentType<{ className?: string }>> = 
   Wizard: MagicWand,
 };
 
+const raceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  Human: Users,
+  Elf: Leaf,
+  Dwarf: Shield,
+  Halfling: Users,
+  Dragonborn: Flame,
+  Gnome: Sparkle,
+  "Half-Elf": Users,
+  "Half-Orc": Sword,
+  Tiefling: Skull,
+};
+
 interface StepOriginProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
@@ -73,7 +85,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         >
           <div className="flex items-center gap-4">
             <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.class ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              <Sword className="h-7 w-7" />
+              {data.class ? (() => { const Icon = classIcons[data.class] || Sword; return <Icon className="h-7 w-7" />; })() : <Sword className="h-7 w-7" />}
             </div>
             <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Class</div>
@@ -96,7 +108,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         >
           <div className="flex items-center gap-4">
             <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.race ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              <Users className="h-7 w-7" />
+              {data.race ? (() => { const Icon = raceIcons[data.race] || Users; return <Icon className="h-7 w-7" />; })() : <Users className="h-7 w-7" />}
             </div>
             <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Race</div>
@@ -200,6 +212,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
               {races.map((race) => {
                 const isSelected = data.race === race.name;
+                const Icon = raceIcons[race.name] || Users;
                 return (
                   <div key={race.name} className="flex items-center gap-2">
                     <button
@@ -211,17 +224,24 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="text-card-title">{race.name}</span>
-                        <span className="text-muted">
-                          {race.size} / Speed {race.speed} ft
-                        </span>
+                      <div className="flex items-center gap-3">
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-card-title">{race.name}</span>
+                            <span className="text-muted">
+                              {race.size} / Speed {race.speed} ft
+                            </span>
+                          </div>
+                          <p className="mt-1 text-description">
+                            {Object.entries(race.abilityScoreIncreases || {})
+                              .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
+                              .join(", ")}
+                          </p>
+                        </div>
                       </div>
-                      <p className="mt-1 text-description">
-                        {Object.entries(race.abilityScoreIncreases || {})
-                          .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
-                          .join(", ")}
-                      </p>
                     </button>
                     {race.traits && race.traits.length > 0 && (
                       <InfoButton
