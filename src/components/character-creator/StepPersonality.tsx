@@ -133,6 +133,17 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
       <div className="space-y-6">
 
         <div>
+          <label className="field-label-light">Character Name</label>
+          <input
+            type="text"
+            value={data.name}
+            onChange={(e) => onChange({ name: e.target.value })}
+            placeholder="Enter your character's name"
+            className="input w-full"
+          />
+        </div>
+
+        <div>
           <label className="field-label-light">Alignment</label>
           <select
             value={data.alignment}
