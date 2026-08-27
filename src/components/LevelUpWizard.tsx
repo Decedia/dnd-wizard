@@ -188,18 +188,24 @@ function buildLevelInfos(
       : undefined;
 
     const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[] }[] = [];
+    const passiveSubclassFeatures: { name: string; description: string }[] = [];
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
       if (selectedSubclass) {
         const earnedFeatures = selectedSubclass.features.filter(
-          (f) => f.level != null && f.level === level && f.choices && f.choices.length > 0
+          (f) => f.level != null && f.level === level
         );
         for (const f of earnedFeatures) {
-          subclassFeatureChoices.push({
-            name: f.name,
-            description: f.description || "",
-            options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "" })),
-          });
+          const desc = Array.isArray(f.description) ? f.description.join(" ") : (f.description || "");
+          if (f.choices && f.choices.length > 0) {
+            subclassFeatureChoices.push({
+              name: f.name,
+              description: desc,
+              options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "" })),
+            });
+          } else {
+            passiveSubclassFeatures.push({ name: f.name, description: desc });
+          }
         }
       }
     }
@@ -280,11 +286,13 @@ function buildLevelInfos(
     const isLoreBard = isBard && subclassSelection === "Lore";
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
 
+    const allFeatures = [...features, ...passiveSubclassFeatures];
+
     infos.push({
       level,
       hp: { hitDie, conMod, average: averageHp },
       proficiencyBonus: getProficiencyBonus(level),
-      features,
+      features: allFeatures,
       asi,
       spellSlots,
       cantripsKnown,
@@ -625,6 +633,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (draft.class === "Bard") {
       draft.maxBardicInspirationUses = getMaxBardicInspirationUses(draft);
       draft.bardicInspirationUses = draft.maxBardicInspirationUses;
+    }
+
+    if (draft.class === "Barbarian" && draft.level >= 20) {
+      draft.str = Math.min(24, draft.str + 4);
+      draft.con = Math.min(24, draft.con + 4);
     }
 
     let finalChar = applySubclassFeatures(draft);
