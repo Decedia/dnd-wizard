@@ -111,6 +111,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return data.inventory.find(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
   }, [data.inventory, getGroupIndex]);
 
+  const getSelectedItemForGroup = useCallback((groupId: string) => {
+    const groupIndex = getGroupIndex(groupId);
+    return data.inventory.find(item => item.choiceGroupIndex === groupIndex);
+  }, [data.inventory, getGroupIndex]);
+
   const handleOptionClick = useCallback((group: ChoiceGroup, optionIndex: number) => {
     const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
@@ -483,16 +488,18 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                  <div key={group.id} className="space-y-2">
                    <p className="text-description mb-2">{group.description}</p>
                    <div className="space-y-2">
-                    {group.options.map((option, optionIndex) => {
-                      const isSelected = isOptionSelected(group, optionIndex);
-                      const isWeaponChoice = option.isWeaponChoice;
-                      const primaryItem = option.items[0];
-                      const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
-                      const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
-                      const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
-                      const isDisabled = hasSelection && !isSelected;
-                      const optionItemNames = option.items.map(i => i.name).filter(Boolean);
-                      const optionItemInfos = optionItemNames.map(name => getItemInfo(name));
+                     {group.options.map((option, optionIndex) => {
+                       const isSelected = isOptionSelected(group, optionIndex);
+                       const isWeaponChoice = option.isWeaponChoice;
+                       const isPopupChoice = option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice;
+                       const primaryItem = option.items[0];
+                       const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
+                       const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
+                       const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
+                       const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
+                       const isDisabled = hasSelection && !isSelected;
+                       const optionItemNames = option.items.map(i => i.name).filter(Boolean);
+                       const optionItemInfos = optionItemNames.map(name => getItemInfo(name));
 
                       if (isWeaponChoice) {
                         const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
@@ -565,13 +572,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
                             }`}
                           >
-                            {isSelected ? (
-                              <div className="flex items-center justify-between">
-                                <div className="flex-1">
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-green-600 font-bold">✓</span>
-                                    <span className="text-body font-semibold text-[var(--color-text-primary)]">{option.description || primaryItem?.name}</span>
-                                  </div>
+                             {isSelected ? (
+                               <div className="flex items-center justify-between">
+                                 <div className="flex-1">
+                                   <div className="flex items-center gap-2">
+                                     <span className="text-green-600 font-bold">✓</span>
+                                     <span className="text-body font-semibold text-[var(--color-text-primary)]">{selectedItem?.name || option.description || primaryItem?.name}</span>
+                                   </div>
                                   {primaryInfo?.type === "weapon" && (() => {
                                     const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
                                     return wStats ? (
@@ -599,15 +606,17 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   </button>
                                 </div>
                               </div>
-                            ) : (
-                              <div className="flex items-center justify-between gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => handleOptionClick(group, optionIndex)}
-                                  disabled={isDisabled}
-                                  className="flex-1 text-left"
-                                >
-                                  <span className="text-body">{option.description || primaryItem?.name}</span>
+                             ) : (
+                               <div className="flex items-center justify-between gap-2">
+                                 <button
+                                   type="button"
+                                   onClick={() => handleOptionClick(group, optionIndex)}
+                                   disabled={isDisabled}
+                                   className="flex-1 text-left"
+                                 >
+                                   <span className="text-body">
+                                     {option.isInstrumentChoice ? "Choose a musical instrument" : option.isArcaneFocusChoice ? "Choose an arcane focus" : option.isHolySymbolChoice ? "Choose a holy symbol" : option.isDruidicFocusChoice ? "Choose a druidic focus" : option.description || primaryItem?.name}
+                                   </span>
                                   {primaryInfo?.type === "weapon" && (() => {
                                     const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
                                     return wStats ? (
