@@ -3,7 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
-import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
+import { getSneakAttackDice, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
 import { Sword } from "phosphor-react";
 
 interface AttacksAndSpellcastingSectionProps {
@@ -18,6 +18,9 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   const classAttacks = character.attacks.filter((a) => a.source === "class");
   const weaponAttacks = character.attacks.filter((a) => a.source === "weapon");
   const profBonus = getProficiencyBonus(character.level);
+  const derived = computeDerivedStats(character);
+  const rageDamage = derived.rageDamage || 0;
+  const isBarbarian = character.class === "Barbarian";
 
   const getWeaponAttackDetails = (attack: Character["attacks"][number]) => {
     const weapon = character.inventory.find((i) => i.id === attack.id);
@@ -33,7 +36,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
     }
     const abilityMod = getModifier(character[abilityKey] as number);
     const attackBonus = abilityMod + profBonus;
-    const damageBonus = abilityMod;
+    const damageBonus = abilityMod + (isBarbarian && abilityKey === "str" ? rageDamage : 0);
     const damageDice = weapon.damageDice || "";
     const damageTypeName = weapon.damageType || "";
     const strMod = getModifier(character.str);
@@ -48,6 +51,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
       isFinesseOrRanged,
       strMod,
       dexMod,
+      rageBonus: isBarbarian && abilityKey === "str" ? rageDamage : 0,
     };
   };
 
@@ -99,6 +103,9 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                         {details.damageDice || "—"}
                         {details.damageBonus ? ` +${details.damageBonus}` : ""}
                       </span>
+                      {details.rageBonus > 0 && (
+                        <span className="text-xs font-bold text-ink bg-red-50 px-2 py-1 surface">+{details.rageBonus} rage</span>
+                      )}
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">{details.damageType}</span>
                     </>

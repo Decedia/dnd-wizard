@@ -4,7 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import type { Character } from "@/lib/storage";
-import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
+import { computeEquippedEffects, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
 import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getStaticClass } from "@/lib/srd-client";
 import { useEffect, useCallback } from "react";
@@ -19,6 +19,9 @@ interface InventorySectionProps {
 
 export function InventorySection({ character, onChange, editMode = true }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const derived = computeDerivedStats(character);
+  const rageDamage = derived.rageDamage || 0;
+  const isBarbarian = character.class === "Barbarian";
 
   const updateItem = useCallback((id: string, patch: Partial<Character["inventory"][number]>) => {
     const nextInventory = character.inventory.map((item) =>
@@ -53,7 +56,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     return item.itemType === "weapon" || item.itemType === "armor";
   };
 
-  const getWeaponStats = (item: Character["inventory"][number]): { attackBonus: string; damage: string; ability: string; damageBonus: number } | null => {
+  const getWeaponStats = (item: Character["inventory"][number]): { attackBonus: string; damage: string; ability: string; damageBonus: number; rageBonus: number } | null => {
     if (item.itemType !== "weapon") return null;
     const profBonus = getProficiencyBonus(character.level);
     const isFinesseOrRanged = item.category === "ranged" || item.name === "Dagger" || item.name === "Rapier" || item.name === "Shortsword";
@@ -67,12 +70,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     }
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const attackBonus = abilityMod + profBonus;
-    const damageBonus = abilityMod;
+    const rageBonus = isBarbarian && abilityKey === "str" ? rageDamage : 0;
+    const damageBonus = abilityMod + rageBonus;
     return {
       attackBonus: attackBonus >= 0 ? `+${attackBonus}` : `${attackBonus}`,
       damage: `${item.damageDice || ""} ${item.damageType || ""}`.trim(),
       ability: abilityKey.toUpperCase(),
       damageBonus,
+      rageBonus,
     };
   };
 
@@ -214,6 +219,11 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
                       </span>
+                      {getWeaponStats(item)?.rageBonus && getWeaponStats(item)!.rageBonus > 0 && (
+                        <span className="text-[10px] font-bold text-ink bg-red-50 px-1.5 py-0.5 rounded">
+                          +{getWeaponStats(item)?.rageBonus} rage
+                        </span>
+                      )}
                       <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.attackBonus} to hit
                       </span>
@@ -257,6 +267,11 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
                       </span>
+                      {getWeaponStats(item)?.rageBonus && getWeaponStats(item)!.rageBonus > 0 && (
+                        <span className="text-[10px] font-bold text-ink bg-red-50 px-1.5 py-0.5 rounded">
+                          +{getWeaponStats(item)?.rageBonus} rage
+                        </span>
+                      )}
                       <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.attackBonus} to hit
                       </span>
