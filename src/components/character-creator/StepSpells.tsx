@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { getModifier, isPreparationCaster, getDomainSpellNames } from "@/lib/storage";
+import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
 
 interface StepSpellsProps {
@@ -180,6 +180,72 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   }
 
   const prepCaster = isPreparationCaster(data);
+  const isCircleOfLand = data.class === "Druid" && data.subclass === "Land";
+  const selectedTerrain = data.circleTerrain || "";
+  const circleSpells = selectedTerrain ? getCircleSpells(selectedTerrain, data.level) : [];
+
+  const handleTerrainChange = (terrain: string) => {
+    const currentSpellNames = (data.spells || []).map((s) => s.name?.toLowerCase());
+    const currentCircleSpells = data.circleSpells || [];
+
+    if (terrain) {
+      const newCircleSpellNames = getCircleSpells(terrain, data.level);
+      const spellsToAdd: Character["spells"] = [];
+      const preparedIdsToAdd: string[] = [];
+
+      for (const name of newCircleSpellNames) {
+        if (!currentSpellNames.includes(name.toLowerCase())) {
+          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          if (spell) {
+            const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+            spellsToAdd.push({
+              id,
+              name: spell.name,
+              level: spell.level || 0,
+              source: "srd" as const,
+              srdSpellName: spell.name,
+              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+            });
+            if ((spell.level || 0) > 0) preparedIdsToAdd.push(id);
+          }
+        }
+      }
+
+      const spellsToRemove = (data.spells || []).filter((s) =>
+        currentCircleSpells.some((cs) => cs.toLowerCase() === s.name?.toLowerCase())
+      );
+      const remainingSpells = (data.spells || []).filter((s) =>
+        !spellsToRemove.some((sr) => sr.id === s.id)
+      );
+      const remainingPrepared = (data.preparedSpells || []).filter((id) =>
+        !spellsToRemove.some((sr) => sr.id === id)
+      );
+
+      onChange({
+        circleTerrain: terrain,
+        circleSpells: newCircleSpellNames,
+        spells: [...remainingSpells, ...spellsToAdd],
+        preparedSpells: [...remainingPrepared, ...preparedIdsToAdd],
+      });
+    } else {
+      const spellsToRemove = (data.spells || []).filter((s) =>
+        currentCircleSpells.some((cs) => cs.toLowerCase() === s.name?.toLowerCase())
+      );
+      const remainingSpells = (data.spells || []).filter((s) =>
+        !spellsToRemove.some((sr) => sr.id === s.id)
+      );
+      const remainingPrepared = (data.preparedSpells || []).filter((id) =>
+        !spellsToRemove.some((sr) => sr.id === id)
+      );
+
+      onChange({
+        circleTerrain: "",
+        circleSpells: [],
+        spells: remainingSpells,
+        preparedSpells: remainingPrepared,
+      });
+    }
+  };
 
   return (
     <StepCard
@@ -234,6 +300,39 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
             })}
           </div>
         </div>
+
+        {/* Circle of Land Terrain Selection */}
+        {isCircleOfLand && (
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">
+                Circle Spells - Terrain
+              </h3>
+            </div>
+            <select
+              value={selectedTerrain}
+              onChange={(e) => handleTerrainChange(e.target.value)}
+              className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+            >
+              <option value="">Select terrain...</option>
+              {getCircleTerrainTypes().map((terrain) => (
+                <option key={terrain} value={terrain}>{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</option>
+              ))}
+            </select>
+            {selectedTerrain && circleSpells.length > 0 && (
+              <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-[10px] text-green-700 font-semibold mb-1">Circle Spells (always prepared, do not count against limit):</p>
+                <div className="flex flex-wrap gap-1">
+                  {circleSpells.map((name) => (
+                    <span key={name} className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
+                      {name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Spells by Level */}
         {Object.entries(spellLevels)

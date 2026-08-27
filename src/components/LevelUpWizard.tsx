@@ -1413,7 +1413,7 @@ function LevelCard({
                 <Leaf weight="regular" className="h-3.5 w-3.5 text-green-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells - Choose Terrain</span>
               </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your terrain type to gain circle spells</p>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your terrain type to gain circle spells (always prepared, do not count against limit)</p>
               <select
                 value={circleTerrain}
                 onChange={(e) => onCircleTerrainChange(e.target.value)}
@@ -1424,6 +1424,26 @@ function LevelCard({
                   <option key={terrain} value={terrain}>{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</option>
                 ))}
               </select>
+              {circleTerrain && (() => {
+                const circleSpells = getCircleSpells(circleTerrain, info.level);
+                const spellsForLevel = circleSpells.filter((name) => {
+                  const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+                  return spell && spell.level <= info.maxSpellLevel;
+                });
+                if (spellsForLevel.length === 0) return null;
+                return (
+                  <div className="mt-2 p-2 bg-green-100 border border-green-200 rounded-lg">
+                    <p className="text-[10px] text-green-700 font-semibold mb-1">Circle Spells gained:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {spellsForLevel.map((name) => (
+                        <span key={name} className="text-[10px] font-bold text-green-600 bg-green-200 px-1.5 py-0.5 rounded">
+                          {name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           )}
         </div>

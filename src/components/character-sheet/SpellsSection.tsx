@@ -6,8 +6,8 @@ import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
-import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames } from "@/lib/storage";
-import { PencilSimple, Info, X, Lightning, Plus, Check, Circle } from "phosphor-react";
+import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells } from "@/lib/storage";
+import { PencilSimple, Info, X, Lightning, Plus, Check, Circle, Leaf } from "phosphor-react";
 
 interface SpellsSectionProps {
   character: Character;
@@ -27,9 +27,11 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const preparationCaster = isPreparationCaster(character);
   const maxPrepared = getMaxPreparedSpells(character);
   const domainSpells = getDomainSpellNames(character);
+  const circleTerrain = character.circleTerrain || "";
+  const circleSpellsList = circleTerrain ? getCircleSpells(circleTerrain, character.level) : [];
   const preparedCount = (character.preparedSpells || []).filter(id => {
     const spell = character.spells.find(s => s.id === id);
-    return spell && spell.level > 0;
+    return spell && spell.level > 0 && !circleSpellsList.some(cs => cs.toLowerCase() === spell.name?.toLowerCase());
   }).length;
 
   const togglePrepared = useCallback((spellId: string) => {
@@ -37,6 +39,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     const isPrepared = current.includes(spellId);
     const spell = character.spells.find(s => s.id === spellId);
     if (spell && domainSpells.some(d => d.toLowerCase() === spell.name?.toLowerCase())) return;
+    if (spell && circleSpellsList.some(cs => cs.toLowerCase() === spell.name?.toLowerCase())) return;
 
     if (isPrepared) {
       onChange({ preparedSpells: current.filter(id => id !== spellId) });
@@ -44,7 +47,11 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       if (preparedCount >= maxPrepared && spell && spell.level > 0) return;
       onChange({ preparedSpells: [...current, spellId] });
     }
-  }, [character.preparedSpells, character.spells, preparedCount, maxPrepared, domainSpells, onChange]);
+  }, [character.preparedSpells, character.spells, preparedCount, maxPrepared, domainSpells, circleSpellsList, onChange]);
+
+  const isCircleSpell = useCallback((spell: Character["spells"][number]) => {
+    return circleSpellsList.some(cs => cs.toLowerCase() === spell.name?.toLowerCase());
+  }, [circleSpellsList]);
 
   const isDomainSpell = useCallback((spell: Character["spells"][number]) => {
     return domainSpells.some(d => d.toLowerCase() === spell.name?.toLowerCase());
@@ -270,9 +277,12 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                             )}
                           </>
                         )}
-                        {domainSpell && (
-                          <span className="text-[10px] font-bold text-yellow-600 bg-yellow-50 px-1.5 py-0.5 rounded">DOMAIN</span>
-                        )}
+                         {domainSpell && (
+                           <span className="text-[10px] font-bold text-yellow-600 bg-yellow-50 px-1.5 py-0.5 rounded">DOMAIN</span>
+                         )}
+                         {isCircleSpell(spell) && (
+                           <span className="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">CIRCLE</span>
+                         )}
                         <span className="text-sm font-bold text-[var(--color-text-primary)]">{spell.name}</span>
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">Level {spell.level}</span>
                         {character.spellcastingAbility && (() => {
@@ -294,9 +304,27 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     </div>
                   )}
                 </div>
-              );
+               );
             })}
           </div>
+
+          {circleSpellsList.length > 0 && (
+            <div className="mt-4 p-3 rounded-lg border border-green-300 bg-green-50/30">
+              <div className="flex items-center gap-2 mb-2">
+                <Leaf weight="regular" className="h-4 w-4 text-green-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells ({circleTerrain.charAt(0).toUpperCase() + circleTerrain.slice(1)})</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Always prepared, do not count against preparation limit</p>
+              <div className="flex flex-wrap gap-1">
+                {circleSpellsList.map((name) => (
+                  <span key={name} className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {editMode && (
             <button
               type="button"
