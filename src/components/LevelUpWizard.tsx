@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, type Character } from "@/lib/storage";
@@ -22,6 +22,7 @@ import {
   Info,
   X,
   CaretDown,
+  Bell,
 } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 
@@ -281,6 +282,20 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [showNotifPanel, setShowNotifPanel] = useState(false);
+  const prevTargetLevelRef = useRef(targetLevel);
+
+  useEffect(() => {
+    if (targetLevel > prevTargetLevelRef.current) {
+      const newLevels = targetLevel - prevTargetLevelRef.current;
+      setToastMessage(`Level ${prevTargetLevelRef.current + 1}${newLevels > 1 ? `-${targetLevel}` : ""} unlocked!`);
+      const timer = setTimeout(() => setToastMessage(null), 3000);
+      prevTargetLevelRef.current = targetLevel;
+      return () => clearTimeout(timer);
+    }
+    prevTargetLevelRef.current = targetLevel;
+  }, [targetLevel]);
 
   const levelInfos = useMemo(
     () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne),
@@ -370,6 +385,53 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
     return true;
   });
+
+  const unfinishedItems = useMemo(() => {
+    const items: { level: number; label: string }[] = [];
+    for (const info of levelInfos) {
+      const lvl = info.level;
+      if (lvl === 1 && startFromLevelOne) {
+        if (!hpValues[lvl] && info.spellSlots) continue;
+      }
+      if (info.asi) {
+        const sel = asiSelections[lvl];
+        const isValid = (sel?.mode === "single" && !!sel?.single) || (sel?.mode === "double" && !!sel?.d1 && !!sel?.d2 && sel?.d1 !== sel?.d2);
+        if (!isValid) items.push({ level: lvl, label: `Level ${lvl} — Ability Score Improvement` });
+      }
+      if (info.subclassOptions && !subclassSelection) {
+        items.push({ level: lvl, label: `Level ${lvl} — Choose Subclass` });
+      }
+      if (info.hasSpellSelection) {
+        const lvlSpells = spellSelections[lvl] || [];
+        const cantripsCount = lvlSpells.filter((s) => s.endsWith(":0")).length;
+        const spellsCount = lvlSpells.filter((s) => !s.endsWith(":0")).length;
+        if (cantripsCount < info.cantripSelectionCount) {
+          items.push({ level: lvl, label: `Level ${lvl} — Select ${info.cantripSelectionCount - cantripsCount} more cantrip${info.cantripSelectionCount - cantripsCount > 1 ? "s" : ""}` });
+        }
+        if (spellsCount < info.spellSelectionCount) {
+          items.push({ level: lvl, label: `Level ${lvl} — Select ${info.spellSelectionCount - spellsCount} more spell${info.spellSelectionCount - spellsCount > 1 ? "s" : ""}` });
+        }
+      }
+      if (info.subclassFeatureChoices) {
+        const choices = subclassFeatureChoices[lvl] || {};
+        for (const fc of info.subclassFeatureChoices) {
+          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}` });
+        }
+      }
+      if (info.classFeatureChoices) {
+        const choices = classFeatureChoices[lvl] || {};
+        for (const fc of info.classFeatureChoices) {
+          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}` });
+        }
+      }
+      if (!(lvl === 1 && startFromLevelOne)) {
+        if (!hpValues[lvl] || hpValues[lvl] <= 0) {
+          items.push({ level: lvl, label: `Level ${lvl} — Roll HP` });
+        }
+      }
+    }
+    return items;
+  }, [levelInfos, asiSelections, subclassSelection, spellSelections, subclassFeatureChoices, classFeatureChoices, hpValues, startFromLevelOne]);
 
   const handleFinish = () => {
     if (!classData) return;
@@ -497,8 +559,24 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               Cancel
             </button>
             <div className="text-xs font-semibold text-[var(--color-text-primary)]">{title ?? "Level Up"}</div>
-            <div className="w-12" />
+            <button
+              type="button"
+              onClick={() => setShowNotifPanel(!showNotifPanel)}
+              className="relative h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
+            >
+              <Bell className="h-4 w-4" />
+              {unfinishedItems.length > 0 && (
+                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] flex items-center justify-center rounded-full bg-red-500 text-white text-[10px] font-bold px-1">
+                  {unfinishedItems.length}
+                </span>
+              )}
+            </button>
           </div>
+          {toastMessage && (
+            <div className="mt-2 py-2 px-3 rounded-[var(--radius-sm)] bg-green-50 border border-green-200 text-center animate-fade-in">
+              <span className="text-xs font-semibold text-green-700">{toastMessage}</span>
+            </div>
+          )}
           {subtitle && <div className="text-[10px] text-[var(--color-text-muted)] text-center mt-0.5">{subtitle}</div>}
           <div className="mt-3 flex items-center justify-center gap-4">
             <button
@@ -524,6 +602,32 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           </div>
         </div>
       </div>
+
+      {showNotifPanel && unfinishedItems.length > 0 && (
+        <div className="fixed inset-0 z-50" onClick={() => setShowNotifPanel(false)}>
+          <div
+            className="absolute right-4 top-16 w-80 max-h-[70vh] overflow-y-auto rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
+              <span className="text-xs font-bold text-[var(--color-text-primary)]">Incomplete Tasks</span>
+              <span className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">{unfinishedItems.length}</span>
+            </div>
+            <div className="p-2 space-y-1">
+              {unfinishedItems.map((item, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setShowNotifPanel(false)}
+                  className="w-full text-left px-3 py-2 rounded-[var(--radius-sm)] hover:bg-[var(--color-bg)] transition-colors"
+                >
+                  <span className="text-xs text-[var(--color-text-primary)]">{item.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <main className="px-4 py-5 pb-40">
         <div className="mx-auto max-w-lg space-y-4">
