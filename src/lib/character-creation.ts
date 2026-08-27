@@ -1,6 +1,128 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, type Character } from "./storage";
-import { getStaticClass, getStaticRace, getStaticSubclasses } from "./srd-client";
+import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems } from "./srd-client";
 import type { CreationStep } from "./creation-types";
+
+const ARCANE_FOCUS_NAMES = ["crystal", "orb", "rod", "staff", "wand"];
+const HOLY_SYMBOL_NAMES = ["amulet", "emblem", "reliquary"];
+const DRUIDIC_FOCUS_NAMES = ["sprig of mistletoe", "totem", "wooden staff", "yew wand"];
+const INSTRUMENT_NAMES = ["bagpipes", "drum", "flute", "horn", "lute", "lyre", "pan flute", "shawm", "viol"];
+
+interface SRDItemMatch {
+  name: string;
+  type: "weapon" | "armor" | "item";
+  isChoice?: boolean;
+  choiceType?: "weapon" | "instrument" | "arcane_focus" | "holy_symbol" | "druidic_focus";
+  weaponType?: string;
+}
+
+function normalizeItemName(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9\s]/g, "").trim();
+}
+
+function findSRDItemMatch(rawName: string): SRDItemMatch | null {
+  const normalized = normalizeItemName(rawName);
+
+  const allEquipments = getStaticEquipments();
+  const allWeapons = getStaticWeapons();
+  const allArmors = getStaticArmors();
+  const allItems = getStaticItems();
+
+  if (ARCANE_FOCUS_NAMES.includes(normalized)) {
+    const match = allEquipments.find(e => normalizeItemName(e.name) === normalized);
+    if (match) {
+      return { name: match.name, type: "item", isChoice: false };
+    }
+    return { name: rawName.charAt(0).toUpperCase() + rawName.slice(1), type: "item", isChoice: false };
+  }
+
+  if (HOLY_SYMBOL_NAMES.includes(normalized)) {
+    const match = allEquipments.find(e => normalizeItemName(e.name) === normalized);
+    if (match) {
+      return { name: match.name, type: "item", isChoice: false };
+    }
+    return { name: rawName.charAt(0).toUpperCase() + rawName.slice(1), type: "item", isChoice: false };
+  }
+
+  if (DRUIDIC_FOCUS_NAMES.includes(normalized)) {
+    const match = allEquipments.find(e => normalizeItemName(e.name) === normalized);
+    if (match) {
+      return { name: match.name, type: "item", isChoice: false };
+    }
+    return { name: rawName.charAt(0).toUpperCase() + rawName.slice(1), type: "item", isChoice: false };
+  }
+
+  if (INSTRUMENT_NAMES.includes(normalized)) {
+    return { name: rawName.charAt(0).toUpperCase() + rawName.slice(1), type: "item", isChoice: false };
+  }
+
+  if (normalized === "arcane focus" || normalized === "an arcane focus" || normalized === "a arcane focus") {
+    return { name: "Arcane Focus", type: "item", isChoice: true, choiceType: "arcane_focus" };
+  }
+  if (normalized === "holy symbol" || normalized === "a holy symbol") {
+    return { name: "Holy Symbol", type: "item", isChoice: true, choiceType: "holy_symbol" };
+  }
+  if (normalized === "druidic focus" || normalized === "a druidic focus") {
+    return { name: "Druidic Focus", type: "item", isChoice: true, choiceType: "druidic_focus" };
+  }
+  if (normalized === "musical instrument" || normalized === "a musical instrument" || normalized === "any other musical instrument") {
+    return { name: "Musical Instrument", type: "item", isChoice: true, choiceType: "instrument" };
+  }
+
+  const weaponChoiceMatch = rawName.match(/^(?:any|a|two)\s+(?:(simple|martial)\s+)?(?:(melee|ranged)\s+)?(?:weapon|weapons)/i);
+  if (weaponChoiceMatch || normalized.includes("weapon")) {
+    let weaponType = "";
+    if (normalized.includes("martial melee")) weaponType = "martial_melee";
+    else if (normalized.includes("martial ranged")) weaponType = "martial_ranged";
+    else if (normalized.includes("martial")) weaponType = "martial";
+    else if (normalized.includes("simple melee")) weaponType = "simple_melee";
+    else if (normalized.includes("simple ranged")) weaponType = "simple_ranged";
+    else if (normalized.includes("simple")) weaponType = "simple";
+    return { name: "Weapon", type: "weapon", isChoice: true, choiceType: "weapon", weaponType };
+  }
+
+  for (const w of allWeapons) {
+    if (normalizeItemName(w.name) === normalized || normalized.includes(normalizeItemName(w.name))) {
+      return { name: w.name, type: "weapon" };
+    }
+  }
+
+  for (const a of allArmors) {
+    if (normalizeItemName(a.name) === normalized || normalized.includes(normalizeItemName(a.name))) {
+      return { name: a.name, type: "armor" };
+    }
+  }
+
+  for (const e of allEquipments) {
+    if (normalizeItemName(e.name) === normalized || normalized.includes(normalizeItemName(e.name))) {
+      const type = e.equipment_category === "weapon" ? "weapon" : e.equipment_category === "armor" ? "armor" : "item";
+      return { name: e.name, type };
+    }
+  }
+
+  for (const i of allItems) {
+    if (normalizeItemName(i.name) === normalized || normalized.includes(normalizeItemName(i.name))) {
+      return { name: i.name, type: "item" };
+    }
+  }
+
+  let bestMatch: { name: string; type: "weapon" | "armor" | "item"; score: number } | null = null;
+  for (const e of allEquipments) {
+    const eqName = normalizeItemName(e.name);
+    if (eqName.includes(normalized) || normalized.includes(eqName)) {
+      const score = Math.min(eqName.length, normalized.length) / Math.max(eqName.length, normalized.length);
+      if (!bestMatch || score > bestMatch.score) {
+        const type = e.equipment_category === "weapon" ? "weapon" : e.equipment_category === "armor" ? "armor" : "item";
+        bestMatch = { name: e.name, type, score };
+      }
+    }
+  }
+
+  if (bestMatch && bestMatch.score > 0.5) {
+    return { name: bestMatch.name, type: bestMatch.type };
+  }
+
+  return null;
+}
 
 export type { Character } from "./storage";
 
@@ -50,33 +172,34 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
     const desc = entry.description || "";
     const items = entry.items || [];
 
-      const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
-      if (optionMatches && optionMatches.length > 1) {
-        const options: EquipmentOption[] = optionMatches.map((part: string) => {
-          const trimmed = part.trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
-          const letterMatch = trimmed.match(/^\(([a-z])\)\s*/);
-          const optionLetter = letterMatch ? letterMatch[1] : "";
-          // Format as "(a) ItemName" with capitalized name
-          const nameWithoutLetter = trimmed.replace(/^\(([a-z])\)\s*/, "").trim();
-          const capitalizedName = nameWithoutLetter.charAt(0).toUpperCase() + nameWithoutLetter.slice(1);
-          const formattedDescription = `(${optionLetter}) ${capitalizedName}`;
+    const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
+    if (optionMatches && optionMatches.length > 1) {
+      const options: EquipmentOption[] = optionMatches.map((part: string) => {
+        const trimmed = part.trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
+        const letterMatch = trimmed.match(/^\(([a-z])\)\s*/);
+        const optionLetter = letterMatch ? letterMatch[1] : "";
+        const nameWithoutLetter = trimmed.replace(/^\(([a-z])\)\s*/, "").trim();
 
-          const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
-            trimmed
-          );
-          const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
-          const isArcaneFocusChoice = /(?:arcane\s+focus|a\s+(?:crystal|orb|rod|staff|wand)\s+as\s+an?\s+arcane\s+focus|an?\s+arcane\s+focus\s+\((?:crystal|orb|rod|staff|wand))\)/.test(trimmed);
-          const isHolySymbolChoice = /(?:holy\s+symbol|a\s+(?:amulet|emblem|reliquary)\s+as\s+a?\s+holy\s+symbol|a?\s+holy\s+symbol\s+\((?:amulet|emblem|reliquary))\)/.test(trimmed);
-          const isDruidicFocusChoice = /(?:druidic\s+focus|a\s+(?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand)\s+as\s+a?\s+druidic\s+focus|a?\s+druidic\s+focus\s+\((?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand))\)/.test(trimmed);
+        const srdMatch = findSRDItemMatch(nameWithoutLetter);
 
+        let isWeaponChoice = false;
+        let isInstrumentChoice = false;
+        let isArcaneFocusChoice = false;
+        let isHolySymbolChoice = false;
+        let isDruidicFocusChoice = false;
         let weaponType: string | undefined;
-        if (isWeaponChoice) {
-          if (trimmed.includes("martial melee")) weaponType = "martial_melee";
-          else if (trimmed.includes("martial ranged")) weaponType = "martial_ranged";
-          else if (trimmed.includes("martial")) weaponType = "martial";
-          else if (trimmed.includes("simple melee")) weaponType = "simple_melee";
-          else if (trimmed.includes("simple ranged")) weaponType = "simple_ranged";
-          else if (trimmed.includes("simple")) weaponType = "simple";
+
+        if (srdMatch?.isChoice && srdMatch.choiceType === "weapon") {
+          isWeaponChoice = true;
+          weaponType = srdMatch.weaponType;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "instrument") {
+          isInstrumentChoice = true;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "arcane_focus") {
+          isArcaneFocusChoice = true;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "holy_symbol") {
+          isHolySymbolChoice = true;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "druidic_focus") {
+          isDruidicFocusChoice = true;
         }
 
         const optionItems = items.filter((item: any) => {
@@ -84,8 +207,10 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
           return itemDesc.includes(`(${optionLetter})`) || itemDesc.includes(`(${optionLetter.toUpperCase()})`);
         });
 
+        const displayDescription = srdMatch ? srdMatch.name : nameWithoutLetter.charAt(0).toUpperCase() + nameWithoutLetter.slice(1);
+
         return {
-          description: formattedDescription,
+          description: displayDescription,
           items: optionItems,
           weaponType,
           isWeaponChoice,
@@ -125,28 +250,33 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
       const parts = desc.split(" or ");
       const options: EquipmentOption[] = parts.map((part: string) => {
         const trimmed = part.trim();
-        // Capitalize first letter of item name
-        const capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
-        const isWeaponChoice = /(?:any\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon|two\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapons|a\s+(?:simple|martial)\s*(?:melee|ranged)?\s*weapon)/.test(
-          trimmed
-        );
-        const isInstrumentChoice = /(?:any\s+(?:other\s+)?musical\s+instrument|musical\s+instrument)/.test(trimmed);
-        const isArcaneFocusChoice = /(?:arcane\s+focus|a\s+(?:crystal|orb|rod|staff|wand)\s+as\s+an?\s+arcane\s+focus|an?\s+arcane\s+focus\s+\((?:crystal|orb|rod|staff|wand))\)/.test(trimmed);
-        const isHolySymbolChoice = /(?:holy\s+symbol|a\s+(?:amulet|emblem|reliquary)\s+as\s+a?\s+holy\s+symbol|a?\s+holy\s+symbol\s+\((?:amulet|emblem|reliquary))\)/.test(trimmed);
-        const isDruidicFocusChoice = /(?:druidic\s+focus|a\s+(?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand)\s+as\s+a?\s+druidic\s+focus|a?\s+druidic\s+focus\s+\((?:sprig\s+of\s+mistletoe|totem|wooden\s+staff|yew\s+wand))\)/.test(trimmed);
 
+        const srdMatch = findSRDItemMatch(trimmed);
+
+        let isWeaponChoice = false;
+        let isInstrumentChoice = false;
+        let isArcaneFocusChoice = false;
+        let isHolySymbolChoice = false;
+        let isDruidicFocusChoice = false;
         let weaponType: string | undefined;
-        if (isWeaponChoice) {
-          if (trimmed.includes("martial melee")) weaponType = "martial_melee";
-          else if (trimmed.includes("martial ranged")) weaponType = "martial_ranged";
-          else if (trimmed.includes("martial")) weaponType = "martial";
-          else if (trimmed.includes("simple melee")) weaponType = "simple_melee";
-          else if (trimmed.includes("simple ranged")) weaponType = "simple_ranged";
-          else if (trimmed.includes("simple")) weaponType = "simple";
+
+        if (srdMatch?.isChoice && srdMatch.choiceType === "weapon") {
+          isWeaponChoice = true;
+          weaponType = srdMatch.weaponType;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "instrument") {
+          isInstrumentChoice = true;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "arcane_focus") {
+          isArcaneFocusChoice = true;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "holy_symbol") {
+          isHolySymbolChoice = true;
+        } else if (srdMatch?.isChoice && srdMatch.choiceType === "druidic_focus") {
+          isDruidicFocusChoice = true;
         }
 
+        const displayDescription = srdMatch ? srdMatch.name : trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+
         return {
-          description: capitalized,
+          description: displayDescription,
           items: items.length > 0 ? [items[0]] : [],
           weaponType,
           isWeaponChoice,
@@ -166,10 +296,13 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
       groups.push({
         id: `choice-${groupCounter++}`,
         description: desc || "Starting equipment",
-        options: items.map((item: any) => ({
-          description: item.name,
-          items: [item],
-        })),
+        options: items.map((item: any) => {
+          const srdMatch = findSRDItemMatch(item.name);
+          return {
+            description: srdMatch ? srdMatch.name : item.name,
+            items: [item],
+          };
+        }),
       });
     }
   });
