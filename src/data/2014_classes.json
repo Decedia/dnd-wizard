@@ -423,9 +423,7 @@
           "Longswords",
           "Rapiers",
           "Shortswords",
-          "Hand crossbows",
-          "Saving Throw: DEX",
-          "Saving Throw: CHA"
+          "Hand crossbows"
         ]
       },
       "skillChoices": {
