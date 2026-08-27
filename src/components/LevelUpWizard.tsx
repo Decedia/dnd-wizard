@@ -72,6 +72,7 @@ interface LevelInfo {
   canReplaceSpell: boolean;
   subclassSpellSelectionCount: number;
   circleTerrainSelection: boolean;
+  bonusCantripSelection: boolean;
 }
 
 function getProficiencyBonus(level: number): number {
@@ -313,6 +314,7 @@ function buildLevelInfos(
       canReplaceSpell,
       subclassSpellSelectionCount,
       circleTerrainSelection: className === "Druid" && subclassSelection === "Land" && [3, 5, 7, 9].includes(level),
+      bonusCantripSelection: className === "Druid" && subclassSelection === "Land" && level === 2,
     });
   }
 
@@ -340,6 +342,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [magicalSecretsSelections, setMagicalSecretsSelections] = useState<Record<number, string[]>>({});
   const [subclassSpellSelections, setSubclassSpellSelections] = useState<Record<number, string[]>>({});
   const [circleTerrainSelections, setCircleTerrainSelections] = useState<Record<number, string>>({});
+  const [bonusCantripSelections, setBonusCantripSelections] = useState<Record<number, string>>({});
   const [replacedSpells, setReplacedSpells] = useState<Record<number, string>>({});
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
@@ -369,6 +372,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setSubclassSpells = (level: number, list: string[]) => setSubclassSpellSelections((prev) => ({ ...prev, [level]: list }));
   const setReplacedSpell = (level: number, spellId: string) => setReplacedSpells((prev) => ({ ...prev, [level]: spellId }));
   const setCircleTerrain = (level: number, terrain: string) => setCircleTerrainSelections((prev) => ({ ...prev, [level]: terrain }));
+  const setBonusCantrip = (level: number, cantrip: string) => setBonusCantripSelections((prev) => ({ ...prev, [level]: cantrip }));
 
   const buildAllocation = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
@@ -698,8 +702,29 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
               });
               if ((spell.level || 0) > 0) newPreparedIds.push(id);
-            }
+      }
+    }
+
+    if (draft.class === "Druid" && draft.subclass === "Land") {
+      const selectedBonusCantrip = bonusCantripSelections[targetLevel];
+      if (selectedBonusCantrip && !draft.bonusCantrips.includes(selectedBonusCantrip)) {
+        const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === selectedBonusCantrip.toLowerCase());
+        if (spell) {
+          const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+          if (!spells.some((s) => s.name?.toLowerCase() === spell.name.toLowerCase())) {
+            spells.push({
+              id,
+              name: spell.name,
+              level: 0,
+              source: "srd" as const,
+              srdSpellName: spell.name,
+              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+            });
           }
+          draft.bonusCantrips = [...(draft.bonusCantrips || []), spell.name];
+        }
+      }
+    }
         }
 
         const existingCircleSpells = draft.circleSpells || [];
@@ -875,6 +900,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onReplacedSpellChange={(id) => setReplacedSpell(info.level, id)}
               circleTerrain={circleTerrainSelections[info.level] || ""}
               onCircleTerrainChange={(terrain) => setCircleTerrain(info.level, terrain)}
+              bonusCantrip={bonusCantripSelections[info.level] || ""}
+              onBonusCantripChange={(cantrip) => setBonusCantrip(info.level, cantrip)}
               character={character}
               hitDie={hitDie}
               diceType={diceType}
@@ -922,6 +949,8 @@ interface LevelCardProps {
   onReplacedSpellChange: (id: string) => void;
   circleTerrain: string;
   onCircleTerrainChange: (terrain: string) => void;
+  bonusCantrip: string;
+  onBonusCantripChange: (cantrip: string) => void;
   character: Character;
   hitDie: number;
   diceType: any;
@@ -954,6 +983,8 @@ function LevelCard({
   onReplacedSpellChange,
   circleTerrain,
   onCircleTerrainChange,
+  bonusCantrip,
+  onBonusCantripChange,
   character,
   hitDie,
   diceType,
@@ -1350,6 +1381,28 @@ function LevelCard({
                 {(character.spells || []).filter((s) => s.level > 0).map((s) => (
                   <option key={s.id} value={s.id}>{s.name} (Level {s.level})</option>
                 ))}
+              </select>
+            </div>
+          )}
+
+          {info.bonusCantripSelection && (
+            <div className="p-3 rounded-lg border border-teal-300 bg-teal-50/30">
+              <div className="flex items-center gap-2 mb-1">
+                <MagicWand weight="regular" className="h-3.5 w-3.5 text-teal-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Bonus Cantrip</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one additional druid cantrip (does not count against cantrip limit)</p>
+              <select
+                value={bonusCantrip}
+                onChange={(e) => onBonusCantripChange(e.target.value)}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              >
+                <option value="">Select cantrip...</option>
+                {getStaticSpells()
+                  .filter((s) => s.level === 0 && s.classes?.includes("Druid"))
+                  .map((s) => (
+                    <option key={s.name} value={s.name}>{s.name}</option>
+                  ))}
               </select>
             </div>
           )}

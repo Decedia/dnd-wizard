@@ -347,9 +347,12 @@
         {
           "name": "Bonus Cantrip",
           "description": [
-            "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice."
+            "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice. This cantrip doesn't count against the number of druid cantrips you know."
           ],
-          "level": 2
+          "level": 2,
+          "choices": [
+            { "name": "cantrip", "description": "Choose one additional druid cantrip" }
+          ]
         },
         {
           "name": "Natural Recovery",

@@ -61,6 +61,7 @@ export interface Character {
   domainSpells: string[];
   circleTerrain: string;
   circleSpells: string[];
+  bonusCantrips: string[];
   bardicInspirationUses: number;
   maxBardicInspirationUses: number;
   magicalSecretsSpells: string[];
@@ -224,6 +225,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     domainSpells: [],
     circleTerrain: "",
     circleSpells: [],
+    bonusCantrips: [],
     bardicInspirationUses: 0,
     maxBardicInspirationUses: 0,
     magicalSecretsSpells: [],
