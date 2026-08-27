@@ -128,6 +128,17 @@ function buildLevelInfos(
       }
     }
 
+    const spellsKnownByLevel: Record<string, Record<number, number>> = {
+      Sorcerer: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
+      Bard: { 1: 4, 2: 5, 3: 6, 4: 7, 5: 8, 6: 9, 7: 10, 8: 11, 9: 12, 10: 14, 11: 15, 12: 15, 13: 16, 14: 16, 15: 18, 16: 18, 17: 19, 18: 19, 19: 20, 20: 22 },
+      Warlock: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
+      Ranger: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
+      Paladin: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
+    };
+    if (spellsKnown === undefined && spellsKnownByLevel[className] && spellsKnownByLevel[className][level]) {
+      spellsKnown = spellsKnownByLevel[className][level];
+    }
+
     const classFeatures: { name: string; value: string }[] = [];
     const classFeatureMap: Record<string, Record<string, any> | undefined> = {
       Barbarian: { "Rage Uses": classData.rageUses, "Rage Damage": classData.rageDamageBonus },
@@ -219,7 +230,9 @@ function buildLevelInfos(
     const cantripsChanged = cantripsDelta > 0;
 
     // Calculate spells known change
-    const prevSpellsKnown = prevLevelData ? ((classData as any)?.spellsKnown?.[String(level - 1)] || 0) : 0;
+    const prevSpellsKnownRaw = prevLevelData ? ((classData as any)?.spellsKnown?.[String(level - 1)] || 0) : 0;
+    const prevSpellsKnownFromTable = (spellsKnownByLevel[className] && spellsKnownByLevel[className][level - 1]) || 0;
+    const prevSpellsKnown = prevSpellsKnownRaw || prevSpellsKnownFromTable;
     const spellsKnownChanged = spellsKnown !== undefined && spellsKnown > prevSpellsKnown;
 
     const hasSpellSelection = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
@@ -390,9 +403,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const items: { level: number; label: string }[] = [];
     for (const info of levelInfos) {
       const lvl = info.level;
-      if (lvl === 1 && startFromLevelOne) {
-        if (!hpValues[lvl] && info.spellSlots) continue;
-      }
+      const isLevelOneAuto = lvl === 1 && startFromLevelOne;
       if (info.asi) {
         const sel = asiSelections[lvl];
         const isValid = (sel?.mode === "single" && !!sel?.single) || (sel?.mode === "double" && !!sel?.d1 && !!sel?.d2 && sel?.d1 !== sel?.d2);
@@ -424,7 +435,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}` });
         }
       }
-      if (!(lvl === 1 && startFromLevelOne)) {
+      if (!isLevelOneAuto) {
         if (!hpValues[lvl] || hpValues[lvl] <= 0) {
           items.push({ level: lvl, label: `Level ${lvl} — Roll HP` });
         }
@@ -603,27 +614,35 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         </div>
       </div>
 
-      {showNotifPanel && unfinishedItems.length > 0 && (
+      {showNotifPanel && (
         <div className="fixed inset-0 z-50" onClick={() => setShowNotifPanel(false)}>
           <div
             className="absolute right-4 top-16 w-80 max-h-[70vh] overflow-y-auto rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
-              <span className="text-xs font-bold text-[var(--color-text-primary)]">Incomplete Tasks</span>
-              <span className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">{unfinishedItems.length}</span>
+              <span className="text-xs font-bold text-[var(--color-text-primary)]">Tasks</span>
+              {unfinishedItems.length > 0 && (
+                <span className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">{unfinishedItems.length} unfinished</span>
+              )}
             </div>
             <div className="p-2 space-y-1">
-              {unfinishedItems.map((item, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setShowNotifPanel(false)}
-                  className="w-full text-left px-3 py-2 rounded-[var(--radius-sm)] hover:bg-[var(--color-bg)] transition-colors"
-                >
-                  <span className="text-xs text-[var(--color-text-primary)]">{item.label}</span>
-                </button>
-              ))}
+              {unfinishedItems.length === 0 ? (
+                <div className="px-3 py-4 text-center">
+                  <span className="text-xs text-green-600 font-semibold">All tasks complete!</span>
+                </div>
+              ) : (
+                unfinishedItems.map((item, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setShowNotifPanel(false)}
+                    className="w-full text-left px-3 py-2 rounded-[var(--radius-sm)] hover:bg-[var(--color-bg)] transition-colors"
+                  >
+                    <span className="text-xs text-[var(--color-text-primary)]">{item.label}</span>
+                  </button>
+                ))
+              )}
             </div>
           </div>
         </div>
