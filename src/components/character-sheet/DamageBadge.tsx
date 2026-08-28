@@ -122,9 +122,10 @@ interface DamageBadgeProps {
   type: string | undefined | null;
   size?: "sm" | "md";
   showLabel?: boolean;
+  iconOnly?: boolean;
 }
 
-export function DamageBadge({ type, size = "sm", showLabel = true }: DamageBadgeProps) {
+export function DamageBadge({ type, size = "sm", showLabel = true, iconOnly = false }: DamageBadgeProps) {
   if (!type) return null;
 
   const key = type.toLowerCase() as DamageType;
@@ -133,16 +134,17 @@ export function DamageBadge({ type, size = "sm", showLabel = true }: DamageBadge
   if (!style) {
     return (
       <span
-        className="inline-flex items-center gap-1 font-semibold"
+        className="inline-flex items-center justify-center font-semibold"
         style={{
           fontSize: size === "sm" ? "11px" : "13px",
-          padding: size === "sm" ? "2px 6px" : "4px 10px",
+          width: size === "sm" ? "20px" : "26px",
+          height: size === "sm" ? "20px" : "26px",
           borderRadius: "6px",
           backgroundColor: "#e5e5e515",
           color: "#666666",
         }}
       >
-        {showLabel && <span>{type}</span>}
+        {!iconOnly && showLabel && <span>{type}</span>}
       </span>
     );
   }
@@ -151,17 +153,59 @@ export function DamageBadge({ type, size = "sm", showLabel = true }: DamageBadge
 
   return (
     <span
-      className="inline-flex items-center gap-1 font-semibold"
+      className="inline-flex items-center justify-center font-semibold"
       style={{
         fontSize: size === "sm" ? "11px" : "13px",
-        padding: size === "sm" ? "2px 6px" : "4px 10px",
+        width: size === "sm" ? "20px" : "26px",
+        height: size === "sm" ? "20px" : "26px",
         borderRadius: "6px",
         backgroundColor: style.bgColor,
         color: style.color,
       }}
     >
       <IconComponent weight="bold" size={size === "sm" ? 12 : 14} />
-      {showLabel && <span>{style.label}</span>}
+      {!iconOnly && showLabel && <span className="ml-1">{style.label}</span>}
+    </span>
+  );
+}
+
+interface DamageTypeLabelProps {
+  type: string | undefined | null;
+  dice?: string;
+  size?: "sm" | "md";
+}
+
+export function DamageTypeLabel({ type, dice, size = "sm" }: DamageTypeLabelProps) {
+  if (!type) return null;
+
+  const key = type.toLowerCase() as DamageType;
+  const style = DAMAGE_TYPES[key];
+  const color = style?.color ?? "#666666";
+  const bgColor = style?.bgColor ?? "#e5e5e515";
+  const IconComponent = style?.icon;
+
+  return (
+    <span className="inline-flex items-center gap-1">
+      <span
+        className="inline-flex items-center justify-center font-semibold"
+        style={{
+          width: size === "sm" ? "20px" : "26px",
+          height: size === "sm" ? "20px" : "26px",
+          borderRadius: "6px",
+          backgroundColor: bgColor,
+          color: color,
+        }}
+      >
+        {IconComponent ? <IconComponent weight="bold" size={size === "sm" ? 12 : 14} /> : null}
+      </span>
+      {dice && (
+        <span
+          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+          style={{ color, backgroundColor: bgColor }}
+        >
+          {dice}
+        </span>
+      )}
     </span>
   );
 }

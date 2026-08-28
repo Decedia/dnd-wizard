@@ -8,7 +8,7 @@ import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells } from "@/lib/storage";
 import { PencilSimple, Info, X, Lightning, Plus, Check, Circle, Leaf } from "phosphor-react";
-import { DamageBadge } from "./DamageBadge";
+import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 
 interface SpellsSectionProps {
   character: Character;
@@ -297,11 +297,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         })()}
                       </div>
                       {(spell.damageDice || spell.damageType) && (
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="text-sm text-[var(--color-text-primary)] font-medium">
-                            {spell.damageDice}{spell.damageDice && spell.damageType ? " " : ""}
-                          </span>
-                          <DamageBadge type={spell.damageType} size="sm" />
+                        <div className="flex flex-col gap-1 mt-1">
+                          <DamageTypeLabel type={spell.damageType} dice={spell.damageDice} />
                         </div>
                       )}
                       {description && <DescriptionText>{description}</DescriptionText>}

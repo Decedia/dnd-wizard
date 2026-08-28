@@ -787,7 +787,17 @@ export function finalizeCreation(character: Character): Character {
   let final = applySubclassFeatures(character);
   final = syncBaseFeatures(final);
   const derived = computeDerivedStats(final);
-  const finalCharacter = { ...final, ...derived };
+
+  const classData = getStaticClass(character.class);
+  const levelData = classData?.levels?.[(character.level || 1) - 1];
+  const spellSlots = levelData?.spellSlots || {};
+
+  const finalCharacter = {
+    ...final,
+    ...derived,
+    spellSlots: Object.keys(spellSlots).length > 0 ? spellSlots : final.spellSlots,
+    spellSlotsExpended: Object.keys(spellSlots).length > 0 ? Object.fromEntries(Object.keys(spellSlots).map(k => [k, 0])) : final.spellSlotsExpended,
+  };
   saveCharacter(finalCharacter);
   return finalCharacter;
 }

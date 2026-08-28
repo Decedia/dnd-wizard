@@ -133,42 +133,47 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
 
       <div className="mt-4">
         <span className="field-label-light">Spell Slots</span>
-        <div className="grid grid-cols-1 gap-2">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => {
-            const total = character.spellSlots[level] ?? 0;
-            const expended = character.spellSlotsExpended[level] ?? 0;
-            return (
-               <div key={level} className="list-row flex items-center gap-3">
-                <span className="text-sm font-bold text-[var(--color-text-primary)] w-16">Level {level}</span>
-                {editMode ? (
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="number"
-                      value={total}
-                      onChange={(e) => updateSpellSlot(level, "total", parseInt(e.target.value || "0", 10))}
-                      onBlur={onFieldBlur}
-                      className="input w-16 text-center"
-                      placeholder="Total"
-                    />
-                    <span className="text-[var(--color-text-secondary)] font-bold">/</span>
-                    <input
-                      type="number"
-                      value={expended}
-                      onChange={(e) => updateSpellSlot(level, "expended", parseInt(e.target.value || "0", 10))}
-                      onBlur={onFieldBlur}
-                      className="input w-16 text-center"
-                      placeholder="Used"
-                    />
+        {Object.keys(character.spellSlots).length > 0 ? (
+          <div className="grid grid-cols-1 gap-2">
+            {Object.entries(character.spellSlots)
+              .sort(([a], [b]) => Number(a) - Number(b))
+              .map(([level, total]) => {
+                const expended = character.spellSlotsExpended[Number(level)] ?? 0;
+                return (
+                  <div key={level} className="list-row flex items-center gap-3">
+                    <span className="text-sm font-bold text-[var(--color-text-primary)] w-16">Level {level}</span>
+                    {editMode ? (
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          value={total}
+                          onChange={(e) => updateSpellSlot(Number(level), "total", parseInt(e.target.value || "0", 10))}
+                          onBlur={onFieldBlur}
+                          className="input w-16 text-center"
+                          placeholder="Total"
+                        />
+                        <span className="text-[var(--color-text-secondary)] font-bold">/</span>
+                        <input
+                          type="number"
+                          value={expended}
+                          onChange={(e) => updateSpellSlot(Number(level), "expended", parseInt(e.target.value || "0", 10))}
+                          onBlur={onFieldBlur}
+                          className="input w-16 text-center"
+                          placeholder="Used"
+                        />
+                      </div>
+                    ) : (
+                      <span className="text-sm font-bold text-[var(--color-text-primary)]">
+                        {total} / {expended} used
+                      </span>
+                    )}
                   </div>
-                ) : (
-                  <span className="text-sm font-bold text-[var(--color-text-primary)]">
-                    {total} / {expended} used
-                  </span>
-                )}
-              </div>
-            );
-          })}
-        </div>
+                );
+              })}
+          </div>
+        ) : (
+          <p className="text-xs text-[var(--color-text-muted)] mt-1">No spell slots</p>
+        )}
       </div>
 
       {character.class === "Sorcerer" && (

@@ -5,7 +5,7 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
 import { Sword } from "phosphor-react";
-import { DamageBadge } from "./DamageBadge";
+import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -72,7 +72,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <span className="badge text-ink bg-paper-muted">class-granted</span>
               </div>
               <div className="flex items-center gap-3 flex-wrap">
-                <DamageBadge type={attack.damageType} size="sm" />
+                <DamageTypeLabel type={attack.damageType} size="sm" />
                 {attack.sneakAttack && (
                     <span className="text-xs font-bold text-ink bg-paper-muted px-2.5 py-1.5 surface">+{attack.sneakAttack} sneak</span>
                 )}
@@ -97,22 +97,23 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex flex-col gap-1.5">
                   {details && (
                     <>
-                      <span className="text-sm text-[var(--color-text-primary)]">
-                        {details.damageDice || "—"}
-                        {details.damageBonus ? ` +${details.damageBonus}` : ""}
-                      </span>
-                      <DamageBadge type={details.damageType} size="sm" />
-                      {details.rageBonus > 0 && (
-                        <span className="text-xs font-bold text-ink bg-[var(--color-error-50)] px-2 py-1 surface">+{details.rageBonus} rage</span>
-                      )}
+                      <div className="flex items-center gap-2">
+                        <DamageTypeLabel type={details.damageType} dice={details.damageDice} />
+                        <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                          +{details.damageBonus}
+                        </span>
+                        {details.rageBonus > 0 && (
+                          <span className="text-[10px] font-bold text-ink bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">+{details.rageBonus} rage</span>
+                        )}
+                      </div>
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
                     </>
                   )}
                     {!details && attack.damageType && (
-                    <DamageBadge type={attack.damageType} size="sm" />
+                    <DamageTypeLabel type={attack.damageType} size="sm" />
                   )}
                   {attack.sneakAttack && (
                     <span className="text-xs font-bold text-ink bg-paper px-2.5 py-1.5 surface">
