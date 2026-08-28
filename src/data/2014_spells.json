@@ -46,8 +46,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -74,8 +73,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -97,8 +95,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -142,8 +139,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -168,8 +164,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -192,8 +187,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -224,8 +218,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -350,8 +343,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/fire-bolt",
@@ -376,8 +368,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -400,8 +391,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -423,8 +413,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -477,8 +466,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -502,8 +490,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -542,8 +529,7 @@
         "Bard",
         "Cleric",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -569,8 +555,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -601,8 +586,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -661,8 +645,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -698,8 +681,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -725,8 +707,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -759,8 +740,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -785,8 +765,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -837,8 +816,7 @@
         "Sorcerer",
         "Warlock",
         "Wizard",
-        "Druid",
-        "Rogue"
+        "Druid"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/poison-spray",
@@ -877,8 +855,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -991,8 +968,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -1104,8 +1080,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1180,8 +1155,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -1236,8 +1210,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1297,8 +1270,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1320,8 +1292,7 @@
       "classes": [
         "Cleric",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1349,8 +1320,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -1447,8 +1417,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1483,8 +1452,7 @@
       },
       "classes": [
         "Ranger",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -1733,8 +1701,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -1760,8 +1727,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1781,8 +1747,7 @@
       "concentration": true,
       "classes": [
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1863,8 +1828,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -1891,8 +1855,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -1928,8 +1891,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2032,8 +1994,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2203,8 +2164,7 @@
         "Paladin",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2280,8 +2240,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2369,8 +2328,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -2462,8 +2420,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2553,8 +2510,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2588,8 +2544,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2628,8 +2583,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/find-familiar",
@@ -2662,8 +2616,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2703,8 +2656,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -2729,8 +2681,7 @@
       "ritual": false,
       "concentration": false,
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -2804,8 +2755,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3053,8 +3003,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3111,8 +3060,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -3142,8 +3090,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3180,8 +3127,7 @@
       "classes": [
         "Bard",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3269,8 +3215,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3308,8 +3253,7 @@
         "Bard",
         "Druid",
         "Ranger",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3343,8 +3287,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3396,8 +3339,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3434,8 +3376,7 @@
         "Cleric",
         "Paladin",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -3495,8 +3436,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -3577,8 +3517,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3653,8 +3592,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3679,8 +3617,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -3723,8 +3660,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3750,8 +3686,7 @@
       "classes": [
         "Druid",
         "Ranger",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -3806,8 +3741,7 @@
       "concentration": true,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -3887,8 +3821,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3925,8 +3858,7 @@
       "classes": [
         "Bard",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -3954,8 +3886,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4039,8 +3970,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -4068,8 +3998,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4136,8 +4065,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4167,8 +4095,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -4240,8 +4167,7 @@
         "url": "/api/2014/magic-schools/abjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -4277,8 +4203,7 @@
         "url": "/api/2014/magic-schools/illusion"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -4395,8 +4320,7 @@
         "Bard",
         "Cleric",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -4428,8 +4352,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -4551,8 +4474,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4581,8 +4503,7 @@
       },
       "classes": [
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -4609,8 +4530,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4645,8 +4565,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -4683,8 +4602,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -4723,8 +4641,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -4752,8 +4669,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4774,8 +4690,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4797,8 +4712,7 @@
       "classes": [
         "Druid",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -4882,8 +4796,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5097,8 +5010,7 @@
       },
       "classes": [
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5133,8 +5045,7 @@
       },
       "classes": [
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5184,8 +5095,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5296,8 +5206,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -5323,8 +5232,7 @@
       "ritual": false,
       "concentration": true,
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -5357,8 +5265,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -5384,8 +5291,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -5415,8 +5321,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5489,8 +5394,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5565,8 +5469,7 @@
         "Druid",
         "Paladin",
         "Ranger",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5603,8 +5506,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5638,8 +5540,7 @@
       },
       "classes": [
         "Paladin",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -5665,8 +5566,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -5698,8 +5598,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -5732,8 +5631,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -5940,8 +5838,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -5978,8 +5875,7 @@
       },
       "classes": [
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6015,8 +5911,7 @@
         "url": "/api/2014/magic-schools/transmutation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6061,8 +5956,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -6098,8 +5992,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6126,8 +6019,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -6190,8 +6082,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6256,8 +6147,7 @@
       "classes": [
         "Bard",
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -6287,8 +6177,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -6429,8 +6318,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6455,8 +6343,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -6512,8 +6399,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -6550,8 +6436,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -6629,8 +6514,7 @@
       },
       "classes": [
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6712,8 +6596,7 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6746,8 +6629,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6830,8 +6712,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -6864,8 +6745,7 @@
         "Bard",
         "Cleric",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -6940,8 +6820,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/counterspell",
@@ -7054,8 +6933,7 @@
         "Paladin",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -7083,8 +6961,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -7129,8 +7006,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7195,8 +7071,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -7225,8 +7100,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -7258,8 +7132,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7296,8 +7169,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -7341,8 +7213,7 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7377,8 +7248,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -7424,8 +7294,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7452,8 +7321,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -7474,8 +7342,7 @@
       "concentration": false,
       "classes": [
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -7535,8 +7402,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -7593,8 +7459,7 @@
         "Cleric",
         "Paladin",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7634,8 +7499,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7737,8 +7601,7 @@
       "concentration": true,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -7768,8 +7631,7 @@
       "classes": [
         "Bard",
         "Ranger",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7801,8 +7663,7 @@
         "url": "/api/2014/magic-schools/illusion"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7874,8 +7735,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -7910,8 +7770,7 @@
         "Cleric",
         "Paladin",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -7982,8 +7841,7 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -8024,8 +7882,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -8076,8 +7933,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -8218,8 +8074,7 @@
         "Cleric",
         "Paladin",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -8264,8 +8119,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -8293,8 +8147,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -8317,8 +8170,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -8353,8 +8205,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -8380,8 +8231,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -8412,8 +8262,7 @@
         "Cleric",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -8464,8 +8313,7 @@
       },
       "classes": [
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -8490,8 +8338,7 @@
       "ritual": false,
       "concentration": true,
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -8513,8 +8360,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -8545,8 +8391,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -8683,8 +8528,7 @@
       },
       "classes": [
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/arcane-eye",
@@ -8731,8 +8575,7 @@
         "Paladin",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/banishment",
@@ -8788,8 +8631,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/black-tentacles",
@@ -8848,8 +8690,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -8945,8 +8786,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/confusion",
@@ -8985,8 +8825,7 @@
       },
       "classes": [
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/conjure-minor-elementals",
@@ -9090,8 +8929,7 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/control-water",
@@ -9168,8 +9006,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/dimension-door",
@@ -9271,8 +9108,7 @@
       "classes": [
         "Druid",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -9300,8 +9136,7 @@
         "url": "/api/2014/magic-schools/transmutation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/fabricate",
@@ -9345,8 +9180,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/faithful-hound",
@@ -9412,8 +9246,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Fiend"
@@ -9477,8 +9310,7 @@
       "concentration": false,
       "classes": [
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -9538,8 +9370,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -9617,8 +9448,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -9654,8 +9484,7 @@
         "Bard",
         "Druid",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -9720,8 +9549,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -9761,8 +9589,7 @@
         "Druid",
         "Paladin",
         "Ranger",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -9786,8 +9613,7 @@
       "ritual": false,
       "concentration": false,
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -9833,8 +9659,7 @@
         "url": "/api/2014/magic-schools/illusion"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/phantasmal-killer",
@@ -9880,8 +9705,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/polymorph",
@@ -9926,8 +9750,7 @@
         "url": "/api/2014/magic-schools/abjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/private-sanctum",
@@ -9969,8 +9792,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/resilient-sphere",
@@ -10003,8 +9825,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/secret-chest",
@@ -10037,8 +9858,7 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -10074,8 +9894,7 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -10137,8 +9956,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Fiend"
@@ -10184,8 +10002,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/animate-objects",
@@ -10259,8 +10076,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/arcane-hand",
@@ -10354,8 +10170,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -10493,8 +10308,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -10537,8 +10351,7 @@
       },
       "classes": [
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -10579,8 +10392,7 @@
       },
       "classes": [
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/contact-other-plane",
@@ -10675,8 +10487,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/creation",
@@ -10765,8 +10576,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/dominate-person",
@@ -10822,8 +10632,7 @@
       "classes": [
         "Bard",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -10931,8 +10740,7 @@
         "Cleric",
         "Druid",
         "Paladin",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/geas",
@@ -11070,8 +10878,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/hold-monster",
@@ -11169,8 +10976,7 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/legend-lore",
@@ -11247,8 +11053,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/mislead",
@@ -11292,8 +11097,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/modify-memory",
@@ -11325,8 +11129,7 @@
         "url": "/api/2014/magic-schools/transmutation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -11373,8 +11176,7 @@
         "Bard",
         "Cleric",
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/planar-binding",
@@ -11518,8 +11320,7 @@
         "Cleric",
         "Druid",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -11555,8 +11356,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/seeming",
@@ -11580,8 +11380,7 @@
       "concentration": false,
       "classes": [
         "Ranger",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -11605,8 +11404,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -11642,8 +11440,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/telekinesis",
@@ -11675,8 +11472,7 @@
         "url": "/api/2014/magic-schools/divination"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/telepathic-bond",
@@ -11714,8 +11510,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/teleportation-circle",
@@ -11773,8 +11568,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -11803,8 +11597,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/wall-of-force",
@@ -11842,8 +11635,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -11970,8 +11762,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/chain-lightning",
@@ -12031,8 +11822,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/circle-of-death",
@@ -12100,8 +11890,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/contingency",
@@ -12138,8 +11927,7 @@
       "classes": [
         "Cleric",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/create-undead",
@@ -12198,8 +11986,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/disintegrate",
@@ -12243,8 +12030,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/eyebite",
@@ -12322,8 +12108,7 @@
       },
       "classes": [
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/flesh-to-stone",
@@ -12418,8 +12203,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/freezing-sphere",
@@ -12458,8 +12242,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/globe-of-invulnerability",
@@ -12484,8 +12267,7 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -12531,8 +12313,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/guards-and-wards",
@@ -12684,8 +12465,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/instant-summons",
@@ -12715,8 +12495,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/irresistible-dance",
@@ -12762,8 +12541,7 @@
         "url": "/api/2014/magic-schools/necromancy"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/magic-jar",
@@ -12827,8 +12605,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/mass-suggestion",
@@ -12869,8 +12646,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/move-earth",
@@ -12943,8 +12719,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/programmed-illusion",
@@ -13002,8 +12777,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/sunbeam",
@@ -13067,8 +12841,7 @@
         "Cleric",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/true-seeing",
@@ -13128,8 +12901,7 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/wall-of-ice",
@@ -13298,8 +13070,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/arcane-sword",
@@ -13324,8 +13095,7 @@
         "Cleric",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -13416,8 +13186,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/delayed-blast-fireball",
@@ -13498,8 +13267,7 @@
         "Cleric",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/etherealness",
@@ -13549,8 +13317,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/finger-of-death",
@@ -13646,8 +13413,7 @@
       "classes": [
         "Bard",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/forcecage",
@@ -13685,8 +13451,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/magnificent-mansion",
@@ -13724,8 +13489,7 @@
       "classes": [
         "Bard",
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/mirage-arcane",
@@ -13772,8 +13536,7 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/plane-shift",
@@ -13796,8 +13559,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -13850,8 +13612,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/prismatic-spray",
@@ -13886,8 +13647,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/project-image",
@@ -14008,8 +13768,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/reverse-gravity",
@@ -14042,8 +13801,7 @@
         "url": "/api/2014/magic-schools/transmutation"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/sequester",
@@ -14077,8 +13835,7 @@
         "url": "/api/2014/magic-schools/illusion"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/simulacrum",
@@ -14127,8 +13884,7 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/symbol",
@@ -14183,8 +13939,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/teleport",
@@ -14260,8 +14015,7 @@
       },
       "classes": [
         "Cleric",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/antimagic-field",
@@ -14302,8 +14056,7 @@
       },
       "classes": [
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/antipathy-sympathy",
@@ -14335,8 +14088,7 @@
         "url": "/api/2014/magic-schools/necromancy"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/clone",
@@ -14396,8 +14148,7 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [
         "Land"
@@ -14429,8 +14180,7 @@
       },
       "classes": [
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/demiplane",
@@ -14476,8 +14226,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/dominate-monster",
@@ -14576,8 +14325,7 @@
         "Bard",
         "Druid",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/feeblemind",
@@ -14695,8 +14443,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/incendiary-cloud",
@@ -14721,8 +14468,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -14750,8 +14496,7 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/maze",
@@ -14781,8 +14526,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/mind-blank",
@@ -14814,8 +14558,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/power-word-stun",
@@ -14873,8 +14616,7 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/sunburst",
@@ -14912,8 +14654,7 @@
       "classes": [
         "Cleric",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/astral-projection",
@@ -14938,8 +14679,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -14971,8 +14711,7 @@
         "Bard",
         "Druid",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/foresight",
@@ -15008,8 +14747,7 @@
       "classes": [
         "Cleric",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/gate",
@@ -15064,8 +14802,7 @@
       },
       "classes": [
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/imprisonment",
@@ -15122,8 +14859,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -15173,8 +14909,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/meteor-swarm",
@@ -15205,8 +14940,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/power-word-kill",
@@ -15250,8 +14984,7 @@
         "url": "/api/2014/magic-schools/abjuration"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/prismatic-wall",
@@ -15275,8 +15008,7 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ]
     },
     {
@@ -15310,8 +15042,7 @@
       },
       "classes": [
         "Druid",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/shapechange",
@@ -15398,8 +15129,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/time-stop",
@@ -15440,8 +15170,7 @@
       "classes": [
         "Bard",
         "Warlock",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/true-polymorph",
@@ -15516,8 +15245,7 @@
         "url": "/api/2014/magic-schools/illusion"
       },
       "classes": [
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/weird",
@@ -15555,8 +15283,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Rogue"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/wish",

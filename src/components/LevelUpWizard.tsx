@@ -131,7 +131,13 @@ function buildLevelInfos(
     }));
 
     const asi = levelData?.asi || false;
-    const spellSlots = levelData?.spellSlots;
+    let spellSlots = levelData?.spellSlots;
+
+    // Arcane Trickster uses its own spell slot progression
+    const isArcaneTricksterSubclass = subclassSelection?.toLowerCase().includes("arcane trickster");
+    if (!spellSlots && isArcaneTricksterSubclass && (classData as any)?.arcaneTricksterSpellSlots) {
+      spellSlots = (classData as any).arcaneTricksterSpellSlots[String(level)] || undefined;
+    }
 
     let cantripsKnown: number | undefined;
     if (classData.cantripsKnown) {
@@ -277,7 +283,9 @@ function buildLevelInfos(
     const prevSpellsKnown = prevSpellsKnownRaw || prevSpellsKnownFromTable;
     const spellsKnownChanged = spellsKnown !== undefined && spellsKnown > prevSpellsKnown;
 
-    const hasSpellSelection = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
+    const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster");
+    const hasSpellSelectionFromClass = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
+    const hasSpellSelection = hasSpellSelectionFromClass || (isArcaneTrickster && (slotsChanged || cantripsChanged || spellsKnownChanged));
     const maxSpellLevel = spellSlots ? Math.max(...Object.keys(spellSlots).map(Number)) : 0;
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
@@ -292,6 +300,14 @@ function buildLevelInfos(
       const sb = (classData as any).spellbookSpells as Record<string, number>;
       const currentTotal = sb[String(level)] || 0;
       const prevTotal = level > 1 ? (sb[String(level - 1)] || 0) : 0;
+      spellSelectionCount = currentTotal - prevTotal;
+    }
+
+    // Arcane Trickster: spells known progression (like Wizard but half-caster)
+    if (isArcaneTrickster && (classData as any)?.spellsKnown) {
+      const known = (classData as any).spellsKnown as Record<string, number>;
+      const currentTotal = known[String(level)] || 0;
+      const prevTotal = level > 1 ? (known[String(level - 1)] || 0) : 0;
       spellSelectionCount = currentTotal - prevTotal;
     }
 
@@ -2015,7 +2031,9 @@ function SpellSelection({
   spells: string[];
   onSpellsChange: (list: string[]) => void;
 }) {
-  const available = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+  const isArcaneTrickster = character.subclass?.toLowerCase().includes("arcane trickster");
+  const spellClasses = isArcaneTrickster ? [character.class, "Wizard"] : [character.class];
+  const available = getStaticSpells().filter((s) => s.classes?.some(c => spellClasses.includes(c)) && (s.level === 0 || s.level <= maxLevel));
   const toggle = (name: string, level: number) => {
     if (spells.some((s) => s === `${name}:${level}`)) {
       onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
@@ -2238,7 +2256,9 @@ function SpellSelectionModal({
     };
   }, []);
 
-  const allSpells = getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+  const isArcaneTrickster = character.subclass?.toLowerCase().includes("arcane trickster");
+  const spellClasses = isArcaneTrickster ? [character.class, "Wizard"] : [character.class];
+  const allSpells = getStaticSpells().filter((s) => s.classes?.some(c => spellClasses.includes(c)) && (s.level === 0 || s.level <= maxLevel));
   const allClassSpells = getStaticSpells().filter((s) => s.level > 0 && s.level <= maxLevel);
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
