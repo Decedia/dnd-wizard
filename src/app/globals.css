@@ -167,7 +167,7 @@
     background-color: var(--color-surface);
     color: var(--color-text-primary);
     border-radius: var(--border-radius-pill);
-    border: var(--border-width-default) solid transparent;
+    border: var(--border-width-default) solid var(--color-border);
     padding: var(--space-sm) var(--space-md);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
