@@ -1730,10 +1730,12 @@ function LevelCard({
                           : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
-                      <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
-                      {opt.description && (
-                        <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{opt.description}</p>
-                      )}
+                     <div className="flex items-center justify-between gap-2">
+                        <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                        {opt.description && (
+                          <InfoButton title={opt.name} description={opt.description} />
+                        )}
+                      </div>
                     </button>
                   );
                 })}
