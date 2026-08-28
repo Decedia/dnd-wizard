@@ -80,8 +80,8 @@ interface LevelInfo {
   spellsKnown?: number;
   classFeatures: { name: string; value: string }[];
   subclassOptions?: { name: string; description: string; hasDetails: boolean }[];
-  subclassFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[] }[];
-  classFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[] }[];
+  subclassFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[];
+  classFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[];
   hasSpellSelection: boolean;
   spellSelectionCount: number;
   cantripSelectionCount: number;
@@ -210,7 +210,7 @@ function buildLevelInfos(
       ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true }))
       : undefined;
 
-    const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[] }[] = [];
+    const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];
     const passiveSubclassFeatures: { name: string; description: string }[] = [];
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
@@ -225,6 +225,7 @@ function buildLevelInfos(
               name: f.name,
               description: desc,
               options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "" })),
+              count: f.choicesCount || 1,
             });
           } else {
             passiveSubclassFeatures.push({ name: f.name, description: desc });
@@ -234,7 +235,7 @@ function buildLevelInfos(
     }
 
     // Class feature choices (e.g., Primal Knowledge for Barbarian)
-    const classFeatureChoices: { name: string; description: string; options: { name: string; description: string }[] }[] = [];
+    const classFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];
     const levelFeatures = classData.levels[level - 1]?.features || [];
     for (const feature of levelFeatures) {
       const f = feature as any;
@@ -246,6 +247,7 @@ function buildLevelInfos(
             name: typeof opt === "string" ? opt : opt.name,
             description: typeof opt === "string" ? "" : (opt.description || ""),
           })),
+          count: f.choices.count || 1,
         });
       }
     }
@@ -1019,7 +1021,8 @@ function LevelCard({
     const [showSpellModal, setShowSpellModal] = useState(false);
     const [showTerrainModal, setShowTerrainModal] = useState(false);
     const [showBonusCantripModal, setShowBonusCantripModal] = useState(false);
-    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean } | null>(null);
+    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean; count?: number } | null>(null);
+    const [multiSelectSelections, setMultiSelectSelections] = useState<string[]>([]);
     const [showHumanoidPopup, setShowHumanoidPopup] = useState<{ featureName: string; level: number } | null>(null);
     const [humanoidSelections, setHumanoidSelections] = useState<string[]>([]);
     const [showAsiModal, setShowAsiModal] = useState(false);
@@ -1264,11 +1267,11 @@ function LevelCard({
                       )}
                     </div>
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
-                     <button
-                       type="button"
-                       onClick={() => setShowFeaturePopup({ ...fc, isSubclass: true })}
-                       className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                     >
+                      <button
+                        type="button"
+                        onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ ...fc, isSubclass: true, count: fc.count }); }}
+                        className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                      >
                        <span>{subclassFeatureChoices[fc.name] || "Select an option..."}</span>
                        <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                      </button>
@@ -1286,11 +1289,11 @@ function LevelCard({
                       )}
                     </div>
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
-                     <button
-                       type="button"
-                       onClick={() => setShowFeaturePopup({ ...fc, isSubclass: false })}
-                       className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                     >
+                      <button
+                        type="button"
+                        onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ ...fc, isSubclass: false, count: fc.count }); }}
+                        className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                      >
                        <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
                        <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                      </button>
@@ -1705,7 +1708,10 @@ function LevelCard({
                   const currentSelection = showFeaturePopup.isSubclass
                     ? subclassFeatureChoices[showFeaturePopup.name]
                     : classFeatureChoices[showFeaturePopup.name];
-                  const isSelected = currentSelection === opt.name;
+                  const isMultiSelect = (showFeaturePopup.count || 1) > 1;
+                  const multiSelected = isMultiSelect && multiSelectSelections.includes(opt.name);
+                  const isSelected = isMultiSelect ? multiSelected : currentSelection === opt.name;
+                  const isDisabled = isMultiSelect && !multiSelected && multiSelectSelections.length >= (showFeaturePopup.count || 1);
                   return (
                     <button
                       key={idx}
@@ -1717,6 +1723,14 @@ function LevelCard({
                           setShowFeaturePopup(null);
                           return;
                         }
+                        if (isMultiSelect) {
+                          if (multiSelected) {
+                            setMultiSelectSelections(multiSelectSelections.filter((s) => s !== opt.name));
+                          } else if (multiSelectSelections.length < (showFeaturePopup.count || 1)) {
+                            setMultiSelectSelections([...multiSelectSelections, opt.name]);
+                          }
+                          return;
+                        }
                         if (showFeaturePopup.isSubclass) {
                           onSubclassFeatureChoice(showFeaturePopup.name, opt.name);
                         } else {
@@ -1724,14 +1738,20 @@ function LevelCard({
                         }
                         setShowFeaturePopup(null);
                       }}
+                      disabled={isDisabled}
                       className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
                         isSelected
                           ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                          : isDisabled
+                            ? "border-[var(--color-border)] bg-[var(--color-surface)] opacity-50 cursor-not-allowed"
+                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
-                     <div className="flex items-center justify-between gap-2">
-                        <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-xs font-semibold text-[var(--color-text-primary)] flex items-center gap-2">
+                          {isSelected && <Check className="h-3 w-3 shrink-0" />}
+                          {opt.name}
+                        </div>
                         {opt.description && (
                           <InfoButton title={opt.name} description={opt.description} />
                         )}
@@ -1741,6 +1761,33 @@ function LevelCard({
                 })}
               </div>
             </div>
+            {(showFeaturePopup.count || 1) > 1 && (
+              <div className="border-t border-[var(--color-border)] px-4 py-3">
+                <button
+                  type="button"
+                  disabled={multiSelectSelections.length !== (showFeaturePopup.count || 1)}
+                  onClick={() => {
+                    if (multiSelectSelections.length === (showFeaturePopup.count || 1)) {
+                      const value = multiSelectSelections.join(", ");
+                      if (showFeaturePopup.isSubclass) {
+                        onSubclassFeatureChoice(showFeaturePopup.name, value);
+                      } else {
+                        onClassFeatureChoice(showFeaturePopup.name, value);
+                      }
+                      setShowFeaturePopup(null);
+                      setMultiSelectSelections([]);
+                    }
+                  }}
+                  className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${
+                    multiSelectSelections.length === (showFeaturePopup.count || 1)
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"
+                  }`}
+                >
+                  Confirm Selection ({multiSelectSelections.length}/{showFeaturePopup.count || 1})
+                </button>
+              </div>
+            )}
           </div>
          </div>
       )}
