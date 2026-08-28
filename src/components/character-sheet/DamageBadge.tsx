@@ -125,7 +125,7 @@ interface DamageBadgeProps {
   iconOnly?: boolean;
 }
 
-export function DamageBadge({ type, size = "sm", showLabel = true, iconOnly = false }: DamageBadgeProps) {
+export function DamageBadge({ type, size = "sm", showLabel = true }: DamageBadgeProps) {
   if (!type) return null;
 
   const key = type.toLowerCase() as DamageType;
@@ -134,17 +134,16 @@ export function DamageBadge({ type, size = "sm", showLabel = true, iconOnly = fa
   if (!style) {
     return (
       <span
-        className="inline-flex items-center justify-center font-semibold"
+        className="inline-flex items-center gap-1 font-semibold"
         style={{
           fontSize: size === "sm" ? "11px" : "13px",
-          width: size === "sm" ? "20px" : "26px",
-          height: size === "sm" ? "20px" : "26px",
+          padding: size === "sm" ? "2px 6px" : "4px 10px",
           borderRadius: "6px",
           backgroundColor: "#e5e5e515",
           color: "#666666",
         }}
       >
-        {!iconOnly && showLabel && <span>{type}</span>}
+        {showLabel && <span>{type}</span>}
       </span>
     );
   }
@@ -153,18 +152,17 @@ export function DamageBadge({ type, size = "sm", showLabel = true, iconOnly = fa
 
   return (
     <span
-      className="inline-flex items-center justify-center font-semibold"
+      className="inline-flex items-center gap-1 font-semibold"
       style={{
         fontSize: size === "sm" ? "11px" : "13px",
-        width: size === "sm" ? "20px" : "26px",
-        height: size === "sm" ? "20px" : "26px",
+        padding: size === "sm" ? "2px 6px" : "4px 10px",
         borderRadius: "6px",
         backgroundColor: style.bgColor,
         color: style.color,
       }}
     >
       <IconComponent weight="bold" size={size === "sm" ? 12 : 14} />
-      {!iconOnly && showLabel && <span className="ml-1">{style.label}</span>}
+      {showLabel && <span>{style.label}</span>}
     </span>
   );
 }

@@ -5,7 +5,7 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
 import { Sword } from "phosphor-react";
-import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
+import { DamageBadge } from "./DamageBadge";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -22,6 +22,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   const derived = computeDerivedStats(character);
   const rageDamage = derived.rageDamage || 0;
   const isBarbarian = character.class === "Barbarian";
+  const isPaladin = character.class === "Paladin";
 
   const getWeaponAttackDetails = (attack: Character["attacks"][number]) => {
     const weapon = character.inventory.find((i) => i.id === attack.id);
@@ -63,6 +64,11 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
           <span className="text-sm font-bold text-ink">Sneak Attack: {sneakAttack}</span>
         </div>
       )}
+      {isBarbarian && rageDamage > 0 && (
+        <div className="mb-4 surface bg-paper-muted px-4 py-3">
+          <span className="text-sm font-bold text-ink">Rage Damage: +{rageDamage}</span>
+        </div>
+      )}
       {classAttacks.length > 0 && (
         <div className="mb-4 space-y-3">
           {classAttacks.map((attack) => (
@@ -72,7 +78,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <span className="badge text-ink bg-paper-muted">class-granted</span>
               </div>
               <div className="flex items-center gap-3 flex-wrap">
-                <DamageTypeLabel type={attack.damageType} size="sm" />
+                <DamageBadge type={attack.damageType} size="sm" />
                 {attack.sneakAttack && (
                     <span className="text-xs font-bold text-ink bg-paper-muted px-2.5 py-1.5 surface">+{attack.sneakAttack} sneak</span>
                 )}
@@ -101,19 +107,16 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                   {details && (
                     <>
                       <div className="flex items-center gap-2">
-                        <DamageTypeLabel type={details.damageType} dice={details.damageDice} />
+                        <DamageBadge type={details.damageType} size="sm" />
                         <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                           +{details.damageBonus}
                         </span>
-                        {details.rageBonus > 0 && (
-                          <span className="text-[10px] font-bold text-ink bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">+{details.rageBonus} rage</span>
-                        )}
                       </div>
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
                     </>
                   )}
                     {!details && attack.damageType && (
-                    <DamageTypeLabel type={attack.damageType} size="sm" />
+                    <DamageBadge type={attack.damageType} size="sm" />
                   )}
                   {attack.sneakAttack && (
                     <span className="text-xs font-bold text-ink bg-paper px-2.5 py-1.5 surface">

@@ -369,18 +369,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                     </div>
                   )}
                   {getWeaponStats(item) && (
-                    <div className="flex flex-col gap-1 mt-1">
-                      <DamageTypeLabel type={item.damageType} dice={item.damageDice} />
-                      <div className="flex items-center gap-2">
-                        {getWeaponStats(item)?.rageBonus && getWeaponStats(item)!.rageBonus > 0 && (
-                          <span className="text-[10px] font-bold text-ink bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
-                            +{getWeaponStats(item)?.rageBonus} rage
-                          </span>
-                        )}
-                        <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                          {getWeaponStats(item)?.attackBonus} to hit
-                        </span>
-                      </div>
+                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                      <DamageBadge type={item.damageType} size="sm" />
+                      <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                        +{getWeaponStats(item)?.damageBonus}
+                      </span>
+                      <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.attackBonus} to hit
+                      </span>
                     </div>
                   )}
                   {isCustom && item.source === "custom" && (
@@ -474,18 +470,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                     </div>
                   )}
                   {getWeaponStats(item) && (
-                    <div className="flex flex-col gap-1">
-                      <DamageTypeLabel type={item.damageType} dice={item.damageDice} />
-                      <div className="flex items-center gap-2">
-                        {getWeaponStats(item)?.rageBonus && getWeaponStats(item)!.rageBonus > 0 && (
-                          <span className="text-[10px] font-bold text-ink bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
-                            +{getWeaponStats(item)?.rageBonus} rage
-                          </span>
-                        )}
-                        <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                          {getWeaponStats(item)?.attackBonus} to hit
-                        </span>
-                      </div>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <DamageBadge type={item.damageType} size="sm" />
+                      <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                        +{getWeaponStats(item)?.damageBonus}
+                      </span>
+                      <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
+                        {getWeaponStats(item)?.attackBonus} to hit
+                      </span>
                     </div>
                   )}
                 </div>
