@@ -240,9 +240,9 @@
   }
 
   .btn-primary {
-    background-color: var(--color-text-primary);
+    background-color: var(--color-ink);
     color: var(--color-surface);
-    border-color: var(--color-text-primary);
+    border-color: var(--color-ink);
   }
 
   .btn-primary:hover {
@@ -251,9 +251,9 @@
   }
 
   .btn-primary:disabled {
-    background-color: var(--color-text-primary);
+    background-color: var(--color-ink);
     color: var(--color-surface);
-    border-color: var(--color-text-primary);
+    border-color: var(--color-ink);
     opacity: 0.2;
   }
 
