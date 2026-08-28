@@ -525,20 +525,20 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                          const needsMoreSelections = selectedWeapons.length < selectionCount;
 
                           return (
-                            <div
-                              key={optionIndex}
-                              className={`card w-full px-3 py-2 text-left text-sm transition-all ${
-                                isSelected
-                                  ? "border-2 border-green-500 bg-green-50 text-[var(--color-text-primary)]"
-                                  : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                              }`}
-                            >
+                             <div
+                               key={optionIndex}
+                               className={`w-full px-3 py-2 text-left text-sm transition-all ${
+                                 isSelected
+                                   ? "!border-2 !border-green-500 bg-green-50 text-[var(--color-text-primary)]"
+                                   : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                               }`}
+                             >
                               {isSelected && selectedWeapons.length > 0 ? (
                                 <div className="space-y-2">
                                   {selectedWeapons.map((weapon, wIdx) => {
                                     const wStats = getWeaponStats(weapon.name, weapon.category);
                                     return (
-                                      <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border-2 border-green-500 bg-green-50">
+                                       <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded !border-2 !border-green-500 bg-green-50">
                                         <div className="flex-1">
                                           <div className="flex items-center gap-2">
                                             <span className="text-body font-semibold text-[var(--color-text-primary)]">{weapon.name}</span>
@@ -607,17 +607,17 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                          );
                        }
 
-                         return (
-                           <div
-                             key={optionIndex}
-                             className={`card w-full px-3 py-2 text-left text-sm transition-all ${
-                               isSelected
-                                 ? "border-2 border-green-500 bg-green-50 text-[var(--color-text-primary)]"
-                                 : isDisabled
-                                   ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
-                                   : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                             }`}
-                           >
+                          return (
+                            <div
+                              key={optionIndex}
+                              className={`w-full px-3 py-2 text-left text-sm transition-all ${
+                                isSelected
+                                  ? "!border-2 !border-green-500 bg-green-50 text-[var(--color-text-primary)]"
+                                  : isDisabled
+                                    ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
+                                    : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                              }`}
+                            >
                               {isSelected ? (
                                 <div className="flex items-center justify-between">
                                   <div className="flex-1">
@@ -711,7 +711,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const isGranted = item.isGranted;
 
               return (
-                <div key={item.id} className="card flex flex-col gap-1 px-3 py-2.5 border-2 border-green-500 bg-green-50">
+                 <div key={item.id} className="flex flex-col gap-1 px-3 py-2.5 !border-2 !border-green-500 bg-green-50">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
@@ -750,7 +750,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               {selectedWeaponsForGroup.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {selectedWeaponsForGroup.map((w) => (
-                    <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded border-2 border-green-500 bg-green-50 text-xs font-semibold text-green-700">
+                     <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded !border-2 !border-green-500 bg-green-50 text-xs font-semibold text-green-700">
                       {w.name}
                       <button
                         type="button"
@@ -775,16 +775,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const selectionCount = popupOption.selectionCount || 1;
               const isDisabled = !isWeaponSelected && selectedWeaponsForGroup.length >= selectionCount;
               return (
-                <div
-                  key={weapon.name}
-                  className={`card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 transition-colors ${
-                    isWeaponSelected
-                      ? "border-2 border-green-500 bg-green-50"
-                      : isDisabled
-                        ? "border border-[var(--color-border)] opacity-50 cursor-not-allowed"
-                        : "border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                  }`}
-                >
+                 <div
+                   key={weapon.name}
+                   className={`w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 transition-colors ${
+                     isWeaponSelected
+                       ? "!border-2 !border-green-500 bg-green-50"
+                       : isDisabled
+                         ? "border border-[var(--color-border)] opacity-50 cursor-not-allowed"
+                         : "border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                   }`}
+                 >
                   <button
                     type="button"
                     onClick={() => handleWeaponSelect(weapon, popupGroup.group.id, popupGroup.optionIndex)}
