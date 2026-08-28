@@ -5,10 +5,9 @@ import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
-import { getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
-import { getStaticClass } from "@/lib/srd-client";
-import { useEffect, useCallback } from "react";
-import { Backpack, Plus, CheckCircle, Circle, Info } from "phosphor-react";
+import { getEquipmentData, getEquipmentNames, getStaticWeapon } from "@/lib/srd-client";
+import { useCallback } from "react";
+import { Backpack, Plus, CheckCircle, Circle, Info, Hand, Shield } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 
 interface InventorySectionProps {
@@ -17,11 +16,38 @@ interface InventorySectionProps {
   editMode?: boolean;
 }
 
+type HandSlot = "main" | "off" | "both";
+
+function getWeaponHandling(item: Character["inventory"][number]): "light" | "one-hand" | "two-handed" | "versatile" {
+  const props = item.properties || [];
+  if (props.includes("two-handed") || props.includes("heavy")) return "two-handed";
+  if (props.includes("light")) return "light";
+  if (props.includes("versatile")) return "versatile";
+  return "one-hand";
+}
+
+function getEquippedHands(inventory: Character["inventory"]): { main: string | null; off: string | null; both: string | null } {
+  const result: { main: string | null; off: string | null; both: string | null } = { main: null, off: null, both: null };
+  for (const item of inventory) {
+    if (!item.equipped || !item.hand) continue;
+    if (item.hand === "both") result.both = item.id;
+    else if (item.hand === "main") result.main = item.id;
+    else if (item.hand === "off") result.off = item.id;
+  }
+  return result;
+}
+
 export function InventorySection({ character, onChange, editMode = true }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const derived = computeDerivedStats(character);
   const rageDamage = derived.rageDamage || 0;
   const isBarbarian = character.class === "Barbarian";
+
+  const hands = getEquippedHands(character.inventory);
+  const hasTwoHanded = hands.both !== null;
+  const hasShield = character.inventory.some(i => i.equipped && i.itemType === "armor" && i.armorType === "shield");
+  const hasMainHand = hands.main !== null;
+  const hasOffHand = hands.off !== null;
 
   const updateItem = useCallback((id: string, patch: Partial<Character["inventory"][number]>) => {
     const nextInventory = character.inventory.map((item) =>
@@ -31,26 +57,97 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     onChange({ inventory: nextInventory, ac, attacks });
   }, [character, onChange]);
 
-  const toggleEquip = useCallback((id: string, itemType: string | undefined) => {
+  const toggleEquip = useCallback((id: string) => {
     const item = character.inventory.find((i) => i.id === id);
     if (!item) return;
 
-    if (itemType === "armor") {
-      const nextInventory = character.inventory.map((i) =>
-        i.id === id ? { ...i, equipped: !i.equipped } : i.itemType === "armor" ? { ...i, equipped: false } : i
-      );
+    if (!item.equipped) {
+      if (item.itemType === "armor") {
+        if (item.armorType === "shield") {
+          if (hasTwoHanded) return;
+          const nextInventory = character.inventory.map((i) =>
+            i.id === id ? { ...i, equipped: true } : i.itemType === "armor" && i.armorType === "shield" ? { ...i, equipped: false } : i
+          );
+          const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+          onChange({ inventory: nextInventory, ac, attacks });
+        } else {
+          const nextInventory = character.inventory.map((i) =>
+            i.id === id ? { ...i, equipped: true } : i.itemType === "armor" && i.armorType !== "shield" ? { ...i, equipped: false } : i
+          );
+          const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+          onChange({ inventory: nextInventory, ac, attacks });
+        }
+      } else if (item.itemType === "weapon") {
+        const handling = getWeaponHandling(item);
+
+        if (handling === "two-handed") {
+          const nextInventory = character.inventory.map((i) => {
+            if (i.id === id) return { ...i, equipped: true, hand: "both" as const };
+            if (i.equipped) return { ...i, equipped: false, hand: undefined };
+            return i;
+          });
+          const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+          onChange({ inventory: nextInventory, ac, attacks });
+        } else if (handling === "light") {
+          if (!hasMainHand && !hasTwoHanded) {
+            updateItem(id, { equipped: true, hand: "main" });
+          } else if (!hasOffHand && !hasTwoHanded && !hasShield) {
+            updateItem(id, { equipped: true, hand: "off" });
+          } else if (!hasMainHand) {
+            updateItem(id, { equipped: true, hand: "main" });
+          } else {
+            updateItem(id, { equipped: true, hand: "main" });
+          }
+        } else {
+          if (!hasMainHand && !hasTwoHanded) {
+            updateItem(id, { equipped: true, hand: "main" });
+          } else if (!hasOffHand && !hasTwoHanded && !hasShield) {
+            updateItem(id, { equipped: true, hand: "off" });
+          } else if (!hasMainHand) {
+            updateItem(id, { equipped: true, hand: "main" });
+          } else {
+            updateItem(id, { equipped: true, hand: "main" });
+          }
+        }
+      } else {
+        updateItem(id, { equipped: true });
+      }
+    } else {
+      updateItem(id, { equipped: false, hand: undefined });
+    }
+  }, [character, onChange, updateItem, hasTwoHanded, hasShield, hasMainHand, hasOffHand]);
+
+  const setHand = useCallback((id: string, hand: HandSlot) => {
+    const item = character.inventory.find((i) => i.id === id);
+    if (!item || !item.equipped) return;
+
+    if (hand === "both") {
+      const nextInventory = character.inventory.map((i) => {
+        if (i.id === id) return { ...i, hand: "both" as const };
+        if (i.equipped) return { ...i, equipped: false, hand: undefined };
+        return i;
+      });
       const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
       onChange({ inventory: nextInventory, ac, attacks });
-    } else {
-      const nextInventory = character.inventory.map((i) =>
-        i.id === id ? { ...i, equipped: !i.equipped } : i
-      );
+    } else if (hand === "main") {
+      const nextInventory = character.inventory.map((i) => {
+        if (i.id === id) return { ...i, hand: "main" as const };
+        if (i.hand === "main") return { ...i, equipped: false, hand: undefined };
+        return i;
+      });
+      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+      onChange({ inventory: nextInventory, ac, attacks });
+    } else if (hand === "off") {
+      if (hasTwoHanded || hasShield) return;
+      const nextInventory = character.inventory.map((i) => {
+        if (i.id === id) return { ...i, hand: "off" as const };
+        if (i.hand === "off") return { ...i, equipped: false, hand: undefined };
+        return i;
+      });
       const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
       onChange({ inventory: nextInventory, ac, attacks });
     }
-  }, [character, onChange]);
-
-  const classData = character.class ? getStaticClass(character.class) : null;
+  }, [character, onChange, hasTwoHanded, hasShield]);
 
   const canEquip = (item: Character["inventory"][number]): boolean => {
     return item.itemType === "weapon" || item.itemType === "armor";
@@ -109,6 +206,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       if (item.damageDice) parts.push(`Damage: ${item.damageDice} ${item.damageType || ""}`);
       if (item.category) parts.push(`Category: ${item.category}`);
       if (itemInfo?.properties && itemInfo.properties.length > 0) parts.push(`Properties: ${itemInfo.properties.join(", ")}`);
+      const handling = getWeaponHandling(item);
+      if (handling === "light") parts.push("Light, can dual-wield");
+      else if (handling === "two-handed") parts.push("Two-handed");
+      else if (handling === "versatile") parts.push("Versatile (1d10 two-handed)");
     } else if (item.itemType === "armor") {
       const baseAC = item.baseAC ?? itemInfo?.baseAC;
       const armorType = item.armorType || itemInfo?.armorType;
@@ -123,6 +224,15 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     return parts.join("\n");
   };
 
+  const getHandLabel = (hand: string | undefined): string => {
+    switch (hand) {
+      case "main": return "Main";
+      case "off": return "Off";
+      case "both": return "2H";
+      default: return "";
+    }
+  };
+
   return (
     <SectionCard id="inventory" title="INVENTORY" icon={<Backpack weight="regular" className="h-5 w-5" />}>
       <div className="space-y-2">
@@ -131,6 +241,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           const equipBtn = canEquip(item);
           const isCustom = item.source === "custom";
           const dropdownValue = isCustom ? "Custom Item" : (item.srdItemName || item.name || "");
+          const handling = item.itemType === "weapon" ? getWeaponHandling(item) : null;
           return (
             <div key={item.id} className="list-row flex flex-col gap-2">
               {editMode ? (
@@ -141,9 +252,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       onChange={(e) => {
                         const val = e.target.value;
                         if (val === "Custom Item") {
-                          updateItem(item.id, { source: "custom", srdItemName: undefined, name: item.name || "" });
+                          updateItem(item.id, { source: "custom", srdItemName: undefined, name: item.name || "", properties: [] });
                         } else if (val) {
                           const srdData = getEquipmentData(val);
+                          const weaponData = getStaticWeapon(val);
                           updateItem(item.id, {
                             name: val,
                             srdItemName: val,
@@ -156,9 +268,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                             baseAC: srdData?.baseAC,
                             armorType: srdData?.armorType,
                             maxDexBonus: srdData?.maxDexBonus,
+                            properties: weaponData?.properties?.map((p: any) => p.name.toLowerCase()) || [],
                           });
                         } else {
-                          updateItem(item.id, { source: "custom", srdItemName: undefined, name: "" });
+                          updateItem(item.id, { source: "custom", srdItemName: undefined, name: "", properties: [] });
                         }
                       }}
                       onBlur={onFieldBlur}
@@ -190,7 +303,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                     {equipBtn && (
                       <button
                         type="button"
-                        onClick={() => toggleEquip(item.id, item.itemType)}
+                        onClick={() => toggleEquip(item.id)}
                         className={`px-2.5 py-1 text-xs flex items-center gap-1.5 ${
                           item.equipped
                             ? "btn-primary"
@@ -211,6 +324,67 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       Remove
                     </button>
                   </div>
+                  {item.equipped && item.itemType === "weapon" && handling !== "two-handed" && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] font-bold text-[var(--color-text-muted)]">Hand:</span>
+                      <button
+                        type="button"
+                        onClick={() => setHand(item.id, "main")}
+                        className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
+                          item.hand === "main"
+                            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                            : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        <Hand weight="bold" size={10} className="inline mr-0.5" />Main
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setHand(item.id, "off")}
+                        disabled={hasTwoHanded || hasShield}
+                        className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
+                          item.hand === "off"
+                            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                            : hasTwoHanded || hasShield
+                              ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
+                              : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        <Hand weight="bold" size={10} className="inline mr-0.5 scale-x-[-1]" />Off
+                      </button>
+                      {handling === "versatile" && (
+                        <button
+                          type="button"
+                          onClick={() => setHand(item.id, "both")}
+                          className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
+                            item.hand === "both"
+                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                              : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          2-Handed
+                        </button>
+                      )}
+                    </div>
+                  )}
+                  {item.equipped && item.hand && (
+                    <div className="flex items-center gap-1">
+                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                        item.hand === "both"
+                          ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                          : item.hand === "main"
+                            ? "bg-[var(--color-success-100)] text-[var(--color-success-700)]"
+                            : "bg-[var(--color-info-100)] text-[var(--color-info-700)]"
+                      }`}>
+                        {getHandLabel(item.hand)}
+                      </span>
+                      {item.itemType === "armor" && item.armorType === "shield" && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
+                          <Shield weight="bold" size={10} className="inline mr-0.5" />Shield
+                        </span>
+                      )}
+                    </div>
+                  )}
                   {getWeaponStats(item) && (
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
@@ -243,13 +417,15 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-[var(--color-success-600)] font-bold">✓</span>
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name || "Unnamed Item"}</span>
                       {item.quantity > 1 && (
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
                       )}
                       {item.equipped && (
-                        <span className="badge-light text-[var(--color-text-primary)] bg-paper/10">EQUIPPED</span>
+                        <span className="badge-light text-[var(--color-text-primary)] bg-paper/10">
+                          {item.hand === "both" ? "2H" : item.hand === "off" ? "OFF" : item.itemType === "armor" && item.armorType === "shield" ? "SHD" : "EQUIPPED"}
+                        </span>
                       )}
                     </div>
                     <div className="flex items-center gap-2">
@@ -297,14 +473,5 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
         </button>
       )}
     </SectionCard>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col gap-1">
-      <span className="field-label-light">{label}</span>
-      {children}
-    </div>
   );
 }
