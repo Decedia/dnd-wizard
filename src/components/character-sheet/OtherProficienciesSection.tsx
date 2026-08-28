@@ -17,7 +17,7 @@ export function OtherProficienciesSection({ otherProficiencies, toolProficiencie
   const { onFieldBlur } = useCharacterSheet();
 
   return (
-    <SectionCard id="proficiencies" title="OTHER PROFICIENCIES & LANGUAGES" icon={<Scroll weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="proficiencies" title="Other Proficiencies & Languages" icon={<Scroll weight="regular" className="h-5 w-5" />}>
       {toolProficiencies.length > 0 && (
         <div className="mb-3">
           <span className="field-label">Tool Proficiencies</span>

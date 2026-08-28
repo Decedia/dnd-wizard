@@ -15,7 +15,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
   const { onFieldBlur } = useCharacterSheet();
 
   return (
-    <SectionCard id="hit-dice" title="HIT DICE" icon={<DiceFive weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="hit-dice" title="Hit Dice" icon={<DiceFive weight="regular" className="h-5 w-5" />}>
       <div className="grid grid-cols-2 gap-3">
         <Field label="TOTAL">
           {editMode ? (

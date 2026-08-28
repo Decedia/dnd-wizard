@@ -25,7 +25,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
   );
 
   return (
-    <SectionCard id="death-saves" title="DEATH SAVES" icon={<Skull weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="death-saves" title="Death Saves" icon={<Skull weight="regular" className="h-5 w-5" />}>
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-3">
           <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Successes</span>

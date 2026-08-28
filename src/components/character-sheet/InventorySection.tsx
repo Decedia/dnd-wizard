@@ -235,7 +235,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   };
 
   return (
-    <SectionCard id="inventory" title="INVENTORY" icon={<Backpack weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="inventory" title="Inventory" icon={<Backpack weight="regular" className="h-5 w-5" />}>
       <div className="space-y-2">
         {character.inventory.map((item) => {
           const description = getItemDescription(item);
@@ -414,9 +414,8 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 </>
               ) : (
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[var(--color-success-600)] font-bold">✓</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name || "Unnamed Item"}</span>
                       {item.quantity > 1 && (
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
@@ -426,14 +425,78 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                           {item.hand === "both" ? "2H" : item.hand === "off" ? "OFF" : item.itemType === "armor" && item.armorType === "shield" ? "SHD" : "EQUIPPED"}
                         </span>
                       )}
+                      {item.itemType === "armor" && item.armorType === "shield" && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
+                          <Shield weight="bold" size={10} className="inline mr-0.5" />Shield
+                        </span>
+                      )}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 flex-shrink-0">
+                      {canEquip(item) && (
+                        <button
+                          type="button"
+                          onClick={() => toggleEquip(item.id)}
+                          className={`px-2 py-0.5 text-[10px] font-bold rounded flex items-center gap-1 ${
+                            item.equipped
+                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                              : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)]"
+                          }`}
+                        >
+                          {item.equipped
+                            ? <CheckCircle weight="fill" size={12} />
+                            : <Circle weight="regular" size={12} />}
+                          {item.equipped ? "Equipped" : "Equip"}
+                        </button>
+                      )}
                       <InfoButton
                         title={item.name || "Item"}
                         description={getItemDescription(item)}
                       />
                     </div>
                   </div>
+                  {item.equipped && item.itemType === "weapon" && handling !== "two-handed" && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] font-bold text-[var(--color-text-muted)]">Hand:</span>
+                      <button
+                        type="button"
+                        onClick={() => setHand(item.id, "main")}
+                        className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
+                          item.hand === "main"
+                            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                            : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        <Hand weight="bold" size={10} className="inline mr-0.5" />Main
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setHand(item.id, "off")}
+                        disabled={hasTwoHanded || hasShield}
+                        className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
+                          item.hand === "off"
+                            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                            : hasTwoHanded || hasShield
+                              ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
+                              : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        <Hand weight="bold" size={10} className="inline mr-0.5 scale-x-[-1]" />Off
+                      </button>
+                      {handling === "versatile" && (
+                        <button
+                          type="button"
+                          onClick={() => setHand(item.id, "both")}
+                          className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
+                            item.hand === "both"
+                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                              : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          2-Handed
+                        </button>
+                      )}
+                    </div>
+                  )}
                   {getWeaponStats(item) && (
                     <div className="flex items-center gap-2">
                       <DamageBadge type={item.damageType} size="sm" />

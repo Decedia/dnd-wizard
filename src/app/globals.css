@@ -330,6 +330,16 @@
     color: var(--color-text-secondary);
   }
 
+  .section-title-light {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-primary);
+  }
+
   .hint-box {
     border-radius: var(--border-radius-md);
     background-color: var(--color-bg);

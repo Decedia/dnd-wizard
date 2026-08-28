@@ -144,7 +144,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   }, []);
 
   return (
-    <SectionCard id="spells" title="SPELLS" icon={<Lightning weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="spells" title="Spells" icon={<Lightning weight="regular" className="h-5 w-5" />}>
       {preparationCaster && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Prepared Spells: {preparedCount}/{maxPrepared}</span>

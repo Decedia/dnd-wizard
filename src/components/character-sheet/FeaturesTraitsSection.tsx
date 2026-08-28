@@ -39,7 +39,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   };
 
   return (
-    <SectionCard id="features" title="FEATURES & TRAITS" icon={<Star weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="features" title="Features & Traits" icon={<Star weight="regular" className="h-5 w-5" />}>
       <div className="space-y-3">
         {character.subclass && (
           <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">

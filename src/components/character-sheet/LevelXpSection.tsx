@@ -20,7 +20,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
   const progressPercent = maxXp > 0 ? Math.min(100, Math.max(0, (currentXp / maxXp) * 100)) : 0;
 
   return (
-    <SectionCard id="level-xp" title="LEVEL & EXPERIENCE" icon={<Star weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="level-xp" title="Level & Experience" icon={<Star weight="regular" className="h-5 w-5" />}>
       <div className="flex items-center gap-5">
         <div className="relative flex flex-col items-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-xl border-[3px] border-paper bg-paper">

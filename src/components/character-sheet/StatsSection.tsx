@@ -37,7 +37,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
   const savingThrowKeys = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
   return (
-    <SectionCard id="stats" title="STATS" icon={<ChartBar weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="stats" title="Stats" icon={<ChartBar weight="regular" className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-2.5">
         {stats.map(({ key, label }) => (
           <AbilityScoreBlock

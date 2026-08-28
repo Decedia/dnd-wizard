@@ -29,7 +29,7 @@ export function CurrencySection({ character, onChange, editMode = true }: Curren
   };
 
   return (
-    <SectionCard id="currency" title="CURRENCY" icon={<Coins weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="currency" title="Currency" icon={<Coins weight="regular" className="h-5 w-5" />}>
       <div className="grid grid-cols-5 gap-2">
         {CURRENCY_TYPES.map(({ key, label, color }) => (
           <div key={key} className="flex flex-col items-center gap-1.5">

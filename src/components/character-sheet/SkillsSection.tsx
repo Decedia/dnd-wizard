@@ -52,7 +52,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   }, [character.skills, isAtMaxSelections, isBackgroundSkill, onChange]);
 
   return (
-    <SectionCard id="skills" title="SKILLS" icon={<ListChecks weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="skills" title="Skills" icon={<ListChecks weight="regular" className="h-5 w-5" />}>
       {skillChoices && editMode && (
         <div className="mb-2.5 hint-box-light">
           <span className="text-[11px] text-ink-muted">

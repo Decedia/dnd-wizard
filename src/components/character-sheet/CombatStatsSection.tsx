@@ -19,7 +19,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
   const isSorcerer = character.class === "Sorcerer";
 
   return (
-    <SectionCard id="combat-stats" title="COMBAT STATS" icon={<Sword weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="combat-stats" title="Combat Stats" icon={<Sword weight="regular" className="h-5 w-5" />}>
       {editMode ? (
         <div className="flex items-center gap-2 mb-3">
           <input

@@ -23,7 +23,7 @@ export function PassiveStatsSection({ character }: PassiveStatsSectionProps) {
   const passiveInvestigation = 10 + intMod + (isInvestigationProficient ? profBonus : 0);
 
   return (
-    <SectionCard id="passive-stats" title="PASSIVE STATS" icon={<Eye weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="passive-stats" title="Passive Stats" icon={<Eye weight="regular" className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-3">
         <div className="flex flex-col items-center gap-1.5 p-3 bg-[var(--color-bg)] rounded-[var(--radius-md)]">
           <Eye className="h-5 w-5 text-[var(--color-text-muted)]" />

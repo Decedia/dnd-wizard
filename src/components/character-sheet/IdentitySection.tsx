@@ -50,7 +50,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
   }, [character.languages, onChange]);
 
   return (
-    <SectionCard id="identity" title="IDENTITY" icon={<User weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="identity" title="Identity" icon={<User weight="regular" className="h-5 w-5" />}>
       <div className="space-y-3.5">
         {editMode ? (
           <>
