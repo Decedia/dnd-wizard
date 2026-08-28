@@ -213,6 +213,88 @@
           }
         ]
       }
+    },
+    "Beast Master": {
+      "Ranger's Companion": {
+        "options": [
+          {
+            "name": "Wolf",
+            "description": "Medium beast, CR 1/4. AC 13, HP 11 (2d8+2), Speed 40 ft. Pack Tactics: advantage on attack rolls when an ally is within 5 ft. of the target. Bite: +4 to hit, 2d6+2 piercing damage."
+          },
+          {
+            "name": "Panther",
+            "description": "Medium beast, CR 1/4. AC 12, HP 13 (3d8), Speed 50 ft., climb 40 ft. Keen Smell: advantage on Perception checks using smell. Pounce: if moving 20 ft. straight toward a creature and hitting with a bite attack, target must succeed on DC 12 Strength save or be knocked prone. Bite: +4 to hit, 1d6+2 piercing. Claw: +4 to hit, 1d4+2 slashing."
+          },
+          {
+            "name": "Mastiff",
+            "description": "Medium beast, CR 1/8. AC 12, HP 5 (1d8+1), Speed 40 ft. Keen Hearing and Smell: advantage on Perception checks using hearing or smell. Bite: +3 to hit, 1d6+1 piercing damage. If target is a creature, it must succeed on DC 11 Strength save or be knocked prone."
+          },
+          {
+            "name": "Hawk",
+            "description": "Tiny beast, CR 0. AC 12, HP 1 (1d4-1), Speed 10 ft., fly 60 ft. Keen Sight: advantage on Perception checks using sight. Talons: +4 to hit, 1d1 slashing damage."
+          },
+          {
+            "name": "Eagle",
+            "description": "Small beast, CR 0. AC 12, HP 3 (1d6), Speed 10 ft., fly 60 ft. Keen Sight: advantage on Perception checks using sight. Talons: +4 to hit, 1d4+2 slashing damage."
+          },
+          {
+            "name": "Boar",
+            "description": "Medium beast, CR 1/4. AC 11 (natural armor), HP 11 (2d8+2), Speed 40 ft. Charge: if moving 20 ft. straight toward a target and hitting with a tusk attack, target takes extra 1d6 slashing damage. Tusk: +3 to hit, 1d6+1 slashing damage."
+          },
+          {
+            "name": "Lion",
+            "description": "Large beast, CR 1/4. AC 12, HP 26 (4d10+4), Speed 50 ft. Keen Smell: advantage on Perception checks using smell. Pack Tactics: advantage on attack rolls when an ally is within 5 ft. of the target. Bite: +5 to hit, 1d8+3 piercing. Claw: +5 to hit, 1d6+3 slashing."
+          },
+          {
+            "name": "Tiger",
+            "description": "Large beast, CR 1/4. AC 12, HP 37 (5d10+10), Speed 40 ft. Keen Smell: advantage on Perception checks using smell. Darkvision 60 ft. Pounce: if moving 20 ft. straight toward a creature and hitting with a claw attack, target must succeed on DC 13 Strength save or be knocked prone. Bite: +5 to hit, 1d10+3 piercing. Claw: +5 to hit, 1d8+3 slashing."
+          },
+          {
+            "name": "Bear (Black)",
+            "description": "Medium beast, CR 1/4. AC 11 (natural armor), HP 19 (3d8+6), Speed 40 ft., climb 30 ft. Keen Smell: advantage on Perception checks using smell. Multiattack: two attacks, one with bite and one with claws. Bite: +3 to hit, 1d6+2 piercing. Claws: +3 to hit, 2d4+2 slashing."
+          },
+          {
+            "name": "Crocodile",
+            "description": "Large beast, CR 1/2. AC 12 (natural armor), HP 15 (2d10+4), Speed 20 ft., swim 30 ft. Hold Breath: can hold breath for 15 minutes. Bite: +4 to hit, 1d10+2 piercing damage. If target is a creature, it must succeed on DC 12 Strength save or be grappled (escape DC 12)."
+          },
+          {
+            "name": "Giant Goat",
+            "description": "Large beast, CR 1/2. AC 11 (natural armor), HP 19 (3d10+3), Speed 40 ft. Charge: if moving 20 ft. straight toward a target and hitting with a ram attack, target takes extra 2d4 bludgeoning damage. Sure-Footed: advantage on Strength and Dexterity saving throws against effects that would knock it prone. Ram: +4 to hit, 2d4+2 bludgeoning."
+          },
+          {
+            "name": "Reef Shark",
+            "description": "Medium beast, CR 1/2. AC 12 (natural armor), HP 22 (4d8+4), Speed 0 ft., swim 40 ft. Pack Tactics: advantage on attack rolls when an ally is within 5 ft. of the target. Water Breathing: can breathe only underwater. Bite: +4 to hit, 1d8+2 piercing."
+          },
+          {
+            "name": "Giant Wolf Spider",
+            "description": "Medium beast, CR 1/4. AC 13, HP 11 (2d8+2), Speed 40 ft., climb 40 ft. Spider Climb: can climb difficult surfaces. Web Sense: while in contact with a web, knows the exact location of any other creature in contact with the same web. Darkvision 30 ft. Bite: +3 to hit, 1d6+1 piercing plus 2d8 poison damage (DC 11 Con save for half)."
+          },
+          {
+            "name": "Giant Badger",
+            "description": "Medium beast, CR 1/4. AC 10, HP 13 (2d8+4), Speed 30 ft., burrow 10 ft. Keen Smell: advantage on Perception checks using smell. Multiattack: two attacks, one with bite and one with claws. Bite: +2 to hit, 1d6 piercing. Claws: +2 to hit, 2d4 slashing."
+          },
+          {
+            "name": "Axe Beak",
+            "description": "Large beast, CR 1/4. AC 11, HP 19 (3d10+3), Speed 50 ft. Beak: +4 to hit, 1d8+2 piercing damage."
+          },
+          {
+            "name": "Elk",
+            "description": "Large beast, CR 1/4. AC 10, HP 13 (2d10+2), Speed 50 ft. Charge: if moving 20 ft. straight toward a target and hitting with a ram attack, target takes extra 1d6 bludgeoning damage. Ram: +3 to hit, 1d6+1 bludgeoning. Hooves: +3 to hit, 2d4+1 bludgeoning."
+          },
+          {
+            "name": "Deer",
+            "description": "Medium beast, CR 0. AC 13, HP 4 (1d8), Speed 50 ft. Bite: +2 to hit, 1d4 piercing damage."
+          },
+          {
+            "name": "Riding Horse",
+            "description": "Large beast, CR 1/4. AC 10, HP 13 (2d10+2), Speed 60 ft. Hooves: +2 to hit, 2d4+1 bludgeoning damage."
+          },
+          {
+            "name": "Camel",
+            "description": "Large beast, CR 1/8. AC 9, HP 15 (2d10+4), Speed 50 ft. Bite: +2 to hit, 1d4 bludgeoning damage."
+          }
+        ]
+      }
     }
   },
   "Barbarian": {
