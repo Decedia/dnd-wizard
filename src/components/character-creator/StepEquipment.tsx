@@ -8,6 +8,7 @@ import type { Character } from "@/lib/storage";
 import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
 import { InfoButton } from "@/components/InfoButton";
 import { DescriptionModal } from "@/components/InfoButton";
+import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
 
 interface StepEquipmentProps {
   data: Character;
@@ -657,22 +658,25 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                     <span className="text-body">
                                       {option.isInstrumentChoice ? "Choose a musical instrument" : option.isArcaneFocusChoice ? "Choose an arcane focus" : option.isHolySymbolChoice ? "Choose a holy symbol" : option.isDruidicFocusChoice ? "Choose a druidic focus" : option.description || primaryItem?.name}
                                     </span>
-                                    {primaryInfo?.type === "weapon" && (() => {
-                                      const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
-                                      return wStats ? (
-                                        <div className="flex items-center gap-2 mt-1.5">
-                                          <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
-                                            {wStats.damageDice} {wStats.damageType}
-                                          </span>
-                                          <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
-                                            {wStats.abilityKey} {wStats.damageBonus}
-                                          </span>
-                                          <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                                            {wStats.attackBonus} to hit
-                                          </span>
-                                        </div>
-                                      ) : null;
-                                    })()}
+                                     {primaryInfo?.type === "weapon" && (() => {
+                                       const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
+                                       return wStats ? (
+                                         <div className="flex items-center gap-2 mt-1.5">
+                                           <span
+                                             className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                                             style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
+                                           >
+                                             {wStats.damageDice} {wStats.damageType}
+                                           </span>
+                                           <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                                             {wStats.abilityKey} {wStats.damageBonus}
+                                           </span>
+                                           <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
+                                             {wStats.attackBonus} to hit
+                                           </span>
+                                         </div>
+                                       ) : null;
+                                     })()}
                                   </button>
                                 {primaryInfo && (
                                   <InfoButton
@@ -794,16 +798,19 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                          </span>
                        )}
                      </div>
-                     {wStats && (
-                       <div className="flex items-center gap-2 mt-1">
-                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-error-600)] bg-[var(--color-error-50)]"}`}>
-                           {wStats.damageDice} {wStats.damageType}
-                         </span>
-                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-info-600)] bg-[var(--color-info-50)]"}`}>
-                           {wStats.abilityKey} {wStats.damageBonus}
-                         </span>
-                       </div>
-                     )}
+                      {wStats && (
+                        <div className="flex items-center gap-2 mt-1">
+                          <span
+                            className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : ""}`}
+                            style={!isWeaponSelected ? { color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) } : undefined}
+                          >
+                            {wStats.damageDice} {wStats.damageType}
+                          </span>
+                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-info-600)] bg-[var(--color-info-50)]"}`}>
+                            {wStats.abilityKey} {wStats.damageBonus}
+                          </span>
+                        </div>
+                      )}
                    </button>
                  </div>
               );
