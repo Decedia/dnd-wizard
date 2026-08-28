@@ -1259,10 +1259,10 @@ function LevelCard({
                     <div className="flex items-center gap-2 mb-1">
                       <Crown weight="regular" className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                      {fc.description && (
+                        <InfoButton title={fc.name} description={fc.description} />
+                      )}
                     </div>
-                    {fc.description && (
-                      <p className="text-[10px] text-[var(--color-text-muted)] mb-2 leading-relaxed">{fc.description}</p>
-                    )}
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
                      <button
                        type="button"
@@ -1281,10 +1281,10 @@ function LevelCard({
                     <div className="flex items-center gap-2 mb-1">
                       <Sword weight="regular" className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                      {fc.description && (
+                        <InfoButton title={fc.name} description={fc.description} />
+                      )}
                     </div>
-                    {fc.description && (
-                      <p className="text-[10px] text-[var(--color-text-muted)] mb-2 leading-relaxed">{fc.description}</p>
-                    )}
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
                      <button
                        type="button"
