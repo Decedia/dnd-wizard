@@ -168,9 +168,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
     const existingWeapons = data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
 
-    const alreadySelected = existingWeapons.some(w => w.name === weapon.name);
-    if (alreadySelected) {
-      const newInventory = data.inventory.filter(item => !(item.choiceGroupIndex === groupIndex && item.itemType === "weapon" && item.name === weapon.name));
+    const alreadySelectedIndex = existingWeapons.findIndex(w => w.name === weapon.name);
+    if (alreadySelectedIndex >= 0) {
+      const newInventory = data.inventory.filter(item => item.id !== existingWeapons[alreadySelectedIndex].id);
       onChange({ inventory: newInventory });
       return;
     }
@@ -178,8 +178,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (existingWeapons.length >= selectionCount) {
       return;
     }
-
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex || item.itemType !== "weapon");
 
     const weaponItem: Character["inventory"][number] = {
       id: generateId(),
@@ -196,9 +194,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       choiceOptionIndex: optionIndex,
     };
 
-    const nextInventory = [...newInventory, weaponItem];
+    const nextInventory = [...data.inventory, weaponItem];
 
-    if (option?.description?.toLowerCase().includes("shield")) {
+    if (option?.description?.toLowerCase().includes("shield") && !data.inventory.some(i => i.name === "Shield" && i.choiceGroupIndex === groupIndex)) {
       const shieldInfo = getItemInfo("Shield");
       if (shieldInfo) {
         nextInventory.push({
