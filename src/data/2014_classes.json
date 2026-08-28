@@ -7704,11 +7704,12 @@
           "features": [
             {
               "name": "Spell Mastery",
-              "description": "At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal. By spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels.",
+              "description": "At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared.",
               "type": "feature",
               "choices": {
                 "type": "spells",
-                "options": [
+                "count": 2,
+                "options_1st": [
                   "Alarm",
                   "Burning Hands",
                   "Charm Person",
@@ -7737,8 +7738,45 @@
                   "Thunderwave",
                   "Unseen Servant"
                 ],
-                "count": 1,
-                "description": "Choose a 1th-level wizard spell."
+                "options_2nd": [
+                  "Alter Self",
+                  "Arcane Lock",
+                  "Blindness/Deafness",
+                  "Blur",
+                  "Cloud of Daggers",
+                  "Continual Flame",
+                  "Crown of Madness",
+                  "Darkness",
+                  "Darkvision",
+                  "Detect Thoughts",
+                  "Dust Devil",
+                  "Earthbind",
+                  "Enlarge/Reduce",
+                  "Flaming Sphere",
+                  "Gentle Repose",
+                  "Gust of Wind",
+                  "Hold Person",
+                  "Invisibility",
+                  "Knock",
+                  "Levitate",
+                  "Locate Object",
+                  "Magic Mouth",
+                  "Magic Weapon",
+                  "Mirror Image",
+                  "Misty Step",
+                  "Moonbeam",
+                  "Phantasmal Force",
+                  "Pyrotechnics",
+                  "Ray of Enfeeblement",
+                  "Rope Trick",
+                  "Scorching Ray",
+                  "See Invisibility",
+                  "Shatter",
+                  "Spider Climb",
+                  "Suggestion",
+                  "Web"
+                ],
+                "description": "Choose one 1st-level and one 2nd-level wizard spell for Spell Mastery."
               }
             }
           ],

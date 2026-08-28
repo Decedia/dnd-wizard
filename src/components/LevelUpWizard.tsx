@@ -1131,7 +1131,7 @@ function LevelCard({
     const [showSpellModal, setShowSpellModal] = useState(false);
     const [showTerrainModal, setShowTerrainModal] = useState(false);
     const [showBonusCantripModal, setShowBonusCantripModal] = useState(false);
-    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean; count?: number } | null>(null);
+    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean; count?: number; isSpellMastery?: boolean; isSignatureSpells?: boolean } | null>(null);
     const [multiSelectSelections, setMultiSelectSelections] = useState<string[]>([]);
     const [showHumanoidPopup, setShowHumanoidPopup] = useState<{ featureName: string; level: number } | null>(null);
     const [humanoidSelections, setHumanoidSelections] = useState<string[]>([]);
@@ -1433,6 +1433,48 @@ function LevelCard({
               </div>
             </div>
           )}
+
+          {character.class === "Wizard" && info.level === 18 && (() => {
+            const spellMasterySelection = classFeatureChoices["Spell Mastery"] || "";
+            return (
+              <div className="p-3 rounded-lg border border-amber-300 bg-amber-50/30">
+                <div className="flex items-center gap-2 mb-1">
+                  <Sparkle weight="regular" className="h-3.5 w-3.5 text-amber-600" />
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Spell Mastery</span>
+                </div>
+                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one 1st-level and one 2nd-level spell to cast at will without spell slots.</p>
+                <button
+                  type="button"
+                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Spell Mastery", description: "Choose one 1st-level and one 2nd-level wizard spell from your spellbook.", options: [], isSubclass: false, count: 2, isSpellMastery: true }); }}
+                  className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                >
+                  <span>{spellMasterySelection || "Select 2 spells..."}</span>
+                  <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                </button>
+              </div>
+            );
+          })()}
+
+          {character.class === "Wizard" && info.level === 20 && (() => {
+            const signatureSpellsSelection = classFeatureChoices["Signature Spells"] || "";
+            return (
+              <div className="p-3 rounded-lg border border-rose-300 bg-rose-50/30">
+                <div className="flex items-center gap-2 mb-1">
+                  <Star weight="regular" className="h-3.5 w-3.5 text-rose-600" />
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Signature Spells</span>
+                </div>
+                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose two 3rd-level spells. They&apos;re always prepared and you can cast each once per short rest without a spell slot.</p>
+                <button
+                  type="button"
+                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Signature Spells", description: "Choose two 3rd-level wizard spells from your spellbook.", options: [], isSubclass: false, count: 2, isSignatureSpells: true }); }}
+                  className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                >
+                  <span>{signatureSpellsSelection || "Select 2 signature spells..."}</span>
+                  <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                </button>
+              </div>
+            );
+          })()}
 
           {character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
@@ -1832,7 +1874,65 @@ function LevelCard({
         </div>
       )}
 
-      {showFeaturePopup && (
+      {(showFeaturePopup as any)?.isSpellMastery && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4" onClick={() => setShowFeaturePopup(null)}>
+          <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">Spell Mastery</div>
+              <button type="button" onClick={() => { setShowFeaturePopup(null); setMultiSelectSelections([]); }} className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"><X className="h-4 w-4" /></button>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+              <div>
+                <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 1st-level spell:</p>
+                <div className="space-y-1">
+                  {["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].map((name) => {
+                    const isSelected = multiSelectSelections.includes(name);
+                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-bg)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold text-[var(--color-text-primary)]">{name}</span></button>);
+                  })}
+                </div>
+              </div>
+              <div>
+                <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 2nd-level spell:</p>
+                <div className="space-y-1">
+                  {["Alter Self","Arcane Lock","Blindness/Deafness","Blur","Cloud of Daggers","Continual Flame","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dust Devil","Earthbind","Enlarge/Reduce","Flaming Sphere","Gentle Repose","Gust of Wind","Hold Person","Invisibility","Knock","Levitate","Locate Object","Magic Mouth","Magic Weapon","Mirror Image","Misty Step","Moonbeam","Phantasmal Force","Pyrotechnics","Ray of Enfeeblement","Rope Trick","Scorching Ray","See Invisibility","Shatter","Spider Climb","Suggestion","Web"].map((name) => {
+                    const isSelected = multiSelectSelections.includes(name);
+                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alter Self","Arcane Lock","Blindness/Deafness","Blur","Cloud of Daggers","Continual Flame","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dust Devil","Earthbind","Enlarge/Reduce","Flaming Sphere","Gentle Repose","Gust of Wind","Hold Person","Invisibility","Knock","Levitate","Locate Object","Magic Mouth","Magic Weapon","Mirror Image","Misty Step","Moonbeam","Phantasmal Force","Pyrotechnics","Ray of Enfeeblement","Rope Trick","Scorching Ray","See Invisibility","Shatter","Spider Climb","Suggestion","Web"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-bg)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold text-[var(--color-text-primary)]">{name}</span></button>);
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3">
+              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Spell Mastery", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {(showFeaturePopup as any)?.isSignatureSpells && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4" onClick={() => setShowFeaturePopup(null)}>
+          <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">Signature Spells</div>
+              <button type="button" onClick={() => { setShowFeaturePopup(null); setMultiSelectSelections([]); }} className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"><X className="h-4 w-4" /></button>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select two 3rd-level spells:</p>
+              <div className="space-y-1">
+                {["Animate Dead","Bestow Curse","Blink","Clairvoyance","Counterspell","Dispel Magic","Fear","Fireball","Fly","Gaseous Form","Glyph of Warding","Haste","Hypnotic Pattern","Lightning Bolt","Magic Circle","Major Image","Nondetection","Phantom Steed","Protection From Energy","Remove Curse","Sending","Sleet Storm","Slow","Stinking Cloud","Tiny Hut","Tongues","Vampiric Touch","Water Breathing"].map((name) => {
+                  const isSelected = multiSelectSelections.includes(name);
+                  const isDisabled = !isSelected && multiSelectSelections.length >= 2;
+                  return (<button key={name} type="button" disabled={isDisabled} onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else if (multiSelectSelections.length < 2) setMultiSelectSelections([...multiSelectSelections, name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-bg)]" : isDisabled ? "border-[var(--color-border)] bg-[var(--color-surface)] opacity-50" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold text-[var(--color-text-primary)]">{name}</span></button>);
+                })}
+              </div>
+            </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3">
+              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Signature Spells", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showFeaturePopup && !(showFeaturePopup as any)?.isSpellMastery && !(showFeaturePopup as any)?.isSignatureSpells && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShowFeaturePopup(null); }}

@@ -1924,7 +1924,7 @@
       ],
       "features": [
         {
-          "name": "Savant",
+          "name": "Abjuration Savant",
           "description": [
             "At 2nd level, the gold and time you spend to copy an abjuration spell into your spellbook is halved."
           ],
@@ -1945,7 +1945,7 @@
           "level": 6
         },
         {
-          "name": "Resilient Ward",
+          "name": "Improved Abjuration",
           "description": [
             "At 10th level, your Arcane Ward regains hit points when you finish a short rest."
           ],
@@ -1971,7 +1971,7 @@
       ],
       "features": [
         {
-          "name": "Savant",
+          "name": "Conjuration Savant",
           "description": [
             "At 2nd level, the gold and time you spend to copy a conjuration spell into your spellbook is halved."
           ],
@@ -1985,7 +1985,7 @@
           "level": 2
         },
         {
-          "name": "Benign Transposition",
+          "name": "Benign Transportation",
           "description": [
             "At 6th level, you can swap places with a creature."
           ],
@@ -2018,7 +2018,7 @@
       ],
       "features": [
         {
-          "name": "Savant",
+          "name": "Divination Savant",
           "description": [
             "At 2nd level, the gold and time you spend to copy a divination spell into your spellbook is halved."
           ],
@@ -2046,7 +2046,7 @@
           "level": 10
         },
         {
-          "name": "Future Sight",
+          "name": "Greater Portent",
           "description": [
             "At 14th level, you can cast the foresight spell once per long rest."
           ],
@@ -2112,14 +2112,14 @@
       ],
       "features": [
         {
-          "name": "Savant",
+          "name": "Illusion Savant",
           "description": [
             "At 2nd level, the gold and time you spend to copy an illusion spell into your spellbook is halved."
           ],
           "level": 2
         },
         {
-          "name": "Malleable Illusion",
+          "name": "Improved Minor Illusion",
           "description": [
             "Also at 2nd level, you can change the nature of your illusions."
           ],
@@ -2133,14 +2133,14 @@
           "level": 6
         },
         {
-          "name": "Illusory Reality",
+          "name": "Illusory Self",
           "description": [
             "At 10th level, you can make an illusion real."
           ],
           "level": 10
         },
         {
-          "name": "Illusory Being",
+          "name": "Illusory Reality",
           "description": [
             "At 14th level, you can create an illusory creature."
           ],
