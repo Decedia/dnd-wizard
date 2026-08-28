@@ -1515,34 +1515,41 @@
       "index": "assassin",
       "flavorText": "Roguish Archetype",
       "description": [
-        "Assassins are killers who strike from the shadows."
+        "You focus your training on the grim art of death. Those who adhere to this archetype are diverse: hired killers, spies, bounty hunters, and even specially anointed priests trained to exterminate the enemies of their deity."
       ],
       "features": [
         {
+          "name": "Bonus Proficiencies",
+          "description": [
+            "When you choose this archetype at 3rd level, you gain proficiency with the disguise kit and the poisoner's kit."
+          ],
+          "level": 3
+        },
+        {
           "name": "Assassinate",
           "description": [
-            "At 3rd level, you are at your deadliest when you get the drop on your enemies."
+            "Starting at 3rd level, you are at your deadliest when you get the drop on your enemies. You have advantage on attack rolls against any creature that hasn't taken a turn in the combat yet. In addition, any hit you score against a creature that is surprised is a critical hit."
           ],
           "level": 3
         },
         {
-          "name": "Infiltrator",
+          "name": "Infiltration Expertise",
           "description": [
-            "Also at 3rd level, you gain proficiency with disguise kit and forgery kit."
-          ],
-          "level": 3
-        },
-        {
-          "name": "Impostor",
-          "description": [
-            "At 9th level, you can mimic speech and handwriting."
+            "Starting at 9th level, you can unfailingly create false identities for yourself. You must spend seven days and 25 gp to establish a new identity, including establishing history, contacts, and appropriate credentials. You can't establish an identity that belongs to someone else. Thereafter, other creatures believe you are that person until given an obvious reason not to."
           ],
           "level": 9
         },
         {
+          "name": "Impostor",
+          "description": [
+            "At 13th level, you acquire the ability to unearth another creature's speech, handwriting, or both, given three hours of study. Your ruse is indiscernible to the untrained eye. However, a creature that is suspicious of you can make a Wisdom (Insight) check contested by your Charisma (Deception) check to determine that you are not who you claim to be."
+          ],
+          "level": 13
+        },
+        {
           "name": "Death Strike",
           "description": [
-            "At 17th level, you become a master of death."
+            "Starting at 17th level, you become a master of instant death. When you attack and hit a creature that is surprised, it must make a Constitution saving throw (DC 8 + your Dexterity modifier + your proficiency bonus). On a failed save, you double the damage of your attack against the creature."
           ],
           "level": 17
         }
@@ -1555,41 +1562,50 @@
       "index": "arcane-trickster",
       "flavorText": "Roguish Archetype",
       "description": [
-        "Arcane Tricksters are rogues who blend magic with stealth."
+        "Some rogues enhance their fine-honed skills of stealth and agility with magic, learning tricks of enchantment and illusion. These rogues include pickpockets and burglars, but also pranksters, mischief-makers, and a significant number of adventurers."
       ],
       "features": [
         {
           "name": "Spellcasting",
           "description": [
-            "At 3rd level, you gain the ability to cast spells."
+            "When you reach 3rd level, you augment your martial prowess with the ability to cast spells.",
+            "Cantrips: You learn three cantrips: mage hand and two other cantrips of your choice from the wizard spell list. You learn another wizard cantrip of your choice at 10th level.",
+            "Spell Slots: The Arcane Trickster Spellcasting table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+            "Spells Known of 1st Level and Higher: You know three 1st-level spells of your choice from the wizard spell list. The Spells Known column of the Arcane Trickster Spellcasting table shows when you learn more wizard spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 7th level in this class, you can learn one new spell of 1st or 2nd level. Additionally, when you gain a level in this class, you can choose one of the wizard spells you know and replace it with another spell from the wizard spell list, which also must be of a level for which you have spell slots.",
+            "Spellcasting Ability: Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Intelligence modifier. Spell attack modifier = your proficiency bonus + your Intelligence modifier."
           ],
           "level": 3
         },
         {
           "name": "Mage Hand Legerdemain",
           "description": [
-            "Also at 3rd level, you can make your mage hand invisible."
+            "Starting at 3rd level, when you cast mage hand, you can make the spectral hand invisible, and you can perform the following additional tasks with it:",
+            "You can stow one object the hand is holding in a container worn or carried by another creature.",
+            "You can retrieve an object in a container worn or carried by another creature.",
+            "You can use thieves' tools to pick locks and disarm traps at range.",
+            "You can perform one of these tasks without being noticed by a creature if you succeed on a Dexterity (Sleight of Hand) check contested by the creature's Wisdom (Perception) check.",
+            "In addition, you can use the bonus action granted by your Cunning Action to control the hand."
           ],
           "level": 3
         },
         {
           "name": "Magical Ambush",
           "description": [
-            "At 9th level, you can impose disadvantage on saving throws against your spells."
+            "Starting at 9th level, if you are hidden from a creature when you cast a spell on it, the creature has disadvantage on any saving throw it makes against the spell this turn."
           ],
           "level": 9
         },
         {
           "name": "Versatile Trickster",
           "description": [
-            "At 13th level, you can use your bonus action to distract a creature."
+            "At 13th level, you gain the ability to distract targets with your mage hand. As a bonus action on your turn, you can designate a creature within 5 feet of the spectral hand created by the spell. You have advantage on attack rolls against that creature until the end of the turn."
           ],
           "level": 13
         },
         {
           "name": "Spell Thief",
           "description": [
-            "At 17th level, you can steal a spell from a creature."
+            "At 17th level, you gain the ability to magically steal knowledge of how to cast a spell from another spellcaster. When a creature casts a spell of 1st level or higher within 60 feet of you that you can see, you can use your reaction to force the spellcaster to make a Wisdom saving throw (DC equal to your spell save DC). On a failed save, you learn the spell if it is of a level for which you have spell slots. The spellcaster loses the spell if they cast it at 3rd level or lower. The spell remains in effect if the spellcaster succeeds on the saving throw. Once you successfully steal a spell using this feature, you can't use it again until you finish a long rest."
           ],
           "level": 17
         }
