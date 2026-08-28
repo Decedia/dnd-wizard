@@ -51,35 +51,16 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
         ))}
       </div>
 
-      <div className="mt-3.5 grid grid-cols-2 gap-2.5">
-        <Field label="PROFICIENCY BONUS">
-          {editMode ? (
-            <input
-              type="number"
-              value={character.proficiencyBonus}
-              readOnly
-              className="input"
-            />
-          ) : (
-            <span className="text-sm font-semibold text-ink">+{character.proficiencyBonus}</span>
-          )}
-        </Field>
-        <Field label="INITIATIVE">
-          {editMode ? (
-            <input
-              type="number"
-              value={character.initiative}
-              readOnly
-              className="input"
-            />
-          ) : (
-            <span className="text-sm font-semibold text-ink">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
-          )}
-        </Field>
-      </div>
-
-      <div className="mt-3">
-        <label className="flex items-center gap-2 cursor-pointer">
+      <div className="mt-3.5 grid grid-cols-3 gap-2.5">
+        <div className="stat-box-light">
+          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">Prof.</span>
+          <span className="text-sm font-bold text-ink">+{character.proficiencyBonus}</span>
+        </div>
+        <div className="stat-box-light">
+          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">Init.</span>
+          <span className="text-sm font-bold text-ink">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
+        </div>
+        <div className="stat-box-light flex-row items-center justify-center gap-2">
           <input
             type="checkbox"
             checked={character.inspiration}
@@ -87,49 +68,36 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             onBlur={onFieldBlur}
             className="checkbox"
           />
-          <span className="text-sm font-medium text-ink">Inspiration</span>
-        </label>
+          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">Insp.</span>
+        </div>
       </div>
 
       <div className="mt-3.5">
         <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider block mb-2">Saving Throws</span>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             const abilityMod = getModifier(character[key]);
             return (
-               <div key={key} className="flex items-center justify-between px-3 py-2">
-                <div className="flex items-center gap-2.5">
-                  <span className="text-sm font-medium text-ink-muted w-10">{key.toUpperCase()}</span>
-                  <span className="text-ink-muted">•</span>
-                  <span className="text-[11px] text-ink-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod} mod</span>
-                </div>
-                {editMode ? (
+              <div key={key} className="flex items-center justify-between px-3 py-1.5 rounded bg-[var(--color-bg)] border border-[var(--color-border)]">
+                <div className="flex items-center gap-2">
                   <input
-                    type="number"
-                    value={st.value}
+                    type="checkbox"
+                    checked={st.proficient}
                     readOnly
-                    className="input w-20 text-center"
+                    className="checkbox h-3.5 w-3.5"
                   />
-                ) : (
-                  <span className="text-sm font-semibold text-ink w-20 text-right">
-                    {st.value >= 0 ? `+${st.value}` : st.value}
-                  </span>
-                )}
+                  <span className="text-xs font-semibold text-ink w-8">{key.toUpperCase()}</span>
+                  <span className="text-xs text-ink-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod}</span>
+                </div>
+                <span className="text-sm font-bold text-ink">
+                  {st.value >= 0 ? `+${st.value}` : st.value}
+                </span>
               </div>
             );
           })}
         </div>
       </div>
     </SectionCard>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <span className="field-label-light">{label}</span>
-      {children}
-    </div>
   );
 }
