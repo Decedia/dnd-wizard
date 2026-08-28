@@ -15,7 +15,7 @@ export function SectionCard({ id, title, icon, children }: SectionCardProps) {
       >
       {title && (
         <div className="section-title-light">
-          {icon && <span className="flex-shrink-0 opacity-70">{icon}</span>}
+          {icon && <span className="inline-flex items-center flex-shrink-0 opacity-70">{icon}</span>}
           {title}
         </div>
       )}
