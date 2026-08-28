@@ -1254,28 +1254,28 @@
         {
           "name": "Shadow Arts",
           "description": [
-            "At 3rd level, you can use ki to replicate certain spells."
+            "At 3rd level, you can use ki to replicate certain spells. As an action, you can spend 2 ki points to cast the darkness, darkvision, pass without trace, or silence spells, without providing material components. Additionally, you gain the minor illusion cantrip if you don't already know it."
           ],
           "level": 3
         },
         {
           "name": "Shadow Step",
           "description": [
-            "Starting at 6th level, you can teleport as a bonus action."
+            "At 6th level, you gain the ability to step from one shadow into another. When you are in dim light or darkness, as a bonus action you can teleport up to 60 feet to an unoccupied space you can see that is also in dim light or darkness. You then have advantage on the first melee attack you make before the end of the turn."
           ],
           "level": 6
         },
         {
           "name": "Cloak of Shadows",
           "description": [
-            "At 11th level, you can become invisible as a bonus action."
+            "By 11th level, you have learned to become one with the shadows. When you are in an area of dim light or darkness, you can use your action to become invisible. You remain invisible until you make an attack, cast a spell, or are in an area of bright light."
           ],
           "level": 11
         },
         {
           "name": "Opportunist",
           "description": [
-            "At 17th level, you can make an opportunity attack when a creature within 5 feet of you is hit by an attack."
+            "At 17th level, you can exploit a creature's momentary distraction when it is hit by an attack. When a creature within 5 feet of you is hit by an attack from an attacker other than you, you can use your reaction to make a melee attack against that creature."
           ],
           "level": 17
         }
@@ -1294,37 +1294,30 @@
         {
           "name": "Disciple of the Elements",
           "description": [
-            "At 3rd level, you gain the ability to manipulate the four elements."
+            "When you choose this tradition at 3rd level, you learn magical disciplines that harness the power of the four elements. You know the Elemental Attunement discipline and one other elemental discipline of your choice. You learn one additional elemental discipline of your choice at 6th, 11th, and 17th level. Whenever you learn a new elemental discipline, you can also replace one elemental discipline that you already know with a different discipline.",
+            "Casting Elemental Spells. Some elemental disciplines allow you to cast spells. See chapter 10 for the general rules of spellcasting. To cast one of these spells, you use its casting time and other rules, but you don't need to provide material components. Once you reach 5th level in this class, you can spend additional ki points to increase the level of an elemental discipline spell that you cast, provided that the spell has an enhanced effect at a higher level, as Burning Hands does. Each additional ki point you spend increases the spell's level by 1. For example, if you are a 5th-level monk and use Fangs of the Fire Snake, you can spend 1 ki point to cast it as a 2nd-level spell.",
+            "Elemental Disciplines:",
+            "Elemental Attunement (L3). You can use your action to briefly control elemental forces within 30 feet of you, causing one of the following effects of your choice: Create a harmless, instantaneous sensory effect related to fire, water, air, or earth; Light or snuff out a candle, a torch, or a small campfire; Chill or warm up to 1 pound of nonliving water by 10 degrees Fahrenheit; Cause earth, fire, or water that fits within a 1-foot cube to shape itself into a crude form you designate.",
+            "Fangs of the Fire Snake (L3). When you use the Attack action, you can spend 1 ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by 10 feet for that action, and the damage of these strikes becomes fire damage instead of bludgeoning damage. If you spend 1 ki point when you hit with these attacks, the target also takes 1d10 fire damage.",
+            "Fist of the Four Thunders (L3). You can spend 2 ki points to cast thunderwave (1st level).",
+            "Fist of Unbroken Air (L3). You can spend 2 ki points to create a blast of compressed air that strikes like a fist. A creature within 30 feet must make a Strength saving throw. On a failure, it takes 3d10 bludgeoning damage plus your Wisdom modifier, is pushed up to 20 feet away, and is knocked prone.",
+            "Ride the Wind (L3). You can spend 2 ki points to cast levitate (2nd level).",
+            "River of Hungry Flame (L3). You can spend 3 ki points to cast wall of fire (2nd level).",
+            "Clench of the North Wind (L6). You can spend 3 ki points to cast hold person (2nd level).",
+            "Gong of the Summit (L6). You can spend 3 ki points to cast shatter (2nd level).",
+            "Flames of the Phoenix (L11). You can spend 4 ki points to cast fireball (3rd level).",
+            "Mist Stance (L11). You can spend 4 ki points to cast gaseous form (3rd level).",
+            "Wave of Rolling Earth (L11). You can spend 4 ki points to cast wall of stone (3rd level).",
+            "Breath of Winter (L17). You can spend 6 ki points to cast cone of cold (5th level).",
+            "Eternal Mountain Defense (L17). You can spend 5 ki points to cast stoneskin (4th level).",
+            "River of Blood (L17). You can spend 6 ki points to cast cloudkill (5th level)."
           ],
-          "level": 3
-        },
-        {
-          "name": "Elemental Attunement",
-          "description": [
-            "Also at 3rd level, you can use ki to cast spells."
-          ],
-          "level": 3
-        },
-        {
-          "name": "Elemental Discipline",
-          "description": [
-            "At 6th level, you gain additional elemental disciplines."
-          ],
-          "level": 6
-        },
-        {
-          "name": "Everlasting Flame",
-          "description": [
-            "At 11th level, you have resistance to fire damage."
-          ],
-          "level": 11
-        },
-        {
-          "name": "Sweeping Cinder Strike",
-          "description": [
-            "At 11th level, you can create a wave of fire."
-          ],
-          "level": 11
+          "level": 3,
+          "choices": {
+            "type": "elemental-disciplines",
+            "count": 1,
+            "description": "Choose one elemental discipline (in addition to Elemental Attunement)."
+          }
         }
       ]
     },

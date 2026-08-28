@@ -3444,11 +3444,15 @@
         "weapons": [
           "simple"
         ],
-        "tools": [
-          "Shortswords",
-          "Saving Throw: DEX",
-          "Saving Throw: STR"
-        ]
+        "tools": []
+      },
+      "toolChoices": {
+        "count": 1,
+        "options": [
+          "Artisan's tools",
+          "Musical instrument"
+        ],
+        "description": "Choose one type of artisan's tools or one musical instrument."
       },
       "skillChoices": {
         "count": 2,
@@ -3810,6 +3814,7 @@
           "spellSlots": null
         }
       ],
+      "kiSaveDc": "8 + your proficiency bonus + your Wisdom modifier",
       "subclassLevel": 3,
       "subclasses": [
         {
