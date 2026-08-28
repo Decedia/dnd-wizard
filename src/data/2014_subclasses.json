@@ -101,6 +101,18 @@
       ],
       "features": [
         {
+          "name": "Oath Spells",
+          "description": [
+            "You gain oath spells at the paladin levels listed.",
+            "3rd: Protection from Evil and Good, Sanctuary",
+            "5th: Lesser Restoration, Zone of Truth",
+            "9th: Beacon of Hope, Dispel Magic",
+            "13th: Freedom of Movement, Guardian of Faith",
+            "17th: Commune, Flame Strike"
+          ],
+          "level": 3
+        },
+        {
           "name": "Channel Divinity: Sacred Weapon",
           "description": [
             "As an action, you can imbue one weapon that you are holding with positive energy, using your Channel Divinity. For 1 minute, you add your Charisma modifier to attack rolls made with that weapon (with a minimum bonus of +1). The weapon also emits bright light in a 20-foot radius and dim light 20 feet beyond that. If the weapon is not already magical, it becomes magical for the duration.",
@@ -1328,41 +1340,62 @@
       "index": "ancients",
       "flavorText": "Sacred Oath",
       "description": [
-        "The Oath of the Ancients represents the power of nature and the fey."
+        "The Oath of the Ancients is as old as the race of elves and the rituals of the druids. Sometimes called fey knights, green knights, or horned knights, paladins who swear this oath cast their lot with the side of the light in the cosmic struggle against darkness because they love the beautiful and life-giving things of the world, not necessarily because they believe in principles of honor, courage, and justice. They adorn their armor and clothing with images of growing things--leaves, antlers, or flowers--to reflect their commitment to preserving life and light in the world."
       ],
       "features": [
         {
           "name": "Oath Spells",
           "description": [
-            "At 3rd level, you gain oath spells."
+            "You gain oath spells at the paladin levels listed.",
+            "3rd: Ensnaring Strike, Speak with Animals",
+            "5th: Moonbeam, Misty Step",
+            "9th: Plant Growth, Protection from Energy",
+            "13th: Ice Storm, Stoneskin",
+            "17th: Commune with Nature, Tree Stride"
           ],
           "level": 3
         },
         {
           "name": "Channel Divinity: Nature's Wrath",
           "description": [
-            "Starting at 3rd level, you can use your Channel Divinity to ensnare a creature."
+            "You can use your Channel Divinity to invoke primeval forces to ensnare a foe. As an action, you can cause spectral vines to spring up and reach for a creature within 10 feet of you that you can see. The creature must succeed on a Strength or Dexterity saving throw (its choice) or be restrained. While restrained by the vines, the creature repeats the saving throw at the end of each of its turns. On a success, it frees itself and the vines vanish."
+          ],
+          "level": 3
+        },
+        {
+          "name": "Channel Divinity: Turn the Faithless",
+          "description": [
+            "You can use your Channel Divinity to utter ancient words that are painful for fey and fiends to hear. As an action, you present your holy symbol, and each fey or fiend within 30 feet of you that can hear you must make a Wisdom saving throw. On a failed save, the creature is turned for 1 minute or until it takes damage.",
+            "A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action.",
+            "If the creature's true form is concealed by an illusion, shapeshifting, or other effect, that form is revealed while it is turned."
           ],
           "level": 3
         },
         {
           "name": "Aura of Warding",
           "description": [
-            "Starting at 7th level, you gain resistance to spell damage."
+            "Beginning at 7th level, ancient magic lies so heavily upon you that it forms an eldritch ward. You and friendly creatures within 10 feet of you have resistance to damage from spells.",
+            "At 18th level, the range of this aura increases to 30 feet."
           ],
           "level": 7
         },
         {
           "name": "Undying Sentinel",
           "description": [
-            "At 15th level, you can't be reduced below 1 hit point."
+            "Starting at 15th level, when you are reduced to 0 hit points and are not killed outright, you can choose to drop to 1 hit point instead. Once you use this ability, you can't use it again until you finish a long rest.",
+            "Additionally, you suffer none of the drawbacks of old age, and you can't be aged magically."
           ],
           "level": 15
         },
         {
           "name": "Elder Champion",
           "description": [
-            "At 20th level, you can transform into an ancient being."
+            "At 20th level, you can assume the form of an ancient force of nature, taking on an appearance you choose. For example, your skin might turn green or take on a bark-like texture, your hair might become leafy or moss-like, or you might sprout antlers or a lion-like mane.",
+            "Using your action, you undergo a transformation. For 1 minute, you gain the following benefits:",
+            "At the start of each of your turns, you regain 10 hit points.",
+            "Whenever you cast a paladin spell that has a casting time of 1 action, you can cast it using a bonus action instead.",
+            "Enemy creatures within 10 feet of you have disadvantage on saving throws against your paladin spells and Channel Divinity options.",
+            "Once you use this feature, you can't use it again until you finish a long rest."
           ],
           "level": 20
         }
@@ -1375,41 +1408,58 @@
       "index": "vengeance",
       "flavorText": "Sacred Oath",
       "description": [
-        "The Oath of Vengeance represents the power of righteous fury and retribution."
+        "The Oath of Vengeance represents the power of righteous fury and retribution. Paladins who swear this oath are typically driven by a personal quest for revenge against evil. They are willing to sometimes circumvent conventional morality to defeat evil, and they do not show mercy to those who have committed evil acts."
       ],
       "features": [
         {
           "name": "Oath Spells",
           "description": [
-            "At 3rd level, you gain oath spells."
+            "You gain oath spells at the paladin levels listed.",
+            "3rd: Bane, Hunter's Mark",
+            "5th: Hold Person, Misty Step",
+            "9th: Haste, Protection from Energy",
+            "13th: Banishment, Dimension Door",
+            "17th: Hold Monster, Scrying"
           ],
           "level": 3
         },
         {
           "name": "Channel Divinity: Abjure Enemy",
           "description": [
-            "Starting at 3rd level, you can use your Channel Divinity to frighten a creature."
+            "As an action, you present your holy symbol and speak a prayer of denunciation, using your Channel Divinity. Choose one creature within 60 feet of you that you can see. That creature must make a Wisdom saving throw, unless it is immune to being frightened. Fiends and undead have disadvantage on this saving throw.",
+            "On a failed save, the creature is frightened for 1 minute or until it takes any damage. While frightened, the creature's speed is 0, and it can't benefit from any bonus to its speed.",
+            "On a successful save, the creature's speed is halved for 1 minute or until the creature takes any damage."
+          ],
+          "level": 3
+        },
+        {
+          "name": "Channel Divinity: Vow of Enmity",
+          "description": [
+            "As a bonus action, you can utter a vow of enmity against a creature you can see within 10 feet of you, using your Channel Divinity. You gain advantage on attack rolls against the creature for 1 minute or until it drops to 0 hit points or falls unconscious."
           ],
           "level": 3
         },
         {
           "name": "Relentless Avenger",
           "description": [
-            "At 7th level, you can move when you hit a creature with an opportunity attack."
+            "By 7th level, your supernatural focus helps you close off a foe's retreat. When you hit a creature with an opportunity attack, you can move up to half your speed immediately after the attack and as part of the same reaction. This movement doesn't provoke opportunity attacks."
           ],
           "level": 7
         },
         {
           "name": "Soul of Vengeance",
           "description": [
-            "At 15th level, you can cast hold monster on a creature you have damaged."
+            "Starting at 15th level, the authority with which you speak your Vow of Enmity gives you greater power over your foe. When a creature under the effect of your Vow of Enmity makes an attack, you can use your reaction to make a melee weapon attack against that creature if it is within range."
           ],
           "level": 15
         },
         {
           "name": "Avenging Angel",
           "description": [
-            "At 20th level, you can transform into an avenging angel."
+            "At 20th level, you can assume the form of an angelic avenger. Using your action, you undergo a transformation. For 1 hour, you gain the following benefits:",
+            "Wings sprout from your back and grant you a flying speed of 60 feet.",
+            "You emanate an aura of menace in a 30-foot radius. The first time any enemy creature enters the aura or starts its turn there during a battle, the creature must succeed on a Wisdom saving throw or become frightened of you for 1 minute or until it takes any damage. Attack rolls against the frightened creature have advantage.",
+            "Once you use this feature, you can't use it again until you finish a long rest."
           ],
           "level": 20
         }
