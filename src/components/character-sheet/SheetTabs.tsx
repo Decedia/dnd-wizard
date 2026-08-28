@@ -28,7 +28,7 @@ export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
             key={tab.id}
             type="button"
             onClick={() => onTabChange(tab.id)}
-            className={`btn whitespace-nowrap px-4 py-1.5 text-xs ${
+            className={`btn whitespace-nowrap px-4 py-1.5 text-xs inline-flex items-center ${
               isActive
                 ? "btn btn-primary"
                 : "btn btn-secondary"
