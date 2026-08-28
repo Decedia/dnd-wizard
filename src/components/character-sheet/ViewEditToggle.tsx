@@ -15,10 +15,10 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
       <button
         type="button"
         onClick={() => onModeChange("view")}
-        className={`btn rounded-md px-2.5 py-1 text-[var(--font-size-xs)] ${
+        className={`rounded-md px-2.5 py-1 text-[var(--font-size-xs)] inline-flex items-center justify-center ${
           mode === "view"
-            ? "btn btn-primary"
-            : "btn btn-secondary"
+            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+            : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)]"
         }`}
       >
         <Eye className="h-4 w-4" weight={mode === "view" ? "fill" : "regular"} />
@@ -26,10 +26,10 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
       <button
         type="button"
         onClick={() => onModeChange("edit")}
-        className={`btn rounded-md px-2.5 py-1 text-[var(--font-size-xs)] ${
+        className={`rounded-md px-2.5 py-1 text-[var(--font-size-xs)] inline-flex items-center justify-center ${
           mode === "edit"
-            ? "btn btn-primary"
-            : "btn btn-secondary"
+            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+            : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)]"
         }`}
       >
         <PencilSimple className="h-4 w-4" weight={mode === "edit" ? "fill" : "regular"} />
