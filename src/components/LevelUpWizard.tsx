@@ -1600,8 +1600,13 @@ function LevelCard({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">
-                {showFeaturePopup.name}
+              <div className="flex items-center gap-2">
+                <div className="text-sm font-bold text-[var(--color-text-primary)]">
+                  {showFeaturePopup.name}
+                </div>
+                {showFeaturePopup.description && (
+                  <InfoButton title={showFeaturePopup.name} description={showFeaturePopup.description} />
+                )}
               </div>
               <button
                 type="button"
@@ -1611,11 +1616,6 @@ function LevelCard({
                 <X className="h-4 w-4" />
               </button>
             </div>
-            {showFeaturePopup.description && (
-              <div className="px-4 pt-3">
-                <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">{showFeaturePopup.description}</p>
-          </div>
-      )}
 
       {showHumanoidPopup && (
         <div
