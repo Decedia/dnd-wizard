@@ -1,16 +1,12 @@
 {
-  "generated": "2026-08-28T05:10:58.031Z",
+  "generated": "2026-08-28T05:32:46.463Z",
   "total": 273,
   "spells": [
     {
       "index": "acid-splash",
       "name": "Acid Splash",
       "level": 0,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -22,38 +18,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "acid",
-          "name": "Acid",
-          "url": "/api/2014/damage-types/acid"
-        },
-        "damage_at_character_level": {
-          "1": "1d6",
-          "5": "2d6",
-          "11": "3d6",
-          "17": "4d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/acid-splash",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "blade-ward",
@@ -71,12 +41,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "booming-blade",
@@ -94,22 +64,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "chill-touch",
       "name": "Chill Touch",
       "level": 0,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "1 round",
@@ -121,31 +87,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "ranged",
-      "damage": {
-        "damage_type": {
-          "index": "necrotic",
-          "name": "Necrotic",
-          "url": "/api/2014/damage-types/necrotic"
-        },
-        "damage_at_character_level": {
-          "1": "1d8",
-          "5": "2d8",
-          "11": "3d8",
-          "17": "4d8"
-        }
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/chill-touch",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "control-flames",
@@ -162,12 +109,12 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "create-bonfire",
@@ -185,22 +132,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "dancing-lights",
       "name": "Dancing Lights",
       "level": 0,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -218,23 +161,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/dancing-lights",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "fire-bolt",
       "name": "Fire Bolt",
       "level": 0,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Instantaneous",
@@ -246,29 +179,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "ranged",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_character_level": {
-          "1": "1d10",
-          "5": "2d10",
-          "11": "3d10",
-          "17": "4d10"
-        }
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/fire-bolt",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "friends",
@@ -286,12 +202,12 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "frostbite",
@@ -309,12 +225,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "green-flame-blade",
@@ -332,12 +248,12 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "gust",
@@ -355,12 +271,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "infestation",
@@ -379,22 +295,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "light",
       "name": "Light",
       "level": 0,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "1 hour",
@@ -411,21 +323,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/light",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "lightning-lure",
@@ -442,22 +340,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "mage-hand",
       "name": "Mage Hand",
       "level": 0,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "1 minute",
@@ -469,27 +363,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/mage-hand",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mending",
       "name": "Mending",
       "level": 0,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 minute",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -507,23 +392,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/mending",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "message",
       "name": "Message",
       "level": 0,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "1 round",
@@ -541,13 +416,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/message",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mind-sliver",
@@ -564,22 +433,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "minor-illusion",
       "name": "Minor Illusion",
       "level": 0,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "1 minute",
@@ -596,13 +461,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/minor-illusion",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mold-earth",
@@ -619,22 +478,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "poison-spray",
       "name": "Poison Spray",
       "level": 0,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "10 feet",
       "duration": "Instantaneous",
@@ -646,46 +501,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "poison",
-          "name": "Poison",
-          "url": "/api/2014/damage-types/poison"
-        },
-        "damage_at_character_level": {
-          "1": "1d12",
-          "5": "2d12",
-          "11": "3d12",
-          "17": "4d12"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/poison-spray",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "prestidigitation",
       "name": "Prestidigitation",
       "level": 0,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "10 feet",
       "duration": "1 hour",
@@ -697,27 +524,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/prestidigitation",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "ray-of-frost",
       "name": "Ray of Frost",
       "level": 0,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -729,31 +547,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "ranged",
-      "damage": {
-        "damage_type": {
-          "index": "cold",
-          "name": "Cold",
-          "url": "/api/2014/damage-types/cold"
-        },
-        "damage_at_character_level": {
-          "1": "1d8",
-          "5": "2d8",
-          "11": "3d8",
-          "17": "4d8"
-        }
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/ray-of-frost",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "shape-water",
@@ -770,22 +569,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "shocking-grasp",
       "name": "Shocking Grasp",
       "level": 0,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -797,31 +592,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "melee",
-      "damage": {
-        "damage_type": {
-          "index": "lightning",
-          "name": "Lightning",
-          "url": "/api/2014/damage-types/lightning"
-        },
-        "damage_at_character_level": {
-          "1": "1d8",
-          "5": "2d8",
-          "11": "3d8",
-          "17": "4d8"
-        }
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/shocking-grasp",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "sword-burst",
@@ -838,12 +614,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "thunderclap",
@@ -860,12 +636,12 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "toll-the-dead",
@@ -883,22 +659,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "true-strike",
       "name": "True Strike",
       "level": 0,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 round",
@@ -909,17 +681,12 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/true-strike",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "absorb-elements",
@@ -936,22 +703,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "alarm",
       "name": "Alarm",
       "level": 1,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 minute",
       "range": "30 feet",
       "duration": "8 hours",
@@ -969,23 +732,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/alarm",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "burning-hands",
       "name": "Burning Hands",
       "level": 1,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -999,44 +752,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "1": "3d6",
-          "2": "4d6",
-          "3": "5d6",
-          "4": "6d6",
-          "5": "7d6",
-          "6": "8d6",
-          "7": "9d6",
-          "8": "10d6",
-          "9": "11d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Lore",
-        "Fiend"
-      ],
-      "url": "/api/2014/spells/burning-hands",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "catapult",
@@ -1053,12 +774,12 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "cause-fear",
@@ -1075,22 +796,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "charm-person",
       "name": "Charm Person",
       "level": 1,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "1 hour",
@@ -1104,25 +821,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/charm-person",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "chromatic-orb",
@@ -1141,22 +845,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "color-spray",
       "name": "Color Spray",
       "level": 1,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "1 round",
@@ -1176,23 +876,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/color-spray",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "comprehend-languages",
       "name": "Comprehend Languages",
       "level": 1,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "1 hour",
@@ -1210,23 +900,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/comprehend-languages",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "detect-magic",
       "name": "Detect Magic",
       "level": 1,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 10 minutes",
@@ -1238,27 +918,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": true,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/detect-magic",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "disguise-self",
       "name": "Disguise Self",
       "level": 1,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "1 hour",
@@ -1270,17 +941,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/disguise-self",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "earth-tremor",
@@ -1298,22 +964,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "expeditious-retreat",
       "name": "Expeditious Retreat",
       "level": 1,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 bonus action",
       "range": "Self",
       "duration": "Up to 10 minutes",
@@ -1325,27 +987,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/expeditious-retreat",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "false-life",
       "name": "False Life",
       "level": 1,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "1 hour",
@@ -1365,23 +1018,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/false-life",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "feather-fall",
       "name": "Feather Fall",
       "level": 1,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 reaction",
       "range": "60 feet",
       "duration": "1 minute",
@@ -1398,23 +1041,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/feather-fall",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "find-familiar",
       "name": "Find Familiar",
       "level": 1,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 hour",
       "range": "10 feet",
       "duration": "Instantaneous",
@@ -1432,21 +1065,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/find-familiar",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "floating-disk",
       "name": "Floating Disk",
       "level": 1,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "1 hour",
@@ -1464,23 +1089,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/floating-disk",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "fog-cloud",
       "name": "Fog Cloud",
       "level": 1,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 hour",
@@ -1494,17 +1109,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/fog-cloud",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "frost-fingers",
@@ -1522,22 +1132,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "grease",
       "name": "Grease",
       "level": 1,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "1 minute",
@@ -1555,31 +1161,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/grease",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "hideous-laughter",
       "name": "Hideous Laughter",
       "level": 1,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 minute",
@@ -1597,21 +1185,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/hideous-laughter",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "ice-knife",
@@ -1629,22 +1203,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "identify",
       "name": "Identify",
       "level": 1,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 minute",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -1662,23 +1232,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/identify",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "illusory-script",
       "name": "Illusory Script",
       "level": 1,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 minute",
       "range": "Touch",
       "duration": "10 days",
@@ -1695,23 +1255,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/illusory-script",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "jump",
       "name": "Jump",
       "level": 1,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "1 minute",
@@ -1729,23 +1279,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/jump",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "longstrider",
       "name": "Longstrider",
       "level": 1,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "1 hour",
@@ -1765,23 +1305,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/longstrider",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mage-armor",
       "name": "Mage Armor",
       "level": 1,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "8 hours",
@@ -1799,23 +1329,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/mage-armor",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "magic-missile",
       "name": "Magic Missile",
       "level": 1,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Instantaneous",
@@ -1829,45 +1349,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "force",
-          "name": "Force",
-          "url": "/api/2014/damage-types/force"
-        },
-        "damage_at_slot_level": {
-          "1": "3d4 + 3",
-          "2": "4d4 + 4",
-          "3": "5d4 + 5",
-          "4": "6d4 + 6",
-          "5": "7d4 + 7",
-          "6": "8d4 + 8",
-          "7": "9d4 + 9",
-          "8": "10d4 + 10",
-          "9": "11d4 + 11"
-        }
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/magic-missile",
-      "updated_at": "2026-05-29T02:18:25.917Z"
+      ]
     },
     {
       "index": "protection-from-evil-and-good",
       "name": "Protection from Evil and Good",
       "level": 1,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 10 minutes",
@@ -1885,14 +1378,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Devotion"
-      ],
-      "url": "/api/2014/spells/protection-from-evil-and-good",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "ray-of-sickness",
@@ -1910,22 +1396,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "shield",
       "name": "Shield",
       "level": 1,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 reaction",
       "range": "Self",
       "duration": "1 round",
@@ -1937,27 +1419,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/shield",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "silent-image",
       "name": "Silent Image",
       "level": 1,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 10 minutes",
@@ -1975,13 +1448,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/silent-image",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "silvery-barbs",
@@ -1998,22 +1465,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "sleep",
       "name": "Sleep",
       "level": 1,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "90 feet",
       "duration": "1 minute",
@@ -2033,18 +1496,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_at_slot_level": {
-          "1": "5d8"
-        }
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/sleep",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "snare",
@@ -2062,12 +1514,12 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "tashas-caustic-brew",
@@ -2086,22 +1538,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "thunderwave",
       "name": "Thunderwave",
       "level": 1,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -2115,53 +1563,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "thunder",
-          "name": "Thunder",
-          "url": "/api/2014/damage-types/thunder"
-        },
-        "damage_at_slot_level": {
-          "1": "2d8",
-          "2": "3d8",
-          "3": "4d8",
-          "4": "5d8",
-          "5": "6d8",
-          "6": "7d8",
-          "7": "8d8",
-          "8": "9d8",
-          "9": "10d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/thunderwave",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "unseen-servant",
       "name": "Unseen Servant",
       "level": 1,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "1 hour",
@@ -2179,13 +1592,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/unseen-servant",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "witch-bolt",
@@ -2204,22 +1611,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "acid-arrow",
       "name": "Acid Arrow",
       "level": 2,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "90 feet",
       "duration": "Instantaneous",
@@ -2239,32 +1642,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "ranged",
-      "damage": {
-        "damage_type": {
-          "index": "acid",
-          "name": "Acid",
-          "url": "/api/2014/damage-types/acid"
-        },
-        "damage_at_slot_level": {
-          "2": "4d4",
-          "3": "5d4",
-          "4": "6d4",
-          "5": "7d4",
-          "6": "8d4",
-          "7": "9d4",
-          "8": "10d4",
-          "9": "11d4"
-        }
-      },
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/acid-arrow",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "aganazzarss-scorcher",
@@ -2283,12 +1661,12 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "airy-name",
@@ -2306,22 +1684,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": true,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "alter-self",
       "name": "Alter Self",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 hour",
@@ -2333,27 +1707,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/alter-self",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "arcane-lock",
       "name": "Arcane Lock",
       "level": 2,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Until dispelled",
@@ -2371,23 +1736,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/arcane-lock",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "arcanists-magic-aura",
       "name": "Arcanist's Magic Aura",
       "level": 2,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "24 hours",
@@ -2405,23 +1760,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/arcanists-magic-aura",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "blindness-deafness",
       "name": "Blindness/Deafness",
       "level": 2,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "1 minute",
@@ -2434,36 +1779,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore",
-        "Fiend"
-      ],
-      "url": "/api/2014/spells/blindness-deafness",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "blur",
       "name": "Blur",
       "level": 2,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -2474,18 +1801,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/blur",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "cloud-of-daggers",
@@ -2504,22 +1825,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "continual-flame",
       "name": "Continual Flame",
       "level": 2,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Until dispelled",
@@ -2537,13 +1854,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/continual-flame",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "crown-of-madness",
@@ -2561,22 +1872,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "darkness",
       "name": "Darkness",
       "level": 2,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 10 minutes",
@@ -2593,24 +1900,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/darkness",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "darkvision",
       "name": "Darkvision",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "8 hours",
@@ -2628,23 +1924,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/darkvision",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "detect-thoughts",
       "name": "Detect Thoughts",
       "level": 2,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -2662,13 +1948,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/detect-thoughts",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "dust-devil",
@@ -2687,12 +1967,12 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "earthbind",
@@ -2709,12 +1989,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "elemental-bane",
@@ -2732,22 +2012,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "enlarge-reduce",
       "name": "Enlarge/Reduce",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 minute",
@@ -2765,31 +2041,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/enlarge-reduce",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "flaming-sphere",
       "name": "Flaming Sphere",
       "level": 2,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -2809,40 +2067,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "2": "2d6",
-          "3": "3d6",
-          "4": "4d6",
-          "5": "5d6",
-          "6": "6d6",
-          "7": "7d6",
-          "8": "8d6",
-          "9": "9d6"
-        }
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/flaming-sphere",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "gentle-repose",
       "name": "Gentle Repose",
       "level": 2,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "10 days",
@@ -2860,23 +2091,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/gentle-repose",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "gust-of-wind",
       "name": "Gust of Wind",
       "level": 2,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -2894,31 +2115,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "str",
-          "name": "STR",
-          "url": "/api/2014/ability-scores/str"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/gust-of-wind",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "hold-person",
       "name": "Hold Person",
       "level": 2,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -2938,22 +2141,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/hold-person",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "immovable-object",
@@ -2972,22 +2160,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "invisibility",
       "name": "Invisibility",
       "level": 2,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 1 hour",
@@ -3007,14 +2191,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/invisibility",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "kinetic-jaunt",
@@ -3031,22 +2208,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "knock",
       "name": "Knock",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -3057,27 +2230,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/knock",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "levitate",
       "name": "Levitate",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 10 minutes",
@@ -3095,23 +2259,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/levitate",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "locate-object",
       "name": "Locate Object",
       "level": 2,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 10 minutes",
@@ -3129,23 +2283,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/locate-object",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "magic-mouth",
       "name": "Magic Mouth",
       "level": 2,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 minute",
       "range": "30 feet",
       "duration": "Until dispelled",
@@ -3163,23 +2307,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/magic-mouth",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "magic-weapon",
       "name": "Magic Weapon",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 bonus action",
       "range": "Touch",
       "duration": "Up to 1 hour",
@@ -3193,17 +2327,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/magic-weapon",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mind-spike",
@@ -3220,22 +2349,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "mirror-image",
       "name": "Mirror Image",
       "level": 2,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "1 minute",
@@ -3247,28 +2372,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/mirror-image",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "misty-step",
       "name": "Misty Step",
       "level": 2,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 bonus action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -3279,18 +2394,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/misty-step",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "pyrotechnics",
@@ -3308,22 +2417,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "ray-of-enfeeblement",
       "name": "Ray of Enfeeblement",
       "level": 2,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -3335,36 +2440,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "ranged",
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/ray-of-enfeeblement",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "rope-trick",
       "name": "Rope Trick",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "1 hour",
@@ -3382,23 +2469,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/rope-trick",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "scorching-ray",
       "name": "Scorching Ray",
       "level": 2,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Instantaneous",
@@ -3412,38 +2489,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "2": "2d6"
-        }
-      },
-      "subclasses": [
-        "Lore",
-        "Fiend"
-      ],
-      "url": "/api/2014/spells/scorching-ray",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "see-invisibility",
       "name": "See Invisibility",
       "level": 2,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "1 hour",
@@ -3461,13 +2518,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/see-invisibility",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "shadow-blade",
@@ -3485,22 +2536,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "shatter",
       "name": "Shatter",
       "level": 2,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -3520,38 +2567,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "thunder",
-          "name": "Thunder",
-          "url": "/api/2014/damage-types/thunder"
-        },
-        "damage_at_slot_level": {
-          "2": "3d8",
-          "3": "4d8",
-          "4": "5d8",
-          "5": "6d8",
-          "6": "7d8",
-          "7": "8d8",
-          "8": "9d8",
-          "9": "10d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/shatter",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "skywrite",
@@ -3569,22 +2585,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": true,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "spider-climb",
       "name": "Spider Climb",
       "level": 2,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 1 hour",
@@ -3602,24 +2614,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/spider-climb",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "suggestion",
       "name": "Suggestion",
       "level": 2,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 8 hours",
@@ -3636,21 +2637,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/suggestion",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "vortex-warp",
@@ -3668,12 +2655,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "warding-wind",
@@ -3690,22 +2677,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "web",
       "name": "Web",
       "level": 2,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 hour",
@@ -3723,24 +2706,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/web",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "animate-dead",
       "name": "Animate Dead",
       "level": 3,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 minute",
       "range": "10 feet",
       "duration": "Instantaneous",
@@ -3760,23 +2732,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/animate-dead",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "bestow-curse",
       "name": "Bestow Curse",
       "level": 3,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 1 minute",
@@ -3790,36 +2752,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "On fail, become cursed for the duration of the spell."
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/bestow-curse",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "blink",
       "name": "Blink",
       "level": 3,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "1 minute",
@@ -3831,17 +2775,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/blink",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "catnap",
@@ -3859,22 +2798,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "clairvoyance",
       "name": "Clairvoyance",
       "level": 3,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "10 minutes",
       "range": "1 mile",
       "duration": "Up to 10 minutes",
@@ -3892,23 +2827,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/clairvoyance",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "counterspell",
       "name": "Counterspell",
       "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 reaction",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -3921,25 +2846,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/counterspell",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "dispel-magic",
       "name": "Dispel Magic",
       "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Instantaneous",
@@ -3953,18 +2871,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Devotion"
-      ],
-      "url": "/api/2014/spells/dispel-magic",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "enemies-abound",
@@ -3982,22 +2894,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "fear",
       "name": "Fear",
       "level": 3,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -4015,32 +2923,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "On fail, A creature drop whatever it is holding and become frightened for the duration."
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/fear",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "fireball",
       "name": "Fireball",
       "level": 3,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Instantaneous",
@@ -4060,38 +2949,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "3": "8d6",
-          "4": "9d6",
-          "5": "10d6",
-          "6": "11d6",
-          "7": "12d6",
-          "8": "13d6",
-          "9": "14d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Lore",
-        "Fiend"
-      ],
-      "url": "/api/2014/spells/fireball",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "flame-arrows",
@@ -4109,22 +2967,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "fly",
       "name": "Fly",
       "level": 3,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 10 minutes",
@@ -4144,23 +2998,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/fly",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "gaseous-form",
       "name": "Gaseous Form",
       "level": 3,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 1 hour",
@@ -4178,24 +3022,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/gaseous-form",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "glyph-of-warding",
       "name": "Glyph of Warding",
       "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 hour",
       "range": "Touch",
       "duration": "Until dispelled",
@@ -4215,23 +3048,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/glyph-of-warding",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "haste",
       "name": "Haste",
       "level": 3,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 minute",
@@ -4249,24 +3072,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/haste",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "hypnotic-pattern",
       "name": "Hypnotic Pattern",
       "level": 3,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -4283,22 +3095,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "On a failed save, the creature becomes charmed for the duration."
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/hypnotic-pattern",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "intellect-fortress",
@@ -4315,12 +3112,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "life-transference",
@@ -4338,22 +3135,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "lightning-bolt",
       "name": "Lightning Bolt",
       "level": 3,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -4373,48 +3166,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "lightning",
-          "name": "Lightning",
-          "url": "/api/2014/damage-types/lightning"
-        },
-        "damage_at_slot_level": {
-          "3": "8d6",
-          "4": "9d6",
-          "5": "10d6",
-          "6": "11d6",
-          "7": "12d6",
-          "8": "13d6",
-          "9": "14d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/lightning-bolt",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "magic-circle",
       "name": "Magic Circle",
       "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 minute",
       "range": "10 feet",
       "duration": "1 hour",
@@ -4434,32 +3192,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "cha",
-          "name": "CHA",
-          "url": "/api/2014/ability-scores/cha"
-        },
-        "dc_success": "other",
-        "desc": "If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a Charisma saving throw."
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/magic-circle",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "major-image",
       "name": "Major Image",
       "level": 3,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 10 minutes",
@@ -4479,13 +3218,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/major-image",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "melfs-minute-meteors",
@@ -4504,22 +3237,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "nondetection",
       "name": "Nondetection",
       "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "8 hours",
@@ -4537,23 +3266,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/nondetection",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "phantom-steed",
       "name": "Phantom Steed",
       "level": 3,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 minute",
       "range": "30 feet",
       "duration": "1 hour",
@@ -4565,27 +3284,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": true,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/phantom-steed",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "protection-from-energy",
       "name": "Protection From Energy",
       "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 1 hour",
@@ -4597,28 +3307,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/protection-from-energy",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "remove-curse",
       "name": "Remove Curse",
       "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -4630,27 +3330,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/remove-curse",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "sending",
       "name": "Sending",
       "level": 3,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Unlimited",
       "duration": "1 round",
@@ -4668,23 +3359,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/sending",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "sleet-storm",
       "name": "Sleet Storm",
       "level": 3,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Up to 1 minute",
@@ -4702,24 +3383,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/sleet-storm",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "slow",
       "name": "Slow",
       "level": 3,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -4737,23 +3407,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "On failed save, the creature is slowed."
-      },
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/slow",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "spirit-shroud",
@@ -4771,22 +3425,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "stinking-cloud",
       "name": "Stinking Cloud",
       "level": 3,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "90 feet",
       "duration": "Up to 1 minute",
@@ -4804,24 +3454,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "none",
-        "desc": "On a failed save, the creature spends its action that turn retching and reeling."
-      },
-      "subclasses": [
-        "Lore",
-        "Land",
-        "Fiend"
-      ],
-      "url": "/api/2014/spells/stinking-cloud",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "thunder-step",
@@ -4838,12 +3471,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "tidal-wave",
@@ -4862,22 +3495,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "tiny-hut",
       "name": "Tiny Hut",
       "level": 3,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 minute",
       "range": "Self",
       "duration": "8 hours",
@@ -4895,13 +3524,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/tiny-hut",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "tiny-servant",
@@ -4919,22 +3542,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "tongues",
       "name": "Tongues",
       "level": 3,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "1 hour",
@@ -4951,23 +3570,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/tongues",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "vampiric-touch",
       "name": "Vampiric Touch",
       "level": 3,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -4981,34 +3590,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "melee",
-      "damage": {
-        "damage_type": {
-          "index": "necrotic",
-          "name": "Necrotic",
-          "url": "/api/2014/damage-types/necrotic"
-        },
-        "damage_at_slot_level": {
-          "3": "3d6",
-          "4": "4d6",
-          "5": "5d6",
-          "6": "6d6",
-          "7": "7d6",
-          "8": "8d6",
-          "9": "9d6"
-        }
-      },
-      "subclasses": [
-        "Lore"
-      ],
-      "url": "/api/2014/spells/vampiric-touch",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "wall-of-sand",
@@ -5027,12 +3614,12 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "wall-of-water",
@@ -5051,22 +3638,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "water-breathing",
       "name": "Water Breathing",
       "level": 3,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "24 hours",
@@ -5084,24 +3667,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/water-breathing",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "arcane-eye",
       "name": "Arcane Eye",
       "level": 4,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 hour",
@@ -5119,21 +3691,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/arcane-eye",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "banishment",
       "name": "Banishment",
       "level": 4,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -5153,29 +3717,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "cha",
-          "name": "CHA",
-          "url": "/api/2014/ability-scores/cha"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/banishment",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "black-tentacles",
       "name": "Black Tentacles",
       "level": 4,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "90 feet",
       "duration": "Up to 1 minute",
@@ -5193,40 +3741,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "bludgeoning",
-          "name": "Bludgeoning",
-          "url": "/api/2014/damage-types/bludgeoning"
-        },
-        "damage_at_slot_level": {
-          "4": "3d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "none",
-        "desc": "A creature restrained by the tentacles can use its action to make a Strength or Dexterity check (its choice) against your spell save DC. On a success, it frees itself."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/black-tentacles",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "blight",
       "name": "Blight",
       "level": 4,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Instantaneous",
@@ -5240,50 +3761,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "necrotic",
-          "name": "Necrotic",
-          "url": "/api/2014/damage-types/necrotic"
-        },
-        "damage_at_slot_level": {
-          "4": "8d8",
-          "5": "9d8",
-          "6": "10d8",
-          "7": "11d8",
-          "8": "12d8",
-          "9": "13d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/blight",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "confusion",
       "name": "Confusion",
       "level": 4,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "90 feet",
       "duration": "Up to 1 minute",
@@ -5303,29 +3792,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/confusion",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "conjure-minor-elementals",
       "name": "Conjure Minor Elementals",
       "level": 4,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 minute",
       "range": "90 feet",
       "duration": "Up to 1 hour",
@@ -5339,25 +3812,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/conjure-minor-elementals",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "control-water",
       "name": "Control Water",
       "level": 4,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "300 feet",
       "duration": "Up to 10 minutes",
@@ -5375,39 +3841,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "bludgeoning",
-          "name": "Bludgeoning",
-          "url": "/api/2014/damage-types/bludgeoning"
-        },
-        "damage_at_slot_level": {
-          "4": "2d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "str",
-          "name": "STR",
-          "url": "/api/2014/ability-scores/str"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/control-water",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "dimension-door",
       "name": "Dimension Door",
       "level": 4,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "500 feet",
       "duration": "Instantaneous",
@@ -5418,25 +3858,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "force",
-          "name": "Force",
-          "url": "/api/2014/damage-types/force"
-        },
-        "damage_at_slot_level": {
-          "4": "4d6"
-        }
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/dimension-door",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "elemental-bane-4",
@@ -5454,22 +3881,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "fabricate",
       "name": "Fabricate",
       "level": 4,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "10 minutes",
       "range": "120 feet",
       "duration": "Instantaneous",
@@ -5481,25 +3904,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/fabricate",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "faithful-hound",
       "name": "Faithful Hound",
       "level": 4,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "8 hours",
@@ -5517,32 +3933,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "melee",
-      "damage": {
-        "damage_type": {
-          "index": "piercing",
-          "name": "Piercing",
-          "url": "/api/2014/damage-types/piercing"
-        },
-        "damage_at_slot_level": {
-          "4": "4d8"
-        }
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/faithful-hound",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "fire-shield",
       "name": "Fire Shield",
       "level": 4,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "10 minutes",
@@ -5560,23 +3957,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "4": "2d8"
-        }
-      },
-      "subclasses": [
-        "Fiend"
-      ],
-      "url": "/api/2014/spells/fire-shield",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "gate-seal",
@@ -5595,22 +3976,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "greater-invisibility",
       "name": "Greater Invisibility",
       "level": 4,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 1 minute",
@@ -5622,17 +3999,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/greater-invisibility",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "guild-banner",
@@ -5651,22 +4023,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "hallucinatory-terrain",
       "name": "Hallucinatory Terrain",
       "level": 4,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "10 minutes",
       "range": "300 feet",
       "duration": "24 hours",
@@ -5684,23 +4052,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/hallucinatory-terrain",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "ice-storm",
       "name": "Ice Storm",
       "level": 4,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "300 feet",
       "duration": "Instantaneous",
@@ -5720,46 +4078,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "bludgeoning",
-          "name": "Bludgeoning",
-          "url": "/api/2014/damage-types/bludgeoning"
-        },
-        "damage_at_slot_level": {
-          "4": "2d8 + 4d6",
-          "5": "3d8 + 4d6",
-          "6": "4d8 + 4d6",
-          "7": "5d8 + 4d6",
-          "8": "6d8 + 4d6",
-          "9": "7d8 + 4d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/ice-storm",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "locate-creature",
       "name": "Locate Creature",
       "level": 4,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 hour",
@@ -5777,13 +4102,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/locate-creature",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "miniature-grasp",
@@ -5801,22 +4120,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "phantasmal-killer",
       "name": "Phantasmal Killer",
       "level": 4,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -5830,43 +4145,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "psychic",
-          "name": "Psychic",
-          "url": "/api/2014/damage-types/psychic"
-        },
-        "damage_at_slot_level": {
-          "4": "4d10"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/phantasmal-killer",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "polymorph",
       "name": "Polymorph",
       "level": 4,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 hour",
@@ -5884,29 +4174,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/polymorph",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "private-sanctum",
       "name": "Private Sanctum",
       "level": 4,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "10 minutes",
       "range": "120 feet",
       "duration": "24 hours",
@@ -5926,21 +4200,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/private-sanctum",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "resilient-sphere",
       "name": "Resilient Sphere",
       "level": 4,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 minute",
@@ -5958,29 +4224,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/resilient-sphere",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "secret-chest",
       "name": "Secret Chest",
       "level": 4,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -5998,21 +4248,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/secret-chest",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "stone-shape",
       "name": "Stone Shape",
       "level": 4,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -6030,23 +4272,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/stone-shape",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "stoneskin",
       "name": "Stoneskin",
       "level": 4,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Up to 1 hour",
@@ -6064,23 +4296,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/stoneskin",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "wall-of-fire",
       "name": "Wall of Fire",
       "level": 4,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -6100,41 +4322,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "4": "5d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [
-        "Fiend"
-      ],
-      "url": "/api/2014/spells/wall-of-fire",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "animate-objects",
       "name": "Animate Objects",
       "level": 5,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -6148,25 +4342,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/animate-objects",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "arcane-hand",
       "name": "Arcane Hand",
       "level": 5,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -6186,21 +4373,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/arcane-hand",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "cloudkill",
       "name": "Cloudkill",
       "level": 5,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 10 minutes",
@@ -6214,50 +4393,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "poison",
-          "name": "Poison",
-          "url": "/api/2014/damage-types/poison"
-        },
-        "damage_at_slot_level": {
-          "5": "5d8",
-          "6": "6d8",
-          "7": "7d8",
-          "8": "8d8",
-          "9": "9d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half",
-        "desc": "Creatures are affected even if they hold their breath or don't need to breathe."
-      },
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/cloudkill",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "cone-of-cold",
       "name": "Cone of Cold",
       "level": 5,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -6277,46 +4424,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "cold",
-          "name": "Cold",
-          "url": "/api/2014/damage-types/cold"
-        },
-        "damage_at_slot_level": {
-          "5": "8d8",
-          "6": "9d8",
-          "7": "10d8",
-          "8": "11d8",
-          "9": "12d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half",
-        "desc": "A creature killed by this spell becomes a frozen statue until it thaws."
-      },
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/cone-of-cold",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "conjure-elemental",
       "name": "Conjure Elemental",
       "level": 5,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 minute",
       "range": "90 feet",
       "duration": "Up to 1 hour",
@@ -6336,23 +4450,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/conjure-elemental",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "contact-other-plane",
       "name": "Contact Other Plane",
       "level": 5,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 minute",
       "range": "Self",
       "duration": "1 minute",
@@ -6363,34 +4467,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": true,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "int",
-          "name": "INT",
-          "url": "/api/2014/ability-scores/int"
-        },
-        "dc_success": "other",
-        "desc": "On a failure, you take 6d6 psychic damage and are insane until you finish a long rest."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/contact-other-plane",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "creation",
       "name": "Creation",
       "level": 5,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 minute",
       "range": "30 feet",
       "duration": "Special",
@@ -6410,21 +4498,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/creation",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "dominate-person",
       "name": "Dominate Person",
       "level": 5,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -6438,34 +4518,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "other",
-        "desc": "Each time the target takes damage, it makes a new wisdom saving throw against the spell. If the saving throw succeeds, the spell ends."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/dominate-person",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "dream",
       "name": "Dream",
       "level": 5,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 minute",
       "range": "Special",
       "duration": "8 hours",
@@ -6483,42 +4547,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "psychic",
-          "name": "Psychic",
-          "url": "/api/2014/damage-types/psychic"
-        },
-        "damage_at_slot_level": {
-          "5": "3d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "On a failed save, echoes of the phantasmal monstrosity spawn a nightmare that lasts the duration of the target's sleep and prevents the target from gaining any benefit from that rest."
-      },
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/dream",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "geas",
       "name": "Geas",
       "level": 5,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 minute",
       "range": "60 feet",
       "duration": "30 days",
@@ -6531,33 +4566,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/geas",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "hold-monster",
       "name": "Hold Monster",
       "level": 5,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "90 feet",
       "duration": "Up to 1 minute",
@@ -6577,29 +4597,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/hold-monster",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "legend-lore",
       "name": "Legend Lore",
       "level": 5,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "10 minutes",
       "range": "Self",
       "duration": "Instantaneous",
@@ -6617,21 +4621,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/legend-lore",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mislead",
       "name": "Mislead",
       "level": 5,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 hour",
@@ -6642,25 +4638,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/mislead",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "modify-memory",
       "name": "Modify Memory",
       "level": 5,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 minute",
@@ -6674,33 +4663,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/modify-memory",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "passwall",
       "name": "Passwall",
       "level": 5,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "1 hour",
@@ -6718,23 +4692,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/passwall",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "planar-binding",
       "name": "Planar Binding",
       "level": 5,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 hour",
       "range": "60 feet",
       "duration": "24 hours",
@@ -6754,29 +4718,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "cha",
-          "name": "CHA",
-          "url": "/api/2014/ability-scores/cha"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/planar-binding",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "scrying",
       "name": "Scrying",
       "level": 5,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "10 minutes",
       "range": "Self",
       "duration": "Up to 10 minutes",
@@ -6794,31 +4742,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/scrying",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "seeming",
       "name": "Seeming",
       "level": 5,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "8 hours",
@@ -6830,15 +4760,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/seeming",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "steel-wind-strike",
@@ -6856,12 +4783,12 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "synaptic-static",
@@ -6880,22 +4807,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "telekinesis",
       "name": "Telekinesis",
       "level": 5,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 10 minutes",
@@ -6907,25 +4830,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/telekinesis",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "telepathic-bond",
       "name": "Telepathic Bond",
       "level": 5,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "1 hour",
@@ -6943,21 +4859,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/telepathic-bond",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "teleportation-circle",
       "name": "Teleportation Circle",
       "level": 5,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 minute",
       "range": "10 feet",
       "duration": "1 round",
@@ -6974,11 +4882,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/teleportation-circle",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "vitriolic-sphere",
@@ -6997,22 +4901,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "wall-of-force",
       "name": "Wall of Force",
       "level": 5,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 10 minutes",
@@ -7030,21 +4930,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/wall-of-force",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "wall-of-stone",
       "name": "Wall of Stone",
       "level": 5,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 10 minutes",
@@ -7062,23 +4954,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/wall-of-stone",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "chain-lightning",
       "name": "Chain Lightning",
       "level": 6,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Instantaneous",
@@ -7098,39 +4980,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "lightning",
-          "name": "Lightning",
-          "url": "/api/2014/damage-types/lightning"
-        },
-        "damage_at_slot_level": {
-          "6": "10d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/chain-lightning",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "circle-of-death",
       "name": "Circle of Death",
       "level": 6,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Instantaneous",
@@ -7150,42 +5006,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "necrotic",
-          "name": "Necrotic",
-          "url": "/api/2014/damage-types/necrotic"
-        },
-        "damage_at_slot_level": {
-          "6": "8d6",
-          "7": "10d6",
-          "8": "12d6",
-          "9": "14d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/circle-of-death",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "contingency",
       "name": "Contingency",
       "level": 6,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "10 minutes",
       "range": "Self",
       "duration": "10 days",
@@ -7203,21 +5030,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/contingency",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "create-undead",
       "name": "Create Undead",
       "level": 6,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 minute",
       "range": "10 feet",
       "duration": "Instantaneous",
@@ -7237,21 +5056,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/create-undead",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "disintegrate",
       "name": "Disintegrate",
       "level": 6,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -7271,39 +5082,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "force",
-          "name": "Force",
-          "url": "/api/2014/damage-types/force"
-        },
-        "damage_at_slot_level": {
-          "6": "10d6 + 40"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/disintegrate",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "eyebite",
       "name": "Eyebite",
       "level": 6,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -7315,34 +5100,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "On failure, the target can be affected by one of the following effects of your choice for the duration. [Asleep. The target falls unconscious. It wakes up if it takes any damage or if another creature uses its action to shake the sleeper awake.] [Panicked. The target is frightened of you. On each of its turns, the frightened creature must take the Dash action and move away from you by the safest and shortest available route, unless there is nowhere to move. If the target moves to a place at least 60 feet away from you where it can no longer see you, this effect ends.] [Sickened. The target has disadvantage on attack rolls and ability checks. At the end of each of its turns, it can make another wisdom saving throw. If it succeeds, the effect ends.]"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/eyebite",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "flesh-to-stone",
       "name": "Flesh to Stone",
       "level": 6,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -7360,30 +5129,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "none",
-        "desc": "On a failed save, the target is restrained as its flesh begins to harden."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/flesh-to-stone",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "freezing-sphere",
       "name": "Freezing Sphere",
       "level": 6,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "300 feet",
       "duration": "Instantaneous",
@@ -7403,39 +5155,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "cold",
-          "name": "Cold",
-          "url": "/api/2014/damage-types/cold"
-        },
-        "damage_at_slot_level": {
-          "6": "10d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/freezing-sphere",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "globe-of-invulnerability",
       "name": "Globe of Invulnerability",
       "level": 6,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -7455,11 +5181,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/globe-of-invulnerability",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "gravity-fissure",
@@ -7478,22 +5200,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "guards-and-wards",
       "name": "Guards and Wards",
       "level": 6,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "10 minutes",
       "range": "Touch",
       "duration": "24 hours",
@@ -7511,21 +5229,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/guards-and-wards",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "instant-summons",
       "name": "Instant Summons",
       "level": 6,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 minute",
       "range": "Touch",
       "duration": "Until dispelled",
@@ -7543,21 +5253,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/instant-summons",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "irresistible-dance",
       "name": "Irresistible Dance",
       "level": 6,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 minute",
@@ -7568,25 +5270,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/irresistible-dance",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "magic-jar",
       "name": "Magic Jar",
       "level": 6,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 minute",
       "range": "Self",
       "duration": "Until dispelled",
@@ -7604,30 +5299,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "cha",
-          "name": "CHA",
-          "url": "/api/2014/ability-scores/cha"
-        },
-        "dc_success": "other",
-        "desc": "On a failure, your soul moves into the target's body, and the target's soul becomes trapped in the container. On a success, the target resists your efforts to possess it, and you can't attempt to possess it again for 24 hours."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/magic-jar",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mass-suggestion",
       "name": "Mass Suggestion",
       "level": 6,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "24 hours",
@@ -7646,29 +5324,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/mass-suggestion",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "move-earth",
       "name": "Move Earth",
       "level": 6,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 2 hours",
@@ -7686,21 +5348,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/move-earth",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "programmed-illusion",
       "name": "Programmed Illusion",
       "level": 6,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Until dispelled",
@@ -7718,21 +5372,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/programmed-illusion",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "sunbeam",
       "name": "Sunbeam",
       "level": 6,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 minute",
@@ -7750,40 +5396,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "radiant",
-          "name": "Radiant",
-          "url": "/api/2014/damage-types/radiant"
-        },
-        "damage_at_slot_level": {
-          "6": "6d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half",
-        "desc": "On a failed save, the creature is blinded until your next turn. On a successful save, it isn't blinded by this spell."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/sunbeam",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "true-seeing",
       "name": "True Seeing",
       "level": 6,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "1 hour",
@@ -7801,21 +5420,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/true-seeing",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "wall-of-ice",
       "name": "Wall of Ice",
       "level": 6,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 10 minutes",
@@ -7835,42 +5446,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "cold",
-          "name": "Cold",
-          "url": "/api/2014/damage-types/cold"
-        },
-        "damage_at_slot_level": {
-          "6": "10d6",
-          "7": "12d6",
-          "8": "14d6",
-          "9": "16d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/wall-of-ice",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "arcane-sword",
       "name": "Arcane Sword",
       "level": 7,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -7888,22 +5470,7 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "melee",
-      "damage": {
-        "damage_type": {
-          "index": "force",
-          "name": "Force",
-          "url": "/api/2014/damage-types/force"
-        },
-        "damage_at_slot_level": {
-          "7": "3d10"
-        }
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/arcane-sword",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "concordant-crossing",
@@ -7921,22 +5488,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "delayed-blast-fireball",
       "name": "Delayed Blast Fireball",
       "level": 7,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Up to 1 minute",
@@ -7956,41 +5519,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "7": "12d6",
-          "8": "13d6",
-          "9": "14d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/delayed-blast-fireball",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "etherealness",
       "name": "Etherealness",
       "level": 7,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "8 hours",
@@ -8004,25 +5539,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/etherealness",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "finger-of-death",
       "name": "Finger of Death",
       "level": 7,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -8034,43 +5562,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "necrotic",
-          "name": "Necrotic",
-          "url": "/api/2014/damage-types/necrotic"
-        },
-        "damage_at_slot_level": {
-          "7": "7d8 + 30"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/finger-of-death",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "forcecage",
       "name": "Forcecage",
       "level": 7,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "100 feet",
       "duration": "1 hour",
@@ -8088,21 +5591,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/forcecage",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "magnificent-mansion",
       "name": "Magnificent Mansion",
       "level": 7,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 minute",
       "range": "300 feet",
       "duration": "24 hours",
@@ -8120,21 +5615,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/magnificent-mansion",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mirage-arcane",
       "name": "Mirage Arcane",
       "level": 7,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "10 minutes",
       "range": "Sight",
       "duration": "10 days",
@@ -8146,25 +5633,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/mirage-arcane",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "plane-shift",
       "name": "Plane Shift",
       "level": 7,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -8182,21 +5662,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "attackType": "melee",
-      "dc": {
-        "dc_type": {
-          "index": "cha",
-          "name": "CHA",
-          "url": "/api/2014/ability-scores/cha"
-        },
-        "dc_success": "none",
-        "desc": "If the creature fails this save, it is transported to a random location on the plane of existence you specify. A creature so transported must find its own way back to your current plane of existence."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/plane-shift",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "power-word-pain",
@@ -8213,22 +5679,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "prismatic-spray",
       "name": "Prismatic Spray",
       "level": 7,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -8240,39 +5702,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_at_slot_level": {
-          "7": "10d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "other",
-        "desc": "For each target, roll a d8 to determine which color ray affects it."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/prismatic-spray",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "project-image",
       "name": "Project Image",
       "level": 7,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "500 miles",
       "duration": "Up to 24 hours",
@@ -8290,21 +5731,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/project-image",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "reverse-gravity",
       "name": "Reverse Gravity",
       "level": 7,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "100 feet",
       "duration": "Up to 1 minute",
@@ -8322,30 +5755,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "other",
-        "desc": "A creature can make a dexterity saving throw to grab onto a fixed object it can reach, thus avoiding the fall."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/reverse-gravity",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "sequester",
       "name": "Sequester",
       "level": 7,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "Until dispelled",
@@ -8363,21 +5779,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/sequester",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "simulacrum",
       "name": "Simulacrum",
       "level": 7,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "12 hours",
       "range": "Touch",
       "duration": "Until dispelled",
@@ -8395,21 +5803,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/simulacrum",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "symbol",
       "name": "Symbol",
       "level": 7,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 minute",
       "range": "Touch",
       "duration": "Until dispelled",
@@ -8427,21 +5827,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/symbol",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "teleport",
       "name": "Teleport",
       "level": 7,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "10 feet",
       "duration": "Instantaneous",
@@ -8452,25 +5844,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/teleport",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "antimagic-field",
       "name": "Antimagic Field",
       "level": 8,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 hour",
@@ -8488,21 +5873,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/antimagic-field",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "antipathy-sympathy",
       "name": "Antipathy/Sympathy",
       "level": 8,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 hour",
       "range": "60 feet",
       "duration": "10 days",
@@ -8520,21 +5897,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/antipathy-sympathy",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "clone",
       "name": "Clone",
       "level": 8,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 hour",
       "range": "Touch",
       "duration": "Instantaneous",
@@ -8552,21 +5921,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/clone",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "control-weather",
       "name": "Control Weather",
       "level": 8,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "10 minutes",
       "range": "Self",
       "duration": "Up to 8 hours",
@@ -8584,23 +5945,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [
-        "Land"
-      ],
-      "url": "/api/2014/spells/control-weather",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "demiplane",
       "name": "Demiplane",
       "level": 8,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "1 hour",
@@ -8611,25 +5962,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/demiplane",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "dominate-monster",
       "name": "Dominate Monster",
       "level": 8,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 hour",
@@ -8643,34 +5987,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "On failure, the creature is charmed by you for the duration."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/dominate-monster",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "feeblemind",
       "name": "Feeblemind",
       "level": 8,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Instantaneous",
@@ -8688,40 +6016,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "psychic",
-          "name": "Psychic",
-          "url": "/api/2014/damage-types/psychic"
-        },
-        "damage_at_slot_level": {
-          "8": "4d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "int",
-          "name": "INT",
-          "url": "/api/2014/ability-scores/int"
-        },
-        "dc_success": "other",
-        "desc": "The target always takes the damage. On a failed save, the creature's Intelligence and Charisma scores become 1."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/feeblemind",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "incendiary-cloud",
       "name": "Incendiary Cloud",
       "level": 8,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Up to 1 minute",
@@ -8733,33 +6034,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "8": "10d8"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/incendiary-cloud",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "maddening-darkness",
@@ -8777,22 +6057,18 @@
         "V",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "maze",
       "name": "Maze",
       "level": 8,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 10 minutes",
@@ -8804,25 +6080,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/maze",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mind-blank",
       "name": "Mind Blank",
       "level": 8,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "Touch",
       "duration": "24 hours",
@@ -8834,25 +6103,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/mind-blank",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "power-word-stun",
       "name": "Power Word Stun",
       "level": 8,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -8863,25 +6125,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/power-word-stun",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "sunburst",
       "name": "Sunburst",
       "level": 8,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "150 feet",
       "duration": "Instantaneous",
@@ -8899,40 +6154,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "radiant",
-          "name": "Radiant",
-          "url": "/api/2014/damage-types/radiant"
-        },
-        "damage_at_slot_level": {
-          "8": "12d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "con",
-          "name": "CON",
-          "url": "/api/2014/ability-scores/con"
-        },
-        "dc_success": "half",
-        "desc": "On failure, the creature is also blinded for 1 minute."
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/sunburst",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "astral-projection",
       "name": "Astral Projection",
       "level": 9,
-      "school": {
-        "index": "necromancy",
-        "name": "Necromancy",
-        "url": "/api/2014/magic-schools/necromancy"
-      },
+      "school": "Necromancy",
       "castingTime": "1 hour",
       "range": "10 feet",
       "duration": "Special",
@@ -8950,11 +6178,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/astral-projection",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "blade-of-disaster",
@@ -8972,22 +6196,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "foresight",
       "name": "Foresight",
       "level": 9,
-      "school": {
-        "index": "divination",
-        "name": "Divination",
-        "url": "/api/2014/magic-schools/divination"
-      },
+      "school": "Divination",
       "castingTime": "1 minute",
       "range": "Touch",
       "duration": "8 hours",
@@ -9005,21 +6225,13 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/foresight",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "gate",
       "name": "Gate",
       "level": 9,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Up to 1 minute",
@@ -9037,21 +6249,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/gate",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "imprisonment",
       "name": "Imprisonment",
       "level": 9,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 minute",
       "range": "30 feet",
       "duration": "Until dispelled",
@@ -9069,20 +6273,7 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none",
-        "desc": "If the creature succeeds, it is immune to this spell if you cast it again"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/imprisonment",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "mass-polymorph",
@@ -9101,22 +6292,18 @@
         "S",
         "M"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "meteor-swarm",
       "name": "Meteor Swarm",
       "level": 9,
-      "school": {
-        "index": "evocation",
-        "name": "Evocation",
-        "url": "/api/2014/magic-schools/evocation"
-      },
+      "school": "Evocation",
       "castingTime": "1 action",
       "range": "1 mile",
       "duration": "Instantaneous",
@@ -9128,43 +6315,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "damage": {
-        "damage_type": {
-          "index": "fire",
-          "name": "Fire",
-          "url": "/api/2014/damage-types/fire"
-        },
-        "damage_at_slot_level": {
-          "9": "20d6 + 20d6"
-        }
-      },
-      "dc": {
-        "dc_type": {
-          "index": "dex",
-          "name": "DEX",
-          "url": "/api/2014/ability-scores/dex"
-        },
-        "dc_success": "half"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/meteor-swarm",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "power-word-kill",
       "name": "Power Word Kill",
       "level": 9,
-      "school": {
-        "index": "enchantment",
-        "name": "Enchantment",
-        "url": "/api/2014/magic-schools/enchantment"
-      },
+      "school": "Enchantment",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "Instantaneous",
@@ -9175,25 +6337,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/power-word-kill",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "prismatic-wall",
       "name": "Prismatic Wall",
       "level": 9,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
+      "school": "Abjuration",
       "castingTime": "1 action",
       "range": "60 feet",
       "duration": "10 minutes",
@@ -9205,15 +6360,12 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/prismatic-wall",
-      "updated_at": "2026-04-01T20:35:39.217Z"
+      ]
     },
     {
       "index": "psychic-scream",
@@ -9230,22 +6382,18 @@
       "components": [
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": ""
+      ]
     },
     {
       "index": "shapechange",
       "name": "Shapechange",
       "level": 9,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Up to 1 hour",
@@ -9263,21 +6411,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/shapechange",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "time-stop",
       "name": "Time Stop",
       "level": 9,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -9288,25 +6428,18 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/time-stop",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "true-polymorph",
       "name": "True Polymorph",
       "level": 9,
-      "school": {
-        "index": "transmutation",
-        "name": "Transmutation",
-        "url": "/api/2014/magic-schools/transmutation"
-      },
+      "school": "Transmutation",
       "castingTime": "1 action",
       "range": "30 feet",
       "duration": "Up to 1 hour",
@@ -9324,21 +6457,13 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/true-polymorph",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "weird",
       "name": "Weird",
       "level": 9,
-      "school": {
-        "index": "illusion",
-        "name": "Illusion",
-        "url": "/api/2014/magic-schools/illusion"
-      },
+      "school": "Illusion",
       "castingTime": "1 action",
       "range": "120 feet",
       "duration": "Up to 1 minute",
@@ -9350,33 +6475,18 @@
         "V",
         "S"
       ],
+      "material": "",
       "ritual": false,
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "dc": {
-        "dc_type": {
-          "index": "wis",
-          "name": "WIS",
-          "url": "/api/2014/ability-scores/wis"
-        },
-        "dc_success": "none"
-      },
-      "subclasses": [],
-      "url": "/api/2014/spells/weird",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     },
     {
       "index": "wish",
       "name": "Wish",
       "level": 9,
-      "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
-      },
+      "school": "Conjuration",
       "castingTime": "1 action",
       "range": "Self",
       "duration": "Instantaneous",
@@ -9387,15 +6497,12 @@
       "components": [
         "V"
       ],
+      "material": "",
       "ritual": false,
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ],
-      "effect": "",
-      "subclasses": [],
-      "url": "/api/2014/spells/wish",
-      "updated_at": "2026-04-01T20:35:39.218Z"
+      ]
     }
   ]
 }
