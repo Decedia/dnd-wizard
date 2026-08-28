@@ -164,17 +164,17 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       onClick={() => handleClassSelect(cls.name)}
                       className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
                         isSelected
-                          ? "bg-[var(--color-text-primary)] border-2 border-[var(--color-text-primary)]"
+                          ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
                           : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-text-primary)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
-                            <span className="text-card-title">{cls.name}</span>
+                            <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
                           </div>
                           {hasSubclasses && (
                             <div className="mt-1 flex items-center gap-2">
@@ -234,16 +234,16 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       onClick={() => handleRaceSelect(race.name)}
                       className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
                         isSelected
-                          ? "bg-[var(--color-text-primary)] border-2 border-[var(--color-text-primary)]"
+                          ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
                           : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-text-primary)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1">
-                          <span className="text-card-title">{race.name}</span>
+                          <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{race.name}</span>
                           <div className="mt-0.5">
                             <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
                               {race.size} / Speed {race.speed} ft
