@@ -527,9 +527,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                            return (
                               <div
                                 key={optionIndex}
-                                className={`w-full px-3 py-2 text-left text-sm transition-all ${
+                                className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
                                   isSelected
-                                    ? "!border-2 !border-[var(--color-text-primary)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                                    ? "!border-2 !border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
                                     : isDisabled
                                       ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20"
                                       : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
@@ -612,9 +612,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                           return (
                             <div
                               key={optionIndex}
-                              className={`w-full px-3 py-2 text-left text-sm transition-all ${
+                              className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
                                 isSelected
-                                  ? "!border-2 !border-[var(--color-text-primary)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                                  ? "!border-2 !border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
                                   : isDisabled
                                     ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20 cursor-not-allowed"
                                     : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"

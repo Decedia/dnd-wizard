@@ -101,7 +101,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                 type="button"
                 onClick={() => toggleSkill(name)}
                 disabled={disabled}
-                 className={`btn w-full px-3 py-2 text-left transition-all ${
+                 className={`btn w-full px-3 py-2 text-left transition-all rounded-[var(--border-radius-sm)] ${
                    isBackgroundSkill
                      ? "btn-secondary bg-[var(--color-success-50)] border-[var(--color-success-300)]"
                      : isProficient
@@ -113,19 +113,19 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
               >
                <div className="flex items-center justify-between">
                  <div className="flex flex-col">
-                   <span className={`text-body ${isProficient ? "font-semibold" : ""}`}>{name}</span>
-                   <span className={`text-[10px] ${isAllowed || isBackgroundSkill ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
+                   <span className={`text-body ${isProficient ? "font-semibold" : ""} ${isProficient ? "text-[var(--color-surface)]" : ""}`}>{name}</span>
+                   <span className={`text-[10px] ${isProficient ? "text-[var(--color-surface)]" : isAllowed || isBackgroundSkill ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
                      {ability.toUpperCase()} {getAbilityModifier(ability)}
                    </span>
                  </div>
                  <div className="flex items-center gap-2">
                    {isProficient && (
-                     <span className="text-sm font-bold">+{profBonus}</span>
+                     <span className="text-sm font-bold text-[var(--color-surface)]">+{profBonus}</span>
                    )}
                    {isAllowed && !isBackgroundSkill && (
                       <div className={`h-5 w-5 rounded border-2 flex items-center justify-center ${isProficient ? "bg-[var(--color-surface)] border-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)]"}`}>
                          {isProficient && (
-                           <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-3 w-3" />
+                           <CheckCircle weight="fill" color="var(--color-ink)" className="h-3 w-3" />
                          )}
                        </div>
                    )}

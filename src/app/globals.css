@@ -246,8 +246,8 @@
   }
 
   .btn-primary:hover {
-    background-color: #262626;
-    border-color: #262626;
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
   }
 
   .btn-primary:disabled {
