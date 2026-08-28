@@ -9,6 +9,7 @@ import { getEquipmentData, getEquipmentNames, getStaticWeapon } from "@/lib/srd-
 import { useCallback } from "react";
 import { Backpack, Plus, CheckCircle, Circle, Info, Hand, Shield } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
+import { DamageBadge } from "./DamageBadge";
 
 interface InventorySectionProps {
   character: Character;
@@ -387,9 +388,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                   )}
                   {getWeaponStats(item) && (
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
-                        {getWeaponStats(item)?.damage}
-                      </span>
+                      <DamageBadge type={item.damageType} size="sm" />
                       <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
                       </span>
@@ -437,9 +436,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                   </div>
                   {getWeaponStats(item) && (
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
-                        {getWeaponStats(item)?.damage}
-                      </span>
+                      <DamageBadge type={item.damageType} size="sm" />
                       <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
                       </span>

@@ -5,6 +5,7 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
 import { Sword } from "phosphor-react";
+import { DamageBadge } from "./DamageBadge";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -71,7 +72,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <span className="badge text-ink bg-paper-muted">class-granted</span>
               </div>
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-sm text-ink">{attack.damageType}</span>
+                <DamageBadge type={attack.damageType} size="sm" />
                 {attack.sneakAttack && (
                     <span className="text-xs font-bold text-ink bg-paper-muted px-2.5 py-1.5 surface">+{attack.sneakAttack} sneak</span>
                 )}
@@ -103,15 +104,15 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                         {details.damageDice || "—"}
                         {details.damageBonus ? ` +${details.damageBonus}` : ""}
                       </span>
+                      <DamageBadge type={details.damageType} size="sm" />
                       {details.rageBonus > 0 && (
                         <span className="text-xs font-bold text-ink bg-[var(--color-error-50)] px-2 py-1 surface">+{details.rageBonus} rage</span>
                       )}
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
-                      <span className="text-sm text-[var(--color-text-secondary)] font-medium">{details.damageType}</span>
                     </>
                   )}
                     {!details && attack.damageType && (
-                    <span className="text-sm text-[var(--color-text-primary)] font-bold">{attack.damageType}</span>
+                    <DamageBadge type={attack.damageType} size="sm" />
                   )}
                   {attack.sneakAttack && (
                     <span className="text-xs font-bold text-ink bg-paper px-2.5 py-1.5 surface">
