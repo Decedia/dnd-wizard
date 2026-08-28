@@ -3442,7 +3442,8 @@
       "proficiencies": {
         "armor": [],
         "weapons": [
-          "simple"
+          "simple",
+          "shortswords"
         ],
         "tools": []
       },
