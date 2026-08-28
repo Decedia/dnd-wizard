@@ -419,7 +419,14 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (itemInfo.type === "weapon") {
       return (
         <span>
-          {itemInfo.damageDice && <span>{itemInfo.damageDice} {itemInfo.damageType}</span>}
+          {itemInfo.damageDice && (
+            <span
+              className="font-semibold"
+              style={{ color: getDamageTypeColor(itemInfo.damageType), backgroundColor: getDamageTypeBgColor(itemInfo.damageType), padding: "1px 4px", borderRadius: "4px" }}
+            >
+              {itemInfo.damageDice} {itemInfo.damageType}
+            </span>
+          )}
           {itemInfo.properties && itemInfo.properties.length > 0 && (
             <span className="ml-2 text-[var(--color-text-secondary)] font-medium">{itemInfo.properties.join(", ")}</span>
           )}
@@ -648,45 +655,37 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                    </div>
                                  </div>
                               ) : (
-                                <div className="flex items-center justify-between gap-2">
-                                  <button
-                                    type="button"
-                                    onClick={() => handleOptionClick(group, optionIndex)}
-                                    disabled={isDisabled}
-                                    className="flex-1 text-left"
-                                  >
-                                    <span className="text-body">
-                                      {option.isInstrumentChoice ? "Choose a musical instrument" : option.isArcaneFocusChoice ? "Choose an arcane focus" : option.isHolySymbolChoice ? "Choose a holy symbol" : option.isDruidicFocusChoice ? "Choose a druidic focus" : option.description || primaryItem?.name}
-                                    </span>
-                                     {primaryInfo?.type === "weapon" && (() => {
-                                       const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
-                                       return wStats ? (
-                                         <div className="flex items-center gap-2 mt-1.5">
-                                           <span
-                                             className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                                             style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
-                                           >
-                                             {wStats.damageDice} {wStats.damageType}
-                                           </span>
-                                           <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
-                                             {wStats.abilityKey} {wStats.damageBonus}
-                                           </span>
-                                           <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                                             {wStats.attackBonus} to hit
-                                           </span>
-                                         </div>
-                                       ) : null;
-                                     })()}
-                                  </button>
-                                {primaryInfo && (
-                                  <InfoButton
-                                    title={primaryItem?.name || option.description || "Item"}
-                                    description={getItemDescription(primaryInfo)}
-                                  />
-                                )}
-                              </div>
-                            )}
-                          </div>
+                                <button
+                                  type="button"
+                                  onClick={() => handleOptionClick(group, optionIndex)}
+                                  disabled={isDisabled}
+                                  className="w-full text-left text-body"
+                                >
+                                  <span>
+                                    {option.isInstrumentChoice ? "Choose a musical instrument" : option.isArcaneFocusChoice ? "Choose an arcane focus" : option.isHolySymbolChoice ? "Choose a holy symbol" : option.isDruidicFocusChoice ? "Choose a druidic focus" : option.description || primaryItem?.name}
+                                  </span>
+                                  {primaryInfo?.type === "weapon" && (() => {
+                                    const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
+                                    return wStats ? (
+                                      <div className="flex flex-col gap-1 mt-1.5">
+                                        <span
+                                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                                          style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
+                                        >
+                                          {wStats.damageDice} {wStats.damageType}
+                                        </span>
+                                        <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                                          {wStats.abilityKey} {wStats.damageBonus}
+                                        </span>
+                                        <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
+                                          {wStats.attackBonus} to hit
+                                        </span>
+                                      </div>
+                                    ) : null;
+                                  })()}
+                                </button>
+                             )}
+                         </div>
                         );
                     })}
                   </div>
@@ -774,8 +773,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const selectionCount = popupOption.selectionCount || 1;
               const isDisabled = !isWeaponSelected && selectedWeaponsForGroup.length >= selectionCount;
               return (
-                 <div
+                 <button
                     key={weapon.name}
+                    type="button"
+                    onClick={() => handleWeaponSelect(weapon, popupGroup.group.id, popupGroup.optionIndex)}
+                    disabled={isDisabled}
                     className={`w-full px-3 py-2 text-left text-sm rounded-[var(--border-radius-sm)] transition-colors ${
                       isWeaponSelected
                         ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
@@ -784,108 +786,85 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                           : "border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
                     }`}
                   >
-                   <button
-                     type="button"
-                     onClick={() => handleWeaponSelect(weapon, popupGroup.group.id, popupGroup.optionIndex)}
-                     disabled={isDisabled}
-                     className="flex-1 text-left"
-                   >
-                     <div className="flex items-center justify-between">
-                       <span className={`text-body ${isWeaponSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}>{weapon.name}</span>
-                       {wStats && (
-                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)]"}`}>
-                           {wStats.attackBonus} to hit
-                         </span>
-                       )}
-                     </div>
+                    <div className="flex items-center justify-between">
+                      <span className={`text-body ${isWeaponSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}>{weapon.name}</span>
                       {wStats && (
-                        <div className="flex items-center gap-2 mt-1">
-                          <span
-                            className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : ""}`}
-                            style={!isWeaponSelected ? { color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) } : undefined}
-                          >
-                            {wStats.damageDice} {wStats.damageType}
-                          </span>
-                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-info-600)] bg-[var(--color-info-50)]"}`}>
-                            {wStats.abilityKey} {wStats.damageBonus}
-                          </span>
-                        </div>
+                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)]"}`}>
+                          {wStats.attackBonus} to hit
+                        </span>
                       )}
-                   </button>
-                 </div>
+                    </div>
+                    {wStats && (
+                      <div className="flex flex-col gap-1 mt-1">
+                        <span
+                          className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : ""}`}
+                          style={!isWeaponSelected ? { color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) } : undefined}
+                        >
+                          {wStats.damageDice} {wStats.damageType}
+                        </span>
+                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-info-600)] bg-[var(--color-info-50)]"}`}>
+                          {wStats.abilityKey} {wStats.damageBonus}
+                        </span>
+                      </div>
+                    )}
+                  </button>
               );
             })}
             {popupOption.isInstrumentChoice && MUSICAL_INSTRUMENTS.map((instrument) => (
-              <div
+              <button
                 key={instrument}
-                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                type="button"
+                onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
+                className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <button
-                  type="button"
-                  onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="flex-1 text-left"
-                >
-                  <span className="text-body text-[var(--color-text-primary)]">{instrument}</span>
-                </button>
+                <span className="text-body text-[var(--color-text-primary)]">{instrument}</span>
                 <InfoButton
                   title={instrument}
                   description="Musical instrument. Bards use musical instruments as a spellcasting focus."
                 />
-              </div>
+              </button>
             ))}
             {popupOption.isArcaneFocusChoice && ARCANE_FOCUS_TYPES.map((focus) => (
-              <div
+              <button
                 key={focus}
-                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                type="button"
+                onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <button
-                  type="button"
-                  onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="flex-1 text-left"
-                >
-                  <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
-                </button>
+                <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
                 <InfoButton
                   title={focus}
                   description="An arcane focus is a special item designed to channel arcane magic. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
                 />
-              </div>
+              </button>
             ))}
             {popupOption.isHolySymbolChoice && HOLY_SYMBOL_TYPES.map((symbol) => (
-              <div
+              <button
                 key={symbol}
-                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                type="button"
+                onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
+                className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <button
-                  type="button"
-                  onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="flex-1 text-left"
-                >
-                  <span className="text-body text-[var(--color-text-primary)]">{symbol}</span>
-                </button>
+                <span className="text-body text-[var(--color-text-primary)]">{symbol}</span>
                 <InfoButton
                   title={symbol}
                   description="A holy symbol is a representation of a deity or pantheon. A cleric or paladin can use a holy symbol as a spellcasting focus."
                 />
-              </div>
+              </button>
             ))}
             {popupOption.isDruidicFocusChoice && DRUIDIC_FOCUS_TYPES.map((focus) => (
-              <div
+              <button
                 key={focus}
-                className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                type="button"
+                onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <button
-                  type="button"
-                  onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="flex-1 text-left"
-                >
-                  <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
-                </button>
+                <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
                 <InfoButton
                   title={focus}
                   description="A druidic focus is a special item used by druids to channel nature magic. It can be a sprig of mistletoe, a totem, a wooden staff, or a yew wand."
                 />
-              </div>
+              </button>
             ))}
           </div>
         </DescriptionModal>

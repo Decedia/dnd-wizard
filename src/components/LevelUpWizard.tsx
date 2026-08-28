@@ -882,7 +882,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       <div className="sticky top-0 z-40 bg-[var(--color-surface)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
-            <button onClick={onCancel} className="text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">
+            <button onClick={onCancel} className="px-3 py-1.5 text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors rounded-[var(--border-radius-sm)] border border-transparent hover:border-[var(--color-border)]">
               Cancel
             </button>
             <div className="text-xs font-semibold text-[var(--color-text-primary)]">{title ?? "Level Up"}</div>
@@ -1420,7 +1420,7 @@ function LevelCard({
                 <button
                   type="button"
                   onClick={() => setShowSpellModal(true)}
-                  className="text-xs font-semibold text-[var(--color-text-primary)] hover:underline"
+                  className="w-full text-left text-xs font-semibold text-[var(--color-text-primary)] hover:underline py-1"
                 >
                   {info.spellsKnownChanged
                     ? `Choose ${info.spellSelectionCount} New Spell${info.spellSelectionCount > 1 ? "s" : ""}`
