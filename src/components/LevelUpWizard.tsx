@@ -26,6 +26,7 @@ import {
   Leaf,
 } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
+import { useSRD } from "@/contexts/SRDContext";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -1003,6 +1004,8 @@ function LevelCard({
     const [showAsiModal, setShowAsiModal] = useState(false);
     const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
     const lvl = info.level;
+    const { data } = useSRD();
+  const srdSpells = data?.spells || [];
 
   const isHpComplete = hpValue > 0;
   const isAsiComplete = !info.asi || (asiSelection?.mode === "single" && !!asiSelection?.single) || (asiSelection?.mode === "double" && !!asiSelection?.d1 && !!asiSelection?.d2 && asiSelection?.d1 !== asiSelection?.d2);
@@ -1657,6 +1660,8 @@ function LevelCard({
                 {getCircleTerrainTypes().map((terrain) => {
                   const isSelected = circleTerrain === terrain;
                   const terrainSpells = getCircleSpells(terrain, info.level);
+                  const prevLevelSpells = info.level > 3 ? getCircleSpells(terrain, info.level - 1) : [];
+                  const newSpells = terrainSpells.filter((name) => !prevLevelSpells.includes(name));
                   return (
                     <button
                       key={terrain}
@@ -1669,10 +1674,28 @@ function LevelCard({
                       }`}
                     >
                       <div className="font-semibold text-sm">{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</div>
-                      {terrainSpells.length > 0 && (
+                      {newSpells.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {newSpells.map((name) => {
+                            const spellData = srdSpells.find((s) => s.name?.toLowerCase() === name.toLowerCase());
+                            const desc = spellData?.description ? (Array.isArray(spellData.description) ? spellData.description.join(" ") : spellData.description) : undefined;
+                            return (
+                              <span key={name} className="flex items-center gap-1">
+                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isSelected ? "bg-green-500 text-white" : "bg-green-100 text-green-700"}`}>
+                                  {name}
+                                </span>
+                                {desc && (
+                                  <InfoButton title={name} description={desc} />
+                                )}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      )}
+                      {terrainSpells.length > 0 && newSpells.length === 0 && (
                         <div className="flex flex-wrap gap-1 mt-2">
                           {terrainSpells.map((name) => (
-                            <span key={name} className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isSelected ? "bg-green-500 text-white" : "bg-green-100 text-green-700"}`}>
+                            <span key={name} className={`text-[10px] font-bold px-1.5 py-0.5 rounded opacity-60 ${isSelected ? "bg-green-500 text-white" : "bg-gray-100 text-gray-600"}`}>
                               {name}
                             </span>
                           ))}
