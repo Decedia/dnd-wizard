@@ -1,0 +1,192 @@
+{
+  "invocations": {
+    "Agonizing Blast": {
+      "level": 0,
+      "requires": "eldritch blast cantrip"
+    },
+    "Ascendant Step": {
+      "level": 9,
+      "requires": null
+    },
+    "Aspect of the Moon": {
+      "level": 0,
+      "requires": "Pact of the Tome"
+    },
+    "Bewitching Whispers": {
+      "level": 7,
+      "requires": null
+    },
+    "Book of Ancient Secrets": {
+      "level": 0,
+      "requires": "Pact of the Tome"
+    },
+    "Chains of Carceri": {
+      "level": 15,
+      "requires": "Pact of the Chain"
+    },
+    "Devil's Sight": {
+      "level": 0,
+      "requires": null
+    },
+    "Dreadful Word": {
+      "level": 7,
+      "requires": null
+    },
+    "Eldritch Mind": {
+      "level": 0,
+      "requires": null
+    },
+    "Eldritch Sight": {
+      "level": 0,
+      "requires": null
+    },
+    "Eldritch Smite": {
+      "level": 5,
+      "requires": "Pact of the Blade"
+    },
+    "Eldritch Spear": {
+      "level": 0,
+      "requires": "eldritch blast cantrip"
+    },
+    "Eyes of the Rune Keeper": {
+      "level": 0,
+      "requires": null
+    },
+    "Far Scribe": {
+      "level": 5,
+      "requires": "Pact of the Tome"
+    },
+    "Fiendish Vigor": {
+      "level": 0,
+      "requires": null
+    },
+    "Gaze of Two Minds": {
+      "level": 0,
+      "requires": null
+    },
+    "Ghostly Gaze": {
+      "level": 7,
+      "requires": null
+    },
+    "Gift of the Depths": {
+      "level": 5,
+      "requires": null
+    },
+    "Gift of the Ever-Living Ones": {
+      "level": 0,
+      "requires": "Pact of the Chain"
+    },
+    "Gift of the Protectors": {
+      "level": 9,
+      "requires": "Pact of the Tome"
+    },
+    "Grasp of Hadar": {
+      "level": 0,
+      "requires": "eldritch blast cantrip"
+    },
+    "Improved Pact Weapon": {
+      "level": 0,
+      "requires": "Pact of the Blade"
+    },
+    "Investment of the Chain Master": {
+      "level": 0,
+      "requires": "Pact of the Chain"
+    },
+    "Lance of Lethargy": {
+      "level": 0,
+      "requires": "eldritch blast cantrip"
+    },
+    "Lifedrinker": {
+      "level": 12,
+      "requires": "Pact of the Blade"
+    },
+    "Maddening Hex": {
+      "level": 5,
+      "requires": "hex spell or warlock feature that curses"
+    },
+    "Mask of Many Faces": {
+      "level": 0,
+      "requires": null
+    },
+    "Master of Myriad Forms": {
+      "level": 15,
+      "requires": null
+    },
+    "Minions of Chaos": {
+      "level": 9,
+      "requires": null
+    },
+    "Mire the Mind": {
+      "level": 5,
+      "requires": null
+    },
+    "Misty Visions": {
+      "level": 0,
+      "requires": null
+    },
+    "One with Shadows": {
+      "level": 5,
+      "requires": null
+    },
+    "Otherworldly Leap": {
+      "level": 9,
+      "requires": null
+    },
+    "Relentless Hex": {
+      "level": 7,
+      "requires": "hex spell or warlock feature that curses"
+    },
+    "Repelling Blast": {
+      "level": 0,
+      "requires": "eldritch blast cantrip"
+    },
+    "Sculptor of Flesh": {
+      "level": 7,
+      "requires": null
+    },
+    "Shroud of Shadow": {
+      "level": 15,
+      "requires": null
+    },
+    "Sign of Ill Omen": {
+      "level": 5,
+      "requires": null
+    },
+    "Thief of Five Fates": {
+      "level": 0,
+      "requires": null
+    },
+    "Thirsting Blade": {
+      "level": 5,
+      "requires": "Pact of the Blade"
+    },
+    "Tomb of Levistus": {
+      "level": 5,
+      "requires": null
+    },
+    "Trickster's Escape": {
+      "level": 7,
+      "requires": null
+    },
+    "Undying Servitude": {
+      "level": 5,
+      "requires": null
+    },
+    "Visions of Distant Realms": {
+      "level": 15,
+      "requires": null
+    },
+    "Voice of the Chain Master": {
+      "level": 0,
+      "requires": "Pact of the Chain"
+    },
+    "Whispers of the Grave": {
+      "level": 9,
+      "requires": null
+    },
+    "Witch Sight": {
+      "level": 15,
+      "requires": null
+    }
+  }
+}

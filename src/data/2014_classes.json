@@ -5551,24 +5551,84 @@
         "20": 13
       },
       "arcaneTricksterSpellSlots": {
-        "3": { "1": 2 },
-        "4": { "1": 3 },
-        "5": { "1": 3 },
-        "6": { "1": 3 },
-        "7": { "1": 4, "2": 2 },
-        "8": { "1": 4, "2": 2 },
-        "9": { "1": 4, "2": 2 },
-        "10": { "1": 4, "2": 3 },
-        "11": { "1": 4, "2": 3 },
-        "12": { "1": 4, "2": 3 },
-        "13": { "1": 4, "2": 3, "3": 2 },
-        "14": { "1": 4, "2": 3, "3": 2 },
-        "15": { "1": 4, "2": 3, "3": 2 },
-        "16": { "1": 4, "2": 3, "3": 3 },
-        "17": { "1": 4, "2": 3, "3": 3 },
-        "18": { "1": 4, "2": 3, "3": 3 },
-        "19": { "1": 4, "2": 3, "3": 3, "4": 1 },
-        "20": { "1": 4, "2": 3, "3": 3, "4": 1 }
+        "3": {
+          "1": 2
+        },
+        "4": {
+          "1": 3
+        },
+        "5": {
+          "1": 3
+        },
+        "6": {
+          "1": 3
+        },
+        "7": {
+          "1": 4,
+          "2": 2
+        },
+        "8": {
+          "1": 4,
+          "2": 2
+        },
+        "9": {
+          "1": 4,
+          "2": 2
+        },
+        "10": {
+          "1": 4,
+          "2": 3
+        },
+        "11": {
+          "1": 4,
+          "2": 3
+        },
+        "12": {
+          "1": 4,
+          "2": 3
+        },
+        "13": {
+          "1": 4,
+          "2": 3,
+          "3": 2
+        },
+        "14": {
+          "1": 4,
+          "2": 3,
+          "3": 2
+        },
+        "15": {
+          "1": 4,
+          "2": 3,
+          "3": 2
+        },
+        "16": {
+          "1": 4,
+          "2": 3,
+          "3": 3
+        },
+        "17": {
+          "1": 4,
+          "2": 3,
+          "3": 3
+        },
+        "18": {
+          "1": 4,
+          "2": 3,
+          "3": 3
+        },
+        "19": {
+          "1": 4,
+          "2": 3,
+          "3": 3,
+          "4": 1
+        },
+        "20": {
+          "1": 4,
+          "2": 3,
+          "3": 3,
+          "4": 1
+        }
       }
     },
     {
@@ -6446,7 +6506,70 @@
         },
         {
           "level": 5,
-          "features": [],
+          "features": [
+            {
+              "name": "Eldritch Invocations",
+              "description": "You gain an additional eldritch invocation of your choice. Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
+              "type": "feature",
+              "choices": {
+                "type": "invocations",
+                "count": 1,
+                "options": [
+                  "Agonizing Blast",
+                  "Armor of Shadows",
+                  "Ascendant Step",
+                  "Aspect of the Moon",
+                  "Beast Speech",
+                  "Beguiling Influence",
+                  "Bewitching Whispers",
+                  "Book of Ancient Secrets",
+                  "Chains of Carceri",
+                  "Devil's Sight",
+                  "Dreadful Word",
+                  "Eldritch Mind",
+                  "Eldritch Sight",
+                  "Eldritch Smite",
+                  "Eldritch Spear",
+                  "Eyes of the Rune Keeper",
+                  "Far Scribe",
+                  "Fiendish Vigor",
+                  "Gaze of Two Minds",
+                  "Ghostly Gaze",
+                  "Gift of the Depths",
+                  "Gift of the Ever-Living Ones",
+                  "Gift of the Protectors",
+                  "Grasp of Hadar",
+                  "Improved Pact Weapon",
+                  "Investment of the Chain Master",
+                  "Lance of Lethargy",
+                  "Lifedrinker",
+                  "Maddening Hex",
+                  "Mask of Many Faces",
+                  "Master of Myriad Forms",
+                  "Minions of Chaos",
+                  "Mire the Mind",
+                  "Misty Visions",
+                  "One with Shadows",
+                  "Otherworldly Leap",
+                  "Relentless Hex",
+                  "Repelling Blast",
+                  "Sculptor of Flesh",
+                  "Shroud of Shadow",
+                  "Sign of Ill Omen",
+                  "Thief of Five Fates",
+                  "Thirsting Blade",
+                  "Tomb of Levistus",
+                  "Trickster's Escape",
+                  "Undying Servitude",
+                  "Visions of Distant Realms",
+                  "Voice of the Chain Master",
+                  "Whispers of the Grave",
+                  "Witch Sight"
+                ],
+                "description": "Choose an eldritch invocation."
+              }
+            }
+          ],
           "asi": false,
           "spellSlots": {
             "3": 2
@@ -6468,7 +6591,70 @@
         },
         {
           "level": 7,
-          "features": [],
+          "features": [
+            {
+              "name": "Eldritch Invocations",
+              "description": "You gain an additional eldritch invocation of your choice. Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
+              "type": "feature",
+              "choices": {
+                "type": "invocations",
+                "count": 1,
+                "options": [
+                  "Agonizing Blast",
+                  "Armor of Shadows",
+                  "Ascendant Step",
+                  "Aspect of the Moon",
+                  "Beast Speech",
+                  "Beguiling Influence",
+                  "Bewitching Whispers",
+                  "Book of Ancient Secrets",
+                  "Chains of Carceri",
+                  "Devil's Sight",
+                  "Dreadful Word",
+                  "Eldritch Mind",
+                  "Eldritch Sight",
+                  "Eldritch Smite",
+                  "Eldritch Spear",
+                  "Eyes of the Rune Keeper",
+                  "Far Scribe",
+                  "Fiendish Vigor",
+                  "Gaze of Two Minds",
+                  "Ghostly Gaze",
+                  "Gift of the Depths",
+                  "Gift of the Ever-Living Ones",
+                  "Gift of the Protectors",
+                  "Grasp of Hadar",
+                  "Improved Pact Weapon",
+                  "Investment of the Chain Master",
+                  "Lance of Lethargy",
+                  "Lifedrinker",
+                  "Maddening Hex",
+                  "Mask of Many Faces",
+                  "Master of Myriad Forms",
+                  "Minions of Chaos",
+                  "Mire the Mind",
+                  "Misty Visions",
+                  "One with Shadows",
+                  "Otherworldly Leap",
+                  "Relentless Hex",
+                  "Repelling Blast",
+                  "Sculptor of Flesh",
+                  "Shroud of Shadow",
+                  "Sign of Ill Omen",
+                  "Thief of Five Fates",
+                  "Thirsting Blade",
+                  "Tomb of Levistus",
+                  "Trickster's Escape",
+                  "Undying Servitude",
+                  "Visions of Distant Realms",
+                  "Voice of the Chain Master",
+                  "Whispers of the Grave",
+                  "Witch Sight"
+                ],
+                "description": "Choose an eldritch invocation."
+              }
+            }
+          ],
           "asi": false,
           "spellSlots": {
             "4": 2
@@ -6490,7 +6676,70 @@
         },
         {
           "level": 9,
-          "features": [],
+          "features": [
+            {
+              "name": "Eldritch Invocations",
+              "description": "You gain an additional eldritch invocation of your choice. Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
+              "type": "feature",
+              "choices": {
+                "type": "invocations",
+                "count": 1,
+                "options": [
+                  "Agonizing Blast",
+                  "Armor of Shadows",
+                  "Ascendant Step",
+                  "Aspect of the Moon",
+                  "Beast Speech",
+                  "Beguiling Influence",
+                  "Bewitching Whispers",
+                  "Book of Ancient Secrets",
+                  "Chains of Carceri",
+                  "Devil's Sight",
+                  "Dreadful Word",
+                  "Eldritch Mind",
+                  "Eldritch Sight",
+                  "Eldritch Smite",
+                  "Eldritch Spear",
+                  "Eyes of the Rune Keeper",
+                  "Far Scribe",
+                  "Fiendish Vigor",
+                  "Gaze of Two Minds",
+                  "Ghostly Gaze",
+                  "Gift of the Depths",
+                  "Gift of the Ever-Living Ones",
+                  "Gift of the Protectors",
+                  "Grasp of Hadar",
+                  "Improved Pact Weapon",
+                  "Investment of the Chain Master",
+                  "Lance of Lethargy",
+                  "Lifedrinker",
+                  "Maddening Hex",
+                  "Mask of Many Faces",
+                  "Master of Myriad Forms",
+                  "Minions of Chaos",
+                  "Mire the Mind",
+                  "Misty Visions",
+                  "One with Shadows",
+                  "Otherworldly Leap",
+                  "Relentless Hex",
+                  "Repelling Blast",
+                  "Sculptor of Flesh",
+                  "Shroud of Shadow",
+                  "Sign of Ill Omen",
+                  "Thief of Five Fates",
+                  "Thirsting Blade",
+                  "Tomb of Levistus",
+                  "Trickster's Escape",
+                  "Undying Servitude",
+                  "Visions of Distant Realms",
+                  "Voice of the Chain Master",
+                  "Whispers of the Grave",
+                  "Witch Sight"
+                ],
+                "description": "Choose an eldritch invocation."
+              }
+            }
+          ],
           "asi": false,
           "spellSlots": {
             "5": 2
@@ -6549,6 +6798,68 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature"
+            },
+            {
+              "name": "Eldritch Invocations",
+              "description": "You gain an additional eldritch invocation of your choice. Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
+              "type": "feature",
+              "choices": {
+                "type": "invocations",
+                "count": 1,
+                "options": [
+                  "Agonizing Blast",
+                  "Armor of Shadows",
+                  "Ascendant Step",
+                  "Aspect of the Moon",
+                  "Beast Speech",
+                  "Beguiling Influence",
+                  "Bewitching Whispers",
+                  "Book of Ancient Secrets",
+                  "Chains of Carceri",
+                  "Devil's Sight",
+                  "Dreadful Word",
+                  "Eldritch Mind",
+                  "Eldritch Sight",
+                  "Eldritch Smite",
+                  "Eldritch Spear",
+                  "Eyes of the Rune Keeper",
+                  "Far Scribe",
+                  "Fiendish Vigor",
+                  "Gaze of Two Minds",
+                  "Ghostly Gaze",
+                  "Gift of the Depths",
+                  "Gift of the Ever-Living Ones",
+                  "Gift of the Protectors",
+                  "Grasp of Hadar",
+                  "Improved Pact Weapon",
+                  "Investment of the Chain Master",
+                  "Lance of Lethargy",
+                  "Lifedrinker",
+                  "Maddening Hex",
+                  "Mask of Many Faces",
+                  "Master of Myriad Forms",
+                  "Minions of Chaos",
+                  "Mire the Mind",
+                  "Misty Visions",
+                  "One with Shadows",
+                  "Otherworldly Leap",
+                  "Relentless Hex",
+                  "Repelling Blast",
+                  "Sculptor of Flesh",
+                  "Shroud of Shadow",
+                  "Sign of Ill Omen",
+                  "Thief of Five Fates",
+                  "Thirsting Blade",
+                  "Tomb of Levistus",
+                  "Trickster's Escape",
+                  "Undying Servitude",
+                  "Visions of Distant Realms",
+                  "Voice of the Chain Master",
+                  "Whispers of the Grave",
+                  "Witch Sight"
+                ],
+                "description": "Choose an eldritch invocation."
+              }
             }
           ],
           "asi": true,
@@ -6621,6 +6932,68 @@
                 ],
                 "count": 1,
                 "description": "Choose one 8th-level spell from the warlock spell list."
+              }
+            },
+            {
+              "name": "Eldritch Invocations",
+              "description": "You gain an additional eldritch invocation of your choice. Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
+              "type": "feature",
+              "choices": {
+                "type": "invocations",
+                "count": 1,
+                "options": [
+                  "Agonizing Blast",
+                  "Armor of Shadows",
+                  "Ascendant Step",
+                  "Aspect of the Moon",
+                  "Beast Speech",
+                  "Beguiling Influence",
+                  "Bewitching Whispers",
+                  "Book of Ancient Secrets",
+                  "Chains of Carceri",
+                  "Devil's Sight",
+                  "Dreadful Word",
+                  "Eldritch Mind",
+                  "Eldritch Sight",
+                  "Eldritch Smite",
+                  "Eldritch Spear",
+                  "Eyes of the Rune Keeper",
+                  "Far Scribe",
+                  "Fiendish Vigor",
+                  "Gaze of Two Minds",
+                  "Ghostly Gaze",
+                  "Gift of the Depths",
+                  "Gift of the Ever-Living Ones",
+                  "Gift of the Protectors",
+                  "Grasp of Hadar",
+                  "Improved Pact Weapon",
+                  "Investment of the Chain Master",
+                  "Lance of Lethargy",
+                  "Lifedrinker",
+                  "Maddening Hex",
+                  "Mask of Many Faces",
+                  "Master of Myriad Forms",
+                  "Minions of Chaos",
+                  "Mire the Mind",
+                  "Misty Visions",
+                  "One with Shadows",
+                  "Otherworldly Leap",
+                  "Relentless Hex",
+                  "Repelling Blast",
+                  "Sculptor of Flesh",
+                  "Shroud of Shadow",
+                  "Sign of Ill Omen",
+                  "Thief of Five Fates",
+                  "Thirsting Blade",
+                  "Tomb of Levistus",
+                  "Trickster's Escape",
+                  "Undying Servitude",
+                  "Visions of Distant Realms",
+                  "Voice of the Chain Master",
+                  "Whispers of the Grave",
+                  "Witch Sight"
+                ],
+                "description": "Choose an eldritch invocation."
               }
             }
           ],
@@ -6702,6 +7075,68 @@
               "name": "Eldritch Master",
               "description": "At 20th level, you can draw on your inner reserve of mystical power while entreating your patron to regain expended spell slots. You can spend 1 minute entreating your patron for aid to regain all your expended spell slots from your Pact Magic feature. Once you regain spell slots with this feature, you must finish a long rest before you can do so again.",
               "type": "feature"
+            },
+            {
+              "name": "Eldritch Invocations",
+              "description": "You gain an additional eldritch invocation of your choice. Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
+              "type": "feature",
+              "choices": {
+                "type": "invocations",
+                "count": 1,
+                "options": [
+                  "Agonizing Blast",
+                  "Armor of Shadows",
+                  "Ascendant Step",
+                  "Aspect of the Moon",
+                  "Beast Speech",
+                  "Beguiling Influence",
+                  "Bewitching Whispers",
+                  "Book of Ancient Secrets",
+                  "Chains of Carceri",
+                  "Devil's Sight",
+                  "Dreadful Word",
+                  "Eldritch Mind",
+                  "Eldritch Sight",
+                  "Eldritch Smite",
+                  "Eldritch Spear",
+                  "Eyes of the Rune Keeper",
+                  "Far Scribe",
+                  "Fiendish Vigor",
+                  "Gaze of Two Minds",
+                  "Ghostly Gaze",
+                  "Gift of the Depths",
+                  "Gift of the Ever-Living Ones",
+                  "Gift of the Protectors",
+                  "Grasp of Hadar",
+                  "Improved Pact Weapon",
+                  "Investment of the Chain Master",
+                  "Lance of Lethargy",
+                  "Lifedrinker",
+                  "Maddening Hex",
+                  "Mask of Many Faces",
+                  "Master of Myriad Forms",
+                  "Minions of Chaos",
+                  "Mire the Mind",
+                  "Misty Visions",
+                  "One with Shadows",
+                  "Otherworldly Leap",
+                  "Relentless Hex",
+                  "Repelling Blast",
+                  "Sculptor of Flesh",
+                  "Shroud of Shadow",
+                  "Sign of Ill Omen",
+                  "Thief of Five Fates",
+                  "Thirsting Blade",
+                  "Tomb of Levistus",
+                  "Trickster's Escape",
+                  "Undying Servitude",
+                  "Visions of Distant Realms",
+                  "Voice of the Chain Master",
+                  "Whispers of the Grave",
+                  "Witch Sight"
+                ],
+                "description": "Choose an eldritch invocation."
+              }
             }
           ],
           "asi": false,
@@ -6721,17 +7156,137 @@
         {
           "index": "fiend",
           "name": "Fiend",
-          "url": "/api/2014/subclasses/fiend"
+          "url": "/api/2014/subclasses/fiend",
+          "expandedSpells": {
+            "1": [
+              "Burning Hands",
+              "Command"
+            ],
+            "2": [
+              "Blindness/Deafness",
+              "Scorching Ray"
+            ],
+            "3": [
+              "Fireball",
+              "Stinking Cloud"
+            ],
+            "4": [
+              "Fire Shield",
+              "Wall of Fire"
+            ],
+            "5": [
+              "Flame Strike",
+              "Hallow"
+            ]
+          }
         },
         {
           "index": "great-old-one",
           "name": "Great Old One",
-          "url": "/api/2014/subclasses/great-old-one"
+          "url": "/api/2014/subclasses/great-old-one",
+          "expandedSpells": {
+            "1": [
+              "Dissonant Whispers",
+              "Tasha's Hideous Laughter"
+            ],
+            "2": [
+              "Detect Thoughts",
+              "Phantasmal Force"
+            ],
+            "3": [
+              "Clairvoyance",
+              "Sending"
+            ],
+            "4": [
+              "Dominate Beast",
+              "Evard's Black Tentacles"
+            ],
+            "5": [
+              "Dominate Person",
+              "Telekinesis"
+            ]
+          }
         },
         {
           "index": "undying",
           "name": "Undying",
-          "url": "/api/2014/subclasses/undying"
+          "url": "/api/2014/subclasses/undying",
+          "expandedSpells": {
+            "1": [
+              "False Life",
+              "Ray of Sickness"
+            ],
+            "2": [
+              "Blindness/Deafness",
+              "Silence"
+            ],
+            "3": [
+              "Feign Death",
+              "Speak with Dead"
+            ],
+            "4": [
+              "Death Ward",
+              "Greater Invisibility"
+            ],
+            "5": [
+              "Antilife Shell",
+              "Cloudkill"
+            ]
+          }
+        },
+        {
+          "index": "archfey",
+          "name": "Archfey",
+          "url": "/api/2014/subclasses/archfey",
+          "expandedSpells": {
+            "1": [
+              "Faerie Fire",
+              "Sleep"
+            ],
+            "2": [
+              "Calm Emotions",
+              "Phantasmal Force"
+            ],
+            "3": [
+              "Blink",
+              "Plant Growth"
+            ],
+            "4": [
+              "Dominate Beast",
+              "Greater Invisibility"
+            ],
+            "5": [
+              "Dominate Person",
+              "Seeming"
+            ]
+          }
+        },
+        {
+          "index": "hexblade",
+          "name": "Hexblade",
+          "url": "/api/2014/subclasses/hexblade",
+          "expandedSpells": {
+            "1": [
+              "Shield",
+              "Wrathful Smite"
+            ],
+            "2": [
+              "Blur",
+              "Branding Smite"
+            ],
+            "3": [
+              "Blink",
+              "Elemental Weapon"
+            ],
+            "4": [
+              "Phantasmal Killer",
+              "Staggering Smite"
+            ],
+            "5": [
+              "Banishing Smite",
+              "Cone of Cold"
+            ]
+          }
         }
       ],
       "spellsKnown": {
@@ -7284,7 +7839,18 @@
         }
       ],
       "spellcastingAbility": "int",
-      "cantripsKnown": [3, 3, 3, 4, 4, 4, 4, 4, 4, 5],
+      "cantripsKnown": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5
+      ],
       "subclassLevel": 2,
       "subclasses": [
         {

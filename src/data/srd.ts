@@ -54,6 +54,8 @@ export interface SRDClass {
   levels: SRDClassLevel[];
   spellcastingAbility?: string;
   cantripsKnown?: Record<number, number> | number[];
+  spellsKnown?: Record<number, number>;
+  invocationsKnown?: Record<number, number>;
   scalingFeatures?: SRDScalingFeature[];
   subclassLevel?: number;
   subclasses?: {
@@ -565,6 +567,83 @@ export const classes: SRDClass[] = [
           { name: "Magical Ambush", description: "You have advantage on saving throws against spells and other magical effects when you are hidden from the spellcaster." },
         ],
       },
+    ],
+  },
+  {
+    name: "Warlock",
+    hitDie: 8,
+    hpPerLevel: 5,
+    primaryAbility: "cha",
+    savingThrows: ["wis", "cha"],
+    flavorText: "Warlocks are seekers of the knowledge that lies hidden in the fabric of the multiverse. Through pacts made with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular.",
+    proficiencies: {
+      armor: ["light armor"],
+      weapons: ["simple weapons"],
+      tools: [],
+    },
+    skillChoices: {
+      count: 2,
+      options: ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"],
+    },
+    startingEquipment: [
+      { description: "(a) a light crossbow and 20 bolts or (b) any simple weapon", items: [{ name: "Light Crossbow", description: "A ranged weapon that fires bolts." }, { name: "Crossbow bolt", description: "Ammunition for crossbows.", quantity: 20 }] },
+      { description: "(a) a component pouch or (b) an arcane focus", items: [{ name: "Component Pouch", description: "A small pouch containing arcane components." }] },
+      { description: "Or:", items: [{ name: "Arcane Focus", description: "A focus for casting spells, such as a wand or orb." }] },
+      { description: "(a) a scholar's pack or (b) a dungeoneer's pack", items: [{ name: "Scholar's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." }] },
+      { description: "Or:", items: [{ name: "Dungeoneer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." }] },
+      { granted: true, description: "Always granted:", items: [{ name: "Leather Armor", description: "Light armor. AC 11 + Dex modifier.", quantity: 1 }, { name: "Dagger", description: "A simple melee weapon (1d4 piercing).", quantity: 2 }] },
+    ],
+    features: [
+      { name: "Otherworldly Patron", description: "At 1st level, you have struck a bargain with an otherworldly being of your choice. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.", type: "feature" },
+      { name: "Pact Magic", description: "Your arcane research and the magic bestowed on you by your patron have given you facility with spells. You regain all expended spell slots when you finish a short or long rest.", type: "feature" },
+    ],
+    levels: [
+      { features: [{ name: "Otherworldly Patron", description: "At 1st level, you have struck a bargain with an otherworldly being of your choice." }, { name: "Pact Magic", description: "You know two cantrips and two 1st-level spells from the warlock spell list. Spell slots recover on short or long rest." }], asi: false, spellSlots: { 1: 1 } },
+      { features: [{ name: "Eldritch Invocations", description: "At 2nd level, you gain two eldritch invocations of your choice." }], asi: false, spellSlots: { 1: 2 } },
+      { features: [{ name: "Pact Boon", description: "At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service." }], asi: false, spellSlots: { 2: 2 } },
+      { features: [{ name: "Ability Score Improvement", description: "You can increase one ability score by 2, or two ability scores by 1." }], asi: true, spellSlots: { 2: 2 } },
+      { features: [{ name: "Eldritch Invocations", description: "You gain an additional eldritch invocation of your choice." }], asi: false, spellSlots: { 3: 2 } },
+      { features: [{ name: "Otherworldly Patron feature", description: "You gain a feature from your chosen Otherworldly Patron." }], asi: false, spellSlots: { 3: 2 } },
+      { features: [{ name: "Eldritch Invocations", description: "You gain an additional eldritch invocation of your choice." }], asi: false, spellSlots: { 4: 2 } },
+      { features: [{ name: "Ability Score Improvement", description: "You can increase one ability score by 2, or two ability scores by 1." }], asi: true, spellSlots: { 4: 2 } },
+      { features: [{ name: "Eldritch Invocations", description: "You gain an additional eldritch invocation of your choice." }], asi: false, spellSlots: { 5: 2 } },
+      { features: [{ name: "Otherworldly Patron feature", description: "You gain a feature from your chosen Otherworldly Patron." }], asi: false, spellSlots: { 5: 2 } },
+      { features: [{ name: "Ability Score Improvement", description: "You can increase one ability score by 2, or two ability scores by 1." }], asi: true, spellSlots: { 5: 3 } },
+      { features: [{ name: "Mystic Arcanum (6th level)", description: "Choose one 6th-level spell from the warlock spell list. You can cast it once without expending a spell slot." }], asi: false, spellSlots: { 5: 3 } },
+      { features: [{ name: "Eldritch Invocations", description: "You gain an additional eldritch invocation of your choice." }], asi: true, spellSlots: { 5: 3 } },
+      { features: [{ name: "Mystic Arcanum (7th level)", description: "Choose one 7th-level spell from the warlock spell list." }], asi: false, spellSlots: { 5: 3 } },
+      { features: [{ name: "Otherworldly Patron feature", description: "You gain a feature from your chosen Otherworldly Patron." }], asi: false, spellSlots: { 5: 3 } },
+      { features: [{ name: "Eldritch Invocations", description: "You gain an additional eldritch invocation of your choice." }], asi: false, spellSlots: { 5: 3 } },
+      { features: [{ name: "Ability Score Improvement", description: "You can increase one ability score by 2, or two ability scores by 1." }], asi: true, spellSlots: { 5: 3 } },
+      { features: [{ name: "Mystic Arcanum (8th level)", description: "Choose one 8th-level spell from the warlock spell list." }], asi: false, spellSlots: { 5: 3 } },
+      { features: [{ name: "Eldritch Invocations", description: "You gain an additional eldritch invocation of your choice." }], asi: true, spellSlots: { 5: 4 } },
+      { features: [{ name: "Mystic Arcanum (9th level)", description: "Choose one 9th-level spell from the warlock spell list." }], asi: false, spellSlots: { 5: 4 } },
+      { features: [{ name: "Eldritch Master", description: "At 20th level, you can spend 1 minute entreating your patron to regain all expended spell slots from your Pact Magic feature." }], asi: false, spellSlots: { 5: 4 } },
+    ],
+    spellcastingAbility: "cha",
+    cantripsKnown: { "1": 2, "4": 3, "10": 4 },
+    spellsKnown: { "1": 2, "2": 3, "3": 4, "4": 5, "5": 6, "6": 7, "7": 8, "8": 9, "9": 10, "10": 11, "11": 12, "12": 12, "13": 13, "14": 13, "15": 14, "16": 14, "17": 15, "18": 15, "19": 15, "20": 15 },
+    invocationsKnown: { "2": 2, "5": 3, "7": 4, "9": 5, "12": 6, "15": 7, "18": 8 },
+    subclassLevel: 1,
+    subclasses: [
+      { name: "Fiend", description: "You have made a pact with a fiend from the lower planes of existence.", features: [
+        { level: 1, name: "Dark One's Blessing", description: "When you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level." },
+        { level: 6, name: "Dark One's Own Luck", description: "When you make an ability check or a saving throw, you can add a d10 to your roll." },
+        { level: 10, name: "Fiendish Resilience", description: "Choose one damage type when you finish a short or long rest. You gain resistance to that damage type." },
+        { level: 14, name: "Hurl Through Hell", description: "When you hit a creature with an attack, you can instantly transport the target through the lower planes." },
+      ]},
+      { name: "Great Old One", description: "Your patron is a mysterious entity whose nature is utterly foreign to the fabric of reality.", features: [
+        { level: 1, name: "Awakened Mind", description: "You can telepathically speak to any creature you can see within 30 feet of you." },
+        { level: 6, name: "Entropic Ward", description: "When a creature makes an attack roll against you, you can use your reaction to impose disadvantage on that roll." },
+        { level: 10, name: "Thought Shield", description: "Your thoughts can't be read by telepathy or other means unless you allow it. You have resistance to psychic damage." },
+        { level: 14, name: "Create Thrall", description: "You can touch an incapacitated humanoid. That creature is then charmed by you." },
+      ]},
+      { name: "Archfey", description: "Your patron is a lord or lady of the fey, a creature of legend.", features: [
+        { level: 1, name: "Fey Presence", description: "As an action, you can cause each creature in a 10-foot cube to make a Wisdom saving throw." },
+        { level: 6, name: "Misty Escape", description: "When you take damage, you can use your reaction to turn invisible and teleport up to 60 feet." },
+        { level: 10, name: "Beguiling Defenses", description: "You are immune to being charmed." },
+        { level: 14, name: "Dark Delirium", description: "You can plunge a creature into an illusory realm." },
+      ]},
     ],
   },
 ];

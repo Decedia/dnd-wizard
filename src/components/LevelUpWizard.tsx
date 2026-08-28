@@ -6,6 +6,7 @@ import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclass
 import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
+import invocationsData from "@/data/warlock_invocations.json";
 import {
   Heart,
   Lightning,
@@ -24,6 +25,7 @@ import {
   CaretDown,
   Bell,
   Leaf,
+  Swap,
 } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 import { useSRD } from "@/contexts/SRDContext";
@@ -38,6 +40,29 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
   { key: "wis", label: "WIS", full: "Wisdom" },
   { key: "cha", label: "CHA", full: "Charisma" },
 ];
+
+interface InvocationPrerequisite {
+  level: number;
+  requires?: string;
+}
+
+const invocationPrereqs: Record<string, InvocationPrerequisite> = (invocationsData as any).invocations || {};
+
+function getAvailableInvocations(level: number, pactBoon: string, knownInvocations: string[]): { name: string; available: boolean; reason?: string }[] {
+  const allInvocations = Object.keys(invocationPrereqs);
+  return allInvocations.map((name) => {
+    const prereq = invocationPrereqs[name];
+    if (!prereq) return { name, available: true };
+    if (level < prereq.level) return { name, available: false, reason: `Requires level ${prereq.level}` };
+    if (prereq.requires) {
+      const req = prereq.requires.toLowerCase();
+      if (req.includes("pact of the blade") && pactBoon !== "Pact of the Blade") return { name, available: false, reason: "Requires Pact of the Blade" };
+      if (req.includes("pact of the chain") && pactBoon !== "Pact of the Chain") return { name, available: false, reason: "Requires Pact of the Chain" };
+      if (req.includes("pact of the tome") && pactBoon !== "Pact of the Tome") return { name, available: false, reason: "Requires Pact of the Tome" };
+    }
+    return { name, available: true };
+  });
+}
 
 const HUMANOID_RACES = [
   "Bugbears",
@@ -383,6 +408,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [circleTerrainSelections, setCircleTerrainSelections] = useState<Record<number, string>>({});
   const [bonusCantripSelections, setBonusCantripSelections] = useState<Record<number, string>>({});
   const [replacedSpells, setReplacedSpells] = useState<Record<number, string>>({});
+  const [invocationSelections, setInvocationSelections] = useState<Record<number, string[]>>({});
+  const [replacedInvocations, setReplacedInvocations] = useState<Record<number, string>>({});
+  const [pactTomeCantrips, setPactTomeCantrips] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
   const prevTargetLevelRef = useRef(targetLevel);
@@ -412,6 +440,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setReplacedSpell = (level: number, spellId: string) => setReplacedSpells((prev) => ({ ...prev, [level]: spellId }));
   const setCircleTerrain = (level: number, terrain: string) => setCircleTerrainSelections((prev) => ({ ...prev, [level]: terrain }));
   const setBonusCantrip = (level: number, cantrip: string) => setBonusCantripSelections((prev) => ({ ...prev, [level]: cantrip }));
+  const setInvocations = (level: number, list: string[]) => setInvocationSelections((prev) => ({ ...prev, [level]: list }));
+  const setReplacedInvocation = (level: number, invocation: string) => setReplacedInvocations((prev) => ({ ...prev, [level]: invocation }));
 
   const buildAllocation = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
@@ -774,6 +804,45 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
 
+    if (draft.class === "Warlock") {
+      const allInvocations: string[] = [];
+      for (const [lvlStr, invs] of Object.entries(invocationSelections)) {
+        for (const inv of invs) {
+          if (!allInvocations.includes(inv)) allInvocations.push(inv);
+        }
+      }
+      for (const [lvlStr, invName] of Object.entries(replacedInvocations)) {
+        if (invName) {
+          const idx = allInvocations.indexOf(invName);
+          if (idx >= 0) allInvocations.splice(idx, 1);
+        }
+      }
+      if (allInvocations.length > 0) {
+        draft.featureSelections = {
+          ...draft.featureSelections,
+          "warlock-invocations": allInvocations,
+        };
+      }
+      if (pactTomeCantrips.length > 0) {
+        for (const cantripName of pactTomeCantrips) {
+          if (!cantrips.some((c) => c.name === cantripName)) {
+            cantrips.push({ id: `cantrip-tome-${cantripName}`.replace(/\s+/g, "-"), name: cantripName });
+          }
+        }
+        draft.featureSelections = {
+          ...draft.featureSelections,
+          "pact-tome-cantrips": pactTomeCantrips,
+        };
+      }
+      const pactBoon = (classFeatureChoices as any)["Pact Boon"] || "";
+      if (pactBoon) {
+        draft.featureSelections = {
+          ...draft.featureSelections,
+          "pact-boon": [pactBoon],
+        };
+      }
+    }
+
     let finalChar = applySubclassFeatures(draft);
     finalChar = syncBaseFeatures(finalChar);
     finalChar = { ...finalChar, ...computeDerivedStats(finalChar) };
@@ -802,6 +871,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       setReplacedSpells({});
       setSubclassFeatureChoices({});
       setClassFeatureChoices({});
+      setInvocationSelections({});
+      setReplacedInvocations({});
+      setPactTomeCantrips([]);
     }
   };
 
@@ -948,6 +1020,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               averageHp={averageHp}
               startFromLevelOne={startFromLevelOne}
               allSpellSelections={spellSelections}
+              invocationSelections={invocationSelections[info.level] || []}
+              onInvocationsChange={(list) => setInvocations(info.level, list)}
+              replacedInvocation={replacedInvocations[info.level] || ""}
+              onReplacedInvocationChange={(inv) => setReplacedInvocation(info.level, inv)}
+              pactTomeCantrips={pactTomeCantrips}
+              onPactTomeCantripsChange={setPactTomeCantrips}
+              allInvocationSelections={invocationSelections}
             />
           ))}
         </div>
@@ -997,6 +1076,13 @@ interface LevelCardProps {
   averageHp: number;
   startFromLevelOne?: boolean;
   allSpellSelections: Record<number, string[]>;
+  invocationSelections: string[];
+  onInvocationsChange: (list: string[]) => void;
+  replacedInvocation: string;
+  onReplacedInvocationChange: (inv: string) => void;
+  pactTomeCantrips: string[];
+  onPactTomeCantripsChange: (list: string[]) => void;
+  allInvocationSelections?: Record<number, string[]>;
 }
 
 function LevelCard({
@@ -1031,6 +1117,13 @@ function LevelCard({
   averageHp,
   startFromLevelOne,
   allSpellSelections,
+  invocationSelections,
+  onInvocationsChange,
+  replacedInvocation,
+  onReplacedInvocationChange,
+  pactTomeCantrips,
+  onPactTomeCantripsChange,
+  allInvocationSelections,
 }: LevelCardProps) {
     const [showSpellSelection, setShowSpellSelection] = useState(false);
     const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
@@ -1340,6 +1433,134 @@ function LevelCard({
               </div>
             </div>
           )}
+
+          {character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
+            <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
+              <div className="flex items-center gap-2 mb-1">
+                <Crown weight="regular" className="h-3.5 w-3.5 text-purple-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon Required</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your subclass (Otherworldly Patron) first to unlock Pact Boon selection.</p>
+            </div>
+          )}
+
+          {character.class === "Warlock" && info.level === 3 && subclassSelection && (() => {
+            const pactBoon = classFeatureChoices["Pact Boon"] || "";
+            return (
+              <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
+                <div className="flex items-center gap-2 mb-1">
+                  <Crown weight="regular" className="h-3.5 w-3.5 text-purple-600" />
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon</span>
+                </div>
+                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Your patron bestows a gift. Choose one.</p>
+                <button
+                  type="button"
+                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: [{ name: "Pact of the Chain", description: "You gain the service of a familiar." }, { name: "Pact of the Blade", description: "You can create a pact weapon." }, { name: "Pact of the Tome", description: "You receive a Book of Shadows with 3 cantrips from any class." }], isSubclass: false, count: 1 }); }}
+                  className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                >
+                  <span>{pactBoon || "Select Pact Boon..."}</span>
+                  <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                </button>
+                {pactBoon === "Pact of the Tome" && (
+                  <div className="mt-3">
+                    <p className="text-[10px] font-semibold text-purple-700 mb-1">Choose 3 Cantrips from Any Class:</p>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {pactTomeCantrips.map((c) => (
+                        <span key={c} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-purple-100 border border-purple-300 rounded-full text-purple-800">
+                          {c}
+                          <button type="button" onClick={() => onPactTomeCantripsChange(pactTomeCantrips.filter(x => x !== c))} className="hover:text-red-600 font-bold">×</button>
+                        </span>
+                      ))}
+                    </div>
+                    <select
+                      value=""
+                      onChange={(e) => {
+                        if (e.target.value && pactTomeCantrips.length < 3 && !pactTomeCantrips.includes(e.target.value)) {
+                          onPactTomeCantripsChange([...pactTomeCantrips, e.target.value]);
+                        }
+                        e.target.value = "";
+                      }}
+                      className="w-full py-1.5 px-2 text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]"
+                    >
+                      <option value="">{pactTomeCantrips.length >= 3 ? "3 cantrips selected" : `Select cantrip (${pactTomeCantrips.length}/3)...`}</option>
+                      {getStaticSpells().filter(s => s.level === 0 && !pactTomeCantrips.includes(s.name)).map(s => (
+                        <option key={s.name} value={s.name}>{s.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                {pactBoon === "Pact of the Chain" && (
+                  <div className="mt-2">
+                    <p className="text-[10px] text-[var(--color-text-muted)]">Special familiar forms available: imp, pseudodragon, quasit, sprite</p>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
+
+          {character.class === "Warlock" && info.level >= 2 && (() => {
+            const invocationFeature = info.classFeatureChoices?.find(fc => fc.name === "Eldritch Invocations");
+            if (!invocationFeature) return null;
+            const currentInvocations = invocationSelections;
+            const invocationCount = invocationFeature.count || 1;
+            const pactBoon = classFeatureChoices["Pact Boon"] || "";
+            const availableInvocations = getAvailableInvocations(info.level, pactBoon, currentInvocations);
+            const priorInvocations = Object.entries(allInvocationSelections || {}).filter(([l]) => Number(l) < info.level).flatMap(([, invs]) => invs);
+            const hasPriorInvocations = info.level > 2 && priorInvocations.length > 0;
+
+            return (
+              <div className="p-3 rounded-lg border border-indigo-300 bg-indigo-50/30">
+                <div className="flex items-center gap-2 mb-1">
+                  <Sparkle weight="regular" className="h-3.5 w-3.5 text-indigo-600" />
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Eldritch Invocations</span>
+                </div>
+                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {invocationCount} invocation{invocationCount > 1 ? "s" : ""}. Spell slots recover on short rest.</p>
+                {currentInvocations.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    {currentInvocations.map((inv) => (
+                      <span key={inv} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-indigo-100 border border-indigo-300 rounded-full text-indigo-800">
+                        {inv}
+                        <button type="button" onClick={() => onInvocationsChange(currentInvocations.filter(x => x !== inv))} className="hover:text-red-600 font-bold">×</button>
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {hasPriorInvocations && info.level > 2 && (
+                  <div className="mb-2">
+                    <p className="text-[10px] font-semibold text-orange-700 mb-1">Replace an invocation (optional):</p>
+                    <select
+                      value={replacedInvocation}
+                      onChange={(e) => onReplacedInvocationChange(e.target.value)}
+                      className="w-full py-1.5 px-2 text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]"
+                    >
+                      <option value="">No replacement</option>
+                      {priorInvocations.map((inv) => (
+                        <option key={inv} value={inv}>{inv}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                <select
+                  value=""
+                  onChange={(e) => {
+                    if (e.target.value && currentInvocations.length < invocationCount && !currentInvocations.includes(e.target.value)) {
+                      onInvocationsChange([...currentInvocations, e.target.value]);
+                    }
+                    e.target.value = "";
+                  }}
+                  className="w-full py-1.5 px-2 text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]"
+                >
+                  <option value="">{currentInvocations.length >= invocationCount ? `${invocationCount} invocation${invocationCount > 1 ? "s" : ""} selected` : `Select invocation (${currentInvocations.length}/${invocationCount})...`}</option>
+                  {availableInvocations.filter(i => i.available && !currentInvocations.includes(i.name)).map(i => (
+                    <option key={i.name} value={i.name}>{i.name}</option>
+                  ))}
+                  {availableInvocations.filter(i => !i.available && !currentInvocations.includes(i.name)).map(i => (
+                    <option key={i.name} value={i.name} disabled>{i.name} ({i.reason})</option>
+                  ))}
+                </select>
+              </div>
+            );
+          })()}
 
           {info.magicalSecretsCount > 0 && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">

@@ -172,16 +172,46 @@
           ],
           "level": 1,
           "choices": [
-            { "name": "Black", "description": "Acid damage" },
-            { "name": "Blue", "description": "Lightning damage" },
-            { "name": "Brass", "description": "Fire damage" },
-            { "name": "Bronze", "description": "Lightning damage" },
-            { "name": "Copper", "description": "Acid damage" },
-            { "name": "Gold", "description": "Fire damage" },
-            { "name": "Green", "description": "Poison damage" },
-            { "name": "Red", "description": "Fire damage" },
-            { "name": "Silver", "description": "Cold damage" },
-            { "name": "White", "description": "Cold damage" }
+            {
+              "name": "Black",
+              "description": "Acid damage"
+            },
+            {
+              "name": "Blue",
+              "description": "Lightning damage"
+            },
+            {
+              "name": "Brass",
+              "description": "Fire damage"
+            },
+            {
+              "name": "Bronze",
+              "description": "Lightning damage"
+            },
+            {
+              "name": "Copper",
+              "description": "Acid damage"
+            },
+            {
+              "name": "Gold",
+              "description": "Fire damage"
+            },
+            {
+              "name": "Green",
+              "description": "Poison damage"
+            },
+            {
+              "name": "Red",
+              "description": "Fire damage"
+            },
+            {
+              "name": "Silver",
+              "description": "Cold damage"
+            },
+            {
+              "name": "White",
+              "description": "Cold damage"
+            }
           ]
         },
         {
@@ -375,7 +405,10 @@
           ],
           "level": 2,
           "choices": [
-            { "name": "cantrip", "description": "Choose one additional druid cantrip" }
+            {
+              "name": "cantrip",
+              "description": "Choose one additional druid cantrip"
+            }
           ]
         },
         {
@@ -394,7 +427,10 @@
           ],
           "level": 3,
           "choices": [
-            { "name": "terrain", "description": "Choose your terrain type (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)" }
+            {
+              "name": "terrain",
+              "description": "Choose your terrain type (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)"
+            }
           ]
         },
         {
@@ -510,8 +546,14 @@
           ],
           "level": 6,
           "choices": [
-            { "name": "spell1", "description": "Choose one spell from any class" },
-            { "name": "spell2", "description": "Choose another spell from any class" }
+            {
+              "name": "spell1",
+              "description": "Choose one spell from any class"
+            },
+            {
+              "name": "spell2",
+              "description": "Choose another spell from any class"
+            }
           ]
         },
         {
@@ -635,7 +677,7 @@
         {
           "name": "Totem Spirit",
           "description": [
-            "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object — an amulet or similar adornment — that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are:",
+            "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object \u2014 an amulet or similar adornment \u2014 that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are:",
             "Bear. While raging, you have resistance to all damage except psychic damage.",
             "Eagle. While raging, other creatures have disadvantage on opportunity attacks against you, and you can use the Dash action as a bonus action on your turn.",
             "Wolf. While raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you."
@@ -1173,24 +1215,84 @@
         "20": 3
       },
       "spellSlots": {
-        "3": { "1": 2 },
-        "4": { "1": 3 },
-        "5": { "1": 3 },
-        "6": { "1": 3 },
-        "7": { "1": 4, "2": 2 },
-        "8": { "1": 4, "2": 2 },
-        "9": { "1": 4, "2": 2 },
-        "10": { "1": 4, "2": 3 },
-        "11": { "1": 4, "2": 3 },
-        "12": { "1": 4, "2": 3 },
-        "13": { "1": 4, "2": 3, "3": 2 },
-        "14": { "1": 4, "2": 3, "3": 2 },
-        "15": { "1": 4, "2": 3, "3": 2 },
-        "16": { "1": 4, "2": 3, "3": 3 },
-        "17": { "1": 4, "2": 3, "3": 3 },
-        "18": { "1": 4, "2": 3, "3": 3 },
-        "19": { "1": 4, "2": 3, "3": 3, "4": 1 },
-        "20": { "1": 4, "2": 3, "3": 3, "4": 1 }
+        "3": {
+          "1": 2
+        },
+        "4": {
+          "1": 3
+        },
+        "5": {
+          "1": 3
+        },
+        "6": {
+          "1": 3
+        },
+        "7": {
+          "1": 4,
+          "2": 2
+        },
+        "8": {
+          "1": 4,
+          "2": 2
+        },
+        "9": {
+          "1": 4,
+          "2": 2
+        },
+        "10": {
+          "1": 4,
+          "2": 3
+        },
+        "11": {
+          "1": 4,
+          "2": 3
+        },
+        "12": {
+          "1": 4,
+          "2": 3
+        },
+        "13": {
+          "1": 4,
+          "2": 3,
+          "3": 2
+        },
+        "14": {
+          "1": 4,
+          "2": 3,
+          "3": 2
+        },
+        "15": {
+          "1": 4,
+          "2": 3,
+          "3": 2
+        },
+        "16": {
+          "1": 4,
+          "2": 3,
+          "3": 3
+        },
+        "17": {
+          "1": 4,
+          "2": 3,
+          "3": 3
+        },
+        "18": {
+          "1": 4,
+          "2": 3,
+          "3": 3
+        },
+        "19": {
+          "1": 4,
+          "2": 3,
+          "3": 3,
+          "4": 1
+        },
+        "20": {
+          "1": 4,
+          "2": 3,
+          "3": 3,
+          "4": 1
+        }
       },
       "spellsKnown": {
         "3": 3,
@@ -2137,6 +2239,69 @@
             "At 14th level, you can transmute matter at a touch."
           ],
           "level": 14
+        }
+      ]
+    },
+    {
+      "class": "Warlock",
+      "name": "Archfey",
+      "description": [
+        "Your patron is a lord or lady of the fey, a creature of legend who holds secrets that were forgotten before the mortal races were born."
+      ],
+      "features": [
+        {
+          "level": 1,
+          "name": "Fey Presence",
+          "description": "Starting at 1st level, your patron bestows upon you the ability to project the beguiling and fearsome presence of the fey. As an action, you can cause each creature in a 10-foot cube originating from you to make a Wisdom saving throw against your warlock spell save DC. The creatures that fail their saving throws are all charmed or frightened by you (your choice) until the end of your next turn. Once you use this feature, you can't use it again until you finish a short or long rest."
+        },
+        {
+          "level": 6,
+          "name": "Misty Escape",
+          "description": "Starting at 6th level, you can vanish in a puff of mist in response to harm. When you take damage, you can use your reaction to turn invisible and teleport up to 60 feet to an unoccupied space you can see. You remain invisible until the start of your next turn or until you attack or cast a spell. Once you use this feature, you can't use it again until you finish a short or long rest."
+        },
+        {
+          "level": 10,
+          "name": "Beguiling Defenses",
+          "description": "Beginning at 10th level, your patron teaches you how to turn the mind-affecting magic of your enemies against them. You are immune to being charmed, and when another creature attempts to charm you, you can use your reaction to attempt to turn the charm back on that creature. The creature must succeed on a Wisdom saving throw against your warlock spell save DC or be charmed by you for 1 minute or until the creature takes any damage."
+        },
+        {
+          "level": 14,
+          "name": "Dark Delirium",
+          "description": "Starting at 14th level, you can plunge a creature into an illusory realm. As an action, choose a creature that you can see within 60 feet of you. It must make a Wisdom saving throw against your warlock spell save DC. On a failed save, it is charmed or frightened by you (your choice) for 1 minute or until your concentration is broken (as if you are concentrating on a spell). This effect ends early if the creature takes any damage. Until this illusion ends, the creature thinks it is lost in a misty realm, the appearance of which you choose. The creature can see and hear only itself, you, and the illusion. You must finish a short or long rest before you can use this feature again."
+        }
+      ]
+    },
+    {
+      "class": "Warlock",
+      "name": "Hexblade",
+      "description": [
+        "You have made a pact with a mysterious entity from the Shadowfell\u2014a force that manifests in sentient magic weapons. The Hexblade might have forged the blade you wield as your pact weapon, or it might have revealed itself through a ritual of dark binding."
+      ],
+      "features": [
+        {
+          "level": 1,
+          "name": "Hexblade's Curse",
+          "description": "Starting at 1st level, you gain the ability to place a bitter curse on someone. As a bonus action, choose one creature you can see within 30 feet of you. The target is cursed for 1 minute. The curse ends early if the target dies, you die, or you are incapacitated. Until the curse ends, you gain the following benefits: You gain a bonus to damage rolls against the cursed target. The bonus equals your proficiency bonus. Any attack roll you make against the cursed target is a critical hit on a roll of 19 or 20 on the d20. If the target dies, you regain hit points equal to your warlock level + your Charisma modifier (minimum of 1 hit point). You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+        },
+        {
+          "level": 1,
+          "name": "Hex Warrior",
+          "description": "At 1st level, you acquire the training necessary to effectively arm yourself for battle. You gain proficiency with medium armor, shields, and martial weapons. The influence of your patron also allows you to mystically channel your will through a particular weapon. Whenever you finish a long rest, you can touch one weapon that you are proficient with and that lacks the two-handed property. When you attack with that weapon, you can use your Charisma modifier, instead of Strength or Dexterity, for the attack and damage rolls. This benefit lasts until you finish a long rest again. If you later gain the Pact of the Blade feature, this benefit applies to any pact weapon you conjure with that feature, no matter the weapon's type."
+        },
+        {
+          "level": 6,
+          "name": "Accursed Specter",
+          "description": "Starting at 6th level, you can curse the soul of a slain enemy and bind it to your service. When you slay a humanoid, you can cause its spirit to rise as a specter. When the specter appears, it gains temporary hit points equal to half your warlock level. Roll initiative for the specter, which has its own turns. It obeys your verbal commands (no action required by you), and it gains a special bonus to its attack rolls equal to your Charisma modifier (minimum of +0). The specter remains in your service until the end of your next long rest, at which point it vanishes to the afterlife. Once you bind a specter with this feature, you can't use it again until you finish a long rest."
+        },
+        {
+          "level": 10,
+          "name": "Armor of Hexes",
+          "description": "At 10th level, your hex grows more powerful. If the target cursed by your Hexblade's Curse hits you with an attack, roll a d6. On a roll of 4 or higher, the attack instead misses you, regardless of its roll. This ability functions against attack rolls made by both creatures and objects."
+        },
+        {
+          "level": 14,
+          "name": "Master of Hexes",
+          "description": "Starting at 14th level, the curse you place on a foe spreads to another when its host falls. When the humanoid you have cursed is reduced to 0 hit points and dies, you can apply the curse to a different humanoid you can see within 30 feet of you. When you transfer the curse, you don't regain uses of the Hexblade's Curse feature."
         }
       ]
     }
