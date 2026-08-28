@@ -305,7 +305,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <button
                         type="button"
                         onClick={() => toggleEquip(item.id)}
-                        className={`px-2.5 py-1 text-xs flex items-center gap-1.5 ${
+                        className={`h-7 px-2.5 text-xs flex items-center gap-1.5 ${
                           item.equipped
                             ? "btn-primary"
                             : "btn-secondary"
@@ -368,24 +368,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       )}
                     </div>
                   )}
-                  {item.equipped && item.hand && (
-                    <div className="flex items-center gap-1">
-                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                        item.hand === "both"
-                          ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                          : item.hand === "main"
-                            ? "bg-[var(--color-success-100)] text-[var(--color-success-700)]"
-                            : "bg-[var(--color-info-100)] text-[var(--color-info-700)]"
-                      }`}>
-                        {getHandLabel(item.hand)}
-                      </span>
-                      {item.itemType === "armor" && item.armorType === "shield" && (
-                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
-                          <Shield weight="bold" size={10} className="inline mr-0.5" />Shield
-                        </span>
-                      )}
-                    </div>
-                  )}
                   {getWeaponStats(item) && (
                     <div className="flex items-center gap-2 mt-1">
                       <DamageBadge type={item.damageType} size="sm" />
@@ -420,11 +402,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       {item.quantity > 1 && (
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
                       )}
-                      {item.equipped && (
-                        <span className="badge-light text-[var(--color-text-primary)] bg-paper/10">
-                          {item.hand === "both" ? "2H" : item.hand === "off" ? "OFF" : item.itemType === "armor" && item.armorType === "shield" ? "SHD" : "EQUIPPED"}
-                        </span>
-                      )}
                       {item.itemType === "armor" && item.armorType === "shield" && (
                         <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
                           <Shield weight="bold" size={10} className="inline mr-0.5" />Shield
@@ -436,7 +413,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                         <button
                           type="button"
                           onClick={() => toggleEquip(item.id)}
-                          className={`px-2 py-0.5 text-[10px] font-bold rounded flex items-center gap-1 ${
+                          className={`h-7 px-2 text-[10px] font-bold rounded flex items-center gap-1 ${
                             item.equipped
                               ? "bg-[var(--color-text-primary)] text-[var(--color-surface)]"
                               : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)]"

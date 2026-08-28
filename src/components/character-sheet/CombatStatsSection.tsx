@@ -45,30 +45,30 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <SpeedStat value={character.speed} />
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         <div>
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center justify-between mb-1.5">
             <span className="field-label-light mb-0">HP</span>
             <span className="text-[10px] font-semibold text-ink-muted">
               {character.currentHp} / {character.maxHp}
             </span>
           </div>
-          <div className="progress-track-light">
+          <div className="progress-track" style={{ height: "12px" }}>
             <div
-              className="progress-fill-light"
+              className="progress-fill"
               style={{ width: `${hpPercent}%` }}
             />
           </div>
         </div>
 
         <div>
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center justify-between mb-1.5">
             <span className="field-label-light mb-0">Temp HP</span>
             <span className="text-[10px] font-semibold text-ink-muted">{character.temporaryHp}</span>
           </div>
-          <div className="progress-track-light">
+          <div className="progress-track" style={{ height: "12px" }}>
             <div
-              className="progress-fill-light"
+              className="progress-fill"
               style={{ width: character.temporaryHp > 0 ? "100%" : "0%" }}
             />
           </div>
@@ -76,7 +76,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
 
         {isSorcerer && (
           <div>
-            <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center justify-between mb-1.5">
               <span className="field-label-light mb-0 flex items-center gap-1">
                 <Sparkle weight="regular" className="h-3 w-3" />
                 Sorcery Points
@@ -85,9 +85,9 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
                 {character.sorceryPoints} / {character.maxSorceryPoints}
               </span>
             </div>
-            <div className="progress-track-light">
+            <div className="progress-track" style={{ height: "12px" }}>
               <div
-                className="progress-fill-light"
+                className="progress-fill"
                 style={{ width: character.maxSorceryPoints > 0 ? `${Math.min(100, Math.max(0, (character.sorceryPoints / character.maxSorceryPoints) * 100))}%` : "0%" }}
               />
             </div>

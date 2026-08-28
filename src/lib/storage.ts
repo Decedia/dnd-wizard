@@ -359,6 +359,20 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
 
   ac += equippedShields.length * 2;
 
+  const hasArmor = bodyArmor !== undefined;
+  if (character.features && character.features.length > 0) {
+    for (const feature of character.features) {
+      const fname = feature.name.toLowerCase();
+      if (fname.includes("defense") && hasArmor) {
+        ac += 1;
+      } else if (fname.includes("dueling")) {
+        // Dueling gives +2 to damage rolls with single weapon, handled in attacks
+      } else if (fname.includes("shield mastery")) {
+        ac += 1;
+      }
+    }
+  }
+
   const profBonus = getProficiencyBonus(character.level);
   const weaponAttacks: Character["attacks"] = equippedWeapons.map((weapon) => {
     const abilityKey = weapon.category === "ranged" ? "dex" : "str";
@@ -472,6 +486,18 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     ac = bodyArmor.baseAC + dexMod;
   }
   ac += equippedShields.length * 2;
+
+  const hasArmor = bodyArmor !== undefined;
+  if (character.features && character.features.length > 0) {
+    for (const feature of character.features) {
+      const fname = feature.name.toLowerCase();
+      if (fname.includes("defense") && hasArmor) {
+        ac += 1;
+      } else if (fname.includes("shield mastery")) {
+        ac += 1;
+      }
+    }
+  }
 
   return {
     proficiencyBonus: profBonus,
