@@ -483,18 +483,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
     },
   );
 
-  if (classData?.spellcastingAbility) {
-    steps.push({
-      id: "spells",
-      title: "Spells",
-      description: "Choose cantrips and spells",
-      hint: "Select your starting cantrips and spells. Cantrips are minor spells you can cast at will, while spells require spell slots.",
-      type: "spells",
-      required: false,
-      completed: true,
-    });
-  }
-
   steps.push(
     {
       id: "appearance",
