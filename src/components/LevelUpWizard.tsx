@@ -1509,6 +1509,7 @@ function LevelCard({
       {showSpellModal && info.hasSpellSelection && (
         <SpellSelectionModal
           character={character}
+          subclassSelection={subclassSelection}
           count={info.spellSelectionCount}
           cantripCount={info.cantripSelectionCount}
           maxLevel={info.maxSpellLevel}
@@ -2214,6 +2215,7 @@ function SubclassSelectionModal({
 
 function SpellSelectionModal({
   character,
+  subclassSelection,
   count,
   cantripCount,
   maxLevel,
@@ -2231,6 +2233,7 @@ function SpellSelectionModal({
   onSubclassSpellSelectionsChange,
 }: {
   character: Character;
+  subclassSelection?: string;
   count: number;
   cantripCount: number;
   maxLevel: number;
@@ -2256,7 +2259,7 @@ function SpellSelectionModal({
     };
   }, []);
 
-  const isArcaneTrickster = character.subclass?.toLowerCase().includes("arcane trickster");
+  const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster") || character.subclass?.toLowerCase().includes("arcane trickster");
   const spellClasses = isArcaneTrickster ? [character.class, "Wizard"] : [character.class];
   const allSpells = getStaticSpells().filter((s) => s.classes?.some(c => spellClasses.includes(c)) && (s.level === 0 || s.level <= maxLevel));
   const allClassSpells = getStaticSpells().filter((s) => s.level > 0 && s.level <= maxLevel);
