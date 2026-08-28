@@ -4,18 +4,19 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
-import { Sword } from "phosphor-react";
+import { Sword, Sparkle } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp">;
-  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp">>) => void;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints">;
+  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints">>) => void;
   editMode?: boolean;
 }
 
 export function CombatStatsSection({ character, onChange, editMode = true }: CombatStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const hpPercent = character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0;
+  const isSorcerer = character.class === "Sorcerer";
 
   return (
     <SectionCard id="combat-stats" title="COMBAT STATS" icon={<Sword weight="regular" className="h-5 w-5" />}>
@@ -72,6 +73,26 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             />
           </div>
         </div>
+
+        {isSorcerer && (
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <span className="field-label-light mb-0 flex items-center gap-1">
+                <Sparkle weight="regular" className="h-3 w-3" />
+                Sorcery Points
+              </span>
+              <span className="text-[10px] font-semibold text-ink-muted">
+                {character.sorceryPoints} / {character.maxSorceryPoints}
+              </span>
+            </div>
+            <div className="progress-track-light">
+              <div
+                className="progress-fill-light"
+                style={{ width: character.maxSorceryPoints > 0 ? `${Math.min(100, Math.max(0, (character.sorceryPoints / character.maxSorceryPoints) * 100))}%` : "0%" }}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       {editMode && (
@@ -112,6 +133,28 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           </Field>
+          {isSorcerer && (
+            <>
+              <Field label="Sorcery Points">
+                <input
+                  type="number"
+                  value={character.sorceryPoints}
+                  onChange={(e) => onChange({ sorceryPoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+                  onBlur={onFieldBlur}
+                  className="input"
+                />
+              </Field>
+              <Field label="Max Sorcery Points">
+                <input
+                  type="number"
+                  value={character.maxSorceryPoints}
+                  onChange={(e) => onChange({ maxSorceryPoints: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+                  onBlur={onFieldBlur}
+                  className="input"
+                />
+              </Field>
+            </>
+          )}
         </div>
       )}
     </SectionCard>

@@ -321,9 +321,10 @@ function buildLevelInfos(
     }
 
     const isBard = className === "Bard";
+    const isSorcerer = className === "Sorcerer";
     const magicalSecretsLevels = [10, 14, 18];
     const magicalSecretsCount = isBard && magicalSecretsLevels.includes(level) ? 2 : 0;
-    const canReplaceSpell = isBard && level > 1 && (character.spells || []).length > 0;
+    const canReplaceSpell = (isBard || isSorcerer) && level > 1 && (character.spells || []).length > 0;
     const isLoreBard = isBard && subclassSelection === "Lore";
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
 
@@ -1416,7 +1417,7 @@ function LevelCard({
                 <Book weight="regular" className="h-3.5 w-3.5 text-orange-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Replace Known Spell</span>
               </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Optionally replace one known spell with another from the Bard list</p>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Optionally replace one known spell with another from the {character.class} spell list</p>
               <select
                 value={replacedSpell}
                 onChange={(e) => onReplacedSpellChange(e.target.value)}

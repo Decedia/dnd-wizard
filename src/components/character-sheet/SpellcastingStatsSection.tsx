@@ -139,7 +139,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
             const expended = character.spellSlotsExpended[level] ?? 0;
             return (
                <div key={level} className="list-row flex items-center gap-3">
-                 <span className="text-sm font-bold text-[var(--color-text-primary)] w-16">Level {level}</span>
+                <span className="text-sm font-bold text-[var(--color-text-primary)] w-16">Level {level}</span>
                 {editMode ? (
                   <div className="flex items-center gap-2">
                     <input
@@ -170,6 +170,29 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
           })}
         </div>
       </div>
+
+      {character.class === "Sorcerer" && (
+        <div className="mt-4">
+          <span className="field-label-light">Creating Spell Slots (Flexible Casting)</span>
+          <div className="grid grid-cols-5 gap-2 mt-2">
+            {[
+              { level: "1st", cost: 2 },
+              { level: "2nd", cost: 3 },
+              { level: "3rd", cost: 5 },
+              { level: "4th", cost: 6 },
+              { level: "5th", cost: 7 },
+            ].map((slot) => (
+              <div key={slot.level} className="text-center p-2 bg-[var(--color-bg)] rounded">
+                <div className="text-xs font-bold text-[var(--color-text-primary)]">{slot.level}</div>
+                <div className="text-[10px] text-[var(--color-text-muted)]">{slot.cost} SP</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-[10px] text-[var(--color-text-muted)] mt-2">
+            You can also convert a spell slot into sorcery points equal to the slot&apos;s level.
+          </p>
+        </div>
+      )}
     </SectionCard>
   );
 }
