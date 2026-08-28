@@ -8,6 +8,7 @@ import armorsData from "@/data/2014_armor.json";
 import itemsData from "@/data/2014_items.json";
 import equipmentsData from "@/data/2014_equipments.json";
 import wizardSpellsData from "@/data/2014_wizard_spells.json";
+import arcaneTricksterSpellsData from "@/data/2014_arcane_trickster_spells.json";
 import { equipment as srdEquipment } from "@/data/srd";
 
 export interface SRDRace {
@@ -419,6 +420,10 @@ export function getStaticWizardSpell(name: string): SRDWizardSpell | undefined {
 
 export function getWizardSpellNames(): string[] {
   return getStaticWizardSpells().map((s) => s.name);
+}
+
+export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
+  return (arcaneTricksterSpellsData as any).spells as SRDWizardSpell[];
 }
 
 export function clearSRDCache() {

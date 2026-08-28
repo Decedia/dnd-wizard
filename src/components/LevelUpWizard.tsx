@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
@@ -2033,8 +2033,10 @@ function SpellSelection({
   onSpellsChange: (list: string[]) => void;
 }) {
   const isArcaneTrickster = character.subclass?.toLowerCase().includes("arcane trickster");
-  const spellClasses = isArcaneTrickster ? [character.class, "Wizard"] : [character.class];
-  const available = getStaticSpells().filter((s) => s.classes?.some(c => spellClasses.includes(c)) && (s.level === 0 || s.level <= maxLevel));
+  const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
+  const available = isArcaneTrickster
+    ? atSpells.filter((s) => s.level === 0 || s.level <= maxLevel)
+    : getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
   const toggle = (name: string, level: number) => {
     if (spells.some((s) => s === `${name}:${level}`)) {
       onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
@@ -2260,14 +2262,18 @@ function SpellSelectionModal({
   }, []);
 
   const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster") || character.subclass?.toLowerCase().includes("arcane trickster");
-  const spellClasses = isArcaneTrickster ? [character.class, "Wizard"] : [character.class];
-  const allSpells = getStaticSpells().filter((s) => s.classes?.some(c => spellClasses.includes(c)) && (s.level === 0 || s.level <= maxLevel));
-  const allClassSpells = getStaticSpells().filter((s) => s.level > 0 && s.level <= maxLevel);
+  const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
+  const allSpells = isArcaneTrickster
+    ? atSpells.filter((s) => s.level === 0 || s.level <= maxLevel)
+    : getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+  const allClassSpells = isArcaneTrickster
+    ? atSpells.filter((s) => s.level > 0 && s.level <= maxLevel)
+    : getStaticSpells().filter((s) => s.classes?.includes(character.class) && s.level > 0 && s.level <= maxLevel);
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
   const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
-  const cantrips = allSpells.filter((s) => s.level === 0);
-  const levelSpells: { [key: number]: typeof allSpells } = {};
+  const cantrips = allSpells.filter((s: any) => s.level === 0);
+  const levelSpells: { [key: number]: any[] } = {};
   for (const sp of allSpells) {
     if (sp.level > 0) {
       if (!levelSpells[sp.level]) levelSpells[sp.level] = [];
@@ -2276,7 +2282,7 @@ function SpellSelectionModal({
   }
   const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
 
-  const msLevelSpells: { [key: number]: typeof allClassSpells } = {};
+  const msLevelSpells: { [key: number]: any[] } = {};
   for (const sp of allClassSpells) {
     if (!msLevelSpells[sp.level]) msLevelSpells[sp.level] = [];
     msLevelSpells[sp.level].push(sp);
