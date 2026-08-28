@@ -116,10 +116,10 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                         disabled={isDisabled}
                         className={`flex-1 btn w-full px-3 py-2 text-left ${
                           isSelected
-                            ? "bg-white text-ink border-2 border-ink"
+                            ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-[var(--color-border-active)]"
                             : isDisabled
-                              ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
-                              : "bg-white text-ink border border-border-muted"
+                              ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)] opacity-50 cursor-not-allowed"
+                              : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)]"
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -169,10 +169,10 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
             disabled={isDisabled}
             className={`btn w-full px-3 py-2 text-left ${
               isSelected
-                ? "bg-white text-ink border-2 border-ink"
+                ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-[var(--color-border-active)]"
                 : isDisabled
-                  ? "bg-white text-ink border border-border-muted opacity-50 cursor-not-allowed"
-                  : "bg-white text-ink border border-border-muted"
+                  ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)] opacity-50 cursor-not-allowed"
+                  : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)]"
             }`}
           >
             <div className="flex items-center justify-between">

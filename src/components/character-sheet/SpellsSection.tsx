@@ -159,7 +159,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               const domainSpell = isDomainSpell(spell);
               const spellPrepared = isPrepared(spell.id);
               return (
-                <div key={spell.id} className={`list-row flex flex-wrap items-center gap-2 ${spellPrepared ? "border-l-4 border-green-500" : ""}`}>
+                <div key={spell.id} className={`list-row flex flex-wrap items-center gap-2 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""}`}>
                   {editMode ? (
                     <>
                       {preparationCaster && spell.level > 0 && (
@@ -171,9 +171,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                           disabled={domainSpell}
                         >
                           {spellPrepared ? (
-                            <Check weight="fill" size={18} className={domainSpell ? "text-yellow-500" : "text-green-500"} />
+                            <Check weight="fill" size={18} className={domainSpell ? "text-[var(--color-warning-500)]" : "text-[var(--color-success-500)]"} />
                           ) : (
-                            <Circle weight="regular" size={18} className="text-gray-400" />
+                            <Circle weight="regular" size={18} className="text-[var(--color-text-muted)]" />
                           )}
                         </button>
                       )}
@@ -271,18 +271,18 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         {preparationCaster && spell.level > 0 && (
                           <>
                             {spellPrepared ? (
-                              <Check weight="fill" size={16} className="text-green-500 shrink-0" />
+                              <Check weight="fill" size={16} className="text-[var(--color-success-500)] shrink-0" />
                             ) : (
-                              <Circle weight="regular" size={16} className="text-gray-400 shrink-0" />
+                              <Circle weight="regular" size={16} className="text-[var(--color-text-muted)] shrink-0" />
                             )}
                           </>
                         )}
-                         {domainSpell && (
-                           <span className="text-[10px] font-bold text-yellow-600 bg-yellow-50 px-1.5 py-0.5 rounded">DOMAIN</span>
-                         )}
-                         {isCircleSpell(spell) && (
-                           <span className="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">CIRCLE</span>
-                         )}
+                          {domainSpell && (
+                            <span className="text-[10px] font-bold text-[var(--color-warning-600)] bg-[var(--color-warning-50)] px-1.5 py-0.5 rounded">DOMAIN</span>
+                          )}
+                          {isCircleSpell(spell) && (
+                            <span className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-50)] px-1.5 py-0.5 rounded">CIRCLE</span>
+                          )}
                         <span className="text-sm font-bold text-[var(--color-text-primary)]">{spell.name}</span>
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">Level {spell.level}</span>
                         {character.spellcastingAbility && (() => {
@@ -309,15 +309,15 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           </div>
 
           {circleSpellsList.length > 0 && (
-            <div className="mt-4 p-3 rounded-lg border border-green-300 bg-green-50/30">
+            <div className="mt-4 p-3 rounded-lg border border-[var(--color-success-300)] bg-[var(--color-success-50)]/30">
               <div className="flex items-center gap-2 mb-2">
-                <Leaf weight="regular" className="h-4 w-4 text-green-600" />
+                <Leaf weight="regular" className="h-4 w-4 text-[var(--color-success-600)]" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells ({circleTerrain.charAt(0).toUpperCase() + circleTerrain.slice(1)})</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Always prepared, do not count against preparation limit</p>
               <div className="flex flex-wrap gap-1">
                 {circleSpellsList.map((name) => (
-                  <span key={name} className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
+                  <span key={name} className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1.5 py-0.5 rounded">
                     {name}
                   </span>
                 ))}

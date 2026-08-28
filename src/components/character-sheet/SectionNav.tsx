@@ -73,9 +73,9 @@ export function SectionNav() {
           onClick={() => scrollTo(id)}
           aria-label={label}
           title={label}
-          className={`flex items-center justify-center rounded-md transition-all ${
+           className={`flex items-center justify-center rounded-md transition-all ${
             active === id
-              ? "h-7 w-7 md:h-8 md:w-8 text-white bg-ink border border-ink"
+              ? "h-7 w-7 md:h-8 md:w-8 text-[var(--color-nav-icon)] bg-[var(--color-nav-bg)] border border-[var(--color-nav-bg)]"
               : "h-7 w-7 md:h-8 md:w-8 text-ink-muted hover:text-ink border border-transparent"
           }`}
         >

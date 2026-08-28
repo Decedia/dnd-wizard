@@ -320,11 +320,11 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
               ))}
             </select>
             {selectedTerrain && circleSpells.length > 0 && (
-              <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-[10px] text-green-700 font-semibold mb-1">Circle Spells (always prepared, do not count against limit):</p>
+              <div className="mt-2 p-2 bg-[var(--color-success-50)] border border-[var(--color-success-200)] rounded-lg">
+                <p className="text-[10px] text-[var(--color-success-700)] font-semibold mb-1">Circle Spells (always prepared, do not count against limit):</p>
                 <div className="flex flex-wrap gap-1">
                   {circleSpells.map((name) => (
-                    <span key={name} className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
+                    <span key={name} className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1.5 py-0.5 rounded">
                       {name}
                     </span>
                   ))}

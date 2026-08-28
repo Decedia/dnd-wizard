@@ -53,8 +53,8 @@ export function DeathSavePips({ successes, failures, onChange }: DeathSavePipsPr
               onClick={() => handleFailureClick(i)}
               className="h-4 w-4 rounded-full border transition-all duration-200"
               style={{
-                backgroundColor: failures > i ? "#dc2626" : "transparent",
-                borderColor: failures > i ? "#dc2626" : "#e5e5e5",
+                backgroundColor: failures > i ? "var(--color-error-600)" : "transparent",
+                borderColor: failures > i ? "var(--color-error-600)" : "var(--color-border)",
               }}
               aria-label={`Failure ${i + 1}`}
             />

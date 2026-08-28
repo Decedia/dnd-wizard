@@ -104,7 +104,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                         {details.damageBonus ? ` +${details.damageBonus}` : ""}
                       </span>
                       {details.rageBonus > 0 && (
-                        <span className="text-xs font-bold text-ink bg-red-50 px-2 py-1 surface">+{details.rageBonus} rage</span>
+                        <span className="text-xs font-bold text-ink bg-[var(--color-error-50)] px-2 py-1 surface">+{details.rageBonus} rage</span>
                       )}
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">{details.damageType}</span>

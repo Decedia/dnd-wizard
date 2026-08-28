@@ -94,13 +94,13 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                type="button"
                onClick={() => toggleSkill(name)}
                disabled={disabled}
-                className={`btn w-full px-3 py-2 text-left transition-all rounded-lg ${
+                 className={`btn w-full px-3 py-2 text-left transition-all rounded-lg ${
                   isProficient
-                    ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-2 border-green-500"
+                    ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-2 border-[var(--color-success-500)]"
                     : disabled
                       ? "bg-transparent text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
                       : isAllowed
-                        ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-amber-400/70 hover:bg-[var(--color-bg)] hover:border-amber-400"
+                        ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-[var(--color-warning-400)]/70 hover:bg-[var(--color-bg)] hover:border-[var(--color-warning-400)]"
                         : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
                 }`}
              >
@@ -113,14 +113,14 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                 </div>
                 <div className="flex items-center gap-2">
                   {isProficient && (
-                    <span className="text-green-600 text-sm font-bold">+{profBonus}</span>
+                    <span className="text-[var(--color-success-600)] text-sm font-bold">+{profBonus}</span>
                   )}
                   {isAllowed && (
-                     <div className={`h-5 w-5 rounded border-2 flex items-center justify-center ${isProficient ? "bg-green-600 border-green-600" : "border-[var(--color-border)] bg-[var(--color-surface)]"}`}>
-                       {isProficient && (
-                         <CheckCircle weight="fill" color="#ffffff" className="h-3 w-3" />
-                       )}
-                     </div>
+                     <div className={`h-5 w-5 rounded border-2 flex items-center justify-center ${isProficient ? "bg-[var(--color-success-600)] border-[var(--color-success-600)]" : "border-[var(--color-border)] bg-[var(--color-surface)]"}`}>
+                        {isProficient && (
+                          <CheckCircle weight="fill" color="var(--color-surface)" className="h-3 w-3" />
+                        )}
+                      </div>
                   )}
                   {!isAllowed && (
                     <span className="text-[10px] text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">N/A</span>

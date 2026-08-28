@@ -98,7 +98,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           }`}
         >
           <div className="flex items-center gap-4">
-            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.class ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.class ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
               {data.class ? (() => { const Icon = classIcons[data.class] || Sword; return <Icon className="h-7 w-7" />; })() : <Sword className="h-7 w-7" />}
             </div>
             <div className="flex-1">
@@ -121,7 +121,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           }`}
         >
           <div className="flex items-center gap-4">
-            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.race ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.race ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
               {data.race ? (() => { const Icon = raceIcons[data.race] || Users; return <Icon className="h-7 w-7" />; })() : <Users className="h-7 w-7" />}
             </div>
             <div className="flex-1">
@@ -137,7 +137,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
       {popupType === "class" && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setPopupType(null); }}
         >
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
@@ -169,7 +169,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1">
@@ -209,7 +209,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
       {popupType === "race" && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setPopupType(null); }}
         >
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
@@ -239,7 +239,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-white" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1">

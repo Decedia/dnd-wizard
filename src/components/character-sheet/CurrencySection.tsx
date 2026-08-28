@@ -12,11 +12,11 @@ interface CurrencySectionProps {
 }
 
 const CURRENCY_TYPES = [
-  { key: "platinum" as const, label: "PP", color: "text-gray-400" },
-  { key: "gold" as const, label: "GP", color: "text-yellow-500" },
-  { key: "electrum" as const, label: "EP", color: "text-cyan-500" },
-  { key: "silver" as const, label: "SP", color: "text-gray-300" },
-  { key: "copper" as const, label: "CP", color: "text-orange-400" },
+  { key: "platinum" as const, label: "PP", color: "text-[var(--color-text-muted)]" },
+  { key: "gold" as const, label: "GP", color: "text-[var(--color-warning-500)]" },
+  { key: "electrum" as const, label: "EP", color: "text-[var(--color-accent-teal-500)]" },
+  { key: "silver" as const, label: "SP", color: "text-[var(--color-text-muted)]" },
+  { key: "copper" as const, label: "CP", color: "text-[var(--color-accent-orange-400)]" },
 ];
 
 export function CurrencySection({ character, onChange, editMode = true }: CurrencySectionProps) {

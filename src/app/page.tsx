@@ -54,7 +54,7 @@ export default function Home() {
             className="hidden"
           />
           {importError && (
-            <div className="mt-2.5 surface border-red-200 bg-red-50 px-3 py-2.5 text-xs font-medium text-red-600">
+            <div className="mt-2.5 surface border-[var(--color-error-200)] bg-[var(--color-error-50)] px-3 py-2.5 text-xs font-medium text-[var(--color-error-600)]">
               {importError}
             </div>
           )}

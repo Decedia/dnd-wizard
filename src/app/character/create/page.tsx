@@ -112,8 +112,8 @@ export default function CharacterCreate() {
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={step + 1} totalSteps={totalSteps} />
           {currentValidationError && (
-            <div className="mb-3.5 surface border-red-200 bg-red-50 px-3 py-2.5">
-              <p className="text-xs font-semibold text-red-600">{currentValidationError}</p>
+            <div className="mb-3.5 surface border-[var(--color-error-200)] bg-[var(--color-error-50)] px-3 py-2.5">
+              <p className="text-xs font-semibold text-[var(--color-error-600)]">{currentValidationError}</p>
             </div>
           )}
           {renderStep()}

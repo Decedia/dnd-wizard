@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { BottomNav } from "@/components/BottomNav";
 import { SRDProvider } from "@/contexts/SRDContext";
 import "./globals.css";
-import "@/styles/design-system.css";
 
 const inter = Inter({
   variable: "--font-display",

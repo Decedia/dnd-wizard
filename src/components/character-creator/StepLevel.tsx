@@ -518,7 +518,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                     <div
                       key={lvl}
                       className={`h-2 w-2 rounded-full ${
-                        confirmedHpLevels.includes(lvl) ? "bg-green-500" : "bg-[var(--color-border)]"
+                        confirmedHpLevels.includes(lvl) ? "bg-[var(--color-success-500)]" : "bg-[var(--color-border)]"
                       }`}
                     />
                   ))}
@@ -567,7 +567,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
               )}
 
               {allHpConfirmed(level, confirmedHpLevels) && hpLevelsToProcess(level).length > 0 && (
-                <div className="text-center text-xs text-green-600 font-semibold">✓ All HP confirmed</div>
+                <div className="text-center text-xs text-[var(--color-success-600)] font-semibold">✓ All HP confirmed</div>
               )}
             </div>
           )}
@@ -593,7 +593,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
       {/* ASI Modal */}
       {asiModalOpen && currentAsiLevel && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4">
           <div className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">

@@ -213,18 +213,18 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                   </div>
                   {getWeaponStats(item) && (
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.damage}
                       </span>
-                      <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
                       </span>
                       {getWeaponStats(item)?.rageBonus && getWeaponStats(item)!.rageBonus > 0 && (
-                        <span className="text-[10px] font-bold text-ink bg-red-50 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-ink bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                           +{getWeaponStats(item)?.rageBonus} rage
                         </span>
                       )}
-                      <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.attackBonus} to hit
                       </span>
                     </div>
@@ -261,18 +261,18 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                   </div>
                   {getWeaponStats(item) && (
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.damage}
                       </span>
-                      <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.ability} +{getWeaponStats(item)?.damageBonus}
                       </span>
                       {getWeaponStats(item)?.rageBonus && getWeaponStats(item)!.rageBonus > 0 && (
-                        <span className="text-[10px] font-bold text-ink bg-red-50 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-ink bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                           +{getWeaponStats(item)?.rageBonus} rage
                         </span>
                       )}
-                      <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
                         {getWeaponStats(item)?.attackBonus} to hit
                       </span>
                     </div>

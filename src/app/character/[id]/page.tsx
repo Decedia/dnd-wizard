@@ -262,7 +262,7 @@ export default function CharacterView() {
               Delete Character
             </button>
             {savedAt && (
-              <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-ink py-2 surface">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-[var(--color-nav-icon)] bg-[var(--color-nav-bg)] py-2 surface">
                 <CheckCircle weight="fill" className="h-4 w-4" />
                 Saved
               </div>

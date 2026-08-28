@@ -196,7 +196,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
               {raceLanguages.map((lang) => (
                 <span
                   key={lang}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-border-active)] text-white"
+                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-border-active)] text-[var(--color-nav-icon)]"
                 >
                   {lang}
                 </span>
@@ -206,7 +206,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
                   key={lang}
                   type="button"
                   onClick={() => handleLanguageToggle(lang)}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-bg)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-red-300 hover:text-red-500 transition-colors"
+                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-bg)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-error-300)] hover:text-[var(--color-error-500)] transition-colors"
                 >
                   {lang} ×
                 </button>
@@ -244,7 +244,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
 
       {popupType && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setPopupType(null); }}
         >
           <div

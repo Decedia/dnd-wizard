@@ -529,7 +529,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                key={optionIndex}
                                className={`w-full px-3 py-2 text-left text-sm transition-all ${
                                  isSelected
-                                   ? "!border-2 !border-green-500 bg-green-50 text-[var(--color-text-primary)]"
+                                   ? "!border-2 !border-[var(--color-success-500)] bg-[var(--color-success-50)] text-[var(--color-text-primary)]"
                                    : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
                                }`}
                              >
@@ -538,20 +538,20 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   {selectedWeapons.map((weapon, wIdx) => {
                                     const wStats = getWeaponStats(weapon.name, weapon.category);
                                     return (
-                                       <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded !border-2 !border-green-500 bg-green-50">
+                                       <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded !border-2 !border-[var(--color-success-500)] bg-[var(--color-success-50)]">
                                         <div className="flex-1">
                                           <div className="flex items-center gap-2">
                                             <span className="text-body font-semibold text-[var(--color-text-primary)]">{weapon.name}</span>
                                           </div>
                                           {wStats && (
                                             <div className="flex items-center gap-2 mt-1.5">
-                                              <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                              <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                                                 {wStats.damageDice} {wStats.damageType}
                                               </span>
-                                              <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                              <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                                                 {wStats.abilityKey} {wStats.damageBonus}
                                               </span>
-                                              <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                               <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
                                                 {wStats.attackBonus} to hit
                                               </span>
                                             </div>
@@ -563,7 +563,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                             const newInventory = data.inventory.filter(item => item.id !== weapon.id);
                                             onChange({ inventory: newInventory });
                                           }}
-                                          className="text-[var(--color-text-muted)] hover:text-red-500 ml-2 text-lg leading-none"
+                                          className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] ml-2 text-lg leading-none"
                                         >
                                           ×
                                         </button>
@@ -583,7 +583,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                     <button
                                       type="button"
                                       onClick={() => handleChoiceRemove(group)}
-                                      className="text-[var(--color-text-muted)] hover:text-red-500 text-xs"
+                                      className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] text-xs"
                                     >
                                       Clear all
                                     </button>
@@ -597,7 +597,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                 >
                                   <span>Choose {selectionCount > 1 ? `${selectionCount} ` : "a "}{option.weaponType?.replace('_', ' ')} weapon{selectionCount > 1 ? "s" : ""}</span>
                                   {damagePreview && (
-                                    <span className="ml-2 text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                    <span className="ml-2 text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                                       {damagePreview.dice} {damagePreview.types}
                                     </span>
                                   )}
@@ -612,7 +612,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                               key={optionIndex}
                               className={`w-full px-3 py-2 text-left text-sm transition-all ${
                                 isSelected
-                                  ? "!border-2 !border-green-500 bg-green-50 text-[var(--color-text-primary)]"
+                                  ? "!border-2 !border-[var(--color-success-500)] bg-[var(--color-success-50)] text-[var(--color-text-primary)]"
                                   : isDisabled
                                     ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
                                     : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
@@ -628,13 +628,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                      const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
                                      return wStats ? (
                                        <div className="flex items-center gap-2 mt-1.5">
-                                         <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                         <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                                            {wStats.damageDice} {wStats.damageType}
                                          </span>
-                                          <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                          <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                                            {wStats.abilityKey} {wStats.damageBonus}
                                          </span>
-                                         <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                         <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
                                            {wStats.attackBonus} to hit
                                          </span>
                                        </div>
@@ -645,7 +645,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   <button
                                     type="button"
                                     onClick={() => handleChoiceRemove(group)}
-                                    className="text-[var(--color-text-muted)] hover:text-red-500 ml-1 text-lg leading-none"
+                                    className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] ml-1 text-lg leading-none"
                                   >
                                     ×
                                   </button>
@@ -666,13 +666,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                     const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
                                     return wStats ? (
                                       <div className="flex items-center gap-2 mt-1.5">
-                                        <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                        <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                                           {wStats.damageDice} {wStats.damageType}
                                         </span>
-                                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                        <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                                           {wStats.abilityKey} {wStats.damageBonus}
                                         </span>
-                                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                        <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
                                           {wStats.attackBonus} to hit
                                         </span>
                                       </div>
@@ -711,7 +711,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const isGranted = item.isGranted;
 
               return (
-                 <div key={item.id} className="flex flex-col gap-1 px-3 py-2.5 !border-2 !border-green-500 bg-green-50">
+                 <div key={item.id} className="flex flex-col gap-1 px-3 py-2.5 !border-2 !border-[var(--color-success-500)] bg-[var(--color-success-50)]">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
@@ -750,7 +750,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               {selectedWeaponsForGroup.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {selectedWeaponsForGroup.map((w) => (
-                     <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded !border-2 !border-green-500 bg-green-50 text-xs font-semibold text-green-700">
+                     <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded !border-2 !border-[var(--color-success-500)] bg-[var(--color-success-50)] text-xs font-semibold text-[var(--color-success-700)]">
                       {w.name}
                       <button
                         type="button"
@@ -758,7 +758,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                           const newInventory = data.inventory.filter(item => item.id !== w.id);
                           onChange({ inventory: newInventory });
                         }}
-                        className="text-green-600 hover:text-red-500 ml-1"
+                        className="text-[var(--color-success-600)] hover:text-[var(--color-error-500)] ml-1"
                       >
                         ×
                       </button>
@@ -779,7 +779,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                    key={weapon.name}
                    className={`w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 transition-colors ${
                      isWeaponSelected
-                       ? "!border-2 !border-green-500 bg-green-50"
+                       ? "!border-2 !border-[var(--color-success-500)] bg-[var(--color-success-50)]"
                        : isDisabled
                          ? "border border-[var(--color-border)] opacity-50 cursor-not-allowed"
                          : "border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
@@ -794,17 +794,17 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                     <div className="flex items-center justify-between">
                       <span className="text-body text-[var(--color-text-primary)]">{weapon.name}</span>
                       {wStats && (
-                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
                           {wStats.attackBonus} to hit
                         </span>
                       )}
                     </div>
                     {wStats && (
                       <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-[var(--color-error-600)] bg-[var(--color-error-50)] px-1.5 py-0.5 rounded">
                           {wStats.damageDice} {wStats.damageType}
                         </span>
-                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                           {wStats.abilityKey} {wStats.damageBonus}
                         </span>
                       </div>

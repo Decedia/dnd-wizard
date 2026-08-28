@@ -23,13 +23,13 @@ export function InfoButton({ title, description }: InfoButtonProps) {
           e.stopPropagation();
           setShow(true);
         }}
-        className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-white text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[#f5f5f5] transition-all shrink-0"
+        className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
       >
         <Info weight="regular" className="h-4 w-4" />
       </button>
       {show && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShow(false); }}
         >
           <div
@@ -75,9 +75,8 @@ export function DescriptionModal({ title, content, onClose, children }: Descript
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4 pointer-events-auto"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-      style={{ pointerEvents: 'auto' }}
     >
       <div className="w-full max-w-md max-h-[70vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
