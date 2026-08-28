@@ -4498,12 +4498,32 @@
                 "When you gain this feature, you also learn one language of your choice that is spoken by your favored enemies, if they speak one at all.",
                 "You choose one additional favored enemy, as well as an associated language, at 6th and 14th level. As you gain levels, your choices should reflect the types of monsters you have encountered on your adventures."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "options": [
+                  "Aberrations",
+                  "Beasts",
+                  "Celestials",
+                  "Constructs",
+                  "Dragons",
+                  "Elementals",
+                  "Fey",
+                  "Fiends",
+                  "Giants",
+                  "Monstrosities",
+                  "Oozes",
+                  "Plants",
+                  "Undead",
+                  "Humanoid (2 races)"
+                ],
+                "description": "Choose a favored enemy type."
+              }
             },
             {
               "name": "Natural Explorer (1 terrain type)",
               "description": [
-                "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, or swamp. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.",
+                "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.",
                 "While traveling for an hour or more in your favored terrain, you gain the following benefits:",
                 "- Difficult terrain doesn't slow your group's travel.",
                 "- Your group can't become lost except by magical means.",
@@ -4513,7 +4533,21 @@
                 "- While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.",
                 "You choose additional favored terrain types at 6th and 10th level."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "options": [
+                  "Arctic",
+                  "Coast",
+                  "Desert",
+                  "Forest",
+                  "Grassland",
+                  "Mountain",
+                  "Swamp",
+                  "Underdark"
+                ],
+                "description": "Choose a favored terrain type."
+              }
             }
           ],
           "asi": false,
@@ -4524,7 +4558,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once. Archery: You gain a +2 bonus to attack rolls you make with ranged weapons. Defense: While you are wearing armor, you gain a +1 bonus to AC. Druidic Warrior: You learn two cantrips of your choice from the Druid spell list. They count as ranger spells for you, and Wisdom is your spellcasting ability for them. Dueling: When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon. Two-Weapon Fighting: When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+              "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once. Archery: You gain a +2 bonus to attack rolls you make with ranged weapons. Defense: While you are wearing armor, you gain a +1 bonus to AC. Dueling: When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon. Two-Weapon Fighting: When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -4614,12 +4648,32 @@
                 "When you gain this feature, you also learn one language of your choice that is spoken by your favored enemies, if they speak one at all.",
                 "You choose one additional favored enemy, as well as an associated language, at 6th and 14th level. As you gain levels, your choices should reflect the types of monsters you have encountered on your adventures."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "options": [
+                  "Aberrations",
+                  "Beasts",
+                  "Celestials",
+                  "Constructs",
+                  "Dragons",
+                  "Elementals",
+                  "Fey",
+                  "Fiends",
+                  "Giants",
+                  "Monstrosities",
+                  "Oozes",
+                  "Plants",
+                  "Undead",
+                  "Humanoid (2 races)"
+                ],
+                "description": "Choose an additional favored enemy type."
+              }
             },
             {
               "name": "Natural Explorer (2 terrain types)",
               "description": [
-                "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, or swamp. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.",
+                "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.",
                 "While traveling for an hour or more in your favored terrain, you gain the following benefits:",
                 "- Difficult terrain doesn't slow your group's travel.",
                 "- Your group can't become lost except by magical means.",
@@ -4629,7 +4683,21 @@
                 "- While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.",
                 "You choose additional favored terrain types at 6th and 10th level."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "options": [
+                  "Arctic",
+                  "Coast",
+                  "Desert",
+                  "Forest",
+                  "Grassland",
+                  "Mountain",
+                  "Swamp",
+                  "Underdark"
+                ],
+                "description": "Choose an additional favored terrain type."
+              }
             }
           ],
           "asi": false,
@@ -4691,7 +4759,7 @@
             {
               "name": "Natural Explorer (3 terrain types)",
               "description": [
-                "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, or swamp. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.",
+                "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.",
                 "While traveling for an hour or more in your favored terrain, you gain the following benefits:",
                 "- Difficult terrain doesn't slow your group's travel.",
                 "- Your group can't become lost except by magical means.",
@@ -4701,7 +4769,21 @@
                 "- While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.",
                 "You choose additional favored terrain types at 6th and 10th level."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "options": [
+                  "Arctic",
+                  "Coast",
+                  "Desert",
+                  "Forest",
+                  "Grassland",
+                  "Mountain",
+                  "Swamp",
+                  "Underdark"
+                ],
+                "description": "Choose an additional favored terrain type."
+              }
             },
             {
               "name": "Hide in Plain Sight",
@@ -4773,7 +4855,27 @@
                 "When you gain this feature, you also learn one language of your choice that is spoken by your favored enemies, if they speak one at all.",
                 "You choose one additional favored enemy, as well as an associated language, at 6th and 14th level. As you gain levels, your choices should reflect the types of monsters you have encountered on your adventures."
               ],
-              "type": "feature"
+              "type": "feature",
+              "choices": {
+                "type": "single",
+                "options": [
+                  "Aberrations",
+                  "Beasts",
+                  "Celestials",
+                  "Constructs",
+                  "Dragons",
+                  "Elementals",
+                  "Fey",
+                  "Fiends",
+                  "Giants",
+                  "Monstrosities",
+                  "Oozes",
+                  "Plants",
+                  "Undead",
+                  "Humanoid (2 races)"
+                ],
+                "description": "Choose an additional favored enemy type."
+              }
             },
             {
               "name": "Vanish",

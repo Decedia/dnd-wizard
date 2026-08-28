@@ -39,6 +39,25 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
   { key: "cha", label: "CHA", full: "Charisma" },
 ];
 
+const HUMANOID_RACES = [
+  "Bugbears",
+  "Dwarves",
+  "Elves",
+  "Gnolls",
+  "Gnomes",
+  "Goblins",
+  "Half-Elves",
+  "Halflings",
+  "Hobgoblins",
+  "Humans",
+  "Kenku",
+  "Kobolds",
+  "Lizardfolk",
+  "Orcs",
+  "Tieflings",
+  "Troglodytes",
+];
+
 interface LevelUpWizardProps {
   character: Character;
   onCancel: () => void;
@@ -1001,6 +1020,8 @@ function LevelCard({
     const [showTerrainModal, setShowTerrainModal] = useState(false);
     const [showBonusCantripModal, setShowBonusCantripModal] = useState(false);
     const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean } | null>(null);
+    const [showHumanoidPopup, setShowHumanoidPopup] = useState<{ featureName: string; level: number } | null>(null);
+    const [humanoidSelections, setHumanoidSelections] = useState<string[]>([]);
     const [showAsiModal, setShowAsiModal] = useState(false);
     const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
     const lvl = info.level;
@@ -1593,8 +1614,91 @@ function LevelCard({
             {showFeaturePopup.description && (
               <div className="px-4 pt-3">
                 <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">{showFeaturePopup.description}</p>
+          </div>
+      )}
+
+      {showHumanoidPopup && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowHumanoidPopup(null); }}
+        >
+          <div
+            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">
+                Choose 2 Humanoid Races
               </div>
-            )}
+              <button
+                type="button"
+                onClick={() => setShowHumanoidPopup(null)}
+                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="px-4 pt-3">
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">Select two humanoid races as your favored enemies.</p>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              <div className="space-y-2">
+                {HUMANOID_RACES.map((race, idx) => {
+                  const isSelected = humanoidSelections.includes(race);
+                  const isDisabled = !isSelected && humanoidSelections.length >= 2;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => {
+                        if (isSelected) {
+                          setHumanoidSelections(humanoidSelections.filter((r) => r !== race));
+                        } else if (humanoidSelections.length < 2) {
+                          setHumanoidSelections([...humanoidSelections, race]);
+                        }
+                      }}
+                      disabled={isDisabled}
+                      className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                        isSelected
+                          ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                          : isDisabled
+                            ? "border-[var(--color-border)] bg-[var(--color-surface)] opacity-50 cursor-not-allowed"
+                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="text-xs font-semibold text-[var(--color-text-primary)] flex items-center gap-2">
+                        {isSelected && <Check className="h-3 w-3" />}
+                        {race}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3">
+              <button
+                type="button"
+                disabled={humanoidSelections.length !== 2}
+                onClick={() => {
+                  if (humanoidSelections.length === 2) {
+                    const value = `Humanoid: ${humanoidSelections.join(", ")}`;
+                    onClassFeatureChoice(showHumanoidPopup.featureName, value);
+                    setShowHumanoidPopup(null);
+                    setHumanoidSelections([]);
+                  }
+                }}
+                className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${
+                  humanoidSelections.length === 2
+                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2"
+                    : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"
+                }`}
+              >
+                Confirm Selection ({humanoidSelections.length}/2)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
             <div className="flex-1 overflow-y-auto px-4 py-4">
               <div className="space-y-2">
                 {showFeaturePopup.options.map((opt, idx) => {
@@ -1607,6 +1711,12 @@ function LevelCard({
                       key={idx}
                       type="button"
                       onClick={() => {
+                        if (opt.name === "Humanoid (2 races)") {
+                          setShowHumanoidPopup({ featureName: showFeaturePopup.name, level: lvl });
+                          setHumanoidSelections([]);
+                          setShowFeaturePopup(null);
+                          return;
+                        }
                         if (showFeaturePopup.isSubclass) {
                           onSubclassFeatureChoice(showFeaturePopup.name, opt.name);
                         } else {
