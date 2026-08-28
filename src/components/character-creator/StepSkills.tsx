@@ -97,50 +97,48 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
 
           return (
              <button
-               key={name}
-               type="button"
-               onClick={() => toggleSkill(name)}
-               disabled={disabled}
-                className={`btn w-full px-3 py-2 text-left transition-all rounded-lg ${
-                  isBackgroundSkill
-                    ? "bg-[var(--color-success-50)] text-[var(--color-text-primary)] border-2 border-[var(--color-success-300)]"
-                    : isProficient
-                    ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-2 border-[var(--color-success-500)]"
-                    : disabled
-                      ? "bg-transparent text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
-                      : isAllowed
-                        ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-[var(--color-warning-400)]/70 hover:bg-[var(--color-bg)] hover:border-[var(--color-warning-400)]"
-                        : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                }`}
-             >
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className={`text-body ${isProficient ? "font-semibold" : ""}`}>{name}</span>
-                  <span className={`text-[10px] ${isAllowed || isBackgroundSkill ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
-                    {ability.toUpperCase()} {getAbilityModifier(ability)}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {isProficient && (
-                    <span className="text-[var(--color-success-600)] text-sm font-bold">+{profBonus}</span>
-                  )}
-                  {isAllowed && !isBackgroundSkill && (
-                     <div className={`h-5 w-5 rounded border-2 flex items-center justify-center ${isProficient ? "bg-[var(--color-success-600)] border-[var(--color-success-600)]" : "border-[var(--color-border)] bg-[var(--color-surface)]"}`}>
-                        {isProficient && (
-                          <CheckCircle weight="fill" color="var(--color-surface)" className="h-3 w-3" />
-                        )}
-                      </div>
-                  )}
-                  {isBackgroundSkill && (
-                    <span className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-50)] px-1.5 py-0.5 rounded">BG</span>
-                  )}
-                  {!isAllowed && !isBackgroundSkill && (
-                    <span className="text-[10px] text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">N/A</span>
-                  )}
-                </div>
-              </div>
-            </button>
-          );
+                key={name}
+                type="button"
+                onClick={() => toggleSkill(name)}
+                disabled={disabled}
+                 className={`btn w-full px-3 py-2 text-left transition-all ${
+                   isBackgroundSkill
+                     ? "btn-secondary bg-[var(--color-success-50)] border-[var(--color-success-300)]"
+                     : isProficient
+                     ? "btn-primary"
+                     : disabled
+                       ? "btn-secondary opacity-20 cursor-not-allowed"
+                       : "btn-secondary"
+                 }`}
+              >
+               <div className="flex items-center justify-between">
+                 <div className="flex flex-col">
+                   <span className={`text-body ${isProficient ? "font-semibold" : ""}`}>{name}</span>
+                   <span className={`text-[10px] ${isAllowed || isBackgroundSkill ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
+                     {ability.toUpperCase()} {getAbilityModifier(ability)}
+                   </span>
+                 </div>
+                 <div className="flex items-center gap-2">
+                   {isProficient && (
+                     <span className="text-sm font-bold">+{profBonus}</span>
+                   )}
+                   {isAllowed && !isBackgroundSkill && (
+                      <div className={`h-5 w-5 rounded border-2 flex items-center justify-center ${isProficient ? "bg-[var(--color-surface)] border-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)]"}`}>
+                         {isProficient && (
+                           <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-3 w-3" />
+                         )}
+                       </div>
+                   )}
+                   {isBackgroundSkill && (
+                     <span className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-50)] px-1.5 py-0.5 rounded">BG</span>
+                   )}
+                   {!isAllowed && !isBackgroundSkill && (
+                     <span className="text-[10px] text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">N/A</span>
+                   )}
+                 </div>
+               </div>
+             </button>
+           );
         })}
       </div>
     </StepCard>

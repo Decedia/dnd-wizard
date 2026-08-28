@@ -46,11 +46,7 @@ export function ExpertisePicker({ character, selectedExpertise, onExpertiseChang
             <label
               key={name}
               className={`card flex items-center gap-3 px-3 py-2 cursor-pointer transition-all ${
-                isSelected
-                  ? "border-paper bg-paper/10 text-ink"
-                  : isDisabled
-                  ? "border-paper/20 bg-ink-muted opacity-50"
-                  : "border-paper bg-ink text-paper hover:bg-paper-muted"
+                isDisabled ? "opacity-20" : ""
               }`}
             >
               <input
@@ -58,9 +54,9 @@ export function ExpertisePicker({ character, selectedExpertise, onExpertiseChang
                 checked={isSelected}
                 onChange={() => toggleExpertise(name)}
                 disabled={isDisabled}
-                className="checkbox disabled:opacity-30"
+                className="checkbox"
               />
-              <span className="text-sm font-bold text-inherit">{name}</span>
+              <span className={`text-sm font-bold ${isSelected ? "text-ink" : "text-ink"}`}>{name}</span>
               {isSelected && (
                 <span className="badge text-ink bg-paper-muted ml-auto">EXPERTISE</span>
               )}

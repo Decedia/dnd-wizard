@@ -1885,9 +1885,9 @@ function LevelCard({
               <div>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 1st-level spell:</p>
                 <div className="space-y-1">
-                  {["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].map((name) => {
+                   {["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].map((name) => {
                     const isSelected = multiSelectSelections.includes(name);
-                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-bg)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold text-[var(--color-text-primary)]">{name}</span></button>);
+                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
                   })}
                 </div>
               </div>
@@ -1896,13 +1896,13 @@ function LevelCard({
                 <div className="space-y-1">
                   {["Alter Self","Arcane Lock","Blindness/Deafness","Blur","Cloud of Daggers","Continual Flame","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dust Devil","Earthbind","Enlarge/Reduce","Flaming Sphere","Gentle Repose","Gust of Wind","Hold Person","Invisibility","Knock","Levitate","Locate Object","Magic Mouth","Magic Weapon","Mirror Image","Misty Step","Moonbeam","Phantasmal Force","Pyrotechnics","Ray of Enfeeblement","Rope Trick","Scorching Ray","See Invisibility","Shatter","Spider Climb","Suggestion","Web"].map((name) => {
                     const isSelected = multiSelectSelections.includes(name);
-                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alter Self","Arcane Lock","Blindness/Deafness","Blur","Cloud of Daggers","Continual Flame","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dust Devil","Earthbind","Enlarge/Reduce","Flaming Sphere","Gentle Repose","Gust of Wind","Hold Person","Invisibility","Knock","Levitate","Locate Object","Magic Mouth","Magic Weapon","Mirror Image","Misty Step","Moonbeam","Phantasmal Force","Pyrotechnics","Ray of Enfeeblement","Rope Trick","Scorching Ray","See Invisibility","Shatter","Spider Climb","Suggestion","Web"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-bg)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold text-[var(--color-text-primary)]">{name}</span></button>);
+                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alter Self","Arcane Lock","Blindness/Deafness","Blur","Cloud of Daggers","Continual Flame","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dust Devil","Earthbind","Enlarge/Reduce","Flaming Sphere","Gentle Repose","Gust of Wind","Hold Person","Invisibility","Knock","Levitate","Locate Object","Magic Mouth","Magic Weapon","Mirror Image","Misty Step","Moonbeam","Phantasmal Force","Pyrotechnics","Ray of Enfeeblement","Rope Trick","Scorching Ray","See Invisibility","Shatter","Spider Climb","Suggestion","Web"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
                   })}
                 </div>
               </div>
             </div>
             <div className="border-t border-[var(--color-border)] px-4 py-3">
-              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Spell Mastery", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
+              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Spell Mastery", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
             </div>
           </div>
         </div>
@@ -1921,12 +1921,12 @@ function LevelCard({
                 {["Animate Dead","Bestow Curse","Blink","Clairvoyance","Counterspell","Dispel Magic","Fear","Fireball","Fly","Gaseous Form","Glyph of Warding","Haste","Hypnotic Pattern","Lightning Bolt","Magic Circle","Major Image","Nondetection","Phantom Steed","Protection From Energy","Remove Curse","Sending","Sleet Storm","Slow","Stinking Cloud","Tiny Hut","Tongues","Vampiric Touch","Water Breathing"].map((name) => {
                   const isSelected = multiSelectSelections.includes(name);
                   const isDisabled = !isSelected && multiSelectSelections.length >= 2;
-                  return (<button key={name} type="button" disabled={isDisabled} onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else if (multiSelectSelections.length < 2) setMultiSelectSelections([...multiSelectSelections, name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-bg)]" : isDisabled ? "border-[var(--color-border)] bg-[var(--color-surface)] opacity-50" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold text-[var(--color-text-primary)]">{name}</span></button>);
+                  return (<button key={name} type="button" disabled={isDisabled} onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else if (multiSelectSelections.length < 2) setMultiSelectSelections([...multiSelectSelections, name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
                 })}
               </div>
             </div>
             <div className="border-t border-[var(--color-border)] px-4 py-3">
-              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Signature Spells", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
+              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Signature Spells", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
             </div>
           </div>
         </div>
@@ -2002,13 +2002,11 @@ function LevelCard({
                       disabled={isDisabled}
                       className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
                         isSelected
-                          ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                          : isDisabled
-                            ? "border-[var(--color-border)] bg-[var(--color-surface)] opacity-50 cursor-not-allowed"
-                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
-                      <div className="text-xs font-semibold text-[var(--color-text-primary)] flex items-center gap-2">
+                      <div className="text-xs font-semibold flex items-center gap-2">
                         {isSelected && <Check className="h-3 w-3" />}
                         {race}
                       </div>
@@ -2031,7 +2029,7 @@ function LevelCard({
                 }}
                 className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${
                   humanoidSelections.length === 2
-                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2"
+                    ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2"
                     : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"
                 }`}
               >
@@ -2080,14 +2078,12 @@ function LevelCard({
                       disabled={isDisabled}
                       className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
                         isSelected
-                          ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                          : isDisabled
-                            ? "border-[var(--color-border)] bg-[var(--color-surface)] opacity-50 cursor-not-allowed"
-                            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <div className="text-xs font-semibold text-[var(--color-text-primary)] flex items-center gap-2">
+                        <div className="text-xs font-semibold flex items-center gap-2">
                           {isSelected && <Check className="h-3 w-3 shrink-0" />}
                           {opt.name}
                         </div>
@@ -2119,7 +2115,7 @@ function LevelCard({
                   }}
                   className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${
                     multiSelectSelections.length === (showFeaturePopup.count || 1)
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:border-2"
+                      ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2"
                       : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"
                   }`}
                 >
@@ -2167,7 +2163,7 @@ function LevelCard({
                       onClick={() => { onCircleTerrainChange(terrain); setShowTerrainModal(false); }}
                       className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
                         isSelected
-                          ? "bg-green-600 text-white border-2 border-green-700"
+                          ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
                           : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
@@ -2244,7 +2240,7 @@ function LevelCard({
                           onClick={() => { onBonusCantripChange(sp.name); setShowBonusCantripModal(false); }}
                           className={`flex-1 p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
                             isSelected
-                              ? "bg-teal-600 text-white border-2 border-teal-700"
+                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
                               : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                           }`}
                         >
@@ -2513,11 +2509,11 @@ function SubclassSelectionModal({
                   onClick={() => onSelect(opt.name)}
                   className={`flex-1 p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
                     selected === opt.name
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
                       : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                   }`}
                 >
-                  <div className="text-xs font-semibold text-[var(--color-text-primary)]">{opt.name}</div>
+                  <div className="text-xs font-semibold">{opt.name}</div>
                 </button>
                 {opt.hasDetails && (
                   <button

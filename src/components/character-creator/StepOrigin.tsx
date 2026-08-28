@@ -164,12 +164,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       onClick={() => handleClassSelect(cls.name)}
                       className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
                         isSelected
-                          ? "bg-[var(--color-bg)] border-2 border-[var(--color-border-active)]"
-                          : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          ? "bg-[var(--color-text-primary)] border-2 border-[var(--color-text-primary)]"
+                          : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-text-primary)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1">
@@ -234,12 +234,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       onClick={() => handleRaceSelect(race.name)}
                       className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
                         isSelected
-                          ? "bg-[var(--color-bg)] border-2 border-[var(--color-border-active)]"
-                          : "bg-[var(--color-bg)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          ? "bg-[var(--color-text-primary)] border-2 border-[var(--color-text-primary)]"
+                          : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-surface)] text-[var(--color-text-muted)]"}`}>
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-text-primary)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="flex-1">

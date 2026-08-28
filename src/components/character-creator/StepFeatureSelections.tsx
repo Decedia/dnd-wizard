@@ -116,16 +116,14 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                         disabled={isDisabled}
                         className={`flex-1 btn w-full px-3 py-2 text-left ${
                           isSelected
-                            ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-[var(--color-border-active)]"
-                            : isDisabled
-                              ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)] opacity-50 cursor-not-allowed"
-                              : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)]"
+                            ? "btn-primary"
+                            : "btn-secondary"
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <span className="text-body">{option}</span>
                           {isSelected && (
-                            <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
+                            <CheckCircle weight="fill" color="var(--color-surface)" className="h-4 w-4" />
                           )}
                         </div>
                       </button>
@@ -169,10 +167,8 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
             disabled={isDisabled}
             className={`btn w-full px-3 py-2 text-left ${
               isSelected
-                ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-2 border-[var(--color-border-active)]"
-                : isDisabled
-                  ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)] opacity-50 cursor-not-allowed"
-                  : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-muted)]"
+                ? "btn-primary"
+                : "btn-secondary"
             }`}
           >
             <div className="flex items-center justify-between">
@@ -183,7 +179,7 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
                 )}
               </div>
               {isSelected && (
-                <CheckCircle weight="fill" color="var(--color-text-primary)" className="h-4 w-4" />
+                <CheckCircle weight="fill" color="var(--color-surface)" className="h-4 w-4" />
               )}
             </div>
           </button>
