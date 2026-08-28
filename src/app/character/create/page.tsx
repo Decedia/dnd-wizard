@@ -11,6 +11,7 @@ import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
 import { StepAppearance } from "@/components/character-creator/StepAppearance";
+import { StepSpells } from "@/components/character-creator/StepSpells";
 import { WizardNav } from "@/components/WizardNav";
 import {
   initializeCharacter,
@@ -77,6 +78,8 @@ export default function CharacterCreate() {
         return <StepSkills data={character} onChange={update} />;
       case "equipment":
         return <StepEquipment data={character} onChange={update} />;
+      case "spells":
+        return <StepSpells data={character} onChange={update} />;
       case "appearance":
         return <StepAppearance data={character} onChange={update} />;
       default:
