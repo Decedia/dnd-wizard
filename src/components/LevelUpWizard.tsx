@@ -997,6 +997,8 @@ function LevelCard({
     const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
     const [showSubclassModal, setShowSubclassModal] = useState(false);
     const [showSpellModal, setShowSpellModal] = useState(false);
+    const [showTerrainModal, setShowTerrainModal] = useState(false);
+    const [showBonusCantripModal, setShowBonusCantripModal] = useState(false);
     const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean } | null>(null);
     const [showAsiModal, setShowAsiModal] = useState(false);
     const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
@@ -1392,18 +1394,14 @@ function LevelCard({
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Bonus Cantrip</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one additional druid cantrip (does not count against cantrip limit)</p>
-              <select
-                value={bonusCantrip}
-                onChange={(e) => onBonusCantripChange(e.target.value)}
-                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              <button
+                type="button"
+                onClick={() => setShowBonusCantripModal(true)}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <option value="">Select cantrip...</option>
-                {getStaticSpells()
-                  .filter((s) => s.level === 0 && s.classes?.includes("Druid"))
-                  .map((s) => (
-                    <option key={s.name} value={s.name}>{s.name}</option>
-                  ))}
-              </select>
+                <span>{bonusCantrip || "Select cantrip..."}</span>
+                <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+              </button>
             </div>
           )}
 
@@ -1414,16 +1412,14 @@ function LevelCard({
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells - Choose Terrain</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your terrain type to gain circle spells (always prepared, do not count against limit)</p>
-              <select
-                value={circleTerrain}
-                onChange={(e) => onCircleTerrainChange(e.target.value)}
-                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              <button
+                type="button"
+                onClick={() => setShowTerrainModal(true)}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <option value="">Select terrain...</option>
-                {getCircleTerrainTypes().map((terrain) => (
-                  <option key={terrain} value={terrain}>{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</option>
-                ))}
-              </select>
+                <span>{circleTerrain ? circleTerrain.charAt(0).toUpperCase() + circleTerrain.slice(1) : "Select terrain..."}</span>
+                <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+              </button>
               {circleTerrain && (() => {
                 const circleSpells = getCircleSpells(circleTerrain, info.level);
                 const spellsForLevel = circleSpells.filter((name) => {
@@ -1628,6 +1624,118 @@ function LevelCard({
                     </button>
                   );
                 })}
+              </div>
+            </div>
+          </div>
+         </div>
+      )}
+
+      {showTerrainModal && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowTerrainModal(false); }}
+        >
+          <div
+            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">Choose Terrain</div>
+              <button
+                type="button"
+                onClick={() => setShowTerrainModal(false)}
+                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              <p className="text-xs text-[var(--color-text-secondary)] mb-4">
+                Choose your terrain type to gain circle spells. These spells are always prepared and do not count against your preparation limit.
+              </p>
+              <div className="space-y-2">
+                {getCircleTerrainTypes().map((terrain) => {
+                  const isSelected = circleTerrain === terrain;
+                  const terrainSpells = getCircleSpells(terrain, info.level);
+                  return (
+                    <button
+                      key={terrain}
+                      type="button"
+                      onClick={() => { onCircleTerrainChange(terrain); setShowTerrainModal(false); }}
+                      className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                        isSelected
+                          ? "bg-green-600 text-white border-2 border-green-700"
+                          : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div className="font-semibold text-sm">{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</div>
+                      {terrainSpells.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {terrainSpells.map((name) => (
+                            <span key={name} className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isSelected ? "bg-green-500 text-white" : "bg-green-100 text-green-700"}`}>
+                              {name}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showBonusCantripModal && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowBonusCantripModal(false); }}
+        >
+          <div
+            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">Choose Bonus Cantrip</div>
+              <button
+                type="button"
+                onClick={() => setShowBonusCantripModal(false)}
+                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              <p className="text-xs text-[var(--color-text-secondary)] mb-4">
+                Choose one additional druid cantrip. This cantrip does not count against your cantrip limit.
+              </p>
+              <div className="space-y-2">
+                {getStaticSpells()
+                  .filter((s) => s.level === 0 && s.classes?.includes("Druid"))
+                  .map((sp) => {
+                    const isSelected = bonusCantrip === sp.name;
+                    const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                    return (
+                      <div key={sp.name} className="flex gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => { onBonusCantripChange(sp.name); setShowBonusCantripModal(false); }}
+                          className={`flex-1 p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                            isSelected
+                              ? "bg-teal-600 text-white border-2 border-teal-700"
+                              : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          <div className="font-semibold text-sm">{sp.name}</div>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                          </div>
+                        </button>
+                        {desc && <InfoButton title={sp.name} description={desc} />}
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>
