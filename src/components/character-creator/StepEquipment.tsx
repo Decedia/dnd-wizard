@@ -168,6 +168,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
     const existingWeapons = data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
 
+    const alreadySelected = existingWeapons.some(w => w.name === weapon.name);
+    if (alreadySelected) {
+      const newInventory = data.inventory.filter(item => !(item.choiceGroupIndex === groupIndex && item.itemType === "weapon" && item.name === weapon.name));
+      onChange({ inventory: newInventory });
+      return;
+    }
+
     if (existingWeapons.length >= selectionCount) {
       return;
     }
@@ -209,11 +216,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     }
 
     onChange({ inventory: nextInventory });
-
-    if (existingWeapons.length + 1 < selectionCount) {
-      return;
-    }
-    setPopupGroup(null);
   }, [data.inventory, getGroupIndex, getItemInfo, onChange, choiceGroups]);
 
   const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
@@ -524,28 +526,27 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                          const damagePreview = getCategoryDamagePreview(option.weaponType || "");
                          const needsMoreSelections = selectedWeapons.length < selectionCount;
 
-                         return (
-                           <div
-                             key={optionIndex}
-                             className={`card w-full px-3 py-2 text-left text-sm transition-all ${
-                               isSelected
-                                 ? "border-2 border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
-                                 : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                             }`}
-                           >
+                          return (
+                            <div
+                              key={optionIndex}
+                              className={`card w-full px-3 py-2 text-left text-sm transition-all ${
+                                isSelected
+                                  ? "border-2 border-green-500 bg-green-50 text-[var(--color-text-primary)]"
+                                  : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                              }`}
+                            >
                               {isSelected && selectedWeapons.length > 0 ? (
                                 <div className="space-y-2">
                                   {selectedWeapons.map((weapon, wIdx) => {
                                     const wStats = getWeaponStats(weapon.name, weapon.category);
                                     return (
-                                      <div key={weapon.id || wIdx} className="flex items-start justify-between">
+                                      <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border-2 border-green-500 bg-green-50">
                                         <div className="flex-1">
                                           <div className="flex items-center gap-2">
-                                            <span className="text-green-600 font-bold">✓</span>
                                             <span className="text-body font-semibold text-[var(--color-text-primary)]">{weapon.name}</span>
                                           </div>
                                           {wStats && (
-                                            <div className="flex items-center gap-2 mt-1.5 ml-5">
+                                            <div className="flex items-center gap-2 mt-1.5">
                                               <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
                                                 {wStats.damageDice} {wStats.damageType}
                                               </span>
@@ -608,40 +609,39 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                          );
                        }
 
-                        return (
-                          <div
-                            key={optionIndex}
-                            className={`card w-full px-3 py-2 text-left text-sm transition-all ${
-                              isSelected
-                                ? "border-2 border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
-                                : isDisabled
-                                  ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
-                                  : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                            }`}
-                          >
-                             {isSelected ? (
-                               <div className="flex items-center justify-between">
-                                 <div className="flex-1">
-                                   <div className="flex items-center gap-2">
-                                     <span className="text-green-600 font-bold">✓</span>
-                                     <span className="text-body font-semibold text-[var(--color-text-primary)]">{selectedItem?.name || option.description || primaryItem?.name}</span>
-                                   </div>
-                                  {primaryInfo?.type === "weapon" && (() => {
-                                    const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
-                                    return wStats ? (
-                                      <div className="flex items-center gap-2 mt-1.5 ml-5">
-                                        <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
-                                          {wStats.damageDice} {wStats.damageType}
-                                        </span>
-                                         <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                                          {wStats.abilityKey} {wStats.damageBonus}
-                                        </span>
-                                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
-                                          {wStats.attackBonus} to hit
-                                        </span>
-                                      </div>
-                                    ) : null;
-                                  })()}
+                         return (
+                           <div
+                             key={optionIndex}
+                             className={`card w-full px-3 py-2 text-left text-sm transition-all ${
+                               isSelected
+                                 ? "border-2 border-green-500 bg-green-50 text-[var(--color-text-primary)]"
+                                 : isDisabled
+                                   ? "border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] cursor-not-allowed opacity-50"
+                                   : "border border-[var(--color-border)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                             }`}
+                           >
+                              {isSelected ? (
+                                <div className="flex items-center justify-between">
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-body font-semibold text-[var(--color-text-primary)]">{selectedItem?.name || option.description || primaryItem?.name}</span>
+                                    </div>
+                                   {primaryInfo?.type === "weapon" && (() => {
+                                     const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
+                                     return wStats ? (
+                                       <div className="flex items-center gap-2 mt-1.5">
+                                         <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">
+                                           {wStats.damageDice} {wStats.damageType}
+                                         </span>
+                                          <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                                           {wStats.abilityKey} {wStats.damageBonus}
+                                         </span>
+                                         <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                                           {wStats.attackBonus} to hit
+                                         </span>
+                                       </div>
+                                     ) : null;
+                                   })()}
                                 </div>
                                 <div className="flex items-center gap-1">
                                   <button
@@ -713,10 +713,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const isGranted = item.isGranted;
 
               return (
-                <div key={item.id} className="card flex flex-col gap-1 px-3 py-2.5">
+                <div key={item.id} className="card flex flex-col gap-1 px-3 py-2.5 border-2 border-green-500 bg-green-50">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
                       <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
                       {isGranted && (
                         <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">GRANTED</span>
@@ -745,17 +744,53 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           content=""
           onClose={() => setPopupGroup(null)}
         >
+          {popupOption.isWeaponChoice && (
+            <div className="mb-3 p-2 rounded border border-[var(--color-border)] bg-[var(--color-bg)]">
+              <div className="text-xs font-semibold text-[var(--color-text-muted)] mb-1">
+                Selected: {selectedWeaponsForGroup.length} / {popupOption.selectionCount || 1}
+              </div>
+              {selectedWeaponsForGroup.length > 0 && (
+                <div className="flex flex-wrap gap-1">
+                  {selectedWeaponsForGroup.map((w) => (
+                    <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded border-2 border-green-500 bg-green-50 text-xs font-semibold text-green-700">
+                      {w.name}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const newInventory = data.inventory.filter(item => item.id !== w.id);
+                          onChange({ inventory: newInventory });
+                        }}
+                        className="text-green-600 hover:text-red-500 ml-1"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
           <div className="space-y-2">
             {popupOption.isWeaponChoice && popupCategoryWeapons.map((weapon: any) => {
               const wStats = getWeaponStats(weapon.name, weapon.category_range);
+              const isWeaponSelected = selectedWeaponsForGroup.some(w => w.name === weapon.name);
+              const selectionCount = popupOption.selectionCount || 1;
+              const isDisabled = !isWeaponSelected && selectedWeaponsForGroup.length >= selectionCount;
               return (
                 <div
                   key={weapon.name}
-                  className="card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                  className={`card w-full px-3 py-2 text-left text-sm flex items-center justify-between gap-2 transition-colors ${
+                    isWeaponSelected
+                      ? "border-2 border-green-500 bg-green-50"
+                      : isDisabled
+                        ? "border border-[var(--color-border)] opacity-50 cursor-not-allowed"
+                        : "border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                  }`}
                 >
                   <button
                     type="button"
                     onClick={() => handleWeaponSelect(weapon, popupGroup.group.id, popupGroup.optionIndex)}
+                    disabled={isDisabled}
                     className="flex-1 text-left"
                   >
                     <div className="flex items-center justify-between">
