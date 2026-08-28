@@ -44,6 +44,7 @@ export interface Character {
   speed: number;
   savingThrows: Record<string, { proficient: boolean; value: number }>;
   skills: Record<string, boolean>;
+  toolProficiencies: string[];
   expertise: string[];
   passivePerception: number;
   features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean }[];
@@ -211,6 +212,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     speed: 30,
     savingThrows: {},
     skills: {},
+    toolProficiencies: [],
     expertise: [],
     passivePerception: 10,
     features: [],

@@ -6,6 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { skills as srdSkills } from "@/data/srd";
 import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
+import { getBackgroundData } from "@/data/backgrounds";
 import { Star, X, ListChecks, Circle } from "phosphor-react";
 
 interface SkillsSectionProps {
@@ -23,13 +24,17 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
-  const currentSelections = allowedSkills.filter((skill) => character.skills[skill]).length;
+  const background = getBackgroundData(character.background);
+  const backgroundSkills = background?.skillProficiencies || [];
+  const currentSelections = allowedSkills.filter((skill) => character.skills[skill] && !backgroundSkills.includes(skill)).length;
 
   const isSkillAllowed = (skillName: string) => allowedSkills.includes(skillName);
+  const isBackgroundSkill = (skillName: string) => backgroundSkills.includes(skillName);
   const isAlreadyProficient = (skillName: string) => !!character.skills[skillName];
 
   const isAtMaxSelections = (skillName: string) => {
     if (maxSelections === 0) return false;
+    if (isBackgroundSkill(skillName)) return false;
     if (!isSkillAllowed(skillName)) return true;
     if (character.skills[skillName]) return false;
     return currentSelections >= maxSelections;
@@ -37,13 +42,14 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
 
   const toggleSkill = useCallback((skillName: string) => {
     if (isAtMaxSelections(skillName)) return;
+    if (isBackgroundSkill(skillName)) return;
     onChange({
       skills: {
         ...character.skills,
         [skillName]: !character.skills[skillName],
       },
     });
-  }, [character.skills, isAtMaxSelections, onChange]);
+  }, [character.skills, isAtMaxSelections, isBackgroundSkill, onChange]);
 
   return (
     <SectionCard id="skills" title="SKILLS" icon={<ListChecks weight="regular" className="h-5 w-5" />}>
@@ -63,6 +69,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
           const profMultiplier = isExpert ? 2 : 1;
           const total = isProficient ? mod + (profBonus * profMultiplier) : mod;
           const allowed = isSkillAllowed(name);
+          const isBgSkill = isBackgroundSkill(name);
           const alreadyProficient = isAlreadyProficient(name);
           const disabled = !allowed || isAtMaxSelections(name) || alreadyProficient;
 
@@ -71,7 +78,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               key={name}
               className={`card px-2.5 py-2 ${
                 isProficient
-                  ? "bg-ink/[0.02]"
+                  ? isBgSkill ? "bg-[var(--color-success-50)]" : "bg-ink/[0.02]"
                   : disabled
                     ? "bg-paper-muted/50 opacity-50"
                     : "bg-paper"
@@ -80,7 +87,10 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               {editMode ? (
                 <label className={`flex items-center justify-between gap-2 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-medium text-ink truncate">{name}</span>
+                    <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
+                      {name}
+                      {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
+                    </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
@@ -92,8 +102,8 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                       checked={isProficient}
                       onChange={() => toggleSkill(name)}
                       onBlur={onFieldBlur}
-                      disabled={disabled}
-                      className="checkbox-light disabled:opacity-30"
+                      disabled={disabled || isBgSkill}
+                      className="checkbox disabled:opacity-30"
                     />
                   </div>
                 </label>
@@ -102,6 +112,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                       {name}
+                      {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
                       {(isProficient || isExpert) && (
                           <span className="flex items-center text-ink">
                            {isExpert && <Star weight="fill" size={12} color="var(--color-text-primary)" />}

@@ -150,7 +150,48 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
           <label className="field-label-light">Background</label>
           <select
             value={data.background}
-            onChange={(e) => onChange({ background: e.target.value })}
+            onChange={(e) => {
+              const newBackground = e.target.value;
+              const bgData = getBackgroundData(newBackground);
+              const patch: Partial<Character> = { background: newBackground };
+
+              if (bgData) {
+                const newSkills = { ...data.skills };
+                for (const skill of bgData.skillProficiencies) {
+                  newSkills[skill] = true;
+                }
+                patch.skills = newSkills;
+
+                patch.toolProficiencies = bgData.toolProficiencies;
+
+                const newInventory = [...data.inventory];
+                for (const itemName of bgData.equipment) {
+                  newInventory.push({
+                    id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+                    name: itemName,
+                    quantity: 1,
+                    equipped: false,
+                    source: "custom",
+                    isGranted: true,
+                  });
+                }
+                patch.inventory = newInventory;
+              } else {
+                const newSkills = { ...data.skills };
+                const currentBg = getBackgroundData(data.background);
+                if (currentBg) {
+                  for (const skill of currentBg.skillProficiencies) {
+                    if (newSkills[skill]) {
+                      delete newSkills[skill];
+                    }
+                  }
+                }
+                patch.skills = newSkills;
+                patch.toolProficiencies = [];
+              }
+
+              onChange(patch);
+            }}
             className="input w-full"
           >
             <option value="">Select background</option>

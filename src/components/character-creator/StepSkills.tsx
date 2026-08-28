@@ -6,6 +6,7 @@ import { StepCard } from "./StepCard";
 import { getStaticClass } from "@/lib/srd-client";
 import { getProficiencyBonus } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
+import { getBackgroundData } from "@/data/backgrounds";
 
 interface StepSkillsProps {
   data: Character;
@@ -16,11 +17,13 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const profBonus = getProficiencyBonus(data.level);
   const skillChoices = classData?.skillChoices || null;
+  const background = getBackgroundData(data.background);
+  const backgroundSkills = background?.skillProficiencies || [];
 
   const selectedCount = useMemo(() => {
     if (!skillChoices) return 0;
-    return Object.entries(data.skills || {}).filter(([name, proficient]) => proficient && skillChoices.options.includes(name)).length;
-  }, [data.skills, skillChoices]);
+    return Object.entries(data.skills || {}).filter(([name, proficient]) => proficient && skillChoices.options.includes(name) && !backgroundSkills.includes(name)).length;
+  }, [data.skills, skillChoices, backgroundSkills]);
 
   const toggleSkill = (skillName: string) => {
     if (!skillChoices) {
@@ -29,6 +32,9 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
       });
       return;
     }
+
+    const isBackgroundSkill = backgroundSkills.includes(skillName);
+    if (isBackgroundSkill) return;
 
     const isAllowed = skillChoices.options.includes(skillName);
     const isSelected = data.skills[skillName];
@@ -84,9 +90,10 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
       <div className="grid grid-cols-1 gap-2">
         {allSkills.map(({ name, ability }) => {
           const isProficient = data.skills[name] || false;
+          const isBackgroundSkill = backgroundSkills.includes(name);
           const isAllowed = !skillChoices || skillChoices.options.includes(name);
           const atMax = skillChoices ? selectedCount >= skillChoices.count : false;
-          const disabled = !isAllowed || (!isProficient && atMax);
+          const disabled = !isAllowed || (!isProficient && atMax) || isBackgroundSkill;
 
           return (
              <button
@@ -94,8 +101,10 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                type="button"
                onClick={() => toggleSkill(name)}
                disabled={disabled}
-                 className={`btn w-full px-3 py-2 text-left transition-all rounded-lg ${
-                  isProficient
+                className={`btn w-full px-3 py-2 text-left transition-all rounded-lg ${
+                  isBackgroundSkill
+                    ? "bg-[var(--color-success-50)] text-[var(--color-text-primary)] border-2 border-[var(--color-success-300)]"
+                    : isProficient
                     ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-2 border-[var(--color-success-500)]"
                     : disabled
                       ? "bg-transparent text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
@@ -107,7 +116,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
                   <span className={`text-body ${isProficient ? "font-semibold" : ""}`}>{name}</span>
-                  <span className={`text-[10px] ${isAllowed ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
+                  <span className={`text-[10px] ${isAllowed || isBackgroundSkill ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
                     {ability.toUpperCase()} {getAbilityModifier(ability)}
                   </span>
                 </div>
@@ -115,14 +124,17 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                   {isProficient && (
                     <span className="text-[var(--color-success-600)] text-sm font-bold">+{profBonus}</span>
                   )}
-                  {isAllowed && (
+                  {isAllowed && !isBackgroundSkill && (
                      <div className={`h-5 w-5 rounded border-2 flex items-center justify-center ${isProficient ? "bg-[var(--color-success-600)] border-[var(--color-success-600)]" : "border-[var(--color-border)] bg-[var(--color-surface)]"}`}>
                         {isProficient && (
                           <CheckCircle weight="fill" color="var(--color-surface)" className="h-3 w-3" />
                         )}
                       </div>
                   )}
-                  {!isAllowed && (
+                  {isBackgroundSkill && (
+                    <span className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-50)] px-1.5 py-0.5 rounded">BG</span>
+                  )}
+                  {!isAllowed && !isBackgroundSkill && (
                     <span className="text-[10px] text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">N/A</span>
                   )}
                 </div>

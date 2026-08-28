@@ -185,7 +185,7 @@ export default function CharacterView() {
             <>
               <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
               <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
-              <OtherProficienciesSection otherProficiencies={character.otherProficiencies} onChange={(value) => handleChange({ otherProficiencies: value })} editMode={editMode} />
+              <OtherProficienciesSection otherProficiencies={character.otherProficiencies} toolProficiencies={character.toolProficiencies || []} onChange={(value) => handleChange({ otherProficiencies: value })} onToolsChange={(value) => handleChange({ toolProficiencies: value })} editMode={editMode} />
             </>
           )}
           {activeTab === "gear" && (
