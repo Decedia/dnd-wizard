@@ -307,7 +307,8 @@ export function getStaticSubclassDetails(className: string, subclassName: string
 }
 
 export function getStaticSpells(): SRDSpell[] {
-  return Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
+  const raw = Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
+  return raw.map(normalizeSpell);
 }
 
 export function getCachedSRDData(): SRDData | null {
@@ -410,8 +411,18 @@ export function getItemNames(): string[] {
   return getStaticItems().map((i) => i.name);
 }
 
+export function normalizeSpell(s: any): any {
+  return {
+    ...s,
+    description: s.description || s.desc || "",
+    school: typeof s.school === "object" ? s.school?.name || "" : (s.school || ""),
+    castingTime: s.castingTime || s.casting_time || "",
+  };
+}
+
 export function getStaticWizardSpells(): SRDWizardSpell[] {
-  return (wizardSpellsData as any).spells as SRDWizardSpell[];
+  const raw = (wizardSpellsData as any).spells || [];
+  return raw.map(normalizeSpell);
 }
 
 export function getStaticWizardSpell(name: string): SRDWizardSpell | undefined {
@@ -423,7 +434,8 @@ export function getWizardSpellNames(): string[] {
 }
 
 export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
-  return (arcaneTricksterSpellsData as any).spells as SRDWizardSpell[];
+  const raw = (arcaneTricksterSpellsData as any).spells || [];
+  return raw.map(normalizeSpell);
 }
 
 export function clearSRDCache() {
