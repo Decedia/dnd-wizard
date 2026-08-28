@@ -91,6 +91,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
 
       <div className="mt-4">
         <span className="field-label-light">Cantrips</span>
+        <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Cantrips are minor spells you can cast at will without using spell slots. They always scale with your character level.</p>
         <div className="space-y-2">
           {character.cantrips.map((cantrip) => (
             <div key={cantrip.id} className="list-row flex items-center gap-2">
@@ -133,6 +134,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
 
       <div className="mt-4">
         <span className="field-label-light">Spell Slots</span>
+        <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Spell slots represent your magical energy for casting spells. Higher level slots can cast lower level spells, and some spells can be upcast using higher level slots.</p>
         {Object.keys(character.spellSlots).length > 0 ? (
           <div className="grid grid-cols-1 gap-2">
             {Object.entries(character.spellSlots)
@@ -146,25 +148,25 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                       <div className="flex items-center gap-2">
                         <input
                           type="number"
-                          value={total}
-                          onChange={(e) => updateSpellSlot(Number(level), "total", parseInt(e.target.value || "0", 10))}
-                          onBlur={onFieldBlur}
-                          className="input w-16 text-center"
-                          placeholder="Total"
-                        />
-                        <span className="text-[var(--color-text-secondary)] font-bold">/</span>
-                        <input
-                          type="number"
                           value={expended}
                           onChange={(e) => updateSpellSlot(Number(level), "expended", parseInt(e.target.value || "0", 10))}
                           onBlur={onFieldBlur}
                           className="input w-16 text-center"
                           placeholder="Used"
                         />
+                        <span className="text-[var(--color-text-secondary)] font-bold">/</span>
+                        <input
+                          type="number"
+                          value={total}
+                          onChange={(e) => updateSpellSlot(Number(level), "total", parseInt(e.target.value || "0", 10))}
+                          onBlur={onFieldBlur}
+                          className="input w-16 text-center"
+                          placeholder="Total"
+                        />
                       </div>
                     ) : (
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">
-                        {total} / {expended} used
+                        {expended} / {total}
                       </span>
                     )}
                   </div>
