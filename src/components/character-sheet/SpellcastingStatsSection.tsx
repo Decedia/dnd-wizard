@@ -117,57 +117,37 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                 return (
                   <div key={level} className="list-row flex items-center gap-3">
                     <span className="text-sm font-bold text-[var(--color-text-primary)] w-16">Level {level}</span>
-                    {editMode ? (
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="number"
-                          value={expended}
-                          onChange={(e) => updateSpellSlot(Number(level), "expended", parseInt(e.target.value || "0", 10))}
-                          onBlur={onFieldBlur}
-                          className="input w-16 text-center"
-                          placeholder="Used"
-                        />
-                        <span className="text-[var(--color-text-secondary)] font-bold">/</span>
-                        <input
-                          type="number"
-                          value={total}
-                          onChange={(e) => updateSpellSlot(Number(level), "total", parseInt(e.target.value || "0", 10))}
-                          onBlur={onFieldBlur}
-                          className="input w-16 text-center"
-                          placeholder="Total"
-                        />
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-[var(--color-text-primary)]">
-                          {remaining} / {total}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => useSpellSlot(Number(level))}
-                          disabled={remaining <= 0}
-                          className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
-                            remaining > 0
-                              ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:bg-[var(--color-text-primary)]"
-                              : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
-                          }`}
-                        >
-                          Use
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => restoreSpellSlot(Number(level))}
-                          disabled={expended <= 0}
-                          className={`px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${
-                            expended > 0
-                              ? "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                              : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
-                          }`}
-                        >
-                          Restore
-                        </button>
-                      </div>
-                    )}
+                    <div className="flex items-center gap-2">
+                      <span className={`text-sm font-bold ${remaining > 0 ? "text-[var(--color-success-600)]" : "text-[var(--color-error-500)]"}`}>
+                        {remaining}
+                      </span>
+                      <span className="text-sm text-[var(--color-text-muted)]">/</span>
+                      <span className="text-sm text-[var(--color-text-primary)]">{total}</span>
+                      <button
+                        type="button"
+                        onClick={() => useSpellSlot(Number(level))}
+                        disabled={remaining <= 0}
+                        className={`px-2.5 py-1 text-[10px] font-bold rounded transition-colors ${
+                          remaining > 0
+                            ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:bg-[var(--color-text-primary)]"
+                            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
+                        }`}
+                      >
+                        Use
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => restoreSpellSlot(Number(level))}
+                        disabled={expended <= 0}
+                        className={`px-2.5 py-1 text-[10px] font-bold rounded transition-colors ${
+                          expended > 0
+                            ? "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
+                        }`}
+                      >
+                        Restore
+                      </button>
+                    </div>
                   </div>
                 );
               })}

@@ -149,14 +149,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   <button
                     type="button"
                     onClick={() => togglePrepared(spell.id)}
-                    className="shrink-0"
+                    className={`shrink-0 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                      spellPrepared
+                        ? "bg-[var(--color-success-500)] text-[var(--color-surface)]"
+                        : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                    }`}
                     title={spellPrepared ? "Click to unprepare" : "Click to prepare"}
                   >
-                    {spellPrepared ? (
-                      <Check weight="fill" size={16} className="text-[var(--color-success-500)]" />
-                    ) : (
-                      <Circle weight="regular" size={16} className="text-[var(--color-text-muted)]" />
-                    )}
+                    {spellPrepared ? "Prepared" : "Prepare"}
                   </button>
                 )}
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{spell.name}</span>
