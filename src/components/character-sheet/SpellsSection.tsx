@@ -357,14 +357,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         </>
                       )}
                       {description && !isCustom && (
-                        <button
-                          type="button"
-                          onClick={() => setTooltip({ name: spell.name, description: descriptionText || "" })}
-                          className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] shrink-0"
-                          aria-label={`Info about ${spell.name}`}
-                        >
-                          <Info weight="regular" className="h-4 w-4" />
-                        </button>
+                        <div className="w-full mt-1">
+                          <DescriptionText>{descriptionText}</DescriptionText>
+                        </div>
                       )}
                       <button
                         type="button"

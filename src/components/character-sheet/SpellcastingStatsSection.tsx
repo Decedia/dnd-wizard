@@ -2,7 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { X, Sparkle, Plus } from "phosphor-react";
+import { Sparkle } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 
 interface SpellcastingStatsSectionProps {
@@ -87,49 +87,6 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
             )}
           </Field>
         </div>
-      </div>
-
-      <div className="mt-4">
-        <span className="field-label-light">Cantrips</span>
-        <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Cantrips are minor spells you can cast at will without using spell slots. They always scale with your character level.</p>
-        <div className="space-y-2">
-          {character.cantrips.map((cantrip) => (
-            <div key={cantrip.id} className="list-row flex items-center gap-2">
-              {editMode ? (
-                <>
-                  <input
-                    type="text"
-                    value={cantrip.name}
-                    onChange={(e) => updateCantrip(cantrip.id, e.target.value)}
-                    onBlur={onFieldBlur}
-                    className="input flex-1"
-                    placeholder="Cantrip name"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeCantrip(cantrip.id)}
-                    className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
-                    aria-label="Remove cantrip"
-                  >
-                    <X weight="regular" className="h-4 w-4" />
-                  </button>
-                </>
-              ) : (
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">{cantrip.name || "Unnamed Cantrip"}</span>
-              )}
-            </div>
-          ))}
-        </div>
-        {editMode && (
-          <button
-            type="button"
-            onClick={addCantrip}
-            className="mt-2 btn-secondary flex items-center gap-1.5"
-          >
-            <Plus weight="regular" size={16} />
-            Add Cantrip
-          </button>
-        )}
       </div>
 
       <div className="mt-4">
