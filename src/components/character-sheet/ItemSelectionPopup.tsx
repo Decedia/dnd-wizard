@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { X, Sword, Shield, Backpack } from "phosphor-react";
+import { DamageBadge } from "./DamageBadge";
 
 interface ItemSelectionPopupProps {
   character: Character;
@@ -148,6 +149,11 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
           <div className="space-y-1.5">
             {currentItems.map((item: any) => {
               const isSelected = selectedItem === item.name;
+              const damageType = item.damage?.damage_type?.name;
+              const damageDice = item.damage?.damage_dice;
+              const baseAC = item.armor_class?.base;
+              const armorType = item.armor_category;
+              const weaponCategory = item.weapon_category;
               return (
                 <button
                   key={item.name}
@@ -159,22 +165,36 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
                       : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    {isSelected && <X weight="fill" className="h-3 w-3 text-[var(--color-surface)]" />}
+                  <div className="flex items-center justify-between gap-2">
                     <span className={`text-xs font-bold ${isSelected ? "" : "text-[var(--color-text-primary)]"}`}>{item.name}</span>
+                    <div className="flex items-center gap-1.5">
+                      {damageDice && (
+                        <span
+                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "#64748b", backgroundColor: "#64748b15" }}
+                        >
+                          {damageDice}
+                        </span>
+                      )}
+                      {damageType && (
+                        <DamageBadge type={damageType} size="sm" showLabel={false} />
+                      )}
+                      {baseAC && !isNaN(Number(baseAC)) && Number(baseAC) > 0 && (
+                        <span
+                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-info-600)", backgroundColor: "var(--color-info-50)" }}
+                        >
+                          AC {baseAC}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 mt-0.5 ml-5">
-                    {item.damage?.damage_dice && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">{item.damage.damage_dice} {item.damage?.damage_type?.name}</span>
+                  <div className="flex items-center gap-2 mt-1 ml-0">
+                    {weaponCategory && (
+                      <span className="text-[10px] text-[var(--color-text-muted)]">{weaponCategory}</span>
                     )}
-                    {item.armor_class?.base && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">AC {item.armor_class.base}</span>
-                    )}
-                    {item.weapon_category && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">{item.weapon_category}</span>
-                    )}
-                    {item.armor_category && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">{item.armor_category}</span>
+                    {armorType && (
+                      <span className="text-[10px] text-[var(--color-text-muted)]">{armorType}</span>
                     )}
                   </div>
                 </button>
