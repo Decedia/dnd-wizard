@@ -6,7 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
-import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells } from "@/lib/storage";
+import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
 import { Lightning, Plus, Check, Circle, X } from "phosphor-react";
 import { DamageBadge } from "./DamageBadge";
 import { SpellSelectionModal } from "./SpellSelectionModal";
@@ -37,6 +37,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
 
   const preparationCaster = isPreparationCaster(character);
   const maxPrepared = getMaxPreparedSpells(character);
+  const maxSpellsKnown = getMaxSpellsKnown(character);
+  const maxCantripsKnown = getMaxCantripsKnown(character);
+  const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0).length;
+  const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0).length;
   const domainSpells = getDomainSpellNames(character);
   const circleTerrain = character.circleTerrain || "";
   const circleSpellsList = circleTerrain ? getCircleSpells(circleTerrain, character.level) : [];
@@ -117,6 +121,17 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Prepared Spells: {preparedCount}/{maxPrepared}</span>
           <span className="text-xs text-ink ml-2">(Spellcasting ability mod + level)</span>
+        </div>
+      )}
+      {!preparationCaster && maxSpellsKnown > 0 && (
+        <div className="mb-4 surface bg-paper-muted px-4 py-3">
+          <span className="text-sm font-bold text-ink">Spells Known: {currentSpellsKnown}/{maxSpellsKnown}</span>
+          <span className="text-xs text-ink ml-2">Cantrips: {currentCantripsKnown}/{maxCantripsKnown}</span>
+        </div>
+      )}
+      {preparationCaster && maxCantripsKnown > 0 && (
+        <div className="mb-2 surface bg-paper-muted px-4 py-2">
+          <span className="text-sm font-bold text-ink">Cantrips: {currentCantripsKnown}/{maxCantripsKnown}</span>
         </div>
       )}
 
@@ -205,6 +220,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           character={character}
           onChange={onChange}
           onClose={() => setShowSpellModal(false)}
+          maxSpellsKnown={maxSpellsKnown}
+          maxCantripsKnown={maxCantripsKnown}
         />
       )}
     </SectionCard>

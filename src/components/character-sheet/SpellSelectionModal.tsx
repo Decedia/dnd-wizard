@@ -25,6 +25,8 @@ interface SpellSelectionModalProps {
   subclassSpellSelectionCount?: number;
   subclassSpellSelections?: string[];
   onSubclassSpellSelectionsChange?: (list: string[]) => void;
+  maxSpellsKnown?: number;
+  maxCantripsKnown?: number;
 }
 
 export function SpellSelectionModal({
@@ -40,6 +42,8 @@ export function SpellSelectionModal({
   spellsKnownChanged,
   earlierSelections,
   onChange,
+  maxSpellsKnown = 0,
+  maxCantripsKnown = 0,
 }: SpellSelectionModalProps) {
   const [activeTab, setActiveTab] = useState<"cantrips" | number>("cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
@@ -82,6 +86,14 @@ export function SpellSelectionModal({
           spells: (character.spells || []).filter(s => !(s.name === name && s.level === level)),
         });
       } else {
+        // Enforce max spells/cantrips known limits
+        if (level === 0) {
+          const currentCantrips = (character.spells || []).filter(s => s.level === 0).length;
+          if (currentCantrips >= maxCantripsKnown) return;
+        } else {
+          const currentSpells = (character.spells || []).filter(s => s.level > 0).length;
+          if (currentSpells >= maxSpellsKnown) return;
+        }
         const srdSpell = getStaticSpells().find(s => s.name === name);
         const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
         onChange({
@@ -211,7 +223,7 @@ export function SpellSelectionModal({
                 : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
             }`}
           >
-            Cantrips ({currentCantrips.length}/{cantripCount})
+            Cantrips ({currentCantrips.length}/{onChange ? maxCantripsKnown : cantripCount})
           </button>
           {spellLevels.map((lvl) => (
             <button
@@ -224,7 +236,7 @@ export function SpellSelectionModal({
                   : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
               }`}
             >
-              Level {lvl} ({currentSpells.length}/{count})
+              Level {lvl} ({currentSpells.length}/{onChange ? maxSpellsKnown : count})
             </button>
           ))}
         </div>
@@ -234,7 +246,8 @@ export function SpellSelectionModal({
               {cantrips.map((sp) => {
                 const isSel = selectedCantripNames.has(sp.name);
                 const isAlreadyKnown = alreadyKnownCantripNames.has(sp.name);
-                const disabled = !isSel && !isAlreadyKnown && currentCantrips.length >= cantripCount;
+                const maxCantrips = onChange ? maxCantripsKnown : cantripCount;
+                const disabled = !isSel && !isAlreadyKnown && currentCantrips.length >= maxCantrips;
                 const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
                 return (
                   <div key={sp.name} className="flex gap-1.5">
@@ -273,7 +286,8 @@ export function SpellSelectionModal({
               {levelSpells[activeTab as number]?.map((sp) => {
                 const isSel = selectedSpellNames.has(sp.name);
                 const isAlreadyKnown = alreadyKnownSpellNames.has(sp.name);
-                const disabled = !isSel && !isAlreadyKnown && currentSpells.length >= count;
+                const maxSpells = onChange ? maxSpellsKnown : count;
+                const disabled = !isSel && !isAlreadyKnown && currentSpells.length >= maxSpells;
                 const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
                 return (
                   <div key={sp.name} className="flex gap-1.5">

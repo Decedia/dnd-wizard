@@ -133,6 +133,58 @@ export function getModifier(score: number): number {
   return Math.floor((score - 10) / 2);
 }
 
+export function getMaxSpellsKnown(character: Character): number {
+  const classData = getStaticClass(character.class);
+  if (!classData) return 0;
+
+  const spellsKnownByLevel: Record<string, Record<number, number>> = {
+    Sorcerer: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
+    Bard: { 1: 4, 2: 5, 3: 6, 4: 7, 5: 8, 6: 9, 7: 10, 8: 11, 9: 12, 10: 14, 11: 15, 12: 15, 13: 16, 14: 16, 15: 18, 16: 18, 17: 19, 18: 19, 19: 20, 20: 22 },
+    Warlock: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
+    Ranger: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
+    Paladin: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
+  };
+
+  const className = character.class;
+  const level = character.level || 1;
+
+  if (spellsKnownByLevel[className] && spellsKnownByLevel[className][level]) {
+    return spellsKnownByLevel[className][level];
+  }
+
+  if (className === "Wizard") {
+    if (level === 1) return 6;
+    return 6 + (level - 1) * 2;
+  }
+
+  if (className === "Cleric" || className === "Druid") {
+    const abilityKey = classData.spellcastingAbility as keyof Character;
+    const abilityMod = getModifier(character[abilityKey] as number || 10);
+    return Math.max(1, abilityMod + level);
+  }
+
+  return 0;
+}
+
+export function getMaxCantripsKnown(character: Character): number {
+  const classData = getStaticClass(character.class);
+  if (!classData?.cantripsKnown) return 0;
+
+  const level = character.level || 1;
+
+  if (Array.isArray(classData.cantripsKnown)) {
+    const idx = Math.min(level - 1, classData.cantripsKnown.length - 1);
+    return classData.cantripsKnown[idx >= 0 ? idx : 0];
+  }
+
+  const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
+  let cantrips = 0;
+  for (const l of levels) {
+    if (level >= l) cantrips = (classData.cantripsKnown as Record<number, number>)[l];
+  }
+  return cantrips;
+}
+
 export function getClassLevel1Hp(classData: { hitDie: number } | undefined): number {
   if (!classData) return 10;
   return classData.hitDie;
