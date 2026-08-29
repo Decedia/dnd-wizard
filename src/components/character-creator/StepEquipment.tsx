@@ -112,9 +112,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return data.inventory.find(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
   }, [data.inventory, getGroupIndex]);
 
-  const getSelectedWeaponsForGroup = useCallback((groupId: string) => {
+  const getSelectedWeaponsForGroup = useCallback((groupId: string, optionIndex?: number) => {
     const groupIndex = getGroupIndex(groupId);
-    return data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
+    return data.inventory.filter(item => {
+      if (item.choiceGroupIndex !== groupIndex || item.itemType !== "weapon") return false;
+      if (optionIndex !== undefined && item.choiceOptionIndex !== optionIndex) return false;
+      return true;
+    });
   }, [data.inventory, getGroupIndex]);
 
   const getSelectedItemForGroup = useCallback((groupId: string) => {
@@ -171,6 +175,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
     const alreadySelectedIndex = existingWeapons.findIndex(w => w.name === weapon.name);
     if (alreadySelectedIndex >= 0) {
+      // Toggle off: remove the weapon
       const newInventory = data.inventory.filter(item => item.id !== existingWeapons[alreadySelectedIndex].id);
       onChange({ inventory: newInventory });
       return;
@@ -195,8 +200,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       choiceOptionIndex: optionIndex,
     };
 
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-    const nextInventory = [...newInventory, weaponItem];
+    const nextInventory = [...data.inventory, weaponItem];
 
     if (option?.description?.toLowerCase().includes("shield") && !data.inventory.some(i => i.name === "Shield" && i.choiceGroupIndex === groupIndex)) {
       const shieldInfo = getItemInfo("Shield");
@@ -519,7 +523,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                         const primaryItem = option.items[0];
                         const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
                         const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
-                        const selectedWeapons = isWeaponChoice ? getSelectedWeaponsForGroup(group.id) : [];
+                         const selectedWeapons = isWeaponChoice ? getSelectedWeaponsForGroup(group.id, optionIndex) : [];
                         const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
                         const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
                         const isDisabled = hasSelection && !isSelected;
