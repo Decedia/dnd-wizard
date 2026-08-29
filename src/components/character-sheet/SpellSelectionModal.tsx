@@ -53,9 +53,10 @@ export function SpellSelectionModal({
 
   const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster") || character.subclass?.toLowerCase().includes("arcane trickster");
   const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
+  const effectiveMaxLevel = onChange ? (character.level || 1) : (maxLevel || 0);
   const allSpells = isArcaneTrickster
-    ? atSpells.filter((s) => s.level === 0 || s.level <= maxLevel)
-    : getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+    ? atSpells.filter((s) => s.level === 0 || s.level <= effectiveMaxLevel)
+    : getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel));
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
   const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
