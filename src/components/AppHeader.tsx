@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { MagicWand } from "phosphor-react";
 
 interface AppHeaderProps {
@@ -39,6 +40,7 @@ export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave 
           {editMode !== undefined && onEditModeChange && (
             <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => onEditModeChange(m === "edit")} onSave={onSave} />
           )}
+          <ThemeToggle />
         </div>
       </div>
     </header>

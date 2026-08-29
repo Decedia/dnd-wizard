@@ -130,6 +130,46 @@
   --border-width-active: 2px;
 }
 
+[data-theme="dark"] {
+  --color-paper: #0f0f0f;
+  --color-paper-muted: #1a1a1a;
+  --color-paper-dark: #242424;
+  --color-paper-darker: #333333;
+  --color-ink: #e8e8e8;
+  --color-ink-muted: #888888;
+  --color-ink-subtle: #666666;
+  --color-ink-heavy: #1a1a1a;
+  --color-border-strong: #2a2a2a;
+  --color-border-muted: #1f1f1f;
+  --color-accent: #333333;
+  --color-accent-muted: #555555;
+  --color-disabled: #555555;
+
+  --color-bg: #1a1a1a;
+  --color-surface: #161616;
+  --color-border: #2a2a2a;
+  --color-border-active: #555555;
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #999999;
+  --color-text-muted: #666666;
+  --color-nav-bg: #0a0a0a;
+  --color-nav-icon: #e0e0e0;
+  --color-nav-active-bg: #1a1a1a;
+  --color-nav-active-icon: #ffffff;
+
+  --color-overlay: rgba(0, 0, 0, 0.75);
+
+  --color-success-50: #052e16;
+  --color-success-100: #14532d;
+  --color-success-200: #166534;
+  --color-success-300: #22c55e;
+
+  --color-error-50: #450a0a;
+  --color-error-100: #7f1d1d;
+  --color-error-200: #991b1b;
+  --color-error-300: #ef4444;
+}
+
 @layer base {
   html {
     -webkit-tap-highlight-color: transparent;
