@@ -403,10 +403,26 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
   let ac = 10 + getModifier(character.dex);
 
   const bodyArmor = character.inventory.find((item) => item.equipped && item.itemType === "armor" && item.armorType !== "shield");
-  if (bodyArmor && bodyArmor.baseAC !== undefined) {
-    const maxDex = bodyArmor.maxDexBonus ?? null;
-    const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
-    ac = bodyArmor.baseAC + dexMod;
+  if (bodyArmor) {
+    let baseAC = bodyArmor.baseAC;
+    let maxDexBonus = bodyArmor.maxDexBonus;
+
+    // Parse description field if baseAC is not directly set
+    if (baseAC === undefined && bodyArmor.description) {
+      try {
+        const info = JSON.parse(bodyArmor.description);
+        baseAC = info.baseAC;
+        maxDexBonus = info.maxDex ?? info.maxDexBonus ?? null;
+      } catch {
+        // Ignore parse errors
+      }
+    }
+
+    if (baseAC !== undefined) {
+      const maxDex = maxDexBonus ?? null;
+      const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
+      ac = baseAC + dexMod;
+    }
   }
 
   ac += equippedShields.length * 2;
@@ -532,10 +548,26 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const equippedShields = character.inventory.filter((item) => item.equipped && item.armorType === "shield");
   let ac = 10 + getModifier(character.dex);
   const bodyArmor = character.inventory.find((item) => item.equipped && item.itemType === "armor" && item.armorType !== "shield");
-  if (bodyArmor && bodyArmor.baseAC !== undefined) {
-    const maxDex = bodyArmor.maxDexBonus ?? null;
-    const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
-    ac = bodyArmor.baseAC + dexMod;
+  if (bodyArmor) {
+    let baseAC = bodyArmor.baseAC;
+    let maxDexBonus = bodyArmor.maxDexBonus;
+
+    // Parse description field if baseAC is not directly set
+    if (baseAC === undefined && bodyArmor.description) {
+      try {
+        const info = JSON.parse(bodyArmor.description);
+        baseAC = info.baseAC;
+        maxDexBonus = info.maxDex ?? info.maxDexBonus ?? null;
+      } catch {
+        // Ignore parse errors
+      }
+    }
+
+    if (baseAC !== undefined) {
+      const maxDex = maxDexBonus ?? null;
+      const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
+      ac = baseAC + dexMod;
+    }
   }
   ac += equippedShields.length * 2;
 
