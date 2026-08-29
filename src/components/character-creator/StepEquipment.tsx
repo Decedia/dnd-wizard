@@ -126,7 +126,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return data.inventory.find(item => item.choiceGroupIndex === groupIndex);
   }, [data.inventory, getGroupIndex]);
 
-  const selectedWeaponsForGroup = popupGroup ? getSelectedWeaponsForGroup(popupGroup.group.id) : [];
+  const selectedWeaponsForGroup = popupGroup ? getSelectedWeaponsForGroup(popupGroup.group.id, popupGroup.optionIndex) : [];
 
   const handleOptionClick = useCallback((group: ChoiceGroup, optionIndex: number) => {
     const option = group.options[optionIndex];
