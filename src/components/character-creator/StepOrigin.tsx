@@ -290,7 +290,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 type="button"
                 onClick={handleConfirmClass}
                 disabled={!pendingClass}
-                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                   pendingClass
                     ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
                     : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
@@ -478,7 +478,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 type="button"
                 onClick={handleConfirmRace}
                 disabled={!pendingRace}
-                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                   pendingRace
                     ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
                     : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"

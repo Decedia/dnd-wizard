@@ -329,7 +329,7 @@ export function SpellSelectionModal({
           <button
             type="button"
             onClick={onClose}
-            className="w-full py-2.5 text-sm font-semibold rounded-lg bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90 transition-all"
+            className="w-full py-2.5 text-sm font-semibold rounded-full bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90 transition-all"
           >
             Confirm Selection
           </button>
