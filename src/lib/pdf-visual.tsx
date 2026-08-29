@@ -35,6 +35,8 @@ export async function exportCharacterToPdf(character: Character): Promise<void> 
         useCORS: true,
         backgroundColor: "#ffffff",
         logging: false,
+        windowWidth: pageEl.scrollWidth,
+        windowHeight: pageEl.scrollHeight,
       });
 
       const imgData = canvas.toDataURL("image/jpeg", 0.92);
@@ -42,7 +44,41 @@ export async function exportCharacterToPdf(character: Character): Promise<void> 
       const imgHeight = (canvas.height * pageWidth) / canvas.width;
 
       if (i > 0) pdf.addPage();
-      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, Math.min(imgHeight, pageHeight));
+      
+      if (imgHeight <= pageHeight) {
+        pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
+      } else {
+        let remainingHeight = imgHeight;
+        let sourceY = 0;
+        const sourceHeight = canvas.height;
+        const sourceWidth = canvas.width;
+        
+        while (remainingHeight > 0) {
+          const destHeight = Math.min(remainingHeight, pageHeight);
+          const sourceSliceHeight = (destHeight / imgHeight) * sourceHeight;
+          
+          const sliceCanvas = document.createElement("canvas");
+          sliceCanvas.width = sourceWidth;
+          sliceCanvas.height = sourceSliceHeight;
+          const ctx = sliceCanvas.getContext("2d");
+          if (ctx) {
+            ctx.drawImage(
+              canvas,
+              0, sourceY, sourceWidth, sourceSliceHeight,
+              0, 0, sourceWidth, sourceSliceHeight
+            );
+            const sliceData = sliceCanvas.toDataURL("image/jpeg", 0.92);
+            pdf.addImage(sliceData, "JPEG", 0, 0, imgWidth, destHeight);
+          }
+          
+          remainingHeight -= destHeight;
+          sourceY += sourceSliceHeight;
+          
+          if (remainingHeight > 0) {
+            pdf.addPage();
+          }
+        }
+      }
     }
 
     const embeddedJson = JSON.stringify({ version: 1, character });

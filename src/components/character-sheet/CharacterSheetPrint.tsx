@@ -26,7 +26,7 @@ const C = {
 
 function Page({ children }: { children: React.ReactNode }) {
   return (
-    <div data-print-page style={{ width: W, minHeight: 1123, backgroundColor: C.bg, padding: "32px 40px", boxSizing: "border-box", fontFamily: "'Inter', system-ui, -apple-system, sans-serif" }}>
+    <div data-print-page style={{ width: W, backgroundColor: C.bg, padding: "32px 40px", boxSizing: "border-box", fontFamily: "'Inter', system-ui, -apple-system, sans-serif" }}>
       {children}
     </div>
   );
