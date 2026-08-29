@@ -49,26 +49,43 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   }).length;
 
   const unifiedSpells: UnifiedSpell[] = useMemo(() => {
-    const cantrips: UnifiedSpell[] = character.cantrips.map(c => ({
-      id: c.id,
-      name: c.name,
-      level: 0,
-      source: "custom" as const,
-      isCantrip: true,
-    }));
-    const spells: UnifiedSpell[] = character.spells.map(s => ({
-      id: s.id,
-      name: s.name,
-      level: s.level,
-      source: s.source,
-      srdSpellName: s.srdSpellName,
-      damageDice: s.damageDice,
-      damageType: s.damageType,
-      description: s.description,
-      isCantrip: false,
-    }));
+    const cantripNames = new Set(character.cantrips.map(c => c.name?.toLowerCase()));
+    const cantrips: UnifiedSpell[] = character.cantrips.map(c => {
+      const srdSpell = srdSpells.find(s => s.name.toLowerCase() === c.name?.toLowerCase());
+      const desc = srdSpell?.description;
+      return {
+        id: c.id,
+        name: c.name,
+        level: 0,
+        source: "custom" as const,
+        isCantrip: true,
+        damageDice: srdSpell?.damage?.damageDice || "",
+        damageType: srdSpell?.damage?.damageType || "",
+        description: typeof desc === "string" ? desc : (Array.isArray(desc) ? desc.join("\n") : ""),
+      };
+    });
+    const spells: UnifiedSpell[] = character.spells
+      .filter(s => s.level > 0 || !cantripNames.has(s.name?.toLowerCase()))
+      .map(s => {
+        const srdSpell = s.srdSpellName ? srdSpells.find(sp => sp.name === s.srdSpellName) : undefined;
+        const desc = s.description || srdSpell?.description;
+        const description = typeof desc === "string" ? desc : (Array.isArray(desc) ? desc.join("\n") : "");
+        const damageDice = s.damageDice || srdSpell?.damage?.damageDice || "";
+        const damageType = s.damageType || srdSpell?.damage?.damageType || "";
+        return {
+          id: s.id,
+          name: s.name,
+          level: s.level,
+          source: s.source,
+          srdSpellName: s.srdSpellName,
+          damageDice,
+          damageType,
+          description,
+          isCantrip: s.level === 0,
+        };
+      });
     return [...cantrips, ...spells];
-  }, [character.cantrips, character.spells]);
+  }, [character.cantrips, character.spells, srdSpells]);
 
   const spellsByLevel = useMemo(() => {
     const map = new Map<number, UnifiedSpell[]>();
@@ -248,8 +265,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
 
       <div className="mt-3 space-y-2">
             {activeSpells.map((spell) => {
-              const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
-              const descriptionText = typeof description === "string" ? description : Array.isArray(description) ? description.join("\n") : undefined;
               const isCustom = spell.source === "custom";
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               const domainSpell = isDomainSpell(spell);
@@ -356,9 +371,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                           />
                         </>
                       )}
-                      {description && !isCustom && (
+                      {spell.description && !isCustom && (
                         <div className="w-full mt-1">
-                          <DescriptionText>{descriptionText}</DescriptionText>
+                          <DescriptionText>{spell.description}</DescriptionText>
                         </div>
                       )}
                       <button
@@ -410,7 +425,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                           )}
                         </div>
                       )}
-                      {description && <DescriptionText>{description}</DescriptionText>}
+                       {spell.description && <DescriptionText>{spell.description}</DescriptionText>}
                     </div>
                   )}
                 </div>

@@ -453,11 +453,20 @@ export function getItemNames(): string[] {
 }
 
 export function normalizeSpell(s: any): any {
+  const desc = Array.isArray(s.desc) ? s.desc.join("\n") : (s.desc || s.description || "");
+  const damage = s.damage || {};
+  const damageType = damage.damage_type?.name || "";
+  const damageAtLevel = damage.damage_at_character_level || {};
+  const damageDice = damage.damage_dice || damageAtLevel["1"] || "";
   return {
     ...s,
-    description: s.description || s.desc || "",
+    description: typeof desc === "string" ? desc : String(desc),
     school: typeof s.school === "object" ? s.school?.name || "" : (s.school || ""),
     castingTime: s.castingTime || s.casting_time || "",
+    damage: {
+      damageType,
+      damageDice,
+    },
   };
 }
 
