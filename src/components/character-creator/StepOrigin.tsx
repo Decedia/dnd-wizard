@@ -45,6 +45,8 @@ interface StepOriginProps {
 export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [popupType, setPopupType] = useState<"class" | "race" | null>(null);
   const [featModalOpen, setFeatModalOpen] = useState(false);
+  const [pendingClass, setPendingClass] = useState<string | null>(data.class || null);
+  const [pendingRace, setPendingRace] = useState<string | null>(data.race || null);
   const classes: SRDClass[] = getStaticClasses();
   const races: SRDRace[] = getStaticRaces();
 
@@ -82,6 +84,18 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
     },
     [onChange, data.race, data.featureSelections]
   );
+
+  const handleConfirmClass = () => {
+    if (pendingClass) {
+      handleClassSelect(pendingClass);
+    }
+  };
+
+  const handleConfirmRace = () => {
+    if (pendingRace) {
+      handleRaceSelect(pendingRace);
+    }
+  };
 
   const handleVariantToggle = useCallback(() => {
     if (isVariantHuman) {
@@ -199,14 +213,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       {popupType === "class" && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setPopupType(null); }}
+          onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingClass(data.class || null); } }}
         >
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">Select Class</div>
               <button
                 type="button"
-                onClick={() => setPopupType(null)}
+                onClick={() => { setPopupType(null); setPendingClass(data.class || null); }}
                 className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
               >
                 ×
@@ -214,7 +228,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
               {classes.map((cls) => {
-                const isSelected = data.class === cls.name;
+                const isSelected = pendingClass === cls.name;
                 const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
                 const Icon = classIcons[cls.name] || Sparkle;
 
@@ -222,7 +236,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                   <div key={cls.name} className="flex items-center gap-2">
                     <button
                       type="button"
-                      onClick={() => handleClassSelect(cls.name)}
+                      onClick={() => setPendingClass(cls.name)}
                       className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
                         isSelected
                           ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
@@ -264,6 +278,27 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 );
               })}
             </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+              <button
+                type="button"
+                onClick={() => { setPopupType(null); setPendingClass(data.class || null); }}
+                className="btn btn-secondary flex-1"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmClass}
+                disabled={!pendingClass}
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                  pendingClass
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
+                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
+                }`}
+              >
+                Confirm
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -271,14 +306,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       {popupType === "race" && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setPopupType(null); }}
+          onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingRace(data.race || null); } }}
         >
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">Select Race</div>
               <button
                 type="button"
-                onClick={() => setPopupType(null)}
+                onClick={() => { setPopupType(null); setPendingRace(data.race || null); }}
                 className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
               >
                 ×
@@ -286,7 +321,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
               {races.map((race) => {
-                const isSelected = data.race === race.name;
+                const isSelected = pendingRace === race.name;
                 const Icon = raceIcons[race.name] || Users;
                 const isHuman = race.name === "Human";
 
@@ -295,7 +330,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        onClick={() => handleRaceSelect(race.name)}
+                        onClick={() => setPendingRace(race.name)}
                         className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
                           isSelected
                             ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
@@ -431,6 +466,27 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 );
               })}
             </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+              <button
+                type="button"
+                onClick={() => { setPopupType(null); setPendingRace(data.race || null); }}
+                className="btn btn-secondary flex-1"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmRace}
+                disabled={!pendingRace}
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                  pendingRace
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
+                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
+                }`}
+              >
+                Confirm
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -440,7 +496,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           selectedFeat={selectedFeat}
           onSelect={(feat: SRDFeat) => {
             handleFeatSelect(feat);
-            setFeatModalOpen(false);
           }}
           onClose={() => setFeatModalOpen(false)}
         />

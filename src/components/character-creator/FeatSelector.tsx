@@ -14,6 +14,7 @@ export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorPr
   const feats = getStaticFeats();
   const [search, setSearch] = useState("");
   const [expandedFeat, setExpandedFeat] = useState<string | null>(null);
+  const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
 
   const filteredFeats = useMemo(() => {
     if (!search.trim()) return feats;
@@ -25,6 +26,14 @@ export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorPr
         (f.prerequisites && f.prerequisites.toLowerCase().includes(q))
     );
   }, [feats, search]);
+
+  const handleConfirm = () => {
+    const feat = feats.find((f) => f.name === pendingSelection);
+    if (feat) {
+      onSelect(feat);
+    }
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4">
@@ -58,7 +67,7 @@ export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorPr
             <p className="text-sm text-[var(--color-text-muted)] text-center py-8">No feats found.</p>
           )}
           {filteredFeats.map((feat) => {
-            const isSelected = selectedFeat === feat.name;
+            const isSelected = pendingSelection === feat.name;
             const isExpanded = expandedFeat === feat.name;
 
             return (
@@ -73,7 +82,7 @@ export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorPr
                 <div className="flex items-start gap-2 p-3">
                   <button
                     type="button"
-                    onClick={() => onSelect(feat)}
+                    onClick={() => setPendingSelection(feat.name)}
                     className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-all ${
                       isSelected
                         ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
@@ -109,13 +118,25 @@ export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorPr
           })}
         </div>
 
-        <div className="border-t border-[var(--color-border)] px-4 py-3">
+        <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
           <button
             type="button"
             onClick={onClose}
-            className="btn btn-secondary w-full"
+            className="btn btn-secondary flex-1"
           >
-            Close
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={handleConfirm}
+            disabled={!pendingSelection}
+            className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+              pendingSelection
+                ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
+                : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
+            }`}
+          >
+            Confirm
           </button>
         </div>
       </div>

@@ -99,7 +99,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
     }
 
     onAdd(newItem);
-    onClose();
+    setSelectedItem(null);
   };
 
   const getCategoryIcon = (cat: ItemCategory) => {
@@ -203,18 +203,25 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
           </div>
         </div>
 
-        <div className="border-t border-[var(--color-border)] px-4 py-3">
+        <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+          <button
+            type="button"
+            onClick={onClose}
+            className="btn btn-secondary flex-1"
+          >
+            Done
+          </button>
           <button
             type="button"
             onClick={handleAdd}
             disabled={!selectedItem}
-            className={`w-full py-2.5 text-sm font-semibold rounded-lg transition-all ${
+            className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
               selectedItem
                 ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
                 : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
             }`}
           >
-            {selectedItem ? `Add ${selectedItem}` : "Select an item"}
+            Add Item
           </button>
         </div>
       </div>

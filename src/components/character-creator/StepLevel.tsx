@@ -757,7 +757,6 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
           selectedFeat={asiState.feat}
           onSelect={(feat: SRDFeat) => {
             setAsiState((prev) => ({ ...prev, feat: feat.name }));
-            setFeatModalOpen(false);
           }}
           onClose={() => setFeatModalOpen(false)}
         />

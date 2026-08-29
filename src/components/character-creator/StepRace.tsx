@@ -149,7 +149,6 @@ export function StepRace({ data, onChange }: StepRaceProps) {
           selectedFeat={selectedFeat}
           onSelect={(feat: SRDFeat) => {
             handleFeatSelect(feat);
-            setFeatModalOpen(false);
           }}
           onClose={() => setFeatModalOpen(false)}
         />

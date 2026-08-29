@@ -102,13 +102,28 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
     }
   };
 
+  const [pendingValue, setPendingValue] = useState<string>("");
+
+  const handleOpenPopup = (type: "personality" | "ideal" | "bond" | "flaw") => {
+    setPopupType(type);
+    setPendingValue(getCurrentValue());
+  };
+
   const handleSelect = (value: string) => {
+    setPendingValue(value);
+  };
+
+  const handleConfirm = () => {
     switch (popupType) {
-      case "personality": onChange({ personalityTrait1: value }); break;
-      case "ideal": onChange({ ideal: value }); break;
-      case "bond": onChange({ bond: value }); break;
-      case "flaw": onChange({ flaw: value }); break;
+      case "personality": onChange({ personalityTrait1: pendingValue }); break;
+      case "ideal": onChange({ ideal: pendingValue }); break;
+      case "bond": onChange({ bond: pendingValue }); break;
+      case "flaw": onChange({ flaw: pendingValue }); break;
     }
+    setPopupType(null);
+  };
+
+  const handleCancel = () => {
     setPopupType(null);
   };
 
@@ -117,7 +132,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
       <label className="field-label-light">{label}</label>
       <button
         type="button"
-        onClick={() => setPopupType(type)}
+        onClick={() => handleOpenPopup(type)}
         className="w-full mt-1 p-3 text-left rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)] transition-all flex items-center justify-between gap-2"
       >
         <span className={"text-sm " + (value ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-muted)]")}>
@@ -286,7 +301,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
       {popupType && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setPopupType(null); }}
+          onClick={(e) => { if (e.target === e.currentTarget) handleCancel(); }}
         >
           <div
             className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
@@ -298,7 +313,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
               </div>
               <button
                 type="button"
-                onClick={() => setPopupType(null)}
+                onClick={handleCancel}
                 className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
               >
                 <X className="h-4 w-4" />
@@ -312,7 +327,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
                     type="button"
                     onClick={() => handleSelect(option)}
                     className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                      getCurrentValue() === option
+                      pendingValue === option
                         ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
                         : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                     }`}
@@ -321,6 +336,27 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
                   </button>
                 ))}
               </div>
+            </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="btn btn-secondary flex-1"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirm}
+                disabled={!pendingValue}
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                  pendingValue
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
+                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
+                }`}
+              >
+                Confirm
+              </button>
             </div>
           </div>
         </div>
