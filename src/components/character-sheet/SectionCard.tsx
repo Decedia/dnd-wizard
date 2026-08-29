@@ -12,6 +12,7 @@ export function SectionCard({ id, title, icon, children }: SectionCardProps) {
       <section
         id={id}
         className="card p-4 mb-3"
+        data-pdf-section
       >
       {title && (
         <div className="section-title-light">
