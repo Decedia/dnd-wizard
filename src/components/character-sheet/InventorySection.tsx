@@ -5,7 +5,6 @@ import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
-import { getEquipmentData, getEquipmentNames, getStaticWeapon } from "@/lib/srd-client";
 import { useCallback, useState } from "react";
 import { Backpack, Plus, CheckCircle, Circle, Info, Hand, Shield } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
@@ -197,9 +196,21 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     });
   }, [character.inventory, onChange]);
 
+  const [editingItemId, setEditingItemId] = useState<string | null>(null);
+
+  const handleReplaceItem = useCallback((oldId: string, newItem: Character["inventory"][number]) => {
+    const nextInventory = character.inventory.map((item) =>
+      item.id === oldId ? { ...newItem, id: item.id } : item
+    );
+    const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+    onChange({ inventory: nextInventory, ac, attacks });
+    setEditingItemId(null);
+  }, [character, onChange]);
+
   const handleAddItem = useCallback((item: Character["inventory"][number]) => {
     const { ac, attacks } = computeEquippedEffects({ ...character, inventory: [...character.inventory, item] });
     onChange({ inventory: [...character.inventory, item], ac, attacks });
+    setShowItemPopup(false);
   }, [character, onChange]);
 
   const removeItem = useCallback((id: string) => {
@@ -254,62 +265,23 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           const handling = item.itemType === "weapon" ? getWeaponHandling(item) : null;
           return (
             <div key={item.id} className="list-row flex flex-col gap-2">
-              {editMode ? (
-                <>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <select
-                      value={dropdownValue}
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        if (val === "Custom Item") {
-                          updateItem(item.id, { source: "custom", srdItemName: undefined, name: item.name || "", properties: [] });
-                        } else if (val) {
-                          const srdData = getEquipmentData(val);
-                          const weaponData = getStaticWeapon(val);
-                          updateItem(item.id, {
-                            name: val,
-                            srdItemName: val,
-                            source: "srd",
-                            description: srdData?.description || item.description || "",
-                            itemType: srdData?.type,
-                            category: srdData?.category,
-                            damageDice: srdData?.damageDice,
-                            damageType: srdData?.damageType,
-                            baseAC: srdData?.baseAC,
-                            armorType: srdData?.armorType,
-                            maxDexBonus: srdData?.maxDexBonus,
-                            properties: weaponData?.properties?.map((p: any) => p.name.toLowerCase()) || [],
-                          });
-                        } else {
-                          updateItem(item.id, { source: "custom", srdItemName: undefined, name: "", properties: [] });
-                        }
-                      }}
-                      onBlur={onFieldBlur}
-                      className="input flex-1 min-w-[120px]"
-                    >
-                      <option value="">Select item...</option>
-                      {getEquipmentNames().map((name) => (
-                        <option key={name} value={name}>{name}</option>
-                      ))}
-                      <option value="Custom Item">Custom Item</option>
-                    </select>
-                    {isCustom && (
-                      <input
-                        type="text"
-                        value={item.name}
-                        onChange={(e) => updateItem(item.id, { name: e.target.value })}
-                        onBlur={onFieldBlur}
-                        className="input flex-1 min-w-[120px]"
-                        placeholder="Enter custom item name"
-                      />
-                    )}
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      onChange={(e) => updateItem(item.id, { quantity: parseInt(e.target.value || "1", 10) })}
-                      onBlur={onFieldBlur}
-                      className="input w-16 text-center"
-                    />
+               {editMode ? (
+                 <>
+                   <div className="flex items-center gap-2 flex-wrap">
+                     <button
+                       type="button"
+                       onClick={() => setEditingItemId(item.id)}
+                       className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex-1 min-w-[120px]"
+                     >
+                       {item.name || "Unnamed Item"}
+                     </button>
+                     <input
+                       type="number"
+                       value={item.quantity}
+                       onChange={(e) => updateItem(item.id, { quantity: parseInt(e.target.value || "1", 10) })}
+                       onBlur={onFieldBlur}
+                       className="input w-16 text-center"
+                     />
                     {equipBtn && (
                       <button
                         type="button"
@@ -514,6 +486,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
            character={character}
            onAdd={handleAddItem}
            onClose={() => setShowItemPopup(false)}
+         />
+       )}
+
+       {editingItemId && (
+         <ItemSelectionPopup
+           character={character}
+           onAdd={(newItem) => handleReplaceItem(editingItemId, newItem)}
+           onClose={() => setEditingItemId(null)}
          />
        )}
     </SectionCard>
