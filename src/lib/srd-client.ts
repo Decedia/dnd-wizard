@@ -215,25 +215,66 @@ const CACHE_TTL = 5 * 60 * 1000;
 
 let memoryCache: { data: SRDData; timestamp: number } | null = null;
 
+function getAllEquipment(): SRDEquipment[] {
+  return getStaticEquipments().map((detail) => {
+    const contents = detail.contents;
+    const contentsStr = Array.isArray(contents)
+      ? contents.map((c: any) => c.item?.name || c.name).filter(Boolean).join(", ")
+      : typeof contents === "string"
+        ? contents
+        : undefined;
+    const fallback = srdEquipment.find((e) => e.name === detail.name);
+    return {
+      name: detail.name,
+      description: detail.description || fallback?.description || "",
+      type: mapEquipmentCategory(detail.equipment_category),
+      category: mapWeaponCategory(detail.category_range),
+      damageDice: detail.damage?.damage_dice,
+      damageType: detail.damage?.damage_type?.name,
+      baseAC: detail.armor_class?.base,
+      armorType: mapArmorType(detail.armor_category || ""),
+      maxDexBonus: detail.armor_class?.max_bonus ?? (detail.armor_class?.dex_bonus ? null : 0),
+      contents: contentsStr,
+    };
+  });
+}
+
+function getAllLanguages(): SRDLanguage[] {
+  return [
+    { name: "Common" },
+    { name: "Dwarvish" },
+    { name: "Elvish" },
+    { name: "Giant" },
+    { name: "Gnomish" },
+    { name: "Goblin" },
+    { name: "Halfling" },
+    { name: "Orc" },
+    { name: "Abyssal" },
+    { name: "Celestial" },
+    { name: "Draconic" },
+    { name: "Deep Speech" },
+    { name: "Infernal" },
+    { name: "Primordial" },
+    { name: "Sylvan" },
+    { name: "Undercommon" },
+  ];
+}
+
 export async function fetchSRDData(): Promise<SRDData> {
   if (memoryCache && Date.now() - memoryCache.timestamp < CACHE_TTL) {
     return memoryCache.data;
   }
 
-  try {
-    const res = await fetch("/api/srd", { cache: "no-store" });
-    if (!res.ok) {
-      throw new Error(`Failed to fetch SRD data: ${res.status}`);
-    }
-    const data = (await res.json()) as SRDData;
-    memoryCache = { data, timestamp: Date.now() };
-    return data;
-  } catch (error) {
-    if (memoryCache) {
-      return memoryCache.data;
-    }
-    throw error;
-  }
+  const data: SRDData = {
+    races: getStaticRaces(),
+    classes: getStaticClasses(),
+    spells: getStaticSpells(),
+    equipment: getAllEquipment(),
+    languages: getAllLanguages(),
+  };
+
+  memoryCache = { data, timestamp: Date.now() };
+  return data;
 }
 
 export function getStaticRaces(): SRDRace[] {
