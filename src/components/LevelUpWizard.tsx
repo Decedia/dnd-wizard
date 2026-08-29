@@ -1795,7 +1795,7 @@ function LevelCard({
 
       {showAsiModal && info.asi && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShowAsiModal(false); }}
         >
           <div className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
@@ -1876,7 +1876,7 @@ function LevelCard({
       )}
 
       {(showFeaturePopup as any)?.isSpellMastery && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4" onClick={() => setShowFeaturePopup(null)}>
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4" onClick={() => setShowFeaturePopup(null)}>
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">Spell Mastery</div>
@@ -1910,7 +1910,7 @@ function LevelCard({
       )}
 
       {(showFeaturePopup as any)?.isSignatureSpells && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4" onClick={() => setShowFeaturePopup(null)}>
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4" onClick={() => setShowFeaturePopup(null)}>
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">Signature Spells</div>
@@ -1935,7 +1935,7 @@ function LevelCard({
 
       {showFeaturePopup && !(showFeaturePopup as any)?.isSpellMastery && !(showFeaturePopup as any)?.isSignatureSpells && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShowFeaturePopup(null); }}
         >
           <div
@@ -1962,7 +1962,7 @@ function LevelCard({
 
       {showHumanoidPopup && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShowHumanoidPopup(null); }}
         >
           <div
@@ -2130,7 +2130,7 @@ function LevelCard({
 
       {showTerrainModal && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShowTerrainModal(false); }}
         >
           <div
@@ -2207,7 +2207,7 @@ function LevelCard({
 
       {showBonusCantripModal && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShowBonusCantripModal(false); }}
         >
           <div
@@ -2284,7 +2284,7 @@ function SubclassDetailsModal({
   if (!details) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4">
       <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col">
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
           <div className="text-sm font-bold text-[var(--color-text-primary)]">{subclass}</div>
@@ -2460,7 +2460,7 @@ function SubclassSelectionModal({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
