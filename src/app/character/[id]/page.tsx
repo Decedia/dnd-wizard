@@ -239,7 +239,7 @@ export default function CharacterView() {
             </div>
             <button
               onClick={handleDelete}
-              className="btn-danger w-full flex items-center justify-center gap-1.5"
+              className="w-full flex items-center justify-center gap-1.5 py-2.5 text-sm font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] transition-all"
             >
               <Trash weight="regular" className="h-4 w-4" />
               Delete Character
