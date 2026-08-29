@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Sword, Users, Sparkle, MusicNotes, Shield, Flame, Skull, HandFist, Leaf, Eye, MagicWand, Heart } from "phosphor-react";
+import { Sword, Users, Sparkle, MusicNotes, Shield, Flame, Skull, HandFist, Leaf, Eye, MagicWand, Heart, Check } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
+import { FeatSelector } from "./FeatSelector";
+import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 
 const classIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -41,8 +43,12 @@ interface StepOriginProps {
 
 export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [popupType, setPopupType] = useState<"class" | "race" | null>(null);
+  const [featModalOpen, setFeatModalOpen] = useState(false);
   const classes: SRDClass[] = getStaticClasses();
   const races: SRDRace[] = getStaticRaces();
+
+  const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";
+  const selectedFeat = data.featureSelections?.["variant-human-feat"]?.[0];
 
   const handleClassSelect = useCallback(
     (className: string) => {
@@ -68,10 +74,30 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
   const handleRaceSelect = useCallback(
     (raceName: string) => {
-      onChange({ race: raceName });
+      onChange({ race: raceName, raceVariant: undefined });
       setPopupType(null);
     },
     [onChange]
+  );
+
+  const handleVariantToggle = useCallback(() => {
+    if (isVariantHuman) {
+      onChange({ raceVariant: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } });
+    } else {
+      onChange({ raceVariant: "variant" });
+    }
+  }, [isVariantHuman, data.featureSelections, onChange]);
+
+  const handleFeatSelect = useCallback(
+    (feat: SRDFeat) => {
+      onChange({
+        featureSelections: {
+          ...data.featureSelections,
+          "variant-human-feat": [feat.name],
+        },
+      });
+    },
+    [data.featureSelections, onChange]
   );
 
   return (
@@ -227,41 +253,95 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               {races.map((race) => {
                 const isSelected = data.race === race.name;
                 const Icon = raceIcons[race.name] || Users;
+                const isHuman = race.name === "Human";
+
                 return (
-                  <div key={race.name} className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => handleRaceSelect(race.name)}
-                      className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
-                        isSelected
-                          ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
-                          : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div className="flex-1">
-                          <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{race.name}</span>
-                          <div className="mt-0.5">
-                            <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
-                              {race.size} / Speed {race.speed} ft
-                            </span>
+                  <div key={race.name} className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleRaceSelect(race.name)}
+                        className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
+                          isSelected
+                            ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
+                            : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                            <Icon className="h-5 w-5" />
                           </div>
-                          <p className="mt-1 text-description">
-                            {Object.entries(race.abilityScoreIncreases || {})
-                              .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
-                              .join(", ")}
-                          </p>
+                          <div className="flex-1">
+                            <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{race.name}</span>
+                            <div className="mt-0.5">
+                              <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
+                                {race.size} / Speed {race.speed} ft
+                              </span>
+                            </div>
+                            <p className="mt-1 text-description">
+                              {Object.entries(race.abilityScoreIncreases || {})
+                                .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
+                                .join(", ")}
+                            </p>
+                          </div>
                         </div>
+                      </button>
+                      {race.traits && race.traits.length > 0 && (
+                        <InfoButton
+                          title={`${race.name} Traits`}
+                          description={race.traits.map((t) => `${t.name}: ${t.description}`).join("\n\n")}
+                        />
+                      )}
+                    </div>
+
+                    {isHuman && isSelected && (
+                      <div className="ml-4 space-y-2">
+                        <button
+                          type="button"
+                          onClick={handleVariantToggle}
+                          className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                            isVariantHuman
+                              ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                              : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <div
+                              className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
+                                isVariantHuman
+                                  ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
+                                  : "border-[var(--color-border)]"
+                              }`}
+                            >
+                              {isVariantHuman && <Check className="h-3 w-3 text-[var(--color-surface)]" weight="bold" />}
+                            </div>
+                            <div>
+                              <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>
+                              <div className="text-[10px] text-[var(--color-text-secondary)]">
+                                +1 to two abilities, one skill proficiency, and one feat
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+
+                        {isVariantHuman && (
+                          <div className="space-y-2">
+                            {selectedFeat && (
+                              <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                                <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Selected Feat</div>
+                                <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
+                              </div>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => { setFeatModalOpen(true); setPopupType(null); }}
+                              className="btn btn-secondary w-full text-sm"
+                            >
+                              {selectedFeat ? "Change Feat" : "Choose Feat"}
+                            </button>
+                          </div>
+                        )}
                       </div>
-                    </button>
-                    {race.traits && race.traits.length > 0 && (
-                      <InfoButton
-                        title={`${race.name} Traits`}
-                        description={race.traits.map((t) => `${t.name}: ${t.description}`).join("\n\n")}
-                      />
                     )}
                   </div>
                 );
@@ -269,6 +349,17 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             </div>
           </div>
         </div>
+      )}
+
+      {featModalOpen && (
+        <FeatSelector
+          selectedFeat={selectedFeat}
+          onSelect={(feat: SRDFeat) => {
+            handleFeatSelect(feat);
+            setFeatModalOpen(false);
+          }}
+          onClose={() => setFeatModalOpen(false)}
+        />
       )}
     </StepCard>
   );
