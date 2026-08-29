@@ -549,35 +549,36 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                       const wStats = getWeaponStats(weapon.name, weapon.category);
                                       return (
                                          <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
-                                          <div className="flex-1">
-                                            <div className="flex items-center gap-2">
-                                              <span className="text-body font-semibold text-[var(--color-surface)]">{weapon.name}</span>
-                                            </div>
-                                            {wStats && (
-                                              <div className="flex items-center gap-2 mt-1.5">
-                                                <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                  {wStats.damageDice} {wStats.damageType}
-                                                </span>
-                                                <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                  {wStats.abilityKey} {wStats.damageBonus}
-                                                </span>
+                                           <div className="flex-1">
+                                             <div className="flex items-center gap-2">
+                                               <span className="text-body font-semibold text-[var(--color-surface)]">{weapon.name}</span>
+                                             </div>
+                                             {wStats && (
+                                               <div className="flex items-center gap-1.5 mt-1.5">
+                                                 <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
                                                  <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                  {wStats.attackBonus} to hit
-                                                </span>
-                                              </div>
-                                            )}
-                                          </div>
-                                          <button
-                                            type="button"
-                                            onClick={() => {
-                                              const newInventory = data.inventory.filter(item => item.id !== weapon.id);
-                                              onChange({ inventory: newInventory });
-                                            }}
-                                            className="text-[var(--color-surface)] hover:text-[var(--color-error-300)] ml-2 text-lg leading-none"
-                                          >
-                                            ×
-                                          </button>
-                                        </div>
+                                                   {wStats.damageDice}
+                                                 </span>
+                                                 <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                   {wStats.abilityKey} {wStats.damageBonus}
+                                                 </span>
+                                                 <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                   {wStats.attackBonus} to hit
+                                                 </span>
+                                               </div>
+                                             )}
+                                           </div>
+                                           <button
+                                             type="button"
+                                             onClick={() => {
+                                               const newInventory = data.inventory.filter(item => item.id !== weapon.id);
+                                               onChange({ inventory: newInventory });
+                                             }}
+                                             className="text-[var(--color-surface)] hover:text-[var(--color-error-300)] ml-2 text-lg leading-none"
+                                           >
+                                             ×
+                                           </button>
+                                         </div>
                                       );
                                     })}
                                   {needsMoreSelections && (
@@ -795,12 +796,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       )}
                     </div>
                     {wStats && (
-                      <div className="flex flex-col gap-1 mt-1">
+                      <div className="flex items-center gap-1.5 mt-1">
+                        <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
                         <span
                           className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : ""}`}
                           style={!isWeaponSelected ? { color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) } : undefined}
                         >
-                          {wStats.damageDice} {wStats.damageType}
+                          {wStats.damageDice}
                         </span>
                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-info-600)] bg-[var(--color-info-50)]"}`}>
                           {wStats.abilityKey} {wStats.damageBonus}
