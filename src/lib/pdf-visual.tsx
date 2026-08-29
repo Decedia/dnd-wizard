@@ -5,13 +5,14 @@ import { jsPDF } from "jspdf";
 import type { Character } from "./storage";
 
 async function captureElement(el: HTMLElement): Promise<HTMLCanvasElement> {
+  const rect = el.getBoundingClientRect();
   return html2canvas(el, {
     scale: 2,
     useCORS: true,
     backgroundColor: "#ffffff",
     logging: false,
-    windowWidth: el.scrollWidth,
-    windowHeight: el.scrollHeight,
+    width: rect.width,
+    height: rect.height,
   });
 }
 
@@ -65,57 +66,25 @@ function addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, isFirstPage: bool
 }
 
 export async function exportCharacterToPdf(_character: Character): Promise<void> {
-  const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]")) as HTMLElement[];
-  const allSectionElements = Array.from(document.querySelectorAll("[data-pdf-section]")) as HTMLElement[];
+  const visibleSections = Array.from(document.querySelectorAll("[data-pdf-section]")) as HTMLElement[];
   
-  if (allSectionElements.length === 0) {
+  if (visibleSections.length === 0) {
     throw new Error("No PDF sections found");
   }
 
-  // Collect all sections from all tabs, temporarily showing each tab
-  const sectionsToCapture: HTMLElement[] = [];
-  const originalDisplays: string[] = [];
+  const pdf = new jsPDF({ unit: "mm", format: "a4" });
+  let isFirstPage = true;
 
-  if (tabPanels.length > 0) {
-    for (const panel of tabPanels) {
-      originalDisplays.push(panel.style.display);
-      panel.style.display = "block";
-    }
-    for (const panel of tabPanels) {
-      const sections = Array.from(panel.querySelectorAll("[data-pdf-section]")) as HTMLElement[];
-      sectionsToCapture.push(...sections);
-    }
-  } else {
-    const visibleSections = allSectionElements.filter((el) => {
-      const rect = el.getBoundingClientRect();
-      return rect.width > 0 && rect.height > 0;
-    });
-    sectionsToCapture.push(...visibleSections);
+  for (const sectionEl of visibleSections) {
+    const rect = sectionEl.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) continue;
+    
+    const canvas = await captureElement(sectionEl);
+    isFirstPage = addCanvasToPdf(pdf, canvas, isFirstPage);
   }
 
-  if (sectionsToCapture.length === 0) {
-    throw new Error("No visible PDF sections found");
-  }
-
-  try {
-    const pdf = new jsPDF({ unit: "mm", format: "a4" });
-    let isFirstPage = true;
-
-    for (const sectionEl of sectionsToCapture) {
-      const canvas = await captureElement(sectionEl);
-      isFirstPage = addCanvasToPdf(pdf, canvas, isFirstPage);
-    }
-
-    const fileName = `${(_character.name || "unnamed").replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "")}.pdf`;
-    pdf.save(fileName);
-  } finally {
-    // Restore original display states
-    if (tabPanels.length > 0) {
-      for (let i = 0; i < tabPanels.length; i++) {
-        tabPanels[i].style.display = originalDisplays[i];
-      }
-    }
-  }
+  const fileName = `${(_character.name || "unnamed").replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "")}.pdf`;
+  pdf.save(fileName);
 }
 
 
