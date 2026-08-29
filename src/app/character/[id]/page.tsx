@@ -24,7 +24,7 @@ import { SpellcastingStatsSection } from "@/components/character-sheet/Spellcast
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { CurrencySection } from "@/components/character-sheet/CurrencySection";
-import { Trash, Export, Upload, FloppyDisk, CheckCircle, UserPlus } from "phosphor-react";
+import { Trash, Export, Upload, CheckCircle, UserPlus } from "phosphor-react";
 import { exportCharacterToPdf } from "@/lib/pdf-visual";
 import { importCharacterFromPdf } from "@/lib/pdf";
 
@@ -161,7 +161,7 @@ export default function CharacterView() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} />
+      <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} />
 
       <div className="sticky top-[52px] z-30 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
         <div className="mx-auto max-w-lg px-4 py-2.5">
@@ -222,13 +222,6 @@ export default function CharacterView() {
 
           <div className="mt-5 space-y-2.5">
             <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={handleSave}
-                className="btn btn-primary flex items-center justify-center gap-1.5"
-              >
-                <FloppyDisk weight="regular" className="h-4 w-4" />
-                Save
-              </button>
               <button
                 onClick={handleExport}
                 disabled={exportingPdf}

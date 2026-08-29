@@ -7,14 +7,22 @@ type Mode = "view" | "edit";
 interface ViewEditToggleProps {
   mode: Mode;
   onModeChange: (mode: Mode) => void;
+  onSave?: () => void;
 }
 
-export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
+export function ViewEditToggle({ mode, onModeChange, onSave }: ViewEditToggleProps) {
+  const handleModeChange = (newMode: Mode) => {
+    if (newMode === "view" && mode === "edit" && onSave) {
+      onSave();
+    }
+    onModeChange(newMode);
+  };
+
   return (
     <div className="flex items-center gap-0.5 rounded-lg border border-border-strong bg-paper p-0.5 shrink-0">
       <button
         type="button"
-        onClick={() => onModeChange("view")}
+        onClick={() => handleModeChange("view")}
         className={`rounded-md px-2.5 py-1 text-[var(--font-size-xs)] inline-flex items-center justify-center ${
           mode === "view"
             ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
@@ -25,7 +33,7 @@ export function ViewEditToggle({ mode, onModeChange }: ViewEditToggleProps) {
       </button>
       <button
         type="button"
-        onClick={() => onModeChange("edit")}
+        onClick={() => handleModeChange("edit")}
         className={`rounded-md px-2.5 py-1 text-[var(--font-size-xs)] inline-flex items-center justify-center ${
           mode === "edit"
             ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
