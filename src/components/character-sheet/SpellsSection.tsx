@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
@@ -16,14 +16,27 @@ interface SpellsSectionProps {
   editMode?: boolean;
 }
 
+interface UnifiedSpell {
+  id: string;
+  name: string;
+  level: number;
+  source: "srd" | "custom";
+  srdSpellName?: string;
+  damageDice?: string;
+  damageType?: string;
+  description?: string;
+  isCantrip: boolean;
+}
+
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const { data, loading } = useSRD();
+  const { data } = useSRD();
   const srdSpells = data?.spells || [];
   const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
   const [editingCostumeSpellId, setEditingCostumeSpellId] = useState<string | null>(null);
   const [isAddingCostumeSpell, setIsAddingCostumeSpell] = useState(false);
   const [newCostumeSpell, setNewCostumeSpell] = useState({ name: "", description: "" });
+  const [activeTab, setActiveTab] = useState(0);
 
   const preparationCaster = isPreparationCaster(character);
   const maxPrepared = getMaxPreparedSpells(character);
@@ -34,6 +47,45 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     const spell = character.spells.find(s => s.id === id);
     return spell && spell.level > 0 && !circleSpellsList.some(cs => cs.toLowerCase() === spell.name?.toLowerCase());
   }).length;
+
+  const unifiedSpells: UnifiedSpell[] = useMemo(() => {
+    const cantrips: UnifiedSpell[] = character.cantrips.map(c => ({
+      id: c.id,
+      name: c.name,
+      level: 0,
+      source: "custom" as const,
+      isCantrip: true,
+    }));
+    const spells: UnifiedSpell[] = character.spells.map(s => ({
+      id: s.id,
+      name: s.name,
+      level: s.level,
+      source: s.source,
+      srdSpellName: s.srdSpellName,
+      damageDice: s.damageDice,
+      damageType: s.damageType,
+      description: s.description,
+      isCantrip: false,
+    }));
+    return [...cantrips, ...spells];
+  }, [character.cantrips, character.spells]);
+
+  const spellsByLevel = useMemo(() => {
+    const map = new Map<number, UnifiedSpell[]>();
+    for (const spell of unifiedSpells) {
+      const existing = map.get(spell.level) || [];
+      existing.push(spell);
+      map.set(spell.level, existing);
+    }
+    return map;
+  }, [unifiedSpells]);
+
+  const levels = useMemo(() => {
+    return Array.from(spellsByLevel.keys()).sort((a, b) => a - b);
+  }, [spellsByLevel]);
+
+  const activeLevel = levels[activeTab] ?? 0;
+  const activeSpells = spellsByLevel.get(activeLevel) || [];
 
   const togglePrepared = useCallback((spellId: string) => {
     const current = character.preparedSpells || [];
@@ -50,11 +102,11 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     }
   }, [character.preparedSpells, character.spells, preparedCount, maxPrepared, domainSpells, circleSpellsList, onChange]);
 
-  const isCircleSpell = useCallback((spell: Character["spells"][number]) => {
+  const isCircleSpell = useCallback((spell: UnifiedSpell) => {
     return circleSpellsList.some(cs => cs.toLowerCase() === spell.name?.toLowerCase());
   }, [circleSpellsList]);
 
-  const isDomainSpell = useCallback((spell: Character["spells"][number]) => {
+  const isDomainSpell = useCallback((spell: UnifiedSpell) => {
     return domainSpells.some(d => d.toLowerCase() === spell.name?.toLowerCase());
   }, [domainSpells]);
 
@@ -62,7 +114,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     return (character.preparedSpells || []).includes(spellId);
   }, [character.preparedSpells]);
 
-  const updateItem = useCallback((id: string, patch: Partial<Character["spells"][number]>) => {
+  const updateSpell = useCallback((id: string, patch: Partial<Character["spells"][number]>) => {
     onChange({
       spells: character.spells.map((s) =>
         s.id === id ? { ...s, ...patch } : s
@@ -70,28 +122,43 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     });
   }, [character.spells, onChange]);
 
-  const addItem = useCallback((srdSpellName?: string) => {
-    const srdSpell = srdSpellName ? srdSpells.find((s) => s.name === srdSpellName) : undefined;
-    const newSpell: Character["spells"][number] = {
-      id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-      name: srdSpell?.name ?? "",
-      level: srdSpell?.level ?? 0,
-      source: srdSpell ? "srd" : "custom",
-      srdSpellName: srdSpell?.name,
-      damageDice: "",
-      damageType: "",
-      description: "",
-    };
+  const updateCantrip = useCallback((id: string, name: string) => {
     onChange({
-      spells: [...character.spells, newSpell],
+      cantrips: character.cantrips.map((c) =>
+        c.id === id ? { ...c, name } : c
+      ),
     });
-  }, [character.spells, onChange, srdSpells]);
+  }, [character.cantrips, onChange]);
 
-  const removeItem = useCallback((id: string) => {
-    onChange({
-      spells: character.spells.filter((s) => s.id !== id),
-    });
-  }, [character.spells, onChange]);
+  const addSpell = useCallback((level: number) => {
+    if (level === 0) {
+      onChange({
+        cantrips: [
+          ...character.cantrips,
+          { id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`, name: "" },
+        ],
+      });
+    } else {
+      const newSpell: Character["spells"][number] = {
+        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        name: "",
+        level,
+        source: "custom",
+        damageDice: "",
+        damageType: "",
+        description: "",
+      };
+      onChange({ spells: [...character.spells, newSpell] });
+    }
+  }, [character.spells, character.cantrips, onChange]);
+
+  const removeSpell = useCallback((id: string, isCantrip: boolean) => {
+    if (isCantrip) {
+      onChange({ cantrips: character.cantrips.filter(c => c.id !== id) });
+    } else {
+      onChange({ spells: character.spells.filter(s => s.id !== id) });
+    }
+  }, [character.spells, character.cantrips, onChange]);
 
   const handleSrdSelect = useCallback((spellId: string, srdName: string) => {
     const srdSpell = srdSpells.find((s) => s.name === srdName);
@@ -104,7 +171,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       srdSpellName: srdSpell.name,
     };
     onChange({
-      spells: character.spells.map((s) => (s.id === spellId ? updated : s)),
+      spells: character.spells.map(s => (s.id === spellId ? updated : s)),
     });
   }, [character.spells, onChange, srdSpells]);
 
@@ -143,27 +210,56 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     setEditingCostumeSpellId(null);
   }, []);
 
+  const getLevelLabel = (level: number) => {
+    if (level === 0) return "Cantrips";
+    if (level === 1) return "1st";
+    if (level === 2) return "2nd";
+    if (level === 3) return "3rd";
+    return `${level}th`;
+  };
+
   return (
     <SectionCard id="spells" title="Spells" icon={<Lightning weight="regular" className="h-5 w-5" />}>
       {preparationCaster && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Prepared Spells: {preparedCount}/{maxPrepared}</span>
-          <span className="text-xs text-ink ml-2">(Wisdom mod + level; domain spells always prepared)</span>
+          <span className="text-xs text-ink ml-2">(Spellcasting ability mod + level; domain spells always prepared)</span>
         </div>
       )}
+
+      {levels.length > 0 && (
+        <div className="flex gap-1 mb-4 overflow-x-auto pb-1">
+          {levels.map((level, idx) => (
+            <button
+              key={level}
+              type="button"
+              onClick={() => setActiveTab(idx)}
+              className={`px-3 py-1.5 text-xs font-bold rounded whitespace-nowrap transition-colors ${
+                activeTab === idx
+                  ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
+                  : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+              }`}
+            >
+              {getLevelLabel(level)}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="mt-3 space-y-2">
-            {character.spells.map((spell) => {
+            {activeSpells.map((spell) => {
               const description = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName)?.description : undefined;
               const descriptionText = typeof description === "string" ? description : Array.isArray(description) ? description.join("\n") : undefined;
               const isCustom = spell.source === "custom";
               const dropdownValue = isCustom ? "Custom Spell" : (spell.srdSpellName || "");
               const domainSpell = isDomainSpell(spell);
               const spellPrepared = isPrepared(spell.id);
+              const isCantrip = spell.isCantrip;
               return (
                 <div key={spell.id} className={`list-row flex flex-wrap items-center gap-2 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""}`}>
                   {editMode ? (
                     <>
-                      {preparationCaster && spell.level > 0 && (
+                      {preparationCaster && !isCantrip && spell.level > 0 && (
                         <button
                           type="button"
                           onClick={() => togglePrepared(spell.id)}
@@ -178,33 +274,44 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                           )}
                         </button>
                       )}
-                      <select
-                        value={dropdownValue}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          if (val === "Custom Spell") {
-                            updateItem(spell.id, { source: "custom", srdSpellName: undefined, name: spell.name || "" });
-                          } else if (val) {
-                            handleSrdSelect(spell.id, val);
-                          } else {
-                            updateItem(spell.id, { source: "srd", srdSpellName: undefined, name: "" });
-                          }
-                        }}
-                        onBlur={onFieldBlur}
-                        className="input flex-1 min-w-[120px]"
-                      >
-                        <option value="">Select spell...</option>
-                        {srdSpells.map((s) => (
-                          <option key={s.name} value={s.name}>{s.name}</option>
-                        ))}
-                        <option value="Custom Spell">Custom Spell</option>
-                      </select>
-                      {isCustom && (
+                      {isCantrip ? (
+                        <input
+                          type="text"
+                          value={spell.name}
+                          onChange={(e) => updateCantrip(spell.id, e.target.value)}
+                          onBlur={onFieldBlur}
+                          className="input flex-1 min-w-[120px]"
+                          placeholder="Cantrip name"
+                        />
+                      ) : (
+                        <select
+                          value={dropdownValue}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "Custom Spell") {
+                              updateSpell(spell.id, { source: "custom", srdSpellName: undefined, name: spell.name || "" });
+                            } else if (val) {
+                              handleSrdSelect(spell.id, val);
+                            } else {
+                              updateSpell(spell.id, { source: "srd", srdSpellName: undefined, name: "" });
+                            }
+                          }}
+                          onBlur={onFieldBlur}
+                          className="input flex-1 min-w-[120px]"
+                        >
+                          <option value="">Select spell...</option>
+                          {srdSpells.filter(s => s.level === activeLevel).map((s) => (
+                            <option key={s.name} value={s.name}>{s.name}</option>
+                          ))}
+                          <option value="Custom Spell">Custom Spell</option>
+                        </select>
+                      )}
+                      {isCustom && !isCantrip && (
                         <>
                           <input
                             type="text"
                             value={spell.name}
-                            onChange={(e) => updateItem(spell.id, { name: e.target.value })}
+                            onChange={(e) => updateSpell(spell.id, { name: e.target.value })}
                             onBlur={onFieldBlur}
                             className="input flex-1 min-w-[120px]"
                             placeholder="Enter custom spell name"
@@ -212,27 +319,29 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                           <input
                             type="text"
                             value={spell.description || ""}
-                            onChange={(e) => updateItem(spell.id, { description: e.target.value })}
+                            onChange={(e) => updateSpell(spell.id, { description: e.target.value })}
                             onBlur={onFieldBlur}
                             className="input flex-1 min-w-[120px]"
                             placeholder="Spell description / effect"
                           />
                         </>
                       )}
-                      <input
-                        type="number"
-                        value={spell.level}
-                        onChange={(e) => updateItem(spell.id, { level: parseInt(e.target.value || "0", 10) })}
-                        onBlur={onFieldBlur}
-                        className="input w-14 text-center"
-                        placeholder="Lvl"
-                      />
-                      {isCustom && (
+                      {!isCantrip && (
+                        <input
+                          type="number"
+                          value={spell.level}
+                          onChange={(e) => updateSpell(spell.id, { level: parseInt(e.target.value || "0", 10) })}
+                          onBlur={onFieldBlur}
+                          className="input w-14 text-center"
+                          placeholder="Lvl"
+                        />
+                      )}
+                      {isCustom && !isCantrip && (
                         <>
                           <input
                             type="text"
                             value={spell.damageDice || ""}
-                            onChange={(e) => updateItem(spell.id, { damageDice: e.target.value })}
+                            onChange={(e) => updateSpell(spell.id, { damageDice: e.target.value })}
                             onBlur={onFieldBlur}
                             className="input w-20 text-center"
                             placeholder="Dice (e.g. 2d6)"
@@ -240,7 +349,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                           <input
                             type="text"
                             value={spell.damageType || ""}
-                            onChange={(e) => updateItem(spell.id, { damageType: e.target.value })}
+                            onChange={(e) => updateSpell(spell.id, { damageType: e.target.value })}
                             onBlur={onFieldBlur}
                             className="input w-20 text-center"
                             placeholder="Type"
@@ -259,17 +368,17 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       )}
                       <button
                         type="button"
-                        onClick={() => removeItem(spell.id)}
+                        onClick={() => removeSpell(spell.id, isCantrip)}
                         className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] shrink-0"
                         aria-label="Remove spell"
                       >
-                                <X weight="regular" className="h-4 w-4" />
+                        <X weight="regular" className="h-4 w-4" />
                       </button>
                     </>
                   ) : (
                     <div className="flex flex-col gap-1 w-full">
                       <div className="flex items-center gap-2 flex-wrap">
-                        {preparationCaster && spell.level > 0 && (
+                        {preparationCaster && !isCantrip && spell.level > 0 && (
                           <>
                             {spellPrepared ? (
                               <Check weight="fill" size={16} className="text-[var(--color-success-500)] shrink-0" />
@@ -285,7 +394,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                             <span className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-50)] px-1.5 py-0.5 rounded">CIRCLE</span>
                           )}
                         <span className="text-sm font-bold text-[var(--color-text-primary)]">{spell.name}</span>
-                        <span className="text-xs text-[var(--color-text-secondary)] font-medium">Level {spell.level}</span>
+                        {!isCantrip && <span className="text-xs text-[var(--color-text-secondary)] font-medium">Level {spell.level}</span>}
                         {character.spellcastingAbility && (() => {
                           const castingAbility = character.spellcastingAbility as keyof Character;
                           const castingMod = getModifier(character[castingAbility] as number);
@@ -310,35 +419,18 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     </div>
                   )}
                 </div>
-               );
+              );
             })}
           </div>
-
-          {circleSpellsList.length > 0 && (
-            <div className="mt-4 p-3 rounded-lg border border-[var(--color-success-300)] bg-[var(--color-success-50)]/30">
-              <div className="flex items-center gap-2 mb-2">
-                <Leaf weight="regular" className="h-4 w-4 text-[var(--color-success-600)]" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells ({circleTerrain.charAt(0).toUpperCase() + circleTerrain.slice(1)})</span>
-              </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Always prepared, do not count against preparation limit</p>
-              <div className="flex flex-wrap gap-1">
-                {circleSpellsList.map((name) => (
-                  <span key={name} className="text-[10px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1.5 py-0.5 rounded">
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
 
           {editMode && (
             <button
               type="button"
-              onClick={() => addItem()}
+              onClick={() => addSpell(activeLevel)}
               className="mt-3 btn-secondary flex items-center gap-1.5"
             >
               <Plus weight="regular" size={16} />
-              Add Spell
+              Add {activeLevel === 0 ? "Cantrip" : `Level ${activeLevel} Spell`}
             </button>
           )}
 
