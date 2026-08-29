@@ -156,6 +156,17 @@ Wizard restructure complete. Next steps:
 5. Future: Add more PHB subclass features to subclass JSON entries
 6. Future: Add more class feature choice options (e.g., Fighting Style variants, Expertise skills per class)
 
+## Recently Completed (continued)
+
+- [x] Created `FeatPopup.tsx` component for displaying feat details in character sheet
+- [x] Updated `FeaturesTraitsSection.tsx` to show feat popup when clicking on feat names in view mode
+- [x] Added ability score selection (+1 to two abilities) and skill proficiency selection to variant human UI in `StepOrigin.tsx`
+- [x] Added `variantHumanAbilities` and `variantHumanSkill` fields to Character type in `storage.ts`
+- [x] Updated `character-creation.ts` to apply variant human bonuses during finalization (ability bonuses, skill proficiency, feat)
+- [x] Updated `getCreationSteps` validation to require all variant human selections (2 abilities, 1 skill, 1 feat) before proceeding
+- [x] Updated `getRaceTraits` to include selected feat in variant human traits
+- [x] Typecheck and build pass
+
 ## Available Recipes
 
 | Recipe | File | Use Case |
@@ -226,4 +237,4 @@ Wizard restructure complete. Next steps:
 | 2026-08-25 | Redesigned app to minimalist light theme based on screenshot reference: switched from dark theme to light paper/ink palette with thin 1px borders, reduced visual weight, flat design; updated globals.css with new design tokens (paper, ink, border-muted), simplified all components (AppHeader, BottomNav, SectionCard, SheetTabs, SectionNav, StatsSection, CombatStatsSection, SkillsSection, IdentitySection, styled components, LevelUpWizard, WizardNav, ProgressIndicator, StepCard, ViewEditToggle, StickyMiniHeader, home page, character view, character create); typecheck and lint pass |
 | 2026-08-26 | Removed Dice Roller button from home page (`src/app/page.tsx`); removed `Dices` icon import; lint and typecheck pass |
 | 2026-08-26 | Changed default font color to pure black everywhere: updated `--color-ink` from `#171717` to `#000000` in globals.css and replaced all hardcoded `#171717` text color values with `#000000`; typecheck and lint pass |
-| 2026-08-28 | Comprehensive Sorcerer class SRD audit and fixes: (1) Fixed Metamagic selection type from "single" to "multiple" in `2014_classes.json` for levels 3/10/17 so players can select 2 options at level 3 and 1 at levels 10/17; (2) Added `choices` array with all 10 dragon types to Dragon Ancestor feature in `2014_subclasses.json`; (3) Expanded all Wild Magic subclass feature descriptions with full SRD mechanics including d100 Wild Magic Surge table, Tides of Chaos recharge, Bend Luck cost (2 SP), Controlled Chaos, and Spell Bombardment; (4) Added `sorceryPoints`, `maxSorceryPoints`, and `draconicAncestor` fields to Character type in `storage.ts`; (5) Added Sorcery Points display and edit fields to CombatStatsSection; (6) Added Creating Spell Slots reference table to SpellcastingStatsSection; (7) Enabled spell replacement on level-up for Sorcerer (was Bard-only); lint and typecheck pass |
+| 2026-08-29 | Implemented full variant human mechanism: added FeatPopup component for character sheet, updated FeaturesTraitsSection to show feat details on click, added ability score + skill proficiency selection to variant human UI in StepOrigin, added variantHumanAbilities/variantHumanSkill fields to Character type, updated character-creation.ts to apply bonuses during finalization, updated validation to require all selections; typecheck and build pass |

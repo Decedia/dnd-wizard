@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Sword, Users, Sparkle, MusicNotes, Shield, Flame, Skull, HandFist, Leaf, Eye, MagicWand, Heart, Check } from "phosphor-react";
+import { Sword, Users, Sparkle, MusicNotes, Shield, Flame, Skull, HandFist, Leaf, Eye, MagicWand, Heart, Check, Plus, Minus } from "phosphor-react";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatSelector } from "./FeatSelector";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
+import { SKILLS } from "@/lib/storage";
 
 const classIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: Flame,
@@ -74,15 +75,22 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
   const handleRaceSelect = useCallback(
     (raceName: string) => {
-      onChange({ race: raceName, raceVariant: undefined });
+      if (raceName !== data.race) {
+        onChange({ race: raceName, raceVariant: undefined, variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } });
+      }
       setPopupType(null);
     },
-    [onChange]
+    [onChange, data.race, data.featureSelections]
   );
 
   const handleVariantToggle = useCallback(() => {
     if (isVariantHuman) {
-      onChange({ raceVariant: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } });
+      onChange({
+        raceVariant: undefined,
+        featureSelections: { ...data.featureSelections, "variant-human-feat": [] },
+        variantHumanAbilities: undefined,
+        variantHumanSkill: undefined,
+      });
     } else {
       onChange({ raceVariant: "variant" });
     }
@@ -99,6 +107,33 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
     },
     [data.featureSelections, onChange]
   );
+
+  const handleVariantAbilityToggle = useCallback(
+    (ability: string) => {
+      const current = data.variantHumanAbilities || [];
+      let next: string[];
+      if (current.includes(ability)) {
+        next = current.filter((a) => a !== ability);
+      } else if (current.length < 2) {
+        next = [...current, ability];
+      } else {
+        next = [current[1], ability];
+      }
+      onChange({ variantHumanAbilities: next });
+    },
+    [data.variantHumanAbilities, onChange]
+  );
+
+  const handleVariantSkillSelect = useCallback(
+    (skill: string) => {
+      onChange({ variantHumanSkill: data.variantHumanSkill === skill ? undefined : skill });
+    },
+    [data.variantHumanSkill, onChange]
+  );
+
+  const variantAbilities = data.variantHumanAbilities || [];
+  const variantSkill = data.variantHumanSkill;
+  const abilityOptions = ["str", "dex", "con", "int", "wis", "cha"];
 
   return (
     <StepCard title="Origin" hint="Choose your character's class and race. Your class defines your abilities and role, while your race provides unique traits and ability bonuses.">
@@ -325,7 +360,56 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         </button>
 
                         {isVariantHuman && (
-                          <div className="space-y-2">
+                          <div className="space-y-3">
+                            <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">+1 to Two Abilities</div>
+                              <div className="grid grid-cols-3 gap-1.5">
+                                {abilityOptions.map((ability) => {
+                                  const isSelected = variantAbilities.includes(ability);
+                                  return (
+                                    <button
+                                      key={ability}
+                                      type="button"
+                                      onClick={() => handleVariantAbilityToggle(ability)}
+                                      className={`p-2 text-center rounded-[var(--radius-sm)] border text-xs font-bold uppercase transition-all ${
+                                        isSelected
+                                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                                      }`}
+                                    >
+                                      {ability}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                              <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
+                                Selected: {variantAbilities.length}/2
+                              </div>
+                            </div>
+
+                            <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">Skill Proficiency</div>
+                              <div className="grid grid-cols-2 gap-1">
+                                {SKILLS.map((skill) => {
+                                  const isSelected = variantSkill === skill.name;
+                                  return (
+                                    <button
+                                      key={skill.name}
+                                      type="button"
+                                      onClick={() => handleVariantSkillSelect(skill.name)}
+                                      className={`p-1.5 text-left rounded-[var(--radius-sm)] border text-[10px] font-semibold transition-all ${
+                                        isSelected
+                                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                                      }`}
+                                    >
+                                      {skill.name}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
                             {selectedFeat && (
                               <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
                                 <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Selected Feat</div>

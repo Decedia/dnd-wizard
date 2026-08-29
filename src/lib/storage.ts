@@ -71,6 +71,8 @@ export interface Character {
   maxBardicInspirationUses: number;
   magicalSecretsSpells: string[];
   featureSelections: Record<string, string[]>;
+  variantHumanAbilities?: string[];
+  variantHumanSkill?: string;
   appliedAsi: number[];
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
@@ -291,6 +293,8 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     maxBardicInspirationUses: 0,
     magicalSecretsSpells: [],
     featureSelections: {},
+    variantHumanAbilities: undefined,
+    variantHumanSkill: undefined,
     appliedAsi: [],
     currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
     appearance: {
@@ -362,6 +366,8 @@ function normalizeCharacter(c: Character): Character {
       ...spell,
     })),
     costumeSpells: (c.costumeSpells || []).map((cs) => ({ ...cs })),
+    variantHumanAbilities: (c as any).variantHumanAbilities,
+    variantHumanSkill: (c as any).variantHumanSkill,
   };
 }
 

@@ -1,10 +1,13 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { Star, X, Plus } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
+import { FeatPopup } from "./FeatPopup";
+import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 
 interface FeaturesTraitsSectionProps {
@@ -15,6 +18,9 @@ interface FeaturesTraitsSectionProps {
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
+  const feats = useMemo(() => getStaticFeats(), []);
+  const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
   const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
     onChange({
       features: character.features.map((f) =>
@@ -90,7 +96,21 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               ) : (
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>
+                    {(() => {
+                      const matchedFeat = feats.find((f) => f.name === feature.name);
+                      if (matchedFeat) {
+                        return (
+                          <button
+                            type="button"
+                            onClick={() => setPopupFeatName(feature.name)}
+                            className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
+                          >
+                            {feature.name}
+                          </button>
+                        );
+                      }
+                      return <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>;
+                    })()}
                     {feature.description && (
                       <InfoButton title={feature.name} description={feature.description} />
                     )}
@@ -112,6 +132,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             Add Feature
           </button>
       )}
+      {popupFeat && <FeatPopup feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
     </SectionCard>
   );
 }

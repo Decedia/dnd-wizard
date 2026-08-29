@@ -1,5 +1,5 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, type Character } from "./storage";
-import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems } from "./srd-client";
+import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat } from "./srd-client";
 import type { CreationStep } from "./creation-types";
 
 const ARCANE_FOCUS_NAMES = ["crystal", "orb", "rod", "staff", "wand"];
@@ -422,7 +422,7 @@ export function getValidationMessage(step: CreationStep, character?: Character):
 export function getCreationSteps(character: Character): CreationStep[] {
   const classData = character.class ? getStaticClass(character.class) : null;
 
-  const originCompleted = !!character.name.trim() && !!character.class && !!character.race && !(character.raceVariant === "variant" && !character.featureSelections?.["variant-human-feat"]?.[0]);
+  const originCompleted = !!character.name.trim() && !!character.class && !!character.race && !(character.race === "Human" && character.raceVariant === "variant" && (!character.featureSelections?.["variant-human-feat"]?.[0] || (character.variantHumanAbilities || []).length < 2 || !character.variantHumanSkill));
   const personalityCompleted = !!character.background && !!character.alignment;
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
@@ -667,6 +667,16 @@ function getRaceTraits(character: Character): { name: string; description: strin
       name: "Variant Human",
       description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
     });
+    const featName = character.featureSelections?.["variant-human-feat"]?.[0];
+    if (featName) {
+      const featData = getStaticFeat(featName);
+      if (featData) {
+        traits.push({
+          name: featData.name,
+          description: featData.description,
+        });
+      }
+    }
   }
   return traits;
 }
@@ -793,6 +803,43 @@ export function isSubclassStepComplete(character: Character): boolean {
 export function finalizeCreation(character: Character): Character {
   let final = applySubclassFeatures(character);
   final = syncBaseFeatures(final);
+
+  if (final.race === "Human" && final.raceVariant === "variant") {
+    const abilities = final.variantHumanAbilities || [];
+    const skill = final.variantHumanSkill;
+    const abilityPatch: Record<string, any> = {};
+    for (const ab of abilities) {
+      const key = ab as keyof Character;
+      if (typeof final[key] === "number") {
+        abilityPatch[key] = (final[key] as number) + 1;
+      }
+    }
+    if (skill && !final.skills[skill]) {
+      abilityPatch.skills = { ...final.skills, [skill]: true };
+    }
+    final = { ...final, ...abilityPatch };
+
+    const featName = final.featureSelections?.["variant-human-feat"]?.[0];
+    if (featName) {
+      const featData = getStaticFeat(featName);
+      if (featData && !final.features.some((f) => f.name === featName)) {
+        final = {
+          ...final,
+          features: [
+            ...final.features,
+            {
+              id: `feat-${featName}`.replace(/\s+/g, "-"),
+              name: featData.name,
+              description: featData.description,
+              source: "race" as const,
+              locked: true,
+            },
+          ],
+        };
+      }
+    }
+  }
+
   const derived = computeDerivedStats(final);
 
   const classData = getStaticClass(character.class);
