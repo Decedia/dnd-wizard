@@ -234,8 +234,16 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     } else if (item.itemType === "armor") {
       const baseAC = item.baseAC ?? itemInfo?.baseAC;
       const armorType = item.armorType || itemInfo?.armorType;
-      const maxDex = item.maxDexBonus ?? itemInfo?.maxDex;
-      parts.push(`AC: ${baseAC} + Dex${maxDex !== undefined && maxDex !== null ? ` (max +${maxDex})` : ""}`);
+      const maxDex = item.maxDexBonus ?? itemInfo?.maxDex ?? itemInfo?.maxDexBonus;
+      if (maxDex !== null && maxDex !== undefined) {
+        if (maxDex === 0) {
+          parts.push(`AC: ${baseAC} (no Dex bonus)`);
+        } else {
+          parts.push(`AC: ${baseAC} + Dex (max +${maxDex})`);
+        }
+      } else {
+        parts.push(`AC: ${baseAC} + Dex`);
+      }
       if (armorType) parts.push(`Type: ${armorType}`);
     } else {
       if (itemInfo?.description) parts.push(itemInfo.description);

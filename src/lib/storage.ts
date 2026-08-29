@@ -420,7 +420,15 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
 
     if (baseAC !== undefined) {
       const maxDex = maxDexBonus ?? null;
-      const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
+      let dexMod = 0;
+      if (maxDex === null) {
+        // Light armor: full dex bonus
+        dexMod = getModifier(character.dex);
+      } else if (maxDex > 0) {
+        // Medium armor: dex bonus up to max
+        dexMod = Math.min(getModifier(character.dex), maxDex);
+      }
+      // Heavy armor (maxDex === 0): no dex bonus
       ac = baseAC + dexMod;
     }
   }
@@ -565,7 +573,15 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 
     if (baseAC !== undefined) {
       const maxDex = maxDexBonus ?? null;
-      const dexMod = maxDex !== null ? Math.min(getModifier(character.dex), maxDex) : getModifier(character.dex);
+      let dexMod = 0;
+      if (maxDex === null) {
+        // Light armor: full dex bonus
+        dexMod = getModifier(character.dex);
+      } else if (maxDex > 0) {
+        // Medium armor: dex bonus up to max
+        dexMod = Math.min(getModifier(character.dex), maxDex);
+      }
+      // Heavy armor (maxDex === 0): no dex bonus
       ac = baseAC + dexMod;
     }
   }
