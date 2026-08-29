@@ -65,21 +65,25 @@ function addCanvasToPdf(pdf: jsPDF, canvas: HTMLCanvasElement, isFirstPage: bool
 }
 
 export async function exportCharacterToPdf(_character: Character): Promise<void> {
+  const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]")) as HTMLElement[];
   const allSectionElements = Array.from(document.querySelectorAll("[data-pdf-section]")) as HTMLElement[];
+  
   if (allSectionElements.length === 0) {
     throw new Error("No PDF sections found");
   }
 
-  const tabPanels = Array.from(document.querySelectorAll("[data-tab-panel]")) as HTMLElement[];
+  // Collect all sections from all tabs, temporarily showing each tab
   const sectionsToCapture: HTMLElement[] = [];
+  const originalDisplays: string[] = [];
 
   if (tabPanels.length > 0) {
     for (const panel of tabPanels) {
-      const originalDisplay = panel.style.display;
+      originalDisplays.push(panel.style.display);
       panel.style.display = "block";
+    }
+    for (const panel of tabPanels) {
       const sections = Array.from(panel.querySelectorAll("[data-pdf-section]")) as HTMLElement[];
       sectionsToCapture.push(...sections);
-      panel.style.display = originalDisplay;
     }
   } else {
     const visibleSections = allSectionElements.filter((el) => {
@@ -93,16 +97,25 @@ export async function exportCharacterToPdf(_character: Character): Promise<void>
     throw new Error("No visible PDF sections found");
   }
 
-  const pdf = new jsPDF({ unit: "mm", format: "a4" });
-  let isFirstPage = true;
+  try {
+    const pdf = new jsPDF({ unit: "mm", format: "a4" });
+    let isFirstPage = true;
 
-  for (const sectionEl of sectionsToCapture) {
-    const canvas = await captureElement(sectionEl);
-    isFirstPage = addCanvasToPdf(pdf, canvas, isFirstPage);
+    for (const sectionEl of sectionsToCapture) {
+      const canvas = await captureElement(sectionEl);
+      isFirstPage = addCanvasToPdf(pdf, canvas, isFirstPage);
+    }
+
+    const fileName = `${(_character.name || "unnamed").replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "")}.pdf`;
+    pdf.save(fileName);
+  } finally {
+    // Restore original display states
+    if (tabPanels.length > 0) {
+      for (let i = 0; i < tabPanels.length; i++) {
+        tabPanels[i].style.display = originalDisplays[i];
+      }
+    }
   }
-
-  const fileName = `${(_character.name || "unnamed").replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "")}.pdf`;
-  pdf.save(fileName);
 }
 
 
