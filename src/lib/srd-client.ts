@@ -9,6 +9,7 @@ import itemsData from "@/data/2014_items.json";
 import equipmentsData from "@/data/2014_equipments.json";
 import wizardSpellsData from "@/data/2014_wizard_spells.json";
 import arcaneTricksterSpellsData from "@/data/2014_arcane_trickster_spells.json";
+import featsData from "@/data/2014_feats.json";
 import { equipment as srdEquipment } from "@/data/srd";
 
 export interface SRDRace {
@@ -185,19 +186,25 @@ export interface SRDEquipmentDetail {
 }
 
 export interface SRDEquipment {
-  name: string;
-  description: string;
-  type: "weapon" | "armor" | "item";
-  category?: "melee" | "ranged";
-  damageDice?: string;
-  damageType?: string;
-  baseAC?: number;
-  armorType?: "light" | "medium" | "heavy" | "shield";
-  maxDexBonus?: number | null;
-  contents?: string;
-}
+   name: string;
+   description: string;
+   type: "weapon" | "armor" | "item";
+   category?: "melee" | "ranged";
+   damageDice?: string;
+   damageType?: string;
+   baseAC?: number;
+   armorType?: "light" | "medium" | "heavy" | "shield";
+   maxDexBonus?: number | null;
+   contents?: string;
+ }
 
-export interface SRDLanguage {
+ export interface SRDFeat {
+   name: string;
+   description: string;
+   prerequisites: string | null;
+ }
+
+ export interface SRDLanguage {
   name: string;
   description?: string;
 }
@@ -484,11 +491,19 @@ export function getWizardSpellNames(): string[] {
 }
 
 export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
-  const raw = (arcaneTricksterSpellsData as any).spells || [];
-  return raw.map(normalizeSpell);
-}
+   const raw = (arcaneTricksterSpellsData as any).spells || [];
+   return raw.map(normalizeSpell);
+ }
 
-export function clearSRDCache() {
+ export function getStaticFeats(): SRDFeat[] {
+   return featsData.feats as SRDFeat[];
+ }
+
+ export function getStaticFeat(name: string): SRDFeat | undefined {
+   return getStaticFeats().find((f) => f.name === name);
+ }
+
+ export function clearSRDCache() {
   memoryCache = null;
   if (typeof window !== "undefined") {
     localStorage.removeItem(CACHE_KEY);

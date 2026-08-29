@@ -4,6 +4,7 @@ export interface Character {
   name: string;
   playerName: string;
   race: string;
+  raceVariant?: string;
   class: string;
   level: number;
   background: string;

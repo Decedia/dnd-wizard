@@ -422,7 +422,7 @@ export function getValidationMessage(step: CreationStep, character?: Character):
 export function getCreationSteps(character: Character): CreationStep[] {
   const classData = character.class ? getStaticClass(character.class) : null;
 
-  const originCompleted = !!character.name.trim() && !!character.class && !!character.race;
+  const originCompleted = !!character.name.trim() && !!character.class && !!character.race && !(character.raceVariant === "variant" && !character.featureSelections?.["variant-human-feat"]?.[0]);
   const personalityCompleted = !!character.background && !!character.alignment;
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
@@ -658,10 +658,17 @@ function getClassFeaturesAtLevel(character: Character): { name: string; descript
 function getRaceTraits(character: Character): { name: string; description: string }[] {
   const race = character.race ? getStaticRace(character.race) : null;
   if (!race) return [];
-  return (race.traits || []).map((t: any) => ({
+  const traits = (race.traits || []).map((t: any) => ({
     name: t.name,
     description: normalizeDescription(t.description),
   }));
+  if (character.race === "Human" && character.raceVariant === "variant") {
+    traits.push({
+      name: "Variant Human",
+      description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
+    });
+  }
+  return traits;
 }
 
 /**
