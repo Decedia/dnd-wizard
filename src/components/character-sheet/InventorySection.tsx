@@ -84,7 +84,8 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
         if (handling === "two-handed") {
           const nextInventory = character.inventory.map((i) => {
             if (i.id === id) return { ...i, equipped: true, hand: "both" as const };
-            if (i.equipped) return { ...i, equipped: false, hand: undefined };
+            if (i.equipped && i.itemType === "armor" && i.armorType === "shield") return { ...i, equipped: false };
+            if (i.equipped && i.itemType === "weapon") return { ...i, equipped: false, hand: undefined };
             return i;
           });
           const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
@@ -125,7 +126,8 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     if (hand === "both") {
       const nextInventory = character.inventory.map((i) => {
         if (i.id === id) return { ...i, hand: "both" as const };
-        if (i.equipped) return { ...i, equipped: false, hand: undefined };
+        if (i.equipped && i.itemType === "armor" && i.armorType === "shield") return { ...i, equipped: false };
+        if (i.equipped && i.itemType === "weapon" && i.id !== id) return { ...i, equipped: false, hand: undefined };
         return i;
       });
       const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
