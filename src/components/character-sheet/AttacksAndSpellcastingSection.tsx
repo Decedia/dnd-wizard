@@ -129,7 +129,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
           })}
         </div>
       )}
-      <p className="text-xs text-paper-muted font-medium mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
+       <p className="text-xs text-[var(--color-text-muted)] font-medium mt-4">Attacks are automatically generated from equipped weapons and class features.</p>
     </SectionCard>
   );
 }
