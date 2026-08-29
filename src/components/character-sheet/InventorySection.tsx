@@ -6,10 +6,11 @@ import { DescriptionText } from "./DescriptionText";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
 import { getEquipmentData, getEquipmentNames, getStaticWeapon } from "@/lib/srd-client";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Backpack, Plus, CheckCircle, Circle, Info, Hand, Shield } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
+import { ItemSelectionPopup } from "./ItemSelectionPopup";
 
 interface InventorySectionProps {
   character: Character;
@@ -43,6 +44,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   const derived = computeDerivedStats(character);
   const rageDamage = derived.rageDamage || 0;
   const isBarbarian = character.class === "Barbarian";
+  const [showItemPopup, setShowItemPopup] = useState(false);
 
   const hands = getEquippedHands(character.inventory);
   const hasTwoHanded = hands.both !== null;
@@ -194,6 +196,11 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       inventory: [...character.inventory, newItem],
     });
   }, [character.inventory, onChange]);
+
+  const handleAddItem = useCallback((item: Character["inventory"][number]) => {
+    const { ac, attacks } = computeEquippedEffects({ ...character, inventory: [...character.inventory, item] });
+    onChange({ inventory: [...character.inventory, item], ac, attacks });
+  }, [character, onChange]);
 
   const removeItem = useCallback((id: string) => {
     const nextInventory = character.inventory.filter((item) => item.id !== id);
@@ -491,16 +498,24 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
            );
          })}
        </div>
-      {editMode && (
-        <button
-          type="button"
-          onClick={addCustomItem}
-          className="mt-4 btn-secondary flex items-center gap-1.5"
-        >
-          <Plus weight="regular" size={16} />
-          Add Custom Item
-        </button>
-      )}
+       {editMode && (
+         <button
+           type="button"
+           onClick={() => setShowItemPopup(true)}
+           className="mt-4 btn-secondary flex items-center gap-1.5"
+         >
+           <Plus weight="regular" size={16} />
+           Add Item
+         </button>
+       )}
+
+       {showItemPopup && (
+         <ItemSelectionPopup
+           character={character}
+           onAdd={handleAddItem}
+           onClose={() => setShowItemPopup(false)}
+         />
+       )}
     </SectionCard>
   );
 }
