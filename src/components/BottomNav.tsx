@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { House, DiceFive, PlusCircle } from "phosphor-react";
+import { House, PlusCircle } from "phosphor-react";
 import { WizardHatIcon } from "@/components/AppHeader";
 
 const navItems = [
@@ -15,11 +15,6 @@ const navItems = [
     name: "New",
     href: "/character/create",
     icon: PlusCircle,
-  },
-  {
-    name: "Dice",
-    href: "/dice",
-    icon: DiceFive,
   },
 ];
 
@@ -52,17 +47,8 @@ export function BottomNav() {
                 </span>
               </Link>
             );
-          })}
-          {activeIndex >= 0 && (
-            <div
-              className="absolute inset-y-0 rounded-full bg-[var(--color-nav-icon)] transition-all duration-300 ease-out pointer-events-none"
-              style={{
-                left: `${(activeIndex / navItems.length) * 100}%`,
-                width: `${(100 / navItems.length)}%`,
-              }}
-            />
-          )}
-       </div>
+           })}
+        </div>
     </nav>
   );
 }
