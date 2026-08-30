@@ -7,10 +7,11 @@ import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
-import { Lightning, Plus, Check, Circle, X, Clock } from "phosphor-react";
+import { Lightning, Plus, Check, Circle, X, Clock, Sparkle } from "phosphor-react";
 import { ConditionBadges } from "./ConditionBadge";
 import { DamageDisplay, getSpellDamageInfo } from "./DamageExtractor";
 import { SpellSelectionModal } from "./SpellSelectionModal";
+import { BUFF_DEFINITIONS, type BuffDefinition } from "@/lib/spellEffects";
 
 interface SpellsSectionProps {
   character: Character;
@@ -121,6 +122,25 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     });
   }, [character.spells, character.preparedSpells, onChange]);
 
+  const getSpellBuff = useCallback((spellName: string): BuffDefinition | undefined => {
+    const normalized = spellName.toLowerCase();
+    return Object.values(BUFF_DEFINITIONS).find(b => b.id === normalized || b.name.toLowerCase() === normalized);
+  }, []);
+
+  const isBuffActive = useCallback((buffId: string) => {
+    return (character.activeBuffs || []).some(b => b.spellId === buffId);
+  }, [character.activeBuffs]);
+
+  const toggleBuff = useCallback((buffDef: BuffDefinition) => {
+    const current = character.activeBuffs || [];
+    const isActive = current.some(b => b.spellId === buffDef.id);
+    if (isActive) {
+      onChange({ activeBuffs: current.filter(b => b.spellId !== buffDef.id) });
+    } else {
+      onChange({ activeBuffs: [...current, { spellId: buffDef.id, name: buffDef.name, concentration: buffDef.concentration }] });
+    }
+  }, [character.activeBuffs, onChange]);
+
   const getLevelLabel = (level: number) => {
     if (level === 0) return "Cantrips";
     if (level === 1) return "1st";
@@ -184,6 +204,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           const spellPrepared = isPrepared(spell.id);
           const spellUsed = (character.spellsUsedThisTurn || []).includes(spell.id);
           const spellDamages = getSpellDamageInfo(spell);
+          const buffDef = getSpellBuff(spell.name);
+          const buffActive = buffDef ? isBuffActive(buffDef.id) : false;
           return (
             <div key={spell.id} className={`list-row ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
               <div className="flex items-center justify-between gap-2">
@@ -215,6 +237,22 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     <Clock className="h-3 w-3" />
                     {spellUsed ? "Used" : "Use"}
                   </button>
+                  {buffDef && (
+                    <button
+                      type="button"
+                      onClick={() => toggleBuff(buffDef)}
+                      className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                        buffActive
+                          ? "bg-[var(--color-accent)] text-[var(--color-surface)]"
+                          : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                      title={buffActive ? `Deactivate: ${buffDef.effects.map(e => e.description).join("; ")}` : `Activate: ${buffDef.effects.map(e => e.description).join("; ")}`}
+                    >
+                      <Sparkle className="h-3 w-3" />
+                      {buffActive ? "Active" : "Buff"}
+                      {buffDef.concentration && <span className="text-[8px] opacity-70">C</span>}
+                    </button>
+                  )}
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
                   {editMode && (
                     <button

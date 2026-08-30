@@ -177,6 +177,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         onClearAll={() => onChange({ activeBuffs: [] })}
         editMode={editMode}
         className="mt-3"
+        filterClass={character.class}
       />
 
       {editMode && (

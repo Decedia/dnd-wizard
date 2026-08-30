@@ -9,10 +9,14 @@ interface BuffTrackerProps {
   onClearAll: () => void;
   className?: string;
   editMode?: boolean;
+  filterClass?: string;
 }
 
-export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, className = "", editMode = true }: BuffTrackerProps) {
-  const availableBuffs = Object.values(BUFF_DEFINITIONS);
+export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, className = "", editMode = true, filterClass }: BuffTrackerProps) {
+  const allBuffs = Object.values(BUFF_DEFINITIONS);
+  const availableBuffs = filterClass
+    ? allBuffs.filter(b => b.classes.includes(filterClass))
+    : allBuffs;
   const activeSpellIds = activeBuffs.map((b) => b.spellId);
   const hasConcentration = activeBuffs.some((b) => b.concentration);
 
@@ -48,25 +52,30 @@ export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, className =
       )}
       {activeBuffs.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
-          {activeBuffs.map((buff) => (
-            <span
-              key={buff.spellId}
-              className="inline-flex items-center gap-1 rounded border border-[var(--color-border-active)] bg-[var(--color-accent)] text-[var(--color-surface)] text-[10px] font-semibold px-2 py-1"
-            >
-              <Sparkle className="h-3 w-3" />
-              <span>{buff.name}</span>
-              {buff.concentration && <span className="text-[8px] opacity-70">C</span>}
-              {editMode && (
-                <button
-                  type="button"
-                  onClick={() => onToggleBuff(buff.spellId, buff.name, buff.concentration)}
-                  className="ml-1 hover:opacity-70"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              )}
-            </span>
-          ))}
+          {activeBuffs.map((buff) => {
+            const def = BUFF_DEFINITIONS[buff.spellId];
+            const effectDesc = def?.effects.map(e => e.description).join("; ") || "";
+            return (
+              <span
+                key={buff.spellId}
+                className="inline-flex items-center gap-1 rounded border border-[var(--color-border-active)] bg-[var(--color-accent)] text-[var(--color-surface)] text-[10px] font-semibold px-2 py-1"
+                title={effectDesc}
+              >
+                <Sparkle className="h-3 w-3" />
+                <span>{buff.name}</span>
+                {buff.concentration && <span className="text-[8px] opacity-70">C</span>}
+                {editMode && (
+                  <button
+                    type="button"
+                    onClick={() => onToggleBuff(buff.spellId, buff.name, buff.concentration)}
+                    className="ml-1 hover:opacity-70"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                )}
+              </span>
+            );
+          })}
           {editMode && (
             <button
               type="button"
