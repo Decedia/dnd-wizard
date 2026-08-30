@@ -3,9 +3,9 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
-import { getCharacters, saveCharacter, type Character } from "@/lib/storage";
+import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromPdf } from "@/lib/pdf";
-import { Upload, CaretRight, UserPlus, User } from "phosphor-react";
+import { Upload, CaretRight, UserPlus, User, Trash } from "phosphor-react";
 
 export default function Home() {
   const characters = getCharacters();
@@ -30,6 +30,13 @@ export default function Home() {
       setImportError("This PDF doesn't contain DND Wizard character data.");
     } finally {
       e.target.value = "";
+    }
+  };
+
+  const handleDelete = (char: Character) => {
+    if (window.confirm(`Are you sure you want to delete ${char.name || "this character"}? This action cannot be undone.`)) {
+      deleteCharacter(char.id);
+      window.location.reload();
     }
   };
 
@@ -80,33 +87,40 @@ export default function Home() {
           ) : (
             <ul className="space-y-2">
               {characters.map((char) => (
-                <li key={char.id}>
-                   <Link
-                     href={`/character/${char.id}`}
-                      className="card block p-3.5 transition-all active:scale-[0.98] hover:bg-paper-muted"
-                   >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
+                <li key={char.id} className="flex items-center gap-2">
+                  <Link
+                    href={`/character/${char.id}`}
+                    className="card block flex-1 p-3.5 transition-all active:scale-[0.98] hover:bg-paper-muted"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink/5">
-                         <User weight="regular" size={20} />
-                       </div>
-                      <div>
-                        <h3 className="text-card-title">
-                          {char.name || "Unnamed Hero"}
-                        </h3>
-                        <p className="text-muted">
-                          Created {formatDate(char.createdAt)}
-                        </p>
+                          <User weight="regular" size={20} />
+                        </div>
+                        <div>
+                          <h3 className="text-card-title">
+                            {char.name || "Unnamed Hero"}
+                          </h3>
+                          <p className="text-muted">
+                            Created {formatDate(char.createdAt)}
+                          </p>
+                        </div>
                       </div>
+                      <CaretRight weight="regular" size={16} className="text-ink-muted" />
                     </div>
-                    <CaretRight weight="regular" size={16} className="text-ink-muted" />
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+                  </Link>
+                  <button
+                    onClick={(e) => { e.preventDefault(); handleDelete(char); }}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-error-600)] transition-all"
+                    aria-label={`Delete ${char.name || "character"}`}
+                  >
+                    <Trash weight="regular" size={18} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
     </main>
   </div>
 );
