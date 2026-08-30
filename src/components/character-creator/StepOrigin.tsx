@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { SwordIcon as Sword, UsersIcon as Users, SparklesIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, HandFistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus } from "@/components/icons";
+import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, FistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus, BarbarianIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, WarlockIcon, WizardStaffIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, DemonSkullIcon, PersonIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
@@ -11,30 +11,30 @@ import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
 
 const classIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  Barbarian: Flame,
+  Barbarian: BarbarianIcon,
   Bard: MusicNotes,
-  Cleric: Heart,
-  Druid: Leaf,
-  Fighter: Sword,
-  Monk: HandFist,
-  Paladin: Shield,
-  Ranger: Eye,
-  Rogue: Eye,
+  Cleric: ClericIcon,
+  Druid: DruidIcon,
+  Fighter: FighterIcon,
+  Monk: MonkIcon,
+  Paladin: PaladinIcon,
+  Ranger: RangerIcon,
+  Rogue: RogueIcon,
   Sorcerer: Sparkle,
-  Warlock: Skull,
-  Wizard: MagicWand,
+  Warlock: WarlockIcon,
+  Wizard: WizardStaffIcon,
 };
 
 const raceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  Human: Users,
-  Elf: Leaf,
-  Dwarf: Shield,
-  Halfling: Users,
-  Dragonborn: Flame,
-  Gnome: Sparkle,
-  "Half-Elf": Users,
-  "Half-Orc": Sword,
-  Tiefling: Skull,
+  Human: HumanIcon,
+  Elf: ElfIcon,
+  Dwarf: DwarfIcon,
+  Halfling: PersonIcon,
+  Dragonborn: DragonHeadIcon,
+  Gnome: GnomeIcon,
+  "Half-Elf": ElfIcon,
+  "Half-Orc": DemonSkullIcon,
+  Tiefling: DemonSkullIcon,
 };
 
 interface StepOriginProps {

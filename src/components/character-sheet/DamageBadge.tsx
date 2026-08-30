@@ -2,17 +2,18 @@ import {
   DropIcon as Drop,
   ClubIcon as Club,
   SnowflakeIcon as Snowflake,
-  FireIcon as Fire,
-  SparklesIcon as Sparkle,
-  LightningIcon as Lightning,
+  FireGiIcon as Fire,
+  SparkleIcon as Sparkle,
+  PowerLightningIcon as Lightning,
   SkullIcon as Skull,
-  NeedleIcon as Needle,
+  ArrowClusterIcon as Needle,
   BrainIcon as Brain,
-  SunIcon as Sun,
+  SunGiIcon as Sun,
   SwordIcon as Sword,
-  CloudLightningIcon as CloudLightning,
-  TestTubeIcon as TestTube,
+  ThunderStruckIcon as CloudLightning,
+  AcidIcon as TestTube,
 } from "@/components/icons";
+
 
 export type DamageType =
   | "acid"

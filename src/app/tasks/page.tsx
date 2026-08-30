@@ -21,7 +21,6 @@ import {
   PackageIcon as Package,
   TargetIcon as Target,
   ShoppingCartIcon as ShoppingCart,
-  RocketIcon as Rocket,
   PuzzlePieceIcon as PuzzlePiece,
 } from "@/components/icons";
 
@@ -39,7 +38,6 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   "Package": Package,
   "Target": Target,
   "ShoppingCart": ShoppingCart,
-  "Rocket": Rocket,
   "PuzzlePiece": PuzzlePiece,
 };
 
@@ -81,7 +79,7 @@ const initialTasks: Task[] = [
     id: "6",
     title: "Optimize the hero section with a clear value proposition and a high-impact call-to-action (CTA).",
     status: "in-progress",
-    icon: "Rocket",
+    icon: "Target",
   },
   {
     id: "7",
