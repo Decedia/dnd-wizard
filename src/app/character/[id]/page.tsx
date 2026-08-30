@@ -24,7 +24,7 @@ import { SpellcastingStatsSection } from "@/components/character-sheet/Spellcast
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { CurrencySection } from "@/components/character-sheet/CurrencySection";
-import { Trash, Export, Upload, CheckCircle, UserPlus } from "phosphor-react";
+import { Trash, Export, Upload, CheckCircle, UserPlus, Clock } from "phosphor-react";
 
 export default function CharacterView() {
   const params = useParams();
@@ -269,6 +269,19 @@ export default function CharacterView() {
           </div>
         </main>
       </CharacterSheetProvider>
+
+      {((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0) && (
+        <div className="fixed bottom-[88px] left-1/2 -translate-x-1/2 z-50">
+          <button
+            type="button"
+            onClick={() => handleChange({ spellsUsedThisTurn: [], featuresUsedThisTurn: [] })}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] shadow-lg hover:opacity-90 transition-all"
+          >
+            <Clock className="h-4 w-4" />
+            <span className="text-xs font-semibold">End Turn</span>
+          </button>
+        </div>
+      )}
 
       <BottomNav />
     </div>

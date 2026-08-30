@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
-import { Star, X, Plus } from "phosphor-react";
+import { Star, X, Plus, Clock } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatPopup } from "./FeatPopup";
 import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
@@ -42,6 +42,15 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     onChange({
       features: character.features.filter((f) => f.id !== id),
     });
+  };
+
+  const toggleFeatureUsed = (id: string) => {
+    const current = character.featuresUsedThisTurn || [];
+    if (current.includes(id)) {
+      onChange({ featuresUsedThisTurn: current.filter(fid => fid !== id) });
+    } else {
+      onChange({ featuresUsedThisTurn: [...current, id] });
+    }
   };
 
   return (
@@ -96,24 +105,45 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               ) : (
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    {(() => {
-                      const matchedFeat = feats.find((f) => f.name === feature.name);
-                      if (matchedFeat) {
-                        return (
-                          <button
-                            type="button"
-                            onClick={() => setPopupFeatName(feature.name)}
-                            className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
-                          >
-                            {feature.name}
-                          </button>
-                        );
-                      }
-                      return <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>;
-                    })()}
-                    {feature.description && (
-                      <InfoButton title={feature.name} description={feature.description} />
-                    )}
+                    <div className="flex items-center gap-2 flex-1">
+                      {(() => {
+                        const matchedFeat = feats.find((f) => f.name === feature.name);
+                        if (matchedFeat) {
+                          return (
+                            <button
+                              type="button"
+                              onClick={() => setPopupFeatName(feature.name)}
+                              className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
+                            >
+                              {feature.name}
+                            </button>
+                          );
+                        }
+                        return <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>;
+                      })()}
+                      {(character.featuresUsedThisTurn || []).includes(feature.id) && (
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      {feature.name && (
+                        <button
+                          type="button"
+                          onClick={() => toggleFeatureUsed(feature.id)}
+                          className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                            (character.featuresUsedThisTurn || []).includes(feature.id)
+                              ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                              : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          <Clock className="h-3 w-3" />
+                          {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
+                        </button>
+                      )}
+                      {feature.description && (
+                        <InfoButton title={feature.name} description={feature.description} />
+                      )}
+                    </div>
                   </div>
                   {feature.description && <DescriptionText>{feature.description}</DescriptionText>}
                 </div>

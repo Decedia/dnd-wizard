@@ -165,7 +165,18 @@ Wizard restructure complete. Next steps:
 - [x] Updated `character-creation.ts` to apply variant human bonuses during finalization (ability bonuses, skill proficiency, feat)
 - [x] Updated `getCreationSteps` validation to require all variant human selections (2 abilities, 1 skill, 1 feat) before proceeding
 - [x] Updated `getRaceTraits` to include selected feat in variant human traits
-- [x] Typecheck and build pass
+- [x] Fixed variant human racial bonuses (replaces +1-to-all with +1-to-two-abilities)
+- [x] Added FeatSelector confirmation button (no auto-close on selection)
+- [x] Fixed all popups to not auto-close (added Cancel/Confirm buttons)
+- [x] Changed all blacks to softer `#1a1a1a` for better visual comfort
+- [x] Added dark mode with sun/moon toggle button (header right corner on home page only)
+- [x] Added delete character button at home page (with confirmation)
+- [x] Added heal and damage buttons with popup in CombatStatsSection
+- [x] Added spell usage tracking (mark spells as used this turn)
+- [x] Added feature usage tracking (mark features as used this turn)
+- [x] Added floating "End Turn" button that resets spell/feature usage
+- [x] Rewrote PDF export with @react-pdf/renderer (crisp text, no cut-off)
+- [x] Performance improvements: render only active tab panel, memoize context values, lazy-load PDF libraries, memoize expensive computations, remove window.location.reload() on delete; typecheck and build pass
 
 ## Available Recipes
 
