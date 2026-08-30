@@ -62,6 +62,7 @@ export interface Character {
   cantrips: { id: string; name: string }[];
   spellSlots: Record<number, number>;
   spellSlotsExpended: Record<number, number>;
+  spellsUsedThisTurn: string[];
   preparedSpells: string[];
   domainSpells: string[];
   circleTerrain: string;
@@ -284,6 +285,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     cantrips: [],
     spellSlots: {},
     spellSlotsExpended: {},
+    spellsUsedThisTurn: [],
     preparedSpells: [],
     domainSpells: [],
     circleTerrain: "",
@@ -356,6 +358,7 @@ function normalizeCharacter(c: Character): Character {
       ...defaults.spellSlotsExpended,
       ...(c as any).spellSlotsExpended,
     },
+    spellsUsedThisTurn: (c as any).spellsUsedThisTurn || [],
     levelHp: (c as any).levelHp || {},
     inventory: (c.inventory || []).map((item) => ({
       ...defaults.inventory[0],

@@ -7,7 +7,7 @@ import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
-import { Lightning, Plus, Check, Circle, X } from "phosphor-react";
+import { Lightning, Plus, Check, Circle, X, Clock } from "phosphor-react";
 import { DamageBadge } from "./DamageBadge";
 import { SpellSelectionModal } from "./SpellSelectionModal";
 
@@ -100,6 +100,19 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     }
   }, [character.preparedSpells, onChange]);
 
+  const toggleSpellUsed = useCallback((spellId: string) => {
+    const current = character.spellsUsedThisTurn || [];
+    if (current.includes(spellId)) {
+      onChange({ spellsUsedThisTurn: current.filter(id => id !== spellId) });
+    } else {
+      onChange({ spellsUsedThisTurn: [...current, spellId] });
+    }
+  }, [character.spellsUsedThisTurn, onChange]);
+
+  const resetSpellsUsed = useCallback(() => {
+    onChange({ spellsUsedThisTurn: [] });
+  }, [onChange]);
+
   const removeSpell = useCallback((id: string) => {
     onChange({
       spells: (character.spells || []).filter(s => s.id !== id),
@@ -154,11 +167,23 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         </div>
       )}
 
+      {(character.spellsUsedThisTurn || []).length > 0 && (
+        <button
+          type="button"
+          onClick={resetSpellsUsed}
+          className="mb-3 flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold rounded border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)] transition-colors"
+        >
+          <Clock className="h-3 w-3" />
+          Reset Turn
+        </button>
+      )}
+
       <div className="space-y-2">
         {activeSpells.map((spell) => {
           const spellPrepared = isPrepared(spell.id);
+          const spellUsed = (character.spellsUsedThisTurn || []).includes(spell.id);
           return (
-            <div key={spell.id} className={`list-row flex flex-col gap-1 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""}`}>
+            <div key={spell.id} className={`list-row flex flex-col gap-1 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
               <div className="flex items-center gap-2 flex-wrap">
                 {preparationCaster && spell.level > 0 && (
                   <button
@@ -174,7 +199,22 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     {spellPrepared ? "Prepared" : "Prepare"}
                   </button>
                 )}
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">{spell.name}</span>
+                {spell.level > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => toggleSpellUsed(spell.id)}
+                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                      spellUsed
+                        ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                        : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                    }`}
+                    title={spellUsed ? "Click to mark as unused" : "Click to mark as used this turn"}
+                  >
+                    <Clock className="h-3 w-3" />
+                    {spellUsed ? "Used" : "Use"}
+                  </button>
+                )}
+                <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
                 {editMode && (
                   <button
                     type="button"
