@@ -931,18 +931,71 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       setTargetLevel(newLevel);
       if (newLevel > targetLevel) {
         setViewingLevel(newLevel);
-        setHpValues({});
       } else {
         if (viewingLevel > newLevel) setViewingLevel(newLevel);
-        setHpValues({});
-        setAsiSelections({});
-        setSpellSelections({});
-        setMagicalSecretsSelections({});
-        setReplacedSpells({});
-        setSubclassFeatureChoices({});
-        setClassFeatureChoices({});
-        setInvocationSelections({});
-        setReplacedInvocations({});
+        setHpValues((prev) => {
+          const next: Record<number, number> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setAsiSelections((prev) => {
+          const next: Record<number, any> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setSpellSelections((prev) => {
+          const next: Record<number, string[]> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setMagicalSecretsSelections((prev) => {
+          const next: Record<number, string[]> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setReplacedSpells((prev) => {
+          const next: Record<number, string> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setSubclassFeatureChoices((prev) => {
+          const next: Record<number, Record<string, string>> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setClassFeatureChoices((prev) => {
+          const next: Record<number, Record<string, string>> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setInvocationSelections((prev) => {
+          const next: Record<number, string[]> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
+        setReplacedInvocations((prev) => {
+          const next: Record<number, string> = {};
+          for (const [k, v] of Object.entries(prev)) {
+            if (Number(k) <= newLevel) next[Number(k)] = v;
+          }
+          return next;
+        });
         setPactTomeCantrips([]);
       }
     }
@@ -1240,7 +1293,7 @@ function LevelCard({
     const { data } = useSRD();
   const srdSpells = data?.spells || [];
 
-  const isHpComplete = hpValue > 0;
+  const isHpComplete = (lvl === 1 && startFromLevelOne) || hpValue > 0;
   const isAsiComplete = !info.asi || (asiSelection?.mode === "single" && !!asiSelection?.single) || (asiSelection?.mode === "double" && !!asiSelection?.d1 && !!asiSelection?.d2 && asiSelection?.d1 !== asiSelection?.d2);
   const isSubclassComplete = !info.subclassOptions || !!subclassSelection;
   const isFeatureChoicesComplete = !info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]);
