@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "DND-AN",
+  title: "DND Wizard",
   description: "A mobile-first D&D 5e character creator",
 };
 
