@@ -1435,30 +1435,68 @@ function LevelCard({
             </div>
           )}
 
-          {info.cantripsKnown !== undefined && (
-            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
-              <div className="flex-1">
-                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
-                <div className="text-xs text-[var(--color-text-primary)]">{info.cantripsKnown}</div>
-              </div>
-            </div>
-          )}
-
-          {info.spellsKnown !== undefined && (
-            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
-              <div className="flex-1">
-                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
-                <div className="text-xs text-[var(--color-text-primary)]">
-                  {info.spellsKnown}
-                  {info.spellsKnownChanged && info.prevSpellsKnown !== undefined && (
-                    <span className="ml-1 text-green-600">(+{info.spellsKnown - info.prevSpellsKnown})</span>
-                  )}
+          {info.cantripsKnown !== undefined && (() => {
+            const lvlSpells = (allSpellSelections || {})[lvl] || [];
+            const selectedCantrips = lvlSpells.filter((s: string) => s.endsWith(":0")).length;
+            const needCantrips = info.cantripSelectionCount > 0 && selectedCantrips < info.cantripSelectionCount;
+            const cantripColor = info.cantripSelectionCount > 0 && selectedCantrips < info.cantripSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
+            return (
+              <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needCantrips ? "border border-red-400 bg-red-50/30" : ""}`}>
+                <MagicWand weight="regular" className={`h-4 w-4 ${needCantrips ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
+                  <div className={`text-xs ${cantripColor}`}>
+                    {info.cantripsKnown}
+                    {info.cantripSelectionCount > 0 && (
+                      <span className="ml-1">({selectedCantrips}/{info.cantripSelectionCount} selected)</span>
+                    )}
+                  </div>
                 </div>
+                {info.cantripSelectionCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowSpellModal(true)}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needCantrips ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
+                  >
+                    Select
+                  </button>
+                )}
               </div>
-            </div>
-          )}
+            );
+          })()}
+
+          {info.spellsKnown !== undefined && (() => {
+            const lvlSpells = (allSpellSelections || {})[lvl] || [];
+            const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
+            const needSpells = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
+            const spellColor = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
+            return (
+              <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
+                <Book weight="regular" className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
+                  <div className={`text-xs ${spellColor}`}>
+                    {info.spellsKnown}
+                    {info.spellSelectionCount > 0 && (
+                      <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} selected)</span>
+                    )}
+                    {info.spellsKnownChanged && info.prevSpellsKnown !== undefined && !info.spellSelectionCount && (
+                      <span className="ml-1 text-green-600">(+{info.spellsKnown - info.prevSpellsKnown})</span>
+                    )}
+                  </div>
+                </div>
+                {info.spellSelectionCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowSpellModal(true)}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
+                  >
+                    Select
+                  </button>
+                )}
+              </div>
+            );
+          })()}
 
           {info.subclassOptions && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
@@ -1524,27 +1562,6 @@ function LevelCard({
               )}
             </div>
           ) : null}
-
-          {info.hasSpellSelection && (
-            <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-              <div className="flex-1">
-                <button
-                  type="button"
-                  onClick={() => setShowSpellModal(true)}
-                  className="w-full text-left text-xs font-semibold text-[var(--color-text-primary)] hover:underline py-1"
-                >
-                  {info.spellsKnownChanged
-                    ? `Choose ${info.spellSelectionCount} New Spell${info.spellSelectionCount > 1 ? "s" : ""}`
-                    : "Open Spell Selection"}
-                  {info.cantripSelectionCount > 0 && ` (+${info.cantripSelectionCount} cantrips)`}
-                </button>
-                <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
-                  You can replace one known spell when leveling up
-                </p>
-              </div>
-            </div>
-          )}
 
           {character.class === "Wizard" && info.level === 18 && (() => {
             const spellMasterySelection = classFeatureChoices["Spell Mastery"] || "";
