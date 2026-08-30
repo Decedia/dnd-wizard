@@ -47,6 +47,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [featModalOpen, setFeatModalOpen] = useState(false);
   const [pendingClass, setPendingClass] = useState<string | null>(data.class || null);
   const [pendingRace, setPendingRace] = useState<string | null>(data.race || null);
+  const [pendingVariant, setPendingVariant] = useState<boolean>(data.raceVariant === "variant");
   const classes: SRDClass[] = getStaticClasses();
   const races: SRDRace[] = getStaticRaces();
 
@@ -55,60 +56,71 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
   const handleClassSelect = useCallback(
     (className: string) => {
-      if (className !== data.class) {
-        onChange({
-          class: className,
-          subclass: undefined,
-          inventory: [],
-          skills: {},
-          spells: [],
-          cantrips: [],
-          features: [],
-          featureSelections: {},
-          appliedAsi: [],
-          attacks: [],
-          costumeSpells: [],
-        });
-      }
-      setPopupType(null);
+      setPendingClass(className);
     },
-    [onChange, data.class]
+    []
   );
+
+  const handleConfirmClass = () => {
+    if (pendingClass && pendingClass !== data.class) {
+      onChange({
+        class: pendingClass,
+        subclass: undefined,
+        inventory: [],
+        skills: {},
+        spells: [],
+        cantrips: [],
+        features: [],
+        featureSelections: {},
+        appliedAsi: [],
+        attacks: [],
+        costumeSpells: [],
+      });
+    }
+    setPopupType(null);
+  };
 
   const handleRaceSelect = useCallback(
     (raceName: string) => {
       if (raceName !== data.race) {
         onChange({ race: raceName, raceVariant: undefined, variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } });
       }
-      setPopupType(null);
+      setPendingRace(raceName);
+      setPendingVariant(false);
     },
     [onChange, data.race, data.featureSelections]
   );
 
-  const handleConfirmClass = () => {
-    if (pendingClass) {
-      handleClassSelect(pendingClass);
-    }
-  };
-
   const handleConfirmRace = () => {
     if (pendingRace) {
-      handleRaceSelect(pendingRace);
+      const isVariant = pendingVariant;
+      if (pendingRace !== data.race || (isVariant && data.raceVariant !== "variant")) {
+        onChange({
+          race: pendingRace,
+          raceVariant: isVariant ? "variant" : undefined,
+          ...(isVariant ? {} : { variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } }),
+        });
+      }
     }
+    setPopupType(null);
   };
 
   const handleVariantToggle = useCallback(() => {
-    if (isVariantHuman) {
-      onChange({
-        raceVariant: undefined,
-        featureSelections: { ...data.featureSelections, "variant-human-feat": [] },
-        variantHumanAbilities: undefined,
-        variantHumanSkill: undefined,
-      });
+    if (popupType === "race") {
+      setPendingVariant((prev) => !prev);
     } else {
-      onChange({ raceVariant: "variant" });
+      if (isVariantHuman) {
+        onChange({
+          raceVariant: undefined,
+          featureSelections: { ...data.featureSelections, "variant-human-feat": [] },
+          variantHumanAbilities: undefined,
+          variantHumanSkill: undefined,
+        });
+      } else {
+        onChange({ raceVariant: "variant" });
+      }
     }
-  }, [isVariantHuman, data.featureSelections, onChange]);
+  }, [isVariantHuman, data.featureSelections, onChange, popupType]);
 
   const handleFeatSelect = useCallback(
     (feat: SRDFeat) => {
@@ -306,14 +318,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       {popupType === "race" && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingRace(data.race || null); } }}
+          onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); } }}
         >
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">Select Race</div>
               <button
                 type="button"
-                onClick={() => { setPopupType(null); setPendingRace(data.race || null); }}
+                onClick={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
                 className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
               >
                 ×
@@ -370,7 +382,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           type="button"
                           onClick={handleVariantToggle}
                           className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                            isVariantHuman
+                            pendingVariant
                               ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
                               : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                           }`}
@@ -378,12 +390,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           <div className="flex items-center gap-2">
                             <div
                               className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
-                                isVariantHuman
+                                pendingVariant
                                   ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
                                   : "border-[var(--color-border)]"
                               }`}
                             >
-                              {isVariantHuman && <Check className="h-3 w-3 text-[var(--color-surface)]" weight="bold" />}
+                              {pendingVariant && <Check className="h-3 w-3 text-[var(--color-surface)]" weight="bold" />}
                             </div>
                             <div>
                               <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>
@@ -394,7 +406,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           </div>
                         </button>
 
-                        {isVariantHuman && (
+                        {pendingVariant && (
                           <div className="space-y-3">
                             <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
                               <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">+1 to Two Abilities</div>
