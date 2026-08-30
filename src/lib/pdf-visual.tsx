@@ -1,6 +1,6 @@
 "use client";
 
-import { Document, Page, Text, View, StyleSheet, pdf, Font } from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet, pdf, Font, Svg, Path, Rect, Circle } from "@react-pdf/renderer";
 import type { Character } from "./storage";
 import { getModifier } from "./storage";
 
@@ -25,6 +25,53 @@ const C = {
   danger: "#dc2626",
   info: "#2563eb",
 };
+
+function ShieldIcon({ size = 32, color = C.accent }: { size?: number; color?: string }) {
+  return (
+    <Svg viewBox="0 0 100 120" width={size} height={size * 1.2}>
+      <Path
+        d="M50 5 L90 20 L90 55 C90 80 50 115 50 115 C50 115 10 80 10 55 L10 20 Z"
+        fill={C.surface}
+        stroke={color}
+        strokeWidth={3}
+      />
+      <Path
+        d="M50 18 L78 28 L78 55 C78 72 50 98 50 98 C50 98 22 72 22 55 L22 28 Z"
+        fill="none"
+        stroke={C.border}
+        strokeWidth={1}
+      />
+    </Svg>
+  );
+}
+
+function SpeedIcon({ size = 32, color = C.accent }: { size?: number; color?: string }) {
+  return (
+    <Svg viewBox="0 0 100 120" width={size} height={size * 1.2}>
+      <Path
+        d="M55 5 L25 60 L45 60 L40 95 L75 40 L52 40 Z"
+        fill={C.surface}
+        stroke={color}
+        strokeWidth={3}
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+function HeartIcon({ size = 32, color = C.danger }: { size?: number; color?: string }) {
+  return (
+    <Svg viewBox="0 0 100 120" width={size} height={size * 1.2}>
+      <Path
+        d="M50 90 C20 65 5 50 5 35 C5 20 18 10 32 10 C42 10 48 16 50 20 C52 16 58 10 68 10 C82 10 95 20 95 35 C95 50 80 65 50 90 Z"
+        fill={C.surface}
+        stroke={color}
+        strokeWidth={3}
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
 
 const styles = StyleSheet.create({
   page: {
@@ -92,83 +139,51 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
   },
 
-  // Combat Stats Row
+  // Combat Stats - 3 inline boxes with icons
   combatRow: {
     flexDirection: "row",
-    gap: 12,
+    gap: 8,
     marginBottom: 12,
-    alignItems: "center",
-  },
-  combatStatBox: {
-    alignItems: "center",
     justifyContent: "center",
   },
-  combatCircle: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    border: `2px solid ${C.accent}`,
+  combatBox: {
     alignItems: "center",
     justifyContent: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 14,
     backgroundColor: C.surface,
+    borderRadius: 10,
+    border: `1.5px solid ${C.accent}`,
+    minWidth: 80,
   },
-  combatCircleSecondary: {
+  combatBoxSecondary: {
     borderColor: C.border,
   },
-  combatCircleLabel: {
+  combatBoxDanger: {
+    borderColor: C.danger,
+  },
+  combatIcon: {
+    marginBottom: 4,
+  },
+  combatLabel: {
     fontSize: 7,
     fontWeight: 600,
     color: C.textMuted,
     textTransform: "uppercase",
-    letterSpacing: 0.5,
-    marginTop: 2,
+    letterSpacing: 0.8,
+    marginBottom: 2,
   },
-  combatCircleValue: {
-    fontSize: 20,
+  combatValue: {
+    fontSize: 18,
     fontWeight: 700,
     color: C.textPrimary,
   },
-  combatCircleSub: {
+  combatValueDanger: {
+    color: C.danger,
+  },
+  combatSub: {
     fontSize: 8,
     color: C.textMuted,
-  },
-
-  // HP Bar
-  hpSection: {
-    flex: 1,
-  },
-  hpBarRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 3,
-  },
-  hpLabel: {
-    fontSize: 8,
-    fontWeight: 600,
-    color: C.textMuted,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  hpValue: {
-    fontSize: 8,
-    fontWeight: 600,
-    color: C.textMuted,
-  },
-  hpBarBg: {
-    height: 12,
-    borderRadius: 6,
-    backgroundColor: "#f0f0f0",
-    border: "1 solid #e0e0e0",
-    overflow: "hidden",
-    marginBottom: 6,
-  },
-  hpBarFill: {
-    height: "100%",
-    backgroundColor: C.success,
-    borderRadius: 6,
-  },
-  tempHpBarFill: {
-    backgroundColor: C.info,
   },
 
   // Ability Scores - 3 col grid
@@ -596,41 +611,33 @@ function CharacterPdfDocument({ character }: { character: Character }) {
           </Text>
         </View>
 
-        {/* Combat Stats Row: AC, Speed, HP */}
+        {/* Combat Stats: 3 inline boxes with icons */}
         <View style={styles.combatRow}>
           {/* AC */}
-          <View style={styles.combatStatBox}>
-            <View style={styles.combatCircle}>
-              <Text style={styles.combatCircleValue}>{character.ac}</Text>
+          <View style={styles.combatBox}>
+            <View style={styles.combatIcon}>
+              <ShieldIcon size={28} color={C.accent} />
             </View>
-            <Text style={styles.combatCircleLabel}>AC</Text>
+            <Text style={styles.combatLabel}>AC</Text>
+            <Text style={styles.combatValue}>{character.ac}</Text>
           </View>
 
           {/* Speed */}
-          <View style={styles.combatStatBox}>
-            <View style={[styles.combatCircle, styles.combatCircleSecondary]}>
-              <Text style={styles.combatCircleValue}>{character.speed}</Text>
-              <Text style={styles.combatCircleSub}>ft.</Text>
+          <View style={[styles.combatBox, styles.combatBoxSecondary]}>
+            <View style={styles.combatIcon}>
+              <SpeedIcon size={28} color={C.accent} />
             </View>
-            <Text style={styles.combatCircleLabel}>Speed</Text>
+            <Text style={styles.combatLabel}>Speed</Text>
+            <Text style={styles.combatValue}>{character.speed}<Text style={styles.combatSub}> ft</Text></Text>
           </View>
 
-          {/* HP Bar */}
-          <View style={styles.hpSection}>
-            <View style={styles.hpBarRow}>
-              <Text style={styles.hpLabel}>HP</Text>
-              <Text style={styles.hpValue}>{character.currentHp} / {character.maxHp}</Text>
+          {/* HP */}
+          <View style={[styles.combatBox, styles.combatBoxDanger]}>
+            <View style={styles.combatIcon}>
+              <HeartIcon size={28} color={C.danger} />
             </View>
-            <View style={styles.hpBarBg}>
-              <View style={[styles.hpBarFill, { width: `${character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0}%` }]} />
-            </View>
-            <View style={styles.hpBarRow}>
-              <Text style={styles.hpLabel}>Temp HP</Text>
-              <Text style={styles.hpValue}>{character.temporaryHp}</Text>
-            </View>
-            <View style={styles.hpBarBg}>
-              <View style={[styles.hpBarFill, styles.tempHpBarFill, { width: character.temporaryHp > 0 ? "100%" : "0%" }]} />
-            </View>
+            <Text style={styles.combatLabel}>HP</Text>
+            <Text style={[styles.combatValue, styles.combatValueDanger]}>{character.currentHp}<Text style={styles.combatSub}>/{character.maxHp}</Text></Text>
           </View>
         </View>
 
