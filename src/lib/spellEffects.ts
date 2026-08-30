@@ -42,6 +42,14 @@ export const BUFF_DEFINITIONS: Record<string, BuffDefinition> = {
     concentration: false,
     effects: [{ type: "ac_bonus", value: 13, description: "AC becomes 13 + Dex modifier" }],
   },
+  "shield-of-faith": {
+    id: "shield-of-faith",
+    name: "Shield of Faith",
+    level: 1,
+    classes: ["Paladin", "Cleric"],
+    concentration: true,
+    effects: [{ type: "ac_bonus", value: 2, description: "+2 AC" }],
+  },
   "armor-of-agathys": {
     id: "armor-of-agathys",
     name: "Armor of Agathys",
