@@ -416,6 +416,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
   const prevTargetLevelRef = useRef(targetLevel);
+  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     if (targetLevel > prevTargetLevelRef.current) {
@@ -525,44 +526,41 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   });
 
   const unfinishedItems = useMemo(() => {
-    const items: { level: number; label: string }[] = [];
+    const items: { level: number; label: string; sectionId: string }[] = [];
     for (const info of levelInfos) {
       const lvl = info.level;
       const isLevelOneAuto = lvl === 1 && startFromLevelOne;
+      if (!isLevelOneAuto) {
+        if (!hpValues[lvl] || hpValues[lvl] <= 0) {
+          items.push({ level: lvl, label: `Level ${lvl} — Roll HP`, sectionId: `hp-${lvl}` });
+        }
+      }
       if (info.asi) {
         const sel = asiSelections[lvl];
         const isValid = (sel?.mode === "single" && !!sel?.single) || (sel?.mode === "double" && !!sel?.d1 && !!sel?.d2 && sel?.d1 !== sel?.d2);
-        if (!isValid) items.push({ level: lvl, label: `Level ${lvl} — Ability Score Improvement` });
+        if (!isValid) items.push({ level: lvl, label: `Level ${lvl} — Ability Score Improvement`, sectionId: `asi-${lvl}` });
       }
       if (info.subclassOptions && !subclassSelection) {
-        items.push({ level: lvl, label: `Level ${lvl} — Choose Subclass` });
-      }
-      if (info.hasSpellSelection) {
-        const lvlSpells = spellSelections[lvl] || [];
-        const cantripsCount = lvlSpells.filter((s) => s.endsWith(":0")).length;
-        const spellsCount = lvlSpells.filter((s) => !s.endsWith(":0")).length;
-        if (cantripsCount < info.cantripSelectionCount) {
-          items.push({ level: lvl, label: `Level ${lvl} — Select ${info.cantripSelectionCount - cantripsCount} more cantrip${info.cantripSelectionCount - cantripsCount > 1 ? "s" : ""}` });
-        }
-        if (spellsCount < info.spellSelectionCount) {
-          items.push({ level: lvl, label: `Level ${lvl} — Select ${info.spellSelectionCount - spellsCount} more spell${info.spellSelectionCount - spellsCount > 1 ? "s" : ""}` });
-        }
+        items.push({ level: lvl, label: `Level ${lvl} — Choose Subclass`, sectionId: `subclass-${lvl}` });
       }
       if (info.subclassFeatureChoices) {
         const choices = subclassFeatureChoices[lvl] || {};
         for (const fc of info.subclassFeatureChoices) {
-          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}` });
+          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `subclass-fc-${lvl}` });
         }
       }
       if (info.classFeatureChoices) {
         const choices = classFeatureChoices[lvl] || {};
         for (const fc of info.classFeatureChoices) {
-          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}` });
+          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `class-fc-${lvl}` });
         }
       }
-      if (!isLevelOneAuto) {
-        if (!hpValues[lvl] || hpValues[lvl] <= 0) {
-          items.push({ level: lvl, label: `Level ${lvl} — Roll HP` });
+      if (info.hasSpellSelection) {
+        const lvlSpells = spellSelections[lvl] || [];
+        const cantripsCount = lvlSpells.filter((s) => s.endsWith(":0")).length;
+        const spellsCount = lvlSpells.filter((s) => !s.endsWith(":0")).length;
+        if (cantripsCount < info.cantripSelectionCount || spellsCount < info.spellSelectionCount) {
+          items.push({ level: lvl, label: `Level ${lvl} — Select spells`, sectionId: `spells-${lvl}` });
         }
       }
     }
@@ -1038,16 +1036,23 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                   <span className="text-xs text-green-600 font-semibold">All tasks complete!</span>
                 </div>
               ) : (
-                unfinishedItems.map((item, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setShowNotifPanel(false)}
-                    className="w-full text-left px-3 py-2 rounded-[var(--radius-sm)] hover:bg-[var(--color-bg)] transition-colors"
-                  >
-                    <span className="text-xs text-[var(--color-text-primary)]">{item.label}</span>
-                  </button>
-                ))
+                 unfinishedItems.map((item, idx) => (
+                   <button
+                     key={idx}
+                     type="button"
+                     onClick={() => {
+                       setShowNotifPanel(false);
+                       setViewingLevel(item.level);
+                       setTimeout(() => {
+                         const el = sectionRefs.current[item.sectionId];
+                         if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                       }, 100);
+                     }}
+                     className="w-full text-left px-3 py-2 rounded-[var(--radius-sm)] hover:bg-[var(--color-bg)] transition-colors"
+                   >
+                     <span className="text-xs text-[var(--color-text-primary)]">{item.label}</span>
+                   </button>
+                 ))
               )}
             </div>
           </div>
@@ -1116,9 +1121,10 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onReplacedInvocationChange={(inv) => setReplacedInvocation(info.level, inv)}
               pactTomeCantrips={pactTomeCantrips}
               onPactTomeCantripsChange={setPactTomeCantrips}
-              allInvocationSelections={invocationSelections}
-            />
-          ))}
+               allInvocationSelections={invocationSelections}
+               sectionRefs={sectionRefs}
+             />
+           ))}
         </div>
       </main>
 
@@ -1173,6 +1179,7 @@ interface LevelCardProps {
   pactTomeCantrips: string[];
   onPactTomeCantripsChange: (list: string[]) => void;
   allInvocationSelections?: Record<number, string[]>;
+  sectionRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
 }
 
 function LevelCard({
@@ -1214,6 +1221,7 @@ function LevelCard({
   pactTomeCantrips,
   onPactTomeCantripsChange,
   allInvocationSelections,
+  sectionRefs,
 }: LevelCardProps) {
     const [showSpellSelection, setShowSpellSelection] = useState(false);
     const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
@@ -1236,7 +1244,20 @@ function LevelCard({
   const isSubclassComplete = !info.subclassOptions || !!subclassSelection;
   const isFeatureChoicesComplete = !info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]);
   const isClassFeatureChoicesComplete = !info.classFeatureChoices || info.classFeatureChoices.every((fc) => classFeatureChoices[fc.name]);
-  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete;
+  const isSpellSelectionComplete = !info.hasSpellSelection || (() => {
+    const lvlSpells = (allSpellSelections || {})[lvl] || [];
+    const cantripsCount = lvlSpells.filter((s: string) => s.endsWith(":0")).length;
+    const spellsCount = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
+    return cantripsCount >= info.cantripSelectionCount && spellsCount >= info.spellSelectionCount;
+  })();
+  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete && isSpellSelectionComplete;
+
+  const setSectionRef = (id: string) => (el: HTMLDivElement | null) => {
+    sectionRefs.current[id] = el;
+  };
+
+  const sectionClass = (id: string, isIncomplete: boolean) =>
+    `flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${isIncomplete ? "border border-red-400 bg-red-50/30" : ""}`;
 
   const totalAsiPoints = Object.values(asiAllocation).reduce((sum, val) => sum + val, 0);
   const canApplyAsi = totalAsiPoints === 2;
@@ -1308,8 +1329,8 @@ function LevelCard({
         </div>
 
         <div className="space-y-2.5">
-          <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-            <Heart weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+          <div ref={setSectionRef(`hp-${lvl}`)} className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "border border-red-400 bg-red-50/30" : ""}`}>
+            <Heart weight="regular" className={`h-4 w-4 ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
             <div className="flex-1">
               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
               <div className="text-xs text-[var(--color-text-primary)]">
@@ -1325,7 +1346,7 @@ function LevelCard({
                 type="number"
                 value={hpValue || ""}
                 onChange={(e) => onHpChange(parseInt(e.target.value || "0", 10))}
-                className="w-16 text-center text-sm font-bold rounded-[var(--radius-sm)] border border-[var(--color-border)] px-2 py-1"
+                className={`w-16 text-center text-sm font-bold rounded-[var(--radius-sm)] border px-2 py-1 ${!isHpComplete ? "border-red-300 bg-white" : "border-[var(--color-border)]"}`}
                 placeholder={String(averageHp)}
               />
             )}
