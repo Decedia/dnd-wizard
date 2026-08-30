@@ -1511,7 +1511,8 @@ function LevelCard({
             const higherCantrips = Object.entries(allSpellSelections || {})
               .filter(([l]) => Number(l) > lvl)
               .flatMap(([, s]: [string, string[]]) => s)
-              .filter((s: string) => s.endsWith(":0"));
+              .filter((s: string) => s.endsWith(":0"))
+              .map((s: string) => s.split(":")[0]);
             const needCantrips = info.cantripSelectionCount > 0 && selectedCantrips < info.cantripSelectionCount;
             const cantripColor = info.cantripSelectionCount > 0 && selectedCantrips < info.cantripSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
             return (
@@ -1524,10 +1525,12 @@ function LevelCard({
                     {info.cantripSelectionCount > 0 && (
                       <span className="ml-1">({selectedCantrips}/{info.cantripSelectionCount} selected)</span>
                     )}
-                    {higherCantrips.length > 0 && (
-                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherCantrips.length} from higher levels</span>
-                    )}
                   </div>
+                  {higherCantrips.length > 0 && (
+                    <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
+                      From higher: {higherCantrips.join(", ")}
+                    </div>
+                  )}
                 </div>
                 {info.cantripSelectionCount > 0 && (
                   <button
@@ -1548,7 +1551,8 @@ function LevelCard({
             const higherSpells = Object.entries(allSpellSelections || {})
               .filter(([l]) => Number(l) > lvl)
               .flatMap(([, s]: [string, string[]]) => s)
-              .filter((s: string) => !s.endsWith(":0"));
+              .filter((s: string) => !s.endsWith(":0"))
+              .map((s: string) => s.split(":")[0]);
             const needSpells = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             const spellColor = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
             return (
@@ -1561,13 +1565,15 @@ function LevelCard({
                     {info.spellSelectionCount > 0 && (
                       <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} selected)</span>
                     )}
-                    {higherSpells.length > 0 && (
-                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherSpells.length} from higher levels</span>
-                    )}
                     {info.spellsKnownChanged && info.prevSpellsKnown !== undefined && !info.spellSelectionCount && (
                       <span className="ml-1 text-green-600">(+{info.spellsKnown - info.prevSpellsKnown})</span>
                     )}
                   </div>
+                  {higherSpells.length > 0 && (
+                    <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
+                      From higher: {higherSpells.join(", ")}
+                    </div>
+                  )}
                 </div>
                 {info.spellSelectionCount > 0 && (
                   <button
@@ -1588,7 +1594,8 @@ function LevelCard({
             const higherSpells = Object.entries(allSpellSelections || {})
               .filter(([l]) => Number(l) > lvl)
               .flatMap(([, s]: [string, string[]]) => s)
-              .filter((s: string) => !s.endsWith(":0"));
+              .filter((s: string) => !s.endsWith(":0"))
+              .map((s: string) => s.split(":")[0]);
             const needSpells = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
@@ -1600,10 +1607,12 @@ function LevelCard({
                     {info.spellSelectionCount > 0 && (
                       <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} to add)</span>
                     )}
-                    {higherSpells.length > 0 && (
-                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherSpells.length} from higher levels</span>
-                    )}
                   </div>
+                  {higherSpells.length > 0 && (
+                    <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
+                      From higher: {higherSpells.join(", ")}
+                    </div>
+                  )}
                 </div>
                 {info.spellSelectionCount > 0 && (
                   <button
@@ -1624,7 +1633,8 @@ function LevelCard({
             const higherSpells = Object.entries(allSpellSelections || {})
               .filter(([l]) => Number(l) > lvl)
               .flatMap(([, s]: [string, string[]]) => s)
-              .filter((s: string) => !s.endsWith(":0"));
+              .filter((s: string) => !s.endsWith(":0"))
+              .map((s: string) => s.split(":")[0]);
             const needPrepare = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needPrepare ? "border border-red-400 bg-red-50/30" : ""}`}>
@@ -1636,10 +1646,12 @@ function LevelCard({
                     {info.spellSelectionCount > 0 && (
                       <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} selected)</span>
                     )}
-                    {higherSpells.length > 0 && (
-                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherSpells.length} from higher levels</span>
-                    )}
                   </div>
+                  {higherSpells.length > 0 && (
+                    <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
+                      From higher: {higherSpells.join(", ")}
+                    </div>
+                  )}
                 </div>
                 {info.spellSelectionCount > 0 && (
                   <button
