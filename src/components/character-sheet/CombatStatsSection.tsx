@@ -28,8 +28,23 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
     if (hpModal?.mode === "heal") {
       onChange({ currentHp: Math.min(character.maxHp, character.currentHp + amount) });
     } else if (hpModal?.mode === "damage") {
-      const newHp = Math.max(0, character.currentHp - amount);
-      onChange({ currentHp: newHp });
+      const tempHp = character.temporaryHp || 0;
+      let remainingDamage = amount;
+      let newTempHp = tempHp;
+      let newHp = character.currentHp;
+      if (tempHp > 0) {
+        if (tempHp >= amount) {
+          newTempHp = tempHp - amount;
+          remainingDamage = 0;
+        } else {
+          newTempHp = 0;
+          remainingDamage = amount - tempHp;
+        }
+      }
+      if (remainingDamage > 0) {
+        newHp = Math.max(0, character.currentHp - remainingDamage);
+      }
+      onChange({ currentHp: newHp, temporaryHp: newTempHp });
     }
     setHpModal(null);
     setHpAmount("");
