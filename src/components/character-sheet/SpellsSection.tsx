@@ -28,6 +28,7 @@ interface UnifiedSpell {
   damageDice?: string;
   damageType?: string;
   description?: string;
+  duration?: string;
 }
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
@@ -58,6 +59,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       const description = typeof desc === "string" ? desc : (Array.isArray(desc) ? desc.join("\n") : "");
       const damageDice = s.damageDice || srdSpell?.damage?.damageDice || "";
       const damageType = s.damageType || srdSpell?.damage?.damageType || "";
+      const duration = srdSpell?.duration || "";
       return {
         id: s.id,
         name: s.name,
@@ -67,6 +69,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         damageDice,
         damageType,
         description,
+        duration,
       };
     });
   }, [character.spells, srdSpells]);
@@ -237,6 +240,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+                  {spell.duration && (
+                    <span className="text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
+                  )}
                   {editMode && (
                     <button
                       type="button"
