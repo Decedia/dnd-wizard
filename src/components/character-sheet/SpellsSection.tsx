@@ -208,8 +208,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           const buffActive = buffDef ? isBuffActive(buffDef.id) : false;
           return (
             <div key={spell.id} className={`list-row ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 flex-wrap flex-1 min-w-0">
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2 flex-wrap">
                   {preparationCaster && spell.level > 0 && (
                     <button
                       type="button"
@@ -253,6 +253,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       {buffDef.concentration && <span className="text-[8px] opacity-70">C</span>}
                     </button>
                   )}
+                </div>
+                <div className="flex items-center gap-2 mt-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
                   {editMode && (
                     <button
