@@ -224,7 +224,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       {spellPrepared ? "Prepared" : "Prepare"}
                     </button>
                   )}
-                  <button
+                   <button
                     type="button"
                     onClick={() => toggleSpellUsed(spell.id, buffDef, spell.duration)}
                     className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
@@ -238,6 +238,21 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     {spellUsed ? "Used" : "Use"}
                     {buffDef?.concentration && <span className="text-[8px] opacity-70">C</span>}
                   </button>
+                  {spellUsed && buffDef?.concentration && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const currentBuffs = character.activeBuffs || [];
+                        onChange({ activeBuffs: currentBuffs.filter(b => b.spellId !== buffDef.id) });
+                        const currentUsed = character.spellsUsedThisTurn || [];
+                        onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spell.id) });
+                      }}
+                      className="shrink-0 flex items-center justify-center w-5 h-5 text-[10px] font-bold rounded border border-[var(--color-error-200)] text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] hover:border-[var(--color-error-300)] transition-all"
+                      title="Break concentration"
+                    >
+                      ✕
+                    </button>
+                  )}
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
