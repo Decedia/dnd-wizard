@@ -8,10 +8,11 @@ import { Sword, Sparkle, Heart, Drop } from "phosphor-react";
 import type { Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { X } from "phosphor-react";
+import { StateTracker } from "./StateTracker";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints">;
-  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints">>) => void;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates">;
+  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates">>) => void;
   editMode?: boolean;
 }
 
@@ -147,6 +148,20 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           <span className="text-xs font-semibold">Damage</span>
         </button>
       </div>
+
+      <StateTracker
+        activeStates={character.activeStates || []}
+        onToggle={(stateId) => {
+          const current = character.activeStates || [];
+          if (current.includes(stateId)) {
+            onChange({ activeStates: current.filter((s) => s !== stateId) });
+          } else {
+            onChange({ activeStates: [...current, stateId] });
+          }
+        }}
+        onReset={() => onChange({ activeStates: [] })}
+        editMode={editMode}
+      />
 
       {editMode && (
         <div className="grid grid-cols-2 gap-2.5 mt-3.5">

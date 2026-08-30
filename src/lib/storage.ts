@@ -76,6 +76,7 @@ export interface Character {
   variantHumanAbilities?: string[];
   variantHumanSkill?: string;
   appliedAsi: number[];
+  activeStates: string[];
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
     age: string;
@@ -288,6 +289,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     spellSlotsExpended: {},
     spellsUsedThisTurn: [],
     featuresUsedThisTurn: [],
+    activeStates: [],
     preparedSpells: [],
     domainSpells: [],
     circleTerrain: "",
@@ -362,6 +364,7 @@ function normalizeCharacter(c: Character): Character {
     },
     spellsUsedThisTurn: (c as any).spellsUsedThisTurn || [],
     featuresUsedThisTurn: (c as any).featuresUsedThisTurn || [],
+    activeStates: (c as any).activeStates || [],
     levelHp: (c as any).levelHp || {},
     inventory: (c.inventory || []).map((item) => ({
       ...defaults.inventory[0],
