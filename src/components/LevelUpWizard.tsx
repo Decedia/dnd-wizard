@@ -398,6 +398,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const effectiveMaxLevel = maxLevel ?? 20;
 
   const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
+  const [viewingLevel, setViewingLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
@@ -428,8 +429,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   }, [targetLevel]);
 
   const levelInfos = useMemo(
-    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne),
-    [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne]
+    () => buildLevelInfos(character, viewingLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne),
+    [character, viewingLevel, classData, subclassSelection, currentLevel, startFromLevelOne]
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
@@ -929,16 +930,22 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const newLevel = Math.max(effectiveMinLevel, Math.min(effectiveMaxLevel, targetLevel + delta));
     if (newLevel !== targetLevel) {
       setTargetLevel(newLevel);
-      setHpValues({});
-      setAsiSelections({});
-      setSpellSelections({});
-      setMagicalSecretsSelections({});
-      setReplacedSpells({});
-      setSubclassFeatureChoices({});
-      setClassFeatureChoices({});
-      setInvocationSelections({});
-      setReplacedInvocations({});
-      setPactTomeCantrips([]);
+      if (newLevel > targetLevel) {
+        setViewingLevel(newLevel);
+        setHpValues({});
+      } else {
+        if (viewingLevel > newLevel) setViewingLevel(newLevel);
+        setHpValues({});
+        setAsiSelections({});
+        setSpellSelections({});
+        setMagicalSecretsSelections({});
+        setReplacedSpells({});
+        setSubclassFeatureChoices({});
+        setClassFeatureChoices({});
+        setInvocationSelections({});
+        setReplacedInvocations({});
+        setPactTomeCantrips([]);
+      }
     }
   };
 
@@ -992,6 +999,24 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               <Plus className="h-4 w-4" />
             </button>
           </div>
+          {targetLevel > effectiveMinLevel && (
+            <div className="mt-2 flex items-center justify-center gap-1 overflow-x-auto pb-1">
+              {Array.from({ length: targetLevel - effectiveMinLevel + 1 }, (_, i) => effectiveMinLevel + i).map((lvl) => (
+                <button
+                  key={lvl}
+                  type="button"
+                  onClick={() => setViewingLevel(lvl)}
+                  className={`px-3 py-1 text-[10px] font-bold rounded-full transition-colors ${
+                    viewingLevel === lvl
+                      ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
+                      : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  {lvl}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
