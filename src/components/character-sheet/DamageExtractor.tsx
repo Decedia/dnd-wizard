@@ -146,13 +146,18 @@ export function getFeatureDamageInfo(description: string): ExtractedDamage[] {
 interface DamageDisplayProps {
   damages: ExtractedDamage[];
   size?: "sm" | "md";
+  inline?: boolean;
 }
 
-export function DamageDisplay({ damages, size = "sm" }: DamageDisplayProps) {
+export function DamageDisplay({ damages, size = "sm", inline = false }: DamageDisplayProps) {
   if (damages.length === 0) return null;
 
+  const containerClass = inline
+    ? "inline-flex flex-wrap gap-1 ml-2"
+    : "flex flex-wrap gap-1.5 mt-1.5";
+
   return (
-    <div className="flex flex-wrap gap-1.5 mt-1.5">
+    <span className={containerClass}>
       {damages.map((dmg, idx) => {
         const key = dmg.type.toLowerCase() as DamageType;
         const style = DAMAGE_TYPES[key];
@@ -162,23 +167,37 @@ export function DamageDisplay({ damages, size = "sm" }: DamageDisplayProps) {
         const label = style?.label ?? dmg.type;
 
         return (
-          <span
-            key={idx}
-            className="inline-flex items-center gap-1 font-semibold"
-            style={{
-              fontSize: size === "sm" ? "11px" : "13px",
-              padding: size === "sm" ? "2px 6px" : "4px 10px",
-              borderRadius: "6px",
-              backgroundColor: bgColor,
-              color: color,
-            }}
-          >
-            {IconComponent && <IconComponent weight="bold" size={size === "sm" ? 12 : 14} />}
-            {dmg.dice && <span>{dmg.dice}</span>}
-            <span>{label}</span>
+          <span key={idx} className="inline-flex items-center gap-1">
+            {dmg.dice && (
+              <span
+                className="inline-flex items-center font-semibold"
+                style={{
+                  fontSize: size === "sm" ? "10px" : "12px",
+                  padding: size === "sm" ? "1px 5px" : "3px 8px",
+                  borderRadius: "4px",
+                  backgroundColor: "#f0f0f0",
+                  color: "#333333",
+                }}
+              >
+                {dmg.dice}
+              </span>
+            )}
+            <span
+              className="inline-flex items-center gap-1 font-semibold"
+              style={{
+                fontSize: size === "sm" ? "11px" : "13px",
+                padding: size === "sm" ? "2px 6px" : "4px 10px",
+                borderRadius: "6px",
+                backgroundColor: bgColor,
+                color: color,
+              }}
+            >
+              {IconComponent && <IconComponent weight="bold" size={size === "sm" ? 12 : 14} />}
+              <span>{label}</span>
+            </span>
           </span>
         );
       })}
-    </div>
+    </span>
   );
 }

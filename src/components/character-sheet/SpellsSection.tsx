@@ -8,7 +8,6 @@ import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
 import { Lightning, Plus, Check, Circle, X, Clock } from "phosphor-react";
-import { DamageBadge } from "./DamageBadge";
 import { ConditionBadges } from "./ConditionBadge";
 import { DamageDisplay, getSpellDamageInfo } from "./DamageExtractor";
 import { SpellSelectionModal } from "./SpellSelectionModal";
@@ -184,62 +183,55 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         {activeSpells.map((spell) => {
           const spellPrepared = isPrepared(spell.id);
           const spellUsed = (character.spellsUsedThisTurn || []).includes(spell.id);
+          const spellDamages = getSpellDamageInfo(spell);
           return (
-            <div key={spell.id} className={`list-row flex flex-col gap-1 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
-              <div className="flex items-center gap-2 flex-wrap">
-                {preparationCaster && spell.level > 0 && (
+            <div key={spell.id} className={`list-row ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 flex-wrap flex-1 min-w-0">
+                  {preparationCaster && spell.level > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => togglePrepared(spell.id)}
+                      className={`shrink-0 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                        spellPrepared
+                          ? "bg-[var(--color-success-500)] text-[var(--color-surface)]"
+                          : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                      title={spellPrepared ? "Click to unprepare" : "Click to prepare"}
+                    >
+                      {spellPrepared ? "Prepared" : "Prepare"}
+                    </button>
+                  )}
                   <button
                     type="button"
-                    onClick={() => togglePrepared(spell.id)}
-                    className={`shrink-0 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                      spellPrepared
-                        ? "bg-[var(--color-success-500)] text-[var(--color-surface)]"
+                    onClick={() => toggleSpellUsed(spell.id)}
+                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                      spellUsed
+                        ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
                         : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
-                    title={spellPrepared ? "Click to unprepare" : "Click to prepare"}
+                    title={spellUsed ? "Click to mark as unused" : "Click to mark as used this turn"}
                   >
-                    {spellPrepared ? "Prepared" : "Prepare"}
+                    <Clock className="h-3 w-3" />
+                    {spellUsed ? "Used" : "Use"}
                   </button>
-                )}
-                <button
-                  type="button"
-                  onClick={() => toggleSpellUsed(spell.id)}
-                  className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                    spellUsed
-                      ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
-                      : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                  title={spellUsed ? "Click to mark as unused" : "Click to mark as used this turn"}
-                >
-                  <Clock className="h-3 w-3" />
-                  {spellUsed ? "Used" : "Use"}
-                </button>
-                <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
-                {editMode && (
-                  <button
-                    type="button"
-                    onClick={() => removeSpell(spell.id)}
-                    className="text-[var(--color-text-secondary)] hover:text-[var(--color-error-500)] shrink-0"
-                    aria-label="Remove spell"
-                  >
-                    <X weight="regular" className="h-4 w-4" />
-                  </button>
-                )}
-              </div>
-              {(spell.damageDice || spell.damageType) && (
-                <div className="flex items-center gap-2">
-                  <DamageBadge type={spell.damageType} size="sm" />
-                  {spell.damageDice && (
-                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ color: "#64748b", backgroundColor: "#64748b15" }}>
-                      {spell.damageDice}
-                    </span>
+                  <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+                  {editMode && (
+                    <button
+                      type="button"
+                      onClick={() => removeSpell(spell.id)}
+                      className="text-[var(--color-text-secondary)] hover:text-[var(--color-error-500)] shrink-0"
+                      aria-label="Remove spell"
+                    >
+                      <X weight="regular" className="h-4 w-4" />
+                    </button>
                   )}
                 </div>
-              )}
+                <DamageDisplay damages={spellDamages} size="sm" inline />
+              </div>
               {spell.description && (
                 <>
                   <DescriptionText>{spell.description}</DescriptionText>
-                  <DamageDisplay damages={getSpellDamageInfo(spell)} />
                   <ConditionBadges text={spell.description} />
                 </>
               )}
