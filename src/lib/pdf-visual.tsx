@@ -28,7 +28,7 @@ const C = {
 
 const styles = StyleSheet.create({
   page: {
-    padding: "28 28 40 28",
+    padding: "24 24 36 24",
     backgroundColor: C.bg,
     fontFamily: "Inter",
     fontSize: 10,
@@ -37,14 +37,50 @@ const styles = StyleSheet.create({
   },
 
   // Header
-  header: { marginBottom: 10 },
-  characterName: { fontSize: 20, fontWeight: 700, color: C.textPrimary, marginBottom: 3 },
-  subtitle: { fontSize: 10, color: C.textSecondary, marginBottom: 3 },
-  meta: { fontSize: 8, color: C.textMuted },
+  header: {
+    marginBottom: 12,
+    borderBottom: `2px solid ${C.accent}`,
+    paddingBottom: 8,
+  },
+  headerTop: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginBottom: 4,
+  },
+  characterName: {
+    fontSize: 24,
+    fontWeight: 700,
+    color: C.textPrimary,
+  },
+  characterSubtitle: {
+    fontSize: 11,
+    color: C.textSecondary,
+    marginTop: 2,
+  },
+  headerBadges: {
+    flexDirection: "row",
+    gap: 6,
+    marginTop: 6,
+  },
+  badge: {
+    fontSize: 8,
+    fontWeight: 600,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 4,
+  },
+  badgeRace: { color: C.info, backgroundColor: C.info + "15" },
+  badgeClass: { color: C.textPrimary, backgroundColor: C.textPrimary + "10" },
+  badgeLevel: { color: C.accent, backgroundColor: C.accent + "15" },
+  badgeSubclass: { color: C.textSecondary, backgroundColor: C.surface },
+  headerMeta: {
+    fontSize: 8,
+    color: C.textMuted,
+    marginTop: 4,
+  },
 
-  divider: { height: 1, backgroundColor: "#e2e2e2", marginVertical: 8 },
-  dividerAccent: { height: 2, backgroundColor: C.accent, marginBottom: 2 },
-
+  // Section Header
   sectionHeader: {
     fontSize: 10,
     fontWeight: 700,
@@ -52,47 +88,181 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 1,
     marginBottom: 6,
+    borderBottom: `1.5px solid ${C.accent}`,
+    paddingBottom: 3,
   },
 
-  // Combat Stats
-  combatGrid: { flexDirection: "row", gap: 6, marginBottom: 10 },
-  combatBox: {
-    flex: 1,
+  // Combat Stats Row
+  combatRow: {
+    flexDirection: "row",
+    gap: 12,
+    marginBottom: 12,
     alignItems: "center",
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-    backgroundColor: C.surface,
-    borderRadius: 6,
-    border: "1 solid #e8e8e8",
   },
-  combatLabel: { fontSize: 7, fontWeight: 600, color: C.textMuted, textTransform: "uppercase", letterSpacing: 0.5 },
-  combatValue: { fontSize: 18, fontWeight: 700, color: C.textPrimary, marginTop: 2 },
-  combatSub: { fontSize: 9, color: C.textMuted },
+  combatStatBox: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  combatCircle: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    border: `2px solid ${C.accent}`,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: C.surface,
+  },
+  combatCircleSecondary: {
+    borderColor: C.border,
+  },
+  combatCircleLabel: {
+    fontSize: 7,
+    fontWeight: 600,
+    color: C.textMuted,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+    marginTop: 2,
+  },
+  combatCircleValue: {
+    fontSize: 20,
+    fontWeight: 700,
+    color: C.textPrimary,
+  },
+  combatCircleSub: {
+    fontSize: 8,
+    color: C.textMuted,
+  },
 
   // HP Bar
-  hpBarContainer: { marginBottom: 10 },
-  hpBarLabel: { flexDirection: "row", justifyContent: "space-between", marginBottom: 3 },
-  hpBarBg: { height: 8, borderRadius: 4, backgroundColor: "#f0f0f0", border: "1 solid #e0e0e0", overflow: "hidden" },
-  hpBarFill: { height: "100%", backgroundColor: C.success, borderRadius: 4 },
-
-  // Ability Scores
-  abilityGrid: { flexDirection: "row", gap: 6, marginBottom: 10 },
-  abilityBox: {
+  hpSection: {
     flex: 1,
+  },
+  hpBarRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 3,
+  },
+  hpLabel: {
+    fontSize: 8,
+    fontWeight: 600,
+    color: C.textMuted,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+  },
+  hpValue: {
+    fontSize: 8,
+    fontWeight: 600,
+    color: C.textMuted,
+  },
+  hpBarBg: {
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: "#f0f0f0",
+    border: "1 solid #e0e0e0",
+    overflow: "hidden",
+    marginBottom: 6,
+  },
+  hpBarFill: {
+    height: "100%",
+    backgroundColor: C.success,
+    borderRadius: 6,
+  },
+  tempHpBarFill: {
+    backgroundColor: C.info,
+  },
+
+  // Ability Scores - 3 col grid
+  abilityGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 6,
+    marginBottom: 10,
+  },
+  abilityBox: {
+    width: "31.5%",
     alignItems: "center",
     paddingVertical: 8,
-    paddingHorizontal: 4,
     backgroundColor: C.surface,
-    borderRadius: 6,
+    borderRadius: 8,
     border: "1 solid #e8e8e8",
   },
-  abilityLabel: { fontSize: 7, fontWeight: 600, color: C.textMuted, textTransform: "uppercase", letterSpacing: 0.5 },
-  abilityScore: { fontSize: 16, fontWeight: 700, color: C.textPrimary, marginVertical: 1 },
-  abilityMod: { fontSize: 11, fontWeight: 600, color: C.accent },
+  abilityLabel: {
+    fontSize: 8,
+    fontWeight: 600,
+    color: C.textMuted,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+  },
+  abilityMod: {
+    fontSize: 18,
+    fontWeight: 700,
+    color: C.textPrimary,
+    marginVertical: 1,
+  },
+  abilityScore: {
+    fontSize: 9,
+    fontWeight: 600,
+    color: C.textSecondary,
+  },
 
-  // Saves & Skills
-  twoColGrid: { flexDirection: "row", flexWrap: "wrap", gap: 3, marginBottom: 10 },
-  saveSkillRow: {
+  // Saving Throws
+  savesSection: {
+    marginBottom: 10,
+  },
+  saveRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 3,
+    paddingHorizontal: 8,
+    backgroundColor: C.surface,
+    borderRadius: 4,
+    marginBottom: 2,
+    border: "1 solid #e8e8e8",
+  },
+  saveRowProf: {
+    borderColor: C.accent,
+  },
+  saveLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+  saveDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    border: "1.5 solid #d0d0d0",
+  },
+  saveDotProf: {
+    backgroundColor: C.accent,
+    borderColor: C.accent,
+  },
+  saveName: {
+    fontSize: 9,
+    fontWeight: 600,
+    color: C.textPrimary,
+  },
+  saveNameProf: {
+    color: C.accent,
+  },
+  saveMod: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: C.textSecondary,
+  },
+  saveModProf: {
+    color: C.accent,
+  },
+
+  // Skills - 2 col grid
+  skillsGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 3,
+  },
+  skillItem: {
+    width: "48.5%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -100,35 +270,112 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     backgroundColor: C.surface,
     borderRadius: 4,
-    marginBottom: 3,
     border: "1 solid #e8e8e8",
   },
-  saveSkillProf: { borderColor: C.accent },
-  saveSkillLeft: { flexDirection: "row", alignItems: "center", gap: 6 },
-  dot: { width: 10, height: 10, borderRadius: 5, border: "1.5 solid #d0d0d0" },
-  dotProficient: { backgroundColor: C.accent, borderColor: C.accent },
-  saveSkillName: { fontSize: 9, fontWeight: 600, color: C.textPrimary },
-  saveSkillNameProf: { color: C.accent },
-  saveSkillMod: { fontSize: 10, fontWeight: 700, color: C.textSecondary },
-  saveSkillModProf: { color: C.accent },
-  badgeExpert: { fontSize: 6, fontWeight: 700, color: C.danger, backgroundColor: C.danger + "15", paddingHorizontal: 3, paddingVertical: 1, borderRadius: 2 },
+  skillProf: {
+    borderColor: C.accent,
+  },
+  skillLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+  },
+  skillDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 2,
+    border: "1.5 solid #d0d0d0",
+  },
+  skillDotProf: {
+    backgroundColor: C.accent,
+    borderColor: C.accent,
+  },
+  skillName: {
+    fontSize: 8,
+    fontWeight: 400,
+    color: C.textPrimary,
+  },
+  skillNameProf: {
+    fontWeight: 600,
+  },
+  skillInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  skillAbility: {
+    fontSize: 7,
+    color: C.textMuted,
+  },
+  skillTotal: {
+    fontSize: 9,
+    fontWeight: 700,
+    color: C.textSecondary,
+  },
+  skillTotalProf: {
+    color: C.accent,
+  },
+  skillExpert: {
+    fontSize: 6,
+    fontWeight: 700,
+    color: C.danger,
+    backgroundColor: C.danger + "15",
+    paddingHorizontal: 3,
+    paddingVertical: 1,
+    borderRadius: 2,
+  },
 
-  // Cards
-  card: { padding: 8, backgroundColor: C.surface, borderRadius: 6, border: "1 solid #e8e8e8", marginBottom: 4 },
-  cardTitle: { fontSize: 10, fontWeight: 700, color: C.textPrimary, marginBottom: 2 },
-  cardTitleRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 3 },
-  cardDesc: { fontSize: 8, color: C.textSecondary, lineHeight: 1.5 },
-  cardFeatureTitle: { fontSize: 9, fontWeight: 700, color: C.accent, marginBottom: 2 },
+  // Cards for attacks/features
+  card: {
+    padding: 8,
+    backgroundColor: C.surface,
+    borderRadius: 6,
+    border: "1 solid #e8e8e8",
+    marginBottom: 4,
+  },
+  cardTitle: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: C.textPrimary,
+    marginBottom: 2,
+  },
+  cardTitleRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 3,
+  },
+  cardDesc: {
+    fontSize: 8,
+    color: C.textSecondary, lineHeight: 1.5,
+  },
+  cardFeatureTitle: {
+    fontSize: 9,
+    fontWeight: 700,
+    color: C.accent,
+    marginBottom: 2,
+  },
 
   // Badges
-  badge: { fontSize: 7, fontWeight: 600, paddingHorizontal: 5, paddingVertical: 2, borderRadius: 3 },
+  attackBadge: {
+    fontSize: 7,
+    fontWeight: 600,
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    borderRadius: 3,
+  },
   badgeDamage: { color: C.info, backgroundColor: C.info + "15" },
   badgeSneak: { color: C.danger, backgroundColor: C.danger + "15" },
 
   // Inventory
-  inventoryGrid: { flexDirection: "row", flexWrap: "wrap", gap: 3, marginBottom: 10 },
+  inventoryGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 3,
+    marginBottom: 10,
+  },
   inventoryItem: {
-    width: "48%",
+    width: "48.5%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -138,18 +385,46 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     border: "1 solid #e8e8e8",
   },
-  inventoryEquipped: { borderColor: C.success },
-  inventoryName: { fontSize: 8, color: C.textPrimary },
-  inventoryNameEquipped: { fontWeight: 600 },
-  inventoryQty: { fontSize: 7, color: C.textMuted },
-  equippedDot: { width: 4, height: 4, borderRadius: 2, backgroundColor: C.success, marginRight: 3 },
+  inventoryEquipped: {
+    borderColor: C.success,
+  },
+  inventoryName: {
+    fontSize: 8,
+    color: C.textPrimary,
+  },
+  inventoryNameEquipped: {
+    fontWeight: 600,
+  },
+  inventoryQty: {
+    fontSize: 7,
+    color: C.textMuted,
+  },
+  equippedDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: C.success,
+    marginRight: 3,
+  },
 
   // Currency
-  currencyRow: { flexDirection: "row", gap: 12, marginBottom: 10 },
-  currencyItem: { fontSize: 8, fontWeight: 600, color: C.textSecondary },
+  currencyRow: {
+    flexDirection: "row",
+    gap: 12,
+    marginBottom: 10,
+  },
+  currencyItem: {
+    fontSize: 8,
+    fontWeight: 600,
+    color: C.textSecondary,
+  },
 
   // Spellcasting
-  spellcastGrid: { flexDirection: "row", gap: 6, marginBottom: 10 },
+  spellcastGrid: {
+    flexDirection: "row",
+    gap: 6,
+    marginBottom: 10,
+  },
   spellcastBox: {
     flex: 1,
     alignItems: "center",
@@ -159,9 +434,27 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     border: "1 solid #e8e8e8",
   },
+  spellcastLabel: {
+    fontSize: 7,
+    fontWeight: 600,
+    color: C.textMuted,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+  },
+  spellcastValue: {
+    fontSize: 16,
+    fontWeight: 700,
+    color: C.textPrimary,
+    marginTop: 2,
+  },
 
   // Spell Slots
-  spellSlotRow: { flexDirection: "row", flexWrap: "wrap", gap: 4, marginBottom: 10 },
+  spellSlotRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 4,
+    marginBottom: 10,
+  },
   spellSlotBox: {
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -174,7 +467,7 @@ const styles = StyleSheet.create({
 
   // Spells
   spellItem: {
-    width: "48%",
+    width: "48.5%",
     paddingVertical: 5,
     paddingHorizontal: 8,
     backgroundColor: C.surface,
@@ -182,24 +475,58 @@ const styles = StyleSheet.create({
     border: "1 solid #e8e8e8",
     marginBottom: 3,
   },
-  spellRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
-  spellName: { fontSize: 8, fontWeight: 600, color: C.textPrimary },
-  spellLevel: { fontSize: 7, fontWeight: 600, color: C.textMuted },
-  spellDamageBadge: { fontSize: 7, fontWeight: 600, color: C.info, backgroundColor: C.info + "15", paddingHorizontal: 3, paddingVertical: 1, borderRadius: 2, marginTop: 2 },
+  spellRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  spellName: {
+    fontSize: 8,
+    fontWeight: 600,
+    color: C.textPrimary,
+  },
+  spellLevel: {
+    fontSize: 7,
+    fontWeight: 600,
+    color: C.textMuted,
+  },
+  spellDamageBadge: {
+    fontSize: 7,
+    fontWeight: 600,
+    color: C.info,
+    backgroundColor: C.info + "15",
+    paddingHorizontal: 3,
+    paddingVertical: 1,
+    borderRadius: 2,
+    marginTop: 2,
+  },
 
   // Bio
-  bioSection: { marginBottom: 8 },
-  bioLabel: { fontSize: 8, fontWeight: 700, color: C.textPrimary, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 2 },
-  bioText: { fontSize: 8, color: C.textSecondary, lineHeight: 1.6 },
+  bioSection: {
+    marginBottom: 8,
+  },
+  bioLabel: {
+    fontSize: 8,
+    fontWeight: 700,
+    color: C.textPrimary,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+    marginBottom: 2,
+  },
+  bioText: {
+    fontSize: 8,
+    color: C.textSecondary,
+    lineHeight: 1.6,
+  },
 
   // Footer
   footer: {
     position: "absolute",
-    bottom: 16,
-    left: 28,
-    right: 28,
+    bottom: 12,
+    left: 24,
+    right: 24,
     textAlign: "center",
-    fontSize: 7,
+    fontSize: 6,
     color: "#aaaaaa",
     borderTop: "1 solid #e8e8e8",
     paddingTop: 4,
@@ -245,56 +572,70 @@ function CharacterPdfDocument({ character }: { character: Character }) {
       creator="DND Wizard"
       producer="DND Wizard"
     >
-      {/* ===== PAGE 1: Combat, Abilities, Saves, Skills ===== */}
+      {/* ===== PAGE 1: Header, Combat, Abilities, Saves, Skills ===== */}
       <Page size="A4" style={styles.page}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.characterName}>{character.name || "Unnamed Character"}</Text>
-          <Text style={styles.subtitle}>
-            {character.race} {character.class} Level {character.level}
-            {character.subclass ? ` \u2022 ${character.subclass}` : ""}
-          </Text>
-          <Text style={styles.meta}>
+          <View style={styles.headerTop}>
+            <View>
+              <Text style={styles.characterName}>{character.name || "Unnamed Character"}</Text>
+              <Text style={styles.characterSubtitle}>
+                {character.race} {character.class} Level {character.level}
+                {character.subclass ? ` \u2022 ${character.subclass}` : ""}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.headerBadges}>
+            {character.race && <Text style={[styles.badge, styles.badgeRace]}>{character.race}</Text>}
+            {character.class && <Text style={[styles.badge, styles.badgeClass]}>{character.class}</Text>}
+            <Text style={[styles.badge, styles.badgeLevel]}>Level {character.level}</Text>
+            {character.subclass && <Text style={[styles.badge, styles.badgeSubclass]}>{character.subclass}</Text>}
+          </View>
+          <Text style={styles.headerMeta}>
             Background: {character.background || "\u2014"}  |  Alignment: {character.alignment || "\u2014"}  |  XP: {character.experiencePoints}
           </Text>
         </View>
-        <View style={styles.divider} />
-        <View style={styles.dividerAccent} />
 
-        {/* Combat Stats */}
-        <View style={styles.combatGrid}>
-          {[
-            { label: "AC", value: `${character.ac}`, color: C.textPrimary },
-            { label: "HP", value: `${character.currentHp}`, sub: `/${character.maxHp}`, color: C.success },
-            { label: "Speed", value: `${character.speed}`, sub: "ft", color: C.textPrimary },
-            { label: "Prof", value: `+${profBonus}`, color: C.textPrimary },
-            { label: "Init", value: `${character.initiative >= 0 ? "+" : ""}${character.initiative}`, color: C.textPrimary },
-          ].map((item) => (
-            <View key={item.label} style={styles.combatBox}>
-              <Text style={styles.combatLabel}>{item.label}</Text>
-              <Text style={[styles.combatValue, { color: item.color }]}>{item.value}</Text>
-              {item.sub && <Text style={styles.combatSub}>{item.sub}</Text>}
+        {/* Combat Stats Row: AC, Speed, HP */}
+        <View style={styles.combatRow}>
+          {/* AC */}
+          <View style={styles.combatStatBox}>
+            <View style={styles.combatCircle}>
+              <Text style={styles.combatCircleValue}>{character.ac}</Text>
             </View>
-          ))}
+            <Text style={styles.combatCircleLabel}>AC</Text>
+          </View>
+
+          {/* Speed */}
+          <View style={styles.combatStatBox}>
+            <View style={[styles.combatCircle, styles.combatCircleSecondary]}>
+              <Text style={styles.combatCircleValue}>{character.speed}</Text>
+              <Text style={styles.combatCircleSub}>ft.</Text>
+            </View>
+            <Text style={styles.combatCircleLabel}>Speed</Text>
+          </View>
+
+          {/* HP Bar */}
+          <View style={styles.hpSection}>
+            <View style={styles.hpBarRow}>
+              <Text style={styles.hpLabel}>HP</Text>
+              <Text style={styles.hpValue}>{character.currentHp} / {character.maxHp}</Text>
+            </View>
+            <View style={styles.hpBarBg}>
+              <View style={[styles.hpBarFill, { width: `${character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0}%` }]} />
+            </View>
+            <View style={styles.hpBarRow}>
+              <Text style={styles.hpLabel}>Temp HP</Text>
+              <Text style={styles.hpValue}>{character.temporaryHp}</Text>
+            </View>
+            <View style={styles.hpBarBg}>
+              <View style={[styles.hpBarFill, styles.tempHpBarFill, { width: character.temporaryHp > 0 ? "100%" : "0%" }]} />
+            </View>
+          </View>
         </View>
 
-        {/* HP Bar */}
-        <View style={styles.hpBarContainer}>
-          <View style={styles.hpBarLabel}>
-            <Text style={styles.combatLabel}>Hit Points</Text>
-            <Text style={styles.meta}>
-              {character.currentHp} / {character.maxHp}
-              {character.temporaryHp > 0 ? ` (+${character.temporaryHp} temp)` : ""}
-            </Text>
-          </View>
-          <View style={styles.hpBarBg}>
-            <View style={[styles.hpBarFill, { width: `${character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0}%` }]} />
-          </View>
-        </View>
-        <View style={styles.divider} />
-
-        {/* Ability Scores */}
-        <Text style={styles.sectionHeader}>Ability Scores</Text>
+        {/* Ability Scores - 3 column grid */}
+        <Text style={styles.sectionHeader}>Stats</Text>
         <View style={styles.abilityGrid}>
           {abilityKeys.map((key, idx) => {
             const score = character[key];
@@ -302,55 +643,58 @@ function CharacterPdfDocument({ character }: { character: Character }) {
             return (
               <View key={key} style={styles.abilityBox}>
                 <Text style={styles.abilityLabel}>{abilityLabels[idx]}</Text>
-                <Text style={styles.abilityScore}>{score}</Text>
                 <Text style={styles.abilityMod}>{mod >= 0 ? `+${mod}` : mod}</Text>
+                <Text style={styles.abilityScore}>{score}</Text>
               </View>
             );
           })}
         </View>
-        <View style={styles.divider} />
 
         {/* Saving Throws */}
-        <Text style={styles.sectionHeader}>Saving Throws</Text>
-        <View style={styles.twoColGrid}>
+        <View style={styles.savesSection}>
+          <Text style={styles.sectionHeader}>Saving Throws</Text>
           {abilityKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             return (
-              <View key={key} style={[styles.saveSkillRow, { width: "48%" }, st.proficient ? styles.saveSkillProf : {}]}>
-                <View style={styles.saveSkillLeft}>
-                  <View style={[styles.dot, st.proficient ? styles.dotProficient : {}]} />
-                  <Text style={[styles.saveSkillName, st.proficient ? styles.saveSkillNameProf : {}]}>{key.toUpperCase()}</Text>
+              <View key={key} wrap={false} style={[styles.saveRow, st.proficient ? styles.saveRowProf : {}]}>
+                <View style={styles.saveLeft}>
+                  <View style={[styles.saveDot, st.proficient ? styles.saveDotProf : {}]} />
+                  <Text style={[styles.saveName, st.proficient ? styles.saveNameProf : {}]}>{key.toUpperCase()}</Text>
+                  <Text style={{ fontSize: 8, color: C.textMuted }}>
+                    {getModifier(character[key]) >= 0 ? `+${getModifier(character[key])}` : getModifier(character[key])}
+                  </Text>
                 </View>
-                <Text style={[styles.saveSkillMod, st.proficient ? styles.saveSkillModProf : {}]}>
+                <Text style={[styles.saveMod, st.proficient ? styles.saveModProf : {}]}>
                   {st.value >= 0 ? `+${st.value}` : st.value}
                 </Text>
               </View>
             );
           })}
         </View>
-        <View style={styles.divider} />
 
         {/* Skills */}
         <Text style={styles.sectionHeader}>Skills</Text>
-        <View style={styles.twoColGrid}>
+        <View style={styles.skillsGrid}>
           {skillsList.map(({ name, ability }) => {
             const proficient = character.skills[name] ?? false;
             const expert = (character.expertise || []).includes(name);
             const profMultiplier = expert ? 2 : 1;
             const abilityScore = character[ability as keyof Character] as number;
             const mod = getModifier(abilityScore);
-            const total = mod + (profBonus * profMultiplier);
+            const total = mod + (proficient ? profBonus * profMultiplier : 0);
             return (
-              <View key={name} style={[styles.saveSkillRow, { width: "48%" }, proficient ? { borderColor: C.accent } : {}]}>
-                <View style={styles.saveSkillLeft}>
-                  <View style={[styles.dot, { borderRadius: 2 }, proficient ? styles.dotProficient : {}]} />
-                  <Text style={styles.saveSkillName}>{name}</Text>
-                  {expert && <Text style={styles.badgeExpert}>EXP</Text>}
-                  <Text style={[styles.saveSkillName, { color: C.textMuted, fontSize: 7 }]}>{ability.toUpperCase()}</Text>
+              <View key={name} style={[styles.skillItem, proficient ? styles.skillProf : {}]}>
+                <View style={styles.skillLeft}>
+                  <View style={[styles.skillDot, proficient ? styles.skillDotProf : {}]} />
+                  <Text style={[styles.skillName, proficient ? styles.skillNameProf : {}]}>{name}</Text>
+                  {expert && <Text style={styles.skillExpert}>EXP</Text>}
                 </View>
-                <Text style={[styles.saveSkillMod, proficient ? styles.saveSkillModProf : {}]}>
-                  {total >= 0 ? `+${total}` : total}
-                </Text>
+                <View style={styles.skillInfo}>
+                  <Text style={styles.skillAbility}>{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</Text>
+                  <Text style={[styles.skillTotal, proficient ? styles.skillTotalProf : {}]}>
+                    {total >= 0 ? `+${total}` : total}
+                  </Text>
+                </View>
               </View>
             );
           })}
@@ -364,14 +708,14 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         {attacks.length > 0 ? (
           <View style={{ marginBottom: 10 }}>
             {attacks.map((attack) => (
-              <View key={attack.id} style={styles.card}>
+              <View key={attack.id} wrap={false} style={styles.card}>
                 <View style={styles.cardTitleRow}>
                   <Text style={styles.cardTitle}>{attack.name}</Text>
                   <Text style={[styles.cardDesc, { color: C.textSecondary }]}>+{attack.attackBonus} to hit</Text>
                 </View>
                 <View style={{ flexDirection: "row", gap: 4 }}>
-                  {attack.damageType && <Text style={[styles.badge, styles.badgeDamage]}>{attack.damageType}</Text>}
-                  {attack.sneakAttack && <Text style={[styles.badge, styles.badgeSneak]}>+{attack.sneakAttack} sneak</Text>}
+                  {attack.damageType && <Text style={[styles.attackBadge, styles.badgeDamage]}>{attack.damageType}</Text>}
+                  {attack.sneakAttack && <Text style={[styles.attackBadge, styles.badgeSneak]}>+{attack.sneakAttack} sneak</Text>}
                 </View>
               </View>
             ))}
@@ -379,7 +723,6 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         ) : (
           <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No attacks configured</Text>
         )}
-        <View style={styles.divider} />
 
         {/* Features & Traits */}
         <Text style={styles.sectionHeader}>Features & Traits</Text>
@@ -395,7 +738,6 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         ) : (
           <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No features</Text>
         )}
-        <View style={styles.divider} />
 
         {/* Inventory */}
         <Text style={styles.sectionHeader}>Inventory</Text>
@@ -414,7 +756,6 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         ) : (
           <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No items</Text>
         )}
-        <View style={styles.divider} />
 
         {/* Currency */}
         <Text style={styles.sectionHeader}>Currency</Text>
@@ -438,25 +779,24 @@ function CharacterPdfDocument({ character }: { character: Character }) {
             <Text style={styles.sectionHeader}>Spellcasting</Text>
             <View style={styles.spellcastGrid}>
               <View style={styles.spellcastBox}>
-                <Text style={styles.combatLabel}>Spell Save DC</Text>
-                <Text style={styles.combatValue}>
+                <Text style={styles.spellcastLabel}>Spell Save DC</Text>
+                <Text style={styles.spellcastValue}>
                   {8 + profBonus + getModifier(character[character.spellcastingAbility as keyof Character] as number)}
                 </Text>
               </View>
               <View style={styles.spellcastBox}>
-                <Text style={styles.combatLabel}>Spell Attack</Text>
-                <Text style={styles.combatValue}>
+                <Text style={styles.spellcastLabel}>Spell Attack</Text>
+                <Text style={styles.spellcastValue}>
                   +{profBonus + getModifier(character[character.spellcastingAbility as keyof Character] as number)}
                 </Text>
               </View>
               <View style={styles.spellcastBox}>
-                <Text style={styles.combatLabel}>Ability</Text>
-                <Text style={[styles.combatValue, { color: C.accent }]}>
+                <Text style={styles.spellcastLabel}>Ability</Text>
+                <Text style={[styles.spellcastValue, { color: C.accent }]}>
                   {character.spellcastingAbility.toUpperCase()}
                 </Text>
               </View>
             </View>
-            <View style={styles.divider} />
           </>
         )}
 
@@ -470,7 +810,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
                 const remaining = (count as number) - expended;
                 return (
                   <View key={level} style={styles.spellSlotBox}>
-                    <Text style={styles.combatLabel}>Level {level}</Text>
+                    <Text style={styles.spellcastLabel}>Level {level}</Text>
                     <Text style={[styles.cardTitle, { fontSize: 11, marginTop: 1 }]}>
                       {remaining}<Text style={{ fontSize: 8, color: C.textMuted }}>/{count as number}</Text>
                     </Text>
@@ -478,7 +818,6 @@ function CharacterPdfDocument({ character }: { character: Character }) {
                 );
               })}
             </View>
-            <View style={styles.divider} />
           </>
         )}
 
@@ -486,7 +825,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         {spells.length > 0 && (
           <>
             <Text style={styles.sectionHeader}>Spells</Text>
-            <View style={styles.twoColGrid}>
+            <View style={styles.skillsGrid}>
               {spells.map((spell) => (
                 <View key={spell.id} style={styles.spellItem}>
                   <View style={styles.spellRow}>
@@ -499,7 +838,6 @@ function CharacterPdfDocument({ character }: { character: Character }) {
                 </View>
               ))}
             </View>
-            <View style={styles.divider} />
           </>
         )}
 
@@ -521,7 +859,6 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         {/* Other Proficiencies */}
         {character.otherProficiencies ? (
           <>
-            <View style={styles.divider} />
             <Text style={styles.sectionHeader}>Other Proficiencies & Languages</Text>
             <Text style={styles.bioText}>{character.otherProficiencies}</Text>
           </>
