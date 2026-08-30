@@ -6,7 +6,8 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
-import { advanceTurn } from "@/lib/spellEffects";
+import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
+import { useSRD } from "@/contexts/SRDContext";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
 import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
@@ -31,6 +32,7 @@ export default function CharacterView() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
+  const { data: srdData } = useSRD();
 
   const [character, setCharacter] = useState<Character | null>(() => {
     if (typeof window !== "undefined" && id) {
@@ -275,7 +277,22 @@ export default function CharacterView() {
         <div className="fixed bottom-[88px] left-1/2 -translate-x-1/2 z-50">
           <button
             type="button"
-            onClick={() => handleChange({ spellsUsedThisTurn: [], featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) })}
+            onClick={() => {
+              const currentUsed = character.spellsUsedThisTurn || [];
+              const srdSpells = srdData?.spells || [];
+              const keptInUse: string[] = [];
+              for (const spellId of currentUsed) {
+                const charSpell = (character.spells || []).find(s => s.id === spellId);
+                if (!charSpell) continue;
+                const srdSpell = charSpell.srdSpellName ? srdSpells.find(sp => sp.name === charSpell.srdSpellName) : undefined;
+                const duration = srdSpell?.duration || "";
+                const turns = duration ? parseDurationToTurns(duration) : null;
+                if (turns !== null && turns > 1) {
+                  keptInUse.push(spellId);
+                }
+              }
+              handleChange({ spellsUsedThisTurn: keptInUse, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) });
+            }}
             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] shadow-lg hover:opacity-90 transition-all"
           >
             <Clock className="h-4 w-4" />

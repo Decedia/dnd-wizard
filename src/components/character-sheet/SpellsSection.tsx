@@ -127,8 +127,21 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   }, [character.spellsUsedThisTurn, character.activeBuffs, onChange]);
 
   const resetSpellsUsed = useCallback(() => {
-    onChange({ spellsUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) });
-  }, [onChange, character.activeBuffs]);
+    const currentUsed = character.spellsUsedThisTurn || [];
+    const spells = character.spells || [];
+    const keptInUse: string[] = [];
+    for (const spellId of currentUsed) {
+      const charSpell = spells.find(s => s.id === spellId);
+      if (!charSpell) continue;
+      const srdSpell = charSpell.srdSpellName ? srdSpells.find(sp => sp.name === charSpell.srdSpellName) : undefined;
+      const duration = srdSpell?.duration || "";
+      const turns = duration ? parseDurationToTurns(duration) : null;
+      if (turns !== null && turns > 1) {
+        keptInUse.push(spellId);
+      }
+    }
+    onChange({ spellsUsedThisTurn: keptInUse, activeBuffs: advanceTurn(character.activeBuffs || []) });
+  }, [onChange, character.activeBuffs, character.spells, srdSpells]);
 
   const removeSpell = useCallback((id: string) => {
     onChange({
