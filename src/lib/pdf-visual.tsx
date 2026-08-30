@@ -13,412 +13,6 @@ Font.register({
   ],
 });
 
-const styles = StyleSheet.create({
-  page: {
-    padding: 32,
-    backgroundColor: "#ffffff",
-    fontFamily: "Inter",
-    fontSize: 10,
-    color: "#1a1a1a",
-  },
-
-  // Header
-  header: {
-    marginBottom: 12,
-  },
-  characterName: {
-    fontSize: 22,
-    fontWeight: 700,
-    color: "#1a1a1a",
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 11,
-    color: "#555555",
-    marginBottom: 4,
-  },
-  meta: {
-    fontSize: 9,
-    color: "#888888",
-  },
-
-  // Dividers
-  divider: {
-    height: 1,
-    backgroundColor: "#e2e2e2",
-    marginVertical: 10,
-  },
-  dividerAccent: {
-    height: 2,
-    backgroundColor: "#722f37",
-    marginBottom: 2,
-  },
-
-  // Section Headers
-  sectionHeader: {
-    fontSize: 11,
-    fontWeight: 700,
-    color: "#722f37",
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    marginBottom: 8,
-  },
-
-  // Combat Stats Row
-  combatGrid: {
-    flexDirection: "row",
-    gap: 8,
-    marginBottom: 12,
-  },
-  combatBox: {
-    flex: 1,
-    alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 6,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 8,
-    border: "1 solid #e8e8e8",
-  },
-  combatLabel: {
-    fontSize: 8,
-    fontWeight: 600,
-    color: "#999999",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  combatValue: {
-    fontSize: 20,
-    fontWeight: 700,
-    color: "#1a1a1a",
-    marginTop: 2,
-  },
-  combatSub: {
-    fontSize: 10,
-    color: "#888888",
-  },
-
-  // HP Bar
-  hpBarContainer: {
-    marginBottom: 12,
-  },
-  hpBarLabel: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 4,
-  },
-  hpBarBg: {
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: "#f0f0f0",
-    border: "1 solid #e0e0e0",
-    overflow: "hidden",
-  },
-  hpBarFill: {
-    height: "100%",
-    backgroundColor: "#16a34a",
-    borderRadius: 5,
-  },
-
-  // Ability Scores
-  abilityGrid: {
-    flexDirection: "row",
-    gap: 8,
-    marginBottom: 12,
-  },
-  abilityBox: {
-    flex: 1,
-    alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 4,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 8,
-    border: "1 solid #e8e8e8",
-  },
-  abilityLabel: {
-    fontSize: 8,
-    fontWeight: 600,
-    color: "#999999",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  abilityScore: {
-    fontSize: 18,
-    fontWeight: 700,
-    color: "#1a1a1a",
-    marginVertical: 2,
-  },
-  abilityMod: {
-    fontSize: 12,
-    fontWeight: 600,
-    color: "#722f37",
-  },
-
-  // Saving Throws & Skills
-  saveSkillRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 6,
-    marginBottom: 4,
-    border: "1 solid #e8e8e8",
-  },
-  saveSkillProf: {
-    border: "1 solid #722f37",
-  },
-  saveSkillLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  dot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    border: "1.5 solid #d0d0d0",
-  },
-  dotProficient: {
-    backgroundColor: "#722f37",
-    borderColor: "#722f37",
-  },
-  saveSkillName: {
-    fontSize: 10,
-    fontWeight: 600,
-    color: "#1a1a1a",
-  },
-  saveSkillMod: {
-    fontSize: 11,
-    fontWeight: 700,
-    color: "#555555",
-  },
-  saveSkillModProf: {
-    color: "#722f37",
-  },
-
-  // Two column grid for saves/skills
-  twoColGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 4,
-    marginBottom: 12,
-  },
-  twoColItem: {
-    width: "48%",
-  },
-
-  // Attacks & Features
-  card: {
-    padding: 10,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 6,
-    border: "1 solid #e8e8e8",
-    marginBottom: 6,
-  },
-  cardTitle: {
-    fontSize: 11,
-    fontWeight: 700,
-    color: "#1a1a1a",
-    marginBottom: 2,
-  },
-  cardTitleRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 4,
-  },
-  cardDesc: {
-    fontSize: 9,
-    color: "#555555",
-    lineHeight: 1.5,
-  },
-  cardFeatureTitle: {
-    fontSize: 10,
-    fontWeight: 700,
-    color: "#722f37",
-    marginBottom: 2,
-  },
-
-  // Badges
-  badge: {
-    fontSize: 8,
-    fontWeight: 600,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-  },
-  badgeDamage: {
-    color: "#2563eb",
-    backgroundColor: "#2563eb15",
-  },
-  badgeSneak: {
-    color: "#dc2626",
-    backgroundColor: "#dc262615",
-  },
-  badgeExpert: {
-    color: "#dc2626",
-    backgroundColor: "#dc262615",
-    fontSize: 7,
-    paddingHorizontal: 3,
-    paddingVertical: 1,
-  },
-
-  // Inventory
-  inventoryGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 4,
-    marginBottom: 12,
-  },
-  inventoryItem: {
-    width: "48%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 4,
-    border: "1 solid #e8e8e8",
-  },
-  inventoryEquipped: {
-    borderColor: "#16a34a",
-  },
-  inventoryName: {
-    fontSize: 9,
-    color: "#1a1a1a",
-  },
-  inventoryQty: {
-    fontSize: 8,
-    color: "#888888",
-  },
-  equippedDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 3,
-    backgroundColor: "#16a34a",
-    marginRight: 4,
-  },
-
-  // Currency
-  currencyRow: {
-    flexDirection: "row",
-    gap: 16,
-    marginBottom: 12,
-  },
-  currencyItem: {
-    fontSize: 9,
-    fontWeight: 600,
-    color: "#555555",
-  },
-
-  // Spellcasting
-  spellcastGrid: {
-    flexDirection: "row",
-    gap: 8,
-    marginBottom: 12,
-  },
-  spellcastBox: {
-    flex: 1,
-    alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 6,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 8,
-    border: "1 solid #e8e8e8",
-  },
-
-  // Spell Slots
-  spellSlotRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 6,
-    marginBottom: 12,
-  },
-  spellSlotBox: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 6,
-    border: "1 solid #e8e8e8",
-    alignItems: "center",
-    minWidth: 50,
-  },
-
-  // Spells
-  spellItem: {
-    width: "48%",
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 4,
-    border: "1 solid #e8e8e8",
-    marginBottom: 4,
-  },
-  spellRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  spellName: {
-    fontSize: 9,
-    fontWeight: 600,
-    color: "#1a1a1a",
-  },
-  spellLevel: {
-    fontSize: 8,
-    fontWeight: 600,
-    color: "#888888",
-  },
-  spellDamage: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-    marginTop: 2,
-  },
-  spellDamageBadge: {
-    fontSize: 8,
-    fontWeight: 600,
-    color: "#2563eb",
-    backgroundColor: "#2563eb15",
-    paddingHorizontal: 4,
-    paddingVertical: 1,
-    borderRadius: 3,
-  },
-
-  // Bio
-  bioSection: {
-    marginBottom: 12,
-  },
-  bioLabel: {
-    fontSize: 9,
-    fontWeight: 700,
-    color: "#1a1a1a",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-    marginBottom: 3,
-  },
-  bioText: {
-    fontSize: 9,
-    color: "#555555",
-    lineHeight: 1.6,
-  },
-
-  // Footer
-  footer: {
-    position: "absolute",
-    bottom: 20,
-    left: 32,
-    right: 32,
-    textAlign: "center",
-    fontSize: 7,
-    color: "#aaaaaa",
-    borderTop: "1 solid #e8e8e8",
-    paddingTop: 6,
-  },
-});
-
 const C = {
   bg: "#ffffff",
   surface: "#f8f8f8",
@@ -429,11 +23,188 @@ const C = {
   accent: "#722f37",
   success: "#16a34a",
   danger: "#dc2626",
-  warning: "#ea580c",
   info: "#2563eb",
 };
 
-const DND_MARKER = "DND_WIZARD_CHARACTER_DATA";
+const styles = StyleSheet.create({
+  page: {
+    padding: "28 28 40 28",
+    backgroundColor: C.bg,
+    fontFamily: "Inter",
+    fontSize: 10,
+    color: C.textPrimary,
+    position: "relative",
+  },
+
+  // Header
+  header: { marginBottom: 10 },
+  characterName: { fontSize: 20, fontWeight: 700, color: C.textPrimary, marginBottom: 3 },
+  subtitle: { fontSize: 10, color: C.textSecondary, marginBottom: 3 },
+  meta: { fontSize: 8, color: C.textMuted },
+
+  divider: { height: 1, backgroundColor: "#e2e2e2", marginVertical: 8 },
+  dividerAccent: { height: 2, backgroundColor: C.accent, marginBottom: 2 },
+
+  sectionHeader: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: C.accent,
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    marginBottom: 6,
+  },
+
+  // Combat Stats
+  combatGrid: { flexDirection: "row", gap: 6, marginBottom: 10 },
+  combatBox: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    backgroundColor: C.surface,
+    borderRadius: 6,
+    border: "1 solid #e8e8e8",
+  },
+  combatLabel: { fontSize: 7, fontWeight: 600, color: C.textMuted, textTransform: "uppercase", letterSpacing: 0.5 },
+  combatValue: { fontSize: 18, fontWeight: 700, color: C.textPrimary, marginTop: 2 },
+  combatSub: { fontSize: 9, color: C.textMuted },
+
+  // HP Bar
+  hpBarContainer: { marginBottom: 10 },
+  hpBarLabel: { flexDirection: "row", justifyContent: "space-between", marginBottom: 3 },
+  hpBarBg: { height: 8, borderRadius: 4, backgroundColor: "#f0f0f0", border: "1 solid #e0e0e0", overflow: "hidden" },
+  hpBarFill: { height: "100%", backgroundColor: C.success, borderRadius: 4 },
+
+  // Ability Scores
+  abilityGrid: { flexDirection: "row", gap: 6, marginBottom: 10 },
+  abilityBox: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    backgroundColor: C.surface,
+    borderRadius: 6,
+    border: "1 solid #e8e8e8",
+  },
+  abilityLabel: { fontSize: 7, fontWeight: 600, color: C.textMuted, textTransform: "uppercase", letterSpacing: 0.5 },
+  abilityScore: { fontSize: 16, fontWeight: 700, color: C.textPrimary, marginVertical: 1 },
+  abilityMod: { fontSize: 11, fontWeight: 600, color: C.accent },
+
+  // Saves & Skills
+  twoColGrid: { flexDirection: "row", flexWrap: "wrap", gap: 3, marginBottom: 10 },
+  saveSkillRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    backgroundColor: C.surface,
+    borderRadius: 4,
+    marginBottom: 3,
+    border: "1 solid #e8e8e8",
+  },
+  saveSkillProf: { borderColor: C.accent },
+  saveSkillLeft: { flexDirection: "row", alignItems: "center", gap: 6 },
+  dot: { width: 10, height: 10, borderRadius: 5, border: "1.5 solid #d0d0d0" },
+  dotProficient: { backgroundColor: C.accent, borderColor: C.accent },
+  saveSkillName: { fontSize: 9, fontWeight: 600, color: C.textPrimary },
+  saveSkillNameProf: { color: C.accent },
+  saveSkillMod: { fontSize: 10, fontWeight: 700, color: C.textSecondary },
+  saveSkillModProf: { color: C.accent },
+  badgeExpert: { fontSize: 6, fontWeight: 700, color: C.danger, backgroundColor: C.danger + "15", paddingHorizontal: 3, paddingVertical: 1, borderRadius: 2 },
+
+  // Cards
+  card: { padding: 8, backgroundColor: C.surface, borderRadius: 6, border: "1 solid #e8e8e8", marginBottom: 4 },
+  cardTitle: { fontSize: 10, fontWeight: 700, color: C.textPrimary, marginBottom: 2 },
+  cardTitleRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 3 },
+  cardDesc: { fontSize: 8, color: C.textSecondary, lineHeight: 1.5 },
+  cardFeatureTitle: { fontSize: 9, fontWeight: 700, color: C.accent, marginBottom: 2 },
+
+  // Badges
+  badge: { fontSize: 7, fontWeight: 600, paddingHorizontal: 5, paddingVertical: 2, borderRadius: 3 },
+  badgeDamage: { color: C.info, backgroundColor: C.info + "15" },
+  badgeSneak: { color: C.danger, backgroundColor: C.danger + "15" },
+
+  // Inventory
+  inventoryGrid: { flexDirection: "row", flexWrap: "wrap", gap: 3, marginBottom: 10 },
+  inventoryItem: {
+    width: "48%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    backgroundColor: C.surface,
+    borderRadius: 4,
+    border: "1 solid #e8e8e8",
+  },
+  inventoryEquipped: { borderColor: C.success },
+  inventoryName: { fontSize: 8, color: C.textPrimary },
+  inventoryNameEquipped: { fontWeight: 600 },
+  inventoryQty: { fontSize: 7, color: C.textMuted },
+  equippedDot: { width: 4, height: 4, borderRadius: 2, backgroundColor: C.success, marginRight: 3 },
+
+  // Currency
+  currencyRow: { flexDirection: "row", gap: 12, marginBottom: 10 },
+  currencyItem: { fontSize: 8, fontWeight: 600, color: C.textSecondary },
+
+  // Spellcasting
+  spellcastGrid: { flexDirection: "row", gap: 6, marginBottom: 10 },
+  spellcastBox: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    backgroundColor: C.surface,
+    borderRadius: 6,
+    border: "1 solid #e8e8e8",
+  },
+
+  // Spell Slots
+  spellSlotRow: { flexDirection: "row", flexWrap: "wrap", gap: 4, marginBottom: 10 },
+  spellSlotBox: {
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: C.surface,
+    borderRadius: 4,
+    border: "1 solid #e8e8e8",
+    alignItems: "center",
+    minWidth: 45,
+  },
+
+  // Spells
+  spellItem: {
+    width: "48%",
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    backgroundColor: C.surface,
+    borderRadius: 4,
+    border: "1 solid #e8e8e8",
+    marginBottom: 3,
+  },
+  spellRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  spellName: { fontSize: 8, fontWeight: 600, color: C.textPrimary },
+  spellLevel: { fontSize: 7, fontWeight: 600, color: C.textMuted },
+  spellDamageBadge: { fontSize: 7, fontWeight: 600, color: C.info, backgroundColor: C.info + "15", paddingHorizontal: 3, paddingVertical: 1, borderRadius: 2, marginTop: 2 },
+
+  // Bio
+  bioSection: { marginBottom: 8 },
+  bioLabel: { fontSize: 8, fontWeight: 700, color: C.textPrimary, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 2 },
+  bioText: { fontSize: 8, color: C.textSecondary, lineHeight: 1.6 },
+
+  // Footer
+  footer: {
+    position: "absolute",
+    bottom: 16,
+    left: 28,
+    right: 28,
+    textAlign: "center",
+    fontSize: 7,
+    color: "#aaaaaa",
+    borderTop: "1 solid #e8e8e8",
+    paddingTop: 4,
+  },
+});
 
 function CharacterPdfDocument({ character }: { character: Character }) {
   const profBonus = character.proficiencyBonus || 2;
@@ -449,6 +220,22 @@ function CharacterPdfDocument({ character }: { character: Character }) {
     { name: "Sleight of Hand", ability: "dex" }, { name: "Stealth", ability: "dex" }, { name: "Survival", ability: "wis" },
   ];
 
+  const attacks = character.attacks.filter((a) => a.name);
+  const features = character.features.filter((f) => f.name);
+  const inventory = character.inventory.filter((item) => item.name);
+  const spells = character.spells.filter((s) => s.name);
+  const hasSpellcasting = !!character.spellcastingAbility;
+  const hasSpellSlots = character.spellSlots && Object.keys(character.spellSlots).length > 0;
+
+  const bioFields = [
+    { label: "Appearance", value: character.appearance.characterAppearance },
+    { label: "Personality", value: character.appearance.personality },
+    { label: "Backstory", value: character.appearance.backstory },
+    { label: "Allies & Organizations", value: character.appearance.alliesOrganizations },
+    { label: "Additional Features", value: character.appearance.additionalFeaturesTraits },
+    { label: "Treasure", value: character.appearance.treasure },
+  ].filter((f) => f.value.trim());
+
   return (
     <Document
       title={character.name || "DND Wizard Character"}
@@ -459,16 +246,16 @@ function CharacterPdfDocument({ character }: { character: Character }) {
       producer="DND Wizard"
     >
       {/* ===== PAGE 1: Combat, Abilities, Saves, Skills ===== */}
-      <Page size="A4" style={styles.page} wrap>
+      <Page size="A4" style={styles.page}>
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.characterName}>{character.name || "Unnamed Character"}</Text>
           <Text style={styles.subtitle}>
             {character.race} {character.class} Level {character.level}
-            {character.subclass ? ` • ${character.subclass}` : ""}
+            {character.subclass ? ` \u2022 ${character.subclass}` : ""}
           </Text>
           <Text style={styles.meta}>
-            Background: {character.background || "—"}  |  Alignment: {character.alignment || "—"}  |  XP: {character.experiencePoints}
+            Background: {character.background || "\u2014"}  |  Alignment: {character.alignment || "\u2014"}  |  XP: {character.experiencePoints}
           </Text>
         </View>
         <View style={styles.divider} />
@@ -477,15 +264,15 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         {/* Combat Stats */}
         <View style={styles.combatGrid}>
           {[
-            { label: "AC", value: `${character.ac}` },
+            { label: "AC", value: `${character.ac}`, color: C.textPrimary },
             { label: "HP", value: `${character.currentHp}`, sub: `/${character.maxHp}`, color: C.success },
-            { label: "Speed", value: `${character.speed}`, sub: "ft" },
-            { label: "Prof", value: `+${profBonus}` },
-            { label: "Init", value: `${character.initiative >= 0 ? "+" : ""}${character.initiative}` },
+            { label: "Speed", value: `${character.speed}`, sub: "ft", color: C.textPrimary },
+            { label: "Prof", value: `+${profBonus}`, color: C.textPrimary },
+            { label: "Init", value: `${character.initiative >= 0 ? "+" : ""}${character.initiative}`, color: C.textPrimary },
           ].map((item) => (
             <View key={item.label} style={styles.combatBox}>
               <Text style={styles.combatLabel}>{item.label}</Text>
-              <Text style={[styles.combatValue, item.color ? { color: item.color } : {}]}>{item.value}</Text>
+              <Text style={[styles.combatValue, { color: item.color }]}>{item.value}</Text>
               {item.sub && <Text style={styles.combatSub}>{item.sub}</Text>}
             </View>
           ))}
@@ -529,10 +316,10 @@ function CharacterPdfDocument({ character }: { character: Character }) {
           {abilityKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             return (
-              <View key={key} style={[styles.saveSkillRow, styles.twoColItem, st.proficient ? styles.saveSkillProf : {}]}>
+              <View key={key} style={[styles.saveSkillRow, { width: "48%" }, st.proficient ? styles.saveSkillProf : {}]}>
                 <View style={styles.saveSkillLeft}>
                   <View style={[styles.dot, st.proficient ? styles.dotProficient : {}]} />
-                  <Text style={[styles.saveSkillName, st.proficient ? { color: C.accent } : {}]}>{key.toUpperCase()}</Text>
+                  <Text style={[styles.saveSkillName, st.proficient ? styles.saveSkillNameProf : {}]}>{key.toUpperCase()}</Text>
                 </View>
                 <Text style={[styles.saveSkillMod, st.proficient ? styles.saveSkillModProf : {}]}>
                   {st.value >= 0 ? `+${st.value}` : st.value}
@@ -554,12 +341,12 @@ function CharacterPdfDocument({ character }: { character: Character }) {
             const mod = getModifier(abilityScore);
             const total = mod + (profBonus * profMultiplier);
             return (
-              <View key={name} style={[styles.saveSkillRow, styles.twoColItem, proficient ? { borderColor: "#722f37" } : {}]}>
+              <View key={name} style={[styles.saveSkillRow, { width: "48%" }, proficient ? { borderColor: C.accent } : {}]}>
                 <View style={styles.saveSkillLeft}>
                   <View style={[styles.dot, { borderRadius: 2 }, proficient ? styles.dotProficient : {}]} />
                   <Text style={styles.saveSkillName}>{name}</Text>
                   {expert && <Text style={styles.badgeExpert}>EXP</Text>}
-                  <Text style={[styles.saveSkillName, { color: C.textMuted, fontSize: 8 }]}>{ability.toUpperCase()}</Text>
+                  <Text style={[styles.saveSkillName, { color: C.textMuted, fontSize: 7 }]}>{ability.toUpperCase()}</Text>
                 </View>
                 <Text style={[styles.saveSkillMod, proficient ? styles.saveSkillModProf : {}]}>
                   {total >= 0 ? `+${total}` : total}
@@ -571,65 +358,61 @@ function CharacterPdfDocument({ character }: { character: Character }) {
       </Page>
 
       {/* ===== PAGE 2: Attacks, Features, Inventory ===== */}
-      <Page size="A4" style={styles.page} wrap>
+      <Page size="A4" style={styles.page}>
         {/* Attacks */}
         <Text style={styles.sectionHeader}>Attacks & Spellcasting</Text>
-        {character.attacks.filter((a) => a.name).length > 0 ? (
-          <View style={{ marginBottom: 12 }}>
-            {character.attacks.filter((a) => a.name).map((attack) => (
+        {attacks.length > 0 ? (
+          <View style={{ marginBottom: 10 }}>
+            {attacks.map((attack) => (
               <View key={attack.id} style={styles.card}>
                 <View style={styles.cardTitleRow}>
                   <Text style={styles.cardTitle}>{attack.name}</Text>
                   <Text style={[styles.cardDesc, { color: C.textSecondary }]}>+{attack.attackBonus} to hit</Text>
                 </View>
-                <View style={{ flexDirection: "row", gap: 6 }}>
-                  {attack.damageType && (
-                    <Text style={[styles.badge, styles.badgeDamage]}>{attack.damageType}</Text>
-                  )}
-                  {attack.sneakAttack && (
-                    <Text style={[styles.badge, styles.badgeSneak]}>+{attack.sneakAttack} sneak</Text>
-                  )}
+                <View style={{ flexDirection: "row", gap: 4 }}>
+                  {attack.damageType && <Text style={[styles.badge, styles.badgeDamage]}>{attack.damageType}</Text>}
+                  {attack.sneakAttack && <Text style={[styles.badge, styles.badgeSneak]}>+{attack.sneakAttack} sneak</Text>}
                 </View>
               </View>
             ))}
           </View>
         ) : (
-          <Text style={[styles.cardDesc, { marginBottom: 12 }]}>No attacks configured</Text>
+          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No attacks configured</Text>
         )}
         <View style={styles.divider} />
 
         {/* Features & Traits */}
         <Text style={styles.sectionHeader}>Features & Traits</Text>
-        {character.features.filter((f) => f.name).length > 0 ? (
-          <View style={{ marginBottom: 12 }}>
-            {character.features.filter((f) => f.name).map((feature) => (
-              <View key={feature.id} style={styles.card}>
+        {features.length > 0 ? (
+          <View style={{ marginBottom: 10 }}>
+            {features.map((feature) => (
+              <View key={feature.id} wrap={false} style={styles.card}>
                 <Text style={styles.cardFeatureTitle}>{feature.name}</Text>
                 {feature.description && <Text style={styles.cardDesc}>{feature.description}</Text>}
               </View>
             ))}
           </View>
         ) : (
-          <Text style={[styles.cardDesc, { marginBottom: 12 }]}>No features</Text>
+          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No features</Text>
         )}
         <View style={styles.divider} />
 
         {/* Inventory */}
         <Text style={styles.sectionHeader}>Inventory</Text>
-        {character.inventory.filter((item) => item.name).length > 0 ? (
+        {inventory.length > 0 ? (
           <View style={styles.inventoryGrid}>
-            {character.inventory.filter((item) => item.name).map((item) => (
+            {inventory.map((item) => (
               <View key={item.id} style={[styles.inventoryItem, item.equipped ? styles.inventoryEquipped : {}]}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   {item.equipped && <View style={styles.equippedDot} />}
-                  <Text style={[styles.inventoryName, item.equipped ? { fontWeight: 600 } : {}]}>{item.name}</Text>
+                  <Text style={[styles.inventoryName, item.equipped ? styles.inventoryNameEquipped : {}]}>{item.name}</Text>
                 </View>
                 <Text style={styles.inventoryQty}>x{item.quantity}</Text>
               </View>
             ))}
           </View>
         ) : (
-          <Text style={[styles.cardDesc, { marginBottom: 12 }]}>No items</Text>
+          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No items</Text>
         )}
         <View style={styles.divider} />
 
@@ -648,9 +431,9 @@ function CharacterPdfDocument({ character }: { character: Character }) {
       </Page>
 
       {/* ===== PAGE 3: Spells, Bio ===== */}
-      <Page size="A4" style={styles.page} wrap>
+      <Page size="A4" style={styles.page}>
         {/* Spellcasting */}
-        {character.spellcastingAbility && (
+        {hasSpellcasting && (
           <>
             <Text style={styles.sectionHeader}>Spellcasting</Text>
             <View style={styles.spellcastGrid}>
@@ -678,7 +461,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         )}
 
         {/* Spell Slots */}
-        {character.spellSlots && Object.keys(character.spellSlots).length > 0 && (
+        {hasSpellSlots && (
           <>
             <Text style={styles.sectionHeader}>Spell Slots</Text>
             <View style={styles.spellSlotRow}>
@@ -688,8 +471,8 @@ function CharacterPdfDocument({ character }: { character: Character }) {
                 return (
                   <View key={level} style={styles.spellSlotBox}>
                     <Text style={styles.combatLabel}>Level {level}</Text>
-                    <Text style={[styles.cardTitle, { fontSize: 12, marginTop: 2 }]}>
-                      {remaining}<Text style={{ fontSize: 9, color: C.textMuted }}>/{count as number}</Text>
+                    <Text style={[styles.cardTitle, { fontSize: 11, marginTop: 1 }]}>
+                      {remaining}<Text style={{ fontSize: 8, color: C.textMuted }}>/{count as number}</Text>
                     </Text>
                   </View>
                 );
@@ -700,24 +483,18 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         )}
 
         {/* Spells */}
-        {character.spells.filter((s) => s.name).length > 0 && (
+        {spells.length > 0 && (
           <>
             <Text style={styles.sectionHeader}>Spells</Text>
             <View style={styles.twoColGrid}>
-              {character.spells.filter((s) => s.name).map((spell) => (
+              {spells.map((spell) => (
                 <View key={spell.id} style={styles.spellItem}>
                   <View style={styles.spellRow}>
                     <Text style={styles.spellName}>{spell.name}</Text>
                     <Text style={styles.spellLevel}>{spell.level === 0 ? "Cantrip" : `Lvl ${spell.level}`}</Text>
                   </View>
                   {(spell.damageDice || spell.damageType) && (
-                    <View style={styles.spellDamage}>
-                      {spell.damageType && (
-                        <Text style={styles.spellDamageBadge}>
-                          {spell.damageType} {spell.damageDice}
-                        </Text>
-                      )}
-                    </View>
+                    <Text style={styles.spellDamageBadge}>{spell.damageType} {spell.damageDice}</Text>
                   )}
                 </View>
               ))}
@@ -728,23 +505,15 @@ function CharacterPdfDocument({ character }: { character: Character }) {
 
         {/* Appearance & Bio */}
         <Text style={styles.sectionHeader}>Appearance & Bio</Text>
-        <View style={styles.bioSection}>
-          {[
-            { label: "Appearance", value: character.appearance.characterAppearance },
-            { label: "Personality", value: character.appearance.personality },
-            { label: "Backstory", value: character.appearance.backstory },
-            { label: "Allies & Organizations", value: character.appearance.alliesOrganizations },
-            { label: "Additional Features", value: character.appearance.additionalFeaturesTraits },
-            { label: "Treasure", value: character.appearance.treasure },
-          ].map(({ label, value }) =>
-            value.trim() ? (
-              <View key={label} style={{ marginBottom: 8 }}>
-                <Text style={styles.bioLabel}>{label}</Text>
-                <Text style={styles.bioText}>{value}</Text>
+        <View>
+          {bioFields.length > 0 ? (
+            bioFields.map((field) => (
+              <View key={field.label} wrap={false} style={styles.bioSection}>
+                <Text style={styles.bioLabel}>{field.label}</Text>
+                <Text style={styles.bioText}>{field.value}</Text>
               </View>
-            ) : null
-          )}
-          {!character.appearance.characterAppearance.trim() && !character.appearance.personality.trim() && !character.appearance.backstory.trim() && (
+            ))
+          ) : (
             <Text style={styles.cardDesc}>No bio information</Text>
           )}
         </View>
@@ -760,7 +529,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
 
         {/* Footer */}
         <Text style={styles.footer}>
-          Generated by DND Wizard • {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          Generated by DND Wizard \u2022 {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
         </Text>
       </Page>
     </Document>
