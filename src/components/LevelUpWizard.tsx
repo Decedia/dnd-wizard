@@ -1966,7 +1966,7 @@ function LevelCard({
           spells={spells}
           onSpellsChange={onSpellsChange}
           onClose={() => setShowSpellModal(false)}
-          existingSpells={character.spells?.filter((s) => s.level > 0) || []}
+          existingSpells={info.spellSelectionType === "book" ? [] : (character.spells?.filter((s) => s.level > 0) || [])}
           spellsKnownChanged={info.spellsKnownChanged}
           earlierSelections={Object.entries(allSpellSelections).filter(([l]) => Number(l) < info.level).flatMap(([, s]) => s)}
           magicalSecretsCount={info.magicalSecretsCount}
