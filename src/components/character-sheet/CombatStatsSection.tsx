@@ -9,10 +9,11 @@ import type { Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { X } from "phosphor-react";
 import { StateTracker } from "./StateTracker";
+import { BuffTracker } from "./BuffTracker";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates">;
-  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates">>) => void;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs">;
+  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs">>) => void;
   editMode?: boolean;
 }
 
@@ -161,6 +162,21 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         }}
         onReset={() => onChange({ activeStates: [] })}
         editMode={editMode}
+      />
+
+      <BuffTracker
+        activeBuffs={character.activeBuffs || []}
+        onToggleBuff={(spellId, name, concentration) => {
+          const current = character.activeBuffs || [];
+          if (current.some((b) => b.spellId === spellId)) {
+            onChange({ activeBuffs: current.filter((b) => b.spellId !== spellId) });
+          } else {
+            onChange({ activeBuffs: [...current, { spellId, name, concentration }] });
+          }
+        }}
+        onClearAll={() => onChange({ activeBuffs: [] })}
+        editMode={editMode}
+        className="mt-3"
       />
 
       {editMode && (

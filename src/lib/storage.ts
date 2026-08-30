@@ -1,4 +1,5 @@
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
+import { computeBuffModifiers } from "@/lib/spellEffects";
 export interface Character {
   id: string;
   name: string;
@@ -77,6 +78,8 @@ export interface Character {
   variantHumanSkill?: string;
   appliedAsi: number[];
   activeStates: string[];
+  activeBuffs: { spellId: string; name: string; concentration: boolean }[];
+  buffModifiers?: Record<string, unknown>;
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
     age: string;
@@ -290,6 +293,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     spellsUsedThisTurn: [],
     featuresUsedThisTurn: [],
     activeStates: [],
+    activeBuffs: [],
     preparedSpells: [],
     domainSpells: [],
     circleTerrain: "",
@@ -365,6 +369,7 @@ function normalizeCharacter(c: Character): Character {
     spellsUsedThisTurn: (c as any).spellsUsedThisTurn || [],
     featuresUsedThisTurn: (c as any).featuresUsedThisTurn || [],
     activeStates: (c as any).activeStates || [],
+    activeBuffs: (c as any).activeBuffs || [],
     levelHp: (c as any).levelHp || {},
     inventory: (c.inventory || []).map((item) => ({
       ...defaults.inventory[0],
@@ -615,6 +620,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     }
   }
 
+  const buffMods = computeBuffModifiers(character.activeBuffs || []);
+  ac += buffMods.acBonus;
+
   return {
     proficiencyBonus: profBonus,
     savingThrows,
@@ -629,6 +637,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxRages,
     rageDamage,
     ac,
+    buffModifiers: buffMods as any,
   };
 }
 
