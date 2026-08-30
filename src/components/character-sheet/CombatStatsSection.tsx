@@ -175,6 +175,10 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           }
         }}
         onClearAll={() => onChange({ activeBuffs: [] })}
+        onBreakConcentration={() => {
+          const current = character.activeBuffs || [];
+          onChange({ activeBuffs: current.filter((b) => !b.concentration) });
+        }}
         editMode={editMode}
         className="mt-3"
         filterClass={character.class}
@@ -272,6 +276,36 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
                 min={1}
               />
             </div>
+            {hpModal?.mode === "damage" && (character.activeBuffs || []).some(b => b.concentration) && (
+              <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs">⚠️</span>
+                  <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
+                    Concentration check! Roll DC {Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2))} CON save
+                  </span>
+                </div>
+                <div className="mt-1 flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const current = character.activeBuffs || [];
+                      onChange({ activeBuffs: current.filter((b) => !b.concentration) });
+                      handleHpAction();
+                    }}
+                    className="text-[10px] font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] underline"
+                  >
+                    Failed — Break Concentration
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleHpAction}
+                    className="text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline"
+                  >
+                    Success — Maintain
+                  </button>
+                </div>
+              </div>
+            )}
             <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
               <button
                 type="button"
