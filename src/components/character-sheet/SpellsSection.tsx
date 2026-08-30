@@ -10,6 +10,7 @@ import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellN
 import { Lightning, Plus, Check, Circle, X, Clock } from "phosphor-react";
 import { DamageBadge } from "./DamageBadge";
 import { ConditionBadges } from "./ConditionBadge";
+import { DamageDisplay, getSpellDamageInfo } from "./DamageExtractor";
 import { SpellSelectionModal } from "./SpellSelectionModal";
 
 interface SpellsSectionProps {
@@ -200,21 +201,19 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     {spellPrepared ? "Prepared" : "Prepare"}
                   </button>
                 )}
-                {spell.level > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => toggleSpellUsed(spell.id)}
-                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                      spellUsed
-                        ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
-                        : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                    }`}
-                    title={spellUsed ? "Click to mark as unused" : "Click to mark as used this turn"}
-                  >
-                    <Clock className="h-3 w-3" />
-                    {spellUsed ? "Used" : "Use"}
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => toggleSpellUsed(spell.id)}
+                  className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                    spellUsed
+                      ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                      : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  }`}
+                  title={spellUsed ? "Click to mark as unused" : "Click to mark as used this turn"}
+                >
+                  <Clock className="h-3 w-3" />
+                  {spellUsed ? "Used" : "Use"}
+                </button>
                 <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
                 {editMode && (
                   <button
@@ -240,6 +239,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               {spell.description && (
                 <>
                   <DescriptionText>{spell.description}</DescriptionText>
+                  <DamageDisplay damages={getSpellDamageInfo(spell)} />
                   <ConditionBadges text={spell.description} />
                 </>
               )}
