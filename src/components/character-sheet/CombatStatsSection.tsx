@@ -4,8 +4,10 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
-import { Sword, Sparkle } from "phosphor-react";
+import { Sword, Sparkle, Heart, Drop } from "phosphor-react";
 import type { Character } from "@/lib/storage";
+import { useState, useCallback } from "react";
+import { X } from "phosphor-react";
 
 interface CombatStatsSectionProps {
   character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints">;
@@ -17,6 +19,21 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
   const { onFieldBlur } = useCharacterSheet();
   const hpPercent = character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0;
   const isSorcerer = character.class === "Sorcerer";
+  const [hpModal, setHpModal] = useState<{ mode: "heal" | "damage" } | null>(null);
+  const [hpAmount, setHpAmount] = useState("");
+
+  const handleHpAction = useCallback(() => {
+    const amount = parseInt(hpAmount, 10);
+    if (isNaN(amount) || amount <= 0) return;
+    if (hpModal?.mode === "heal") {
+      onChange({ currentHp: Math.min(character.maxHp, character.currentHp + amount) });
+    } else if (hpModal?.mode === "damage") {
+      const newHp = Math.max(0, character.currentHp - amount);
+      onChange({ currentHp: newHp });
+    }
+    setHpModal(null);
+    setHpAmount("");
+  }, [hpModal, hpAmount, character, onChange]);
 
   return (
     <SectionCard id="combat-stats" title="Combat Stats" icon={<Sword weight="regular" className="h-5 w-5" />}>
@@ -49,9 +66,27 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <div>
           <div className="flex items-center justify-between mb-1.5">
             <span className="field-label-light mb-0">HP</span>
-            <span className="text-[10px] font-semibold text-ink-muted">
-              {character.currentHp} / {character.maxHp}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-semibold text-ink-muted">
+                {character.currentHp} / {character.maxHp}
+              </span>
+              <button
+                type="button"
+                onClick={() => setHpModal({ mode: "heal" })}
+                className="flex h-5 w-5 items-center justify-center rounded-full text-[var(--color-success-600)] hover:bg-[var(--color-success-50)] transition-all"
+                aria-label="Heal"
+              >
+                <Heart className="h-3 w-3" weight="fill" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setHpModal({ mode: "damage" })}
+                className="flex h-5 w-5 items-center justify-center rounded-full text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] transition-all"
+                aria-label="Take damage"
+              >
+                <Drop className="h-3 w-3" weight="fill" />
+              </button>
+            </div>
           </div>
           <div className="progress-track" style={{ height: "12px" }}>
             <div
@@ -155,6 +190,62 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               </Field>
             </>
           )}
+        </div>
+      )}
+      {hpModal && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) { setHpModal(null); setHpAmount(""); } }}
+        >
+          <div className="w-full max-w-xs rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-xl">
+            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
+              <div className="text-sm font-bold text-[var(--color-text-primary)]">
+                {hpModal.mode === "heal" ? "Heal" : "Take Damage"}
+              </div>
+              <button
+                type="button"
+                onClick={() => { setHpModal(null); setHpAmount(""); }}
+                className="h-7 w-7 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+            <div className="px-4 py-4">
+              <label className="field-label-light">Amount</label>
+              <input
+                type="number"
+                value={hpAmount}
+                onChange={(e) => setHpAmount(e.target.value)}
+                placeholder="Enter amount..."
+                className="input w-full mt-1"
+                autoFocus
+                min={1}
+              />
+            </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+              <button
+                type="button"
+                onClick={() => { setHpModal(null); setHpAmount(""); }}
+                className="btn btn-secondary flex-1"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleHpAction}
+                disabled={!hpAmount || parseInt(hpAmount, 10) <= 0}
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
+                  hpAmount && parseInt(hpAmount, 10) > 0
+                    ? hpModal.mode === "heal"
+                      ? "bg-[var(--color-success-600)] text-white hover:opacity-90"
+                      : "bg-[var(--color-error-600)] text-white hover:opacity-90"
+                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
+                }`}
+              >
+                {hpModal.mode === "heal" ? "Heal" : "Apply"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </SectionCard>
