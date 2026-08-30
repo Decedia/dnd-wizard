@@ -70,22 +70,6 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               <span className="text-[10px] font-semibold text-ink-muted">
                 {character.currentHp} / {character.maxHp}
               </span>
-              <button
-                type="button"
-                onClick={() => setHpModal({ mode: "heal" })}
-                className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-success-600)] hover:bg-[var(--color-success-50)] transition-all"
-                aria-label="Heal"
-              >
-                <Heart className="h-4 w-4" weight="fill" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setHpModal({ mode: "damage" })}
-                className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] transition-all"
-                aria-label="Take damage"
-              >
-                <Drop className="h-4 w-4" weight="fill" />
-              </button>
             </div>
           </div>
           <div className="progress-track" style={{ height: "12px" }}>
@@ -128,6 +112,25 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             </div>
           </div>
         )}
+      </div>
+
+      <div className="flex items-center justify-center gap-3 mt-4 pt-3 border-t border-[var(--color-border)]">
+        <button
+          type="button"
+          onClick={() => setHpModal({ mode: "heal" })}
+          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-success-200)] text-[var(--color-success-700)] hover:bg-[var(--color-success-50)] transition-all"
+        >
+          <Heart className="h-4 w-4" weight="fill" />
+          <span className="text-xs font-semibold">Heal</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setHpModal({ mode: "damage" })}
+          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-error-200)] text-[var(--color-error-700)] hover:bg-[var(--color-error-50)] transition-all"
+        >
+          <Drop className="h-4 w-4" weight="fill" />
+          <span className="text-xs font-semibold">Damage</span>
+        </button>
       </div>
 
       {editMode && (
