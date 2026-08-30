@@ -27,6 +27,7 @@ interface SpellSelectionModalProps {
   onSubclassSpellSelectionsChange?: (list: string[]) => void;
   maxSpellsKnown?: number;
   maxCantripsKnown?: number;
+  mode?: "all" | "cantrips" | "spells";
 }
 
 export function SpellSelectionModal({
@@ -44,9 +45,14 @@ export function SpellSelectionModal({
   onChange,
   maxSpellsKnown = 0,
   maxCantripsKnown = 0,
+  mode = "all",
 }: SpellSelectionModalProps) {
-  const [activeTab, setActiveTab] = useState<"cantrips" | number>("cantrips");
+  const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
+
+  useEffect(() => {
+    setSelectedSpells(spells);
+  }, [spells]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -214,18 +220,20 @@ export function SpellSelectionModal({
           </div>
         )}
         <div className="flex-shrink-0 flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide">
-          <button
-            type="button"
-            onClick={() => setActiveTab("cantrips")}
-            className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
-              activeTab === "cantrips"
-                ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
-                : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
-            }`}
-          >
-            Cantrips ({currentCantrips.length}/{onChange ? maxCantripsKnown : cantripCount})
-          </button>
-          {spellLevels.map((lvl) => (
+          {mode !== "spells" && (
+            <button
+              type="button"
+              onClick={() => setActiveTab("cantrips")}
+              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+                activeTab === "cantrips"
+                  ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
+              }`}
+            >
+              Cantrips ({currentCantrips.length}/{onChange ? maxCantripsKnown : cantripCount})
+            </button>
+          )}
+          {mode !== "cantrips" && spellLevels.map((lvl) => (
             <button
               key={lvl}
               type="button"

@@ -1281,6 +1281,7 @@ function LevelCard({
     const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
     const [showSubclassModal, setShowSubclassModal] = useState(false);
     const [showSpellModal, setShowSpellModal] = useState(false);
+    const [spellModalMode, setSpellModalMode] = useState<"all" | "cantrips" | "spells">("all");
     const [showTerrainModal, setShowTerrainModal] = useState(false);
     const [showBonusCantripModal, setShowBonusCantripModal] = useState(false);
     const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean; count?: number; isSpellMastery?: boolean; isSignatureSpells?: boolean } | null>(null);
@@ -1508,7 +1509,7 @@ function LevelCard({
                 {info.cantripSelectionCount > 0 && (
                   <button
                     type="button"
-                    onClick={() => setShowSpellModal(true)}
+                    onClick={() => { setSpellModalMode("cantrips"); setShowSpellModal(true); }}
                     className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needCantrips ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
                   >
                     Select
@@ -1541,7 +1542,7 @@ function LevelCard({
                 {info.spellSelectionCount > 0 && (
                   <button
                     type="button"
-                    onClick={() => setShowSpellModal(true)}
+                    onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
                     className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
                   >
                     Select
@@ -1954,10 +1955,11 @@ function LevelCard({
 
       {showSpellModal && info.hasSpellSelection && (
         <SpellSelectionModal
+          key={`spell-modal-${lvl}`}
           character={character}
           subclassSelection={subclassSelection}
-          count={info.spellSelectionCount}
-          cantripCount={info.cantripSelectionCount}
+          count={spellModalMode === "cantrips" ? 0 : info.spellSelectionCount}
+          cantripCount={spellModalMode === "spells" ? 0 : info.cantripSelectionCount}
           maxLevel={info.maxSpellLevel}
           spells={spells}
           onSpellsChange={onSpellsChange}
@@ -1971,6 +1973,7 @@ function LevelCard({
           subclassSpellSelectionCount={info.subclassSpellSelectionCount}
           subclassSpellSelections={subclassSpellSelections}
           onSubclassSpellSelectionsChange={onSubclassSpellSelectionsChange}
+          mode={spellModalMode}
         />
       )}
 
