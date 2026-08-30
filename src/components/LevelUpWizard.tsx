@@ -310,8 +310,6 @@ function buildLevelInfos(
     const spellsKnownChanged = spellsKnown !== undefined && spellsKnown > prevSpellsKnown;
 
     const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster");
-    const hasSpellSelectionFromClass = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
-    const hasSpellSelection = hasSpellSelectionFromClass || (isArcaneTrickster && (slotsChanged || cantripsChanged || spellsKnownChanged));
     const maxSpellLevel = spellSlots ? Math.max(...Object.keys(spellSlots).map(Number)) : 0;
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
@@ -353,6 +351,9 @@ function buildLevelInfos(
     const canReplaceSpell = (isBard || isSorcerer) && level > 1 && (character.spells || []).length > 0;
     const isLoreBard = isBard && subclassSelection === "Lore";
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
+
+    const hasSpellSelectionFromClass = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
+    const hasSpellSelection = hasSpellSelectionFromClass || (isArcaneTrickster && (slotsChanged || cantripsChanged || spellsKnownChanged)) || spellSelectionCount > 0 || cantripsDelta > 0;
 
     const allFeatures = [...features, ...passiveSubclassFeatures];
 
