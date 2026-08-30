@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkle, X } from "phosphor-react";
+import { SparklesIcon as Sparkle, XIcon as X } from "@/components/icons";
 import { BUFF_DEFINITIONS, type BuffDefinition } from "@/lib/spellEffects";
 
 interface BuffTrackerProps {

@@ -2,28 +2,28 @@
 
 import { useState } from "react";
 import {
-  House,
-  Folder,
-  ListChecks,
-  Kanban,
-  ChartBar,
-  Gear,
-  Bell,
-  MagnifyingGlass,
-  Plus,
-  Clock,
-  Timer,
-  DotsThree,
-  CaretDown,
-  CheckCircle,
-  Circle,
-  WarningCircle,
-  Package,
-  Target,
-  ShoppingCart,
-  Rocket,
-  PuzzlePiece,
-} from "phosphor-react";
+  HomeIcon as House,
+  FolderIcon as Folder,
+  ListChecksIcon as ListChecks,
+  KanbanIcon as Kanban,
+  ChartBarIcon as ChartBar,
+  GearIcon as Gear,
+  BellIcon as Bell,
+  MagnifyingGlassIcon as MagnifyingGlass,
+  PlusIcon as Plus,
+  ClockIcon as Clock,
+  ClockIcon as Timer,
+  DotsThreeIcon as DotsThree,
+  CaretDownIcon as CaretDown,
+  CheckCircleIcon as CheckCircle,
+  CircleIcon as Circle,
+  WarningCircleIcon as WarningCircle,
+  PackageIcon as Package,
+  TargetIcon as Target,
+  ShoppingCartIcon as ShoppingCart,
+  RocketIcon as Rocket,
+  PuzzlePieceIcon as PuzzlePiece,
+} from "@/components/icons";
 
 interface Task {
   id: string;
@@ -34,7 +34,7 @@ interface Task {
   budget?: string;
 }
 
-const ICON_MAP: Record<string, React.ComponentType<{ className?: string; weight?: "regular" | "fill" | "bold" | "duotone" }>> = {
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   "Clock": Clock,
   "Package": Package,
   "Target": Target,
@@ -125,28 +125,28 @@ export default function TasksPage() {
       case "todo":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)]-muted uppercase tracking-wider">
-             <Circle weight="regular" className="h-2.5 w-2.5" />
+             <Circle className="h-2.5 w-2.5" />
             Todo
           </span>
         );
       case "in-progress":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)] uppercase tracking-wider">
-             <Timer weight="regular" className="h-2.5 w-2.5" />
+             <Timer className="h-2.5 w-2.5" />
             In Progress
           </span>
         );
       case "done":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)] uppercase tracking-wider">
-             <CheckCircle weight="regular" className="h-2.5 w-2.5" />
+             <CheckCircle className="h-2.5 w-2.5" />
             Done
           </span>
         );
       case "review":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-paper-muted px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)] uppercase tracking-wider">
-             <WarningCircle weight="regular" className="h-2.5 w-2.5" />
+             <WarningCircle className="h-2.5 w-2.5" />
             Review
           </span>
         );
@@ -172,13 +172,13 @@ export default function TasksPage() {
               }`}
               title={item.label}
             >
-               <item.icon weight={item.active ? "fill" : "regular"} className="h-5 w-5" />
+                <item.icon className="h-5 w-5" />
             </button>
           ))}
         </nav>
 
         <button className="mt-auto flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-nav-icon)]/20 text-[var(--color-nav-icon)]/70 hover:text-[var(--color-nav-icon)] hover:bg-[var(--color-surface)]/10 transition-colors">
-           <Bell weight="regular" className="h-5 w-5" />
+            <Bell className="h-5 w-5" />
         </button>
       </aside>
 
@@ -195,21 +195,21 @@ export default function TasksPage() {
             </div>
             <div className="flex items-center gap-3">
               <button className="flex items-center gap-2 rounded-full bg-[var(--color-nav-bg)] px-4 py-2 text-sm font-medium text-[var(--color-nav-icon)] hover:bg-[var(--color-nav-bg)]/90 transition-colors">
-                 <Gear weight="regular" className="h-4 w-4" />
+                 <Gear className="h-4 w-4" />
                 <span>Upgrade</span>
               </button>
               <button className="flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-paper-muted transition-colors">
-                 <MagnifyingGlass weight="regular" className="h-4 w-4" />
+                 <MagnifyingGlass className="h-4 w-4" />
               </button>
               <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border-strong bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-paper-muted transition-colors">
-                 <Bell weight="regular" className="h-4 w-4" />
+                 <Bell className="h-4 w-4" />
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--color-nav-bg)] text-[10px] font-bold text-[var(--color-nav-icon)]">
                   30
                 </span>
               </button>
               <div className="h-9 w-9 rounded-full bg-[var(--color-nav-bg)]/10" />
               <button className="flex items-center gap-2 rounded-full bg-[var(--color-nav-bg)] px-4 py-2 text-sm font-medium text-[var(--color-nav-icon)] hover:bg-[var(--color-nav-bg)]/90 transition-colors">
-                 <Plus weight="regular" className="h-4 w-4" />
+                 <Plus className="h-4 w-4" />
                 <span>Add Task</span>
               </button>
             </div>
@@ -225,7 +225,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-muted">Not started</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-primary)]-muted hover:bg-paper transition-colors">
-                   <Clock weight="regular" className="h-4 w-4" />
+                   <Clock className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -238,7 +238,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-muted">Active tasks</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-primary)]-muted hover:bg-paper transition-colors">
-                   <Clock weight="regular" className="h-4 w-4" />
+                   <Clock className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -251,7 +251,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-muted">Completed</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-primary)]-muted hover:bg-paper transition-colors">
-                   <CheckCircle weight="regular" className="h-4 w-4" />
+                   <CheckCircle className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function TasksPage() {
                   <p className="mt-1 text-muted">All tasks</p>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-primary)]-muted hover:bg-paper transition-colors">
-                   <ListChecks weight="regular" className="h-4 w-4" />
+                   <ListChecks className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -281,15 +281,15 @@ export default function TasksPage() {
               <div className="flex items-center gap-2">
                 <button className="flex items-center gap-2 rounded-full bg-[var(--color-surface)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>All Projects</span>
-                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
+                   <CaretDown className="h-3.5 w-3.5" />
                 </button>
                 <button className="flex items-center gap-2 rounded-full bg-[var(--color-surface)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>Date Created</span>
-                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
+                   <CaretDown className="h-3.5 w-3.5" />
                 </button>
                 <button className="flex items-center gap-2 rounded-full bg-[var(--color-surface)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] border border-border-strong hover:bg-paper-muted transition-colors">
                   <span>All</span>
-                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
+                   <CaretDown className="h-3.5 w-3.5" />
                 </button>
                 <div className="flex items-center gap-2 rounded-full bg-[var(--color-surface)] px-3 py-1.5 border border-border-strong">
                   <div className="h-1.5 w-16 rounded-full bg-paper-muted">
@@ -298,13 +298,13 @@ export default function TasksPage() {
                   <span className="text-xs font-medium text-[var(--color-text-primary)]-muted">60%</span>
                 </div>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-[var(--color-text-primary)]-muted hover:bg-paper-muted transition-colors">
-                   <ListChecks weight="regular" className="h-4 w-4" />
+                   <ListChecks className="h-4 w-4" />
                 </button>
                 <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-[var(--color-text-primary)]-muted hover:bg-paper-muted transition-colors">
-                   <Kanban weight="regular" className="h-4 w-4" />
+                   <Kanban className="h-4 w-4" />
                 </button>
                 <div className="relative">
-                   <MagnifyingGlass weight="regular" className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--color-text-primary)]-muted" />
+                   <MagnifyingGlass className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--color-text-primary)]-muted" />
                   <input
                     type="text"
                     placeholder="Search tasks..."
@@ -328,7 +328,7 @@ export default function TasksPage() {
                     className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border-strong bg-[var(--color-surface)] hover:border-ink transition-colors"
                   >
                     {task.status === "done" && (
-                      <CheckCircle weight="regular" className="h-3.5 w-3.5 text-[var(--color-text-primary)]" />
+                      <CheckCircle className="h-3.5 w-3.5 text-[var(--color-text-primary)]" />
                     )}
                   </button>
 
@@ -336,7 +336,7 @@ export default function TasksPage() {
                     {(() => {
                       const Icon = ICON_MAP[task.icon];
                       if (Icon) {
-                        return <Icon weight="regular" className="h-5 w-5" />;
+                        return <Icon className="h-5 w-5" />;
                       }
                       return task.icon;
                     })()}
@@ -350,7 +350,7 @@ export default function TasksPage() {
                     {getStatusBadge(task.status)}
                     {task.timeSpent && (
                       <span className="flex items-center gap-1 text-xs text-[var(--color-text-primary)]-muted">
-                         <Clock weight="regular" className="h-3 w-3" />
+                         <Clock className="h-3 w-3" />
                         {task.timeSpent}
                       </span>
                     )}
@@ -360,7 +360,7 @@ export default function TasksPage() {
                       </span>
                     )}
                     <button className="flex h-7 w-7 items-center justify-center rounded-full border border-border-strong text-[var(--color-text-primary)]-muted hover:bg-paper transition-colors">
-                       <DotsThree weight="regular" className="h-4 w-4" />
+                       <DotsThree className="h-4 w-4" />
                     </button>
                   </div>
                 </div>

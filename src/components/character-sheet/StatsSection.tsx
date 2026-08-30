@@ -4,7 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getModifier } from "@/lib/storage";
 import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
-import { ChartBar } from "phosphor-react";
+import { ChartBarIcon as ChartBar } from "@/components/icons";
 
 interface StatsSectionProps {
   character: {
@@ -37,7 +37,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
   const savingThrowKeys = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
   return (
-    <SectionCard id="stats" title="Stats" icon={<ChartBar weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="stats" title="Stats" icon={<ChartBar className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-2.5">
         {stats.map(({ key, label }) => (
           <AbilityScoreBlock

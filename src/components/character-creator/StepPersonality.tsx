@@ -5,7 +5,7 @@ import { StepCard } from "./StepCard";
 import { backgroundsData, alignmentOptions, getBackgroundData } from "@/data/backgrounds";
 import { languages as languageList } from "@/data/srd";
 import type { Character } from "@/lib/storage";
-import { CaretDown, X } from "phosphor-react";
+import { CaretDownIcon as CaretDown, XIcon as X } from "@/components/icons";
 
 interface StepPersonalityProps {
   data: Character;

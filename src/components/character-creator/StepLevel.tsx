@@ -14,18 +14,18 @@ import {
 import { normalizeDescription } from "@/lib/level-up";
 import { Dice, type DiceType } from "@/components/Dice";
 import {
-  Heart,
-  Lightning,
-  ChartBar,
-  Sword,
-  Sparkle,
-  MagicWand,
-  Book,
-  Star,
-  Check,
-  Minus,
-  Plus,
-} from "phosphor-react";
+  HeartBottleIcon as Heart,
+  LightningIcon as Lightning,
+  ChartBarIcon as ChartBar,
+  SwordIcon as Sword,
+  SparklesIcon as Sparkle,
+  MagicWandIcon as MagicWand,
+  BookIcon as Book,
+  StarIcon as Star,
+  CheckIcon as Check,
+  MinusIcon as Minus,
+  PlusIcon as Plus,
+} from "@/components/icons";
 
 interface StepLevelProps {
   data: Character;
@@ -437,7 +437,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
               </div>
 
               <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                <Heart weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                <Heart className="h-4 w-4 text-[var(--color-text-muted)]" />
                 <div className="flex-1">
                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
                   <div className="text-xs text-[var(--color-text-primary)]">
@@ -451,7 +451,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
               {classFeatures.length > 0 && (
                 <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                  <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                  <Sword className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                   <div className="flex-1">
                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
                     <div className="space-y-1 mt-1">
@@ -467,7 +467,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
               {features.length > 0 && (
                 <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                  <Lightning weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                  <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                   <div className="flex-1">
                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
                     <div className="space-y-1 mt-1">
@@ -483,7 +483,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
               {spellSlots && (
                 <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                  <Sparkle weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                  <Sparkle className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                   <div className="flex-1">
                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
                     <div className="flex flex-wrap gap-1.5 mt-1">
@@ -499,7 +499,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
               {cantripsKnown !== undefined && (
                 <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                  <MagicWand weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                  <MagicWand className="h-4 w-4 text-[var(--color-text-muted)]" />
                   <div className="flex-1">
                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
                     <div className="text-xs text-[var(--color-text-primary)]">{cantripsKnown}</div>
@@ -509,7 +509,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
               {spellsKnown !== undefined && (
                 <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                  <Book weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                  <Book className="h-4 w-4 text-[var(--color-text-muted)]" />
                   <div className="flex-1">
                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
                     <div className="text-xs text-[var(--color-text-primary)]">{spellsKnown}</div>
@@ -519,7 +519,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
               {levelData?.asi && (
                 <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-                  <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+                  <ChartBar className="h-4 w-4 text-[var(--color-text-muted)]" />
                   <div className="flex-1">
                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
                     <div className="text-xs text-[var(--color-text-primary)]">+2 to one ability or +1 to two</div>

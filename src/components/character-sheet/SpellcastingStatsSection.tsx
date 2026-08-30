@@ -2,7 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { Sparkle } from "phosphor-react";
+import { SparklesIcon as Sparkle } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 
 interface SpellcastingStatsSectionProps {
@@ -62,7 +62,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
   };
 
   return (
-    <SectionCard id="spellcasting" title="Spellcasting Stats" icon={<Sparkle weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="spellcasting" title="Spellcasting Stats" icon={<Sparkle className="h-5 w-5" />}>
       <div className="grid grid-cols-1 gap-4">
         <Field label="SPELLCASTING ABILITY">
           {editMode ? (

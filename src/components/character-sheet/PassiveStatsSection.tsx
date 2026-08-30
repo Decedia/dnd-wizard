@@ -1,7 +1,7 @@
 "use client";
 
 import { SectionCard } from "./SectionCard";
-import { Eye, Ear, Shield, Brain } from "phosphor-react";
+import { EyeIcon as Eye, EarIcon as Ear, ShieldIcon as Shield, BrainIcon as Brain } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 import { getModifier, getProficiencyBonus } from "@/lib/storage";
 
@@ -23,7 +23,7 @@ export function PassiveStatsSection({ character }: PassiveStatsSectionProps) {
   const passiveInvestigation = 10 + intMod + (isInvestigationProficient ? profBonus : 0);
 
   return (
-    <SectionCard id="passive-stats" title="Passive Stats" icon={<Eye weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="passive-stats" title="Passive Stats" icon={<Eye className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-3">
         <div className="flex flex-col items-center gap-1.5 p-3 bg-[var(--color-bg)] rounded-[var(--radius-md)]">
           <Eye className="h-5 w-5 text-[var(--color-text-muted)]" />

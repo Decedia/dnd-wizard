@@ -6,7 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { getStaticRaces, getStaticClasses } from "@/lib/srd-client";
 import { languageNames } from "@/data/srd";
 import { ALIGNMENTS } from "@/lib/storage";
-import { User } from "phosphor-react";
+import { UserIcon as User } from "@/components/icons";
 
 interface IdentitySectionProps {
   character: {
@@ -50,7 +50,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
   }, [character.languages, onChange]);
 
   return (
-    <SectionCard id="identity" title="Identity" icon={<User weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="identity" title="Identity" icon={<User className="h-5 w-5" />}>
       <div className="space-y-3.5">
         {editMode ? (
           <>

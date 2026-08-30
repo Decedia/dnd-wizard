@@ -1,16 +1,16 @@
 import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
 import { getModifier } from "@/lib/storage";
 import {
-  Heart,
-  Lightning,
-  ChartBar,
-  Target,
-  Sparkle,
-  MagicWand,
-  Shield,
-  Crown,
-  ClipboardText,
-} from "phosphor-react";
+  HeartBottleIcon as Heart,
+  LightningIcon as Lightning,
+  ChartBarIcon as ChartBar,
+  TargetIcon as Target,
+  SparklesIcon as Sparkle,
+  MagicWandIcon as MagicWand,
+  ShieldIcon as Shield,
+  CrownIcon as Crown,
+  ClipboardTextIcon as ClipboardText,
+} from "@/components/icons";
 
 export interface LevelUpStepSection {
   type: "hp" | "features" | "asi" | "expertise" | "spellSlots" | "spellSelection" | "skillSelection" | "subclassSelection";
@@ -246,23 +246,23 @@ export function sectionTitle(type: LevelUpStepSection["type"]): string {
 export function sectionIcon(type: LevelUpStepSection["type"]): React.ReactNode {
   switch (type) {
     case "hp":
-      return <Heart weight="regular" className="h-4 w-4" />;
+      return <Heart className="h-4 w-4" />;
     case "features":
-      return <Lightning weight="regular" className="h-4 w-4" />;
+      return <Lightning className="h-4 w-4" />;
     case "asi":
-      return <ChartBar weight="regular" className="h-4 w-4" />;
+      return <ChartBar className="h-4 w-4" />;
     case "expertise":
-      return <Target weight="regular" className="h-4 w-4" />;
+      return <Target className="h-4 w-4" />;
     case "spellSlots":
-      return <Sparkle weight="regular" className="h-4 w-4" />;
+      return <Sparkle className="h-4 w-4" />;
     case "spellSelection":
-      return <MagicWand weight="regular" className="h-4 w-4" />;
+      return <MagicWand className="h-4 w-4" />;
     case "skillSelection":
-      return <Shield weight="regular" className="h-4 w-4" />;
+      return <Shield className="h-4 w-4" />;
     case "subclassSelection":
-      return <Crown weight="regular" className="h-4 w-4" />;
+      return <Crown className="h-4 w-4" />;
     default:
-      return <ClipboardText weight="regular" className="h-4 w-4" />;
+      return <ClipboardText className="h-4 w-4" />;
   }
 }
 

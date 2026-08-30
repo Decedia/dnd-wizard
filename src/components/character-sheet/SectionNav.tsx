@@ -2,20 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  User,
-  ChartBar,
-  Sword,
-  Skull,
-  DiceFive,
-  ListChecks,
-  Star,
-  Backpack,
-  Lightning,
-  Scroll,
-  GraduationCap,
-  Sparkle,
-  Sun,
-} from "phosphor-react";
+  UserIcon as User,
+  ChartBarIcon as ChartBar,
+  SwordIcon as Sword,
+  SkullIcon as Skull,
+  DiceIcon as DiceFive,
+  ListChecksIcon as ListChecks,
+  StarIcon as Star,
+  BackpackIcon as Backpack,
+  LightningIcon as Lightning,
+  ScrollIcon as Scroll,
+  GraduationCapIcon as GraduationCap,
+  SparklesIcon as Sparkle,
+  SunIcon as Sun,
+} from "@/components/icons";
 
 const sections = [
   { id: "identity", label: "Identity", Icon: User },
@@ -79,7 +79,7 @@ export function SectionNav() {
               : "h-7 w-7 md:h-8 md:w-8 text-ink-muted hover:text-ink border border-transparent"
           }`}
         >
-          <Icon className="h-4 w-4 md:h-5 md:w-5" weight={active === id ? "fill" : "regular"} />
+          <Icon className="h-4 w-4 md:h-5 md:w-5" />
         </button>
       ))}
     </nav>

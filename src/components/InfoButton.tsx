@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Info, X } from "phosphor-react";
+import { InfoIcon as Info, XIcon as X } from "@/components/icons";
 
 interface InfoButtonProps {
   title: string;
@@ -25,7 +25,7 @@ export function InfoButton({ title, description }: InfoButtonProps) {
         }}
         className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
       >
-        <Info weight="regular" className="h-4 w-4" />
+        <Info className="h-4 w-4" />
       </button>
       {show && (
         <div

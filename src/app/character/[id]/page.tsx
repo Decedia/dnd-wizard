@@ -26,7 +26,7 @@ import { SpellcastingStatsSection } from "@/components/character-sheet/Spellcast
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { CurrencySection } from "@/components/character-sheet/CurrencySection";
-import { Trash, Export, Upload, CheckCircle, UserPlus, Clock } from "phosphor-react";
+import { TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock } from "@/components/icons";
 
 export default function CharacterView() {
   const params = useParams();
@@ -142,7 +142,7 @@ export default function CharacterView() {
         <AppHeader title="Character" subtitle="Character Sheet" />
         <main className="px-4 py-6 pb-28">
           <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-16 text-center">
-             <UserPlus weight="regular" size={48} color="var(--color-text-muted)" className="mb-3 opacity-40" />
+             <UserPlus size={48} color="var(--color-text-muted)" className="mb-3 opacity-40" />
             <h2 className="text-page-title mb-2">
               Character Not Found
             </h2>
@@ -236,7 +236,7 @@ export default function CharacterView() {
                   </>
                 ) : (
                   <>
-                    <Export weight="regular" className="h-4 w-4" />
+                    <Export className="h-4 w-4" />
                     Export PDF
                   </>
                 )}
@@ -245,7 +245,7 @@ export default function CharacterView() {
                 onClick={handleImportClick}
                 className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
-                <Upload weight="regular" className="h-4 w-4" />
+                <Upload className="h-4 w-4" />
                 Import PDF
               </button>
             </div>
@@ -253,12 +253,12 @@ export default function CharacterView() {
               onClick={handleDelete}
               className="w-full flex items-center justify-center gap-1.5 py-2.5 text-sm font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] transition-all"
             >
-              <Trash weight="regular" className="h-4 w-4" />
+              <Trash className="h-4 w-4" />
               Delete Character
             </button>
             {savedAt && (
               <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-[var(--color-nav-icon)] bg-[var(--color-nav-bg)] py-2 surface">
-                <CheckCircle weight="fill" className="h-4 w-4" />
+                <CheckCircle className="h-4 w-4" />
                 Saved
               </div>
             )}

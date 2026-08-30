@@ -4,10 +4,10 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
-import { Sword, Sparkle, Heart, Drop } from "phosphor-react";
+import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
-import { X } from "phosphor-react";
+import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
 import { BuffTracker } from "./BuffTracker";
 
@@ -53,7 +53,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
   }, [hpModal, hpAmount, character, onChange]);
 
   return (
-    <SectionCard id="combat-stats" title="Combat Stats" icon={<Sword weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="combat-stats" title="Combat Stats" icon={<Sword className="h-5 w-5" />}>
       {editMode ? (
         <div className="flex items-center gap-2 mb-3">
           <input
@@ -114,7 +114,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <span className="field-label-light mb-0 flex items-center gap-1">
-                <Sparkle weight="regular" className="h-3 w-3" />
+                <Sparkle className="h-3 w-3" />
                 Sorcery Points
               </span>
               <span className="text-[10px] font-semibold text-ink-muted">
@@ -137,7 +137,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           onClick={() => setHpModal({ mode: "heal" })}
           className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-success-200)] text-[var(--color-success-700)] hover:bg-[var(--color-success-50)] transition-all"
         >
-          <Heart className="h-4 w-4" weight="fill" />
+          <Heart className="h-4 w-4" />
           <span className="text-xs font-semibold">Heal</span>
         </button>
         <button
@@ -145,7 +145,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           onClick={() => setHpModal({ mode: "damage" })}
           className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-error-200)] text-[var(--color-error-700)] hover:bg-[var(--color-error-50)] transition-all"
         >
-          <Drop className="h-4 w-4" weight="fill" />
+          <Drop className="h-4 w-4" />
           <span className="text-xs font-semibold">Damage</span>
         </button>
       </div>

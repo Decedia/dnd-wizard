@@ -2,21 +2,20 @@
 
 import { useMemo } from "react";
 import {
-  Drop,
-  Club,
-  Snowflake,
-  Fire,
-  Sparkle,
-  Lightning,
-  Skull,
-  Needle,
-  Brain,
-  Sun,
-  Sword,
-  CloudLightning,
-  TestTube,
-  Icon,
-} from "phosphor-react";
+  DropIcon as Drop,
+  ClubIcon as Club,
+  SnowflakeIcon as Snowflake,
+  FireIcon as Fire,
+  SparklesIcon as Sparkle,
+  LightningIcon as Lightning,
+  SkullIcon as Skull,
+  NeedleIcon as Needle,
+  BrainIcon as Brain,
+  SunIcon as Sun,
+  SwordIcon as Sword,
+  CloudLightningIcon as CloudLightning,
+  TestTubeIcon as TestTube,
+} from "@/components/icons";
 
 export type DamageType =
   | "acid"
@@ -34,7 +33,7 @@ export type DamageType =
   | "thunder";
 
 interface DamageTypeStyle {
-  icon: Icon;
+  icon: React.ComponentType<{ className?: string }>;
   label: string;
   color: string;
   bgColor: string;
@@ -68,7 +67,7 @@ export function getDamageTypeBgColor(type: string | undefined | null): string {
   return DAMAGE_TYPES[key]?.bgColor ?? "#e5e5e515";
 }
 
-function getDamageIcon(type: string): Icon | null {
+function getDamageIcon(type: string): React.ComponentType<{ className?: string }> | null {
   const key = type.toLowerCase() as DamageType;
   return DAMAGE_TYPES[key]?.icon ?? null;
 }
@@ -192,7 +191,7 @@ export function DamageDisplay({ damages, size = "sm", inline = false }: DamageDi
                 color: color,
               }}
             >
-              {IconComponent && <IconComponent weight="bold" size={size === "sm" ? 12 : 14} />}
+              {IconComponent && <IconComponent className={size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5"} />}
               <span>{label}</span>
             </span>
           </span>

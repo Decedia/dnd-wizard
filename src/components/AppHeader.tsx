@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { MagicWand } from "phosphor-react";
+import { WizardHatIcon } from "@/components/icons";
 
 interface AppHeaderProps {
   title?: string;
@@ -12,10 +12,6 @@ interface AppHeaderProps {
   onEditModeChange?: (mode: boolean) => void;
   onSave?: () => void;
   showThemeToggle?: boolean;
-}
-
-export function WizardHatIcon({ className }: { className?: string }) {
-  return <MagicWand className={className} weight="fill" />;
 }
 
 export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave, showThemeToggle }: AppHeaderProps) {

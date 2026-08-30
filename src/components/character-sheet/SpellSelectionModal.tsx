@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { getStaticSpells, getStaticArcaneTricksterSpells } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { X, Check } from "phosphor-react";
+import { XIcon as X, CheckIcon as Check } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 
 interface SpellSelectionModalProps {
@@ -282,8 +282,8 @@ export function SpellSelectionModal({
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        {isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                        {isSel && !isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-[var(--color-surface)]" />}
+                        {isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                        {isSel && !isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                         <span className={`text-xs font-bold ${isAlreadyKnown ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 ml-5">
@@ -322,8 +322,8 @@ export function SpellSelectionModal({
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        {isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                        {isSel && !isAlreadyKnown && <Check weight="fill" className="h-3 w-3 text-[var(--color-surface)]" />}
+                        {isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                        {isSel && !isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                         <span className={`text-xs font-bold ${isAlreadyKnown ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 ml-5">

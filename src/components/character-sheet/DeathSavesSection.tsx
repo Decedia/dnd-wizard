@@ -2,7 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { Skull, Circle } from "phosphor-react";
+import { SkullIcon as Skull, CircleIcon as Circle } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 
 interface DeathSavesSectionProps {
@@ -25,7 +25,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
   );
 
   return (
-    <SectionCard id="death-saves" title="Death Saves" icon={<Skull weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="death-saves" title="Death Saves" icon={<Skull className="h-5 w-5" />}>
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-3">
           <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Successes</span>
@@ -44,8 +44,8 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             : [0, 1, 2].map((i) => (
                 <span key={`ds-s-${i}`}>
                   {character.deathSaveSuccesses > i
-                     ? <Circle weight="fill" size={12} color="var(--color-text-primary)" />
-                     : <Circle weight="regular" size={12} color="var(--color-border)" />}
+                     ? <Circle size={12} color="var(--color-text-primary)" />
+                     : <Circle size={12} color="var(--color-border)" />}
                 </span>
               ))}
         </div>
@@ -66,8 +66,8 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             : [0, 1, 2].map((i) => (
                 <span key={`ds-f-${i}`}>
                   {character.deathSaveFailures > i
-                     ? <Circle weight="fill" size={12} color="var(--color-text-primary)" />
-                     : <Circle weight="regular" size={12} color="var(--color-border)" />}
+                     ? <Circle size={12} color="var(--color-text-primary)" />
+                     : <Circle size={12} color="var(--color-border)" />}
                 </span>
               ))}
         </div>

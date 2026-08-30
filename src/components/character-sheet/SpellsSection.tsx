@@ -7,7 +7,7 @@ import { DescriptionText } from "./DescriptionText";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
-import { Lightning, Plus, Check, Circle, X, Clock, Sparkle } from "phosphor-react";
+import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle } from "@/components/icons";
 import { ConditionBadges } from "./ConditionBadge";
 import { DamageDisplay, getSpellDamageInfo } from "./DamageExtractor";
 import { SpellSelectionModal } from "./SpellSelectionModal";
@@ -164,7 +164,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   };
 
   return (
-    <SectionCard id="spells" title="Spells" icon={<Lightning weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="spells" title="Spells" icon={<Lightning className="h-5 w-5" />}>
       {preparationCaster && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Prepared Spells: {preparedCount}/{maxPrepared}</span>
@@ -289,7 +289,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       className="text-[var(--color-text-secondary)] hover:text-[var(--color-error-500)] shrink-0"
                       aria-label="Remove spell"
                     >
-                      <X weight="regular" className="h-4 w-4" />
+                      <X className="h-4 w-4" />
                     </button>
                   )}
                 </div>
@@ -314,7 +314,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           onClick={() => setShowSpellModal(true)}
           className="mt-3 btn-secondary flex items-center gap-1.5"
         >
-          <Plus weight="regular" size={16} />
+          <Plus size={16} />
           Add Spells
         </button>
       )}

@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
-import { Star, X, Plus, Clock } from "phosphor-react";
+import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatPopup } from "./FeatPopup";
 import { ConditionBadges } from "./ConditionBadge";
@@ -56,7 +56,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   };
 
   return (
-    <SectionCard id="features" title="Features & Traits" icon={<Star weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
       <div className="space-y-3">
         {character.subclass && (
           <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
@@ -91,7 +91,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                         className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                         aria-label="Remove feature"
                       >
-                        <X weight="regular" className="h-4 w-4" />
+                        <X className="h-4 w-4" />
                       </button>
                     )}
                   </div>
@@ -162,7 +162,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             onClick={addItem}
             className="mt-3 btn-secondary flex items-center gap-1.5"
           >
-            <Plus weight="regular" size={16} />
+            <Plus size={16} />
             Add Feature
           </button>
       )}

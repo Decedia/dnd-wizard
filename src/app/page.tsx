@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
-import { Upload, CaretRight, UserPlus, User, Trash } from "phosphor-react";
+import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash } from "@/components/icons";
 
 export default function Home() {
   const [characters, setCharacters] = useState<Character[]>(() => getCharacters());
@@ -51,7 +51,7 @@ export default function Home() {
             onClick={handleImportClick}
             className="btn btn-secondary w-full"
           >
-            <Upload weight="regular" className="h-4 w-4 mr-2 inline" />
+            <Upload className="h-4 w-4 mr-2 inline" />
             Import from PDF
           </button>
           <input
@@ -80,7 +80,7 @@ export default function Home() {
 
           {characters.length === 0 ? (
                <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-10 text-center">
-                <UserPlus weight="regular" size={48} color="var(--color-text-muted)" className="mb-2.5 opacity-40" />
+                <UserPlus size={48} color="var(--color-text-muted)" className="mb-2.5 opacity-40" />
               <p className="text-muted">
                 No characters yet. Create your first hero to begin your adventure.
               </p>
@@ -96,7 +96,7 @@ export default function Home() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink/5">
-                          <User weight="regular" size={20} />
+                          <User size={20} />
                         </div>
                         <div>
                           <h3 className="text-card-title">
@@ -107,7 +107,7 @@ export default function Home() {
                           </p>
                         </div>
                       </div>
-                      <CaretRight weight="regular" size={16} className="text-ink-muted" />
+                      <CaretRight size={16} className="text-ink-muted" />
                     </div>
                   </Link>
                   <button
@@ -115,7 +115,7 @@ export default function Home() {
                     className="flex h-9 w-9 shrink-0 items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-error-600)] transition-all"
                     aria-label={`Delete ${char.name || "character"}`}
                   >
-                    <Trash weight="regular" size={18} />
+                    <Trash size={18} />
                   </button>
                 </li>
               ))}

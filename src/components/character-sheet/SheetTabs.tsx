@@ -1,6 +1,6 @@
 "use client";
 
-import { Sword, Star, Backpack, Lightning, User } from "phosphor-react";
+import { SwordIcon as Sword, StarIcon as Star, BackpackIcon as Backpack, LightningIcon as Lightning, UserIcon as User } from "@/components/icons";
 
 export type TabId = "combat" | "features" | "gear" | "spells" | "bio";
 
@@ -9,7 +9,7 @@ interface SheetTabsProps {
   onTabChange: (tab: TabId) => void;
 }
 
-const TABS: { id: TabId; label: string; Icon: React.ComponentType<{ className?: string; weight?: "regular" | "fill" }> }[] = [
+const TABS: { id: TabId; label: string; Icon: React.ComponentType<{ className?: string }> }[] = [
   { id: "combat", label: "Combat", Icon: Sword },
   { id: "features", label: "Features", Icon: Star },
   { id: "gear", label: "Gear", Icon: Backpack },
@@ -34,7 +34,7 @@ export function SheetTabs({ activeTab, onTabChange }: SheetTabsProps) {
                 : "btn btn-secondary"
             }`}
           >
-            <Icon className="h-4 w-4 mr-1.5" weight={isActive ? "fill" : "regular"} />
+            <Icon className="h-4 w-4 mr-1.5" />
             {tab.label}
           </button>
         );

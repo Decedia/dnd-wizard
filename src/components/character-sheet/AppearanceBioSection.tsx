@@ -3,7 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
-import { Sun } from "phosphor-react";
+import { SunIcon as Sun } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 
 interface AppearanceBioSectionProps {
@@ -36,7 +36,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
   };
 
   return (
-    <SectionCard id="appearance" title="Appearance & Bio" icon={<Sun weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="appearance" title="Appearance & Bio" icon={<Sun className="h-5 w-5" />}>
       {editMode ? (
         <>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">

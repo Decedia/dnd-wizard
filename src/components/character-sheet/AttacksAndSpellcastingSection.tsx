@@ -5,7 +5,7 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
-import { Sword } from "phosphor-react";
+import { SwordIcon as Sword } from "@/components/icons";
 import { DamageBadge } from "./DamageBadge";
 import { ConditionBadges } from "./ConditionBadge";
 
@@ -60,7 +60,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   };
 
   return (
-    <SectionCard id="attacks" title="Attacks" icon={<Sword weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="attacks" title="Attacks" icon={<Sword className="h-5 w-5" />}>
       {character.class === "Rogue" && sneakAttack && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Sneak Attack: {sneakAttack}</span>

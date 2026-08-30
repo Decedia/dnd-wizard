@@ -7,7 +7,7 @@ import { InfoButton } from "@/components/InfoButton";
 import { FeatSelector } from "./FeatSelector";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { Check } from "phosphor-react";
+import { CheckIcon as Check } from "@/components/icons";
 
 interface StepRaceProps {
   data: Character;
@@ -108,7 +108,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
                               : "border-[var(--color-border)]"
                           }`}
                         >
-                          {isVariantHuman && <Check className="h-3 w-3 text-[var(--color-surface)]" weight="bold" />}
+                           {isVariantHuman && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                         </div>
                         <div>
                           <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>

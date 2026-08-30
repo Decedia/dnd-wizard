@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { X, Sword, Shield, Backpack } from "phosphor-react";
+import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack } from "@/components/icons";
 import { DamageBadge } from "./DamageBadge";
 
 interface ItemSelectionPopupProps {
@@ -104,9 +104,9 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
 
   const getCategoryIcon = (cat: ItemCategory) => {
     switch (cat) {
-      case "weapons": return <Sword weight="regular" className="h-4 w-4" />;
-      case "armor": return <Shield weight="regular" className="h-4 w-4" />;
-      case "items": return <Backpack weight="regular" className="h-4 w-4" />;
+      case "weapons": return <Sword className="h-4 w-4" />;
+      case "armor": return <Shield className="h-4 w-4" />;
+      case "items": return <Backpack className="h-4 w-4" />;
     }
   };
 

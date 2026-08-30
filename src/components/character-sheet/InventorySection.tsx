@@ -7,7 +7,7 @@ import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
 import { useCallback, useState } from "react";
-import { Backpack, Plus, CheckCircle, Circle, Info, Hand, Shield } from "phosphor-react";
+import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 import { ConditionBadges } from "./ConditionBadge";
@@ -265,7 +265,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   };
 
   return (
-    <SectionCard id="inventory" title="Inventory" icon={<Backpack weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="inventory" title="Inventory" icon={<Backpack className="h-5 w-5" />}>
       <div className="space-y-2">
         {character.inventory.map((item) => {
           const description = getItemDescription(item);
@@ -303,8 +303,8 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                         }`}
                       >
                          {item.equipped
-                           ? <CheckCircle weight="fill" size={16} color="var(--color-text-primary)" />
-                           : <Circle weight="regular" size={16} color="var(--color-border)" />}
+                           ? <CheckCircle size={16} color="var(--color-text-primary)" />
+                           : <Circle size={16} color="var(--color-border)" />}
                         {item.equipped ? "Equipped" : "Equip"}
                       </button>
                     )}
@@ -328,7 +328,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                             : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                         }`}
                       >
-                        <Hand weight="bold" size={10} className="inline mr-0.5" />Main
+                        <Hand size={10} className="inline mr-0.5" />Main
                       </button>
                       <button
                         type="button"
@@ -342,7 +342,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                               : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                         }`}
                       >
-                        <Hand weight="bold" size={10} className="inline mr-0.5 scale-x-[-1]" />Off
+                        <Hand size={10} className="inline mr-0.5 scale-x-[-1]" />Off
                       </button>
                       {handling === "versatile" && (
                         <button
@@ -390,7 +390,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       )}
                       {item.itemType === "armor" && item.armorType === "shield" && (
                         <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
-                          <Shield weight="bold" size={10} className="inline mr-0.5" />Shield
+                          <Shield size={10} className="inline mr-0.5" />Shield
                         </span>
                       )}
                     </div>
@@ -406,8 +406,8 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                           }`}
                         >
                           {item.equipped
-                            ? <CheckCircle weight="fill" size={12} />
-                            : <Circle weight="regular" size={12} />}
+                            ? <CheckCircle size={12} />
+                            : <Circle size={12} />}
                           {item.equipped ? "Equipped" : "Equip"}
                         </button>
                       )}
@@ -429,7 +429,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                             : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                         }`}
                       >
-                        <Hand weight="bold" size={10} className="inline mr-0.5" />Main
+                        <Hand size={10} className="inline mr-0.5" />Main
                       </button>
                       <button
                         type="button"
@@ -443,7 +443,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                               : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                         }`}
                       >
-                        <Hand weight="bold" size={10} className="inline mr-0.5 scale-x-[-1]" />Off
+                        <Hand size={10} className="inline mr-0.5 scale-x-[-1]" />Off
                       </button>
                       {handling === "versatile" && (
                         <button
@@ -487,7 +487,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
            onClick={() => setShowItemPopup(true)}
            className="mt-4 btn-secondary flex items-center gap-1.5"
          >
-           <Plus weight="regular" size={16} />
+           <Plus size={16} />
            Add Item
          </button>
        )}

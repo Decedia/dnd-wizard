@@ -2,19 +2,19 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { House, PlusCircle } from "phosphor-react";
-import { WizardHatIcon } from "@/components/AppHeader";
+import { HomeIcon, PlusCircleIcon } from "@/components/icons";
+import { WizardHatIcon } from "@/components/icons";
 
 const navItems = [
   {
     name: "Home",
     href: "/",
-    icon: House,
+    icon: HomeIcon,
   },
   {
     name: "New",
     href: "/character/create",
-    icon: PlusCircle,
+    icon: PlusCircleIcon,
   },
 ];
 
@@ -41,7 +41,7 @@ export function BottomNav() {
                  `}
                  aria-current={isActive ? "page" : undefined}
                >
-                <Icon className={`h-5 w-5`} weight={isActive ? "fill" : "regular"} />
+                <Icon className={`h-5 w-5`} />
                 <span className={`font-medium text-[10px]`}>
                   {item.name}
                 </span>

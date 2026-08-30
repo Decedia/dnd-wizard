@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Sword, Users, Sparkle, MusicNotes, Shield, Flame, Skull, HandFist, Leaf, Eye, MagicWand, Heart, Check, Plus, Minus } from "phosphor-react";
+import { SwordIcon as Sword, UsersIcon as Users, SparklesIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, HandFistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
@@ -397,7 +397,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                                   : "border-[var(--color-border)]"
                               }`}
                             >
-                              {pendingVariant && <Check className="h-3 w-3 text-[var(--color-surface)]" weight="bold" />}
+                               {pendingVariant && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                             </div>
                             <div>
                               <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>

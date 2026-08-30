@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { CheckCircle } from "phosphor-react";
+import { CheckCircleIcon as CheckCircle } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
@@ -123,7 +123,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                         <div className="flex items-center justify-between">
                           <span className="text-body">{option}</span>
                           {isSelected && (
-                            <CheckCircle weight="fill" color="var(--color-surface)" className="h-4 w-4" />
+                            <CheckCircle color="var(--color-surface)" className="h-4 w-4" />
                           )}
                         </div>
                       </button>
@@ -179,7 +179,7 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
                 )}
               </div>
               {isSelected && (
-                <CheckCircle weight="fill" color="var(--color-surface)" className="h-4 w-4" />
+                <CheckCircle color="var(--color-surface)" className="h-4 w-4" />
               )}
             </div>
           </button>

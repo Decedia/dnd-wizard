@@ -7,7 +7,7 @@ import { skills as srdSkills } from "@/data/srd";
 import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
-import { Star, X, ListChecks, Circle } from "phosphor-react";
+import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle } from "@/components/icons";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -52,7 +52,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   }, [character.skills, isAtMaxSelections, isBackgroundSkill, onChange]);
 
   return (
-    <SectionCard id="skills" title="Skills" icon={<ListChecks weight="regular" className="h-5 w-5" />}>
+    <SectionCard id="skills" title="Skills" icon={<ListChecks className="h-5 w-5" />}>
       {skillChoices && editMode && (
         <div className="mb-2.5 hint-box-light">
           <span className="text-[11px] text-ink-muted">
@@ -115,9 +115,9 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                       {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
                       {(isProficient || isExpert) && (
                           <span className="flex items-center text-ink">
-                           {isExpert && <Star weight="fill" size={12} color="var(--color-text-primary)" />}
-                           {isExpert && isProficient && <Circle weight="fill" size={12} color="var(--color-text-primary)" className="-ml-0.5" />}
-                           {!isExpert && isProficient && <Circle weight="fill" size={12} color="var(--color-text-primary)" />}
+                           {isExpert && <Star size={12} color="var(--color-text-primary)" />}
+                           {isExpert && isProficient && <Circle size={12} color="var(--color-text-primary)" className="-ml-0.5" />}
+                           {!isExpert && isProficient && <Circle size={12} color="var(--color-text-primary)" />}
                          </span>
                       )}
                     </span>
@@ -151,7 +151,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
             <div className="flex items-center justify-between mb-1.5">
               <h3 className="font-display font-semibold text-ink text-sm">{tooltip.name}</h3>
               <button onClick={() => setTooltip(null)} className="text-ink-muted hover:text-ink">
-                <X weight="regular" className="h-4 w-4" />
+                <X className="h-4 w-4" />
               </button>
             </div>
             <p className="text-xs text-ink">{tooltip.description}</p>

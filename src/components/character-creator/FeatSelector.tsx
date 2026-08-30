@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { X, MagnifyingGlass, Check } from "phosphor-react";
+import { XIcon as X, MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
 import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
 
 interface FeatSelectorProps {
@@ -89,7 +89,7 @@ export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorPr
                         : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
                   >
-                    {isSelected && <Check className="h-3 w-3 text-[var(--color-surface)]" weight="bold" />}
+                     {isSelected && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                   </button>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">

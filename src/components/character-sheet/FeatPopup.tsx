@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "phosphor-react";
+import { XIcon as X } from "@/components/icons";
 import type { SRDFeat } from "@/lib/srd-client";
 
 interface FeatPopupProps {

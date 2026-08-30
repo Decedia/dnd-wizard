@@ -1,19 +1,18 @@
 import {
-  Drop,
-  Club,
-  Snowflake,
-  Fire,
-  Sparkle,
-  Lightning,
-  Skull,
-  Needle,
-  Brain,
-  Sun,
-  Sword,
-  CloudLightning,
-  TestTube,
-  Icon,
-} from "phosphor-react";
+  DropIcon as Drop,
+  ClubIcon as Club,
+  SnowflakeIcon as Snowflake,
+  FireIcon as Fire,
+  SparklesIcon as Sparkle,
+  LightningIcon as Lightning,
+  SkullIcon as Skull,
+  NeedleIcon as Needle,
+  BrainIcon as Brain,
+  SunIcon as Sun,
+  SwordIcon as Sword,
+  CloudLightningIcon as CloudLightning,
+  TestTubeIcon as TestTube,
+} from "@/components/icons";
 
 export type DamageType =
   | "acid"
@@ -31,7 +30,7 @@ export type DamageType =
   | "thunder";
 
 interface DamageTypeStyle {
-  icon: Icon;
+  icon: React.ComponentType<{ className?: string }>;
   label: string;
   color: string;
   bgColor: string;
@@ -161,7 +160,7 @@ export function DamageBadge({ type, size = "sm", showLabel = true }: DamageBadge
         color: style.color,
       }}
     >
-      <IconComponent weight="bold" size={size === "sm" ? 12 : 14} />
+      <IconComponent className={size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5"} />
       {showLabel && <span>{style.label}</span>}
     </span>
   );
@@ -194,7 +193,7 @@ export function DamageTypeLabel({ type, dice, size = "sm" }: DamageTypeLabelProp
           color: color,
         }}
       >
-        {IconComponent ? <IconComponent weight="bold" size={size === "sm" ? 12 : 14} /> : null}
+        {IconComponent ? <IconComponent className={size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5"} /> : null}
       </span>
       {dice && (
         <span

@@ -9,25 +9,25 @@ import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./character-sheet/SpellSelectionModal";
 import {
-  Heart,
-  Lightning,
-  ChartBar,
-  Sparkle,
-  MagicWand,
-  Crown,
-  Sword,
-  Book,
-  Star,
-  Check,
-  Minus,
-  Plus,
-  Info,
-  X,
-  CaretDown,
-  Bell,
-  Leaf,
-  Swap,
-} from "phosphor-react";
+  HeartBottleIcon as Heart,
+  LightningIcon as Lightning,
+  ChartBarIcon as ChartBar,
+  SparklesIcon as Sparkle,
+  MagicWandIcon as MagicWand,
+  CrownIcon as Crown,
+  SwordIcon as Sword,
+  BookIcon as Book,
+  StarIcon as Star,
+  CheckIcon as Check,
+  MinusIcon as Minus,
+  PlusIcon as Plus,
+  InfoIcon as Info,
+  XIcon as X,
+  CaretDownIcon as CaretDown,
+  BellIcon as Bell,
+  LeafIcon as Leaf,
+  SwapIcon as Swap,
+} from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { useSRD } from "@/contexts/SRDContext";
 
@@ -1401,7 +1401,7 @@ function LevelCard({
 
         <div className="space-y-2.5">
           <div ref={setSectionRef(`hp-${lvl}`)} className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "border border-red-400 bg-red-50/30" : ""}`}>
-            <Heart weight="regular" className={`h-4 w-4 ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+            <Heart className={`h-4 w-4 ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
             <div className="flex-1">
               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
               <div className="text-xs text-[var(--color-text-primary)]">
@@ -1424,7 +1424,7 @@ function LevelCard({
           </div>
 
           <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-            <Star weight="regular" className="h-4 w-4 text-[var(--color-text-muted)]" />
+            <Star className="h-4 w-4 text-[var(--color-text-muted)]" />
             <div className="flex-1">
               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Proficiency Bonus</div>
               <div className="text-xs text-[var(--color-text-primary)]">+{info.proficiencyBonus}</div>
@@ -1433,7 +1433,7 @@ function LevelCard({
 
           {info.classFeatures.length > 0 && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <Sword weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <Sword className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
                 <div className="space-y-1 mt-1">
@@ -1449,7 +1449,7 @@ function LevelCard({
 
            {info.features.length > 0 && (
              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-               <Lightning weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+               <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                <div className="flex-1">
                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
                  <div className="space-y-1 mt-1">
@@ -1468,7 +1468,7 @@ function LevelCard({
 
            {info.asi && (
              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-               <ChartBar weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+               <ChartBar className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                <div className="flex-1">
                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
                  <button
@@ -1491,7 +1491,7 @@ function LevelCard({
 
           {info.spellSlots && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <Sparkle weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <Sparkle className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
                 <div className="flex flex-wrap gap-1.5 mt-1">
@@ -1517,7 +1517,7 @@ function LevelCard({
             const cantripColor = info.cantripSelectionCount > 0 && selectedCantrips < info.cantripSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needCantrips ? "border border-red-400 bg-red-50/30" : ""}`}>
-                <MagicWand weight="regular" className={`h-4 w-4 ${needCantrips ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <MagicWand className={`h-4 w-4 ${needCantrips ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
                   <div className={`text-xs ${cantripColor}`}>
@@ -1559,7 +1559,7 @@ function LevelCard({
             const spellColor = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
-                <Book weight="regular" className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <Book className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
                   <div className={`text-xs ${spellColor}`}>
@@ -1603,7 +1603,7 @@ function LevelCard({
             const needSpells = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
-                <Book weight="regular" className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <Book className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spellbook</div>
                   <div className={`text-xs ${needSpells ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
@@ -1644,7 +1644,7 @@ function LevelCard({
             const needPrepare = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needPrepare ? "border border-red-400 bg-red-50/30" : ""}`}>
-                <Book weight="regular" className={`h-4 w-4 ${needPrepare ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <Book className={`h-4 w-4 ${needPrepare ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Prepare Spells</div>
                   <div className={`text-xs ${needPrepare ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
@@ -1676,7 +1676,7 @@ function LevelCard({
 
           {info.subclassOptions && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-              <Crown weight="regular" className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+              <Crown className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Choose Subclass</div>
                 <button
@@ -1696,7 +1696,7 @@ function LevelCard({
                 info.subclassFeatureChoices.map((fc) => (
                   <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
                     <div className="flex items-center gap-2 mb-1">
-                      <Crown weight="regular" className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                      <Crown className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
                       {fc.description && (
                         <InfoButton title={fc.name} description={fc.description} />
@@ -1718,7 +1718,7 @@ function LevelCard({
                 info.classFeatureChoices.map((fc) => (
                   <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
                     <div className="flex items-center gap-2 mb-1">
-                      <Sword weight="regular" className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                      <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
                       {fc.description && (
                         <InfoButton title={fc.name} description={fc.description} />
@@ -1744,7 +1744,7 @@ function LevelCard({
             return (
               <div className="p-3 rounded-lg border border-amber-300 bg-amber-50/30">
                 <div className="flex items-center gap-2 mb-1">
-                  <Sparkle weight="regular" className="h-3.5 w-3.5 text-amber-600" />
+                  <Sparkle className="h-3.5 w-3.5 text-amber-600" />
                   <span className="text-sm font-bold text-[var(--color-text-primary)]">Spell Mastery</span>
                 </div>
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one 1st-level and one 2nd-level spell to cast at will without spell slots.</p>
@@ -1765,7 +1765,7 @@ function LevelCard({
             return (
               <div className="p-3 rounded-lg border border-rose-300 bg-rose-50/30">
                 <div className="flex items-center gap-2 mb-1">
-                  <Star weight="regular" className="h-3.5 w-3.5 text-rose-600" />
+                  <Star className="h-3.5 w-3.5 text-rose-600" />
                   <span className="text-sm font-bold text-[var(--color-text-primary)]">Signature Spells</span>
                 </div>
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose two 3rd-level spells. They&apos;re always prepared and you can cast each once per short rest without a spell slot.</p>
@@ -1784,7 +1784,7 @@ function LevelCard({
           {character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
               <div className="flex items-center gap-2 mb-1">
-                <Crown weight="regular" className="h-3.5 w-3.5 text-purple-600" />
+                <Crown className="h-3.5 w-3.5 text-purple-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon Required</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your subclass (Otherworldly Patron) first to unlock Pact Boon selection.</p>
@@ -1796,7 +1796,7 @@ function LevelCard({
             return (
               <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
                 <div className="flex items-center gap-2 mb-1">
-                  <Crown weight="regular" className="h-3.5 w-3.5 text-purple-600" />
+                  <Crown className="h-3.5 w-3.5 text-purple-600" />
                   <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon</span>
                 </div>
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Your patron bestows a gift. Choose one.</p>
@@ -1858,7 +1858,7 @@ function LevelCard({
             return (
               <div className="p-3 rounded-lg border border-indigo-300 bg-indigo-50/30">
                 <div className="flex items-center gap-2 mb-1">
-                  <Sparkle weight="regular" className="h-3.5 w-3.5 text-indigo-600" />
+                  <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
                   <span className="text-sm font-bold text-[var(--color-text-primary)]">Eldritch Invocations</span>
                 </div>
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {invocationCount} invocation{invocationCount > 1 ? "s" : ""}. Spell slots recover on short rest.</p>
@@ -1912,7 +1912,7 @@ function LevelCard({
           {info.magicalSecretsCount > 0 && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
               <div className="flex items-center gap-2 mb-1">
-                <Sparkle weight="regular" className="h-3.5 w-3.5 text-purple-600" />
+                <Sparkle className="h-3.5 w-3.5 text-purple-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Magical Secrets</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {info.magicalSecretsCount} spell{info.magicalSecretsCount > 1 ? "s" : ""} from any class</p>
@@ -1947,7 +1947,7 @@ function LevelCard({
           {info.subclassSpellSelectionCount > 0 && (
             <div className="p-3 rounded-lg border border-indigo-300 bg-indigo-50/30">
               <div className="flex items-center gap-2 mb-1">
-                <Sparkle weight="regular" className="h-3.5 w-3.5 text-indigo-600" />
+                <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Additional Magical Secrets</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {info.subclassSpellSelectionCount} spell{info.subclassSpellSelectionCount > 1 ? "s" : ""} from any class (Lore feature)</p>
@@ -1982,7 +1982,7 @@ function LevelCard({
           {info.canReplaceSpell && (
             <div className="p-3 rounded-lg border border-orange-300 bg-orange-50/30">
               <div className="flex items-center gap-2 mb-1">
-                <Book weight="regular" className="h-3.5 w-3.5 text-orange-600" />
+                <Book className="h-3.5 w-3.5 text-orange-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Replace Known Spell</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Optionally replace one known spell with another from the {character.class} spell list</p>
@@ -2002,7 +2002,7 @@ function LevelCard({
           {info.bonusCantripSelection && (
             <div className="p-3 rounded-lg border border-teal-300 bg-teal-50/30">
               <div className="flex items-center gap-2 mb-1">
-                <MagicWand weight="regular" className="h-3.5 w-3.5 text-teal-600" />
+                <MagicWand className="h-3.5 w-3.5 text-teal-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Bonus Cantrip</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one additional druid cantrip (does not count against cantrip limit)</p>
@@ -2020,7 +2020,7 @@ function LevelCard({
           {info.circleTerrainSelection && (
             <div className="p-3 rounded-lg border border-green-300 bg-green-50/30">
               <div className="flex items-center gap-2 mb-1">
-                <Leaf weight="regular" className="h-3.5 w-3.5 text-green-600" />
+                <Leaf className="h-3.5 w-3.5 text-green-600" />
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells - Choose Terrain</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your terrain type to gain circle spells (always prepared, do not count against limit)</p>

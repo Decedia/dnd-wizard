@@ -1,12 +1,11 @@
 "use client";
 
-import { Lightning, Drop, Shield, Flame, Eye, Clock, Sparkle, Skull } from "phosphor-react";
-import type { Icon } from "phosphor-react";
+import { LightningIcon as Lightning, DropIcon as Drop, ShieldIcon as Shield, FlameIcon as Flame, EyeIcon as Eye, ClockIcon as Clock, SparklesIcon as Sparkle, SkullIcon as Skull } from "@/components/icons";
 
 export interface StateDefinition {
   id: string;
   name: string;
-  icon: Icon;
+  icon: React.ComponentType<{ className?: string }>;
   color: string;
   bgColor: string;
   borderColor: string;
@@ -59,7 +58,7 @@ export function StateTracker({ activeStates, onToggle, onReset, editMode = true 
               borderColor: isActive ? state.borderColor : "var(--color-border)",
             }}
           >
-            <IconComponent weight="bold" size={11} />
+            <IconComponent className="h-3 w-3" />
             <span>{state.name}</span>
           </button>
         );

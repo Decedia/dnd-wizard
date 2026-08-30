@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, PencilSimple } from "phosphor-react";
+import { EyeIcon as Eye, PencilSimpleIcon as PencilSimple } from "@/components/icons";
 
 type Mode = "view" | "edit";
 
@@ -29,7 +29,7 @@ export function ViewEditToggle({ mode, onModeChange, onSave }: ViewEditTogglePro
             : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)]"
         }`}
       >
-        <Eye className="h-4 w-4" weight={mode === "view" ? "fill" : "regular"} color={mode === "view" ? "var(--color-surface)" : "var(--color-text-primary)"} />
+        <Eye className="h-4 w-4" color={mode === "view" ? "var(--color-surface)" : "var(--color-text-primary)"} />
       </button>
       <button
         type="button"
@@ -40,7 +40,7 @@ export function ViewEditToggle({ mode, onModeChange, onSave }: ViewEditTogglePro
             : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)]"
         }`}
       >
-        <PencilSimple className="h-4 w-4" weight={mode === "edit" ? "fill" : "regular"} color={mode === "edit" ? "var(--color-surface)" : "var(--color-text-primary)"} />
+        <PencilSimple className="h-4 w-4" color={mode === "edit" ? "var(--color-surface)" : "var(--color-text-primary)"} />
       </button>
     </div>
   );
