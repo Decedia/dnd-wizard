@@ -109,6 +109,7 @@ interface LevelInfo {
   subclassFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[];
   classFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[];
   hasSpellSelection: boolean;
+  spellSelectionType: "known" | "book" | "prepare";
   spellSelectionCount: number;
   cantripSelectionCount: number;
   maxSpellLevel: number;
@@ -339,9 +340,7 @@ function buildLevelInfos(
     if (isPrepCaster && classData.spellcastingAbility) {
       const abilityMod = getModifier(character[classData.spellcastingAbility as keyof Character] as number);
       const maxPrepared = Math.max(1, abilityMod + level);
-      const prevMaxPrepared = level > 1 ? Math.max(1, abilityMod + (level - 1)) : 0;
-      spellSelectionCount = maxPrepared - prevMaxPrepared;
-      if (spellSelectionCount <= 0) spellSelectionCount = 0;
+      spellSelectionCount = maxPrepared;
     }
 
     const isBard = className === "Bard";
@@ -354,6 +353,8 @@ function buildLevelInfos(
 
     const hasSpellSelectionFromClass = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
     const hasSpellSelection = hasSpellSelectionFromClass || (isArcaneTrickster && (slotsChanged || cantripsChanged || spellsKnownChanged)) || spellSelectionCount > 0 || cantripsDelta > 0;
+
+    const spellSelectionType: "known" | "book" | "prepare" = isPrepCaster ? "prepare" : (className === "Wizard" ? "book" : "known");
 
     const allFeatures = [...features, ...passiveSubclassFeatures];
 
@@ -371,6 +372,7 @@ function buildLevelInfos(
       subclassFeatureChoices: subclassFeatureChoices.length > 0 ? subclassFeatureChoices : undefined,
       classFeatureChoices: classFeatureChoices.length > 0 ? classFeatureChoices : undefined,
       hasSpellSelection: hasSpellSelection,
+      spellSelectionType: spellSelectionType,
       spellSelectionCount: spellSelectionCount,
       cantripSelectionCount: cantripsDelta,
       maxSpellLevel,
@@ -1974,6 +1976,8 @@ function LevelCard({
           subclassSpellSelections={subclassSpellSelections}
           onSubclassSpellSelectionsChange={onSubclassSpellSelectionsChange}
           mode={spellModalMode}
+          selectionType={info.spellSelectionType}
+          allKnownSpells={info.spellSelectionType === "prepare" ? (character.spells || []).filter(s => s.level > 0).map(s => `${s.name}:${s.level}`) : []}
         />
       )}
 

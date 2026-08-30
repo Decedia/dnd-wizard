@@ -28,6 +28,8 @@ interface SpellSelectionModalProps {
   maxSpellsKnown?: number;
   maxCantripsKnown?: number;
   mode?: "all" | "cantrips" | "spells";
+  selectionType?: "known" | "book" | "prepare";
+  allKnownSpells?: string[];
 }
 
 export function SpellSelectionModal({
@@ -46,6 +48,8 @@ export function SpellSelectionModal({
   maxSpellsKnown = 0,
   maxCantripsKnown = 0,
   mode = "all",
+  selectionType = "known",
+  allKnownSpells = [],
 }: SpellSelectionModalProps) {
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
@@ -82,6 +86,9 @@ export function SpellSelectionModal({
 
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
   const alreadyKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
+
+  const isPrepareMode = selectionType === "prepare" && !onChange;
+  const prepareAlreadyKnown = new Set((allKnownSpells || []).map(s => s.split(":")[0]));
 
   const toggle = (name: string, level: number) => {
     if (onChange) {
@@ -122,7 +129,8 @@ export function SpellSelectionModal({
           }
         } else {
           const currentSpells = selectedSpells.filter((s) => !s.endsWith(":0")).length;
-          if (currentSpells < count) {
+          const maxSpells = selectionType === "prepare" ? count : count;
+          if (selectionType === "prepare" || currentSpells < maxSpells) {
             const newList = [...selectedSpells, `${name}:${level}`];
             setSelectedSpells(newList);
             onSpellsChange?.(newList);
