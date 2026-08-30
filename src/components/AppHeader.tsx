@@ -11,13 +11,14 @@ interface AppHeaderProps {
   editMode?: boolean;
   onEditModeChange?: (mode: boolean) => void;
   onSave?: () => void;
+  showThemeToggle?: boolean;
 }
 
 export function WizardHatIcon({ className }: { className?: string }) {
   return <MagicWand className={className} weight="fill" />;
 }
 
-export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave }: AppHeaderProps) {
+export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave, showThemeToggle }: AppHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border-strong bg-paper/90 backdrop-blur-sm">
       <div className="mx-auto max-w-lg px-4 py-3">
@@ -40,7 +41,7 @@ export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave 
           {editMode !== undefined && onEditModeChange && (
             <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => onEditModeChange(m === "edit")} onSave={onSave} />
           )}
-          <ThemeToggle />
+          {showThemeToggle && <ThemeToggle />}
         </div>
       </div>
     </header>

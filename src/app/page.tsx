@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title="DND Wizard" subtitle="My Characters" />
+      <AppHeader title="DND Wizard" subtitle="My Characters" showThemeToggle />
 
       <main className="px-4 py-4 pb-28">
         <div className="mb-5">
