@@ -102,14 +102,25 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     }
   }, [character.preparedSpells, onChange]);
 
-  const toggleSpellUsed = useCallback((spellId: string) => {
-    const current = character.spellsUsedThisTurn || [];
-    if (current.includes(spellId)) {
-      onChange({ spellsUsedThisTurn: current.filter(id => id !== spellId) });
+  const toggleSpellUsed = useCallback((spellId: string, buffDef?: BuffDefinition) => {
+    const currentUsed = character.spellsUsedThisTurn || [];
+    const isUsed = currentUsed.includes(spellId);
+    if (isUsed) {
+      onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spellId) });
+      if (buffDef) {
+        const currentBuffs = character.activeBuffs || [];
+        onChange({ activeBuffs: currentBuffs.filter(b => b.spellId !== buffDef.id) });
+      }
     } else {
-      onChange({ spellsUsedThisTurn: [...current, spellId] });
+      onChange({ spellsUsedThisTurn: [...currentUsed, spellId] });
+      if (buffDef) {
+        const currentBuffs = character.activeBuffs || [];
+        if (!currentBuffs.some(b => b.spellId === buffDef.id)) {
+          onChange({ activeBuffs: [...currentBuffs, { spellId: buffDef.id, name: buffDef.name, concentration: buffDef.concentration }] });
+        }
+      }
     }
-  }, [character.spellsUsedThisTurn, onChange]);
+  }, [character.spellsUsedThisTurn, character.activeBuffs, onChange]);
 
   const resetSpellsUsed = useCallback(() => {
     onChange({ spellsUsedThisTurn: [] });
@@ -126,20 +137,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     const normalized = spellName.toLowerCase();
     return Object.values(BUFF_DEFINITIONS).find(b => b.id === normalized || b.name.toLowerCase() === normalized);
   }, []);
-
-  const isBuffActive = useCallback((buffId: string) => {
-    return (character.activeBuffs || []).some(b => b.spellId === buffId);
-  }, [character.activeBuffs]);
-
-  const toggleBuff = useCallback((buffDef: BuffDefinition) => {
-    const current = character.activeBuffs || [];
-    const isActive = current.some(b => b.spellId === buffDef.id);
-    if (isActive) {
-      onChange({ activeBuffs: current.filter(b => b.spellId !== buffDef.id) });
-    } else {
-      onChange({ activeBuffs: [...current, { spellId: buffDef.id, name: buffDef.name, concentration: buffDef.concentration }] });
-    }
-  }, [character.activeBuffs, onChange]);
 
   const getLevelLabel = (level: number) => {
     if (level === 0) return "Cantrips";
@@ -205,7 +202,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           const spellUsed = (character.spellsUsedThisTurn || []).includes(spell.id);
           const spellDamages = getSpellDamageInfo(spell);
           const buffDef = getSpellBuff(spell.name);
-          const buffActive = buffDef ? isBuffActive(buffDef.id) : false;
           return (
             <div key={spell.id} className={`list-row ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
               <div className="flex flex-col gap-1">
@@ -226,33 +222,18 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   )}
                   <button
                     type="button"
-                    onClick={() => toggleSpellUsed(spell.id)}
+                    onClick={() => toggleSpellUsed(spell.id, buffDef)}
                     className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                       spellUsed
                         ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
                         : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
-                    title={spellUsed ? "Click to mark as unused" : "Click to mark as used this turn"}
+                    title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : "Click to mark as used this turn"}
                   >
-                    <Clock className="h-3 w-3" />
+                    {buffDef ? <Sparkle className="h-3 w-3" /> : <Clock className="h-3 w-3" />}
                     {spellUsed ? "Used" : "Use"}
+                    {buffDef?.concentration && <span className="text-[8px] opacity-70">C</span>}
                   </button>
-                  {buffDef && (
-                    <button
-                      type="button"
-                      onClick={() => toggleBuff(buffDef)}
-                      className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                        buffActive
-                          ? "bg-[var(--color-accent)] text-[var(--color-surface)]"
-                          : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                      title={buffActive ? `Deactivate: ${buffDef.effects.map(e => e.description).join("; ")}` : `Activate: ${buffDef.effects.map(e => e.description).join("; ")}`}
-                    >
-                      <Sparkle className="h-3 w-3" />
-                      {buffActive ? "Active" : "Buff"}
-                      {buffDef.concentration && <span className="text-[8px] opacity-70">C</span>}
-                    </button>
-                  )}
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
