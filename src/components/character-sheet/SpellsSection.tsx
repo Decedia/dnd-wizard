@@ -227,12 +227,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     </button>
                   )}
                 </div>
-                <DamageDisplay damages={spellDamages} size="sm" inline />
               </div>
               {spell.description && (
                 <>
                   <DescriptionText>{spell.description}</DescriptionText>
-                  <ConditionBadges text={spell.description} />
+                  <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+                    <DamageDisplay damages={spellDamages} size="sm" />
+                    <ConditionBadges text={spell.description} />
+                  </div>
                 </>
               )}
             </div>
