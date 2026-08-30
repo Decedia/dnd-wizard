@@ -25,8 +25,6 @@ import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBio
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { CurrencySection } from "@/components/character-sheet/CurrencySection";
 import { Trash, Export, Upload, CheckCircle, UserPlus } from "phosphor-react";
-import { exportCharacterToPdf } from "@/lib/pdf-visual";
-import { importCharacterFromPdf } from "@/lib/pdf";
 
 export default function CharacterView() {
   const params = useParams();
@@ -93,6 +91,7 @@ export default function CharacterView() {
     if (!character || exportingPdf) return;
     setExportingPdf(true);
     try {
+      const { exportCharacterToPdf } = await import("@/lib/pdf-visual");
       await exportCharacterToPdf(character);
     } finally {
       setExportingPdf(false);
@@ -109,6 +108,7 @@ export default function CharacterView() {
     setImportError(null);
     setImportSuccess(null);
     try {
+      const { importCharacterFromPdf } = await import("@/lib/pdf");
       const imported = await importCharacterFromPdf(file);
       saveCharacter(imported);
       setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
@@ -125,7 +125,6 @@ export default function CharacterView() {
       if (!prev) return prev;
       const next = { ...prev, ...patch };
       try {
-        const { computeDerivedStats } = require("@/lib/storage");
         const derived = computeDerivedStats(next);
         return { ...next, ...derived };
       } catch {
@@ -171,44 +170,54 @@ export default function CharacterView() {
 
       <CharacterSheetProvider onFieldBlur={debouncedSave}>
         <main className="mx-auto max-w-lg px-4 py-3 pb-28">
-          <div data-tab-panel="combat" style={{ display: activeTab === "combat" ? "block" : "none" }}>
-            <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
-            <StatsSection character={character} onChange={handleChange} editMode={editMode} />
-            <PassiveStatsSection character={character} />
-            <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
-            <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
-            <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
-          </div>
-          <div data-tab-panel="features" style={{ display: activeTab === "features" ? "block" : "none" }}>
-            <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
-            <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
-            <OtherProficienciesSection otherProficiencies={character.otherProficiencies} toolProficiencies={character.toolProficiencies || []} onChange={(value) => handleChange({ otherProficiencies: value })} onToolsChange={(value) => handleChange({ toolProficiencies: value })} editMode={editMode} />
-          </div>
-          <div data-tab-panel="gear" style={{ display: activeTab === "gear" ? "block" : "none" }}>
-            <InventorySection character={character} onChange={handleChange} editMode={editMode} />
-            <CurrencySection character={character} onChange={handleChange} editMode={editMode} />
-          </div>
-          <div data-tab-panel="spells" style={{ display: activeTab === "spells" ? "block" : "none" }}>
-            <SpellsSection
-              character={character}
-              onChange={handleChange}
-              editMode={editMode}
-            />
-            <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
-          </div>
-          <div data-tab-panel="bio" style={{ display: activeTab === "bio" ? "block" : "none" }}>
-            <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
-            <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
-            {character.level < 20 && (
-              <button
-                onClick={() => router.push(`/character/${character.id}/level-up`)}
-                className="btn btn-secondary w-full"
-              >
-                Level Up
-              </button>
-            )}
-            <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
-          </div>
+          {activeTab === "combat" && (
+            <>
+              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
+              <StatsSection character={character} onChange={handleChange} editMode={editMode} />
+              <PassiveStatsSection character={character} />
+              <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
+              <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
+              <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "features" && (
+            <>
+              <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
+              <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
+              <OtherProficienciesSection otherProficiencies={character.otherProficiencies} toolProficiencies={character.toolProficiencies || []} onChange={(value) => handleChange({ otherProficiencies: value })} onToolsChange={(value) => handleChange({ toolProficiencies: value })} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "gear" && (
+            <>
+              <InventorySection character={character} onChange={handleChange} editMode={editMode} />
+              <CurrencySection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "spells" && (
+            <>
+              <SpellsSection
+                character={character}
+                onChange={handleChange}
+                editMode={editMode}
+              />
+              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
+          {activeTab === "bio" && (
+            <>
+              <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
+              <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
+              {character.level < 20 && (
+                <button
+                  onClick={() => router.push(`/character/${character.id}/level-up`)}
+                  className="btn btn-secondary w-full"
+                >
+                  Level Up
+                </button>
+              )}
+              <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
+            </>
+          )}
 
           <div className="mt-5 space-y-2.5">
             <div className="grid grid-cols-2 gap-2">

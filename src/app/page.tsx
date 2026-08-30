@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
-import { importCharacterFromPdf } from "@/lib/pdf";
 import { Upload, CaretRight, UserPlus, User, Trash } from "phosphor-react";
 
 export default function Home() {
-  const characters = getCharacters();
+  const [characters, setCharacters] = useState<Character[]>(() => getCharacters());
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const importInputRef = useRef<HTMLInputElement | null>(null);
@@ -17,28 +16,30 @@ export default function Home() {
     importInputRef.current?.click();
   };
 
-  const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImportFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setImportError(null);
     setImportSuccess(null);
     try {
+      const { importCharacterFromPdf } = await import("@/lib/pdf");
       const imported = await importCharacterFromPdf(file);
       saveCharacter(imported);
       setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      setCharacters(getCharacters());
     } catch (err) {
       setImportError("This PDF doesn't contain DND Wizard character data.");
     } finally {
       e.target.value = "";
     }
-  };
+  }, []);
 
-  const handleDelete = (char: Character) => {
+  const handleDelete = useCallback((char: Character) => {
     if (window.confirm(`Are you sure you want to delete ${char.name || "this character"}? This action cannot be undone.`)) {
       deleteCharacter(char.id);
-      window.location.reload();
+      setCharacters(getCharacters());
     }
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-paper">

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, useMemo, useCallback, type ReactNode } from "react";
 import { fetchSRDData, clearSRDCache, type SRDData } from "@/lib/srd-client";
 
 interface SRDContextValue {
@@ -17,7 +17,7 @@ export function SRDProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -28,14 +28,16 @@ export function SRDProvider({ children }: { children: ReactNode }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     load();
-  }, []);
+  }, [load]);
+
+  const value = useMemo(() => ({ data, loading, error, refresh: load }), [data, loading, error, load]);
 
   return (
-    <SRDContext.Provider value={{ data, loading, error, refresh: load }}>
+    <SRDContext.Provider value={value}>
       {children}
     </SRDContext.Provider>
   );

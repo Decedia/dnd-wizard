@@ -4,7 +4,8 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import type { Character } from "@/lib/storage";
-import { computeEquippedEffects, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
+import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
+import { useDerivedStats } from "@/lib/useCharacterStats";
 import { useCallback, useState } from "react";
 import { Backpack, Plus, CheckCircle, Circle, Info, Hand, Shield } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
@@ -40,7 +41,7 @@ function getEquippedHands(inventory: Character["inventory"]): { main: string | n
 
 export function InventorySection({ character, onChange, editMode = true }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const derived = computeDerivedStats(character);
+  const derived = useDerivedStats(character);
   const rageDamage = derived.rageDamage || 0;
   const isBarbarian = character.class === "Barbarian";
   const [showItemPopup, setShowItemPopup] = useState(false);

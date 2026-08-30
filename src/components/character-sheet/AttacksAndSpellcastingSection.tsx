@@ -3,7 +3,8 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
-import { getSneakAttackDice, getModifier, getProficiencyBonus, computeDerivedStats } from "@/lib/storage";
+import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/storage";
+import { useDerivedStats } from "@/lib/useCharacterStats";
 import { Sword } from "phosphor-react";
 import { DamageBadge } from "./DamageBadge";
 
@@ -19,7 +20,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   const classAttacks = character.attacks.filter((a) => a.source === "class");
   const weaponAttacks = character.attacks.filter((a) => a.source === "weapon");
   const profBonus = getProficiencyBonus(character.level);
-  const derived = computeDerivedStats(character);
+  const derived = useDerivedStats(character);
   const rageDamage = derived.rageDamage || 0;
   const isBarbarian = character.class === "Barbarian";
   const isPaladin = character.class === "Paladin";
