@@ -73,18 +73,18 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               <button
                 type="button"
                 onClick={() => setHpModal({ mode: "heal" })}
-                className="flex h-5 w-5 items-center justify-center rounded-full text-[var(--color-success-600)] hover:bg-[var(--color-success-50)] transition-all"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-success-600)] hover:bg-[var(--color-success-50)] transition-all"
                 aria-label="Heal"
               >
-                <Heart className="h-3 w-3" weight="fill" />
+                <Heart className="h-4 w-4" weight="fill" />
               </button>
               <button
                 type="button"
                 onClick={() => setHpModal({ mode: "damage" })}
-                className="flex h-5 w-5 items-center justify-center rounded-full text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] transition-all"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] transition-all"
                 aria-label="Take damage"
               >
-                <Drop className="h-3 w-3" weight="fill" />
+                <Drop className="h-4 w-4" weight="fill" />
               </button>
             </div>
           </div>
