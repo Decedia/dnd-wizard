@@ -43,7 +43,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
       const weapon = weapons.find((w) => w.name === selectedItem);
       if (!weapon) return;
       newItem = {
-        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        id: crypto.randomUUID?.() ?? `item-${Math.random().toString(36).slice(2, 11)}`,
         name: weapon.name,
         quantity: 1,
         equipped: false,
@@ -65,7 +65,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
       if (!armor) return;
       const armorType = armor.armor_category === "Light" ? "light" : armor.armor_category === "Medium" ? "medium" : armor.armor_category === "Heavy" ? "heavy" : "shield";
       newItem = {
-        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        id: crypto.randomUUID?.() ?? `item-${Math.random().toString(36).slice(2, 11)}`,
         name: armor.name,
         quantity: 1,
         equipped: false,
@@ -87,7 +87,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
       if (!item) return;
       const data = getEquipmentData(item.name);
       newItem = {
-        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        id: crypto.randomUUID?.() ?? `item-${Math.random().toString(36).slice(2, 11)}`,
         name: item.name,
         quantity: 1,
         equipped: false,
