@@ -58,6 +58,7 @@ export interface SRDClass {
     name: string;
     description: string;
     features: { name: string; description: string; level?: number }[];
+    expandedSpells?: Record<string, string[]>;
   }[];
   scalingFeatures?: {
     name: string;
@@ -304,6 +305,7 @@ export interface SRDSubclass {
   name: string;
   description: string;
   features: { name: string; description: string; level?: number; choices?: { name: string; description: string }[]; choicesCount?: number }[];
+  expandedSpells?: Record<string, string[]>;
 }
 
 export function getStaticSubclasses(className: string): SRDSubclass[] {

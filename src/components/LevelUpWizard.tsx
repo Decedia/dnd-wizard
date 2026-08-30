@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells } from "@/lib/srd-client";
-import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, type Character } from "@/lib/storage";
 import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -748,6 +748,70 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
       if (newDomainSpells.length > 0) {
         draft.domainSpells = [...existingDomainSpells, ...newDomainSpells];
+      }
+    }
+
+    if (draft.class === "Paladin" && draft.subclass) {
+      const oathSpellNames = getOathSpellNames(draft);
+      const currentSpellNames = (draft.spells || []).map((s) => s.name?.toLowerCase());
+      for (const name of oathSpellNames) {
+        if (!currentSpellNames.includes(name.toLowerCase())) {
+          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          if (spell) {
+            const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+            spells.push({
+              id,
+              name: spell.name,
+              level: spell.level || 0,
+              source: "srd" as const,
+              srdSpellName: spell.name,
+              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+            });
+            if ((spell.level || 0) > 0) newPreparedIds.push(id);
+          }
+        }
+      }
+    }
+
+    if (draft.class === "Warlock" && draft.subclass) {
+      const expandedSpellNames = getWarlockExpandedSpellNames(draft);
+      const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
+      for (const name of expandedSpellNames) {
+        if (!currentSpellNames.includes(name.toLowerCase())) {
+          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          if (spell) {
+            const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+            spells.push({
+              id,
+              name: spell.name,
+              level: spell.level || 0,
+              source: "srd" as const,
+              srdSpellName: spell.name,
+              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+            });
+          }
+        }
+      }
+    }
+
+    if (draft.class === "Wizard" && draft.subclass) {
+      const traditionSpellNames = getWizardTraditionSpellNames(draft);
+      const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
+      for (const name of traditionSpellNames) {
+        if (!currentSpellNames.includes(name.toLowerCase())) {
+          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          if (spell) {
+            const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
+            spells.push({
+              id,
+              name: spell.name,
+              level: spell.level || 0,
+              source: "srd" as const,
+              srdSpellName: spell.name,
+              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
+            });
+          }
+        }
       }
     }
 
