@@ -10,6 +10,7 @@ import { useCallback, useState } from "react";
 import { Backpack, Plus, CheckCircle, Circle, Info, Hand, Shield } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
+import { ConditionBadges } from "./ConditionBadge";
 import { ItemSelectionPopup } from "./ItemSelectionPopup";
 
 interface InventorySectionProps {
@@ -475,6 +476,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
               {description && (
                  <DescriptionText>{description}</DescriptionText>
                )}
+               {description && <ConditionBadges text={description} />}
              </div>
            );
          })}

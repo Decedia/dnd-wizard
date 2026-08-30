@@ -7,6 +7,7 @@ import { getSneakAttackDice, getModifier, getProficiencyBonus } from "@/lib/stor
 import { useDerivedStats } from "@/lib/useCharacterStats";
 import { Sword } from "phosphor-react";
 import { DamageBadge } from "./DamageBadge";
+import { ConditionBadges } from "./ConditionBadge";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;

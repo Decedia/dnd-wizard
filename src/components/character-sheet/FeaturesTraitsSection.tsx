@@ -7,6 +7,7 @@ import { DescriptionText } from "./DescriptionText";
 import { Star, X, Plus, Clock } from "phosphor-react";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatPopup } from "./FeatPopup";
+import { ConditionBadges } from "./ConditionBadge";
 import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 
@@ -146,6 +147,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                     </div>
                   </div>
                   {feature.description && <DescriptionText>{feature.description}</DescriptionText>}
+                  {feature.description && <ConditionBadges text={feature.description} />}
                 </div>
               )}
             </div>

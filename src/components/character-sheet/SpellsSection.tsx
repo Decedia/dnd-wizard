@@ -9,6 +9,7 @@ import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
 import { Lightning, Plus, Check, Circle, X, Clock } from "phosphor-react";
 import { DamageBadge } from "./DamageBadge";
+import { ConditionBadges } from "./ConditionBadge";
 import { SpellSelectionModal } from "./SpellSelectionModal";
 
 interface SpellsSectionProps {
@@ -237,7 +238,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 </div>
               )}
               {spell.description && (
-                <DescriptionText>{spell.description}</DescriptionText>
+                <>
+                  <DescriptionText>{spell.description}</DescriptionText>
+                  <ConditionBadges text={spell.description} />
+                </>
               )}
             </div>
           );
