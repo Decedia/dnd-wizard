@@ -1508,6 +1508,10 @@ function LevelCard({
           {info.cantripsKnown !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedCantrips = lvlSpells.filter((s: string) => s.endsWith(":0")).length;
+            const higherCantrips = Object.entries(allSpellSelections || {})
+              .filter(([l]) => Number(l) > lvl)
+              .flatMap(([, s]: [string, string[]]) => s)
+              .filter((s: string) => s.endsWith(":0"));
             const needCantrips = info.cantripSelectionCount > 0 && selectedCantrips < info.cantripSelectionCount;
             const cantripColor = info.cantripSelectionCount > 0 && selectedCantrips < info.cantripSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
             return (
@@ -1519,6 +1523,9 @@ function LevelCard({
                     {info.cantripsKnown}
                     {info.cantripSelectionCount > 0 && (
                       <span className="ml-1">({selectedCantrips}/{info.cantripSelectionCount} selected)</span>
+                    )}
+                    {higherCantrips.length > 0 && (
+                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherCantrips.length} from higher levels</span>
                     )}
                   </div>
                 </div>
@@ -1538,6 +1545,10 @@ function LevelCard({
           {info.spellsKnown !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
+            const higherSpells = Object.entries(allSpellSelections || {})
+              .filter(([l]) => Number(l) > lvl)
+              .flatMap(([, s]: [string, string[]]) => s)
+              .filter((s: string) => !s.endsWith(":0"));
             const needSpells = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             const spellColor = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount ? "text-red-500" : "text-[var(--color-text-primary)]";
             return (
@@ -1549,6 +1560,9 @@ function LevelCard({
                     {info.spellsKnown}
                     {info.spellSelectionCount > 0 && (
                       <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} selected)</span>
+                    )}
+                    {higherSpells.length > 0 && (
+                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherSpells.length} from higher levels</span>
                     )}
                     {info.spellsKnownChanged && info.prevSpellsKnown !== undefined && !info.spellSelectionCount && (
                       <span className="ml-1 text-green-600">(+{info.spellsKnown - info.prevSpellsKnown})</span>
@@ -1571,6 +1585,10 @@ function LevelCard({
           {info.spellbookTotal !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
+            const higherSpells = Object.entries(allSpellSelections || {})
+              .filter(([l]) => Number(l) > lvl)
+              .flatMap(([, s]: [string, string[]]) => s)
+              .filter((s: string) => !s.endsWith(":0"));
             const needSpells = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
@@ -1581,6 +1599,9 @@ function LevelCard({
                     {info.spellbookTotal} spells
                     {info.spellSelectionCount > 0 && (
                       <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} to add)</span>
+                    )}
+                    {higherSpells.length > 0 && (
+                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherSpells.length} from higher levels</span>
                     )}
                   </div>
                 </div>
@@ -1598,7 +1619,13 @@ function LevelCard({
           })()}
 
           {info.maxPrepared !== undefined && (() => {
-            const needPrepare = info.spellSelectionCount > 0;
+            const lvlSpells = (allSpellSelections || {})[lvl] || [];
+            const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
+            const higherSpells = Object.entries(allSpellSelections || {})
+              .filter(([l]) => Number(l) > lvl)
+              .flatMap(([, s]: [string, string[]]) => s)
+              .filter((s: string) => !s.endsWith(":0"));
+            const needPrepare = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
             return (
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needPrepare ? "border border-red-400 bg-red-50/30" : ""}`}>
                 <Book weight="regular" className={`h-4 w-4 ${needPrepare ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
@@ -1607,7 +1634,10 @@ function LevelCard({
                   <div className={`text-xs ${needPrepare ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
                     {info.maxPrepared} spells preparable
                     {info.spellSelectionCount > 0 && (
-                      <span className="ml-1">(select {info.spellSelectionCount})</span>
+                      <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} selected)</span>
+                    )}
+                    {higherSpells.length > 0 && (
+                      <span className="ml-1 text-[var(--color-text-muted)]">+{higherSpells.length} from higher levels</span>
                     )}
                   </div>
                 </div>
