@@ -120,6 +120,9 @@ interface LevelInfo {
   subclassSpellSelectionCount: number;
   circleTerrainSelection: boolean;
   bonusCantripSelection: boolean;
+  spellbookTotal?: number;
+  maxPrepared?: number;
+  preparedCount?: number;
 }
 
 function getProficiencyBonus(level: number): number {
@@ -356,6 +359,14 @@ function buildLevelInfos(
 
     const spellSelectionType: "known" | "book" | "prepare" = isPrepCaster ? "prepare" : (className === "Wizard" ? "book" : "known");
 
+    const spellbookTotal = (className === "Wizard" && (classData as any)?.spellbookSpells)
+      ? ((classData as any).spellbookSpells as Record<string, number>)[String(level)] || 0
+      : undefined;
+    const maxPrepared = isPrepCaster && classData.spellcastingAbility
+      ? Math.max(1, getModifier(character[classData.spellcastingAbility as keyof Character] as number) + level)
+      : undefined;
+    const preparedCount = isPrepCaster && maxPrepared ? maxPrepared : undefined;
+
     const allFeatures = [...features, ...passiveSubclassFeatures];
 
     infos.push({
@@ -383,6 +394,9 @@ function buildLevelInfos(
       subclassSpellSelectionCount,
       circleTerrainSelection: className === "Druid" && subclassSelection === "Land" && [3, 5, 7, 9].includes(level),
       bonusCantripSelection: className === "Druid" && subclassSelection === "Land" && level === 2,
+      spellbookTotal: spellbookTotal,
+      maxPrepared: maxPrepared,
+      preparedCount: preparedCount,
     });
   }
 
@@ -1546,6 +1560,62 @@ function LevelCard({
                     type="button"
                     onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
                     className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
+                  >
+                    Select
+                  </button>
+                )}
+              </div>
+            );
+          })()}
+
+          {info.spellbookTotal !== undefined && (() => {
+            const lvlSpells = (allSpellSelections || {})[lvl] || [];
+            const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
+            const needSpells = info.spellSelectionCount > 0 && selectedSpells < info.spellSelectionCount;
+            return (
+              <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
+                <Book weight="regular" className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spellbook</div>
+                  <div className={`text-xs ${needSpells ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
+                    {info.spellbookTotal} spells
+                    {info.spellSelectionCount > 0 && (
+                      <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} to add)</span>
+                    )}
+                  </div>
+                </div>
+                {info.spellSelectionCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
+                  >
+                    Select
+                  </button>
+                )}
+              </div>
+            );
+          })()}
+
+          {info.maxPrepared !== undefined && (() => {
+            const needPrepare = info.spellSelectionCount > 0;
+            return (
+              <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needPrepare ? "border border-red-400 bg-red-50/30" : ""}`}>
+                <Book weight="regular" className={`h-4 w-4 ${needPrepare ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Prepare Spells</div>
+                  <div className={`text-xs ${needPrepare ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
+                    {info.maxPrepared} spells preparable
+                    {info.spellSelectionCount > 0 && (
+                      <span className="ml-1">(select {info.spellSelectionCount})</span>
+                    )}
+                  </div>
+                </div>
+                {info.spellSelectionCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needPrepare ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
                   >
                     Select
                   </button>
