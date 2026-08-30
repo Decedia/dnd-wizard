@@ -874,6 +874,7 @@ export interface ActiveBuff {
   spellId: string;
   name: string;
   concentration: boolean;
+  turnsRemaining: number | null;
 }
 
 export interface BuffModifiers {
@@ -990,4 +991,50 @@ export function getBuffsByClass(className: string): BuffDefinition[] {
 
 export function getAllBuffs(): BuffDefinition[] {
   return Object.values(BUFF_DEFINITIONS);
+}
+
+export function parseDurationToTurns(duration: string): number | null {
+  if (!duration) return null;
+  const d = duration.toLowerCase().trim();
+  if (d === "instantaneous") return null;
+  if (d === "until dispelled" || d === "special") return null;
+  const roundMatch = d.match(/^(\d+)\s*round/);
+  if (roundMatch) return parseInt(roundMatch[1], 10);
+  if (d === "1 round") return 1;
+  const minuteMatch = d.match(/^(\d+)\s*minute/);
+  if (minuteMatch) return parseInt(minuteMatch[1], 10) * 10;
+  if (d.includes("1 minute")) return 10;
+  if (d.includes("10 minutes")) return 100;
+  const hourMatch = d.match(/^(\d+)\s*hour/);
+  if (hourMatch) return parseInt(hourMatch[1], 10) * 600;
+  if (d.includes("1 hour")) return 600;
+  if (d.includes("8 hours")) return 4800;
+  if (d.includes("24 hours")) return 14400;
+  const dayMatch = d.match(/^(\d+)\s*day/);
+  if (dayMatch) return parseInt(dayMatch[1], 10) * 14400;
+  const upToRoundMatch = d.match(/up to\s*(\d+)\s*round/);
+  if (upToRoundMatch) return parseInt(upToRoundMatch[1], 10);
+  const upToMinMatch = d.match(/up to\s*(\d+)\s*minute/);
+  if (upToMinMatch) return parseInt(upToMinMatch[1], 10) * 10;
+  const upToHourMatch = d.match(/up to\s*(\d+)\s*hour/);
+  if (upToHourMatch) return parseInt(upToHourMatch[1], 10) * 600;
+  if (d.includes("concentration")) {
+    const concMinMatch = d.match(/up to\s*(\d+)\s*minute/);
+    if (concMinMatch) return parseInt(concMinMatch[1], 10) * 10;
+    const concHourMatch = d.match(/up to\s*(\d+)\s*hour/);
+    if (concHourMatch) return parseInt(concHourMatch[1], 10) * 600;
+    const concRoundMatch = d.match(/up to\s*(\d+)\s*round/);
+    if (concRoundMatch) return parseInt(concRoundMatch[1], 10);
+    return 10;
+  }
+  return null;
+}
+
+export function advanceTurn(activeBuffs: ActiveBuff[]): ActiveBuff[] {
+  return activeBuffs
+    .map(buff => {
+      if (buff.turnsRemaining === null) return buff;
+      return { ...buff, turnsRemaining: buff.turnsRemaining - 1 };
+    })
+    .filter(buff => buff.turnsRemaining === null || buff.turnsRemaining > 0);
 }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
+import { advanceTurn } from "@/lib/spellEffects";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
 import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
@@ -270,11 +271,11 @@ export default function CharacterView() {
         </main>
       </CharacterSheetProvider>
 
-      {((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0) && (
+      {((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0 || (character.activeBuffs?.length ?? 0) > 0) && (
         <div className="fixed bottom-[88px] left-1/2 -translate-x-1/2 z-50">
           <button
             type="button"
-            onClick={() => handleChange({ spellsUsedThisTurn: [], featuresUsedThisTurn: [] })}
+            onClick={() => handleChange({ spellsUsedThisTurn: [], featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) })}
             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] shadow-lg hover:opacity-90 transition-all"
           >
             <Clock className="h-4 w-4" />

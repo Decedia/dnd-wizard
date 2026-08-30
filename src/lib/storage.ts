@@ -1,5 +1,5 @@
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
-import { computeBuffModifiers } from "@/lib/spellEffects";
+import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 export interface Character {
   id: string;
   name: string;
@@ -78,7 +78,7 @@ export interface Character {
   variantHumanSkill?: string;
   appliedAsi: number[];
   activeStates: string[];
-  activeBuffs: { spellId: string; name: string; concentration: boolean }[];
+  activeBuffs: ActiveBuff[];
   buffModifiers?: Record<string, unknown>;
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {

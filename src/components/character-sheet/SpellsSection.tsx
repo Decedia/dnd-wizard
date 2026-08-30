@@ -11,7 +11,7 @@ import { Lightning, Plus, Check, Circle, X, Clock, Sparkle } from "phosphor-reac
 import { ConditionBadges } from "./ConditionBadge";
 import { DamageDisplay, getSpellDamageInfo } from "./DamageExtractor";
 import { SpellSelectionModal } from "./SpellSelectionModal";
-import { BUFF_DEFINITIONS, type BuffDefinition } from "@/lib/spellEffects";
+import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 
 interface SpellsSectionProps {
   character: Character;
@@ -105,7 +105,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     }
   }, [character.preparedSpells, onChange]);
 
-  const toggleSpellUsed = useCallback((spellId: string, buffDef?: BuffDefinition) => {
+  const toggleSpellUsed = useCallback((spellId: string, buffDef?: BuffDefinition, duration?: string) => {
     const currentUsed = character.spellsUsedThisTurn || [];
     const isUsed = currentUsed.includes(spellId);
     if (isUsed) {
@@ -119,15 +119,16 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       if (buffDef) {
         const currentBuffs = character.activeBuffs || [];
         if (!currentBuffs.some(b => b.spellId === buffDef.id)) {
-          onChange({ activeBuffs: [...currentBuffs, { spellId: buffDef.id, name: buffDef.name, concentration: buffDef.concentration }] });
+          const turnsRemaining = duration ? parseDurationToTurns(duration) : null;
+          onChange({ activeBuffs: [...currentBuffs, { spellId: buffDef.id, name: buffDef.name, concentration: buffDef.concentration, turnsRemaining }] });
         }
       }
     }
   }, [character.spellsUsedThisTurn, character.activeBuffs, onChange]);
 
   const resetSpellsUsed = useCallback(() => {
-    onChange({ spellsUsedThisTurn: [] });
-  }, [onChange]);
+    onChange({ spellsUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) });
+  }, [onChange, character.activeBuffs]);
 
   const removeSpell = useCallback((id: string) => {
     onChange({
@@ -225,7 +226,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   )}
                   <button
                     type="button"
-                    onClick={() => toggleSpellUsed(spell.id, buffDef)}
+                    onClick={() => toggleSpellUsed(spell.id, buffDef, spell.duration)}
                     className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                       spellUsed
                         ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
@@ -240,9 +241,19 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
-                  {spell.duration && (
-                    <span className="text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
-                  )}
+                  {spell.duration && (() => {
+                    const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
+                    if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
+                      return (
+                        <span className="text-[10px] text-[var(--color-accent)] font-semibold">
+                          ⏱ {activeBuff.turnsRemaining} turn{activeBuff.turnsRemaining !== 1 ? "s" : ""}
+                        </span>
+                      );
+                    }
+                    return (
+                      <span className="text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
+                    );
+                  })()}
                   {editMode && (
                     <button
                       type="button"

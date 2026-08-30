@@ -4,7 +4,7 @@ import { Sparkle, X } from "phosphor-react";
 import { BUFF_DEFINITIONS, type BuffDefinition } from "@/lib/spellEffects";
 
 interface BuffTrackerProps {
-  activeBuffs: { spellId: string; name: string; concentration: boolean }[];
+  activeBuffs: { spellId: string; name: string; concentration: boolean; turnsRemaining: number | null }[];
   onToggleBuff: (spellId: string, name: string, concentration: boolean) => void;
   onClearAll: () => void;
   className?: string;
@@ -64,6 +64,9 @@ export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, className =
                 <Sparkle className="h-3 w-3" />
                 <span>{buff.name}</span>
                 {buff.concentration && <span className="text-[8px] opacity-70">C</span>}
+                {buff.turnsRemaining !== null && buff.turnsRemaining !== undefined && (
+                  <span className="text-[8px] opacity-70">{buff.turnsRemaining}t</span>
+                )}
                 {editMode && (
                   <button
                     type="button"

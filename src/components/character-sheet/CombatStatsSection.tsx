@@ -171,7 +171,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           if (current.some((b) => b.spellId === spellId)) {
             onChange({ activeBuffs: current.filter((b) => b.spellId !== spellId) });
           } else {
-            onChange({ activeBuffs: [...current, { spellId, name, concentration }] });
+            onChange({ activeBuffs: [...current, { spellId, name, concentration, turnsRemaining: null }] });
           }
         }}
         onClearAll={() => onChange({ activeBuffs: [] })}
