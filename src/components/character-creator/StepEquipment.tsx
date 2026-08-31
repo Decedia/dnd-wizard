@@ -154,7 +154,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
 
-    if (option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
+    if (option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
       setPopupGroup({ group, optionIndex });
       return;
     }
