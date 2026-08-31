@@ -345,6 +345,14 @@ export function getStaticSubclasses(className: string, sources?: string[]): SRDS
             if (typeof featChoices.count === "number") {
               out.choicesCount = featChoices.count;
             }
+          } else if (f.choices && Array.isArray(f.choices)) {
+            out.choices = f.choices.map((opt: any) => ({
+              name: opt.name,
+              description: opt.description || "",
+            }));
+            if (typeof f.choicesCount === "number") {
+              out.choicesCount = f.choicesCount;
+            }
           }
           return out;
         }),
