@@ -6,6 +6,7 @@ import { backgroundsData, alignmentOptions, getBackgroundData } from "@/data/bac
 import { languages as languageList } from "@/data/srd";
 import type { Character } from "@/lib/storage";
 import { CaretDownIcon as CaretDown, XIcon as X } from "@/components/icons";
+import { InfoButton } from "@/components/InfoButton";
 
 interface StepPersonalityProps {
   data: Character;
@@ -215,9 +216,10 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
             ))}
           </select>
           {selectedBackground && (
-            <div className="mt-2 p-3 bg-[var(--color-bg)] rounded-[var(--radius-md)] border border-[var(--color-border)]">
-              <div className="text-xs font-bold text-[var(--color-text-primary)]">{selectedBackground.feature.name}</div>
-              <p className="text-xs text-[var(--color-text-secondary)] mt-1">{selectedBackground.feature.description}</p>
+             <div className="mt-2 p-3 bg-[var(--color-bg)] rounded-[var(--radius-md)] border border-[var(--color-border)]">
+               <div className="text-xs font-bold text-[var(--color-text-primary)] flex items-center gap-2">{selectedBackground.feature.name}
+                 <InfoButton title={selectedBackground.feature.name} description={selectedBackground.feature.description} />
+               </div>
               <div className="mt-2 flex flex-wrap gap-2">
                 <div>
                   <span className="text-[10px] font-bold text-[var(--color-text-muted)]">Skills:</span>

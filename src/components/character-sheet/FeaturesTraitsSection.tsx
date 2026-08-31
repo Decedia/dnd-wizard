@@ -3,13 +3,10 @@
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { DescriptionText } from "./DescriptionText";
 import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatPopup } from "./FeatPopup";
-import { ConditionBadges } from "./ConditionBadge";
-import { DamageDisplay, getFeatureDamageInfo } from "./DamageExtractor";
-import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
+import { getStaticFeats } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 
 interface FeaturesTraitsSectionProps {
@@ -142,15 +139,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                           {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
                         </button>
                       )}
-                      {feature.description && (
-                        <InfoButton title={feature.name} description={feature.description} />
-                      )}
-                    </div>
-                  </div>
-                  {feature.description && <DescriptionText>{feature.description}</DescriptionText>}
-                  {feature.description && <DamageDisplay damages={getFeatureDamageInfo(feature.description)} />}
-                  {feature.description && <ConditionBadges text={feature.description} />}
-                </div>
+                       {feature.description && (
+                         <InfoButton title={feature.name} description={feature.description} />
+                       )}
+                     </div>
+                   </div>
+                 </div>
               )}
             </div>
           );

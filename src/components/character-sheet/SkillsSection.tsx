@@ -8,6 +8,7 @@ import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
 import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle } from "@/components/icons";
+import { InfoButton } from "@/components/InfoButton";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -18,7 +19,6 @@ interface SkillsSectionProps {
 export function SkillsSection({ character, onChange, editMode = true }: SkillsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const profBonus = getProficiencyBonus(character.level);
-  const [tooltip, setTooltip] = useState<{ name: string; description: string } | null>(null);
 
   const classData = character.class ? getStaticClass(character.class) : null;
   const skillChoices = classData?.skillChoices || null;
@@ -87,10 +87,11 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               {editMode ? (
                 <label className={`flex items-center justify-between gap-2 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
-                      {name}
-                      {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
-                    </span>
+                     <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
+                       {name}
+                       {description && <InfoButton title={name} description={description} />}
+                       {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
+                     </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
@@ -110,10 +111,11 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               ) : (
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
-                      {name}
-                      {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
-                      {(isProficient || isExpert) && (
+                     <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
+                       {name}
+                       {description && <InfoButton title={name} description={description} />}
+                       {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
+                       {(isProficient || isExpert) && (
                           <span className="flex items-center text-ink">
                            {isExpert && <Star size={12} color="var(--color-text-primary)" />}
                            {isExpert && isProficient && <Circle size={12} color="var(--color-text-primary)" className="-ml-0.5" />}
@@ -142,20 +144,6 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
             readOnly
             className="input max-w-[120px]"
           />
-        </div>
-      )}
-
-      {tooltip && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/5" onClick={() => setTooltip(null)}>
-          <div className="max-w-sm surface bg-paper p-3.5" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-1.5">
-              <h3 className="font-display font-semibold text-ink text-sm">{tooltip.name}</h3>
-              <button onClick={() => setTooltip(null)} className="text-ink-muted hover:text-ink">
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <p className="text-xs text-ink">{tooltip.description}</p>
-          </div>
         </div>
       )}
     </SectionCard>

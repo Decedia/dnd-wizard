@@ -477,7 +477,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         <span>
           AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}
           {itemInfo.armorType && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">({itemInfo.armorType})</span>}
-          {!compact && itemInfo.description && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">— {itemInfo.description}</span>}
+          {!compact && itemInfo.description && <InfoButton title="Armor Details" description={itemInfo.description} />}
         </span>
       );
     }
@@ -489,7 +489,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (itemInfo.type === "item") {
       return (
         <span>
-          {itemInfo.description && <span>{itemInfo.description}</span>}
+          {itemInfo.description && <InfoButton title="Item Details" description={itemInfo.description} />}
           {itemInfo.contents && (
             <span className="ml-2 text-[var(--color-text-secondary)] font-medium">Contains: {itemInfo.contents}</span>
           )}

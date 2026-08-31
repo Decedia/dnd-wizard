@@ -3,13 +3,11 @@
 import { useState, useCallback, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { DescriptionText } from "./DescriptionText";
+import { InfoButton } from "@/components/InfoButton";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle } from "@/components/icons";
-import { ConditionBadges } from "./ConditionBadge";
-import { DamageDisplay, getSpellDamageInfo } from "./DamageExtractor";
 import { SpellSelectionModal } from "./SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 import { SourceBadge } from "@/components/SourceBadge";
@@ -221,7 +219,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         {activeSpells.map((spell) => {
           const spellPrepared = isPrepared(spell.id);
           const spellUsed = (character.spellsUsedThisTurn || []).includes(spell.id);
-          const spellDamages = getSpellDamageInfo(spell);
           const buffDef = getSpellBuff(spell.name);
           return (
             <div key={spell.id} className={`list-row ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
@@ -274,6 +271,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
                   {spell.srdSource && spell.srdSource !== "PHB" && <SourceBadge source={spell.srdSource} size="sm" />}
+                  {spell.description && (
+                    <InfoButton title={spell.name} description={spell.description} />
+                  )}
                   {spell.duration && (() => {
                     const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
                     if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
@@ -298,16 +298,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     </button>
                   )}
                 </div>
-              </div>
-              {spell.description && (
-                <>
-                  <DescriptionText>{spell.description}</DescriptionText>
-                  <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
-                    <DamageDisplay damages={spellDamages} size="sm" />
-                    <ConditionBadges text={spell.description} />
-                  </div>
-                </>
-              )}
+               </div>
             </div>
           );
         })}

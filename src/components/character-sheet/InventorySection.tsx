@@ -2,7 +2,6 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { DescriptionText } from "./DescriptionText";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
@@ -10,7 +9,6 @@ import { useCallback, useState } from "react";
 import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
-import { ConditionBadges } from "./ConditionBadge";
 import { ItemSelectionPopup } from "./ItemSelectionPopup";
 
 interface InventorySectionProps {
@@ -473,13 +471,9 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       </span>
                     </div>
                   )}
-                </div>
-              )}
-              {description && (
-                 <DescriptionText>{description}</DescriptionText>
+                 </div>
                )}
-               {description && <ConditionBadges text={description} />}
-             </div>
+              </div>
            );
          })}
        </div>

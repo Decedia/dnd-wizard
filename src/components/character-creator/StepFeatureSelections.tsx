@@ -89,10 +89,14 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
 
           return (
             <div key={key} className="space-y-3">
-              <div>
-                <h3 className="text-card-title text-[var(--color-text-primary)]">{selection.featureName}</h3>
-                <p className="text-description mt-1">{selection.description}</p>
-              </div>
+               <div>
+                 <h3 className="text-card-title text-[var(--color-text-primary)] flex items-center gap-2">
+                   {selection.featureName}
+                   {selection.description && (
+                     <InfoButton title={selection.featureName} description={selection.description} />
+                   )}
+                 </h3>
+               </div>
 
               {selection.type === "spells" ? (
                 <SpellSelector

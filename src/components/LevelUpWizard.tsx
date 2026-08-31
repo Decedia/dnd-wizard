@@ -29,7 +29,6 @@ import {
   SwapIcon as Swap,
 } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
-import { FormattedDescription } from "@/components/FormattedDescription";
 import { useSRD } from "@/contexts/SRDContext";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
@@ -1457,17 +1456,12 @@ function LevelCard({
                  <div className="space-y-2 mt-1">
                    {info.features.map((f) => (
                      <div key={f.name}>
-                       <div className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
-                         <span className="font-semibold">{f.name}</span>
-                         {f.description && (
-                           <InfoButton title={f.name} description={f.description} />
-                         )}
-                       </div>
-                       {f.description && (
-                         <div className="mt-1 ml-0">
-                           <FormattedDescription>{f.description}</FormattedDescription>
-                         </div>
-                       )}
+                        <div className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
+                          <span className="font-semibold">{f.name}</span>
+                          {f.description && (
+                            <InfoButton title={f.name} description={f.description} />
+                          )}
+                        </div>
                      </div>
                    ))}
                  </div>
@@ -1696,18 +1690,13 @@ function LevelCard({
               {info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0 && subclassSelection && (
                 info.subclassFeatureChoices.map((fc) => (
                   <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Crown className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
-                      <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
-                      {fc.description && (
-                        <InfoButton title={fc.name} description={fc.description} />
-                      )}
-                    </div>
-                    {fc.description && (
-                      <div className="mb-2">
-                        <FormattedDescription>{fc.description}</FormattedDescription>
-                      </div>
-                    )}
+                     <div className="flex items-center gap-2 mb-1">
+                       <Crown className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                       {fc.description && (
+                         <InfoButton title={fc.name} description={fc.description} />
+                       )}
+                     </div>
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
                       <button
                         type="button"
@@ -1723,18 +1712,13 @@ function LevelCard({
               {info.classFeatureChoices && info.classFeatureChoices.length > 0 && (
                 info.classFeatureChoices.map((fc) => (
                   <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
-                      <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
-                      {fc.description && (
-                        <InfoButton title={fc.name} description={fc.description} />
-                      )}
-                    </div>
-                    {fc.description && (
-                      <div className="mb-2">
-                        <FormattedDescription>{fc.description}</FormattedDescription>
-                      </div>
-                    )}
+                     <div className="flex items-center gap-2 mb-1">
+                       <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                       {fc.description && (
+                         <InfoButton title={fc.name} description={fc.description} />
+                       )}
+                     </div>
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
                       <button
                         type="button"
@@ -2408,22 +2392,17 @@ function LevelCard({
                           isSelected ? "text-[var(--color-surface)]" : "hover:border-[var(--color-border-active)]"
                         }`}
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <div className="text-xs font-semibold flex items-center gap-2">
-                            {isSelected && <Check className="h-3 w-3 shrink-0" />}
-                            {opt.name}
-                          </div>
-                          {opt.description && (
-                            <InfoButton title={opt.name} description={opt.description} />
-                          )}
-                        </div>
-                      </button>
-                      {opt.description && (
-                        <div className={`px-3 pb-2 ${isSelected ? "text-[var(--color-surface)]/80" : ""}`}>
-                          <FormattedDescription>{opt.description}</FormattedDescription>
-                        </div>
-                      )}
-                    </div>
+                         <div className="flex items-center justify-between gap-2">
+                           <div className="text-xs font-semibold flex items-center gap-2">
+                             {isSelected && <Check className="h-3 w-3 shrink-0" />}
+                             {opt.name}
+                           </div>
+                           {opt.description && (
+                             <InfoButton title={opt.name} description={opt.description} />
+                           )}
+                         </div>
+                       </button>
+                     </div>
                   );
                 })}
               </div>
