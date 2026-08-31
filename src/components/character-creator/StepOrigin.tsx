@@ -49,7 +49,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [pendingRace, setPendingRace] = useState<string | null>(data.race || null);
   const [pendingVariant, setPendingVariant] = useState<boolean>(data.raceVariant === "variant");
   const classes: SRDClass[] = getStaticClasses();
-  const races: SRDRace[] = getStaticRaces();
+  const races: SRDRace[] = getStaticRaces(data.sources);
 
   const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";
   const selectedFeat = data.featureSelections?.["variant-human-feat"]?.[0];

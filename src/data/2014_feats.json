@@ -25,6 +25,12 @@
       "source": "PHB"
     },
     {
+      "name": "Blade Master",
+      "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with four simple or martial weapons of your choice. Each chosen weapon must have a different proficiency category (simple or martial) than the others, unless you already have proficiency with all simple and martial weapons.\n- Whenever you roll a 1 on a damage die for an attack you make with a weapon, you can reroll the die and must use the new roll, even if the new roll is a 1.",
+      "prerequisites": null,
+      "source": "SCAG"
+    },
+    {
       "name": "Bountiful Luck",
       "description": "Whenever an ally you can see within 30 feet of you rolls a 1 on the d20 for an attack roll, an ability check, or a saving throw, you can use your reaction to let the ally reroll the die. The ally must use the new roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
       "prerequisites": "Halfling",
@@ -71,6 +77,18 @@
       "description": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.",
       "prerequisites": "Dexterity 13 or higher",
       "source": "TCE"
+    },
+    {
+      "name": "Diplomat",
+      "description": "You are a skilled negotiator, gaining the following benefits:\n- Increase your Charisma score by 1, to a maximum of 20.\n- You gain proficiency in the Persuasion skill. If you are already proficient in the skill, you gain expertise with it, which means your proficiency bonus is doubled for any check you make with it.\n- If you spend 1 minute talking to someone who can understand you, you can make a Charisma (Persuasion) check contested by the creature's Wisdom (Insight) check. If you or your companions are fighting a creature, you have disadvantage on the check. If you succeed on the check, the creature is charmed by you for 1 hour. If you fail, the creature can't be charmed by you for 24 hours.",
+      "prerequisites": null,
+      "source": "SCAG"
+    },
+    {
+      "name": "Divinely Favored",
+      "description": "You have been touched by a divine power, gaining the following benefits:\n- Increase your Wisdom or Charisma score by 1, to a maximum of 20.\n- You learn one cantrip of your choice from the cleric spell list.\n- You learn one 1st-level spell of your choice from the cleric spell list. You can cast this spell at its lowest level without expending a spell slot. Once you cast it this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for these spells.",
+      "prerequisites": null,
+      "source": "SCAG"
     },
     {
       "name": "Dragon Fear",
@@ -163,6 +181,12 @@
       "source": "TCE"
     },
     {
+      "name": "Everybody's Friend",
+      "description": "You are a skilled manipulator, gaining the following benefits:\n- Increase your Charisma score by 1, to a maximum of 20.\n- You gain proficiency in the Deception skill. If you are already proficient in the skill, you gain expertise with it, which means your proficiency bonus is doubled for any check you make with it.\n- If you spend 1 minute talking to someone who can understand you, you can make a Charisma (Deception) check contested by the creature's Wisdom (Insight) check. If you or your companions are fighting a creature, you have disadvantage on the check. If you succeed on the check, the creature is charmed by you for 1 hour. If you fail, the creature can't be charmed by you for 24 hours.",
+      "prerequisites": null,
+      "source": "SCAG"
+    },
+    {
       "name": "Fade Away",
       "description": "Your people are clever, with a knack for illusion magic. You have learned a magical trick for fading away when you take damage. Immediately after taking damage, you can use your reaction to magically become invisible until the end of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this feat, you can't use it again until you finish a short or long rest.",
       "prerequisites": "Gnome",
@@ -173,6 +197,12 @@
       "description": "Your people have a knack for vanishing, an inherited boon that protects you, granting you the following benefits:\n- Increase your Dexterity or Intelligence by 1, to a maximum of 20.\n- Immediately after you take damage, you can use your reaction to magically become invisible and teleport up to 10 feet to an unoccupied space you can see. You remain invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this feat, you can't do so again until you finish a short or long rest.",
       "prerequisites": "Gnome",
       "source": "TCE"
+    },
+    {
+      "name": "Favored by the Gods",
+      "description": "You have been touched by a divine power, gaining the following benefits:\n- When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.\n- When you miss with an attack roll or fail an ability check or saving throw, you can treat the d20 roll as a 10. Once you use this ability, you can't use it again until you finish a short or long rest.",
+      "prerequisites": null,
+      "source": "SCAG"
     },
     {
       "name": "Fell Thrower",
@@ -215,6 +245,24 @@
       "description": "You learn to call on the fiery essence of the Lower Planes to augment your spells, granting you the following benefits:\n- Increase your Intelligence or Charisma by 1, to a maximum of 20.\n- When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice, but you must use the new roll, even if it is another 1.\n- When you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light in a 30-foot radius and dim light for an additional 30 feet. While the flames are present, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage.",
       "prerequisites": "Tiefling",
       "source": "TCE"
+    },
+    {
+      "name": "Gift of the Chromatic Dragon",
+      "description": "You've manifested a chromatic gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity score by 1, to a maximum of 20.\n- When you damage a creature with a spell that deals acid, cold, fire, lightning, or poison damage, you can add your proficiency bonus to that damage roll.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.",
+      "prerequisites": null,
+      "source": "SCAG"
+    },
+    {
+      "name": "Gift of the Dragon Champion",
+      "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity score by 1, to a maximum of 20.\n- You gain a bite attack that deals 1d6 piercing damage plus your Strength modifier. You are proficient with this attack.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.\n- You can use your action to exhale destructive energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Constitution modifier), taking 2d6 damage of the chosen type on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
+      "prerequisites": null,
+      "source": "SCAG"
+    },
+    {
+      "name": "Gift of the Metallic Dragon",
+      "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Charisma, Intelligence, or Wisdom score by 1, to a maximum of 20.\n- You learn the healing word spell and can cast it at its lowest level without expending a spell slot. Once you cast it this way, you can't do so again until you finish a long rest.\n- You can use your action to create a 15-foot cone of healing energy. Each creature in that area of your choice regains hit points equal to 1d6 + your Constitution modifier. The healing increases to 2d6 at 6th level, 3d6 at 11th level, and 4d6 at 16th level.",
+      "prerequisites": null,
+      "source": "SCAG"
     },
     {
       "description": "You've developed the skills necessary to hold your own in close-quarters grappling. You gain the following benefits:\n- You have advantage on attack rolls against a creature you are grappling.\n- You can use your action to try to pin a creature grappled by you. To do so, make another grapple check. If you succeed, you and the creature are both restrained until the grapple ends.",
@@ -503,6 +551,12 @@
       "description": "You are uncommonly nimble for your people, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Your speed increases by 5 feet.\n- You gain proficiency in the Acrobatics or Athletics skill (your choice).\n- You have advantage on any check you make to escape a grapple.",
       "prerequisites": "Dwarf or Small race",
       "source": "TCE"
+    },
+    {
+      "name": "Svirfneblin Magic",
+      "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component. You can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest. Intelligence is your spellcasting ability for these spells.",
+      "prerequisites": "Gnome (Deep Gnome/Svirfneblin)",
+      "source": "SCAG"
     },
     {
       "description": "Accustomed to rough-and-tumble fighting using whatever comes to hand, you gain the following benefits:\n- Increase your Strength or Constitution score by 1, to a maximum of 20.\n- You are proficient with improvised weapons.\n- Your unarmed strike uses a d4 for damage.\n- When you hit a creature with an unarmed strike or an improvised weapon on your turn, you can use a bonus action to attempt to grapple the target.",

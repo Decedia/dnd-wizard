@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Blade Master",
+    "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with four simple or martial weapons of your choice. Each chosen weapon must have a different proficiency category (simple or martial) than the others, unless you already have proficiency with all simple and martial weapons.\n- Whenever you roll a 1 on a damage die for an attack you make with a weapon, you can reroll the die and must use the new roll, even if the new roll is a 1.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Diplomat",
+    "description": "You are a skilled negotiator, gaining the following benefits:\n- Increase your Charisma score by 1, to a maximum of 20.\n- You gain proficiency in the Persuasion skill. If you are already proficient in the skill, you gain expertise with it, which means your proficiency bonus is doubled for any check you make with it.\n- If you spend 1 minute talking to someone who can understand you, you can make a Charisma (Persuasion) check contested by the creature's Wisdom (Insight) check. If you or your companions are fighting a creature, you have disadvantage on the check. If you succeed on the check, the creature is charmed by you for 1 hour. If you fail, the creature can't be charmed by you for 24 hours.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Divinely Favored",
+    "description": "You have been touched by a divine power, gaining the following benefits:\n- Increase your Wisdom or Charisma score by 1, to a maximum of 20.\n- You learn one cantrip of your choice from the cleric spell list.\n- You learn one 1st-level spell of your choice from the cleric spell list. You can cast this spell at its lowest level without expending a spell slot. Once you cast it this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for these spells.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Everybody's Friend",
+    "description": "You are a skilled manipulator, gaining the following benefits:\n- Increase your Charisma score by 1, to a maximum of 20.\n- You gain proficiency in the Deception skill. If you are already proficient in the skill, you gain expertise with it, which means your proficiency bonus is doubled for any check you make with it.\n- If you spend 1 minute talking to someone who can understand you, you can make a Charisma (Deception) check contested by the creature's Wisdom (Insight) check. If you or your companions are fighting a creature, you have disadvantage on the check. If you succeed on the check, the creature is charmed by you for 1 hour. If you fail, the creature can't be charmed by you for 24 hours.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Favored by the Gods",
+    "description": "You have been touched by a divine power, gaining the following benefits:\n- When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.\n- When you miss with an attack roll or fail an ability check or saving throw, you can treat the d20 roll as a 10. Once you use this ability, you can't use it again until you finish a short or long rest.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Gift of the Chromatic Dragon",
+    "description": "You've manifested a chromatic gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity score by 1, to a maximum of 20.\n- When you damage a creature with a spell that deals acid, cold, fire, lightning, or poison damage, you can add your proficiency bonus to that damage roll.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Gift of the Dragon Champion",
+    "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity score by 1, to a maximum of 20.\n- You gain a bite attack that deals 1d6 piercing damage plus your Strength modifier. You are proficient with this attack.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.\n- You can use your action to exhale destructive energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Constitution modifier), taking 2d6 damage of the chosen type on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Gift of the Metallic Dragon",
+    "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Charisma, Intelligence, or Wisdom score by 1, to a maximum of 20.\n- You learn the healing word spell and can cast it at its lowest level without expending a spell slot. Once you cast it this way, you can't do so again until you finish a long rest.\n- You can use your action to create a 15-foot cone of healing energy. Each creature in that area of your choice regains hit points equal to 1d6 + your Constitution modifier. The healing increases to 2d6 at 6th level, 3d6 at 11th level, and 4d6 at 16th level.",
+    "prerequisites": null,
+    "source": "SCAG"
+  },
+  {
+    "name": "Svirfneblin Magic",
+    "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component. You can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest. Intelligence is your spellcasting ability for these spells.",
+    "prerequisites": "Gnome (Deep Gnome/Svirfneblin)",
+    "source": "SCAG"
+  }
+]
