@@ -552,27 +552,39 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                          const hasMultiSelect = selectionCount > 1;
                          const isDisabled = hasSelection && !isSelected;
 
-                        if (isWeaponChoice) {
-                          const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
-                           const needsMoreSelections = selectedWeapons.length < selectionCount;
+                         if (isWeaponChoice) {
+                           const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
+                            const needsMoreSelections = selectedWeapons.length < selectionCount;
 
-                             return (
-                                <div
-                                  key={optionIndex}
-                                  className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
-                                    isSelected
-                                      ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
-                                      : isDisabled
-                                        ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20"
-                                        : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                                  }`}
-                                >
-                                 {isSelected && selectedWeapons.length > 0 ? (
-                                   <div className="space-y-2">
-                                     {selectedWeapons.map((weapon, wIdx) => {
-                                       const wStats = getWeaponStats(weapon.name, weapon.category);
-                                       return (
-                                          <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
+                              return (
+                                 <div
+                                   key={optionIndex}
+                                   className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
+                                     isSelected
+                                       ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
+                                       : isDisabled
+                                         ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20"
+                                         : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                                   }`}
+                                 >
+                                  {isSelected && selectedWeapons.length > 0 ? (
+                                    <div className="space-y-2">
+                                      <div className="flex items-center justify-between">
+                                        <span className="text-xs font-semibold text-[var(--color-surface)]">{getOptionLabel(option)}</span>
+                                        {needsMoreSelections && (
+                                          <button
+                                            type="button"
+                                            onClick={() => setPopupGroup({ group, optionIndex })}
+                                            className="text-[10px] text-[var(--color-surface)]/70 hover:text-[var(--color-surface)] underline"
+                                          >
+                                            + Add more ({selectedWeapons.length}/{selectionCount})
+                                          </button>
+                                        )}
+                                      </div>
+                                      {selectedWeapons.map((weapon, wIdx) => {
+                                        const wStats = getWeaponStats(weapon.name, weapon.category);
+                                        return (
+                                           <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
                                             <div className="flex-1">
                                               <div className="flex items-center gap-2">
                                                 <span className="text-body font-semibold text-[var(--color-surface)]">{weapon.name}</span>
@@ -603,19 +615,19 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                               ×
                                             </button>
                                           </div>
-                                       );
-                                     })}
-                                   </div>
-                                 ) : (
-                                  <button
-                                    type="button"
-                                    onClick={() => handleOptionClick(group, optionIndex)}
-                                     className="w-full text-left text-body"
-                                  >
-                                    <span>{getOptionLabel(option)}</span>
-                                  </button>
-                                )}
-                             </div>
+                                        );
+                                      })}
+                                    </div>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      onClick={() => handleOptionClick(group, optionIndex)}
+                                      className="w-full text-left text-body"
+                                    >
+                                      <span>{getOptionLabel(option)}</span>
+                                    </button>
+                                  )}
+                              </div>
                           );
                         }
 
