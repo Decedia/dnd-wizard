@@ -11,7 +11,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "acid-vial",
@@ -24,7 +25,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "alchemists-fire-flask",
@@ -37,7 +39,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "alchemists-supplies",
@@ -50,7 +53,8 @@
         "unit": "gp"
       },
       "weight": 8,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "alms-box",
@@ -63,7 +67,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "amulet",
@@ -76,7 +81,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "animal-feed-1-day",
@@ -89,7 +95,8 @@
         "unit": "cp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "antitoxin-vial",
@@ -102,7 +109,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "arrow",
@@ -115,7 +123,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "backpack",
@@ -128,7 +137,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "bagpipes",
@@ -141,7 +151,8 @@
         "unit": "gp"
       },
       "weight": 6,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "ball-bearings-bag-of-1000",
@@ -154,7 +165,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-breastplate",
@@ -167,7 +179,8 @@
         "unit": "gp"
       },
       "weight": 40,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-chain-mail",
@@ -180,7 +193,8 @@
         "unit": "gp"
       },
       "weight": 110,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-chain-shirt",
@@ -193,7 +207,8 @@
         "unit": "gp"
       },
       "weight": 40,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-half-plate",
@@ -206,7 +221,8 @@
         "unit": "gp"
       },
       "weight": 80,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-hide",
@@ -219,7 +235,8 @@
         "unit": "gp"
       },
       "weight": 24,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-leather",
@@ -232,7 +249,8 @@
         "unit": "gp"
       },
       "weight": 20,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-padded",
@@ -245,7 +263,8 @@
         "unit": "gp"
       },
       "weight": 16,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-plate",
@@ -258,7 +277,8 @@
         "unit": "gp"
       },
       "weight": 130,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-ring-mail",
@@ -271,7 +291,8 @@
         "unit": "gp"
       },
       "weight": 80,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-scale-mail",
@@ -284,7 +305,8 @@
         "unit": "gp"
       },
       "weight": 90,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-splint",
@@ -297,7 +319,8 @@
         "unit": "gp"
       },
       "weight": 120,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barding-studded-leather",
@@ -310,7 +333,8 @@
         "unit": "gp"
       },
       "weight": 26,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "barrel",
@@ -323,7 +347,8 @@
         "unit": "gp"
       },
       "weight": 70,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "basket",
@@ -336,7 +361,8 @@
         "unit": "sp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "battleaxe",
@@ -371,7 +397,8 @@
           "name": "Versatile"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "bedroll",
@@ -384,7 +411,8 @@
         "unit": "gp"
       },
       "weight": 7,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "bell",
@@ -397,7 +425,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "bit-and-bridle",
@@ -410,7 +439,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "blanket",
@@ -423,7 +453,8 @@
         "unit": "sp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "block-and-tackle",
@@ -436,7 +467,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "block-of-incense",
@@ -449,7 +481,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "blowgun",
@@ -481,7 +514,8 @@
           "name": "Loading"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "blowgun-needle",
@@ -494,7 +528,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "book",
@@ -507,7 +542,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "bottle-glass",
@@ -520,7 +556,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "breastplate",
@@ -541,7 +578,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "brewers-supplies",
@@ -554,7 +592,8 @@
         "unit": "gp"
       },
       "weight": 9,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "bucket",
@@ -567,7 +606,8 @@
         "unit": "cp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "burglars-pack",
@@ -693,7 +733,8 @@
           },
           "quantity": 1
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "calligraphers-supplies",
@@ -706,7 +747,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "caltrops",
@@ -719,7 +761,8 @@
         "unit": "cp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "camel",
@@ -732,7 +775,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "candle",
@@ -745,7 +789,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "carpenters-tools",
@@ -758,7 +803,8 @@
         "unit": "gp"
       },
       "weight": 6,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "carriage",
@@ -771,7 +817,8 @@
         "unit": "gp"
       },
       "weight": 600,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "cart",
@@ -784,7 +831,8 @@
         "unit": "gp"
       },
       "weight": 200,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "cartographers-tools",
@@ -797,7 +845,8 @@
         "unit": "gp"
       },
       "weight": 6,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "case-crossbow-bolt",
@@ -810,7 +859,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "case-map-or-scroll",
@@ -823,7 +873,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "censer",
@@ -836,7 +887,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chain-10-feet",
@@ -849,7 +901,8 @@
         "unit": "gp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chain-mail",
@@ -869,7 +922,8 @@
       },
       "str_minimum": 13,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chain-shirt",
@@ -890,7 +944,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chalk-1-piece",
@@ -903,7 +958,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chariot",
@@ -916,7 +972,8 @@
         "unit": "gp"
       },
       "weight": 100,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chest",
@@ -929,7 +986,8 @@
         "unit": "gp"
       },
       "weight": 25,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "climbers-kit",
@@ -942,7 +1000,8 @@
         "unit": "gp"
       },
       "weight": 12,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "clothes-common",
@@ -955,7 +1014,8 @@
         "unit": "sp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "clothes-costume",
@@ -968,7 +1028,8 @@
         "unit": "gp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "clothes-fine",
@@ -981,7 +1042,8 @@
         "unit": "gp"
       },
       "weight": 6,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "clothes-travelers",
@@ -994,7 +1056,8 @@
         "unit": "gp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "club",
@@ -1026,7 +1089,8 @@
           "name": "Monk"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "cobblers-tools",
@@ -1039,7 +1103,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "component-pouch",
@@ -1052,7 +1117,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "cooks-utensils",
@@ -1065,7 +1131,8 @@
         "unit": "gp"
       },
       "weight": 8,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "crossbow-bolt",
@@ -1078,7 +1145,8 @@
         "unit": "gp"
       },
       "weight": 1.5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "crossbow-hand",
@@ -1114,7 +1182,8 @@
           "name": "Loading"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "crossbow-heavy",
@@ -1154,7 +1223,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "crossbow-light",
@@ -1190,7 +1260,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "crowbar",
@@ -1203,7 +1274,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "crystal",
@@ -1216,7 +1288,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "dagger",
@@ -1260,7 +1333,8 @@
         "normal": 20,
         "long": 60
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "dart",
@@ -1296,7 +1370,8 @@
         "normal": 20,
         "long": 60
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "dice-set",
@@ -1309,7 +1384,8 @@
         "unit": "sp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "diplomats-pack",
@@ -1411,7 +1487,8 @@
           },
           "quantity": 1
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "disguise-kit",
@@ -1424,7 +1501,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "donkey",
@@ -1437,7 +1515,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "drum",
@@ -1450,7 +1529,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "dulcimer",
@@ -1463,7 +1543,8 @@
         "unit": "gp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "dungeoneers-pack",
@@ -1549,7 +1630,8 @@
           },
           "quantity": 1
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "elephant",
@@ -1562,7 +1644,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "emblem",
@@ -1575,7 +1658,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "entertainers-pack",
@@ -1645,7 +1729,8 @@
           },
           "quantity": 1
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "explorers-pack",
@@ -1723,7 +1808,8 @@
           },
           "quantity": 1
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fishing-tackle",
@@ -1736,7 +1822,8 @@
         "unit": "gp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "flail",
@@ -1759,7 +1846,8 @@
         }
       },
       "properties": [],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "flask-or-tankard",
@@ -1772,7 +1860,8 @@
         "unit": "cp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "flute",
@@ -1785,7 +1874,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "forgery-kit",
@@ -1798,7 +1888,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "galley",
@@ -1811,7 +1902,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "glaive",
@@ -1847,7 +1939,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "glassblowers-tools",
@@ -1860,7 +1953,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "grappling-hook",
@@ -1873,7 +1967,8 @@
         "unit": "gp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "greataxe",
@@ -1905,7 +2000,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "greatclub",
@@ -1933,7 +2029,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "greatsword",
@@ -1965,7 +2062,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "halberd",
@@ -2001,7 +2099,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "half-plate-armor",
@@ -2022,7 +2121,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "hammer",
@@ -2035,7 +2135,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "hammer-sledge",
@@ -2048,7 +2149,8 @@
         "unit": "gp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "handaxe",
@@ -2088,7 +2190,8 @@
         "normal": 20,
         "long": 60
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "healers-kit",
@@ -2101,7 +2204,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "herbalism-kit",
@@ -2114,7 +2218,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "hide-armor",
@@ -2135,7 +2240,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "holy-water-flask",
@@ -2148,7 +2254,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "horn",
@@ -2161,7 +2268,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "horse-draft",
@@ -2174,7 +2282,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "horse-riding",
@@ -2187,7 +2296,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "hourglass",
@@ -2200,7 +2310,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "hunting-trap",
@@ -2213,7 +2324,8 @@
         "unit": "gp"
       },
       "weight": 25,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "ink-1-ounce-bottle",
@@ -2226,7 +2338,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "ink-pen",
@@ -2239,7 +2352,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "javelin",
@@ -2275,7 +2389,8 @@
         "normal": 30,
         "long": 120
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "jewelers-tools",
@@ -2288,7 +2403,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "jug-or-pitcher",
@@ -2301,7 +2417,8 @@
         "unit": "cp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "keelboat",
@@ -2314,7 +2431,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "ladder-10-foot",
@@ -2327,7 +2445,8 @@
         "unit": "sp"
       },
       "weight": 25,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "lamp",
@@ -2340,7 +2459,8 @@
         "unit": "sp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "lance",
@@ -2372,7 +2492,8 @@
           "name": "Special"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "lantern-bullseye",
@@ -2385,7 +2506,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "lantern-hooded",
@@ -2398,7 +2520,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "leather-armor",
@@ -2418,7 +2541,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "leatherworkers-tools",
@@ -2431,7 +2555,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "light-hammer",
@@ -2471,7 +2596,8 @@
         "normal": 20,
         "long": 60
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "little-bag-of-sand",
@@ -2484,7 +2610,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "lock",
@@ -2497,7 +2624,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "longbow",
@@ -2533,7 +2661,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "longship",
@@ -2546,7 +2675,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "longsword",
@@ -2581,7 +2711,8 @@
           "name": "Versatile"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "lute",
@@ -2594,7 +2725,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "lyre",
@@ -2607,7 +2739,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "mace",
@@ -2635,7 +2768,8 @@
           "name": "Monk"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "magnifying-glass",
@@ -2648,7 +2782,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "manacles",
@@ -2661,7 +2796,8 @@
         "unit": "gp"
       },
       "weight": 6,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "masons-tools",
@@ -2674,7 +2810,8 @@
         "unit": "gp"
       },
       "weight": 8,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "mastiff",
@@ -2687,7 +2824,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "maul",
@@ -2719,7 +2857,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "mess-kit",
@@ -2732,7 +2871,8 @@
         "unit": "sp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "mirror-steel",
@@ -2745,7 +2885,8 @@
         "unit": "gp"
       },
       "weight": 0.5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "morningstar",
@@ -2768,7 +2909,8 @@
         }
       },
       "properties": [],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "mule",
@@ -2781,7 +2923,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "navigators-tools",
@@ -2794,7 +2937,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "net",
@@ -2823,7 +2967,8 @@
         "normal": 5,
         "long": 15
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "oil-flask",
@@ -2836,7 +2981,8 @@
         "unit": "sp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "orb",
@@ -2849,7 +2995,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "padded-armor",
@@ -2869,7 +3016,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "painters-supplies",
@@ -2882,7 +3030,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pan-flute",
@@ -2895,7 +3044,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "paper-one-sheet",
@@ -2908,7 +3058,8 @@
         "unit": "sp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "parchment-one-sheet",
@@ -2921,7 +3072,8 @@
         "unit": "sp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "perfume-vial",
@@ -2934,7 +3086,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pick-miners",
@@ -2947,7 +3100,8 @@
         "unit": "gp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pike",
@@ -2983,7 +3137,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "piton",
@@ -2996,7 +3151,8 @@
         "unit": "cp"
       },
       "weight": 0.25,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "plate-armor",
@@ -3016,7 +3172,8 @@
       },
       "str_minimum": 15,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "playing-card-set",
@@ -3029,7 +3186,8 @@
         "unit": "sp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "poison-basic-vial",
@@ -3042,7 +3200,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "poisoners-kit",
@@ -3055,7 +3214,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pole-10-foot",
@@ -3068,7 +3228,8 @@
         "unit": "cp"
       },
       "weight": 7,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pony",
@@ -3081,7 +3242,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pot-iron",
@@ -3094,7 +3256,8 @@
         "unit": "gp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "potters-tools",
@@ -3107,7 +3270,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pouch",
@@ -3120,7 +3284,8 @@
         "unit": "sp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "priests-pack",
@@ -3214,7 +3379,8 @@
           },
           "quantity": 1
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "quarterstaff",
@@ -3253,7 +3419,8 @@
           "name": "Monk"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "quiver",
@@ -3266,7 +3433,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "ram-portable",
@@ -3279,7 +3447,8 @@
         "unit": "gp"
       },
       "weight": 35,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "rapier",
@@ -3307,7 +3476,8 @@
           "name": "Finesse"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "rations-1-day",
@@ -3320,7 +3490,8 @@
         "unit": "sp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "reliquary",
@@ -3333,7 +3504,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "ring-mail",
@@ -3353,7 +3525,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "robes",
@@ -3366,7 +3539,8 @@
         "unit": "gp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "rod",
@@ -3379,7 +3553,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "rope-hempen-50-feet",
@@ -3392,7 +3567,8 @@
         "unit": "gp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "rope-silk-50-feet",
@@ -3405,7 +3581,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "rowboat",
@@ -3418,7 +3595,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sack",
@@ -3431,7 +3609,8 @@
         "unit": "cp"
       },
       "weight": 0.5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "saddle-exotic",
@@ -3444,7 +3623,8 @@
         "unit": "gp"
       },
       "weight": 50,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "saddle-military",
@@ -3457,7 +3637,8 @@
         "unit": "gp"
       },
       "weight": 30,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "saddle-pack",
@@ -3470,7 +3651,8 @@
         "unit": "gp"
       },
       "weight": 15,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "saddle-riding",
@@ -3483,7 +3665,8 @@
         "unit": "gp"
       },
       "weight": 25,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "saddlebags",
@@ -3496,7 +3679,8 @@
         "unit": "gp"
       },
       "weight": 8,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sailing-ship",
@@ -3509,7 +3693,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "scale-mail",
@@ -3530,7 +3715,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "scale-merchants",
@@ -3543,7 +3729,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "scholars-pack",
@@ -3613,7 +3800,8 @@
           },
           "quantity": 1
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "scimitar",
@@ -3645,7 +3833,8 @@
           "name": "Light"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sealing-wax",
@@ -3658,7 +3847,8 @@
         "unit": "sp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "shawm",
@@ -3671,7 +3861,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "shield",
@@ -3691,7 +3882,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "shortbow",
@@ -3723,7 +3915,8 @@
           "name": "Two-Handed"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "shortsword",
@@ -3759,7 +3952,8 @@
           "name": "Monk"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "shovel",
@@ -3772,7 +3966,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sickle",
@@ -3804,7 +3999,8 @@
           "name": "Monk"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "signal-whistle",
@@ -3817,7 +4013,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "signet-ring",
@@ -3830,7 +4027,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sled",
@@ -3843,7 +4041,8 @@
         "unit": "gp"
       },
       "weight": 300,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sling",
@@ -3871,7 +4070,8 @@
           "name": "Ammunition"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sling-bullet",
@@ -3884,7 +4084,8 @@
         "unit": "cp"
       },
       "weight": 1.5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "small-knife",
@@ -3897,7 +4098,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "smiths-tools",
@@ -3910,7 +4112,8 @@
         "unit": "gp"
       },
       "weight": 8,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "soap",
@@ -3923,7 +4126,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "spear",
@@ -3970,7 +4174,8 @@
         "normal": 20,
         "long": 60
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "spellbook",
@@ -3983,7 +4188,8 @@
         "unit": "gp"
       },
       "weight": 3,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "spike-iron",
@@ -3996,7 +4202,8 @@
         "unit": "sp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "splint-armor",
@@ -4016,7 +4223,8 @@
       },
       "str_minimum": 15,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "sprig-of-mistletoe",
@@ -4029,7 +4237,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "spyglass",
@@ -4042,7 +4251,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "stabling-1-day",
@@ -4055,7 +4265,8 @@
         "unit": "sp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "staff",
@@ -4068,7 +4279,8 @@
         "unit": "gp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "string-10-feet",
@@ -4081,7 +4293,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "studded-leather-armor",
@@ -4101,7 +4314,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "tent-two-person",
@@ -4114,7 +4328,8 @@
         "unit": "gp"
       },
       "weight": 20,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "thieves-tools",
@@ -4127,7 +4342,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "tinderbox",
@@ -4140,7 +4356,8 @@
         "unit": "sp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "tinkers-tools",
@@ -4153,7 +4370,8 @@
         "unit": "gp"
       },
       "weight": 10,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "torch",
@@ -4166,7 +4384,8 @@
         "unit": "cp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "totem",
@@ -4179,7 +4398,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "trident",
@@ -4222,7 +4442,8 @@
         "normal": 20,
         "long": 60
       },
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "vestments",
@@ -4235,7 +4456,8 @@
         "unit": "cp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "vial",
@@ -4248,7 +4470,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "viol",
@@ -4261,7 +4484,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "wagon",
@@ -4274,7 +4498,8 @@
         "unit": "gp"
       },
       "weight": 400,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "wand",
@@ -4287,7 +4512,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "war-pick",
@@ -4310,7 +4536,8 @@
         }
       },
       "properties": [],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "warhammer",
@@ -4345,7 +4572,8 @@
           "name": "Versatile"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "warhorse",
@@ -4358,7 +4586,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "warship",
@@ -4371,7 +4600,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "waterskin",
@@ -4384,7 +4614,8 @@
         "unit": "sp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "weavers-tools",
@@ -4397,7 +4628,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "whetstone",
@@ -4410,7 +4642,8 @@
         "unit": "cp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "whip",
@@ -4442,7 +4675,8 @@
           "name": "Reach"
         }
       ],
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "woodcarvers-tools",
@@ -4455,7 +4689,8 @@
         "unit": "gp"
       },
       "weight": 5,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "wooden-staff",
@@ -4468,7 +4703,8 @@
         "unit": "gp"
       },
       "weight": 4,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "yew-wand",
@@ -4481,7 +4717,8 @@
         "unit": "gp"
       },
       "weight": 1,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "arcane-focus",
@@ -4494,7 +4731,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "musical-instrument",
@@ -4507,7 +4745,8 @@
         "unit": "gp"
       },
       "weight": 0,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "pan-flute",
@@ -4520,7 +4759,8 @@
         "unit": "gp"
       },
       "weight": 2,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     }
   ]
 }

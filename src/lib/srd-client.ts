@@ -21,6 +21,7 @@ export interface SRDRace {
   traits: { name: string; description: string }[];
   languages: string[];
   languageDesc?: string;
+  source?: string;
 }
 
 export interface SRDClass {
@@ -109,6 +110,7 @@ export interface SRDSpell {
     damageDice?: string;
   };
   attackType?: string;
+  source?: string;
 }
 
 export interface SRDWizardSpell {
@@ -142,6 +144,7 @@ export interface SRDWeapon {
   two_handed_damage?: { damage_dice: string; damage_type: { index: string; name: string } };
   properties?: { index: string; name: string }[];
   throw_range?: { normal: number; long: number };
+  source?: string;
 }
 
 export interface SRDArmor {
@@ -155,6 +158,7 @@ export interface SRDArmor {
   armor_class: { base: number; dex_bonus: boolean; max_bonus?: number };
   str_minimum: number;
   stealth_disadvantage: boolean;
+  source?: string;
 }
 
 export interface SRDItem {
@@ -164,6 +168,7 @@ export interface SRDItem {
   description: string;
   cost: { quantity: number; unit: string };
   weight: number;
+  source?: string;
 }
 
 export interface SRDEquipmentDetail {
@@ -184,6 +189,7 @@ export interface SRDEquipmentDetail {
   str_minimum?: number;
   stealth_disadvantage?: boolean;
   contents?: any;
+  source?: string;
 }
 
 export interface SRDEquipment {
@@ -199,11 +205,12 @@ export interface SRDEquipment {
    contents?: string;
  }
 
- export interface SRDFeat {
-   name: string;
-   description: string;
-   prerequisites: string | null;
- }
+export interface SRDFeat {
+  name: string;
+  description: string;
+  prerequisites: string | null;
+  source?: string;
+}
 
  export interface SRDLanguage {
   name: string;
@@ -285,8 +292,10 @@ export async function fetchSRDData(): Promise<SRDData> {
   return data;
 }
 
-export function getStaticRaces(): SRDRace[] {
-  return racesData.races as SRDRace[];
+export function getStaticRaces(sources?: string[]): SRDRace[] {
+  const races = racesData.races as SRDRace[];
+  if (!sources || sources.length === 0) return races;
+  return races.filter((r) => sources.includes(r.source || "PHB"));
 }
 
 export function getStaticRace(name: string): SRDRace | undefined {
@@ -306,13 +315,15 @@ export interface SRDSubclass {
   description: string;
   features: { name: string; description: string; level?: number; choices?: { name: string; description: string }[]; choicesCount?: number }[];
   expandedSpells?: Record<string, string[]>;
+  source?: string;
 }
 
-export function getStaticSubclasses(className: string): SRDSubclass[] {
+export function getStaticSubclasses(className: string, sources?: string[]): SRDSubclass[] {
   const all = (subclassesData as any).subclasses as any[];
   const choicesMap = (subclassChoicesData as any)[className] || {};
   return all
     .filter((s) => s.class === className)
+    .filter((s) => !sources || sources.length === 0 || sources.includes(s.source || "PHB"))
     .map((s) => {
       const subChoices = choicesMap[s.name] || {};
       return {
@@ -336,6 +347,7 @@ export function getStaticSubclasses(className: string): SRDSubclass[] {
           }
           return out;
         }),
+        source: s.source || "PHB",
       };
     });
 }
@@ -356,9 +368,11 @@ export function getStaticSubclassDetails(className: string, subclassName: string
   };
 }
 
-export function getStaticSpells(): SRDSpell[] {
+export function getStaticSpells(sources?: string[]): SRDSpell[] {
   const raw = Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
-  return raw.map(normalizeSpell);
+  const spells: SRDSpell[] = raw.map(normalizeSpell);
+  if (!sources || sources.length === 0) return spells;
+  return spells.filter((s) => sources.includes(s.source || "PHB"));
 }
 
 export function getCachedSRDData(): SRDData | null {
@@ -368,32 +382,40 @@ export function getCachedSRDData(): SRDData | null {
   return null;
 }
 
-export function getStaticWeapons(): SRDWeapon[] {
-  return weaponsData.weapons as SRDWeapon[];
+export function getStaticWeapons(sources?: string[]): SRDWeapon[] {
+  const weapons = weaponsData.weapons as SRDWeapon[];
+  if (!sources || sources.length === 0) return weapons;
+  return weapons.filter((w) => sources.includes(w.source || "PHB"));
 }
 
 export function getStaticWeapon(name: string): SRDWeapon | undefined {
   return getStaticWeapons().find((w) => w.name === name);
 }
 
-export function getStaticArmors(): SRDArmor[] {
-  return armorsData.armors as SRDArmor[];
+export function getStaticArmors(sources?: string[]): SRDArmor[] {
+  const armors = armorsData.armors as SRDArmor[];
+  if (!sources || sources.length === 0) return armors;
+  return armors.filter((a) => sources.includes(a.source || "PHB"));
 }
 
 export function getStaticArmor(name: string): SRDArmor | undefined {
   return getStaticArmors().find((a) => a.name === name);
 }
 
-export function getStaticItems(): SRDItem[] {
-  return itemsData.items as SRDItem[];
+export function getStaticItems(sources?: string[]): SRDItem[] {
+  const items = itemsData.items as SRDItem[];
+  if (!sources || sources.length === 0) return items;
+  return items.filter((i) => sources.includes(i.source || "PHB"));
 }
 
 export function getStaticItem(name: string): SRDItem | undefined {
   return getStaticItems().find((i) => i.name === name);
 }
 
-export function getStaticEquipments(): SRDEquipmentDetail[] {
-  return equipmentsData.equipments as SRDEquipmentDetail[];
+export function getStaticEquipments(sources?: string[]): SRDEquipmentDetail[] {
+  const equipments = equipmentsData.equipments as SRDEquipmentDetail[];
+  if (!sources || sources.length === 0) return equipments;
+  return equipments.filter((e) => sources.includes(e.source || "PHB"));
 }
 
 export function getStaticEquipment(name: string): SRDEquipmentDetail | undefined {
@@ -497,9 +519,11 @@ export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
    return raw.map(normalizeSpell);
  }
 
- export function getStaticFeats(): SRDFeat[] {
-   return featsData.feats as SRDFeat[];
- }
+export function getStaticFeats(sources?: string[]): SRDFeat[] {
+  const feats = featsData.feats as SRDFeat[];
+  if (!sources || sources.length === 0) return feats;
+  return feats.filter((f) => sources.includes(f.source || "PHB"));
+}
 
  export function getStaticFeat(name: string): SRDFeat | undefined {
    return getStaticFeats().find((f) => f.name === name);
@@ -510,4 +534,12 @@ export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
   if (typeof window !== "undefined") {
     localStorage.removeItem(CACHE_KEY);
   }
+}
+
+export function getAvailableSources(): string[] {
+  const sources = new Set<string>();
+  (subclassesData as any).subclasses.forEach((s: any) => sources.add(s.source || "PHB"));
+  (racesData as any).races.forEach((r: any) => sources.add(r.source || "PHB"));
+  (spellsData as any).spells.forEach((s: any) => sources.add(s.source || "PHB"));
+  return Array.from(sources).sort();
 }

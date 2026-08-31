@@ -23,7 +23,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "blade-ward",
@@ -46,7 +47,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "booming-blade",
@@ -69,7 +71,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "chill-touch",
@@ -92,7 +95,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "control-flames",
@@ -114,7 +118,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "create-bonfire",
@@ -137,7 +142,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "dancing-lights",
@@ -161,7 +167,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fire-bolt",
@@ -184,7 +191,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "friends",
@@ -207,7 +215,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "frostbite",
@@ -230,7 +239,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "green-flame-blade",
@@ -253,7 +263,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "gust",
@@ -276,7 +287,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "infestation",
@@ -300,7 +312,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "light",
@@ -323,7 +336,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "lightning-lure",
@@ -345,7 +359,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mage-hand",
@@ -368,7 +383,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mending",
@@ -392,7 +408,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "message",
@@ -416,7 +433,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mind-sliver",
@@ -438,7 +456,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "minor-illusion",
@@ -461,7 +480,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mold-earth",
@@ -483,7 +503,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "poison-spray",
@@ -506,7 +527,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "prestidigitation",
@@ -529,7 +551,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "ray-of-frost",
@@ -552,7 +575,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "shape-water",
@@ -574,7 +598,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "shocking-grasp",
@@ -597,7 +622,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "sword-burst",
@@ -619,7 +645,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "thunderclap",
@@ -641,7 +668,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "toll-the-dead",
@@ -664,7 +692,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "true-strike",
@@ -686,7 +715,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "absorb-elements",
@@ -708,7 +738,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "alarm",
@@ -732,7 +763,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "burning-hands",
@@ -757,7 +789,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "catapult",
@@ -779,7 +812,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "cause-fear",
@@ -801,7 +835,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "charm-person",
@@ -826,7 +861,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "chromatic-orb",
@@ -850,7 +886,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "color-spray",
@@ -876,7 +913,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "comprehend-languages",
@@ -900,7 +938,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "detect-magic",
@@ -923,7 +962,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "disguise-self",
@@ -946,7 +986,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "earth-tremor",
@@ -969,7 +1010,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "expeditious-retreat",
@@ -992,7 +1034,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "false-life",
@@ -1018,7 +1061,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "feather-fall",
@@ -1041,7 +1085,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "find-familiar",
@@ -1065,7 +1110,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "floating-disk",
@@ -1089,7 +1135,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fog-cloud",
@@ -1114,7 +1161,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "frost-fingers",
@@ -1137,7 +1185,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "grease",
@@ -1161,7 +1210,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "hideous-laughter",
@@ -1185,7 +1235,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "ice-knife",
@@ -1208,7 +1259,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "identify",
@@ -1232,7 +1284,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "illusory-script",
@@ -1255,7 +1308,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "jump",
@@ -1279,7 +1333,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "longstrider",
@@ -1305,7 +1360,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mage-armor",
@@ -1329,7 +1385,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "magic-missile",
@@ -1354,7 +1411,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "protection-from-evil-and-good",
@@ -1378,7 +1436,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "ray-of-sickness",
@@ -1401,7 +1460,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "shield",
@@ -1424,7 +1484,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "silent-image",
@@ -1448,7 +1509,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "silvery-barbs",
@@ -1470,7 +1532,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "sleep",
@@ -1496,7 +1559,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "snare",
@@ -1519,7 +1583,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "tashas-caustic-brew",
@@ -1543,7 +1608,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "thunderwave",
@@ -1568,7 +1634,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "unseen-servant",
@@ -1592,7 +1659,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "witch-bolt",
@@ -1616,7 +1684,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "acid-arrow",
@@ -1642,7 +1711,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "aganazzarss-scorcher",
@@ -1666,7 +1736,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "airy-name",
@@ -1689,7 +1760,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "alter-self",
@@ -1712,7 +1784,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "arcane-lock",
@@ -1736,7 +1809,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "arcanists-magic-aura",
@@ -1760,7 +1834,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "blindness-deafness",
@@ -1784,7 +1859,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "blur",
@@ -1806,7 +1882,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "cloud-of-daggers",
@@ -1830,7 +1907,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "continual-flame",
@@ -1854,7 +1932,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "crown-of-madness",
@@ -1877,7 +1956,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "darkness",
@@ -1900,7 +1980,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "darkvision",
@@ -1924,7 +2005,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "detect-thoughts",
@@ -1948,7 +2030,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "dust-devil",
@@ -1972,7 +2055,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "earthbind",
@@ -1994,7 +2078,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "elemental-bane",
@@ -2017,7 +2102,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "enlarge-reduce",
@@ -2041,7 +2127,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "flaming-sphere",
@@ -2067,7 +2154,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "gentle-repose",
@@ -2091,7 +2179,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "gust-of-wind",
@@ -2115,7 +2204,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "hold-person",
@@ -2141,7 +2231,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "immovable-object",
@@ -2165,7 +2256,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "invisibility",
@@ -2191,7 +2283,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "kinetic-jaunt",
@@ -2213,7 +2306,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "knock",
@@ -2235,7 +2329,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "levitate",
@@ -2259,7 +2354,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "locate-object",
@@ -2283,7 +2379,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "magic-mouth",
@@ -2307,7 +2404,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "magic-weapon",
@@ -2332,7 +2430,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mind-spike",
@@ -2354,7 +2453,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mirror-image",
@@ -2377,7 +2477,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "misty-step",
@@ -2399,7 +2500,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "pyrotechnics",
@@ -2422,7 +2524,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "ray-of-enfeeblement",
@@ -2445,7 +2548,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "rope-trick",
@@ -2469,7 +2573,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "scorching-ray",
@@ -2494,7 +2599,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "see-invisibility",
@@ -2518,7 +2624,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "shadow-blade",
@@ -2541,7 +2648,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "shatter",
@@ -2567,7 +2675,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "skywrite",
@@ -2590,7 +2699,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "spider-climb",
@@ -2614,7 +2724,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "suggestion",
@@ -2637,7 +2748,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "vortex-warp",
@@ -2660,7 +2772,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "warding-wind",
@@ -2682,7 +2795,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "web",
@@ -2706,7 +2820,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "animate-dead",
@@ -2732,7 +2847,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "bestow-curse",
@@ -2757,7 +2873,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "blink",
@@ -2780,7 +2897,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "catnap",
@@ -2803,7 +2921,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "clairvoyance",
@@ -2827,7 +2946,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "counterspell",
@@ -2851,7 +2971,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "dispel-magic",
@@ -2876,7 +2997,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "enemies-abound",
@@ -2899,7 +3021,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fear",
@@ -2923,7 +3046,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fireball",
@@ -2949,7 +3073,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "flame-arrows",
@@ -2972,7 +3097,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fly",
@@ -2998,7 +3124,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "gaseous-form",
@@ -3022,7 +3149,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "glyph-of-warding",
@@ -3048,7 +3176,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "haste",
@@ -3072,7 +3201,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "hypnotic-pattern",
@@ -3095,7 +3225,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "intellect-fortress",
@@ -3117,7 +3248,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "life-transference",
@@ -3140,7 +3272,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "lightning-bolt",
@@ -3166,7 +3299,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "magic-circle",
@@ -3192,7 +3326,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "major-image",
@@ -3218,7 +3353,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "melfs-minute-meteors",
@@ -3242,7 +3378,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "nondetection",
@@ -3266,7 +3403,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "phantom-steed",
@@ -3289,7 +3427,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "protection-from-energy",
@@ -3312,7 +3451,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "remove-curse",
@@ -3335,7 +3475,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "sending",
@@ -3359,7 +3500,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "sleet-storm",
@@ -3383,7 +3525,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "slow",
@@ -3407,7 +3550,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "spirit-shroud",
@@ -3430,7 +3574,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "stinking-cloud",
@@ -3454,7 +3599,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "thunder-step",
@@ -3476,7 +3622,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "tidal-wave",
@@ -3500,7 +3647,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "tiny-hut",
@@ -3524,7 +3672,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "tiny-servant",
@@ -3547,7 +3696,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "tongues",
@@ -3570,7 +3720,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "vampiric-touch",
@@ -3595,7 +3746,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "wall-of-sand",
@@ -3619,7 +3771,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "wall-of-water",
@@ -3643,7 +3796,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "water-breathing",
@@ -3667,7 +3821,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "arcane-eye",
@@ -3691,7 +3846,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "banishment",
@@ -3717,7 +3873,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "black-tentacles",
@@ -3741,7 +3898,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "blight",
@@ -3766,7 +3924,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "confusion",
@@ -3792,7 +3951,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "conjure-minor-elementals",
@@ -3817,7 +3977,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "control-water",
@@ -3841,7 +4002,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "dimension-door",
@@ -3863,7 +4025,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "elemental-bane-4",
@@ -3886,7 +4049,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fabricate",
@@ -3909,7 +4073,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "faithful-hound",
@@ -3933,7 +4098,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "fire-shield",
@@ -3957,7 +4123,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "gate-seal",
@@ -3981,7 +4148,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "greater-invisibility",
@@ -4004,7 +4172,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "guild-banner",
@@ -4028,7 +4197,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "hallucinatory-terrain",
@@ -4052,7 +4222,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "ice-storm",
@@ -4078,7 +4249,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "locate-creature",
@@ -4102,7 +4274,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "miniature-grasp",
@@ -4125,7 +4298,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "phantasmal-killer",
@@ -4150,7 +4324,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "polymorph",
@@ -4174,7 +4349,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "private-sanctum",
@@ -4200,7 +4376,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "resilient-sphere",
@@ -4224,7 +4401,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "secret-chest",
@@ -4248,7 +4426,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "stone-shape",
@@ -4272,7 +4451,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "stoneskin",
@@ -4296,7 +4476,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "wall-of-fire",
@@ -4322,7 +4503,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "animate-objects",
@@ -4347,7 +4529,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "arcane-hand",
@@ -4373,7 +4556,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "cloudkill",
@@ -4398,7 +4582,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "cone-of-cold",
@@ -4424,7 +4609,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "conjure-elemental",
@@ -4450,7 +4636,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "contact-other-plane",
@@ -4472,7 +4659,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "creation",
@@ -4498,7 +4686,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "dominate-person",
@@ -4523,7 +4712,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "dream",
@@ -4547,7 +4737,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "geas",
@@ -4571,7 +4762,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "hold-monster",
@@ -4597,7 +4789,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "legend-lore",
@@ -4621,7 +4814,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mislead",
@@ -4643,7 +4837,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "modify-memory",
@@ -4668,7 +4863,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "passwall",
@@ -4692,7 +4888,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "planar-binding",
@@ -4718,7 +4915,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "scrying",
@@ -4742,7 +4940,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "seeming",
@@ -4765,7 +4964,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "steel-wind-strike",
@@ -4788,7 +4988,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "synaptic-static",
@@ -4812,7 +5013,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "telekinesis",
@@ -4835,7 +5037,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "telepathic-bond",
@@ -4859,7 +5062,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "teleportation-circle",
@@ -4882,7 +5086,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "vitriolic-sphere",
@@ -4906,7 +5111,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "wall-of-force",
@@ -4930,7 +5136,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "wall-of-stone",
@@ -4954,7 +5161,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "chain-lightning",
@@ -4980,7 +5188,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "circle-of-death",
@@ -5006,7 +5215,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "contingency",
@@ -5030,7 +5240,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "create-undead",
@@ -5056,7 +5267,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "disintegrate",
@@ -5082,7 +5294,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "eyebite",
@@ -5105,7 +5318,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "flesh-to-stone",
@@ -5129,7 +5343,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "freezing-sphere",
@@ -5155,7 +5370,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "globe-of-invulnerability",
@@ -5181,7 +5397,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "gravity-fissure",
@@ -5205,7 +5422,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "guards-and-wards",
@@ -5229,7 +5447,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "instant-summons",
@@ -5253,7 +5472,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "irresistible-dance",
@@ -5275,7 +5495,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "magic-jar",
@@ -5299,7 +5520,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mass-suggestion",
@@ -5324,7 +5546,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "move-earth",
@@ -5348,7 +5571,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "programmed-illusion",
@@ -5372,7 +5596,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "sunbeam",
@@ -5396,7 +5621,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "true-seeing",
@@ -5420,7 +5646,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "wall-of-ice",
@@ -5446,7 +5673,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "arcane-sword",
@@ -5470,7 +5698,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "concordant-crossing",
@@ -5493,7 +5722,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "delayed-blast-fireball",
@@ -5519,7 +5749,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "etherealness",
@@ -5544,7 +5775,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "finger-of-death",
@@ -5567,7 +5799,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "forcecage",
@@ -5591,7 +5824,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "magnificent-mansion",
@@ -5615,7 +5849,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mirage-arcane",
@@ -5638,7 +5873,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "plane-shift",
@@ -5662,7 +5898,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "power-word-pain",
@@ -5684,7 +5921,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "prismatic-spray",
@@ -5707,7 +5945,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "project-image",
@@ -5731,7 +5970,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "reverse-gravity",
@@ -5755,7 +5995,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "sequester",
@@ -5779,7 +6020,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "simulacrum",
@@ -5803,7 +6045,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "symbol",
@@ -5827,7 +6070,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "teleport",
@@ -5849,7 +6093,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "antimagic-field",
@@ -5873,7 +6118,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "antipathy-sympathy",
@@ -5897,7 +6143,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "clone",
@@ -5921,7 +6168,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "control-weather",
@@ -5945,7 +6193,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "demiplane",
@@ -5967,7 +6216,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "dominate-monster",
@@ -5992,7 +6242,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "feeblemind",
@@ -6016,7 +6267,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "incendiary-cloud",
@@ -6039,7 +6291,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "maddening-darkness",
@@ -6062,7 +6315,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "maze",
@@ -6085,7 +6339,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mind-blank",
@@ -6108,7 +6363,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "power-word-stun",
@@ -6130,7 +6386,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "sunburst",
@@ -6154,7 +6411,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "astral-projection",
@@ -6178,7 +6436,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "blade-of-disaster",
@@ -6201,7 +6460,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "foresight",
@@ -6225,7 +6485,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "gate",
@@ -6249,7 +6510,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "imprisonment",
@@ -6273,7 +6535,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "mass-polymorph",
@@ -6297,7 +6560,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "meteor-swarm",
@@ -6320,7 +6584,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "power-word-kill",
@@ -6342,7 +6607,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "prismatic-wall",
@@ -6365,7 +6631,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "psychic-scream",
@@ -6387,7 +6654,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "shapechange",
@@ -6411,7 +6679,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "time-stop",
@@ -6433,7 +6702,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "true-polymorph",
@@ -6457,7 +6727,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "weird",
@@ -6480,7 +6751,8 @@
       "concentration": true,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "index": "wish",
@@ -6502,7 +6774,8 @@
       "concentration": false,
       "classes": [
         "Arcane Trickster"
-      ]
+      ],
+      "source": "PHB"
     }
   ]
 }

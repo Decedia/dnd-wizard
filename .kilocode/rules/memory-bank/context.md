@@ -139,7 +139,8 @@
 | `src/data/2014_items.json` | Static item data (187 items) | ✅ Ready |
 | `src/data/2014_equipments.json` | Combined static equipment data (237 items) | ✅ Ready |
 | `src/data/2014_wizard_spells.json` | Wizard-only spell list (204 spells, levels 0-9) | ✅ Ready |
-| `src/lib/srd-client.ts` | Static data accessors for all SRD data | ✅ Ready |
+| `src/lib/srd-client.ts` | Static data accessors for all SRD data with source filtering | ✅ Ready |
+| `src/components/SourceBadge.tsx` | Color-coded sourcebook badge component (PHB/SCAG/XGE/TCE/etc.) | ✅ Ready |
 | `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
 | `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with sections consolidation | ✅ Ready |
 | `src/app/character/[id]/level-up/page.tsx` | Dedicated level-up page (replaces modal) | ✅ Ready |
@@ -254,3 +255,4 @@ Wizard restructure complete. Next steps:
 | 2026-08-31 | Fixed srd.ts equipment descriptions: updated the `equipment` array in `src/data/srd.ts` to match the Open5E descriptions from `2014_weapon.json`. This array is used as a fallback in `getEquipmentData()` in `srd-client.ts` and was still showing old placeholder descriptions (e.g. "A martial weapon favored by rogues" instead of the full Open5E description); typecheck pass |
 | 2026-08-31 | Updated ALL item descriptions in srd.ts: updated the equipment array (13 weapons, 3 armors, 10 items) and all starting equipment items for Fighter, Wizard, Rogue, and Warlock to match Open5E SRD descriptions from JSON files; typecheck pass |
 | 2026-08-31 | Added inline badges to item descriptions: created DiceBadge component, updated InfoButton/DescriptionModal/DescriptionText to parse [dice] and [damage] markup tags, updated weapon descriptions in srd.ts to include inline dice and damage type badges (e.g. [dice]1d8[/dice] [damage]piercing[/damage]), updated pack descriptions with detailed contents; typecheck pass |
+| 2026-08-31 | Added sourcebook tagging system: added `source` field to all JSON data files (subclasses, races, spells, weapons, armors, items, equipments, feats), created `SourceBadge.tsx` component with color-coded badges for PHB/SCAG/XGE/TCE/MTF/EGW/FTD/VRGR, updated `srd-client.ts` with optional `sources` parameter on all getter functions for filtering, added `getAvailableSources()` helper; typecheck and build pass |

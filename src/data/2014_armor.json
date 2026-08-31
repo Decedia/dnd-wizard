@@ -19,7 +19,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chain-mail",
@@ -39,7 +40,8 @@
       },
       "str_minimum": 13,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "chain-shirt",
@@ -60,7 +62,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "half-plate-armor",
@@ -81,7 +84,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "hide-armor",
@@ -102,7 +106,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "leather-armor",
@@ -122,7 +127,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "padded-armor",
@@ -142,7 +148,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "plate-armor",
@@ -162,7 +169,8 @@
       },
       "str_minimum": 15,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "ring-mail",
@@ -182,7 +190,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "scale-mail",
@@ -203,7 +212,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "shield",
@@ -223,7 +233,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "splint-armor",
@@ -243,7 +254,8 @@
       },
       "str_minimum": 15,
       "stealth_disadvantage": true,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     },
     {
       "index": "studded-leather-armor",
@@ -263,7 +275,8 @@
       },
       "str_minimum": 0,
       "stealth_disadvantage": false,
-      "contents": []
+      "contents": [],
+      "source": "PHB"
     }
   ]
 }

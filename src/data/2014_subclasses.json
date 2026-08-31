@@ -40,7 +40,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Fighter",
@@ -87,7 +88,8 @@
           ],
           "level": 18
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Paladin",
@@ -141,7 +143,8 @@
           ],
           "level": 20
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Sorcerer",
@@ -230,7 +233,8 @@
           ],
           "level": 18
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Wizard",
@@ -277,7 +281,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Warlock",
@@ -317,7 +322,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Ranger",
@@ -357,7 +363,8 @@
           ],
           "level": 15
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Druid",
@@ -423,7 +430,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Cleric",
@@ -477,7 +485,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Bard",
@@ -527,7 +536,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Monk",
@@ -567,7 +577,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Rogue",
@@ -614,7 +625,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Totem Warrior",
@@ -671,7 +683,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Valor",
@@ -712,7 +725,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Knowledge",
@@ -760,7 +774,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Light",
@@ -815,7 +830,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "SCAG"
     },
     {
       "name": "Nature",
@@ -870,7 +886,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Tempest",
@@ -925,7 +942,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Trickery",
@@ -980,7 +998,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "SCAG"
     },
     {
       "name": "War",
@@ -1035,7 +1054,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "SCAG"
     },
     {
       "name": "Moon",
@@ -1083,7 +1103,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Battle Master",
@@ -1151,7 +1172,8 @@
           ],
           "level": 18
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Eldritch Knight",
@@ -1335,7 +1357,8 @@
           ],
           "level": 18
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Shadow",
@@ -1376,7 +1399,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Four Elements",
@@ -1417,7 +1441,8 @@
             "description": "Choose one elemental discipline (in addition to Elemental Attunement)."
           }
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Ancients",
@@ -1481,7 +1506,8 @@
           ],
           "level": 20
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Vengeance",
@@ -1541,7 +1567,8 @@
           ],
           "level": 20
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Beast Master",
@@ -1585,7 +1612,8 @@
           ],
           "level": 15
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Assassin",
@@ -1633,7 +1661,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Arcane Trickster",
@@ -1690,7 +1719,8 @@
           ],
           "level": 17
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Wild Magic",
@@ -1792,7 +1822,8 @@
           ],
           "level": 18
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Great Old One",
@@ -1833,7 +1864,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Undying",
@@ -1881,7 +1913,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "SCAG"
     },
     {
       "name": "Abjuration",
@@ -1929,7 +1962,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Conjuration",
@@ -1977,7 +2011,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Divination",
@@ -2025,7 +2060,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Enchantment",
@@ -2073,7 +2109,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Illusion",
@@ -2121,7 +2158,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Necromancy",
@@ -2169,7 +2207,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "name": "Transmutation",
@@ -2217,7 +2256,8 @@
           ],
           "level": 14
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Warlock",
@@ -2247,7 +2287,8 @@
           "name": "Dark Delirium",
           "description": "Starting at 14th level, you can plunge a creature into an illusory realm. As an action, choose a creature that you can see within 60 feet of you. It must make a Wisdom saving throw against your warlock spell save DC. On a failed save, it is charmed or frightened by you (your choice) for 1 minute or until your concentration is broken (as if you are concentrating on a spell). This effect ends early if the creature takes any damage. Until this illusion ends, the creature thinks it is lost in a misty realm, the appearance of which you choose. The creature can see and hear only itself, you, and the illusion. You must finish a short or long rest before you can use this feature again."
         }
-      ]
+      ],
+      "source": "PHB"
     },
     {
       "class": "Warlock",
@@ -2282,7 +2323,8 @@
           "name": "Master of Hexes",
           "description": "Starting at 14th level, the curse you place on a foe spreads to another when its host falls. When the humanoid you have cursed is reduced to 0 hit points and dies, you can apply the curse to a different humanoid you can see within 30 feet of you. When you transfer the curse, you don't regain uses of the Hexblade's Curse feature."
         }
-      ]
+      ],
+      "source": "XGE"
     }
   ]
 }
