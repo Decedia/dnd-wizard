@@ -1535,12 +1535,10 @@ function LevelCard({
                 {info.cantripSelectionCount > 0 && (
                   <button
                     type="button"
-                    disabled={higherCantrips.length > 0}
                     onClick={() => { setSpellModalMode("cantrips"); setShowSpellModal(true); }}
-                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${higherCantrips.length > 0 ? "border-[var(--color-border)] text-[var(--color-text-muted)] opacity-50 cursor-not-allowed" : needCantrips ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                    title={higherCantrips.length > 0 ? "Selections made at higher levels" : undefined}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needCantrips ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
                   >
-                    {higherCantrips.length > 0 ? "Locked" : "Select"}
+                    Select
                   </button>
                 )}
               </div>
@@ -1580,12 +1578,10 @@ function LevelCard({
                 {info.spellSelectionCount > 0 && (
                   <button
                     type="button"
-                    disabled={higherSpells.length > 0}
                     onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
-                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${higherSpells.length > 0 ? "border-[var(--color-border)] text-[var(--color-text-muted)] opacity-50 cursor-not-allowed" : needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                    title={higherSpells.length > 0 ? "Selections made at higher levels" : undefined}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
                   >
-                    {higherSpells.length > 0 ? "Locked" : "Select"}
+                    Select
                   </button>
                 )}
               </div>
@@ -1621,12 +1617,10 @@ function LevelCard({
                 {info.spellSelectionCount > 0 && (
                   <button
                     type="button"
-                    disabled={higherSpells.length > 0}
                     onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
-                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${higherSpells.length > 0 ? "border-[var(--color-border)] text-[var(--color-text-muted)] opacity-50 cursor-not-allowed" : needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                    title={higherSpells.length > 0 ? "Selections made at higher levels" : undefined}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
                   >
-                    {higherSpells.length > 0 ? "Locked" : "Select"}
+                    Select
                   </button>
                 )}
               </div>
@@ -1662,12 +1656,10 @@ function LevelCard({
                 {info.spellSelectionCount > 0 && (
                   <button
                     type="button"
-                    disabled={higherSpells.length > 0}
                     onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
-                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${higherSpells.length > 0 ? "border-[var(--color-border)] text-[var(--color-text-muted)] opacity-50 cursor-not-allowed" : needPrepare ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                    title={higherSpells.length > 0 ? "Selections made at higher levels" : undefined}
+                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needPrepare ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
                   >
-                    {higherSpells.length > 0 ? "Locked" : "Select"}
+                    Select
                   </button>
                 )}
               </div>
@@ -2098,6 +2090,7 @@ function LevelCard({
           mode={spellModalMode}
           selectionType={info.spellSelectionType}
           allKnownSpells={info.spellSelectionType === "prepare" ? (character.spells || []).filter(s => s.level > 0).map(s => `${s.name}:${s.level}`) : []}
+          disabledSpells={Object.entries(allSpellSelections).filter(([l]) => Number(l) > info.level).flatMap(([, s]) => s)}
         />
       )}
 

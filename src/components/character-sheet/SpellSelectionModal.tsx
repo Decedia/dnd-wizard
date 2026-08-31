@@ -30,6 +30,7 @@ interface SpellSelectionModalProps {
   mode?: "all" | "cantrips" | "spells";
   selectionType?: "known" | "book" | "prepare";
   allKnownSpells?: string[];
+  disabledSpells?: string[];
 }
 
 export function SpellSelectionModal({
@@ -50,6 +51,7 @@ export function SpellSelectionModal({
   mode = "all",
   selectionType = "known",
   allKnownSpells = [],
+  disabledSpells = [],
 }: SpellSelectionModalProps) {
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
@@ -86,11 +88,15 @@ export function SpellSelectionModal({
 
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
   const alreadyKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
+  const disabledSpellNames = new Set((disabledSpells || []).map(s => s.split(":")[0]));
 
   const isPrepareMode = selectionType === "prepare" && !onChange;
   const prepareAlreadyKnown = new Set((allKnownSpells || []).map(s => s.split(":")[0]));
 
   const toggle = (name: string, level: number) => {
+    const isDisabled = disabledSpellNames.has(name);
+    if (isDisabled) return;
+
     if (onChange) {
       // Character sheet mode - update character directly
       const isSelected = (character.spells || []).some(s => s.name === name && s.level === level);
@@ -260,31 +266,41 @@ export function SpellSelectionModal({
           {activeTab === "cantrips" ? (
             <div className="space-y-1.5">
               {cantrips.map((sp) => {
-                const isSel = selectedCantripNames.has(sp.name);
                 const isAlreadyKnown = alreadyKnownCantripNames.has(sp.name);
+                const isDisabled = disabledSpellNames.has(sp.name);
+                const isSel = selectedCantripNames.has(sp.name) || isDisabled;
                 const maxCantrips = onChange ? maxCantripsKnown : cantripCount;
-                const disabled = !isSel && !isAlreadyKnown && currentCantrips.length >= maxCantrips;
+                const disabled = !isSel && !isAlreadyKnown && !isDisabled && currentCantrips.length >= maxCantrips;
                 const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
                 return (
                   <div key={sp.name} className="flex gap-1.5">
                     <button
                       type="button"
-                      onClick={() => !isAlreadyKnown && toggle(sp.name, 0)}
-                      disabled={disabled || isAlreadyKnown}
+                      onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, 0)}
+                      disabled={disabled || isAlreadyKnown || isDisabled}
                       className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
-                        isAlreadyKnown
-                          ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
-                          : isSel
-                            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
-                            : disabled
-                              ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                              : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        isDisabled
+                          ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
+                          : isAlreadyKnown
+                            ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
+                            : isSel
+                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
+                              : disabled
+                                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                                : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        {isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                        {isSel && !isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                        <span className={`text-xs font-bold ${isAlreadyKnown ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                        {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+                        {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                        {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+                        <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                      </div>
+                      <div className="flex items-center gap-2 mt-0.5 ml-5">
+                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                        {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium">From higher level</span>}
+                        {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
+                        {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 ml-5">
                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
@@ -300,38 +316,43 @@ export function SpellSelectionModal({
           ) : (
             <div className="space-y-1.5">
               {levelSpells[activeTab as number]?.map((sp) => {
-                const isSel = selectedSpellNames.has(sp.name);
+                const isDisabled = disabledSpellNames.has(sp.name);
+                const isSel = selectedSpellNames.has(sp.name) || isDisabled;
                 const isAlreadyKnown = alreadyKnownSpellNames.has(sp.name);
                 const maxSpells = onChange ? maxSpellsKnown : count;
-                const disabled = !isSel && !isAlreadyKnown && currentSpells.length >= maxSpells;
+                const disabled = !isSel && !isAlreadyKnown && !isDisabled && currentSpells.length >= maxSpells;
                 const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
                 return (
                   <div key={sp.name} className="flex gap-1.5">
                     <button
                       type="button"
-                      onClick={() => !isAlreadyKnown && toggle(sp.name, sp.level)}
-                      disabled={disabled || isAlreadyKnown}
+                      onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, sp.level)}
+                      disabled={disabled || isAlreadyKnown || isDisabled}
                       className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
-                        isAlreadyKnown
-                          ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
-                          : isSel
-                            ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
-                            : disabled
-                              ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                              : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        isDisabled
+                          ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
+                          : isAlreadyKnown
+                            ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
+                            : isSel
+                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
+                              : disabled
+                                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                                : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        {isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                        {isSel && !isAlreadyKnown && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                        <span className={`text-xs font-bold ${isAlreadyKnown ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                        {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+                        {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                        {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+                        <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 ml-5">
                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
                         <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
-                        {isAlreadyKnown && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium ml-1">Already known</span>}
-                        {isSel && !isAlreadyKnown && <span className="text-[10px] text-[var(--color-surface)] font-medium ml-1">Selected</span>}
+                        {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium ml-1">From higher level</span>}
+                        {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium ml-1">Already known</span>}
+                        {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium ml-1">Selected</span>}
                       </div>
                     </button>
                     {desc && <InfoButton title={sp.name} description={desc} />}
