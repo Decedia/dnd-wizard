@@ -535,10 +535,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                const groupIndex = getGroupIndex(group.id);
                const hasSelection = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
 
-                return (
-                  <div key={group.id} className="space-y-2">
-                    <div className="space-y-2">
-                        {group.options.map((option, optionIndex) => {
+                 return (
+                   <div key={group.id} className="space-y-2">
+                     <p className="text-[11px] text-[var(--color-text-muted)] font-medium">Select from options below:</p>
+                     <div className="space-y-2">
+                         {group.options.map((option, optionIndex) => {
                          const isSelected = isOptionSelected(group, optionIndex);
                          const isWeaponChoice = option.isWeaponChoice;
                          const isPopupChoice = option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice;
