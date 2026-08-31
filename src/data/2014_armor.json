@@ -4,7 +4,7 @@
       "index": "breastplate",
       "name": "Breastplate",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A fitted metal chest piece that covers the torso while leaving the legs free for mobility. It offers solid protection without the weight of a full suit, making it a favored choice of soldiers and adventurers who value both defense and agility.",
       "special": "",
       "cost": {
         "quantity": 400,
@@ -25,7 +25,7 @@
       "index": "chain-mail",
       "name": "Chain Mail",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Interlocking metal rings woven into a shirt that covers the torso and arms. Heavy and durable, it provides excellent protection but is noisy and requires considerable strength to wear effectively.",
       "special": "",
       "cost": {
         "quantity": 75,
@@ -45,7 +45,7 @@
       "index": "chain-shirt",
       "name": "Chain Shirt",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A shirt of interlocking metal rings worn as a lighter alternative to chain mail. It offers decent protection while allowing greater freedom of movement, often worn under clothing or combined with other armor.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -66,7 +66,7 @@
       "index": "half-plate-armor",
       "name": "Half Plate Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A combination of plate armor pieces covering roughly half the body, paired with brigandine or leather on the rest. It offers substantial protection with less weight than full plate, though its articulated joints create slight noise.",
       "special": "",
       "cost": {
         "quantity": 750,
@@ -87,7 +87,7 @@
       "index": "hide-armor",
       "name": "Hide Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Thick animal hides layered and boiled for rigidity, fashioned into a crude but functional suit. Common among barbarians and wilderness dwellers, it provides basic protection at low cost.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -108,7 +108,7 @@
       "index": "leather-armor",
       "name": "Leather Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -128,7 +128,7 @@
       "index": "padded-armor",
       "name": "Padded Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A quilted coat of layered cloth and batting that absorbs blows. While offering minimal protection, it is better than nothing and has the advantage of being wearable under other armor.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -148,7 +148,7 @@
       "index": "plate-armor",
       "name": "Plate Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A full suit of carefully fitted and articulated steel plates covering the entire body. The pinnacle of armorcraft, it provides unmatched protection but is prohibitively expensive and requires great strength to wear.",
       "special": "",
       "cost": {
         "quantity": 1500,
@@ -168,7 +168,7 @@
       "index": "ring-mail",
       "name": "Ring Mail",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A leather suit with heavy rings sewn onto it for additional protection. An older design that offers modest defense, it is less effective than chain armor but easier to produce.",
       "special": "",
       "cost": {
         "quantity": 30,
@@ -188,7 +188,7 @@
       "index": "scale-mail",
       "name": "Scale Mail",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A coat of leather covered with overlapping metal scales, resembling the hide of a dragon or fish. It offers good protection with moderate weight, though its many small scales can catch and snag.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -209,7 +209,7 @@
       "index": "shield",
       "name": "Shield",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A hand-held barrier of wood or metal used to block blows. Wielded in the off-hand, it provides a quick boost to defense and can be used offensively in a shield bash.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -229,7 +229,7 @@
       "index": "splint-armor",
       "name": "Splint Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Vertical strips of metal riveted to a backing of leather and cloth. Similar in construction to a flail, it offers heavy protection at moderate cost, though its weight limits mobility.",
       "special": "",
       "cost": {
         "quantity": 200,
@@ -249,7 +249,7 @@
       "index": "studded-leather-armor",
       "name": "Studded Leather Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Hardened leather reinforced with closely spaced metal studs or rivets. It offers better protection than standard leather armor while maintaining the light weight and flexibility favored by rangers and scouts.",
       "special": "",
       "cost": {
         "quantity": 45,

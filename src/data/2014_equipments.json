@@ -4,7 +4,7 @@
       "index": "abacus",
       "name": "Abacus",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A frame of beads on rods used for counting and calculation. Essential for merchants, bankers, and anyone who needs to keep precise accounts on the road.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -82,7 +82,7 @@
       "index": "animal-feed-1-day",
       "name": "Animal Feed (1 day)",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A day's worth of feed for a single mount or beast of burden. Typically a mix of grain, dried vegetables, and hay.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -108,7 +108,7 @@
       "index": "arrow",
       "name": "Arrow",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A shafted projectile designed for use with a bow. Each arrow consists of a wooden shaft, fletching, and a metal arrowhead.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -121,7 +121,7 @@
       "index": "backpack",
       "name": "Backpack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A sturdy leather sack with shoulder straps, designed to carry gear on the back. It has multiple compartments and can hold several days' worth of supplies.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -316,7 +316,7 @@
       "index": "barrel",
       "name": "Barrel",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A large wooden cask bound with iron hoops, used for storing liquids or dry goods. A standard barrel can hold up to 40 gallons of liquid.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -329,7 +329,7 @@
       "index": "basket",
       "name": "Basket",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A woven container of reeds or wicker, useful for carrying goods, foraging, or storing items. Lightweight and versatile.",
       "special": "",
       "cost": {
         "quantity": 4,
@@ -342,7 +342,7 @@
       "index": "battleaxe",
       "name": "Battleaxe",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A broad-bladed axe mounted on a sturdy haft, designed for war. Its heavy head delivers devastating chopping blows, cleaving through armor and shield alike.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -377,7 +377,7 @@
       "index": "bedroll",
       "name": "Bedroll",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A rolled-up bedding kit consisting of a thick blanket and a thin mattress, tied with leather straps. Essential for sleeping comfortably outdoors.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -390,7 +390,7 @@
       "index": "bell",
       "name": "Bell",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small handheld metal bell that produces a clear ringing tone. Useful for signaling, alerting guards, or drawing attention.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -403,7 +403,7 @@
       "index": "bit-and-bridle",
       "name": "Bit and bridle",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "The headgear used to control a horse or similar mount, consisting of metal bars (bit) placed in the animal's mouth and straps (bridle) fitting around the head.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -416,7 +416,7 @@
       "index": "blanket",
       "name": "Blanket",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A thick woven cloth used for warmth while sleeping or as a makeshift curtain, wrap, or padding.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -455,7 +455,7 @@
       "index": "blowgun",
       "name": "Blowgun",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A narrow tube used to propel small darts with a breath of air. Silent and deadly, it favors stealth over brute force.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -487,7 +487,7 @@
       "index": "blowgun-needle",
       "name": "Blowgun needle",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small, lightweight dart designed for use with a blowgun. Often coated with poison for silent takedowns.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -513,7 +513,7 @@
       "index": "bottle-glass",
       "name": "Bottle, glass",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A fragile glass container with a narrow neck and cork stopper, used for holding liquids such as potions, ink, or wine.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -526,7 +526,7 @@
       "index": "breastplate",
       "name": "Breastplate",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A fitted metal chest piece that covers the torso while leaving the legs free for mobility. It offers solid protection without the weight of a full suit, making it a favored choice of soldiers and adventurers who value both defense and agility.",
       "special": "",
       "cost": {
         "quantity": 400,
@@ -560,7 +560,7 @@
       "index": "bucket",
       "name": "Bucket",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A cylindrical container of wood or metal with a handle, used for carrying water, mixing compounds, or holding various materials.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -573,7 +573,7 @@
       "index": "burglars-pack",
       "name": "Burglar's Pack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A curated collection of gear for the aspiring rogue, including a backpack, ball bearings, string, bells, candles, crowbar, hammer, pitons, a lantern, oil, rations, tinderbox, waterskin, and rope.",
       "special": "",
       "cost": {
         "quantity": 16,
@@ -725,7 +725,7 @@
       "index": "camel",
       "name": "Camel",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A large desert beast of burden, capable of carrying heavy loads across arid terrain for days without water. Slower than a horse but better suited to desert conditions.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -764,7 +764,7 @@
       "index": "carriage",
       "name": "Carriage",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A four-wheeled enclosed vehicle designed to carry passengers in relative comfort. Drawn by horses, it features padded seating and a roof.",
       "special": "",
       "cost": {
         "quantity": 100,
@@ -777,7 +777,7 @@
       "index": "cart",
       "name": "Cart",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A two-wheeled open vehicle pulled by a draft animal, used for hauling goods, supplies, or refuse. Simple and utilitarian.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -855,7 +855,7 @@
       "index": "chain-mail",
       "name": "Chain Mail",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Interlocking metal rings woven into a shirt that covers the torso and arms. Heavy and durable, it provides excellent protection but is noisy and requires considerable strength to wear effectively.",
       "special": "",
       "cost": {
         "quantity": 75,
@@ -875,7 +875,7 @@
       "index": "chain-shirt",
       "name": "Chain Shirt",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A shirt of interlocking metal rings worn as a lighter alternative to chain mail. It offers decent protection while allowing greater freedom of movement, often worn under clothing or combined with other armor.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -896,7 +896,7 @@
       "index": "chalk-1-piece",
       "name": "Chalk (1 piece)",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small stick of soft limestone used to mark surfaces. Useful for leaving signs, marking paths, or tallying counts.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -909,7 +909,7 @@
       "index": "chariot",
       "name": "Chariot",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A lightweight, two-wheeled vehicle drawn by horses, used for rapid transport or mounted combat. Its open design allows the rider to fight while moving.",
       "special": "",
       "cost": {
         "quantity": 250,
@@ -922,7 +922,7 @@
       "index": "chest",
       "name": "Chest",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A large wooden box with a hinged lid and lock, used for storing treasure, trade goods, or personal belongings. Reinforced with iron bands for durability.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -948,7 +948,7 @@
       "index": "clothes-common",
       "name": "Clothes, common",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A set of ordinary, practical garments suitable for common folk. Includes a simple shirt, pants or skirt, and basic footwear.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -961,7 +961,7 @@
       "index": "clothes-costume",
       "name": "Clothes, costume",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "An elaborate outfit designed for disguise or performance. May include masks, exotic fabrics, and accessories to help the wearer assume a different identity.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -974,7 +974,7 @@
       "index": "clothes-fine",
       "name": "Clothes, fine",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "An expensive set of garments made from quality fabrics with fine tailoring. Includes silk linings, decorative buttons, and matching accessories.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -987,7 +987,7 @@
       "index": "clothes-travelers",
       "name": "Clothes, traveler's",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A sturdy set of garments designed for long journeys on foot. Made from durable fabrics in earth tones, it includes a cloak, sturdy boots, and a wide-brimmed hat.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -1000,7 +1000,7 @@
       "index": "club",
       "name": "Club",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A simple length of wood shaped into a weapon. Crude but effective, it has served as a tool of violence since the earliest days.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -1071,7 +1071,7 @@
       "index": "crossbow-bolt",
       "name": "Crossbow bolt",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A short, thick shaft designed for use with a crossbow. Shorter and heavier than an arrow, it delivers tremendous impact at close to medium range.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -1084,7 +1084,7 @@
       "index": "crossbow-hand",
       "name": "Crossbow, hand",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A compact crossbow that can be wielded and fired with one hand. Its concealed size makes it a favored tool of assassins and scouts.",
       "special": "",
       "cost": {
         "quantity": 75,
@@ -1120,7 +1120,7 @@
       "index": "crossbow-heavy",
       "name": "Crossbow, heavy",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A large crossbow with a powerful draw, capable of launching bolts with tremendous force. Its weight and bulk demand two hands to operate.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -1160,7 +1160,7 @@
       "index": "crossbow-light",
       "name": "Crossbow, light",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -1222,7 +1222,7 @@
       "index": "dagger",
       "name": "Dagger",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -1266,7 +1266,7 @@
       "index": "dart",
       "name": "Dart",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, weighted projectile designed to be thrown with accuracy. Easy to conceal and quick to throw, darts are favored by those who prefer ranged precision.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -1315,7 +1315,7 @@
       "index": "diplomats-pack",
       "name": "Diplomat's Pack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A collection of items for the traveling negotiator, including a chest, map cases, fine clothes, writing supplies, lamp, oil, paper, perfume, sealing wax, and soap.",
       "special": "",
       "cost": {
         "quantity": 39,
@@ -1430,7 +1430,7 @@
       "index": "donkey",
       "name": "Donkey",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A sturdy, sure-footed beast of burden. Slower than a horse but more reliable on rough terrain and less expensive to maintain.",
       "special": "",
       "cost": {
         "quantity": 8,
@@ -1469,7 +1469,7 @@
       "index": "dungeoneers-pack",
       "name": "Dungeoneer's Pack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "Essential gear for exploring underground, including a backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, and rope.",
       "special": "",
       "cost": {
         "quantity": 12,
@@ -1555,7 +1555,7 @@
       "index": "elephant",
       "name": "Elephant",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A massive beast used as a living war machine or heavy transport. Elephants can carry enormous loads and are fearsome in battle.",
       "special": "",
       "cost": {
         "quantity": 200,
@@ -1581,7 +1581,7 @@
       "index": "entertainers-pack",
       "name": "Entertainer's Pack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "Gear for the traveling performer, including a backpack, bedroll, costumes, candles, rations, waterskin, and a disguise kit.",
       "special": "",
       "cost": {
         "quantity": 40,
@@ -1651,7 +1651,7 @@
       "index": "explorers-pack",
       "name": "Explorer's Pack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A well-rounded kit for wilderness travel, including a backpack, bedroll, mess kit, tinderbox, torches, rations, waterskin, and rope.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -1742,7 +1742,7 @@
       "index": "flail",
       "name": "Flail",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A spiked metal ball attached to a handle by a chain. Its swinging strikes can bypass shields and deliver crushing bludgeoning damage.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -1765,7 +1765,7 @@
       "index": "flask-or-tankard",
       "name": "Flask or tankard",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small container for holding liquid, whether a simple ceramic tankard for ale or a metal flask for stronger spirits.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -1804,7 +1804,7 @@
       "index": "galley",
       "name": "Galley",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A large warship propelled by rows of oars and sails. Used for naval combat and transporting troops across open water.",
       "special": "",
       "cost": {
         "quantity": 30000,
@@ -1817,7 +1817,7 @@
       "index": "glaive",
       "name": "Glaive",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A polearm with a single-edged blade mounted at the end of a long shaft. Its reach allows wielders to strike foes from a safe distance.",
       "special": "",
       "cost": {
         "quantity": 20,
@@ -1866,7 +1866,7 @@
       "index": "grappling-hook",
       "name": "Grappling hook",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A multi-pronged metal hook attached to a rope, used to catch on ledges, walls, or rigging to enable climbing or crossing gaps.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -1879,7 +1879,7 @@
       "index": "greataxe",
       "name": "Greataxe",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "An immense axe with a heavy, broad blade. Wielded with two hands, it delivers devastating slashing blows that can cleave through the toughest defenses.",
       "special": "",
       "cost": {
         "quantity": 30,
@@ -1911,7 +1911,7 @@
       "index": "greatclub",
       "name": "Greatclub",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A massive, heavy club fashioned from a thick log or bound timber. Crude and oversized, its weight delivers tremendous blunt force.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -1939,7 +1939,7 @@
       "index": "greatsword",
       "name": "Greatsword",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A towering two-handed blade of exceptional length and weight. Mastery of this weapon allows for sweeping cuts that can fell multiple foes.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -1971,7 +1971,7 @@
       "index": "halberd",
       "name": "Halberd",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A versatile polearm combining an axe blade with a spear point and a hook. Effective for both chopping and thrusting, it is a staple of battlefield infantry.",
       "special": "",
       "cost": {
         "quantity": 20,
@@ -2007,7 +2007,7 @@
       "index": "half-plate-armor",
       "name": "Half Plate Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A combination of plate armor pieces covering roughly half the body, paired with brigandine or leather on the rest. It offers substantial protection with less weight than full plate, though its articulated joints create slight noise.",
       "special": "",
       "cost": {
         "quantity": 750,
@@ -2028,7 +2028,7 @@
       "index": "hammer",
       "name": "Hammer",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A simple tool with a weighted head, used for driving nails, breaking objects, or shaping metal. The same tool makes a surprisingly effective weapon.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -2041,7 +2041,7 @@
       "index": "hammer-sledge",
       "name": "Hammer, sledge",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A massive two-handed hammer with a heavy iron head, used for breaking stone, driving stakes, or demolishing structures.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -2054,7 +2054,7 @@
       "index": "handaxe",
       "name": "Handaxe",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, light axe designed for one-handed use or throwing. Its balance makes it equally effective in close combat or hurled at distant targets.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -2120,7 +2120,7 @@
       "index": "hide-armor",
       "name": "Hide Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Thick animal hides layered and boiled for rigidity, fashioned into a crude but functional suit. Common among barbarians and wilderness dwellers, it provides basic protection at low cost.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -2167,7 +2167,7 @@
       "index": "horse-draft",
       "name": "Horse, draft",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A large, powerful horse bred for pulling heavy loads rather than speed. Essential for hauling wagons and carts over long distances.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -2180,7 +2180,7 @@
       "index": "horse-riding",
       "name": "Horse, riding",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A trained mount suitable for riding. Faster and more agile than a draft horse, it is the standard steed for adventurers and cavalry.",
       "special": "",
       "cost": {
         "quantity": 75,
@@ -2193,7 +2193,7 @@
       "index": "hourglass",
       "name": "Hourglass",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A timepiece consisting of two glass bulbs connected by a narrow passage, through which sand flows in exactly one hour. Useful for tracking short durations.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -2219,7 +2219,7 @@
       "index": "ink-1-ounce-bottle",
       "name": "Ink (1 ounce bottle)",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small bottle of black or colored ink, used for writing, drawing maps, or illuminating manuscripts. Essential for scribes and scholars.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -2232,7 +2232,7 @@
       "index": "ink-pen",
       "name": "Ink pen",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A slender pointed instrument dipped in ink for writing or drawing. Typically made from a bird feather with a sharpened and split tip.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -2245,7 +2245,7 @@
       "index": "javelin",
       "name": "Javelin",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A light spear designed primarily for throwing. Its aerodynamic design allows it to be hurled with great distance and penetrating force.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -2294,7 +2294,7 @@
       "index": "jug-or-pitcher",
       "name": "Jug or pitcher",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A ceramic or metal container with a handle and spout, used for storing and pouring liquids such as water, milk, or wine.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -2320,7 +2320,7 @@
       "index": "ladder-10-foot",
       "name": "Ladder (10-foot)",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A wooden ladder ten feet in length, consisting of two side rails connected by rungs. Useful for climbing walls, trees, or other vertical obstacles.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -2346,7 +2346,7 @@
       "index": "lance",
       "name": "Lance",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A long, sturdy weapon designed for mounted combat. When couched under the arm during a charge, it delivers devastating piercing damage.",
       "special": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.",
       "cost": {
         "quantity": 10,
@@ -2404,7 +2404,7 @@
       "index": "leather-armor",
       "name": "Leather Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -2437,7 +2437,7 @@
       "index": "light-hammer",
       "name": "Light hammer",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, balanced hammer that can be thrown or wielded in close combat. Its compact head delivers focused bludgeoning force.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -2503,7 +2503,7 @@
       "index": "longbow",
       "name": "Longbow",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A tall bow with a powerful draw, capable of sending arrows great distances with deadly accuracy. Crafted from a single piece of quality wood, it requires strength and skill to master.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -2539,7 +2539,7 @@
       "index": "longship",
       "name": "Longship",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A long, shallow-draft vessel propelled by oars and a single sail. Designed for both open-ocean voyages and river navigation.",
       "special": "",
       "cost": {
         "quantity": 10000,
@@ -2552,7 +2552,7 @@
       "index": "longsword",
       "name": "Longsword",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A versatile blade of moderate length, balanced for one or two-handed use. The quintessential knightly weapon, it excels at both slashing and thrusting.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -2613,7 +2613,7 @@
       "index": "mace",
       "name": "Mace",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A heavy metal head mounted on a sturdy shaft, designed to crush and bludgeon. Against heavily armored foes, its concentrated impact is particularly effective.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -2680,7 +2680,7 @@
       "index": "mastiff",
       "name": "Mastiff",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A large, powerful breed of dog trained for guarding, hunting, or warfare. Loyal and fierce, mastiffs make excellent companions and guard animals.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -2693,7 +2693,7 @@
       "index": "maul",
       "name": "Maul",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "An enormous two-headed sledgehammer of immense weight. Wielded with two hands, its crushing blows can shatter bone and splinter shields.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -2738,7 +2738,7 @@
       "index": "mirror-steel",
       "name": "Mirror, steel",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small polished steel mirror, useful for seeing around corners, signaling at a distance, or checking one's appearance.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -2751,7 +2751,7 @@
       "index": "morningstar",
       "name": "Morningstar",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A spiked mace with a heavy, flanged head designed to puncture and tear. Its brutal design inflicts grievous piercing wounds.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -2774,7 +2774,7 @@
       "index": "mule",
       "name": "Mule",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A hybrid offspring of a horse and donkey, combining the best traits of both. Sure-footed, patient, and strong, mules are excellent pack animals.",
       "special": "",
       "cost": {
         "quantity": 8,
@@ -2800,7 +2800,7 @@
       "index": "net",
       "name": "Net",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A weighted mesh net designed to entangle and restrain foes. When thrown effectively, it can immobilize a creature, rendering it helpless.",
       "special": "A Large or smaller creature hit by a net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make.",
       "cost": {
         "quantity": 1,
@@ -2855,7 +2855,7 @@
       "index": "padded-armor",
       "name": "Padded Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A quilted coat of layered cloth and batting that absorbs blows. While offering minimal protection, it is better than nothing and has the advantage of being wearable under other armor.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -2901,7 +2901,7 @@
       "index": "paper-one-sheet",
       "name": "Paper (one sheet)",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A single sheet of fine paper, suitable for writing letters, drawing maps, or recording important information.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -2914,7 +2914,7 @@
       "index": "parchment-one-sheet",
       "name": "Parchment (one sheet)",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A sheet of treated animal skin, prepared for writing. More durable than paper, parchment is used for important documents and maps.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -2927,7 +2927,7 @@
       "index": "perfume-vial",
       "name": "Perfume (vial)",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small crystal vial containing concentrated fragrance. A single application can mask unpleasant odors or convey social status.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -2940,7 +2940,7 @@
       "index": "pick-miners",
       "name": "Pick, miner's",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A heavy, pointed tool designed for breaking rock and ore. Its sharp point concentrates force to shatter stone with each strike.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -2953,7 +2953,7 @@
       "index": "pike",
       "name": "Pike",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "An exceptionally long thrusting spear used by formations of infantry. Its extreme reach allows ranks of soldiers to strike at approaching enemies from behind the front line.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -2989,7 +2989,7 @@
       "index": "piton",
       "name": "Piton",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A pointed metal spike driven into rock or wood to serve as an anchor point for ropes. Essential for climbing sheer surfaces.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -3002,7 +3002,7 @@
       "index": "plate-armor",
       "name": "Plate Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A full suit of carefully fitted and articulated steel plates covering the entire body. The pinnacle of armorcraft, it provides unmatched protection but is prohibitively expensive and requires great strength to wear.",
       "special": "",
       "cost": {
         "quantity": 1500,
@@ -3061,7 +3061,7 @@
       "index": "pole-10-foot",
       "name": "Pole (10-foot)",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A sturdy wooden pole, ten feet in length. Useful for probing pits, measuring depths, knocking down objects, or as a makeshift weapon.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -3074,7 +3074,7 @@
       "index": "pony",
       "name": "Pony",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A small horse suitable for lighter riders or as a pack animal. Sure-footed on mountain trails, ponies are favored by halflings and dwarves.",
       "special": "",
       "cost": {
         "quantity": 30,
@@ -3087,7 +3087,7 @@
       "index": "pot-iron",
       "name": "Pot, iron",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A heavy cast-iron cooking pot with a lid, capable of withstanding direct flame. Used for boiling water, cooking stews, or melting substances.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -3126,7 +3126,7 @@
       "index": "priests-pack",
       "name": "Priest's Pack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A collection of items for the traveling cleric, including a backpack, blanket, candles, an alms box, incense, censer, vestments, rations, waterskin, and robes.",
       "special": "",
       "cost": {
         "quantity": 19,
@@ -3220,7 +3220,7 @@
       "index": "quarterstaff",
       "name": "Quarterstaff",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -3285,7 +3285,7 @@
       "index": "rapier",
       "name": "Rapier",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -3339,7 +3339,7 @@
       "index": "ring-mail",
       "name": "Ring Mail",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A leather suit with heavy rings sewn onto it for additional protection. An older design that offers modest defense, it is less effective than chain armor but easier to produce.",
       "special": "",
       "cost": {
         "quantity": 30,
@@ -3359,7 +3359,7 @@
       "index": "robes",
       "name": "Robes",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "Loose, flowing garments that cover the body from shoulder to ankle. Common among wizards, priests, and scholars, robes offer comfort and concealment.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -3424,7 +3424,7 @@
       "index": "sack",
       "name": "Sack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A large cloth or leather bag with a drawstring closure, used for carrying bulk goods, loot, or supplies.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -3463,7 +3463,7 @@
       "index": "saddle-pack",
       "name": "Saddle, Pack",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A pair of leather bags designed to hang on either side of a horse's saddle, used for carrying supplies on long journeys.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -3476,7 +3476,7 @@
       "index": "saddle-riding",
       "name": "Saddle, Riding",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A leather seat secured to a horse's back with straps and buckles, providing stability and comfort for the rider.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -3489,7 +3489,7 @@
       "index": "saddlebags",
       "name": "Saddlebags",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "Reinforced leather bags that attach behind a saddle, used for carrying provisions, gear, and personal items during travel.",
       "special": "",
       "cost": {
         "quantity": 4,
@@ -3502,7 +3502,7 @@
       "index": "sailing-ship",
       "name": "Sailing ship",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A large ocean-going vessel powered by multiple masts and sails. Capable of crossing seas and carrying significant cargo or crew.",
       "special": "",
       "cost": {
         "quantity": 10000,
@@ -3515,7 +3515,7 @@
       "index": "scale-mail",
       "name": "Scale Mail",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A coat of leather covered with overlapping metal scales, resembling the hide of a dragon or fish. It offers good protection with moderate weight, though its many small scales can catch and snag.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -3549,7 +3549,7 @@
       "index": "scholars-pack",
       "name": "Scholar's Pack",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A kit for the traveling academic, including a backpack, book of lore, ink, ink pen, parchment, sand, and a small knife.",
       "special": "",
       "cost": {
         "quantity": 40,
@@ -3619,7 +3619,7 @@
       "index": "scimitar",
       "name": "Scimitar",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A curved, single-edged sword designed for slashing. Its sweeping blade allows for quick, graceful cuts and is favored by cavalry and skirmishers.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -3651,7 +3651,7 @@
       "index": "sealing-wax",
       "name": "Sealing wax",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A stick of hardened wax that melts when heated, used to seal letters and packages. Often stamped with a signet ring to verify the sender.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -3677,7 +3677,7 @@
       "index": "shield",
       "name": "Shield",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "A hand-held barrier of wood or metal used to block blows. Wielded in the off-hand, it provides a quick boost to defense and can be used offensively in a shield bash.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -3697,7 +3697,7 @@
       "index": "shortbow",
       "name": "Shortbow",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -3729,7 +3729,7 @@
       "index": "shortsword",
       "name": "Shortsword",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -3765,7 +3765,7 @@
       "index": "shovel",
       "name": "Shovel",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A broad, flat blade attached to a handle, used for digging earth, sand, or snow. Essential for burying the dead or excavating ruins.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -3778,7 +3778,7 @@
       "index": "sickle",
       "name": "Sickle",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A curved agricultural blade adapted for combat. Its hooked edge can catch limbs and deliver slashing cuts, though it is primarily a farming tool.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -3810,7 +3810,7 @@
       "index": "signal-whistle",
       "name": "Signal whistle",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small metal whistle that produces a piercing tone audible over great distances. Used for signaling between party members in poor visibility.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -3823,7 +3823,7 @@
       "index": "signet-ring",
       "name": "Signet ring",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A ring bearing a family crest, guild symbol, or official seal. Used to authenticate documents by pressing into warm wax.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -3836,7 +3836,7 @@
       "index": "sled",
       "name": "Sled",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A flat-bottomed vehicle designed to slide over snow or ice. Pulled by animals or people, it is essential for transporting goods in arctic environments.",
       "special": "",
       "cost": {
         "quantity": 20,
@@ -3849,7 +3849,7 @@
       "index": "sling",
       "name": "Sling",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A simple leather strap used to hurl stones or lead bullets at high velocity. Ancient yet deadly, it requires skill but can strike from great range.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -3877,7 +3877,7 @@
       "index": "sling-bullet",
       "name": "Sling bullet",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A smooth, rounded stone or lead pellet designed for use with a sling. Easily found or manufactured, sling bullets are the ammunition of the common folk.",
       "special": "",
       "cost": {
         "quantity": 4,
@@ -3916,7 +3916,7 @@
       "index": "soap",
       "name": "Soap",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A bar of rendered fat mixed with lye and ash, used for cleaning wounds, washing clothes, or maintaining hygiene.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -3929,7 +3929,7 @@
       "index": "spear",
       "name": "Spear",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A simple shaft tipped with a sharpened point, usable for thrusting or throwing. One of the oldest and most reliable weapons known to civilization.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -3989,7 +3989,7 @@
       "index": "spike-iron",
       "name": "Spike, iron",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A heavy iron spike, larger and sturdier than a piton. Used as a door anchor, improvised weapon, or structural support.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -4002,7 +4002,7 @@
       "index": "splint-armor",
       "name": "Splint Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Vertical strips of metal riveted to a backing of leather and cloth. Similar in construction to a flail, it offers heavy protection at moderate cost, though its weight limits mobility.",
       "special": "",
       "cost": {
         "quantity": 200,
@@ -4048,7 +4048,7 @@
       "index": "stabling-1-day",
       "name": "Stabling (1 day)",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A day's board for a single mount, including a stall, feed, water, and basic grooming.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -4087,7 +4087,7 @@
       "index": "studded-leather-armor",
       "name": "Studded Leather Armor",
       "equipment_category": "Armor",
-      "description": "",
+      "description": "Hardened leather reinforced with closely spaced metal studs or rivets. It offers better protection than standard leather armor while maintaining the light weight and flexibility favored by rangers and scouts.",
       "special": "",
       "cost": {
         "quantity": 45,
@@ -4185,7 +4185,7 @@
       "index": "trident",
       "name": "Trident",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A three-pronged spear designed for both melee and throwing. Associated with coastal peoples and waterborne combat, it is effective on land and sea.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -4241,7 +4241,7 @@
       "index": "vial",
       "name": "Vial",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A small glass container with a tight stopper, used for holding potions, poison, or other precious liquids. Typically holds about one ounce.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -4267,7 +4267,7 @@
       "index": "wagon",
       "name": "Wagon",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A four-wheeled vehicle pulled by draft animals, used for hauling goods, supplies, or passengers over roads and trails.",
       "special": "",
       "cost": {
         "quantity": 35,
@@ -4293,7 +4293,7 @@
       "index": "war-pick",
       "name": "War pick",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A specialized hammer with a pointed spike opposite the hammer face. Designed to pierce armor, its concentrated impact can punch through metal plate.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -4316,7 +4316,7 @@
       "index": "warhammer",
       "name": "Warhammer",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A heavy hammer designed for combat, balanced for one or two-handed use. Its solid head delivers tremendous concussive force against armor and flesh alike.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -4351,7 +4351,7 @@
       "index": "warhorse",
       "name": "Warhorse",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A powerful, specially trained mount bred for combat. Warhorses are trained to remain calm in battle and can wear barding armor.",
       "special": "",
       "cost": {
         "quantity": 400,
@@ -4364,7 +4364,7 @@
       "index": "warship",
       "name": "Warship",
       "equipment_category": "Mounts and Vehicles",
-      "description": "",
+      "description": "A large, heavily armed vessel designed for naval warfare. Equipped with rams, ballistae, and marines, it dominates the seas.",
       "special": "",
       "cost": {
         "quantity": 25000,
@@ -4377,7 +4377,7 @@
       "index": "waterskin",
       "name": "Waterskin",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A leather bladder designed to carry water or other liquids. A full waterskin holds about a gallon and can sustain a traveler for a day.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -4403,7 +4403,7 @@
       "index": "whetstone",
       "name": "Whetstone",
       "equipment_category": "Adventuring Gear",
-      "description": "",
+      "description": "A flat, coarse stone used to sharpen blades and tools. Regular use keeps swords, axes, and knives at peak effectiveness.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -4416,7 +4416,7 @@
       "index": "whip",
       "name": "Whip",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A long, flexible lash of braided leather or cord. Though not a weapon of war in the traditional sense, its reach and finesse make it deadly in skilled hands.",
       "special": "",
       "cost": {
         "quantity": 2,
