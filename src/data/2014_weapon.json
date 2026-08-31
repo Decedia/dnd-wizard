@@ -4,7 +4,7 @@
       "index": "battleaxe",
       "name": "Battleaxe",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A broad-bladed axe mounted on a sturdy haft, designed for war. Its heavy head delivers devastating chopping blows, cleaving through armor and shield alike.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -39,7 +39,7 @@
       "index": "blowgun",
       "name": "Blowgun",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A narrow tube used to propel small darts with a breath of air. Silent and deadly, it favors stealth over brute force.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -71,7 +71,7 @@
       "index": "club",
       "name": "Club",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A simple length of wood shaped into a weapon. Crude but effective, it has served as a tool of violence since the earliest days.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -103,7 +103,7 @@
       "index": "crossbow-hand",
       "name": "Crossbow, hand",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A compact crossbow that can be wielded and fired with one hand. Its concealed size makes it a favored tool of assassins and scouts.",
       "special": "",
       "cost": {
         "quantity": 75,
@@ -139,7 +139,7 @@
       "index": "crossbow-heavy",
       "name": "Crossbow, heavy",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A large crossbow with a powerful draw, capable of launching bolts with tremendous force. Its weight and bulk demand two hands to operate.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -179,7 +179,7 @@
       "index": "crossbow-light",
       "name": "Crossbow, light",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -215,7 +215,7 @@
       "index": "dagger",
       "name": "Dagger",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -259,7 +259,7 @@
       "index": "dart",
       "name": "Dart",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, weighted projectile designed to be thrown with accuracy. Easy to conceal and quick to throw, darts are favored by those who prefer ranged precision.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -295,7 +295,7 @@
       "index": "flail",
       "name": "Flail",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A spiked metal ball attached to a handle by a chain. Its swinging strikes can bypass shields and deliver crushing bludgeoning damage.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -318,7 +318,7 @@
       "index": "glaive",
       "name": "Glaive",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A polearm with a single-edged blade mounted at the end of a long shaft. Its reach allows wielders to strike foes from a safe distance.",
       "special": "",
       "cost": {
         "quantity": 20,
@@ -354,7 +354,7 @@
       "index": "greataxe",
       "name": "Greataxe",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "An immense axe with a heavy, broad blade. Wielded with two hands, it delivers devastating slashing blows that can cleave through the toughest defenses.",
       "special": "",
       "cost": {
         "quantity": 30,
@@ -386,7 +386,7 @@
       "index": "greatclub",
       "name": "Greatclub",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A massive, heavy club fashioned from a thick log or bound timber. Crude and oversized, its weight delivers tremendous blunt force.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -414,7 +414,7 @@
       "index": "greatsword",
       "name": "Greatsword",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A towering two-handed blade of exceptional length and weight. Mastery of this weapon allows for sweeping cuts that can fell multiple foes.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -446,7 +446,7 @@
       "index": "halberd",
       "name": "Halberd",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A versatile polearm combining an axe blade with a spear point and a hook. Effective for both chopping and thrusting, it is a staple of battlefield infantry.",
       "special": "",
       "cost": {
         "quantity": 20,
@@ -482,7 +482,7 @@
       "index": "handaxe",
       "name": "Handaxe",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, light axe designed for one-handed use or throwing. Its balance makes it equally effective in close combat or hurled at distant targets.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -522,7 +522,7 @@
       "index": "javelin",
       "name": "Javelin",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A light spear designed primarily for throwing. Its aerodynamic design allows it to be hurled with great distance and penetrating force.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -558,7 +558,7 @@
       "index": "lance",
       "name": "Lance",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A long, sturdy weapon designed for mounted combat. When couched under the arm during a charge, it delivers devastating piercing damage.",
       "special": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.",
       "cost": {
         "quantity": 10,
@@ -590,7 +590,7 @@
       "index": "light-hammer",
       "name": "Light hammer",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A small, balanced hammer that can be thrown or wielded in close combat. Its compact head delivers focused bludgeoning force.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -630,7 +630,7 @@
       "index": "longbow",
       "name": "Longbow",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A tall bow with a powerful draw, capable of sending arrows great distances with deadly accuracy. Crafted from a single piece of quality wood, it requires strength and skill to master.",
       "special": "",
       "cost": {
         "quantity": 50,
@@ -666,7 +666,7 @@
       "index": "longsword",
       "name": "Longsword",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A versatile blade of moderate length, balanced for one or two-handed use. The quintessential knightly weapon, it excels at both slashing and thrusting.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -701,7 +701,7 @@
       "index": "mace",
       "name": "Mace",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A heavy metal head mounted on a sturdy shaft, designed to crush and bludgeon. Against heavily armored foes, its concentrated impact is particularly effective.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -729,7 +729,7 @@
       "index": "maul",
       "name": "Maul",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "An enormous two-headed sledgehammer of immense weight. Wielded with two hands, its crushing blows can shatter bone and splinter shields.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -761,7 +761,7 @@
       "index": "morningstar",
       "name": "Morningstar",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A spiked mace with a heavy, flanged head designed to puncture and tear. Its brutal design inflicts grievous piercing wounds.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -784,7 +784,7 @@
       "index": "net",
       "name": "Net",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A weighted mesh net designed to entangle and restrain foes. When thrown effectively, it can immobilize a creature, rendering it helpless.",
       "special": "A Large or smaller creature hit by a net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make.",
       "cost": {
         "quantity": 1,
@@ -813,7 +813,7 @@
       "index": "pike",
       "name": "Pike",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "An exceptionally long thrusting spear used by formations of infantry. Its extreme reach allows ranks of soldiers to strike at approaching enemies from behind the front line.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -849,7 +849,7 @@
       "index": "quarterstaff",
       "name": "Quarterstaff",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -888,7 +888,7 @@
       "index": "rapier",
       "name": "Rapier",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -948,7 +948,7 @@
       "index": "shortbow",
       "name": "Shortbow",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -980,7 +980,7 @@
       "index": "shortsword",
       "name": "Shortsword",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -1016,7 +1016,7 @@
       "index": "sickle",
       "name": "Sickle",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A curved agricultural blade adapted for combat. Its hooked edge can catch limbs and deliver slashing cuts, though it is primarily a farming tool.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -1048,7 +1048,7 @@
       "index": "sling",
       "name": "Sling",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A simple leather strap used to hurl stones or lead bullets at high velocity. Ancient yet deadly, it requires skill but can strike from great range.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -1076,7 +1076,7 @@
       "index": "spear",
       "name": "Spear",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A simple shaft tipped with a sharpened point, usable for thrusting or throwing. One of the oldest and most reliable weapons known to civilization.",
       "special": "",
       "cost": {
         "quantity": 1,
@@ -1123,7 +1123,7 @@
       "index": "trident",
       "name": "Trident",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A three-pronged spear designed for both melee and throwing. Associated with coastal peoples and waterborne combat, it is effective on land and sea.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -1166,7 +1166,7 @@
       "index": "war-pick",
       "name": "War pick",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A specialized hammer with a pointed spike opposite the hammer face. Designed to pierce armor, its concentrated impact can punch through metal plate.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -1189,7 +1189,7 @@
       "index": "warhammer",
       "name": "Warhammer",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A heavy hammer designed for combat, balanced for one or two-handed use. Its solid head delivers tremendous concussive force against armor and flesh alike.",
       "special": "",
       "cost": {
         "quantity": 15,
@@ -1224,7 +1224,7 @@
       "index": "whip",
       "name": "Whip",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A long, flexible lash of braided leather or cord. Though not a weapon of war in the traditional sense, its reach and finesse make it deadly in skilled hands.",
       "special": "",
       "cost": {
         "quantity": 2,
