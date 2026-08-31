@@ -506,7 +506,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
     if (itemInfo.type === "weapon") {
       if (itemInfo.description) parts.push(itemInfo.description);
-      if (itemInfo.damageDice) parts.push(`Damage: ${itemInfo.damageDice} ${itemInfo.damageType || ""}`);
+      if (itemInfo.damageDice) parts.push(`Damage: [dice]${itemInfo.damageDice}[/dice] [damage]${itemInfo.damageType || ""}[/damage]`);
       if (itemInfo.category) parts.push(`Category: ${itemInfo.category}`);
       if (itemInfo.properties && itemInfo.properties.length > 0) parts.push(`Properties: ${itemInfo.properties.join(", ")}`);
     } else if (itemInfo.type === "armor") {
