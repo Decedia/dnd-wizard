@@ -3,15 +3,17 @@
 import { useState, useMemo } from "react";
 import { XIcon as X, MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
 import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
+import { SourceBadge } from "@/components/SourceBadge";
 
 interface FeatSelectorProps {
   onSelect: (feat: SRDFeat) => void;
   onClose: () => void;
   selectedFeat?: string;
+  sources?: string[];
 }
 
-export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorProps) {
-  const feats = getStaticFeats();
+export function FeatSelector({ onSelect, onClose, selectedFeat, sources }: FeatSelectorProps) {
+  const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
   const [expandedFeat, setExpandedFeat] = useState<string | null>(null);
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
@@ -93,13 +95,16 @@ export function FeatSelector({ onSelect, onClose, selectedFeat }: FeatSelectorPr
                   </button>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <button
-                        type="button"
-                        onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
-                        className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
-                      >
-                        {feat.name}
-                      </button>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
+                          className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
+                        >
+                          {feat.name}
+                        </button>
+                        {feat.source && feat.source !== "PHB" && <SourceBadge source={feat.source} size="sm" />}
+                      </div>
                     </div>
                     {feat.prerequisites && (
                       <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5">

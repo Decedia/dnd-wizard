@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getStaticSpells, getStaticArcaneTricksterSpells } from "@/lib/srd-client";
+import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { XIcon as X, CheckIcon as Check } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
@@ -72,7 +73,7 @@ export function SpellSelectionModal({
   const effectiveMaxLevel = onChange ? (character.level || 1) : (maxLevel || 0);
   const allSpells = isArcaneTrickster
     ? atSpells.filter((s) => s.level === 0 || s.level <= effectiveMaxLevel)
-    : getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel));
+    : getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel));
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
   const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
@@ -113,7 +114,7 @@ export function SpellSelectionModal({
           const currentSpells = (character.spells || []).filter(s => s.level > 0).length;
           if (currentSpells >= maxSpellsKnown) return;
         }
-        const srdSpell = getStaticSpells().find(s => s.name === name);
+        const srdSpell = getStaticSpells(character.sources).find(s => s.name === name);
         const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
         onChange({
           spells: [...(character.spells || []), { id, name, level, source: "srd" as const, srdSpellName: name, description: Array.isArray(srdSpell?.description) ? srdSpell.description.join("\n") : (srdSpell?.description || "") }],
@@ -294,7 +295,10 @@ export function SpellSelectionModal({
                         {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
                         {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
                         {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                        <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                        <div className="flex items-center gap-1.5">
+                          <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                          {sp.source && sp.source !== "PHB" && <SourceBadge source={sp.source} size="sm" />}
+                        </div>
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 ml-5">
                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
@@ -344,7 +348,10 @@ export function SpellSelectionModal({
                         {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
                         {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
                         {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                        <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                        <div className="flex items-center gap-1.5">
+                          <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                          {sp.source && sp.source !== "PHB" && <SourceBadge source={sp.source} size="sm" />}
+                        </div>
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 ml-5">
                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>

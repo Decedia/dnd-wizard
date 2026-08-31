@@ -12,6 +12,7 @@ import { ConditionBadges } from "./ConditionBadge";
 import { DamageDisplay, getSpellDamageInfo } from "./DamageExtractor";
 import { SpellSelectionModal } from "./SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
+import { SourceBadge } from "@/components/SourceBadge";
 
 interface SpellsSectionProps {
   character: Character;
@@ -25,6 +26,7 @@ interface UnifiedSpell {
   level: number;
   source: "srd" | "custom";
   srdSpellName?: string;
+  srdSource?: string;
   damageDice?: string;
   damageType?: string;
   description?: string;
@@ -60,6 +62,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       const damageDice = s.damageDice || srdSpell?.damage?.damageDice || "";
       const damageType = s.damageType || srdSpell?.damage?.damageType || "";
       const duration = srdSpell?.duration || "";
+      const srdSource = (srdSpell as any)?.source || "PHB";
       return {
         id: s.id,
         name: s.name,
@@ -70,6 +73,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         damageType,
         description,
         duration,
+        srdSource,
       };
     });
   }, [character.spells, srdSpells]);
@@ -269,6 +273,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+                  {spell.srdSource && spell.srdSource !== "PHB" && <SourceBadge source={spell.srdSource} size="sm" />}
                   {spell.duration && (() => {
                     const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
                     if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {

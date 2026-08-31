@@ -129,6 +129,7 @@ export interface SRDWizardSpell {
   ritual: boolean;
   concentration: boolean;
   classes: string[];
+  source?: string;
 }
 
 export interface SRDWeapon {
@@ -467,8 +468,8 @@ export function getEquipmentData(name: string): SRDEquipment | undefined {
   };
 }
 
-export function getEquipmentNames(): string[] {
-  return getStaticEquipments().map((e) => e.name);
+export function getEquipmentNames(sources?: string[]): string[] {
+  return getStaticEquipments(sources).map((e) => e.name);
 }
 
 export function getWeaponNames(): string[] {

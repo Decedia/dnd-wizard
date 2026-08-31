@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
+import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
@@ -79,7 +80,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   const spellcastingAbility = classData?.spellcastingAbility || "int";
   const abilityMod = getModifier(data[spellcastingAbility as keyof Character] as number || 10);
 
-  const allSpells = getStaticSpells().filter((s) => s.classes?.includes(data.class));
+  const allSpells = getStaticSpells(data.sources).filter((s) => s.classes?.includes(data.class));
   const maxSpellLevel = getMaxSpellLevel(data.class, data.level);
 
   const { cantrips: maxCantrips, spells: maxSpells } = getSpellCountForClass(data.class, data.level, abilityMod);
@@ -149,7 +150,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       const newSpells: Character["spells"] = [];
       const newPreparedIds: string[] = [];
       for (const name of missingDomainSpells) {
-        const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+        const spell = getStaticSpells(data.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
         if (spell) {
           const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
           newSpells.push({
@@ -195,7 +196,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
 
       for (const name of newCircleSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(data.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spellsToAdd.push({
@@ -284,7 +285,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                        {spell.source && spell.source !== "PHB" && <SourceBadge source={spell.source} size="sm" />}
+                      </div>
                       <span className="text-xs text-[var(--color-text-muted)] font-medium">
                         {spell.school || ""}
                       </span>
@@ -363,7 +367,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                         }`}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                            {spell.source && spell.source !== "PHB" && <SourceBadge source={spell.source} size="sm" />}
+                          </div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs text-[var(--color-text-muted)] font-medium">
                               {spell.school || ""}

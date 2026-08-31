@@ -508,6 +508,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       {featModalOpen && (
         <FeatSelector
           selectedFeat={selectedFeat}
+          sources={data.sources}
           onSelect={(feat: SRDFeat) => {
             handleFeatSelect(feat);
           }}

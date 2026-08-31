@@ -5,6 +5,7 @@ import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/s
 import type { Character } from "@/lib/storage";
 import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack } from "@/components/icons";
 import { DamageBadge } from "./DamageBadge";
+import { SourceBadge } from "@/components/SourceBadge";
 
 interface ItemSelectionPopupProps {
   character: Character;
@@ -25,9 +26,9 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
     };
   }, []);
 
-  const weapons = getStaticWeapons().filter((w) => w.weapon_category === "Simple" || w.weapon_category === "Martial");
-  const armors = getStaticEquipments().filter((e) => e.armor_category === "Light" || e.armor_category === "Medium" || e.armor_category === "Heavy" || e.armor_category === "Shield");
-  const items = getStaticEquipments().filter((e) => {
+  const weapons = getStaticWeapons(character.sources).filter((w) => w.weapon_category === "Simple" || w.weapon_category === "Martial");
+  const armors = getStaticEquipments(character.sources).filter((e) => e.armor_category === "Light" || e.armor_category === "Medium" || e.armor_category === "Heavy" || e.armor_category === "Shield");
+  const items = getStaticEquipments(character.sources).filter((e) => {
     const cat = e.equipment_category?.toLowerCase() || "";
     return !cat.includes("weapon") && !cat.includes("armor") && !cat.includes("shield") && !cat.includes("adventuring");
   });

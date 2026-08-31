@@ -10,6 +10,7 @@ import { InfoButton } from "@/components/InfoButton";
 import { DescriptionModal } from "@/components/InfoButton";
 import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
 import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff } from "@/components/icons";
+import { SourceBadge } from "@/components/SourceBadge";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -48,9 +49,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
-  const weapons = useMemo(() => getStaticWeapons(), []);
-  const armors = useMemo(() => getStaticArmors(), []);
-  const allEquipment = useMemo(() => getEquipmentNames(), []);
+  const weapons = useMemo(() => getStaticWeapons(data.sources), [data.sources]);
+  const armors = useMemo(() => getStaticArmors(data.sources), [data.sources]);
+  const allEquipment = useMemo(() => getEquipmentNames(data.sources), [data.sources]);
 
   const choiceGroups = useMemo<ChoiceGroup[]>(() => buildChoiceGroups(startingEquipment), [startingEquipment]);
 
