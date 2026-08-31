@@ -512,109 +512,89 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                const groupIndex = getGroupIndex(group.id);
                const hasSelection = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
 
-               return (
-                 <div key={group.id} className="space-y-2">
-                   <p className="text-description mb-2">{group.description}</p>
-                   <div className="space-y-2">
-                       {group.options.map((option, optionIndex) => {
-                        const isSelected = isOptionSelected(group, optionIndex);
-                        const isWeaponChoice = option.isWeaponChoice;
-                        const isPopupChoice = option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice;
-                        const primaryItem = option.items[0];
-                        const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
-                        const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
-                         const selectedWeapons = isWeaponChoice ? getSelectedWeaponsForGroup(group.id, optionIndex) : [];
-                        const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
-                        const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
-                        const isDisabled = hasSelection && !isSelected;
-                        const optionItemNames = option.items.map(i => i.name).filter(Boolean);
-                        const optionItemInfos = optionItemNames.map(name => getItemInfo(name));
-                        const selectionCount = option.selectionCount || 1;
+                return (
+                  <div key={group.id} className="space-y-2">
+                    <div className="space-y-2">
+                        {group.options.map((option, optionIndex) => {
+                         const isSelected = isOptionSelected(group, optionIndex);
+                         const isWeaponChoice = option.isWeaponChoice;
+                         const isPopupChoice = option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice;
+                         const primaryItem = option.items[0];
+                         const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
+                         const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
+                          const selectedWeapons = isWeaponChoice ? getSelectedWeaponsForGroup(group.id, optionIndex) : [];
+                         const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
+                         const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
+                         const selectionCount = option.selectionCount || 1;
+                         const hasMultiSelect = selectionCount > 1;
+                         const isDisabled = hasSelection && !isSelected;
 
-                       if (isWeaponChoice) {
-                         const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
-                          const needsMoreSelections = selectedWeapons.length < selectionCount;
+                        if (isWeaponChoice) {
+                          const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
+                           const needsMoreSelections = selectedWeapons.length < selectionCount;
 
-                            return (
-                               <div
-                                 key={optionIndex}
-                                 className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
-                                   isSelected
-                                     ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
-                                     : isDisabled
-                                       ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20"
-                                       : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                                 }`}
-                               >
-                                {isSelected && selectedWeapons.length > 0 ? (
-                                  <div className="space-y-2">
-                                    {selectedWeapons.map((weapon, wIdx) => {
-                                      const wStats = getWeaponStats(weapon.name, weapon.category);
-                                      return (
-                                         <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
-                                           <div className="flex-1">
-                                             <div className="flex items-center gap-2">
-                                               <span className="text-body font-semibold text-[var(--color-surface)]">{weapon.name}</span>
-                                             </div>
-                                             {wStats && (
-                                               <div className="flex items-center gap-1.5 mt-1.5">
-                                                 <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
-                                                 <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                   {wStats.damageDice}
-                                                 </span>
-                                                 <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                   {wStats.abilityKey} {wStats.damageBonus}
-                                                 </span>
-                                                 <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                   {wStats.attackBonus} to hit
-                                                 </span>
-                                               </div>
-                                             )}
-                                           </div>
-                                           <button
-                                             type="button"
-                                             onClick={() => {
-                                               const newInventory = data.inventory.filter(item => item.id !== weapon.id);
-                                               onChange({ inventory: newInventory });
-                                             }}
-                                             className="text-[var(--color-surface)] hover:text-[var(--color-error-300)] ml-2 text-lg leading-none"
-                                           >
-                                             ×
-                                           </button>
-                                         </div>
-                                      );
-                                    })}
-                                  {needsMoreSelections && (
-                                    <button
-                                      type="button"
-                                      onClick={() => setPopupGroup({ group, optionIndex })}
-                                      className="w-full py-1.5 text-left text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] border border-dashed border-[var(--color-border)] rounded px-2"
-                                    >
-                                      + Add weapon ({selectedWeapons.length}/{selectionCount})
-                                    </button>
-                                  )}
-                                  {selectionCount > 1 && selectedWeapons.length >= selectionCount && (
-                                    <button
-                                      type="button"
-                                      onClick={() => handleChoiceRemove(group)}
-                                      className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] text-xs"
-                                    >
-                                      Clear all
-                                    </button>
-                                  )}
-                                </div>
-                               ) : (
-                                 <button
-                                   type="button"
-                                   onClick={() => handleOptionClick(group, optionIndex)}
-                                    className="w-full text-left text-body"
-                                 >
-                                   <span>Choose {selectionCount > 1 ? `${selectionCount} ` : "a "}{option.weaponType?.replace('_', ' ')} weapon{selectionCount > 1 ? "s" : ""}</span>
-                                 </button>
-                               )}
-                            </div>
-                         );
-                       }
+                             return (
+                                <div
+                                  key={optionIndex}
+                                  className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
+                                    isSelected
+                                      ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
+                                      : isDisabled
+                                        ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20"
+                                        : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                                  }`}
+                                >
+                                 {isSelected && selectedWeapons.length > 0 ? (
+                                   <div className="space-y-2">
+                                     {selectedWeapons.map((weapon, wIdx) => {
+                                       const wStats = getWeaponStats(weapon.name, weapon.category);
+                                       return (
+                                          <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
+                                            <div className="flex-1">
+                                              <div className="flex items-center gap-2">
+                                                <span className="text-body font-semibold text-[var(--color-surface)]">{weapon.name}</span>
+                                              </div>
+                                              {wStats && (
+                                                <div className="flex items-center gap-1.5 mt-1.5">
+                                                  <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                                                  <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                    {wStats.damageDice}
+                                                  </span>
+                                                  <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                    {wStats.abilityKey} {wStats.damageBonus}
+                                                  </span>
+                                                  <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                    {wStats.attackBonus} to hit
+                                                  </span>
+                                                </div>
+                                              )}
+                                            </div>
+                                            <button
+                                              type="button"
+                                              onClick={() => {
+                                                const newInventory = data.inventory.filter(item => item.id !== weapon.id);
+                                                onChange({ inventory: newInventory });
+                                              }}
+                                              className="text-[var(--color-surface)] hover:text-[var(--color-error-300)] ml-2 text-lg leading-none"
+                                            >
+                                              ×
+                                            </button>
+                                          </div>
+                                       );
+                                     })}
+                                   </div>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={() => handleOptionClick(group, optionIndex)}
+                                     className="w-full text-left text-body"
+                                  >
+                                    <span>Choose {selectionCount > 1 ? `${selectionCount} ` : "a "}{option.weaponType?.replace('_', ' ')} weapon{selectionCount > 1 ? "s" : ""}</span>
+                                  </button>
+                                )}
+                             </div>
+                          );
+                        }
 
                             return (
                              <div
