@@ -455,7 +455,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (itemInfo.type === "weapon") {
       return (
         <span className="inline-flex items-center gap-1.5">
-          <DamageBadge type={itemInfo.damageType} size="sm" showLabel={false} />
+          <DamageBadge type={itemInfo.damageType} size="sm" showLabel={true} />
           <span
             className="text-[10px] font-bold px-1.5 py-0.5 rounded"
             style={{ color: getDamageTypeColor(itemInfo.damageType), backgroundColor: getDamageTypeBgColor(itemInfo.damageType) }}
@@ -604,7 +604,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                               </div>
                                               {wStats && (
                                                 <div className="flex items-center gap-1.5 mt-1.5 ml-6">
-                                                  <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                                                  <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
                                                   <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
                                                     {wStats.damageDice}
                                                   </span>
@@ -670,7 +670,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                           const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
                                           return wStats ? (
                                             <div className="flex items-center gap-1.5 mt-1.5 ml-6">
-                                              <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                                              <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
                                               <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
                                                 {wStats.damageDice}
                                               </span>
@@ -715,7 +715,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                         const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
                                         return wStats ? (
                                           <div className="flex items-center gap-1.5 mt-1.5 ml-6">
-                                            <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                                            <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
                                             <span
                                               className="text-[10px] font-bold px-1.5 py-0.5 rounded"
                                               style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
@@ -785,7 +785,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                    </div>
                    {wStats && (
                      <div className="flex items-center gap-1.5 ml-6">
-                       <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                       <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
                        <span
                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
                          style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
@@ -876,7 +876,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                     </div>
                     {wStats && (
                       <div className="flex items-center gap-1.5 mt-1 ml-6">
-                        <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                        <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
                         <span
                           className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : ""}`}
                           style={!isWeaponSelected ? { color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) } : undefined}
