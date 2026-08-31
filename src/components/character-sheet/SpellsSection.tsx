@@ -3,7 +3,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { InfoButton } from "@/components/InfoButton";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
@@ -222,13 +221,32 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           const buffDef = getSpellBuff(spell.name);
           return (
             <div key={spell.id} className={`list-row ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex flex-col min-w-0 flex-1">
+                  <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+                  {spell.duration && (() => {
+                    const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
+                    if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
+                      return (
+                        <span className="text-[10px] text-[var(--color-accent)] font-semibold">
+                          ⏱ {activeBuff.turnsRemaining} turn{activeBuff.turnsRemaining !== 1 ? "s" : ""}
+                        </span>
+                      );
+                    }
+                    return (
+                      <span className="text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
+                    );
+                  })()}
+                  {spell.description && (
+                    <span className="text-[10px] text-[var(--color-text-secondary)] mt-1 line-clamp-2">{spell.description}</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1 shrink-0">
                   {preparationCaster && spell.level > 0 && (
                     <button
                       type="button"
                       onClick={() => togglePrepared(spell.id)}
-                      className={`shrink-0 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                      className={`px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                         spellPrepared
                           ? "bg-[var(--color-success-500)] text-[var(--color-surface)]"
                           : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
@@ -238,10 +256,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       {spellPrepared ? "Prepared" : "Prepare"}
                     </button>
                   )}
-                   <button
+                  <button
                     type="button"
                     onClick={() => toggleSpellUsed(spell.id, buffDef, spell.duration)}
-                    className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                    className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                       spellUsed
                         ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
                         : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
@@ -261,48 +279,25 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         const currentUsed = character.spellsUsedThisTurn || [];
                         onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spell.id) });
                       }}
-                      className="shrink-0 flex items-center justify-center w-5 h-5 text-[10px] font-bold rounded border border-[var(--color-error-200)] text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] hover:border-[var(--color-error-300)] transition-all"
+                      className="flex items-center justify-center w-5 h-5 text-[10px] font-bold rounded border border-[var(--color-error-200)] text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] hover:border-[var(--color-error-300)] transition-all"
                       title="Break concentration"
                     >
                       ✕
                     </button>
                   )}
+                  {spell.srdSource && spell.srdSource !== "PHB" && <SourceBadge source={spell.srdSource} size="sm" />}
+                  {editMode && (
+                    <button
+                      type="button"
+                      onClick={() => removeSpell(spell.id)}
+                      className="text-[var(--color-text-secondary)] hover:text-[var(--color-error-500)]"
+                      aria-label="Remove spell"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
-                <div className="flex items-start justify-between gap-2 mt-1">
-                  <div className="flex flex-col min-w-0">
-                    <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
-                    {spell.duration && (() => {
-                      const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
-                      if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
-                        return (
-                          <span className="text-[10px] text-[var(--color-accent)] font-semibold">
-                            ⏱ {activeBuff.turnsRemaining} turn{activeBuff.turnsRemaining !== 1 ? "s" : ""}
-                          </span>
-                        );
-                      }
-                      return (
-                        <span className="text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
-                      );
-                    })()}
-                  </div>
-                  <div className="flex items-center gap-1 shrink-0">
-                    {spell.srdSource && spell.srdSource !== "PHB" && <SourceBadge source={spell.srdSource} size="sm" />}
-                    {spell.description && (
-                      <InfoButton title={spell.name} description={spell.description} />
-                    )}
-                    {editMode && (
-                      <button
-                        type="button"
-                        onClick={() => removeSpell(spell.id)}
-                        className="text-[var(--color-text-secondary)] hover:text-[var(--color-error-500)]"
-                        aria-label="Remove spell"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-               </div>
+              </div>
             </div>
           );
         })}

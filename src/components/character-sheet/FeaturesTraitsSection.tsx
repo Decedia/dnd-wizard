@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
 import { FeatPopup } from "./FeatPopup";
 import { getStaticFeats } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
@@ -139,12 +138,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                           {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
                         </button>
                       )}
-                       {feature.description && (
-                         <InfoButton title={feature.name} description={feature.description} />
-                       )}
-                     </div>
-                   </div>
-                 </div>
+                    </div>
+                  </div>
+                  {feature.description && (
+                    <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
+                  )}
+                </div>
               )}
             </div>
           );
