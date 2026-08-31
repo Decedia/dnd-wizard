@@ -621,8 +621,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                   ) : (
                                     <button
                                       type="button"
-                                      onClick={() => handleOptionClick(group, optionIndex)}
-                                      className="w-full text-left text-body"
+                                      onClick={() => !isDisabled && handleOptionClick(group, optionIndex)}
+                                      disabled={isDisabled}
+                                      className={`w-full text-left text-body ${isDisabled ? "cursor-not-allowed opacity-50" : ""}`}
                                     >
                                       <span>{getOptionLabel(option)}</span>
                                     </button>
@@ -658,19 +659,19 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                        </button>
                                      </div>
                                    </div>
-                                ) : (
-                                  <button
-                                    type="button"
-                                    onClick={() => handleOptionClick(group, optionIndex)}
-                                    disabled={isDisabled}
-                                    className="w-full text-left text-body"
-                                  >
-                                    <span>{getOptionLabel(option)}</span>
-                                    {getOptionSummary(option) && (
-                                      <span className="block text-[10px] text-[var(--color-text-muted)] mt-0.5">{getOptionSummary(option)}</span>
-                                    )}
-                                  </button>
-                               )}
+                                 ) : (
+                                   <button
+                                     type="button"
+                                     onClick={() => !isDisabled && handleOptionClick(group, optionIndex)}
+                                     disabled={isDisabled}
+                                     className={`w-full text-left text-body ${isDisabled ? "cursor-not-allowed opacity-50" : ""}`}
+                                   >
+                                     <span>{getOptionLabel(option)}</span>
+                                     {getOptionSummary(option) && (
+                                       <span className="block text-[10px] text-[var(--color-text-muted)] mt-0.5">{getOptionSummary(option)}</span>
+                                     )}
+                                   </button>
+                                )}
                           </div>
                          );
                      })}
