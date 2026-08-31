@@ -8,7 +8,6 @@ import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
 import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -87,9 +86,8 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               {editMode ? (
                 <label className={`flex items-center justify-between gap-2 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
                   <div className="flex flex-col min-w-0">
-                     <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
+                      <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                        {name}
-                       {description && <InfoButton title={name} description={description} />}
                        {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
                      </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
@@ -113,7 +111,6 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                   <div className="flex flex-col min-w-0">
                      <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                        {name}
-                       {description && <InfoButton title={name} description={description} />}
                        {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
                        {(isProficient || isExpert) && (
                           <span className="flex items-center text-ink">
