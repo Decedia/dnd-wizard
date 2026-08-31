@@ -54,7 +54,8 @@ export function generateLevelUpSteps(
   currentExpertise: string[] = [],
   currentSkills: Record<string, boolean> = {},
   includeCurrentLevel: boolean = false,
-  currentSubclass?: string
+  currentSubclass?: string,
+  sources?: string[]
 ): LevelUpStep[] {
   const classData = getStaticClass(className);
   if (!classData || !classData.levels) return [];
@@ -76,7 +77,7 @@ export function generateLevelUpSteps(
     }
 
     if (level === unlockLevel && !currentSubclass && (classData.subclasses?.length ?? 0) > 0) {
-      const subclasses = getStaticSubclasses(className);
+      const subclasses = getStaticSubclasses(className, sources);
       sections.push({
         type: "subclassSelection",
         subclassOptions: subclasses.map((s) => ({ name: s.name, description: s.description })),
@@ -104,7 +105,7 @@ export function generateLevelUpSteps(
     let featureChoices = [...(getFeatureChoices(className, features) || []), ...classFeatureChoices];
 
     if (currentSubclass && level >= unlockLevel) {
-      const subclasses = getStaticSubclasses(className);
+      const subclasses = getStaticSubclasses(className, sources);
       const sub = subclasses.find((s) => s.name === currentSubclass);
       if (sub) {
         const earned = sub.features.filter((f) => f.level === level);

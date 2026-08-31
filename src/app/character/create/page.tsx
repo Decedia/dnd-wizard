@@ -6,6 +6,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
 import { StepOrigin } from "@/components/character-creator/StepOrigin";
 import { StepPersonality } from "@/components/character-creator/StepPersonality";
+import { StepSourceSelection } from "@/components/character-creator/StepSourceSelection";
 import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
@@ -67,6 +68,8 @@ export default function CharacterCreate() {
   const renderStep = useCallback(() => {
     if (!currentStep) return null;
     switch (currentStep.type) {
+      case "source-selection":
+        return <StepSourceSelection data={character} onChange={update} />;
       case "origin":
         return <StepOrigin data={character} onChange={update} />;
       case "personality":

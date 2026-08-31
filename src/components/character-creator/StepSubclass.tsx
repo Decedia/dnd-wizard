@@ -3,6 +3,7 @@
 import { CheckCircleIcon as CheckCircle, InfoIcon as Info } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses, type SRDClass, type SRDSubclass } from "@/lib/srd-client";
+import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { normalizeDescription } from "@/lib/level-up";
 import { InfoButton } from "@/components/InfoButton";
@@ -14,7 +15,7 @@ interface StepSubclassProps {
 
 export function StepSubclass({ data, onChange }: StepSubclassProps) {
   const classData: SRDClass | undefined = data.class ? getStaticClass(data.class) : undefined;
-  const subclasses: SRDSubclass[] = data.class ? getStaticSubclasses(data.class) : [];
+  const subclasses: SRDSubclass[] = data.class ? getStaticSubclasses(data.class, data.sources) : [];
   const unlockLevel = classData?.subclassLevel ?? 3;
 
   const handleSelect = (subclassName: string) => {
@@ -57,7 +58,10 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-card-title">{sub.name}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-card-title">{sub.name}</span>
+                    {sub.source && sub.source !== "PHB" && <SourceBadge source={sub.source} size="sm" />}
+                  </div>
                   {isSelected && (
                     <CheckCircle color="var(--color-text-primary)" className="h-4 w-4" />
                   )}

@@ -355,6 +355,18 @@
           "index": "totem",
           "name": "Totem Warrior",
           "url": "/api/2014/subclasses/totem"
+        },
+        {
+          "name": "Ancestral Guardian",
+          "description": ""
+        },
+        {
+          "name": "Storm Herald",
+          "description": ""
+        },
+        {
+          "name": "Zealot",
+          "description": ""
         }
       ],
       "rageUses": {
@@ -1787,6 +1799,18 @@
           "index": "valor",
           "name": "Valor",
           "url": "/api/2014/subclasses/valor"
+        },
+        {
+          "name": "College of Glamour",
+          "description": ""
+        },
+        {
+          "name": "College of Swords",
+          "description": ""
+        },
+        {
+          "name": "College of Whispers",
+          "description": ""
         }
       ],
       "spellsKnown": {
@@ -2381,6 +2405,14 @@
           "index": "war",
           "name": "War",
           "url": "/api/2014/subclasses/war"
+        },
+        {
+          "name": "Forge Domain",
+          "description": ""
+        },
+        {
+          "name": "Grave Domain",
+          "description": ""
         }
       ],
       "channelDivinityUses": {
@@ -2871,6 +2903,14 @@
           "index": "moon",
           "name": "Moon",
           "url": "/api/2014/subclasses/moon"
+        },
+        {
+          "name": "Circle of Dreams",
+          "description": ""
+        },
+        {
+          "name": "Circle of the Shepherd",
+          "description": ""
         }
       ],
       "wildShapeUses": {
@@ -3302,6 +3342,18 @@
           "index": "eldritch-knight",
           "name": "Eldritch Knight",
           "url": "/api/2014/subclasses/eldritch-knight"
+        },
+        {
+          "name": "Arcane Archer",
+          "description": ""
+        },
+        {
+          "name": "Cavalier",
+          "description": ""
+        },
+        {
+          "name": "Samurai",
+          "description": ""
         }
       ],
       "actionSurgeUses": {
@@ -3745,6 +3797,18 @@
           "index": "four-elements",
           "name": "Four Elements",
           "url": "/api/2014/subclasses/four-elements"
+        },
+        {
+          "name": "Way of the Drunken Master",
+          "description": ""
+        },
+        {
+          "name": "Way of the Kensei",
+          "description": ""
+        },
+        {
+          "name": "Way of the Sun Soul",
+          "description": ""
         }
       ],
       "kiPoints": {
@@ -4273,6 +4337,18 @@
           "index": "vengeance",
           "name": "Vengeance",
           "url": "/api/2014/subclasses/vengeance"
+        },
+        {
+          "name": "Oath of Conquest",
+          "description": ""
+        },
+        {
+          "name": "Oath of Redemption",
+          "description": ""
+        },
+        {
+          "name": "Oath of the Watchers",
+          "description": ""
         }
       ],
       "description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity (the vampire \n \nCount Strahd von Zarovich, for instance). Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the *hallow* spell. \n \nYou can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses. \n \n\n \nYour blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level × 5. \n \nAs an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool. \n \nAlternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one. \n \nThis feature has no effect on undead and constructs. \n \n\n \nAt 2nd level, you adopt a style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again. \n \n#### Defense \n \nWhile you are wearing armor, you gain a +1 bonus to AC. \n \n#### Dueling \n \nWhen you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon. \n \n#### Great Weapon Fighting \n \nWhen you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll. The weapon must have the two-handed or versatile property for you to gain this benefit. \n \n#### Protection \n \nWhen a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield. \n \n\n \nBy 2nd level, you have learned to draw on divine magic through meditation and prayer to cast spells as a cleric does. \n \n#### Preparing and Casting Spells \n \nThe Paladin table shows how many spell slots you have to cast your spells. To cast one of your paladin spells of 1st level or higher, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. \n \nYou prepare the list of paladin spells that are available for you to cast, choosing from the paladin spell list. When you do so, choose a number of paladin spells equal to your Charisma modifier + half your paladin level, rounded down (minimum of one spell). The spells must be of a level for which you have spell slots. \n \nFor example, if you are a 5th-level paladin, you have four 1st-level and two 2nd-level spell slots. With a Charisma of 14, your list of prepared spells can include four spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell *cure wounds,* you can cast it using a 1st-level or a 2nd- level slot. Casting the spell doesn't remove it from your list of prepared spells. \n \nYou can change your list of prepared spells when you finish a long rest. Preparing a new list of paladin spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list. \n \n#### Spellcasting Ability \n \nCharisma is your spellcasting ability for your paladin spells, since their power derives from the strength of your convictions. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a paladin spell you cast and when making an attack roll with one. \n \n**Spell save DC** = 8 + your proficiency bonus + your Charisma modifier \n \n**Spell attack modifier** = your proficiency bonus + your Charisma modifier \n \n#### Spellcasting Focus \n \nYou can use a holy symbol as a spellcasting focus for your paladin spells. \n \n\n \nStarting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each spell level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an undead or a fiend. \n \n\n \nBy 3rd level, the divine magic flowing through you makes you immune to disease.\n\n ### Sacred Oath \n\nWhen you reach 3rd level, you swear the oath that binds you as a paladin forever. Up to this time you have been in a preparatory stage, committed to the path but not yet sworn to it. Now you choose the Oath of Devotion, the Oath of the Ancients, or the Oath of Vengeance, all detailed at the end of the class description. \n \nYour choice grants you features at 3rd level and again at 7th, 15th, and 20th level. Those features include oath spells and the Channel Divinity feature. \n \n#### Oath Spells \n \nEach oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day. \n \nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you. \n \n#### Channel Divinity \n \nYour oath allows you to channel divine energy to fuel magical effects. Each Channel Divinity option provided by your oath explains how to use it. \n \nWhen you use your Channel Divinity, you choose which option to use. You must then finish a short or long rest to use your Channel Divinity again. \n \nSome Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your paladin spell save DC.\n\n>### Breaking Your Oath \n>\n> A paladin tries to hold to the highest standards of conduct, but even the most virtuous paladin is fallible. Sometimes the right path proves too demanding, sometimes a situation calls for the lesser of two evils, and sometimes the heat of emotion causes a paladin to transgress his or her oath. \n> \n> A paladin who has broken a vow typically seeks absolution from a cleric who shares his or her faith or from another paladin of the same order. The paladin might spend an all- night vigil in prayer as a sign of penitence, or undertake a fast or similar act of self-denial. After a rite of confession and forgiveness, the paladin starts fresh. \n> \n> If a paladin willfully violates his or her oath and shows no sign of repentance, the consequences can be more serious. At the GM's discretion, an impenitent paladin might be forced to abandon this class and adopt another.\n \n\n \nWhen you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. \n \n\n \nBeginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. \n \n\n \nStarting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a minimum bonus of +1). You must be conscious to grant this bonus. \n \nAt 18th level, the range of this aura increases to 30 feet. \n \n\n \nStarting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious. \n \nAt 18th level, the range of this aura increases to 30 feet. \n \n\n \nBy 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra 1d8 radiant damage. If you also use your Divine Smite with an attack, you add this damage to the extra damage of your Divine Smite. \n \n\n \nBeginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. \n \nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain expended uses when you finish a long rest. \n \n\n \nBecoming a paladin involves taking vows that commit the paladin to the cause of righteousness, an active path of fighting wickedness. The final oath, taken when he or she reaches 3rd level, is the culmination of all the paladin's training. Some characters with this class don't consider themselves true paladins until they have reached 3rd level and made this oath. For others, the actual swearing of the oath is a formality, an official stamp on what has always been true in the paladin's heart."
@@ -4853,6 +4929,22 @@
           "index": "beast-master",
           "name": "Beast Master",
           "url": "/api/2014/subclasses/beast-master"
+        },
+        {
+          "name": "Fey Wanderer",
+          "description": ""
+        },
+        {
+          "name": "Horizon Walker",
+          "description": ""
+        },
+        {
+          "name": "Monster Slayer",
+          "description": ""
+        },
+        {
+          "name": "Swarmkeeper",
+          "description": ""
         }
       ],
       "spellsKnown": {
@@ -5332,6 +5424,22 @@
           "index": "arcane-trickster",
           "name": "Arcane Trickster",
           "url": "/api/2014/subclasses/arcane-trickster"
+        },
+        {
+          "name": "Inquisitive",
+          "description": ""
+        },
+        {
+          "name": "Mastermind",
+          "description": ""
+        },
+        {
+          "name": "Scout",
+          "description": ""
+        },
+        {
+          "name": "Swashbuckler",
+          "description": ""
         }
       ],
       "sneakAttackDice": {
@@ -6063,6 +6171,26 @@
           "index": "wild-magic",
           "name": "Wild Magic",
           "url": "/api/2014/subclasses/wild-magic"
+        },
+        {
+          "name": "Aberrant Mind",
+          "description": ""
+        },
+        {
+          "name": "Clockwork Magic",
+          "description": ""
+        },
+        {
+          "name": "Divine Soul",
+          "description": ""
+        },
+        {
+          "name": "Shadow Magic",
+          "description": ""
+        },
+        {
+          "name": "Storm Sorcery",
+          "description": ""
         }
       ],
       "spellsKnown": {
@@ -7113,6 +7241,18 @@
               "Cone of Cold"
             ]
           }
+        },
+        {
+          "name": "The Celestial",
+          "description": ""
+        },
+        {
+          "name": "The Genie",
+          "description": ""
+        },
+        {
+          "name": "The Fathomless",
+          "description": ""
         }
       ],
       "spellsKnown": {
@@ -7752,6 +7892,26 @@
           "index": "transmutation",
           "name": "Transmutation",
           "url": "/api/2014/subclasses/transmutation"
+        },
+        {
+          "name": "Bladesinging",
+          "description": ""
+        },
+        {
+          "name": "Chronurgy Magic",
+          "description": ""
+        },
+        {
+          "name": "Graviturgy Magic",
+          "description": ""
+        },
+        {
+          "name": "Order of Scribes",
+          "description": ""
+        },
+        {
+          "name": "War Magic",
+          "description": ""
         }
       ],
       "spellbookSpells": {
@@ -7778,5 +7938,6 @@
       },
       "description": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power. \n \n#### Cantrips \n \nAt 1st level, you know three cantrips of your choice from the wizard spell list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table. \n \n#### Spellbook \n \nAt 1st level, you have a spellbook containing six 1st- level wizard spells of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind.\n \n> ### Your Spellbook \n> \n> The spells that you add to your spellbook as you gain levels reflect the arcane research you conduct on your own, as well as intellectual breakthroughs you have had about the nature of the multiverse. You might find other spells during your adventures. You could discover a spell recorded on a scroll in an evil wizard's chest, for example, or in a dusty tome in an ancient library. \n> \n> **_Copying a Spell into the Book._** When you find a wizard spell of 1st level or higher, you can add it to your spellbook if it is of a spell level you can prepare and if you can spare the time to decipher and copy it. \n> \n> Copying that spell into your spellbook involves reproducing the basic form of the spell, then deciphering the unique system of notation used by the wizard who wrote it. You must practice the spell until you understand the sounds or gestures required, then transcribe it into your spellbook using your own notation. \n> \n> For each level of the spell, the process takes 2 hours and costs 50 gp. The cost represents material components you expend as you experiment with the spell to master it, as well as the fine inks you need to record it. Once you have spent this time and money, you can prepare the spell just like your other spells. \n> \n> **_Replacing the Book._** You can copy a spell from your own spellbook into another book-for example, if you want to make a backup copy of your spellbook. This is just like copying a new spell into your spellbook, but faster and easier, since you understand your own notation and already know how to cast the spell. You need spend only 1 hour and 10 gp for each level of the copied spell. \n> \n> If you lose your spellbook, you can use the same procedure to transcribe the spells that you have prepared into a new spellbook. Filling out the remainder of your spellbook requires you to find new spells to do so, as normal. For this reason, many wizards keep backup spellbooks in a safe place. \n> \n> **_The Book's Appearance._** Your spellbook is a unique compilation of spells, with its own decorative flourishes and margin notes. It might be a plain, functional leather volume that you received as a gift from your master, a finely bound gilt-edged tome you found in an ancient library, or even a loose collection of notes scrounged together after you lost your previous spellbook in a mishap.\n \n#### Preparing and Casting Spells \n \nThe Wizard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. \n \nYou prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots. \n \nFor example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell *magic missile,* you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells. \n \nYou can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list. \n \n#### Spellcasting Ability \n \nIntelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one. \n \n**Spell save DC** = 8 + your proficiency bonus + your Intelligence modifier \n \n**Spell attack modifier** = your proficiency bonus + your Intelligence modifier \n \n#### Ritual Casting \n \nYou can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared. \n \n#### Spellcasting Focus \n \nYou can use an arcane focus as a spellcasting focus for your wizard spells. \n \n#### Learning Spells of 1st Level and Higher \n \nEach time you gain a wizard level, you can add two wizard spells of your choice to your spellbook for free. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook (see the “Your Spellbook” sidebar).\n \n\n \nYou have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher. \n \nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots. \n \n\n \nWhen you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools: Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, or Transmutation, all detailed at the end of the class description. \n \nYour choice grants you features at 2nd level and again at 6th, 10th, and 14th level. \n \n\n \nWhen you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. \n \n\n \nAt 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal. \n \nBy spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels. \n \n\n \nWhen you reach 20th level, you gain mastery over two powerful spells and can cast them with little effort. Choose two 3rd-level wizard spells in your spellbook as your signature spells. You always have these spells prepared, they don't count against the number of spells you have prepared, and you can cast each of them once at 3rd level without expending a spell slot. When you do so, you can't do so again until you finish a short or long rest. \n \nIf you want to cast either spell at a higher level, you must expend a spell slot as normal. \n \n\n \nThe study of wizardry is ancient, stretching back to the earliest mortal discoveries of magic. It is firmly established in fantasy gaming worlds, with various traditions dedicated to its complex study. \n \nThe most common arcane traditions in the multiverse revolve around the schools of magic. Wizards through the ages have cataloged thousands of spells, grouping them into eight categories called schools. In some places, these traditions are literally schools; a wizard might study at the School of Illusion while another studies across town at the School of Enchantment. In other institutions, the schools are more like academic departments, with rival faculties competing for students and funding. Even wizards who train apprentices in the solitude of their own towers use the division of magic into schools as a learning device, since the spells of each school require mastery of different techniques."
     }
-  ]
+  ],
+  "generated": "2026-08-31T10:21:35.670Z"
 }

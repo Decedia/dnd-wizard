@@ -328,14 +328,14 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     if (!classData || !data.class) return [];
     const levels = new Set<number>();
     if (classData.subclassLevel) levels.add(classData.subclassLevel);
-    const subclasses = getStaticSubclasses(data.class);
+    const subclasses = getStaticSubclasses(data.class, data.sources);
     for (const sub of subclasses) {
       for (const f of sub.features) {
         if (f.level != null && f.level <= 10) levels.add(f.level);
       }
     }
     return Array.from(levels).sort((a, b) => a - b);
-  }, [classData, data.class]);
+  }, [classData, data.class, data.sources]);
 
   const levelData = classData?.levels[level - 1];
   const features = (levelData?.features || []).map((f: any) => ({

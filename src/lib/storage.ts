@@ -79,6 +79,7 @@ export interface Character {
   appliedAsi: number[];
   activeStates: string[];
   activeBuffs: ActiveBuff[];
+  sources: string[];
   buffModifiers?: Record<string, unknown>;
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
@@ -294,6 +295,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     featuresUsedThisTurn: [],
     activeStates: [],
     activeBuffs: [],
+    sources: ["PHB"],
     preparedSpells: [],
     domainSpells: [],
     circleTerrain: "",

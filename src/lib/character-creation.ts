@@ -443,6 +443,15 @@ export function getCreationSteps(character: Character): CreationStep[] {
 
   const steps: CreationStep[] = [
     {
+      id: "source-selection",
+      title: "Sourcebooks",
+      description: "Choose allowed sourcebooks",
+      hint: "Select which sourcebooks are allowed for this character. Only content from selected sources will appear during creation. PHB is always included.",
+      type: "source-selection",
+      required: true,
+      completed: true,
+    },
+    {
       id: "origin",
       title: "Origin",
       description: "Choose class and race",
@@ -603,7 +612,7 @@ export function getSubclassFeatureSelections(character: Character): FeatureSelec
   const unlockLevel = classData?.subclassLevel ?? 3;
   if (character.level < unlockLevel) return [];
 
-  const subclasses = getStaticSubclasses(character.class);
+  const subclasses = getStaticSubclasses(character.class, character.sources);
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return [];
 
@@ -740,7 +749,7 @@ export function applySubclassFeatures(character: Character): Character {
   const unlockLevel = classData?.subclassLevel ?? 3;
   if (character.level < unlockLevel) return character;
 
-  const subclasses = getStaticSubclasses(character.class);
+  const subclasses = getStaticSubclasses(character.class, character.sources);
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return character;
 
@@ -793,7 +802,7 @@ export function isSubclassStepComplete(character: Character): boolean {
   const unlockLevel = classData?.subclassLevel ?? 3;
   if (character.level < unlockLevel) return false;
 
-  const subclasses = getStaticSubclasses(character.class);
+  const subclasses = getStaticSubclasses(character.class, character.sources);
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return false;
 

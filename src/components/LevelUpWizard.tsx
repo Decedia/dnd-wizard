@@ -241,7 +241,7 @@ function buildLevelInfos(
     }
 
     const unlockLevel = classData.subclassLevel ?? 3;
-    const subclasses = getStaticSubclasses(className);
+    const subclasses = getStaticSubclasses(className, character.sources);
     const subclassOptions = level === unlockLevel && !character.subclass && subclasses.length > 0
       ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true }))
       : undefined;

@@ -251,6 +251,109 @@
       "name": "Weapon Master",
       "prerequisites": null,
       "source": "PHB"
+    },
+    {
+      "name": "Bountiful Luck",
+      "description": "Whenever an ally you can see within 30 feet of you rolls a 1 on the d20 for an attack roll, an ability check, or a saving throw, you can use your reaction to let the ally reroll the die. The ally must use the new roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+      "prerequisites": "Halfling",
+      "source": "XGE"
+    },
+    {
+      "name": "Dragon Fear",
+      "description": "When you make a successful melee attack against a creature, you can replace the damage with a breath weapon. When you do so, each creature of your choice in a 30-foot cone must make a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier). On a failed save, a creature is frightened of you for 1 minute. On a successful save, a creature isn't frightened. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+      "prerequisites": "Dragonborn",
+      "source": "XGE"
+    },
+    {
+      "name": "Dragon Hide",
+      "description": "You manifest scales and claws reminiscent of your draconic ancestors. While you aren't wearing any armor, your AC equals 13 + your Dexterity modifier. You can use a shield and still gain this benefit. In addition, your scales give you resistance to the damage type associated with your draconic ancestry.",
+      "prerequisites": "Dragonborn",
+      "source": "XGE"
+    },
+    {
+      "name": "Drow High Magic",
+      "description": "You learn the detect magic spell and can cast it at will, without expending a spell slot. You also learn the levitate and dispel magic spells, each of which you can cast once without expending a spell slot. You regain the ability to cast those two spells in this way when you finish a long rest. Charisma is your spellcasting ability for all three spells.",
+      "prerequisites": "Elf (high)",
+      "source": "XGE"
+    },
+    {
+      "name": "Dwarven Fortitude",
+      "description": "Whenever you take the Dodge action in combat, you can spend one Hit Die to heal yourself. Roll the die, add your Constitution modifier, and regain a number of hit points equal to the total (minimum of 1).",
+      "prerequisites": "Dwarf",
+      "source": "XGE"
+    },
+    {
+      "name": "Elven Accuracy",
+      "description": "The accuracy of elves is legendary. Whenever you have advantage on an attack roll using Dexterity, Intelligence, Wisdom, or Charisma, you can reroll one of the dice once. You must use the new roll.",
+      "prerequisites": "Elf or half-elf",
+      "source": "XGE"
+    },
+    {
+      "name": "Fade Away",
+      "description": "Your people are clever, with a knack for illusion magic. You have learned a magical trick for fading away when you take damage. Immediately after taking damage, you can use your reaction to magically become invisible until the end of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this feat, you can't use it again until you finish a short or long rest.",
+      "prerequisites": "Gnome",
+      "source": "XGE"
+    },
+    {
+      "name": "Fey Teleportation",
+      "description": "Your study of high elven lore has unlocked fey power that few other elves possess, except your kin in the eladrin. Drawing on your fey ancestry, you can cast the misty step spell at will, without expending a spell slot or material components. You also learn one of the following languages of your choice: Sylvan, Elvish, or both. When you use this feat to cast misty step, you can also speak the password to teleport to a location you've previously visited. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+      "prerequisites": "Elf (high)",
+      "source": "XGE"
+    },
+    {
+      "name": "Flames of Phlegethos",
+      "description": "You learn to call on the fire of Phlegethos. When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice. You must use the new roll, even if it is also a 1. In addition, when you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light in a 30-foot radius and dim light for an additional 30 feet. While the flames are active, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage.",
+      "prerequisites": "Tiefling",
+      "source": "XGE"
+    },
+    {
+      "name": "Infernal Constitution",
+      "description": "Fiendish blood runs strong in you, unlocking a resilience akin to that possessed by some fiends. You gain the following benefits: • You have resistance to cold and poison damage. • You have advantage on saving throws against being poisoned. • You can't be poisoned.",
+      "prerequisites": "Tiefling",
+      "source": "XGE"
+    },
+    {
+      "name": "Orcish Fury",
+      "description": "Your fury burns tirelessly. You gain the following benefits: • When you hit with an attack using a simple or martial weapon, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the attack. Once you use this ability, you can't use it again until you finish a short or long rest. • When you score a critical hit with a melee weapon, you can treat any 1 or 2 on a damage die as the highest number on that die.",
+      "prerequisites": "Half-Orc",
+      "source": "XGE"
+    },
+    {
+      "name": "Prodigy",
+      "description": "You have a knack for learning new things. You gain the following benefits: • You gain one skill proficiency of your choice, one tool proficiency of your choice, and fluency in one language of your choice. • Choose one skill in which you have proficiency. You gain expertise with that skill, which means your proficiency bonus is doubled for any ability check you make with it. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus for it.",
+      "prerequisites": "Half-elf, half-orc, or human",
+      "source": "XGE"
+    },
+    {
+      "name": "Second Chance",
+      "description": "Fortune favors you when you least expect it. When you roll a 1 on the d20 for an attack roll, an ability check, or a saving throw, you can reroll the die. You must use the new roll, even if it is also a 1. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+      "prerequisites": "Halfling",
+      "source": "XGE"
+    },
+    {
+      "name": "Squat Nimbleness",
+      "description": "You are uncommonly nimble for your race. You gain the following benefits: • Increase your Strength or Dexterity score by 1, to a maximum of 20. • Increase your walking speed by 5 feet. • You have advantage on any ability check you make to escape from being grappled or restrained.",
+      "prerequisites": "Dwarf or small race",
+      "source": "XGE"
+    },
+    {
+      "name": "Crusher",
+      "description": "You are practiced in the art of crushing your enemies, granting you the following benefits: • Increase your Strength or Constitution by 1, to a maximum of 20. • Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you. • When you score a critical hit that deals bludgeoning damage to a creature, attack rolls against that target have advantage until the start of your next turn.",
+      "prerequisites": null,
+      "source": "XGE"
+    },
+    {
+      "name": "Fell Thrower",
+      "description": "You have perfected the technique of throwing your weapon at an enemy, granting you the following benefits: • Increase your Strength or Dexterity by 1, to a maximum of 20. • When you hit a creature with a ranged attack using a thrown weapon, you can use a bonus action to make a melee attack with the same weapon against the same target. This attack deals damage equal to 1d4 + your Strength modifier, and the damage type is the same as the ranged attack. • When you hit a creature with a thrown weapon, you can use a bonus action to grapple the target (escape DC equals your spell save DC or 8 + your proficiency bonus + your Strength modifier). This grapple is possible only if the target is no more than one size larger than you and if you have a hand free to grab it.",
+      "prerequisites": null,
+      "source": "XGE"
+    },
+    {
+      "name": "Wood Elf Magic",
+      "description": "You learn the magic of the primeval woods, which are revered and protected by your people. You learn one cantrip of your choice from the druid spell list. Wisdom is your spellcasting ability for this cantrip. You also learn the longstrider and pass without trace spells, each of which you can cast once without expending a spell slot. You regain the ability to cast the spell in this way when you finish a long rest. Wisdom is your spellcasting ability for these spells.",
+      "prerequisites": "Elf (wood)",
+      "source": "XGE"
     }
-  ]
+  ],
+  "generated": "2026-08-31T10:21:03.826Z"
 }
