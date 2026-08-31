@@ -221,7 +221,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           const buffDef = getSpellBuff(spell.name);
           return (
             <div key={spell.id} className={`card p-3 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
-              <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center justify-between gap-2">
                 <div className="flex flex-col min-w-0 flex-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
                   {spell.duration && (() => {
@@ -237,9 +237,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       <span className="text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
                     );
                   })()}
-                  {spell.description && (
-                    <span className="text-[10px] text-[var(--color-text-secondary)] mt-1">{spell.description}</span>
-                  )}
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
                   {preparationCaster && spell.level > 0 && (
@@ -298,6 +295,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   )}
                 </div>
               </div>
+              {spell.description && (
+                <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{spell.description}</p>
+              )}
             </div>
           );
         })}
