@@ -307,11 +307,6 @@ export function SpellSelectionModal({
                         {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
                         {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
                       </div>
-                      <div className="flex items-center gap-2 mt-0.5 ml-5">
-                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
-                        {isAlreadyKnown && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
-                        {isSel && !isAlreadyKnown && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
-                      </div>
                     </button>
                     {desc && <InfoButton title={sp.name} description={desc} />}
                   </div>
