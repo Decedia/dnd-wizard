@@ -10,6 +10,7 @@ import equipmentsData from "@/data/2014_equipments.json";
 import wizardSpellsData from "@/data/2014_wizard_spells.json";
 import arcaneTricksterSpellsData from "@/data/2014_arcane_trickster_spells.json";
 import featsData from "@/data/2014_feats.json";
+import subclassSpellsData from "@/data/subclass_spells.json";
 import { equipment as srdEquipment } from "@/data/srd";
 
 export interface SRDRace {
@@ -312,6 +313,7 @@ export function getStaticClass(name: string): SRDClass | undefined {
 }
 
 export interface SRDSubclass {
+  index?: string;
   name: string;
   description: string;
   features: { name: string; description: string; level?: number; choices?: { name: string; description: string }[]; choicesCount?: number }[];
@@ -328,6 +330,7 @@ export function getStaticSubclasses(className: string, sources?: string[]): SRDS
     .map((s) => {
       const subChoices = choicesMap[s.name] || {};
       return {
+        index: s.index,
         name: s.name,
         description: Array.isArray(s.description) ? s.description.join("\n") : s.description || "",
         features: (s.features || []).map((f: any) => {
@@ -551,4 +554,87 @@ export function getAvailableSources(): string[] {
   (racesData as any).races.forEach((r: any) => sources.add(r.source || "PHB"));
   (spellsData as any).spells.forEach((s: any) => sources.add(s.source || "PHB"));
   return Array.from(sources).sort();
+}
+
+export function getDomainSpells(subclassIndex: string, level: number): string[] {
+  const domain = (subclassSpellsData as any).domainSpells[subclassIndex];
+  if (!domain) return [];
+  const spells: string[] = [];
+  for (const [lvlStr, lvlSpells] of Object.entries(domain)) {
+    if (level >= Number(lvlStr)) {
+      spells.push(...(lvlSpells as string[]));
+    }
+  }
+  return spells;
+}
+
+export function getCircleSpells(terrain: string, level: number): string[] {
+  const terrains = (subclassSpellsData as any).circleSpells?.land?.terrains;
+  if (!terrains) return [];
+  const terrainSpells = terrains[terrain.toLowerCase()];
+  if (!terrainSpells) return [];
+  const spells: string[] = [];
+  for (const [lvlStr, lvlSpells] of Object.entries(terrainSpells)) {
+    if (level >= Number(lvlStr)) {
+      spells.push(...(lvlSpells as string[]));
+    }
+  }
+  return spells;
+}
+
+export function getCircleTerrainTypes(): string[] {
+  const terrains = (subclassSpellsData as any).circleSpells?.land?.terrains;
+  return terrains ? Object.keys(terrains) : [];
+}
+
+export function getOathSpells(subclassIndex: string, level: number): string[] {
+  const oath = (subclassSpellsData as any).oathSpells[subclassIndex];
+  if (!oath) return [];
+  const spells: string[] = [];
+  for (const [lvlStr, lvlSpells] of Object.entries(oath)) {
+    if (level >= Number(lvlStr)) {
+      spells.push(...(lvlSpells as string[]));
+    }
+  }
+  return spells;
+}
+
+export function getWizardTraditionSpells(subclassIndex: string, level: number): string[] {
+  const tradition = (subclassSpellsData as any).wizardTraditionSpells[subclassIndex];
+  if (!tradition) return [];
+  const spells: string[] = [];
+  for (const [lvlStr, lvlSpells] of Object.entries(tradition)) {
+    if (level >= Number(lvlStr)) {
+      spells.push(...(lvlSpells as string[]));
+    }
+  }
+  return spells;
+}
+
+export function getSubclassSpellGrants(subclassIndex: string, level: number): string[] {
+  const grants = (subclassSpellsData as any).subclassSpellGrants[subclassIndex];
+  if (!grants) return [];
+  const spells: string[] = [];
+  for (const [lvlStr, lvlSpells] of Object.entries(grants)) {
+    if (level >= Number(lvlStr)) {
+      spells.push(...(lvlSpells as string[]));
+    }
+  }
+  return spells;
+}
+
+export function getSubclassFlags(subclassIndex: string): Record<string, boolean> {
+  return (subclassSpellsData as any).subclassFlags[subclassIndex] || {};
+}
+
+export function getPactBoons(): { index: string; name: string; description: string }[] {
+  return (subclassSpellsData as any).pactBoons || [];
+}
+
+export function getWizardSpellsByLevel(level: number): string[] {
+  const allSpells = getStaticWizardSpells();
+  return allSpells
+    .filter((s: any) => s.level === level)
+    .map((s: any) => s.name)
+    .sort();
 }

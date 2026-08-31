@@ -1,5 +1,5 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, type Character } from "./storage";
-import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
+import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
 import type { CreationStep } from "./creation-types";
 
 const ARCANE_FOCUS_NAMES = ["crystal", "orb", "rod", "staff", "wand"];
@@ -798,133 +798,22 @@ interface SubclassSpellGrant {
   srdSpellName: string;
 }
 
-function getSubclassSpellGrants(subclass: string, level: number): SubclassSpellGrant[] {
-  const grants: SubclassSpellGrant[] = [];
+function getSubclassIndexByName(className: string, subclassName: string): string | undefined {
+  const subclasses = getStaticSubclasses(className);
+  const found = subclasses.find(s => s.name.toLowerCase() === subclassName.toLowerCase());
+  return found?.index;
+}
 
-  const spellMap: Record<string, Record<number, { name: string; srdName: string }[]>> = {
-    "Shadow Magic": {
-      1: [{ name: "Darkness", srdName: "Darkness" }]
-    },
-    "The Celestial": {
-      1: [
-        { name: "Sacred Flame", srdName: "Sacred Flame" },
-        { name: "Light", srdName: "Light" }
-      ]
-    },
-    "The Fathomless": {
-      1: [{ name: "Create or Destroy Water", srdName: "Create or Destroy Water" }],
-      3: [{ name: "Thunderwave", srdName: "Thunderwave" }],
-      5: [{ name: "Sleet Storm", srdName: "Sleet Storm" }],
-      7: [{ name: "Control Water", srdName: "Control Water" }],
-      9: [{ name: "Cone of Cold", srdName: "Cone of Cold" }]
-    },
-    "The Genie": {
-      1: [
-        { name: "Detect Evil and Good", srdName: "Detect Evil and Good" },
-        { name: "Protection from Evil and Good", srdName: "Protection from Evil and Good" }
-      ],
-      3: [
-        { name: "Create Food and Water", srdName: "Create Food and Water" },
-        { name: "Phantasmal Killer", srdName: "Phantasmal Killer" }
-      ],
-      5: [
-        { name: "Creation", srdName: "Creation" },
-        { name: "Sending", srdName: "Sending" }
-      ],
-      7: [
-        { name: "Summon Elemental", srdName: "Summon Elemental" }
-      ],
-      9: [
-        { name: "Wall of Stone", srdName: "Wall of Stone" }
-      ]
-    },
-    "Fey Wanderer": {
-      3: [{ name: "Charm Person", srdName: "Charm Person" }],
-      5: [{ name: "Misty Step", srdName: "Misty Step" }],
-      9: [{ name: "Dispel Magic", srdName: "Dispel Magic" }],
-      13: [{ name: "Dimension Door", srdName: "Dimension Door" }],
-      17: [{ name: "Mislead", srdName: "Mislead" }]
-    },
-    "Swarmkeeper": {
-      3: [
-        { name: "Mage Hand", srdName: "Mage Hand" },
-        { name: "Faerie Fire", srdName: "Faerie Fire" }
-      ],
-      5: [{ name: "Web", srdName: "Web" }],
-      9: [{ name: "Gaseous Form", srdName: "Gaseous Form" }],
-      13: [{ name: "Giant Insect", srdName: "Giant Insect" }],
-      17: [{ name: "Insect Plague", srdName: "Insect Plague" }]
-    },
-    "Aberrant Mind": {
-      1: [
-        { name: "Arms of Hadar", srdName: "Arms of Hadar" },
-        { name: "Dissonant Whispers", srdName: "Dissonant Whispers" },
-        { name: "Mind Sliver", srdName: "Mind Sliver" }
-      ],
-      3: [
-        { name: "Calm Emotions", srdName: "Calm Emotions" },
-        { name: "Detect Thoughts", srdName: "Detect Thoughts" },
-        { name: "Hunger of Hadar", srdName: "Hunger of Hadar" }
-      ],
-      5: [
-        { name: "Compulsion", srdName: "Compulsion" },
-        { name: "Sending", srdName: "Sending" },
-        { name: "Slow", srdName: "Slow" }
-      ],
-      7: [
-        { name: "Evard's Black Tentacles", srdName: "Evard's Black Tentacles" },
-        { name: "Summon Aberration", srdName: "Summon Aberration" }
-      ],
-      9: [
-        { name: "Rary's Telepathic Bond", srdName: "Rary's Telepathic Bond" },
-        { name: "Telekinesis", srdName: "Telekinesis" }
-      ],
-      11: [
-        { name: "Psychic Scream", srdName: "Psychic Scream" },
-        { name: "Summon Aberration", srdName: "Summon Aberration" }
-      ]
-    },
-    "Clockwork Magic": {
-      1: [
-        { name: "Alarm", srdName: "Alarm" },
-        { name: "Protection from Evil and Good", srdName: "Protection from Evil and Good" }
-      ],
-      3: [
-        { name: "Aid", srdName: "Aid" },
-        { name: "Lesser Restoration", srdName: "Lesser Restoration" }
-      ],
-      5: [
-        { name: "Dispel Magic", srdName: "Dispel Magic" },
-        { name: "Protection from Energy", srdName: "Protection from Energy" }
-      ],
-      7: [
-        { name: "Freedom of Movement", srdName: "Freedom of Movement" },
-        { name: "Summon Construct", srdName: "Summon Construct" }
-      ],
-      9: [
-        { name: "Greater Restoration", srdName: "Greater Restoration" },
-        { name: "Wall of Force", srdName: "Wall of Force" }
-      ]
-    }
-  };
-
-  const classGrants = spellMap[subclass];
-  if (!classGrants) return grants;
-
-  for (const [lvl, spells] of Object.entries(classGrants)) {
-    if (level >= Number(lvl)) {
-      for (const spell of spells) {
-        grants.push({ name: spell.name, level: 0, srdSpellName: spell.srdName });
-      }
-    }
-  }
-
-  return grants;
+function getSubclassSpellGrants(subclass: string, className: string, level: number): SubclassSpellGrant[] {
+  const subclassIndex = getSubclassIndexByName(className, subclass);
+  if (!subclassIndex) return [];
+  const spells = getJsonSubclassSpellGrants(subclassIndex, level);
+  return spells.map(name => ({ name, level: 0, srdSpellName: name }));
 }
 
 export function applySubclassSpellGrants(character: Character): Character {
   if (!character.subclass) return character;
-  const grants = getSubclassSpellGrants(character.subclass, character.level);
+  const grants = getSubclassSpellGrants(character.subclass, character.class, character.level);
   if (grants.length === 0) return character;
 
   const allSpells = getStaticSpells(character.sources);

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
+import { getStaticClass, getStaticSpells, getSubclassFlags } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells } from "@/lib/storage";
@@ -181,7 +181,8 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   }
 
   const prepCaster = isPreparationCaster(data);
-  const isCircleOfLand = data.class === "Druid" && data.subclass === "Land";
+  const circleFlags = data.subclassIndex ? getSubclassFlags(data.subclassIndex) : {};
+  const isCircleOfLand = data.class === "Druid" && circleFlags.requiresTerrainSelection;
   const selectedTerrain = data.circleTerrain || "";
   const circleSpells = selectedTerrain ? getCircleSpells(selectedTerrain, data.level) : [];
 

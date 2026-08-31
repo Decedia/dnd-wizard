@@ -1,4 +1,4 @@
-import { getStaticClass, getStaticRace } from "@/lib/srd-client";
+import { getStaticClass, getStaticRace, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 export interface Character {
   id: string;
@@ -52,6 +52,7 @@ export interface Character {
   features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean }[];
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
+  subclassIndex?: string;
   inventory: { id: string; name: string; quantity: number; equipped: boolean; hand?: "main" | "off" | "both"; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item" | "instrument"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string; properties?: string[] }[];
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
@@ -147,19 +148,20 @@ export function getMaxSpellsKnown(character: Character): number {
   const classData = getStaticClass(character.class);
   if (!classData) return 0;
 
-  const spellsKnownByLevel: Record<string, Record<number, number>> = {
-    Sorcerer: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
-    Bard: { 1: 4, 2: 5, 3: 6, 4: 7, 5: 8, 6: 9, 7: 10, 8: 11, 9: 12, 10: 14, 11: 15, 12: 15, 13: 16, 14: 16, 15: 18, 16: 18, 17: 19, 18: 19, 19: 20, 20: 22 },
-    Warlock: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
-    Ranger: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
-    Paladin: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
-  };
-
-  const className = character.class;
   const level = character.level || 1;
+  const className = character.class;
 
-  if (spellsKnownByLevel[className] && spellsKnownByLevel[className][level]) {
-    return spellsKnownByLevel[className][level];
+  if (classData.spellsKnown) {
+    const spellsKnown = classData.spellsKnown as Record<string, number>;
+    if (spellsKnown[level] !== undefined) {
+      return spellsKnown[level];
+    }
+    const levels = Object.keys(spellsKnown).map(Number).sort((a, b) => a - b);
+    let max = 0;
+    for (const l of levels) {
+      if (level >= l) max = spellsKnown[l];
+    }
+    if (max > 0) return max;
   }
 
   if (className === "Wizard") {
@@ -686,77 +688,21 @@ export function hasFontOfInspiration(character: Character): boolean {
 }
 
 export function getDomainSpellNames(character: Character): string[] {
-  if (character.class !== "Cleric" || !character.subclass) return [];
-  const level = character.level || 1;
-  const domainSpells: Record<string, Record<number, string[]>> = {
-    life: { 1: ["bless", "cure wounds"], 3: ["lesser restoration", "spiritual weapon"], 5: ["beacon of hope", "death ward"], 7: ["guardian of faith", "healing word"], 9: ["mass cure wounds", "raise dead"] },
-    knowledge: { 1: ["command", "identify"], 3: ["augury", "suggestion"], 5: ["nondetection", "speak with dead"], 7: ["arcane eye", "confusion"], 9: ["legend lore", "scrying"] },
-    light: { 1: ["burning hands", "faerie fire"], 3: ["flaming sphere", "scorching ray"], 5: ["fireball", "daylight"], 7: ["flame strike", "wall of fire"], 9: ["flame strike", "fire storm"] },
-    nature: { 1: ["animal friendship", "speak with animals"], 3: ["barkskin", "spike growth"], 5: ["plant growth", "wall of stone"], 7: ["dominate beast", "insect plague"], 9: ["insect plague", "tree stride"] },
-    tempest: { 1: ["fog cloud", "gust of wind"], 3: ["shatter", "call lightning"], 5: ["sleet storm", "control water"], 7: ["ice storm", "destructive wave"], 9: ["control water", "destructive wave"] },
-    trickery: { 1: ["charm person", "disguise self"], 3: ["mirror image", "pass without trace"], 5: ["blink", "dimension door"], 7: ["polymorph", "dominate person"], 9: ["dominate person", "modify memory"] },
-    war: { 1: ["divine favor", "shield of faith"], 3: ["magic weapon", "spiritual weapon"], 5: ["freedom of movement", "stoneskin"], 7: ["flame strike", "hold monster"], 9: ["flame strike", "hold monster"] },
-  };
-
-  const domain = domainSpells[character.subclass];
-  if (!domain) return [];
-
-  const spells: string[] = [];
-  for (const [lvlStr, lvlSpells] of Object.entries(domain)) {
-    if (level >= Number(lvlStr)) {
-      spells.push(...lvlSpells);
-    }
-  }
-  return spells;
+  if (character.class !== "Cleric" || !character.subclassIndex) return [];
+  return getDomainSpells(character.subclassIndex, character.level || 1);
 }
 
 export function getCircleSpells(terrain: string, level: number): string[] {
-  const circleSpells: Record<string, Record<number, string[]>> = {
-    arctic: { 3: ["hold person", "spike growth"], 5: ["sleet storm", "slow"], 7: ["freedom of movement", "ice storm"], 9: ["commune with nature", "cone of cold"] },
-    coast: { 3: ["mirror image", "misty step"], 5: ["water breathing", "water walk"], 7: ["control water", "freedom of movement"], 9: ["conjure elemental", "scrying"] },
-    desert: { 3: ["blur", "silence"], 5: ["create food and water", "protection from energy"], 7: ["blight", "hallucinatory terrain"], 9: ["insect plague", "wall of stone"] },
-    forest: { 3: ["barkskin", "spider climb"], 5: ["call lightning", "plant growth"], 7: ["divination", "freedom of movement"], 9: ["commune with nature", "tree stride"] },
-    grassland: { 3: ["invisibility", "pass without trace"], 5: ["daylight", "haste"], 7: ["divination", "freedom of movement"], 9: ["dream", "insect plague"] },
-    mountain: { 3: ["spider climb", "spike growth"], 5: ["lightning bolt", "meld into stone"], 7: ["stone shape", "stoneskin"], 9: ["passwall", "wall of stone"] },
-    swamp: { 3: ["darkness", "melf's acid arrow"], 5: ["water walk", "stinking cloud"], 7: ["freedom of movement", "locate creature"], 9: ["insect plague", "scrying"] },
-    underdark: { 3: ["spider climb", "web"], 5: ["gaseous form", "stinking cloud"], 7: ["greater invisibility", "stone shape"], 9: ["cloudkill", "insect plague"] },
-  };
-
-  const terrainSpells = circleSpells[terrain.toLowerCase()];
-  if (!terrainSpells) return [];
-
-  const spells: string[] = [];
-  for (const [lvlStr, lvlSpells] of Object.entries(terrainSpells)) {
-    if (level >= Number(lvlStr)) {
-      spells.push(...lvlSpells);
-    }
-  }
-  return spells;
+  return getJsonCircleSpells(terrain, level);
 }
 
 export function getCircleTerrainTypes(): string[] {
-  return ["arctic", "coast", "desert", "forest", "grassland", "mountain", "swamp", "underdark"];
+  return getJsonCircleTerrainTypes();
 }
 
 export function getOathSpellNames(character: Character): string[] {
-  if (character.class !== "Paladin" || !character.subclass) return [];
-  const level = character.level || 1;
-  const oathSpells: Record<string, Record<number, string[]>> = {
-    devotion: { 3: ["protection from evil and good", "sanctuary"], 5: ["lesser restoration", "zone of truth"], 9: ["beacon of hope", "dispel magic"], 13: ["freedom of movement", "guardian of faith"], 17: ["commune", "flame strike"] },
-    ancients: { 3: ["ensnaring strike", "speak with animals"], 5: ["moonbeam", "misty step"], 9: ["plant growth", "protection from energy"], 13: ["ice storm", "stoneskin"], 17: ["commune with nature", "tree stride"] },
-    vengeance: { 3: ["bane", "hunter's mark"], 5: ["hold person", "misty step"], 9: ["haste", "protection from energy"], 13: ["banishment", "dimension door"], 17: ["hold monster", "scrying"] },
-  };
-
-  const oath = oathSpells[character.subclass.toLowerCase()];
-  if (!oath) return [];
-
-  const spells: string[] = [];
-  for (const [lvlStr, lvlSpells] of Object.entries(oath)) {
-    if (level >= Number(lvlStr)) {
-      spells.push(...lvlSpells);
-    }
-  }
-  return spells;
+  if (character.class !== "Paladin" || !character.subclassIndex) return [];
+  return getOathSpells(character.subclassIndex, character.level || 1);
 }
 
 export function getWarlockExpandedSpellNames(character: Character): string[] {
@@ -777,14 +723,6 @@ export function getWarlockExpandedSpellNames(character: Character): string[] {
 }
 
 export function getWizardTraditionSpellNames(character: Character): string[] {
-  if (character.class !== "Wizard" || !character.subclass) return [];
-  const level = character.level || 1;
-  const spells: string[] = [];
-  if (character.subclass === "Divination" && level >= 14) {
-    spells.push("foresight");
-  }
-  if (character.subclass === "Transmutation" && level >= 10) {
-    spells.push("polymorph");
-  }
-  return spells;
+  if (character.class !== "Wizard" || !character.subclassIndex) return [];
+  return getWizardTraditionSpells(character.subclassIndex, character.level || 1);
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getStaticSpells, getStaticArcaneTricksterSpells } from "@/lib/srd-client";
+import { getStaticSpells, getStaticArcaneTricksterSpells, getSubclassFlags } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { XIcon as X, CheckIcon as Check } from "@/components/icons";
@@ -68,7 +68,8 @@ export function SpellSelectionModal({
     };
   }, []);
 
-  const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster") || character.subclass?.toLowerCase().includes("arcane trickster");
+  const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
+  const isArcaneTrickster = atFlags.usesMageSpellList;
   const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
   const effectiveMaxLevel = onChange ? (character.level || 1) : (maxLevel || 0);
   const allSpells = isArcaneTrickster

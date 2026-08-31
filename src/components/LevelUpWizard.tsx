@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getWizardSpellsByLevel, getPactBoons } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
@@ -30,6 +30,14 @@ import {
 } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { useSRD } from "@/contexts/SRDContext";
+
+function getSubclassFlagsByName(className: string, subclassName: string): Record<string, boolean> {
+  if (!subclassName) return {};
+  const subclasses = getStaticSubclasses(className);
+  const found = subclasses.find(s => s.name.toLowerCase() === subclassName.toLowerCase());
+  if (!found?.index) return {};
+  return getSubclassFlags(found.index);
+}
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -351,7 +359,8 @@ function buildLevelInfos(
     const magicalSecretsLevels = [10, 14, 18];
     const magicalSecretsCount = isBard && magicalSecretsLevels.includes(level) ? 2 : 0;
     const canReplaceSpell = (isBard || isSorcerer) && level > 1 && (character.spells || []).length > 0;
-    const isLoreBard = isBard && subclassSelection === "Lore";
+    const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "");
+    const isLoreBard = isBard && subclassFlags.grantsMagicalSecrets;
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
 
     const hasSpellSelectionFromClass = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));
@@ -392,8 +401,8 @@ function buildLevelInfos(
       magicalSecretsCount,
       canReplaceSpell,
       subclassSpellSelectionCount,
-      circleTerrainSelection: className === "Druid" && subclassSelection === "Land" && [3, 5, 7, 9].includes(level),
-      bonusCantripSelection: className === "Druid" && subclassSelection === "Land" && level === 2,
+      circleTerrainSelection: className === "Druid" && subclassFlags.requiresTerrainSelection && [3, 5, 7, 9].includes(level),
+      bonusCantripSelection: className === "Druid" && subclassFlags.requiresTerrainSelection && level === 2,
       spellbookTotal: spellbookTotal,
       maxPrepared: maxPrepared,
       preparedCount: preparedCount,
@@ -831,7 +840,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
 
-    if (draft.class === "Druid" && draft.subclass === "Land") {
+    if (draft.class === "Druid" && draft.subclassIndex && getSubclassFlags(draft.subclassIndex).requiresTerrainSelection) {
       const selectedTerrain = circleTerrainSelections[targetLevel] || draft.circleTerrain;
       if (selectedTerrain) {
         draft.circleTerrain = selectedTerrain;
@@ -855,7 +864,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
 
-    if (draft.class === "Druid" && draft.subclass === "Land") {
+    if (draft.class === "Druid" && draft.subclassIndex && getSubclassFlags(draft.subclassIndex).requiresTerrainSelection) {
       const selectedBonusCantrip = bonusCantripSelections[targetLevel];
       if (selectedBonusCantrip && !draft.bonusCantrips.includes(selectedBonusCantrip)) {
         const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === selectedBonusCantrip.toLowerCase());
@@ -1797,7 +1806,7 @@ function LevelCard({
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Your patron bestows a gift. Choose one.</p>
                 <button
                   type="button"
-                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: [{ name: "Pact of the Chain", description: "You gain the service of a familiar." }, { name: "Pact of the Blade", description: "You can create a pact weapon." }, { name: "Pact of the Tome", description: "You receive a Book of Shadows with 3 cantrips from any class." }], isSubclass: false, count: 1 }); }}
+                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: getPactBoons().map(b => ({ name: b.name, description: b.description })), isSubclass: false, count: 1 }); }}
                   className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                 >
                   <span>{pactBoon || "Select Pact Boon..."}</span>
@@ -2190,18 +2199,20 @@ function LevelCard({
               <div>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 1st-level spell:</p>
                 <div className="space-y-1">
-                   {["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].map((name) => {
+                   {getWizardSpellsByLevel(1).map((name) => {
                     const isSelected = multiSelectSelections.includes(name);
-                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alarm","Burning Hands","Charm Person","Color Spray","Comprehend Languages","Detect Magic","Disguise Self","Expeditious Retreat","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Grease","Hideous Laughter","Identify","Illusory Script","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Shield","Silent Image","Sleep","Thunderwave","Unseen Servant"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
+                    const allLevel1 = getWizardSpellsByLevel(1);
+                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !allLevel1.includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
                   })}
                 </div>
               </div>
               <div>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 2nd-level spell:</p>
                 <div className="space-y-1">
-                  {["Alter Self","Arcane Lock","Blindness/Deafness","Blur","Cloud of Daggers","Continual Flame","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dust Devil","Earthbind","Enlarge/Reduce","Flaming Sphere","Gentle Repose","Gust of Wind","Hold Person","Invisibility","Knock","Levitate","Locate Object","Magic Mouth","Magic Weapon","Mirror Image","Misty Step","Moonbeam","Phantasmal Force","Pyrotechnics","Ray of Enfeeblement","Rope Trick","Scorching Ray","See Invisibility","Shatter","Spider Climb","Suggestion","Web"].map((name) => {
+                  {getWizardSpellsByLevel(2).map((name) => {
                     const isSelected = multiSelectSelections.includes(name);
-                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !["Alter Self","Arcane Lock","Blindness/Deafness","Blur","Cloud of Daggers","Continual Flame","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dust Devil","Earthbind","Enlarge/Reduce","Flaming Sphere","Gentle Repose","Gust of Wind","Hold Person","Invisibility","Knock","Levitate","Locate Object","Magic Mouth","Magic Weapon","Mirror Image","Misty Step","Moonbeam","Phantasmal Force","Pyrotechnics","Ray of Enfeeblement","Rope Trick","Scorching Ray","See Invisibility","Shatter","Spider Climb","Suggestion","Web"].includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
+                    const allLevel2 = getWizardSpellsByLevel(2);
+                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !allLevel2.includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
                   })}
                 </div>
               </div>
@@ -2223,7 +2234,7 @@ function LevelCard({
             <div className="flex-1 overflow-y-auto px-4 py-4">
               <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select two 3rd-level spells:</p>
               <div className="space-y-1">
-                {["Animate Dead","Bestow Curse","Blink","Clairvoyance","Counterspell","Dispel Magic","Fear","Fireball","Fly","Gaseous Form","Glyph of Warding","Haste","Hypnotic Pattern","Lightning Bolt","Magic Circle","Major Image","Nondetection","Phantom Steed","Protection From Energy","Remove Curse","Sending","Sleet Storm","Slow","Stinking Cloud","Tiny Hut","Tongues","Vampiric Touch","Water Breathing"].map((name) => {
+                {getWizardSpellsByLevel(3).map((name) => {
                   const isSelected = multiSelectSelections.includes(name);
                   const isDisabled = !isSelected && multiSelectSelections.length >= 2;
                   return (<button key={name} type="button" disabled={isDisabled} onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else if (multiSelectSelections.length < 2) setMultiSelectSelections([...multiSelectSelections, name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
