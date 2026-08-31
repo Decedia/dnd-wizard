@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-23T19:56:14.205Z",
-  "total": 12,
+  "generated": "2026-08-31T06:38:20.527Z",
+  "total": 42,
   "subclasses": [
     {
       "class": "Barbarian",
@@ -29,8 +29,7 @@
         {
           "name": "Intimidating Presence",
           "description": [
-            "Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that you can see within 30 feet of you. If the creature can see or hear you, it must succeed on a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn. On subsequent turns, you can use your action to extend the duration of this effect on the frightened creature until the end of your next turn. This effect ends if the creature ends its turn out of line of sight or more than 60 feet away from you.",
-            " If the creature succeeds on its saving throw, you can't use this feature on that creature again for 24 hours."
+            "Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that you can see within 30 feet of you. If the creature can see or hear you, it must succeed on a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn. On subsequent turns, you can use your action to extend the duration of this effect on the frightened creature until the end of your next turn. This effect ends if the creature ends its turn out of line of sight or more than 60 feet away from you.\n If the creature succeeds on its saving throw, you can't use this feature on that creature again for 24 hours."
           ],
           "level": 10
         },
@@ -103,36 +102,28 @@
         {
           "name": "Oath Spells",
           "description": [
-            "You gain oath spells at the paladin levels listed.",
-            "3rd: Protection from Evil and Good, Sanctuary",
-            "5th: Lesser Restoration, Zone of Truth",
-            "9th: Beacon of Hope, Dispel Magic",
-            "13th: Freedom of Movement, Guardian of Faith",
-            "17th: Commune, Flame Strike"
+            "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you."
           ],
           "level": 3
         },
         {
           "name": "Channel Divinity: Sacred Weapon",
           "description": [
-            "As an action, you can imbue one weapon that you are holding with positive energy, using your Channel Divinity. For 1 minute, you add your Charisma modifier to attack rolls made with that weapon (with a minimum bonus of +1). The weapon also emits bright light in a 20-foot radius and dim light 20 feet beyond that. If the weapon is not already magical, it becomes magical for the duration.",
-            "You can end this effect on your turn as part of any other action. If you are no longer holding or carrying this weapon, or if you fall unconscious, this effect ends."
+            "As an action, you can imbue one weapon that you are holding with positive energy, using your Channel Divinity. For 1 minute, you add your Charisma modifier to attack rolls made with that weapon (with a minimum bonus of +1). The weapon also emits bright light in a 20-foot radius and dim light 20 feet beyond that. If the weapon is not already magical, it becomes magical for the duration.\nYou can end this effect on your turn as part of any other action. If you are no longer holding or carrying this weapon, or if you fall unconscious, this effect ends."
           ],
           "level": 3
         },
         {
           "name": "Channel Divinity: Turn the Unholy",
           "description": [
-            "As an action, you present your holy symbol and speak a prayer censuring fiends and undead, using your Channel Divinity. Each fiend or undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes damage.",
-            "A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action."
+            "As an action, you present your holy symbol and speak a prayer censuring fiends and undead, using your Channel Divinity. Each fiend or undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes damage.\nA turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action."
           ],
           "level": 3
         },
         {
           "name": "Aura of Devotion",
           "description": [
-            "Starting at 7th level, you and friendly creatures within 10 feet of you can't be charmed while you are conscious.",
-            "At 18th level, the range of this aura increases to 30 feet."
+            "Starting at 7th level, you and friendly creatures within 10 feet of you can't be charmed while you are conscious.\nAt 18th level, the range of this aura increases to 30 feet."
           ],
           "level": 7
         },
@@ -146,9 +137,7 @@
         {
           "name": "Holy Nimbus",
           "description": [
-            "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim light shines 30 feet beyond that.",
-            "Whenever an enemy creature starts its turn in the bright light, the creature takes 10 radiant damage.",
-            "In addition, for the duration, you have advantage on saving throws against spells cast by fiends or undead."
+            "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim light shines 30 feet beyond that.\nWhenever an enemy creature starts its turn in the bright light, the creature takes 10 radiant damage.\nIn addition, for the duration, you have advantage on saving throws against spells cast by fiends or undead."
           ],
           "level": 20
         }
@@ -167,8 +156,7 @@
         {
           "name": "Dragon Ancestor",
           "description": [
-            "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later.",
-            "You can speak, read, and write Draconic. Additionally, whenever you make a Charisma check when interacting with dragons, your proficiency bonus is doubled if it applies to the check."
+            "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later.\nYou can speak, read, and write Draconic. Additionally, whenever you make a Charisma check when interacting with dragons, your proficiency bonus is doubled if it applies to the check."
           ],
           "level": 1,
           "choices": [
@@ -217,8 +205,7 @@
         {
           "name": "Draconic Resilience",
           "description": [
-            "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by 1 and increases by 1 again whenever you gain a level in this class.",
-            "Additionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren't wearing armor, your AC equals 13 + your Dexterity modifier."
+            "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by 1 and increases by 1 again whenever you gain a level in this class.\nAdditionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren't wearing armor, your AC equals 13 + your Dexterity modifier."
           ],
           "level": 1
         },
@@ -232,8 +219,7 @@
         {
           "name": "Dragon Wings",
           "description": [
-            "At 14th level, you gain the ability to sprout a pair of dragon wings from your back, gaining a flying speed equal to your current speed. You can create these wings as a bonus action on your turn. They last until you dismiss them as a bonus action on your turn.",
-            "You can't manifest your wings while wearing armor unless the armor is made to accommodate them, and clothing not made to accommodate your wings might be destroyed when you manifest them."
+            "At 14th level, you gain the ability to sprout a pair of dragon wings from your back, gaining a flying speed equal to your current speed. You can create these wings as a bonus action on your turn. They last until you dismiss them as a bonus action on your turn.\nYou can't manifest your wings while wearing armor unless the armor is made to accommodate them, and clothing not made to accommodate your wings might be destroyed when you manifest them."
           ],
           "level": 14
         },
@@ -287,8 +273,7 @@
         {
           "name": "Overchannel",
           "description": [
-            "Starting at 14th level, you can increase the power of your simpler spells. When you cast a wizard spell of 1st through 5th level that deals damage, you can deal maximum damage with that spell.",
-            "The first time you do so, you suffer no adverse effect. If you use this feature again before you finish a long rest, you take 2d12 necrotic damage for each level of the spell, immediately after you cast it. Each time you use this feature again before finishing a long rest, the necrotic damage per spell level increases by 1d12. This damage ignores resistance and immunity."
+            "Starting at 14th level, you can increase the power of your simpler spells. When you cast a wizard spell of 1st through 5th level that deals damage, you can deal maximum damage with that spell.\nThe first time you do so, you suffer no adverse effect. If you use this feature again before you finish a long rest, you take 2d12 necrotic damage for each level of the spell, immediately after you cast it. Each time you use this feature again before finishing a long rest, the necrotic damage per spell level increases by 1d12. This damage ignores resistance and immunity."
           ],
           "level": 14
         }
@@ -314,8 +299,7 @@
         {
           "name": "Dark One's Own Luck",
           "description": [
-            "Starting at 6th level, you can call on your patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add a d10 to your roll. You can do so after seeing the initial roll but before any of the roll's effects occur.",
-            "Once you use this feature, you can't use it again until you finish a short or long rest."
+            "Starting at 6th level, you can call on your patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add a d10 to your roll. You can do so after seeing the initial roll but before any of the roll's effects occur.\nOnce you use this feature, you can't use it again until you finish a short or long rest."
           ],
           "level": 6
         },
@@ -329,9 +313,7 @@
         {
           "name": "Hurl Through Hell",
           "description": [
-            "Starting at 14th level, when you hit a creature with an attack, you can use this feature to instantly transport the target through the lower planes. The creature disappears and hurtles through a nightmare landscape.",
-            "At the end of your next turn, the target returns to the space it previously occupied, or the nearest unoccupied space. If the target is not a fiend, it takes 10d10 psychic damage as it reels from its horrific experience.",
-            "Once you use this feature, you can't use it again until you finish a long rest."
+            "Starting at 14th level, when you hit a creature with an attack, you can use this feature to instantly transport the target through the lower planes. The creature disappears and hurtles through a nightmare landscape.\nAt the end of your next turn, the target returns to the space it previously occupied, or the nearest unoccupied space. If the target is not a fiend, it takes 10d10 psychic damage as it reels from its horrific experience.\nOnce you use this feature, you can't use it again until you finish a long rest."
           ],
           "level": 14
         }
@@ -350,39 +332,28 @@
         {
           "name": "Hunter's Prey",
           "description": [
-            "At 3rd level, you gain one of the following features of your choice.",
-            "Colossus Slayer",
-            "Giant Killer",
-            "Horde Breaker"
+            "At 3rd level, you gain one of the following features of your choice.\nColossus Slayer\nGiant Killer\nHorde Breaker"
           ],
           "level": 3
         },
         {
           "name": "Defensive Tactics",
           "description": [
-            "At 7th level, you gain one of the following features of your choice.",
-            "Escape the Horde",
-            "Multiattack Defense",
-            "Steel Will"
+            "At 7th level, you gain one of the following features of your choice.\nEscape the Horde\nMultiattack Defense\nSteel Will"
           ],
           "level": 7
         },
         {
           "name": "Multiattack",
           "description": [
-            "At 11th level, you gain one of the following features of your choice.",
-            "Volley",
-            "Whirlwind Attack"
+            "At 11th level, you gain one of the following features of your choice.\nVolley\nWhirlwind Attack"
           ],
           "level": 11
         },
         {
           "name": "Superior Hunter's Defense",
           "description": [
-            "At 15th level, you gain one of the following features of your choice.",
-            "Evasion",
-            "Stand Against the Tide",
-            "Uncanny Dodge"
+            "At 15th level, you gain one of the following features of your choice.\nEvasion\nStand Against the Tide\nUncanny Dodge"
           ],
           "level": 15
         }
@@ -401,7 +372,7 @@
         {
           "name": "Bonus Cantrip",
           "description": [
-            "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice. This cantrip doesn't count against the number of druid cantrips you know."
+            "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice."
           ],
           "level": 2,
           "choices": [
@@ -414,16 +385,14 @@
         {
           "name": "Natural Recovery",
           "description": [
-            "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. During a short rest, you choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your druid level (rounded up), and none of the slots can be 6th level or higher. You can't use this feature again until you finish a long rest.",
-            "For example, when you are a 4th-level druid, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level slot or two 1st-level slots."
+            "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. During a short rest, you choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your druid level (rounded up), and none of the slots can be 6th level or higher. You can't use this feature again until you finish a long rest.\nFor example, when you are a 4th-level druid, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level slot or two 1st-level slots."
           ],
           "level": 2
         },
         {
           "name": "Circle Spells",
           "description": [
-            "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became druid. Choose that land - arctic, coast, desert, forest, grassland, mountain, swamp, or Underdark - and consult the associated list of spells.",
-            "Once you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you."
+            "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became a druid.\nChoose that land--arctic, coast, desert, forest, grassland, mountain, or swamp--and consult the associated list of spells.\nOnce you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you."
           ],
           "level": 3,
           "choices": [
@@ -436,8 +405,7 @@
         {
           "name": "Land's Stride",
           "description": [
-            "Starting at 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.",
-            "In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the entangle spell."
+            "Starting at 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.\nIn addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the entangle spell."
           ],
           "level": 6
         },
@@ -484,9 +452,7 @@
         {
           "name": "Channel Divinity: Preserve Life",
           "description": [
-            "Starting at 2nd level, you can use your Channel Divinity to heal the badly injured.",
-            "As an action, you present your holy symbol and evoke healing energy that can restore a number of hit points equal to five times your cleric level.",
-            "Choose any creatures within 30 feet of you, and divide those hit points among them. This feature can restore a creature to no more than half of its hit point maximum. You can't use this feature on an undead or a construct."
+            "Starting at 2nd level, you can use your Channel Divinity to heal the badly injured.\nAs an action, you present your holy symbol and evoke healing energy that can restore a number of hit points equal to five times your cleric level.\nChoose any creatures within 30 feet of you, and divide those hit points among them. This feature can restore a creature to no more than half of its hit point maximum. You can't use this feature on an undead or a construct."
           ],
           "level": 2
         },
@@ -533,9 +499,7 @@
         {
           "name": "Cutting Words",
           "description": [
-            "Also at 3rd level, you learn how to use your wit to distract, confuse, and otherwise sap the confidence and competence of others.",
-            "When a creature that you can see within 60 feet of you makes an attack roll, an ability check, or a damage roll, you can use your reaction to expend one of your uses of Bardic Inspiration, rolling a Bardic Inspiration die and subtracting the number rolled from the creature's roll.",
-            "You can choose to use this feature after the creature makes its roll, but before the GM determines whether the attack roll or ability check succeeds or fails, or before the creature deals its damage. The creature is immune if it can't hear you or if it's immune to being charmed."
+            "Also at 3rd level, you learn how to use your wit to distract, confuse, and otherwise sap the confidence and competence of others.\nWhen a creature that you can see within 60 feet of you makes an attack roll, an ability check, or a damage roll, you can use your reaction to expend one of your uses of Bardic Inspiration, rolling a Bardic Inspiration die and subtracting the number rolled from the creature's roll.\nYou can choose to use this feature after the creature makes its roll, but before the GM determines whether the attack roll or ability check succeeds or fails, or before the creature deals its damage. The creature is immune if it can't hear you or if it's immune to being charmed."
           ],
           "level": 3
         },
@@ -578,10 +542,7 @@
         {
           "name": "Open Hand Technique",
           "description": [
-            "Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:",
-            "- It must succeed on a Dexterity saving throw or be knocked prone.",
-            "- It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.",
-            "- It can't take reactions until the end of your next turn."
+            "Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or be knocked prone.\n- It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.\n- It can't take reactions until the end of your next turn."
           ],
           "level": 3
         },
@@ -602,8 +563,7 @@
         {
           "name": "Quivering Palm",
           "description": [
-            "At 17th level, you gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an unarmed strike, you can spend 3 ki points to start these imperceptible vibrations, which last for a number of days equal to your monk level. The vibrations are harmless unless you use your action to end them. To do so, you and the target must be on the same plane of existence. When you use this action, the creature must make a Constitution saving throw. If it fails, it is reduced to 0 hit points. If it succeeds, it takes 10d10 necrotic damage.",
-            "You can have only one creature under the effect of this feature at a time. You can choose to end the vibrations harmlessly without using an action."
+            "At 17th level, you gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an unarmed strike, you can spend 3 ki points to start these imperceptible vibrations, which last for a number of days equal to your monk level. The vibrations are harmless unless you use your action to end them. To do so, you and the target must be on the same plane of existence. When you use this action, the creature must make a Constitution saving throw. If it fails, it is reduced to 0 hit points. If it succeeds, it takes 10d10 necrotic damage.\nYou can have only one creature under the effect of this feature at a time. You can choose to end the vibrations harmlessly without using an action."
           ],
           "level": 17
         }
@@ -629,8 +589,7 @@
         {
           "name": "Second-Story Work",
           "description": [
-            "When you choose this archetype at 3rd level, you gain the ability to climb faster than normal; climbing no longer costs you extra movement.",
-            "In addition, when you make a running jump, the distance you cover increases by a number of feet equal to your Dexterity modifier."
+            "When you choose this archetype at 3rd level, you gain the ability to climb faster than normal; climbing no longer costs you extra movement.\nIn addition, when you make a running jump, the distance you cover increases by a number of feet equal to your Dexterity modifier."
           ],
           "level": 3
         },
@@ -677,7 +636,7 @@
         {
           "name": "Totem Spirit",
           "description": [
-            "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object \u2014 an amulet or similar adornment \u2014 that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are:",
+            "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object — an amulet or similar adornment — that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are:",
             "Bear. While raging, you have resistance to all damage except psychic damage.",
             "Eagle. While raging, other creatures have disadvantage on opportunity attacks against you, and you can use the Dash action as a bonus action on your turn.",
             "Wolf. While raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you."
@@ -726,7 +685,7 @@
         {
           "name": "Bonus Proficiencies",
           "description": [
-            "At 3rd level, you gain proficiency with medium armor, shields, and martial weapons."
+            "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice."
           ],
           "level": 3
         },
@@ -740,7 +699,7 @@
         {
           "name": "Extra Attack",
           "description": [
-            "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+            "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
           ],
           "level": 6
         },
@@ -813,7 +772,7 @@
         {
           "name": "Bonus Cantrip",
           "description": [
-            "At 1st level, you gain the light cantrip if you don't already know it."
+            "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice."
           ],
           "level": 1
         },
@@ -921,7 +880,7 @@
         {
           "name": "Bonus Proficiencies",
           "description": [
-            "At 1st level, you gain proficiency with martial weapons and heavy armor."
+            "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice."
           ],
           "level": 1
         },
@@ -1003,7 +962,7 @@
         {
           "name": "Divine Strike",
           "description": [
-            "At 8th level, you gain the ability to infuse your weapon strikes with poison. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d6 poison damage to the target."
+            "At 8th level, you gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 radiant damage to the target. When you reach 14th level, the extra damage increases to 2d8."
           ],
           "level": 8
         },
@@ -1029,7 +988,7 @@
         {
           "name": "Bonus Proficiencies",
           "description": [
-            "At 1st level, you gain proficiency with martial weapons and heavy armor."
+            "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice."
           ],
           "level": 1
         },
@@ -1460,12 +1419,7 @@
         {
           "name": "Oath Spells",
           "description": [
-            "You gain oath spells at the paladin levels listed.",
-            "3rd: Ensnaring Strike, Speak with Animals",
-            "5th: Moonbeam, Misty Step",
-            "9th: Plant Growth, Protection from Energy",
-            "13th: Ice Storm, Stoneskin",
-            "17th: Commune with Nature, Tree Stride"
+            "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you."
           ],
           "level": 3
         },
@@ -1528,12 +1482,7 @@
         {
           "name": "Oath Spells",
           "description": [
-            "You gain oath spells at the paladin levels listed.",
-            "3rd: Bane, Hunter's Mark",
-            "5th: Hold Person, Misty Step",
-            "9th: Haste, Protection from Energy",
-            "13th: Banishment, Dimension Door",
-            "17th: Hold Monster, Scrying"
+            "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you."
           ],
           "level": 3
         },
@@ -1635,7 +1584,7 @@
         {
           "name": "Bonus Proficiencies",
           "description": [
-            "When you choose this archetype at 3rd level, you gain proficiency with the disguise kit and the poisoner's kit."
+            "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice."
           ],
           "level": 3
         },
@@ -2275,7 +2224,7 @@
       "class": "Warlock",
       "name": "Hexblade",
       "description": [
-        "You have made a pact with a mysterious entity from the Shadowfell\u2014a force that manifests in sentient magic weapons. The Hexblade might have forged the blade you wield as your pact weapon, or it might have revealed itself through a ritual of dark binding."
+        "You have made a pact with a mysterious entity from the Shadowfell—a force that manifests in sentient magic weapons. The Hexblade might have forged the blade you wield as your pact weapon, or it might have revealed itself through a ritual of dark binding."
       ],
       "features": [
         {

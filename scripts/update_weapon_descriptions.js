@@ -85,6 +85,9 @@ const WEAPON_DESCRIPTIONS = {
   rapier:
     'A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power.',
 
+  scimitar:
+    'A curved, single-edged sword designed for slashing. Its sweeping blade allows for quick, graceful cuts and is favored by cavalry and skirmishers.',
+
   shortbow:
     'A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range.',
 

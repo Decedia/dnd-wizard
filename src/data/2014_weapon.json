@@ -916,7 +916,7 @@
       "index": "scimitar",
       "name": "Scimitar",
       "equipment_category": "Weapon",
-      "description": "",
+      "description": "A curved, single-edged sword designed for slashing. Its sweeping blade allows for quick, graceful cuts and is favored by cavalry and skirmishers.",
       "special": "",
       "cost": {
         "quantity": 25,
