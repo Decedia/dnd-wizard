@@ -1,0 +1,188 @@
+[
+  {
+    "name": "Fey Touched",
+    "description": "Your exposure to the Feywild's magic has changed you, granting you the following benefits:\n- Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\n- You learn the misty step spell and one 1st-level spell of your choice from the divination or enchantment school of magic. The 1st-level spell must be of a level you can cast, as shown on the spellcaster table. You can cast each of these spells without expending a spell slot once until you finish a long rest. You can also cast the spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Shadow Touched",
+    "description": "Your exposure to the Shadowfell's magic has changed you, granting you the following benefits:\n- Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\n- You learn the invisibility spell and one 1st-level spell of your choice from the illusion or necromancy school of magic. The 1st-level spell must be of a level you can cast, as shown on the spellcaster table. You can cast each of these spells without expending a spell slot once until you finish a long rest. You can also cast the spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Eldritch Adept",
+    "description": "Studying occult lore, you have unlocked eldritch magic that can be learned only by those who know the Arcana of the Mysteries. You gain the following benefits:\n- You learn one Eldritch Invocation option of your choice from the warlock class. If the invocation has a prerequisite, you can choose that invocation only if you're a warlock who meets the prerequisite. Whenever you gain a level, you can replace the invocation with another one from the warlock class that you meet the prerequisite for.\n- If the invocation requires a spell, you must know the spell to use the invocation, unless the invocation states otherwise.",
+    "prerequisites": "Spellcasting or Pact Magic feature",
+    "source": "TCE"
+  },
+  {
+    "name": "Metamagic Adept",
+    "description": "You've learned how to exert your will to alter your spells in subtle but distinct ways. You gain the following benefits:\n- You learn two Metamagic options of your choice from the sorcerer class. You can use only one Metamagic option on a spell when you cast it, unless the option states otherwise. Whenever you gain a level, you can replace one of your Metamagic options with another one from the sorcerer class.\n- You gain 2 sorcery points to spend on Metamagic (these points are added to any sorcery points you have from another source but can be used only on Metamagic). You regain all expended sorcery points when you finish a long rest.",
+    "prerequisites": "Spellcasting or Pact Magic feature",
+    "source": "TCE"
+  },
+  {
+    "name": "Fighting Initiate",
+    "description": "Your martial training has allowed you to develop a particular style of fighting. You gain the following benefits:\n- You learn one Fighting Style option of your choice from the fighter class. If you already have a style, the one you choose must be different from the one you already know. Whenever you reach a level that grants the Ability Score Improvement feature, you can replace this style with another one from the fighter class that you don't know.",
+    "prerequisites": "Proficiency with a martial weapon",
+    "source": "TCE"
+  },
+  {
+    "name": "Piercer",
+    "description": "You have achieved a penetrating precision in combat, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Once per turn when you hit a creature with an attack that deals piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.\n- When you score a critical hit with an attack that deals piercing damage, you can roll one additional damage die when determining the extra damage the target takes.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Crusher",
+    "description": "You are practiced in the art of crushing your enemies, granting you the following benefits:\n- Increase your Strength or Constitution by 1, to a maximum of 20.\n- Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you.\n- When you score a critical hit with an attack that deals bludgeoning damage, the target's speed is halved until the start of your next turn.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Slasher",
+    "description": "You are trained in the art of cutting and slashing your enemies, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Once per turn when you hit a creature with an attack that deals slashing damage, you can reduce the target's speed by 10 feet until the start of your next turn.\n- When you score a critical hit with an attack that deals slashing damage, you grievously wound the target. Until the start of your next turn, the target has disadvantage on all attack rolls.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Skill Expert",
+    "description": "You have honed your proficiency with particular skills, granting you the following benefits:\n- Increase one ability score of your choice by 1, to a maximum of 20.\n- You gain proficiency with one skill of your choice.\n- You gain expertise with one skill of your choice that you're already proficient in. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Alert",
+    "description": "Always on the lookout for danger, you gain the following benefits:\n- You can't be surprised while you are conscious.\n- You gain a +5 bonus to initiative.\n- Other creatures don't gain advantage on attack rolls against you as a result of being hidden from you.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Weapon Master",
+    "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with four simple or martial weapons of your choice. Each chosen weapon must have a different proficiency category (simple or martial) than the others, unless you already have proficiency with all simple and martial weapons.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Moderately Armored",
+    "description": "You have trained to master the use of medium armor and shields, gaining the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- You gain proficiency with medium armor and shields.",
+    "prerequisites": "Proficiency with light armor",
+    "source": "TCE"
+  },
+  {
+    "name": "Heavily Armored",
+    "description": "You have trained to master the use of heavy armor, gaining the following benefits:\n- Increase your Strength score by 1, to a maximum of 20.\n- You gain proficiency with heavy armor.",
+    "prerequisites": "Proficiency with medium armor",
+    "source": "TCE"
+  },
+  {
+    "name": "Lightly Armored",
+    "description": "You have trained to defend yourself while unarmored, gaining the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- You gain proficiency with light armor.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Shield Master",
+    "description": "You use shields not just for protection but also for offense. You gain the following benefits while you are wielding a shield:\n- If you take the Attack action on your turn, you can use a bonus action to try to shove a creature within 5 feet of you with your shield.\n- If you aren't incapacitated, you can add your shield's AC bonus to any Dexterity saving throw you make against a spell or other harmful effect that targets only you.\n- If you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can use your reaction to take no damage if you succeed on the saving throw, interposing your shield between yourself and the source of the effect.",
+    "prerequisites": null,
+    "source": "TCE"
+  },
+  {
+    "name": "Medium Armor Master",
+    "description": "You have practiced moving in medium armor to gain the full benefit of its protection, gaining the following benefits:\n- Wearing medium armor doesn't impose disadvantage on your Dexterity (Stealth) checks.\n- When you wear medium armor, you can add 3, rather than 2, to your Armor Class if your Dexterity is 16 or higher.",
+    "prerequisites": "Proficiency with medium armor",
+    "source": "TCE"
+  },
+  {
+    "name": "Defensive Duelist",
+    "description": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.",
+    "prerequisites": "Dexterity 13 or higher",
+    "source": "TCE"
+  },
+  {
+    "name": "Dragon Hide",
+    "description": "You manifest scales and claws similar to those of a dragon. You gain the following benefits:\n- Increase your Strength, Constitution, or Charisma by 1, to a maximum of 20.\n- Your scales harden. While you aren't wearing armor, your AC equals 13 + your Dexterity modifier. You can use a shield and still gain this benefit.\n- You grow retractable claws from the tips of your fingers. Extending or retracting the claws requires no action. The claws are natural weapons, which you can use to make unarmed strikes with. If you hit with them, you deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal bludgeoning damage for an unarmed strike.",
+    "prerequisites": "Dragonborn or Half-Dragon",
+    "source": "TCE"
+  },
+  {
+    "name": "Fade Away",
+    "description": "Your people have a knack for vanishing, an inherited boon that protects you, granting you the following benefits:\n- Increase your Dexterity or Intelligence by 1, to a maximum of 20.\n- Immediately after you take damage, you can use your reaction to magically become invisible and teleport up to 10 feet to an unoccupied space you can see. You remain invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this feat, you can't do so again until you finish a short or long rest.",
+    "prerequisites": "Gnome",
+    "source": "TCE"
+  },
+  {
+    "name": "Fey Teleportation",
+    "description": "Your study of the Feywild's magic has allowed you to learn how to teleport, granting you the following benefits:\n- Increase your Intelligence or Charisma by 1, to a maximum of 20.\n- You learn to speak, read, and write Sylvan.\n- You learn the misty step spell and can cast it once without a spell slot. You regain the ability to cast it this way when you finish a short or long rest. Intelligence is your spellcasting ability for this spell.",
+    "prerequisites": "Elf",
+    "source": "TCE"
+  },
+  {
+    "name": "Flames of Phlegethos",
+    "description": "You learn to call on the fiery essence of the Lower Planes to augment your spells, granting you the following benefits:\n- Increase your Intelligence or Charisma by 1, to a maximum of 20.\n- When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice, but you must use the new roll, even if it is another 1.\n- When you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light in a 30-foot radius and dim light for an additional 30 feet. While the flames are present, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage.",
+    "prerequisites": "Tiefling",
+    "source": "TCE"
+  },
+  {
+    "name": "Orcish Fury",
+    "description": "Your fury burns tirelessly, granting you the following benefits:\n- Increase your Strength or Constitution by 1, to a maximum of 20.\n- When you hit with an attack using a simple or martial weapon, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the attack. Once you use this ability, you can't use it again until you start a short or long rest.\n- When you use your Relentless Endurance trait, you can also make a melee attack as a reaction.",
+    "prerequisites": "Half-Orc or Orc",
+    "source": "TCE"
+  },
+  {
+    "name": "Second Chance",
+    "description": "Fortune favors you when you fight, granting you the following benefits:\n- Increase your Dexterity, Constitution, or Charisma by 1, to a maximum of 20.\n- When a creature you can see hits you with an attack roll, you can use your reaction to force that creature to reroll. Once you use this ability, you can't use it again until you roll initiative at the start of combat or until you finish a short or long rest.",
+    "prerequisites": "Halfling",
+    "source": "TCE"
+  },
+  {
+    "name": "Squat Nimbleness",
+    "description": "You are uncommonly nimble for your people, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Your speed increases by 5 feet.\n- You gain proficiency in the Acrobatics or Athletics skill (your choice).\n- You have advantage on any check you make to escape a grapple.",
+    "prerequisites": "Dwarf or Small race",
+    "source": "TCE"
+  },
+  {
+    "name": "Bountiful Luck",
+    "description": "Your people have an extraordinary luck that you have learned to share with your companions, granting you the following benefits:\n- When an ally you can see within 30 feet of you rolls a 1 on the d20 for an attack roll, ability check, or saving throw, you can use your reaction to let the ally reroll the die. The ally must use the new roll.",
+    "prerequisites": "Halfling",
+    "source": "TCE"
+  },
+  {
+    "name": "Drow High Magic",
+    "description": "You learn more of the magic typical of dark elves, granting you the following benefits:\n- You learn the detect magic spell and can cast it at will, without expending a spell slot.\n- You learn the dispel magic and levitate spells, each of which you can cast once without expending a spell slot. You regain the ability to cast these spells in this way when you finish a long rest.\n- Charisma is your spellcasting ability for these spells.",
+    "prerequisites": "Elf (Drow)",
+    "source": "TCE"
+  },
+  {
+    "name": "Dwarven Fortitude",
+    "description": "The blood of your dwarven ancestors flows strong through you, granting you the following benefits:\n- Increase your Constitution score by 1, to a maximum of 20.\n- Whenever you take the Dodge action in combat, you can spend one Hit Die to heal yourself. Roll the die, add your Constitution modifier, and regain a number of hit points equal to the total (minimum of 1).",
+    "prerequisites": "Dwarf",
+    "source": "TCE"
+  },
+  {
+    "name": "Elven Accuracy",
+    "description": "The accuracy of elves is legendary, especially with the bow. You have uncanny aim with your attacks, granting you the following benefits:\n- Increase your Dexterity, Intelligence, Wisdom, or Charisma by 1, to a maximum of 20.\n- Whenever you have advantage on an attack roll using Dexterity, Intelligence, Wisdom, or Charisma, you can reroll one of the dice once. You must use the new roll.",
+    "prerequisites": "Elf or Half-Elf",
+    "source": "TCE"
+  },
+  {
+    "name": "Dragon Fear",
+    "description": "When you unleash your draconic heritage, your enemies quake with fear, granting you the following benefits:\n- Increase your Strength, Constitution, or Charisma by 1, to a maximum of 20.\n- Instead of exhaling destructive energy, you can roar and expend a use of your Breath Weapon to force each creature of your choice within 30 feet of you to make a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier). A creature that fails is frightened of you until the end of your next turn. A creature that succeeds is immune to this effect for 24 hours.",
+    "prerequisites": "Dragonborn",
+    "source": "TCE"
+  },
+  {
+    "name": "Infernal Constitution",
+    "description": "The fires of the Lower Planes have tempered your resilience, granting you the following benefits:\n- Increase your Constitution by 1, to a maximum of 20.\n- You have resistance to cold and poison damage.\n- You have advantage on saving throws against being poisoned.",
+    "prerequisites": "Tiefling",
+    "source": "TCE"
+  },
+  {
+    "name": "Prodigy",
+    "description": "You have a knack for learning new things, granting you the following benefits:\n- You gain proficiency with one skill of your choice, one tool of your choice, and fluency in one language of your choice.\n- You gain expertise with one skill of your choice that you're already proficient in. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus.",
+    "prerequisites": "Half-Elf or Human",
+    "source": "TCE"
+  }
+]
