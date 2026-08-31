@@ -230,22 +230,22 @@ export const classes: SRDClass[] = [
       {
         description: "Choose one:",
         items: [
-          { name: "Chain Mail", description: "Medium armor. AC 16." },
+          { name: "Chain Mail", description: "Interlocking metal rings woven into a shirt that covers the torso and arms. Heavy and durable, it provides excellent protection but is noisy and requires considerable strength to wear effectively." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Leather Armor", description: "Light armor. AC 11 + Dex modifier." },
-          { name: "Longbow", description: "A ranged weapon (1d8 piercing)." },
-          { name: "Quiver", description: "Contains 20 arrows.", quantity: 20 },
+          { name: "Leather Armor", description: "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense." },
+          { name: "Longbow", description: "A tall bow with a powerful draw, capable of sending arrows great distances with deadly accuracy. Crafted from a single piece of quality wood, it requires strength and skill to master." },
+          { name: "Quiver", description: "A quiver can hold up to 20 arrows.", quantity: 20 },
         ],
       },
       {
         description: "Choose one:",
         items: [
           { name: "Martial Weapon", description: "A martial weapon of your choice." },
-          { name: "Shield", description: "Increases AC by +2 while equipped.", quantity: 1 },
+          { name: "Shield", description: "A hand-held barrier of wood or metal used to block blows. Wielded in the off-hand, it provides a quick boost to defense and can be used offensively in a shield bash.", quantity: 1 },
         ],
       },
       {
@@ -257,26 +257,26 @@ export const classes: SRDClass[] = [
       {
         description: "Choose one:",
         items: [
-          { name: "Light Crossbow", description: "A ranged weapon (1d8 piercing)." },
-          { name: "Quiver", description: "Contains 20 bolts.", quantity: 20 },
+          { name: "Light Crossbow", description: "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use." },
+          { name: "Quiver", description: "A quiver can hold up to 20 bolts.", quantity: 20 },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Handaxe", description: "A simple melee weapon (1d6 slashing).", quantity: 2 },
+          { name: "Handaxe", description: "A small, light axe designed for one-handed use or throwing. Its balance makes it equally effective in close combat or hurled at distant targets.", quantity: 2 },
         ],
       },
       {
         description: "Choose one:",
         items: [
-          { name: "Dungeoneer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+          { name: "Dungeoneer's Pack", description: "Essential gear for exploring underground, including a backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, and rope." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Explorer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+          { name: "Explorer's Pack", description: "A well-rounded kit for wilderness travel, including a backpack, bedroll, mess kit, tinderbox, torches, rations, waterskin, and rope." },
         ],
       },
     ],
@@ -344,44 +344,44 @@ export const classes: SRDClass[] = [
       {
         description: "Choose one:",
         items: [
-          { name: "Quarterstaff", description: "A simple melee weapon (1d6 bludgeoning)." },
+          { name: "Quarterstaff", description: "A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Dagger", description: "A simple melee weapon (1d4 piercing)." },
+          { name: "Dagger", description: "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life." },
         ],
       },
       {
         description: "Choose one:",
         items: [
-          { name: "Component Pouch", description: "A small pouch containing arcane components." },
+          { name: "Component Pouch", description: "A small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Arcane Focus", description: "A focus for casting spells, such as a wand or orb." },
+          { name: "Arcane Focus", description: "An arcane focus is a special item designed to channel arcane magic. A spellcaster can use a crystal, orb, rod, staff, or wand as an arcane focus." },
         ],
       },
       {
         description: "Choose one:",
         items: [
-          { name: "Scholar's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+          { name: "Scholar's Pack", description: "A kit for the traveling academic, including a backpack, book of lore, ink, ink pen, parchment, sand, and a small knife." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Explorer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+          { name: "Explorer's Pack", description: "A well-rounded kit for wilderness travel, including a backpack, bedroll, mess kit, tinderbox, torches, rations, waterskin, and rope." },
         ],
       },
       {
         granted: true,
         description: "Always granted:",
         items: [
-          { name: "Spellbook", description: "A book containing your starting spells and formulas for casting them.", quantity: 1 },
+          { name: "Spellbook", description: "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.", quantity: 1 },
         ],
       },
     ],
@@ -515,53 +515,53 @@ export const classes: SRDClass[] = [
       {
         description: "Choose one:",
         items: [
-          { name: "Rapier", description: "A martial melee weapon (1d8 piercing)." },
+          { name: "Rapier", description: "A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Shortsword", description: "A martial melee weapon (1d6 piercing)." },
+          { name: "Shortsword", description: "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers." },
         ],
       },
       {
         description: "Choose one:",
         items: [
-          { name: "Shortbow", description: "A ranged weapon (1d6 piercing)." },
-          { name: "Quiver", description: "Contains 20 arrows.", quantity: 20 },
+          { name: "Shortbow", description: "A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range." },
+          { name: "Quiver", description: "A quiver can hold up to 20 arrows.", quantity: 20 },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Shortsword", description: "A martial melee weapon (1d6 piercing)." },
+          { name: "Shortsword", description: "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers." },
         ],
       },
       {
         description: "Choose one:",
         items: [
-          { name: "Burglar's Pack", description: "Includes a backpack, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days of rations, a tinderbox, a waterskin, and 50 feet of rope." },
+          { name: "Burglar's Pack", description: "A curated collection of gear for the aspiring rogue, including a backpack, ball bearings, string, bells, candles, crowbar, hammer, pitons, a lantern, oil, rations, tinderbox, waterskin, and rope." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Dungeoneer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+          { name: "Dungeoneer's Pack", description: "Essential gear for exploring underground, including a backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, and rope." },
         ],
       },
       {
         description: "Or:",
         items: [
-          { name: "Explorer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." },
+          { name: "Explorer's Pack", description: "A well-rounded kit for wilderness travel, including a backpack, bedroll, mess kit, tinderbox, torches, rations, waterskin, and rope." },
         ],
       },
       {
         granted: true,
         description: "Always granted:",
         items: [
-          { name: "Leather Armor", description: "Light armor. AC 11 + Dex modifier.", quantity: 1 },
-          { name: "Dagger", description: "A simple melee weapon (1d4 piercing).", quantity: 2 },
-          { name: "Thieves' Tools", description: "A set of tools for picking locks and disarming traps.", quantity: 1 },
+          { name: "Leather Armor", description: "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense.", quantity: 1 },
+          { name: "Dagger", description: "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life.", quantity: 2 },
+          { name: "Thieves' Tools", description: "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability check you make to use them.", quantity: 1 },
         ],
       },
     ],
@@ -644,12 +644,12 @@ export const classes: SRDClass[] = [
       options: ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"],
     },
     startingEquipment: [
-      { description: "(a) a light crossbow and 20 bolts or (b) any simple weapon", items: [{ name: "Light Crossbow", description: "A ranged weapon that fires bolts." }, { name: "Crossbow bolt", description: "Ammunition for crossbows.", quantity: 20 }] },
-      { description: "(a) a component pouch or (b) an arcane focus", items: [{ name: "Component Pouch", description: "A small pouch containing arcane components." }] },
-      { description: "Or:", items: [{ name: "Arcane Focus", description: "A focus for casting spells, such as a wand or orb." }] },
-      { description: "(a) a scholar's pack or (b) a dungeoneer's pack", items: [{ name: "Scholar's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." }] },
-      { description: "Or:", items: [{ name: "Dungeoneer's Pack", description: "Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin." }] },
-      { granted: true, description: "Always granted:", items: [{ name: "Leather Armor", description: "Light armor. AC 11 + Dex modifier.", quantity: 1 }, { name: "Dagger", description: "A simple melee weapon (1d4 piercing).", quantity: 2 }] },
+      { description: "(a) a light crossbow and 20 bolts or (b) any simple weapon", items: [{ name: "Light Crossbow", description: "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use." }, { name: "Crossbow bolt", description: "A short, thick shaft designed for use with a crossbow. Shorter and heavier than an arrow, it delivers tremendous impact at close to medium range.", quantity: 20 }] },
+      { description: "(a) a component pouch or (b) an arcane focus", items: [{ name: "Component Pouch", description: "A small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost." }] },
+      { description: "Or:", items: [{ name: "Arcane Focus", description: "An arcane focus is a special item designed to channel arcane magic. A spellcaster can use a crystal, orb, rod, staff, or wand as an arcane focus." }] },
+      { description: "(a) a scholar's pack or (b) a dungeoneer's pack", items: [{ name: "Scholar's Pack", description: "A kit for the traveling academic, including a backpack, book of lore, ink, ink pen, parchment, sand, and a small knife." }] },
+      { description: "Or:", items: [{ name: "Dungeoneer's Pack", description: "Essential gear for exploring underground, including a backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, and rope." }] },
+      { granted: true, description: "Always granted:", items: [{ name: "Leather Armor", description: "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense.", quantity: 1 }, { name: "Dagger", description: "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life.", quantity: 2 }] },
     ],
     features: [
       { name: "Otherworldly Patron", description: "At 1st level, you have struck a bargain with an otherworldly being of your choice. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.", type: "feature" },
@@ -760,9 +760,9 @@ export const spells: SRDSpell[] = [
 export const equipment: SRDEquipment[] = [
   { name: "Longsword", description: "A versatile blade of moderate length, balanced for one or two-handed use. The quintessential knightly weapon, it excels at both slashing and thrusting.", type: "weapon", category: "melee", damageDice: "1d8", damageType: "slashing" },
   { name: "Shortbow", description: "A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range.", type: "weapon", category: "ranged", damageDice: "1d6", damageType: "piercing" },
-  { name: "Leather Armor", description: "Light armor made from tough but flexible leather, offering basic protection.", type: "armor", baseAC: 11, armorType: "light", maxDexBonus: null },
-  { name: "Chain Shirt", description: "Medium armor made of interlocking metal rings, balancing protection and mobility.", type: "armor", baseAC: 13, armorType: "medium", maxDexBonus: 2 },
-  { name: "Chain Mail", description: "Heavy armor made of interlocking metal rings.", type: "armor", baseAC: 16, armorType: "heavy", maxDexBonus: 0 },
+  { name: "Leather Armor", description: "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense.", type: "armor", baseAC: 11, armorType: "light", maxDexBonus: null },
+  { name: "Chain Shirt", description: "A shirt of interlocking metal rings worn as a lighter alternative to chain mail. It offers decent protection while allowing greater freedom of movement, often worn under clothing or combined with other armor.", type: "armor", baseAC: 13, armorType: "medium", maxDexBonus: 2 },
+  { name: "Chain Mail", description: "Interlocking metal rings woven into a shirt that covers the torso and arms. Heavy and durable, it provides excellent protection but is noisy and requires considerable strength to wear effectively.", type: "armor", baseAC: 16, armorType: "heavy", maxDexBonus: 0 },
   { name: "Dagger", description: "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life.", type: "weapon", category: "melee", damageDice: "1d4", damageType: "piercing" },
   { name: "Shortsword", description: "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers.", type: "weapon", category: "melee", damageDice: "1d6", damageType: "piercing" },
   { name: "Rapier", description: "A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power.", type: "weapon", category: "melee", damageDice: "1d8", damageType: "piercing" },
@@ -770,20 +770,20 @@ export const equipment: SRDEquipment[] = [
   { name: "Light Crossbow", description: "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use.", type: "weapon", category: "ranged", damageDice: "1d8", damageType: "piercing" },
   { name: "Handaxe", description: "A small, light axe designed for one-handed use or throwing. Its balance makes it equally effective in close combat or hurled at distant targets.", type: "weapon", category: "melee", damageDice: "1d6", damageType: "slashing" },
   { name: "Quarterstaff", description: "A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid.", type: "weapon", category: "melee", damageDice: "1d6", damageType: "bludgeoning" },
-  { name: "Shield", description: "A defensive tool that increases your Armor Class when wielded.", type: "armor", baseAC: 2, armorType: "shield" },
-  { name: "Potion of Healing", description: "Restores 2d4+2 hit points when consumed.", type: "item" },
-  { name: "Dungeoneer's Pack", description: "A backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin.", type: "item" },
-  { name: "Explorer's Pack", description: "A backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin.", type: "item" },
-  { name: "Burglar's Pack", description: "A backpack, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days of rations, a tinderbox, a waterskin, and 50 feet of rope.", type: "item" },
-  { name: "Scholar's Pack", description: "A backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, and a waterskin.", type: "item" },
-  { name: "Diplomat's Pack", description: "A chest, 2 map or scroll cases, fine clothes, ink, ink pen, lamp, 2 flasks of oil, 5 sheets of paper, perfume, sealing wax, and soap.", type: "item" },
-  { name: "Entertainer's Pack", description: "A backpack, bedroll, 2 sets of costume clothes, 5 candles, 5 days of rations, a waterskin, and a disguise kit.", type: "item" },
-  { name: "Priest's Pack", description: "A backpack, blanket, 10 candles, tinderbox, 2 days of rations, a waterskin, alms box, 2 blocks of incense, censer, and vestments.", type: "item" },
-  { name: "Component Pouch", description: "A small pouch containing arcane components.", type: "item" },
-  { name: "Arcane Focus", description: "A focus for casting spells, such as a wand or orb.", type: "item" },
-  { name: "Spellbook", description: "A book containing your starting spells and formulas for casting them.", type: "item" },
-  { name: "Quiver", description: "Arrows or bolts.", type: "item" },
-  { name: "Thieves' Tools", description: "A set of tools for picking locks and disarming traps.", type: "item" },
+  { name: "Shield", description: "A hand-held barrier of wood or metal used to block blows. Wielded in the off-hand, it provides a quick boost to defense and can be used offensively in a shield bash.", type: "armor", baseAC: 2, armorType: "shield" },
+  { name: "Potion of Healing", description: "You regain 2d4 + 2 hit points when you drink this potion. The potion's red liquid glimmers when agitated.", type: "item" },
+  { name: "Dungeoneer's Pack", description: "Essential gear for exploring underground, including a backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, and rope.", type: "item" },
+  { name: "Explorer's Pack", description: "A well-rounded kit for wilderness travel, including a backpack, bedroll, mess kit, tinderbox, torches, rations, waterskin, and rope.", type: "item" },
+  { name: "Burglar's Pack", description: "A curated collection of gear for the aspiring rogue, including a backpack, ball bearings, string, bells, candles, crowbar, hammer, pitons, a lantern, oil, rations, tinderbox, waterskin, and rope.", type: "item" },
+  { name: "Scholar's Pack", description: "A kit for the traveling academic, including a backpack, book of lore, ink, ink pen, parchment, sand, and a small knife.", type: "item" },
+  { name: "Diplomat's Pack", description: "A collection of items for the traveling negotiator, including a chest, map cases, fine clothes, writing supplies, lamp, oil, paper, perfume, sealing wax, and soap.", type: "item" },
+  { name: "Entertainer's Pack", description: "Gear for the traveling performer, including a backpack, bedroll, costumes, candles, rations, waterskin, and a disguise kit.", type: "item" },
+  { name: "Priest's Pack", description: "A collection of items for the traveling cleric, including a backpack, blanket, candles, an alms box, incense, censer, vestments, rations, waterskin, and robes.", type: "item" },
+  { name: "Component Pouch", description: "A small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost.", type: "item" },
+  { name: "Arcane Focus", description: "An arcane focus is a special item designed to channel arcane magic. A spellcaster can use a crystal, orb, rod, staff, or wand as an arcane focus.", type: "item" },
+  { name: "Spellbook", description: "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.", type: "item" },
+  { name: "Quiver", description: "A quiver can hold up to 20 arrows.", type: "item" },
+  { name: "Thieves' Tools", description: "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability check you make to use them.", type: "item" },
 ];
 
 export const languages: SRDLanguage[] = [
