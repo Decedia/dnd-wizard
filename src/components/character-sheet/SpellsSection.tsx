@@ -238,7 +238,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     );
                   })()}
                   {spell.description && (
-                    <span className="text-[10px] text-[var(--color-text-secondary)] mt-1 line-clamp-2">{spell.description}</span>
+                    <span className="text-[10px] text-[var(--color-text-secondary)] mt-1">{spell.description}</span>
                   )}
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
