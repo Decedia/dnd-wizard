@@ -29,6 +29,7 @@ import {
   SwapIcon as Swap,
 } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
+import { FormattedDescription } from "@/components/FormattedDescription";
 import { useSRD } from "@/contexts/SRDContext";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
@@ -1453,12 +1454,19 @@ function LevelCard({
                <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                <div className="flex-1">
                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
-                 <div className="space-y-1 mt-1">
+                 <div className="space-y-2 mt-1">
                    {info.features.map((f) => (
-                     <div key={f.name} className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
-                       <span className="font-semibold">{f.name}</span>
+                     <div key={f.name}>
+                       <div className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
+                         <span className="font-semibold">{f.name}</span>
+                         {f.description && (
+                           <InfoButton title={f.name} description={f.description} />
+                         )}
+                       </div>
                        {f.description && (
-                         <InfoButton title={f.name} description={f.description} />
+                         <div className="mt-1 ml-0">
+                           <FormattedDescription>{f.description}</FormattedDescription>
+                         </div>
                        )}
                      </div>
                    ))}
@@ -1695,12 +1703,17 @@ function LevelCard({
                         <InfoButton title={fc.name} description={fc.description} />
                       )}
                     </div>
+                    {fc.description && (
+                      <div className="mb-2">
+                        <FormattedDescription>{fc.description}</FormattedDescription>
+                      </div>
+                    )}
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
                       <button
                         type="button"
                         onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ ...fc, isSubclass: true, count: fc.count }); }}
                         className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                      >
+                       >
                        <span>{subclassFeatureChoices[fc.name] || "Select an option..."}</span>
                        <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                      </button>
@@ -1717,12 +1730,17 @@ function LevelCard({
                         <InfoButton title={fc.name} description={fc.description} />
                       )}
                     </div>
+                    {fc.description && (
+                      <div className="mb-2">
+                        <FormattedDescription>{fc.description}</FormattedDescription>
+                      </div>
+                    )}
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
                       <button
                         type="button"
                         onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ ...fc, isSubclass: false, count: fc.count }); }}
                         className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                      >
+                       >
                        <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
                        <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                      </button>
@@ -2353,48 +2371,59 @@ function LevelCard({
                   const isSelected = isMultiSelect ? multiSelected : currentSelection === opt.name;
                   const isDisabled = isMultiSelect && !multiSelected && multiSelectSelections.length >= (showFeaturePopup.count || 1);
                   return (
-                    <button
+                    <div
                       key={idx}
-                      type="button"
-                      onClick={() => {
-                        if (opt.name === "Humanoid (2 races)") {
-                          setShowHumanoidPopup({ featureName: showFeaturePopup.name, level: lvl });
-                          setHumanoidSelections([]);
-                          setShowFeaturePopup(null);
-                          return;
-                        }
-                        if (isMultiSelect) {
-                          if (multiSelected) {
-                            setMultiSelectSelections(multiSelectSelections.filter((s) => s !== opt.name));
-                          } else if (multiSelectSelections.length < (showFeaturePopup.count || 1)) {
-                            setMultiSelectSelections([...multiSelectSelections, opt.name]);
-                          }
-                          return;
-                        }
-                        if (showFeaturePopup.isSubclass) {
-                          onSubclassFeatureChoice(showFeaturePopup.name, opt.name);
-                        } else {
-                          onClassFeatureChoice(showFeaturePopup.name, opt.name);
-                        }
-                        setShowFeaturePopup(null);
-                      }}
-                      disabled={isDisabled}
-                      className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                      className={`rounded-[var(--radius-sm)] border transition-all ${
                         isSelected
-                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
+                          : "border-[var(--color-border)] bg-[var(--color-surface)]"
                       }`}
                     >
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="text-xs font-semibold flex items-center gap-2">
-                          {isSelected && <Check className="h-3 w-3 shrink-0" />}
-                          {opt.name}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (opt.name === "Humanoid (2 races)") {
+                            setShowHumanoidPopup({ featureName: showFeaturePopup.name, level: lvl });
+                            setHumanoidSelections([]);
+                            setShowFeaturePopup(null);
+                            return;
+                          }
+                          if (isMultiSelect) {
+                            if (multiSelected) {
+                              setMultiSelectSelections(multiSelectSelections.filter((s) => s !== opt.name));
+                            } else if (multiSelectSelections.length < (showFeaturePopup.count || 1)) {
+                              setMultiSelectSelections([...multiSelectSelections, opt.name]);
+                            }
+                            return;
+                          }
+                          if (showFeaturePopup.isSubclass) {
+                            onSubclassFeatureChoice(showFeaturePopup.name, opt.name);
+                          } else {
+                            onClassFeatureChoice(showFeaturePopup.name, opt.name);
+                          }
+                          setShowFeaturePopup(null);
+                        }}
+                        disabled={isDisabled}
+                        className={`w-full p-3 text-left ${
+                          isSelected ? "text-[var(--color-surface)]" : "hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-xs font-semibold flex items-center gap-2">
+                            {isSelected && <Check className="h-3 w-3 shrink-0" />}
+                            {opt.name}
+                          </div>
+                          {opt.description && (
+                            <InfoButton title={opt.name} description={opt.description} />
+                          )}
                         </div>
-                        {opt.description && (
-                          <InfoButton title={opt.name} description={opt.description} />
-                        )}
-                      </div>
-                    </button>
+                      </button>
+                      {opt.description && (
+                        <div className={`px-3 pb-2 ${isSelected ? "text-[var(--color-surface)]/80" : ""}`}>
+                          <FormattedDescription>{opt.description}</FormattedDescription>
+                        </div>
+                      )}
+                    </div>
                   );
                 })}
               </div>

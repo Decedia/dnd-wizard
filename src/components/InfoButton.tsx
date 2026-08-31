@@ -2,43 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { InfoIcon as Info, XIcon as X } from "@/components/icons";
-import { DamageBadge } from "@/components/character-sheet/DamageBadge";
-import { DiceBadge } from "@/components/DiceBadge";
+import { FormattedDescription } from "@/components/FormattedDescription";
 
 interface InfoButtonProps {
   title: string;
   description: string | string[];
-}
-
-function renderDescription(text: string) {
-  const parts: React.ReactNode[] = [];
-  const regex = /\[(dice|damage)\](.*?)\[\/(dice|damage)\]/g;
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
-  let key = 0;
-
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
-    }
-
-    const type = match[1];
-    const content = match[2];
-
-    if (type === "dice") {
-      parts.push(<DiceBadge key={key++} dice={content} />);
-    } else if (type === "damage") {
-      parts.push(<DamageBadge key={key++} type={content} size="sm" />);
-    }
-
-    lastIndex = match.index + match[0].length;
-  }
-
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
-  }
-
-  return parts.length > 0 ? parts : text;
 }
 
 export function InfoButton({ title, description }: InfoButtonProps) {
@@ -80,9 +48,7 @@ export function InfoButton({ title, description }: InfoButtonProps) {
               </button>
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-4">
-              <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-                {renderDescription(descText)}
-              </p>
+              <FormattedDescription>{descText}</FormattedDescription>
             </div>
           </div>
         </div>
@@ -129,9 +95,7 @@ export function DescriptionModal({ title, content, onClose, children, showConfir
         </div>
         <div className="flex-1 overflow-y-auto px-4 py-4">
           {children || (
-            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-              {renderDescription(text)}
-            </p>
+            <FormattedDescription>{text}</FormattedDescription>
           )}
         </div>
         {showConfirm && onConfirm && (
