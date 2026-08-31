@@ -85,40 +85,38 @@ export function FormattedDescription({ children, className = "" }: FormattedDesc
     const hasNumbered = lines.some((l) => /^\d+\.\s+/.test(l.trim()));
     const hasColons = lines.length > 1 && lines.every((l) => /^[A-Z][A-Za-z\s]+:\s+/.test(l.trim()));
 
-    if (hasBullets) {
-      const nonBulletIntro = lines.filter((l) => !/^[-•*]\s+/.test(l.trim()));
-      const bulletLines = lines.filter((l) => /^[-•*]\s+/.test(l.trim()));
-      return (
-        <div key={pIdx} className="mb-2">
-          {nonBulletIntro.map((line, i) => renderLine(line, i))}
-          <ul className="mt-1 space-y-0.5">
-            {bulletLines.map((line, i) => renderLine(line, i))}
-          </ul>
-        </div>
-      );
-    }
+    const content = (() => {
+      if (hasBullets) {
+        const nonBulletIntro = lines.filter((l) => !/^[-•*]\s+/.test(l.trim()));
+        const bulletLines = lines.filter((l) => /^[-•*]\s+/.test(l.trim()));
+        return (
+          <>
+            {nonBulletIntro.map((line, i) => renderLine(line, i))}
+            <ul className="mt-1 space-y-0.5">
+              {bulletLines.map((line, i) => renderLine(line, i))}
+            </ul>
+          </>
+        );
+      }
 
-    if (hasNumbered) {
-      return (
-        <div key={pIdx} className="mb-2">
+      if (hasNumbered) {
+        return (
           <ol className="space-y-0.5">
             {lines.map((line, i) => renderLine(line, i))}
           </ol>
-        </div>
-      );
-    }
+        );
+      }
 
-    if (hasColons) {
       return (
-        <div key={pIdx} className="mb-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] p-2 space-y-0.5">
+        <>
           {lines.map((line, i) => renderLine(line, i))}
-        </div>
+        </>
       );
-    }
+    })();
 
     return (
-      <div key={pIdx} className="mb-2">
-        {lines.map((line, i) => renderLine(line, i))}
+      <div key={pIdx} className="mb-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] p-3 space-y-1">
+        {content}
       </div>
     );
   };
