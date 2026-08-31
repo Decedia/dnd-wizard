@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getWizardSpellsByLevel, getPactBoons } from "@/lib/srd-client";
+import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
@@ -107,7 +108,7 @@ interface LevelInfo {
   level: number;
   hp: { hitDie: number; conMod: number; average: number };
   proficiencyBonus: number;
-  features: { name: string; description: string }[];
+  features: { name: string; description: string; source?: string }[];
   asi: boolean;
   spellSlots?: Record<number, number>;
   cantripsKnown?: number;
@@ -255,10 +256,11 @@ function buildLevelInfos(
       : undefined;
 
     const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];
-    const passiveSubclassFeatures: { name: string; description: string }[] = [];
+    const passiveSubclassFeatures: { name: string; description: string; source?: string }[] = [];
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
       if (selectedSubclass) {
+        const subclassSource = selectedSubclass.source;
         const earnedFeatures = selectedSubclass.features.filter(
           (f) => f.level != null && f.level === level
         );
@@ -272,7 +274,7 @@ function buildLevelInfos(
               count: f.choicesCount || 1,
             });
           } else {
-            passiveSubclassFeatures.push({ name: f.name, description: desc });
+            passiveSubclassFeatures.push({ name: f.name, description: desc, source: subclassSource });
           }
         }
       }
@@ -955,75 +957,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const newLevel = Math.max(effectiveMinLevel, Math.min(effectiveMaxLevel, targetLevel + delta));
     if (newLevel !== targetLevel) {
       setTargetLevel(newLevel);
-      if (newLevel > targetLevel) {
-        setViewingLevel(newLevel);
-      } else {
-        if (viewingLevel > newLevel) setViewingLevel(newLevel);
-        setHpValues((prev) => {
-          const next: Record<number, number> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setAsiSelections((prev) => {
-          const next: Record<number, any> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setSpellSelections((prev) => {
-          const next: Record<number, string[]> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setMagicalSecretsSelections((prev) => {
-          const next: Record<number, string[]> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setReplacedSpells((prev) => {
-          const next: Record<number, string> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setSubclassFeatureChoices((prev) => {
-          const next: Record<number, Record<string, string>> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setClassFeatureChoices((prev) => {
-          const next: Record<number, Record<string, string>> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setInvocationSelections((prev) => {
-          const next: Record<number, string[]> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setReplacedInvocations((prev) => {
-          const next: Record<number, string> = {};
-          for (const [k, v] of Object.entries(prev)) {
-            if (Number(k) <= newLevel) next[Number(k)] = v;
-          }
-          return next;
-        });
-        setPactTomeCantrips([]);
-      }
+      setViewingLevel(newLevel);
     }
   };
 
@@ -1083,7 +1017,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 <button
                   key={lvl}
                   type="button"
-                  onClick={() => setViewingLevel(lvl)}
+                  onClick={() => {
+                    setViewingLevel(lvl);
+                    setTimeout(() => {
+                      const el = sectionRefs.current[`level-card-${lvl}`];
+                      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                    }, 50);
+                  }}
                   className={`px-3 py-1 text-[10px] font-bold rounded-full transition-colors ${
                     viewingLevel === lvl
                       ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
@@ -1152,8 +1092,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           )}
 
           {levelInfos.map((info) => (
-            <LevelCard
+            <div
               key={info.level}
+              ref={(el) => { sectionRefs.current[`level-card-${info.level}`] = el; }}
+            >
+            <LevelCard
               info={info}
               hpValue={hpValues[info.level] || 0}
               onHpChange={(v) => setHp(info.level, v)}
@@ -1203,8 +1146,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onPactTomeCantripsChange={setPactTomeCantrips}
                allInvocationSelections={invocationSelections}
                sectionRefs={sectionRefs}
-             />
-           ))}
+            />
+            </div>
+          ))}
         </div>
       </main>
 
@@ -1457,26 +1401,27 @@ function LevelCard({
             </div>
           )}
 
-           {info.features.length > 0 && (
-             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-               <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-               <div className="flex-1">
-                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
-                 <div className="space-y-2 mt-1">
-                   {info.features.map((f) => (
-                     <div key={f.name}>
-                        <div className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
-                          <span className="font-semibold">{f.name}</span>
-                          {f.description && (
-                            <InfoButton title={f.name} description={f.description} />
-                          )}
-                        </div>
-                     </div>
-                   ))}
-                 </div>
-               </div>
-             </div>
-           )}
+            {info.features.length > 0 && (
+              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
+                  <div className="space-y-2 mt-1">
+                    {info.features.map((f) => (
+                      <div key={f.name}>
+                         <div className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
+                           <span className="font-semibold">{f.name}</span>
+                           {f.source && f.source !== "PHB" && <SourceBadge source={f.source} />}
+                           {f.description && (
+                             <InfoButton title={f.name} description={f.description} />
+                           )}
+                         </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
 
            {info.asi && (
              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
