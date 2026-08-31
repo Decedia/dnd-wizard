@@ -645,48 +645,99 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                           );
                         }
 
-                             return (
-                              <div
-                                key={optionIndex}
-                                className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
-                                  isSelected
-                                    ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
-                                    : isDisabled
-                                      ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20 cursor-not-allowed"
-                                      : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                                }`}
-                              >
-                                 {isSelected ? (
-                                   <div className="flex items-center justify-between">
-                                     <div className="flex-1">
-                                       <span className="text-body font-semibold text-[var(--color-surface)]">{getOptionLabel(option)}</span>
-                                       <div className="text-[10px] text-[var(--color-surface)]/70 mt-0.5">{getOptionSummary(option)}</div>
-                                     </div>
-                                     <div className="flex items-center gap-1">
-                                       <button
-                                         type="button"
-                                         onClick={() => handleChoiceRemove(group)}
-                                         className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] ml-1 text-lg leading-none"
-                                       >
-                                         ×
-                                       </button>
-                                     </div>
-                                   </div>
-                                 ) : (
-                                   <button
-                                     type="button"
-                                     onClick={() => !isDisabled && handleOptionClick(group, optionIndex)}
-                                     disabled={isDisabled}
-                                     className={`w-full text-left text-body ${isDisabled ? "cursor-not-allowed opacity-50" : ""}`}
-                                   >
-                                     <span>{getOptionLabel(option)}</span>
-                                     {getOptionSummary(option) && (
-                                       <span className="block text-[10px] text-[var(--color-text-muted)] mt-0.5">{getOptionSummary(option)}</span>
-                                     )}
-                                   </button>
-                                )}
-                          </div>
-                         );
+                              return (
+                               <div
+                                 key={optionIndex}
+                                 className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
+                                   isSelected
+                                     ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
+                                     : isDisabled
+                                       ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20 cursor-not-allowed"
+                                       : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                                 }`}
+                               >
+                                  {isSelected ? (
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex-1">
+                                        <div className="flex items-center gap-2">
+                                          {primaryInfo?.type === "weapon" && (() => {
+                                            const WIcon = weaponTypeIcons[primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee"] || Sword;
+                                            return <WIcon className={`h-4 w-4 shrink-0 ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-muted)]"}`} />;
+                                          })()}
+                                          <span className="text-body font-semibold text-[var(--color-surface)]">{getOptionLabel(option)}</span>
+                                        </div>
+                                        {primaryInfo?.type === "weapon" && (() => {
+                                          const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
+                                          return wStats ? (
+                                            <div className="flex items-center gap-1.5 mt-1.5 ml-6">
+                                              <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                                              <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                {wStats.damageDice}
+                                              </span>
+                                              <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                {wStats.abilityKey} {wStats.damageBonus}
+                                              </span>
+                                              <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
+                                                {wStats.attackBonus} to hit
+                                              </span>
+                                            </div>
+                                          ) : null;
+                                        })()}
+                                        {primaryInfo?.type !== "weapon" && (
+                                          <div className="text-[10px] text-[var(--color-surface)]/70 mt-0.5">{getOptionSummary(option)}</div>
+                                        )}
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <button
+                                          type="button"
+                                          onClick={() => handleChoiceRemove(group)}
+                                          className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] ml-1 text-lg leading-none"
+                                        >
+                                          ×
+                                        </button>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      onClick={() => !isDisabled && handleOptionClick(group, optionIndex)}
+                                      disabled={isDisabled}
+                                      className={`w-full text-left text-body ${isDisabled ? "cursor-not-allowed opacity-50" : ""}`}
+                                    >
+                                      <div className="flex items-center gap-2">
+                                        {primaryInfo?.type === "weapon" && (() => {
+                                          const WIcon = weaponTypeIcons[primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee"] || Sword;
+                                          return <WIcon className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />;
+                                        })()}
+                                        <span>{getOptionLabel(option)}</span>
+                                      </div>
+                                      {primaryInfo?.type === "weapon" && (() => {
+                                        const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
+                                        return wStats ? (
+                                          <div className="flex items-center gap-1.5 mt-1.5 ml-6">
+                                            <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                                            <span
+                                              className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                                              style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
+                                            >
+                                              {wStats.damageDice}
+                                            </span>
+                                            <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                                              {wStats.abilityKey} {wStats.damageBonus}
+                                            </span>
+                                            <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
+                                              {wStats.attackBonus} to hit
+                                            </span>
+                                          </div>
+                                        ) : null;
+                                      })()}
+                                      {primaryInfo?.type !== "weapon" && getOptionSummary(option) && (
+                                        <span className="block text-[10px] text-[var(--color-text-muted)] mt-0.5">{getOptionSummary(option)}</span>
+                                      )}
+                                    </button>
+                                   )}
+                              </div>
+                              );
                      })}
                    </div>
                  </div>
@@ -696,40 +747,62 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
          </div>
        )}
 
-       <div>
-          <span className="text-card-title text-[var(--color-text-primary)]">
-           Current Inventory
-         </span>
-         {data.inventory.length === 0 ? (
-          <p className="text-description">No equipment yet.</p>
-        ) : (
-          <div className="space-y-2">
-            {data.inventory.map((item) => {
-              const itemInfo = item.description ? JSON.parse(item.description) : null;
-              const isGranted = item.isGranted;
+        <div>
+           <span className="text-card-title text-[var(--color-text-primary)]">
+            Current Inventory
+          </span>
+          {data.inventory.length === 0 ? (
+           <p className="text-description">No equipment yet.</p>
+         ) : (
+           <div className="space-y-2">
+             {data.inventory.map((item) => {
+               const itemInfo = item.description ? JSON.parse(item.description) : null;
+               const isGranted = item.isGranted;
+               const wStats = itemInfo?.type === "weapon" ? getWeaponStats(item.name, itemInfo.category) : null;
 
-              return (
-                 <div key={item.id} className="flex flex-col gap-1 px-3 py-2.5 border border-[var(--color-border)] rounded-[var(--border-radius-sm)] bg-[var(--color-surface)]">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
-                      {isGranted && (
-                        <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">GRANTED</span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[var(--color-text-muted)]">x{item.quantity || 1}</span>
-                      {itemInfo && (
-                        <InfoButton
-                          title={item.name}
-                          description={getItemDescription(itemInfo)}
-                        />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+               return (
+                  <div key={item.id} className="flex flex-col gap-1 px-3 py-2.5 border border-[var(--color-border)] rounded-[var(--border-radius-sm)] bg-[var(--color-surface)]">
+                   <div className="flex items-center justify-between">
+                     <div className="flex items-center gap-2">
+                       {itemInfo?.type === "weapon" && (() => {
+                         const WIcon = weaponTypeIcons[itemInfo.category === "Ranged" ? "simple_ranged" : "simple_melee"] || Sword;
+                         return <WIcon className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />;
+                       })()}
+                       <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
+                       {isGranted && (
+                         <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">GRANTED</span>
+                       )}
+                     </div>
+                     <div className="flex items-center gap-2">
+                       <span className="text-[var(--color-text-muted)]">x{item.quantity || 1}</span>
+                       {itemInfo && (
+                         <InfoButton
+                           title={item.name}
+                           description={getItemDescription(itemInfo)}
+                         />
+                       )}
+                     </div>
+                   </div>
+                   {wStats && (
+                     <div className="flex items-center gap-1.5 ml-6">
+                       <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
+                       <span
+                         className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                         style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
+                       >
+                         {wStats.damageDice}
+                       </span>
+                       <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                         {wStats.abilityKey} {wStats.damageBonus}
+                       </span>
+                       <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
+                         {wStats.attackBonus} to hit
+                       </span>
+                     </div>
+                   )}
+                 </div>
+               );
+             })}
           </div>
         )}
       </div>
