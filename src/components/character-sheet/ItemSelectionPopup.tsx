@@ -57,6 +57,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
           type: "weapon",
           category: weapon.category_range,
           properties: weapon.properties?.map((p) => p.name) || [],
+          description: weapon.description || "",
         }),
         properties: weapon.properties?.map((p) => p.name.toLowerCase()) || [],
       };
@@ -80,6 +81,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
           armorType,
           baseAC: armor.armor_class?.base,
           maxDex: armor.armor_class?.max_bonus ?? (armor.armor_class?.dex_bonus ? null : 0),
+          description: armor.description || "",
         }),
       };
     } else {

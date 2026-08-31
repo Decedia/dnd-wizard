@@ -72,6 +72,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         damageType: weapon.damage?.damage_type?.name || "",
         properties: weapon.properties?.map((p: any) => p.name) || [],
         category: weapon.category_range,
+        description: weapon.description || "",
       };
     }
 
@@ -504,13 +505,14 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const parts: string[] = [];
 
     if (itemInfo.type === "weapon") {
+      if (itemInfo.description) parts.push(itemInfo.description);
       if (itemInfo.damageDice) parts.push(`Damage: ${itemInfo.damageDice} ${itemInfo.damageType || ""}`);
       if (itemInfo.category) parts.push(`Category: ${itemInfo.category}`);
       if (itemInfo.properties && itemInfo.properties.length > 0) parts.push(`Properties: ${itemInfo.properties.join(", ")}`);
     } else if (itemInfo.type === "armor") {
+      if (itemInfo.description) parts.push(itemInfo.description);
       parts.push(`AC: ${itemInfo.baseAC} + Dex${itemInfo.maxDex !== null ? ` (max +${itemInfo.maxDex})` : ""}`);
       if (itemInfo.armorType) parts.push(`Type: ${itemInfo.armorType}`);
-      if (itemInfo.description) parts.push(itemInfo.description);
     } else if (itemInfo.type === "instrument") {
       parts.push("Musical instrument. Bards use musical instruments as a spellcasting focus.");
     } else if (itemInfo.type === "item") {

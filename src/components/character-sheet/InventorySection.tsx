@@ -226,6 +226,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     const parts: string[] = [];
 
     if (item.itemType === "weapon") {
+      if (itemInfo?.description) parts.push(itemInfo.description);
       if (item.damageDice) parts.push(`Damage: ${item.damageDice} ${item.damageType || ""}`);
       if (item.category) parts.push(`Category: ${item.category}`);
       if (itemInfo?.properties && itemInfo.properties.length > 0) parts.push(`Properties: ${itemInfo.properties.join(", ")}`);
@@ -234,6 +235,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       else if (handling === "two-handed") parts.push("Two-handed");
       else if (handling === "versatile") parts.push("Versatile (1d10 two-handed)");
     } else if (item.itemType === "armor") {
+      if (itemInfo?.description) parts.push(itemInfo.description);
       const baseAC = item.baseAC ?? itemInfo?.baseAC;
       const armorType = item.armorType || itemInfo?.armorType;
       const maxDex = item.maxDexBonus ?? itemInfo?.maxDex ?? itemInfo?.maxDexBonus;
