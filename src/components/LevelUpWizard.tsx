@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, type Character } from "@/lib/storage";
-import { applySubclassFeatures, syncBaseFeatures } from "@/lib/character-creation";
+import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./character-sheet/SpellSelectionModal";
@@ -925,6 +925,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
 
     let finalChar = applySubclassFeatures(draft);
+    finalChar = applySubclassSpellGrants(finalChar);
     finalChar = syncBaseFeatures(finalChar);
     finalChar = { ...finalChar, ...computeDerivedStats(finalChar) };
     onComplete(finalChar);

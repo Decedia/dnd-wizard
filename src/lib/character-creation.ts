@@ -1,5 +1,5 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, type Character } from "./storage";
-import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat } from "./srd-client";
+import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
 import type { CreationStep } from "./creation-types";
 
 const ARCANE_FOCUS_NAMES = ["crystal", "orb", "rod", "staff", "wand"];
@@ -792,6 +792,109 @@ export function applySubclassFeatures(character: Character): Character {
   return { ...character, features: [...character.features, ...toAdd] };
 }
 
+interface SubclassSpellGrant {
+  name: string;
+  level: number;
+  srdSpellName: string;
+}
+
+function getSubclassSpellGrants(subclass: string, level: number): SubclassSpellGrant[] {
+  const grants: SubclassSpellGrant[] = [];
+
+  const spellMap: Record<string, Record<number, { name: string; srdName: string }[]>> = {
+    "Shadow Magic": {
+      1: [{ name: "Darkness", srdName: "Darkness" }]
+    },
+    "The Celestial": {
+      1: [
+        { name: "Sacred Flame", srdName: "Sacred Flame" },
+        { name: "Light", srdName: "Light" }
+      ]
+    },
+    "The Fathomless": {
+      1: [{ name: "Create or Destroy Water", srdName: "Create or Destroy Water" }],
+      3: [{ name: "Thunderwave", srdName: "Thunderwave" }],
+      5: [{ name: "Sleet Storm", srdName: "Sleet Storm" }],
+      7: [{ name: "Control Water", srdName: "Control Water" }],
+      9: [{ name: "Cone of Cold", srdName: "Cone of Cold" }]
+    },
+    "The Genie": {
+      1: [
+        { name: "Detect Evil and Good", srdName: "Detect Evil and Good" },
+        { name: "Protection from Evil and Good", srdName: "Protection from Evil and Good" }
+      ],
+      3: [
+        { name: "Create Food and Water", srdName: "Create Food and Water" },
+        { name: "Phantasmal Killer", srdName: "Phantasmal Killer" }
+      ],
+      5: [
+        { name: "Creation", srdName: "Creation" },
+        { name: "Sending", srdName: "Sending" }
+      ],
+      7: [
+        { name: "Summon Elemental", srdName: "Summon Elemental" }
+      ],
+      9: [
+        { name: "Wall of Stone", srdName: "Wall of Stone" }
+      ]
+    }
+  };
+
+  const classGrants = spellMap[subclass];
+  if (!classGrants) return grants;
+
+  for (const [lvl, spells] of Object.entries(classGrants)) {
+    if (level >= Number(lvl)) {
+      for (const spell of spells) {
+        grants.push({ name: spell.name, level: 0, srdSpellName: spell.srdName });
+      }
+    }
+  }
+
+  return grants;
+}
+
+export function applySubclassSpellGrants(character: Character): Character {
+  if (!character.subclass) return character;
+  const grants = getSubclassSpellGrants(character.subclass, character.level);
+  if (grants.length === 0) return character;
+
+  const allSpells = getStaticSpells(character.sources);
+  const existingSpellNames = new Set((character.spells || []).map(s => s.name?.toLowerCase()));
+  const newSpells: Character["spells"] = [];
+  const newCantrips: Character["cantrips"] = [];
+
+  for (const grant of grants) {
+    if (existingSpellNames.has(grant.name.toLowerCase())) continue;
+    const srdSpell = allSpells.find(s => s.name?.toLowerCase() === grant.srdSpellName.toLowerCase());
+    if (!srdSpell) continue;
+
+    const id = `subclass-spell-${grant.name}-${grant.level}`.replace(/\s+/g, "-");
+    const spellLevel = grant.level;
+    const desc = Array.isArray(srdSpell.description) ? srdSpell.description.join("\n") : (srdSpell.description || "");
+
+    newSpells.push({
+      id,
+      name: grant.name,
+      level: spellLevel,
+      source: "srd" as const,
+      srdSpellName: grant.srdSpellName,
+      description: desc,
+    });
+
+    if (spellLevel === 0) {
+      newCantrips.push({ id, name: grant.name });
+    }
+  }
+
+  if (newSpells.length === 0) return character;
+  return {
+    ...character,
+    spells: [...(character.spells || []), ...newSpells],
+    cantrips: [...(character.cantrips || []), ...newCantrips],
+  };
+}
+
 /**
  * Returns true when the subclass step is truly complete:
  * a subclass is selected AND every choice-requiring feature has a selection.
@@ -811,6 +914,7 @@ export function isSubclassStepComplete(character: Character): boolean {
 
 export function finalizeCreation(character: Character): Character {
   let final = applySubclassFeatures(character);
+  final = applySubclassSpellGrants(final);
   final = syncBaseFeatures(final);
 
   if (final.race === "Human" && final.raceVariant === "variant") {

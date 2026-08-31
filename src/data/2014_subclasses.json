@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-31T10:10:43.624Z",
+  "generated": "2026-08-31T11:33:48.079Z",
   "total": 82,
   "subclasses": [
     {
@@ -2505,7 +2505,22 @@
           "description": [
             "At 3rd level, you adopt a particular style of fighting as your specialty. Choose one of the following options: Dueling, Two-Weapon Fighting, or Great Weapon Fighting. You can't take a Fighting Style option more than once, even if you get to choose again."
           ],
-          "level": 3
+          "level": 3,
+          "choices": [
+            {
+              "name": "Dueling",
+              "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
+            },
+            {
+              "name": "Two-Weapon Fighting",
+              "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack."
+            },
+            {
+              "name": "Great Weapon Fighting",
+              "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll."
+            }
+          ],
+          "choicesCount": 1
         },
         {
           "name": "Blade Flourish",
@@ -2800,7 +2815,46 @@
           "description": [
             "The following options are available to you when you use your Arcane Shot feature:\n\nBanishing Arrow: You banish the target you hit to a harmless demiplane until the end of your next turn. The target disappears, incapacitated. When the effect ends, the target reappears in the space it left or in the nearest unoccupied space.\n\nBeguiling Arrow: Your charm inflicts psychic damage and causes the target to be charmed by you.\n\nBursting Arrow: The arrow creates a burst of energy that damages the target and up to two other creatures within 10 feet of it.\n\nEnfeebling Arrow: The target must make a Constitution saving throw. On a failed save, the target deals only half damage with weapon attacks until the end of your next turn.\n\nGrasping Arrow: Vines burst from the arrow, grasping the target and up to two other creatures within 10 feet of it.\n\nMind-Scrambling Arrow: The target must make a Wisdom saving throw. On a failed save, the target can't take reactions until the start of your next turn and must roll a d6 to determine its behavior.\n\nPiercing Arrow: You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature.\n\nSeeking Arrow: You gain magical insight on the location of the target. You make a ranged attack with the arrow as a normal ranged attack. If the attack misses, you can use a bonus action to make a new attack against the same target.\n\nShadow Arrow: You weave illusion magic into your arrow, causing the target to be blinded until the end of your next turn."
           ],
-          "level": 3
+          "level": 3,
+          "choices": [
+            {
+              "name": "Banishing Arrow",
+              "description": "You banish the target you hit to a harmless demiplane until the end of your next turn. The target disappears, incapacitated. When the effect ends, the target reappears in the space it left or in the nearest unoccupied space."
+            },
+            {
+              "name": "Beguiling Arrow",
+              "description": "Your charm inflicts psychic damage and causes the target to be charmed by you."
+            },
+            {
+              "name": "Bursting Arrow",
+              "description": "The arrow creates a burst of energy that damages the target and up to two other creatures within 10 feet of it."
+            },
+            {
+              "name": "Enfeebling Arrow",
+              "description": "The target must make a Constitution saving throw. On a failed save, the target deals only half damage with weapon attacks until the end of your next turn."
+            },
+            {
+              "name": "Grasping Arrow",
+              "description": "Vines burst from the arrow, grasping the target and up to two other creatures within 10 feet of it."
+            },
+            {
+              "name": "Mind-Scrambling Arrow",
+              "description": "The target must make a Wisdom saving throw. On a failed save, the target can't take reactions until the start of your next turn and must roll a d6 to determine its behavior."
+            },
+            {
+              "name": "Piercing Arrow",
+              "description": "You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature."
+            },
+            {
+              "name": "Seeking Arrow",
+              "description": "You gain magical insight on the location of the target. You make a ranged attack with the arrow as a normal ranged attack. If the attack misses, you can use a bonus action to make a new attack against the same target."
+            },
+            {
+              "name": "Shadow Arrow",
+              "description": "You weave illusion magic into your arrow, causing the target to be blinded until the end of your next turn."
+            }
+          ],
+          "choicesCount": 2
         },
         {
           "name": "Magic Arrow",
@@ -2841,7 +2895,34 @@
           "description": [
             "When you choose this archetype at 3rd level, you gain proficiency with one of the following skills of your choice: Animal Handling, History, Insight, Performance, or Persuasion. Alternatively, you learn one language of your choice."
           ],
-          "level": 3
+          "level": 3,
+          "choices": [
+            {
+              "name": "Animal Handling",
+              "description": "Gain proficiency in Animal Handling skill."
+            },
+            {
+              "name": "History",
+              "description": "Gain proficiency in History skill."
+            },
+            {
+              "name": "Insight",
+              "description": "Gain proficiency in Insight skill."
+            },
+            {
+              "name": "Performance",
+              "description": "Gain proficiency in Performance skill."
+            },
+            {
+              "name": "Persuasion",
+              "description": "Gain proficiency in Persuasion skill."
+            },
+            {
+              "name": "Language (choice)",
+              "description": "Learn one language of your choice."
+            }
+          ],
+          "choicesCount": 1
         },
         {
           "name": "Born to the Saddle",
@@ -2903,7 +2984,30 @@
           "description": [
             "When you choose this archetype at 3rd level, you gain proficiency with one of the following skills of your choice: History, Insight, Performance, or Persuasion. Alternatively, you learn one language of your choice."
           ],
-          "level": 3
+          "level": 3,
+          "choices": [
+            {
+              "name": "History",
+              "description": "Gain proficiency in History skill."
+            },
+            {
+              "name": "Insight",
+              "description": "Gain proficiency in Insight skill."
+            },
+            {
+              "name": "Performance",
+              "description": "Gain proficiency in Performance skill."
+            },
+            {
+              "name": "Persuasion",
+              "description": "Gain proficiency in Persuasion skill."
+            },
+            {
+              "name": "Language (choice)",
+              "description": "Learn one language of your choice."
+            }
+          ],
+          "choicesCount": 1
         },
         {
           "name": "Fighting Spirit",
@@ -3006,7 +3110,18 @@
           "description": [
             "When you choose this tradition at 3rd level, you gain proficiency with martial weapons and calligrapher's supplies or painter's supplies. You also choose two types of Kensei Weapons: melee weapons or ranged weapons. You can change your choices each time you gain a level. You can use your choice of any Kensei Weapon as a monk weapon, and when you do so, you can use your Dexterity modifier instead of Strength for the attack and damage rolls of your Kensei Weapons."
           ],
-          "level": 3
+          "level": 3,
+          "choices": [
+            {
+              "name": "Kensei Weapons (Melee)",
+              "description": "Choose two types of melee weapons to be your kensei weapons. You can use your Dexterity modifier instead of Strength for attack and damage rolls with these weapons."
+            },
+            {
+              "name": "Kensei Weapons (Ranged)",
+              "description": "Choose one ranged weapon to be your kensei weapon. You can use your Dexterity modifier instead of Strength for attack and damage rolls with this weapon."
+            }
+          ],
+          "choicesCount": 2
         },
         {
           "name": "One with the Blade",
