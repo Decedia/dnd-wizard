@@ -61,9 +61,12 @@ interface DescriptionModalProps {
   content: string | string[];
   onClose: () => void;
   children?: React.ReactNode;
+  showConfirm?: boolean;
+  onConfirm?: () => void;
+  confirmLabel?: string;
 }
 
-export function DescriptionModal({ title, content, onClose, children }: DescriptionModalProps) {
+export function DescriptionModal({ title, content, onClose, children, showConfirm, onConfirm, confirmLabel = "Confirm" }: DescriptionModalProps) {
   const text = Array.isArray(content) ? content.join(" ") : content;
 
   useEffect(() => {
@@ -94,6 +97,17 @@ export function DescriptionModal({ title, content, onClose, children }: Descript
             <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{text}</p>
           )}
         </div>
+        {showConfirm && onConfirm && (
+          <div className="border-t border-[var(--color-border)] px-4 py-3">
+            <button
+              type="button"
+              onClick={onConfirm}
+              className="w-full py-2 px-4 rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              {confirmLabel}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

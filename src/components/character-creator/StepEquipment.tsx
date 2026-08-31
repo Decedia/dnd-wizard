@@ -9,6 +9,16 @@ import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib
 import { InfoButton } from "@/components/InfoButton";
 import { DescriptionModal } from "@/components/InfoButton";
 import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
+import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff } from "@/components/icons";
+
+const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  martial_melee: Sword,
+  martial_ranged: BowArrow,
+  martial: Sword,
+  simple_melee: Dagger,
+  simple_ranged: Crossbow,
+  simple: Dagger,
+};
 
 interface StepEquipmentProps {
   data: Character;
@@ -34,6 +44,7 @@ const DRUIDIC_FOCUS_TYPES = [
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
+  const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
@@ -583,14 +594,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                       </div>
                                       {selectedWeapons.map((weapon, wIdx) => {
                                         const wStats = getWeaponStats(weapon.name, weapon.category);
+                                        const WIcon = weaponTypeIcons[option.weaponType || ""] || Sword;
                                         return (
                                            <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
                                             <div className="flex-1">
                                               <div className="flex items-center gap-2">
+                                                <WIcon className="h-4 w-4 text-[var(--color-surface)] shrink-0" />
                                                 <span className="text-body font-semibold text-[var(--color-surface)]">{weapon.name}</span>
                                               </div>
                                               {wStats && (
-                                                <div className="flex items-center gap-1.5 mt-1.5">
+                                                <div className="flex items-center gap-1.5 mt-1.5 ml-6">
                                                   <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
                                                   <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
                                                     {wStats.damageDice}
@@ -723,9 +736,12 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
       {popupGroup && popupOption && (
         <DescriptionModal
-          title={popupOption.isWeaponChoice ? `Choose a ${popupOption.weaponType?.replace('_', ' ')} weapon` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : popupOption.isHolySymbolChoice ? "Choose a holy symbol" : popupOption.isDruidicFocusChoice ? "Choose a druidic focus" : "Select an item"}
+          title={popupOption.isWeaponChoice ? `Choose ${popupOption.selectionCount || 1} ${popupOption.weaponType?.replace('_', ' ')} weapon${(popupOption.selectionCount || 1) > 1 ? "s" : ""}` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : popupOption.isHolySymbolChoice ? "Choose a holy symbol" : popupOption.isDruidicFocusChoice ? "Choose a druidic focus" : "Select an item"}
           content=""
           onClose={() => setPopupGroup(null)}
+          showConfirm={popupOption.isWeaponChoice && (popupOption.selectionCount || 1) > 1}
+          onConfirm={() => setPopupGroup(null)}
+          confirmLabel={`Confirm (${popupSelectedWeapons.length}/${popupOption.selectionCount || 1})`}
         >
           {popupOption.isWeaponChoice && (
             <div className="mb-3 p-2 rounded border border-[var(--color-border)] bg-[var(--color-bg)]">
@@ -759,6 +775,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const isWeaponSelected = popupSelectedWeapons.some((w: any) => w.name === weapon.name);
               const selectionCount = popupOption.selectionCount || 1;
               const isDisabled = !isWeaponSelected && popupSelectedWeapons.length >= selectionCount;
+              const WIcon = weaponTypeIcons[popupOption.weaponType || ""] || Sword;
               return (
                  <button
                     key={weapon.name}
@@ -774,7 +791,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className={`text-body ${isWeaponSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}>{weapon.name}</span>
+                      <div className="flex items-center gap-2">
+                        <WIcon className={`h-4 w-4 shrink-0 ${isWeaponSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-muted)]"}`} />
+                        <span className={`text-body ${isWeaponSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}>{weapon.name}</span>
+                      </div>
                       {wStats && (
                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)]"}`}>
                           {wStats.attackBonus} to hit
@@ -782,7 +802,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       )}
                     </div>
                     {wStats && (
-                      <div className="flex items-center gap-1.5 mt-1">
+                      <div className="flex items-center gap-1.5 mt-1 ml-6">
                         <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
                         <span
                           className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : ""}`}
