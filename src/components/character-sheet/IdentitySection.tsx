@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getStaticRaces, getStaticClasses } from "@/lib/srd-client";
+import { SourceBadge } from "../SourceBadge";
 import { languageNames } from "@/data/srd";
 import { ALIGNMENTS } from "@/lib/storage";
 import { UserIcon as User } from "@/components/icons";
@@ -150,7 +151,12 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
             <ViewField label="CHARACTER NAME" value={character.name} />
             <ViewField label="PLAYER NAME" value={character.playerName} />
             <div className="grid grid-cols-2 divide-x divide-border-strong">
-              <ViewField label="RACE" value={character.race} />
+              <ViewField label="RACE" value={character.race} badge={
+                (() => {
+                  const race = races.find(r => r.name === character.race);
+                  return race?.source && race.source !== "PHB" ? <SourceBadge source={race.source} /> : undefined;
+                })()
+              } />
               <ViewField label="CLASS" value={character.class} className="pl-3" />
             </div>
             <div className="grid grid-cols-2 divide-x divide-border-strong">
@@ -179,11 +185,14 @@ function Field({ label, children, className }: { label: string; children: React.
   );
 }
 
-function ViewField({ label, value, className }: { label: string; value: string; className?: string }) {
+function ViewField({ label, value, className, badge }: { label: string; value: string; className?: string; badge?: React.ReactNode }) {
   return (
     <div className={`flex flex-col gap-1.5 ${className || ""}`}>
       <span className="field-label-light">{label}</span>
-      <span className="text-sm font-semibold text-ink">{value || "—"}</span>
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-semibold text-ink">{value || "—"}</span>
+        {badge}
+      </div>
     </div>
   );
 }

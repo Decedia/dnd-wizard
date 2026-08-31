@@ -5,6 +5,7 @@ import { StepCard } from "./StepCard";
 import { getStaticRaces, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatSelector } from "./FeatSelector";
+import { SourceBadge } from "../SourceBadge";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { CheckIcon as Check } from "@/components/icons";
@@ -69,7 +70,10 @@ export function StepRace({ data, onChange }: StepRaceProps) {
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-card-title">{race.name}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-card-title">{race.name}</span>
+                      {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
+                    </div>
                     <div className="flex items-center gap-2">
                       <span className="text-muted">
                         {race.size} / Speed {race.speed} ft

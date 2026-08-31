@@ -5,7 +5,8 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock } from "@/components/icons";
 import { FeatPopup } from "./FeatPopup";
-import { getStaticFeats } from "@/lib/srd-client";
+import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
+import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
 
 interface FeaturesTraitsSectionProps {
@@ -56,7 +57,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
       <div className="space-y-3">
         {character.subclass && (
           <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
-            <span className="text-sm font-bold text-ink">{character.subclass}</span>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-bold text-ink">{character.subclass}</span>
+              {(() => {
+                const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
+                const sub = subclasses.find(s => s.name === character.subclass);
+                return sub?.source && sub.source !== "PHB" ? <SourceBadge source={sub.source} /> : null;
+              })()}
+            </div>
           </div>
         )}
         {character.features.map((feature) => {
@@ -111,9 +119,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                             <button
                               type="button"
                               onClick={() => setPopupFeatName(feature.name)}
-                              className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
+                              className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex items-center gap-1.5"
                             >
                               {feature.name}
+                              {matchedFeat.source && matchedFeat.source !== "PHB" && (
+                                <SourceBadge source={matchedFeat.source} />
+                              )}
                             </button>
                           );
                         }

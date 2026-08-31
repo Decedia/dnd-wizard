@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { CheckCircleIcon as CheckCircle } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
+import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
 
@@ -176,10 +177,11 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
             }`}
           >
             <div className="flex items-center justify-between">
-              <div>
+              <div className="flex items-center gap-2">
                 <span className="text-body">{spellName}</span>
+                {spell?.source && spell.source !== "PHB" && <SourceBadge source={spell.source} />}
                 {spell && (
-                  <span className="text-description ml-2">Level {spell.level}</span>
+                  <span className="text-description">Level {spell.level}</span>
                 )}
               </div>
               {isSelected && (
