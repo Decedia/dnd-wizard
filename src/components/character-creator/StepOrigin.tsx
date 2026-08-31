@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, FistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus, BarbarianIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, WarlockIcon, WizardStaffIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, DemonSkullIcon, PersonIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
-import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
+import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatSelector } from "./FeatSelector";
 import { SourceBadge } from "../SourceBadge";
@@ -51,6 +51,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [pendingVariant, setPendingVariant] = useState<boolean>(data.raceVariant === "variant");
   const classes: SRDClass[] = getStaticClasses();
   const races: SRDRace[] = getStaticRaces(data.sources);
+
+  const getSubclassSource = (className: string, subclassName: string): string | undefined => {
+    const subs = getStaticSubclasses(className, data.sources);
+    const found = subs.find(s => s.name === subclassName);
+    return found?.source;
+  };
 
   const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";
   const selectedFeat = data.featureSelections?.["variant-human-feat"]?.[0];
@@ -273,14 +279,18 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           )}
                           {hasSubclasses && (
                             <div className="mt-2 flex flex-wrap gap-1.5">
-                              {cls.subclasses!.map((sub) => (
-                                <span
-                                  key={sub.name}
-                                  className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-1.5 py-0.5 rounded-full"
-                                >
-                                  {sub.name}
-                                </span>
-                              ))}
+                              {cls.subclasses!.map((sub) => {
+                                const source = getSubclassSource(cls.name, sub.name);
+                                return (
+                                  <span
+                                    key={sub.name}
+                                    className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-1.5 py-0.5 rounded-full flex items-center gap-1"
+                                  >
+                                    {sub.name}
+                                    {source && source !== "PHB" && <SourceBadge source={source} />}
+                                  </span>
+                                );
+                              })}
                             </div>
                           )}
                         </div>
