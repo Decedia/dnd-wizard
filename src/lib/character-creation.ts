@@ -837,6 +837,74 @@ function getSubclassSpellGrants(subclass: string, level: number): SubclassSpellG
       9: [
         { name: "Wall of Stone", srdName: "Wall of Stone" }
       ]
+    },
+    "Fey Wanderer": {
+      3: [{ name: "Charm Person", srdName: "Charm Person" }],
+      5: [{ name: "Misty Step", srdName: "Misty Step" }],
+      9: [{ name: "Dispel Magic", srdName: "Dispel Magic" }],
+      13: [{ name: "Dimension Door", srdName: "Dimension Door" }],
+      17: [{ name: "Mislead", srdName: "Mislead" }]
+    },
+    "Swarmkeeper": {
+      3: [
+        { name: "Mage Hand", srdName: "Mage Hand" },
+        { name: "Faerie Fire", srdName: "Faerie Fire" }
+      ],
+      5: [{ name: "Web", srdName: "Web" }],
+      9: [{ name: "Gaseous Form", srdName: "Gaseous Form" }],
+      13: [{ name: "Giant Insect", srdName: "Giant Insect" }],
+      17: [{ name: "Insect Plague", srdName: "Insect Plague" }]
+    },
+    "Aberrant Mind": {
+      1: [
+        { name: "Arms of Hadar", srdName: "Arms of Hadar" },
+        { name: "Dissonant Whispers", srdName: "Dissonant Whispers" },
+        { name: "Mind Sliver", srdName: "Mind Sliver" }
+      ],
+      3: [
+        { name: "Calm Emotions", srdName: "Calm Emotions" },
+        { name: "Detect Thoughts", srdName: "Detect Thoughts" },
+        { name: "Hunger of Hadar", srdName: "Hunger of Hadar" }
+      ],
+      5: [
+        { name: "Compulsion", srdName: "Compulsion" },
+        { name: "Sending", srdName: "Sending" },
+        { name: "Slow", srdName: "Slow" }
+      ],
+      7: [
+        { name: "Evard's Black Tentacles", srdName: "Evard's Black Tentacles" },
+        { name: "Summon Aberration", srdName: "Summon Aberration" }
+      ],
+      9: [
+        { name: "Rary's Telepathic Bond", srdName: "Rary's Telepathic Bond" },
+        { name: "Telekinesis", srdName: "Telekinesis" }
+      ],
+      11: [
+        { name: "Psychic Scream", srdName: "Psychic Scream" },
+        { name: "Summon Aberration", srdName: "Summon Aberration" }
+      ]
+    },
+    "Clockwork Magic": {
+      1: [
+        { name: "Alarm", srdName: "Alarm" },
+        { name: "Protection from Evil and Good", srdName: "Protection from Evil and Good" }
+      ],
+      3: [
+        { name: "Aid", srdName: "Aid" },
+        { name: "Lesser Restoration", srdName: "Lesser Restoration" }
+      ],
+      5: [
+        { name: "Dispel Magic", srdName: "Dispel Magic" },
+        { name: "Protection from Energy", srdName: "Protection from Energy" }
+      ],
+      7: [
+        { name: "Freedom of Movement", srdName: "Freedom of Movement" },
+        { name: "Summon Construct", srdName: "Summon Construct" }
+      ],
+      9: [
+        { name: "Greater Restoration", srdName: "Greater Restoration" },
+        { name: "Wall of Force", srdName: "Wall of Force" }
+      ]
     }
   };
 

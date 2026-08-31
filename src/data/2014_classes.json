@@ -4931,8 +4931,26 @@
           "url": "/api/2014/subclasses/beast-master"
         },
         {
+          "index": "fey-wanderer",
           "name": "Fey Wanderer",
-          "description": ""
+          "description": "",
+          "expandedSpells": {
+            "3": [
+              "Charm Person"
+            ],
+            "5": [
+              "Misty Step"
+            ],
+            "9": [
+              "Dispel Magic"
+            ],
+            "13": [
+              "Dimension Door"
+            ],
+            "17": [
+              "Mislead"
+            ]
+          }
         },
         {
           "name": "Horizon Walker",
@@ -4943,8 +4961,27 @@
           "description": ""
         },
         {
+          "index": "swarmkeeper",
           "name": "Swarmkeeper",
-          "description": ""
+          "description": "",
+          "expandedSpells": {
+            "3": [
+              "Mage Hand",
+              "Faerie Fire"
+            ],
+            "5": [
+              "Web"
+            ],
+            "9": [
+              "Gaseous Form"
+            ],
+            "13": [
+              "Giant Insect"
+            ],
+            "17": [
+              "Insect Plague"
+            ]
+          }
         }
       ],
       "spellsKnown": {
@@ -6173,12 +6210,65 @@
           "url": "/api/2014/subclasses/wild-magic"
         },
         {
+          "index": "aberrant-mind",
           "name": "Aberrant Mind",
-          "description": ""
+          "description": "",
+          "expandedSpells": {
+            "1": [
+              "Arms of Hadar",
+              "Dissonant Whispers",
+              "Mind Sliver"
+            ],
+            "3": [
+              "Calm Emotions",
+              "Detect Thoughts",
+              "Hunger of Hadar"
+            ],
+            "5": [
+              "Compulsion",
+              "Sending",
+              "Slow"
+            ],
+            "7": [
+              "Evard's Black Tentacles",
+              "Summon Aberration"
+            ],
+            "9": [
+              "Rary's Telepathic Bond",
+              "Telekinesis"
+            ],
+            "11": [
+              "Psychic Scream",
+              "Summon Aberration"
+            ]
+          }
         },
         {
+          "index": "clockwork-soul",
           "name": "Clockwork Magic",
-          "description": ""
+          "description": "",
+          "expandedSpells": {
+            "1": [
+              "Alarm",
+              "Protection from Evil and Good"
+            ],
+            "3": [
+              "Aid",
+              "Lesser Restoration"
+            ],
+            "5": [
+              "Dispel Magic",
+              "Protection from Energy"
+            ],
+            "7": [
+              "Freedom of Movement",
+              "Summon Construct"
+            ],
+            "9": [
+              "Greater Restoration",
+              "Wall of Force"
+            ]
+          }
         },
         {
           "name": "Divine Soul",
@@ -7247,12 +7337,51 @@
           "description": ""
         },
         {
+          "index": "the-genie",
           "name": "The Genie",
-          "description": ""
+          "description": "",
+          "expandedSpells": {
+            "1": [
+              "Detect Evil and Good",
+              "Protection from Evil and Good"
+            ],
+            "3": [
+              "Create Food and Water",
+              "Phantasmal Killer"
+            ],
+            "5": [
+              "Creation",
+              "Sending"
+            ],
+            "7": [
+              "Summon Elemental"
+            ],
+            "9": [
+              "Wall of Stone"
+            ]
+          }
         },
         {
+          "index": "the-fathomless",
           "name": "The Fathomless",
-          "description": ""
+          "description": "",
+          "expandedSpells": {
+            "1": [
+              "Create or Destroy Water"
+            ],
+            "3": [
+              "Thunderwave"
+            ],
+            "5": [
+              "Sleet Storm"
+            ],
+            "7": [
+              "Control Water"
+            ],
+            "9": [
+              "Cone of Cold"
+            ]
+          }
         }
       ],
       "spellsKnown": {
@@ -7898,14 +8027,17 @@
           "description": ""
         },
         {
+          "index": "chronurgy",
           "name": "Chronurgy Magic",
           "description": ""
         },
         {
+          "index": "graviturgy",
           "name": "Graviturgy Magic",
           "description": ""
         },
         {
+          "index": "scribes",
           "name": "Order of Scribes",
           "description": ""
         },
