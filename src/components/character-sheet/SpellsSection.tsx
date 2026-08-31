@@ -220,7 +220,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           const spellUsed = (character.spellsUsedThisTurn || []).includes(spell.id);
           const buffDef = getSpellBuff(spell.name);
           return (
-            <div key={spell.id} className={`list-row ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
+            <div key={spell.id} className={`card p-3 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
               <div className="flex items-start justify-between gap-2">
                 <div className="flex flex-col min-w-0 flex-1">
                   <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
