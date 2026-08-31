@@ -193,11 +193,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const itemInfo = getItemInfo(weapon.name);
     const selectionCount = option?.selectionCount || 1;
 
-    const existingWeapons = data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
+    const existingWeapons = data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon" && item.choiceOptionIndex === optionIndex);
 
     const alreadySelectedIndex = existingWeapons.findIndex(w => w.name === weapon.name);
     if (alreadySelectedIndex >= 0) {
-      // Toggle off: remove the weapon
       const newInventory = data.inventory.filter(item => item.id !== existingWeapons[alreadySelectedIndex].id);
       onChange({ inventory: newInventory });
       return;
