@@ -2,248 +2,705 @@
   "description": "Centralized subclass spell grants for all classes. Keyed by subclass index.",
   "domainSpells": {
     "life": {
-      "1": ["Bless", "Cure Wounds"],
-      "3": ["Lesser Restoration", "Spiritual Weapon"],
-      "5": ["Beacon of Hope", "Death Ward"],
-      "7": ["Guardian of Faith", "Healing Word"],
-      "9": ["Mass Cure Wounds", "Raise Dead"]
+      "1": [
+        "Bless",
+        "Cure Wounds"
+      ],
+      "3": [
+        "Lesser Restoration",
+        "Spiritual Weapon"
+      ],
+      "5": [
+        "Beacon of Hope",
+        "Death Ward"
+      ],
+      "7": [
+        "Guardian of Faith",
+        "Healing Word"
+      ],
+      "9": [
+        "Mass Cure Wounds",
+        "Raise Dead"
+      ]
     },
     "knowledge": {
-      "1": ["Command", "Identify"],
-      "3": ["Augury", "Suggestion"],
-      "5": ["Nondetection", "Speak with Dead"],
-      "7": ["Arcane Eye", "Confusion"],
-      "9": ["Legend Lore", "Scrying"]
+      "1": [
+        "Command",
+        "Identify"
+      ],
+      "3": [
+        "Augury",
+        "Suggestion"
+      ],
+      "5": [
+        "Nondetection",
+        "Speak with Dead"
+      ],
+      "7": [
+        "Arcane Eye",
+        "Confusion"
+      ],
+      "9": [
+        "Legend Lore",
+        "Scrying"
+      ]
     },
     "light": {
-      "1": ["Burning Hands", "Faerie Fire"],
-      "3": ["Flaming Sphere", "Scorching Ray"],
-      "5": ["Fireball", "Daylight"],
-      "7": ["Flame Strike", "Wall of Fire"],
-      "9": ["Fire Storm", "Flame Strike"]
+      "1": [
+        "Burning Hands",
+        "Faerie Fire"
+      ],
+      "3": [
+        "Flaming Sphere",
+        "Scorching Ray"
+      ],
+      "5": [
+        "Fireball",
+        "Daylight"
+      ],
+      "7": [
+        "Flame Strike",
+        "Wall of Fire"
+      ],
+      "9": [
+        "Fire Storm",
+        "Flame Strike"
+      ]
     },
     "nature": {
-      "1": ["Animal Friendship", "Speak with Animals"],
-      "3": ["Barkskin", "Spike Growth"],
-      "5": ["Plant Growth", "Wall of Stone"],
-      "7": ["Dominate Beast", "Insect Plague"],
-      "9": ["Tree Stride", "Insect Plague"]
+      "1": [
+        "Animal Friendship",
+        "Speak with Animals"
+      ],
+      "3": [
+        "Barkskin",
+        "Spike Growth"
+      ],
+      "5": [
+        "Plant Growth",
+        "Wall of Stone"
+      ],
+      "7": [
+        "Dominate Beast",
+        "Insect Plague"
+      ],
+      "9": [
+        "Tree Stride",
+        "Insect Plague"
+      ]
     },
     "tempest": {
-      "1": ["Fog Cloud", "Gust of Wind"],
-      "3": ["Shatter", "Call Lightning"],
-      "5": ["Sleet Storm", "Control Water"],
-      "7": ["Ice Storm", "Destructive Wave"],
-      "9": ["Control Water", "Destructive Wave"]
+      "1": [
+        "Fog Cloud",
+        "Gust of Wind"
+      ],
+      "3": [
+        "Shatter",
+        "Call Lightning"
+      ],
+      "5": [
+        "Sleet Storm",
+        "Control Water"
+      ],
+      "7": [
+        "Ice Storm",
+        "Destructive Wave"
+      ],
+      "9": [
+        "Control Water",
+        "Destructive Wave"
+      ]
     },
     "trickery": {
-      "1": ["Charm Person", "Disguise Self"],
-      "3": ["Mirror Image", "Pass without Trace"],
-      "5": ["Blink", "Dimension Door"],
-      "7": ["Polymorph", "Dominate Person"],
-      "9": ["Dominate Person", "Modify Memory"]
+      "1": [
+        "Charm Person",
+        "Disguise Self"
+      ],
+      "3": [
+        "Mirror Image",
+        "Pass without Trace"
+      ],
+      "5": [
+        "Blink",
+        "Dimension Door"
+      ],
+      "7": [
+        "Polymorph",
+        "Dominate Person"
+      ],
+      "9": [
+        "Dominate Person",
+        "Modify Memory"
+      ]
     },
     "war": {
-      "1": ["Divine Favor", "Shield of Faith"],
-      "3": ["Magic Weapon", "Spiritual Weapon"],
-      "5": ["Freedom of Movement", "Stoneskin"],
-      "7": ["Flame Strike", "Hold Monster"],
-      "9": ["Flame Strike", "Hold Monster"]
+      "1": [
+        "Divine Favor",
+        "Shield of Faith"
+      ],
+      "3": [
+        "Magic Weapon",
+        "Spiritual Weapon"
+      ],
+      "5": [
+        "Freedom of Movement",
+        "Stoneskin"
+      ],
+      "7": [
+        "Flame Strike",
+        "Hold Monster"
+      ],
+      "9": [
+        "Flame Strike",
+        "Hold Monster"
+      ]
     },
     "forge": {
-      "1": ["Identify", "Searing Smite"],
-      "3": ["Heat Metal", "Magic Weapon"],
-      "5": ["Elemental Weapon", "Protection from Energy"],
-      "7": ["Fabricate", "Wall of Fire"],
-      "9": ["Animate Objects", "Creation"]
+      "1": [
+        "Identify",
+        "Searing Smite"
+      ],
+      "3": [
+        "Heat Metal",
+        "Magic Weapon"
+      ],
+      "5": [
+        "Elemental Weapon",
+        "Protection from Energy"
+      ],
+      "7": [
+        "Fabricate",
+        "Wall of Fire"
+      ],
+      "9": [
+        "Animate Objects",
+        "Creation"
+      ]
     },
     "grave": {
-      "1": ["Bane", "False Life"],
-      "3": ["Gentle Repose", "Ray of Enfeeblement"],
-      "5": ["Revivify", "Vampiric Touch"],
-      "7": ["Blight", "Death Ward"],
-      "9": ["Antilife Shell", "Raise Dead"]
+      "1": [
+        "Bane",
+        "False Life"
+      ],
+      "3": [
+        "Gentle Repose",
+        "Ray of Enfeeblement"
+      ],
+      "5": [
+        "Revivify",
+        "Vampiric Touch"
+      ],
+      "7": [
+        "Blight",
+        "Death Ward"
+      ],
+      "9": [
+        "Antilife Shell",
+        "Raise Dead"
+      ]
     }
   },
   "circleSpells": {
     "land": {
       "terrains": {
         "arctic": {
-          "3": ["Hold Person", "Spike Growth"],
-          "5": ["Sleet Storm", "Slow"],
-          "7": ["Freedom of Movement", "Ice Storm"],
-          "9": ["Commune with Nature", "Cone of Cold"]
+          "3": [
+            "Hold Person",
+            "Spike Growth"
+          ],
+          "5": [
+            "Sleet Storm",
+            "Slow"
+          ],
+          "7": [
+            "Freedom of Movement",
+            "Ice Storm"
+          ],
+          "9": [
+            "Commune with Nature",
+            "Cone of Cold"
+          ]
         },
         "coast": {
-          "3": ["Mirror Image", "Misty Step"],
-          "5": ["Water Breathing", "Water Walk"],
-          "7": ["Control Water", "Freedom of Movement"],
-          "9": ["Conjure Elemental", "Scrying"]
+          "3": [
+            "Mirror Image",
+            "Misty Step"
+          ],
+          "5": [
+            "Water Breathing",
+            "Water Walk"
+          ],
+          "7": [
+            "Control Water",
+            "Freedom of Movement"
+          ],
+          "9": [
+            "Conjure Elemental",
+            "Scrying"
+          ]
         },
         "desert": {
-          "3": ["Blur", "Silence"],
-          "5": ["Create Food and Water", "Protection from Energy"],
-          "7": ["Blight", "Hallucinatory Terrain"],
-          "9": ["Insect Plague", "Wall of Stone"]
+          "3": [
+            "Blur",
+            "Silence"
+          ],
+          "5": [
+            "Create Food and Water",
+            "Protection from Energy"
+          ],
+          "7": [
+            "Blight",
+            "Hallucinatory Terrain"
+          ],
+          "9": [
+            "Insect Plague",
+            "Wall of Stone"
+          ]
         },
         "forest": {
-          "3": ["Barkskin", "Spider Climb"],
-          "5": ["Call Lightning", "Plant Growth"],
-          "7": ["Divination", "Freedom of Movement"],
-          "9": ["Commune with Nature", "Tree Stride"]
+          "3": [
+            "Barkskin",
+            "Spider Climb"
+          ],
+          "5": [
+            "Call Lightning",
+            "Plant Growth"
+          ],
+          "7": [
+            "Divination",
+            "Freedom of Movement"
+          ],
+          "9": [
+            "Commune with Nature",
+            "Tree Stride"
+          ]
         },
         "grassland": {
-          "3": ["Invisibility", "Pass without Trace"],
-          "5": ["Daylight", "Haste"],
-          "7": ["Divination", "Freedom of Movement"],
-          "9": ["Dream", "Insect Plague"]
+          "3": [
+            "Invisibility",
+            "Pass without Trace"
+          ],
+          "5": [
+            "Daylight",
+            "Haste"
+          ],
+          "7": [
+            "Divination",
+            "Freedom of Movement"
+          ],
+          "9": [
+            "Dream",
+            "Insect Plague"
+          ]
         },
         "mountain": {
-          "3": ["Spider Climb", "Spike Growth"],
-          "5": ["Lightning Bolt", "Meld into Stone"],
-          "7": ["Stone Shape", "Stoneskin"],
-          "9": ["Passwall", "Wall of Stone"]
+          "3": [
+            "Spider Climb",
+            "Spike Growth"
+          ],
+          "5": [
+            "Lightning Bolt",
+            "Meld into Stone"
+          ],
+          "7": [
+            "Stone Shape",
+            "Stoneskin"
+          ],
+          "9": [
+            "Passwall",
+            "Wall of Stone"
+          ]
         },
         "swamp": {
-          "3": ["Darkness", "Melf's Acid Arrow"],
-          "5": ["Water Walk", "Stinking Cloud"],
-          "7": ["Freedom of Movement", "Locate Creature"],
-          "9": ["Insect Plague", "Scrying"]
+          "3": [
+            "Darkness",
+            "Melf's Acid Arrow"
+          ],
+          "5": [
+            "Water Walk",
+            "Stinking Cloud"
+          ],
+          "7": [
+            "Freedom of Movement",
+            "Locate Creature"
+          ],
+          "9": [
+            "Insect Plague",
+            "Scrying"
+          ]
         },
         "underdark": {
-          "3": ["Spider Climb", "Web"],
-          "5": ["Gaseous Form", "Stinking Cloud"],
-          "7": ["Greater Invisibility", "Stone Shape"],
-          "9": ["Cloudkill", "Insect Plague"]
+          "3": [
+            "Spider Climb",
+            "Web"
+          ],
+          "5": [
+            "Gaseous Form",
+            "Stinking Cloud"
+          ],
+          "7": [
+            "Greater Invisibility",
+            "Stone Shape"
+          ],
+          "9": [
+            "Cloudkill",
+            "Insect Plague"
+          ]
         }
       }
     },
     "dreams": {
-      "3": ["Sleep", "Faerie Fire"],
-      "5": ["Calm Emotions", "Darkness"],
-      "7": ["Daylight", "Fear"],
-      "9": ["Dream", "Telekinesis"]
+      "3": [
+        "Sleep",
+        "Faerie Fire"
+      ],
+      "5": [
+        "Calm Emotions",
+        "Darkness"
+      ],
+      "7": [
+        "Daylight",
+        "Fear"
+      ],
+      "9": [
+        "Dream",
+        "Telekinesis"
+      ]
     },
     "shepherd": {
-      "3": ["Charm Person", "Faerie Fire"],
-      "5": ["Darkness", "Meld into Stone"],
-      "7": ["Fear", "Guardian of Faith"],
-      "9": ["Dream", "Flame Strike"]
+      "3": [
+        "Charm Person",
+        "Faerie Fire"
+      ],
+      "5": [
+        "Darkness",
+        "Meld into Stone"
+      ],
+      "7": [
+        "Fear",
+        "Guardian of Faith"
+      ],
+      "9": [
+        "Dream",
+        "Flame Strike"
+      ]
     }
   },
   "oathSpells": {
     "devotion": {
-      "3": ["Protection from Evil and Good", "Sanctuary"],
-      "5": ["Lesser Restoration", "Zone of Truth"],
-      "9": ["Beacon of Hope", "Dispel Magic"],
-      "13": ["Freedom of Movement", "Guardian of Faith"],
-      "17": ["Commune", "Flame Strike"]
+      "3": [
+        "Protection from Evil and Good",
+        "Sanctuary"
+      ],
+      "5": [
+        "Lesser Restoration",
+        "Zone of Truth"
+      ],
+      "9": [
+        "Beacon of Hope",
+        "Dispel Magic"
+      ],
+      "13": [
+        "Freedom of Movement",
+        "Guardian of Faith"
+      ],
+      "17": [
+        "Commune",
+        "Flame Strike"
+      ]
     },
     "ancients": {
-      "3": ["Ensnaring Strike", "Speak with Animals"],
-      "5": ["Moonbeam", "Misty Step"],
-      "9": ["Plant Growth", "Protection from Energy"],
-      "13": ["Ice Storm", "Stoneskin"],
-      "17": ["Commune with Nature", "Tree Stride"]
+      "3": [
+        "Ensnaring Strike",
+        "Speak with Animals"
+      ],
+      "5": [
+        "Moonbeam",
+        "Misty Step"
+      ],
+      "9": [
+        "Plant Growth",
+        "Protection from Energy"
+      ],
+      "13": [
+        "Ice Storm",
+        "Stoneskin"
+      ],
+      "17": [
+        "Commune with Nature",
+        "Tree Stride"
+      ]
     },
     "vengeance": {
-      "3": ["Bane", "Hunter's Mark"],
-      "5": ["Hold Person", "Misty Step"],
-      "9": ["Haste", "Protection from Energy"],
-      "13": ["Banishment", "Dimension Door"],
-      "17": ["Hold Monster", "Scrying"]
+      "3": [
+        "Bane",
+        "Hunter's Mark"
+      ],
+      "5": [
+        "Hold Person",
+        "Misty Step"
+      ],
+      "9": [
+        "Haste",
+        "Protection from Energy"
+      ],
+      "13": [
+        "Banishment",
+        "Dimension Door"
+      ],
+      "17": [
+        "Hold Monster",
+        "Scrying"
+      ]
     },
     "conquest": {
-      "3": ["Armor of Agathys", "Command"],
-      "5": ["Hold Person", "Spiritual Weapon"],
-      "9": ["Bestow Curse", "Fear"],
-      "13": ["Dominate Beast", "Stoneskin"],
-      "17": ["Cloudkill", "Dominate Person"]
+      "3": [
+        "Armor of Agathys",
+        "Command"
+      ],
+      "5": [
+        "Hold Person",
+        "Spiritual Weapon"
+      ],
+      "9": [
+        "Bestow Curse",
+        "Fear"
+      ],
+      "13": [
+        "Dominate Beast",
+        "Stoneskin"
+      ],
+      "17": [
+        "Cloudkill",
+        "Dominate Person"
+      ]
     },
     "redemption": {
-      "3": ["Sanctuary", "Sleep"],
-      "5": ["Calm Emotions", "Hold Person"],
-      "9": ["Counterspell", "Hypnotic Pattern"],
-      "13": ["Death Ward", "Guardian of Faith"],
-      "17": ["Commune", "Flame Strike"]
+      "3": [
+        "Sanctuary",
+        "Sleep"
+      ],
+      "5": [
+        "Calm Emotions",
+        "Hold Person"
+      ],
+      "9": [
+        "Counterspell",
+        "Hypnotic Pattern"
+      ],
+      "13": [
+        "Death Ward",
+        "Guardian of Faith"
+      ],
+      "17": [
+        "Commune",
+        "Flame Strike"
+      ]
     },
     "watchers": {
-      "3": ["Alarm", "Detect Magic"],
-      "5": ["Moonbeam", "See Invisibility"],
-      "9": ["Counterspell", "Nondetection"],
-      "13": ["Freedom of Movement", "Guardian of Faith"],
-      "17": ["Flame Strike", "Hold Monster"]
+      "3": [
+        "Alarm",
+        "Detect Magic"
+      ],
+      "5": [
+        "Moonbeam",
+        "See Invisibility"
+      ],
+      "9": [
+        "Counterspell",
+        "Nondetection"
+      ],
+      "13": [
+        "Freedom of Movement",
+        "Guardian of Faith"
+      ],
+      "17": [
+        "Flame Strike",
+        "Hold Monster"
+      ]
     }
   },
   "wizardTraditionSpells": {
     "divination": {
-      "14": ["Foresight"]
+      "14": [
+        "Foresight"
+      ]
     },
     "transmutation": {
-      "10": ["Polymorph"]
+      "10": [
+        "Polymorph"
+      ]
     }
   },
   "subclassSpellGrants": {
     "shadow-magic": {
-      "1": ["Darkness"]
+      "1": [
+        "Darkness"
+      ]
     },
     "the-celestial": {
-      "1": ["Sacred Flame", "Light"]
+      "1": [
+        "Sacred Flame",
+        "Light"
+      ]
     },
     "the-fathomless": {
-      "1": ["Create or Destroy Water"],
-      "3": ["Thunderwave"],
-      "5": ["Sleet Storm"],
-      "7": ["Control Water"],
-      "9": ["Cone of Cold"]
+      "1": [
+        "Create or Destroy Water"
+      ],
+      "3": [
+        "Thunderwave"
+      ],
+      "5": [
+        "Sleet Storm"
+      ],
+      "7": [
+        "Control Water"
+      ],
+      "9": [
+        "Cone of Cold"
+      ]
     },
     "the-genie": {
-      "1": ["Detect Evil and Good", "Protection from Evil and Good"],
-      "3": ["Create Food and Water", "Phantasmal Killer"],
-      "5": ["Creation", "Sending"],
-      "7": ["Summon Elemental"],
-      "9": ["Wall of Stone"]
+      "1": [
+        "Detect Evil and Good",
+        "Protection from Evil and Good"
+      ],
+      "3": [
+        "Create Food and Water",
+        "Phantasmal Killer"
+      ],
+      "5": [
+        "Creation",
+        "Sending"
+      ],
+      "7": [
+        "Summon Elemental"
+      ],
+      "9": [
+        "Wall of Stone"
+      ]
     },
     "fey-wanderer": {
-      "3": ["Charm Person"],
-      "5": ["Misty Step"],
-      "9": ["Dispel Magic"],
-      "13": ["Dimension Door"],
-      "17": ["Mislead"]
+      "3": [
+        "Charm Person"
+      ],
+      "5": [
+        "Misty Step"
+      ],
+      "9": [
+        "Dispel Magic"
+      ],
+      "13": [
+        "Dimension Door"
+      ],
+      "17": [
+        "Mislead"
+      ]
     },
     "swarmkeeper": {
-      "3": ["Mage Hand", "Faerie Fire"],
-      "5": ["Web"],
-      "9": ["Gaseous Form"],
-      "13": ["Giant Insect"],
-      "17": ["Insect Plague"]
+      "3": [
+        "Mage Hand",
+        "Faerie Fire"
+      ],
+      "5": [
+        "Web"
+      ],
+      "9": [
+        "Gaseous Form"
+      ],
+      "13": [
+        "Giant Insect"
+      ],
+      "17": [
+        "Insect Plague"
+      ]
     },
     "aberrant-mind": {
-      "1": ["Arms of Hadar", "Dissonant Whispers", "Mind Sliver"],
-      "3": ["Calm Emotions", "Detect Thoughts", "Hunger of Hadar"],
-      "5": ["Compulsion", "Sending", "Slow"],
-      "7": ["Evard's Black Tentacles", "Summon Aberration"],
-      "9": ["Rary's Telepathic Bond", "Telekinesis"],
-      "11": ["Psychic Scream", "Summon Aberration"]
+      "1": [
+        "Arms of Hadar",
+        "Dissonant Whispers",
+        "Mind Sliver"
+      ],
+      "3": [
+        "Calm Emotions",
+        "Detect Thoughts",
+        "Hunger of Hadar"
+      ],
+      "5": [
+        "Compulsion",
+        "Sending",
+        "Slow"
+      ],
+      "7": [
+        "Evard's Black Tentacles",
+        "Summon Aberration"
+      ],
+      "9": [
+        "Rary's Telepathic Bond",
+        "Telekinesis"
+      ],
+      "11": [
+        "Psychic Scream",
+        "Summon Aberration"
+      ]
     },
     "clockwork-soul": {
-      "1": ["Alarm", "Protection from Evil and Good"],
-      "3": ["Aid", "Lesser Restoration"],
-      "5": ["Dispel Magic", "Protection from Energy"],
-      "7": ["Freedom of Movement", "Summon Construct"],
-      "9": ["Greater Restoration", "Wall of Force"]
+      "1": [
+        "Alarm",
+        "Protection from Evil and Good"
+      ],
+      "3": [
+        "Aid",
+        "Lesser Restoration"
+      ],
+      "5": [
+        "Dispel Magic",
+        "Protection from Energy"
+      ],
+      "7": [
+        "Freedom of Movement",
+        "Summon Construct"
+      ],
+      "9": [
+        "Greater Restoration",
+        "Wall of Force"
+      ]
     }
   },
   "subclassFlags": {
-    "lore": { "grantsMagicalSecrets": true },
-    "land": { "requiresTerrainSelection": true, "grantsCircleSpells": true },
-    "moon": { "requiresTerrainSelection": false },
-    "arcane-trickster": { "usesMageSpellList": true },
-    "bladesinging": { "grantsExtraAttack": true }
+    "lore": {
+      "grantsMagicalSecrets": true
+    },
+    "land": {
+      "requiresTerrainSelection": true,
+      "grantsCircleSpells": true
+    },
+    "moon": {
+      "requiresTerrainSelection": false
+    },
+    "arcane-trickster": {
+      "usesMageSpellList": true
+    },
+    "bladesinging": {
+      "grantsExtraAttack": true
+    }
   },
   "pactBoons": [
-    { "index": "chain", "name": "Pact of the Chain", "description": "You learn the find familiar spell and can cast it as a ritual. The spell doesn't count against your number of spells known. When you cast the spell, you can choose one of the normal forms for your familiar or one of the special forms: imp, pseudodragon, quasit, or sprite. Additionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its reaction." },
-    { "index": "blade", "name": "Pact of the Blade", "description": "You can use your action to create a pact weapon in your empty hand. You can choose the form that this melee weapon takes each time you create it. You are proficient with it while you wield it. This weapon counts as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage. Your pact weapon disappears if it is more than 5 feet away from you for 1 minute or more. It also disappears if you use this feature again, if you dismiss the weapon (no action required), or if you die. You can transform one magic weapon into your pact weapon by performing a special ritual while you hold the weapon. You perform the ritual over the course of 1 hour, which can be done during a short rest. You can then dismiss the weapon, shunting it into an extradimensional space, and it appears whenever you create your pact weapon thereafter." },
-    { "index": "tome", "name": "Pact of the Tome", "description": "Your patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class's spell list. While the book is on your person, you can cast those cantrips at will. They don't count against your number of cantrips known. If you lose your Book of Shadows, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous book." }
+    {
+      "index": "chain",
+      "name": "Pact of the Chain",
+      "description": "You learn the find familiar spell and can cast it as a ritual. The spell doesn't count against your number of spells known. When you cast the spell, you can choose one of the normal forms for your familiar or one of the special forms: imp, pseudodragon, quasit, or sprite. Additionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its reaction."
+    },
+    {
+      "index": "blade",
+      "name": "Pact of the Blade",
+      "description": "You can use your action to create a pact weapon in your empty hand. You can choose the form that this melee weapon takes each time you create it. You are proficient with it while you wield it. This weapon counts as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage. Your pact weapon disappears if it is more than 5 feet away from you for 1 minute or more. It also disappears if you use this feature again, if you dismiss the weapon (no action required), or if you die. You can transform one magic weapon into your pact weapon by performing a special ritual while you hold the weapon. You perform the ritual over the course of 1 hour, which can be done during a short rest. You can then dismiss the weapon, shunting it into an extradimensional space, and it appears whenever you create your pact weapon thereafter."
+    },
+    {
+      "index": "tome",
+      "name": "Pact of the Tome",
+      "description": "Your patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class's spell list. While the book is on your person, you can cast those cantrips at will. They don't count against your number of cantrips known. If you lose your Book of Shadows, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous book."
+    }
   ]
 }

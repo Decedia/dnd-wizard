@@ -2199,9 +2199,9 @@ function LevelCard({
               <div>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 1st-level spell:</p>
                 <div className="space-y-1">
-                   {getWizardSpellsByLevel(1).map((name) => {
+                   {getWizardSpellsByLevel(1, character.sources).map((name) => {
                     const isSelected = multiSelectSelections.includes(name);
-                    const allLevel1 = getWizardSpellsByLevel(1);
+                    const allLevel1 = getWizardSpellsByLevel(1, character.sources);
                     return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !allLevel1.includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
                   })}
                 </div>
@@ -2209,9 +2209,9 @@ function LevelCard({
               <div>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 2nd-level spell:</p>
                 <div className="space-y-1">
-                  {getWizardSpellsByLevel(2).map((name) => {
+                  {getWizardSpellsByLevel(2, character.sources).map((name) => {
                     const isSelected = multiSelectSelections.includes(name);
-                    const allLevel2 = getWizardSpellsByLevel(2);
+                    const allLevel2 = getWizardSpellsByLevel(2, character.sources);
                     return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !allLevel2.includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
                   })}
                 </div>
@@ -2234,7 +2234,7 @@ function LevelCard({
             <div className="flex-1 overflow-y-auto px-4 py-4">
               <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select two 3rd-level spells:</p>
               <div className="space-y-1">
-                {getWizardSpellsByLevel(3).map((name) => {
+                {getWizardSpellsByLevel(3, character.sources).map((name) => {
                   const isSelected = multiSelectSelections.includes(name);
                   const isDisabled = !isSelected && multiSelectSelections.length >= 2;
                   return (<button key={name} type="button" disabled={isDisabled} onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else if (multiSelectSelections.length < 2) setMultiSelectSelections([...multiSelectSelections, name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);

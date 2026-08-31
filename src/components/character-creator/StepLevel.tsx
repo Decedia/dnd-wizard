@@ -755,6 +755,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
       {featModalOpen && (
         <FeatSelector
           selectedFeat={asiState.feat}
+          sources={data.sources}
           onSelect={(feat: SRDFeat) => {
             setAsiState((prev) => ({ ...prev, feat: feat.name }));
           }}

@@ -147,6 +147,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
       {featModalOpen && (
         <FeatSelector
           selectedFeat={selectedFeat}
+          sources={data.sources}
           onSelect={(feat: SRDFeat) => {
             handleFeatSelect(feat);
           }}

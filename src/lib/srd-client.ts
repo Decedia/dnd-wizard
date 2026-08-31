@@ -513,9 +513,11 @@ export function normalizeSpell(s: any): any {
   };
 }
 
-export function getStaticWizardSpells(): SRDWizardSpell[] {
+export function getStaticWizardSpells(sources?: string[]): SRDWizardSpell[] {
   const raw = (wizardSpellsData as any).spells || [];
-  return raw.map(normalizeSpell);
+  const spells: SRDWizardSpell[] = raw.map(normalizeSpell);
+  if (!sources || sources.length === 0) return spells;
+  return spells.filter((s) => sources.includes(s.source || "PHB"));
 }
 
 export function getStaticWizardSpell(name: string): SRDWizardSpell | undefined {
@@ -631,8 +633,8 @@ export function getPactBoons(): { index: string; name: string; description: stri
   return (subclassSpellsData as any).pactBoons || [];
 }
 
-export function getWizardSpellsByLevel(level: number): string[] {
-  const allSpells = getStaticWizardSpells();
+export function getWizardSpellsByLevel(level: number, sources?: string[]): string[] {
+  const allSpells = getStaticWizardSpells(sources);
   return allSpells
     .filter((s: any) => s.level === level)
     .map((s: any) => s.name)
