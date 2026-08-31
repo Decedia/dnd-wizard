@@ -126,13 +126,35 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return data.inventory.find(item => item.choiceGroupIndex === groupIndex);
   }, [data.inventory, getGroupIndex]);
 
-  const selectedWeaponsForGroup = popupGroup ? getSelectedWeaponsForGroup(popupGroup.group.id, popupGroup.optionIndex) : [];
+  const getOptionLabel = useCallback((option: EquipmentOption): string => {
+    if (option.isWeaponChoice) {
+      const count = option.selectionCount || 1;
+      return `Select ${count > 1 ? `${count} ` : "a "}${option.weaponType?.replace('_', ' ')} weapon${count > 1 ? "s" : ""}`;
+    }
+    if (option.isInstrumentChoice) return "Select a musical instrument";
+    if (option.isArcaneFocusChoice) return "Select an arcane focus";
+    if (option.isHolySymbolChoice) return "Select a holy symbol";
+    if (option.isDruidicFocusChoice) return "Select a druidic focus";
+    if (option.items.length === 1) return option.items[0].name;
+    return option.items.map(i => `${i.quantity || 1}× ${i.name}`).join(", ");
+  }, []);
+
+  const getOptionSummary = useCallback((option: EquipmentOption): string => {
+    if (option.items.length === 0) return "";
+    if (option.items.length === 1) {
+      const info = getItemInfo(option.items[0].name);
+      if (info?.type === "weapon") return `${info.damageDice} ${info.damageType}`;
+      if (info?.type === "armor") return `AC ${info.baseAC}`;
+      if (info?.type === "instrument") return "Spellcasting focus";
+    }
+    return `${option.items.length} items`;
+  }, [getItemInfo]);
 
   const handleOptionClick = useCallback((group: ChoiceGroup, optionIndex: number) => {
     const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
 
-    if (option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
+    if (option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
       setPopupGroup({ group, optionIndex });
       return;
     }
@@ -499,6 +521,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
   const popupOption = popupGroup ? popupGroup.group.options[popupGroup.optionIndex] : null;
   const popupCategoryWeapons = popupOption?.isWeaponChoice ? getWeaponsByCategory(popupOption.weaponType || "") : [];
+  const popupSelectedWeapons = popupGroup ? getSelectedWeaponsForGroup(popupGroup.group.id, popupGroup.optionIndex) : [];
 
   return (
     <StepCard title="Equipment" hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.">
@@ -583,109 +606,74 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                        );
                                      })}
                                    </div>
-                                ) : (
+                                 ) : (
                                   <button
                                     type="button"
                                     onClick={() => handleOptionClick(group, optionIndex)}
                                      className="w-full text-left text-body"
                                   >
-                                    <span>Choose {selectionCount > 1 ? `${selectionCount} ` : "a "}{option.weaponType?.replace('_', ' ')} weapon{selectionCount > 1 ? "s" : ""}</span>
+                                    <span>{getOptionLabel(option)}</span>
                                   </button>
                                 )}
                              </div>
                           );
                         }
 
-                            return (
-                             <div
-                               key={optionIndex}
-                               className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
-                                 isSelected
-                                   ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
-                                   : isDisabled
-                                     ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20 cursor-not-allowed"
-                                     : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                               }`}
-                             >
-                                {isSelected ? (
-                                  <div className="flex items-center justify-between">
-                                    <div className="flex-1">
-                                      <span className="text-body font-semibold text-[var(--color-surface)]">{selectedItem?.name || option.description || primaryItem?.name}</span>
-                                      {primaryInfo?.type === "weapon" && (() => {
-                                        const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
-                                        return wStats ? (
-                                          <div className="flex items-center gap-1.5 mt-1.5">
-                                            <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
-                                            <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                              {wStats.damageDice}
-                                            </span>
-                                            <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                              {wStats.abilityKey} {wStats.damageBonus}
-                                            </span>
-                                            <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                              {wStats.attackBonus} to hit
-                                            </span>
-                                          </div>
-                                        ) : null;
-                                      })()}
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <button
-                                        type="button"
-                                        onClick={() => handleChoiceRemove(group)}
-                                        className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] ml-1 text-lg leading-none"
-                                      >
-                                        ×
-                                      </button>
-                                    </div>
-                                  </div>
-                               ) : (
-                                 <button
-                                   type="button"
-                                   onClick={() => handleOptionClick(group, optionIndex)}
-                                   disabled={isDisabled}
-                                   className="w-full text-left text-body"
-                                 >
-                                   <span>
-                                     {option.isInstrumentChoice ? "Choose a musical instrument" : option.isArcaneFocusChoice ? "Choose an arcane focus" : option.isHolySymbolChoice ? "Choose a holy symbol" : option.isDruidicFocusChoice ? "Choose a druidic focus" : option.description || primaryItem?.name}
-                                   </span>
-                                   {primaryInfo?.type === "weapon" && (() => {
-                                     const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
-                                     return wStats ? (
-                                       <div className="flex items-center gap-1.5 mt-1.5">
-                                         <DamageBadge type={wStats.damageType} size="sm" showLabel={false} />
-                                         <span
-                                           className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                                           style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
-                                         >
-                                           {wStats.damageDice}
-                                         </span>
-                                         <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
-                                           {wStats.abilityKey} {wStats.damageBonus}
-                                         </span>
-                                         <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                                           {wStats.attackBonus} to hit
-                                         </span>
-                                       </div>
-                                     ) : null;
-                                   })()}
-                                 </button>
-                              )}
-                         </div>
-                        );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+                             return (
+                              <div
+                                key={optionIndex}
+                                className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
+                                  isSelected
+                                    ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
+                                    : isDisabled
+                                      ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20 cursor-not-allowed"
+                                      : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
+                                }`}
+                              >
+                                 {isSelected ? (
+                                   <div className="flex items-center justify-between">
+                                     <div className="flex-1">
+                                       <span className="text-body font-semibold text-[var(--color-surface)]">{getOptionLabel(option)}</span>
+                                       <div className="text-[10px] text-[var(--color-surface)]/70 mt-0.5">{getOptionSummary(option)}</div>
+                                     </div>
+                                     <div className="flex items-center gap-1">
+                                       <button
+                                         type="button"
+                                         onClick={() => handleChoiceRemove(group)}
+                                         className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] ml-1 text-lg leading-none"
+                                       >
+                                         ×
+                                       </button>
+                                     </div>
+                                   </div>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={() => handleOptionClick(group, optionIndex)}
+                                    disabled={isDisabled}
+                                    className="w-full text-left text-body"
+                                  >
+                                    <span>{getOptionLabel(option)}</span>
+                                    {getOptionSummary(option) && (
+                                      <span className="block text-[10px] text-[var(--color-text-muted)] mt-0.5">{getOptionSummary(option)}</span>
+                                    )}
+                                  </button>
+                               )}
+                          </div>
+                         );
+                     })}
+                   </div>
+                 </div>
+               );
+             })}
+           </div>
+         </div>
+       )}
 
-      <div>
-         <span className="text-card-title text-[var(--color-text-primary)]">
-          Current Inventory
-        </span>
+       <div>
+          <span className="text-card-title text-[var(--color-text-primary)]">
+           Current Inventory
+         </span>
          {data.inventory.length === 0 ? (
           <p className="text-description">No equipment yet.</p>
         ) : (
@@ -729,11 +717,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           {popupOption.isWeaponChoice && (
             <div className="mb-3 p-2 rounded border border-[var(--color-border)] bg-[var(--color-bg)]">
               <div className="text-xs font-semibold text-[var(--color-text-muted)] mb-1">
-                Selected: {selectedWeaponsForGroup.length} / {popupOption.selectionCount || 1}
+                Selected: {popupSelectedWeapons.length} / {popupOption.selectionCount || 1}
               </div>
-              {selectedWeaponsForGroup.length > 0 && (
+              {popupSelectedWeapons.length > 0 && (
                 <div className="flex flex-wrap gap-1">
-                  {selectedWeaponsForGroup.map((w) => (
+                  {popupSelectedWeapons.map((w: any) => (
                       <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[var(--color-border)] bg-[var(--color-surface)] text-xs font-semibold text-[var(--color-text-primary)]">
                       {w.name}
                       <button
@@ -755,9 +743,9 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           <div className="space-y-2">
             {popupOption.isWeaponChoice && popupCategoryWeapons.map((weapon: any) => {
               const wStats = getWeaponStats(weapon.name, weapon.category_range);
-              const isWeaponSelected = selectedWeaponsForGroup.some(w => w.name === weapon.name);
+              const isWeaponSelected = popupSelectedWeapons.some((w: any) => w.name === weapon.name);
               const selectionCount = popupOption.selectionCount || 1;
-              const isDisabled = !isWeaponSelected && selectedWeaponsForGroup.length >= selectionCount;
+              const isDisabled = !isWeaponSelected && popupSelectedWeapons.length >= selectionCount;
               return (
                  <button
                     key={weapon.name}
