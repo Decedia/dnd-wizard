@@ -1811,6 +1811,10 @@
         {
           "name": "College of Whispers",
           "description": ""
+        },
+        {
+          "name": "College of Spirits",
+          "description": ""
         }
       ],
       "spellsKnown": {
@@ -3813,6 +3817,10 @@
         {
           "name": "Way of the Sun Soul",
           "description": ""
+        },
+        {
+          "name": "Ascendant Dragon",
+          "description": ""
         }
       ],
       "kiPoints": {
@@ -4352,6 +4360,10 @@
         },
         {
           "name": "Oath of the Watchers",
+          "description": ""
+        },
+        {
+          "name": "Draconic Disciple",
           "description": ""
         }
       ],
@@ -4986,6 +4998,10 @@
               "Insect Plague"
             ]
           }
+        },
+        {
+          "name": "Drake Warden",
+          "description": ""
         }
       ],
       "spellsKnown": {
@@ -7386,6 +7402,10 @@
               "Cone of Cold"
             ]
           }
+        },
+        {
+          "name": "The Undead",
+          "description": ""
         }
       ],
       "spellsKnown": {

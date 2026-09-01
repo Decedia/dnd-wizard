@@ -329,6 +329,29 @@
       "source": "PHB"
     },
     {
+      "index": "nathair-nuisance",
+      "name": "Nathair's Nuisance",
+      "level": 0,
+      "school": "Enchantment",
+      "castingTime": "1 Action",
+      "range": "30 feet",
+      "duration": "1 minute",
+      "description": "You create a minor magical effect to distract a creature. The target must succeed on a Wisdom saving throw or have disadvantage on the next attack roll it makes before the end of its next turn.",
+      "higherLevel": "",
+      "components": [
+        "S"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
       "index": "poison-spray",
       "name": "Poison Spray",
       "level": 0,
@@ -807,6 +830,29 @@
       ],
       "effect": "You make yourself--including your clothing, armor, weapons, and other belongings on your person--look different until the spell ends or until you use your action to dismiss it. You can seem 1 foot shorter or taller and can appear thin, fat, or in between. You can't change your body type, so you must adopt a form that has the same basic arrangement of limbs. Otherwise, the extent of the illusion is up to you.",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-crush",
+      "name": "Draconic Crush",
+      "level": 1,
+      "school": "Evocation",
+      "castingTime": "1 Action",
+      "range": "60 feet",
+      "duration": "Instantaneous",
+      "description": "You hurl a sphere of draconic energy at a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 2d8 force damage and must succeed on a Strength saving throw or be knocked prone.",
+      "higherLevel": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
     },
     {
       "index": "expeditious-retreat",
@@ -1709,6 +1755,55 @@
       "source": "PHB"
     },
     {
+      "index": "draconic-fear",
+      "name": "Draconic Fear",
+      "level": 2,
+      "school": "Illusion",
+      "castingTime": "1 Action",
+      "range": "Self (30-foot cone)",
+      "duration": "Instantaneous",
+      "description": "You project a fearsome draconic visage. Each creature in the area must succeed on a Wisdom saving throw or become frightened of you for 1 minute. A frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
+      "index": "draconic-senses",
+      "name": "Draconic Senses",
+      "level": 2,
+      "school": "Divination",
+      "castingTime": "1 Action",
+      "range": "Touch",
+      "duration": "Up to 1 hour",
+      "description": "You touch a willing creature and grant it draconic senses. Until the spell ends, the target has blindsight with a range of 10 feet, and it has advantage on Wisdom (Perception) checks that rely on sight or hearing.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Druid",
+        "Ranger",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
       "index": "enlarge-reduce",
       "name": "Enlarge/Reduce",
       "level": 2,
@@ -2574,6 +2669,55 @@
       ],
       "effect": "Choose one creature, object, or magical effect within range. Any spell of 3rd level or lower on the target ends. For each spell of 4th level or higher on the target, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a successful check, the spell ends.",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-transmutation",
+      "name": "Draconic Transmutation",
+      "level": 3,
+      "school": "Transmutation",
+      "castingTime": "1 Action",
+      "range": "Touch",
+      "duration": "Up to 1 hour",
+      "description": "You touch a willing creature and imbue it with draconic power. Until the spell ends, the target gains the following benefits: The target's AC can't be less than 13, regardless of what kind of armor it's wearing. The target has resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
+      "index": "draconic-word",
+      "name": "Draconic Word",
+      "level": 3,
+      "school": "Abjuration",
+      "castingTime": "1 Reaction",
+      "range": "60 feet",
+      "duration": "Instantaneous",
+      "description": "You respond to a creature's attack with a word of draconic power. The creature must succeed on a Constitution saving throw or the attack deals an additional 2d6 force damage to it, and the creature can't take reactions until the start of its next turn.",
+      "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Paladin",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
     },
     {
       "index": "fear",
@@ -3630,6 +3774,30 @@
       "source": "PHB"
     },
     {
+      "index": "draconic-domination",
+      "name": "Draconic Domination",
+      "level": 4,
+      "school": "Enchantment",
+      "castingTime": "1 Action",
+      "range": "60 feet",
+      "duration": "Up to 1 minute",
+      "description": "You attempt to assert your will over a creature within range. The target must succeed on a Wisdom saving throw or be charmed by you for the duration. While charmed, the target is under your control and can take only the actions you command. You can use your action to command the target to move, take an action, or take a bonus action. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
       "index": "fabricate",
       "name": "Fabricate",
       "level": 4,
@@ -4402,6 +4570,28 @@
       ],
       "effect": "You attempt to beguile a humanoid that you can see within range. It must succeed on a wisdom saving throw or be charmed by you for the duration. If you or creatures that are friendly to you are fighting it, it has advantage on the saving throw.",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-transport",
+      "name": "Draconic Transport",
+      "level": 5,
+      "school": "Conjuration",
+      "castingTime": "1 Action",
+      "range": "Self",
+      "duration": "Instantaneous",
+      "description": "You teleport up to 120 feet to an unoccupied space you can see. When you teleport, you can bring up to two willing creatures within 5 feet of you with you.",
+      "higherLevel": "",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
     },
     {
       "index": "dream",
@@ -5550,6 +5740,30 @@
       ],
       "effect": "A beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. When the spell ends, either because your concentration is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners. Each creature in a 20-foot-radius sphere centered on that point must make a dexterity saving throw. A creature takes fire damage equal to the total accumulated damage on a failed save, or half as much damage on a successful one.",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-transformation",
+      "name": "Draconic Transformation",
+      "level": 7,
+      "school": "Transmutation",
+      "castingTime": "1 Bonus Action",
+      "range": "Self",
+      "duration": "Up to 1 minute",
+      "description": "With a roar, you draw on the magic of dragons to transform yourself, gaining the following benefits for the duration: You have a flying speed of 60 feet. You have blindsight with a range of 30 feet. You gain a breath weapon (15-foot cone, 6d6 damage, Dexterity saving throw). Once you use your breath weapon, you can't use it again until you use a bonus action to do so. You gain resistance to the damage type of your breath weapon.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "FTD"
     },
     {
       "index": "dream-of-the-blue-veil",
