@@ -46,7 +46,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class) : null;
   const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
-  const [isGoldSelected, setIsGoldSelected] = useState(false);
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
@@ -369,65 +368,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [data.inventory, getGroupIndex, onChange]);
 
   const handleGoldSelect = useCallback(() => {
-    if (isGoldSelected) {
-      // Deselect gold - clear gold item and re-grant default items
-      setIsGoldSelected(false);
-      const newInventory = data.inventory.filter(i => i.name !== '5d4x10 gp');
-      onChange({ inventory: newInventory });
-    } else {
-      // Select gold - clear all equipment and add gold
-      setIsGoldSelected(true);
-      const goldItem = {
-        id: generateId(),
-        name: '5d4x10 gp',
-        quantity: 1,
-        equipped: false,
-        source: 'srd' as const,
-        description: 'Starting gold (5d4x10 gp)',
-        itemType: 'item' as const,
-      };
-      onChange({ inventory: [goldItem] });
-    }
-  }, [data.inventory, isGoldSelected, onChange]);
-
-  const isStartingEquipmentSelected = useMemo(() => {
-    // Check if "Starting Equipment" option (index 0) is selected in the first choice group (index 0)
-    const firstGroupIndex = 0;
-    return data.inventory.some(item => item.choiceGroupIndex === firstGroupIndex && item.choiceOptionIndex === 0);
-  }, [data.inventory]);
+    // Gold option removed - not implemented
+  }, []);
 
   const autoGrantItems = useCallback(() => {
     const newInventory = [...data.inventory];
     const grantedItems: Character["inventory"][number][] = [];
     let hasChanges = false;
 
-    // Don't auto-grant if gold is selected
-    if (isGoldSelected) {
-      // Remove any granted items
-      const itemsToRemove = newInventory.filter(i => i.isGranted);
-      if (itemsToRemove.length > 0) {
-        const filteredInventory = newInventory.filter(i => !i.isGranted);
-        onChange({ inventory: filteredInventory });
-      }
-      return;
-    }
-
-    startingEquipment.forEach((entry: any, entryIndex: number) => {
+    startingEquipment.forEach((entry: any) => {
       if (!entry.granted || !entry.items) return;
-
-      // Only grant items if "Starting Equipment" is selected
-      if (!isStartingEquipmentSelected) {
-        // Remove items that were previously granted
-        const itemsToRemove = newInventory.filter(i => i.isGranted && entry.items.some((e: any) => e.name === i.name));
-        if (itemsToRemove.length > 0) {
-          itemsToRemove.forEach(item => {
-            const idx = newInventory.findIndex(i => i.id === item.id);
-            if (idx >= 0) newInventory.splice(idx, 1);
-          });
-          hasChanges = true;
-        }
-        return;
-      }
 
       entry.items.forEach((item: any) => {
         const existing = newInventory.find(i => i.name === item.name);
@@ -461,7 +411,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (hasChanges) {
       onChange({ inventory: newInventory });
     }
-  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange, isStartingEquipmentSelected]);
+  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange]);
 
   useEffect(() => {
     autoGrantItems();
@@ -601,21 +551,13 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return parts.join("\n");
   }, []);
 
-  const isGroupVisible = useCallback((group: ChoiceGroup): boolean => {
-    const groupIndex = getGroupIndex(group.id);
-    // First choice group (gold vs equipment) is always visible
-    if (groupIndex === 0) return true;
-    // Other groups are only visible if "Starting Equipment" is selected
-    return isStartingEquipmentSelected;
-  }, [getGroupIndex, isStartingEquipmentSelected]);
-
   const isAllRequiredSelected = useMemo(() => {
     if (choiceGroups.length === 0) return true;
-    return choiceGroups.filter(isGroupVisible).every(group => {
+    return choiceGroups.every(group => {
       const groupIndex = getGroupIndex(group.id);
       return data.inventory.some(item => item.choiceGroupIndex === groupIndex);
     });
-  }, [choiceGroups, data.inventory, getGroupIndex, isGroupVisible]);
+  }, [choiceGroups, data.inventory, getGroupIndex]);
 
   const popupOption = popupGroup ? popupGroup.group.options[popupGroup.optionIndex] : null;
   const popupCategoryWeapons = popupOption?.isWeaponChoice ? getWeaponsByCategory(popupOption.weaponType || "") : [];
@@ -629,7 +571,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
             Choose Your Equipment
           </span>
           <div className="space-y-4">
-             {choiceGroups.filter(isGroupVisible).map((group) => {
+             {choiceGroups.map((group) => {
                const groupIndex = getGroupIndex(group.id);
                const hasSelection = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
 
@@ -649,7 +591,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                          const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
                          const selectionCount = option.selectionCount || 1;
                          const hasMultiSelect = selectionCount > 1;
-                          const isDisabled = hasSelection && !isSelected || isGoldSelected;
+                          const isDisabled = hasSelection && !isSelected;
 
                          if (isWeaponChoice) {
                            const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
@@ -833,33 +775,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
              })}
            </div>
          </div>
-        )}
-
-        {/* Gold Option - only for Artificer */}
-        {data.class === 'Artificer' && (
-          <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
-            <button
-              type="button"
-              onClick={handleGoldSelect}
-              className={`w-full px-4 py-3 text-left rounded-[var(--radius-sm)] transition-all ${
-                isGoldSelected
-                  ? 'bg-[var(--color-ink)] text-[var(--color-surface)] border-2 border-[var(--color-ink)]'
-                  : 'bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]'
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span className={`text-sm font-bold ${isGoldSelected ? 'text-[var(--color-surface)]' : 'text-[var(--color-text-primary)]'}`}>
-                  5d4x10 gp (instead of starting equipment)
-                </span>
-                {isGoldSelected && (
-                  <span className="text-xs font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-2 py-0.5 rounded">SELECTED</span>
-                )}
-              </div>
-              <p className={`text-[10px] mt-1 ${isGoldSelected ? 'text-[var(--color-surface)]/70' : 'text-[var(--color-text-muted)]'}`}>
-                Choose gold instead of starting equipment
-              </p>
-            </button>
-          </div>
         )}
 
          <div>
