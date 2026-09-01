@@ -45,7 +45,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -142,7 +143,8 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -250,7 +252,7 @@
       "castingTime": "1 Action",
       "range": "60 Feet",
       "duration": "Instantaneous or 1 hour",
-      "description": "You choose nonmagical flame that you can see within range and that fits within a 5-foot cube. You affect it in one of the following ways: You instantaneously expand the flame 5 feet in one direction, provided wood or other fuel is present in the new location. You instantaneously extinguish the flames within the cube. You double or halve the area of bright light and dim light cast by the flame, change its color, or both. The change lasts for 1 hour. You cause simple shapes—such as the vague form of a creature, an inanimate object, or a location—to appear within the flames and animate as you like. The shapes last for 1 hour.",
+      "description": "You choose nonmagical flame that you can see within range and that fits within a 5-foot cube. You affect it in one of the following ways: You instantaneously expand the flame 5 feet in one direction, provided wood or other fuel is present in the new location. You instantaneously extinguish the flames within the cube. You double or halve the area of bright light and dim light cast by the flame, change its color, or both. The change lasts for 1 hour. You cause simple shapes\u2014such as the vague form of a creature, an inanimate object, or a location\u2014to appear within the flames and animate as you like. The shapes last for 1 hour.",
       "components": [
         "S"
       ],
@@ -283,7 +285,8 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -314,7 +317,8 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -354,7 +358,7 @@
       "index": "druidcraft",
       "name": "Druidcraft",
       "desc": [
-        "Whispering to the spirits of nature, you create one of the following effects within range: \n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round. \n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom. \n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-­--foot cube. \n- You instantly light or snuff out a candle, a torch, or a small campfire."
+        "Whispering to the spirits of nature, you create one of the following effects within range: \n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round. \n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom. \n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-\u00ad--foot cube. \n- You instantly light or snuff out a candle, a torch, or a small campfire."
       ],
       "range": "30 feet",
       "components": [
@@ -377,7 +381,7 @@
       "subclasses": [],
       "url": "/api/2014/spells/druidcraft",
       "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "Whispering to the spirits of nature, you create one of the following effects within range: \n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round. \n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom. \n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-­--foot cube. \n- You instantly light or snuff out a candle, a torch, or a small campfire.",
+      "description": "Whispering to the spirits of nature, you create one of the following effects within range: \n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round. \n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom. \n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-\u00ad--foot cube. \n- You instantly light or snuff out a candle, a torch, or a small campfire.",
       "higherLevel": [],
       "castingTime": "1 action",
       "source": "PHB"
@@ -470,7 +474,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/fire-bolt",
@@ -524,7 +529,8 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -591,7 +597,8 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -619,7 +626,8 @@
       },
       "classes": [
         "Cleric",
-        "Druid"
+        "Druid",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -713,7 +721,8 @@
         "Bard",
         "Cleric",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -773,7 +782,8 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -803,7 +813,8 @@
       "concentration": false,
       "classes": [
         "Druid",
-        "Warlock"
+        "Warlock",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -836,7 +847,8 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -875,7 +887,8 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -1039,7 +1052,8 @@
         "Sorcerer",
         "Warlock",
         "Wizard",
-        "Druid"
+        "Druid",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/poison-spray",
@@ -1120,7 +1134,8 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -1240,7 +1255,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -1279,7 +1295,8 @@
       },
       "classes": [
         "Cleric",
-        "Druid"
+        "Druid",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -1485,7 +1502,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -1521,7 +1539,8 @@
         "url": "/api/2014/magic-schools/necromancy"
       },
       "classes": [
-        "Cleric"
+        "Cleric",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/spare-the-dying",
@@ -1607,7 +1626,8 @@
         "Druid",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -1901,7 +1921,8 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -1936,7 +1957,8 @@
       },
       "classes": [
         "Ranger",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -2233,7 +2255,8 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -2613,7 +2636,8 @@
         "Cleric",
         "Druid",
         "Paladin",
-        "Ranger"
+        "Ranger",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -2699,7 +2723,8 @@
         "Paladin",
         "Ranger",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -2780,7 +2805,8 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3021,7 +3047,8 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3067,7 +3094,8 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Druid"
+        "Druid",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3118,7 +3146,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3156,7 +3185,8 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3378,7 +3408,8 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3742,7 +3773,8 @@
       },
       "classes": [
         "Bard",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3877,7 +3909,8 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -3919,7 +3952,8 @@
         "Bard",
         "Druid",
         "Ranger",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -4113,7 +4147,8 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Paladin"
+        "Paladin",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -4172,7 +4207,8 @@
         "url": "/api/2014/magic-schools/abjuration"
       },
       "classes": [
-        "Cleric"
+        "Cleric",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -4411,7 +4447,8 @@
       "classes": [
         "Druid",
         "Ranger",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -4471,7 +4508,8 @@
       "concentration": true,
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -4833,7 +4871,8 @@
       },
       "classes": [
         "Cleric",
-        "Paladin"
+        "Paladin",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -4894,7 +4933,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -4973,7 +5013,8 @@
         "url": "/api/2014/magic-schools/abjuration"
       },
       "classes": [
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -5173,7 +5214,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -5190,7 +5232,7 @@
       "index": "branding-smite",
       "name": "Branding Smite",
       "desc": [
-        "The next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra 2d6 radiant damage to the target, which becomes visible if it's invisible, and the target sheds dim light in a 5-­--foot radius and can't become invisible until the spell ends."
+        "The next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra 2d6 radiant damage to the target, which becomes visible if it's invisible, and the target sheds dim light in a 5-\u00ad--foot radius and can't become invisible until the spell ends."
       ],
       "higher_level": [
         "When you cast this spell using a spell slot of 3rd level or higher, the extra damage increases by 1d6 for each slot level above 2nd."
@@ -5232,7 +5274,7 @@
       "subclasses": [],
       "url": "/api/2014/spells/branding-smite",
       "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "The next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra 2d6 radiant damage to the target, which becomes visible if it's invisible, and the target sheds dim light in a 5-­--foot radius and can't become invisible until the spell ends.",
+      "description": "The next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra 2d6 radiant damage to the target, which becomes visible if it's invisible, and the target sheds dim light in a 5-\u00ad--foot radius and can't become invisible until the spell ends.",
       "higherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the extra damage increases by 1d6 for each slot level above 2nd.",
       "castingTime": "1 bonus action",
       "source": "PHB"
@@ -5336,7 +5378,8 @@
       },
       "classes": [
         "Cleric",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -5356,7 +5399,7 @@
       "castingTime": "1 Action",
       "range": "5 feet",
       "duration": "8 hours",
-      "description": "You plant four pieces of nonmagical ammunition—arrows or crossbow bolts—in the ground within range and lay magic upon them to protect an area. Until the spell ends, whenever a creature other than you moves to a space within 30 feet of the ammunition for the first time on a turn or ends its turn there, one piece of ammunition flies up to 30 feet to hit it. The creature must succeed on a Dexterity saving throw or take 1d6 piercing damage. The piece of ammunition is then destroyed. The spell ends when no ammunition remains. When you cast this spell, you can designate any creatures you choose, and the spell ignores them.",
+      "description": "You plant four pieces of nonmagical ammunition\u2014arrows or crossbow bolts\u2014in the ground within range and lay magic upon them to protect an area. Until the spell ends, whenever a creature other than you moves to a space within 30 feet of the ammunition for the first time on a turn or ends its turn there, one piece of ammunition flies up to 30 feet to hit it. The creature must succeed on a Dexterity saving throw or take 1d6 piercing damage. The piece of ammunition is then destroyed. The spell ends when no ammunition remains. When you cast this spell, you can designate any creatures you choose, and the spell ignores them.",
       "higherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the amount of ammunition affected increases by two for each slot level above 2nd.",
       "components": [
         "V",
@@ -5464,7 +5507,8 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -5696,7 +5740,8 @@
         "Bard",
         "Cleric",
         "Druid",
-        "Sorcerer"
+        "Sorcerer",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -5745,7 +5790,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -5861,7 +5907,8 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Ranger"
+        "Ranger",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -6125,7 +6172,8 @@
       },
       "classes": [
         "Bard",
-        "Druid"
+        "Druid",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -6241,7 +6289,8 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -6271,7 +6320,8 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -6338,7 +6388,8 @@
         "Cleric",
         "Druid",
         "Paladin",
-        "Ranger"
+        "Ranger",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -6378,7 +6429,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -6497,7 +6549,8 @@
       },
       "classes": [
         "Bard",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -6535,7 +6588,8 @@
       },
       "classes": [
         "Paladin",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -6681,7 +6735,8 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -6810,7 +6865,8 @@
       },
       "classes": [
         "Druid",
-        "Ranger"
+        "Ranger",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -6919,7 +6975,8 @@
         "Cleric",
         "Druid",
         "Paladin",
-        "Ranger"
+        "Ranger",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -6950,7 +7007,8 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -7025,7 +7083,8 @@
         "url": "/api/2014/magic-schools/transmutation"
       },
       "classes": [
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -7113,7 +7172,8 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -7152,7 +7212,7 @@
       "index": "shatter",
       "name": "Shatter",
       "desc": [
-        "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-­--foot-­--radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. A creature made of inorganic material such as stone,crystal, or metal has disadvantage on this saving throw. A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area."
+        "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-\u00ad--foot-\u00ad--radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. A creature made of inorganic material such as stone,crystal, or metal has disadvantage on this saving throw. A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area."
       ],
       "higher_level": [
         "When you cast this spell using a 3 or higher level spell slot, the damage of the spell increases by 1d8 for each level of higher spell slot 2."
@@ -7214,7 +7274,7 @@
       ],
       "url": "/api/2014/spells/shatter",
       "updated_at": "2026-04-01T20:35:39.218Z",
-      "description": "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-­--foot-­--radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. A creature made of inorganic material such as stone,crystal, or metal has disadvantage on this saving throw. A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area.",
+      "description": "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-\u00ad--foot-\u00ad--radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. A creature made of inorganic material such as stone,crystal, or metal has disadvantage on this saving throw. A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area.",
       "higherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.",
       "castingTime": "1 action",
       "source": "PHB"
@@ -7279,7 +7339,8 @@
       "classes": [
         "Bard",
         "Druid",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -7310,7 +7371,8 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -7510,7 +7572,8 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -7603,7 +7666,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -7809,7 +7873,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -7898,7 +7963,8 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -8041,7 +8107,8 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Paladin"
+        "Paladin",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -8129,7 +8196,8 @@
         "Paladin",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -8384,7 +8452,8 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -8417,7 +8486,8 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -8474,7 +8544,7 @@
       "name": "Glyph of Warding",
       "desc": [
         "When you cast this spell, you inscribe a glyph that harms other creatures, either upon a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book, a scroll, or a treasure chest) to conceal the glyph. If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered. The glyph is nearly invisible and requires a successful Intelligence (Investigation) check against your spell save DC to be found. You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, the most typical triggers include touching or standing on the glyph, removing another object covering the glyph, approaching within a certain distance of the glyph, or manipulating the object on which the glyph is inscribed. For glyphs inscribed within an object, the most common triggers include opening that object, approaching within a certain distance of the object, or seeing or reading the glyph. Once a glyph is triggered, this spell ends. You can further refine the trigger so the spell activates only under certain circumstances or according to physical characteristics (such as height or weight), creature kind (for example, the ward could be set to affect aberrations or drow), or alignment. You can also set conditions for creatures that don't trigger the glyph, such as those who say a certain password. When you inscribe the glyph, choose explosive runes or a spell glyph.",
-        "**Explosive Runes.** When triggered, the glyph erupts with magical energy in a 20-­foot-­radius sphere centered on the glyph. The sphere spreads around corners. Each creature in the area must make a Dexterity saving throw. A creature takes 5d8 acid, cold, fire, lightning, or thunder damage on a failed saving throw (your choice when you create the glyph), or half as much damage on a successful one.",
+        "**Explosive Runes.** When triggered, the glyph erupts with magical energy in a 20-\u00adfoot-\u00adradius sphere centered on the glyph. The sphere spreads around corners. Each creature in the area must make a Dexterity saving throw. A creature takes 5d8 acid, cold, fire, lightning, or thunder damage on a failed saving throw (your choice when you create the glyph), or half as much damage on a successful one.",
         "**Spell Glyph.** You can store a prepared spell of 3rd level or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way. When the glyph is triggered, the stored spell is cast. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires concentration, it lasts until the end of its full duration."
       ],
       "higher_level": [
@@ -8500,14 +8570,15 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
       ],
       "url": "/api/2014/spells/glyph-of-warding",
       "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "When you cast this spell, you inscribe a glyph that harms other creatures, either upon a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book, a scroll, or a treasure chest) to conceal the glyph. If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered. The glyph is nearly invisible and requires a successful Intelligence (Investigation) check against your spell save DC to be found. You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, the most typical triggers include touching or standing on the glyph, removing another object covering the glyph, approaching within a certain distance of the glyph, or manipulating the object on which the glyph is inscribed. For glyphs inscribed within an object, the most common triggers include opening that object, approaching within a certain distance of the object, or seeing or reading the glyph. Once a glyph is triggered, this spell ends. You can further refine the trigger so the spell activates only under certain circumstances or according to physical characteristics (such as height or weight), creature kind (for example, the ward could be set to affect aberrations or drow), or alignment. You can also set conditions for creatures that don't trigger the glyph, such as those who say a certain password. When you inscribe the glyph, choose explosive runes or a spell glyph.\n\n**Explosive Runes.** When triggered, the glyph erupts with magical energy in a 20-­foot-­radius sphere centered on the glyph. The sphere spreads around corners. Each creature in the area must make a Dexterity saving throw. A creature takes 5d8 acid, cold, fire, lightning, or thunder damage on a failed saving throw (your choice when you create the glyph), or half as much damage on a successful one.\n\n**Spell Glyph.** You can store a prepared spell of 3rd level or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way. When the glyph is triggered, the stored spell is cast. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires concentration, it lasts until the end of its full duration.",
+      "description": "When you cast this spell, you inscribe a glyph that harms other creatures, either upon a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book, a scroll, or a treasure chest) to conceal the glyph. If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered. The glyph is nearly invisible and requires a successful Intelligence (Investigation) check against your spell save DC to be found. You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, the most typical triggers include touching or standing on the glyph, removing another object covering the glyph, approaching within a certain distance of the glyph, or manipulating the object on which the glyph is inscribed. For glyphs inscribed within an object, the most common triggers include opening that object, approaching within a certain distance of the object, or seeing or reading the glyph. Once a glyph is triggered, this spell ends. You can further refine the trigger so the spell activates only under certain circumstances or according to physical characteristics (such as height or weight), creature kind (for example, the ward could be set to affect aberrations or drow), or alignment. You can also set conditions for creatures that don't trigger the glyph, such as those who say a certain password. When you inscribe the glyph, choose explosive runes or a spell glyph.\n\n**Explosive Runes.** When triggered, the glyph erupts with magical energy in a 20-\u00adfoot-\u00adradius sphere centered on the glyph. The sphere spreads around corners. Each creature in the area must make a Dexterity saving throw. A creature takes 5d8 acid, cold, fire, lightning, or thunder damage on a failed saving throw (your choice when you create the glyph), or half as much damage on a successful one.\n\n**Spell Glyph.** You can store a prepared spell of 3rd level or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way. When the glyph is triggered, the stored spell is cast. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires concentration, it lasts until the end of its full duration.",
       "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the damage of an explosive runes glyph increases by 1d8 for each slot level above 3rd. If you create a spell glyph, you can store any spell of up to the same level as the slot you use for the glyph of warding.",
       "castingTime": "1 hour",
       "source": "PHB"
@@ -8538,7 +8609,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -8618,7 +8690,8 @@
         "Bard",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -8816,7 +8889,7 @@
       "index": "magic-circle",
       "name": "Magic Circle",
       "desc": [
-        "You create a 10-­--foot-­--radius, 20-­--foot-­--tall cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the cylinder intersects with the floor or other surface. Choose one or more of the following types of creatures: celestials, elementals, fey, fiends, or undead. The circle affects a creature of the chosen type in the following ways: \n- The creature can't willingly enter the cylinder by nonmagical means. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a charisma saving throw. \n- The creature has disadvantage on attack rolls against targets within the cylinder. \n- Targets within the cylinder can't be charmed, frightened, or possessed by the creature.\nWhen you cast this spell, you can elect to cause its magic to operate in the reverse direction, preventing a creature of the specified type from leaving the cylinder and protecting targets outside it."
+        "You create a 10-\u00ad--foot-\u00ad--radius, 20-\u00ad--foot-\u00ad--tall cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the cylinder intersects with the floor or other surface. Choose one or more of the following types of creatures: celestials, elementals, fey, fiends, or undead. The circle affects a creature of the chosen type in the following ways: \n- The creature can't willingly enter the cylinder by nonmagical means. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a charisma saving throw. \n- The creature has disadvantage on attack rolls against targets within the cylinder. \n- Targets within the cylinder can't be charmed, frightened, or possessed by the creature.\nWhen you cast this spell, you can elect to cause its magic to operate in the reverse direction, preventing a creature of the specified type from leaving the cylinder and protecting targets outside it."
       ],
       "higher_level": [
         "When you cast this spell using a spell slot of 4th level or higher, the duration increases by 1 hour for each slot level above 3rd."
@@ -8855,14 +8928,15 @@
         "Cleric",
         "Paladin",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
       ],
       "url": "/api/2014/spells/magic-circle",
       "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "You create a 10-­--foot-­--radius, 20-­--foot-­--tall cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the cylinder intersects with the floor or other surface. Choose one or more of the following types of creatures: celestials, elementals, fey, fiends, or undead. The circle affects a creature of the chosen type in the following ways: \n- The creature can't willingly enter the cylinder by nonmagical means. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a charisma saving throw. \n- The creature has disadvantage on attack rolls against targets within the cylinder. \n- Targets within the cylinder can't be charmed, frightened, or possessed by the creature.\nWhen you cast this spell, you can elect to cause its magic to operate in the reverse direction, preventing a creature of the specified type from leaving the cylinder and protecting targets outside it.",
+      "description": "You create a 10-\u00ad--foot-\u00ad--radius, 20-\u00ad--foot-\u00ad--tall cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the cylinder intersects with the floor or other surface. Choose one or more of the following types of creatures: celestials, elementals, fey, fiends, or undead. The circle affects a creature of the chosen type in the following ways: \n- The creature can't willingly enter the cylinder by nonmagical means. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a charisma saving throw. \n- The creature has disadvantage on attack rolls against targets within the cylinder. \n- Targets within the cylinder can't be charmed, frightened, or possessed by the creature.\nWhen you cast this spell, you can elect to cause its magic to operate in the reverse direction, preventing a creature of the specified type from leaving the cylinder and protecting targets outside it.",
       "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the duration increases by 1 hour for each slot level above 3rd.",
       "castingTime": "1 minute",
       "source": "PHB"
@@ -9252,7 +9326,8 @@
       },
       "classes": [
         "Cleric",
-        "Paladin"
+        "Paladin",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -9292,7 +9367,8 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -9387,7 +9463,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -9689,7 +9766,8 @@
         "Druid",
         "Ranger",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "TCE"
     },
@@ -9714,7 +9792,8 @@
         "Druid",
         "Ranger",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "EGW"
     },
@@ -9739,7 +9818,8 @@
         "Druid",
         "Ranger",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "VRGR"
     },
@@ -9987,7 +10067,8 @@
       "concentration": false,
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "PHB"
     },
@@ -10019,7 +10100,8 @@
         "Cleric",
         "Sorcerer",
         "Warlock",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore"
@@ -10159,7 +10241,8 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -10200,7 +10283,8 @@
         "Cleric",
         "Druid",
         "Ranger",
-        "Sorcerer"
+        "Sorcerer",
+        "Artificer"
       ],
       "subclasses": [
         "Lore",
@@ -10303,7 +10387,8 @@
       },
       "classes": [
         "Cleric",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/arcane-eye",
@@ -10530,7 +10615,7 @@
       "desc": [
         "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10 foot radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it.",
         "An affected target can't take reactions and must roll a d10 at the start of each of its turns to determine its behavior for that turn.",
-        "| d10 | Behavior |\n|---|---|\n| 1 | The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn’t take an action this turn. |\n| 2-6 | The creature doesn’t move or take actions this turn. |\n| 7-8 | The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn. |\n| 9-10 | The creature can act and move normally. |",
+        "| d10 | Behavior |\n|---|---|\n| 1 | The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn\u2019t take an action this turn. |\n| 2-6 | The creature doesn\u2019t move or take actions this turn. |\n| 7-8 | The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn. |\n| 9-10 | The creature can act and move normally. |",
         "At the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target."
       ],
       "higher_level": [
@@ -10574,7 +10659,7 @@
       "subclasses": [],
       "url": "/api/2014/spells/confusion",
       "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10 foot radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it.\n\nAn affected target can't take reactions and must roll a d10 at the start of each of its turns to determine its behavior for that turn.\n\n| d10 | Behavior |\n|---|---|\n| 1 | The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn’t take an action this turn. |\n| 2-6 | The creature doesn’t move or take actions this turn. |\n| 7-8 | The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn. |\n| 9-10 | The creature can act and move normally. |\n\nAt the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target.",
+      "description": "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10 foot radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it.\n\nAn affected target can't take reactions and must roll a d10 at the start of each of its turns to determine its behavior for that turn.\n\n| d10 | Behavior |\n|---|---|\n| 1 | The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn\u2019t take an action this turn. |\n| 2-6 | The creature doesn\u2019t move or take actions this turn. |\n| 7-8 | The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn. |\n| 9-10 | The creature can act and move normally. |\n\nAt the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target.",
       "higherLevel": "When you cast this spell using a spell slot of 5th level or higher, the radius of the sphere increases by 5 feet for each slot level above 4th.",
       "castingTime": "1 action",
       "source": "PHB"
@@ -10874,7 +10959,7 @@
       "url": "/api/2014/spells/dominate-beast",
       "updated_at": "2026-04-01T20:35:39.217Z",
       "description": "You attempt to beguile a beast that you can see within range. It must succeed on a wisdom saving throw or be charmed by you for the duration. If you or creatures that are friendly to you are fighting it, it has advantage on the saving throw. While the beast is charmed, you have a telepathic link with it as long as the two of you are on the same plane of existence. You can use this telepathic link to issue commands to the creature while you are conscious (no action required), which it does its best to obey. You can specify a simple and general course of action, such as \"Attack that creature,\" \"Run over there,\" or \"Fetch that object.\" If the creature completes the order and doesn't receive further direction from you, it defends and preserves itself to the best of its ability. You can use your action to take total and precise control of the target. Until the end of your next turn, the creature takes only the actions you choose, and doesn't do anything that you don't allow it to do. During this time, you can also cause the creature to use a reaction, but this requires you to use your own reaction as well. Each time the target takes damage, it makes a new wisdom saving throw against the spell. If the saving throw succeeds, the spell ends.",
-      "higherLevel": "When you cast this spell with a 5th-­level spell slot, the duration is concentration, up to 10 minutes. When you use a 6th-­level spell slot, the duration is concentration, up to 1 hour. When you use a spell slot of 7th level or higher, the duration is concentration, up to 8 hours.",
+      "higherLevel": "When you cast this spell with a 5th-\u00adlevel spell slot, the duration is concentration, up to 10 minutes. When you use a 6th-\u00adlevel spell slot, the duration is concentration, up to 1 hour. When you use a spell slot of 7th level or higher, the duration is concentration, up to 8 hours.",
       "castingTime": "1 action",
       "source": "PHB"
     },
@@ -10948,7 +11033,8 @@
         "url": "/api/2014/magic-schools/transmutation"
       },
       "classes": [
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/fabricate",
@@ -11501,12 +11587,12 @@
       "description": [
         "You make an area within range magically secure. The area is a cube that can be as small as 5 feet to as large as 100 feet on each side. The spell lasts for the duration or until you use an action to dismiss it.",
         "When you cast the spell, you decide what sort of security the spell provides, choosing any or all of the following options:",
-        "• Sound can't pass through the barrier of the area's perimeter.",
-        "• The barrier of the area appears dark and foggy, preventing vision (including darkvision) through it.",
-        "• Sensors created by divination spells can't appear inside the area or pass through its perimeter.",
-        "• Creatures in the area can't be targeted by divination spells.",
-        "• Nothing can teleport into or out of the area.",
-        "• Planar travel is blocked within the area.",
+        "\u2022 Sound can't pass through the barrier of the area's perimeter.",
+        "\u2022 The barrier of the area appears dark and foggy, preventing vision (including darkvision) through it.",
+        "\u2022 Sensors created by divination spells can't appear inside the area or pass through its perimeter.",
+        "\u2022 Creatures in the area can't be targeted by divination spells.",
+        "\u2022 Nothing can teleport into or out of the area.",
+        "\u2022 Planar travel is blocked within the area.",
         "Casting this spell on the same spot every day for a year makes this effect permanent.",
         "When you cast this spell using a spell slot of 5th level or higher, you can increase the size of the cube by 100 feet for each slot level above 4th."
       ],
@@ -11639,7 +11725,8 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/polymorph",
@@ -11823,7 +11910,8 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Land"
@@ -11863,7 +11951,8 @@
         "Druid",
         "Ranger",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Land"
@@ -12638,7 +12727,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/creation",
@@ -13064,7 +13154,8 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Druid"
+        "Druid",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/greater-restoration",
@@ -13985,8 +14076,8 @@
       "ritual": false,
       "description": [
         "You choose an area of stone or mud that you can see within range and that fits within a 40-foot cube. You can cause one of the following effects:",
-        "• If you target an area of stone, you can cause it to become mud. The mud is deep enough that creatures can sink into it. Each creature in the mud must make a Strength saving throw. On a failed save, a creature sinks into the mud and becomes restrained, though it can use an action to make a Strength check against your spell save DC, freeing itself on a successful save. A creature restrained in the mud also begins to sink. On each of its turns, a restrained creature sinks 5 feet deeper into the mud. A creature that sinks 20 feet or more into the mud is completely submerged and begins to drown.",
-        "• If you target an area of mud, you can cause it to become stone. Each creature in the mud must make a Strength saving throw. On a failed save, a creature becomes restrained, as its flesh and other soft materials begin to harden. The restrained creature can use an action to make a Strength check against your spell save DC, freeing itself on a successful save. A creature that is restrained by this effect has its speed reduced to 0 and can't take reactions."
+        "\u2022 If you target an area of stone, you can cause it to become mud. The mud is deep enough that creatures can sink into it. Each creature in the mud must make a Strength saving throw. On a failed save, a creature sinks into the mud and becomes restrained, though it can use an action to make a Strength check against your spell save DC, freeing itself on a successful save. A creature restrained in the mud also begins to sink. On each of its turns, a restrained creature sinks 5 feet deeper into the mud. A creature that sinks 20 feet or more into the mud is completely submerged and begins to drown.",
+        "\u2022 If you target an area of mud, you can cause it to become stone. Each creature in the mud must make a Strength saving throw. On a failed save, a creature becomes restrained, as its flesh and other soft materials begin to harden. The restrained creature can use an action to make a Strength check against your spell save DC, freeing itself on a successful save. A creature that is restrained by this effect has its speed reduced to 0 and can't take reactions."
       ],
       "components": [
         "V",
@@ -13996,7 +14087,8 @@
       "material": "clay and water",
       "classes": [
         "Druid",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "source": "XGE"
     },
@@ -14149,7 +14241,8 @@
       "classes": [
         "Druid",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [
         "Land"
@@ -15113,9 +15206,9 @@
       "ritual": false,
       "description": [
         "Flames radiate from your body, shedding bright light in a 30-foot radius and dim light for an additional 30 feet. The flames don't harm you. Until the spell ends, you gain the following benefits:",
-        "• You are immune to fire damage and have resistance to cold damage.",
-        "• Any creature that moves within 5 feet of you for the first time on a turn or ends its turn there takes 1d10 fire damage.",
-        "• You can use your action to create a line of fire 15 feet long and 5 feet wide extending from you in a direction you choose. Each creature in the line must make a Dexterity saving throw. A creature takes 4d8 fire damage on a failed save, or half as much damage on a successful one."
+        "\u2022 You are immune to fire damage and have resistance to cold damage.",
+        "\u2022 Any creature that moves within 5 feet of you for the first time on a turn or ends its turn there takes 1d10 fire damage.",
+        "\u2022 You can use your action to create a line of fire 15 feet long and 5 feet wide extending from you in a direction you choose. Each creature in the line must make a Dexterity saving throw. A creature takes 4d8 fire damage on a failed save, or half as much damage on a successful one."
       ],
       "components": [
         "V",
@@ -15142,10 +15235,10 @@
       "ritual": false,
       "description": [
         "Until the spell ends, ice rimes your body, and you gain the following benefits:",
-        "• You are immune to cold damage and have resistance to fire damage.",
-        "• You can move across and climb icy surfaces without needing to make an Ability Check. Additionally, ice and difficult terrain composed of ice doesn't cost you extra movement.",
-        "• The ground within 10 feet of you is icy and is difficult terrain for creatures of your choice. Any creature that moves into the area for the first time on a turn or ends its turn there takes 1d6 cold damage.",
-        "• You can use your action to create a 15-foot cone of freezing wind extending from your chest in a direction you choose. Each creature in the cone must make a Constitution saving throw. A creature takes 4d6 cold damage on a failed save, or half as much damage on a successful one. A creature that fails its save against this effect has its speed halved until the start of your next turn."
+        "\u2022 You are immune to cold damage and have resistance to fire damage.",
+        "\u2022 You can move across and climb icy surfaces without needing to make an Ability Check. Additionally, ice and difficult terrain composed of ice doesn't cost you extra movement.",
+        "\u2022 The ground within 10 feet of you is icy and is difficult terrain for creatures of your choice. Any creature that moves into the area for the first time on a turn or ends its turn there takes 1d6 cold damage.",
+        "\u2022 You can use your action to create a 15-foot cone of freezing wind extending from your chest in a direction you choose. Each creature in the cone must make a Constitution saving throw. A creature takes 4d6 cold damage on a failed save, or half as much damage on a successful one. A creature that fails its save against this effect has its speed halved until the start of your next turn."
       ],
       "components": [
         "V",
@@ -15172,9 +15265,9 @@
       "ritual": false,
       "description": [
         "Until the spell ends, bits of rock crumble from your body, and you gain the following benefits:",
-        "• You have resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
-        "• You can use your action to create a tremor in a 15-foot radius extending from you in a direction you choose. Other creatures on the ground in that area must make a Dexterity saving throw. On a failed save, a creature becomes prone and its speed is reduced to 0 until the start of your next turn. The area becomes difficult terrain until the end of your next turn.",
-        "• You can move across difficult terrain made of earth or stone without expending extra movement. You can also move through solid earth or stone as if it were air and without destabilizing it, but you can't end your turn there. If you do so, you are shunted out to the nearest unoccupied space, taking 1d10 force damage and falling prone."
+        "\u2022 You have resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
+        "\u2022 You can use your action to create a tremor in a 15-foot radius extending from you in a direction you choose. Other creatures on the ground in that area must make a Dexterity saving throw. On a failed save, a creature becomes prone and its speed is reduced to 0 until the start of your next turn. The area becomes difficult terrain until the end of your next turn.",
+        "\u2022 You can move across difficult terrain made of earth or stone without expending extra movement. You can also move through solid earth or stone as if it were air and without destabilizing it, but you can't end your turn there. If you do so, you are shunted out to the nearest unoccupied space, taking 1d10 force damage and falling prone."
       ],
       "components": [
         "V",
@@ -15201,9 +15294,9 @@
       "ritual": false,
       "description": [
         "Until the spell ends, wind whirls around you, and you gain the following benefits:",
-        "• Ranged weapon attacks made against you have disadvantage on the attack roll.",
-        "• You can use your action to create a 15-foot cube of swirling wind centered on you. Each creature in that area must make a Strength saving throw. A creature takes 2d10 bludgeoning damage on a failed save, or half as much damage on a successful one. If a Large or smaller creature fails the saving throw, that creature is also pushed up to 10 feet away from you.",
-        "• You can use the Dash action as a bonus action."
+        "\u2022 Ranged weapon attacks made against you have disadvantage on the attack roll.",
+        "\u2022 You can use your action to create a 15-foot cube of swirling wind centered on you. Each creature in that area must make a Strength saving throw. A creature takes 2d10 bludgeoning damage on a failed save, or half as much damage on a successful one. If a Large or smaller creature fails the saving throw, that creature is also pushed up to 10 feet away from you.",
+        "\u2022 You can use the Dash action as a bonus action."
       ],
       "components": [
         "V",
@@ -15434,7 +15527,7 @@
       "castingTime": "1 Action",
       "range": "Self",
       "duration": "Up to 1 minute",
-      "description": "You draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: • Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. • You gain a fly speed equal to your walking speed and can hover. • You gain resistance to either fire or necrotic damage (your choice). • Your weapons are imbued with otherworldly energy. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage. • You gain a +1 bonus to your spell save DC.",
+      "description": "You draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: \u2022 Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. \u2022 You gain a fly speed equal to your walking speed and can hover. \u2022 You gain resistance to either fire or necrotic damage (your choice). \u2022 Your weapons are imbued with otherworldly energy. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage. \u2022 You gain a +1 bonus to your spell save DC.",
       "higherLevel": "",
       "components": [
         "V",
@@ -15631,10 +15724,10 @@
       "ritual": false,
       "description": [
         "This spell snatches the soul of a humanoid as it dies and traps it inside the tiny cage you use for the material component. A stolen soul remains inside the cage until the spell ends or until you destroy the cage, which ends the spell. While you have a soul inside the cage, you can exploit it in any of the following ways:",
-        "• You can ask the soul a question. The soul answers in a language it knew in life, but can't lie or withhold information. It answers as concisely as possible and can't be compelled to answer at all if it doesn't want to.",
-        "• You can touch a creature and steal its life force. Make a melee spell attack against the target. On a hit, the target takes 8d8 necrotic damage, and you regain a number of hit points equal to half the damage dealt.",
-        "• You can touch a creature and drain its life force. Make a melee spell attack against the target. On a hit, the target takes 8d8 necrotic damage, and you can regain a number of hit points equal to half the damage dealt. The target dies if this damage reduces it to 0 hit points and it is a humanoid.",
-        "• You can use the soul to cast a spell of 6th level or lower that has a casting time of 1 action. The spell uses the soul as its material component, and the soul is consumed.",
+        "\u2022 You can ask the soul a question. The soul answers in a language it knew in life, but can't lie or withhold information. It answers as concisely as possible and can't be compelled to answer at all if it doesn't want to.",
+        "\u2022 You can touch a creature and steal its life force. Make a melee spell attack against the target. On a hit, the target takes 8d8 necrotic damage, and you regain a number of hit points equal to half the damage dealt.",
+        "\u2022 You can touch a creature and drain its life force. Make a melee spell attack against the target. On a hit, the target takes 8d8 necrotic damage, and you can regain a number of hit points equal to half the damage dealt. The target dies if this damage reduces it to 0 hit points and it is a humanoid.",
+        "\u2022 You can use the soul to cast a spell of 6th level or lower that has a casting time of 1 action. The spell uses the soul as its material component, and the soul is consumed.",
         "You can use no more than one of these effects per turn, and you can't use the same effect twice in a row."
       ],
       "components": [
@@ -15744,12 +15837,12 @@
       "ritual": false,
       "description": [
         "You endow yourself with endurance and martial prowess fueled by magic. Until the spell ends, you can't cast spells, and you gain the following benefits:",
-        "• You gain 50 temporary hit points. If any of these remain when the spell ends, they are lost.",
-        "• You have advantage on attack rolls that you make with simple and martial weapons.",
-        "• When you hit a target with a weapon attack, that target takes an extra 2d12 force damage.",
-        "• You have proficiency with all armor, shields, and simple and martial weapons.",
-        "• You have proficiency in Strength and Constitution saving throws.",
-        "• You can attack twice, instead of once, whenever you take the Attack action on your turn. You ignore this benefit if you already have a feature, like Extra Attack, that gives you extra attacks.",
+        "\u2022 You gain 50 temporary hit points. If any of these remain when the spell ends, they are lost.",
+        "\u2022 You have advantage on attack rolls that you make with simple and martial weapons.",
+        "\u2022 When you hit a target with a weapon attack, that target takes an extra 2d12 force damage.",
+        "\u2022 You have proficiency with all armor, shields, and simple and martial weapons.",
+        "\u2022 You have proficiency in Strength and Constitution saving throws.",
+        "\u2022 You can attack twice, instead of once, whenever you take the Attack action on your turn. You ignore this benefit if you already have a feature, like Extra Attack, that gives you extra attacks.",
         "Immediately after the spell ends, you must succeed on a Constitution saving throw against your spell save DC. On a failed save, you suffer one level of exhaustion."
       ],
       "components": [
@@ -16535,7 +16628,8 @@
       },
       "classes": [
         "Bard",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/magnificent-mansion",
@@ -17004,7 +17098,7 @@
         "This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature. The destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The DM rolls d100 and consults the table.",
         "**Familiarity.** \"Permanent circle\" means a permanent teleportation circle whose sigil sequence you know. \"Associated object\" means that you possess an object taken from the desired destination within the last six months, such as a book from a wizard's library, bed linen from a royal suite, or a chunk of marble from a lich's secret tomb. \"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map. \"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead viewed an illusion, or you are attempting to teleport to a familiar location that no longer exists.",
         "**On Target.** You and your group (or the target object) appear where you want to.",
-        "**Off Target.** You and your group (or the target object) appear a random distance away from the destination in a random direction. Distance off target is 1d10 × 1d10 percent of the distance that was to be traveled. For example, if you tried to travel 120 miles, landed off target, and rolled a 5 and 3 on the two d10s, then you would be off target by 15 percent, or 18 miles. The GM determines the direction off target randomly by rolling a d8 and designating 1 as north, 2 as northeast, 3 as east, and so on around the points of the compass. If you were teleporting to a coastal city and wound up 18 miles out at sea, you could be in trouble.",
+        "**Off Target.** You and your group (or the target object) appear a random distance away from the destination in a random direction. Distance off target is 1d10 \u00d7 1d10 percent of the distance that was to be traveled. For example, if you tried to travel 120 miles, landed off target, and rolled a 5 and 3 on the two d10s, then you would be off target by 15 percent, or 18 miles. The GM determines the direction off target randomly by rolling a d8 and designating 1 as north, 2 as northeast, 3 as east, and so on around the points of the compass. If you were teleporting to a coastal city and wound up 18 miles out at sea, you could be in trouble.",
         "**Similar Area.** You and your group (or the target object) wind up in a different area that's visually or thematically similar to the target area. If you are heading for your home laboratory, for example, you might wind up in another wizard's laboratory or in an alchemical supply shop that has many of the same tools and implements as your laboratory. Generally, you appear in the closest similar place, but since the spell has no range limit, you could conceivably wind up anywhere on the plane.",
         "**Mishap.** The spell's unpredictable magic results in a difficult journey. Each teleporting creature (or the target object) takes 3d10 force damage, and the GM rerolls on the table to see where you wind up (multiple mishaps can occur, dealing damage each time)."
       ],
@@ -17029,12 +17123,13 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/teleport",
       "updated_at": "2026-04-01T20:35:39.218Z",
-      "description": "This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature. The destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The DM rolls d100 and consults the table.\n\n**Familiarity.** \"Permanent circle\" means a permanent teleportation circle whose sigil sequence you know. \"Associated object\" means that you possess an object taken from the desired destination within the last six months, such as a book from a wizard's library, bed linen from a royal suite, or a chunk of marble from a lich's secret tomb. \"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map. \"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead viewed an illusion, or you are attempting to teleport to a familiar location that no longer exists.\n\n**On Target.** You and your group (or the target object) appear where you want to.\n\n**Off Target.** You and your group (or the target object) appear a random distance away from the destination in a random direction. Distance off target is 1d10 × 1d10 percent of the distance that was to be traveled. For example, if you tried to travel 120 miles, landed off target, and rolled a 5 and 3 on the two d10s, then you would be off target by 15 percent, or 18 miles. The GM determines the direction off target randomly by rolling a d8 and designating 1 as north, 2 as northeast, 3 as east, and so on around the points of the compass. If you were teleporting to a coastal city and wound up 18 miles out at sea, you could be in trouble.\n\n**Similar Area.** You and your group (or the target object) wind up in a different area that's visually or thematically similar to the target area. If you are heading for your home laboratory, for example, you might wind up in another wizard's laboratory or in an alchemical supply shop that has many of the same tools and implements as your laboratory. Generally, you appear in the closest similar place, but since the spell has no range limit, you could conceivably wind up anywhere on the plane.\n\n**Mishap.** The spell's unpredictable magic results in a difficult journey. Each teleporting creature (or the target object) takes 3d10 force damage, and the GM rerolls on the table to see where you wind up (multiple mishaps can occur, dealing damage each time).",
+      "description": "This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature. The destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The DM rolls d100 and consults the table.\n\n**Familiarity.** \"Permanent circle\" means a permanent teleportation circle whose sigil sequence you know. \"Associated object\" means that you possess an object taken from the desired destination within the last six months, such as a book from a wizard's library, bed linen from a royal suite, or a chunk of marble from a lich's secret tomb. \"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map. \"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead viewed an illusion, or you are attempting to teleport to a familiar location that no longer exists.\n\n**On Target.** You and your group (or the target object) appear where you want to.\n\n**Off Target.** You and your group (or the target object) appear a random distance away from the destination in a random direction. Distance off target is 1d10 \u00d7 1d10 percent of the distance that was to be traveled. For example, if you tried to travel 120 miles, landed off target, and rolled a 5 and 3 on the two d10s, then you would be off target by 15 percent, or 18 miles. The GM determines the direction off target randomly by rolling a d8 and designating 1 as north, 2 as northeast, 3 as east, and so on around the points of the compass. If you were teleporting to a coastal city and wound up 18 miles out at sea, you could be in trouble.\n\n**Similar Area.** You and your group (or the target object) wind up in a different area that's visually or thematically similar to the target area. If you are heading for your home laboratory, for example, you might wind up in another wizard's laboratory or in an alchemical supply shop that has many of the same tools and implements as your laboratory. Generally, you appear in the closest similar place, but since the spell has no range limit, you could conceivably wind up anywhere on the plane.\n\n**Mishap.** The spell's unpredictable magic results in a difficult journey. Each teleporting creature (or the target object) takes 3d10 force damage, and the GM rerolls on the table to see where you wind up (multiple mishaps can occur, dealing damage each time).",
       "higherLevel": [],
       "castingTime": "1 action",
       "source": "PHB"
@@ -17165,7 +17260,8 @@
       },
       "classes": [
         "Cleric",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/antimagic-field",
@@ -17380,7 +17476,7 @@
       "name": "Earthquake",
       "desc": [
         "You create a seismic disturbance at a point on the ground that you can see within range. For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area. The ground in the area becomes difficult terrain. Each creature on the ground that is concentrating must make a constitution saving throw. On a failed save, the creature's concentration is broken. When you cast this spell and at the end of each turn you spend concentrating on it, each creature on the ground in the area must make a dexterity saving throw. On a failed save, the creature is knocked prone. This spell can have additional effects depending on the terrain in the area, as determined by the DM.",
-        "**Fissures.** Fissures open throughout the spell's area at the start of your next turn after you cast the spell. A total of 1d6 such fissures open in locations chosen by the DM. Each is 1d10 × 10 feet deep, 10 feet wide, and extends from one edge of the spell's area to the opposite side. A creature standing on a spot where a fissure opens must succeed on a dexterity saving throw or fall in. A creature that successfully saves moves with the fissure's edge as it opens. A fissure that opens beneath a structure causes it to automatically collapse (see below).",
+        "**Fissures.** Fissures open throughout the spell's area at the start of your next turn after you cast the spell. A total of 1d6 such fissures open in locations chosen by the DM. Each is 1d10 \u00d7 10 feet deep, 10 feet wide, and extends from one edge of the spell's area to the opposite side. A creature standing on a spot where a fissure opens must succeed on a dexterity saving throw or fall in. A creature that successfully saves moves with the fissure's edge as it opens. A fissure that opens beneath a structure causes it to automatically collapse (see below).",
         "**Structures.** The tremor deals 50 bludgeoning damage to any structure in contact with the ground in the area when you cast the spell and at the start of each of your turns until the spell ends. If a structure drops to 0 hit points, it collapses and potentially damages nearby creatures. A creature within half the distance of a structure's height must make a dexterity saving throw. On a failed save, the creature takes 5d6 bludgeoning damage, is knocked prone, and is buried in the rubble, requiring a DC 20 Strength (Athletics) check as an action to escape. The DM can adjust the DC higher or lower, depending on the nature of the rubble. On a successful save, the creature takes half as much damage and doesn't fall prone or become buried."
       ],
       "range": "500 feet",
@@ -17412,7 +17508,7 @@
       "subclasses": [],
       "url": "/api/2014/spells/earthquake",
       "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "You create a seismic disturbance at a point on the ground that you can see within range. For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area. The ground in the area becomes difficult terrain. Each creature on the ground that is concentrating must make a constitution saving throw. On a failed save, the creature's concentration is broken. When you cast this spell and at the end of each turn you spend concentrating on it, each creature on the ground in the area must make a dexterity saving throw. On a failed save, the creature is knocked prone. This spell can have additional effects depending on the terrain in the area, as determined by the DM. \n\n**Fissures.** Fissures open throughout the spell's area at the start of your next turn after you cast the spell. A total of 1d6 such fissures open in locations chosen by the DM. Each is 1d10 × 10 feet deep, 10 feet wide, and extends from one edge of the spell's area to the opposite side. A creature standing on a spot where a fissure opens must succeed on a dexterity saving throw or fall in. A creature that successfully saves moves with the fissure's edge as it opens. A fissure that opens beneath a structure causes it to automatically collapse (see below). \n\n**Structures.** The tremor deals 50 bludgeoning damage to any structure in contact with the ground in the area when you cast the spell and at the start of each of your turns until the spell ends. If a structure drops to 0 hit points, it collapses and potentially damages nearby creatures. A creature within half the distance of a structure's height must make a dexterity saving throw. On a failed save, the creature takes 5d6 bludgeoning damage, is knocked prone, and is buried in the rubble, requiring a DC 20 Strength (Athletics) check as an action to escape. The DM can adjust the DC higher or lower, depending on the nature of the rubble. On a successful save, the creature takes half as much damage and doesn't fall prone or become buried.",
+      "description": "You create a seismic disturbance at a point on the ground that you can see within range. For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area. The ground in the area becomes difficult terrain. Each creature on the ground that is concentrating must make a constitution saving throw. On a failed save, the creature's concentration is broken. When you cast this spell and at the end of each turn you spend concentrating on it, each creature on the ground in the area must make a dexterity saving throw. On a failed save, the creature is knocked prone. This spell can have additional effects depending on the terrain in the area, as determined by the DM. \n\n**Fissures.** Fissures open throughout the spell's area at the start of your next turn after you cast the spell. A total of 1d6 such fissures open in locations chosen by the DM. Each is 1d10 \u00d7 10 feet deep, 10 feet wide, and extends from one edge of the spell's area to the opposite side. A creature standing on a spot where a fissure opens must succeed on a dexterity saving throw or fall in. A creature that successfully saves moves with the fissure's edge as it opens. A fissure that opens beneath a structure causes it to automatically collapse (see below). \n\n**Structures.** The tremor deals 50 bludgeoning damage to any structure in contact with the ground in the area when you cast the spell and at the start of each of your turns until the spell ends. If a structure drops to 0 hit points, it collapses and potentially damages nearby creatures. A creature within half the distance of a structure's height must make a dexterity saving throw. On a failed save, the creature takes 5d6 bludgeoning damage, is knocked prone, and is buried in the rubble, requiring a DC 20 Strength (Athletics) check as an action to escape. The DM can adjust the DC higher or lower, depending on the nature of the rubble. On a successful save, the creature takes half as much damage and doesn't fall prone or become buried.",
       "higherLevel": [],
       "castingTime": "1 action",
       "source": "PHB"
@@ -17497,7 +17593,8 @@
       },
       "classes": [
         "Bard",
-        "Warlock"
+        "Warlock",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/glibness",
@@ -18051,7 +18148,8 @@
         "url": "/api/2014/magic-schools/conjuration"
       },
       "classes": [
-        "Cleric"
+        "Cleric",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/mass-heal",
@@ -18130,7 +18228,8 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard"
+        "Wizard",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/meteor-swarm",
@@ -18530,7 +18629,8 @@
       },
       "classes": [
         "Cleric",
-        "Druid"
+        "Druid",
+        "Artificer"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/true-resurrection",
@@ -18617,6 +18717,422 @@
       "higherLevel": [],
       "castingTime": "1 action",
       "source": "PHB"
+    },
+    {
+      "index": "thorn-whip",
+      "name": "Thorn Whip",
+      "desc": "You create a long, vine-like whip of thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. If the hit, the creature takes 1d6 piercing damage, and if the creature is Large or smaller, you pull the creature up to 10 feet closer to you.",
+      "range": "30 feet",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "duration": "Instantaneous",
+      "concentration": false,
+      "casting_time": "1 action",
+      "level": 0,
+      "school": {
+        "index": "transmutation",
+        "name": "Transmutation",
+        "url": "/api/2014/magic-schools/transmutation"
+      },
+      "classes": [
+        "Artificer",
+        "Druid"
+      ],
+      "source": "PHB",
+      "description": "You create a long, vine-like whip of thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. If the hit, the creature takes 1d6 piercing damage, and if the creature is Large or smaller, you pull the creature up to 10 feet closer to you.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/thorn-whip",
+      "damage": {
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing",
+          "url": "/api/2014/damage-types/piercing"
+        },
+        "damage_at_character_level": {
+          "1": "1d6"
+        }
+      },
+      "dc": {
+        "dc_type": {
+          "index": "con",
+          "name": "CON",
+          "url": "/api/2014/ability-scores/con"
+        },
+        "dc_success": "none"
+      }
+    },
+    {
+      "index": "wristpocket",
+      "name": "Wristpocket",
+      "desc": "You flick your wrist, causing one object in your hand to vanish. The object, which only you can designate, is transported to an extradimensional space and remains there until you use this spell again to bring it back. The object must weigh no more than 5 pounds and be no longer than 6 inches in any dimension. While stored, you can use your action to summon the object back to your hand.",
+      "range": "Self",
+      "components": [
+        "S"
+      ],
+      "ritual": true,
+      "duration": "Concentration, up to 1 hour",
+      "concentration": true,
+      "casting_time": "1 action",
+      "level": 2,
+      "school": {
+        "index": "conjuration",
+        "name": "Conjuration",
+        "url": "/api/2014/magic-schools/conjuration"
+      },
+      "classes": [
+        "Artificer"
+      ],
+      "source": "PHB",
+      "description": "You flick your wrist, causing one object in your hand to vanish. The object, which only you can designate, is transported to an extradimensional space and remains there until you use this spell again to bring it back. The object must weigh no more than 5 pounds and be no longer than 6 inches in any dimension. While stored, you can use your action to summon the object back to your hand.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/wristpocket"
+    },
+    {
+      "index": "aura-of-life",
+      "name": "Aura of Life",
+      "desc": "Life-preserving energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) has resistance to necrotic damage, and its hit point maximum can't be reduced.",
+      "range": "Self (30-foot radius)",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "duration": "Concentration, up to 10 minutes",
+      "concentration": true,
+      "casting_time": "1 action",
+      "level": 3,
+      "school": {
+        "index": "abjuration",
+        "name": "Abjuration",
+        "url": "/api/2014/magic-schools/abjuration"
+      },
+      "classes": [
+        "Artificer",
+        "Paladin"
+      ],
+      "source": "PHB",
+      "description": "Life-preserving energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) has resistance to necrotic damage, and its hit point maximum can't be reduced.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/aura-of-life"
+    },
+    {
+      "index": "aura-of-purity",
+      "name": "Aura of Purity",
+      "desc": "Purifying energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) can't become diseased, has resistance to poison damage, and has advantage on saving throws against effects that cause blindness, deafness, paralysis, poison, or stunned.",
+      "range": "Self (30-foot radius)",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "duration": "Concentration, up to 10 minutes",
+      "concentration": true,
+      "casting_time": "1 action",
+      "level": 3,
+      "school": {
+        "index": "abjuration",
+        "name": "Abjuration",
+        "url": "/api/2014/magic-schools/abjuration"
+      },
+      "classes": [
+        "Artificer",
+        "Paladin"
+      ],
+      "source": "PHB",
+      "description": "Purifying energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) can't become diseased, has resistance to poison damage, and has advantage on saving throws against effects that cause blindness, deafness, paralysis, poison, or stunned.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/aura-of-purity"
+    },
+    {
+      "index": "elemental-weapon",
+      "name": "Elemental Weapon",
+      "desc": "A nonmagical weapon you touch becomes a magic weapon. Choose one of the following damage types: acid, cold, fire, lightning, or thunder. For the duration, the weapon has a +1 bonus to attack rolls and deals an extra 1d4 damage of the chosen type.",
+      "range": "Touch",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "duration": "Concentration, up to 1 hour",
+      "concentration": true,
+      "casting_time": "1 action",
+      "level": 3,
+      "school": {
+        "index": "transmutation",
+        "name": "Transmutation",
+        "url": "/api/2014/magic-schools/transmutation"
+      },
+      "classes": [
+        "Artificer",
+        "Paladin",
+        "Ranger"
+      ],
+      "source": "PHB",
+      "description": "A nonmagical weapon you touch becomes a magic weapon. Choose one of the following damage types: acid, cold, fire, lightning, or thunder. For the duration, the weapon has a +1 bonus to attack rolls and deals an extra 1d4 damage of the chosen type.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/elemental-weapon"
+    },
+    {
+      "index": "fast-friends",
+      "name": "Fast Friends",
+      "desc": "You call on the magic of the realm to make a creature more amenable to your presence. Choose one creature within range that can see or hear you. The creature must make a Wisdom saving throw. On a failed save, it becomes charmed by you until the spell ends.",
+      "range": "30 feet",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "duration": "Concentration, up to 1 hour",
+      "concentration": true,
+      "casting_time": "1 action",
+      "level": 3,
+      "school": {
+        "index": "enchantment",
+        "name": "Enchantment",
+        "url": "/api/2014/magic-schools/enchantment"
+      },
+      "classes": [
+        "Artificer",
+        "Bard",
+        "Wizard"
+      ],
+      "source": "PHB",
+      "description": "You call on the magic of the realm to make a creature more amenable to your presence. Choose one creature within range that can see or hear you. The creature must make a Wisdom saving throw. On a failed save, it becomes charmed by you until the spell ends.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/fast-friends"
+    },
+    {
+      "index": "protection-from-energy",
+      "name": "Protection from Energy",
+      "desc": "For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder.",
+      "range": "Touch",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "duration": "Concentration, up to 1 hour",
+      "concentration": true,
+      "casting_time": "1 action",
+      "level": 3,
+      "school": {
+        "index": "abjuration",
+        "name": "Abjuration",
+        "url": "/api/2014/magic-schools/abjuration"
+      },
+      "classes": [
+        "Artificer",
+        "Cleric",
+        "Druid",
+        "Ranger",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "PHB",
+      "description": "For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/protection-from-energy"
+    },
+    {
+      "index": "aura-of-vitality",
+      "name": "Aura of Vitality",
+      "desc": "Healing energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. You can use a bonus action to cause one creature in the aura (including you) to regain 2d6 hit points.",
+      "range": "Self (30-foot radius)",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "duration": "Concentration, up to 1 minute",
+      "concentration": true,
+      "casting_time": "1 bonus action",
+      "level": 4,
+      "school": {
+        "index": "evocation",
+        "name": "Evocation",
+        "url": "/api/2014/magic-schools/evocation"
+      },
+      "classes": [
+        "Artificer",
+        "Paladin"
+      ],
+      "source": "PHB",
+      "description": "Healing energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. You can use a bonus action to cause one creature in the aura (including you) to regain 2d6 hit points.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/aura-of-vitality"
+    },
+    {
+      "index": "leomunds-secret-chest",
+      "name": "Leomund's Secret Chest",
+      "desc": "You hide a chest, and all its contents, on the Ethereal Plane. You must touch the chest and the replica that serves as a material component for the spell. The chest can contain up to 12 cubic feet of nonliving material (3 feet by 4 feet by 2 feet).",
+      "range": "Touch",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "duration": "Instantaneous",
+      "concentration": false,
+      "casting_time": "1 action",
+      "level": 4,
+      "school": {
+        "index": "conjuration",
+        "name": "Conjuration",
+        "url": "/api/2014/magic-schools/conjuration"
+      },
+      "classes": [
+        "Artificer",
+        "Wizard"
+      ],
+      "source": "PHB",
+      "description": "You hide a chest, and all its contents, on the Ethereal Plane. You must touch the chest and the replica that serves as a material component for the spell. The chest can contain up to 12 cubic feet of nonliving material (3 feet by 4 feet by 2 feet).",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/leomunds-secret-chest"
+    },
+    {
+      "index": "greater-transport-via-plants",
+      "name": "Greater Transport via Plants",
+      "desc": "This spell creates a magical link between a Large or larger inanimate plant within range and another plant, at any distance, on the same plane of existence. You must have seen or touched the destination plant before.",
+      "range": "10 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "duration": "1 round",
+      "concentration": false,
+      "casting_time": "1 action",
+      "level": 6,
+      "school": {
+        "index": "conjuration",
+        "name": "Conjuration",
+        "url": "/api/2014/magic-schools/conjuration"
+      },
+      "classes": [
+        "Artificer",
+        "Druid",
+        "Ranger"
+      ],
+      "source": "PHB",
+      "description": "This spell creates a magical link between a Large or larger inanimate plant within range and another plant, at any distance, on the same plane of existence. You must have seen or touched the destination plant before.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/greater-transport-via-plants"
+    },
+    {
+      "index": "illusory-dragon",
+      "name": "Illusory Dragon",
+      "desc": "By gathering threads of shadow material from the Shadowfell, you create a Huge shadowy dragon in an unoccupied space that you can see within range. The illusion lasts for the duration and occupies its space as if it were a creature.",
+      "range": "120 feet",
+      "components": [
+        "S"
+      ],
+      "ritual": false,
+      "duration": "Concentration, up to 1 minute",
+      "concentration": true,
+      "casting_time": "1 action",
+      "level": 8,
+      "school": {
+        "index": "illusion",
+        "name": "Illusion",
+        "url": "/api/2014/magic-schools/illusion"
+      },
+      "classes": [
+        "Artificer",
+        "Wizard"
+      ],
+      "source": "PHB",
+      "description": "By gathering threads of shadow material from the Shadowfell, you create a Huge shadowy dragon in an unoccupied space that you can see within range. The illusion lasts for the duration and occupies its space as if it were a creature.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/illusory-dragon"
+    },
+    {
+      "index": "polar-ray",
+      "name": "Polar Ray",
+      "desc": "A blue-white ray of freezing ice streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 9d8 cold damage, and its speed is halved until the start of your next turn.",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "duration": "Instantaneous",
+      "concentration": false,
+      "casting_time": "1 action",
+      "level": 9,
+      "school": {
+        "index": "evocation",
+        "name": "Evocation",
+        "url": "/api/2014/magic-schools/evocation"
+      },
+      "classes": [
+        "Artificer",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "PHB",
+      "description": "A blue-white ray of freezing ice streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 9d8 cold damage, and its speed is halved until the start of your next turn.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/polar-ray",
+      "damage": {
+        "damage_type": {
+          "index": "cold",
+          "name": "Cold",
+          "url": "/api/2014/damage-types/cold"
+        },
+        "damage_at_character_level": {
+          "1": "9d8"
+        }
+      },
+      "dc": {
+        "dc_type": {
+          "index": "con",
+          "name": "CON",
+          "url": "/api/2014/ability-scores/con"
+        },
+        "dc_success": "none"
+      }
+    },
+    {
+      "index": "power-heal",
+      "name": "Power Heal",
+      "desc": "A wave of healing energy washes over a creature you can see within range. The target regains 70 hit points. This spell also ends blindness, deafness, and diseases affecting the target.",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "duration": "Instantaneous",
+      "concentration": false,
+      "casting_time": "1 action",
+      "level": 9,
+      "school": {
+        "index": "evocation",
+        "name": "Evocation",
+        "url": "/api/2014/magic-schools/evocation"
+      },
+      "classes": [
+        "Artificer",
+        "Cleric"
+      ],
+      "source": "PHB",
+      "description": "A wave of healing energy washes over a creature you can see within range. The target regains 70 hit points. This spell also ends blindness, deafness, and diseases affecting the target.",
+      "higher_level": [],
+      "updated_at": "2026-04-01T20:35:39.217Z",
+      "url": "/api/2014/spells/power-heal"
     }
   ],
   "generated": "2026-08-31T10:19:09.073Z"
