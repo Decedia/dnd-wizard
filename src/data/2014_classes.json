@@ -8637,7 +8637,82 @@
           ]
         }
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "skillChoices": {
+        "count": 2,
+        "options": [
+          "Arcana",
+          "History",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Sleight of Hand"
+        ]
+      },
+      "startingEquipment": [
+        {
+          "granted": true,
+          "description": "Leather Armor",
+          "items": [
+            {
+              "name": "Leather Armor",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "granted": true,
+          "description": "Thieves' Tools",
+          "items": [
+            {
+              "name": "Thieves' Tools",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "granted": true,
+          "description": "Tinker's Tools",
+          "items": [
+            {
+              "name": "Tinker's Tools",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "granted": true,
+          "description": "Dungeoneer's Pack",
+          "items": [
+            {
+              "name": "Dungeoneer's Pack",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "description": "any two simple weapons",
+          "isWeaponChoice": true,
+          "weaponType": "simple",
+          "selectionCount": 2,
+          "items": []
+        },
+        {
+          "granted": true,
+          "description": "Light Crossbow and 20 bolts",
+          "items": [
+            {
+              "name": "Light Crossbow",
+              "quantity": 1
+            },
+            {
+              "name": "Crossbow Bolts",
+              "quantity": 20
+            }
+          ]
+        }
+      ]
     }
   ],
   "generated": "2026-08-31T10:21:35.670Z"
