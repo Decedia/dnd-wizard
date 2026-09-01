@@ -351,7 +351,8 @@ function buildLevelInfos(
 
     // Preparation casters (Cleric, Druid): prepare Wisdom mod + level spells
     if (isPrepCaster && classData.spellcastingAbility) {
-      const abilityMod = getModifier(character[classData.spellcastingAbility as keyof Character] as number);
+      const abilityScore = character[classData.spellcastingAbility as keyof Character] as number;
+      const abilityMod = getModifier(abilityScore || 10);
       if (className === "Artificer") {
         // Artificer: Intelligence modifier + half artificer level, rounded down (minimum 1)
         const maxPrepared = Math.max(1, abilityMod + Math.floor(level / 2));
