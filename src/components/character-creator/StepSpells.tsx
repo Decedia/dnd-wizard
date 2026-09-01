@@ -81,7 +81,8 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   const idCounter = useRef(0);
   const classData = data.class ? getStaticClass(data.class) : null;
   const spellcastingAbility = classData?.spellcastingAbility || "int";
-  const abilityMod = getModifier(data[spellcastingAbility as keyof Character] as number || 10);
+  const abilityKey = spellcastingAbility === "intelligence" ? "int" : spellcastingAbility === "wisdom" ? "wis" : spellcastingAbility === "charisma" ? "cha" : spellcastingAbility === "strength" ? "str" : spellcastingAbility === "dexterity" ? "dex" : spellcastingAbility === "constitution" ? "con" : "int";
+  const abilityMod = getModifier(data[abilityKey as keyof Character] as number || 10);
 
   const allSpells = getStaticSpells(data.sources).filter((s) => s.classes?.includes(data.class));
   const maxSpellLevel = getMaxSpellLevel(data.class, data.level);
