@@ -59,6 +59,9 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
   } else if (classNameLower === "warlock") {
     const spellsKnownByLevel: Record<number, number> = { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 };
     spells = spellsKnownByLevel[level] || 2;
+  } else if (classNameLower === "artificer") {
+    // Artificer: Intelligence modifier + half artificer level, rounded down (minimum 1)
+    spells = Math.max(1, abilityMod + Math.floor(level / 2));
   }
 
   return { cantrips, spells };
@@ -253,7 +256,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
     <StepCard
       title="Spells"
       hint={prepCaster
-        ? `Choose your prepared spells. You prepare ${maxCantrips} cantrips and ${maxSpells} spells (Wisdom mod + level). You can change prepared spells after a long rest.`
+        ? `Choose your prepared spells. You prepare ${maxCantrips} cantrips and ${maxSpells} spells. You can change prepared spells after a long rest.`
         : `Choose your starting spells. You know ${maxCantrips} cantrips and ${maxSpells} spells. Spells are from the D&D 5e SRD.`
       }
     >

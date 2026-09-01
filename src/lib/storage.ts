@@ -663,7 +663,7 @@ export function getMaxPreparedSpells(character: Character): number {
 }
 
 export function isPreparationCaster(character: Character): boolean {
-  return ["Cleric", "Druid", "Paladin", "Wizard"].includes(character.class);
+  return ["Cleric", "Druid", "Paladin", "Wizard", "Artificer"].includes(character.class);
 }
 
 export function getBardicInspirationDie(character: Character): string {
