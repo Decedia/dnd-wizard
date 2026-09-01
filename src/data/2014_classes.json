@@ -8652,46 +8652,6 @@
       },
       "startingEquipment": [
         {
-          "granted": true,
-          "description": "Leather Armor",
-          "items": [
-            {
-              "name": "Leather Armor",
-              "quantity": 1
-            }
-          ]
-        },
-        {
-          "granted": true,
-          "description": "Thieves' Tools",
-          "items": [
-            {
-              "name": "Thieves' Tools",
-              "quantity": 1
-            }
-          ]
-        },
-        {
-          "granted": true,
-          "description": "Tinker's Tools",
-          "items": [
-            {
-              "name": "Tinker's Tools",
-              "quantity": 1
-            }
-          ]
-        },
-        {
-          "granted": true,
-          "description": "Dungeoneer's Pack",
-          "items": [
-            {
-              "name": "Dungeoneer's Pack",
-              "quantity": 1
-            }
-          ]
-        },
-        {
           "description": "any two simple weapons",
           "isWeaponChoice": true,
           "weaponType": "simple",
@@ -8709,6 +8669,40 @@
             {
               "name": "Crossbow Bolts",
               "quantity": 20
+            }
+          ]
+        },
+        {
+          "description": "(a) studded leather armor or (b) scale mail",
+          "options": [
+            {
+              "name": "Studded Leather Armor",
+              "quantity": 1
+            },
+            {
+              "name": "Scale Mail",
+              "quantity": 1
+            }
+          ],
+          "items": []
+        },
+        {
+          "granted": true,
+          "description": "Thieves' Tools",
+          "items": [
+            {
+              "name": "Thieves' Tools",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "granted": true,
+          "description": "Dungeoneer's Pack",
+          "items": [
+            {
+              "name": "Dungeoneer's Pack",
+              "quantity": 1
             }
           ]
         }
