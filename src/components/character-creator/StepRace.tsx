@@ -83,15 +83,15 @@ export function StepRace({ data, onChange }: StepRaceProps) {
                       : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-card-title">{race.name}</span>
-                      {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-muted">
-                        {race.size} / Speed {race.speed} ft
-                      </span>
+                   <div className="flex items-center justify-between">
+                     <div className="flex items-center gap-2">
+                       <span className="text-card-title">{race.name}</span>
+                     </div>
+                     <div className="flex items-center gap-2">
+                       {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
+                       <span className="text-muted">
+                         {race.size} / Speed {race.speed} ft
+                       </span>
                       {race.traits && race.traits.length > 0 && (
                         <InfoButton
                           title={`${race.name} Traits`}

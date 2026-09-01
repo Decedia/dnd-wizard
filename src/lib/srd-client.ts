@@ -41,6 +41,7 @@ export interface SRDClass {
   primaryAbility: string;
   savingThrows: string[];
   flavorText: string;
+  source?: string;
   proficiencies: {
     armor: string[];
     weapons: string[];
@@ -313,8 +314,10 @@ export function getStaticRace(name: string): SRDRace | undefined {
   return getStaticRaces().find((r) => r.name === name);
 }
 
-export function getStaticClasses(): SRDClass[] {
-  return classesData.classes as unknown as SRDClass[];
+export function getStaticClasses(sources?: string[]): SRDClass[] {
+  const classes = classesData.classes as unknown as SRDClass[];
+  if (!sources || sources.length === 0) return classes;
+  return classes.filter((c) => sources.includes(c.source || "PHB"));
 }
 
 export function getStaticClass(name: string): SRDClass | undefined {

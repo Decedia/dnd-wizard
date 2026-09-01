@@ -49,7 +49,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [pendingClass, setPendingClass] = useState<string | null>(data.class || null);
   const [pendingRace, setPendingRace] = useState<string | null>(data.race || null);
   const [pendingVariant, setPendingVariant] = useState<boolean>(data.raceVariant === "variant");
-  const classes: SRDClass[] = getStaticClasses();
+  const classes: SRDClass[] = getStaticClasses(data.sources);
   const races: SRDRace[] = getStaticRaces(data.sources);
 
   const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";
@@ -277,14 +277,17 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
                             <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
-                            {hasSubclasses && (() => {
-                              const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
-                              return (
-                                <span className="text-[10px] font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-2 py-0.5 rounded-full">
-                                  {filteredCount} subclasses at Lv {cls.subclassLevel}
-                                </span>
-                              );
-                            })()}
+                            <div className="flex items-center gap-2">
+                              {hasSubclasses && (() => {
+                                const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
+                                return (
+                                  <span className="text-[10px] font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-2 py-0.5 rounded-full">
+                                    {filteredCount} subclasses at Lv {cls.subclassLevel}
+                                  </span>
+                                );
+                              })()}
+                              {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -359,8 +362,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                             <Icon className="h-5 w-5" />
                           </div>
-                          <div className="flex-1">
-                              <div className="flex items-center gap-2">
+                           <div className="flex-1">
+                              <div className="flex items-center justify-between">
                                 <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{race.name}</span>
                                 {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
                               </div>
