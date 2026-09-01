@@ -162,6 +162,7 @@ export interface ChoiceGroup {
   id: string;
   description: string;
   options: EquipmentOption[];
+  requiresChoice?: { groupId: string; optionIndex: number };
 }
 
 function parseOptionLetter(part: string): string {
@@ -232,11 +233,22 @@ function findOptionItems(optionLetter: string, allItems: any[], optionText: stri
 export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
   const groups: ChoiceGroup[] = [];
   let groupCounter = 0;
+  const firstChoiceGroupId = `choice-${groupCounter++}`;
 
   startingEquipment.forEach((entry: any) => {
-    if (entry.granted) return;
+    if (entry.granted && !entry.requiresChoice) return;
     const desc = entry.description || "";
     const items = entry.items || [];
+
+    const group: ChoiceGroup = {
+      id: `choice-${groupCounter++}`,
+      description: desc,
+      options: [],
+    };
+
+    if (entry.requiresChoice) {
+      group.requiresChoice = entry.requiresChoice;
+    }
 
     const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
     if (optionMatches && optionMatches.length > 1) {
@@ -299,11 +311,8 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         }
       }
 
-      groups.push({
-        id: `choice-${groupCounter++}`,
-        description: desc,
-        options,
-      });
+      group.options = options;
+      groups.push(group);
       return;
     }
 
@@ -365,23 +374,17 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
         }
       }
 
-      groups.push({
-        id: `choice-${groupCounter++}`,
-        description: desc,
-        options,
-      });
+      group.options = options;
+      groups.push(group);
     } else if (items.length > 0) {
-      groups.push({
-        id: `choice-${groupCounter++}`,
-        description: desc || "Starting equipment",
-        options: items.map((item: any) => {
-          const srdMatch = findSRDItemMatch(item.name);
-          return {
-            description: srdMatch ? srdMatch.name : item.name,
-            items: [item],
-          };
-        }),
+      group.options = items.map((item: any) => {
+        const srdMatch = findSRDItemMatch(item.name);
+        return {
+          description: srdMatch ? srdMatch.name : item.name,
+          items: [item],
+        };
       });
+      groups.push(group);
     }
   });
 

@@ -524,13 +524,21 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return parts.join("\n");
   }, []);
 
+  const isGroupVisible = useCallback((group: ChoiceGroup): boolean => {
+    if (!group.requiresChoice) return true;
+    const requiredGroupId = group.requiresChoice.groupId;
+    const requiredOptionIndex = group.requiresChoice.optionIndex;
+    const requiredGroupIndex = getGroupIndex(requiredGroupId);
+    return data.inventory.some(item => item.choiceGroupIndex === requiredGroupIndex && item.choiceOptionIndex === requiredOptionIndex);
+  }, [data.inventory, getGroupIndex]);
+
   const isAllRequiredSelected = useMemo(() => {
     if (choiceGroups.length === 0) return true;
-    return choiceGroups.every(group => {
+    return choiceGroups.filter(isGroupVisible).every(group => {
       const groupIndex = getGroupIndex(group.id);
       return data.inventory.some(item => item.choiceGroupIndex === groupIndex);
     });
-  }, [choiceGroups, data.inventory, getGroupIndex]);
+  }, [choiceGroups, data.inventory, getGroupIndex, isGroupVisible]);
 
   const popupOption = popupGroup ? popupGroup.group.options[popupGroup.optionIndex] : null;
   const popupCategoryWeapons = popupOption?.isWeaponChoice ? getWeaponsByCategory(popupOption.weaponType || "") : [];
@@ -544,7 +552,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
             Choose Your Equipment
           </span>
           <div className="space-y-4">
-             {choiceGroups.map((group) => {
+             {choiceGroups.filter(isGroupVisible).map((group) => {
                const groupIndex = getGroupIndex(group.id);
                const hasSelection = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
 
