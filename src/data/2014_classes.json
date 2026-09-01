@@ -8674,17 +8674,18 @@
         },
         {
           "description": "(a) studded leather armor or (b) scale mail",
-          "options": [
+          "items": [
             {
               "name": "Studded Leather Armor",
+              "description": "(a) studded leather armor",
               "quantity": 1
             },
             {
               "name": "Scale Mail",
+              "description": "(b) scale mail",
               "quantity": 1
             }
-          ],
-          "items": []
+          ]
         },
         {
           "granted": true,
