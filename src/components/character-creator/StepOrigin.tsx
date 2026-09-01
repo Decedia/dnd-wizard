@@ -276,18 +276,18 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
-                            <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
-                            <div className="flex items-center gap-2">
+                            <div>
+                              <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
                               {hasSubclasses && (() => {
                                 const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
                                 return (
-                                  <span className="text-[10px] font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-2 py-0.5 rounded-full">
-                                    {filteredCount} subclasses at Lv {cls.subclassLevel}
-                                  </span>
+                                  <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
+                                    {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
+                                  </div>
                                 );
                               })()}
-                              {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
                             </div>
+                            {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
                           </div>
                         </div>
                       </div>
