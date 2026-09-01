@@ -3354,6 +3354,10 @@
         {
           "name": "Samurai",
           "description": ""
+        },
+        {
+          "name": "Echo Knight",
+          "description": ""
         }
       ],
       "actionSurgeUses": {
