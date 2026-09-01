@@ -702,5 +702,90 @@
       "name": "Pact of the Tome",
       "description": "Your patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class's spell list. While the book is on your person, you can cast those cantrips at will. They don't count against your number of cantrips known. If you lose your Book of Shadows, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous book."
     }
-  ]
+  ],
+  "artificerSpells": {
+    "alchemist": {
+      "3": [
+        "Healing Word"
+      ],
+      "5": [
+        "Flaming Sphere"
+      ],
+      "9": [
+        "Protection from Energy"
+      ],
+      "13": [
+        "Death Ward"
+      ],
+      "15": [
+        "Greater Restoration"
+      ]
+    },
+    "armorer": {
+      "3": [
+        "Magic Missile",
+        "Thunderwave"
+      ],
+      "5": [
+        "Mirror Image",
+        "Shatter"
+      ],
+      "9": [
+        "Hypnotic Pattern",
+        "Lightning Bolt"
+      ],
+      "13": [
+        "Fire Shield",
+        "Greater Invisibility"
+      ],
+      "15": [
+        "Passwall",
+        "Wall of Force"
+      ]
+    },
+    "artillerist": {
+      "3": [
+        "Shield",
+        "Thunderwave"
+      ],
+      "5": [
+        "Scorching Ray",
+        "Shatter"
+      ],
+      "9": [
+        "Fireball",
+        "Wind Wall"
+      ],
+      "13": [
+        "Ice Storm",
+        "Wall of Fire"
+      ],
+      "15": [
+        "Cone of Cold",
+        "Wall of Force"
+      ]
+    },
+    "battleSmith": {
+      "3": [
+        "Heroism",
+        "Shield"
+      ],
+      "5": [
+        "Branding Smite",
+        "Warding Bond"
+      ],
+      "9": [
+        "Aura of Vitality",
+        "Conjure Barrage"
+      ],
+      "13": [
+        "Aura of Purity",
+        "Fire Shield"
+      ],
+      "15": [
+        "Banishing Smite",
+        "Mass Cure Wounds"
+      ]
+    }
+  }
 }
