@@ -649,11 +649,12 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 export function getMaxPreparedSpells(character: Character): number {
   const classData = getStaticClass(character.class);
   if (!classData?.spellcastingAbility) return 0;
-  const abilityMod = getModifier(character[classData.spellcastingAbility as keyof Character] as number);
+  const abilityScore = character[classData.spellcastingAbility as keyof Character] as number;
+  const abilityMod = getModifier(abilityScore || 10);
   if (character.class === "Cleric" || character.class === "Druid") {
     return Math.max(1, abilityMod + character.level);
   }
-  if (character.class === "Paladin") {
+  if (character.class === "Paladin" || character.class === "Artificer") {
     return Math.max(1, abilityMod + Math.floor(character.level / 2));
   }
   if (character.class === "Wizard") {
