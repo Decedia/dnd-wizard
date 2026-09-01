@@ -1,0 +1,327 @@
+[
+  {
+    "index": "bugbear",
+    "name": "Bugbear",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "strength": 2,
+      "dexterity": 1
+    },
+    "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "name": "Long-Limbed",
+        "description": "When you make a melee attack on your turn, your reach for it is 5 feet greater than normal."
+      },
+      {
+        "name": "Powerful Build",
+        "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+      },
+      {
+        "name": "Sneaky",
+        "description": "You are proficient in the Stealth skill."
+      },
+      {
+        "name": "Surprise Attack",
+        "description": "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra 2d6 damage to it. You can use this trait only once per combat."
+      }
+    ],
+    "languages": ["Common", "Goblin"],
+    "source": "EGW"
+  },
+  {
+    "index": "changeling",
+    "name": "Changeling",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "dexterity": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Duplicity",
+        "description": "You have proficiency in the Deception skill."
+      },
+      {
+        "name": "Shapechanger",
+        "description": "As an action, you can change your appearance and your voice to or from any Medium humanoid you have seen, or back to your true form. However, your clothing and other equipment aren't changed by this trait. You can remain in a new form until you use an action to revert to your true form or until you die. If you are damaged while in a new form, your true form is revealed."
+      }
+    ],
+    "languages": ["Common", "Dwarvish", "Elvish", "Halfling"],
+    "source": "EGW"
+  },
+  {
+    "index": "firbolg",
+    "name": "Firbolg",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "wisdom": 2,
+      "strength": 1
+    },
+    "traits": [
+      {
+        "name": "Firbolg Magic",
+        "description": "You can cast the detect magic and disguise self spells with this trait. When you use this version of disguise self, you can seem to be a humanoid of normal size. When you cast either spell with this trait, you can cast it again with this trait when you finish a long rest. Wisdom is your spellcasting ability for these spells."
+      },
+      {
+        "name": "Hidden Step",
+        "description": "As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this trait, you can't use it again until you finish a short or long rest."
+      },
+      {
+        "name": "Powerful Build",
+        "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+      },
+      {
+        "name": "Speech of Beast and Leaf",
+        "description": "You have the ability to communicate in a limited manner with beasts and plants. They can understand the meaning of your words, though you have no special ability to understand them in return. You have advantage on all Charisma checks you make to influence them."
+      }
+    ],
+    "languages": ["Common", "Elvish", "Giant"],
+    "source": "EGW"
+  },
+  {
+    "index": "goblin",
+    "name": "Goblin",
+    "size": "Small",
+    "speed": 30,
+    "abilityBonuses": {
+      "dexterity": 2,
+      "constitution": 1
+    },
+    "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "name": "Fury of the Small",
+        "description": "When you damage a creature with an attack or spell, you can deal extra damage equal to your level. Once you use this trait, you can't use it again until you finish a short or long rest."
+      },
+      {
+        "name": "Nimble Escape",
+        "description": "You can take the Disengage or Hide action as a bonus action on each of your turns."
+      }
+    ],
+    "languages": ["Common", "Goblin"],
+    "source": "EGW"
+  },
+  {
+    "index": "hobgoblin",
+    "name": "Hobgoblin",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "constitution": 2,
+      "intelligence": 1
+    },
+    "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "name": "Martial Training",
+        "description": "You are proficient with two martial weapons of your choice."
+      },
+      {
+        "name": "Saving Face",
+        "description": "Whenever you make an ability check and miss by 4 or less, you can treat the roll as if you had missed by 5. If you do so, you gain a luck point. You can spend a luck point when you make an attack roll, ability check, or saving throw to roll an additional d6 and add it to your roll. You regain all luck points when you finish a long rest."
+      }
+    ],
+    "languages": ["Common", "Goblin"],
+    "source": "EGW"
+  },
+  {
+    "index": "kenku",
+    "name": "Kenku",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "dexterity": 2,
+      "wisdom": 1
+    },
+    "traits": [
+      {
+        "name": "Expert Forgery",
+        "description": "You can duplicate other creatures' handwriting and craftwork. You have advantage on all checks made to produce forgeries or duplicates of existing objects."
+      },
+      {
+        "name": "Kenku Training",
+        "description": "You are proficient in your choice of two of the following skills: Acrobatics, Deception, Stealth, and Sleight of Hand."
+      },
+      {
+        "name": "Mimicry",
+        "description": "You can mimic sounds you have heard, including voices. A creature that hears the sounds can tell they are imitations with a successful Wisdom (Insight) check opposed by your Charisma (Deception) check."
+      }
+    ],
+    "languages": ["Common", "Auran"],
+    "source": "EGW"
+  },
+  {
+    "index": "lizardfolk",
+    "name": "Lizardfolk",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "constitution": 2,
+      "wisdom": 1
+    },
+    "traits": [
+      {
+        "name": "Bite",
+        "description": "Your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit, you deal piercing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike."
+      },
+      {
+        "name": "Cunning Artisan",
+        "description": "As part of a short rest, you can harvest bone and hide from a slain beast, construct, dragon, monstrosity, or plant creature of size Small or larger to create one of the following items: a shield, a club, a javelin, or 4d4 pieces of ammunition. To use this trait, you need a blade, such as a dagger, or appropriate artisan's tools, such as leatherworker's tools."
+      },
+      {
+        "name": "Hold Breath",
+        "description": "You can hold your breath for 15 minutes at a time."
+      },
+      {
+        "name": "Natural Armor",
+        "description": "When you aren't wearing armor, your AC is 13 + your Dexterity modifier. You can use a shield and still gain this benefit."
+      }
+    ],
+    "languages": ["Common", "Draconic"],
+    "source": "EGW"
+  },
+  {
+    "index": "orc",
+    "name": "Orc",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "strength": 2,
+      "constitution": 1
+    },
+    "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "name": "Menacing",
+        "description": "You are proficient in the Intimidation skill."
+      },
+      {
+        "name": "Powerful Build",
+        "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+      },
+      {
+        "name": "Relentless Endurance",
+        "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest."
+      }
+    ],
+    "languages": ["Common", "Orc"],
+    "source": "EGW"
+  },
+  {
+    "index": "shifter",
+    "name": "Shifter",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "dexterity": 2,
+      "constitution": 1
+    },
+    "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "name": "Keen Senses",
+        "description": "You are proficient in the Perception skill."
+      },
+      {
+        "name": "Shifting",
+        "description": "As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your bonus action. When you shift, you gain temporary hit points equal to your level + your Constitution modifier (minimum of 1 temporary hit point). You also gain additional benefits that depend on one of the following shifter options you choose: Beasthide, Longtooth, Swiftstride, or Wildhunt. Once you shift, you can't do so again until you finish a short or long rest."
+      }
+    ],
+    "languages": ["Common"],
+    "source": "EGW",
+    "choices": [
+      {
+        "id": "shifter-type",
+        "name": "Shifter Type",
+        "description": "Choose your shifter type. This determines the additional benefit you gain when you shift.",
+        "type": "single",
+        "options": [
+          { "id": "beasthide", "name": "Beasthide", "description": "While shifted, you have a +1 bonus to AC." },
+          { "id": "longtooth", "name": "Longtooth", "description": "While shifted, your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit, you deal piercing damage equal to 1d6 + your Strength modifier." },
+          { "id": "swiftstride", "name": "Swiftstride", "description": "While shifted, your walking speed increases by 10 feet." },
+          { "id": "wildhunt", "name": "Wildhunt", "description": "While shifted, you have advantage on Wisdom checks." }
+        ]
+      }
+    ]
+  },
+  {
+    "index": "tabaxi",
+    "name": "Tabaxi",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "dexterity": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "name": "Feline Agility",
+        "description": "Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed until the end of the turn. Once you use this trait, you can't use it again until you move 0 feet on one or more of your turns."
+      },
+      {
+        "name": "Cat's Claws",
+        "description": "Because of your retractable claws, you have a climbing speed of 20 feet. In addition, your claws are natural weapons, which you can use to make unarmed strikes. If you hit, you deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal damage for an unarmed strike."
+      },
+      {
+        "name": "Cat's Talent",
+        "description": "You have proficiency in the Perception and Stealth skills."
+      }
+    ],
+    "languages": ["Common"],
+    "source": "EGW"
+  },
+  {
+    "index": "triton",
+    "name": "Triton",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "strength": 1,
+      "constitution": 1,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Amphibious",
+        "description": "You can breathe air and water."
+      },
+      {
+        "name": "Control Air and Water",
+        "description": "A child of the sea, you can call on the magic of elemental air and water. You can cast the fog cloud spell with this trait. Starting at 3rd level, you can cast the gust of wind spell with this trait. Starting at 5th level, you can cast the water walk spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for them."
+      },
+      {
+        "name": "Emissary of the Sea",
+        "description": "Aquatic beasts have an instinctive understanding of your telepathic utterances. You have advantage on all Charisma checks you make to influence beasts that can breathe water."
+      },
+      {
+        "name": "Guardians of the Depths",
+        "description": "Adapted to even the most extreme ocean depths, you have resistance to cold damage."
+      }
+    ],
+    "languages": ["Common", "Primordial"],
+    "source": "EGW"
+  }
+]

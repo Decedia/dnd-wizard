@@ -1,0 +1,41 @@
+[
+  {
+    "index": "echo-knight",
+    "name": "Echo Knight",
+    "class": "Fighter",
+    "description": "A mysterious warrior who can summon an echo of themselves from unspent potential, the Echo Knight uses their own shadow as a weapon. These fighters are rare and often misunderstood, for they walk the line between what is and what could be.",
+    "features": [
+      {
+        "name": "Manifest Echo",
+        "level": 3,
+        "description": "You can use a bonus action to magically manifest a translucent, gray image of yourself in an unoccupied space you can see within 15 feet of you. This echo lasts until it is destroyed, you dismiss it, you manifest another echo, or you're incapacitated. Your echo has AC 14 + your proficiency bonus, 1 hit point, and immunity to all conditions. If it has to make a saving throw, use your save bonus. It is the same size as you, and it occupies its space. On your turn, you can mentally command the echo to move up to 30 feet in any direction (no action required). You can use it as the origin for your attacks and you can make opportunity attacks as if you were in its space."
+      },
+      {
+        "name": "Unleash Incarnation",
+        "level": 3,
+        "description": "When you take the Attack action on your turn, you can make one additional melee attack from the echo's space. You can use this feature a number of times equal to your Constitution modifier (minimum of once). You regain all expended uses when you finish a long rest."
+      },
+      {
+        "name": "Echo Avatar",
+        "level": 7,
+        "description": "As a bonus action, you can teleport, magically swapping places with your echo at a cost of 15 feet of your movement, regardless of the distance between the two of you. Immediately before you teleport, you can see through its eyes and hear through its ears until the start of your next turn, gaining the benefits of any special senses that the echo has. During this time, you are deaf and blind with regard to your own senses."
+      },
+      {
+        "name": "Shadow Martyr",
+        "level": 10,
+        "description": "When you take damage from a creature that is within 5 feet of your echo, you can use your reaction to teleport, causing the echo to teleport to the space you were in and become the target of the attack instead. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+      },
+      {
+        "name": "Reclaim Potential",
+        "level": 15,
+        "description": "When your echo is destroyed by taking damage, you can use your reaction to gain a number of temporary hit points equal to 2d6 + your Constitution modifier. If you end your turn with these temporary hit points, you lose them. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+      },
+      {
+        "name": "Legion of One",
+        "level": 18,
+        "description": "When you use Manifest Echo, you can create two echoes with it, and these echoes can coexist. When you take the Attack action on your turn, you can make one additional melee attack from the space of each echo. Moreover, when you use Unleash Incarnation, you can make the additional attack from either echo's space."
+      }
+    ],
+    "source": "EGW"
+  }
+]

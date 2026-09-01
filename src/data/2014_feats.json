@@ -7,6 +7,12 @@
       "source": "MTF"
     },
     {
+      "name": "Aberrant Dragonmark",
+      "description": "Your exposure to the alien influence of the Far Realm or the planes has manifested a magical mark. You gain the following benefits:\n- Increase your Constitution score by 1, to a maximum of 20.\n- You learn one cantrip of your choice from the sorcerer spell list. In addition, choose one 1st-level spell from the sorcerer spell list. You learn that spell and can cast it at its lowest level. Once you cast it, you must finish a long rest before you can cast it again using this feature. Constitution is your spellcasting ability for these spells.\n- Your dragonmark has grown in size and power. When you gain a level, you can replace the cantrip you learned from this feat with another cantrip from the sorcerer spell list.",
+      "prerequisites": "No existing dragonmark",
+      "source": "EGW"
+    },
+    {
       "description": "Skilled at mimicry and dramatics, you gain the following benefits:\n- Increase your Charisma score by 1, to a maximum of 20.\n- You have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.\n- You can mimic the speech of another person or the sounds made by other creatures. You must have heard the person speaking, or heard the creature make the sound, for at least 1 minute. A successful Wisdom (Insight) check contested by your Charisma (Deception) check allows a listener to determine that the effect is faked.",
       "name": "Actor",
       "prerequisites": null,
@@ -55,6 +61,12 @@
       "source": "MTF"
     },
     {
+      "name": "Bountiful Luck",
+      "description": "Your people have an extraordinary luck that you have learned to share with your companions, granting you the following benefits:\n- When an ally you can see within 30 feet of you rolls a 1 on the d20 for an attack roll, ability check, or saving throw, you can use your reaction to let the ally reroll the die. The ally must use the new roll.",
+      "prerequisites": "Halfling",
+      "source": "EGW"
+    },
+    {
       "description": "When you use your action to Dash, you can use a bonus action to make one melee weapon attack or to shove a creature.\nIf you move at least 10 feet in a straight line immediately before taking this bonus action, you either gain a +5 bonus to the attack's damage roll (if you choose and hit with a melee weapon attack) or push the target 10 feet away from you (if you choose to shove and succeed).",
       "name": "Charger",
       "prerequisites": null,
@@ -65,6 +77,12 @@
       "description": "Your affinity with beasts and the natural world has granted you the ability to communicate with creatures. You gain the following benefits:\n- Increase your Wisdom score by 1, to a maximum of 20.\n- You learn the druidcraft cantrip.\n- You can cast the speak with animals spell at will, without expending a spell slot.",
       "prerequisites": null,
       "source": "MTF"
+    },
+    {
+      "name": "Critter",
+      "description": "Your affinity with beasts and the natural world has granted you the ability to communicate with creatures. You gain the following benefits:\n- Increase your Wisdom score by 1, to a maximum of 20.\n- You learn the druidcraft cantrip.\n- You can cast the speak with animals spell at will, without expending a spell slot.",
+      "prerequisites": null,
+      "source": "EGW"
     },
     {
       "description": "Thanks to extensive practice with crossbows, you gain the following benefits:\n- You ignore the loading quality of crossbows with which you are proficient.\n- Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls.\n- When you use the Attack action and attack with a one-handed weapon, you can use a bonus action to attack with a hand crossbow you are holding.",
@@ -151,6 +169,12 @@
       "source": "MTF"
     },
     {
+      "name": "Drow High Magic",
+      "description": "You learn more of the magic typical of dark elves, granting you the following benefits:\n- You learn the detect magic spell and can cast it at will, without expending a spell slot.\n- You learn the dispel magic and levitate spells, each of which you can cast once without expending a spell slot. You regain the ability to cast these spells in this way when you finish a long rest.\n- Charisma is your spellcasting ability for these spells.",
+      "prerequisites": "Elf (Drow)",
+      "source": "EGW"
+    },
+    {
       "description": "You master fighting with two weapons, gaining the following benefits:\n- You gain a +1 bonus to AC while you are wielding a separate melee weapon in each hand.\n- You can use two-weapon fighting even when the one-handed melee weapons you aren't wielding aren't light.\n- You can draw or stow two one-handed weapons when you would normally be able to draw or stow only one.",
       "name": "Dual Wielder",
       "prerequisites": null,
@@ -187,6 +211,12 @@
       "source": "MTF"
     },
     {
+      "name": "Dwarven Fortitude",
+      "description": "The blood of your dwarven ancestors flows strong through you, granting you the following benefits:\n- Increase your Constitution score by 1, to a maximum of 20.\n- Whenever you take the Dodge action in combat, you can spend one Hit Die to heal yourself. Roll the die, add your Constitution modifier, and regain a number of hit points equal to the total (minimum of 1).",
+      "prerequisites": "Dwarf",
+      "source": "EGW"
+    },
+    {
       "name": "Eldritch Adept",
       "description": "Studying occult lore, you have unlocked eldritch magic that can be learned only by those who know the Arcana of the Mysteries. You gain the following benefits:\n- You learn one Eldritch Invocation option of your choice from the warlock class. If the invocation has a prerequisite, you can choose that invocation only if you're a warlock who meets the prerequisite. Whenever you gain a level, you can replace the invocation with another one from the warlock class that you meet the prerequisite for.\n- If the invocation requires a spell, you must know the spell to use the invocation, unless the invocation states otherwise.",
       "prerequisites": "Spellcasting or Pact Magic feature",
@@ -217,6 +247,12 @@
       "source": "MTF"
     },
     {
+      "name": "Elven Accuracy",
+      "description": "The accuracy of elves is legendary, especially with the bow. You have uncanny aim with your attacks, granting you the following benefits:\n- Increase your Dexterity, Intelligence, Wisdom, or Charisma by 1, to a maximum of 20.\n- Whenever you have advantage on an attack roll using Dexterity, Intelligence, Wisdom, or Charisma, you can reroll one of the dice once. You must use the new roll.",
+      "prerequisites": "Elf or Half-Elf",
+      "source": "EGW"
+    },
+    {
       "name": "Everybody's Friend",
       "description": "You are a skilled manipulator, gaining the following benefits:\n- Increase your Charisma score by 1, to a maximum of 20.\n- You gain proficiency in the Deception skill. If you are already proficient in the skill, you gain expertise with it, which means your proficiency bonus is doubled for any check you make with it.\n- If you spend 1 minute talking to someone who can understand you, you can make a Charisma (Deception) check contested by the creature's Wisdom (Insight) check. If you or your companions are fighting a creature, you have disadvantage on the check. If you succeed on the check, the creature is charmed by you for 1 hour. If you fail, the creature can't be charmed by you for 24 hours.",
       "prerequisites": null,
@@ -239,6 +275,12 @@
       "description": "Your people have a knack for vanishing, an inherited boon that protects you, granting you the following benefits:\n- Increase your Dexterity or Intelligence by 1, to a maximum of 20.\n- Immediately after you take damage, you can use your reaction to magically become invisible and teleport up to 10 feet to an unoccupied space you can see. You remain invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this feat, you can't do so again until you finish a short or long rest.",
       "prerequisites": "Gnome",
       "source": "MTF"
+    },
+    {
+      "name": "Fade Away",
+      "description": "Your people have a knack for vanishing, an inherited boon that protects you, granting you the following benefits:\n- Increase your Dexterity or Intelligence by 1, to a maximum of 20.\n- Immediately after you take damage, you can use your reaction to magically become invisible and teleport up to 10 feet to an unoccupied space you can see. You remain invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this feat, you can't do so again until you finish a short or long rest.",
+      "prerequisites": "Gnome",
+      "source": "EGW"
     },
     {
       "name": "Favored by the Gods",
@@ -271,6 +313,12 @@
       "source": "MTF"
     },
     {
+      "name": "Fey Teleportation",
+      "description": "Your study of the Feywild's magic has allowed you to learn how to teleport, granting you the following benefits:\n- Increase your Intelligence or Charisma by 1, to a maximum of 20.\n- You learn to speak, read, and write Sylvan.\n- You learn the misty step spell and can cast it once without a spell slot. You regain the ability to cast it this way when you finish a short or long rest. Intelligence is your spellcasting ability for this spell.",
+      "prerequisites": "Elf",
+      "source": "EGW"
+    },
+    {
       "name": "Fey Touched",
       "description": "Your exposure to the Feywild's magic has changed you, granting you the following benefits:\n- Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\n- You learn the misty step spell and one 1st-level spell of your choice from the divination or enchantment school of magic. The 1st-level spell must be of a level you can cast, as shown on the spellcaster table. You can cast each of these spells without expending a spell slot once until you finish a long rest. You can also cast the spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat.",
       "prerequisites": null,
@@ -299,6 +347,12 @@
       "description": "You learn to call on the fiery essence of the Lower Planes to augment your spells, granting you the following benefits:\n- Increase your Intelligence or Charisma by 1, to a maximum of 20.\n- When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice, but you must use the new roll, even if it is another 1.\n- When you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light in a 30-foot radius and dim light for an additional 30 feet. While the flames are present, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage.",
       "prerequisites": "Tiefling",
       "source": "MTF"
+    },
+    {
+      "name": "Flames of Phlegethos",
+      "description": "You learn to call on the fiery essence of the Lower Planes to augment your spells, granting you the following benefits:\n- Increase your Intelligence or Charisma by 1, to a maximum of 20.\n- When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice, but you must use the new roll, even if it is another 1.\n- When you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light in a 30-foot radius and dim light for an additional 30 feet. While the flames are present, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage.",
+      "prerequisites": "Tiefling",
+      "source": "EGW"
     },
     {
       "name": "Gift of the Chromatic Dragon",
@@ -371,6 +425,12 @@
       "description": "The fires of the Lower Planes have tempered your resilience, granting you the following benefits:\n- Increase your Constitution by 1, to a maximum of 20.\n- You have resistance to cold and poison damage.\n- You have advantage on saving throws against being poisoned.",
       "prerequisites": "Tiefling",
       "source": "MTF"
+    },
+    {
+      "name": "Infernal Constitution",
+      "description": "The fires of the Lower Planes have tempered your resilience, granting you the following benefits:\n- Increase your Constitution by 1, to a maximum of 20.\n- You have resistance to cold and poison damage.\n- You have advantage on saving throws against being poisoned.",
+      "prerequisites": "Tiefling",
+      "source": "EGW"
     },
     {
       "description": "You can spend 10 minutes inspiring your companions, shoring up their resolve to fight. When you do so, choose up to six friendly creatures (which can include yourself) within 30 feet of you who can see or hear you and who can understand you. Each creature gains temporary hit points equal to your level + your Charisma modifier. A creature can't gain temporary hit points from this feat again until it finishes a short or long rest.",
@@ -493,6 +553,12 @@
       "source": "MTF"
     },
     {
+      "name": "Orcish Fury",
+      "description": "Your fury burns tirelessly, granting you the following benefits:\n- Increase your Strength or Constitution by 1, to a maximum of 20.\n- When you hit with an attack using a simple or martial weapon, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the attack. Once you use this ability, you can't use it again until you start a short or long rest.\n- When you use your Relentless Endurance trait, you can also make a melee attack as a reaction.",
+      "prerequisites": "Half-Orc or Orc",
+      "source": "EGW"
+    },
+    {
       "name": "Piercer",
       "description": "You have achieved a penetrating precision in combat, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Once per turn when you hit a creature with an attack that deals piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.\n- When you score a critical hit with an attack that deals piercing damage, you can roll one additional damage die when determining the extra damage the target takes.",
       "prerequisites": null,
@@ -521,6 +587,12 @@
       "description": "You have a knack for learning new things, granting you the following benefits:\n- You gain proficiency with one skill of your choice, one tool of your choice, and fluency in one language of your choice.\n- You gain expertise with one skill of your choice that you're already proficient in. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus.",
       "prerequisites": "Half-Elf or Human",
       "source": "MTF"
+    },
+    {
+      "name": "Prodigy",
+      "description": "You have a knack for learning new things, granting you the following benefits:\n- You gain proficiency with one skill of your choice, one tool of your choice, and fluency in one language of your choice.\n- You gain expertise with one skill of your choice that you're already proficient in. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus.",
+      "prerequisites": "Half-Elf or Human",
+      "source": "EGW"
     },
     {
       "description": "Choose one ability score. You gain the following benefits:\n- Increase the chosen ability score by 1, to a maximum of 20.\n- You gain proficiency in saving throws using the chosen ability.",
@@ -557,6 +629,12 @@
       "description": "Fortune favors you when you fight, granting you the following benefits:\n- Increase your Dexterity, Constitution, or Charisma by 1, to a maximum of 20.\n- When a creature you can see hits you with an attack roll, you can use your reaction to force that creature to reroll. Once you use this ability, you can't use it again until you roll initiative at the start of combat or until you finish a short or long rest.",
       "prerequisites": "Halfling",
       "source": "MTF"
+    },
+    {
+      "name": "Second Chance",
+      "description": "Fortune favors you when you fight, granting you the following benefits:\n- Increase your Dexterity, Constitution, or Charisma by 1, to a maximum of 20.\n- When a creature you can see hits you with an attack roll, you can use your reaction to force that creature to reroll. Once you use this ability, you can't use it again until you roll initiative at the start of combat or until you finish a short or long rest.",
+      "prerequisites": "Halfling",
+      "source": "EGW"
     },
     {
       "description": "You have mastered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits:\n- When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.\n- Creatures within 5 feet of you provoke opportunity attacks from you even if they take the Disengage action before leaving your reach.\n- When a creature within 5 feet of you makes an attack against a target other than you (or no target), you can use your reaction to make a melee weapon attack against the attacking creature.",
@@ -635,6 +713,12 @@
       "description": "You are uncommonly nimble for your people, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Your speed increases by 5 feet.\n- You gain proficiency in the Acrobatics or Athletics skill (your choice).\n- You have advantage on any check you make to escape a grapple.",
       "prerequisites": "Dwarf or Small race",
       "source": "MTF"
+    },
+    {
+      "name": "Squat Nimbleness",
+      "description": "You are uncommonly nimble for your people, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Your speed increases by 5 feet.\n- You gain proficiency in the Acrobatics or Athletics skill (your choice).\n- You have advantage on any check you make to escape a grapple.",
+      "prerequisites": "Dwarf or Small race",
+      "source": "EGW"
     },
     {
       "name": "Svirfneblin Magic",
