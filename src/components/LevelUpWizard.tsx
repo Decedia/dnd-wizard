@@ -32,9 +32,9 @@ import {
 import { InfoButton } from "@/components/InfoButton";
 import { useSRD } from "@/contexts/SRDContext";
 
-function getSubclassFlagsByName(className: string, subclassName: string): Record<string, boolean> {
+function getSubclassFlagsByName(className: string, subclassName: string, sources?: string[]): Record<string, boolean> {
   if (!subclassName) return {};
-  const subclasses = getStaticSubclasses(className);
+  const subclasses = getStaticSubclasses(className, sources);
   const found = subclasses.find(s => s.name.toLowerCase() === subclassName.toLowerCase());
   if (!found?.index) return {};
   return getSubclassFlags(found.index);
@@ -361,7 +361,7 @@ function buildLevelInfos(
     const magicalSecretsLevels = [10, 14, 18];
     const magicalSecretsCount = isBard && magicalSecretsLevels.includes(level) ? 2 : 0;
     const canReplaceSpell = (isBard || isSorcerer) && level > 1 && (character.spells || []).length > 0;
-    const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "");
+    const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "", character.sources);
     const isLoreBard = isBard && subclassFlags.grantsMagicalSecrets;
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
 
@@ -673,7 +673,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           }
         }
         if (!spells.some((s) => s.name === name && s.level === level)) {
-          const spell = getStaticSpells().find((s) => s.name === name);
+          const spell = getStaticSpells(character.sources).find((s) => s.name === name);
           const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
           spells.push({
             id,
@@ -690,7 +690,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         const [name, levelStr] = entry.split(":");
         const level = Number(levelStr);
         if (!spells.some((s) => s.name === name && s.level === level)) {
-          const spell = getStaticSpells().find((s) => s.name === name);
+          const spell = getStaticSpells(character.sources).find((s) => s.name === name);
           const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
           spells.push({
             id,
@@ -707,7 +707,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         const [name, levelStr] = entry.split(":");
         const level = Number(levelStr);
         if (!spells.some((s) => s.name === name && s.level === level)) {
-          const spell = getStaticSpells().find((s) => s.name === name);
+          const spell = getStaticSpells(character.sources).find((s) => s.name === name);
           const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
           spells.push({
             id,
@@ -754,7 +754,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
       for (const name of domainSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(character.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spells.push({
@@ -783,7 +783,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       const currentSpellNames = (draft.spells || []).map((s) => s.name?.toLowerCase());
       for (const name of oathSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(character.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spells.push({
@@ -805,7 +805,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
       for (const name of expandedSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(character.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spells.push({
@@ -826,7 +826,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
       for (const name of traditionSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(character.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spells.push({
@@ -851,7 +851,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
         for (const name of circleSpellNames) {
           if (!currentSpellNames.includes(name.toLowerCase())) {
-            const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+            const spell = getStaticSpells(character.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
             if (spell) {
               const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
               spells.push({
@@ -869,7 +869,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (draft.class === "Druid" && draft.subclassIndex && getSubclassFlags(draft.subclassIndex).requiresTerrainSelection) {
       const selectedBonusCantrip = bonusCantripSelections[targetLevel];
       if (selectedBonusCantrip && !draft.bonusCantrips.includes(selectedBonusCantrip)) {
-        const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === selectedBonusCantrip.toLowerCase());
+        const spell = getStaticSpells(character.sources).find((s) => s.name?.toLowerCase() === selectedBonusCantrip.toLowerCase());
         if (spell) {
           const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
           if (!spells.some((s) => s.name?.toLowerCase() === spell.name.toLowerCase())) {
@@ -1779,7 +1779,7 @@ function LevelCard({
                       className="w-full py-1.5 px-2 text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]"
                     >
                       <option value="">{pactTomeCantrips.length >= 3 ? "3 cantrips selected" : `Select cantrip (${pactTomeCantrips.length}/3)...`}</option>
-                      {getStaticSpells().filter(s => s.level === 0 && !pactTomeCantrips.includes(s.name)).map(s => (
+                      {getStaticSpells(character.sources).filter(s => s.level === 0 && !pactTomeCantrips.includes(s.name)).map(s => (
                         <option key={s.name} value={s.name}>{s.name}</option>
                       ))}
                     </select>
@@ -1984,7 +1984,7 @@ function LevelCard({
               {circleTerrain && (() => {
                 const circleSpells = getCircleSpells(circleTerrain, info.level);
                 const spellsForLevel = circleSpells.filter((name) => {
-                  const spell = getStaticSpells().find((s) => s.name?.toLowerCase() === name.toLowerCase());
+                  const spell = getStaticSpells(character.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
                   return spell && spell.level <= info.maxSpellLevel;
                 });
                 if (spellsForLevel.length === 0) return null;
@@ -2621,7 +2621,7 @@ function SpellSelection({
   const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
   const available = isArcaneTrickster
     ? atSpells.filter((s) => s.level === 0 || s.level <= maxLevel)
-    : getStaticSpells().filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
+    : getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
   const toggle = (name: string, level: number) => {
     if (spells.some((s) => s === `${name}:${level}`)) {
       onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
