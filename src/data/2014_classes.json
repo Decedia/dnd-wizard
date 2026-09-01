@@ -8652,6 +8652,21 @@
       },
       "startingEquipment": [
         {
+          "description": "(a) Starting Equipment or (b) 5d4x10 gp",
+          "items": [
+            {
+              "name": "Starting Equipment",
+              "description": "(a) Starting Equipment",
+              "quantity": 1
+            },
+            {
+              "name": "5d4x10 gp",
+              "description": "(b) 5d4x10 gp",
+              "quantity": 1
+            }
+          ]
+        },
+        {
           "description": "any two simple weapons",
           "isWeaponChoice": true,
           "weaponType": "simple",
