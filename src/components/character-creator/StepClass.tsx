@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClasses, type SRDClass } from "@/lib/srd-client";
+import { getStaticClasses, getStaticSubclasses, type SRDClass } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
 
@@ -43,28 +43,19 @@ export function StepClass({ data, onChange }: StepClassProps) {
               <div className="flex items-center justify-between">
                 <span className="text-card-title">{cls.name}</span>
                 <div className="flex items-center gap-2">
-                  {hasSubclasses && (
-                    <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">
-                      Subclass at Lv {subclassLevel}
-                    </span>
-                  )}
+                  {hasSubclasses && (() => {
+                    const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
+                    return (
+                      <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">
+                        {filteredCount} subclasses at Lv {subclassLevel}
+                      </span>
+                    );
+                  })()}
                   {cls.flavorText && (
                     <InfoButton title={cls.name} description={cls.flavorText} />
                   )}
                 </div>
               </div>
-              {hasSubclasses && (
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {cls.subclasses!.map((sub) => (
-                    <span
-                      key={sub.name}
-                       className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-text-primary)] px-1.5 py-0.5 rounded-full"
-                    >
-                      {sub.name}
-                    </span>
-                  ))}
-                </div>
-              )}
             </button>
           );
         })}

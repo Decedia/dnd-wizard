@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, FistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus, BarbarianIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, WarlockIcon, WizardStaffIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, DemonSkullIcon, PersonIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
-import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
+import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
 import { FeatSelector } from "./FeatSelector";
 import { SourceBadge } from "../SourceBadge";
@@ -265,11 +265,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
                             <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
-                            {hasSubclasses && (
-                              <span className="text-[10px] font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-2 py-0.5 rounded-full">
-                                {cls.subclasses.length} subclasses at Lv {cls.subclassLevel}
-                              </span>
-                            )}
+                            {hasSubclasses && (() => {
+                              const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
+                              return (
+                                <span className="text-[10px] font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface)] px-2 py-0.5 rounded-full">
+                                  {filteredCount} subclasses at Lv {cls.subclassLevel}
+                                </span>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
