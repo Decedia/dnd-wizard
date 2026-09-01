@@ -380,8 +380,10 @@ function buildLevelInfos(
     const spellbookTotal = (className === "Wizard" && (classData as any)?.spellbookSpells)
       ? ((classData as any).spellbookSpells as Record<string, number>)[String(level)] || 0
       : undefined;
+    const prepAbilityScore = character[classData.spellcastingAbility as keyof Character] as number;
+    const prepAbilityMod = getModifier(prepAbilityScore || 10);
     const maxPrepared = isPrepCaster && classData.spellcastingAbility
-      ? Math.max(1, getModifier(character[classData.spellcastingAbility as keyof Character] as number) + level)
+      ? Math.max(1, className === "Artificer" ? prepAbilityMod + Math.floor(level / 2) : prepAbilityMod + level)
       : undefined;
     const preparedCount = isPrepCaster && maxPrepared ? maxPrepared : undefined;
 
