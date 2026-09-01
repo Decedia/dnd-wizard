@@ -31,6 +31,7 @@ interface IdentitySectionProps {
     expertise: string[];
     skills: Record<string, boolean>;
     sources?: string[];
+    raceChoices?: Record<string, string>;
   };
   onChange: (patch: Partial<IdentitySectionProps["character"]>) => void;
   editMode?: boolean;
@@ -169,6 +170,31 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                 {character.languages.length > 0 ? character.languages.join(", ") : "—"}
               </span>
             </div>
+            {(() => {
+              const race = races.find(r => r.name === character.race);
+              if (!race?.choices || !character.raceChoices) return null;
+              const selectedChoices = race.choices.filter(c => character.raceChoices?.[c.id]);
+              if (selectedChoices.length === 0) return null;
+              return (
+                <div className="flex flex-col gap-1.5">
+                  <span className="field-label-light">RACE OPTIONS</span>
+                  <div className="space-y-1">
+                    {selectedChoices.map((choice) => {
+                      const value = character.raceChoices?.[choice.id] || "";
+                      let displayValue = value;
+                      if (choice.type === "single" && choice.options) {
+                        displayValue = choice.options.find(o => o.id === value)?.name || value;
+                      }
+                      return (
+                        <div key={choice.id} className="text-sm text-ink">
+                          <span className="font-semibold">{choice.name}:</span> {displayValue}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
           </>
         )}
       </div>

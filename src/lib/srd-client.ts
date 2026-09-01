@@ -23,6 +23,15 @@ export interface SRDRace {
   languages: string[];
   languageDesc?: string;
   source?: string;
+  choices?: RaceChoice[];
+}
+
+export interface RaceChoice {
+  id: string;
+  name: string;
+  description?: string;
+  type: "single" | "language" | "proficiency";
+  options?: { id: string; name: string; description?: string }[];
 }
 
 export interface SRDClass {

@@ -55,6 +55,18 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";
   const selectedFeat = data.featureSelections?.["variant-human-feat"]?.[0];
 
+  const handleRaceChoiceChange = useCallback(
+    (choiceId: string, value: string) => {
+      onChange({
+        raceChoices: {
+          ...data.raceChoices,
+          [choiceId]: value,
+        },
+      });
+    },
+    [data.raceChoices, onChange]
+  );
+
   const handleClassSelect = useCallback(
     (className: string) => {
       setPendingClass(className);
@@ -372,6 +384,59 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         />
                       )}
                     </div>
+
+                    {isSelected && race.choices && race.choices.length > 0 && (
+                      <div className="ml-12 mt-2 space-y-2 p-2 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
+                        <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">Race Options</div>
+                        {race.choices.map((choice) => (
+                          <div key={choice.id} className="space-y-1">
+                            <div className="text-xs font-semibold text-[var(--color-text-primary)]">{choice.name}</div>
+                            {choice.type === "single" && choice.options && (
+                              <div className="flex flex-wrap gap-1">
+                                {choice.options.map((opt) => (
+                                  <button
+                                    key={opt.id}
+                                    type="button"
+                                    onClick={() => handleRaceChoiceChange(choice.id, opt.id)}
+                                    className={`px-2 py-1 text-[10px] font-bold rounded border transition-colors ${
+                                      data.raceChoices?.[choice.id] === opt.id
+                                        ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                                        : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"
+                                    }`}
+                                  >
+                                    {opt.name}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                            {choice.type === "language" && (
+                              <select
+                                value={data.raceChoices?.[choice.id] || ""}
+                                onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
+                                className="input text-xs"
+                              >
+                                <option value="">Select language...</option>
+                                {["Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Gith", "Quori", "Thri-kreen", "Druidic"].map(lang => (
+                                  <option key={lang} value={lang}>{lang}</option>
+                                ))}
+                              </select>
+                            )}
+                            {choice.type === "proficiency" && (
+                              <select
+                                value={data.raceChoices?.[choice.id] || ""}
+                                onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
+                                className="input text-xs"
+                              >
+                                <option value="">Select skill or tool...</option>
+                                {["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival", "Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies", "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools", "Cook's Utensils", "Glassblower's Tools", "Jeweler's Tools", "Leatherworker's Tools", "Mason's Tools", "Painter's Supplies", "Potter's Tools", "Smith's Tools", "Tinker's Tools", "Weaver's Tools", "Woodcarver's Tools", "Dice Set", "Dragonchess Set", "Playing Card Set", "Three-Dragon Ante Set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan Flute", "Shawm", "Viol", "Navigator's Tools", "Poisoner's Kit", "Thieves' Tools", "Herbalism Kit", "Disguise Kit", "Forgery Kit"].map(prof => (
+                                  <option key={prof} value={prof}>{prof}</option>
+                                ))}
+                              </select>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     {isHuman && isSelected && (
                       <div className="ml-4 space-y-2">

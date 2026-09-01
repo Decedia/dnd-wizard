@@ -77,6 +77,7 @@ export interface Character {
   featureSelections: Record<string, string[]>;
   variantHumanAbilities?: string[];
   variantHumanSkill?: string;
+  raceChoices?: Record<string, string>;
   appliedAsi: number[];
   activeStates: string[];
   activeBuffs: ActiveBuff[];
