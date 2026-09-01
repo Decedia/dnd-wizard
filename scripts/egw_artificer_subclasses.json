@@ -1,0 +1,148 @@
+[
+  {
+    "index": "alchemist",
+    "name": "Alchemist",
+    "class": "Artificer",
+    "description": "An Alchemist is an expert in magical chemistry, combining reagents to produce mystical effects. Alchemists use their potions and elixirs to heal allies and hinder foes.",
+    "features": [
+      {
+        "name": "Tool Proficiency",
+        "level": 3,
+        "description": "You gain proficiency with alchemist's supplies. If you already have this proficiency, you gain proficiency with another type of artisan's tools of your choice."
+      },
+      {
+        "name": "Experimental Elixir",
+        "level": 3,
+        "description": "Whenever you finish a long rest, you can produce a number of experimental elixirs equal to your Intelligence modifier (minimum of 1). You can use a bonus action to drink one of your elixirs or administer it to another creature. The elixir produces one of the following effects (your choice): Healing (regains 2d4 + Intelligence modifier hit points), Swiftness (speed increases by 10 feet for 1 hour), or Resilience (gain a +1 bonus to AC for 10 minutes)."
+      },
+      {
+        "name": "Alchemical Savant",
+        "level": 5,
+        "description": "When you cast a spell using your alchemist's supplies as the spellcasting focus, you can add your Intelligence modifier to one roll of acid, fire, necrotic, or poison damage."
+      },
+      {
+        "name": "Restorative Reagents",
+        "level": 9,
+        "description": "You can cast the lesser restoration spell without expending a spell slot or requiring material components. You can do so a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest."
+      },
+      {
+        "name": "Chemical Mastery",
+        "level": 15,
+        "description": "You gain resistance to acid and poison damage, and you have advantage on saving throws against being poisoned."
+      }
+    ],
+    "source": "EGW"
+  },
+  {
+    "index": "armorer",
+    "name": "Armorer",
+    "class": "Artificer",
+    "description": "An Armorer uses their artificer magic to empower a suit of armor, turning it into a powerful magical protection. The Armorer can transform their armor into different modes for combat or stealth.",
+    "features": [
+      {
+        "name": "Tools of the Trade",
+        "level": 3,
+        "description": "You gain proficiency with heavy armor and smith's tools."
+      },
+      {
+        "name": "Arcane Armor",
+        "level": 3,
+        "description": "Your armor becomes magical. You can don or doff your armor as an action, and it can't be removed against your will. While wearing your armor, you gain the following benefits: You have a +1 bonus to AC, you can use your Intelligence modifier instead of Strength for attack and damage rolls with weapons, and you can use your armor as a spellcasting focus."
+      },
+      {
+        "name": "Armor Model",
+        "level": 3,
+        "description": "You can customize your armor for combat or stealth. When you finish a long rest, you can change your armor model. Choose one of the following: Guardian (you have advantage on Charisma (Intimidation) checks, and when you take the Attack action on your turn, you can make an additional melee attack from the armor's thunder gauntlets) or Infiltrator (you have advantage on Charisma (Stealth) checks, and your armor's lightning launcher deals an extra 1d6 lightning damage)."
+      },
+      {
+        "name": "Extra Attack",
+        "level": 5,
+        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+      },
+      {
+        "name": "Armor Modifications",
+        "level": 9,
+        "description": "You learn 2 additional artificer infusions, and you can apply them to your armor. You can have up to 4 infusions active on your armor at a time."
+      },
+      {
+        "name": "Perfected Armor",
+        "level": 15,
+        "description": "Your armor's power increases. While wearing your armor, you gain the following benefits based on your armor model: Guardian (when a creature within 5 feet of you hits you with an attack, you can use your reaction to deal 1d6 thunder damage to that creature) or Infiltrator (when you hit a creature with an attack, you can deal an additional 1d6 lightning damage)."
+      }
+    ],
+    "source": "EGW"
+  },
+  {
+    "index": "artillerist",
+    "name": "Artillerist",
+    "class": "Artificer",
+    "description": "An Artillerist specializes in harnessing the power of magic to create destructive energy. They can conjure a magical cannon that unleashes powerful blasts of elemental energy.",
+    "features": [
+      {
+        "name": "Tool Proficiency",
+        "level": 3,
+        "description": "You gain proficiency with woodcarver's tools."
+      },
+      {
+        "name": "Eldritch Cannon",
+        "level": 3,
+        "description": "You can use woodcarver's tools and 10 gp worth of raw materials to create a Small eldritch cannon in an unoccupied space within 5 feet of you. The cannon has AC 18 and hit points equal to five times your artificer level. You can have only one cannon at a time. As an action, you can command the cannon to move up to 15 feet. You can use a bonus action to activate the cannon, causing it to produce one of the following effects: Flamethrower (15-foot cone, 2d8 fire damage, Dexterity saving throw), Force Ballista (ranged spell attack, 2d8 force damage, push 5 feet), or Protector (10-foot radius, 1d8 + Intelligence modifier temporary hit points)."
+      },
+      {
+        "name": "Arcane Firearm",
+        "level": 5,
+        "description": "You can use a wand, staff, or rod as a spellcasting focus. When you cast an artificer spell through this focus, you can roll a d8 and add it to one damage roll of the spell."
+      },
+      {
+        "name": "Explosive Cannon",
+        "level": 9,
+        "description": "Your cannon's damage increases by 1d8. In addition, you can detonate your cannon as an action. Each creature within 20 feet of the cannon must make a Dexterity saving throw against your spell save DC, taking 3d8 force damage on a failed save, or half as much damage on a successful one."
+      },
+      {
+        "name": "Fortified Position",
+        "level": 15,
+        "description": "You and your allies have half cover while within 10 feet of your cannon. In addition, you can have two cannons at a time, and you can activate both with the same bonus action."
+      }
+    ],
+    "source": "EGW"
+  },
+  {
+    "index": "battle-smith",
+    "name": "Battle Smith",
+    "class": "Artificer",
+    "description": "A Battle Smith is a master of combat and magic, combining martial prowess with magical tinkering. They can create a powerful steel defender that fights alongside them.",
+    "features": [
+      {
+        "name": "Tool Proficiency",
+        "level": 3,
+        "description": "You gain proficiency with smith's tools and heavy armor."
+      },
+      {
+        "name": "Battle Ready",
+        "level": 3,
+        "description": "You are proficient with martial weapons. When you attack with a magic weapon, you can use your Intelligence modifier instead of Strength or Dexterity for the attack and damage rolls."
+      },
+      {
+        "name": "Steel Defender",
+        "level": 3,
+        "description": "You can use smith's tools and 10 gp worth of raw materials to create a steel defender in an unoccupied space within 5 feet of you. The defender has AC 15 + your proficiency bonus and hit points equal to 2 + your Intelligence modifier + five times your artificer level. It is friendly to you and your companions, and it obeys your commands. In combat, the defender shares your initiative count, but it takes its turn immediately after yours."
+      },
+      {
+        "name": "Extra Attack",
+        "level": 5,
+        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+      },
+      {
+        "name": "Arcane Jolt",
+        "level": 9,
+        "description": "When you hit a creature with a magic weapon, you can channel a burst of arcane energy into the target. The target takes an additional 2d6 force damage, and if the target is a construct, it takes an additional 2d6 force damage. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest."
+      },
+      {
+        "name": "Improved Defender",
+        "level": 15,
+        "description": "Your Arcane Jolt and steel defender become more powerful. The extra damage of Arcane Jolt increases to 4d6. In addition, when your steel defender uses its Deflect Attack feature, the attacker takes force damage equal to 1d4 + your Intelligence modifier."
+      }
+    ],
+    "source": "EGW"
+  }
+]
