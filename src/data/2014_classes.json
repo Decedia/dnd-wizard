@@ -8529,11 +8529,7 @@
           "isWeaponChoice": true,
           "weaponType": "simple",
           "selectionCount": 2,
-          "items": [],
-          "requiresChoice": {
-            "groupId": "choice-0",
-            "optionIndex": 0
-          }
+          "items": []
         },
         {
           "granted": true,
@@ -8547,11 +8543,7 @@
               "name": "Crossbow Bolts",
               "quantity": 20
             }
-          ],
-          "requiresChoice": {
-            "groupId": "choice-0",
-            "optionIndex": 0
-          }
+          ]
         },
         {
           "description": "(a) studded leather armor or (b) scale mail",
@@ -8566,11 +8558,7 @@
               "description": "(b) scale mail",
               "quantity": 1
             }
-          ],
-          "requiresChoice": {
-            "groupId": "choice-0",
-            "optionIndex": 0
-          }
+          ]
         },
         {
           "granted": true,
@@ -8580,11 +8568,7 @@
               "name": "Thieves' Tools",
               "quantity": 1
             }
-          ],
-          "requiresChoice": {
-            "groupId": "choice-0",
-            "optionIndex": 0
-          }
+          ]
         },
         {
           "granted": true,
@@ -8594,11 +8578,7 @@
               "name": "Dungeoneer's Pack",
               "quantity": 1
             }
-          ],
-          "requiresChoice": {
-            "groupId": "choice-0",
-            "optionIndex": 0
-          }
+          ]
         }
       ]
     }

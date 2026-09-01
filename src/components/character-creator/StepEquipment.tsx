@@ -172,24 +172,27 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       return;
     }
 
-    // Check if this is the gold/equipment choice group (first group)
-    const isGoldChoiceGroup = groupIndex === 0 && group.options.some((o: any) => o.description.includes("gp"));
-
     // Remove all items from this choice group
     let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
 
-    // If gold option selected, also remove all equipment items that require the "Starting Equipment" choice
-    if (isGoldChoiceGroup && optionIndex === 1) {
-      // Option index 1 is the gold option - remove all equipment items
-      newInventory = newInventory.filter(item => {
-        // Keep items that don't have requiresChoice or are from other choice groups
-        if ((item.choiceGroupIndex === -1 || item.choiceGroupIndex === undefined) && !item.isGranted) return true;
-        // Remove items from choice groups that require the first choice
-        if (item.choiceGroupIndex !== undefined && item.choiceGroupIndex > 0) return false;
-        // Remove granted items (they will be re-added by autoGrantItems if needed)
-        if (item.isGranted) return false;
-        return true;
-      });
+    // Check if this is the gold/equipment choice group (first group)
+    const isFirstChoiceGroup = groupIndex === 0;
+
+    if (isFirstChoiceGroup) {
+      if (optionIndex === 1) {
+        // Gold option selected - remove all equipment items from other choice groups
+        newInventory = newInventory.filter(item => {
+          // Keep only items from the first choice group
+          return item.choiceGroupIndex === 0;
+        });
+      } else {
+        // Starting Equipment option selected - remove gold item
+        newInventory = newInventory.filter(item => {
+          // Remove gold item (option index 1)
+          if (item.choiceGroupIndex === 0 && item.choiceOptionIndex === 1) return false;
+          return true;
+        });
+      }
     }
 
     const newItems = option.items.map(item => {
@@ -364,6 +367,12 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     onChange({ inventory: newInventory });
   }, [data.inventory, getGroupIndex, onChange]);
 
+  const isStartingEquipmentSelected = useMemo(() => {
+    // Check if "Starting Equipment" option (index 0) is selected in the first choice group (index 0)
+    const firstGroupIndex = 0;
+    return data.inventory.some(item => item.choiceGroupIndex === firstGroupIndex && item.choiceOptionIndex === 0);
+  }, [data.inventory]);
+
   const autoGrantItems = useCallback(() => {
     const newInventory = [...data.inventory];
     const grantedItems: Character["inventory"][number][] = [];
@@ -372,24 +381,21 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     startingEquipment.forEach((entry: any, entryIndex: number) => {
       if (!entry.granted || !entry.items) return;
 
-      // Check if this entry requires a specific choice to be selected
-      if (entry.requiresChoice) {
-        const requiredGroupId = entry.requiresChoice.groupId;
-        const requiredOptionIndex = entry.requiresChoice.optionIndex;
-        const requiredGroupIndex = getGroupIndex(requiredGroupId);
-        const isChoiceSelected = data.inventory.some(item => item.choiceGroupIndex === requiredGroupIndex && item.choiceOptionIndex === requiredOptionIndex);
-        if (!isChoiceSelected) {
-          // Remove items that were previously granted but the choice is no longer selected
-          const itemsToRemove = newInventory.filter(i => i.isGranted && i.choiceGroupIndex === -1 && entry.items.some((e: any) => e.name === i.name));
-          if (itemsToRemove.length > 0) {
-            itemsToRemove.forEach(item => {
-              const idx = newInventory.findIndex(i => i.id === item.id);
-              if (idx >= 0) newInventory.splice(idx, 1);
-            });
-            hasChanges = true;
-          }
-          return;
+      // Skip the first entry (gold vs equipment choice)
+      if (entryIndex === 0) return;
+
+      // Only grant items if "Starting Equipment" is selected
+      if (!isStartingEquipmentSelected) {
+        // Remove items that were previously granted
+        const itemsToRemove = newInventory.filter(i => i.isGranted && entry.items.some((e: any) => e.name === i.name));
+        if (itemsToRemove.length > 0) {
+          itemsToRemove.forEach(item => {
+            const idx = newInventory.findIndex(i => i.id === item.id);
+            if (idx >= 0) newInventory.splice(idx, 1);
+          });
+          hasChanges = true;
         }
+        return;
       }
 
       entry.items.forEach((item: any) => {
@@ -424,7 +430,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (hasChanges) {
       onChange({ inventory: newInventory });
     }
-  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange, getGroupIndex]);
+  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange, isStartingEquipmentSelected]);
 
   useEffect(() => {
     autoGrantItems();
@@ -565,12 +571,12 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, []);
 
   const isGroupVisible = useCallback((group: ChoiceGroup): boolean => {
-    if (!group.requiresChoice) return true;
-    const requiredGroupId = group.requiresChoice.groupId;
-    const requiredOptionIndex = group.requiresChoice.optionIndex;
-    const requiredGroupIndex = getGroupIndex(requiredGroupId);
-    return data.inventory.some(item => item.choiceGroupIndex === requiredGroupIndex && item.choiceOptionIndex === requiredOptionIndex);
-  }, [data.inventory, getGroupIndex]);
+    const groupIndex = getGroupIndex(group.id);
+    // First choice group (gold vs equipment) is always visible
+    if (groupIndex === 0) return true;
+    // Other groups are only visible if "Starting Equipment" is selected
+    return isStartingEquipmentSelected;
+  }, [getGroupIndex, isStartingEquipmentSelected]);
 
   const isAllRequiredSelected = useMemo(() => {
     if (choiceGroups.length === 0) return true;
