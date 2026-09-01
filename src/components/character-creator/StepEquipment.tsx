@@ -172,7 +172,25 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       return;
     }
 
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+    // Check if this is the gold/equipment choice group (first group)
+    const isGoldChoiceGroup = groupIndex === 0 && group.options.some((o: any) => o.description.includes("gp"));
+
+    // Remove all items from this choice group
+    let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+
+    // If gold option selected, also remove all equipment items that require the "Starting Equipment" choice
+    if (isGoldChoiceGroup && optionIndex === 1) {
+      // Option index 1 is the gold option - remove all equipment items
+      newInventory = newInventory.filter(item => {
+        // Keep items that don't have requiresChoice or are from other choice groups
+        if ((item.choiceGroupIndex === -1 || item.choiceGroupIndex === undefined) && !item.isGranted) return true;
+        // Remove items from choice groups that require the first choice
+        if (item.choiceGroupIndex !== undefined && item.choiceGroupIndex > 0) return false;
+        // Remove granted items (they will be re-added by autoGrantItems if needed)
+        if (item.isGranted) return false;
+        return true;
+      });
+    }
 
     const newItems = option.items.map(item => {
       const itemInfo = getItemInfo(item.name);
@@ -349,42 +367,64 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const autoGrantItems = useCallback(() => {
     const newInventory = [...data.inventory];
     const grantedItems: Character["inventory"][number][] = [];
+    let hasChanges = false;
 
-    startingEquipment.forEach((entry: any) => {
-      if (entry.granted && entry.items) {
-        entry.items.forEach((item: any) => {
-          const existing = newInventory.find(i => i.name === item.name);
-          if (!existing) {
-            const itemInfo = getItemInfo(item.name);
-            const newItem: Character["inventory"][number] = {
-              id: generateId(),
-              name: item.name,
-              quantity: item.quantity || 1,
-              equipped: false,
-              source: "srd" as const,
-              description: itemInfo ? JSON.stringify(itemInfo) : "",
-              itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-              isGranted: true,
-            };
+    startingEquipment.forEach((entry: any, entryIndex: number) => {
+      if (!entry.granted || !entry.items) return;
 
-            if (itemInfo?.type === "weapon") {
-              const weapon = weapons.find((w: any) => w.name === item.name);
-              newItem.damageDice = weapon?.damage?.damage_dice || "";
-              newItem.damageType = weapon?.damage?.damage_type?.name || "";
-              newItem.category = weapon?.category_range === "Melee" ? "melee" : weapon?.category_range === "Ranged" ? "ranged" : undefined;
-            }
-
-            grantedItems.push(newItem);
-            newInventory.push(newItem);
+      // Check if this entry requires a specific choice to be selected
+      if (entry.requiresChoice) {
+        const requiredGroupId = entry.requiresChoice.groupId;
+        const requiredOptionIndex = entry.requiresChoice.optionIndex;
+        const requiredGroupIndex = getGroupIndex(requiredGroupId);
+        const isChoiceSelected = data.inventory.some(item => item.choiceGroupIndex === requiredGroupIndex && item.choiceOptionIndex === requiredOptionIndex);
+        if (!isChoiceSelected) {
+          // Remove items that were previously granted but the choice is no longer selected
+          const itemsToRemove = newInventory.filter(i => i.isGranted && i.choiceGroupIndex === -1 && entry.items.some((e: any) => e.name === i.name));
+          if (itemsToRemove.length > 0) {
+            itemsToRemove.forEach(item => {
+              const idx = newInventory.findIndex(i => i.id === item.id);
+              if (idx >= 0) newInventory.splice(idx, 1);
+            });
+            hasChanges = true;
           }
-        });
+          return;
+        }
       }
+
+      entry.items.forEach((item: any) => {
+        const existing = newInventory.find(i => i.name === item.name);
+        if (!existing) {
+          const itemInfo = getItemInfo(item.name);
+          const newItem: Character["inventory"][number] = {
+            id: generateId(),
+            name: item.name,
+            quantity: item.quantity || 1,
+            equipped: false,
+            source: "srd" as const,
+            description: itemInfo ? JSON.stringify(itemInfo) : "",
+            itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
+            isGranted: true,
+          };
+
+          if (itemInfo?.type === "weapon") {
+            const weapon = weapons.find((w: any) => w.name === item.name);
+            newItem.damageDice = weapon?.damage?.damage_dice || "";
+            newItem.damageType = weapon?.damage?.damage_type?.name || "";
+            newItem.category = weapon?.category_range === "Melee" ? "melee" : weapon?.category_range === "Ranged" ? "ranged" : undefined;
+          }
+
+          grantedItems.push(newItem);
+          newInventory.push(newItem);
+          hasChanges = true;
+        }
+      });
     });
 
-    if (grantedItems.length > 0) {
+    if (hasChanges) {
       onChange({ inventory: newInventory });
     }
-  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange]);
+  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange, getGroupIndex]);
 
   useEffect(() => {
     autoGrantItems();
