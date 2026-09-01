@@ -259,6 +259,40 @@
       "source": "XGE"
     },
     {
+      "index": "college-of-spirits",
+      "name": "College of Spirits",
+      "class": "Bard",
+      "description": "Bards of the College of Spirits seek to tell the stories of those who have passed on, using their magic to channel the spirits of the dead. These bards are often found in graveyards, haunted houses, and other places where the dead linger.",
+      "features": [
+        {
+          "name": "Spiritual Focus",
+          "level": 3,
+          "description": "You employ tools that aid you in channeling spirits, such as a candle, crystal, or totem. When you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a d6 and add it to the roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+        },
+        {
+          "name": "Tales from Beyond",
+          "level": 3,
+          "description": "You can reach out to the spirits of the dead to tell you stories. As a bonus action, you can roll a d6 and add it to your next ability check, attack roll, or saving throw. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+        },
+        {
+          "name": "Spiritual Focus (Improved)",
+          "level": 6,
+          "description": "Your spiritual focus becomes more powerful. When you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a d8 instead of a d6 and add it to the roll."
+        },
+        {
+          "name": "Spirit Session",
+          "level": 6,
+          "description": "You can cast the speak with dead spell at will, without expending a spell slot. When you cast the spell in this way, you can ask the corpse up to seven questions, rather than five."
+        },
+        {
+          "name": "Mystical Connection",
+          "level": 14,
+          "description": "You can use your Tales from Beyond feature without expending a use of it. When you do so, you roll a d8 instead of a d6."
+        }
+      ],
+      "source": "VRGR"
+    },
+    {
       "class": "Bard",
       "classIndex": "bard",
       "index": "swords",
@@ -1757,6 +1791,40 @@
       "source": "XGE"
     },
     {
+      "index": "ascendant-dragon",
+      "name": "Ascendant Dragon",
+      "class": "Monk",
+      "description": "Monks of the Ascendant Dragon tradition learn to channel the elemental power of dragons through their ki. These monks can harness the destructive energy of dragonkind, unleashing it through their unarmed strikes and breath weapons.",
+      "features": [
+        {
+          "name": "Draconic Discipline",
+          "level": 3,
+          "description": "You gain the following benefits: You learn the draconic language. You learn one cantrip of your choice from the sorcerer spell list. Wisdom is your spellcasting ability for this cantrip."
+        },
+        {
+          "name": "Breath of the Dragon",
+          "level": 3,
+          "description": "You can channel draconic power into a destructive breath. As an action, you can spend 1 ki point to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes 2d6 damage of a type you choose: acid, cold, fire, lightning, or poison. On a successful save, a creature takes half as much damage. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level."
+        },
+        {
+          "name": "Wings Unfurled",
+          "level": 6,
+          "description": "When you use your Step of the Wind, you can unfurl spectral draconic wings, granting you a flying speed equal to your walking speed until the end of your turn."
+        },
+        {
+          "name": "Aspect of the Wyrm",
+          "level": 11,
+          "description": "You can channel the might of dragonkind to gain draconic traits. As a bonus action, you can spend 3 ki points to manifest these traits for 1 minute. For the duration, you have resistance to the damage type associated with your Breath of the Dragon, and your Breath of the Dragon deals an additional 2d6 damage."
+        },
+        {
+          "name": "Ascendant Aspect",
+          "level": 17,
+          "description": "You gain the following benefits: You can use your Breath of the Dragon without spending ki points. When you use your Breath of the Dragon, you can choose to increase its area to a 30-foot cone."
+        }
+      ],
+      "source": "FTD"
+    },
+    {
       "name": "Four Elements",
       "class": "Monk",
       "classIndex": "monk",
@@ -2143,6 +2211,40 @@
       "source": "PHB"
     },
     {
+      "index": "draconic-disciple",
+      "name": "Draconic Disciple",
+      "class": "Paladin",
+      "description": "The Oath of the Draconic Disciple binds a paladin to the ideals of dragonkind. These paladins draw power from their draconic heritage, channeling the might of dragons through their divine oath. They seek to embody the virtues of dragonkind: strength, wisdom, and majesty.",
+      "features": [
+        {
+          "name": "Channel Divinity: Draconic Presence",
+          "level": 3,
+          "description": "As an action, you can channel the power of dragonkind to demoralize your foes. Each creature of your choice within 30 feet of you must make a Wisdom saving throw against your spell save DC. On a failed save, a creature is frightened of you for 1 minute. A frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+        },
+        {
+          "name": "Channel Divinity: Draconic Might",
+          "level": 3,
+          "description": "As a bonus action, you can channel the power of dragonkind to augment your strength. For 1 minute, you have advantage on Strength checks, and when you deal damage with a melee weapon, you can add your Charisma modifier to the damage roll."
+        },
+        {
+          "name": "Aura of the Dragon",
+          "level": 7,
+          "description": "You emanate an aura of draconic power. Whenever you or a friendly creature within 10 feet of you makes a saving throw, that creature gains a bonus to the roll equal to your Charisma modifier (minimum of +1). You must be conscious to grant this bonus."
+        },
+        {
+          "name": "Draconic Resilience",
+          "level": 15,
+          "description": "The power of dragonkind flows through you. You gain resistance to the damage type associated with your draconic ancestry."
+        },
+        {
+          "name": "Dragon Knight",
+          "level": 20,
+          "description": "As an action, you can channel the full power of dragonkind, gaining the following benefits for 1 minute: You have a flying speed equal to your walking speed. You have resistance to all damage. Once you use this feature, you can't use it again until you finish a long rest."
+        }
+      ],
+      "source": "FTD"
+    },
+    {
       "class": "Paladin",
       "classIndex": "paladin",
       "index": "conquest",
@@ -2404,6 +2506,40 @@
         }
       ],
       "source": "PHB"
+    },
+    {
+      "index": "drake-warden",
+      "name": "Drake Warden",
+      "class": "Ranger",
+      "description": "Drake Wardens are rangers who have bonded with a lesser drake, forming a mystical connection with their draconic companion. These rangers train alongside their drake, learning to fight as one with their scaled ally.",
+      "features": [
+        {
+          "name": "Draconic Gift",
+          "level": 3,
+          "description": "You gain a drake companion that accompanies you on your adventures. The drake is friendly to you and your companions, and it obeys your commands. See the Drake Companion stat block for its traits and actions. In combat, the drake shares your initiative count, but it takes its turn immediately after yours. It can move and use its reaction on its own, but the only action it can take is the Dodge action, unless you use your bonus action on your turn to command it to take an action."
+        },
+        {
+          "name": "Bond of Fang and Scale",
+          "level": 3,
+          "description": "Your drake's bond with you grants it resilience. While your drake is within 30 feet of you, it has a +2 bonus to AC and saving throws."
+        },
+        {
+          "name": "Drake's Breath",
+          "level": 7,
+          "description": "As an action, you can command your drake to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes 4d6 damage of the type associated with your drake. On a successful save, a creature takes half as much damage. Once you use this feature, you can't use it again until you finish a short or long rest."
+        },
+        {
+          "name": "Perfected Bond",
+          "level": 11,
+          "description": "Your bond with your drake deepens. When you take damage while your drake is within 30 feet of you, you can use your reaction to have your drake take the damage instead. Additionally, when you deal damage to a creature within 30 feet of your drake, you can have your drake make a bite attack against that creature as a reaction."
+        },
+        {
+          "name": "Reflexive Resistance",
+          "level": 15,
+          "description": "When you or your drake takes damage, you can use your reaction to grant resistance to that damage type to both you and your drake for 1 minute. Once you use this feature, you can't use it again until you finish a long rest."
+        }
+      ],
+      "source": "FTD"
     },
     {
       "class": "Ranger",
@@ -3739,6 +3875,35 @@
         }
       ],
       "source": "TCE"
+    },
+    {
+      "index": "the-undead",
+      "name": "The Undead",
+      "class": "Warlock",
+      "description": "You've made a pact with a powerful undead being, such as a vampire, lich, or mummy lord. This patron grants you power over death and undeath, allowing you to channel the chill of the grave and command the spirits of the dead.",
+      "features": [
+        {
+          "name": "Form of Dread",
+          "level": 1,
+          "description": "You can use a bonus action to transform into a terrifying visage of death. For 1 minute, you gain the following benefits: You gain temporary hit points equal to 1d10 + your warlock level. Once on each of your turns when you hit a creature with an attack, you can force the target to make a Wisdom saving throw against your spell save DC. On a failed save, the target is frightened of you until the end of your next turn. You can transform a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+        },
+        {
+          "name": "Grave Touched",
+          "level": 6,
+          "description": "Your patron's power changes your body. You don't need to eat, drink, or breathe. In addition, once on each of your turns when you hit a creature with an attack, you can change the damage type of the attack to necrotic damage. While you are in your Form of Dread, you can also change the damage type of any spell you cast to necrotic damage."
+        },
+        {
+          "name": "Necrotic Husk",
+          "level": 10,
+          "description": "Your body is suffused with necrotic energy. You have resistance to necrotic damage. In addition, when you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead, and each creature of your choice within 30 feet of you takes necrotic damage equal to your warlock level + your Charisma modifier. Once you use this feature, you can't use it again until you finish a long rest."
+        },
+        {
+          "name": "Spirit Projection",
+          "level": 14,
+          "description": "As an action, you can project your spirit from your body. Your body is unconscious and appears dead while your spirit is projected. Your spirit resembles a spectral version of your body and has the following statistics: It has 1 hit point and immunity to all damage except force damage. It can't take actions or cast spells. It can move through creatures and objects as if they were difficult terrain. It has a flying speed of 40 feet and can hover. While projected, you can use your action to return to your body. Your body regains consciousness when your spirit returns to it. Once you use this feature, you can't use it again until you finish a long rest."
+        }
+      ],
+      "source": "VRGR"
     },
     {
       "name": "Undying",

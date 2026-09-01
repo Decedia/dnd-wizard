@@ -970,6 +970,29 @@
       "source": "PHB"
     },
     {
+      "index": "nathair-nuisance",
+      "name": "Nathair's Nuisance",
+      "level": 0,
+      "school": "Enchantment",
+      "castingTime": "1 Action",
+      "range": "30 feet",
+      "duration": "1 minute",
+      "description": "You create a minor magical effect to distract a creature. The target must succeed on a Wisdom saving throw or have disadvantage on the next attack roll it makes before the end of its next turn.",
+      "higherLevel": "",
+      "components": [
+        "S"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
       "higher_level": [],
       "index": "poison-spray",
       "name": "Poison Spray",
@@ -2833,6 +2856,54 @@
       "higherLevel": [],
       "castingTime": "1 bonus action",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-crush",
+      "name": "Draconic Crush",
+      "level": 1,
+      "school": "Evocation",
+      "castingTime": "1 Action",
+      "range": "60 feet",
+      "duration": "Instantaneous",
+      "description": "You hurl a sphere of draconic energy at a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 2d8 force damage and must succeed on a Strength saving throw or be knocked prone.",
+      "higherLevel": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
+      "index": "draconic-strike",
+      "name": "Draconic Strike",
+      "level": 1,
+      "school": "Evocation",
+      "castingTime": "1 Action",
+      "range": "Self",
+      "duration": "Instantaneous",
+      "description": "You channel draconic energy into your weapon. As part of the action used to cast this spell, you must make a melee attack against one creature within the spell's range, otherwise the spell fails. On a hit, the target suffers the attack's normal effects, and it takes 1d6 force damage. This spell's force damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
+      "higherLevel": "This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Artificer",
+        "Paladin",
+        "Ranger",
+        "Rogue",
+        "Sorcerer",
+        "Warlock"
+      ],
+      "source": "FTD"
     },
     {
       "index": "earth-tremor",
@@ -5445,6 +5516,55 @@
       "source": "PHB"
     },
     {
+      "index": "draconic-fear",
+      "name": "Draconic Fear",
+      "level": 2,
+      "school": "Illusion",
+      "castingTime": "1 Action",
+      "range": "Self (30-foot cone)",
+      "duration": "Instantaneous",
+      "description": "You project a fearsome draconic visage. Each creature in the area must succeed on a Wisdom saving throw or become frightened of you for 1 minute. A frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
+      "index": "draconic-senses",
+      "name": "Draconic Senses",
+      "level": 2,
+      "school": "Divination",
+      "castingTime": "1 Action",
+      "range": "Touch",
+      "duration": "Up to 1 hour",
+      "description": "You touch a willing creature and grant it draconic senses. Until the spell ends, the target has blindsight with a range of 10 feet, and it has advantage on Wisdom (Perception) checks that rely on sight or hearing.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Druid",
+        "Ranger",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
       "index": "dragon-s-breath",
       "name": "Dragon's Breath",
       "level": 2,
@@ -8023,6 +8143,55 @@
       "source": "PHB"
     },
     {
+      "index": "draconic-transmutation",
+      "name": "Draconic Transmutation",
+      "level": 3,
+      "school": "Transmutation",
+      "castingTime": "1 Action",
+      "range": "Touch",
+      "duration": "Up to 1 hour",
+      "description": "You touch a willing creature and imbue it with draconic power. Until the spell ends, the target gains the following benefits: The target's AC can't be less than 13, regardless of what kind of armor it's wearing. The target has resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
+      "index": "draconic-word",
+      "name": "Draconic Word",
+      "level": 3,
+      "school": "Abjuration",
+      "castingTime": "1 Reaction",
+      "range": "60 feet",
+      "duration": "Instantaneous",
+      "description": "You respond to a creature's attack with a word of draconic power. The creature must succeed on a Constitution saving throw or the attack deals an additional 2d6 force damage to it, and the creature can't take reactions until the start of its next turn.",
+      "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Paladin",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
+    },
+    {
       "index": "enemies-abound",
       "name": "Enemies Abound",
       "level": 3,
@@ -8500,6 +8669,30 @@
         "Wizard"
       ],
       "source": "EGW"
+    },
+    {
+      "index": "intellect-fortress-vrgr",
+      "name": "Intellect Fortress",
+      "level": 3,
+      "school": "Abjuration",
+      "castingTime": "1 Action",
+      "range": "30 feet",
+      "duration": "1 hour",
+      "description": "For the duration, you or one willing creature you can see within range has resistance to psychic damage, as well as advantage on Intelligence, Wisdom, and Charisma saving throws.",
+      "higherLevel": "",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Artificer",
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
     },
     {
       "index": "leomund-s-tiny-hut",
@@ -9398,6 +9591,30 @@
       "source": "EGW"
     },
     {
+      "index": "spirit-shroud-vrgr",
+      "name": "Spirit Shroud",
+      "level": 3,
+      "school": "Necromancy",
+      "castingTime": "1 Bonus Action",
+      "range": "Self",
+      "duration": "Up to 1 minute",
+      "description": "You call spirits of the dead, which flit around you for the duration. Until the ends, any attack you make deals 1d8 extra damage when you hit a creature within 10 feet of you. This extra damage is of a type determined by the type of spirit you call: radiant, necrotic, or cold (your choice). If the attack hits a Large or smaller creature, it must also succeed on a Wisdom saving throw or be frightened of you until the end of your next turn.",
+      "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for every two slot levels above 3rd.",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Cleric",
+        "Paladin",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
+    },
+    {
       "higher_level": [],
       "index": "stinking-cloud",
       "name": "Stinking Cloud",
@@ -9502,6 +9719,31 @@
       "source": "EGW"
     },
     {
+      "index": "summon-fey-vrgr",
+      "name": "Summon Fey",
+      "level": 3,
+      "school": "Conjuration",
+      "castingTime": "1 Action",
+      "range": "90 feet",
+      "duration": "Up to 1 hour",
+      "description": "You call forth a fey spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Fey Spirit stat block. When you cast the spell, choose a brisk, gentle, or phantasmal spirit. The creature resembles a fey of that type, which determines certain traits in the creature's stat block.",
+      "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Druid",
+        "Ranger",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
+    },
+    {
       "index": "summon-shadowspawn",
       "name": "Summon Shadowspawn",
       "level": 3,
@@ -9548,6 +9790,29 @@
       "source": "EGW"
     },
     {
+      "index": "summon-shadowspawn-vrgr",
+      "name": "Summon Shadowspawn",
+      "level": 3,
+      "school": "Conjuration",
+      "castingTime": "1 Action",
+      "range": "90 feet",
+      "duration": "Up to 1 hour",
+      "description": "You call forth a shadowy spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Shadow Spirit stat block. When you cast the spell, choose a fury, despair, or fear spirit. The creature resembles a shadow of that type, which determines certain traits in the creature's stat block.",
+      "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
+    },
+    {
       "index": "summon-undead",
       "name": "Summon Undead",
       "level": 3,
@@ -9592,6 +9857,29 @@
         "Wizard"
       ],
       "source": "EGW"
+    },
+    {
+      "index": "summon-undead-vrgr",
+      "name": "Summon Undead",
+      "level": 3,
+      "school": "Necromancy",
+      "castingTime": "1 Action",
+      "range": "90 feet",
+      "duration": "Up to 1 hour",
+      "description": "You call forth an undead spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Undead Spirit stat block. When you cast the spell, choose a ghostly, putrid, or skeletal spirit. The creature resembles an undead of that type, which determines certain traits in the creature's stat block.",
+      "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
     },
     {
       "index": "thunder-step",
@@ -10589,6 +10877,30 @@
       "higherLevel": "When you cast this spell with a 5th-­level spell slot, the duration is concentration, up to 10 minutes. When you use a 6th-­level spell slot, the duration is concentration, up to 1 hour. When you use a spell slot of 7th level or higher, the duration is concentration, up to 8 hours.",
       "castingTime": "1 action",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-domination",
+      "name": "Draconic Domination",
+      "level": 4,
+      "school": "Enchantment",
+      "castingTime": "1 Action",
+      "range": "60 feet",
+      "duration": "Up to 1 minute",
+      "description": "You attempt to assert your will over a creature within range. The target must succeed on a Wisdom saving throw or be charmed by you for the duration. While charmed, the target is under your control and can take only the actions you command. You can use your action to command the target to move, take an action, or take a bonus action. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
     },
     {
       "index": "elemental-bane-4",
@@ -11636,6 +11948,29 @@
       "source": "EGW"
     },
     {
+      "index": "summon-aberration-vrgr",
+      "name": "Summon Aberration",
+      "level": 4,
+      "school": "Conjuration",
+      "castingTime": "1 Action",
+      "range": "90 feet",
+      "duration": "Up to 1 hour",
+      "description": "You call forth an aberration spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Aberration Spirit stat block. When you cast the spell, choose a type of watcher, slicer, or slime. The creature resembles an aberration of that type, which determines certain traits in the creature's stat block.",
+      "higherLevel": "When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description.",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
+    },
+    {
       "index": "summon-construct",
       "name": "Summon Construct",
       "level": 4,
@@ -12459,6 +12794,28 @@
       "higherLevel": "When you cast this spell using a 6th-level spell slot, the duration is concentration, up to 10 minutes. When you use a 7th-level spell slot, the duration is concentration, up to 1 hour. When you use a spell slot of 8th level or higher, the duration is concentration, up to 8 hours.",
       "castingTime": "1 action",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-transport",
+      "name": "Draconic Transport",
+      "level": 5,
+      "school": "Conjuration",
+      "castingTime": "1 Action",
+      "range": "Self",
+      "duration": "Instantaneous",
+      "description": "You teleport up to 120 feet to an unoccupied space you can see. When you teleport, you can bring up to two willing creatures within 5 feet of you with you.",
+      "higherLevel": "",
+      "components": [
+        "V"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "FTD"
     },
     {
       "higher_level": [],
@@ -15118,6 +15475,30 @@
       "source": "EGW"
     },
     {
+      "index": "otherworldly-form-vrgr",
+      "name": "Otherworldly Form",
+      "level": 6,
+      "school": "Transmutation",
+      "castingTime": "1 Action",
+      "range": "Self",
+      "duration": "Up to 1 minute",
+      "description": "You draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. You gain a fly speed equal to your walking speed and can hover. You gain resistance to either fire or necrotic damage (your choice). Your weapons are imbued with otherworldly energy. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage. You gain a +1 bonus to your spell save DC.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
+    },
+    {
       "higher_level": [],
       "index": "planar-ally",
       "name": "Planar Ally",
@@ -15884,6 +16265,30 @@
       "higherLevel": [],
       "castingTime": "1 bonus action",
       "source": "PHB"
+    },
+    {
+      "index": "draconic-transformation",
+      "name": "Draconic Transformation",
+      "level": 7,
+      "school": "Transmutation",
+      "castingTime": "1 Bonus Action",
+      "range": "Self",
+      "duration": "Up to 1 minute",
+      "description": "With a roar, you draw on the magic of dragons to transform yourself, gaining the following benefits for the duration: You have a flying speed of 60 feet. You have blindsight with a range of 30 feet. You gain a breath weapon (15-foot cone, 6d6 damage, Dexterity saving throw). Once you use your breath weapon, you can't use it again until you use a bonus action to do so. You gain resistance to the damage type of your breath weapon.",
+      "higherLevel": "",
+      "components": [
+        "V",
+        "S",
+        "M"
+      ],
+      "ritual": false,
+      "concentration": true,
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "source": "FTD"
     },
     {
       "index": "dream-of-the-blue-veil",
@@ -17906,6 +18311,29 @@
         "Wizard"
       ],
       "source": "EGW"
+    },
+    {
+      "index": "psychic-scream-vrgr",
+      "name": "Psychic Scream",
+      "level": 9,
+      "school": "Enchantment",
+      "castingTime": "1 Action",
+      "range": "90 feet",
+      "duration": "Instantaneous",
+      "description": "You unleash the power of your mind to blast the intellect of up to ten creatures of your choice that you can see within range. Creatures that have an Intelligence score of 2 or lower are unaffected. Each target must make an Intelligence saving throw. On a failed save, a target takes 14d6 psychic damage and is stunned. On a successful save, a target takes half as much damage and isn't stunned.",
+      "higherLevel": "",
+      "components": [
+        "S"
+      ],
+      "ritual": false,
+      "concentration": false,
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "source": "VRGR"
     },
     {
       "higher_level": [],

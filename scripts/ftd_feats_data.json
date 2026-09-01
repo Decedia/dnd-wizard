@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Gift of the Chromatic Dragon",
+    "description": "You've manifested a chromatic gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity by 1, to a maximum of 20.\n- When you damage a creature with a spell that deals acid, cold, fire, lightning, or poison damage, you can add your proficiency bonus to that damage roll.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.",
+    "prerequisites": null,
+    "source": "FTD"
+  },
+  {
+    "name": "Gift of the Dragon Champion",
+    "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity by 1, to a maximum of 20.\n- You gain a bite attack that deals 1d6 piercing damage plus your Strength modifier. You are proficient with this attack.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.\n- You can use your action to exhale destructive energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Constitution modifier), taking 2d6 damage of the chosen type on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
+    "prerequisites": null,
+    "source": "FTD"
+  },
+  {
+    "name": "Gift of the Metallic Dragon",
+    "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Charisma, Intelligence, or Wisdom by 1, to a maximum of 20.\n- You learn the healing word spell and can cast it at its lowest level without expending a spell slot. Once you cast it this way, you can't do so again until you finish a long rest.\n- You can use your action to create a 15-foot cone of healing energy. Each creature in that area of your choice regains hit points equal to 1d6 + your Constitution modifier. The healing increases to 2d6 at 6th level, 3d6 at 11th level, and 4d6 at 16th level.",
+    "prerequisites": null,
+    "source": "FTD"
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "index": "draconic-disciple",
+    "name": "Draconic Disciple",
+    "class": "Paladin",
+    "description": "The Oath of the Draconic Disciple binds a paladin to the ideals of dragonkind. These paladins draw power from their draconic heritage, channeling the might of dragons through their divine oath. They seek to embody the virtues of dragonkind: strength, wisdom, and majesty.",
+    "features": [
+      {
+        "name": "Channel Divinity: Draconic Presence",
+        "level": 3,
+        "description": "As an action, you can channel the power of dragonkind to demoralize your foes. Each creature of your choice within 30 feet of you must make a Wisdom saving throw against your spell save DC. On a failed save, a creature is frightened of you for 1 minute. A frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+      },
+      {
+        "name": "Channel Divinity: Draconic Might",
+        "level": 3,
+        "description": "As a bonus action, you can channel the power of dragonkind to augment your strength. For 1 minute, you have advantage on Strength checks, and when you deal damage with a melee weapon, you can add your Charisma modifier to the damage roll."
+      },
+      {
+        "name": "Aura of the Dragon",
+        "level": 7,
+        "description": "You emanate an aura of draconic power. Whenever you or a friendly creature within 10 feet of you makes a saving throw, that creature gains a bonus to the roll equal to your Charisma modifier (minimum of +1). You must be conscious to grant this bonus."
+      },
+      {
+        "name": "Draconic Resilience",
+        "level": 15,
+        "description": "The power of dragonkind flows through you. You gain resistance to the damage type associated with your draconic ancestry."
+      },
+      {
+        "name": "Dragon Knight",
+        "level": 20,
+        "description": "As an action, you can channel the full power of dragonkind, gaining the following benefits for 1 minute: You have a flying speed equal to your walking speed. You have resistance to all damage. Once you use this feature, you can't use it again until you finish a long rest."
+      }
+    ],
+    "source": "FTD"
+  },
+  {
+    "index": "drake-warden",
+    "name": "Drake Warden",
+    "class": "Ranger",
+    "description": "Drake Wardens are rangers who have bonded with a lesser drake, forming a mystical connection with their draconic companion. These rangers train alongside their drake, learning to fight as one with their scaled ally.",
+    "features": [
+      {
+        "name": "Draconic Gift",
+        "level": 3,
+        "description": "You gain a drake companion that accompanies you on your adventures. The drake is friendly to you and your companions, and it obeys your commands. See the Drake Companion stat block for its traits and actions. In combat, the drake shares your initiative count, but it takes its turn immediately after yours. It can move and use its reaction on its own, but the only action it can take is the Dodge action, unless you use your bonus action on your turn to command it to take an action."
+      },
+      {
+        "name": "Bond of Fang and Scale",
+        "level": 3,
+        "description": "Your drake's bond with you grants it resilience. While your drake is within 30 feet of you, it has a +2 bonus to AC and saving throws."
+      },
+      {
+        "name": "Drake's Breath",
+        "level": 7,
+        "description": "As an action, you can command your drake to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes 4d6 damage of the type associated with your drake. On a successful save, a creature takes half as much damage. Once you use this feature, you can't use it again until you finish a short or long rest."
+      },
+      {
+        "name": "Perfected Bond",
+        "level": 11,
+        "description": "Your bond with your drake deepens. When you take damage while your drake is within 30 feet of you, you can use your reaction to have your drake take the damage instead. Additionally, when you deal damage to a creature within 30 feet of your drake, you can have your drake make a bite attack against that creature as a reaction."
+      },
+      {
+        "name": "Reflexive Resistance",
+        "level": 15,
+        "description": "When you or your drake takes damage, you can use your reaction to grant resistance to that damage type to both you and your drake for 1 minute. Once you use this feature, you can't use it again until you finish a long rest."
+      }
+    ],
+    "source": "FTD"
+  },
+  {
+    "index": "ascendant-dragon",
+    "name": "Ascendant Dragon",
+    "class": "Monk",
+    "description": "Monks of the Ascendant Dragon tradition learn to channel the elemental power of dragons through their ki. These monks can harness the destructive energy of dragonkind, unleashing it through their unarmed strikes and breath weapons.",
+    "features": [
+      {
+        "name": "Draconic Discipline",
+        "level": 3,
+        "description": "You gain the following benefits: You learn the draconic language. You learn one cantrip of your choice from the sorcerer spell list. Wisdom is your spellcasting ability for this cantrip."
+      },
+      {
+        "name": "Breath of the Dragon",
+        "level": 3,
+        "description": "You can channel draconic power into a destructive breath. As an action, you can spend 1 ki point to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes 2d6 damage of a type you choose: acid, cold, fire, lightning, or poison. On a successful save, a creature takes half as much damage. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level."
+      },
+      {
+        "name": "Wings Unfurled",
+        "level": 6,
+        "description": "When you use your Step of the Wind, you can unfurl spectral draconic wings, granting you a flying speed equal to your walking speed until the end of your turn."
+      },
+      {
+        "name": "Aspect of the Wyrm",
+        "level": 11,
+        "description": "You can channel the might of dragonkind to gain draconic traits. As a bonus action, you can spend 3 ki points to manifest these traits for 1 minute. For the duration, you have resistance to the damage type associated with your Breath of the Dragon, and your Breath of the Dragon deals an additional 2d6 damage."
+      },
+      {
+        "name": "Ascendant Aspect",
+        "level": 17,
+        "description": "You gain the following benefits: You can use your Breath of the Dragon without spending ki points. When you use your Breath of the Dragon, you can choose to increase its area to a 30-foot cone."
+      }
+    ],
+    "source": "FTD"
+  }
+]

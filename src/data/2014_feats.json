@@ -31,6 +31,12 @@
       "source": "TCE"
     },
     {
+      "name": "Alert",
+      "description": "Always on the lookout for danger, you gain the following benefits:\n- You can't be surprised while you are conscious.\n- You gain a +5 bonus to initiative.\n- Other creatures don't gain advantage on attack rolls against you as a result of being hidden from you.",
+      "prerequisites": null,
+      "source": "VRGR"
+    },
+    {
       "description": "You have undergone extensive physical training to gain the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- When you are prone, standing up uses only 5 feet of your movement.\n- Climbing doesn't halve your speed.\n- You can make a running jump or a running high jump after moving only 5 feet on foot, rather than 10 feet.",
       "name": "Athlete",
       "prerequisites": null,
@@ -103,6 +109,12 @@
       "source": "TCE"
     },
     {
+      "name": "Crusher",
+      "description": "You are practiced in the art of crushing your enemies, granting you the following benefits:\n- Increase your Strength or Constitution by 1, to a maximum of 20.\n- Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you.\n- When you score a critical hit with an attack that deals bludgeoning damage, the target's speed is halved until the start of your next turn.",
+      "prerequisites": null,
+      "source": "VRGR"
+    },
+    {
       "description": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.",
       "name": "Defensive Duelist",
       "prerequisites": "Dexterity 13 or higher",
@@ -113,6 +125,12 @@
       "description": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.",
       "prerequisites": "Dexterity 13 or higher",
       "source": "TCE"
+    },
+    {
+      "name": "Defensive Duelist",
+      "description": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.",
+      "prerequisites": "Dexterity 13 or higher",
+      "source": "VRGR"
     },
     {
       "name": "Diplomat",
@@ -223,6 +241,12 @@
       "source": "TCE"
     },
     {
+      "name": "Eldritch Adept",
+      "description": "Studying occult lore, you have unlocked eldritch magic that can be learned only by those who know the Arcana of the Mysteries. You gain the following benefits:\n- You learn one Eldritch Invocation option of your choice from the warlock class. If the invocation has a prerequisite, you can choose that invocation only if you're a warlock who meets the prerequisite. Whenever you gain a level, you can replace the invocation with another one from the warlock class that you meet the prerequisite for.\n- If the invocation requires a spell, you must know the spell to use the invocation, unless the invocation states otherwise.",
+      "prerequisites": "Spellcasting or Pact Magic feature",
+      "source": "VRGR"
+    },
+    {
       "description": "When you gain this feat, choose one of the following damage types: acid, cold, fire, lightning, or thunder.\nSpells you cast ignore resistance to the damage type you chose. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2.\nYou can select this feat multiple times. Each time you do so, you must choose a different damage type.",
       "name": "Elemental Adept",
       "prerequisites": "The ability to cast at least one spell",
@@ -331,6 +355,12 @@
       "source": "TCE"
     },
     {
+      "name": "Fighting Initiate",
+      "description": "Your martial training has allowed you to develop a particular style of fighting. You gain the following benefits:\n- You learn one Fighting Style option of your choice from the fighter class. If you already have a style, the one you choose must be different from the one you already know. Whenever you reach a level that grants the Ability Score Improvement feature, you can replace this style with another one from the fighter class that you don't know.",
+      "prerequisites": "Proficiency with a martial weapon",
+      "source": "VRGR"
+    },
+    {
       "name": "Flames of Phlegethos",
       "description": "You learn to call on the fire of Phlegethos. When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice. You must use the new roll, even if it is also a 1. In addition, when you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light in a 30-foot radius and dim light for an additional 30 feet. While the flames are active, any creature within 5 feet of you that hits you with a melee attack takes 1d4 fire damage.",
       "prerequisites": "Tiefling",
@@ -361,16 +391,34 @@
       "source": "SCAG"
     },
     {
+      "name": "Gift of the Chromatic Dragon",
+      "description": "You've manifested a chromatic gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity by 1, to a maximum of 20.\n- When you damage a creature with a spell that deals acid, cold, fire, lightning, or poison damage, you can add your proficiency bonus to that damage roll.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.",
+      "prerequisites": null,
+      "source": "FTD"
+    },
+    {
       "name": "Gift of the Dragon Champion",
       "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity score by 1, to a maximum of 20.\n- You gain a bite attack that deals 1d6 piercing damage plus your Strength modifier. You are proficient with this attack.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.\n- You can use your action to exhale destructive energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Constitution modifier), taking 2d6 damage of the chosen type on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
       "prerequisites": null,
       "source": "SCAG"
     },
     {
+      "name": "Gift of the Dragon Champion",
+      "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Strength, Constitution, or Dexterity by 1, to a maximum of 20.\n- You gain a bite attack that deals 1d6 piercing damage plus your Strength modifier. You are proficient with this attack.\n- You gain resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.\n- You can use your action to exhale destructive energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Constitution modifier), taking 2d6 damage of the chosen type on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
+      "prerequisites": null,
+      "source": "FTD"
+    },
+    {
       "name": "Gift of the Metallic Dragon",
       "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Charisma, Intelligence, or Wisdom score by 1, to a maximum of 20.\n- You learn the healing word spell and can cast it at its lowest level without expending a spell slot. Once you cast it this way, you can't do so again until you finish a long rest.\n- You can use your action to create a 15-foot cone of healing energy. Each creature in that area of your choice regains hit points equal to 1d6 + your Constitution modifier. The healing increases to 2d6 at 6th level, 3d6 at 11th level, and 4d6 at 16th level.",
       "prerequisites": null,
       "source": "SCAG"
+    },
+    {
+      "name": "Gift of the Metallic Dragon",
+      "description": "You've manifested a gift from a dragon, gaining the following benefits:\n- Increase your Charisma, Intelligence, or Wisdom by 1, to a maximum of 20.\n- You learn the healing word spell and can cast it at its lowest level without expending a spell slot. Once you cast it this way, you can't do so again until you finish a long rest.\n- You can use your action to create a 15-foot cone of healing energy. Each creature in that area of your choice regains hit points equal to 1d6 + your Constitution modifier. The healing increases to 2d6 at 6th level, 3d6 at 11th level, and 4d6 at 16th level.",
+      "prerequisites": null,
+      "source": "FTD"
     },
     {
       "description": "You've developed the skills necessary to hold your own in close-quarters grappling. You gain the following benefits:\n- You have advantage on attack rolls against a creature you are grappling.\n- You can use your action to try to pin a creature grappled by you. To do so, make another grapple check. If you succeed, you and the creature are both restrained until the grapple ends.",
@@ -401,6 +449,12 @@
       "description": "You have trained to master the use of heavy armor, gaining the following benefits:\n- Increase your Strength score by 1, to a maximum of 20.\n- You gain proficiency with heavy armor.",
       "prerequisites": "Proficiency with medium armor",
       "source": "TCE"
+    },
+    {
+      "name": "Heavily Armored",
+      "description": "You have trained to master the use of heavy armor, gaining the following benefits:\n- Increase your Strength score by 1, to a maximum of 20.\n- You gain proficiency with heavy armor.",
+      "prerequisites": "Proficiency with medium armor",
+      "source": "VRGR"
     },
     {
       "description": "You can use your armor to deflect strikes that would kill others. You gain the following benefits:\n- Increase your Strength score by 1, to a maximum of 20.\n- While you are wearing heavy armor, bludgeoning, piercing, and slashing damage that you take from nonmagical weapons is reduced by 3.",
@@ -457,6 +511,12 @@
       "source": "TCE"
     },
     {
+      "name": "Lightly Armored",
+      "description": "You have trained to defend yourself while unarmored, gaining the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- You gain proficiency with light armor.",
+      "prerequisites": null,
+      "source": "VRGR"
+    },
+    {
       "description": "You have studied languages and the patterns of communication, gaining the following benefits:\n- Increase your Intelligence score by 1, to a maximum of 20.\n- You learn three languages of your choice.\n- You can ably create written ciphers. Others can't decipher a cipher you create unless you teach them, they succeed on an Intelligence check (DC equal to your Intelligence score + your proficiency bonus), or they use magic to decipher it.",
       "name": "Linguist",
       "prerequisites": null,
@@ -499,10 +559,22 @@
       "source": "TCE"
     },
     {
+      "name": "Medium Armor Master",
+      "description": "You have practiced moving in medium armor to gain the full benefit of its protection, gaining the following benefits:\n- Wearing medium armor doesn't impose disadvantage on your Dexterity (Stealth) checks.\n- When you wear medium armor, you can add 3, rather than 2, to your Armor Class if your Dexterity is 16 or higher.",
+      "prerequisites": "Proficiency with medium armor",
+      "source": "VRGR"
+    },
+    {
       "name": "Metamagic Adept",
       "description": "You've learned how to exert your will to alter your spells in subtle but distinct ways. You gain the following benefits:\n- You learn two Metamagic options of your choice from the sorcerer class. You can use only one Metamagic option on a spell when you cast it, unless the option states otherwise. Whenever you gain a level, you can replace one of your Metamagic options with another one from the sorcerer class.\n- You gain 2 sorcery points to spend on Metamagic (these points are added to any sorcery points you have from another source but can be used only on Metamagic). You regain all expended sorcery points when you finish a long rest.",
       "prerequisites": "Spellcasting or Pact Magic feature",
       "source": "TCE"
+    },
+    {
+      "name": "Metamagic Adept",
+      "description": "You've learned how to exert your will to alter your spells in subtle but distinct ways. You gain the following benefits:\n- You learn two Metamagic options of your choice from the sorcerer class. You can use only one Metamagic option on a spell when you cast it, unless the option states otherwise. Whenever you gain a level, you can replace one of your Metamagic options with another one from the sorcerer class.\n- You gain 2 sorcery points to spend on Metamagic (these points are added to any sorcery points you have from another source but can be used only on Metamagic). You regain all expended sorcery points when you finish a long rest.",
+      "prerequisites": "Spellcasting or Pact Magic feature",
+      "source": "VRGR"
     },
     {
       "description": "You are exceptionally speedy and agile. You gain the following benefits:\n- Your speed increases by 10 feet.\n- When you use the Dash action, difficult terrain doesn't cost you extra movement on that turn.\n- When you make a melee attack against a creature, you don't provoke opportunity attacks from that creature for the rest of the turn, whether you hit or not.",
@@ -521,6 +593,12 @@
       "description": "You have trained to master the use of medium armor and shields, gaining the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- You gain proficiency with medium armor and shields.",
       "prerequisites": "Proficiency with light armor",
       "source": "TCE"
+    },
+    {
+      "name": "Moderately Armored",
+      "description": "You have trained to master the use of medium armor and shields, gaining the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- You gain proficiency with medium armor and shields.",
+      "prerequisites": "Proficiency with light armor",
+      "source": "VRGR"
     },
     {
       "description": "You are a dangerous foe to face while mounted. While you are mounted and aren't incapacitated, you gain the following benefits:\n- You have advantage on melee attack rolls against any unmounted creature that is smaller than your mount.\n- You can force an attack targeted at your mount to target you instead.\n- If your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, the mount instead takes no damage if it succeeds on the saving throw, and only half damage if it fails.",
@@ -563,6 +641,12 @@
       "description": "You have achieved a penetrating precision in combat, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Once per turn when you hit a creature with an attack that deals piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.\n- When you score a critical hit with an attack that deals piercing damage, you can roll one additional damage die when determining the extra damage the target takes.",
       "prerequisites": null,
       "source": "TCE"
+    },
+    {
+      "name": "Piercer",
+      "description": "You have achieved a penetrating precision in combat, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Once per turn when you hit a creature with an attack that deals piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.\n- When you score a critical hit with an attack that deals piercing damage, you can roll one additional damage die when determining the extra damage the target takes.",
+      "prerequisites": null,
+      "source": "VRGR"
     },
     {
       "description": "You can keep your enemies at bay with a reach weapon. You gain the following benefits:\n- When you take the Attack action and attack with only a glaive, halberd, or quarterstaff, you can use a bonus action to make a melee attack with the opposite end of the weapon. The weapon's damage die for this attack is a d4, and the attack deals bludgeoning damage.\n- While you are wielding a glaive, halberd, pike, or quarterstaff, other creatures provoke an opportunity attack from you when they enter your reach.",
@@ -667,10 +751,22 @@
       "source": "TCE"
     },
     {
+      "name": "Shield Master",
+      "description": "You use shields not just for protection but also for offense. You gain the following benefits while you are wielding a shield:\n- If you take the Attack action on your turn, you can use a bonus action to try to shove a creature within 5 feet of you with your shield.\n- If you aren't incapacitated, you can add your shield's AC bonus to any Dexterity saving throw you make against a spell or other harmful effect that targets only you.\n- If you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can use your reaction to take no damage if you succeed on the saving throw, interposing your shield between yourself and the source of the effect.",
+      "prerequisites": null,
+      "source": "VRGR"
+    },
+    {
       "name": "Skill Expert",
       "description": "You have honed your proficiency with particular skills, granting you the following benefits:\n- Increase one ability score of your choice by 1, to a maximum of 20.\n- You gain proficiency with one skill of your choice.\n- You gain expertise with one skill of your choice that you're already proficient in. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus.",
       "prerequisites": null,
       "source": "TCE"
+    },
+    {
+      "name": "Skill Expert",
+      "description": "You have honed your proficiency with particular skills, granting you the following benefits:\n- Increase one ability score of your choice by 1, to a maximum of 20.\n- You gain proficiency with one skill of your choice.\n- You gain expertise with one skill of your choice that you're already proficient in. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus.",
+      "prerequisites": null,
+      "source": "VRGR"
     },
     {
       "description": "You gain proficiency in any combination of three skills or tools of your choice.",
@@ -689,6 +785,12 @@
       "description": "You are trained in the art of cutting and slashing your enemies, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Once per turn when you hit a creature with an attack that deals slashing damage, you can reduce the target's speed by 10 feet until the start of your next turn.\n- When you score a critical hit with an attack that deals slashing damage, you grievously wound the target. Until the start of your next turn, the target has disadvantage on all attack rolls.",
       "prerequisites": null,
       "source": "TCE"
+    },
+    {
+      "name": "Slasher",
+      "description": "You are trained in the art of cutting and slashing your enemies, granting you the following benefits:\n- Increase your Strength or Dexterity by 1, to a maximum of 20.\n- Once per turn when you hit a creature with an attack that deals slashing damage, you can reduce the target's speed by 10 feet until the start of your next turn.\n- When you score a critical hit with an attack that deals slashing damage, you grievously wound the target. Until the start of your next turn, the target has disadvantage on all attack rolls.",
+      "prerequisites": null,
+      "source": "VRGR"
     },
     {
       "description": "You have learned techniques to enhance your attacks with certain kinds of spells, gaining the following benefits:\n- When you cast a spell that requires you to make an attack roll, the spell's range is doubled.\n- Your ranged spell attacks ignore half cover and three-quarters cover.\n- You learn one cantrip that requires an attack roll. Choose the cantrip from the bard, cleric, druid, sorcerer, warlock, or wizard spell list. Your spellcasting ability for this cantrip depends on the class you chose: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; Intelligence for wizard.",
@@ -755,6 +857,12 @@
       "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with four simple or martial weapons of your choice. Each chosen weapon must have a different proficiency category (simple or martial) than the others, unless you already have proficiency with all simple and martial weapons.",
       "prerequisites": null,
       "source": "TCE"
+    },
+    {
+      "name": "Weapon Master",
+      "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with four simple or martial weapons of your choice. Each chosen weapon must have a different proficiency category (simple or martial) than the others, unless you already have proficiency with all simple and martial weapons.",
+      "prerequisites": null,
+      "source": "VRGR"
     },
     {
       "name": "Wood Elf Magic",

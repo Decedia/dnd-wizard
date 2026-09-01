@@ -1,0 +1,96 @@
+[
+  {
+    "index": "dragonborn-gem",
+    "name": "Dragonborn (Gem)",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "strength": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Draconic Ancestry",
+        "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+      },
+      {
+        "name": "Breath Weapon",
+        "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest."
+      },
+      {
+        "name": "Damage Resistance",
+        "description": "You have resistance to the damage type associated with your draconic ancestry."
+      },
+      {
+        "name": "Psionic Mind",
+        "description": "You can send telepathic messages to any creature you can see within 30 feet of you. You don't need to share a language with the creature for it to understand your telepathy, but the creature must be able to understand at least one language or be telepathic itself."
+      },
+      {
+        "name": "Gem Flight",
+        "description": "When you reach 5th level, you can use a bonus action to manifest spectral wings from your back for 1 minute. While the wings are present, you have a flying speed equal to your walking speed. Your wings look like shimmering, translucent versions of your draconic ancestry's wings. Once you use this trait, you can't use it again until you finish a long rest."
+      }
+    ],
+    "languages": ["Common", "Draconic"],
+    "source": "FTD"
+  },
+  {
+    "index": "dragonborn-metallic",
+    "name": "Dragonborn (Metallic)",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "strength": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Draconic Ancestry",
+        "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+      },
+      {
+        "name": "Breath Weapon",
+        "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest."
+      },
+      {
+        "name": "Damage Resistance",
+        "description": "You have resistance to the damage type associated with your draconic ancestry."
+      },
+      {
+        "name": "Metallic Breath Weapon",
+        "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of psychic energy. Each creature in the area must make a Wisdom saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 psychic damage and is frightened of you until the end of your next turn. On a successful save, a creature takes half as much damage and isn't frightened. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+      }
+    ],
+    "languages": ["Common", "Draconic"],
+    "source": "FTD"
+  },
+  {
+    "index": "dragonborn-chromatic",
+    "name": "Dragonborn (Chromatic)",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "strength": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Draconic Ancestry",
+        "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+      },
+      {
+        "name": "Breath Weapon",
+        "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest."
+      },
+      {
+        "name": "Damage Resistance",
+        "description": "You have resistance to the damage type associated with your draconic ancestry."
+      },
+      {
+        "name": "Chromatic Breath Weapon",
+        "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 damage of the type associated with your draconic ancestry. On a successful save, a creature takes half as much damage. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+      }
+    ],
+    "languages": ["Common", "Draconic"],
+    "source": "FTD"
+  }
+]

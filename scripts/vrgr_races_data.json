@@ -1,0 +1,84 @@
+[
+  {
+    "index": "dhampir",
+    "name": "Dhampir",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "dexterity": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Darkvision",
+        "description": "Thanks to your vampiric heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+      },
+      {
+        "name": "Deathless Nature",
+        "description": "You have escaped death once; it is harder for death to find you again. You don't need to breathe, and you have advantage on death saving throws."
+      },
+      {
+        "name": "Spider Climb",
+        "description": "You have a climbing speed equal to your walking speed. In addition, at 3rd level, you can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free."
+      },
+      {
+        "name": "Vampiric Bite",
+        "description": "Your fanged bite is a natural weapon, which you can use to make unarmed strikes. If you hit with it, you deal piercing damage equal to 1d4 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike. When you damage a creature with your bite and that creature has a humanoid shape, you can regain hit points equal to the piercing damage dealt."
+      }
+    ],
+    "languages": ["Common"],
+    "source": "VRGR"
+  },
+  {
+    "index": "hexblood",
+    "name": "Hexblood",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "intelligence": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Fey",
+        "description": "Your creature type is Fey, rather than Humanoid."
+      },
+      {
+        "name": "Hex Magic",
+        "description": "You can cast the hex spell with this trait. Starting at 3rd level, you can also cast the blindness/deafness spell with this trait. Starting at 5th level, you can also cast the ray of enfeeblement spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for these spells."
+      },
+      {
+        "name": "Eerie Token",
+        "description": "As a bonus action, you can remove a lock of hair, one of your teeth, or some other part of your body and incorporate it into a token. If your token is destroyed, you take 1d6 psychic damage. You can use the token as a spellcasting focus for your spells, and you can use the token to cast the sending spell without expending a spell slot. Once you cast sending in this way, you can't do so again until you finish a long rest."
+      }
+    ],
+    "languages": ["Common"],
+    "source": "VRGR"
+  },
+  {
+    "index": "reborn",
+    "name": "Reborn",
+    "size": "Medium",
+    "speed": 30,
+    "abilityBonuses": {
+      "constitution": 2,
+      "charisma": 1
+    },
+    "traits": [
+      {
+        "name": "Deathless Nature",
+        "description": "You have escaped death once; it is harder for death to find you again. You have advantage on death saving throws, and you don't need to eat, drink, or breathe."
+      },
+      {
+        "name": "Knowledge from a Past Life",
+        "description": "You have fragments of memories from a past life. When you make an ability check that uses a skill, you can roll a d6 and add it to your roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+      },
+      {
+        "name": "Reborn Resilience",
+        "description": "Your body is partially spectral, granting you resistance to necrotic damage. In addition, you have advantage on saving throws against disease and poison."
+      }
+    ],
+    "languages": ["Common"],
+    "source": "VRGR"
+  }
+]
