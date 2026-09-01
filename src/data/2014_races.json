@@ -35,7 +35,11 @@
         "Common",
         "Goblin"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "str": 2,
+        "dex": 1
+      }
     },
     {
       "index": "changeling",
@@ -62,7 +66,11 @@
         "Elvish",
         "Halfling"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "cha": 2,
+        "dex": 1
+      }
     },
     {
       "index": "deep-gnome",
@@ -128,7 +136,11 @@
       "languages": [
         "Common"
       ],
-      "source": "VRGR"
+      "source": "VRGR",
+      "abilityScoreIncreases": {
+        "cha": 2,
+        "dex": 1
+      }
     },
     {
       "name": "Dragonborn",
@@ -191,7 +203,11 @@
         "Common",
         "Draconic"
       ],
-      "source": "FTD"
+      "source": "FTD",
+      "abilityScoreIncreases": {
+        "str": 2,
+        "cha": 1
+      }
     },
     {
       "index": "dragonborn-gem",
@@ -228,7 +244,11 @@
         "Common",
         "Draconic"
       ],
-      "source": "FTD"
+      "source": "FTD",
+      "abilityScoreIncreases": {
+        "int": 2,
+        "cha": 1
+      }
     },
     {
       "index": "dragonborn-metallic",
@@ -261,7 +281,11 @@
         "Common",
         "Draconic"
       ],
-      "source": "FTD"
+      "source": "FTD",
+      "abilityScoreIncreases": {
+        "str": 2,
+        "cha": 1
+      }
     },
     {
       "name": "Dwarf",
@@ -440,7 +464,11 @@
         "Elvish",
         "Giant"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "wis": 2,
+        "str": 1
+      }
     },
     {
       "index": "githyanki",
@@ -483,7 +511,11 @@
           "description": "Gain proficiency with one skill or tool of your choice.",
           "type": "proficiency"
         }
-      ]
+      ],
+      "abilityScoreIncreases": {
+        "str": 2,
+        "int": 1
+      }
     },
     {
       "index": "githzerai",
@@ -512,7 +544,11 @@
         "Common",
         "Gith"
       ],
-      "source": "MTF"
+      "source": "MTF",
+      "abilityScoreIncreases": {
+        "wis": 2,
+        "int": 1
+      }
     },
     {
       "name": "Gnome",
@@ -568,7 +604,11 @@
         "Common",
         "Goblin"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "con": 1
+      }
     },
     {
       "name": "Half-Elf",
@@ -692,7 +732,11 @@
       "languages": [
         "Common"
       ],
-      "source": "VRGR"
+      "source": "VRGR",
+      "abilityScoreIncreases": {
+        "cha": 2,
+        "str": 1
+      }
     },
     {
       "index": "hobgoblin",
@@ -721,7 +765,11 @@
         "Common",
         "Goblin"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "con": 2,
+        "int": 1
+      }
     },
     {
       "name": "Human",
@@ -775,7 +823,11 @@
         "Common",
         "Auran"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "wis": 1
+      }
     },
     {
       "index": "lizardfolk",
@@ -808,7 +860,11 @@
         "Common",
         "Draconic"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "con": 2,
+        "wis": 1
+      }
     },
     {
       "index": "orc",
@@ -841,7 +897,11 @@
         "Common",
         "Orc"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "str": 2,
+        "con": 1
+      }
     },
     {
       "index": "reborn",
@@ -869,7 +929,11 @@
       "languages": [
         "Common"
       ],
-      "source": "VRGR"
+      "source": "VRGR",
+      "abilityScoreIncreases": {
+        "cha": 2,
+        "con": 1
+      }
     },
     {
       "index": "shifter",
@@ -927,7 +991,11 @@
             }
           ]
         }
-      ]
+      ],
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "con": 1
+      }
     },
     {
       "index": "tabaxi",
@@ -959,7 +1027,11 @@
       "languages": [
         "Common"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "cha": 1
+      }
     },
     {
       "name": "Tiefling",
@@ -1025,7 +1097,11 @@
         "Common",
         "Primordial"
       ],
-      "source": "EGW"
+      "source": "EGW",
+      "abilityScoreIncreases": {
+        "cha": 2,
+        "str": 1
+      }
     }
   ]
 }

@@ -101,9 +101,14 @@ function buildLevelInfos(
 
     let cantripsKnown: number | undefined;
     if (classData.cantripsKnown) {
-      const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
-      for (const l of levels) {
-        if (level >= l) cantripsKnown = classData.cantripsKnown[l];
+      if (Array.isArray(classData.cantripsKnown)) {
+        const idx = Math.min(level - 1, classData.cantripsKnown.length - 1);
+        cantripsKnown = classData.cantripsKnown[idx >= 0 ? idx : 0];
+      } else {
+        const levels = Object.keys(classData.cantripsKnown).map(Number).sort((a, b) => a - b);
+        for (const l of levels) {
+          if (level >= l) cantripsKnown = (classData.cantripsKnown as Record<number, number>)[l];
+        }
       }
     }
 
@@ -344,7 +349,9 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
   }));
 
   const spellSlots = levelData?.spellSlots;
-  const cantripsKnown = classData?.cantripsKnown?.[level];
+  const cantripsKnown = Array.isArray(classData?.cantripsKnown)
+    ? classData.cantripsKnown[Math.min(level - 1, classData.cantripsKnown.length - 1)]
+    : classData?.cantripsKnown?.[level];
   const spellsKnown = (classData as any)?.spellsKnown?.[String(level)];
 
   const classFeatures: { name: string; value: string }[] = [];

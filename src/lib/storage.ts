@@ -135,7 +135,7 @@ export const ALIGNMENTS = [
   "Chaotic Evil",
 ];
 
-export const CLASSES = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"];
+export const CLASSES = ["Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"];
 
 export function getProficiencyBonus(level: number): number {
   return Math.floor((level - 1) / 4) + 2;
