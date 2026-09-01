@@ -1,0 +1,36 @@
+[
+  {
+    "index": "redemption-mtf",
+    "name": "Redemption",
+    "class": "Paladin",
+    "description": "The Oath of Redemption sets a paladin on a difficult path, one that requires the courage of a war god and the patience of a monk. This oath focuses on the belief that anyone can be redeemed, and that the path of benevolence and justice is one that anyone can walk.",
+    "features": [
+      {
+        "name": "Channel Divinity: Emissary of Peace",
+        "level": 3,
+        "description": "You can use your Channel Divinity to augment your presence with celestial power. As a bonus action, you grant yourself a +5 bonus to Charisma (Persuasion) checks for the next 10 minutes."
+      },
+      {
+        "name": "Channel Divinity: Rebuke the Violent",
+        "level": 3,
+        "description": "You can use your Channel Divinity to rebuke those who use violence. Immediately after an attacker within 30 feet of you deals damage with an attack against a creature other than you, you can use your reaction to force the attacker to make a Wisdom saving throw. On a failed save, the attacker takes radiant damage equal to the damage it just dealt. On a successful save, it takes half as much damage."
+      },
+      {
+        "name": "Aura of the Guardian",
+        "level": 7,
+        "description": "You can shield others from harm at the cost of your own health. When a creature within 10 feet of you takes damage, you can use your reaction to magically take that damage, instead of that creature taking it. This feature works with your Aura of Protection."
+      },
+      {
+        "name": "Protective Spirit",
+        "level": 15,
+        "description": "A protective, celestial spirit watches over you and gains strength from your violent actions. When you let an enemy within 30 feet of you drop to 0 hit points, you regain hit points equal to your paladin level + your Charisma modifier."
+      },
+      {
+        "name": "Emissary of Redemption",
+        "level": 20,
+        "description": "You become an avatar of peace, which gives you two benefits: You have resistance to all damage dealt by other creatures (their attacks and spells), and when a creature hits you with an attack, it takes radiant damage equal to half the damage you take from the attack."
+      }
+    ],
+    "source": "MTF"
+  }
+]

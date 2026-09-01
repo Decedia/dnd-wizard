@@ -1,0 +1,18 @@
+[
+  {
+    "index": "dream-of-the-blue-veil-mtf",
+    "name": "Dream of the Blue Veil",
+    "level": 7,
+    "school": "Conjuration",
+    "castingTime": "10 minutes",
+    "range": "20 feet",
+    "duration": "6 hours",
+    "description": "You and up to eight willing creatures within range fall unconscious for the spell's duration and experience visions of another world on the Material Plane, such as Oerth, Toril, Krynn, or Eberron. If the spell reaches its full duration, the visions conclude with each of you encountering a guardian spirit, which takes the form of a majestic creature such as a dragon, a couatl, or a ki-rin. The spirit offers to transport you and your companions to the world you visited in the dreams. If you accept, you and the other creatures who accepted disappear and arrive in the dreamt-of world at the same location as the one where you cast the spell. If you reject the spirit's offer, you awaken and the spell ends without effect. Once the spell ends, you and the other affected creatures can't be affected by this spell again until you finish a long rest.",
+    "higherLevel": "",
+    "components": ["V", "S", "M"],
+    "ritual": false,
+    "concentration": false,
+    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "source": "MTF"
+  }
+]
