@@ -250,6 +250,22 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
       group.requiresChoice = entry.requiresChoice;
     }
 
+    if (entry.isWeaponChoice || entry.isInstrumentChoice || entry.isArcaneFocusChoice || entry.isHolySymbolChoice || entry.isDruidicFocusChoice) {
+      group.options = [{
+        description: desc,
+        items: [],
+        weaponType: entry.weaponType,
+        isWeaponChoice: entry.isWeaponChoice || undefined,
+        isInstrumentChoice: entry.isInstrumentChoice || undefined,
+        isArcaneFocusChoice: entry.isArcaneFocusChoice || undefined,
+        isHolySymbolChoice: entry.isHolySymbolChoice || undefined,
+        isDruidicFocusChoice: entry.isDruidicFocusChoice || undefined,
+        selectionCount: entry.selectionCount,
+      }];
+      groups.push(group);
+      return;
+    }
+
     const optionMatches = desc.match(/\([a-z]\)\s*[^()]*/g);
     if (optionMatches && optionMatches.length > 1) {
       const optionTexts = optionMatches.map(getOptionDisplayText);
