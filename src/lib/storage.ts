@@ -841,7 +841,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const buffMods = computeBuffModifiers(character.activeBuffs || []);
   ac += buffMods.acBonus;
 
-  // ===== SPEED CALCULATION =====
+  // ===== BASE SPEED =====
   let speed = character.speed || 30;
   // Monk unarmored movement bonus
   if (classData?.name === "Monk" && !hasArmor) {
@@ -852,6 +852,97 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   }
   // Buff speed bonus
   speed += buffMods.speedBonus;
+
+  // ===== CONDITION MECHANICAL EFFECTS =====
+  // Parse activeStates for conditions and apply mechanical effects
+  const activeStates = character.activeStates || [];
+  const conditions = new Set(
+    activeStates
+      .map((s) => s.toLowerCase().trim())
+      .filter((s) => s)
+  );
+
+  // Exhaustion level (exhaustion 1, exhaustion 2, etc.)
+  const exhaustionLevel = activeStates
+    .map((s) => {
+      const match = s.toLowerCase().match(/exhaustion\s*(\d)/);
+      return match ? parseInt(match[1], 10) : 0;
+    })
+    .filter((n) => n > 0)
+    .reduce((max, n) => Math.max(max, n), 0);
+
+  // Speed modifications from conditions
+  const speedZeroConditions = [
+    "grappled",
+    "restrained",
+    "paralyzed",
+    "petrified",
+    "stunned",
+    "unconscious",
+  ];
+  const hasSpeedZero = speedZeroConditions.some((c) => conditions.has(c));
+
+  // Exhaustion level 5 = speed 0
+  if (exhaustionLevel >= 5) {
+    conditions.add("exhaustion_5_speed_zero");
+  }
+
+  // Prone: speed 0 but can crawl (handled in UI)
+  if (conditions.has("prone")) {
+    // Prone doesn't set speed to 0 in 5e - you can crawl at half speed
+    // We'll note it for UI
+  }
+
+  // Disadvantage on attack rolls
+  const disadvantageAttackConditions = [
+    "poisoned",
+    "frightened", // while source in sight
+    "restrained",
+    "prone", // ranged attacks only
+  ];
+  const hasDisadvantageAttacks = disadvantageAttackConditions.some((c) => conditions.has(c));
+
+  // Advantage on attacks against this creature
+  const advantageAttackAgainstConditions = [
+    "invisible",
+    "paralyzed",
+    "petrified",
+    "stunned",
+    "unconscious",
+    "restrained", // attacks against have advantage
+  ];
+  const hasAdvantageAttacksAgainst = advantageAttackAgainstConditions.some((c) => conditions.has(c));
+
+  // Auto-fail Strength/Dex saves
+  const autoFailStrDexConditions = [
+    "paralyzed",
+    "petrified",
+    "stunned",
+    "unconscious",
+  ];
+  const autoFailStrDex = autoFailStrDexConditions.some((c) => conditions.has(c));
+
+  // Disadvantage on ability checks
+  const disadvantageCheckConditions = ["poisoned"];
+  if (exhaustionLevel >= 1) disadvantageCheckConditions.push("exhaustion");
+  const hasDisadvantageChecks = disadvantageCheckConditions.some((c) => conditions.has(c));
+
+  // Disadvantage on saving throws
+  const hasDisadvantageSaves = exhaustionLevel >= 3;
+
+  // Exhaustion level 4: HP max halved (applied elsewhere)
+  // Exhaustion level 6: death (handled elsewhere)
+
+  // Apply speed modifications
+  if (hasSpeedZero || conditions.has("exhaustion_5_speed_zero")) {
+    speed = 0;
+  } else if (exhaustionLevel >= 2) {
+    // Exhaustion level 2: speed halved
+    speed = Math.floor(speed / 2);
+  }
+
+  // Apply exhaustion HP max reduction (level 4)
+  // Note: This is applied in the character sheet display, not here
 
   // ===== INITIATIVE WITH FEATURES =====
   // Alert feat, Feral Instinct, etc. handled via buffs
