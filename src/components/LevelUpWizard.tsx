@@ -435,7 +435,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const effectiveMaxLevel = maxLevel ?? 20;
 
   const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
-  const [viewingLevel, setViewingLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
@@ -467,8 +466,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   }, [targetLevel]);
 
   const levelInfos = useMemo(
-    () => buildLevelInfos(character, viewingLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne),
-    [character, viewingLevel, classData, subclassSelection, currentLevel, startFromLevelOne]
+    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne),
+    [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne]
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
@@ -966,7 +965,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const newLevel = Math.max(effectiveMinLevel, Math.min(effectiveMaxLevel, targetLevel + delta));
     if (newLevel !== targetLevel) {
       setTargetLevel(newLevel);
-      setViewingLevel(newLevel);
     }
   };
 
@@ -1045,14 +1043,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                    <button
                      key={idx}
                      type="button"
-                     onClick={() => {
-                       setShowNotifPanel(false);
-                       setViewingLevel(item.level);
-                       setTimeout(() => {
-                         const el = sectionRefs.current[item.sectionId];
-                         if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-                       }, 100);
-                     }}
+                      onClick={() => {
+                        setShowNotifPanel(false);
+                        setTimeout(() => {
+                          const el = sectionRefs.current[item.sectionId];
+                          if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                        }, 100);
+                      }}
                      className="w-full text-left px-3 py-2 rounded-[var(--radius-sm)] hover:bg-[var(--color-bg)] transition-colors"
                    >
                      <span className="text-xs text-[var(--color-text-primary)]">{item.label}</span>
