@@ -756,6 +756,76 @@
       "source": "SCAG"
     },
     {
+      "name": "Half-Elf (Moon Elf)",
+      "abilityScoreIncreases": { "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
+        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
+        { "name": "Moon Elf Heritage", "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the silent image spell once per long rest. When you reach 5th level, you can cast the hypnotic pattern spell once per long rest. Intelligence is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Elvish"],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG"
+    },
+    {
+      "name": "Half-Elf (Sun Elf)",
+      "abilityScoreIncreases": { "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
+        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
+        { "name": "Sun Elf Heritage", "description": "You know the fire bolt cantrip. When you reach 3rd level, you can cast the burning hands spell once per long rest. When you reach 5th level, you can cast the scorching ray spell once per long rest. Intelligence is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Elvish"],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG"
+    },
+    {
+      "name": "Half-Elf (Sea Elf)",
+      "abilityScoreIncreases": { "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
+        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
+        { "name": "Sea Elf Heritage", "description": "You have a swimming speed of 30 feet and can breathe air and water. You know the minor illusion cantrip. When you reach 3rd level, you can cast the water walk spell once per long rest. When you reach 5th level, you can cast the control water spell once per long rest. Charisma is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Elvish"],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG"
+    },
+    {
+      "name": "Half-Elf (Shadar-kai)",
+      "abilityScoreIncreases": { "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
+        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
+        { "name": "Shadar-kai Heritage", "description": "You have resistance to necrotic damage. You know the spare the dying cantrip. When you reach 3rd level, you can cast the ray of sickness spell once per long rest. When you reach 5th level, you can cast the blindness/deafness spell once per long rest. Charisma is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Elvish"],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG"
+    },
+    {
+      "name": "Half-Elf (Eladrin)",
+      "abilityScoreIncreases": { "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
+        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
+        { "name": "Eladrin Heritage", "description": "You can cast the misty step spell once per long rest without expending a spell slot. Charisma is your spellcasting ability for it. Choose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), Summer (fire damage)." }
+      ],
+      "languages": ["Common", "Elvish"],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG"
+    },
+    {
       "name": "Half-Orc",
       "abilityScoreIncreases": {
         "str": 2,
