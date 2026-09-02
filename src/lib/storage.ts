@@ -155,6 +155,8 @@ export const ALIGNMENTS = [
   "Chaotic Evil",
 ];
 
+export const MAX_ABILITY_SCORE = 20;
+
 export const CLASSES = ["Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"];
 
 export function getProficiencyBonus(level: number): number {
@@ -163,6 +165,10 @@ export function getProficiencyBonus(level: number): number {
 
 export function getModifier(score: number): number {
   return Math.floor((score - 10) / 2);
+}
+
+export function clampAbilityScore(score: number): number {
+  return Math.min(Math.max(score, 1), MAX_ABILITY_SCORE);
 }
 
 export function getMaxSpellsKnown(character: Character): number {
@@ -637,6 +643,15 @@ function getClassResourceValue(classData: any, resourceName: string, level: numb
 }
 
 export function computeDerivedStats(character: Character): Partial<Character> {
+  // Clamp ability scores to max 20
+  const clampedAbilities: Partial<Character> = {};
+  for (const key of ["str", "dex", "con", "int", "wis", "cha"] as const) {
+    const current = character[key] as number;
+    if (current > MAX_ABILITY_SCORE) {
+      clampedAbilities[key] = MAX_ABILITY_SCORE;
+    }
+  }
+
   const profBonus = getProficiencyBonus(character.level);
   const classData = getStaticClass(character.class);
   const savingThrowProfs = classData?.savingThrows || [];
@@ -986,6 +1001,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     ac,
     speed,
     buffModifiers: buffMods as any,
+    ...clampedAbilities,
   };
 }
 
