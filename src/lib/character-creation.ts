@@ -592,7 +592,8 @@ export function getCreationSteps(character: Character): CreationStep[] {
     });
   }
 
-  const featureSelections = getFeatureSelections(character).filter(s => s.source !== "subclass" && s.source !== "class");
+  // Keep all feature choices for character creation (class, subclass, etc.)
+  const featureSelections = getFeatureSelections(character);
   featureSelections.forEach((selection, index) => {
     const existing = (character as any).featureSelections?.[selection.storageKey];
     const isComplete = selection.optional
