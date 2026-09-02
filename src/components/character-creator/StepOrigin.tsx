@@ -107,15 +107,11 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const handleConfirmRace = () => {
     if (pendingRace) {
       const isVariant = pendingVariant;
-      const raceChanged = pendingRace !== data.race;
-      const variantChanged = (isVariant !== !!data.raceVariant);
-      if (raceChanged || variantChanged) {
-        onChange({
-          race: pendingRace,
-          raceVariant: isVariant ? "variant" : undefined,
-          ...(isVariant ? {} : { variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } }),
-        });
-      }
+      onChange({
+        race: pendingRace,
+        raceVariant: isVariant ? "variant" : undefined,
+        ...(isVariant ? {} : { variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } }),
+      });
     }
     setPopupType(null);
   };
