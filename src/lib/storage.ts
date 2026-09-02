@@ -959,6 +959,10 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // Apply exhaustion HP max reduction (level 4)
   // Note: This is applied in the character sheet display, not here
 
+  // Apply temporary HP from buffs (take max, don't stack)
+  const buffTempHp = buffMods.tempHpBonus || 0;
+  const newTemporaryHp = Math.max(character.temporaryHp || 0, buffTempHp);
+
   // ===== INITIATIVE WITH FEATURES =====
   // Alert feat, Feral Instinct, etc. handled via buffs
 
@@ -1000,6 +1004,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxBardicInspirationUses,
     ac,
     speed,
+    temporaryHp: newTemporaryHp,
     buffModifiers: buffMods as any,
     ...clampedAbilities,
   };
@@ -1158,6 +1163,17 @@ export function applyShortRest(character: Character): Partial<Character> {
 export function applyLongRest(character: Character): Partial<Character> {
   const classData = getStaticClass(character.class);
   
+  // Get max spell slots from class data
+  const maxSpellSlots: Record<number, number> = {};
+  if (classData?.levels) {
+    const levelData = classData.levels[character.level - 1];
+    if (levelData?.spellSlots) {
+      for (const [slotLevel, count] of Object.entries(levelData.spellSlots)) {
+        maxSpellSlots[Number(slotLevel)] = count;
+      }
+    }
+  }
+
   // Full HP recovery
   const draft: Partial<Character> = {
     currentHp: character.maxHp,
@@ -1167,9 +1183,10 @@ export function applyLongRest(character: Character): Partial<Character> {
     // Reset death saves
     deathSaveSuccesses: 0,
     deathSaveFailures: 0,
-    // Reset spell slots
+    // Reset spell slots to max
+    spellSlots: maxSpellSlots,
     spellSlotsExpended: Object.fromEntries(
-      Object.entries(character.spellSlots || {}).map(([k]) => [k, 0])
+      Object.entries(maxSpellSlots).map(([k]) => [k, 0])
     ),
     // Reset per-turn tracking
     spellsUsedThisTurn: [],
@@ -1191,23 +1208,7 @@ export function applyLongRest(character: Character): Partial<Character> {
     activeBuffs: [],
   };
 
-  // Warlock: Pact Magic slots recover on both short and long rest
-  if (classData?.name === "Warlock") {
-    const warlockSlots: Record<number, number> = {};
-    const classData = getStaticClass("Warlock");
-    if (classData?.levels) {
-      const levelData = classData.levels[character.level - 1];
-      if (levelData?.spellSlots) {
-        for (const [slotLevel, count] of Object.entries(levelData.spellSlots)) {
-          warlockSlots[Number(slotLevel)] = count;
-        }
-      }
-    }
-    draft.spellSlots = warlockSlots;
-    draft.spellSlotsExpended = Object.fromEntries(
-      Object.entries(warlockSlots).map(([k]) => [k, 0])
-    );
-  }
+  // Warlock: Pact Magic slots recover on both short and long rest (already handled above)
 
   // Fighter: Action Surge recovers
   if (classData?.name === "Fighter" && character.maxActionSurgeUses) {
