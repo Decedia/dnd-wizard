@@ -840,14 +840,14 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // Shield bonus
   ac += equippedShields.length * 2;
 
-  // Feature-based AC bonuses (only with armor for Defense Fighting Style)
-  if (hasArmor && character.features && character.features.length > 0) {
+  // Feature-based AC bonuses
+  if (character.features && character.features.length > 0) {
     for (const feature of character.features) {
       const fname = feature.name.toLowerCase();
-      if (fname.includes("defense") && fname.includes("fighting style")) {
-        ac += 1; // Defense Fighting Style
+      if (fname.includes("defense") && fname.includes("fighting style") && hasArmor) {
+        ac += 1; // Defense Fighting Style (only with armor)
       } else if (fname.includes("shield mastery")) {
-        ac += 1; // Shield Master feat
+        ac += 1; // Shield Master feat (works with or without armor)
       }
     }
   }
