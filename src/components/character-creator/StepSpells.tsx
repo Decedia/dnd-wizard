@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClass, getStaticSpells, getSubclassFlags } from "@/lib/srd-client";
+import { getStaticClass, getStaticSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel } from "@/lib/storage";
@@ -74,7 +74,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   const abilityKey = spellcastingAbility === "intelligence" ? "int" : spellcastingAbility === "wisdom" ? "wis" : spellcastingAbility === "charisma" ? "cha" : spellcastingAbility === "strength" ? "str" : spellcastingAbility === "dexterity" ? "dex" : spellcastingAbility === "constitution" ? "con" : "int";
   const abilityMod = getModifier(data[abilityKey as keyof Character] as number || 10);
 
-  const allSpells = getStaticSpells(data.sources).filter((s) => s.classes?.includes(data.class));
+  const allSpells = deduplicateSpells(getStaticSpells(data.sources).filter((s) => s.classes?.includes(data.class)));
   const maxSpellLevel = getMaxSpellLevel(data.class, data.level);
 
   const { cantrips: maxCantrips, spells: maxSpells } = getSpellCountForClass(data.class, data.level, abilityMod);
@@ -279,15 +279,17 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                         : "btn-secondary"
                     }`}
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-sm font-bold text-inherit">{spell.name}</span>
-                        {spell.source && spell.source !== "PHB" && <SourceBadge source={spell.source} size="sm" />}
-                      </div>
-                      <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                        {spell.school || ""}
-                      </span>
-                    </div>
+                     <div className="flex items-center justify-between">
+                       <div className="flex items-center gap-1.5">
+                         <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                         {(spell as any).sources?.filter((s: string) => s !== "PHB").map((src: string) => (
+                           <SourceBadge key={src} source={src} size="sm" />
+                         ))}
+                       </div>
+                       <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                         {spell.school || ""}
+                       </span>
+                     </div>
                   </button>
                   {spellDesc && (
                     <InfoButton title={spell.name} description={spellDesc} />
@@ -361,17 +363,19 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                             : "btn-secondary"
                         }`}
                       >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-sm font-bold text-inherit">{spell.name}</span>
-                            {spell.source && spell.source !== "PHB" && <SourceBadge source={spell.source} size="sm" />}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                              {spell.school || ""}
-                            </span>
-                          </div>
-                        </div>
+                         <div className="flex items-center justify-between">
+                           <div className="flex items-center gap-1.5">
+                             <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                             {(spell as any).sources?.filter((s: string) => s !== "PHB").map((src: string) => (
+                               <SourceBadge key={src} source={src} size="sm" />
+                             ))}
+                           </div>
+                           <div className="flex items-center gap-2">
+                             <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                               {spell.school || ""}
+                             </span>
+                           </div>
+                         </div>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
                             {spell.castingTime}

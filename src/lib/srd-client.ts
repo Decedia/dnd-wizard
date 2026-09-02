@@ -399,6 +399,23 @@ export function getStaticSpells(sources?: string[]): SRDSpell[] {
   return spells.filter((s) => sources.includes(s.source || "PHB"));
 }
 
+export function deduplicateSpells(spells: SRDSpell[]): SRDSpell[] {
+  const map = new Map<string, SRDSpell & { sources: string[] }>();
+  for (const sp of spells) {
+    const key = `${sp.name}-${sp.level}`;
+    const existing = map.get(key);
+    if (existing) {
+      const src = sp.source || "PHB";
+      if (!existing.sources.includes(src)) {
+        existing.sources.push(src);
+      }
+    } else {
+      map.set(key, { ...sp, sources: [sp.source || "PHB"] });
+    }
+  }
+  return Array.from(map.values());
+}
+
 export function getCachedSRDData(): SRDData | null {
   if (memoryCache && Date.now() - memoryCache.timestamp < CACHE_TTL) {
     return memoryCache.data;

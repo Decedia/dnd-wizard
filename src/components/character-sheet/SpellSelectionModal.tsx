@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getStaticSpells, getStaticArcaneTricksterSpells, getSubclassFlags } from "@/lib/srd-client";
+import { getStaticSpells, getStaticArcaneTricksterSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
@@ -74,8 +74,8 @@ export function SpellSelectionModal({
   const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
   const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level)) : (maxLevel || 0);
   const allSpells = isArcaneTrickster
-    ? atSpells.filter((s) => s.level === 0 || s.level <= effectiveMaxLevel)
-    : getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel));
+    ? deduplicateSpells(atSpells.filter((s) => s.level === 0 || s.level <= effectiveMaxLevel))
+    : deduplicateSpells(getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
   const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
@@ -293,21 +293,23 @@ export function SpellSelectionModal({
                                 : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
-                        {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                        {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                        <div className="flex items-center gap-1.5">
-                          <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
-                          {sp.source && sp.source !== "PHB" && <SourceBadge source={sp.source} size="sm" />}
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 mt-0.5 ml-5">
-                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
-                        {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium">From higher level</span>}
-                        {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
-                        {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
-                      </div>
+                       <div className="flex items-center gap-2">
+                         {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+                         {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                         {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+                         <div className="flex items-center gap-1.5">
+                           <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                           {(sp as any).sources?.filter((s: string) => s !== "PHB").map((src: string) => (
+                             <SourceBadge key={src} source={src} size="sm" />
+                           ))}
+                         </div>
+                       </div>
+                       <div className="flex items-center gap-2 mt-0.5 ml-5">
+                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                         {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium">From higher level</span>}
+                         {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
+                         {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
+                       </div>
                     </button>
                     {desc && <InfoButton title={sp.name} description={desc} />}
                   </div>
@@ -341,20 +343,22 @@ export function SpellSelectionModal({
                                 : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
-                        {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                        {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                        <div className="flex items-center gap-1.5">
-                          <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
-                          {sp.source && sp.source !== "PHB" && <SourceBadge source={sp.source} size="sm" />}
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 mt-0.5 ml-5">
-                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
-                        <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
-                        <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
-                        {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium ml-1">From higher level</span>}
+                       <div className="flex items-center gap-2">
+                         {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+                         {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+                         {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+                         <div className="flex items-center gap-1.5">
+                           <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
+                           {(sp as any).sources?.filter((s: string) => s !== "PHB").map((src: string) => (
+                             <SourceBadge key={src} source={src} size="sm" />
+                           ))}
+                         </div>
+                       </div>
+                       <div className="flex items-center gap-2 mt-0.5 ml-5">
+                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                         <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+                         <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
+                         {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium ml-1">From higher level</span>}
                         {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium ml-1">Already known</span>}
                         {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium ml-1">Selected</span>}
                       </div>
