@@ -95,22 +95,21 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
   const handleRaceSelect = useCallback(
     (raceName: string) => {
-      if (raceName !== data.race) {
-        onChange({ race: raceName, raceVariant: undefined, variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } });
-      }
       setPendingRace(raceName);
       setPendingVariant(false);
     },
-    [onChange, data.race, data.featureSelections]
+    []
   );
 
   const handleConfirmRace = () => {
     if (pendingRace) {
       const isVariant = pendingVariant;
+      const raceChanged = pendingRace !== data.race;
       onChange({
         race: pendingRace,
         raceVariant: isVariant ? "variant" : undefined,
         ...(isVariant ? {} : { variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } }),
+        ...(raceChanged ? { raceChoices: undefined } : {}),
       });
     }
     setPopupType(null);
@@ -542,7 +541,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
               <button
                 type="button"
-                onClick={() => { setPopupType(null); setPendingRace(data.race || null); }}
+                onClick={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
                 className="btn btn-secondary flex-1"
               >
                 Cancel
