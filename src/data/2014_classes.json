@@ -218,6 +218,12 @@
               "name": "Path feature",
               "description": "At 3rd level, you choose a path that shapes the nature of your rage. Choose the Path of the Berserker or the Path of the Totem Warrior, both detailed at the end of the class description. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels.",
               "type": "feature"
+            },
+            {
+              "name": "Primal Knowledge",
+              "description": "You have learned to use your rage to augment your skills. Whenever you make an ability check using a skill or tool proficiency you have, you can let your rage empower the check. You gain proficiency in one skill or tool of your choice, or if you are proficient with all skills and tools in the game, you instead gain expertise in one skill or tool you are already proficient with. This feature counts as a proficiency for the purpose of the Expertise feature.",
+              "type": "feature",
+              "optional": true
             }
           ],
           "asi": false,

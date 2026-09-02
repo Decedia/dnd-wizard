@@ -289,7 +289,7 @@ function sectionLabel(type: LevelUpStepSection["type"], className: string): stri
 }
 
 const TOTEM_FEATURES = ["Totem Spirit", "Aspect of the Beast", "Totem Attunement"] as const;
-const TOTEM_ANIMALS = ["Bear", "Eagle", "Elk", "Tiger", "Wolf"] as const;
+const TOTEM_ANIMALS = ["Bear", "Eagle", "Wolf"] as const;
 const TIGER_ASPECT_SKILLS = ["Athletics", "Acrobatics", "Stealth", "Survival"] as const;
 
 function getFeatureChoices(className: string, features: { name: string; description: string; optional?: boolean }[]): LevelUpStepSection["featureChoices"] {
