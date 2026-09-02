@@ -171,6 +171,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const variantSkill = data.variantHumanSkill;
   const abilityOptions = ["str", "dex", "con", "int", "wis", "cha"];
 
+  const canConfirmRace = pendingRace && (!pendingVariant || (variantAbilities.length === 2 && variantSkill && selectedFeat));
+
   return (
     <StepCard title="Origin" hint="Choose your character's class and race. Your class defines your abilities and role, while your race provides unique traits and ability bonuses.">
       <div className="space-y-4">
@@ -549,9 +551,9 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               <button
                 type="button"
                 onClick={handleConfirmRace}
-                disabled={!pendingRace}
+                disabled={!canConfirmRace}
                 className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
-                  pendingRace
+                  canConfirmRace
                     ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
                     : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
                 }`}
