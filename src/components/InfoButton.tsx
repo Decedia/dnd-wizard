@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { InfoIcon as Info, XIcon as X } from "@/components/icons";
+import { InfoIcon as Info, XIcon as X, CheckIcon as Check } from "@/components/icons";
 import { FormattedDescription } from "@/components/FormattedDescription";
 
 interface InfoButtonProps {
@@ -25,6 +25,7 @@ export function InfoButton({ title, description }: InfoButtonProps) {
           setShow(true);
         }}
         className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+        aria-label={`Info: ${title}`}
       >
         <Info className="h-4 w-4" />
       </button>
@@ -49,6 +50,15 @@ export function InfoButton({ title, description }: InfoButtonProps) {
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-4">
               <FormattedDescription>{descText}</FormattedDescription>
+            </div>
+            <div className="border-t border-[var(--color-border)] px-4 py-3">
+              <button
+                type="button"
+                onClick={() => setShow(false)}
+                className="w-full py-2 px-4 rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold hover:opacity-90 transition-opacity"
+              >
+                Got it
+              </button>
             </div>
           </div>
         </div>

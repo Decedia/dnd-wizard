@@ -1,6 +1,6 @@
 "use client";
 
-import { XIcon as X } from "@/components/icons";
+import { XIcon as X, CheckIcon as Check } from "@/components/icons";
 import type { SRDFeat } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
 
@@ -39,6 +39,15 @@ export function FeatPopup({ feat, onClose }: FeatPopupProps) {
           <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
             {feat.description}
           </div>
+        </div>
+        <div className="border-t border-[var(--color-border)] px-4 py-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-full py-2 px-4 rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
