@@ -564,13 +564,28 @@ export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
 
 export function getStaticFeats(sources?: string[]): SRDFeat[] {
   const feats = featsData.feats as SRDFeat[];
-  if (!sources || sources.length === 0) return feats;
-  return feats.filter((f) => sources.includes(f.source || "PHB"));
+  if (!sources || sources.length === 0) {
+    // Deduplicate by name, keeping first occurrence (prefer PHB)
+    const seen = new Set<string>();
+    return feats.filter((f) => {
+      if (seen.has(f.name)) return false;
+      seen.add(f.name);
+      return true;
+    });
+  }
+  const filtered = feats.filter((f) => sources.includes(f.source || "PHB"));
+  // Deduplicate filtered results
+  const seen = new Set<string>();
+  return filtered.filter((f) => {
+    if (seen.has(f.name)) return false;
+    seen.add(f.name);
+    return true;
+  });
 }
 
- export function getStaticFeat(name: string): SRDFeat | undefined {
-   return getStaticFeats().find((f) => f.name === name);
- }
+export function getStaticFeat(name: string): SRDFeat | undefined {
+  return getStaticFeats().find((f) => f.name === name);
+}
 
  export function clearSRDCache() {
   memoryCache = null;
