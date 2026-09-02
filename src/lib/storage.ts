@@ -54,7 +54,7 @@ export interface Character {
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
-  inventory: { id: string; name: string; quantity: number; equipped: boolean; hand?: "main" | "off" | "both"; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item" | "instrument"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string; properties?: string[] }[];
+  inventory: { id: string; name: string; quantity: number; equipped: boolean; hand?: "main" | "off" | "both"; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item" | "instrument"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string; properties?: string[]; ammoQuantity?: number; maxAmmo?: number; range?: { normal: number; long: number } }[];
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];

@@ -10,6 +10,7 @@ import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCir
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 import { ItemSelectionPopup } from "./ItemSelectionPopup";
+import { Dice } from "@/components/Dice";
 
 interface InventorySectionProps {
   character: Character;
@@ -359,17 +360,33 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       )}
                     </div>
                   )}
-                  {getWeaponStats(item) && (
-                    <div className="flex items-center gap-2 mt-1 flex-wrap">
-                      <DamageBadge type={item.damageType} size="sm" />
-                      <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
-                        +{getWeaponStats(item)?.damageBonus}
-                      </span>
-                      <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                        {getWeaponStats(item)?.attackBonus} to hit
-                      </span>
-                    </div>
-                  )}
+{getWeaponStats(item) && (
+                      <div className="flex items-center gap-2 mt-1 flex-wrap">
+                        <DamageBadge type={item.damageType} size="sm" />
+                        <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
+                          +{getWeaponStats(item)?.damageBonus}
+                        </span>
+                        <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
+                          {getWeaponStats(item)?.attackBonus} to hit
+                        </span>
+                      </div>
+                    )}
+                    {item.category === "ranged" && item.itemType === "weapon" && (
+                      <div className="flex items-center gap-2 mt-1 flex-wrap">
+                        <span className="text-[10px] font-bold text-[var(--color-text-secondary)]">
+                          Ammo: {item.ammoQuantity ?? 0} / {item.maxAmmo ?? "∞"}
+                        </span>
+                        <Dice type="d20" size={40} onRoll={(roll) => {
+                          const ws = getWeaponStats(item);
+                          if (ws && (item.ammoQuantity ?? 0) > 0) {
+                            updateItem(item.id, { ammoQuantity: Math.max(0, (item.ammoQuantity ?? 0) - 1) });
+                          }
+                        }} />
+                        <span className="text-[10px] text-[var(--color-text-muted)]">
+                          {getWeaponStats(item)?.attackBonus} to hit
+                        </span>
+                      </div>
+                    )}
                   {isCustom && item.source === "custom" && (
                     <textarea
                       value={item.description || ""}
