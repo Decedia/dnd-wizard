@@ -4,7 +4,7 @@ export interface BackgroundData {
   toolProficiencies: string[];
   languages: number;
   equipment: string[];
-  feature: { name: string; description: string };
+  feature: { name: string; description: string; mechanics?: string };
   personalityTraits: string[];
   ideals: string[];
   bonds: string[];
@@ -20,7 +20,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Holy symbol", "Prayer book", "5 sticks of incense", "vestments", "set of common clothes", "belt pouch containing 15 gp"],
     feature: {
       name: "Shelter of the Faithful",
-      description: "As an acolyte, you and your companions can expect to receive healing and care at a temple of your faith. You can also gain access to shrines and altars for spellcasting purposes."
+      description: "As an acolyte, you and your companions can expect to receive healing and care at a temple of your faith. You can also gain access to shrines and altars for spellcasting purposes.",
+      mechanics: "Free healing/care at temples of your faith; access to shrines/altars for spellcasting; advantage on Religion checks at temples"
     },
     personalityTraits: [
       "I idolize a particular hero of my faith, and constantly refer to that person's deeds and example.",
@@ -65,7 +66,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Set of fine clothes", "disguise kit", "tools of the con of your choice", "belt pouch containing 15 gp"],
     feature: {
       name: "False Identity",
-      description: "You have created a second identity that has documentation, established acquaintances, and disguises that allow you to assume that persona."
+      description: "You have created a second identity that has documentation, established acquaintances, and disguises that allow you to assume that persona.",
+      mechanics: "Advantage on Deception checks when using false identity; can maintain second persona with documentation; +2 to Disguise Kit checks for false identity"
     },
     personalityTraits: [
       "I fall in and out of love easily, and am always pursuing someone.",
@@ -110,7 +112,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Crowbar", "set of dark common clothes including a hood", "belt pouch containing 15 gp"],
     feature: {
       name: "Criminal Contact",
-      description: "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances."
+      description: "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances.",
+      mechanics: "Access to criminal network via contact; can send/receive messages anywhere; advantage on Intelligence (Investigation) checks for criminal info; contact can fence stolen goods"
     },
     personalityTraits: [
       "I always have a plan for what to do when things go wrong.",
@@ -155,7 +158,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Musical instrument", "favor of an admirer", "costume", "belt pouch containing 15 gp"],
     feature: {
       name: "By Popular Demand",
-      description: "You can always find a place to perform, such as a tavern or inn. At such places, you receive free lodging and food of a modest or comfortable standard."
+      description: "You can always find a place to perform, such as a tavern or inn. At such places, you receive free lodging and food of a modest or comfortable standard.",
+      mechanics: "Free modest/comfortable lodging and food at any tavern/inn with performance space; advantage on Performance checks for finding work; can earn 1d10 gp/day performing"
     },
     personalityTraits: [
       "I know a story relevant to almost every situation.",
@@ -200,7 +204,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Set of artisan's tools", "shovel", "iron pot", "set of common clothes", "belt pouch containing 10 gp"],
     feature: {
       name: "Rustic Hospitality",
-      description: "Since you are of the common folk, you can find a place to hide, rest, or hide among other commoners."
+      description: "Since you are of the common folk, you can find a place to hide, rest, or hide among other commoners.",
+      mechanics: "Free lodging/food among commoners (farmers, villagers); advantage on Persuasion/Animal Handling with common folk; can hide among commoners (advantage on Stealth vs authorities); commoners won't betray you"
     },
     personalityTraits: [
       "I judge people by their actions, not their words.",
@@ -245,7 +250,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Set of artisan's tools", "letter of introduction from your guild", "set of traveler's clothes", "belt pouch containing 15 gp"],
     feature: {
       name: "Guild Membership",
-      description: "As an established and respected member of a guild, you can rely on certain benefits that membership provides."
+      description: "As an established and respected member of a guild, you can rely on certain benefits that membership provides.",
+      mechanics: "Free lodging/food at guildhalls; guild pays for burial; legal support from guild; access to guild artisans/workshops; advantage on Persuasion with guild members; can hire guild artisans at 50% cost"
     },
     personalityTraits: [
       "I believe that anything worth doing is worth doing right.",
@@ -290,7 +296,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Scroll case stuffed full of notes", "winter blanket", "set of common clothes", "herbalism kit", "5 gp"],
     feature: {
       name: "Discovery",
-      description: "The quiet seclusion of your extended hermitage gave you access to a unique and powerful discovery."
+      description: "The quiet seclusion of your extended hermitage gave you access to a unique and powerful discovery.",
+      mechanics: "Unique discovery (DM chooses or player proposes): magical secret, forgotten lore, herbal formula, map, etc.; advantage on Arcana/History/Nature checks related to discovery; can craft 1 potion/scroll of discovery per long rest"
     },
     personalityTraits: [
       "I've been isolated for so long that I rarely speak, preferring gestures and the occasional grunt.",
@@ -335,7 +342,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Set of fine clothes", "signet ring", "scroll of pedigree", "purse containing 25 gp"],
     feature: {
       name: "Position of Privilege",
-      description: "Thanks to your birth, people are inclined to think the best of you. You are welcome in high society, and the common folk make every effort to accommodate you."
+      description: "Thanks to your birth, people are inclined to think the best of you. You are welcome in high society, and the common folk make every effort to accommodate you.",
+      mechanics: "Welcome in high society/noble courts; commoners accommodate you (advantage on Persuasion with commoners); can secure audience with local nobility; start with 25 gp instead of standard; advantage on Deception/Intimidation when leveraging noble status"
     },
     personalityTraits: [
       "My eloquent flattery makes everyone I talk to feel like the most important and wonderful person in the world.",
@@ -380,7 +388,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Staff", "hunting trap", "trophy from an animal you killed", "set of traveler's clothes", "belt pouch containing 10 gp"],
     feature: {
       name: "Wanderer",
-      description: "You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features."
+      description: "You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features.",
+      mechanics: "Perfect recall of maps/geography; never lost in wilderness; can forage food/water for 6 people/day; advantage on Survival for navigation/tracking; can identify natural hazards"
     },
     personalityTraits: [
       "I'm driven by a wanderlust that led me far from home.",
@@ -425,7 +434,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Bottle of black ink", "quill", "small knife", "letter from a dead colleague", "set of common clothes", "belt pouch containing 10 gp"],
     feature: {
       name: "Researcher",
-      description: "When you attempt to learn or recall a piece of lore, if you do not know that information yourself, you often know where and from whom you can obtain it."
+      description: "When you attempt to learn or recall a piece of lore, if you do not know that information yourself, you often know where and from whom you can obtain it.",
+      mechanics: "Know where to find any lore (libraries, sages, universities); advantage on Arcana/History/Nature/Religion for recalling lore; can spend 1 hr research to gain advantage on one Int check for lore; access to restricted archives"
     },
     personalityTraits: [
       "I use polysyllabic words that convey the impression of great erudition.",
@@ -470,7 +480,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Belaying pin", "50 feet of silk rope", "lucky charm", "set of common clothes", "belt pouch containing 10 gp"],
     feature: {
       name: "Ship's Passage",
-      description: "When you need to, you can secure free passage on a sailing ship for yourself and your companions."
+      description: "When you need to, you can secure free passage on a sailing ship for yourself and your companions.",
+      mechanics: "Free passage on sailing ships for party; advantage on Athletics for climbing/swimming on ships; can navigate by stars (no disadv at sea); know port reputations; can crew a ship"
     },
     personalityTraits: [
       "My friends know they can rely on me, no matter what.",
@@ -515,7 +526,8 @@ export const backgroundsData: BackgroundData[] = [
     equipment: ["Insignia of rank", "trophy taken from a fallen enemy", "set of bone dice or deck of cards", "set of common clothes", "belt pouch containing 10 gp"],
     feature: {
       name: "Military Rank",
-      description: "Soldiers loyal to your former military organization still recognize your influence and authority."
+      description: "Soldiers loyal to your former military organization still recognize your influence and authority.",
+      mechanics: "Former subordinates obey reasonable commands; can requisition basic equipment from military; recognized by military personnel; advantage on Intimidation/Persuasion with military; can command small unit (1d6 guards) in friendly territory"
     },
     personalityTraits: [
       "I'm always polite and respectful.",
@@ -558,9 +570,10 @@ export const backgroundsData: BackgroundData[] = [
     toolProficiencies: ["Disguise kit", "thieves' tools"],
     languages: 0,
     equipment: ["Small knife", "map of the city you grew up in", "pet mouse", "token to remember your parents by", "set of common clothes", "belt pouch containing 10 gp"],
-    feature: {
+feature: {
       name: "City Secrets",
-      description: "You know the secret patterns and flow of cities, and can find passages through the urban sprawl that others would not suspect."
+      description: "You know the secret patterns and flow to cities and can find passages through the urban sprawl that others would miss.",
+      mechanics: "Double movement speed in cities (not combat); advantage on Stealth/Investigation in urban settings; know secret passages/shortcuts; can find fences/black markets; advantage on Survival for urban foraging"
     },
     personalityTraits: [
       "I hide scraps of food and trinkets away in my pockets.",
