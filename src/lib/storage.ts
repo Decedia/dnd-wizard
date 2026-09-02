@@ -101,6 +101,25 @@ export interface Character {
   };
   createdAt: number;
   updatedAt: number;
+  // Class resource fields
+  kiPoints?: number;
+  maxKiPoints?: number;
+  channelDivinityUses?: number;
+  maxChannelDivinityUses?: number;
+  actionSurgeUses?: number;
+  maxActionSurgeUses?: number;
+  indomitableUses?: number;
+  maxIndomitableUses?: number;
+  layOnHandsPool?: number;
+  maxLayOnHandsPool?: number;
+  wildShapeUses?: number;
+  maxWildShapeUses?: number;
+  invocationsKnown?: number;
+  maxInvocationsKnown?: number;
+  spellbookSpells?: number;
+  maxSpellbookSpells?: number;
+  arcaneRecoveryUsed?: boolean;
+  bardicInspirationDie?: string;
 }
 
 export const SKILLS = [
@@ -348,6 +367,25 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     },
     createdAt: Date.now(),
     updatedAt: Date.now(),
+    // Class resource fields
+    kiPoints: 0,
+    maxKiPoints: 0,
+    channelDivinityUses: 0,
+    maxChannelDivinityUses: 0,
+    actionSurgeUses: 0,
+    maxActionSurgeUses: 0,
+    indomitableUses: 0,
+    maxIndomitableUses: 0,
+    layOnHandsPool: 0,
+    maxLayOnHandsPool: 0,
+    wildShapeUses: 0,
+    maxWildShapeUses: 0,
+    invocationsKnown: 0,
+    maxInvocationsKnown: 0,
+    spellbookSpells: 0,
+    maxSpellbookSpells: 0,
+    arcaneRecoveryUsed: false,
+    bardicInspirationDie: "d6",
     ...overrides,
   };
 }
