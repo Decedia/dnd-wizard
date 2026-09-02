@@ -11,7 +11,7 @@ import { InfoButton } from "@/components/InfoButton";
 interface FeatureSelection {
   featureName: string;
   description: string;
-  type: "single" | "multiple" | "skills" | "spells" | "invocations";
+  type: "single" | "multiple" | "skills" | "spells" | "invocations" | "maneuvers";
   options: string[];
   optionDescriptions?: Record<string, string>;
   count?: number;
@@ -85,7 +85,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
         {selections.map((selection) => {
           const key = getSelectionKey(selection);
           const selected = selectedValues[key] || [];
-          const isMultiple = selection.type === "multiple" || selection.type === "skills" || selection.type === "invocations";
+          const isMultiple = selection.type === "multiple" || selection.type === "skills" || selection.type === "invocations" || selection.type === "maneuvers";
           const maxCount = selection.count || (isMultiple ? 2 : 1);
 
           return (

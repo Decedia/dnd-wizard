@@ -1451,7 +1451,25 @@
           "choices": {
             "type": "maneuvers",
             "count": 3,
-            "description": "Choose three maneuvers from the Battle Master list."
+            "description": "Choose three maneuvers from the Battle Master list.",
+            "options": [
+              { "name": "Commander's Strike", "description": "Forgo one attack to let an ally attack a creature with advantage." },
+              { "name": "Disarming Attack", "description": "Add superiority die to attack; target drops a held item on failed save." },
+              { "name": "Distracting Strike", "description": "Add superiority die; next attack roll against target has advantage." },
+              { "name": "Evasive Footwork", "description": "Spend die to gain AC bonus while you move." },
+              { "name": "Feinting Attack", "description": "Spend die to gain advantage on your next attack." },
+              { "name": "Goading Attack", "description": "Add die; target has disadvantage vs others on failed save." },
+              { "name": "Lunging Attack", "description": "Spend die to increase your reach on an attack." },
+              { "name": "Maneuvering Attack", "description": "Add die; an ally can move without opportunity attacks." },
+              { "name": "Menacing Attack", "description": "Add die; frighten target on failed save." },
+              { "name": "Parry", "description": "Spend die to reduce melee damage taken." },
+              { "name": "Precision Attack", "description": "Spend die to add to an attack roll." },
+              { "name": "Pushing Attack", "description": "Add die; push target away on failed save." },
+              { "name": "Rally", "description": "Spend die to grant temporary hit points to an ally." },
+              { "name": "Riposte", "description": "Spend die to attack a creature that missed you." },
+              { "name": "Sweeping Attack", "description": "Spend die to deal damage to a second creature." },
+              { "name": "Trip Attack", "description": "Add die; knock target prone on failed save." }
+            ]
           }
         },
         {
