@@ -176,6 +176,12 @@ export function getMaxSpellsKnown(character: Character): number {
     return Math.max(1, abilityMod + level);
   }
 
+  if (className === "Paladin" || className === "Artificer") {
+    const abilityKey = classData.spellcastingAbility as keyof Character;
+    const abilityMod = getModifier(character[abilityKey] as number || 10);
+    return Math.max(1, abilityMod + Math.floor(level / 2));
+  }
+
   return 0;
 }
 
@@ -196,6 +202,16 @@ export function getMaxCantripsKnown(character: Character): number {
     if (level >= l) cantrips = (classData.cantripsKnown as Record<number, number>)[l];
   }
   return cantrips;
+}
+
+export function getMaxSpellLevel(className: string, level: number): number {
+  const classData = getStaticClass(className);
+  if (!classData?.levels) return 0;
+
+  const levelData = classData.levels[level - 1];
+  if (!levelData?.spellSlots) return 0;
+
+  return Math.max(...Object.keys(levelData.spellSlots).map(Number));
 }
 
 export function getClassLevel1Hp(classData: { hitDie: number } | undefined): number {

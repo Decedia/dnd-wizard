@@ -5,7 +5,7 @@ import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells, getSubclassFlags } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
-import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells } from "@/lib/storage";
+import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
 
 interface StepSpellsProps {
@@ -65,16 +65,6 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
   }
 
   return { cantrips, spells };
-}
-
-function getMaxSpellLevel(className: string, level: number): number {
-  const classData = getStaticClass(className);
-  if (!classData?.levels) return 0;
-
-  const levelData = classData.levels[level - 1];
-  if (!levelData?.spellSlots) return 0;
-
-  return Math.max(...Object.keys(levelData.spellSlots).map(Number));
 }
 
 export function StepSpells({ data, onChange }: StepSpellsProps) {

@@ -5,7 +5,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
-import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown } from "@/lib/storage";
+import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle } from "@/components/icons";
 import { SpellSelectionModal } from "./SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
@@ -41,6 +41,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const maxPrepared = getMaxPreparedSpells(character);
   const maxSpellsKnown = getMaxSpellsKnown(character);
   const maxCantripsKnown = getMaxCantripsKnown(character);
+  const maxLevel = getMaxSpellLevel(character.class, character.level);
   const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0).length;
   const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0).length;
   const domainSpells = getDomainSpellNames(character);
@@ -321,6 +322,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           onClose={() => setShowSpellModal(false)}
           maxSpellsKnown={maxSpellsKnown}
           maxCantripsKnown={maxCantripsKnown}
+          maxLevel={maxLevel}
         />
       )}
     </SectionCard>

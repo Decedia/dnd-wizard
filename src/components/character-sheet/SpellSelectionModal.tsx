@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getStaticSpells, getStaticArcaneTricksterSpells, getSubclassFlags } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
+import { getMaxSpellLevel } from "@/lib/storage";
 import { XIcon as X, CheckIcon as Check } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 
@@ -71,7 +72,7 @@ export function SpellSelectionModal({
   const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
   const isArcaneTrickster = atFlags.usesMageSpellList;
   const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
-  const effectiveMaxLevel = onChange ? (character.level || 1) : (maxLevel || 0);
+  const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level)) : (maxLevel || 0);
   const allSpells = isArcaneTrickster
     ? atSpells.filter((s) => s.level === 0 || s.level <= effectiveMaxLevel)
     : getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel));
