@@ -525,7 +525,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                             )}
                             <button
                               type="button"
-                              onClick={() => { setFeatModalOpen(true); setPopupType(null); }}
+                              onClick={() => setFeatModalOpen(true)}
                               className="btn btn-secondary w-full text-sm"
                             >
                               {selectedFeat ? "Change Feat" : "Choose Feat"}
