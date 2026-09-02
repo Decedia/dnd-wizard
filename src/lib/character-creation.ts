@@ -19,6 +19,36 @@ function normalizeItemName(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9\s]/g, "").trim();
 }
 
+export function getLevelOneFeatureChoices(className: string | undefined): { featureName: string; description: string; type: "single" | "multiple" | "skills" | "spells" | "invocations"; options: string[]; optionDescriptions?: Record<string, string>; count?: number; level: number; storageKey: string; optional?: boolean; source?: "class" | "subclass" }[] {
+  if (!className) return [];
+  const classData = getStaticClass(className);
+  if (!classData?.levels) return [];
+  
+  const level1Data = classData.levels[0];
+  if (!level1Data?.features) return [];
+  
+  return (level1Data.features || [])
+    .filter((f: any) => f.choices && f.choices.options && f.choices.options.length > 0)
+    .map((f: any) => {
+      const descriptions: Record<string, string> = {};
+      (f.choices.options || []).forEach((opt: any) => {
+        if (opt && typeof opt === "object" && opt.name) descriptions[opt.name] = opt.description || "";
+      });
+      return {
+        featureName: f.name,
+        description: f.choices.description || `Choose a ${f.name}`,
+        type: f.choices.type === "multiple" ? "multiple" : "single",
+        options: f.choices.options,
+        optionDescriptions: descriptions,
+        count: f.choices.count,
+        level: 1,
+        storageKey: `feature-${f.name}`,
+        optional: f.choices.optional || false,
+        source: "class",
+      };
+    });
+}
+
 function findSRDItemMatch(rawName: string): SRDItemMatch | null {
   const normalized = normalizeItemName(rawName);
 
@@ -489,6 +519,24 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: abilitiesCompleted,
     },
   ];
+
+  // Add feature selection step for level 1 class features with choices (e.g., Fighting Style)
+  const levelOneChoices = getLevelOneFeatureChoices(character.class);
+  const featureSelectionsCompleted = levelOneChoices.length === 0 || levelOneChoices.every(
+    (choice) => character.featureSelections?.[choice.storageKey]?.length ?? 0 >= (choice.count || 1)
+  );
+  
+  if (levelOneChoices.length > 0) {
+    steps.push({
+      id: "feature-selections",
+      title: "Class Features",
+      description: "Choose your level 1 class features",
+      hint: "Some classes have feature choices at level 1, such as Fighting Style for Fighters.",
+      type: "feature-selections",
+      required: true,
+      completed: featureSelectionsCompleted,
+    });
+  }
 
   steps.push(
     {

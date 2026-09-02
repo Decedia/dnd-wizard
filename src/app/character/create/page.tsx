@@ -4,6 +4,7 @@ import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { AppHeader } from "@/components/AppHeader";
 import { ProgressIndicator } from "@/components/character-creator/ProgressIndicator";
+import { StepFeatureSelections } from "@/components/character-creator/StepFeatureSelections";
 import { StepOrigin } from "@/components/character-creator/StepOrigin";
 import { StepPersonality } from "@/components/character-creator/StepPersonality";
 import { StepSourceSelection } from "@/components/character-creator/StepSourceSelection";
@@ -19,6 +20,7 @@ import {
   getCreationSteps,
   getValidationMessage,
   syncBaseFeatures,
+  getLevelOneFeatureChoices,
   type Character,
 } from "@/lib/character-creation";
 
@@ -72,6 +74,8 @@ export default function CharacterCreate() {
         return <StepSourceSelection data={character} onChange={update} />;
       case "origin":
         return <StepOrigin data={character} onChange={update} />;
+      case "feature-selections":
+        return <StepFeatureSelections data={character} onChange={update} selections={getLevelOneFeatureChoices(character.class)} />;
       case "personality":
         return <StepPersonality data={character} onChange={update} />;
       case "abilities":
