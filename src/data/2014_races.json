@@ -642,6 +642,120 @@
       "source": "PHB"
     },
     {
+      "name": "Half-Elf (High Elf)",
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice."
+        },
+        {
+          "name": "High Elf Heritage",
+          "description": "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG",
+      "choices": [
+        {
+          "id": "high-elf-cantrip",
+          "name": "High Elf Cantrip",
+          "description": "Choose a cantrip from the wizard spell list.",
+          "type": "spells",
+          "options": []
+        }
+      ]
+    },
+    {
+      "name": "Half-Elf (Wood Elf)",
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 35,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice."
+        },
+        {
+          "name": "Wood Elf Heritage",
+          "description": "You have proficiency with longsword, shortsword, shortbow, and longbow. Your base walking speed increases to 35 feet."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG"
+    },
+    {
+      "name": "Half-Elf (Drow)",
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice."
+        },
+        {
+          "name": "Drow Heritage",
+          "description": "You know the dancing lights cantrip. When you reach 3rd level, you can cast the faerie fire spell once per long rest. When you reach 5th level, you can cast the darkness spell once per long rest. Charisma is your spellcasting ability for these spells."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
+      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
+      "source": "SCAG"
+    },
+    {
       "name": "Half-Orc",
       "abilityScoreIncreases": {
         "str": 2,
@@ -1064,6 +1178,102 @@
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
       "source": "PHB"
+    },
+    {
+      "name": "Tiefling (Asmodeus)",
+      "abilityScoreIncreases": {
+        "int": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage."
+        },
+        {
+          "name": "Infernal Legacy (Asmodeus)",
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
+      "name": "Tiefling (Baalzebul)",
+      "abilityScoreIncreases": {
+        "int": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage."
+        },
+        {
+          "name": "Infernal Legacy (Baalzebul)",
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the ray of sickness spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the crown of madness spell once with this trait. Charisma is your spellcasting ability for these spells."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
+      "name": "Tiefling (Zariel)",
+      "abilityScoreIncreases": {
+        "str": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage."
+        },
+        {
+          "name": "Infernal Legacy (Zariel)",
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the searing smite spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the branding smite spell once with this trait. Charisma is your spellcasting ability for these spells."
+        }
+      ],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
     },
     {
       "index": "triton",
