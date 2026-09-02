@@ -627,6 +627,15 @@ export function getClassGrantedAttacks(character: Character): { id: string; name
   return attacks;
 }
 
+// Helper to get class resource value by level
+function getClassResourceValue(classData: any, resourceName: string, level: number): number | "Unlimited" {
+  const resource = classData?.[resourceName];
+  if (!resource) return 0;
+  const val = resource[String(level)];
+  if (val === "Unlimited") return 999;
+  return typeof val === "number" ? val : 0;
+}
+
 export function computeDerivedStats(character: Character): Partial<Character> {
   const profBonus = getProficiencyBonus(character.level);
   const classData = getStaticClass(character.class);
@@ -656,32 +665,124 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const hitDiceTotal = `${character.level}d${hitDie}`;
   const hitDiceRemaining = character.level;
 
+  // ===== CLASS RESOURCES FROM CLASS DATA =====
   let rages = 0;
   let maxRages = 0;
   let rageDamage = 0;
-  if (classData?.name === "Barbarian") {
-    if (character.level >= 17) maxRages = 6;
-    else if (character.level >= 12) maxRages = 5;
-    else if (character.level >= 6) maxRages = 4;
-    else if (character.level >= 3) maxRages = 3;
-    else maxRages = 2;
-    rages = maxRages;
-    if (character.level >= 16) rageDamage = 4;
-    else if (character.level >= 9) rageDamage = 3;
-    else rageDamage = 2;
+  let kiPoints = 0;
+  let maxKiPoints = 0;
+  let channelDivinityUses = 0;
+  let maxChannelDivinityUses = 0;
+  let actionSurgeUses = 0;
+  let maxActionSurgeUses = 0;
+  let indomitableUses = 0;
+  let maxIndomitableUses = 0;
+  let layOnHandsPool = 0;
+  let maxLayOnHandsPool = 0;
+  let wildShapeUses = 0;
+  let maxWildShapeUses = 0;
+  let sorceryPoints = 0;
+  let maxSorceryPoints = 0;
+  let invocationsKnown = 0;
+  let maxInvocationsKnown = 0;
+  let spellbookSpells = 0;
+  let maxSpellbookSpells = 0;
+  let arcaneRecoveryUsed = false;
+  let bardicInspirationDie = "d6";
+  let bardicInspirationUses = 0;
+  let maxBardicInspirationUses = 0;
+
+  if (classData) {
+    const level = character.level;
+
+    // Barbarian
+    if (classData.name === "Barbarian") {
+      maxRages = getClassResourceValue(classData, "rageUses", level) as number;
+      rages = maxRages;
+      rageDamage = getClassResourceValue(classData, "rageDamageBonus", level) as number;
+    }
+
+    // Monk
+    if (classData.name === "Monk") {
+      maxKiPoints = getClassResourceValue(classData, "kiPoints", level) as number;
+      kiPoints = maxKiPoints;
+    }
+
+    // Cleric
+    if (classData.name === "Cleric") {
+      maxChannelDivinityUses = getClassResourceValue(classData, "channelDivinityUses", level) as number;
+      channelDivinityUses = maxChannelDivinityUses;
+    }
+
+    // Druid
+    if (classData.name === "Druid") {
+      const wsVal = getClassResourceValue(classData, "wildShapeUses", level);
+      maxWildShapeUses = wsVal === "Unlimited" ? 999 : (wsVal as number);
+      wildShapeUses = maxWildShapeUses;
+    }
+
+    // Fighter
+    if (classData.name === "Fighter") {
+      maxActionSurgeUses = getClassResourceValue(classData, "actionSurgeUses", level) as number;
+      actionSurgeUses = maxActionSurgeUses;
+      maxIndomitableUses = getClassResourceValue(classData, "indomitableUses", level) as number;
+      indomitableUses = maxIndomitableUses;
+    }
+
+    // Sorcerer
+    if (classData.name === "Sorcerer") {
+      maxSorceryPoints = getClassResourceValue(classData, "sorceryPoints", level) as number;
+      sorceryPoints = maxSorceryPoints;
+    }
+
+    // Warlock
+    if (classData.name === "Warlock") {
+      maxInvocationsKnown = getClassResourceValue(classData, "invocationsKnown", level) as number;
+      invocationsKnown = maxInvocationsKnown;
+    }
+
+    // Wizard
+    if (classData.name === "Wizard") {
+      maxSpellbookSpells = getClassResourceValue(classData, "spellbookSpells", level) as number;
+      spellbookSpells = maxSpellbookSpells;
+    }
+
+    // Paladin - Lay on Hands pool = level * 5
+    if (classData.name === "Paladin") {
+      maxLayOnHandsPool = level * 5;
+      layOnHandsPool = maxLayOnHandsPool;
+    }
+
+    // Bard
+    if (classData.name === "Bard") {
+      bardicInspirationDie = getBardicInspirationDie(character);
+      maxBardicInspirationUses = getMaxBardicInspirationUses(character);
+      bardicInspirationUses = maxBardicInspirationUses;
+    }
   }
 
+  // ===== AC CALCULATION (with Unarmored Defense fixes) =====
   const equippedShields = character.inventory.filter((item) => item.equipped && item.armorType === "shield");
-  let ac = 10 + getModifier(character.dex);
   const bodyArmor = character.inventory.find((item) => item.equipped && item.itemType === "armor" && item.armorType !== "shield");
-  if (bodyArmor) {
-    let baseAC = bodyArmor.baseAC;
-    let maxDexBonus = bodyArmor.maxDexBonus;
+  const hasArmor = bodyArmor !== undefined;
 
-    // Parse description field if baseAC is not directly set
-    if (baseAC === undefined && bodyArmor.description) {
+  let ac: number;
+
+  // Check for Unarmored Defense features
+  const hasBarbarianUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
+  const hasMonkUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
+  const hasDraconicResilience = character.features?.some(f => f.name.toLowerCase().includes("draconic resilience")) ?? false;
+  const hasNaturalArmor = character.features?.some(f => f.name.toLowerCase().includes("natural armor")) ?? false;
+  const hasBladesong = character.features?.some(f => f.name.toLowerCase().includes("bladesong")) ?? false;
+
+  if (hasArmor) {
+    // Wearing armor - use armor AC
+    let baseAC = bodyArmor!.baseAC;
+    let maxDexBonus = bodyArmor!.maxDexBonus;
+
+    if (baseAC === undefined && bodyArmor!.description) {
       try {
-        const info = JSON.parse(bodyArmor.description);
+        const info = JSON.parse(bodyArmor!.description);
         baseAC = info.baseAC;
         maxDexBonus = info.maxDex ?? info.maxDexBonus ?? null;
       } catch {
@@ -693,33 +794,69 @@ export function computeDerivedStats(character: Character): Partial<Character> {
       const maxDex = maxDexBonus ?? null;
       let dexMod = 0;
       if (maxDex === null) {
-        // Light armor: full dex bonus
         dexMod = getModifier(character.dex);
       } else if (maxDex > 0) {
-        // Medium armor: dex bonus up to max
         dexMod = Math.min(getModifier(character.dex), maxDex);
       }
-      // Heavy armor (maxDex === 0): no dex bonus
       ac = baseAC + dexMod;
+    } else {
+      ac = 10 + getModifier(character.dex);
     }
+  } else if (hasBarbarianUnarmored) {
+    // Barbarian Unarmored Defense: 10 + Dex + Con
+    ac = 10 + getModifier(character.dex) + getModifier(character.con);
+  } else if (hasMonkUnarmored) {
+    // Monk Unarmored Defense: 10 + Dex + Wis
+    ac = 10 + getModifier(character.dex) + getModifier(character.wis);
+  } else if (hasDraconicResilience) {
+    // Draconic Resilience (Sorcerer): 13 + Dex
+    ac = 13 + getModifier(character.dex);
+  } else if (hasNaturalArmor) {
+    // Natural Armor (Lizardfolk, Tortle): 13 + Dex (max 2) - simplified
+    ac = 13 + Math.min(getModifier(character.dex), 2);
+  } else if (hasBladesong) {
+    // Bladesong (Wizard): AC = 10 + Dex + Int (when not wearing armor)
+    ac = 10 + getModifier(character.dex) + getModifier(character.int);
+  } else {
+    // No armor, no unarmored defense
+    ac = 10 + getModifier(character.dex);
   }
+
+  // Shield bonus
   ac += equippedShields.length * 2;
 
-  const hasArmor = bodyArmor !== undefined;
-  if (character.features && character.features.length > 0) {
+  // Feature-based AC bonuses (only with armor for Defense Fighting Style)
+  if (hasArmor && character.features && character.features.length > 0) {
     for (const feature of character.features) {
       const fname = feature.name.toLowerCase();
-      if (fname.includes("defense") && hasArmor) {
-        ac += 1;
+      if (fname.includes("defense") && fname.includes("fighting style")) {
+        ac += 1; // Defense Fighting Style
       } else if (fname.includes("shield mastery")) {
-        ac += 1;
+        ac += 1; // Shield Master feat
       }
     }
   }
 
+  // Buff modifiers
   const buffMods = computeBuffModifiers(character.activeBuffs || []);
   ac += buffMods.acBonus;
 
+  // ===== SPEED CALCULATION =====
+  let speed = character.speed || 30;
+  // Monk unarmored movement bonus
+  if (classData?.name === "Monk" && !hasArmor) {
+    const umVal = getClassResourceValue(classData, "unarmoredMovement", character.level);
+    if (umVal && typeof umVal === "number" && umVal > 0) {
+      speed += umVal;
+    }
+  }
+  // Buff speed bonus
+  speed += buffMods.speedBonus;
+
+  // ===== INITIATIVE WITH FEATURES =====
+  // Alert feat, Feral Instinct, etc. handled via buffs
+
+  // ===== RETURN ALL COMPUTED VALUES =====
   return {
     proficiencyBonus: profBonus,
     savingThrows,
@@ -733,7 +870,30 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     rages,
     maxRages,
     rageDamage,
+    kiPoints,
+    maxKiPoints,
+    channelDivinityUses,
+    maxChannelDivinityUses,
+    actionSurgeUses,
+    maxActionSurgeUses,
+    indomitableUses,
+    maxIndomitableUses,
+    layOnHandsPool,
+    maxLayOnHandsPool,
+    wildShapeUses,
+    maxWildShapeUses,
+    sorceryPoints,
+    maxSorceryPoints,
+    invocationsKnown,
+    maxInvocationsKnown,
+    spellbookSpells,
+    maxSpellbookSpells,
+    arcaneRecoveryUsed,
+    bardicInspirationDie,
+    bardicInspirationUses,
+    maxBardicInspirationUses,
     ac,
+    speed,
     buffModifiers: buffMods as any,
   };
 }
