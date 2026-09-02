@@ -1276,6 +1276,89 @@
       "source": "MToF"
     },
     {
+      "name": "Tiefling (Dispater)",
+      "abilityScoreIncreases": {
+        "dex": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
+        { "name": "Infernal Legacy (Dispater)", "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the detect thoughts spell once with this trait. Charisma is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Infernal"],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
+      "name": "Tiefling (Fierna)",
+      "abilityScoreIncreases": { "wis": 1, "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
+        { "name": "Infernal Legacy (Fierna)", "description": "You know the friends cantrip. When you reach 3rd level, you can cast the charm person spell once with this trait. When you reach 5th level, you can cast the suggestion spell once with this trait. Charisma is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Infernal"],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
+      "name": "Tiefling (Glasya)",
+      "abilityScoreIncreases": { "dex": 1, "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
+        { "name": "Infernal Legacy (Glasya)", "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the invisibility spell once with this trait. Charisma is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Infernal"],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
+      "name": "Tiefling (Levistus)",
+      "abilityScoreIncreases": { "con": 1, "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
+        { "name": "Infernal Legacy (Levistus)", "description": "You know the ray of frost cantrip. When you reach 3rd level, you can cast the armor of Agathys spell once with this trait. When you reach 5th level, you can cast the darkness spell once with this trait. Charisma is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Infernal"],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
+      "name": "Tiefling (Mammon)",
+      "abilityScoreIncreases": { "int": 1, "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
+        { "name": "Infernal Legacy (Mammon)", "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the Tenser's floating disk spell once with this trait. When you reach 5th level, you can cast the arcane lock spell once with this trait. Intelligence is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Infernal"],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
+      "name": "Tiefling (Mephistopheles)",
+      "abilityScoreIncreases": { "int": 1, "cha": 2 },
+      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
+        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
+        { "name": "Infernal Legacy (Mephistopheles)", "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the burning hands spell once with this trait. When you reach 5th level, you can cast the flame blade spell once with this trait. Intelligence is your spellcasting ability for these spells." }
+      ],
+      "languages": ["Common", "Infernal"],
+      "languageDesc": "You can speak, read, and write Common and Infernal.",
+      "source": "MToF"
+    },
+    {
       "index": "triton",
       "name": "Triton",
       "size": "Medium",
