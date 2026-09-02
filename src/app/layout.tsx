@@ -14,6 +14,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "DND Wizard",
   description: "A mobile-first D&D 5e character creator",
+  manifest: "/manifest.json",
+  themeColor: "#1a1a2e",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "DND Wizard",
+  },
 };
 
 export default function RootLayout({
