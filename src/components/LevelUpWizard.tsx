@@ -2,13 +2,14 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getWizardSpellsByLevel, getPactBoons } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getWizardSpellsByLevel, getPactBoons, getStaticFeat } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./character-sheet/SpellSelectionModal";
+import { FeatSelector } from "./character-creator/FeatSelector";
 import {
   HeartBottleIcon as Heart,
   LightningIcon as Lightning,
@@ -436,7 +437,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
-  const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>>({});
+  const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
@@ -471,7 +472,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
-  const setAsi = (level: number, patch: Partial<{ mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>) =>
+  const setAsi = (level: number, patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }>) =>
     setAsiSelections((prev) => ({ ...prev, [level]: { ...(prev[level] || { mode: "single" }), ...patch } as any }));
   const setSpells = (level: number, list: string[]) => setSpellSelections((prev) => ({ ...prev, [level]: list }));
   const setMagicalSecrets = (level: number, list: string[]) => setMagicalSecretsSelections((prev) => ({ ...prev, [level]: list }));
@@ -482,7 +483,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setInvocations = (level: number, list: string[]) => setInvocationSelections((prev) => ({ ...prev, [level]: list }));
   const setReplacedInvocation = (level: number, invocation: string) => setReplacedInvocations((prev) => ({ ...prev, [level]: invocation }));
 
-  const buildAllocation = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): Record<AbilityKey, number> => {
+  const buildAllocation = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
     if (!st) return alloc;
     if (st.mode === "single" && st.single) alloc[st.single] = 2;
@@ -511,8 +512,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     [character, asiSelections]
   );
 
-  const asiIsValid = (st?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }): boolean => {
+  const asiIsValid = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }): boolean => {
     if (!st || !st.mode) return false;
+    if (st.mode === "feat") return !!st.feat;
     if (st.mode === "single") return !!st.single;
     return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
   };
@@ -573,7 +575,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
       if (info.asi) {
         const sel = asiSelections[lvl];
-        const isValid = (sel?.mode === "single" && !!sel?.single) || (sel?.mode === "double" && !!sel?.d1 && !!sel?.d2 && sel?.d1 !== sel?.d2);
+        const isValid = (sel?.mode === "single" && !!sel?.single) || (sel?.mode === "double" && !!sel?.d1 && !!sel?.d2 && sel?.d1 !== sel?.d2) || (sel?.mode === "feat" && !!sel?.feat);
         if (!isValid) items.push({ level: lvl, label: `Level ${lvl} — Ability Score Improvement`, sectionId: `asi-${lvl}` });
       }
       if (info.subclassOptions && !subclassSelection) {
@@ -656,13 +658,36 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     for (const [lvlStr, st] of Object.entries(asiSelections)) {
       const lvl = Number(lvlStr);
       if (!st || !st.mode) continue;
-      const alloc = buildAllocation(st);
-      const hasAlloc = Object.values(alloc).some((v) => v > 0);
-      if (!hasAlloc) continue;
-      draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
-      for (const { key } of ABILITIES) {
-        const add = alloc[key] || 0;
-        if (add > 0) draft = { ...draft, [key]: ((draft[key] as number) || 0) + add };
+      if (st.mode === "feat" && st.feat) {
+        draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
+        const featData = getStaticFeat(st.feat);
+        if (featData && !draft.features.some((f) => f.name === featData.name)) {
+          draft = {
+            ...draft,
+            features: [
+              ...draft.features,
+              {
+                id: `feat-${featData.name}`.replace(/\s+/g, "-"),
+                name: featData.name,
+                description: featData.description,
+                source: "custom" as const,
+              },
+            ],
+            featureSelections: {
+              ...draft.featureSelections,
+              [`asi-feat-${lvl}`]: [featData.name],
+            },
+          };
+        }
+      } else {
+        const alloc = buildAllocation(st);
+        const hasAlloc = Object.values(alloc).some((v) => v > 0);
+        if (!hasAlloc) continue;
+        draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
+        for (const { key } of ABILITIES) {
+          const add = alloc[key] || 0;
+          if (add > 0) draft = { ...draft, [key]: ((draft[key] as number) || 0) + add };
+        }
       }
     }
 
@@ -1150,8 +1175,8 @@ interface LevelCardProps {
   info: LevelInfo;
   hpValue: number;
   onHpChange: (v: number) => void;
-  asiSelection?: { mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey };
-  onAsiChange: (patch: Partial<{ mode: "single" | "double"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey }>) => void;
+  asiSelection?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string };
+  onAsiChange: (patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }>) => void;
   baseScores: Record<AbilityKey, number>;
   subclassSelection: string;
   onSubclassSelect: (name: string) => void;
@@ -1242,12 +1267,13 @@ function LevelCard({
     const [humanoidSelections, setHumanoidSelections] = useState<string[]>([]);
     const [showAsiModal, setShowAsiModal] = useState(false);
     const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
+    const [showAsiFeatModal, setShowAsiFeatModal] = useState(false);
     const lvl = info.level;
     const { data } = useSRD();
   const srdSpells = data?.spells || [];
 
   const isHpComplete = (lvl === 1 && startFromLevelOne) || hpValue > 0;
-  const isAsiComplete = !info.asi || (asiSelection?.mode === "single" && !!asiSelection?.single) || (asiSelection?.mode === "double" && !!asiSelection?.d1 && !!asiSelection?.d2 && asiSelection?.d1 !== asiSelection?.d2);
+  const isAsiComplete = !info.asi || (asiSelection?.mode === "single" && !!asiSelection?.single) || (asiSelection?.mode === "double" && !!asiSelection?.d1 && !!asiSelection?.d2 && asiSelection?.d1 !== asiSelection?.d2) || (asiSelection?.mode === "feat" && !!asiSelection?.feat);
   const isSubclassComplete = !info.subclassOptions || !!subclassSelection;
   const isFeatureChoicesComplete = !info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]);
   const isClassFeatureChoicesComplete = !info.classFeatureChoices || info.classFeatureChoices.every((fc) => classFeatureChoices[fc.name]);
@@ -1267,15 +1293,17 @@ function LevelCard({
     `flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${isIncomplete ? "border border-red-400 bg-red-50/30" : ""}`;
 
   const totalAsiPoints = Object.values(asiAllocation).reduce((sum, val) => sum + val, 0);
-  const canApplyAsi = totalAsiPoints === 2;
+  const canApplyAsi = asiSelection?.mode === "feat" ? !!asiSelection?.feat : totalAsiPoints === 2;
 
   const openAsiModal = () => {
     const sel = asiSelection;
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
-    if (sel?.mode === "single" && sel.single) alloc[sel.single] = 2;
-    if (sel?.mode === "double") {
-      if (sel.d1) alloc[sel.d1] = 1;
-      if (sel.d2) alloc[sel.d2] = 1;
+    if (sel?.mode !== "feat") {
+      if (sel?.mode === "single" && sel.single) alloc[sel.single] = 2;
+      if (sel?.mode === "double") {
+        if (sel.d1) alloc[sel.d1] = 1;
+        if (sel.d2) alloc[sel.d2] = 1;
+      }
     }
     setAsiAllocation(alloc);
     setShowAsiModal(true);
@@ -1300,20 +1328,24 @@ function LevelCard({
 
   const applyAsi = () => {
     if (!canApplyAsi) return;
-    let mode: "single" | "double" = "single";
-    let single: AbilityKey | undefined;
-    let d1: AbilityKey | undefined;
-    let d2: AbilityKey | undefined;
-    const entries = Object.entries(asiAllocation).filter(([, v]) => v > 0) as [AbilityKey, number][];
-    if (entries.length === 1 && entries[0][1] === 2) {
-      mode = "single";
-      single = entries[0][0];
-    } else if (entries.length === 2 && entries[0][1] === 1 && entries[1][1] === 1) {
-      mode = "double";
-      d1 = entries[0][0];
-      d2 = entries[1][0];
+    if (asiSelection?.mode === "feat" && asiSelection.feat) {
+      onAsiChange({ mode: "feat", feat: asiSelection.feat });
+    } else {
+      let mode: "single" | "double" = "single";
+      let single: AbilityKey | undefined;
+      let d1: AbilityKey | undefined;
+      let d2: AbilityKey | undefined;
+      const entries = Object.entries(asiAllocation).filter(([, v]) => v > 0) as [AbilityKey, number][];
+      if (entries.length === 1 && entries[0][1] === 2) {
+        mode = "single";
+        single = entries[0][0];
+      } else if (entries.length === 2 && entries[0][1] === 1 && entries[1][1] === 1) {
+        mode = "double";
+        d1 = entries[0][0];
+        d2 = entries[1][0];
+      }
+      onAsiChange({ mode, single, d1, d2 });
     }
-    onAsiChange({ mode, single, d1, d2 });
     setShowAsiModal(false);
   };
 
@@ -1405,28 +1437,30 @@ function LevelCard({
               </div>
             )}
 
-           {info.asi && (
-             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-               <ChartBar className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
-               <div className="flex-1">
-                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
-                 <button
-                   type="button"
-                   onClick={openAsiModal}
-                   className="mt-1 w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                 >
-                   <span>
-                     {asiSelection?.mode === "single" && asiSelection.single
-                       ? `+2 ${asiSelection.single.toUpperCase()}`
-                       : asiSelection?.mode === "double" && asiSelection.d1 && asiSelection.d2
-                         ? `+1 ${asiSelection.d1.toUpperCase()}, +1 ${asiSelection.d2.toUpperCase()}`
-                         : "Select ability scores…"}
-                   </span>
-                   <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
-                 </button>
-               </div>
-             </div>
-           )}
+            {info.asi && (
+              <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+                <ChartBar className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
+                <div className="flex-1">
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
+                  <button
+                    type="button"
+                    onClick={openAsiModal}
+                    className="mt-1 w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                  >
+                    <span>
+                      {asiSelection?.mode === "feat" && asiSelection.feat
+                        ? `Feat: ${asiSelection.feat}`
+                        : asiSelection?.mode === "single" && asiSelection.single
+                          ? `+2 ${asiSelection.single.toUpperCase()}`
+                          : asiSelection?.mode === "double" && asiSelection.d1 && asiSelection.d2
+                            ? `+1 ${asiSelection.d1.toUpperCase()}, +1 ${asiSelection.d2.toUpperCase()}`
+                            : "Select ability scores…"}
+                    </span>
+                    <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                  </button>
+                </div>
+              </div>
+            )}
 
           {info.spellSlots && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
@@ -2045,57 +2079,108 @@ function LevelCard({
               </div>
             </div>
             <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
-              <p className="text-xs text-[var(--color-text-secondary)]">
-                Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
-              </p>
               <div className="space-y-2">
-                {ABILITIES.map(({ key, label, full }) => {
-                  const currentScore = baseScores[key];
-                  const allocated = asiAllocation[key] || 0;
-                  const isAtCap = currentScore >= 20;
-                  return (
-                    <div
-                      key={key}
-                      className="flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)]"
-                    >
-                      <div className="flex flex-col">
-                        <span className="text-sm font-bold text-[var(--color-text-primary)] w-12">{label}</span>
-                        <span className="text-[10px] text-[var(--color-text-secondary)]">{full}</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-bold text-[var(--color-text-primary)] w-8 text-center">{currentScore}</span>
-                        <div className="flex items-center gap-1.5">
-                          <button
-                            type="button"
-                            onClick={() => removeAsiPoint(key)}
-                            disabled={allocated <= 0 || isAtCap}
-                            className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
-                          >
-                            −
-                          </button>
-                          <span className="text-sm font-bold text-[var(--color-text-primary)] w-7 text-center">
-                            {allocated > 0 ? `+${allocated}` : "0"}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => allocateAsiPoint(key)}
-                            disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
-                            className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                <button
+                  type="button"
+                  onClick={() => onAsiChange({ mode: "single" })}
+                  className={`w-full px-4 py-3 rounded-[var(--radius-sm)] border text-left transition-all ${
+                    !asiSelection || asiSelection.mode !== "feat"
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  <div className="text-sm font-bold text-[var(--color-text-primary)]">Improve Ability Scores</div>
+                  <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">+2 to one ability or +1 to two abilities</div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onAsiChange({ mode: "feat" })}
+                  className={`w-full px-4 py-3 rounded-[var(--radius-sm)] border text-left transition-all ${
+                    asiSelection?.mode === "feat"
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  }`}
+                >
+                  <div className="text-sm font-bold text-[var(--color-text-primary)]">Take a Feat</div>
+                  <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">Gain a feat instead of ability score improvements</div>
+                </button>
               </div>
+
+              {asiSelection?.mode !== "feat" && (
+                <>
+                  <p className="text-xs text-[var(--color-text-secondary)]">
+                    Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
+                  </p>
+                  <div className="space-y-2">
+                    {ABILITIES.map(({ key, label, full }) => {
+                      const currentScore = baseScores[key];
+                      const allocated = asiAllocation[key] || 0;
+                      const isAtCap = currentScore >= 20;
+                      return (
+                        <div
+                          key={key}
+                          className="flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)]"
+                        >
+                          <div className="flex flex-col">
+                            <span className="text-sm font-bold text-[var(--color-text-primary)] w-12">{label}</span>
+                            <span className="text-[10px] text-[var(--color-text-secondary)]">{full}</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className="text-sm font-bold text-[var(--color-text-primary)] w-8 text-center">{currentScore}</span>
+                            <div className="flex items-center gap-1.5">
+                              <button
+                                type="button"
+                                onClick={() => removeAsiPoint(key)}
+                                disabled={allocated <= 0 || isAtCap}
+                                className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
+                              >
+                                −
+                              </button>
+                              <span className="text-sm font-bold text-[var(--color-text-primary)] w-7 text-center">
+                                {allocated > 0 ? `+${allocated}` : "0"}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => allocateAsiPoint(key)}
+                                disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
+                                className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+
+              {asiSelection?.mode === "feat" && (
+                <div className="space-y-3">
+                  {asiSelection.feat && (
+                    <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                      <div className="text-sm font-bold text-[var(--color-text-primary)]">{asiSelection.feat}</div>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setShowAsiFeatModal(true)}
+                    className="btn btn-secondary w-full text-sm"
+                  >
+                    {asiSelection.feat ? "Change Feat" : "Choose Feat"}
+                  </button>
+                </div>
+              )}
             </div>
             <div className="flex justify-between border-t border-[var(--color-border)] px-4 py-3">
               <button
                 type="button"
                 onClick={() => {
                   setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
+                  if (asiSelection?.mode === "feat") {
+                    onAsiChange({ mode: "single", feat: undefined });
+                  }
                   setShowAsiModal(false);
                 }}
                 className="btn btn-secondary px-5 py-2.5"
@@ -2113,6 +2198,18 @@ function LevelCard({
             </div>
           </div>
         </div>
+      )}
+
+      {showAsiFeatModal && (
+        <FeatSelector
+          selectedFeat={asiSelection?.feat}
+          sources={character.sources}
+          onSelect={(feat) => {
+            onAsiChange({ feat: feat.name });
+            setShowAsiFeatModal(false);
+          }}
+          onClose={() => setShowAsiFeatModal(false)}
+        />
       )}
 
       {(showFeaturePopup as any)?.isSpellMastery && (
