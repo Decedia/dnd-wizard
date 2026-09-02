@@ -211,7 +211,10 @@ export function getMaxSpellLevel(className: string, level: number): number {
   const levelData = classData.levels[level - 1];
   if (!levelData?.spellSlots) return 0;
 
-  return Math.max(...Object.keys(levelData.spellSlots).map(Number));
+  const levels = Object.keys(levelData.spellSlots).map(Number);
+  if (levels.length === 0) return 0;
+
+  return Math.max(...levels);
 }
 
 export function getClassLevel1Hp(classData: { hitDie: number } | undefined): number {
