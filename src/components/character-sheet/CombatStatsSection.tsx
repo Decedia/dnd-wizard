@@ -13,8 +13,8 @@ import { BuffTracker } from "./BuffTracker";
 import { Dice } from "@/components/Dice";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features">;
-  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features">>) => void;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">;
+  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
   editMode?: boolean;
 }
 
@@ -159,6 +159,98 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           <Drop className="h-4 w-4" />
           <span className="text-xs font-semibold">Damage</span>
         </button>
+      </div>
+
+      {/* Combat Action Tracker */}
+      <div className="grid grid-cols-3 gap-3 mt-4 pt-3 border-t border-[var(--color-border)]">
+        <button
+          type="button"
+          onClick={() => onChange({ actionUsed: !character.actionUsed })}
+          disabled={!editMode}
+          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
+            character.actionUsed
+              ? "bg-[var(--color-success-100)] border-[var(--color-success-300)] text-[var(--color-success-700)]"
+              : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+          }`}
+        >
+          <span className="w-4 h-4 flex items-center justify-center">
+            {character.actionUsed ? "✓" : "○"}
+          </span>
+          <span>Action</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange({ bonusActionUsed: !character.bonusActionUsed })}
+          disabled={!editMode}
+          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
+            character.bonusActionUsed
+              ? "bg-[var(--color-info-100)] border-[var(--color-info-300)] text-[var(--color-info-700)]"
+              : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+          }`}
+        >
+          <span className="w-4 h-4 flex items-center justify-center">
+            {character.bonusActionUsed ? "✓" : "○"}
+          </span>
+          <span>Bonus Action</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange({ reactionUsed: !character.reactionUsed })}
+          disabled={!editMode}
+          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
+            character.reactionUsed
+              ? "bg-[var(--color-warning-100)] border-[var(--color-warning-300)] text-[var(--color-warning-700)]"
+              : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+          }`}
+        >
+          <span className="w-4 h-4 flex items-center justify-center">
+            {character.reactionUsed ? "✓" : "○"}
+          </span>
+          <span>Reaction</span>
+        </button>
+      </div>
+
+      {/* Exhaustion Level Tracker */}
+      <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
+        <div className="flex items-center justify-between mb-2">
+          <span className="field-label-light mb-0">Exhaustion</span>
+          <span className="text-xs font-semibold text-[var(--color-text-secondary)]">
+            Level {character.exhaustionLevel || 0} / 6
+          </span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          {[0, 1, 2, 3, 4, 5, 6].map((level) => (
+            <button
+              key={level}
+              type="button"
+              onClick={() => onChange({ exhaustionLevel: level })}
+              disabled={!editMode}
+              className={`flex-1 h-8 flex items-center justify-center rounded-[var(--radius-sm)] border text-xs font-semibold transition-all ${
+                (character.exhaustionLevel || 0) >= level && level > 0
+                  ? "bg-[var(--color-error-100)] border-[var(--color-error-300)] text-[var(--color-error-700)]"
+                  : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+              }`}
+            >
+              {level}
+            </button>
+          ))}
+        </div>
+        {(character.exhaustionLevel || 0) > 0 && (
+          <p className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
+            {(() => {
+              const l = character.exhaustionLevel || 0;
+              const effects = [
+                "Disadvantage on ability checks",
+                "Speed halved",
+                "Disadvantage on attack rolls and saving throws",
+                "Hit point maximum halved",
+                "Speed reduced to 0",
+                "Death"
+              ];
+              return effects.slice(0, l).join("; ");
+            })()}
+          </p>
+        )}
       </div>
 
       <StateTracker

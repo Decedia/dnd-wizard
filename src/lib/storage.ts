@@ -37,6 +37,12 @@ export interface Character {
   hitDiceRemaining: number;
   deathSaveSuccesses: number;
   deathSaveFailures: number;
+  // Combat action tracking
+  actionUsed: boolean;
+  bonusActionUsed: boolean;
+  reactionUsed: boolean;
+  // Exhaustion
+  exhaustionLevel: number;
   rages: number;
   maxRages: number;
   rageDamage: number;
@@ -55,7 +61,7 @@ export interface Character {
   subclass?: string;
   subclassIndex?: string;
   inventory: { id: string; name: string; quantity: number; equipped: boolean; hand?: "main" | "off" | "both"; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item" | "instrument"; category?: "melee" | "ranged"; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string; properties?: string[]; ammoQuantity?: number; maxAmmo?: number; range?: { normal: number; long: number } }[];
-  attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class"; classFeatureName?: string; description?: string }[];
+  attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class" | "grapple" | "shove"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
   spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string }[];
@@ -312,6 +318,10 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     hitDiceRemaining: 0,
     deathSaveSuccesses: 0,
     deathSaveFailures: 0,
+    actionUsed: false,
+    bonusActionUsed: false,
+    reactionUsed: false,
+    exhaustionLevel: 0,
     rages: 0,
     maxRages: 0,
     rageDamage: 0,
@@ -660,9 +670,12 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   for (const key of ["str", "dex", "con", "int", "wis", "cha"]) {
     const isProficient = savingThrowProfs.includes(key);
     const abilityMod = getModifier(character[key as keyof Character] as number);
+    let saveValue = isProficient ? abilityMod + profBonus : abilityMod;
+    // Cover bonus to Dex saves
+    if (key === "dex") saveValue += dexSaveBonusFromCover;
     savingThrows[key] = {
       proficient: isProficient,
-      value: isProficient ? abilityMod + profBonus : abilityMod,
+      value: saveValue,
     };
   }
 
@@ -856,6 +869,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const buffMods = computeBuffModifiers(character.activeBuffs || []);
   ac += buffMods.acBonus;
 
+  // Cover AC bonus
+  ac += acBonusFromCover;
+
   // ===== BASE SPEED =====
   let speed = character.speed || 30;
   // Monk unarmored movement bonus
@@ -867,6 +883,11 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   }
   // Buff speed bonus
   speed += buffMods.speedBonus;
+
+  // Difficult terrain halves speed
+  if (isDifficultTerrain) {
+    speed = Math.floor(speed / 2);
+  }
 
   // ===== CONDITION MECHANICAL EFFECTS =====
   // Parse activeStates for conditions and apply mechanical effects
@@ -956,8 +977,30 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     speed = Math.floor(speed / 2);
   }
 
-  // Apply exhaustion HP max reduction (level 4)
-  // Note: This is applied in the character sheet display, not here
+  // Apply exhaustion HP max reduction (level 4 halves max HP)
+  const baseMaxHp = character.maxHp || 0;
+  const effectiveMaxHp = exhaustionLevel >= 4 ? Math.floor(baseMaxHp / 2) : baseMaxHp;
+
+  // Cover tracking
+  const activeStates = character.activeStates || [];
+  const hasHalfCover = activeStates.includes("cover-half");
+  const hasThreeQuartersCover = activeStates.includes("cover-three-quarters");
+  const hasTotalCover = activeStates.includes("cover-total");
+
+  // Difficult terrain tracking
+  const isDifficultTerrain = activeStates.includes("difficult-terrain");
+
+  // Apply cover AC bonuses
+  let acBonusFromCover = 0;
+  if (hasHalfCover) acBonusFromCover = 2;
+  else if (hasThreeQuartersCover) acBonusFromCover = 5;
+  else if (hasTotalCover) acBonusFromCover = 0; // Can't be targeted
+
+  // Apply cover Dex save bonuses
+  let dexSaveBonusFromCover = 0;
+  if (hasHalfCover) dexSaveBonusFromCover = 2;
+  else if (hasThreeQuartersCover) dexSaveBonusFromCover = 5;
+  else if (hasTotalCover) dexSaveBonusFromCover = 0;
 
   // Apply temporary HP from buffs (take max, don't stack)
   const buffTempHp = buffMods.tempHpBonus || 0;
@@ -1004,8 +1047,29 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxBardicInspirationUses,
     ac,
     speed,
+    maxHp: effectiveMaxHp,
     temporaryHp: newTemporaryHp,
     buffModifiers: buffMods as any,
+    // Universal grapple/shove attacks
+    attacks: [
+      ...(character.attacks || []),
+      ...(character.attacks?.some(a => a.source === "grapple") ? [] : [{
+        id: "grapple",
+        name: "Grapple",
+        attackBonus: character.proficiencyBonus + (character.skills?.Athletics ? character.proficiencyBonus + getModifier(character.str) : getModifier(character.str)),
+        damageType: "",
+        source: "grapple",
+        description: "Special melee attack. Athletics vs target's Athletics or Acrobatics. On success, target is Grappled (speed 0, can't benefit from speed bonuses). Escape: Athletics or Acrobatics vs your Athletics DC."
+      }]),
+      ...(character.attacks?.some(a => a.source === "shove") ? [] : [{
+        id: "shove",
+        name: "Shove",
+        attackBonus: character.proficiencyBonus + (character.skills?.Athletics ? character.proficiencyBonus + getModifier(character.str) : getModifier(character.str)),
+        damageType: "",
+        source: "shove",
+        description: "Special melee attack. Athletics vs target's Athletics or Acrobatics. On success, target is either knocked Prone or pushed 5 feet away from you."
+      }]),
+    ],
     ...clampedAbilities,
   };
 }
@@ -1157,6 +1221,11 @@ export function applyShortRest(character: Character): Partial<Character> {
 
   // Fighter: Second Wind (handled via hit dice, but also a bonus action heal)
 
+  // Reset combat actions on short rest
+  draft.actionUsed = false;
+  draft.bonusActionUsed = false;
+  draft.reactionUsed = false;
+
   return draft;
 }
 
@@ -1204,6 +1273,10 @@ export function applyLongRest(character: Character): Partial<Character> {
     sorceryPoints: character.maxSorceryPoints || 0,
     bardicInspirationUses: character.maxBardicInspirationUses || 0,
     arcaneRecoveryUsed: false,
+    // Reset combat actions on long rest
+    actionUsed: false,
+    bonusActionUsed: false,
+    reactionUsed: false,
     // Reset buff durations
     activeBuffs: [],
   };
