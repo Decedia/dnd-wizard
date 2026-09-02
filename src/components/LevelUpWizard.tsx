@@ -1020,30 +1020,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               <Plus className="h-4 w-4" />
             </button>
           </div>
-          {targetLevel > effectiveMinLevel && (
-            <div className="mt-2 flex items-center justify-center gap-1 overflow-x-auto pb-1">
-              {Array.from({ length: targetLevel - effectiveMinLevel + 1 }, (_, i) => effectiveMinLevel + i).map((lvl) => (
-                <button
-                  key={lvl}
-                  type="button"
-                  onClick={() => {
-                    setViewingLevel(lvl);
-                    setTimeout(() => {
-                      const el = sectionRefs.current[`level-card-${lvl}`];
-                      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-                    }, 50);
-                  }}
-                  className={`px-3 py-1 text-[10px] font-bold rounded-full transition-colors ${
-                    viewingLevel === lvl
-                      ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
-                      : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  {lvl}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </div>
 
