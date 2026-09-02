@@ -10,10 +10,11 @@ import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
 import { BuffTracker } from "./BuffTracker";
+import { Dice } from "@/components/Dice";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs">;
-  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs">>) => void;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features">;
+  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features">>) => void;
   editMode?: boolean;
 }
 
@@ -23,6 +24,11 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
   const isSorcerer = character.class === "Sorcerer";
   const [hpModal, setHpModal] = useState<{ mode: "heal" | "damage" } | null>(null);
   const [hpAmount, setHpAmount] = useState("");
+  const [concentrationCheck, setConcentrationCheck] = useState<{ damage: number; roll?: number } | null>(null);
+
+  // Check if character has active concentration spells
+  const hasConcentration = (character.activeBuffs || []).some((b) => b.concentration);
+  const isWarCaster = (character.features || []).some((f) => f.name.toLowerCase().includes("war caster"));
 
   const handleHpAction = useCallback(() => {
     const amount = parseInt(hpAmount, 10);
@@ -47,10 +53,15 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         newHp = Math.max(0, character.currentHp - remainingDamage);
       }
       onChange({ currentHp: newHp, temporaryHp: newTempHp });
+      
+      // Trigger concentration check if taking damage while concentrating
+      if (hasConcentration && remainingDamage > 0) {
+        setConcentrationCheck({ damage: remainingDamage });
+      }
     }
     setHpModal(null);
     setHpAmount("");
-  }, [hpModal, hpAmount, character, onChange]);
+  }, [hpModal, hpAmount, character, onChange, hasConcentration]);
 
   return (
     <SectionCard id="combat-stats" title="Combat Stats" icon={<Sword className="h-5 w-5" />}>
@@ -276,15 +287,29 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
                 min={1}
               />
             </div>
-            {hpModal?.mode === "damage" && (character.activeBuffs || []).some(b => b.concentration) && (
+            {hpModal?.mode === "damage" && (character.activeBuffs || []).some(b => b.concentration) && !concentrationCheck && (
               <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
                 <div className="flex items-center gap-2">
                   <span className="text-xs">⚠️</span>
                   <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
-                    Concentration check! Roll DC {Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2))} CON save
+                    Concentration check required! Roll DC {Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2))} CON save
                   </span>
                 </div>
-                <div className="mt-1 flex gap-2">
+                <div className="mt-2">
+                  <Dice type="d20" size={56} advantage={isWarCaster ? "advantage" : "normal"} onRoll={(roll) => setConcentrationCheck({ damage: parseInt(hpAmount || "0", 10), roll })} />
+                  {isWarCaster && <p className="text-center text-[10px] text-[var(--color-success-600)] mt-1">War Caster: rolling with advantage</p>}
+                </div>
+              </div>
+            )}
+            {concentrationCheck && (
+              <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs">🎲</span>
+                  <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
+                    Rolled: {concentrationCheck.roll}
+                  </span>
+                </div>
+                <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={() => {
@@ -292,14 +317,14 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
                       onChange({ activeBuffs: current.filter((b) => !b.concentration) });
                       handleHpAction();
                     }}
-                    className="text-[10px] font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] underline"
+                    className="flex-1 text-[10px] font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] underline py-1"
                   >
                     Failed — Break Concentration
                   </button>
                   <button
                     type="button"
-                    onClick={handleHpAction}
-                    className="text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline"
+                    onClick={() => { setConcentrationCheck(null); handleHpAction(); }}
+                    className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
                   >
                     Success — Maintain
                   </button>
@@ -309,7 +334,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
               <button
                 type="button"
-                onClick={() => { setHpModal(null); setHpAmount(""); }}
+                onClick={() => { setHpModal(null); setHpAmount(""); setConcentrationCheck(null); }}
                 className="btn btn-secondary flex-1"
               >
                 Cancel

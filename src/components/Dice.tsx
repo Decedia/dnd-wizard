@@ -4,6 +4,8 @@ import { useState, useRef, useCallback, useEffect, useImperativeHandle, forwardR
 
 export type DiceType = "d4" | "d6" | "d8" | "d10" | "d12" | "d20" | "d100";
 
+export type AdvantageType = "normal" | "advantage" | "disadvantage";
+
 export interface DiceHandle {
   roll: () => void;
 }
@@ -13,6 +15,7 @@ interface DiceProps {
   onRoll?: (result: number) => void;
   autoRoll?: boolean;
   size?: number;
+  advantage?: AdvantageType;
 }
 
 const SIDES: Record<DiceType, number> = {
@@ -26,7 +29,7 @@ const SIDES: Record<DiceType, number> = {
 };
 
 const DiceComponent = forwardRef<DiceHandle, DiceProps>(function Dice(
-  { type = "d20", onRoll, autoRoll = false, size = 80 },
+  { type = "d20", onRoll, autoRoll = false, size = 80, advantage = "normal" },
   ref
 ) {
   const [isRolling, setIsRolling] = useState(false);
@@ -47,7 +50,17 @@ const DiceComponent = forwardRef<DiceHandle, DiceProps>(function Dice(
     setIsRolling(true);
     setShowResult(false);
 
-    const finalResult = Math.floor(Math.random() * sides) + 1;
+    let finalResult = Math.floor(Math.random() * sides) + 1;
+    
+    // Handle advantage/disadvantage
+    if (advantage === "advantage") {
+      const roll2 = Math.floor(Math.random() * sides) + 1;
+      finalResult = Math.max(finalResult, roll2);
+    } else if (advantage === "disadvantage") {
+      const roll2 = Math.floor(Math.random() * sides) + 1;
+      finalResult = Math.min(finalResult, roll2);
+    }
+
     setResult(finalResult);
 
     let flickerCount = 0;
@@ -65,7 +78,7 @@ const DiceComponent = forwardRef<DiceHandle, DiceProps>(function Dice(
         onRoll?.(finalResult);
       }
     }, 60);
-  }, [sides, onRoll]);
+  }, [sides, onRoll, advantage]);
 
   useEffect(() => {
     if (autoRoll) {
