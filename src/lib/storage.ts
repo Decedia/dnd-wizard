@@ -1,5 +1,6 @@
 import { getStaticClass, getStaticRace, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
+import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter } from "@/lib/db";
 export interface Character {
   id: string;
   name: string;
@@ -352,18 +353,8 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
 }
 
 const STORAGE_KEY = "dnd-wizard-characters";
-
-export function getCharacters(): Character[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw) as Character[];
-    return parsed.map((c) => normalizeCharacter(c));
-  } catch {
-    return [];
-  }
-}
+const AUTO_BACKUP_KEY = "dnd-wizard-autobackup";
+const AUTO_BACKUP_INTERVAL = 24 * 60 * 60 * 1000;
 
 function normalizeCharacter(c: Character): Character {
   const defaults = createEmptyCharacter();
@@ -409,26 +400,70 @@ function normalizeCharacter(c: Character): Character {
   };
 }
 
-export function getCharacter(id: string): Character | undefined {
-  return getCharacters().find((c) => c.id === id);
-}
-
-export function saveCharacter(character: Character): void {
-  const characters = getCharacters();
-  const index = characters.findIndex((c) => c.id === character.id);
-  const now = Date.now();
-  const updated = { ...character, updatedAt: now };
-  if (index >= 0) {
-    characters[index] = updated;
-  } else {
-    characters.push(updated);
+export async function getCharacters(): Promise<Character[]> {
+  if (typeof window === "undefined") return [];
+  try {
+    const records = await dbGetCharacters();
+    return records.map((c) => normalizeCharacter(c));
+  } catch {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw) as Character[];
+      return parsed.map((c) => normalizeCharacter(c));
+    } catch {
+      return [];
+    }
   }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(characters));
 }
 
-export function deleteCharacter(id: string): void {
-  const characters = getCharacters().filter((c) => c.id !== id);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(characters));
+export async function getCharacter(id: string): Promise<Character | undefined> {
+  if (typeof window === "undefined") return undefined;
+  try {
+    return await dbGetCharacter(id);
+  } catch {
+    return (await getCharacters()).find((c) => c.id === id);
+  }
+}
+
+export async function saveCharacter(character: Character): Promise<void> {
+  if (typeof window === "undefined") return;
+  try {
+    await dbSaveCharacter(character);
+  } catch {
+    const characters = (await getCharacters()).filter((c) => c.id !== character.id);
+    const now = Date.now();
+    const updated = { ...character, updatedAt: now };
+    characters.push(updated);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(characters));
+  }
+  await maybeAutoBackup();
+}
+
+export async function deleteCharacter(id: string): Promise<void> {
+  if (typeof window === "undefined") return;
+  try {
+    await dbDeleteCharacter(id);
+  } catch {
+    const characters = (await getCharacters()).filter((c) => c.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(characters));
+  }
+}
+
+async function maybeAutoBackup(): Promise<void> {
+  if (typeof window === "undefined") return;
+  try {
+    const last = localStorage.getItem(AUTO_BACKUP_KEY);
+    const now = Date.now();
+    if (last && now - Number(last) < AUTO_BACKUP_INTERVAL) return;
+    const characters = await getCharacters();
+    if (characters.length === 0) return;
+    const { downloadBackupJson } = await import("@/lib/character-io");
+    downloadBackupJson(characters);
+    localStorage.setItem(AUTO_BACKUP_KEY, String(now));
+  } catch {
+    // ignore auto-backup failures
+  }
 }
 
 export function generateId(): string {

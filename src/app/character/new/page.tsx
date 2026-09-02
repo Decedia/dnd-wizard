@@ -8,9 +8,15 @@ export default function NewCharacter() {
   const router = useRouter();
 
   useEffect(() => {
-    const character = createEmptyCharacter();
-    saveCharacter(character);
-    router.replace(`/character/${character.id}`);
+    let cancelled = false;
+    (async () => {
+      const character = createEmptyCharacter();
+      await saveCharacter(character);
+      if (!cancelled) {
+        router.replace(`/character/${character.id}`);
+      }
+    })();
+    return () => { cancelled = true; };
   }, [router]);
 
   return (

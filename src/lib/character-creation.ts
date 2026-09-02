@@ -888,7 +888,7 @@ export function isSubclassStepComplete(character: Character): boolean {
   return true;
 }
 
-export function finalizeCreation(character: Character): Character {
+export async function finalizeCreation(character: Character): Promise<Character> {
   let final = applySubclassFeatures(character);
   final = applySubclassSpellGrants(final);
   final = syncBaseFeatures(final);
@@ -941,6 +941,6 @@ export function finalizeCreation(character: Character): Character {
     spellSlots: Object.keys(spellSlots).length > 0 ? spellSlots : final.spellSlots,
     spellSlotsExpended: Object.keys(spellSlots).length > 0 ? Object.fromEntries(Object.keys(spellSlots).map(k => [k, 0])) : final.spellSlotsExpended,
   };
-  saveCharacter(finalCharacter);
+  await saveCharacter(finalCharacter);
   return finalCharacter;
 }

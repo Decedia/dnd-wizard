@@ -54,6 +54,8 @@ export {
   HiSparkles as SparklesIcon,
   HiBolt as LightningBoltIcon,
   HiShieldCheck as ShieldCheckIcon,
+  HiDocumentText as FileJsonIcon,
+  HiArrowDown as DownloadIcon,
 } from "react-icons/hi2";
 
 export {

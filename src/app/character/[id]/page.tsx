@@ -26,7 +26,7 @@ import { SpellcastingStatsSection } from "@/components/character-sheet/Spellcast
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { CurrencySection } from "@/components/character-sheet/CurrencySection";
-import { TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock } from "@/components/icons";
+import { TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
 
 export default function CharacterView() {
   const params = useParams();
@@ -34,17 +34,21 @@ export default function CharacterView() {
   const id = params.id as string;
   const { data: srdData } = useSRD();
 
-  const [character, setCharacter] = useState<Character | null>(() => {
-    if (typeof window !== "undefined" && id) {
-      const loaded = getCharacter(id) ?? null;
-      if (loaded) {
-        const derived = computeDerivedStats(loaded);
-        return { ...loaded, ...derived };
+  const [character, setCharacter] = useState<Character | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      if (typeof window !== "undefined" && id) {
+        const loaded = await getCharacter(id) ?? null;
+        if (!cancelled && loaded) {
+          const derived = computeDerivedStats(loaded);
+          setCharacter({ ...loaded, ...derived });
+        }
       }
-      return null;
-    }
-    return null;
-  });
+    })();
+    return () => { cancelled = true; };
+  }, [id]);
 
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [exportingPdf, setExportingPdf] = useState(false);
@@ -53,6 +57,7 @@ export default function CharacterView() {
   const [editMode, setEditMode] = useState(false);
   const [activeTab, setActiveTab] = useState<TabId>("combat");
   const importInputRef = useRef<HTMLInputElement | null>(null);
+  const jsonImportInputRef = useRef<HTMLInputElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const debouncedSave = useCallback(() => {
@@ -75,20 +80,20 @@ export default function CharacterView() {
     }
   }, [importSuccess]);
 
-  const handleSave = () => {
+  const handleSave = useCallback(async () => {
     if (character) {
-      saveCharacter(character);
+      await saveCharacter(character);
       setSavedAt(Date.now());
       setTimeout(() => setSavedAt(null), 2000);
     }
-  };
+  }, [character]);
 
-  const handleDelete = () => {
+  const handleDelete = useCallback(async () => {
     if (character && window.confirm(`Are you sure you want to delete ${character.name || "this character"}? This action cannot be undone.`)) {
-      deleteCharacter(character.id);
+      await deleteCharacter(character.id);
       router.push("/");
     }
-  };
+  }, [character, router]);
 
   const handleExport = async () => {
     if (!character || exportingPdf) return;
@@ -100,6 +105,12 @@ export default function CharacterView() {
       setExportingPdf(false);
     }
   };
+
+  const handleExportJson = useCallback(() => {
+    if (!character) return;
+    const { exportCharacterToJson } = require("@/lib/character-io");
+    exportCharacterToJson(character);
+  }, [character]);
 
   const handleImportClick = () => {
     importInputRef.current?.click();
@@ -113,11 +124,33 @@ export default function CharacterView() {
     try {
       const { importCharacterFromPdf } = await import("@/lib/pdf");
       const imported = await importCharacterFromPdf(file);
-      saveCharacter(imported);
+      await saveCharacter(imported);
       setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
       router.push(`/character/${imported.id}`);
     } catch (err) {
       setImportError("This PDF doesn't contain DND Wizard character data.");
+    } finally {
+      e.target.value = "";
+    }
+  };
+
+  const handleImportJsonClick = () => {
+    jsonImportInputRef.current?.click();
+  };
+
+  const handleImportJsonFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImportError(null);
+    setImportSuccess(null);
+    try {
+      const { importCharacterFromJson } = await import("@/lib/character-io");
+      const imported = await importCharacterFromJson(file);
+      await saveCharacter(imported);
+      setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      router.push(`/character/${imported.id}`);
+    } catch (err) {
+      setImportError("Failed to import character JSON.");
     } finally {
       e.target.value = "";
     }
@@ -242,11 +275,27 @@ export default function CharacterView() {
                 )}
               </button>
               <button
+                onClick={handleExportJson}
+                className="btn btn-secondary flex items-center justify-center gap-1.5"
+              >
+                <FileJson className="h-4 w-4" />
+                Export JSON
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <button
                 onClick={handleImportClick}
                 className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
                 <Upload className="h-4 w-4" />
                 Import PDF
+              </button>
+              <button
+                onClick={handleImportJsonClick}
+                className="btn btn-secondary flex items-center justify-center gap-1.5"
+              >
+                <FileJson className="h-4 w-4" />
+                Import JSON
               </button>
             </div>
             <button
@@ -267,6 +316,13 @@ export default function CharacterView() {
               type="file"
               accept="application/pdf"
               onChange={handleImportFile}
+              className="hidden"
+            />
+            <input
+              ref={jsonImportInputRef}
+              type="file"
+              accept="application/json"
+              onChange={handleImportJsonFile}
               className="hidden"
             />
           </div>

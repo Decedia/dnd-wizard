@@ -49,10 +49,10 @@ export default function CharacterCreate() {
     return currentStep.completed;
   }, [currentStep]);
 
-  const handleNext = useCallback(() => {
+  const handleNext = useCallback(async () => {
     if (!canProceed()) return;
     if (isLastStep) {
-      const final = finalizeCreation(character);
+      const final = await finalizeCreation(character);
       router.replace(`/character/${final.id}`);
     } else {
       setStep((s) => s + 1);
@@ -94,8 +94,8 @@ export default function CharacterCreate() {
       <LevelUpWizard
         character={character}
         onCancel={() => setStep((s) => Math.max(0, s - 1))}
-        onComplete={(updated) => {
-          const final = finalizeCreation(updated);
+        onComplete={async (updated) => {
+          const final = await finalizeCreation(updated);
           router.replace(`/character/${final.id}`);
         }}
         minLevel={1}

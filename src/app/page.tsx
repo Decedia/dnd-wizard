@@ -1,19 +1,34 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
-import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash } from "@/components/icons";
+import { importCharacterFromJson } from "@/lib/character-io";
+import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash, FileJsonIcon as FileJson, DownloadIcon as Download } from "@/components/icons";
 
 export default function Home() {
-  const [characters, setCharacters] = useState<Character[]>(() => getCharacters());
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const importInputRef = useRef<HTMLInputElement | null>(null);
+  const jsonImportInputRef = useRef<HTMLInputElement | null>(null);
+
+  const loadCharacters = useCallback(async () => {
+    const chars = await getCharacters();
+    setCharacters(chars);
+  }, []);
+
+  useEffect(() => {
+    loadCharacters();
+  }, [loadCharacters]);
 
   const handleImportClick = () => {
     importInputRef.current?.click();
+  };
+
+  const handleImportJsonClick = () => {
+    jsonImportInputRef.current?.click();
   };
 
   const handleImportFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,21 +39,49 @@ export default function Home() {
     try {
       const { importCharacterFromPdf } = await import("@/lib/pdf");
       const imported = await importCharacterFromPdf(file);
-      saveCharacter(imported);
+      await saveCharacter(imported);
       setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
-      setCharacters(getCharacters());
+      await loadCharacters();
     } catch (err) {
       setImportError("This PDF doesn't contain DND Wizard character data.");
     } finally {
       e.target.value = "";
     }
+  }, [loadCharacters]);
+
+  const handleImportJsonFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImportError(null);
+    setImportSuccess(null);
+    try {
+      const imported = await importCharacterFromJson(file);
+      await saveCharacter(imported);
+      setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      await loadCharacters();
+    } catch (err) {
+      setImportError("Failed to import character JSON.");
+    } finally {
+      e.target.value = "";
+    }
+  }, [loadCharacters]);
+
+  const handleDelete = useCallback(async (char: Character) => {
+    if (window.confirm(`Are you sure you want to delete ${char.name || "this character"}? This action cannot be undone.`)) {
+      await deleteCharacter(char.id);
+      await loadCharacters();
+    }
+  }, [loadCharacters]);
+
+  const handleExportJson = useCallback((char: Character) => {
+    const { exportCharacterToJson } = require("@/lib/character-io");
+    exportCharacterToJson(char);
   }, []);
 
-  const handleDelete = useCallback((char: Character) => {
-    if (window.confirm(`Are you sure you want to delete ${char.name || "this character"}? This action cannot be undone.`)) {
-      deleteCharacter(char.id);
-      setCharacters(getCharacters());
-    }
+  const handleBackupAll = useCallback(async () => {
+    const chars = await getCharacters();
+    const { exportAllCharactersToJson } = require("@/lib/character-io");
+    exportAllCharactersToJson(chars);
   }, []);
 
   return (
@@ -46,19 +89,42 @@ export default function Home() {
       <AppHeader title="DND Wizard" subtitle="My Characters" showThemeToggle />
 
       <main className="px-4 py-4 pb-28">
-        <div className="mb-5">
+        <div className="mb-5 space-y-2">
+          <div className="flex gap-2">
+            <button
+              onClick={handleImportClick}
+              className="btn btn-secondary flex-1"
+            >
+              <Upload className="h-4 w-4 mr-2 inline" />
+              Import PDF
+            </button>
+            <button
+              onClick={handleImportJsonClick}
+              className="btn btn-secondary flex-1"
+            >
+              <FileJson className="h-4 w-4 mr-2 inline" />
+              Import JSON
+            </button>
+          </div>
           <button
-            onClick={handleImportClick}
+            onClick={handleBackupAll}
             className="btn btn-secondary w-full"
           >
-            <Upload className="h-4 w-4 mr-2 inline" />
-            Import from PDF
+            <Download className="h-4 w-4 mr-2 inline" />
+            Backup All Characters
           </button>
           <input
             ref={importInputRef}
             type="file"
             accept="application/pdf"
             onChange={handleImportFile}
+            className="hidden"
+          />
+          <input
+            ref={jsonImportInputRef}
+            type="file"
+            accept="application/json"
+            onChange={handleImportJsonFile}
             className="hidden"
           />
           {importError && (
@@ -110,6 +176,13 @@ export default function Home() {
                       <CaretRight size={16} className="text-ink-muted" />
                     </div>
                   </Link>
+                  <button
+                    onClick={(e) => { e.preventDefault(); handleExportJson(char); }}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-all"
+                    aria-label={`Export ${char.name || "character"} as JSON`}
+                  >
+                    <FileJson size={18} />
+                  </button>
                   <button
                     onClick={(e) => { e.preventDefault(); handleDelete(char); }}
                     className="flex h-9 w-9 shrink-0 items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-error-600)] transition-all"
