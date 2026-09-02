@@ -980,3 +980,167 @@ export function getWizardTraditionSpellNames(character: Character): string[] {
   if (character.class !== "Wizard" || !character.subclassIndex) return [];
   return getWizardTraditionSpells(character.subclassIndex, character.level || 1);
 }
+
+// ===== REST RECOVERY FUNCTIONS =====
+
+export function applyShortRest(character: Character): Partial<Character> {
+  const classData = getStaticClass(character.class);
+  const draft: Partial<Character> = {
+    // Hit Dice recovery: can spend up to half level (min 1)
+    hitDiceRemaining: Math.min(character.level, character.hitDiceRemaining + Math.max(1, Math.floor(character.level / 2))),
+  };
+
+  // Warlock: recover all Pact Magic spell slots on short rest
+  if (classData?.name === "Warlock") {
+    const warlockSlots: Record<number, number> = {};
+    const classData = getStaticClass("Warlock");
+    if (classData?.levels) {
+      const levelData = classData.levels[character.level - 1];
+      if (levelData?.spellSlots) {
+        for (const [slotLevel, count] of Object.entries(levelData.spellSlots)) {
+          warlockSlots[Number(slotLevel)] = count;
+        }
+      }
+    }
+    draft.spellSlots = warlockSlots;
+    draft.spellSlotsExpended = Object.fromEntries(
+      Object.entries(warlockSlots).map(([k]) => [k, 0])
+    );
+  }
+
+  // Fighter: Action Surge (short rest recovery)
+  if (classData?.name === "Fighter" && character.maxActionSurgeUses) {
+    draft.actionSurgeUses = character.maxActionSurgeUses;
+  }
+
+  // Cleric: Channel Divinity (short rest recovery at level 2+)
+  if (classData?.name === "Cleric" && character.maxChannelDivinityUses) {
+    draft.channelDivinityUses = character.maxChannelDivinityUses;
+  }
+
+  // Paladin: Channel Divinity (short rest recovery at level 3+ via subclass)
+  if (classData?.name === "Paladin" && character.maxChannelDivinityUses) {
+    draft.channelDivinityUses = character.maxChannelDivinityUses;
+  }
+
+  // Monk: Ki points (short rest recovery at level 2+)
+  if (classData?.name === "Monk" && character.maxKiPoints) {
+    draft.kiPoints = character.maxKiPoints;
+  }
+
+  // Sorcerer: Sorcery Points (short rest recovery at level 20 via Sorcerous Restoration)
+  if (classData?.name === "Sorcerer" && character.level >= 20 && character.maxSorceryPoints) {
+    draft.sorceryPoints = character.maxSorceryPoints;
+  }
+
+  // Bard: Bardic Inspiration (short rest recovery at level 5 via Font of Inspiration)
+  if (classData?.name === "Bard" && character.level >= 5 && character.maxBardicInspirationUses) {
+    draft.bardicInspirationUses = character.maxBardicInspirationUses;
+  }
+
+  // Druid: Wild Shape (short rest recovery at level 2+)
+  if (classData?.name === "Druid" && character.maxWildShapeUses) {
+    draft.wildShapeUses = character.maxWildShapeUses;
+  }
+
+  // Fighter: Second Wind (handled via hit dice, but also a bonus action heal)
+
+  return draft;
+}
+
+export function applyLongRest(character: Character): Partial<Character> {
+  const classData = getStaticClass(character.class);
+  
+  // Full HP recovery
+  const draft: Partial<Character> = {
+    currentHp: character.maxHp,
+    temporaryHp: 0,
+    // Full hit dice recovery (half level, min 1, max level)
+    hitDiceRemaining: Math.min(character.level, Math.floor(character.level / 2)),
+    // Reset death saves
+    deathSaveSuccesses: 0,
+    deathSaveFailures: 0,
+    // Reset spell slots
+    spellSlotsExpended: Object.fromEntries(
+      Object.entries(character.spellSlots || {}).map(([k]) => [k, 0])
+    ),
+    // Reset per-turn tracking
+    spellsUsedThisTurn: [],
+    featuresUsedThisTurn: [],
+    // Exhaustion recovery
+    activeStates: character.activeStates?.filter(s => !s.toLowerCase().includes("exhaustion")) || [],
+    // Reset class resources
+    rages: character.maxRages || 0,
+    kiPoints: character.maxKiPoints || 0,
+    channelDivinityUses: character.maxChannelDivinityUses || 0,
+    actionSurgeUses: character.maxActionSurgeUses || 0,
+    indomitableUses: character.maxIndomitableUses || 0,
+    layOnHandsPool: character.maxLayOnHandsPool || 0,
+    wildShapeUses: character.maxWildShapeUses || 0,
+    sorceryPoints: character.maxSorceryPoints || 0,
+    bardicInspirationUses: character.maxBardicInspirationUses || 0,
+    arcaneRecoveryUsed: false,
+    // Reset buff durations
+    activeBuffs: [],
+  };
+
+  // Warlock: Pact Magic slots recover on both short and long rest
+  if (classData?.name === "Warlock") {
+    const warlockSlots: Record<number, number> = {};
+    const classData = getStaticClass("Warlock");
+    if (classData?.levels) {
+      const levelData = classData.levels[character.level - 1];
+      if (levelData?.spellSlots) {
+        for (const [slotLevel, count] of Object.entries(levelData.spellSlots)) {
+          warlockSlots[Number(slotLevel)] = count;
+        }
+      }
+    }
+    draft.spellSlots = warlockSlots;
+    draft.spellSlotsExpended = Object.fromEntries(
+      Object.entries(warlockSlots).map(([k]) => [k, 0])
+    );
+  }
+
+  // Fighter: Action Surge recovers
+  if (classData?.name === "Fighter" && character.maxActionSurgeUses) {
+    draft.actionSurgeUses = character.maxActionSurgeUses;
+  }
+
+  // Cleric/Paladin: Channel Divinity recovers
+  if ((classData?.name === "Cleric" || classData?.name === "Paladin") && character.maxChannelDivinityUses) {
+    draft.channelDivinityUses = character.maxChannelDivinityUses;
+  }
+
+  // Monk: Ki recovers
+  if (classData?.name === "Monk" && character.maxKiPoints) {
+    draft.kiPoints = character.maxKiPoints;
+  }
+
+  // Sorcerer: Sorcery Points recover (all levels on long rest, level 20 also short rest)
+  if (classData?.name === "Sorcerer" && character.maxSorceryPoints) {
+    draft.sorceryPoints = character.maxSorceryPoints;
+  }
+
+  // Bard: Bardic Inspiration recovers (all levels on long rest, level 5+ also short rest)
+  if (classData?.name === "Bard" && character.maxBardicInspirationUses) {
+    draft.bardicInspirationUses = character.maxBardicInspirationUses;
+  }
+
+  // Druid: Wild Shape recovers
+  if (classData?.name === "Druid" && character.maxWildShapeUses) {
+    draft.wildShapeUses = character.maxWildShapeUses;
+  }
+
+  // Barbarian: Rages recover
+  if (classData?.name === "Barbarian" && character.maxRages) {
+    draft.rages = character.maxRages;
+  }
+
+  // Wizard: Arcane Recovery (once per long rest)
+  if (classData?.name === "Wizard") {
+    draft.arcaneRecoveryUsed = false;
+  }
+
+  return draft;
+}
