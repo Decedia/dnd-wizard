@@ -15,8 +15,8 @@ export function DiceBadge({ dice, size = "sm" }: DiceBadgeProps) {
         fontSize: size === "sm" ? "11px" : "13px",
         padding: size === "sm" ? "2px 6px" : "4px 10px",
         borderRadius: "6px",
-        backgroundColor: "#f59e0b15",
-        color: "#f59e0b",
+        backgroundColor: "var(--color-damage-radiant-bg)",
+        color: "var(--color-damage-radiant)",
       }}
     >
       <Dice className={size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5"} />

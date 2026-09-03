@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack, InfoIcon as Info } from "@/components/icons";
@@ -33,6 +33,11 @@ const PROPERTY_DESCRIPTIONS: Record<string, string> = {
 export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionPopupProps) {
   const [activeCategory, setActiveCategory] = useState<ItemCategory>("weapons");
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const idCounter = useRef(0);
+
+  const generateId = useCallback(() => {
+    return `item-${Date.now()}-${idCounter.current++}`;
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -59,7 +64,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
       const weapon = weapons.find((w) => w.name === selectedItem);
       if (!weapon) return;
       newItem = {
-        id: crypto.randomUUID?.() ?? `item-${Math.random().toString(36).slice(2, 11)}`,
+        id: generateId(),
         name: weapon.name,
         quantity: 1,
         equipped: false,
@@ -82,7 +87,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
       if (!armor) return;
       const armorType = armor.armor_category === "Light" ? "light" : armor.armor_category === "Medium" ? "medium" : armor.armor_category === "Heavy" ? "heavy" : "shield";
       newItem = {
-        id: crypto.randomUUID?.() ?? `item-${Math.random().toString(36).slice(2, 11)}`,
+        id: generateId(),
         name: armor.name,
         quantity: 1,
         equipped: false,
@@ -105,7 +110,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
       if (!item) return;
       const data = getEquipmentData(item.name);
       newItem = {
-        id: crypto.randomUUID?.() ?? `item-${Math.random().toString(36).slice(2, 11)}`,
+        id: generateId(),
         name: item.name,
         quantity: 1,
         equipped: false,
@@ -189,7 +194,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
                       {damageDice && (
                         <span
                           className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "#64748b", backgroundColor: "#64748b15" }}
+                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-damage-slashing)", backgroundColor: "var(--color-damage-slashing-bg)" }}
                         >
                           {damageDice}
                         </span>

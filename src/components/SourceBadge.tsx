@@ -5,17 +5,6 @@ interface SourceBadgeProps {
   size?: "sm" | "md";
 }
 
-const SOURCE_COLORS: Record<string, { bg: string; text: string }> = {
-  PHB: { bg: "#dbeafe", text: "#1d4ed8" },
-  SCAG: { bg: "#dcfce7", text: "#15803d" },
-  XGE: { bg: "#ffedd5", text: "#c2410c" },
-  TCE: { bg: "#f3e8ff", text: "#7e22ce" },
-  MTF: { bg: "#fee2e2", text: "#b91c1c" },
-  EGW: { bg: "#ccfbf1", text: "#0f766e" },
-  FTD: { bg: "#fce7f3", text: "#be185d" },
-  VRGR: { bg: "#e0e7ff", text: "#4338ca" },
-};
-
 const SOURCE_NAMES: Record<string, string> = {
   PHB: "Player's Handbook",
   SCAG: "Sword Coast Adventurer's Guide",
@@ -27,8 +16,19 @@ const SOURCE_NAMES: Record<string, string> = {
   VRGR: "Van Richten's Guide to Ravenloft",
 };
 
+const SOURCE_COLORS: Record<string, { bgVar: string; textVar: string }> = {
+  PHB: { bgVar: "--color-source-phb-bg", textVar: "--color-source-phb-text" },
+  SCAG: { bgVar: "--color-source-scag-bg", textVar: "--color-source-scag-text" },
+  XGE: { bgVar: "--color-source-xge-bg", textVar: "--color-source-xge-text" },
+  TCE: { bgVar: "--color-source-tce-bg", textVar: "--color-source-tce-text" },
+  MTF: { bgVar: "--color-source-mtf-bg", textVar: "--color-source-mtf-text" },
+  EGW: { bgVar: "--color-source-egw-bg", textVar: "--color-source-egw-text" },
+  FTD: { bgVar: "--color-source-ftd-bg", textVar: "--color-source-ftd-text" },
+  VRGR: { bgVar: "--color-source-vrgr-bg", textVar: "--color-source-vrgr-text" },
+};
+
 export function SourceBadge({ source, size = "sm" }: SourceBadgeProps) {
-  const colors = SOURCE_COLORS[source] || { bg: "#f3f4f6", text: "#374151" };
+  const colors = SOURCE_COLORS[source] || { bgVar: "--color-bg", textVar: "--color-text-secondary" };
 
   return (
     <span
@@ -37,8 +37,8 @@ export function SourceBadge({ source, size = "sm" }: SourceBadgeProps) {
         fontSize: size === "sm" ? "9px" : "11px",
         padding: size === "sm" ? "1px 5px" : "3px 8px",
         borderRadius: "4px",
-        backgroundColor: colors.bg,
-        color: colors.text,
+        backgroundColor: `var(${colors.bgVar})`,
+        color: `var(${colors.textVar})`,
         letterSpacing: "0.02em",
       }}
       title={SOURCE_NAMES[source] || source}

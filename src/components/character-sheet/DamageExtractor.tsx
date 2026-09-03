@@ -1,81 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import {
-  DropIcon as Drop,
-  ClubIcon as Club,
-  SnowflakeIcon as Snowflake,
-  FireGiIcon as Fire,
-  SparkleIcon as Sparkle,
-  PowerLightningIcon as Lightning,
-  SkullIcon as Skull,
-  ArrowClusterIcon as Needle,
-  BrainIcon as Brain,
-  SunGiIcon as Sun,
-  SwordIcon as Sword,
-  ThunderStruckIcon as CloudLightning,
-  AcidIcon as TestTube,
-} from "@/components/icons";
-
-export type DamageType =
-  | "acid"
-  | "bludgeoning"
-  | "cold"
-  | "fire"
-  | "force"
-  | "lightning"
-  | "necrotic"
-  | "piercing"
-  | "poison"
-  | "psychic"
-  | "radiant"
-  | "slashing"
-  | "thunder";
-
-interface DamageTypeStyle {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  color: string;
-  bgColor: string;
-}
-
-const DAMAGE_TYPES: Record<DamageType, DamageTypeStyle> = {
-  acid: { icon: TestTube, label: "Acid", color: "#22c55e", bgColor: "#22c55e15" },
-  bludgeoning: { icon: Club, label: "Bludgeoning", color: "#78716c", bgColor: "#78716c15" },
-  cold: { icon: Snowflake, label: "Cold", color: "#38bdf8", bgColor: "#38bdf815" },
-  fire: { icon: Fire, label: "Fire", color: "#ef4444", bgColor: "#ef444415" },
-  force: { icon: Sparkle, label: "Force", color: "#a855f7", bgColor: "#a855f715" },
-  lightning: { icon: Lightning, label: "Lightning", color: "#eab308", bgColor: "#eab30815" },
-  necrotic: { icon: Skull, label: "Necrotic", color: "#4d7c0f", bgColor: "#4d7c0f15" },
-  piercing: { icon: Needle, label: "Piercing", color: "#94a3b8", bgColor: "#94a3b815" },
-  poison: { icon: Drop, label: "Poison", color: "#84cc16", bgColor: "#84cc1615" },
-  psychic: { icon: Brain, label: "Psychic", color: "#ec4899", bgColor: "#ec489915" },
-  radiant: { icon: Sun, label: "Radiant", color: "#f59e0b", bgColor: "#f59e0b15" },
-  slashing: { icon: Sword, label: "Slashing", color: "#64748b", bgColor: "#64748b15" },
-  thunder: { icon: CloudLightning, label: "Thunder", color: "#6366f1", bgColor: "#6366f115" },
-};
-
-export function getDamageTypeColor(type: string | undefined | null): string {
-  if (!type) return "#666666";
-  const key = type.toLowerCase() as DamageType;
-  return DAMAGE_TYPES[key]?.color ?? "#666666";
-}
-
-export function getDamageTypeBgColor(type: string | undefined | null): string {
-  if (!type) return "#e5e5e515";
-  const key = type.toLowerCase() as DamageType;
-  return DAMAGE_TYPES[key]?.bgColor ?? "#e5e5e515";
-}
-
-function getDamageIcon(type: string): React.ComponentType<{ className?: string }> | null {
-  const key = type.toLowerCase() as DamageType;
-  return DAMAGE_TYPES[key]?.icon ?? null;
-}
-
-function getDamageLabel(type: string): string {
-  const key = type.toLowerCase() as DamageType;
-  return DAMAGE_TYPES[key]?.label ?? type;
-}
+import { getDamageTypeColor, getDamageTypeBgColor, getDamageTypeStyle, type DamageType } from "@/lib/damage-types";
+import type { Character } from "@/lib/storage";
 
 export interface ExtractedDamage {
   dice: string;
@@ -158,10 +85,9 @@ export function DamageDisplay({ damages, size = "sm", inline = false }: DamageDi
   return (
     <span className={containerClass}>
       {damages.map((dmg, idx) => {
-        const key = dmg.type.toLowerCase() as DamageType;
-        const style = DAMAGE_TYPES[key];
-        const color = style?.color ?? "#666666";
-        const bgColor = style?.bgColor ?? "#e5e5e515";
+        const style = getDamageTypeStyle(dmg.type);
+        const color = style ? `var(${style.colorVar})` : "var(--color-text-muted)";
+        const bgColor = style ? `var(${style.bgColorVar})` : "var(--color-border-muted)";
         const IconComponent = style?.icon;
         const label = style?.label ?? dmg.type;
 
@@ -174,8 +100,8 @@ export function DamageDisplay({ damages, size = "sm", inline = false }: DamageDi
                   fontSize: size === "sm" ? "10px" : "12px",
                   padding: size === "sm" ? "1px 5px" : "3px 8px",
                   borderRadius: "4px",
-                  backgroundColor: "#f0f0f0",
-                  color: "#333333",
+                  backgroundColor: "var(--color-bg)",
+                  color: "var(--color-text-primary)",
                 }}
               >
                 {dmg.dice}

@@ -6,24 +6,24 @@ export interface StateDefinition {
   id: string;
   name: string;
   icon: React.ComponentType<{ className?: string }>;
-  color: string;
-  bgColor: string;
-  borderColor: string;
+  colorVar: string;
+  bgColorVar: string;
+  borderColorVar: string;
 }
 
 export const COMMON_STATES: StateDefinition[] = [
-  { id: "concentration", name: "Concentration", icon: Lightning, color: "#0891b2", bgColor: "#0891b215", borderColor: "#0891b230" },
-  { id: "rage", name: "Rage", icon: Flame, color: "#dc2626", bgColor: "#dc262615", borderColor: "#dc262630" },
-  { id: "wildshape", name: "Wild Shape", icon: Sparkle, color: "#16a34a", bgColor: "#16a34a15", borderColor: "#16a34a30" },
-  { id: "channel-divinity", name: "Channel Divinity", icon: Lightning, color: "#eab308", bgColor: "#eab30815", borderColor: "#eab30830" },
-  { id: "action-surge", name: "Action Surge", icon: Clock, color: "#7c3aed", bgColor: "#7c3aed15", borderColor: "#7c3aed30" },
-  { id: "second-wind", name: "Second Wind", icon: Drop, color: "#2563eb", bgColor: "#2563eb15", borderColor: "#2563eb30" },
-  { id: "ki", name: "Ki Points", icon: Sparkle, color: "#f59e0b", bgColor: "#f59e0b15", borderColor: "#f59e0b30" },
-  { id: "sneak-attack", name: "Sneak Attack", icon: Eye, color: "#4b5563", bgColor: "#4b556315", borderColor: "#4b556330" },
-  { id: "hexblade-curse", name: "Hexblade Curse", icon: Skull, color: "#7c2d12", bgColor: "#7c2d1215", borderColor: "#7c2d1230" },
-  { id: "divine-smite", name: "Divine Smite", icon: Lightning, color: "#f59e0b", bgColor: "#f59e0b15", borderColor: "#f59e0b30" },
-  { id: "bardic-inspiration", name: "Bardic Insp.", icon: Sparkle, color: "#ec4899", bgColor: "#ec489915", borderColor: "#ec489930" },
-  { id: "lay-on-hands", name: "Lay on Hands", icon: Drop, color: "#ef4444", bgColor: "#ef444415", borderColor: "#ef444430" },
+  { id: "concentration", name: "Concentration", icon: Lightning, colorVar: "--color-state-concentration", bgColorVar: "--color-state-concentration-bg", borderColorVar: "--color-state-concentration-border" },
+  { id: "rage", name: "Rage", icon: Flame, colorVar: "--color-state-rage", bgColorVar: "--color-state-rage-bg", borderColorVar: "--color-state-rage-border" },
+  { id: "wildshape", name: "Wild Shape", icon: Sparkle, colorVar: "--color-state-wildshape", bgColorVar: "--color-state-wildshape-bg", borderColorVar: "--color-state-wildshape-border" },
+  { id: "channel-divinity", name: "Channel Divinity", icon: Lightning, colorVar: "--color-state-channel-divinity", bgColorVar: "--color-state-channel-divinity-bg", borderColorVar: "--color-state-channel-divinity-border" },
+  { id: "action-surge", name: "Action Surge", icon: Clock, colorVar: "--color-state-action-surge", bgColorVar: "--color-state-action-surge-bg", borderColorVar: "--color-state-action-surge-border" },
+  { id: "second-wind", name: "Second Wind", icon: Drop, colorVar: "--color-state-second-wind", bgColorVar: "--color-state-second-wind-bg", borderColorVar: "--color-state-second-wind-border" },
+  { id: "ki", name: "Ki Points", icon: Sparkle, colorVar: "--color-state-ki", bgColorVar: "--color-state-ki-bg", borderColorVar: "--color-state-ki-border" },
+  { id: "sneak-attack", name: "Sneak Attack", icon: Eye, colorVar: "--color-state-sneak-attack", bgColorVar: "--color-state-sneak-attack-bg", borderColorVar: "--color-state-sneak-attack-border" },
+  { id: "hexblade-curse", name: "Hexblade Curse", icon: Skull, colorVar: "--color-state-hexblade-curse", bgColorVar: "--color-state-hexblade-curse-bg", borderColorVar: "--color-state-hexblade-curse-border" },
+  { id: "divine-smite", name: "Divine Smite", icon: Lightning, colorVar: "--color-state-divine-smite", bgColorVar: "--color-state-divine-smite-bg", borderColorVar: "--color-state-divine-smite-border" },
+  { id: "bardic-inspiration", name: "Bardic Insp.", icon: Sparkle, colorVar: "--color-state-bardic-inspiration", bgColorVar: "--color-state-bardic-inspiration-bg", borderColorVar: "--color-state-bardic-inspiration-border" },
+  { id: "lay-on-hands", name: "Lay on Hands", icon: Drop, colorVar: "--color-state-lay-on-hands", bgColorVar: "--color-state-lay-on-hands-bg", borderColorVar: "--color-state-lay-on-hands-border" },
 ];
 
 interface StateTrackerProps {
@@ -53,9 +53,9 @@ export function StateTracker({ activeStates, onToggle, onReset, editMode = true 
             style={{
               fontSize: "10px",
               padding: "2px 6px",
-              backgroundColor: isActive ? state.bgColor : "transparent",
-              color: isActive ? state.color : "var(--color-text-muted)",
-              borderColor: isActive ? state.borderColor : "var(--color-border)",
+              backgroundColor: isActive ? `var(${state.bgColorVar})` : "transparent",
+              color: isActive ? `var(${state.colorVar})` : "var(--color-text-muted)",
+              borderColor: isActive ? `var(${state.borderColorVar})` : "var(--color-border)",
             }}
           >
             <IconComponent className="h-3 w-3" />
