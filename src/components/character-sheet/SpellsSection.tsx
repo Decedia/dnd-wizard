@@ -32,7 +32,7 @@ interface UnifiedSpell {
 }
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
-  const { onFieldBlur } = useCharacterSheet();
+  const { onFieldBlur, showDescriptions } = useCharacterSheet();
   const { data } = useSRD();
   const srdSpells = data?.spells || [];
   const [showSpellModal, setShowSpellModal] = useState(false);
@@ -314,7 +314,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   )}
                 </div>
               </div>
-              {spell.description && (
+              {showDescriptions && spell.description && (
                 <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{spell.description}</p>
               )}
             </div>

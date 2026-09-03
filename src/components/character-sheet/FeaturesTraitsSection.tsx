@@ -16,7 +16,7 @@ interface FeaturesTraitsSectionProps {
 }
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
-  const { onFieldBlur } = useCharacterSheet();
+  const { onFieldBlur, showDescriptions } = useCharacterSheet();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const feats = useMemo(() => getStaticFeats(), []);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
@@ -241,7 +241,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                       )}
                     </div>
                   </div>
-                  {feature.description && (
+                  {showDescriptions && feature.description && (
                     <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
                   )}
                 </div>

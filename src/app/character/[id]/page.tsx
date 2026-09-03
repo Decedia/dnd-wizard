@@ -55,6 +55,7 @@ export default function CharacterView() {
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const [editMode, setEditMode] = useState(false);
+  const [showDescriptions, setShowDescriptions] = useState(false);
   const [activeTab, setActiveTab] = useState<TabId>("combat");
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const jsonImportInputRef = useRef<HTMLInputElement | null>(null);
@@ -79,6 +80,11 @@ export default function CharacterView() {
       return () => clearTimeout(timeoutRef.current ?? undefined);
     }
   }, [importSuccess]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("dnd-show-descriptions");
+    if (saved === "true") setShowDescriptions(true);
+  }, []);
 
   const handleSave = useCallback(async () => {
     if (character) {
@@ -196,7 +202,7 @@ export default function CharacterView() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} />
+      <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} showDescriptions={showDescriptions} onShowDescriptionsChange={setShowDescriptions} />
 
       <div className="sticky top-[52px] z-30 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
         <div className="mx-auto max-w-lg px-4 py-2.5">
@@ -204,7 +210,7 @@ export default function CharacterView() {
         </div>
       </div>
 
-      <CharacterSheetProvider onFieldBlur={debouncedSave}>
+      <CharacterSheetProvider onFieldBlur={debouncedSave} showDescriptions={showDescriptions} onShowDescriptionsChange={setShowDescriptions}>
         <main className="mx-auto max-w-lg px-4 py-3 pb-28">
           {activeTab === "combat" && (
             <>
