@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getWizardSpellsByLevel, getPactBoons, getStaticFeat } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, isPreparationCaster, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -764,9 +764,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     draft.spells = spells;
     draft.cantrips = cantrips;
     draft.magicalSecretsSpells = [...(character.magicalSecretsSpells || []), ...magicalSecretsIds];
-    if (isPreparationCaster(draft)) {
-      draft.preparedSpells = [...(character.preparedSpells || []), ...newPreparedIds];
-    }
     draft.level = targetLevel;
 
     if (draft.class === "Bard") {
@@ -966,6 +963,10 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           "pact-boon": [pactBoon],
         };
       }
+    }
+
+    if (["Cleric", "Druid", "Artificer"].includes(draft.class)) {
+      draft.preparedSpells = [...(character.preparedSpells || []), ...newPreparedIds];
     }
 
     let finalChar = applySubclassFeatures(draft);
