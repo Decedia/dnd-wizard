@@ -922,60 +922,76 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               );
             })}
             {popupOption.isInstrumentChoice && MUSICAL_INSTRUMENTS.map((instrument) => (
-              <button
+              <div
                 key={instrument}
-                type="button"
-                onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
                 className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <span className="text-body text-[var(--color-text-primary)]">{instrument}</span>
+                <button
+                  type="button"
+                  onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full text-left flex items-center justify-between gap-2"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{instrument}</span>
+                </button>
                 <InfoButton
                   title={instrument}
                   description="Musical instrument. Bards use musical instruments as a spellcasting focus."
                 />
-              </button>
+              </div>
             ))}
             {popupOption.isArcaneFocusChoice && ARCANE_FOCUS_TYPES.map((focus) => (
-              <button
+              <div
                 key={focus}
-                type="button"
-                onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
                 className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
+                <button
+                  type="button"
+                  onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full text-left flex items-center justify-between gap-2"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
+                </button>
                 <InfoButton
                   title={focus}
                   description="An arcane focus is a special item designed to channel arcane magic. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
                 />
-              </button>
+              </div>
             ))}
             {popupOption.isHolySymbolChoice && HOLY_SYMBOL_TYPES.map((symbol) => (
-              <button
+              <div
                 key={symbol}
-                type="button"
-                onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
                 className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <span className="text-body text-[var(--color-text-primary)]">{symbol}</span>
+                <button
+                  type="button"
+                  onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full text-left flex items-center justify-between gap-2"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{symbol}</span>
+                </button>
                 <InfoButton
                   title={symbol}
                   description="A holy symbol is a representation of a deity or pantheon. A cleric or paladin can use a holy symbol as a spellcasting focus."
                 />
-              </button>
+              </div>
             ))}
             {popupOption.isDruidicFocusChoice && DRUIDIC_FOCUS_TYPES.map((focus) => (
-              <button
+              <div
                 key={focus}
-                type="button"
-                onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
                 className="w-full card px-3 py-2 text-left text-sm flex items-center justify-between gap-2 hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
               >
-                <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
+                <button
+                  type="button"
+                  onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full text-left flex items-center justify-between gap-2"
+                >
+                  <span className="text-body text-[var(--color-text-primary)]">{focus}</span>
+                </button>
                 <InfoButton
                   title={focus}
                   description="A druidic focus is a special item used by druids to channel nature magic. It can be a sprig of mistletoe, a totem, a wooden staff, or a yew wand."
                 />
-              </button>
+              </div>
             ))}
           </div>
         </DescriptionModal>

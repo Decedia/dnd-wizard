@@ -178,48 +178,50 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
               const armorType = item.armor_category;
               const weaponCategory = item.weapon_category;
               return (
-                <button
-                  key={item.name}
-                  type="button"
-                  onClick={() => setSelectedItem(item.name)}
-                  className={`w-full px-3 py-2 text-left rounded-lg border transition-all ${
-                    isSelected
-                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
-                      : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`text-xs font-bold ${isSelected ? "" : "text-[var(--color-text-primary)]"}`}>{item.name}</span>
-                    <div className="flex items-center gap-1.5">
-                      {damageDice && (
-                        <span
-                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-damage-slashing)", backgroundColor: "var(--color-damage-slashing-bg)" }}
-                        >
-                          {damageDice}
-                        </span>
+                <div key={item.name} className="w-full px-3 py-2 text-left rounded-lg border transition-all">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedItem(item.name)}
+                    className={`w-full text-left rounded-lg border transition-all ${
+                      isSelected
+                        ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
+                        : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                    }`}
+                    style={{ padding: "8px 12px" }}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className={`text-xs font-bold ${isSelected ? "" : "text-[var(--color-text-primary)]"}`}>{item.name}</span>
+                      <div className="flex items-center gap-1.5">
+                        {damageDice && (
+                          <span
+                            className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                            style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-damage-slashing)", backgroundColor: "var(--color-damage-slashing-bg)" }}
+                          >
+                            {damageDice}
+                          </span>
+                        )}
+                        {damageType && (
+                          <DamageBadge type={damageType} size="sm" showLabel={false} />
+                        )}
+                        {baseAC && !isNaN(Number(baseAC)) && Number(baseAC) > 0 && (
+                          <span
+                            className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                            style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-info-600)", backgroundColor: "var(--color-info-50)" }}
+                          >
+                            AC {baseAC}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mt-1 ml-0">
+                      {weaponCategory && (
+                        <span className="text-[10px] text-[var(--color-text-muted)]">{weaponCategory}</span>
                       )}
-                      {damageType && (
-                        <DamageBadge type={damageType} size="sm" showLabel={false} />
-                      )}
-                      {baseAC && !isNaN(Number(baseAC)) && Number(baseAC) > 0 && (
-                        <span
-                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-info-600)", backgroundColor: "var(--color-info-50)" }}
-                        >
-                          AC {baseAC}
-                        </span>
+                      {armorType && (
+                        <span className="text-[10px] text-[var(--color-text-muted)]">{armorType}</span>
                       )}
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 mt-1 ml-0">
-                    {weaponCategory && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">{weaponCategory}</span>
-                    )}
-                    {armorType && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">{armorType}</span>
-                    )}
-                  </div>
+                  </button>
                   {item.properties && item.properties.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-1 ml-0">
                       {item.properties.map((prop: any) => {
@@ -234,7 +236,7 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
                       })}
                     </div>
                   )}
-                </button>
+                </div>
               );
             })}
           </div>

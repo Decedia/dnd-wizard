@@ -2381,7 +2381,7 @@ function LevelCard({
       )}
             <div className="flex-1 overflow-y-auto px-4 py-4">
               <div className="space-y-2">
-                {showFeaturePopup.options.map((opt, idx) => {
+{showFeaturePopup.options.map((opt, idx) => {
                   const currentSelection = showFeaturePopup.isSubclass
                     ? subclassFeatureChoices[showFeaturePopup.name]
                     : classFeatureChoices[showFeaturePopup.name];
@@ -2398,46 +2398,48 @@ function LevelCard({
                           : "border-[var(--color-border)] bg-[var(--color-surface)]"
                       }`}
                     >
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (opt.name === "Humanoid (2 races)") {
-                            setShowHumanoidPopup({ featureName: showFeaturePopup.name, level: lvl });
-                            setHumanoidSelections([]);
-                            setShowFeaturePopup(null);
-                            return;
-                          }
-                          if (isMultiSelect) {
-                            if (multiSelected) {
-                              setMultiSelectSelections(multiSelectSelections.filter((s) => s !== opt.name));
-                            } else if (multiSelectSelections.length < (showFeaturePopup.count || 1)) {
-                              setMultiSelectSelections([...multiSelectSelections, opt.name]);
+                      <div className="w-full p-3">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (opt.name === "Humanoid (2 races)") {
+                              setShowHumanoidPopup({ featureName: showFeaturePopup.name, level: lvl });
+                              setHumanoidSelections([]);
+                              setShowFeaturePopup(null);
+                              return;
                             }
-                            return;
-                          }
-                          if (showFeaturePopup.isSubclass) {
-                            onSubclassFeatureChoice(showFeaturePopup.name, opt.name);
-                          } else {
-                            onClassFeatureChoice(showFeaturePopup.name, opt.name);
-                          }
-                          setShowFeaturePopup(null);
-                        }}
-                        disabled={isDisabled}
-                        className={`w-full p-3 text-left ${
-                          isSelected ? "text-[var(--color-surface)]" : "hover:border-[var(--color-border-active)]"
-                        }`}
-                      >
-                         <div className="flex items-center justify-between gap-2">
-                           <div className="text-xs font-semibold flex items-center gap-2">
-                             {isSelected && <Check className="h-3 w-3 shrink-0" />}
-                             {opt.name}
-                           </div>
-                           {opt.description && (
-                             <InfoButton title={opt.name} description={opt.description} />
-                           )}
-                         </div>
-                       </button>
-                     </div>
+                            if (isMultiSelect) {
+                              if (multiSelected) {
+                                setMultiSelectSelections(multiSelectSelections.filter((s) => s !== opt.name));
+                              } else if (multiSelectSelections.length < (showFeaturePopup.count || 1)) {
+                                setMultiSelectSelections([...multiSelectSelections, opt.name]);
+                              }
+                              return;
+                            }
+                            if (showFeaturePopup.isSubclass) {
+                              onSubclassFeatureChoice(showFeaturePopup.name, opt.name);
+                            } else {
+                              onClassFeatureChoice(showFeaturePopup.name, opt.name);
+                            }
+                            setShowFeaturePopup(null);
+                          }}
+                          disabled={isDisabled}
+                          className={`w-full p-3 text-left ${
+                            isSelected ? "text-[var(--color-surface)]" : "hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="text-xs font-semibold flex items-center gap-2">
+                              {isSelected && <Check className="h-3 w-3 shrink-0" />}
+                              {opt.name}
+                            </div>
+                          </div>
+                        </button>
+                        {opt.description && (
+                          <InfoButton title={opt.name} description={opt.description} />
+                        )}
+                      </div>
+                    </div>
                   );
                 })}
               </div>
