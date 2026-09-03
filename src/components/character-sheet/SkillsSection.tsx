@@ -112,27 +112,33 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                   <div className="flex flex-col min-w-0">
                      <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                        {(isProficient || isExpert) && (
-                         <button type="button" onClick={() => setInfoSkill(infoSkill === name ? null : name)} className="shrink-0 text-ink-muted hover:text-ink">
-                           <InfoIcon size={10} />
-                         </button>
-                       )}
-                       {(isProficient || isExpert) && (
                          <span className="inline-block h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: isExpert ? "var(--color-accent-purple-600)" : isBgSkill ? "var(--color-success-500)" : "var(--color-ink)" }} />
-                       )}
-                       {infoSkill === name && (
-                         <span className={`text-[9px] font-bold px-1 rounded ${
-                           isExpert ? "text-purple-700 bg-purple-100" : isBgSkill ? "text-green-700 bg-green-100" : "text-ink bg-paper-muted"
-                         }`}>
-                           {isExpert ? "expertise" : isBgSkill ? "background" : `normal +${profBonus}`}
-                         </span>
                        )}
                        {name}
                      </span>
                      <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
-                  <span className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
-                    {total >= 0 ? `+${total}` : total}
-                  </span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
+                      {total >= 0 ? `+${total}` : total}
+                    </span>
+                    {(isProficient || isExpert) && (
+                      <div className="relative">
+                        <button type="button" onClick={() => setInfoSkill(infoSkill === name ? null : name)} className="shrink-0 text-ink-muted hover:text-ink">
+                          <InfoIcon size={10} />
+                        </button>
+                        {infoSkill === name && (
+                          <div className="absolute right-0 top-full mt-1 z-20 w-28 rounded border border-[var(--color-border)] bg-[var(--color-surface)] shadow-lg p-1.5">
+                            <span className={`text-[9px] font-bold px-1 rounded block text-center ${
+                              isExpert ? "text-purple-700 bg-purple-100" : isBgSkill ? "text-green-700 bg-green-100" : "text-ink bg-paper-muted"
+                            }`}>
+                              {isExpert ? "expertise" : isBgSkill ? "background" : `normal +${profBonus}`}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
