@@ -4,7 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
-import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CheckIcon as Check, CircleIcon as Circle } from "@/components/icons";
+import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
@@ -162,34 +162,45 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
       </div>
 
       {/* Combat Action Tracker */}
-      <div className="grid grid-cols-3 gap-3 mt-4 pt-3 border-t border-[var(--color-border)]">
-        <button
-          type="button"
-          onClick={() => onChange({ actionUsed: !character.actionUsed })}
-          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-[var(--color-success-200)] text-[var(--color-success-700)] hover:bg-[var(--color-success-50)] transition-all"
-        >
-          <LightningBolt className="h-4 w-4" />
-          {character.actionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
-          <span className="text-xs font-semibold">Action</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange({ bonusActionUsed: !character.bonusActionUsed })}
-          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-[var(--color-info-200)] text-[var(--color-info-700)] hover:bg-[var(--color-info-50)] transition-all"
-        >
-          <Clock className="h-4 w-4" />
-          {character.bonusActionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
-          <span className="text-xs font-semibold">Bonus</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange({ reactionUsed: !character.reactionUsed })}
-          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-[var(--color-warning-200)] text-[var(--color-warning-700)] hover:bg-[var(--color-warning-50)] transition-all"
-        >
-          <ShieldCheck className="h-4 w-4" />
-          {character.reactionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
-          <span className="text-xs font-semibold">Reaction</span>
-        </button>
+      <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
+        <div className="grid grid-cols-3 gap-3">
+          <button
+            type="button"
+            onClick={() => onChange({ actionUsed: !character.actionUsed })}
+            className={`flex flex-col items-center gap-1 py-2 rounded-full transition-all ${
+              character.actionUsed
+                ? "bg-[var(--color-success-500)] text-white border border-[var(--color-success-500)]"
+                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+            }`}
+          >
+            <LightningBolt className="h-5 w-5" />
+            <span className="text-[10px] font-bold">Action</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => onChange({ bonusActionUsed: !character.bonusActionUsed })}
+            className={`flex flex-col items-center gap-1 py-2 rounded-full transition-all ${
+              character.bonusActionUsed
+                ? "bg-[var(--color-info-500)] text-white border border-[var(--color-info-500)]"
+                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+            }`}
+          >
+            <Clock className="h-5 w-5" />
+            <span className="text-[10px] font-bold">Bonus</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => onChange({ reactionUsed: !character.reactionUsed })}
+            className={`flex flex-col items-center gap-1 py-2 rounded-full transition-all ${
+              character.reactionUsed
+                ? "bg-[var(--color-warning-500)] text-white border border-[var(--color-warning-500)]"
+                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+            }`}
+          >
+            <ShieldCheck className="h-5 w-5" />
+            <span className="text-[10px] font-bold">Reaction</span>
+          </button>
+        </div>
       </div>
 
       {/* Exhaustion Level Tracker */}
