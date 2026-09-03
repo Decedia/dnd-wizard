@@ -111,14 +111,13 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex flex-col min-w-0">
                      <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
-                       {name}
-                       {(isProficient || isExpert) && (
-                         <span className="inline-block h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: isExpert ? "var(--color-accent-purple-600)" : isBgSkill ? "var(--color-success-500)" : "var(--color-ink)" }} />
-                       )}
                        {(isProficient || isExpert) && (
                          <button type="button" onClick={() => setInfoSkill(infoSkill === name ? null : name)} className="shrink-0 text-ink-muted hover:text-ink">
                            <InfoIcon size={10} />
                          </button>
+                       )}
+                       {(isProficient || isExpert) && (
+                         <span className="inline-block h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: isExpert ? "var(--color-accent-purple-600)" : isBgSkill ? "var(--color-success-500)" : "var(--color-ink)" }} />
                        )}
                        {infoSkill === name && (
                          <span className={`text-[9px] font-bold px-1 rounded ${
@@ -127,6 +126,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                            {isExpert ? "expertise" : isBgSkill ? "background" : `normal +${profBonus}`}
                          </span>
                        )}
+                       {name}
                      </span>
                      <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
