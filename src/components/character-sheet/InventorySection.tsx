@@ -5,12 +5,13 @@ import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 import { ItemSelectionPopup } from "./ItemSelectionPopup";
 import { Dice } from "@/components/Dice";
+import { SourceBadge } from "@/components/SourceBadge";
 
 interface InventorySectionProps {
   character: Character;
@@ -265,10 +266,21 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     }
   };
 
+  const sortedInventory = useMemo(() => {
+    return [...character.inventory].sort((a, b) => {
+      // Custom items first (source: "custom"), then SRD items
+      if (a.source !== b.source) {
+        if (a.source === "custom") return -1;
+        if (b.source === "custom") return 1;
+      }
+      return (a.name || "").localeCompare(b.name || "");
+    });
+  }, [character.inventory]);
+
   return (
     <SectionCard id="inventory" title="Inventory" icon={<Backpack className="h-5 w-5" />}>
       <div className="space-y-2">
-        {character.inventory.map((item) => {
+        {sortedInventory.map((item: Character["inventory"][number]) => {
           const description = getItemDescription(item);
           const equipBtn = canEquip(item);
           const isCustom = item.source === "custom";
@@ -405,6 +417,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       {item.quantity > 1 && (
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
                       )}
+                      <SourceBadge source={item.source === "custom" ? "PHB" : "PHB"} size="sm" />
                       {item.itemType === "armor" && item.armorType === "shield" && (
                         <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
                           <Shield size={10} className="inline mr-0.5" />Shield

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack, InfoIcon as Info } from "@/components/icons";
@@ -46,12 +46,53 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
     };
   }, []);
 
-  const weapons = getStaticWeapons(character.sources).filter((w) => w.weapon_category === "Simple" || w.weapon_category === "Martial");
-  const armors = getStaticEquipments(character.sources).filter((e) => e.armor_category === "Light" || e.armor_category === "Medium" || e.armor_category === "Heavy" || e.armor_category === "Shield");
-  const items = getStaticEquipments(character.sources).filter((e) => {
-    const cat = e.equipment_category?.toLowerCase() || "";
-    return !cat.includes("weapon") && !cat.includes("armor") && !cat.includes("shield") && !cat.includes("adventuring");
-  });
+  const weapons = useMemo(() => {
+    return getStaticWeapons(character.sources)
+      .filter((w) => w.weapon_category === "Simple" || w.weapon_category === "Martial")
+      .sort((a, b) => {
+        const sourceA = (a as any).source || "PHB";
+        const sourceB = (b as any).source || "PHB";
+        if (sourceA !== sourceB) {
+          if (sourceA === "PHB") return -1;
+          if (sourceB === "PHB") return 1;
+          return sourceA.localeCompare(sourceB);
+        }
+        return a.name.localeCompare(b.name);
+      });
+  }, [character.sources]);
+
+  const armors = useMemo(() => {
+    return getStaticEquipments(character.sources)
+      .filter((e) => e.armor_category === "Light" || e.armor_category === "Medium" || e.armor_category === "Heavy" || e.armor_category === "Shield")
+      .sort((a, b) => {
+        const sourceA = (a as any).source || "PHB";
+        const sourceB = (b as any).source || "PHB";
+        if (sourceA !== sourceB) {
+          if (sourceA === "PHB") return -1;
+          if (sourceB === "PHB") return 1;
+          return sourceA.localeCompare(sourceB);
+        }
+        return a.name.localeCompare(b.name);
+      });
+  }, [character.sources]);
+
+  const items = useMemo(() => {
+    return getStaticEquipments(character.sources)
+      .filter((e) => {
+        const cat = e.equipment_category?.toLowerCase() || "";
+        return !cat.includes("weapon") && !cat.includes("armor") && !cat.includes("shield") && !cat.includes("adventuring");
+      })
+      .sort((a, b) => {
+        const sourceA = (a as any).source || "PHB";
+        const sourceB = (b as any).source || "PHB";
+        if (sourceA !== sourceB) {
+          if (sourceA === "PHB") return -1;
+          if (sourceB === "PHB") return 1;
+          return sourceA.localeCompare(sourceB);
+        }
+        return a.name.localeCompare(b.name);
+      });
+  }, [character.sources]);
 
   const currentItems = activeCategory === "weapons" ? weapons : activeCategory === "armor" ? armors : items;
 
@@ -190,7 +231,10 @@ export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionP
                     style={{ padding: "8px 12px" }}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className={`text-xs font-bold ${isSelected ? "" : "text-[var(--color-text-primary)]"}`}>{item.name}</span>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`text-xs font-bold ${isSelected ? "" : "text-[var(--color-text-primary)]"}`}>{item.name}</span>
+                        <SourceBadge source={(item as any).source || "PHB"} size="sm" />
+                      </div>
                       <div className="flex items-center gap-1.5">
                         {damageDice && (
                           <span

@@ -10,6 +10,7 @@ import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, Circl
 import { SpellSelectionModal } from "./SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 import { SourceBadge } from "@/components/SourceBadge";
+import { DamageBadge } from "./DamageBadge";
 
 interface SpellsSectionProps {
   character: Character;
@@ -82,6 +83,20 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       const existing = map.get(spell.level) || [];
       existing.push(spell);
       map.set(spell.level, existing);
+    }
+    // Sort each level's spells by source (PHB first), then alphabetically
+    for (const [level, spells] of map.entries()) {
+      spells.sort((a, b) => {
+        const sourceA = a.srdSource || "PHB";
+        const sourceB = b.srdSource || "PHB";
+        if (sourceA !== sourceB) {
+          // PHB first, then alphabetical by source
+          if (sourceA === "PHB") return -1;
+          if (sourceB === "PHB") return 1;
+          return sourceA.localeCompare(sourceB);
+        }
+        return a.name.localeCompare(b.name);
+      });
     }
     return map;
   }, [unifiedSpells]);
@@ -240,6 +255,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   })()}
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
+                  {spell.damageDice && spell.damageType && (
+                    <DamageBadge type={spell.damageType} size="sm" showLabel={false} />
+                  )}
+                  <SourceBadge source={spell.srdSource || "PHB"} size="sm" />
                   {preparationCaster && spell.level > 0 && (
                     <button
                       type="button"
@@ -283,7 +302,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       ✕
                     </button>
                   )}
-                  {spell.srdSource && spell.srdSource !== "PHB" && <SourceBadge source={spell.srdSource} size="sm" />}
                   {editMode && (
                     <button
                       type="button"

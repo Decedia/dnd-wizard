@@ -52,6 +52,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     }
   };
 
+  const sortedFeatures = useMemo(() => {
+    return [...character.features].sort((a, b) => {
+      // Sort by source: race/class/subclass first, then custom
+      const sourceOrder = { race: 0, class: 1, subclass: 2, custom: 3 };
+      const orderA = sourceOrder[a.source as keyof typeof sourceOrder] ?? 3;
+      const orderB = sourceOrder[b.source as keyof typeof sourceOrder] ?? 3;
+      if (orderA !== orderB) return orderA - orderB;
+      // Then alphabetically
+      return a.name.localeCompare(b.name);
+    });
+  }, [character.features]);
+
   return (
     <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
       <div className="space-y-3">
@@ -62,12 +74,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               {(() => {
                 const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
                 const sub = subclasses.find(s => s.name === character.subclass);
-                return sub?.source && sub.source !== "PHB" ? <SourceBadge source={sub.source} /> : null;
+                return sub?.source ? <SourceBadge source={sub.source} /> : null;
               })()}
             </div>
           </div>
         )}
-        {character.features.map((feature) => {
+        {sortedFeatures.map((feature) => {
           const isLocked = feature.locked === true;
           return (
             <div key={feature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`}>
@@ -122,13 +134,19 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                               className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex items-center gap-1.5"
                             >
                               {feature.name}
-                              {matchedFeat.source && matchedFeat.source !== "PHB" && (
-                                <SourceBadge source={matchedFeat.source} />
-                              )}
+                              <SourceBadge source={matchedFeat.source || "PHB"} size="sm" />
                             </button>
                           );
                         }
-                        return <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</h3>;
+                        // For features without matched feat data (custom or class/race features)
+                        return (
+                          <>
+                            {feature.name}
+                            {feature.source && feature.source !== "custom" && (
+                              <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
+                            )}
+                          </>
+                        );
                       })()}
                       {(character.featuresUsedThisTurn || []).includes(feature.id) && (
                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>

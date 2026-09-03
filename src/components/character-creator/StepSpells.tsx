@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
+import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
 import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
@@ -92,6 +93,30 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
     if (!spellLevels[level]) spellLevels[level] = [];
     spellLevels[level].push(spell);
   }
+  // Sort each level's spells by source (PHB first), then alphabetically
+  for (const level in spellLevels) {
+    spellLevels[level].sort((a, b) => {
+      const sourceA = (a as any).source || "PHB";
+      const sourceB = (b as any).source || "PHB";
+      if (sourceA !== sourceB) {
+        if (sourceA === "PHB") return -1;
+        if (sourceB === "PHB") return 1;
+        return sourceA.localeCompare(sourceB);
+      }
+      return a.name.localeCompare(b.name);
+    });
+  }
+  // Sort cantrips too
+  cantrips.sort((a, b) => {
+    const sourceA = (a as any).source || "PHB";
+    const sourceB = (b as any).source || "PHB";
+    if (sourceA !== sourceB) {
+      if (sourceA === "PHB") return -1;
+      if (sourceB === "PHB") return 1;
+      return sourceA.localeCompare(sourceB);
+    }
+    return a.name.localeCompare(b.name);
+  });
 
   const toggleCantrip = (spellName: string) => {
     const isSelected = selectedSpells.some((s) => s.name === spellName && s.level === 0);
@@ -262,7 +287,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
               {selectedCantrips.length} / {maxCantrips}
             </span>
           </div>
-          <div className="grid grid-cols-1 gap-2">
+<div className="grid grid-cols-1 gap-2">
             {cantrips.map((spell) => {
               const isSelected = selectedSpells.some((s) => s.name === spell.name && s.level === 0);
               const isDisabled = !isSelected && selectedCantrips.length >= maxCantrips;
@@ -279,21 +304,19 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                         : "btn-secondary"
                     }`}
                   >
-                     <div className="flex items-center justify-between">
-                       <div className="flex items-center gap-1.5">
-                         <span className="text-sm font-bold text-inherit">{spell.name}</span>
-                         {(spell as any).sources?.filter((s: string) => s !== "PHB").map((src: string) => (
-                           <SourceBadge key={src} source={src} size="sm" />
-                         ))}
-                       </div>
-                       <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                         {spell.school || ""}
-                       </span>
-                     </div>
-                  </button>
-                  {spellDesc && (
-                    <InfoButton title={spell.name} description={spellDesc} />
-                  )}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                          <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
+                        </div>
+                        <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                          {spell.school || ""}
+                        </span>
+                      </div>
+                   </button>
+                   {spellDesc && (
+                     <InfoButton title={spell.name} description={spellDesc} />
+                   )}
                 </div>
               );
             })}
@@ -346,7 +369,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                   {selectedLevelSpells.filter((s) => s.level === Number(level)).length} / {maxSpells}
                 </span>
               </div>
-              <div className="grid grid-cols-1 gap-2">
+<div className="grid grid-cols-1 gap-2">
                 {spells.map((spell) => {
                   const isSelected = selectedSpells.some((s) => s.name === spell.name && s.level === Number(level));
                   const isDisabled = !isSelected && selectedLevelSpells.length >= maxSpells;
@@ -363,32 +386,33 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                             : "btn-secondary"
                         }`}
                       >
-                         <div className="flex items-center justify-between">
-                           <div className="flex items-center gap-1.5">
-                             <span className="text-sm font-bold text-inherit">{spell.name}</span>
-                             {(spell as any).sources?.filter((s: string) => s !== "PHB").map((src: string) => (
-                               <SourceBadge key={src} source={src} size="sm" />
-                             ))}
-                           </div>
-                           <div className="flex items-center gap-2">
-                             <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                               {spell.school || ""}
-                             </span>
-                           </div>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                              <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                                {spell.school || ""}
+                              </span>
+                            </div>
+                          </div>
+<div className="flex items-center gap-2 mt-1">
+                            {spell.damage?.damageDice && spell.damage?.damageType && (
+                              <DamageBadge type={spell.damage.damageType} size="sm" showLabel={false} />
+                            )}
+                           <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
+                             {spell.castingTime}
+                           </span>
+                           <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+                           <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
+                             {spell.range}
+                           </span>
                          </div>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
-                            {spell.castingTime}
-                          </span>
-                          <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
-                          <span className="text-[10px] text-[var(--color-text-muted)] font-medium">
-                            {spell.range}
-                          </span>
-                        </div>
-                      </button>
-                      {spellDesc && (
-                        <InfoButton title={spell.name} description={spellDesc} />
-                      )}
+                       </button>
+                       {spellDesc && (
+                         <InfoButton title={spell.name} description={spellDesc} />
+                       )}
                     </div>
                   );
                 })}
