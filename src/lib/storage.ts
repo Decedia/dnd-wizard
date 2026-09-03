@@ -56,7 +56,7 @@ export interface Character {
   toolProficiencies: string[];
   expertise: string[];
   passivePerception: number;
-  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean }[];
+  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive" }[];
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
