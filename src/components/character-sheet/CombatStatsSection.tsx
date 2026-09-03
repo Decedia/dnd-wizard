@@ -162,11 +162,11 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
       </div>
 
       {/* Combat Action Tracker */}
-      <div className="flex items-center justify-center gap-3 mt-4 pt-3 border-t border-[var(--color-border)]">
+      <div className="grid grid-cols-3 gap-3 mt-4 pt-3 border-t border-[var(--color-border)]">
         <button
           type="button"
           onClick={() => onChange({ actionUsed: !character.actionUsed })}
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-success-200)] text-[var(--color-success-700)] hover:bg-[var(--color-success-50)] transition-all"
+          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-[var(--color-success-200)] text-[var(--color-success-700)] hover:bg-[var(--color-success-50)] transition-all"
         >
           <LightningBolt className="h-4 w-4" />
           {character.actionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
@@ -175,7 +175,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <button
           type="button"
           onClick={() => onChange({ bonusActionUsed: !character.bonusActionUsed })}
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-info-200)] text-[var(--color-info-700)] hover:bg-[var(--color-info-50)] transition-all"
+          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-[var(--color-info-200)] text-[var(--color-info-700)] hover:bg-[var(--color-info-50)] transition-all"
         >
           <Clock className="h-4 w-4" />
           {character.bonusActionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
@@ -184,7 +184,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <button
           type="button"
           onClick={() => onChange({ reactionUsed: !character.reactionUsed })}
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-warning-200)] text-[var(--color-warning-700)] hover:bg-[var(--color-warning-50)] transition-all"
+          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-[var(--color-warning-200)] text-[var(--color-warning-700)] hover:bg-[var(--color-warning-50)] transition-all"
         >
           <ShieldCheck className="h-4 w-4" />
           {character.reactionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
