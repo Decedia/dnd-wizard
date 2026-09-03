@@ -96,14 +96,14 @@ export function FeatSelector({ onSelect, onClose, selectedFeat, sources }: FeatS
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5">
-                        <button
-                          type="button"
-                          onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
-                          className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
-                        >
-                          {feat.name}
-                        </button>
-                        {feat.source && feat.source !== "PHB" && <SourceBadge source={feat.source} size="sm" />}
+                         <button
+                           type="button"
+                           onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
+                           className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
+                         >
+                           {feat.source && feat.source !== "PHB" && <SourceBadge source={feat.source} size="sm" />}
+                           {feat.name}
+                         </button>
                       </div>
                     </div>
                     {feat.prerequisites && (

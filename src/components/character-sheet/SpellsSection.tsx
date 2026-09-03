@@ -239,7 +239,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <div key={spell.id} className={`card p-3 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex flex-col min-w-0 flex-1">
-                  <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+                  <div className="flex items-center gap-1.5">
+                    <SourceBadge source={spell.srdSource || "PHB"} size="sm" />
+                    <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+                  </div>
                   {spell.duration && (() => {
                     const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
                     if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
@@ -258,7 +261,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   {spell.damageDice && spell.damageType && (
                     <DamageBadge type={spell.damageType} size="sm" showLabel={false} />
                   )}
-                  <SourceBadge source={spell.srdSource || "PHB"} size="sm" />
                   {preparationCaster && spell.level > 0 && (
                     <button
                       type="button"

@@ -86,10 +86,10 @@ return (
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
+                        {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
                         <span className="text-card-title">{race.name}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
                         <span className="text-muted">
                           {race.size} / Speed {race.speed} ft
                         </span>

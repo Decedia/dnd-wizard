@@ -411,11 +411,11 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2 flex-wrap">
+                      <SourceBadge source={item.source === "custom" ? "PHB" : "PHB"} size="sm" />
                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name || "Unnamed Item"}</span>
                       {item.quantity > 1 && (
                         <span className="text-xs text-[var(--color-text-secondary)] font-medium">x{item.quantity}</span>
                       )}
-                      <SourceBadge source={item.source === "custom" ? "PHB" : "PHB"} size="sm" />
                       {item.itemType === "armor" && item.armorType === "shield" && (
                         <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
                           <Sword size={10} className="inline mr-0.5" />Shield

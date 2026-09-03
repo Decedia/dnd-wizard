@@ -122,12 +122,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         {character.subclass && (
           <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-ink">{character.subclass}</span>
               {(() => {
                 const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
                 const sub = subclasses.find(s => s.name === character.subclass);
                 return sub?.source ? <SourceBadge source={sub.source} /> : null;
               })()}
+              <span className="text-sm font-bold text-ink">{character.subclass}</span>
             </div>
           </div>
         )}
@@ -185,18 +185,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                               onClick={() => setPopupFeatName(feature.name)}
                               className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex items-center gap-1.5"
                             >
-                              {feature.name}
                               <SourceBadge source={matchedFeat.source || "PHB"} size="sm" />
+                              {feature.name}
                             </button>
                           );
                         }
                         // For features without matched feat data (custom or class/race features)
                         return (
                           <>
-                            {feature.name}
                             {feature.source && feature.source !== "custom" && (
                               <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
                             )}
+                            {feature.name}
                           </>
                         );
                       })()}

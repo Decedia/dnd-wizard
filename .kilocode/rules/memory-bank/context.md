@@ -120,6 +120,7 @@
 - [x] Character creation `handleFinish` now adds subclass features when subclass is selected
 - [x] Lint, typecheck, and build verified
 - [x] Comprehensive character sheet dark theme restyle: updated all 14 section components, tabs, toggles, and global CSS to near-black backgrounds with red/burgundy accents; lint and typecheck pass
+- [x] Reordered SourceBadge to appear BEFORE content names across all components: SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection (ViewField), FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard; badges now render first (e.g. [PHB] [Fireball]); typecheck passes
 
 ## Current Structure
 
@@ -276,3 +277,4 @@ Wizard restructure complete. Next steps:
 | 2026-09-01 | Source badge positioning and class filtering: moved SourceBadge to right corner of race/class selection cards in `StepOrigin.tsx` and `StepRace.tsx`; added `source` field to `SRDClass` interface; `getStaticClasses()` now accepts optional `sources` parameter for filtering; `StepOrigin` passes `data.sources` to `getStaticClasses` so unchecking an extension filters out non-PHB classes; typecheck and build pass |
 | 2026-09-01 | Moved subclass count display below class name in class selection popup; typecheck and build pass |
 | 2026-09-03 | Redesigned combat action buttons: removed Check/Circle tick indicators, now using color-only active state (filled bg + white text when used, outline when unused), restructured into 2-row layout with icon row above label row; removed unused CheckIcon/CircleIcon imports |
+| 2026-09-03 | Reordered SourceBadge to appear BEFORE content names across all components: SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection (ViewField), FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard; badges now render first (e.g. [PHB] [Fireball]); typecheck passes |

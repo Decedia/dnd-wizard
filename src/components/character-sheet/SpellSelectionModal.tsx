@@ -323,8 +323,8 @@ return (
                           {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
                           {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                           <div className="flex items-center gap-1.5">
-                            <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
                             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+                            <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
                           </div>
                         </div>
                         <div className="flex items-center gap-2 mt-0.5 ml-5">
@@ -371,8 +371,8 @@ return (
                           {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
                           {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                           <div className="flex items-center gap-1.5">
-                            <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
                             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+                            <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
                           </div>
                         </div>
                         <div className="flex items-center gap-2 mt-0.5 ml-5">

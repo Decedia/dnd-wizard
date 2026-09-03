@@ -74,8 +74,8 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-card-title">{sub.name}</span>
                     <SourceBadge source={sub.source || "PHB"} size="sm" />
+                    <span className="text-card-title">{sub.name}</span>
                   </div>
                   {isSelected && (
                     <CheckCircle color="var(--color-text-primary)" className="h-4 w-4" />

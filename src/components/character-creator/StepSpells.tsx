@@ -305,10 +305,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                     }`}
                   >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-sm font-bold text-inherit">{spell.name}</span>
-                          <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
-                        </div>
+                      <div className="flex items-center gap-1.5">
+                        <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
+                        <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                      </div>
                         <span className="text-xs text-[var(--color-text-muted)] font-medium">
                           {spell.school || ""}
                         </span>

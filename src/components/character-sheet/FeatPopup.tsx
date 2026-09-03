@@ -18,8 +18,8 @@ export function FeatPopup({ feat, onClose }: FeatPopupProps) {
       <div className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-xl">
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
           <div className="flex items-center gap-2">
-            <div className="text-sm font-bold text-[var(--color-text-primary)]">{feat.name}</div>
             {feat.source && feat.source !== "PHB" && <SourceBadge source={feat.source} />}
+            <div className="text-sm font-bold text-[var(--color-text-primary)]">{feat.name}</div>
           </div>
           <button
             type="button"

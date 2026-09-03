@@ -1425,8 +1425,8 @@ function LevelCard({
                     {info.features.map((f) => (
                       <div key={f.name}>
                          <div className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
-                           <span className="font-semibold">{f.name}</span>
                            {f.source && f.source !== "PHB" && <SourceBadge source={f.source} />}
+                           <span className="font-semibold">{f.name}</span>
                            {f.description && (
                              <InfoButton title={f.name} description={f.description} />
                            )}

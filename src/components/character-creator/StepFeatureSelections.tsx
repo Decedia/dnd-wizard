@@ -178,8 +178,8 @@ function SpellSelector({ options, selected, maxCount, onSelect }: { options: str
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-body">{spellName}</span>
                 {spell?.source && spell.source !== "PHB" && <SourceBadge source={spell.source} />}
+                <span className="text-body">{spellName}</span>
                 {spell && (
                   <span className="text-description">Level {spell.level}</span>
                 )}

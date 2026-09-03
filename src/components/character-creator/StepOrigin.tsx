@@ -273,18 +273,20 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
-                            <div>
-                              <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
-                              {hasSubclasses && (() => {
-                                const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
-                                return (
-                                  <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
-                                    {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
-                                  </div>
-                                );
-                              })()}
+                            <div className="flex items-center gap-2">
+                              {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
+                              <div>
+                                <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
+                                {hasSubclasses && (() => {
+                                  const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
+                                  return (
+                                    <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
+                                      {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
+                                    </div>
+                                  );
+                                })()}
+                              </div>
                             </div>
-                            {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
                           </div>
                         </div>
                       </div>
