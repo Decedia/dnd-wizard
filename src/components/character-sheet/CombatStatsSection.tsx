@@ -172,8 +172,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               : "btn-secondary"
           }`}
         >
-          <LightningBolt className="h-4 w-4" />
-          {character.actionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+          <LightningBolt className="h-5 w-5" />
+          {character.actionUsed ? <Check className="h-5 w-5" /> : <Circle className="h-5 w-5" />}
           <span>Action</span>
         </button>
         <button
@@ -185,8 +185,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               : "btn-secondary"
           }`}
         >
-          <Clock className="h-4 w-4" />
-          {character.bonusActionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+          <Clock className="h-5 w-5" />
+          {character.bonusActionUsed ? <Check className="h-5 w-5" /> : <Circle className="h-5 w-5" />}
           <span>Bonus</span>
         </button>
         <button
@@ -198,8 +198,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               : "btn-secondary"
           }`}
         >
-          <ShieldCheck className="h-4 w-4" />
-          {character.reactionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+          <ShieldCheck className="h-5 w-5" />
+          {character.reactionUsed ? <Check className="h-5 w-5" /> : <Circle className="h-5 w-5" />}
           <span>Reaction</span>
         </button>
       </div>
