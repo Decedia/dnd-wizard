@@ -166,44 +166,47 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <button
           type="button"
           onClick={() => onChange({ actionUsed: !character.actionUsed })}
-          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
+          className={`btn flex items-center justify-center gap-2 ${
             character.actionUsed
               ? "bg-[var(--color-success-100)] border-[var(--color-success-300)] text-[var(--color-success-700)]"
-              : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+              : "btn-secondary"
           }`}
         >
           <span className="w-4 h-4 flex items-center justify-center">
             {character.actionUsed ? "✓" : "○"}
           </span>
-          <span>Action</span>
+          <span className="hidden sm:inline">Action</span>
+          <span className="sm:hidden">A</span>
         </button>
         <button
           type="button"
           onClick={() => onChange({ bonusActionUsed: !character.bonusActionUsed })}
-          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
+          className={`btn flex items-center justify-center gap-2 ${
             character.bonusActionUsed
               ? "bg-[var(--color-info-100)] border-[var(--color-info-300)] text-[var(--color-info-700)]"
-              : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+              : "btn-secondary"
           }`}
         >
           <span className="w-4 h-4 flex items-center justify-center">
             {character.bonusActionUsed ? "✓" : "○"}
           </span>
-          <span>Bonus Action</span>
+          <span className="hidden sm:inline">Bonus Action</span>
+          <span className="sm:hidden">BA</span>
         </button>
         <button
           type="button"
           onClick={() => onChange({ reactionUsed: !character.reactionUsed })}
-          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
+          className={`btn flex items-center justify-center gap-2 ${
             character.reactionUsed
               ? "bg-[var(--color-warning-100)] border-[var(--color-warning-300)] text-[var(--color-warning-700)]"
-              : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+              : "btn-secondary"
           }`}
         >
           <span className="w-4 h-4 flex items-center justify-center">
             {character.reactionUsed ? "✓" : "○"}
           </span>
-          <span>Reaction</span>
+          <span className="hidden sm:inline">Reaction</span>
+          <span className="sm:hidden">R</span>
         </button>
       </div>
 
@@ -221,10 +224,10 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               key={level}
               type="button"
               onClick={() => onChange({ exhaustionLevel: level })}
-              className={`flex-1 h-8 flex items-center justify-center rounded-[var(--radius-sm)] border text-xs font-semibold transition-all ${
+              className={`btn flex-1 ${
                 (character.exhaustionLevel || 0) >= level && level > 0
                   ? "bg-[var(--color-error-100)] border-[var(--color-error-300)] text-[var(--color-error-700)]"
-                  : "bg-[var(--color-bg)] border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+                  : "btn-secondary"
               }`}
             >
               {level}
