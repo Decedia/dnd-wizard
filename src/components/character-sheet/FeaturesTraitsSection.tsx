@@ -75,15 +75,15 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const getActionTypeIcon = (actionType: string | undefined) => {
     switch (actionType) {
       case "action":
-        return <LightningBolt className="h-3 w-3" title="Action" />;
+        return <LightningBolt className="h-4 w-4" title="Action" />;
       case "bonus_action":
-        return <Clock className="h-3 w-3" title="Bonus Action" />;
+        return <Clock className="h-4 w-4" title="Bonus Action" />;
       case "reaction":
-        return <ShieldCheck className="h-3 w-3" title="Reaction" />;
+        return <ShieldCheck className="h-4 w-4" title="Reaction" />;
       case "free":
-        return <Sparkles className="h-3 w-3" title="Free Action" />;
+        return <Sparkles className="h-4 w-4" title="Free Action" />;
       case "passive":
-        return <Sparkles className="h-3 w-3 opacity-50" title="Passive" />;
+        return <Sparkles className="h-4 w-4 opacity-50" title="Passive" />;
       default:
         return null;
     }
@@ -98,6 +98,10 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
       case "passive": return "Passive";
       default: return "Set Type";
     }
+  };
+
+  const isFeatureUsable = (feature: { actionType?: string }) => {
+    return !!feature.actionType && feature.actionType !== "passive";
   };
 
   const sortedFeatures = useMemo(() => {
@@ -196,7 +200,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                           </>
                         );
                       })()}
-                      {(character.featuresUsedThisTurn || []).includes(feature.id) && (
+                      {isFeatureUsable(feature) && (character.featuresUsedThisTurn || []).includes(feature.id) && (
                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
                       )}
                     </div>
@@ -214,18 +218,25 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                               <span>{getActionTypeLabel(feature.actionType)}</span>
                             </button>
                           )}
-                          <button
-                            type="button"
-                            onClick={() => toggleFeatureUsed(feature.id)}
-                            className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                              (character.featuresUsedThisTurn || []).includes(feature.id)
-                                ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
-                                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                            }`}
-                          >
-                            <Clock className="h-3 w-3" />
-                            {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
-                          </button>
+                          {isFeatureUsable(feature) && (
+                            <>
+                              {(character.featuresUsedThisTurn || []).includes(feature.id) && (
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => toggleFeatureUsed(feature.id)}
+                                className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                                  (character.featuresUsedThisTurn || []).includes(feature.id)
+                                    ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                                    : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                                }`}
+                              >
+                                <Clock className="h-4 w-4" />
+                                {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
+                              </button>
+                            </>
+                          )}
                         </>
                       )}
                     </div>

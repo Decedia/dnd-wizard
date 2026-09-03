@@ -55,6 +55,8 @@
 
 ## Recently Completed
 
+- [x] Filtered usable vs unusable features in FeaturesTraitsSection: added `isFeatureUsable` helper; "Use" button and "USED" badge now only render for features with an explicit non-passive action type (action, bonus_action, reaction, free); passive and untyped features no longer show usage controls
+- [x] Fixed undersized action button icons in FeaturesTraitsSection and SpellsSection: changed `h-3 w-3` to `h-4 w-4` for action type icons, feature use button icon, spell use button icon, and turn reset button icon
 - [x] Fixed level up features, ASI, and subclass selection using 2014 SRD JSON as reference for what players gain per level
 - [x] Added `StepSubclass` component + `subclass` creation step (per class, shown at subclassLevel); subclass feature-choice selections wired into wizard via `getSubclassFeatureSelections`
 - [x] Built real Level Up flow: `src/components/LevelUpWizard.tsx` + `/character/[id]/level-up` route; "Level Up" button on character bio tab
@@ -145,7 +147,7 @@
 | `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
 | `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with sections consolidation | ✅ Ready |
 | `src/app/character/[id]/level-up/page.tsx` | Dedicated level-up page (replaces modal) | ✅ Ready |
-| `src/components/character-sheet/FeaturesTraitsSection.tsx` | Locked feature rendering with "default" tag | ✅ Ready |
+| `src/components/character-sheet/FeaturesTraitsSection.tsx` | Locked feature rendering, action type cycling, usable feature filtering (Use button only for action/bonus/reaction/free features) | ✅ Ready |
 | `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Class-granted attack rendering with "class-granted" tag | ✅ Ready |
 
 ## Current Focus
@@ -270,3 +272,4 @@ Wizard restructure complete. Next steps:
 | 2026-09-01 | Fixed Artificer equipment selection: `buildChoiceGroups` in `character-creation.ts` now checks for `isWeaponChoice`/`isInstrumentChoice`/`isArcaneFocusChoice`/`isHolySymbolChoice`/`isDruidicFocusChoice` flags directly on starting equipment entries, creating proper choice options without requiring `(a)`/`(b)` markers or "or" in the description. This enables the "any two simple weapons" option for Artificer to render with a weapon selection popup; typecheck and build pass |
 | 2026-09-01 | Source badge positioning and class filtering: moved SourceBadge to right corner of race/class selection cards in `StepOrigin.tsx` and `StepRace.tsx`; added `source` field to `SRDClass` interface; `getStaticClasses()` now accepts optional `sources` parameter for filtering; `StepOrigin` passes `data.sources` to `getStaticClasses` so unchecking an extension filters out non-PHB classes; typecheck and build pass |
 | 2026-09-01 | Moved subclass count display below class name in class selection popup; typecheck and build pass |
+| 2026-09-03 | Filtered usable features in FeaturesTraitsSection: removed Use button and USED badge from passive/undefined actionType features; fixed action button icon sizes (h-3 w-3 → h-4 w-4) in FeaturesTraitsSection and SpellsSection |

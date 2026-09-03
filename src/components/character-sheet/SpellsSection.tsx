@@ -225,7 +225,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           onClick={resetSpellsUsed}
           className="mb-3 flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold rounded border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)] transition-colors"
         >
-          <Clock className="h-3 w-3" />
+          <Clock className="h-4 w-4" />
           Reset Turn
         </button>
       )}
@@ -283,7 +283,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     }`}
                     title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : "Click to mark as used this turn"}
                   >
-                    {buffDef ? <Sparkle className="h-3 w-3" /> : <Clock className="h-3 w-3" />}
+                    {buffDef ? <Sparkle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
                     {spellUsed ? "Used" : "Use"}
                     {buffDef?.concentration && <span className="text-[8px] opacity-70">C</span>}
                   </button>
