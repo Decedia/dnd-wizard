@@ -166,7 +166,6 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <button
           type="button"
           onClick={() => onChange({ actionUsed: !character.actionUsed })}
-          disabled={!editMode}
           className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
             character.actionUsed
               ? "bg-[var(--color-success-100)] border-[var(--color-success-300)] text-[var(--color-success-700)]"
@@ -181,7 +180,6 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <button
           type="button"
           onClick={() => onChange({ bonusActionUsed: !character.bonusActionUsed })}
-          disabled={!editMode}
           className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
             character.bonusActionUsed
               ? "bg-[var(--color-info-100)] border-[var(--color-info-300)] text-[var(--color-info-700)]"
@@ -196,7 +194,6 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <button
           type="button"
           onClick={() => onChange({ reactionUsed: !character.reactionUsed })}
-          disabled={!editMode}
           className={`flex items-center justify-center gap-2 px-3 py-2 rounded-full border text-xs font-semibold transition-all ${
             character.reactionUsed
               ? "bg-[var(--color-warning-100)] border-[var(--color-warning-300)] text-[var(--color-warning-700)]"
@@ -224,7 +221,6 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               key={level}
               type="button"
               onClick={() => onChange({ exhaustionLevel: level })}
-              disabled={!editMode}
               className={`flex-1 h-8 flex items-center justify-center rounded-[var(--radius-sm)] border text-xs font-semibold transition-all ${
                 (character.exhaustionLevel || 0) >= level && level > 0
                   ? "bg-[var(--color-error-100)] border-[var(--color-error-300)] text-[var(--color-error-700)]"
