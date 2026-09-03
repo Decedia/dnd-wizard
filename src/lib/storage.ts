@@ -665,6 +665,27 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const profBonus = getProficiencyBonus(character.level);
   const classData = getStaticClass(character.class);
   const savingThrowProfs = classData?.savingThrows || [];
+  const activeStates = character.activeStates || [];
+  // Compute cover bonuses
+  let acBonusFromCover = 0;
+  let dexSaveBonusFromCover = 0;
+  let isDifficultTerrain = false;
+  for (const state of activeStates) {
+    const lower = state.toLowerCase().trim();
+    if (lower === "half cover") {
+      acBonusFromCover = Math.max(acBonusFromCover, 2);
+      dexSaveBonusFromCover = Math.max(dexSaveBonusFromCover, 2);
+    } else if (lower === "three-quarters cover") {
+      acBonusFromCover = Math.max(acBonusFromCover, 5);
+      dexSaveBonusFromCover = Math.max(dexSaveBonusFromCover, 5);
+    } else if (lower === "total cover") {
+      // total cover gives +5 to AC and Dex saves (though can't be targeted)
+      acBonusFromCover = Math.max(acBonusFromCover, 5);
+      dexSaveBonusFromCover = Math.max(dexSaveBonusFromCover, 5);
+    } else if (lower === "difficult terrain") {
+      isDifficultTerrain = true;
+    }
+  }
 
   const savingThrows: Record<string, { proficient: boolean; value: number }> = {};
   for (const key of ["str", "dex", "con", "int", "wis", "cha"]) {
@@ -891,7 +912,6 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 
   // ===== CONDITION MECHANICAL EFFECTS =====
   // Parse activeStates for conditions and apply mechanical effects
-  const activeStates = character.activeStates || [];
   const conditions = new Set(
     activeStates
       .map((s) => s.toLowerCase().trim())
@@ -982,22 +1002,20 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const effectiveMaxHp = exhaustionLevel >= 4 ? Math.floor(baseMaxHp / 2) : baseMaxHp;
 
   // Cover tracking
-  const activeStates = character.activeStates || [];
   const hasHalfCover = activeStates.includes("cover-half");
   const hasThreeQuartersCover = activeStates.includes("cover-three-quarters");
   const hasTotalCover = activeStates.includes("cover-total");
 
   // Difficult terrain tracking
-  const isDifficultTerrain = activeStates.includes("difficult-terrain");
 
   // Apply cover AC bonuses
-  let acBonusFromCover = 0;
+  acBonusFromCover = 0;
   if (hasHalfCover) acBonusFromCover = 2;
   else if (hasThreeQuartersCover) acBonusFromCover = 5;
   else if (hasTotalCover) acBonusFromCover = 0; // Can't be targeted
 
   // Apply cover Dex save bonuses
-  let dexSaveBonusFromCover = 0;
+  dexSaveBonusFromCover = 0;
   if (hasHalfCover) dexSaveBonusFromCover = 2;
   else if (hasThreeQuartersCover) dexSaveBonusFromCover = 5;
   else if (hasTotalCover) dexSaveBonusFromCover = 0;
@@ -1052,7 +1070,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     buffModifiers: buffMods as any,
     // Universal grapple/shove attacks
     attacks: [
-      ...(character.attacks || []),
+      ...character.attacks,
       ...(character.attacks?.some(a => a.source === "grapple") ? [] : [{
         id: "grapple",
         name: "Grapple",
