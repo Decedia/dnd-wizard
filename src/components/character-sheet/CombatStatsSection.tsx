@@ -4,7 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
-import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop } from "@/components/icons";
+import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
@@ -172,6 +172,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               : "btn-secondary"
           }`}
         >
+          <LightningBolt className="h-4 w-4" />
           <span className="w-4 h-4 flex items-center justify-center">
             {character.actionUsed ? "✓" : "○"}
           </span>
@@ -187,11 +188,12 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               : "btn-secondary"
           }`}
         >
+          <Clock className="h-4 w-4" />
           <span className="w-4 h-4 flex items-center justify-center">
             {character.bonusActionUsed ? "✓" : "○"}
           </span>
-          <span className="hidden sm:inline">Bonus Action</span>
-          <span className="sm:hidden">BA</span>
+          <span className="hidden sm:inline">Bonus</span>
+          <span className="sm:hidden">B</span>
         </button>
         <button
           type="button"
@@ -202,6 +204,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               : "btn-secondary"
           }`}
         >
+          <ShieldCheck className="h-4 w-4" />
           <span className="w-4 h-4 flex items-center justify-center">
             {character.reactionUsed ? "✓" : "○"}
           </span>
