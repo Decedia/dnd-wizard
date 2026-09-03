@@ -6,7 +6,7 @@ import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
 import { useCallback, useState, useMemo } from "react";
-import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield } from "@/components/icons";
+import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield, SwordIcon as Sword } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 import { ItemSelectionPopup } from "./ItemSelectionPopup";
@@ -315,9 +315,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                             : "btn-secondary"
                         }`}
                       >
-                         {item.equipped
-                           ? <CheckCircle size={16} color="var(--color-text-primary)" />
-                           : <Circle size={16} color="var(--color-border)" />}
+                        <Hand size={12} className="inline mr-0.5" />
                         {item.equipped ? "Equipped" : "Equip"}
                       </button>
                     )}
@@ -420,7 +418,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                       <SourceBadge source={item.source === "custom" ? "PHB" : "PHB"} size="sm" />
                       {item.itemType === "armor" && item.armorType === "shield" && (
                         <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
-                          <Shield size={10} className="inline mr-0.5" />Shield
+                          <Sword size={10} className="inline mr-0.5" />Shield
                         </span>
                       )}
                     </div>
@@ -435,9 +433,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
                               : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)]"
                           }`}
                         >
-                          {item.equipped
-                            ? <CheckCircle size={12} />
-                            : <Circle size={12} />}
+                          <Hand size={10} className="inline mr-0.5" />
                           {item.equipped ? "Equipped" : "Equip"}
                         </button>
                       )}
