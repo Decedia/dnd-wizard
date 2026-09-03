@@ -179,6 +179,8 @@ Wizard restructure complete. Next steps:
 - [x] Added floating "End Turn" button that resets spell/feature usage
 - [x] Rewrote PDF export with @react-pdf/renderer (crisp text, no cut-off)
 - [x] Performance improvements: render only active tab panel, memoize context values, lazy-load PDF libraries, memoize expensive computations, remove window.location.reload() on delete; typecheck and build pass
+- [x] Implemented P2 features: cover (half, three-quarters, total) affecting AC and Dex saves, difficult terrain halving speed, universal grapple and shove attacks, reaction/bonus action tracking, exhaustion level tracker with visual effects.
+- [x] Fixed typecheck errors in storage.ts by properly declaring cover variables before use and fixing attack source typing for grapple/shove with as const assertions.
 
 ## Available Recipes
 

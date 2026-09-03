@@ -1076,7 +1076,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
         name: "Grapple",
         attackBonus: character.proficiencyBonus + (character.skills?.Athletics ? character.proficiencyBonus + getModifier(character.str) : getModifier(character.str)),
         damageType: "",
-        source: "grapple",
+        source: "grapple" as const,
         description: "Special melee attack. Athletics vs target's Athletics or Acrobatics. On success, target is Grappled (speed 0, can't benefit from speed bonuses). Escape: Athletics or Acrobatics vs your Athletics DC."
       }]),
       ...(character.attacks?.some(a => a.source === "shove") ? [] : [{
@@ -1084,7 +1084,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
         name: "Shove",
         attackBonus: character.proficiencyBonus + (character.skills?.Athletics ? character.proficiencyBonus + getModifier(character.str) : getModifier(character.str)),
         damageType: "",
-        source: "shove",
+        source: "shove" as const,
         description: "Special melee attack. Athletics vs target's Athletics or Acrobatics. On success, target is either knocked Prone or pushed 5 feet away from you."
       }]),
     ],
