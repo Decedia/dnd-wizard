@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock } from "@/components/icons";
+import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles } from "@/components/icons";
 import { FeatPopup } from "./FeatPopup";
 import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
@@ -49,6 +49,54 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
       onChange({ featuresUsedThisTurn: current.filter(fid => fid !== id) });
     } else {
       onChange({ featuresUsedThisTurn: [...current, id] });
+    }
+  };
+
+  const toggleActionType = (featureId: string) => {
+    const feature = character.features.find(f => f.id === featureId);
+    if (!feature) return;
+    
+    const actionTypes: Array<"action" | "bonus_action" | "reaction" | "free" | "passive" | undefined> = [
+      "action",
+      "bonus_action",
+      "reaction",
+      "free",
+      "passive",
+      undefined,
+    ];
+    
+    const currentIndex = actionTypes.indexOf(feature.actionType);
+    const nextIndex = (currentIndex + 1) % actionTypes.length;
+    const nextType = actionTypes[nextIndex];
+    
+    updateItem(featureId, { actionType: nextType });
+  };
+
+  const getActionTypeIcon = (actionType: string | undefined) => {
+    switch (actionType) {
+      case "action":
+        return <LightningBolt className="h-3 w-3" title="Action" />;
+      case "bonus_action":
+        return <Clock className="h-3 w-3" title="Bonus Action" />;
+      case "reaction":
+        return <ShieldCheck className="h-3 w-3" title="Reaction" />;
+      case "free":
+        return <Sparkles className="h-3 w-3" title="Free Action" />;
+      case "passive":
+        return <Sparkles className="h-3 w-3 opacity-50" title="Passive" />;
+      default:
+        return null;
+    }
+  };
+
+  const getActionTypeLabel = (actionType: string | undefined) => {
+    switch (actionType) {
+      case "action": return "Action";
+      case "bonus_action": return "Bonus";
+      case "reaction": return "Reaction";
+      case "free": return "Free";
+      case "passive": return "Passive";
+      default: return "Set Type";
     }
   };
 
@@ -154,18 +202,31 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                     </div>
                     <div className="flex items-center gap-1.5">
                       {feature.name && (
-                        <button
-                          type="button"
-                          onClick={() => toggleFeatureUsed(feature.id)}
-                          className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                            (character.featuresUsedThisTurn || []).includes(feature.id)
-                              ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
-                              : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                          }`}
-                        >
-                          <Clock className="h-3 w-3" />
-                          {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
-                        </button>
+                        <>
+                          {feature.actionType && (
+                            <button
+                              type="button"
+                              onClick={() => toggleActionType(feature.id)}
+                              className="shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors bg-[var(--color-info-100)] text-[var(--color-info-700)] border border-[var(--color-info-300)] hover:bg-[var(--color-info-200)]"
+                              title={`Action type: ${getActionTypeLabel(feature.actionType)}. Click to change.`}
+                            >
+                              {getActionTypeIcon(feature.actionType)}
+                              <span>{getActionTypeLabel(feature.actionType)}</span>
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => toggleFeatureUsed(feature.id)}
+                            className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                              (character.featuresUsedThisTurn || []).includes(feature.id)
+                                ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            <Clock className="h-3 w-3" />
+                            {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
+                          </button>
+                        </>
                       )}
                     </div>
                   </div>
