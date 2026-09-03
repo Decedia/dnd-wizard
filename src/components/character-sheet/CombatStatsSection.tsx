@@ -4,7 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
-import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck } from "@/components/icons";
+import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CheckIcon as Check, CircleIcon as Circle } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
@@ -173,11 +173,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           }`}
         >
           <LightningBolt className="h-4 w-4" />
-          <span className="w-4 h-4 flex items-center justify-center">
-            {character.actionUsed ? "✓" : "○"}
-          </span>
-          <span className="hidden sm:inline">Action</span>
-          <span className="sm:hidden">A</span>
+          {character.actionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+          <span>Action</span>
         </button>
         <button
           type="button"
@@ -189,11 +186,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           }`}
         >
           <Clock className="h-4 w-4" />
-          <span className="w-4 h-4 flex items-center justify-center">
-            {character.bonusActionUsed ? "✓" : "○"}
-          </span>
-          <span className="hidden sm:inline">Bonus</span>
-          <span className="sm:hidden">B</span>
+          {character.bonusActionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+          <span>Bonus</span>
         </button>
         <button
           type="button"
@@ -205,11 +199,8 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           }`}
         >
           <ShieldCheck className="h-4 w-4" />
-          <span className="w-4 h-4 flex items-center justify-center">
-            {character.reactionUsed ? "✓" : "○"}
-          </span>
-          <span className="hidden sm:inline">Reaction</span>
-          <span className="sm:hidden">R</span>
+          {character.reactionUsed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+          <span>Reaction</span>
         </button>
       </div>
 
