@@ -7,7 +7,7 @@ import { skills as srdSkills } from "@/data/srd";
 import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
-import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle } from "@/components/icons";
+import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle, InfoIcon } from "@/components/icons";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -18,6 +18,7 @@ interface SkillsSectionProps {
 export function SkillsSection({ character, onChange, editMode = true }: SkillsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const profBonus = getProficiencyBonus(character.level);
+  const [infoSkill, setInfoSkill] = useState<string | null>(null);
 
   const classData = character.class ? getStaticClass(character.class) : null;
   const skillChoices = classData?.skillChoices || null;
@@ -111,16 +112,23 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                   <div className="flex flex-col min-w-0">
                      <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                        {name}
-                       {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
                        {(isProficient || isExpert) && (
-                          <span className="flex items-center text-ink">
-                           {isExpert && <Star size={12} color="var(--color-text-primary)" />}
-                           {isExpert && isProficient && <Circle size={12} color="var(--color-text-primary)" className="-ml-0.5" />}
-                           {!isExpert && isProficient && <Circle size={12} color="var(--color-text-primary)" />}
+                         <span className="inline-block h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: isExpert ? "var(--color-accent-purple-600)" : isBgSkill ? "var(--color-success-500)" : "var(--color-ink)" }} />
+                       )}
+                       {(isProficient || isExpert) && (
+                         <button type="button" onClick={() => setInfoSkill(infoSkill === name ? null : name)} className="shrink-0 text-ink-muted hover:text-ink">
+                           <InfoIcon size={10} />
+                         </button>
+                       )}
+                       {infoSkill === name && (
+                         <span className={`text-[9px] font-bold px-1 rounded ${
+                           isExpert ? "text-purple-700 bg-purple-100" : isBgSkill ? "text-green-700 bg-green-100" : "text-ink bg-paper-muted"
+                         }`}>
+                           {isExpert ? "expertise" : isBgSkill ? "background" : `normal +${profBonus}`}
                          </span>
-                      )}
-                    </span>
-                    <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
+                       )}
+                     </span>
+                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <span className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
                     {total >= 0 ? `+${total}` : total}
