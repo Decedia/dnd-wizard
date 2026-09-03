@@ -2,8 +2,7 @@
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { SkullIcon as Skull, CircleIcon as Circle, DiceIcon as DiceD20 } from "@/components/icons";
-import { Dice } from "@/components/Dice";
+import { SkullIcon as Skull, CircleIcon as Circle, CheckIcon as Check, XIcon as X } from "@/components/icons";
 import type { Character } from "@/lib/storage";
 
 interface DeathSavesSectionProps {
@@ -15,47 +14,83 @@ interface DeathSavesSectionProps {
 export function DeathSavesSection({ character, onChange, editMode = true }: DeathSavesSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
 
-  const renderDot = (filled: boolean) => (
+  const renderDot = (filled: boolean, color: string) => (
     <span
       className={`inline-block h-4 w-4 rounded-sm border-2 ${
         filled
-          ? "border-ink bg-ink"
-          : "border-paper bg-transparent"
+          ? `border-[${color}] bg-[${color}]`
+          : "border-[var(--color-border)] bg-transparent"
       }`}
     />
   );
 
-  const handleDeathSaveRoll = (roll: number) => {
-    if (roll === 20) {
-      // Natural 20: regain 1 HP, become stable (clear death saves)
-      onChange({
-        currentHp: 1,
-        deathSaveSuccesses: 0,
-        deathSaveFailures: 0,
-      });
-    } else if (roll === 1) {
-      // Natural 1: two failures
-      const newFailures = Math.min(3, character.deathSaveFailures + 2);
-      onChange({ deathSaveFailures: newFailures });
-    } else if (roll >= 10) {
-      // Success (10-19)
-      const newSuccesses = Math.min(3, character.deathSaveSuccesses + 1);
-      onChange({ deathSaveSuccesses: newSuccesses });
-    } else {
-      // Failure (2-9)
-      const newFailures = Math.min(3, character.deathSaveFailures + 1);
-      onChange({ deathSaveFailures: newFailures });
-    }
+  const addSuccess = () => {
+    const newSuccesses = Math.min(3, (character.deathSaveSuccesses || 0) + 1);
+    onChange({ deathSaveSuccesses: newSuccesses });
+    onFieldBlur();
+  };
+
+  const removeSuccess = () => {
+    const newSuccesses = Math.max(0, (character.deathSaveSuccesses || 0) - 1);
+    onChange({ deathSaveSuccesses: newSuccesses });
+    onFieldBlur();
+  };
+
+  const addFailure = () => {
+    const newFailures = Math.min(3, (character.deathSaveFailures || 0) + 1);
+    onChange({ deathSaveFailures: newFailures });
+    onFieldBlur();
+  };
+
+  const removeFailure = () => {
+    const newFailures = Math.max(0, (character.deathSaveFailures || 0) - 1);
+    onChange({ deathSaveFailures: newFailures });
+    onFieldBlur();
+  };
+
+  const resetDeathSaves = () => {
+    onChange({ deathSaveSuccesses: 0, deathSaveFailures: 0 });
     onFieldBlur();
   };
 
   return (
     <SectionCard id="death-saves" title="Death Saves" icon={<Skull className="h-5 w-5" />}>
       <div className="flex flex-col items-center gap-4">
-        <Dice type="d20" size={64} onRoll={handleDeathSaveRoll} />
-        <p className="text-xs text-[var(--color-text-muted)] text-center">
-          20 = 1 HP & stable | 1 = 2 failures | 10+ = success | 2-9 = failure
-        </p>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={addSuccess}
+            disabled={editMode || (character.deathSaveSuccesses || 0) >= 3}
+            className={`btn flex items-center gap-1.5 ${
+              (character.deathSaveSuccesses || 0) >= 3
+                ? "bg-[var(--color-success-100)] border-[var(--color-success-300)] text-[var(--color-success-700)] cursor-not-allowed opacity-50"
+                : "btn-secondary"
+            }`}
+            title="Add Success"
+          >
+            <Check className="h-4 w-4" />
+            <span>Success</span>
+          </button>
+          <button
+            type="button"
+            onClick={addFailure}
+            disabled={editMode || (character.deathSaveFailures || 0) >= 3}
+            className={`btn flex items-center gap-1.5 ${
+              (character.deathSaveFailures || 0) >= 3
+                ? "bg-[var(--color-error-100)] border-[var(--color-error-300)] text-[var(--color-error-700)] cursor-not-allowed opacity-50"
+                : "btn-secondary"
+            }`}
+            title="Add Failure"
+          >
+            <X className="h-4 w-4" />
+            <span>Failure</span>
+          </button>
+        </div>
+        {(character.deathSaveSuccesses >= 3 || character.deathSaveFailures >= 3) && (
+          <p className="text-xs text-center font-semibold text-[var(--color-error-500)]">
+            {character.deathSaveSuccesses >= 3 ? "Stable" : "Dead"}
+          </p>
+        )}
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Successes</span>
@@ -74,10 +109,21 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
               : [0, 1, 2].map((i) => (
                   <span key={`ds-s-${i}`}>
                     {character.deathSaveSuccesses > i
-                       ? <Circle size={12} color="var(--color-success-500)" />
-                       : <Circle size={12} color="var(--color-border)" />}
+                       ? <Check className="h-4 w-4" color="var(--color-success-500)" />
+                       : <Circle className="h-4 w-4" color="var(--color-border)" />}
                   </span>
                 ))}
+            {editMode && (
+              <button
+                type="button"
+                onClick={removeSuccess}
+                disabled={(character.deathSaveSuccesses || 0) === 0}
+                className="btn-ghost ml-2 px-2 py-1"
+                title="Remove Success"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Failures</span>
@@ -96,16 +142,31 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
               : [0, 1, 2].map((i) => (
                   <span key={`ds-f-${i}`}>
                     {character.deathSaveFailures > i
-                       ? <Circle size={12} color="var(--color-error-500)" />
-                       : <Circle size={12} color="var(--color-border)" />}
+                       ? <X className="h-4 w-4" color="var(--color-error-500)" />
+                       : <Circle className="h-4 w-4" color="var(--color-border)" />}
                   </span>
                 ))}
+            {editMode && (
+              <button
+                type="button"
+                onClick={removeFailure}
+                disabled={(character.deathSaveFailures || 0) === 0}
+                className="btn-ghost ml-2 px-2 py-1"
+                title="Remove Failure"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            )}
           </div>
         </div>
-        {(character.deathSaveSuccesses >= 3 || character.deathSaveFailures >= 3) && (
-          <p className="text-xs text-center font-semibold text-[var(--color-error-500)]">
-            {character.deathSaveSuccesses >= 3 ? "Stable" : "Dead"}
-          </p>
+        {editMode && (
+          <button
+            type="button"
+            onClick={resetDeathSaves}
+            className="btn-ghost text-xs"
+          >
+            Reset
+          </button>
         )}
       </div>
     </SectionCard>
