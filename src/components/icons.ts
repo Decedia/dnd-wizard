@@ -139,4 +139,6 @@ export {
   GiTemplarEye as TemplarEyeIcon,
   GiHood as HoodIcon,
   GiHandOk as HandOkIcon,
+  GiElfEar as ElfEarIcon,
+  GiDevilMask as DevilMaskIcon,
 } from "react-icons/gi";
