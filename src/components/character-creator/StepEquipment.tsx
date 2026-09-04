@@ -842,11 +842,11 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           isOpen={true}
           onClose={() => setPopupGroup(null)}
           title={popupOption.isWeaponChoice ? `Choose ${popupOption.selectionCount || 1} ${popupOption.weaponType?.replace('_', ' ')} weapon${(popupOption.selectionCount || 1) > 1 ? "s" : ""}` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : popupOption.isHolySymbolChoice ? "Choose a holy symbol" : popupOption.isDruidicFocusChoice ? "Choose a druidic focus" : "Select an item"}
-          confirmLabel={popupOption.isWeaponChoice && (popupOption.selectionCount || 1) > 1 ? `Confirm (${popupSelectedWeapons.length}/${popupOption.selectionCount || 1})` : undefined}
+          confirmLabel={popupOption.isWeaponChoice ? (popupOption.selectionCount && popupOption.selectionCount > 1 ? `Confirm (${popupSelectedWeapons.length}/${popupOption.selectionCount})` : "Confirm") : undefined}
           onConfirm={() => setPopupGroup(null)}
           cancelLabel="Cancel"
           onCancel={() => setPopupGroup(null)}
-          showFooter={popupOption.isWeaponChoice && (popupOption.selectionCount || 1) > 1}
+          showFooter={popupOption.isWeaponChoice}
           confirmDisabled={popupOption.isWeaponChoice && popupSelectedWeapons.length !== (popupOption.selectionCount || 1)}
         >
           {popupOption.isWeaponChoice && (
