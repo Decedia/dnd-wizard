@@ -2071,136 +2071,112 @@ function LevelCard({
       )}
 
       {showAsiModal && info.asi && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setShowAsiModal(false); }}
+        <BasePopup
+          isOpen={true}
+          onClose={() => setShowAsiModal(false)}
+          title={`Ability Score Improvement (Level ${lvl})`}
+          confirmLabel="Apply ASI"
+          cancelLabel="Cancel"
+          onConfirm={applyAsi}
+          confirmDisabled={!canApplyAsi}
+          showFooter={true}
         >
-          <div className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">
-                Ability Score Improvement (Level {lvl})
-              </div>
+          <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={() => onAsiChange({ mode: "single" })}
+                className={`w-full px-4 py-3 rounded-[var(--radius-sm)] border text-left transition-all ${
+                  !asiSelection || asiSelection.mode !== "feat"
+                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                }`}
+              >
+                <div className="text-sm font-bold text-[var(--color-text-primary)]">Improve Ability Scores</div>
+                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">+2 to one ability or +1 to two abilities</div>
+              </button>
+              <button
+                type="button"
+                onClick={() => onAsiChange({ mode: "feat" })}
+                className={`w-full px-4 py-3 rounded-[var(--radius-sm)] border text-left transition-all ${
+                  asiSelection?.mode === "feat"
+                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                }`}
+              >
+                <div className="text-sm font-bold text-[var(--color-text-primary)]">Take a Feat</div>
+                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">Gain a feat instead of ability score improvements</div>
+              </button>
             </div>
-            <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
-              <div className="space-y-2">
-                <button
-                  type="button"
-                  onClick={() => onAsiChange({ mode: "single" })}
-                  className={`w-full px-4 py-3 rounded-[var(--radius-sm)] border text-left transition-all ${
-                    !asiSelection || asiSelection.mode !== "feat"
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                      : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  <div className="text-sm font-bold text-[var(--color-text-primary)]">Improve Ability Scores</div>
-                  <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">+2 to one ability or +1 to two abilities</div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onAsiChange({ mode: "feat" })}
-                  className={`w-full px-4 py-3 rounded-[var(--radius-sm)] border text-left transition-all ${
-                    asiSelection?.mode === "feat"
-                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                      : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  <div className="text-sm font-bold text-[var(--color-text-primary)]">Take a Feat</div>
-                  <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">Gain a feat instead of ability score improvements</div>
-                </button>
-              </div>
 
-              {asiSelection?.mode !== "feat" && (
-                <>
-                  <p className="text-xs text-[var(--color-text-secondary)]">
-                    Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
-                  </p>
-                  <div className="space-y-2">
-                    {ABILITIES.map(({ key, label, full }) => {
-                      const currentScore = baseScores[key];
-                      const allocated = asiAllocation[key] || 0;
-                      const isAtCap = currentScore >= 20;
-                      return (
-                        <div
-                          key={key}
-                          className="flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)]"
-                        >
-                          <div className="flex flex-col">
-                            <span className="text-sm font-bold text-[var(--color-text-primary)] w-12">{label}</span>
-                            <span className="text-[10px] text-[var(--color-text-secondary)]">{full}</span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <span className="text-sm font-bold text-[var(--color-text-primary)] w-8 text-center">{currentScore}</span>
-                            <div className="flex items-center gap-1.5">
-                              <button
-                                type="button"
-                                onClick={() => removeAsiPoint(key)}
-                                disabled={allocated <= 0 || isAtCap}
-                                className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
-                              >
-                                −
-                              </button>
-                              <span className="text-sm font-bold text-[var(--color-text-primary)] w-7 text-center">
-                                {allocated > 0 ? `+${allocated}` : "0"}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => allocateAsiPoint(key)}
-                                disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
-                                className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
-                              >
-                                +
-                              </button>
-                            </div>
+            {asiSelection?.mode !== "feat" && (
+              <>
+                <p className="text-xs text-[var(--color-text-secondary)]">
+                  Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
+                </p>
+                <div className="space-y-2">
+                  {ABILITIES.map(({ key, label, full }) => {
+                    const currentScore = baseScores[key];
+                    const allocated = asiAllocation[key] || 0;
+                    const isAtCap = currentScore >= 20;
+                    return (
+                      <div
+                        key={key}
+                        className="flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)]"
+                      >
+                        <div className="flex flex-col">
+                          <span className="text-sm font-bold text-[var(--color-text-primary)] w-12">{label}</span>
+                          <span className="text-[10px] text-[var(--color-text-secondary)]">{full}</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm font-bold text-[var(--color-text-primary)] w-8 text-center">{currentScore}</span>
+                          <div className="flex items-center gap-1.5">
+                            <button
+                              type="button"
+                              onClick={() => removeAsiPoint(key)}
+                              disabled={allocated <= 0 || isAtCap}
+                              className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
+                            >
+                              −
+                            </button>
+                            <span className="text-sm font-bold text-[var(--color-text-primary)] w-7 text-center">
+                              {allocated > 0 ? `+${allocated}` : "0"}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => allocateAsiPoint(key)}
+                              disabled={allocated >= 2 || totalAsiPoints >= 2 || isAtCap}
+                              className="flex h-8 w-8 items-center justify-center p-0 rounded-full border border-[var(--color-border)] disabled:opacity-30"
+                            >
+                              +
+                            </button>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                </>
-              )}
-
-              {asiSelection?.mode === "feat" && (
-                <div className="space-y-3">
-                  {asiSelection.feat && (
-                    <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                      <div className="text-sm font-bold text-[var(--color-text-primary)]">{asiSelection.feat}</div>
-                    </div>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => setShowAsiFeatModal(true)}
-                    className="btn btn-secondary w-full text-sm"
-                  >
-                    {asiSelection.feat ? "Change Feat" : "Choose Feat"}
-                  </button>
+                      </div>
+                    );
+                  })}
                 </div>
-              )}
-            </div>
-            <div className="flex justify-between border-t border-[var(--color-border)] px-4 py-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
-                  if (asiSelection?.mode === "feat") {
-                    onAsiChange({ mode: "single", feat: undefined });
-                  }
-                  setShowAsiModal(false);
-                }}
-                className="btn btn-secondary px-5 py-2.5"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={applyAsi}
-                disabled={!canApplyAsi}
-                className="btn btn-primary px-5 py-2.5"
-              >
-                Apply ASI
-              </button>
-            </div>
+              </>
+            )}
+
+            {asiSelection?.mode === "feat" && (
+              <div className="space-y-3">
+                {asiSelection.feat && (
+                  <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                    <div className="text-sm font-bold text-[var(--color-text-primary)]">{asiSelection.feat}</div>
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setShowAsiFeatModal(true)}
+                  className="btn btn-secondary w-full text-sm"
+                >
+                  {asiSelection.feat ? "Change Feat" : "Choose Feat"}
+                </button>
+              </div>
+            )}
           </div>
-        </div>
+        </BasePopup>
       )}
 
       {showAsiFeatModal && (
