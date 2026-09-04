@@ -9,7 +9,7 @@ import { useCallback, useState, useMemo } from "react";
 import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield, SwordIcon as Sword } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
-import { ItemSelectionPopup } from "./ItemSelectionPopup";
+import { ItemSelectionModal } from "../modals/ItemSelectionModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 
@@ -515,7 +515,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
        )}
 
        {showItemPopup && (
-         <ItemSelectionPopup
+         <ItemSelectionModal
            character={character}
            onAdd={handleAddItem}
            onClose={() => setShowItemPopup(false)}
@@ -523,7 +523,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
        )}
 
        {editingItemId && (
-         <ItemSelectionPopup
+         <ItemSelectionModal
            character={character}
            onAdd={(newItem) => handleReplaceItem(editingItemId, newItem)}
            onClose={() => setEditingItemId(null)}

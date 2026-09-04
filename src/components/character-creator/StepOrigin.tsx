@@ -5,7 +5,7 @@ import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNo
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
-import { FeatSelector } from "./FeatSelector";
+import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { BasePopup } from "@/components/BasePopup";
@@ -514,7 +514,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         )}
 
       {featModalOpen && (
-        <FeatSelector
+        <FeatSelectionModal
           selectedFeat={selectedFeat}
           sources={data.sources}
           onSelect={(feat: SRDFeat) => {

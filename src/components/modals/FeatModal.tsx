@@ -3,7 +3,7 @@
 import { SourceBadge } from "../SourceBadge";
 import { BasePopup } from "@/components/BasePopup";
 
-interface FeatPopupProps {
+interface FeatModalProps {
   feat: {
     name: string;
     source?: string;
@@ -13,7 +13,7 @@ interface FeatPopupProps {
   onClose: () => void;
 }
 
-export function FeatPopup({ feat, onClose }: FeatPopupProps) {
+export function FeatModal({ feat, onClose }: FeatModalProps) {
   return (
     <BasePopup
       isOpen={true}

@@ -4,11 +4,11 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack } from "@/components/icons";
-import { DamageBadge } from "./DamageBadge";
+import { DamageBadge } from "../character-sheet/DamageBadge";
 import { SourceBadge } from "@/components/SourceBadge";
 import { BasePopup } from "@/components/BasePopup";
 
-interface ItemSelectionPopupProps {
+interface ItemSelectionModalProps {
   character: Character;
   onAdd: (item: Character["inventory"][number]) => void;
   onClose: () => void;
@@ -16,7 +16,7 @@ interface ItemSelectionPopupProps {
 
 type ItemCategory = "weapons" | "armor" | "items";
 
-export function ItemSelectionPopup({ character, onAdd, onClose }: ItemSelectionPopupProps) {
+export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionModalProps) {
   const [activeCategory, setActiveCategory] = useState<ItemCategory>("weapons");
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const idCounter = useRef(0);

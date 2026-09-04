@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
-import { FeatSelector } from "./FeatSelector";
+import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import type { SRDFeat } from "@/lib/srd-client";
 import {
   getModifier,
@@ -746,7 +746,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
       {/* Feat Selection Modal */}
       {featModalOpen && (
-        <FeatSelector
+        <FeatSelectionModal
           selectedFeat={asiState.feat}
           sources={data.sources}
           onSelect={(feat: SRDFeat) => {

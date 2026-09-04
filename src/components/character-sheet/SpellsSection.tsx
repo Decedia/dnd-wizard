@@ -7,7 +7,7 @@ import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle } from "@/components/icons";
-import { SpellSelectionModal } from "./SpellSelectionModal";
+import { SpellSelectionModal } from "../modals/SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "./DamageBadge";

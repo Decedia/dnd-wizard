@@ -2,14 +2,22 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getWizardSpellsByLevel, getPactBoons, getStaticFeat } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getPactBoons, getStaticFeat } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
-import { SpellSelectionModal } from "./character-sheet/SpellSelectionModal";
-import { FeatSelector } from "./character-creator/FeatSelector";
+import { SpellSelectionModal } from "./modals/SpellSelectionModal";
+import { FeatSelectionModal } from "./modals/FeatSelectionModal";
+import { SubclassDetailsModal } from "./modals/SubclassDetailsModal";
+import { SubclassSelectionModal } from "./modals/SubclassSelectionModal";
+import { FeatureSelectionModal } from "./modals/FeatureSelectionModal";
+import { HumanoidRacesModal } from "./modals/HumanoidRacesModal";
+import { TerrainModal } from "./modals/TerrainModal";
+import { BonusCantripModal } from "./modals/BonusCantripModal";
+import { SpellMasteryModal } from "./modals/SpellMasteryModal";
+import { SignatureSpellsModal } from "./modals/SignatureSpellsModal";
 import {
   HeartBottleIcon as Heart,
   LightningIcon as Lightning,
@@ -32,6 +40,7 @@ import {
   MagnifyingGlassIcon as MagnifyingGlass,
 } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
+import { BasePopup } from "@/components/BasePopup";
 import { useSRD } from "@/contexts/SRDContext";
 import { isRecommended } from "@/lib/recommendations";
 
@@ -76,25 +85,6 @@ function getAvailableInvocations(level: number, pactBoon: string, knownInvocatio
     return { name, available: true };
   });
 }
-
-const HUMANOID_RACES = [
-  "Bugbears",
-  "Dwarves",
-  "Elves",
-  "Gnolls",
-  "Gnomes",
-  "Goblins",
-  "Half-Elves",
-  "Halflings",
-  "Hobgoblins",
-  "Humans",
-  "Kenku",
-  "Kobolds",
-  "Lizardfolk",
-  "Orcs",
-  "Tieflings",
-  "Troglodytes",
-];
 
 interface LevelUpWizardProps {
   character: Character;
@@ -1264,10 +1254,14 @@ function LevelCard({
     const [spellModalMode, setSpellModalMode] = useState<"all" | "cantrips" | "spells">("all");
     const [showTerrainModal, setShowTerrainModal] = useState(false);
     const [showBonusCantripModal, setShowBonusCantripModal] = useState(false);
-    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean; count?: number; isSpellMastery?: boolean; isSignatureSpells?: boolean } | null>(null);
-    const [multiSelectSelections, setMultiSelectSelections] = useState<string[]>([]);
+    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean; count?: number } | null>(null);
+    const [featureSelections, setFeatureSelections] = useState<string[]>([]);
     const [showHumanoidPopup, setShowHumanoidPopup] = useState<{ featureName: string; level: number } | null>(null);
     const [humanoidSelections, setHumanoidSelections] = useState<string[]>([]);
+    const [showSpellMasteryModal, setShowSpellMasteryModal] = useState(false);
+    const [spellMasterySelections, setSpellMasterySelections] = useState<string[]>([]);
+    const [showSignatureSpellsModal, setShowSignatureSpellsModal] = useState(false);
+    const [signatureSpellsSelections, setSignatureSpellsSelections] = useState<string[]>([]);
     const [showAsiModal, setShowAsiModal] = useState(false);
     const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
     const [showAsiFeatModal, setShowAsiFeatModal] = useState(false);
@@ -1673,7 +1667,7 @@ function LevelCard({
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
                       <button
                         type="button"
-                        onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ ...fc, isSubclass: true, count: fc.count }); }}
+                        onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, isSubclass: true, count: fc.count }); }}
                         className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                        >
                        <span>{subclassFeatureChoices[fc.name] || "Select an option..."}</span>
@@ -1695,7 +1689,7 @@ function LevelCard({
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
                       <button
                         type="button"
-                        onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ ...fc, isSubclass: false, count: fc.count }); }}
+                        onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, isSubclass: false, count: fc.count }); }}
                         className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                        >
                        <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
@@ -1718,7 +1712,7 @@ function LevelCard({
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one 1st-level and one 2nd-level spell to cast at will without spell slots.</p>
                 <button
                   type="button"
-                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Spell Mastery", description: "Choose one 1st-level and one 2nd-level wizard spell from your spellbook.", options: [], isSubclass: false, count: 2, isSpellMastery: true }); }}
+                  onClick={() => { setSpellMasterySelections([]); setShowSpellMasteryModal(true); }}
                   className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                 >
                   <span>{spellMasterySelection || "Select 2 spells..."}</span>
@@ -1739,7 +1733,7 @@ function LevelCard({
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose two 3rd-level spells. They&apos;re always prepared and you can cast each once per short rest without a spell slot.</p>
                 <button
                   type="button"
-                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Signature Spells", description: "Choose two 3rd-level wizard spells from your spellbook.", options: [], isSubclass: false, count: 2, isSignatureSpells: true }); }}
+                  onClick={() => { setSignatureSpellsSelections([]); setShowSignatureSpellsModal(true); }}
                   className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                 >
                   <span>{signatureSpellsSelection || "Select 2 signature spells..."}</span>
@@ -1770,7 +1764,7 @@ function LevelCard({
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Your patron bestows a gift. Choose one.</p>
                 <button
                   type="button"
-                  onClick={() => { setMultiSelectSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: getPactBoons().map(b => ({ name: b.name, description: b.description })), isSubclass: false, count: 1 }); }}
+                  onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: getPactBoons().map(b => ({ name: b.name, description: b.description })), isSubclass: false, count: 1 }); }}
                   className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                 >
                   <span>{pactBoon || "Select Pact Boon..."}</span>
@@ -2180,7 +2174,7 @@ function LevelCard({
       )}
 
       {showAsiFeatModal && (
-        <FeatSelector
+        <FeatSelectionModal
           selectedFeat={asiSelection?.feat}
           sources={character.sources}
           onSelect={(feat) => {
@@ -2191,754 +2185,74 @@ function LevelCard({
         />
       )}
 
-      {(showFeaturePopup as any)?.isSpellMastery && (
-        <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4" onClick={() => setShowFeaturePopup(null)}>
-          <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">Spell Mastery</div>
-              <button type="button" onClick={() => { setShowFeaturePopup(null); setMultiSelectSelections([]); }} className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"><X className="h-4 w-4" /></button>
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
-              <div>
-                <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 1st-level spell:</p>
-                <div className="space-y-1">
-                   {getWizardSpellsByLevel(1, character.sources).map((name) => {
-                    const isSelected = multiSelectSelections.includes(name);
-                    const allLevel1 = getWizardSpellsByLevel(1, character.sources);
-                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !allLevel1.includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
-                  })}
-                </div>
-              </div>
-              <div>
-                <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select one 2nd-level spell:</p>
-                <div className="space-y-1">
-                  {getWizardSpellsByLevel(2, character.sources).map((name) => {
-                    const isSelected = multiSelectSelections.includes(name);
-                    const allLevel2 = getWizardSpellsByLevel(2, character.sources);
-                    return (<button key={name} type="button" onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else setMultiSelectSelections([...multiSelectSelections.filter(s => !allLevel2.includes(s)), name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className="border-t border-[var(--color-border)] px-4 py-3">
-              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Spell Mastery", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
-            </div>
-          </div>
-        </div>
+      {showSpellMasteryModal && (
+        <SpellMasteryModal
+          isOpen={showSpellMasteryModal}
+          onClose={() => { setShowSpellMasteryModal(false); setSpellMasterySelections([]); }}
+          selections={spellMasterySelections}
+          onSelectionsChange={setSpellMasterySelections}
+          onConfirm={(value) => { onClassFeatureChoice("Spell Mastery", value); }}
+          characterSources={character.sources}
+        />
       )}
 
-      {(showFeaturePopup as any)?.isSignatureSpells && (
-        <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4" onClick={() => setShowFeaturePopup(null)}>
-          <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">Signature Spells</div>
-              <button type="button" onClick={() => { setShowFeaturePopup(null); setMultiSelectSelections([]); }} className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"><X className="h-4 w-4" /></button>
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
-              <p className="text-xs text-[var(--color-text-secondary)] mb-2">Select two 3rd-level spells:</p>
-              <div className="space-y-1">
-                {getWizardSpellsByLevel(3, character.sources).map((name) => {
-                  const isSelected = multiSelectSelections.includes(name);
-                  const isDisabled = !isSelected && multiSelectSelections.length >= 2;
-                  return (<button key={name} type="button" disabled={isDisabled} onClick={() => { if (isSelected) setMultiSelectSelections(multiSelectSelections.filter(s => s !== name)); else if (multiSelectSelections.length < 2) setMultiSelectSelections([...multiSelectSelections, name]); }} className={`w-full p-2 text-left rounded border transition-all ${isSelected ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]" : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"}`}><span className="text-xs font-semibold">{name}</span></button>);
-                })}
-              </div>
-            </div>
-            <div className="border-t border-[var(--color-border)] px-4 py-3">
-              <button type="button" disabled={multiSelectSelections.length !== 2} onClick={() => { if (multiSelectSelections.length === 2) { onClassFeatureChoice("Signature Spells", multiSelectSelections.join(", ")); setShowFeaturePopup(null); setMultiSelectSelections([]); } }} className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${multiSelectSelections.length === 2 ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"}`}>Confirm Selection ({multiSelectSelections.length}/2)</button>
-            </div>
-          </div>
-        </div>
+      {showSignatureSpellsModal && (
+        <SignatureSpellsModal
+          isOpen={showSignatureSpellsModal}
+          onClose={() => { setShowSignatureSpellsModal(false); setSignatureSpellsSelections([]); }}
+          selections={signatureSpellsSelections}
+          onSelectionsChange={setSignatureSpellsSelections}
+          onConfirm={(value) => { onClassFeatureChoice("Signature Spells", value); }}
+          characterSources={character.sources}
+        />
       )}
 
-      {showFeaturePopup && !(showFeaturePopup as any)?.isSpellMastery && !(showFeaturePopup as any)?.isSignatureSpells && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setShowFeaturePopup(null); }}
-        >
-          <div
-            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="flex items-center gap-2">
-                <div className="text-sm font-bold text-[var(--color-text-primary)]">
-                  {showFeaturePopup.name}
-                </div>
-                {showFeaturePopup.description && (
-                  <InfoButton title={showFeaturePopup.name} description={showFeaturePopup.description} />
-                )}
-              </div>
-           <button
-             type="button"
-             onClick={() => setShowFeaturePopup(null)}
-             className="h-10 w-10 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-           >
-             <X className="h-5 w-5" />
-           </button>
-            </div>
-
-      {showHumanoidPopup && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setShowHumanoidPopup(null); }}
-        >
-          <div
-            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">
-                Choose 2 Humanoid Races
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowHumanoidPopup(null)}
-                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <div className="px-4 pt-3">
-              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">Select two humanoid races as your favored enemies.</p>
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
-              <div className="space-y-2">
-                {HUMANOID_RACES.map((race, idx) => {
-                  const isSelected = humanoidSelections.includes(race);
-                  const isDisabled = !isSelected && humanoidSelections.length >= 2;
-                  return (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => {
-                        if (isSelected) {
-                          setHumanoidSelections(humanoidSelections.filter((r) => r !== race));
-                        } else if (humanoidSelections.length < 2) {
-                          setHumanoidSelections([...humanoidSelections, race]);
-                        }
-                      }}
-                      disabled={isDisabled}
-                      className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                        isSelected
-                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      <div className="text-xs font-semibold flex items-center gap-2">
-                        {isSelected && <Check className="h-3 w-3" />}
-                        {race}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="border-t border-[var(--color-border)] px-4 py-3">
-              <button
-                type="button"
-                disabled={humanoidSelections.length !== 2}
-                onClick={() => {
-                  if (humanoidSelections.length === 2) {
-                    const value = `Humanoid: ${humanoidSelections.join(", ")}`;
-                    onClassFeatureChoice(showHumanoidPopup.featureName, value);
-                    setShowHumanoidPopup(null);
-                    setHumanoidSelections([]);
-                  }
-                }}
-                className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${
-                  humanoidSelections.length === 2
-                    ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2"
-                    : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"
-                }`}
-              >
-                Confirm Selection ({humanoidSelections.length}/2)
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-            <div className="flex-1 overflow-y-auto px-4 py-4">
-              <div className="space-y-2">
-{showFeaturePopup.options.map((opt, idx) => {
-                  const currentSelection = showFeaturePopup.isSubclass
-                    ? subclassFeatureChoices[showFeaturePopup.name]
-                    : classFeatureChoices[showFeaturePopup.name];
-                  const isMultiSelect = (showFeaturePopup.count || 1) > 1;
-                  const multiSelected = isMultiSelect && multiSelectSelections.includes(opt.name);
-                  const isSelected = isMultiSelect ? multiSelected : currentSelection === opt.name;
-                  const isDisabled = isMultiSelect && !multiSelected && multiSelectSelections.length >= (showFeaturePopup.count || 1);
-                  return (
-                    <div
-                      key={idx}
-                      className={`rounded-[var(--radius-sm)] border transition-all ${
-                        isSelected
-                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
-                          : "border-[var(--color-border)] bg-[var(--color-surface)]"
-                      }`}
-                    >
-                      <div className="w-full p-3">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (opt.name === "Humanoid (2 races)") {
-                              setShowHumanoidPopup({ featureName: showFeaturePopup.name, level: lvl });
-                              setHumanoidSelections([]);
-                              setShowFeaturePopup(null);
-                              return;
-                            }
-                            if (isMultiSelect) {
-                              if (multiSelected) {
-                                setMultiSelectSelections(multiSelectSelections.filter((s) => s !== opt.name));
-                              } else if (multiSelectSelections.length < (showFeaturePopup.count || 1)) {
-                                setMultiSelectSelections([...multiSelectSelections, opt.name]);
-                              }
-                              return;
-                            }
-                            if (showFeaturePopup.isSubclass) {
-                              onSubclassFeatureChoice(showFeaturePopup.name, opt.name);
-                            } else {
-                              onClassFeatureChoice(showFeaturePopup.name, opt.name);
-                            }
-                            setShowFeaturePopup(null);
-                          }}
-                          disabled={isDisabled}
-                          className={`w-full p-3 text-left ${
-                            isSelected ? "text-[var(--color-surface)]" : "hover:border-[var(--color-border-active)]"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-2">
-                            <div className="text-xs font-semibold flex items-center gap-2">
-                              {isSelected && <Check className="h-3 w-3 shrink-0" />}
-                              {opt.name}
-                            </div>
-                          </div>
-                        </button>
-                        {opt.description && (
-                          <InfoButton title={opt.name} description={opt.description} />
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            {(showFeaturePopup.count || 1) > 1 && (
-              <div className="border-t border-[var(--color-border)] px-4 py-3">
-                <button
-                  type="button"
-                  disabled={multiSelectSelections.length !== (showFeaturePopup.count || 1)}
-                  onClick={() => {
-                    if (multiSelectSelections.length === (showFeaturePopup.count || 1)) {
-                      const value = multiSelectSelections.join(", ");
-                      if (showFeaturePopup.isSubclass) {
-                        onSubclassFeatureChoice(showFeaturePopup.name, value);
-                      } else {
-                        onClassFeatureChoice(showFeaturePopup.name, value);
-                      }
-                      setShowFeaturePopup(null);
-                      setMultiSelectSelections([]);
-                    }
-                  }}
-                  className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all ${
-                    multiSelectSelections.length === (showFeaturePopup.count || 1)
-                      ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:border-2"
-                      : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed"
-                  }`}
-                >
-                  Confirm Selection ({multiSelectSelections.length}/{showFeaturePopup.count || 1})
-                </button>
-              </div>
-            )}
-          </div>
-         </div>
+      {showFeaturePopup && (
+        <FeatureSelectionModal
+          isOpen={!!showFeaturePopup}
+          onClose={() => { setShowFeaturePopup(null); setFeatureSelections([]); }}
+          name={showFeaturePopup.name}
+          description={showFeaturePopup.description}
+          options={showFeaturePopup.options}
+          count={showFeaturePopup.count}
+          isSubclass={showFeaturePopup.isSubclass}
+          onSelect={(value) => {
+            if (showFeaturePopup.isSubclass) {
+              onSubclassFeatureChoice(showFeaturePopup.name, value);
+            } else {
+              onClassFeatureChoice(showFeaturePopup.name, value);
+            }
+          }}
+          onSpecialOption={(optName) => {
+            if (optName === "Humanoid (2 races)") {
+              setShowHumanoidPopup({ featureName: showFeaturePopup.name, level: lvl });
+              setHumanoidSelections([]);
+            }
+          }}
+          characterSources={character.sources}
+        />
       )}
 
       {showTerrainModal && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setShowTerrainModal(false); }}
-        >
-          <div
-            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">Choose Terrain</div>
-              <button
-                type="button"
-                onClick={() => setShowTerrainModal(false)}
-                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
-              <p className="text-xs text-[var(--color-text-secondary)] mb-4">
-                Choose your terrain type to gain circle spells. These spells are always prepared and do not count against your preparation limit.
-              </p>
-              <div className="space-y-2">
-                {getCircleTerrainTypes().map((terrain) => {
-                  const isSelected = circleTerrain === terrain;
-                  const terrainSpells = getCircleSpells(terrain, info.level);
-                  const prevLevelSpells = info.level > 3 ? getCircleSpells(terrain, info.level - 1) : [];
-                  const newSpells = terrainSpells.filter((name) => !prevLevelSpells.includes(name));
-                  return (
-                    <button
-                      key={terrain}
-                      type="button"
-                      onClick={() => { onCircleTerrainChange(terrain); setShowTerrainModal(false); }}
-                      className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                        isSelected
-                          ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-                          : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      <div className="font-semibold text-sm">{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</div>
-                      {newSpells.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mt-2">
-                          {newSpells.map((name) => {
-                            const spellData = srdSpells.find((s) => s.name?.toLowerCase() === name.toLowerCase());
-                            const desc = spellData?.description ? (Array.isArray(spellData.description) ? spellData.description.join(" ") : spellData.description) : undefined;
-                            return (
-                              <span key={name} className="flex items-center gap-1">
-                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isSelected ? "bg-green-500 text-white" : "bg-green-100 text-green-700"}`}>
-                                  {name}
-                                </span>
-                                {desc && (
-                                  <InfoButton title={name} description={desc} />
-                                )}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      )}
-                      {terrainSpells.length > 0 && newSpells.length === 0 && (
-                        <div className="flex flex-wrap gap-1 mt-2">
-                          {terrainSpells.map((name) => (
-                            <span key={name} className={`text-[10px] font-bold px-1.5 py-0.5 rounded opacity-60 ${isSelected ? "bg-green-500 text-white" : "bg-gray-100 text-gray-600"}`}>
-                              {name}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
+        <TerrainModal
+          isOpen={showTerrainModal}
+          onClose={() => setShowTerrainModal(false)}
+          character={character}
+          level={info.level}
+          maxSpellLevel={info.maxSpellLevel}
+          selectedTerrain={circleTerrain}
+          onTerrainChange={onCircleTerrainChange}
+        />
       )}
 
       {showBonusCantripModal && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setShowBonusCantripModal(false); }}
-        >
-          <div
-            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">Choose Bonus Cantrip</div>
-              <button
-                type="button"
-                onClick={() => setShowBonusCantripModal(false)}
-                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
-              <p className="text-xs text-[var(--color-text-secondary)] mb-4">
-                Choose one additional druid cantrip. This cantrip does not count against your cantrip limit.
-              </p>
-              <div className="space-y-2">
-                {getStaticSpells()
-                  .filter((s) => s.level === 0 && s.classes?.includes("Druid"))
-                  .map((sp) => {
-                    const isSelected = bonusCantrip === sp.name;
-                    const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
-                    return (
-                      <div key={sp.name} className="flex gap-1.5">
-                        <button
-                          type="button"
-                          onClick={() => { onBonusCantripChange(sp.name); setShowBonusCantripModal(false); }}
-                          className={`flex-1 p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                            isSelected
-                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-                              : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                          }`}
-                        >
-                          <div className="font-semibold text-sm">{sp.name}</div>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
-                          </div>
-                        </button>
-                        {desc && <InfoButton title={sp.name} description={desc} />}
-                      </div>
-                    );
-                  })}
-              </div>
-            </div>
-          </div>
-        </div>
+        <BonusCantripModal
+          isOpen={showBonusCantripModal}
+          onClose={() => setShowBonusCantripModal(false)}
+          selectedCantrip={bonusCantrip}
+          onCantripChange={onBonusCantripChange}
+        />
       )}
-    </div>
-  );
-}
-
-function SubclassDetailsModal({
-  subclass,
-  characterClass,
-  onClose,
-}: {
-  subclass: string;
-  characterClass: string;
-  onClose: () => void;
-}) {
-  const details = getStaticSubclassDetails(characterClass, subclass);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  if (!details) return null;
-
-  return (
-    <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4">
-      <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col">
-        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-          <div className="text-sm font-bold text-[var(--color-text-primary)]">{subclass}</div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
-          {details.description && details.description.length > 0 && (
-            <div className="space-y-2">
-              {details.description.map((desc: string, idx: number) => (
-                <p key={idx} className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
-                  {desc}
-                </p>
-              ))}
-            </div>
-          )}
-          {details.features && details.features.length > 0 && (
-            <div className="space-y-3">
-              <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
-                Features
-              </div>
-              {details.features.map((f: any, idx: number) => (
-                <div key={idx} className="rounded-[var(--radius-sm)] border border-[var(--color-border)] p-3 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-[var(--color-text-primary)]">{f.name}</span>
-                    {f.level && (
-                      <span className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded-full">
-                        Lv {f.level}
-                      </span>
-                    )}
-                  </div>
-                  {f.description && f.description.length > 0 && (
-                    <p className="text-[10px] text-[var(--color-text-muted)] leading-relaxed">
-                      {f.description.join(" ")}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="border-t border-[var(--color-border)] px-4 py-3">
-          <button
-            type="button"
-            onClick={onClose}
-            className="w-full py-2 px-4 rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold hover:opacity-90 transition-opacity"
-          >
-            Got it
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SpellSelection({
-  character,
-  count,
-  cantripCount,
-  maxLevel,
-  spells,
-  onSpellsChange,
-}: {
-  character: Character;
-  count: number;
-  cantripCount: number;
-  maxLevel: number;
-  spells: string[];
-  onSpellsChange: (list: string[]) => void;
-}) {
-  const isArcaneTrickster = character.subclass?.toLowerCase().includes("arcane trickster");
-  const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
-  const available = isArcaneTrickster
-    ? atSpells.filter((s) => s.level === 0 || s.level <= maxLevel)
-    : getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= maxLevel));
-  const toggle = (name: string, level: number) => {
-    if (spells.some((s) => s === `${name}:${level}`)) {
-      onSpellsChange(spells.filter((s) => s !== `${name}:${level}`));
-    } else {
-      if (level === 0) {
-        const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
-        if (currentCantrips < cantripCount) onSpellsChange([...spells, `${name}:${level}`]);
-      } else {
-        const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
-        if (currentSpells < count) onSpellsChange([...spells, `${name}:${level}`]);
-      }
-    }
-  };
-  const cantrips = available.filter((s) => s.level === 0);
-  const levelSpells = available.filter((s) => s.level > 0);
-
-  return (
-    <div className="mt-2 space-y-2">
-      {cantripCount > 0 && cantrips.length > 0 && (
-        <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Cantrips</div>
-          <div className="max-h-24 overflow-y-auto space-y-1">
-            {cantrips.map((sp) => {
-              const isSel = spells.includes(`${sp.name}:0`);
-              const currentCantrips = spells.filter((s) => s.endsWith(":0")).length;
-              const disabled = !isSel && currentCantrips >= cantripCount;
-              return (
-                <button
-                  key={sp.name}
-                  type="button"
-                  onClick={() => toggle(sp.name, 0)}
-                  disabled={disabled}
-                  className={`w-full px-2 py-1 text-left text-[10px] rounded-[var(--radius-sm)] border transition-all ${
-                    isSel
-                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-                      : disabled
-                        ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                        : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  {sp.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-      {count > 0 && levelSpells.length > 0 && (
-        <div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-1">Spells</div>
-          <div className="max-h-32 overflow-y-auto space-y-1">
-            {levelSpells.map((sp) => {
-              const isSel = spells.includes(`${sp.name}:${sp.level}`);
-              const currentSpells = spells.filter((s) => !s.endsWith(":0")).length;
-              const disabled = !isSel && currentSpells >= count;
-              return (
-                <button
-                  key={sp.name}
-                  type="button"
-                  onClick={() => toggle(sp.name, sp.level)}
-                  disabled={disabled}
-                  className={`w-full px-2 py-1 text-left text-[10px] rounded-[var(--radius-sm)] border transition-all ${
-                    isSel
-                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-[var(--color-text-primary)]"
-                      : disabled
-                        ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                        : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                >
-                  {sp.name} <span className="text-[var(--color-text-muted)]">Lv {sp.level}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function SubclassSelectionModal({
-  options,
-  selected,
-  characterClass,
-  onSelect,
-  onClose,
-}: {
-  options: { name: string; description: string; hasDetails: boolean }[];
-  selected: string;
-  characterClass: string;
-  onSelect: (name: string) => void;
-  onClose: () => void;
-}) {
-  const [detailsView, setDetailsView] = useState<string | null>(null);
-  const [previewSubclass, setPreviewSubclass] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  const subclassData = useMemo(() => {
-    const subclasses = getStaticSubclasses(characterClass);
-    const map: Record<string, any> = {};
-    for (const s of subclasses) {
-      map[s.name] = s;
-    }
-    return map;
-  }, [characterClass]);
-
-  const filteredOptions = useMemo(() => {
-    if (!searchQuery.trim()) return options;
-    const q = searchQuery.toLowerCase();
-    return options.filter((opt) => opt.name.toLowerCase().includes(q) || opt.description.toLowerCase().includes(q));
-  }, [options, searchQuery]);
-
-  const previewFeatures = useMemo(() => {
-    if (!previewSubclass || !subclassData[previewSubclass]) return [];
-    const features = subclassData[previewSubclass].features || [];
-    const grouped: Record<number, any[]> = {};
-    for (const f of features) {
-      const lv = f.level || 0;
-      if (!grouped[lv]) grouped[lv] = [];
-      grouped[lv].push(f);
-    }
-    return Object.keys(grouped)
-      .map(Number)
-      .sort((a, b) => a - b)
-      .map((lv) => ({ level: lv, features: grouped[lv] }));
-  }, [previewSubclass, subclassData]);
-
-  const handleConfirm = () => {
-    if (previewSubclass) {
-      onSelect(previewSubclass);
-    }
-  };
-
-  return (
-    <div
-      className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-    >
-      <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-          <div className="text-sm font-bold text-[var(--color-text-primary)]">Choose Subclass</div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="px-4 py-3 border-b border-[var(--color-border)]">
-          <div className="relative">
-            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-text-muted)]" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search subclasses..."
-              className="input w-full pl-10 text-sm"
-            />
-          </div>
-        </div>
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-          {filteredOptions.length === 0 && (
-            <p className="text-sm text-[var(--color-text-muted)] text-center py-8">No subclasses found.</p>
-          )}
-          {filteredOptions.map((opt) => (
-            <div key={opt.name} className="space-y-2">
-              <button
-                type="button"
-                onClick={() => {
-                  setPreviewSubclass(opt.name);
-                  setDetailsView(null);
-                }}
-                className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                  previewSubclass === opt.name
-                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold flex items-center gap-1">
-                    {opt.name}
-                    {isRecommended("subclass", opt.name, characterClass) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                  </span>
-                    {opt.hasDetails && (
-                      <button
-                        type="button"
-                        onClick={(e) => { e.stopPropagation(); setDetailsView(opt.name); }}
-                        className="h-10 w-10 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all shrink-0"
-                        aria-label={`Info: ${opt.name}`}
-                      >
-                        <Info className="h-5 w-5" />
-                      </button>
-                    )}
-                </div>
-              </button>
-              {previewSubclass === opt.name && previewFeatures.length > 0 && (
-                <div className="ml-4 p-3 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-2">Features by Level</div>
-                  <div className="space-y-2">
-                    {previewFeatures.map(({ level, features }) => (
-                      <div key={level}>
-                        <div className="text-[10px] font-bold text-[var(--color-text-primary)] mb-1">Level {level}</div>
-                        <div className="space-y-1">
-                          {features.map((f: any, idx: number) => (
-                            <div key={idx} className="text-[10px] text-[var(--color-text-secondary)]">
-                              <span className="font-semibold">{f.name}</span>
-                              {f.choices && <span className="text-[var(--color-text-muted)]"> (choose {f.choicesCount || 1})</span>}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
-          <button
-            type="button"
-            onClick={onClose}
-            className="btn btn-secondary flex-1"
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            onClick={handleConfirm}
-            disabled={!previewSubclass}
-            className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
-              previewSubclass
-                ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
-                : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
-            }`}
-          >
-            Confirm
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

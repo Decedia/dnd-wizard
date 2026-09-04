@@ -8,14 +8,14 @@ import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
 import { BasePopup } from "@/components/BasePopup";
 
-interface FeatSelectorProps {
+interface FeatSelectionModalProps {
   onSelect: (feat: SRDFeat) => void;
   onClose: () => void;
   selectedFeat?: string;
   sources?: string[];
 }
 
-export function FeatSelector({ onSelect, onClose, selectedFeat, sources }: FeatSelectorProps) {
+export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources }: FeatSelectionModalProps) {
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
   const [expandedFeat, setExpandedFeat] = useState<string | null>(null);

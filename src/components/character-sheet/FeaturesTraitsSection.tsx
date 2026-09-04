@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles } from "@/components/icons";
-import { FeatPopup } from "./FeatPopup";
+import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
@@ -260,7 +260,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             Add Feature
           </button>
       )}
-      {popupFeat && <FeatPopup feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
+      {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
     </SectionCard>
   );
 }

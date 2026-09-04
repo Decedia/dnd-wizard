@@ -4,7 +4,7 @@ import { useCallback, useState, useMemo } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticRaces, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
-import { FeatSelector } from "./FeatSelector";
+import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
@@ -221,7 +221,7 @@ return (
       </StepCard>
 
       {featModalOpen && (
-        <FeatSelector
+        <FeatSelectionModal
           selectedFeat={selectedFeat}
           sources={data.sources}
           onSelect={(feat: SRDFeat) => {
