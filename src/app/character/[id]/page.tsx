@@ -336,7 +336,7 @@ export default function CharacterView() {
       </CharacterSheetProvider>
 
       {((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0 || (character.activeBuffs?.length ?? 0) > 0) && (
-         <div className="fixed bottom-28 left-1/2 -translate-x-1/2 z-50">
+         <div className="fixed bottom-32 left-1/2 -translate-x-1/2 z-50">
           <button
             type="button"
             onClick={() => {
