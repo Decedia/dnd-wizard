@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { InfoIcon as Info, XIcon as X, CheckIcon as Check } from "@/components/icons";
-import { FormattedDescription } from "@/components/FormattedDescription";
+import { useState } from "react";
+import { InfoIcon as Info } from "@/components/icons";
+import { BasePopup } from "./BasePopup";
+import { FormattedDescription } from "./FormattedDescription";
 
 interface InfoButtonProps {
   title: string;
@@ -29,40 +30,16 @@ export function InfoButton({ title, description }: InfoButtonProps) {
       >
         <Info className="h-4 w-4" />
       </button>
-      {show && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setShow(false); }}
-        >
-          <div
-            className="w-full max-w-md max-h-[70vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">{title}</div>
-              <button
-                type="button"
-                onClick={() => setShow(false)}
-                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
-              <FormattedDescription>{descText}</FormattedDescription>
-            </div>
-            <div className="border-t border-[var(--color-border)] px-4 py-3">
-              <button
-                type="button"
-                onClick={() => setShow(false)}
-                className="w-full py-2 px-4 rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold hover:opacity-90 transition-opacity"
-              >
-                Got it
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <BasePopup
+        isOpen={show}
+        onClose={() => setShow(false)}
+        title={title}
+        confirmLabel="Got it"
+        onConfirm={() => setShow(false)}
+        showFooter={true}
+      >
+        <FormattedDescription>{descText}</FormattedDescription>
+      </BasePopup>
     </>
   );
 }
@@ -80,46 +57,17 @@ interface DescriptionModalProps {
 export function DescriptionModal({ title, content, onClose, children, showConfirm, onConfirm, confirmLabel = "Confirm" }: DescriptionModalProps) {
   const text = Array.isArray(content) ? content.join(" ") : content;
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
   return (
-    <div
-      className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4 pointer-events-auto"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    <BasePopup
+      isOpen={true}
+      onClose={onClose}
+      title={title}
+      confirmLabel={confirmLabel}
+      onConfirm={onConfirm}
+      showFooter={!!showConfirm && !!onConfirm}
     >
-      <div className="w-full max-w-md max-h-[70vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-          <div className="text-sm font-bold text-[var(--color-text-primary)]">{title}</div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="flex-1 overflow-y-auto px-4 py-4">
-          {children || (
-            <FormattedDescription>{text}</FormattedDescription>
-          )}
-        </div>
-        {showConfirm && onConfirm && (
-          <div className="border-t border-[var(--color-border)] px-4 py-3">
-            <button
-              type="button"
-              onClick={onConfirm}
-              className="w-full py-2 px-4 rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold hover:opacity-90 transition-opacity"
-            >
-              {confirmLabel}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+      {children || <FormattedDescription>{text}</FormattedDescription>}
+    </BasePopup>
   );
 }
+

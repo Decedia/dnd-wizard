@@ -8,6 +8,7 @@ import { InfoButton } from "@/components/InfoButton";
 import { FeatSelector } from "./FeatSelector";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
+import { BasePopup } from "@/components/BasePopup";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
@@ -237,32 +238,90 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       </div>
 
       {popupType === "class" && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingClass(data.class || null); } }}
+        <BasePopup
+          isOpen={true}
+          onClose={() => { setPopupType(null); setPendingClass(data.class || null); }}
+          title="Select Class"
+          confirmLabel="Confirm"
+          cancelLabel="Cancel"
+          onConfirm={handleConfirmClass}
+          confirmDisabled={!pendingClass}
+          showFooter={true}
         >
-          <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">Select Class</div>
-              <button
-                type="button"
-                onClick={() => { setPopupType(null); setPendingClass(data.class || null); }}
-                className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-              >
-                ×
-              </button>
-            </div>
-             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-              {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
-                const isSelected = pendingClass === cls.name;
-                const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
-                const Icon = classIcons[cls.name] || Sparkle;
+           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+            {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
+              const isSelected = pendingClass === cls.name;
+              const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
+              const Icon = classIcons[cls.name] || Sparkle;
 
-                return (
-                  <div key={cls.name} className="flex items-center gap-2">
+              return (
+                <div key={cls.name} className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPendingClass(cls.name)}
+                    className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
+                      isSelected
+                        ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
+                        : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
+                            <div>
+                               <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
+                                {cls.name}
+                                {isRecommended("class", cls.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                              </span>
+                              {hasSubclasses && (() => {
+                                const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
+                                return (
+                                  <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
+                                    {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
+                                  </div>
+                                );
+                              })()}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </BasePopup>
+      )}
+
+      {popupType === "race" && (
+        <BasePopup
+          isOpen={true}
+          onClose={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
+          title="Select Race"
+          confirmLabel="Confirm"
+          cancelLabel="Cancel"
+          onConfirm={handleConfirmRace}
+          confirmDisabled={!canConfirmRace}
+          showFooter={true}
+        >
+           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+            {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
+              const isSelected = pendingRace === race.name;
+              const Icon = raceIcons[race.name] || Users;
+              const isHuman = race.name === "Human";
+
+              return (
+                <div key={race.name} className="space-y-2">
+                  <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      onClick={() => setPendingClass(cls.name)}
+                      onClick={() => setPendingRace(race.name)}
                       className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
                         isSelected
                           ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
@@ -273,102 +332,9 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                           <Icon className="h-5 w-5" />
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
-                              <div>
-                                 <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
-                                  {cls.name}
-                                  {isRecommended("class", cls.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                                </span>
-                                {hasSubclasses && (() => {
-                                  const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
-                                  return (
-                                    <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
-                                      {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
-                                    </div>
-                                  );
-                                })()}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                    {cls.flavorText && (
-                      <InfoButton title={cls.name} description={cls.flavorText} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
-              <button
-                type="button"
-                onClick={() => { setPopupType(null); setPendingClass(data.class || null); }}
-                className="btn btn-secondary flex-1"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleConfirmClass}
-                disabled={!pendingClass}
-                className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
-                  pendingClass
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
-                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
-                }`}
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {popupType === "race" && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); } }}
-        >
-          <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">Select Race</div>
-              <button
-                type="button"
-                onClick={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
-                className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-              >
-                ×
-              </button>
-            </div>
-             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-               {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
-                const isSelected = pendingRace === race.name;
-                const Icon = raceIcons[race.name] || Users;
-                const isHuman = race.name === "Human";
-
-                return (
-                  <div key={race.name} className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setPendingRace(race.name)}
-                        className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
-                          isSelected
-                            ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
-                            : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                            <Icon className="h-5 w-5" />
-                          </div>
-                           <div className="flex-1">
-                              <div className="flex items-center justify-between">
-                                 <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
+                         <div className="flex-1">
+                             <div className="flex items-center justify-between">
+                                <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
                                   {race.name}
                                   {isRecommended("race", race.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                                 </span>
@@ -387,12 +353,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           </div>
                         </div>
                       </button>
-                      {race.traits && race.traits.length > 0 && (
-                        <InfoButton
-                          title={`${race.name} Traits`}
-                          description={race.traits.map((t) => `${t.name}: ${t.description}`).join("\n\n")}
-                        />
-                      )}
                     </div>
 
                     {isSelected && race.choices && race.choices.length > 0 && (
@@ -550,30 +510,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 );
               })}
             </div>
-            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
-              <button
-                type="button"
-                onClick={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
-                className="btn btn-secondary flex-1"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleConfirmRace}
-                disabled={!canConfirmRace}
-                className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
-                  canConfirmRace
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
-                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
-                }`}
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          </BasePopup>
+        )}
 
       {featModalOpen && (
         <FeatSelector

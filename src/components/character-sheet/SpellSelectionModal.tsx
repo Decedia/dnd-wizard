@@ -5,9 +5,10 @@ import { getStaticSpells, getStaticArcaneTricksterSpells, getSubclassFlags, dedu
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import { InfoButton } from "@/components/InfoButton";
-import { XIcon as X, CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
+import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
+import { BasePopup } from "@/components/BasePopup";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
 
@@ -264,142 +265,125 @@ export function SpellSelectionModal({
     );
   };
 
+  const getTitle = () => {
+    if (cantripCount > 0 && count === 0) return `Learn ${cantripCount} Additional Cantrip${cantripCount > 1 ? "s" : ""}`;
+    if (spellsKnownChanged) return `Choose ${count} New Spell${count > 1 ? "s" : ""}`;
+    return "Replace a Spell";
+  };
+
   return (
-    <div
-      className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    <BasePopup
+      isOpen={true}
+      onClose={onClose}
+      title={getTitle()}
+      confirmLabel="Confirm Selection"
+      cancelLabel="Cancel"
+      onConfirm={onClose}
+      showFooter={true}
     >
-      <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-          <div className="text-sm font-bold text-[var(--color-text-primary)]">
-            {cantripCount > 0 && count === 0
-              ? `Learn ${cantripCount} Additional Cantrip${cantripCount > 1 ? "s" : ""}`
-              : spellsKnownChanged
-                ? `Choose ${count} New Spell${count > 1 ? "s" : ""}`
-                : "Replace a Spell"}
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="h-10 w-10 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-
-        <div className="px-4 py-3 border-b border-[var(--color-border)]">
-          <div className="relative">
-            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-text-muted)]" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search spells..."
-              className="input w-full pl-10 text-sm"
-            />
-          </div>
-        </div>
-
-        {(currentCantrips.length > 0 || currentSpells.length > 0) && !onChange && (
-          <div className="px-4 py-2 bg-green-50 border-b border-[var(--color-border)]">
-            <div className="text-[10px] font-semibold text-green-700 mb-1">
-              Selected this level ({currentCantrips.length + currentSpells.length} of {(cantripCount || 0) + (count || 0)})
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {currentCantrips.map((s) => {
-                const name = typeof s === "string" ? s.split(":")[0] : s.name;
-                return (
-                  <span key={name} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-green-100 border border-green-300 rounded-full text-green-800">
-                    {name}
-                    {!onChange && <button type="button" onClick={() => onSpellsChange?.(spells.filter(x => x !== s))} className="hover:text-red-600 font-bold">×</button>}
-                  </span>
-                );
-              })}
-              {currentSpells.map((s) => {
-                const name = typeof s === "string" ? s.split(":")[0] : s.name;
-                const lvl = typeof s === "string" ? s.split(":")[1] : String(s.level);
-                return (
-                  <span key={`${name}-${lvl}`} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-green-100 border border-green-300 rounded-full text-green-800">
-                    {name} <span className="text-green-600">Lv {lvl}</span>
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {cantripCount > 0 && count === 0 && (
-          <div className="px-4 py-2 bg-blue-50 border-b border-[var(--color-border)]">
-            <p className="text-[10px] text-blue-700">
-              You can now learn {cantripCount} additional cantrip{cantripCount > 1 ? "s" : ""}. Select from the tab below.
-            </p>
-          </div>
-        )}
-        {spellsKnownChanged && !(cantripCount > 0 && count === 0) && (
-          <div className="px-4 py-2 bg-blue-50 border-b border-[var(--color-border)]">
-            <p className="text-[10px] text-blue-700">
-              You learned {count} new spell{count > 1 ? "s" : ""}. Select from the tabs below.
-            </p>
-          </div>
-        )}
-        {!spellsKnownChanged && existingSpells && existingSpells.length > 0 && !(cantripCount > 0 && count === 0) && (
-          <div className="px-4 py-2 bg-yellow-50 border-b border-[var(--color-border)]">
-            <p className="text-[10px] text-yellow-700 mb-1">Replace a spell (optional):</p>
-            <div className="flex flex-wrap gap-1">
-              {existingSpells.map((sp) => (
-                <span key={`${sp.name}:${sp.level}`} className="text-[10px] px-1.5 py-0.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-full">
-                  {sp.name}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-        <div className="flex-shrink-0 flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide">
-          {mode !== "spells" && (
-            <button
-              type="button"
-              onClick={() => setActiveTab("cantrips")}
-              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
-                activeTab === "cantrips"
-                  ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
-                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
-              }`}
-            >
-              Cantrips ({currentCantrips.length}/{onChange ? maxCantripsKnown : cantripCount})
-            </button>
-          )}
-          {mode !== "cantrips" && spellLevels.map((lvl) => (
-            <button
-              key={lvl}
-              type="button"
-              onClick={() => setActiveTab(lvl)}
-              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
-                activeTab === lvl
-                  ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
-                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
-              }`}
-            >
-              Level {lvl} ({currentSpells.filter((s) => typeof s !== "string" ? s.level === lvl : false).length}/{onChange ? maxSpellsKnown : count})
-            </button>
-          ))}
-        </div>
-        <div className="flex-1 min-h-0 overflow-hidden">
-          {activeTab === "cantrips" ? (
-            renderLevelContent(filteredCantrips)
-          ) : (
-            <div className="h-full overflow-y-auto">{renderLevelContent(filteredLevelSpells[activeTab as number] || [])}</div>
-          )}
-        </div>
-        <div className="border-t border-[var(--color-border)] px-4 py-3">
-          <button
-            type="button"
-            onClick={onClose}
-            className="w-full py-2.5 text-sm font-semibold rounded-full bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90 transition-all"
-          >
-            Confirm Selection
-          </button>
+      <div className="px-4 py-3 border-b border-[var(--color-border)] -mx-4 -mt-3 mb-3">
+        <div className="relative">
+          <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-text-muted)]" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search spells..."
+            className="input w-full pl-10 text-sm"
+          />
         </div>
       </div>
-    </div>
+
+      {(currentCantrips.length > 0 || currentSpells.length > 0) && !onChange && (
+        <div className="px-4 py-2 bg-green-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+          <div className="text-[10px] font-semibold text-green-700 mb-1">
+            Selected this level ({currentCantrips.length + currentSpells.length} of {(cantripCount || 0) + (count || 0)})
+          </div>
+          <div className="flex flex-wrap gap-1">
+            {currentCantrips.map((s) => {
+              const name = typeof s === "string" ? s.split(":")[0] : s.name;
+              return (
+                <span key={name} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-green-100 border border-green-300 rounded-full text-green-800">
+                  {name}
+                  {!onChange && <button type="button" onClick={() => onSpellsChange?.(spells.filter(x => x !== s))} className="hover:text-red-600 font-bold">×</button>}
+                </span>
+              );
+            })}
+            {currentSpells.map((s) => {
+              const name = typeof s === "string" ? s.split(":")[0] : s.name;
+              const lvl = typeof s === "string" ? s.split(":")[1] : String(s.level);
+              return (
+                <span key={`${name}-${lvl}`} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-green-100 border border-green-300 rounded-full text-green-800">
+                  {name} <span className="text-green-600">Lv {lvl}</span>
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {cantripCount > 0 && count === 0 && (
+        <div className="px-4 py-2 bg-blue-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+          <p className="text-[10px] text-blue-700">
+            You can now learn {cantripCount} additional cantrip{cantripCount > 1 ? "s" : ""}. Select from the tab below.
+          </p>
+        </div>
+      )}
+      {spellsKnownChanged && !(cantripCount > 0 && count === 0) && (
+        <div className="px-4 py-2 bg-blue-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+          <p className="text-[10px] text-blue-700">
+            You learned {count} new spell{count > 1 ? "s" : ""}. Select from the tabs below.
+          </p>
+        </div>
+      )}
+      {!spellsKnownChanged && existingSpells && existingSpells.length > 0 && !(cantripCount > 0 && count === 0) && (
+        <div className="px-4 py-2 bg-yellow-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+          <p className="text-[10px] text-yellow-700 mb-1">Replace a spell (optional):</p>
+          <div className="flex flex-wrap gap-1">
+            {existingSpells.map((sp) => (
+              <span key={`${sp.name}:${sp.level}`} className="text-[10px] px-1.5 py-0.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-full">
+                {sp.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      <div className="flex-shrink-0 flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide -mx-4 px-4">
+        {mode !== "spells" && (
+          <button
+            type="button"
+            onClick={() => setActiveTab("cantrips")}
+            className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+              activeTab === "cantrips"
+                ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
+                : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
+            }`}
+          >
+            Cantrips ({currentCantrips.length}/{onChange ? maxCantripsKnown : cantripCount})
+          </button>
+        )}
+        {mode !== "cantrips" && spellLevels.map((lvl) => (
+          <button
+            key={lvl}
+            type="button"
+            onClick={() => setActiveTab(lvl)}
+            className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+              activeTab === lvl
+                ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
+                : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
+            }`}
+          >
+            Level {lvl} ({currentSpells.filter((s) => typeof s !== "string" ? s.level === lvl : false).length}/{onChange ? maxSpellsKnown : count})
+          </button>
+        ))}
+      </div>
+      <div className="flex-1 min-h-0 overflow-hidden mt-3">
+        {activeTab === "cantrips" ? (
+          renderLevelContent(filteredCantrips)
+        ) : (
+          <div className="h-full overflow-y-auto">{renderLevelContent(filteredLevelSpells[activeTab as number] || [])}</div>
+        )}
+      </div>
+    </BasePopup>
   );
 }
