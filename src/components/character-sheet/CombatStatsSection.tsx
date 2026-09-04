@@ -343,7 +343,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
       )}
       {hpModal && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
+          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) { setHpModal(null); setHpAmount(""); } }}
         >
           <div className="w-full max-w-xs rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-xl">

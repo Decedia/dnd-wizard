@@ -31,7 +31,7 @@ export function InfoButton({ title, description }: InfoButtonProps) {
       </button>
       {show && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
+          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShow(false); }}
         >
           <div
@@ -89,7 +89,7 @@ export function DescriptionModal({ title, content, onClose, children, showConfir
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4 pointer-events-auto"
+      className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4 pointer-events-auto"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="w-full max-w-md max-h-[70vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">

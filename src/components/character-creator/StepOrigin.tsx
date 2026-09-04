@@ -237,7 +237,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
       {popupType === "class" && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
+          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingClass(data.class || null); } }}
         >
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">
@@ -329,7 +329,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
       {popupType === "race" && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4"
+          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); } }}
         >
           <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl">

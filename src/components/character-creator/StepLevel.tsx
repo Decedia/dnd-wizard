@@ -631,7 +631,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
 
       {/* ASI Modal */}
       {asiModalOpen && currentAsiLevel && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-overlay)] p-4">
+        <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4">
           <div className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
             <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
               <div className="text-sm font-bold text-[var(--color-text-primary)]">
