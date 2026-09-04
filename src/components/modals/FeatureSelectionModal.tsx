@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { getStaticSpells, getWizardSpellsByLevel } from "@/lib/srd-client";
-import { CheckIcon as Check, XIcon as X } from "@/components/icons";
+import { CheckIcon as Check, XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, ShieldCheckIcon as ShieldCheck, DaggerIcon as Dagger, BattleAxeIcon as BattleAxe, BowArrowIcon as BowArrow, CrownIcon as Crown, SkullIcon as Skull, FlameIcon as Flame, LightningBoltIcon as LightningBolt, SparklesIcon as Sparkles } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 
 interface FeatureSelectionModalProps {
@@ -32,6 +32,22 @@ export function FeatureSelectionModal({
 }: FeatureSelectionModalProps) {
   const [featureSelections, setFeatureSelections] = useState<string[]>([]);
   const isMultiSelect = count > 1;
+
+  const getOptionIcon = (optName: string) => {
+    const lower = optName.toLowerCase();
+    if (lower.includes("archery")) return BowArrow;
+    if (lower.includes("defense")) return Shield;
+    if (lower.includes("dueling")) return Sword;
+    if (lower.includes("great weapon")) return BattleAxe;
+    if (lower.includes("protection")) return ShieldCheck;
+    if (lower.includes("two-weapon")) return Dagger;
+    if (lower.includes("subclass")) return Crown;
+    if (lower.includes("necromancy") || lower.includes("undead") || lower.includes("death")) return Skull;
+    if (lower.includes("fire") || lower.includes("evocation")) return Flame;
+    if (lower.includes("lightning") || lower.includes("thunder")) return LightningBolt;
+    if (lower.includes("magic") || lower.includes("enchantment") || lower.includes("illusion")) return Sparkles;
+    return null;
+  };
 
   const handleOptionClick = (optName: string) => {
     if (optName === "Humanoid (2 races)") {
@@ -96,6 +112,10 @@ export function FeatureSelectionModal({
                   <div className="flex items-center justify-between gap-2">
                     <div className="text-xs font-semibold flex items-center gap-2">
                       {isSelected && <Check className="h-3 w-3 shrink-0" />}
+                      {(() => {
+                        const OptionIcon = getOptionIcon(opt.name);
+                        return OptionIcon ? <OptionIcon className="h-4 w-4 shrink-0" /> : null;
+                      })()}
                       {opt.name}
                     </div>
                   </div>

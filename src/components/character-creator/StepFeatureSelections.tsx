@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { CheckCircleIcon as CheckCircle } from "@/components/icons";
+import { CheckCircleIcon as CheckCircle, SwordIcon as Sword, ShieldIcon as Shield, ShieldCheckIcon as ShieldCheck, DaggerIcon as Dagger, BattleAxeIcon as BattleAxe, BowArrowIcon as BowArrow, CrownIcon as Crown, SkullIcon as Skull, FlameIcon as Flame, LightningBoltIcon as LightningBolt, SparklesIcon as Sparkles } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
@@ -39,6 +39,22 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
     });
     return initial;
   });
+
+  const getOptionIcon = (optName: string) => {
+    const lower = optName.toLowerCase();
+    if (lower.includes("archery")) return BowArrow;
+    if (lower.includes("defense")) return Shield;
+    if (lower.includes("dueling")) return Sword;
+    if (lower.includes("great weapon")) return BattleAxe;
+    if (lower.includes("protection")) return ShieldCheck;
+    if (lower.includes("two-weapon")) return Dagger;
+    if (lower.includes("subclass")) return Crown;
+    if (lower.includes("necromancy") || lower.includes("undead") || lower.includes("death")) return Skull;
+    if (lower.includes("fire") || lower.includes("evocation")) return Flame;
+    if (lower.includes("lightning") || lower.includes("thunder")) return LightningBolt;
+    if (lower.includes("magic") || lower.includes("enchantment") || lower.includes("illusion")) return Sparkles;
+    return null;
+  };
 
   const handleSelect = (storageKey: string, value: string, count: number = 1) => {
     setSelectedValues((prev) => {
@@ -126,7 +142,13 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                         }`}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-body">{option}</span>
+                          <div className="flex items-center gap-2">
+                            {(() => {
+                              const OptionIcon = getOptionIcon(option);
+                              return OptionIcon ? <OptionIcon className="h-4 w-4 shrink-0" /> : null;
+                            })()}
+                            <span className="text-body">{option}</span>
+                          </div>
                           {isSelected && (
                             <CheckCircle color="var(--color-surface)" className="h-4 w-4" />
                           )}

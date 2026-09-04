@@ -277,6 +277,23 @@
   --color-damage-thunder: #a5b4fc;
   --color-damage-thunder-bg: #a5b4fc15;
 
+  --color-school-abjuration: #60a5fa;
+  --color-school-abjuration-bg: #60a5fa15;
+  --color-school-conjuration: #a78bfa;
+  --color-school-conjuration-bg: #a78bfa15;
+  --color-school-divination: #fbbf24;
+  --color-school-divination-bg: #fbbf2415;
+  --color-school-enchantment: #f472b6;
+  --color-school-enchantment-bg: #f472b615;
+  --color-school-evocation: #f87171;
+  --color-school-evocation-bg: #f8717115;
+  --color-school-illusion: #2dd4bf;
+  --color-school-illusion-bg: #2dd4bf15;
+  --color-school-necromancy: #4ade80;
+  --color-school-necromancy-bg: #4ade8015;
+  --color-school-transmutation: #fb923c;
+  --color-school-transmutation-bg: #fb923c15;
+
   --color-state-concentration: #22d3ee;
   --color-state-concentration-bg: #22d3ee15;
   --color-state-concentration-border: #22d3ee30;

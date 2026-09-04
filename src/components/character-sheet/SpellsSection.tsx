@@ -11,6 +11,7 @@ import { SpellSelectionModal } from "../modals/SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "./DamageBadge";
+import { getSpellSchoolStyle } from "@/lib/spell-schools";
 
 interface SpellsSectionProps {
   character: Character;
@@ -29,6 +30,7 @@ interface UnifiedSpell {
   damageType?: string;
   description?: string;
   duration?: string;
+  school?: string;
 }
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
@@ -62,6 +64,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       const damageType = s.damageType || srdSpell?.damage?.damageType || "";
       const duration = srdSpell?.duration || "";
       const srdSource = (srdSpell as any)?.source || "PHB";
+      const school = (srdSpell as any)?.school || "";
       return {
         id: s.id,
         name: s.name,
@@ -73,6 +76,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         description,
         duration,
         srdSource,
+        school,
       };
     });
   }, [character.spells, srdSpells]);
@@ -239,6 +243,25 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <div key={spell.id} className={`card p-3 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
               <div className="flex items-center gap-1.5">
                 <SourceBadge source={spell.srdSource || "PHB"} size="sm" />
+                {spell.school && (() => {
+                  const schoolStyle = getSpellSchoolStyle(spell.school);
+                  if (!schoolStyle) return null;
+                  return (
+                    <span
+                      className="inline-flex items-center gap-1 font-semibold"
+                      style={{
+                        fontSize: "10px",
+                        padding: "1px 5px",
+                        borderRadius: "4px",
+                        backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                        color: `var(${schoolStyle.colorVar})`,
+                      }}
+                    >
+                      <schoolStyle.icon className="h-3 w-3" />
+                      {schoolStyle.label}
+                    </span>
+                  );
+                })()}
                 <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
               </div>
               {spell.duration && (() => {

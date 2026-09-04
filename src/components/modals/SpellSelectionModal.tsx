@@ -8,6 +8,7 @@ import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as Magnifying
 import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
 import { BasePopup } from "@/components/BasePopup";
+import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
 
@@ -243,7 +244,25 @@ export function SpellSelectionModal({
             </div>
           </div>
           <div className="flex items-center gap-2 mt-0.5 ml-5">
-            <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+            {sp.school && (() => {
+              const schoolStyle = getSpellSchoolStyle(sp.school);
+              if (!schoolStyle) return <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>;
+              return (
+                <span
+                  className="inline-flex items-center gap-1 font-semibold"
+                  style={{
+                    fontSize: "10px",
+                    padding: "1px 5px",
+                    borderRadius: "4px",
+                    backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                    color: `var(${schoolStyle.colorVar})`,
+                  }}
+                >
+                  <schoolStyle.icon className="h-3 w-3" />
+                  {schoolStyle.label}
+                </span>
+              );
+            })()}
             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">·</span>}
             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>}
             {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium ml-1">From higher level</span>}

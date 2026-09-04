@@ -9,6 +9,7 @@ import type { Character } from "@/lib/storage";
 import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel } from "@/lib/storage";
 import { StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
+import { getSpellSchoolStyle } from "@/lib/spell-schools";
 
 interface StepSpellsProps {
   data: Character;
@@ -309,9 +310,25 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                           {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                         </span>
                       </div>
-                        <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                          {spell.school || ""}
-                        </span>
+                        {spell.school && (() => {
+                          const schoolStyle = getSpellSchoolStyle(spell.school);
+                          if (!schoolStyle) return <span className="text-xs text-[var(--color-text-muted)] font-medium">{spell.school}</span>;
+                          return (
+                            <span
+                              className="inline-flex items-center gap-1 font-semibold"
+                              style={{
+                                fontSize: "10px",
+                                padding: "1px 5px",
+                                borderRadius: "4px",
+                                backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                                color: `var(${schoolStyle.colorVar})`,
+                              }}
+                            >
+                              <schoolStyle.icon className="h-3 w-3" />
+                              {schoolStyle.label}
+                            </span>
+                          );
+                        })()}
                       </div>
                     </button>
                  </div>
@@ -392,9 +409,25 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                               <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                                {spell.school || ""}
-                              </span>
+                              {spell.school && (() => {
+                                const schoolStyle = getSpellSchoolStyle(spell.school);
+                                if (!schoolStyle) return <span className="text-xs text-[var(--color-text-muted)] font-medium">{spell.school}</span>;
+                                return (
+                                  <span
+                                    className="inline-flex items-center gap-1 font-semibold"
+                                    style={{
+                                      fontSize: "10px",
+                                      padding: "1px 5px",
+                                      borderRadius: "4px",
+                                      backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                                      color: `var(${schoolStyle.colorVar})`,
+                                    }}
+                                  >
+                                    <schoolStyle.icon className="h-3 w-3" />
+                                    {schoolStyle.label}
+                                  </span>
+                                );
+                              })()}
                             </div>
                           </div>
 <div className="flex items-center gap-2 mt-1">

@@ -3,6 +3,7 @@
 import { getStaticSpells } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
+import { getSpellSchoolStyle } from "@/lib/spell-schools";
 
 interface BonusCantripModalProps {
   isOpen: boolean;
@@ -48,7 +49,25 @@ export function BonusCantripModal({
               >
                 <div className="font-semibold text-sm">{sp.name}</div>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+                  {sp.school && (() => {
+                    const schoolStyle = getSpellSchoolStyle(sp.school);
+                    if (!schoolStyle) return <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>;
+                    return (
+                      <span
+                        className="inline-flex items-center gap-1 font-semibold"
+                        style={{
+                          fontSize: "10px",
+                          padding: "1px 5px",
+                          borderRadius: "4px",
+                          backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                          color: `var(${schoolStyle.colorVar})`,
+                        }}
+                      >
+                        <schoolStyle.icon className="h-3 w-3" />
+                        {schoolStyle.label}
+                      </span>
+                    );
+                  })()}
                 </div>
               </button>
             </div>

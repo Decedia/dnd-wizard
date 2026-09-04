@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles, CrownIcon as Crown } from "@/components/icons";
+import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles, CrownIcon as Crown, BowArrowIcon as BowArrowIcon, ShieldIcon as ShieldIcon, SwordIcon as SwordIcon, BattleAxeIcon as BattleAxeIcon, DaggerIcon as DaggerIcon, MagicWandIcon as MagicWandIcon, HealingIcon as HealingIcon, MusicNotesIcon as MusicNotesIcon, FlameIcon as Flame, SkullIcon as Skull } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
@@ -104,6 +104,25 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return !!feature.actionType && feature.actionType !== "passive";
   };
 
+  const getFeatureIcon = (featureName: string, source?: string) => {
+    const lower = featureName.toLowerCase();
+    if (source === "subclass" || lower.includes("subclass")) return Crown;
+    if (lower.includes("fighting style")) {
+      if (lower.includes("archery")) return BowArrowIcon;
+      if (lower.includes("defense")) return ShieldIcon;
+      if (lower.includes("dueling")) return SwordIcon;
+      if (lower.includes("great weapon")) return BattleAxeIcon;
+      if (lower.includes("protection")) return ShieldCheck;
+      if (lower.includes("two-weapon")) return DaggerIcon;
+    }
+    if (lower.includes("spell") || lower.includes("magic")) return MagicWandIcon;
+    if (lower.includes("rage")) return Flame;
+    if (lower.includes("sneak")) return Skull;
+    if (lower.includes("heal")) return HealingIcon;
+    if (lower.includes("bard") || lower.includes("music")) return MusicNotesIcon;
+    return null;
+  };
+
   const sortedFeatures = useMemo(() => {
     return [...character.features].sort((a, b) => {
       // Sort by source: race/class/subclass first, then custom
@@ -187,6 +206,10 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                               className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex items-center gap-1.5"
                             >
                               <SourceBadge source={matchedFeat.source || "PHB"} size="sm" />
+                              {(() => {
+                                const FeatureIcon = getFeatureIcon(feature.name, feature.source);
+                                return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
+                              })()}
                               {feature.name}
                             </button>
                           );
@@ -197,7 +220,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                             {feature.source && feature.source !== "custom" && (
                               <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
                             )}
-                            {feature.name}
+                             {(() => {
+                               const FeatureIcon = getFeatureIcon(feature.name, feature.source);
+                               return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
+                             })()}
+                             {feature.name}
                           </>
                         );
                       })()}
