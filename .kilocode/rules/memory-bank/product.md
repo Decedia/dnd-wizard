@@ -1,44 +1,54 @@
-# Product Context: Next.js Starter Template
+# Product Context: D&D 5e Character Manager
 
-## Why This Template Exists
+## Why This App Exists
 
-Starting a new Next.js project involves boilerplate setup, configuration decisions, and establishing patterns. This template provides a clean, opinionated starting point that eliminates setup friction and establishes best practices from the start. It's optimized for AI-assisted development, where an AI can quickly extend the template based on user requirements.
+D&D 5e players need a digital character sheet that works offline on mobile, supports all official content, and handles the complexity of character creation, level progression, and combat tracking. Paper sheets are fragile, digital alternatives are often class-specific or require subscriptions, and existing apps lack deep SRD integration or offline capability.
 
 ## Problems It Solves
 
-1. **Setup Time**: Eliminates boilerplate configuration (TypeScript, Tailwind, ESLint)
-2. **Decision Fatigue**: Pre-made choices for tooling and patterns
-3. **AI Context**: Memory bank provides persistent context for AI assistants
-4. **Extensibility**: Recipe system for adding common features
-5. **Consistency**: Standardized project structure and conventions
+1. **Character Creation Complexity**: Guided wizard handles all 12 classes with dynamic steps, feature choices, equipment groups, and subclass selection
+2. **Level-Up Bookkeeping**: Per-level progression through level 20 with HP, ASI, subclass features, spell slots, and class-specific resources
+3. **Combat Tracking**: Action/bonus/reaction toggles, HP management, concentration checks, exhaustion, cover, and active buffs
+4. **Spell Management**: Spell selection, preparation tracking, usage per turn, concentration tracking, and 89 predefined mechanical buff effects
+5. **Offline Play**: PWA with service worker caches all SRD data and app shell; works without internet
+6. **Sourcebook Flexibility**: Choose which sourcebooks to include (PHB, XGE, TCE, MTF, EGW, FTD, VRGR)
+7. **Data Portability**: JSON export/import and PDF export/import round-trip
 
-## How It Should Work (User Flow)
+## How It Works (User Flow)
 
-1. User starts with this template
-2. User describes what they want to build to AI assistant
-3. AI adds pages, components, and features as needed
-4. AI uses recipes for common additions (database, auth)
-5. User previews changes via hot reload
-6. Iterate until satisfied
-7. Deploy
+1. **Home**: Browse saved characters, create new, import from JSON/PDF
+2. **Create**: 9-step wizard (Source → Origin → Abilities → Features → Skills → Equipment → Appearance → Personality → Level)
+3. **Level Up**: Select target level, roll/assign HP, make ASI/feat choices, select spells, unlock subclass features
+4. **Play**: View/edit character sheet across 5 tabs (Combat, Features, Gear, Spells, Bio); toggle actions, track HP/buffs, mark spells used
+5. **End Turn**: Reset spell/feature usage, advance buff durations
+6. **Export**: Generate PDF or JSON for sharing/backup
 
 ## Key User Experience Goals
 
-- **Zero to Feature Fast**: Get building immediately, no setup required
-- **AI-Friendly**: Memory bank and recipes make AI assistance effective
-- **Flexible Foundation**: Can become any type of application
-- **Best Practices Built-In**: TypeScript strict mode, ESLint, clean structure
+- **Mobile-First**: `max-w-lg` layout, bottom navigation, touch-friendly controls
+- **Offline-Ready**: All SRD data bundled; IndexedDB persistence with auto-save
+- **Fast Character Creation**: Dynamic wizard steps, auto-filled features, locked defaults for race/class traits
+- **Deep Rules Support**: Cover, exhaustion, grapple/shove, concentration checks, spell buffs with mechanical effects
+- **Visual Clarity**: Light paper/ink theme with thin borders, sourcebook badges, damage-type colors, state indicators
+- **Quick Access**: Sticky header with view/edit toggle, tab bar, floating section navigation
 
-## What This Template Provides
+## What This App Provides
 
-1. **Clean App Structure**: Single page ready for expansion
-2. **Type Safety**: Full TypeScript setup with strict mode
-3. **Modern Styling**: Tailwind CSS 4 ready to use
-4. **Code Quality**: ESLint configured
-5. **Extensibility**: Recipe system for common features
+1. **Full SRD Integration**: 475+ spells, 82 subclasses, 37 weapons, 13 armors, 549 items, 127 feats, 24 races, 12 classes
+2. **Character Creation Wizard**: 9 dynamic steps with conditional feature selections, equipment choice groups, and level progression
+3. **Level-Up Wizard**: Levels 1–20 with HP, ASI, subclass, spells, invocations, pact boons, Magical Secrets
+4. **Editable Character Sheet**: 14 sections across 5 tabs with view/edit modes
+5. **Combat Tracking**: Actions, HP, exhaustion, cover, concentration, active states, buffs
+6. **Spell System**: 89 buff definitions with AC/speed/resistance/damage effects; turn-based duration tracking
+7. **PDF Export**: 3-page fixed-width layout for print/sharing
+8. **Dice Roller**: Animated 3D dice with advantage/disadvantage
+9. **Sourcebook Filtering**: Toggle PHB, SCAG, XGE, TCE, MTF, EGW, FTD, VRGR
+10. **PWA**: Offline caching, install prompt, auto-backup every 24h
 
 ## Integration Points
 
-- **Database**: Use add-database recipe for Drizzle + SQLite
-- **Styling**: Tailwind CSS pre-configured
-- **AI Assistance**: Memory bank for context persistence
+- **Persistence**: Dexie/IndexedDB primary, localStorage fallback
+- **PDF**: @react-pdf/renderer + jspdf + html2canvas
+- **PWA**: next-pwa + Workbox
+- **Data**: Static JSON imports with runtime caching
+- **AI Context**: Memory bank in `.kilocode/rules/memory-bank/`

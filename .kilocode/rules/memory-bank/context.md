@@ -1,8 +1,146 @@
 # Active Context: DND Wizard
 
+## Project Summary
+
+D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19 + TypeScript. Uses Tailwind CSS v4 with a CSS-based design system, Dexie/IndexedDB for persistence, and bundles ~45k lines of SRD game data as static JSON. The app supports full character creation (9 dynamic steps), an editable 14-section character sheet with tabbed layout, a level-up wizard (levels 1–20), dice rolling, PDF export/import, and sourcebook filtering. State management is via React Context (SRD data, theme, sheet settings) with local component state for editing; no external state library. Auto-save is debounced at 400ms to IndexedDB with localStorage fallback and 24h auto-backup.
+
 ## Current State
 
-**App Status**: ✅ DND-AN creation wizard fully restructured (Steps 1-9 + per-level sequence)
+**App Status**: ✅ Fully functional D&D 5e character manager with creation wizard, level-up flow, character sheet, and combat tracking
+
+### Data Layer
+- **Character type**: 130+ field interface in `src/lib/storage.ts` covering identity, abilities, combat, features, spells, inventory, class resources, active states/buffs, currency, appearance
+- **Static data**: 17 JSON/TS files in `src/data/` — races (24), classes (12), subclasses (82), spells (475+), wizard spells (240+), weapons (37), armor (13), equipment (237+), items (549), feats (127), backgrounds (9), warlock invocations, subclass spells/choices
+- **SRD client**: `src/lib/srd-client.ts` provides 30+ accessor functions with memory + localStorage caching (5min TTL); supports sourcebook filtering (PHB, SCAG, XGE, TCE, MTF, EGW, FTD, VRGR)
+- **Persistence**: Dexie.js (`dnd-wizard-db` IndexedDB) primary, localStorage fallback; `normalizeCharacter()` merges legacy saves against current defaults
+- **Derived stats**: `computeDerivedStats()` computes AC, speed, initiative, saving throws, spell DCs, class resources, exhaustion/cover/grapple/shove effects
+
+### Creation Wizard (9 dynamic steps)
+1. **Source Selection** — sourcebook filter (PHB always included)
+2. **Origin** — name, class (popup with icons + subclass counts), race (popup with ability bonuses, Variant Human with feat/skill/ability selection)
+3. **Abilities** — Standard Array / Point Buy / Dice Roll (4d6 drop-lowest + reroll); race bonuses auto-applied
+4. **Feature Selections** (conditional) — class level-1 choices (Fighting Style, etc.)
+5. **Skills** — class-restricted proficiency selection with count enforcement
+6. **Equipment** — choice groups (radio-style), weapon popup for weapon choices, granted items auto-added
+7. **Appearance** — cosmetic (age, height, weight, eyes, skin, hair)
+8. **Personality** — background, alignment, personality traits, bonds, flaws
+9. **Level & HP** — +/- level selector (1-10), delegates to `LevelUpWizard` for per-level sequence (HP → Features → Subclass → ASI → Expertise → Spells)
+- **Finish**: `finalizeCreation()` applies subclass features/spells, syncs base features, computes derived stats, saves
+
+### Level Up Wizard
+- **Component**: `src/components/LevelUpWizard.tsx` (2898 lines), used both inline (creation) and standalone (`/character/[id]/level-up`)
+- **Supports levels 1–20** with target level selector
+- **Per-level sections**: HP rolling, ASI (+2 single / +1+1 double / feat), subclass selection (at unlock level), subclass/class feature choices, spell slots, cantrips, spell selection (known/book/prepare), Wizard spellbook, Magical Secrets (Bard), Warlock invocations/pact boon, Druid circle terrain, spell replacement (Bard/Sorcerer)
+- **Completion**: validates all levels complete, applies all selections, calls `onComplete`
+
+### Character Sheet (14 sections, 5 tabs)
+- **Combat tab**: Stats (ability scores, saves), Combat Stats (AC/Speed/HP bars, heal/damage with concentration checks, action toggles, exhaustion 0–6, StateTracker, BuffTracker), Passive Stats, Death Saves, Hit Dice, Attacks & Spellcasting
+- **Features tab**: Skills (18 skills grid, proficiency/expertise/background badges), Features & Traits (action type cycling, usage tracking, feat popups), Other Proficiencies
+- **Gear tab**: Inventory (equip/unequip, hand assignment, weapon stats, ammo, descriptions), Currency (PP/GP/EP/SP/CP)
+- **Spells tab**: Spells (level-tabbed, prepare/use/concentration tracking, duration countdown, spell selection modal), Spellcasting Stats (slots use/restore, DC, attack bonus)
+- **Bio tab**: Identity, Level & XP, Appearance & Bio
+- **Navigation**: Sticky header with View/Edit toggle + description toggle, tab bar, floating section dot nav, sticky mini header on scroll
+- **End Turn button**: Resets spell/feature usage, advances buff turns
+
+### Styling & Theme
+- **Tailwind CSS v4** with `@theme` tokens in `globals.css` — no `tailwind.config.ts`
+- **Light/dark mode** via `[data-theme="dark"]` CSS variable overrides; ThemeContext persists to localStorage
+- **Design tokens**: paper/ink color system, semantic colors (success/error/warning/info), accent palettes, damage-type colors (13 types), state/feature colors (12 D&D states), sourcebook colors (8 books)
+- **Typography**: Inter font (400/500/600/700), custom sizes (xs=11px, sm=13px, etc.)
+- **Components**: `.surface`, `.btn`, `.input`, `.card`, `.badge`, `.stat-box` component classes + Tailwind utilities
+- **Icons**: react-icons (Heroicons v2 + Game Icons), 58 + 80+ aliased exports
+
+### Key Libraries & Config
+- **Next.js 16.2.6** (App Router, Turbopack), React 19.2.3, TypeScript 5.9.3
+- **Tailwind CSS 4.1.17** with `@tailwindcss/postcss`
+- **Dexie 4.4.5** (IndexedDB), `@react-pdf/renderer` 4.9.0 + `jspdf` 4.2.1 + `html2canvas` 1.4.1 (PDF)
+- **next-pwa 5.6.0** (service worker, offline caching)
+- **ESLint 9.39.1** (flat config), strict TypeScript
+
+## Recently Completed
+- [x] Moved spell Prepare/Use buttons below spell name row in SpellsSection (new mt-2 flex row); restored spell description paragraph that was accidentally dropped during refactor; typecheck passes
+- [x] Subclass selection modal in LevelUpWizard: subclass option buttons now show descriptions inline via InfoButton instead of raw text; SubclassDetailsModal now has "Got it" footer button matching InfoButton pattern; typecheck passes
+- [x] Reordered SourceBadge to appear before content names across all components (SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection, FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard); typecheck passes
+
+## Current Focus
+- Ongoing: Subclass popup info button UX improvements
+- Pending: character deletion from home screen (already implemented), PDF export/import, database persistence via add-database recipe
+- Future: Refactor shared step rendering between PerLevelStepsFlow and LevelUpFlow to reduce duplication, add more PHB subclass features to subclass JSON entries, add more class feature choice options
+
+## Session History
+| Date | Changes |
+|------|---------|
+| Initial | Template created with base setup |
+| 2026-08-18 | Replaced nav demo with DND Wizard app scaffold |
+| 2026-08-18 | Built full character sheet screen with 7 sections, auto-save, sticky header, section nav |
+| 2026-08-18 | Replaced all placeholder data with real 5e SRD data, added racial bonus auto-calculation, auto-skip Spells for non-Wizards |
+| 2026-08-18 | Added Level Up system with reusable modal, SRD levels 1-10 data, ASI picker, and Wizard spell slot summaries |
+| 2026-08-19 | Wired SRD data into UI and calculations: HP auto-calc, skills restricted list + count, equipment choice packages, sneak attack numeric effect, expertise picker for Rogue |
+| 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |
+| 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |
+| 2026-08-19 | Consolidated per-level steps: each level produces one step with multiple sections (hp/features/subclass/asi/expertise/spellSlots/spellSelection); updated LevelUpStep type and both PerLevelStepsFlow and LevelUpFlow to render sections |
+| 2026-08-20 | Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page; modified `generateLevelUpSteps` to always include level 1 step with expertise; removed expertise from StepSkills for Rogue during creation; level 1 step skips HP rolling; removed +/- level buttons from character sheet; level up navigates to dedicated page |
+| 2026-08-20 | Fixed granted equipment quantity display bug; added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |
+| 2026-08-20 | Replaced live API race fetching with static `src/data/2026_races.json` containing all 9 common 2014 SRD races |
+| 2026-08-20 | Fetched equipment data from API into `2014_weapon.json` (37), `2014_armor.json` (13), `2014_items.json` (187), `2014_equipments.json` (237 total) |
+| 2026-08-20 | Added `getStaticWeapons/Armors/Items/Equipments()` and `getEquipmentData()` to `srd-client.ts`; migrated StepEquipment and InventorySection to use static equipment data |
+| 2026-08-20 | Fetched all subclass data from API into `2014_subclasses.json`; updated `2014_classes.json` subclass features with real API descriptions |
+| 2026-08-20 | Verified all class feature descriptions match API; no changes needed (already correct) |
+| 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |
+| 2026-08-20 | Fetched all 204 wizard spells from D&D 5e API into `2014_wizard_spells.json` (levels 0-9, 14-27-31-28-23-23-19-15-12-12 spells per level) |
+| 2026-08-20 | Added `SRDWizardSpell` interface and `getStaticWizardSpells()`, `getStaticWizardSpell()`, `getWizardSpellNames()` to `srd-client.ts` |
+| 2026-08-20 | Updated spell selection in `PerLevelStepsFlow.tsx`, `level-up/page.tsx`, and `LevelUpFlow.tsx` to use wizard-only spell list when class is Wizard |
+| 2026-08-20 | Fixed LevelUpFlow prop naming: renamed `className` to `charClass` to avoid TSX parsing conflicts; updated child components `HpStep` and `ExpertiseStep` |
+| 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |
+| 2026-08-23 | Fixed Barbarian level progression bug: Feral Instinct moved from level 6 to level 7; ASI remains at level 8 |
+| 2026-08-23 | Added `subclassInfo` section type to `generateLevelUpSteps`; selected subclass now displays on every level-up step for classes that have subclasses |
+| 2026-08-23 | Updated `LevelUpFlow`, `level-up/page`, and `PerLevelStepsFlow` with `SubclassInfoStep` read-only components; lint and typecheck pass |
+| 2026-08-23 | Refreshed subclass data from D&D 5e API: updated `2014_subclasses.json` and embedded subclass features in `2014_classes.json` for 12 API-available subclasses; preserved static-only subclasses (Totem Warrior) |
+| 2026-08-23 | Comprehensive character sheet restyle: updated globals.css to near-black theme (#0a0a0a, #141414, #2a2a2a), changed tab labels to Combat/Spells/Abilities/Character, restyled all 14 section components with red/burgundy accents, dark cards, clean stat blocks, red section headers, and subtle borders; lint and typecheck pass |
+| 2026-08-23 | Redesigned character sheet: added tabbed layout (Combat/Character/Gear/Bio), View/Edit mode toggle, standardized description typography, separated attack damage display with info tooltips, removed floating dot nav; all 14 sections updated with editMode prop; lint and typecheck pass |
+| 2026-08-23 | Restructured character sheet tabs: Combat/Features/Gear/Bio; removed character name from AppHeader; moved Skills/FeaturesTraits/OtherProficiencies to Features tab, Inventory/Spells to Gear tab, Identity/LevelXp/AppearanceBio to Bio tab; lint and typecheck pass |
+| 2026-08-23 | Added dedicated Spells tab (Combat/Features/Gear/Spells/Bio); SpellsSection now always renders without collapse toggle; SpellcastingStatsSection moved to Spells tab; AttacksAndSpellcastingSection now shows ability modifier source (DEX/STR) inline on each attack instead of only in tooltip; lint and typecheck pass |
+| 2026-08-23 | Restored section titles in SectionCard; CombatStatsSection redesigned: AC and Speed displayed side-by-side as stat badges, HP shown as red progress bar with current/max values, Temp HP shown as white bar; Speed uses new circular SpeedStat with shoe icon; edit mode exposes inline inputs for all values; lint and typecheck pass |
+| 2026-08-23 | Removed duplicate weapon attack description from AttacksAndSpellcastingSection; InventorySection weapon stats now include ability modifier source (STR/DEX) in the inline stats line; SpellsSection now shows spellcasting ability modifier badge next to each spell in view mode; lint and typecheck pass |
+| 2026-08-23 | Rebuilt character creation and level-up systems from scratch with new subclass UX: deleted old creator/level-up components and created new streamlined flow (Identity/Race/Class/Subclass/Abilities/Skills/Equipment/Spells/Appearance); updated SRD JSON with complete D&D 5e API data (12 classes, 319 spells, 9 races, 37 weapons, 13 armors, 237 equipment items, 549 total items); added contextual hints to every creation step; lint and typecheck pass |
+| 2026-08-23 | Added descriptions for all inventory items: Shield now has proper static description in `2014_armor.json`; `InventorySection.getItemDescription` now generates fallback descriptions for weapons (to hit + damage + modifier), armor (AC value), and generic items when no static description exists; lint and typecheck pass |
+| 2026-08-23 | Improved subclass UX across creation and level-up: StepCard now supports `hint` prop for new-player guidance; all 9 creation steps have contextual hints; StepClass shows subclass availability and level; subclass selection step shows features inline with each option and clear descriptions; feature choices (e.g., Barbarian Totem) are always visible and selectable; lint and typecheck pass |
+| 2026-08-23 | Comprehensive SRD data refresh from D&D 5e API: created `fetch_srd_data.js` to fetch and transform all data; updated `2014_classes.json` (12 classes with full 20-level features, spell slots, subclasses), `2014_subclasses.json` (12 subclasses with full features), `2014_races.json` (9 races with trait descriptions), `2014_spells.json` (319 spells, new file), `2014_items.json` (549 items: 187 equipment + 362 magic items), `2014_equipments.json` (237 items), `2014_weapon.json` (37 weapons), `2014_armor.json` (13 armors); fixed `srd-client.ts` type issues (`description?: string | string[]`, `Record<string, number>`, `as unknown as` cast); lint and typecheck pass |
+| 2026-08-24 | Added all PHB subclasses (28 new) to `2014_subclasses.json` and updated class arrays; added `choices` data to class features (Fighting Style, Expertise, Eldritch Invocations, Favored Enemy, Natural Explorer) via `scripts/add-feature-choices.js` |
+| 2026-08-24 | Added `featureSelections: Record<string, string[]>` to Character type in `storage.ts` |
+| 2026-08-24 | Added `getFeatureSelections()` to `character-creation.ts` to extract selection steps from SRD class features |
+| 2026-08-24 | Added `feature-selections` step type to `CreationStep` union |
+| 2026-08-24 | Created `StepFeatureSelections.tsx` component to render feature selection UI with multi-select support |
+| 2026-08-24 | Fixed nested StepCard visual bug in creation page by removing outer wrapper (step components already render their own StepCard) |
+| 2026-08-24 | Creation wizard now generates dynamic feature-selection steps after base steps when class has choice features; lint and typecheck pass |
+| 2026-08-24 | Extended subclass progression in creation wizard: `applySubclassFeatures` and `isSubclassStepComplete` (and the StepSubclass UI) now cover every subclass feature earned from the unlock level up through the character's current level (verified through level 10+), not just the unlock-level feature. Added `getEarnedSubclassFeatures` helper; choice features at each earned level require selection. lint and typecheck pass |
+| 2026-08-24 | Restructured StepSubclass (creation wizard) "Choose Your Path" section into per-level pill tabs: one pill per level that grants subclass features, content shown/hidden per active tab, with Back/Next buttons to move between levels. Tabs are rendered (disabled) until a subclass is chosen; choice-selection UI lives inside each level's tab. Nested-button issue fixed by moving feature/choice rendering out of the subclass selection cards. lint/typecheck/build pass |
+| 2026-08-25 | Redesigned app to minimalist light theme based on screenshot reference: switched from dark theme to light paper/ink palette with thin 1px borders, reduced visual weight, flat design; updated globals.css with new design tokens (paper, ink, border-muted), simplified all components (AppHeader, BottomNav, SectionCard, SheetTabs, SectionNav, StatsSection, CombatStatsSection, SkillsSection, IdentitySection, styled components, LevelUpWizard, WizardNav, ProgressIndicator, StepCard, ViewEditToggle, StickyMiniHeader, home page, character view, character create); typecheck and lint pass |
+| 2026-08-26 | Removed Dice Roller button from home page (`src/app/page.tsx`); removed `Dices` icon import; lint and typecheck pass |
+| 2026-08-26 | Changed default font color to pure black everywhere: updated `--color-ink` from `#171717` to `#000000` in globals.css and replaced all hardcoded `#171717` text color values with `#000000`; typecheck and lint pass |
+| 2026-08-29 | Implemented full variant human mechanism: added FeatPopup component for character sheet, updated FeaturesTraitsSection to show feat details on click, added ability score + skill proficiency selection to variant human UI in StepOrigin, added variantHumanAbilities/variantHumanSkill fields to Character type, updated character-creation.ts to apply bonuses during finalization, updated validation to require all selections; typecheck and build pass |
+| 2026-08-30 | Added spell effects for all self-targeting spells: expanded `BUFF_DEFINITIONS` in `spellEffects.ts` from 20 to 89 entries covering all self-range spells with mechanical effects (AC bonuses, temp HP, speed, resistances, advantage/disadvantage, damage bonuses); added `getBuffsByClass()` and `getAllBuffs()` helper functions; updated `SpellsSection.tsx` with buff toggle buttons per spell; updated `BuffTracker.tsx` to show effect descriptions on hover and support class filtering; updated `CombatStatsSection.tsx` to pass class filter to BuffTracker; typecheck and build pass |
+| 2026-08-31 | Comprehensive description update for all game data: updated spell descriptions (316 from Open5E SRD, 88 retain D&D 5e API text), class descriptions (12 classes from Open5E), race trait descriptions (21 traits from Open5E), weapon descriptions (37 weapons from Open5E), subclass descriptions (30 subclasses from D&D 5e API + curated), and feature descriptions (387 features from D&D 5e API); created update scripts in `scripts/` directory; lint and typecheck pass |
+| 2026-08-31 | Fixed srd.ts equipment descriptions: updated the `equipment` array in `src/data/srd.ts` to match the Open5E descriptions from `2014_weapon.json`. This array is used as a fallback in `getEquipmentData()` in `srd-client.ts` and was still showing old placeholder descriptions (e.g. "A martial weapon favored by rogues" instead of the full Open5E description); typecheck pass |
+| 2026-08-31 | Updated ALL item descriptions in srd.ts: updated the equipment array (13 weapons, 3 armors, 10 items) and all starting equipment items for Fighter, Wizard, Rogue, and Warlock to match Open5E SRD descriptions from JSON files; typecheck pass |
+| 2026-08-31 | Added inline badges to item descriptions: created DiceBadge component, updated InfoButton/DescriptionModal/DescriptionText to parse [dice] and [damage] markup tags, updated weapon descriptions in srd.ts to include inline dice and damage type badges (e.g. [dice]1d8[/dice] [damage]piercing[/damage]), updated pack descriptions with detailed contents; typecheck pass |
+| 2026-08-31 | Added sourcebook tagging system: added `source` field to all JSON data files (subclasses, races, spells, weapons, armors, items, equipments, feats), created `SourceBadge.tsx` component with color-coded badges for PHB/SCAG/XGE/TCE/MTF/EGW/FTD/VRGR, updated `srd-client.ts` with optional `sources` parameter on all getter functions for filtering, added `getAvailableSources()` helper; typecheck and build pass |
+| 2026-08-31 | Added sourcebook selection step to character creation wizard: created `StepSourceSelection.tsx` component with checkboxes for PHB/SCAG/XGE/TCE/MTF/EGW/FTD/VRGR, added `sources` field to Character type, updated all `getStaticSubclasses` calls to filter by selected sources, PHB is always included and cannot be unchecked; typecheck and build pass |
+| 2026-08-31 | Added XGE (Xanathar's Guide to Everything) content: 32 subclasses (Ancestral Guardian, Storm Herald, Zealot, College of Glamour/Swords/Whispers, Forge/Grave Domain, Circle of Dreams/Shepherd, Arcane Archer/Cavalier/Samurai, Drunken Master/Kensei/Sun Soul, Oath of Conquest/Redemption/Watchers, Horizon Walker/Monster Slayer, Inquisitive/Mastermind/Scout/Swashbuckler, Divine Soul/Shadow Magic/Storm Sorcery, The Celestial, Bladesinging/War Magic), 39 spells (Tasha's Hideous Laughter, Dragon's Breath, Storm Sphere, etc.), 17 feats (Bountiful Luck, Dragon Fear, Dragon Hide, Drow High Magic, Dwarven Fortitude, Elven Accuracy, Fade Away, Fey Teleportation, Flames of Phlegethos, Infernal Constitution, Orcish Fury, Prodigy, Second Chance, Squat Nimbleness, Crusher, Fell Thrower, Wood Elf Magic); also added 8 TCE subclasses (Fey Wanderer, Swarmkeeper, Aberrant Mind, Clockwork Magic, The Genie, The Fathomless, Chronurgy Magic, Graviturgy Magic, Order of Scribes); updated classes.json to include all new subclasses in class arrays; typecheck and build pass |
+| 2026-08-31 | Added TCE (Tasha's Cauldron of Everything) spells and feats: 24 spells (Blade Bite, Booster Pulse, Dream of the Blue Veil, Druid Grove, Gravity Shift, Intellect Fortress, Otherworldly Form, Power Word Pain, Psychic Scream, Pulse Wave, Sapping Sting, Spirit Shroud, Summon Aberration, Summon Beast, Summon Celestial, Summon Construct, Summon Elemental, Summon Fey, Summon Fiend, Summon Shadowspawn, Summon Undead, Time Slipp, Touch of the Void, Void Writing), 31 feats (Fey Touched, Shadow Touched, Eldritch Adept, Metamagic Adept, Fighting Initiate, Piercer, Crusher, Slasher, Skill Expert, Alert, Weapon Master, Moderately Armored, Heavily Armored, Lightly Armored, Shield Master, Medium Armor Master, Defensive Duelist, Dragon Hide, Fade Away, Fey Teleportation, Flames of Phlegethos, Orcish Fury, Second Chance, Squat Nimbleness, Bountiful Luck, Drow High Magic, Dwarven Fortitude, Elven Accuracy, Dragon Fear, Infernal Constitution, Prodigy); typecheck and build pass |
+| 2026-08-31 | Integrated TCE content into website: added 19 TCE wizard spells to 2014_wizard_spells.json (total 223 wizard spells), updated getStaticWizardSpells() and getWizardSpellsByLevel() to accept sources parameter for filtering, passed character.sources to getWizardSpellsByLevel() in LevelUpWizard.tsx (Spell Mastery and Signature Spells), passed data.sources to FeatSelector in StepRace.tsx and StepLevel.tsx for TCE feat selection; typecheck and build pass |
+| 2026-08-31 | Added MTF (Mordenkainen's Tome of Foes) content: 14 feats (Aberrant Dragonmark, Critter, Infernal Constitution, Orcish Fury, Second Chance, Squat Nimbleness, Bountiful Luck, Drow High Magic, Dwarven Fortitude, Elven Accuracy, Fade Away, Fey Teleportation, Flames of Phlegethos, Prodigy), 3 races (Eladrin Elf, Githyanki, Githzerai), 1 subclass (Oath of Redemption Paladin). Updated LevelUpWizard to pass character.sources to getStaticSpells() and getSubclassFlagsByName() for proper source filtering. Removed incorrectly attributed Dream of the Blue Veil from MTF (it's TCE). Totals: 475 spells, 113 feats (14 MTF), 13 races (3 MTF), 83 subclasses (1 MTF); typecheck and build pass |
+| 2026-08-31 | Added SourceBadge to all content displays: spells (already done), feats (FeaturesTraitsSection, FeatPopup), races (StepRace, StepOrigin, IdentitySection), subclasses (FeaturesTraitsSection header), spell selections (StepFeatureSelections). Badges show for non-PHB sources (SCAG, XGE, TCE, etc.) with color-coded backgrounds. Updated ViewField component to support badge prop; typecheck and build pass |
+| 2026-08-31 | Added EGW (Explorer's Guide to Wildemount) content: 18 spells, 14 feats, 11 races (Bugbear, Changeling, Firbolg, Goblin, Hobgoblin, Kenku, Lizardfolk, Orc, Shifter, Tabaxi, Triton), 1 subclass (Echo Knight Fighter). Added 4 EGW wizard spells to wizard spell list (total 231). Echo Knight linked in classes.json. Totals: 493 spells (18 EGW), 127 feats (14 EGW), 24 races (11 EGW), 84 subclasses (1 EGW); typecheck and build pass |
+| 2026-08-31 | Added FTD (Fizban's Treasury of Dragons) and VRGR (Van Richten's Guide to Ravenloft) content. FTD: 10 spells, 3 feats, 3 races (Dragonborn Gem/Metallic/Chromatic), 3 subclasses (Draconic Disciple, Drake Warden, Ascendant Dragon). VRGR: 8 spells, 15 feats, 3 races (Dhampir, Hexblood, Reborn), 2 subclasses (The Undead, College of Spirits). Added 9 FTD wizard spells (total 240). All subclasses linked in classes.json; typecheck and build pass |
+| 2026-09-01 | Fixed Artificer equipment selection: `buildChoiceGroups` in `character-creation.ts` now checks for `isWeaponChoice`/`isInstrumentChoice`/`isArcaneFocusChoice`/`isHolySymbolChoice`/`isDruidicFocusChoice` flags directly on starting equipment entries, creating proper choice options without requiring `(a)`/`(b)` markers or "or" in the description. This enables the "any two simple weapons" option for Artificer to render with a weapon selection popup; typecheck and build pass |
+| 2026-09-01 | Source badge positioning and class filtering: moved SourceBadge to right corner of race/class selection cards in `StepOrigin.tsx` and `StepRace.tsx`; added `source` field to `SRDClass` interface; `getStaticClasses()` now accepts optional `sources` parameter for filtering; `StepOrigin` passes `data.sources` to `getStaticClasses` so unchecking an extension filters out non-PHB classes; typecheck and build pass |
+| 2026-09-01 | Moved subclass count display below class name in class selection popup; typecheck and build pass |
+| 2026-09-03 | Redesigned combat action buttons: removed Check/Circle tick indicators, now using color-only active state (filled bg + white text when used, outline when unused), restructured into 2-row layout with icon row above label row; removed unused CheckIcon/CircleIcon imports |
+| 2026-09-03 | Reordered SourceBadge to appear BEFORE content names across all components: SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection (ViewField), FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard; badges now render first (e.g. [PHB] [Fireball]); typecheck passes |
+| 2026-09-03 | Moved spell Prepare and Use buttons in SpellsSection to appear below the spell name row (new `mt-2` flex row under spell name + duration); Prepare/Use/concentration break/remove buttons no longer inline with spell name; typecheck and lint pass |
+| 2026-09-04 | Fixed spell description visibility: restored description paragraph in SpellsSection that was accidentally dropped during button-repositioning refactor; showDescriptions toggle now correctly displays spell descriptions; typecheck passes |
+| 2026-09-04 | Subclass popup in LevelUpWizard: subclass option buttons now show descriptions via InfoButton instead of raw text; SubclassDetailsModal now has "Got it" footer button matching InfoButton pattern; typecheck passes |
 
 ### Data Layer
 - **Static race data**: `src/data/2014_races.json` contains all 9 common 2014 SRD races with full trait descriptions, ability score increases, languages, and darkvision info

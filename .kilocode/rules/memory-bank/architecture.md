@@ -1,120 +1,123 @@
-# System Patterns: Next.js Starter Template
+# Architecture: D&D 5e Character Manager
 
-## Architecture Overview
+## Overview
+
+Mobile-first PWA for managing D&D 5e characters. Built with Next.js 16 App Router, React 19, TypeScript, and Tailwind CSS v4. Data is bundled as static JSON (~45k lines) with Dexie/IndexedDB for persistence. No backend required — fully client-side.
+
+## Layered Architecture
 
 ```
-src/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx          # Root layout + metadata
-│   ├── page.tsx            # Home page
-│   ├── globals.css         # Tailwind imports + global styles
-│   └── favicon.ico         # Site icon
-└── (expand as needed)
-    ├── components/         # React components (add when needed)
-    ├── lib/                # Utilities and helpers (add when needed)
-    └── db/                 # Database files (add via recipe)
+┌─────────────────────────────────────────────────────────────────┐
+│  Pages (src/app/) — route handlers + page orchestrators         │
+│  • Home, Create, Sheet, Level-Up, Dice, Tasks                  │
+│  • Manage character state, wire sections together               │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │ props + callbacks
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Components (src/components/)                                   │
+│  • character-sheet/ — 14 sections (Combat/Features/Gear/Spells/Bio) │
+│  • character-creator/ — 9 wizard steps                          │
+│  • LevelUpWizard.tsx — 2898 lines, dual-use (creation + level-up) │
+│  • Shared: InfoButton, SourceBadge, Dice, WizardNav, AppHeader  │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │ useSRD(), useCharacterSheet()
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Contexts (src/contexts/)                                       │
+│  • SRDContext — async data loading + caching                    │
+│  • ThemeContext — light/dark mode                               │
+│  • CharacterSheetContext — edit mode, description toggle        │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Lib / Business Logic (src/lib/)                                │
+│  • storage.ts — Character type (130+ fields), CRUD, derived stats│
+│  • srd-client.ts — 30+ static data accessors + caching          │
+│  • character-creation.ts — wizard steps, finalize, sync         │
+│  • level-up.tsx — generateLevelUpSteps                         │
+│  • spellEffects.ts — 89 BUFF_DEFINITIONS, computeBuffModifiers  │
+│  • db.ts — Dexie IndexedDB wrapper                              │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Data (src/data/) — 17 JSON/TS files, build-time imports        │
+│  Races, classes, subclasses, spells, equipment, feats, etc.     │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ## Key Design Patterns
 
-### 1. App Router Pattern
+### 1. Character Sheet Sections
 
-Uses Next.js App Router with file-based routing:
-```
-src/app/
-├── page.tsx           # Route: /
-├── about/page.tsx     # Route: /about
-├── blog/
-│   ├── page.tsx       # Route: /blog
-│   └── [slug]/page.tsx # Route: /blog/:slug
-└── api/
-    └── route.ts       # API Route: /api
+Each section is a `"use client"` component with the signature:
+```ts
+function Section({ character, onChange, editMode }: SectionProps)
 ```
 
-### 2. Component Organization Pattern (When Expanding)
+Sections receive the full `character` object and an `onChange` patch function. They call `onChange({ ...partial })` to update state, which triggers:
+1. React re-render
+2. `computeDerivedStats()` via `useMemo`
+3. Debounced `saveCharacter()` (400ms) to IndexedDB
 
-```
-src/components/
-├── ui/                # Reusable UI components (Button, Card, etc.)
-├── layout/            # Layout components (Header, Footer)
-├── sections/          # Page sections (Hero, Features, etc.)
-└── forms/             # Form components
-```
+### 2. Tabbed Navigation
 
-### 3. Server Components by Default
+`SheetTabs` controls which sections are visible via `activeTab` state in the sheet page. Five tabs:
+- Combat: Stats, CombatStats, PassiveStats, DeathSaves, HitDice, Attacks
+- Features: Skills, FeaturesTraits, OtherProficiencies
+- Gear: Inventory, Currency
+- Spells: Spells, SpellcastingStats
+- Bio: Identity, LevelXp, AppearanceBio
 
-All components are Server Components unless marked with `"use client"`:
-```tsx
-// Server Component (default) - can fetch data, access DB
-export default function Page() {
-  return <div>Server rendered</div>;
-}
+### 3. View/Edit Mode
 
-// Client Component - for interactivity
-"use client";
-export default function Counter() {
-  const [count, setCount] = useState(0);
-  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
-}
-```
+Every section conditionally renders inputs vs static text based on `editMode`. Toggled via `ViewEditToggle` in `AppHeader`. Edit mode exposes inline inputs, action buttons, and delete controls.
 
-### 4. Layout Pattern
+### 4. Wizard Flow (Character Creation)
 
-Layouts wrap pages and can be nested:
-```tsx
-// src/app/layout.tsx - Root layout
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
+`getCreationSteps(character)` dynamically builds the step list based on current character state. Steps include conditional feature-selection steps for classes with choice features (Fighting Style, Expertise, etc.). The "Level" step delegates to `LevelUpWizard` with `startFromLevelOne={true}`.
 
-// src/app/dashboard/layout.tsx - Nested layout
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex">
-      <Sidebar />
-      <main>{children}</main>
-    </div>
-  );
-}
-```
+### 5. Level Up Wizard
 
-## Styling Conventions
+`LevelUpWizard.tsx` is a 2898-line component used both inline (during creation) and standalone (`/character/[id]/level-up`). It generates per-level step info via `buildLevelInfos()`, renders a `LevelCard` per level, and on completion applies all selections to the character.
 
-### Tailwind CSS Usage
-- Utility classes directly on elements
-- Component composition for repeated patterns
-- Responsive: `sm:`, `md:`, `lg:`, `xl:`
+### 6. Spell & Buff System
 
-### Common Patterns
-```tsx
-// Container
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+- Spells stored as `{ id, name, level, source, srdSpellName, damageDice, damageType, description }`
+- `BUFF_DEFINITIONS` maps 89 spells to mechanical effects (AC bonus, temp HP, speed, resistances, etc.)
+- `computeBuffModifiers()` aggregates all active buffs into a single `BuffModifiers` object
+- `toggleSpellUsed()` adds/removes from `spellsUsedThisTurn` and creates/removes `ActiveBuff` entries
+- `advanceTurn()` decrements `turnsRemaining`, removes expired buffs
 
-// Responsive grid
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+### 7. Condition Parsing
 
-// Flexbox centering
-<div className="flex items-center justify-center">
-```
+`computeDerivedStats()` interprets `activeStates` strings to apply mechanical effects:
+- Cover: half (+2), three-quarters (+5), total (+5)
+- Exhaustion: parsed from `"exhaustion N"` strings (levels 1–6)
+- Other: prone, poisoned, restrained, paralyzed, etc.
 
-## File Naming Conventions
+### 8. Sourcebook Filtering
 
-- Components: PascalCase (`Button.tsx`, `Header.tsx`)
-- Utilities: camelCase (`utils.ts`, `helpers.ts`)
-- Pages/Routes: lowercase (`page.tsx`, `layout.tsx`)
-- Directories: kebab-case (`api-routes/`) or lowercase (`components/`)
+All SRD data accessors accept an optional `sources` parameter. Characters store a `sources: string[]` field. During creation, `StepSourceSelection` lets users pick sourcebooks (PHB always included). All subsequent data lookups filter by `character.sources`.
 
-## State Management
+### 9. Auto-Save & Backup
 
-For simple needs:
-- `useState` for local component state
-- `useContext` for shared state
-- Server Components for data fetching
+- `saveCharacter()` tries Dexie first, falls back to localStorage
+- Debounced at 400ms via `onFieldBlur` trigger
+- Auto-backup every 24h triggers JSON download
+- `normalizeCharacter()` merges legacy saves against current defaults
 
-For complex needs (add when necessary):
-- Zustand for client state
-- React Query for server state
+### 10. PDF Export
+
+`CharacterSheetPrint.tsx` renders a fixed-width (710px), 3-page PDF layout using inline styles. Pages: (1) Combat + Abilities, (2) Attacks + Features + Inventory, (3) Spellcasting + Spells + Bio.
+
+## Component Conventions
+
+- **Imports**: `@/components/...`, `@/lib/...`, `@/contexts/...`
+- **Icons**: Imported from `@/components/icons` with descriptive aliases
+- **Styling**: Mix of Tailwind utilities + component classes (`.card`, `.btn`, `.input`)
+- **Theme tokens**: `bg-paper`, `text-ink`, `border-border`, `text-text-primary`, etc.
+- **Modals**: Fixed overlay `z-[9999]`, `bg-[var(--color-overlay)]`, centered card with close button
+- **Conditional rendering**: `editMode && <button>...</button>` pattern for edit-only controls
