@@ -6,8 +6,9 @@ import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
-import { XIcon as X, CheckIcon as Check } from "@/components/icons";
+import { XIcon as X, CheckIcon as Check, StarIcon as Star } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
+import { isRecommended } from "@/lib/recommendations";
 
 interface SpellSelectionModalProps {
   character: Character;
@@ -322,10 +323,13 @@ return (
                           {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
                           {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
                           {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                          <div className="flex items-center gap-1.5">
-                            <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-                            <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
-                          </div>
+                           <div className="flex items-center gap-1.5">
+                             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+                             <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""} flex items-center gap-1`}>
+                               {sp.name}
+                               {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
+                             </span>
+                           </div>
                         </div>
                         <div className="flex items-center gap-2 mt-0.5 ml-5">
                           <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
@@ -370,10 +374,13 @@ return (
                           {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
                           {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
                           {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                          <div className="flex items-center gap-1.5">
-                            <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-                            <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>{sp.name}</span>
-                          </div>
+                           <div className="flex items-center gap-1.5">
+                             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+                             <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""} flex items-center gap-1`}>
+                               {sp.name}
+                               {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
+                             </span>
+                           </div>
                         </div>
                         <div className="flex items-center gap-2 mt-0.5 ml-5">
                           <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>

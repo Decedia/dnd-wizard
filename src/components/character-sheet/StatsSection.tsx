@@ -4,10 +4,12 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getModifier } from "@/lib/storage";
 import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
-import { ChartBarIcon as ChartBar } from "@/components/icons";
+import { ChartBarIcon as ChartBar, StarIcon as Star } from "@/components/icons";
+import { isRecommended } from "@/lib/recommendations";
 
 interface StatsSectionProps {
   character: {
+    class: string;
     str: number;
     dex: number;
     con: number;
@@ -47,6 +49,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             onChange={(value) => onChange({ [key]: value })}
             onBlur={onFieldBlur}
             editMode={editMode}
+            recommended={isRecommended("stat", label, character.class)}
           />
         ))}
       </div>

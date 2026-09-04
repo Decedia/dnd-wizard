@@ -32,6 +32,7 @@ import {
 } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { useSRD } from "@/contexts/SRDContext";
+import { isRecommended } from "@/lib/recommendations";
 
 function getSubclassFlagsByName(className: string, subclassName: string, sources?: string[]): Record<string, boolean> {
   if (!subclassName) return {};
@@ -2872,21 +2873,22 @@ function SubclassSelectionModal({
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold">{opt.name}</span>
-                    {opt.description && (
-                      <InfoButton title={opt.name} description={opt.description} />
+                    <span className="text-xs font-semibold flex items-center gap-1">
+                      {opt.name}
+                      {isRecommended("subclass", opt.name, characterClass) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                    </span>
+                    {opt.hasDetails && (
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); setDetailsView(opt.name); }}
+                        className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all shrink-0"
+                        aria-label={`Info: ${opt.name}`}
+                      >
+                        <Info className="h-4 w-4" />
+                      </button>
                     )}
                   </div>
                 </button>
-                {opt.hasDetails && (
-                  <button
-                    type="button"
-                    onClick={() => setDetailsView(opt.name)}
-                    className="h-10 w-10 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:border-[var(--color-border-active)] hover:text-[var(--color-text-primary)] transition-all"
-                  >
-                    <Info className="h-4 w-4" />
-                  </button>
-                )}
               </div>
             ))}
           </div>

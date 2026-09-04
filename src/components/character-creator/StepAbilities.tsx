@@ -5,6 +5,8 @@ import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 import { getModifier } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
+import { StarIcon as Star } from "@/components/icons";
+import { isRecommended } from "@/lib/recommendations";
 
 interface StepAbilitiesProps {
   data: Character;
@@ -214,7 +216,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12">{label}</span>
+                  <span className="text-sm font-bold text-ink w-12 flex items-center gap-1">
+                    {label}
+                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                  </span>
                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -280,7 +285,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12">{label}</span>
+                  <span className="text-sm font-bold text-ink w-12 flex items-center gap-1">
+                    {label}
+                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                  </span>
                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -338,7 +346,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                 className="card flex items-center justify-between px-4 py-3"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12">{label}</span>
+                  <span className="text-sm font-bold text-ink w-12 flex items-center gap-1">
+                    {label}
+                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                  </span>
                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">

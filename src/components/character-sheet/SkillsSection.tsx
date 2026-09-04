@@ -8,6 +8,7 @@ import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
 import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle, InfoIcon } from "@/components/icons";
+import { isRecommended } from "@/lib/recommendations";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -88,9 +89,10 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                 <label className={`flex items-center justify-between gap-2 cursor-pointer ${disabled ? "cursor-not-allowed" : ""}`}>
                   <div className="flex flex-col min-w-0">
                       <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
-                       {name}
-                       {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
-                     </span>
+                        {name}
+                        {isRecommended("skill", name) && <Star className="h-3 w-3 text-amber-500" />}
+                        {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
+                      </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
@@ -110,12 +112,13 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
               ) : (
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex flex-col min-w-0">
-                     <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
-                       {(isProficient || isExpert) && (
-                         <span className="inline-block h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: isExpert ? "var(--color-accent-purple-600)" : isBgSkill ? "var(--color-success-500)" : "var(--color-ink)" }} />
-                       )}
-                       {name}
-                     </span>
+                      <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
+                        {(isProficient || isExpert) && (
+                          <span className="inline-block h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: isExpert ? "var(--color-accent-purple-600)" : isBgSkill ? "var(--color-success-500)" : "var(--color-ink)" }} />
+                        )}
+                        {name}
+                        {isRecommended("skill", name) && <Star className="h-3 w-3 text-amber-500" />}
+                      </span>
                      <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">

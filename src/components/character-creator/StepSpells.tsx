@@ -8,6 +8,8 @@ import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
 import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
+import { StarIcon as Star } from "@/components/icons";
+import { isRecommended } from "@/lib/recommendations";
 
 interface StepSpellsProps {
   data: Character;
@@ -307,7 +309,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                       <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5">
                         <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
-                        <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                         <span className="text-sm font-bold text-inherit flex items-center gap-1">
+                          {spell.name}
+                          {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                        </span>
                       </div>
                         <span className="text-xs text-[var(--color-text-muted)] font-medium">
                           {spell.school || ""}
@@ -388,7 +393,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                       >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-sm font-bold text-inherit">{spell.name}</span>
+                               <span className="text-sm font-bold text-inherit flex items-center gap-1">
+                          {spell.name}
+                          {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                        </span>
                               <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
                             </div>
                             <div className="flex items-center gap-2">

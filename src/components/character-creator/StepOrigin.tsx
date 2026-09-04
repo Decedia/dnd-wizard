@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, FistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus, BarbarianIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, WarlockIcon, WizardStaffIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, DemonSkullIcon, PersonIcon } from "@/components/icons";
+import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, FistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus, StarIcon as Star, BarbarianIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, WarlockIcon, WizardStaffIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, DemonSkullIcon, PersonIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { InfoButton } from "@/components/InfoButton";
@@ -10,6 +10,7 @@ import { SourceBadge } from "../SourceBadge";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
+import { isRecommended } from "@/lib/recommendations";
 
 const classIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: BarbarianIcon,
@@ -276,7 +277,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                             <div className="flex items-center gap-2">
                               {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
                               <div>
-                                <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{cls.name}</span>
+                                 <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
+                                  {cls.name}
+                                  {isRecommended("class", cls.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                                </span>
                                 {hasSubclasses && (() => {
                                   const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
                                   return (
@@ -363,7 +367,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           </div>
                            <div className="flex-1">
                               <div className="flex items-center justify-between">
-                                <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>{race.name}</span>
+                                 <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
+                                  {race.name}
+                                  {isRecommended("race", race.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                                </span>
                                 {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
                               </div>
                               <div className="mt-0.5">
