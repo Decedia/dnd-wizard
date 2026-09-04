@@ -26,7 +26,7 @@ export function BottomNav() {
   });
 
   return (
-    <nav className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[99999] w-[92%] max-w-sm">
+    <nav className="fixed bottom-14 left-1/2 -translate-x-1/2 z-[99999] w-[92%] max-w-sm">
        <div className="flex items-center rounded-full bg-[var(--color-nav-bg)] p-1 relative">
            {navItems.map((item, index) => {
              const Icon = item.icon;
