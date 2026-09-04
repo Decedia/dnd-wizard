@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { getStaticSubclasses, getStaticSubclassDetails } from "@/lib/srd-client";
 import { isRecommended } from "@/lib/recommendations";
-import { MagnifyingGlassIcon as MagnifyingGlass, StarIcon as Star } from "@/components/icons";
+import { MagnifyingGlassIcon as MagnifyingGlass, StarIcon as Star, CrownIcon as Crown, InfoIcon as Info } from "@/components/icons";
 import { SourceBadge } from "@/components/SourceBadge";
 import { BasePopup } from "@/components/BasePopup";
 
@@ -27,6 +27,7 @@ export function SubclassSelectionModal({
   const [detailsView, setDetailsView] = useState<string | null>(null);
   const [previewSubclass, setPreviewSubclass] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [infoSubclass, setInfoSubclass] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -49,21 +50,6 @@ export function SubclassSelectionModal({
     const q = searchQuery.toLowerCase();
     return options.filter((opt) => opt.name.toLowerCase().includes(q) || opt.description.toLowerCase().includes(q));
   }, [options, searchQuery]);
-
-  const previewFeatures = useMemo(() => {
-    if (!previewSubclass || !subclassData[previewSubclass]) return [];
-    const features = subclassData[previewSubclass].features || [];
-    const grouped: Record<number, any[]> = {};
-    for (const f of features) {
-      const lv = f.level || 0;
-      if (!grouped[lv]) grouped[lv] = [];
-      grouped[lv].push(f);
-    }
-    return Object.keys(grouped)
-      .map(Number)
-      .sort((a, b) => a - b)
-      .map((lv) => ({ level: lv, features: grouped[lv] }));
-  }, [previewSubclass, subclassData]);
 
   const handleConfirm = () => {
     if (previewSubclass) {
@@ -101,43 +87,67 @@ export function SubclassSelectionModal({
         )}
         {filteredOptions.map((opt) => (
           <div key={opt.name} className="space-y-2">
-            <button
-              type="button"
-              onClick={() => {
-                setPreviewSubclass(opt.name);
-                setDetailsView(null);
-              }}
-              className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                previewSubclass === opt.name
-                  ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                  : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold flex items-center gap-1">
-                  {opt.name}
-                  {isRecommended("subclass", opt.name, characterClass) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                </span>
-              </div>
-            </button>
-            {previewSubclass === opt.name && previewFeatures.length > 0 && (
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setPreviewSubclass(opt.name);
+                  setDetailsView(null);
+                  setInfoSubclass(null);
+                }}
+                className={`flex-1 p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                  previewSubclass === opt.name
+                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Crown className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />
+                  <span className="text-xs font-semibold flex items-center gap-1">
+                    {opt.name}
+                    {isRecommended("subclass", opt.name, characterClass) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                  </span>
+                </div>
+                <p className="text-[10px] text-[var(--color-text-secondary)] mt-1 line-clamp-2">{opt.description}</p>
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setInfoSubclass(infoSubclass === opt.name ? null : opt.name);
+                  setDetailsView(null);
+                }}
+                className={`h-10 w-10 flex items-center justify-center rounded-[var(--radius-sm)] border transition-all shrink-0 ${
+                  infoSubclass === opt.name
+                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
+                    : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+                }`}
+                aria-label={`Info: ${opt.name}`}
+              >
+                <Info className="h-4 w-4" />
+              </button>
+            </div>
+            {infoSubclass === opt.name && (
               <div className="ml-4 p-3 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
-                <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-2">Features by Level</div>
-                <div className="space-y-2">
-                  {previewFeatures.map(({ level, features }) => (
-                    <div key={level}>
-                      <div className="text-[10px] font-bold text-[var(--color-text-primary)] mb-1">Level {level}</div>
-                      <div className="space-y-1">
-                        {features.map((f: any, idx: number) => (
+                <div className="text-xs font-bold text-[var(--color-text-primary)] mb-1">{opt.name}</div>
+                <div className="text-[10px] text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{opt.description}</div>
+                {(() => {
+                  const details = getStaticSubclassDetails(characterClass, opt.name);
+                  if (details?.features && details.features.length > 0) {
+                    return (
+                      <div className="mt-2 space-y-1">
+                        <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">Features</div>
+                        {details.features.map((f: any, idx: number) => (
                           <div key={idx} className="text-[10px] text-[var(--color-text-secondary)]">
                             <span className="font-semibold">{f.name}</span>
-                            {f.choices && <span className="text-[var(--color-text-muted)]"> (choose {f.choicesCount || 1})</span>}
+                            {f.level && <span className="text-[var(--color-text-muted)]"> (Lv {f.level})</span>}
                           </div>
                         ))}
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    );
+                  }
+                  return null;
+                })()}
               </div>
             )}
           </div>
