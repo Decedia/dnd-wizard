@@ -35,7 +35,7 @@ export default function RootLayout({
       >
         <SRDProvider>
           <ThemeProvider>
-            <div className="mx-auto max-w-lg">
+            <div className="mx-auto max-w-lg pb-24">
               {children}
             </div>
           </ThemeProvider>
