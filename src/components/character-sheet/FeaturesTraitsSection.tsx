@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles } from "@/components/icons";
+import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles, CrownIcon as Crown } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
@@ -122,6 +122,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         {character.subclass && (
           <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
             <div className="flex items-center gap-2">
+              <Crown className="h-4 w-4 text-[var(--color-text-muted)]" />
               {(() => {
                 const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
                 const sub = subclasses.find(s => s.name === character.subclass);

@@ -9,7 +9,7 @@ import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib
 import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
 import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
-import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff } from "@/components/icons";
+import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club } from "@/components/icons";
 import { SourceBadge } from "@/components/SourceBadge";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -19,6 +19,50 @@ const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }
   simple_melee: Dagger,
   simple_ranged: Crossbow,
   simple: Dagger,
+};
+
+const weaponNameIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  Battleaxe: BattleAxe,
+  Greataxe: BattleAxe,
+  Handaxe: BattleAxe,
+  "War pick": BattleAxe,
+  Glaive: Polearm,
+  Halberd: Polearm,
+  Lance: Polearm,
+  Pike: Polearm,
+  Whip: Whip,
+  Trident: Trident,
+  Spear: Trident,
+  Javelin: Trident,
+  Club: Club,
+  Greatclub: Club,
+  "Light hammer": Hammer,
+  Mace: Mace,
+  Maul: Hammer,
+  Morningstar: Hammer,
+  Warhammer: Hammer,
+  Flail: Hammer,
+  Quarterstaff: Staff,
+  Greatsword: Sword,
+  Longsword: Sword,
+  Shortsword: Sword,
+  Scimitar: Sword,
+  Rapier: Dagger,
+  Dagger: Dagger,
+  Dart: Dagger,
+  Sickle: Dagger,
+  Shortbow: BowArrow,
+  Longbow: BowArrow,
+  Crossbow: Crossbow,
+  "Crossbow, hand": Crossbow,
+  "Crossbow, heavy": Crossbow,
+  "Crossbow, light": Crossbow,
+  Blowgun: Crossbow,
+  Sling: BowArrow,
+};
+
+const getWeaponIcon = (name: string, weaponType?: string) => {
+  return weaponNameIcons[name] || weaponTypeIcons[weaponType || ""] || Sword;
 };
 
 interface StepEquipmentProps {
@@ -624,7 +668,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                       </div>
                                       {selectedWeapons.map((weapon, wIdx) => {
                                         const wStats = getWeaponStats(weapon.name, weapon.category);
-                                        const WIcon = weaponTypeIcons[option.weaponType || ""] || Sword;
+                                        const WIcon = getWeaponIcon(weapon.name, option.weaponType);
                                         return (
                                            <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
                                             <div className="flex-1">
@@ -690,10 +734,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                     <div className="flex items-center justify-between">
                                       <div className="flex-1">
                                         <div className="flex items-center gap-2">
-                                          {primaryInfo?.type === "weapon" && (() => {
-                                            const WIcon = weaponTypeIcons[primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee"] || Sword;
-                                            return <WIcon className={`h-4 w-4 shrink-0 ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-muted)]"}`} />;
-                                          })()}
+                                         {primaryInfo?.type === "weapon" && (() => {
+                                           const WIcon = getWeaponIcon(primaryItem?.name || "", primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee");
+                                           return <WIcon className={`h-4 w-4 shrink-0 ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-muted)]"}`} />;
+                                         })()}
                                           <span className="text-body font-semibold text-[var(--color-surface)]">{getOptionLabel(option)}</span>
                                         </div>
                                         {primaryInfo?.type === "weapon" && (() => {
@@ -736,7 +780,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                                     >
                                       <div className="flex items-center gap-2">
                                         {primaryInfo?.type === "weapon" && (() => {
-                                          const WIcon = weaponTypeIcons[primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee"] || Sword;
+                                          const WIcon = getWeaponIcon(primaryItem?.name || "", primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee");
                                           return <WIcon className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />;
                                         })()}
                                         <span>{getOptionLabel(option)}</span>
@@ -794,10 +838,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                   <div key={item.id} className="flex flex-col gap-1 px-3 py-2.5 border border-[var(--color-border)] rounded-[var(--border-radius-sm)] bg-[var(--color-surface)]">
                    <div className="flex items-center justify-between">
                      <div className="flex items-center gap-2">
-                       {itemInfo?.type === "weapon" && (() => {
-                         const WIcon = weaponTypeIcons[itemInfo.category === "Ranged" ? "simple_ranged" : "simple_melee"] || Sword;
-                         return <WIcon className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />;
-                       })()}
+                        {itemInfo?.type === "weapon" && (() => {
+                          const WIcon = getWeaponIcon(item.name, itemInfo.category === "Ranged" ? "simple_ranged" : "simple_melee");
+                          return <WIcon className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />;
+                        })()}
                        <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
                        {isGranted && (
                          <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">GRANTED</span>
@@ -881,7 +925,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const isWeaponSelected = popupSelectedWeapons.some((w: any) => w.name === weapon.name);
               const selectionCount = popupOption.selectionCount || 1;
               const isDisabled = !isWeaponSelected && popupSelectedWeapons.length >= selectionCount;
-              const WIcon = weaponTypeIcons[popupOption.weaponType || ""] || Sword;
+              const WIcon = getWeaponIcon(weapon.name, popupOption.weaponType);
               return (
                  <button
                     key={weapon.name}

@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircleIcon as CheckCircle } from "@/components/icons";
+import { CheckCircleIcon as CheckCircle, CrownIcon as Crown } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses, type SRDClass, type SRDSubclass } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
@@ -72,10 +72,11 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <SourceBadge source={sub.source || "PHB"} size="sm" />
-                    <span className="text-card-title">{sub.name}</span>
-                  </div>
+              <div className="flex items-center gap-2">
+                <Crown className="h-4 w-4 text-[var(--color-text-muted)]" />
+                <SourceBadge source={sub.source || "PHB"} size="sm" />
+                <span className="text-card-title">{sub.name}</span>
+              </div>
                   {isSelected && (
                     <CheckCircle color="var(--color-text-primary)" className="h-4 w-4" />
                   )}
