@@ -434,7 +434,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             </button>
           ))}
         </div>
-        {renderMethodContent()}
         <NewPlayerTips
           tips={[
             {
@@ -451,6 +450,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             },
           ]}
         />
+        {renderMethodContent()}
       </div>
     </StepCard>
   );

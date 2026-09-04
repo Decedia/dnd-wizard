@@ -87,7 +87,23 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
             <span className="text-[var(--color-text-muted)]">({selectedCount} of {skillChoices.count} selected)</span>
           </p>
         </div>
-      )}
+        )}
+        <NewPlayerTips
+          tips={[
+            {
+              title: "Choosing Skills",
+              content: "Skills represent what your character is good at. Choose skills that match your class—Fighters pick Athletics and combat skills, while Rogues pick Stealth and Sleight of Hand.",
+            },
+            {
+              title: "Gold Star = Recommended",
+              content: "Gold stars mark skills that work especially well with your class. These are great choices for new players!",
+            },
+            {
+              title: "Background Skills",
+              content: "Green 'BG' badges mean the skill comes from your background. These are automatically added and can't be changed.",
+            },
+          ]}
+        />
       <div className="grid grid-cols-1 gap-2">
         {allSkills.map(({ name, ability }) => {
           const isProficient = data.skills[name] || false;
@@ -140,24 +156,8 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                </div>
              </button>
             );
-         })}
-       </div>
-       <NewPlayerTips
-         tips={[
-           {
-             title: "Choosing Skills",
-             content: "Skills represent what your character is good at. Choose skills that match your class—Fighters pick Athletics and combat skills, while Rogues pick Stealth and Sleight of Hand.",
-           },
-           {
-             title: "Gold Star = Recommended",
-             content: "Gold stars mark skills that work especially well with your class. These are great choices for new players!",
-           },
-           {
-             title: "Background Skills",
-             content: "Green 'BG' badges mean the skill comes from your background. These are automatically added and can't be changed.",
-           },
-         ]}
-       />
-     </StepCard>
-  );
+          })}
+        </div>
+      </StepCard>
+    );
 }

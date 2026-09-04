@@ -189,6 +189,23 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           />
         </div>
 
+        <NewPlayerTips
+          tips={[
+            {
+              title: "Choosing a Class",
+              content: "Your class determines your main role in the party. Fighters are great for beginners—they're tough and deal consistent damage. Clerics are also beginner-friendly, as they can heal and fight.",
+            },
+            {
+              title: "Choosing a Race",
+              content: "Race gives you special abilities and ability score bonuses. Humans are versatile, Dwarves are tough, and Elves are agile. Pick one that fits your character concept!",
+            },
+            {
+              title: "Golden Star Icon",
+              content: "Look for the gold star icon—it marks options that are especially good for new players.",
+            },
+          ]}
+        />
+
         <button
           type="button"
           onClick={() => setPopupType("class")}
@@ -522,23 +539,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           onClose={() => setFeatModalOpen(false)}
         />
       )}
-
-      <NewPlayerTips
-        tips={[
-          {
-            title: "Choosing a Class",
-            content: "Your class determines your main role in the party. Fighters are great for beginners—they're tough and deal consistent damage. Clerics are also beginner-friendly, as they can heal and fight.",
-          },
-          {
-            title: "Choosing a Race",
-            content: "Race gives you special abilities and ability score bonuses. Humans are versatile, Dwarves are tough, and Elves are agile. Pick one that fits your character concept!",
-          },
-          {
-            title: "Golden Star Icon",
-            content: "Look for the gold star icon—it marks options that are especially good for new players.",
-          },
-        ]}
-      />
     </StepCard>
   );
 }
