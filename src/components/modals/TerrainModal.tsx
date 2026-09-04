@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { getCircleTerrainTypes, getCircleSpells, getStaticSpells } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
 import type { Character } from "@/lib/storage";
 
@@ -62,15 +61,9 @@ export function TerrainModal({
                 <div className="flex flex-wrap gap-1 mt-2">
                   {newSpells.map((name) => {
                     const spellData = srdSpells.find((s) => s.name?.toLowerCase() === name.toLowerCase());
-                    const desc = spellData?.description ? (Array.isArray(spellData.description) ? spellData.description.join(" ") : spellData.description) : undefined;
                     return (
-                      <span key={name} className="flex items-center gap-1">
-                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isSelected ? "bg-green-500 text-white" : "bg-green-100 text-green-700"}`}>
-                          {name}
-                        </span>
-                        {desc && (
-                          <InfoButton title={name} description={desc} />
-                        )}
+                      <span key={name} className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isSelected ? "bg-green-500 text-white" : "bg-green-100 text-green-700"}`}>
+                        {name}
                       </span>
                     );
                   })}

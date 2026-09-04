@@ -7,7 +7,6 @@ import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
 import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel } from "@/lib/storage";
-import { InfoButton } from "@/components/InfoButton";
 import { StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 
@@ -314,17 +313,14 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                           {spell.school || ""}
                         </span>
                       </div>
-                   </button>
-                   {spellDesc && (
-                     <InfoButton title={spell.name} description={spellDesc} />
-                   )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                    </button>
+                 </div>
+               );
+             })}
+           </div>
+         </div>
 
-        {/* Circle of Land Terrain Selection */}
+         {/* Circle of Land Terrain Selection */}
         {isCircleOfLand && (
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -413,15 +409,12 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                              {spell.range}
                            </span>
                          </div>
-                       </button>
-                       {spellDesc && (
-                         <InfoButton title={spell.name} description={spellDesc} />
-                       )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+                        </button>
+                     </div>
+                   );
+                 })}
+               </div>
+             </div>
           ))}
       </div>
     </StepCard>

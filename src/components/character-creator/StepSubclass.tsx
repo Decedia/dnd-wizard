@@ -1,12 +1,11 @@
 "use client";
 
-import { CheckCircleIcon as CheckCircle, InfoIcon as Info } from "@/components/icons";
+import { CheckCircleIcon as CheckCircle } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses, type SRDClass, type SRDSubclass } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import type { Character } from "@/lib/storage";
 import { normalizeDescription } from "@/lib/level-up";
-import { InfoButton } from "@/components/InfoButton";
 import { useMemo } from "react";
 
 interface StepSubclassProps {
@@ -94,15 +93,6 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
                   </div>
                 )}
               </button>
-              {hasDetails && (
-                <InfoButton
-                  title={sub.name}
-                  description={[
-                    sub.description || "",
-                    ...earnedFeatures.map((f) => `**${f.name}** (Lv ${f.level}): ${normalizeDescription(f.description)}`),
-                  ].filter(Boolean).join("\n\n")}
-                />
-              )}
             </div>
           );
         })}

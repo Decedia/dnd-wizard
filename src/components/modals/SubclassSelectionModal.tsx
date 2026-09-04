@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { getStaticSubclasses, getStaticSubclassDetails } from "@/lib/srd-client";
 import { isRecommended } from "@/lib/recommendations";
-import { MagnifyingGlassIcon as MagnifyingGlass, StarIcon as Star, InfoIcon as Info } from "@/components/icons";
+import { MagnifyingGlassIcon as MagnifyingGlass, StarIcon as Star } from "@/components/icons";
 import { SourceBadge } from "@/components/SourceBadge";
 import { BasePopup } from "@/components/BasePopup";
 
@@ -118,16 +118,6 @@ export function SubclassSelectionModal({
                   {opt.name}
                   {isRecommended("subclass", opt.name, characterClass) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                 </span>
-                  {opt.hasDetails && (
-                    <button
-                      type="button"
-                      onClick={(e) => { e.stopPropagation(); setDetailsView(opt.name); }}
-                      className="h-10 w-10 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all shrink-0"
-                      aria-label={`Info: ${opt.name}`}
-                    >
-                      <Info className="h-5 w-5" />
-                    </button>
-                  )}
               </div>
             </button>
             {previewSubclass === opt.name && previewFeatures.length > 0 && (

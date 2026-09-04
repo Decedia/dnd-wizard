@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo } from "react";
 import { getStaticSpells, getStaticArcaneTricksterSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
-import { InfoButton } from "@/components/InfoButton";
 import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
@@ -252,7 +251,6 @@ export function SpellSelectionModal({
             {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium ml-1">Selected</span>}
           </div>
         </button>
-        {desc && <InfoButton title={sp.name} description={desc} />}
       </div>
     );
   };

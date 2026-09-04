@@ -3,7 +3,6 @@
 import { useCallback, useState, useMemo } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticRaces, type SRDRace } from "@/lib/srd-client";
-import { InfoButton } from "@/components/InfoButton";
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import type { SRDFeat } from "@/lib/srd-client";
@@ -101,12 +100,6 @@ return (
                         .join(", ")}
                     </p>
                   </button>
-                  {race.traits && race.traits.length > 0 && (
-                    <InfoButton
-                      title={`${race.name} Traits`}
-                      description={race.traits.map((t) => `${t.name}: ${t.description}`).join("\n\n")}
-                    />
-                  )}
                 </div>
 
                 {isSelected && race.choices && race.choices.length > 0 && (

@@ -132,9 +132,6 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                           )}
                         </div>
                       </button>
-                      {optionDesc && (
-                        <InfoButton title={option} description={optionDesc} />
-                      )}
                     </div>
                     );
                   })}

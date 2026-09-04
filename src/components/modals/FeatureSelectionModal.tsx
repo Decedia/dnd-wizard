@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { getStaticSpells, getWizardSpellsByLevel } from "@/lib/srd-client";
 import { CheckIcon as Check, XIcon as X } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
 
 interface FeatureSelectionModalProps {
@@ -101,9 +100,6 @@ export function FeatureSelectionModal({
                     </div>
                   </div>
                 </button>
-                {opt.description && (
-                  <InfoButton title={opt.name} description={opt.description} />
-                )}
               </div>
             </div>
           );

@@ -4,7 +4,6 @@ import { useState, useCallback } from "react";
 import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, FistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus, StarIcon as Star, BarbarianIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, WarlockIcon, WizardStaffIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, DemonSkullIcon, PersonIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
-import { InfoButton } from "@/components/InfoButton";
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";

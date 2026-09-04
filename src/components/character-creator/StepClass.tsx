@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticSubclasses, type SRDClass } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { InfoButton } from "@/components/InfoButton";
 
 interface StepClassProps {
   data: Character;
@@ -51,9 +50,6 @@ export function StepClass({ data, onChange }: StepClassProps) {
                       </span>
                     );
                   })()}
-                  {cls.flavorText && (
-                    <InfoButton title={cls.name} description={cls.flavorText} />
-                  )}
                 </div>
               </div>
             </button>
