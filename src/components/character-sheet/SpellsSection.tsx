@@ -312,6 +312,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   </button>
                 )}
               </div>
+              {showDescriptions && spell.description && (
+                <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{spell.description}</p>
+              )}
             </div>
           );
         })}
