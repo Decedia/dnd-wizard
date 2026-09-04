@@ -4,11 +4,12 @@ import { useState, useEffect, useMemo } from "react";
 import { getStaticSpells, getStaticArcaneTricksterSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
+import { InfoButton } from "@/components/InfoButton";
+import { XIcon as X, CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
+import { isRecommended } from "@/lib/recommendations";
+import { GroupedList } from "@/components/GroupedList";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
-import { XIcon as X, CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
-import { isRecommended } from "@/lib/recommendations";
 
 interface SpellSelectionModalProps {
   character: Character;
@@ -79,6 +80,7 @@ export function SpellSelectionModal({
   const allSpells = isArcaneTrickster
     ? deduplicateSpells(atSpells.filter((s) => s.level === 0 || s.level <= effectiveMaxLevel))
     : deduplicateSpells(getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
+
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
   const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
@@ -89,8 +91,8 @@ export function SpellSelectionModal({
       if (!levelSpells[sp.level]) levelSpells[sp.level] = [];
       levelSpells[sp.level].push(sp);
     }
-   }
-   const sortSpells = (list: any[]) => {
+  }
+  const sortSpells = (list: any[]) => {
     list.sort((a, b) => {
       const recA = isRecommended("spell", a.name) ? 0 : 1;
       const recB = isRecommended("spell", b.name) ? 0 : 1;
@@ -105,40 +107,30 @@ export function SpellSelectionModal({
       return a.name.localeCompare(b.name);
     });
   };
-  // Sort each level's spells: recommended first, then PHB first, then alphabetical
   for (const level in levelSpells) {
     sortSpells(levelSpells[level]);
   }
-   // Sort cantrips too
-   sortSpells(cantrips);
-   const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
+  sortSpells(cantrips);
+  const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
 
-   const searchLower = searchQuery.trim().toLowerCase();
-   const filteredCantrips = useMemo(() => {
-     if (!searchLower) return cantrips;
-     return cantrips.filter((sp: any) => {
-       const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
-       return sp.name.toLowerCase().includes(searchLower) || sp.school?.toLowerCase().includes(searchLower) || desc.toLowerCase().includes(searchLower);
-     });
-   }, [cantrips, searchLower]);
-
-   const filteredLevelSpells = useMemo(() => {
-     if (!searchLower) return levelSpells;
-     const next: Record<number, any[]> = {};
-     for (const level in levelSpells) {
-       const filtered = levelSpells[level].filter((sp: any) => {
-         const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
-         return sp.name.toLowerCase().includes(searchLower) || sp.school?.toLowerCase().includes(searchLower) || desc.toLowerCase().includes(searchLower);
-       });
-       if (filtered.length > 0) {
-         next[level] = filtered;
-       }
-     }
-     return next;
-   }, [levelSpells, searchLower]);
+  const searchLower = searchQuery.trim().toLowerCase();
+  const filterBySearch = (sp: any) => {
+    const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
+    return sp.name.toLowerCase().includes(searchLower) || sp.school?.toLowerCase().includes(searchLower) || desc.toLowerCase().includes(searchLower);
+  };
+  const filteredCantrips = useMemo(() => (searchLower ? cantrips.filter(filterBySearch) : cantrips), [cantrips, searchLower]);
+  const filteredLevelSpells = useMemo(() => {
+    if (!searchLower) return levelSpells;
+    const next: Record<number, any[]> = {};
+    for (const level in levelSpells) {
+      const filtered = levelSpells[level].filter(filterBySearch);
+      if (filtered.length > 0) next[level] = filtered;
+    }
+    return next;
+  }, [levelSpells, searchLower]);
 
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
-  const alreadyKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
+  const earlierKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
   const disabledSpellNames = new Set((disabledSpells || []).map(s => s.split(":")[0]));
 
   const isPrepareMode = selectionType === "prepare" && !onChange;
@@ -149,14 +141,12 @@ export function SpellSelectionModal({
     if (isDisabled) return;
 
     if (onChange) {
-      // Character sheet mode - update character directly
       const isSelected = (character.spells || []).some(s => s.name === name && s.level === level);
       if (isSelected) {
         onChange({
           spells: (character.spells || []).filter(s => !(s.name === name && s.level === level)),
         });
       } else {
-        // Enforce max spells/cantrips known limits
         if (level === 0) {
           const currentCantrips = (character.spells || []).filter(s => s.level === 0).length;
           if (currentCantrips >= maxCantripsKnown) return;
@@ -171,7 +161,6 @@ export function SpellSelectionModal({
         });
       }
     } else {
-      // Level up wizard mode
       if (selectedSpells.some((s) => s === `${name}:${level}`)) {
         const newList = selectedSpells.filter((s) => s !== `${name}:${level}`);
         setSelectedSpells(newList);
@@ -206,6 +195,74 @@ export function SpellSelectionModal({
 
   const selectedCantripNames = new Set(currentCantrips.map(s => typeof s === "string" ? s.split(":")[0] : s.name));
   const selectedSpellNames = new Set(currentSpells.map(s => typeof s === "string" ? s.split(":")[0] : s.name));
+
+  const renderSpell = (sp: any) => {
+    const level = sp.level ?? 0;
+    const isAlreadyKnown = level === 0 ? alreadyKnownCantripNames.has(sp.name) : earlierKnownSpellNames.has(sp.name);
+    const isDisabled = disabledSpellNames.has(sp.name);
+    const isSel = level === 0 ? selectedCantripNames.has(sp.name) : selectedSpellNames.has(sp.name);
+    const maxForLevel = level === 0 ? (onChange ? maxCantripsKnown : cantripCount) : (onChange ? maxSpellsKnown : count);
+    const disabled = !isSel && !isAlreadyKnown && !isDisabled && (level === 0 ? currentCantrips.length : currentSpells.length) >= maxForLevel;
+    const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+    const finalDisabled = disabled || isAlreadyKnown || isDisabled;
+
+    return (
+      <div key={sp.name} className="flex gap-1.5">
+        <button
+          type="button"
+          onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
+          disabled={finalDisabled}
+          className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
+            isDisabled
+              ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
+              : isAlreadyKnown
+                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
+                : isSel
+                  ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
+                  : disabled
+                    ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                    : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+            {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+            {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+            <div className="flex items-center gap-1.5">
+              <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+              <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""} flex items-center gap-1`}>
+                {sp.name}
+                {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 mt-0.5 ml-5">
+            <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
+            {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">·</span>}
+            {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>}
+            {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium ml-1">From higher level</span>}
+            {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium ml-1">Already known</span>}
+            {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium ml-1">Selected</span>}
+          </div>
+        </button>
+        {desc && <InfoButton title={sp.name} description={desc} />}
+      </div>
+    );
+  };
+
+  const renderLevelContent = (spellsForLevel: any[]) => {
+    if (spellsForLevel.length === 0 && searchQuery) {
+      return <p className="text-xs text-[var(--color-text-muted)] text-center py-6">No spells match your search.</p>;
+    }
+    return (
+      <GroupedList
+        items={spellsForLevel}
+        isRecommended={(sp) => isRecommended("spell", sp.name)}
+        renderItem={renderSpell}
+        emptyAllMessage="No spells found for this level."
+      />
+    );
+  };
 
   return (
     <div
@@ -322,115 +379,15 @@ export function SpellSelectionModal({
                   : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
               }`}
             >
-              Level {lvl} ({currentSpells.length}/{onChange ? maxSpellsKnown : count})
+              Level {lvl} ({currentSpells.filter((s) => typeof s !== "string" ? s.level === lvl : false).length}/{onChange ? maxSpellsKnown : count})
             </button>
           ))}
         </div>
-        <div className="flex-1 min-h-0 overflow-y-auto px-4 py-3">
+        <div className="flex-1 min-h-0 overflow-hidden">
           {activeTab === "cantrips" ? (
-            <div className="space-y-1.5">
-              {filteredCantrips.map((sp) => {
-                const isAlreadyKnown = alreadyKnownCantripNames.has(sp.name);
-                const isDisabled = disabledSpellNames.has(sp.name);
-                const isSel = selectedCantripNames.has(sp.name) || isDisabled;
-                const maxCantrips = onChange ? maxCantripsKnown : cantripCount;
-                const disabled = !isSel && !isAlreadyKnown && !isDisabled && currentCantrips.length >= maxCantrips;
-                const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
-return (
-                  <div key={sp.name} className="flex gap-1.5">
-                    <button
-                      type="button"
-                      onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, 0)}
-                      disabled={disabled || isAlreadyKnown || isDisabled}
-                      className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
-                        isDisabled
-                          ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
-                          : isAlreadyKnown
-                            ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
-                            : isSel
-                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
-                              : disabled
-                                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                                : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                        <div className="flex items-center gap-2">
-                          {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
-                          {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                          {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                           <div className="flex items-center gap-1.5">
-                             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-                             <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""} flex items-center gap-1`}>
-                               {sp.name}
-                               {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
-                             </span>
-                           </div>
-                        </div>
-                        <div className="flex items-center gap-2 mt-0.5 ml-5">
-                          <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
-                          {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium">From higher level</span>}
-                          {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
-                          {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
-                        </div>
-                    </button>
-                    {desc && <InfoButton title={sp.name} description={desc} />}
-                  </div>
-                );
-              })}
-            </div>
+            renderLevelContent(filteredCantrips)
           ) : (
-            <div className="space-y-1.5">
-              {filteredLevelSpells[activeTab as number]?.map((sp) => {
-                const isDisabled = disabledSpellNames.has(sp.name);
-                const isSel = selectedSpellNames.has(sp.name) || isDisabled;
-                const isAlreadyKnown = alreadyKnownSpellNames.has(sp.name);
-                const maxSpells = onChange ? maxSpellsKnown : count;
-                const disabled = !isSel && !isAlreadyKnown && !isDisabled && currentSpells.length >= maxSpells;
-                const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
-return (
-                  <div key={sp.name} className="flex gap-1.5">
-                    <button
-                      type="button"
-                      onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, sp.level)}
-                      disabled={disabled || isAlreadyKnown || isDisabled}
-                      className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
-                        isDisabled
-                          ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
-                          : isAlreadyKnown
-                            ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
-                            : isSel
-                              ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
-                              : disabled
-                                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                                : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                        <div className="flex items-center gap-2">
-                          {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
-                          {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-                          {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                           <div className="flex items-center gap-1.5">
-                             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-                             <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""} flex items-center gap-1`}>
-                               {sp.name}
-                               {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
-                             </span>
-                           </div>
-                        </div>
-                        <div className="flex items-center gap-2 mt-0.5 ml-5">
-                          <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>
-                          <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
-                          <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>
-                          {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium ml-1">From higher level</span>}
-                         {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium ml-1">Already known</span>}
-                         {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium ml-1">Selected</span>}
-                       </div>
-                    </button>
-                    {desc && <InfoButton title={sp.name} description={desc} />}
-                  </div>
-                );
-              })}
-            </div>
+            <div className="h-full overflow-y-auto">{renderLevelContent(filteredLevelSpells[activeTab as number] || [])}</div>
           )}
         </div>
         <div className="border-t border-[var(--color-border)] px-4 py-3">

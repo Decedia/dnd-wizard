@@ -79,7 +79,25 @@ export const RECOMMENDED_STATS: Record<string, string[]> = {
   Wizard: ["INT", "CON"],
 };
 
-export function isRecommended(type: "class" | "race" | "subclass" | "spell" | "skill" | "stat", name: string, className?: string): boolean {
+export const RECOMMENDED_FEATS = new Set([
+  "Lucky",
+  "War Caster",
+  "Sharpshooter",
+  "Great Weapon Master",
+  "Sentinel",
+  "Resilient (Constitution)",
+  "Alert",
+  "Mobile",
+  "Heavily Armored",
+  "Medium Armor Master",
+  "Defensive Duelist",
+  "Crossbow Expert",
+  "Polearm Master",
+  "Observant",
+  "Inspiring Leader",
+]);
+
+export function isRecommended(type: "class" | "race" | "subclass" | "spell" | "skill" | "stat" | "feat", name: string, className?: string): boolean {
   switch (type) {
     case "class":
       return RECOMMENDED_CLASSES.has(name);
@@ -93,6 +111,8 @@ export function isRecommended(type: "class" | "race" | "subclass" | "spell" | "s
       return RECOMMENDED_SKILLS.has(name);
     case "stat":
       return className ? RECOMMENDED_STATS[className]?.includes(name) ?? false : false;
+    case "feat":
+      return RECOMMENDED_FEATS.has(name);
     default:
       return false;
   }

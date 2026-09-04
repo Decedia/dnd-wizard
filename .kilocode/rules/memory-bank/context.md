@@ -194,6 +194,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 ## Recently Completed
 
 - [x] Newbie accessibility improvements: added subclass feature preview panel in LevelUpWizard selection modal (grouped by level with choice counts), added search/filter to SpellSelectionModal and subclass selection modal, increased touch targets (checkboxes 1.25rem, close/info buttons h-10 w-10), added collapsible NewPlayerTips component to StepOrigin/StepAbilities/StepSkills; typecheck passes
+- [x] GroupedList UX pattern: created reusable `GroupedList` component with Recommended/All tabs; applied to SpellSelectionModal (within each spell level tab) and FeatSelector (recommended feats vs all); added `RECOMMENDED_FEATS` to recommendations.ts; typecheck passes, lint has only pre-existing errors
 - [x] Filtered usable vs unusable features in FeaturesTraitsSection: added `isFeatureUsable` helper; "Use" button and "USED" badge now only render for features with an explicit non-passive action type (action, bonus_action, reaction, free); passive and untyped features no longer show usage controls
 - [x] Fixed undersized action button icons in FeaturesTraitsSection and SpellsSection: changed `h-3 w-3` to `h-4 w-4` for action type icons, feature use button icon, spell use button icon, and turn reset button icon
 - [x] Made combat action buttons (Action/Bonus/Reaction) match heal/damage pill button style with `rounded-full`, type-appropriate border/text/hover colors, and `h-4 w-4` icons; restored `grid grid-cols-3` to prevent overflow

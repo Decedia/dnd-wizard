@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import { XIcon as X, MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
 import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
+import { isRecommended } from "@/lib/recommendations";
+import { GroupedList } from "@/components/GroupedList";
 
 interface FeatSelectorProps {
   onSelect: (feat: SRDFeat) => void;
@@ -64,63 +66,67 @@ export function FeatSelector({ onSelect, onClose, selectedFeat, sources }: FeatS
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
+        <div className="flex-1 overflow-y-auto px-4 py-3">
           {filteredFeats.length === 0 && (
             <p className="text-sm text-[var(--color-text-muted)] text-center py-8">No feats found.</p>
           )}
-          {filteredFeats.map((feat) => {
-            const isSelected = pendingSelection === feat.name;
-            const isExpanded = expandedFeat === feat.name;
-
-            return (
-              <div
-                key={feat.name}
-                className={`rounded-[var(--radius-sm)] border transition-all ${
-                  isSelected
-                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                    : "border-[var(--color-border)]"
-                }`}
-              >
-                <div className="flex items-start gap-2 p-3">
-                  <button
-                    type="button"
-                    onClick={() => setPendingSelection(feat.name)}
-                    className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-all ${
-                      isSelected
-                        ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
-                        : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                    }`}
-                  >
-                     {isSelected && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                  </button>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                         <button
-                           type="button"
-                           onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
-                           className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
-                         >
-                           {feat.source && feat.source !== "PHB" && <SourceBadge source={feat.source} size="sm" />}
-                           {feat.name}
-                         </button>
+          <GroupedList
+            items={filteredFeats}
+            isRecommended={(feat) => isRecommended("feat", feat.name)}
+            renderItem={(feat) => {
+              const isSelected = pendingSelection === feat.name;
+              const isExpanded = expandedFeat === feat.name;
+              return (
+                <div
+                  key={feat.name}
+                  className={`rounded-[var(--radius-sm)] border transition-all ${
+                    isSelected
+                      ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                      : "border-[var(--color-border)]"
+                  }`}
+                >
+                  <div className="flex items-start gap-2 p-3">
+                    <button
+                      type="button"
+                      onClick={() => setPendingSelection(feat.name)}
+                      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-all ${
+                        isSelected
+                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
+                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                       {isSelected && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+                    </button>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                           <button
+                             type="button"
+                             onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
+                             className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
+                           >
+                             {feat.source && feat.source !== "PHB" && <SourceBadge source={feat.source} size="sm" />}
+                             {feat.name}
+                           </button>
+                        </div>
                       </div>
+                      {feat.prerequisites && (
+                        <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
+                          Prerequisite: {feat.prerequisites}
+                        </p>
+                      )}
+                      {isExpanded && (
+                        <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed whitespace-pre-line">
+                          {feat.description}
+                        </p>
+                      )}
                     </div>
-                    {feat.prerequisites && (
-                      <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
-                        Prerequisite: {feat.prerequisites}
-                      </p>
-                    )}
-                    {isExpanded && (
-                      <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed whitespace-pre-line">
-                        {feat.description}
-                      </p>
-                    )}
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            }}
+            emptyAllMessage="No feats found."
+          />
         </div>
 
         <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
