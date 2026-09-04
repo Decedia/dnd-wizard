@@ -121,6 +121,7 @@
 - [x] Lint, typecheck, and build verified
 - [x] Comprehensive character sheet dark theme restyle: updated all 14 section components, tabs, toggles, and global CSS to near-black backgrounds with red/burgundy accents; lint and typecheck pass
 - [x] Reordered SourceBadge to appear BEFORE content names across all components: SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection (ViewField), FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard; badges now render first (e.g. [PHB] [Fireball]); typecheck passes
+- [x] Moved spell Prepare and Use buttons in SpellsSection to appear below the spell name row (new `mt-2` flex row under spell name + duration); Prepare/Use/concentration break/remove buttons no longer inline with spell name; typecheck and lint pass
 
 ## Current Structure
 
