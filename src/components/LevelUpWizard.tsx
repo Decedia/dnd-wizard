@@ -254,7 +254,7 @@ function buildLevelInfos(
     const unlockLevel = classData.subclassLevel ?? 3;
     const subclasses = getStaticSubclasses(className, character.sources);
     const subclassOptions = level === unlockLevel && !character.subclass && subclasses.length > 0
-      ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true }))
+      ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true })).sort((a, b) => (isRecommended("subclass", b.name, className) ? 1 : 0) - (isRecommended("subclass", a.name, className) ? 1 : 0))
       : undefined;
 
     const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];

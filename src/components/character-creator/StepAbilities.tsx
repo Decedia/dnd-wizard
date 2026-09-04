@@ -42,6 +42,10 @@ const POINT_BUY_COSTS: Record<number, number> = {
 const POINT_BUY_TOTAL = 27;
 
 export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
+  const sortedAbilities = useMemo(() => {
+    return [...ABILITIES].sort((a, b) => (isRecommended("stat", b.label, data.class) ? 1 : 0) - (isRecommended("stat", a.label, data.class) ? 1 : 0));
+  }, [data.class]);
+
   const [method, setMethod] = useState<AbilityMethod>(data.abilityMethod || "standard");
   const [pointBuyScores, setPointBuyScores] = useState<Record<AbilityKey, number>>(() => {
     const initial: Record<AbilityKey, number> = {
@@ -198,7 +202,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           })}
         </div>
         <div className="space-y-3">
-          {ABILITIES.map(({ key, label, full }) => {
+          {sortedAbilities.map(({ key, label, full }) => {
             const finalScore = getFinalScore(key);
             const baseScore = getBaseScore(key);
             const modifier = getModifier(finalScore);
@@ -270,7 +274,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           </span>
         </div>
         <div className="space-y-3">
-          {ABILITIES.map(({ key, label, full }) => {
+          {sortedAbilities.map(({ key, label, full }) => {
             const score = pointBuyScores[key];
             const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
             const modifier = getModifier(finalScore);
@@ -334,7 +338,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       <div className="space-y-4">
         <p className="text-xs text-ink-muted font-medium">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
         <div className="space-y-3">
-          {ABILITIES.map(({ key, label, full }) => {
+          {sortedAbilities.map(({ key, label, full }) => {
             const score = diceRollScores[key];
             const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
             const modifier = getModifier(finalScore);

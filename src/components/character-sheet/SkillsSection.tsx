@@ -61,8 +61,8 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
           </span>
         </div>
       )}
-      <div className="grid grid-cols-2 gap-1.5">
-        {srdSkills.map(({ name, ability, description }) => {
+       <div className="grid grid-cols-2 gap-1.5">
+         {[...srdSkills].sort((a, b) => (isRecommended("skill", b.name) ? 1 : 0) - (isRecommended("skill", a.name) ? 1 : 0)).map(({ name, ability, description }) => {
           const score = character[ability as keyof Character] as number;
           const mod = getModifier(score);
           const isProficient = character.skills[name] ?? false;

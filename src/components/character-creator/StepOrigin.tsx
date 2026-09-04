@@ -251,8 +251,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 ×
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-              {classes.map((cls) => {
+             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+              {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
                 const isSelected = pendingClass === cls.name;
                 const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
                 const Icon = classIcons[cls.name] || Sparkle;
@@ -343,8 +343,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                 ×
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-              {races.map((race) => {
+             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+               {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
                 const isSelected = pendingRace === race.name;
                 const Icon = raceIcons[race.name] || Users;
                 const isHuman = race.name === "Human";

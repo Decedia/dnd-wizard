@@ -88,12 +88,14 @@ export function SpellSelectionModal({
       if (!levelSpells[sp.level]) levelSpells[sp.level] = [];
       levelSpells[sp.level].push(sp);
     }
-  }
-  // Sort each level's spells by source (PHB first), then alphabetically
-  for (const level in levelSpells) {
-    levelSpells[level].sort((a, b) => {
-      const sourceA = (a as any).source || "PHB";
-      const sourceB = (b as any).source || "PHB";
+   }
+   const sortSpells = (list: any[]) => {
+    list.sort((a, b) => {
+      const recA = isRecommended("spell", a.name) ? 0 : 1;
+      const recB = isRecommended("spell", b.name) ? 0 : 1;
+      if (recA !== recB) return recA - recB;
+      const sourceA = a.source || "PHB";
+      const sourceB = b.source || "PHB";
       if (sourceA !== sourceB) {
         if (sourceA === "PHB") return -1;
         if (sourceB === "PHB") return 1;
@@ -101,18 +103,13 @@ export function SpellSelectionModal({
       }
       return a.name.localeCompare(b.name);
     });
+  };
+  // Sort each level's spells: recommended first, then PHB first, then alphabetical
+  for (const level in levelSpells) {
+    sortSpells(levelSpells[level]);
   }
   // Sort cantrips too
-  cantrips.sort((a, b) => {
-    const sourceA = (a as any).source || "PHB";
-    const sourceB = (b as any).source || "PHB";
-    if (sourceA !== sourceB) {
-      if (sourceA === "PHB") return -1;
-      if (sourceB === "PHB") return 1;
-      return sourceA.localeCompare(sourceB);
-    }
-    return a.name.localeCompare(b.name);
-  });
+  sortSpells(cantrips);
   const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
 
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));

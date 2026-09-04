@@ -96,10 +96,13 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
     spellLevels[level].push(spell);
   }
   // Sort each level's spells by source (PHB first), then alphabetically
-  for (const level in spellLevels) {
-    spellLevels[level].sort((a, b) => {
-      const sourceA = (a as any).source || "PHB";
-      const sourceB = (b as any).source || "PHB";
+  const sortSpells = (list: any[]) => {
+    list.sort((a, b) => {
+      const recA = isRecommended("spell", a.name) ? 0 : 1;
+      const recB = isRecommended("spell", b.name) ? 0 : 1;
+      if (recA !== recB) return recA - recB;
+      const sourceA = a.source || "PHB";
+      const sourceB = b.source || "PHB";
       if (sourceA !== sourceB) {
         if (sourceA === "PHB") return -1;
         if (sourceB === "PHB") return 1;
@@ -107,18 +110,11 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       }
       return a.name.localeCompare(b.name);
     });
+  };
+  for (const level in spellLevels) {
+    sortSpells(spellLevels[level]);
   }
-  // Sort cantrips too
-  cantrips.sort((a, b) => {
-    const sourceA = (a as any).source || "PHB";
-    const sourceB = (b as any).source || "PHB";
-    if (sourceA !== sourceB) {
-      if (sourceA === "PHB") return -1;
-      if (sourceB === "PHB") return 1;
-      return sourceA.localeCompare(sourceB);
-    }
-    return a.name.localeCompare(b.name);
-  });
+  sortSpells(cantrips);
 
   const toggleCantrip = (spellName: string) => {
     const isSelected = selectedSpells.some((s) => s.name === spellName && s.level === 0);

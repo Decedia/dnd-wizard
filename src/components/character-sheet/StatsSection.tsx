@@ -1,11 +1,21 @@
 "use client";
 
+import { useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getModifier } from "@/lib/storage";
 import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
 import { ChartBarIcon as ChartBar, StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
+
+const STATS = [
+  { key: "str", label: "STR" },
+  { key: "dex", label: "DEX" },
+  { key: "con", label: "CON" },
+  { key: "int", label: "INT" },
+  { key: "wis", label: "WIS" },
+  { key: "cha", label: "CHA" },
+] as const;
 
 interface StatsSectionProps {
   character: {
@@ -27,21 +37,17 @@ interface StatsSectionProps {
 
 export function StatsSection({ character, onChange, editMode = true }: StatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const stats = [
-    { key: "str", label: "STR" },
-    { key: "dex", label: "DEX" },
-    { key: "con", label: "CON" },
-    { key: "int", label: "INT" },
-    { key: "wis", label: "WIS" },
-    { key: "cha", label: "CHA" },
-  ] as const;
+
+  const sortedStats = useMemo(() => {
+    return [...STATS].sort((a, b) => (isRecommended("stat", b.label, character.class) ? 1 : 0) - (isRecommended("stat", a.label, character.class) ? 1 : 0));
+  }, [character.class]);
 
   const savingThrowKeys = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
   return (
     <SectionCard id="stats" title="Stats" icon={<ChartBar className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-2.5">
-        {stats.map(({ key, label }) => (
+        {sortedStats.map(({ key, label }) => (
           <AbilityScoreBlock
             key={key}
             label={label}
