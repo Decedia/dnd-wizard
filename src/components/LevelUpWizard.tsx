@@ -2679,6 +2679,15 @@ function SubclassDetailsModal({
             </div>
           )}
         </div>
+        <div className="border-t border-[var(--color-border)] px-4 py-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-full py-2 px-4 rounded-[var(--radius-sm)] bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            Got it
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -2862,7 +2871,12 @@ function SubclassSelectionModal({
                       : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                   }`}
                 >
-                  <div className="text-xs font-semibold">{opt.name}</div>
+                  <div className="text-left">
+                    <div className="text-xs font-semibold">{opt.name}</div>
+                    {opt.description && (
+                      <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{opt.description}</div>
+                    )}
+                  </div>
                 </button>
                 {opt.hasDetails && (
                   <button
