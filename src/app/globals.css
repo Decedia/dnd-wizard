@@ -567,8 +567,8 @@
   }
 
   .checkbox {
-    height: 1rem;
-    width: 1rem;
+    height: 1.25rem;
+    width: 1.25rem;
     border-radius: var(--border-radius-sm);
     border: var(--border-width-default) solid #d4d4d4;
     background-color: var(--color-surface);

@@ -6,7 +6,7 @@ import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
-import { XIcon as X, CheckIcon as Check, StarIcon as Star } from "@/components/icons";
+import { XIcon as X, CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { isRecommended } from "@/lib/recommendations";
 
@@ -59,6 +59,7 @@ export function SpellSelectionModal({
 }: SpellSelectionModalProps) {
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setSelectedSpells(spells);
@@ -108,9 +109,33 @@ export function SpellSelectionModal({
   for (const level in levelSpells) {
     sortSpells(levelSpells[level]);
   }
-  // Sort cantrips too
-  sortSpells(cantrips);
-  const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
+   // Sort cantrips too
+   sortSpells(cantrips);
+   const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
+
+   const searchLower = searchQuery.trim().toLowerCase();
+   const filteredCantrips = useMemo(() => {
+     if (!searchLower) return cantrips;
+     return cantrips.filter((sp: any) => {
+       const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
+       return sp.name.toLowerCase().includes(searchLower) || sp.school?.toLowerCase().includes(searchLower) || desc.toLowerCase().includes(searchLower);
+     });
+   }, [cantrips, searchLower]);
+
+   const filteredLevelSpells = useMemo(() => {
+     if (!searchLower) return levelSpells;
+     const next: Record<number, any[]> = {};
+     for (const level in levelSpells) {
+       const filtered = levelSpells[level].filter((sp: any) => {
+         const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
+         return sp.name.toLowerCase().includes(searchLower) || sp.school?.toLowerCase().includes(searchLower) || desc.toLowerCase().includes(searchLower);
+       });
+       if (filtered.length > 0) {
+         next[level] = filtered;
+       }
+     }
+     return next;
+   }, [levelSpells, searchLower]);
 
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
   const alreadyKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
@@ -199,13 +224,26 @@ export function SpellSelectionModal({
           <button
             type="button"
             onClick={onClose}
-            className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
+            className="h-10 w-10 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
           >
-            <X className="h-4 w-4" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
-         {(currentCantrips.length > 0 || currentSpells.length > 0) && !onChange && (
+        <div className="px-4 py-3 border-b border-[var(--color-border)]">
+          <div className="relative">
+            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-text-muted)]" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search spells..."
+              className="input w-full pl-10 text-sm"
+            />
+          </div>
+        </div>
+
+        {(currentCantrips.length > 0 || currentSpells.length > 0) && !onChange && (
           <div className="px-4 py-2 bg-green-50 border-b border-[var(--color-border)]">
             <div className="text-[10px] font-semibold text-green-700 mb-1">
               Selected this level ({currentCantrips.length + currentSpells.length} of {(cantripCount || 0) + (count || 0)})
@@ -291,7 +329,7 @@ export function SpellSelectionModal({
         <div className="flex-1 min-h-0 overflow-y-auto px-4 py-3">
           {activeTab === "cantrips" ? (
             <div className="space-y-1.5">
-              {cantrips.map((sp) => {
+              {filteredCantrips.map((sp) => {
                 const isAlreadyKnown = alreadyKnownCantripNames.has(sp.name);
                 const isDisabled = disabledSpellNames.has(sp.name);
                 const isSel = selectedCantripNames.has(sp.name) || isDisabled;
@@ -342,7 +380,7 @@ return (
             </div>
           ) : (
             <div className="space-y-1.5">
-              {levelSpells[activeTab as number]?.map((sp) => {
+              {filteredLevelSpells[activeTab as number]?.map((sp) => {
                 const isDisabled = disabledSpellNames.has(sp.name);
                 const isSel = selectedSpellNames.has(sp.name) || isDisabled;
                 const isAlreadyKnown = alreadyKnownSpellNames.has(sp.name);

@@ -5,6 +5,7 @@ import { CheckCircleIcon as CheckCircle } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass } from "@/lib/srd-client";
 import { getProficiencyBonus } from "@/lib/storage";
+import { NewPlayerTips } from "@/components/NewPlayerTips";
 import type { Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
 
@@ -138,9 +139,25 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                  </div>
                </div>
              </button>
-           );
-        })}
-      </div>
-    </StepCard>
+            );
+         })}
+       </div>
+       <NewPlayerTips
+         tips={[
+           {
+             title: "Choosing Skills",
+             content: "Skills represent what your character is good at. Choose skills that match your class—Fighters pick Athletics and combat skills, while Rogues pick Stealth and Sleight of Hand.",
+           },
+           {
+             title: "Gold Star = Recommended",
+             content: "Gold stars mark skills that work especially well with your class. These are great choices for new players!",
+           },
+           {
+             title: "Background Skills",
+             content: "Green 'BG' badges mean the skill comes from your background. These are automatically added and can't be changed.",
+           },
+         ]}
+       />
+     </StepCard>
   );
 }

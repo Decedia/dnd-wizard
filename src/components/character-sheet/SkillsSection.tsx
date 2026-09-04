@@ -127,8 +127,8 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                     </span>
                     {(isProficient || isExpert) && (
                       <div className="relative">
-                        <button type="button" onClick={() => setInfoSkill(infoSkill === name ? null : name)} className="shrink-0 text-ink-muted hover:text-ink">
-                          <InfoIcon size={10} />
+                        <button type="button" onClick={() => setInfoSkill(infoSkill === name ? null : name)} className="shrink-0 h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-ink-muted hover:text-ink hover:border-[var(--color-border-active)] transition-all">
+                          <InfoIcon size={14} />
                         </button>
                         {infoSkill === name && (
                           <div className="absolute right-0 top-full mt-1 z-20 w-28 rounded border border-[var(--color-border)] bg-[var(--color-surface)] shadow-lg p-1.5">

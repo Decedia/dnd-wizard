@@ -7,6 +7,7 @@ import { getModifier } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
+import { NewPlayerTips } from "@/components/NewPlayerTips";
 
 interface StepAbilitiesProps {
   data: Character;
@@ -434,6 +435,22 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           ))}
         </div>
         {renderMethodContent()}
+        <NewPlayerTips
+          tips={[
+            {
+              title: "What are Ability Scores?",
+              content: "Ability scores represent your character's raw potential. STR affects melee attacks and carrying capacity. DEX affects ranged attacks and AC. CON affects HP. INT affects Wizard spells and knowledge. WIS affects Cleric/Druid spells and perception. CHA affects Bard/Sorcerer/Warlock spells and social skills.",
+            },
+            {
+              title: "Gold Star = Recommended",
+              content: "Gold stars show the most important abilities for your class. Put your highest scores here for a stronger character.",
+            },
+            {
+              title: "Generating Scores",
+              content: "Standard Array gives balanced scores (15, 14, 13, 12, 10, 8). Point Buy lets you customize. Dice Roll is random but can be fun!",
+            },
+          ]}
+        />
       </div>
     </StepCard>
   );
