@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { CheckCircleIcon as CheckCircle } from "@/components/icons";
+import { CheckCircleIcon as CheckCircle, ListChecksIcon as ListChecks, CrownIcon as Trophy, BookIcon as Book } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass } from "@/lib/srd-client";
 import { getProficiencyBonus } from "@/lib/storage";
@@ -93,14 +93,17 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
             {
               title: "Choosing Skills",
               content: "Skills represent what your character is good at. Choose skills that match your class—Fighters pick Athletics and combat skills, while Rogues pick Stealth and Sleight of Hand.",
+              icon: ListChecks,
             },
             {
               title: "Gold Star = Recommended",
               content: "Gold stars mark skills that work especially well with your class. These are great choices for new players!",
+              icon: Trophy,
             },
             {
               title: "Background Skills",
               content: "Green 'BG' badges mean the skill comes from your background. These are automatically added and can't be changed.",
+              icon: Book,
             },
           ]}
         />

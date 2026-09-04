@@ -5,7 +5,7 @@ import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 import { getModifier } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
-import { StarIcon as Star } from "@/components/icons";
+import { StarIcon as Star, ChartBarIcon as ChartBar, SparklesIcon as Sparkles, DiceIcon as Dice } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 
@@ -439,14 +439,17 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             {
               title: "What are Ability Scores?",
               content: "Ability scores represent your character's raw potential. STR affects melee attacks and carrying capacity. DEX affects ranged attacks and AC. CON affects HP. INT affects Wizard spells and knowledge. WIS affects Cleric/Druid spells and perception. CHA affects Bard/Sorcerer/Warlock spells and social skills.",
+              icon: ChartBar,
             },
             {
               title: "Gold Star = Recommended",
               content: "Gold stars show the most important abilities for your class. Put your highest scores here for a stronger character.",
+              icon: Sparkles,
             },
             {
               title: "Generating Scores",
               content: "Standard Array gives balanced scores (15, 14, 13, 12, 10, 8). Point Buy lets you customize. Dice Roll is random but can be fun!",
+              icon: Dice,
             },
           ]}
         />
