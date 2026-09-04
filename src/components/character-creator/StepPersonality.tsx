@@ -7,6 +7,7 @@ import { languages as languageList } from "@/data/srd";
 import type { Character } from "@/lib/storage";
 import { CaretDownIcon as CaretDown, XIcon as X } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
+import { BasePopup } from "@/components/BasePopup";
 
 interface StepPersonalityProps {
   data: Character;
@@ -301,67 +302,33 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
       </div>
 
       {popupType && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) handleCancel(); }}
+        <BasePopup
+          isOpen={true}
+          onClose={handleCancel}
+          title={getPopupTitle()}
+          confirmLabel="Confirm"
+          cancelLabel="Cancel"
+          onConfirm={handleConfirm}
+          confirmDisabled={!pendingValue}
+          showFooter={true}
         >
-          <div
-            className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">
-                {getPopupTitle()}
-              </div>
+          <div className="space-y-2">
+            {getPopupOptions().map((option, idx) => (
               <button
+                key={idx}
                 type="button"
-                onClick={handleCancel}
-                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-2 hover:border-[var(--color-text-primary)] transition-all"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
-              <div className="space-y-2">
-                {getPopupOptions().map((option, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => handleSelect(option)}
-                    className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                      pendingValue === option
-                        ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                        : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                    }`}
-                  >
-                    <span className="text-xs text-[var(--color-text-primary)] leading-relaxed">{option}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="btn btn-secondary flex-1"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleConfirm}
-                disabled={!pendingValue}
-                className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
-                  pendingValue
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
-                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
+                onClick={() => handleSelect(option)}
+                className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                  pendingValue === option
+                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                    : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                 }`}
               >
-                Confirm
+                <span className="text-xs text-[var(--color-text-primary)] leading-relaxed">{option}</span>
               </button>
-            </div>
+            ))}
           </div>
-        </div>
+        </BasePopup>
       )}
     </StepCard>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { XIcon as X, InfoIcon as Info } from "@/components/icons";
 
 export interface BasePopupProps {
@@ -33,6 +34,8 @@ export function BasePopup({
   showFooter = true,
   confirmDisabled = false,
 }: BasePopupProps) {
+  const [showInfo, setShowInfo] = useState(false);
+
   if (!isOpen) return null;
 
   return (
@@ -46,8 +49,13 @@ export function BasePopup({
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
+                  setShowInfo(!showInfo);
                 }}
-                className="h-8 w-8 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
+                className={`h-8 w-8 flex items-center justify-center rounded-[var(--radius-sm)] border transition-all ${
+                  showInfo
+                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
+                    : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+                }`}
                 aria-label={`Info: ${infoTitle}`}
               >
                 <Info className="h-4 w-4" />
@@ -63,7 +71,13 @@ export function BasePopup({
           </button>
         </div>
 
-        {description && (
+        {showInfo && infoDescription && (
+          <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">{infoDescription}</p>
+          </div>
+        )}
+
+        {description && !showInfo && (
           <div className="px-4 py-3 border-b border-[var(--color-border)]">
             <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">{description}</p>
           </div>

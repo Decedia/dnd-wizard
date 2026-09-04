@@ -11,6 +11,7 @@ import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
 import { BuffTracker } from "./BuffTracker";
 import { Dice } from "@/components/Dice";
+import { BasePopup } from "@/components/BasePopup";
 
 interface CombatStatsSectionProps {
   character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">;
@@ -342,104 +343,73 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         </div>
       )}
       {hpModal && (
-        <div
-          className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) { setHpModal(null); setHpAmount(""); } }}
+        <BasePopup
+          isOpen={true}
+          onClose={() => { setHpModal(null); setHpAmount(""); setConcentrationCheck(null); }}
+          title={hpModal.mode === "heal" ? "Heal" : "Take Damage"}
+          confirmLabel={hpModal.mode === "heal" ? "Heal" : "Apply"}
+          cancelLabel="Cancel"
+          onConfirm={handleHpAction}
+          confirmDisabled={!hpAmount || parseInt(hpAmount, 10) <= 0}
+          showFooter={true}
         >
-          <div className="w-full max-w-xs rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-xl">
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
-              <div className="text-sm font-bold text-[var(--color-text-primary)]">
-                {hpModal.mode === "heal" ? "Heal" : "Take Damage"}
-              </div>
-              <button
-                type="button"
-                onClick={() => { setHpModal(null); setHpAmount(""); }}
-                className="h-7 w-7 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all"
-              >
-                <X className="h-3.5 w-3.5" />
-              </button>
-            </div>
-            <div className="px-4 py-4">
-              <label className="field-label-light">Amount</label>
-              <input
-                type="number"
-                value={hpAmount}
-                onChange={(e) => setHpAmount(e.target.value)}
-                placeholder="Enter amount..."
-                className="input w-full mt-1"
-                autoFocus
-                min={1}
-              />
-            </div>
-            {hpModal?.mode === "damage" && (character.activeBuffs || []).some(b => b.concentration) && !concentrationCheck && (
-              <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs">⚠️</span>
-                  <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
-                    Concentration check required! Roll DC {Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2))} CON save
-                  </span>
-                </div>
-                <div className="mt-2">
-                  <Dice type="d20" size={56} advantage={isWarCaster ? "advantage" : "normal"} onRoll={(roll) => setConcentrationCheck({ damage: parseInt(hpAmount || "0", 10), roll })} />
-                  {isWarCaster && <p className="text-center text-[10px] text-[var(--color-success-600)] mt-1">War Caster: rolling with advantage</p>}
-                </div>
-              </div>
-            )}
-            {concentrationCheck && (
-              <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs">🎲</span>
-                  <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
-                    Rolled: {concentrationCheck.roll}
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const current = character.activeBuffs || [];
-                      onChange({ activeBuffs: current.filter((b) => !b.concentration) });
-                      handleHpAction();
-                    }}
-                    className="flex-1 text-[10px] font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] underline py-1"
-                  >
-                    Failed — Break Concentration
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setConcentrationCheck(null); handleHpAction(); }}
-                    className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
-                  >
-                    Success — Maintain
-                  </button>
-                </div>
-              </div>
-            )}
-            <div className="border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
-              <button
-                type="button"
-                onClick={() => { setHpModal(null); setHpAmount(""); setConcentrationCheck(null); }}
-                className="btn btn-secondary flex-1"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleHpAction}
-                disabled={!hpAmount || parseInt(hpAmount, 10) <= 0}
-                className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
-                  hpAmount && parseInt(hpAmount, 10) > 0
-                    ? hpModal.mode === "heal"
-                      ? "bg-[var(--color-success-600)] text-white hover:opacity-90"
-                      : "bg-[var(--color-error-600)] text-white hover:opacity-90"
-                    : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] cursor-not-allowed"
-                }`}
-              >
-                {hpModal.mode === "heal" ? "Heal" : "Apply"}
-              </button>
-            </div>
+          <div className="px-4 py-4">
+            <label className="field-label-light">Amount</label>
+            <input
+              type="number"
+              value={hpAmount}
+              onChange={(e) => setHpAmount(e.target.value)}
+              placeholder="Enter amount..."
+              className="input w-full mt-1"
+              autoFocus
+              min={1}
+            />
           </div>
-        </div>
+          {hpModal?.mode === "damage" && (character.activeBuffs || []).some(b => b.concentration) && !concentrationCheck && (
+            <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
+              <div className="flex items-center gap-2">
+                <span className="text-xs">⚠️</span>
+                <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
+                  Concentration check required! Roll DC {Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2))} CON save
+                </span>
+              </div>
+              <div className="mt-2">
+                <Dice type="d20" size={56} advantage={isWarCaster ? "advantage" : "normal"} onRoll={(roll) => setConcentrationCheck({ damage: parseInt(hpAmount || "0", 10), roll })} />
+                {isWarCaster && <p className="text-center text-[10px] text-[var(--color-success-600)] mt-1">War Caster: rolling with advantage</p>}
+              </div>
+            </div>
+          )}
+          {concentrationCheck && (
+            <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs">🎲</span>
+                <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
+                  Rolled: {concentrationCheck.roll}
+                </span>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const current = character.activeBuffs || [];
+                    onChange({ activeBuffs: current.filter((b) => !b.concentration) });
+                    handleHpAction();
+                  }}
+                  className="flex-1 text-[10px] font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] underline py-1"
+                >
+                  Failed — Break Concentration
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setConcentrationCheck(null); handleHpAction(); }}
+                  className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
+                >
+                  Success — Maintain
+                </button>
+              </div>
+            </div>
+          )}
+        </BasePopup>
       )}
     </SectionCard>
   );
