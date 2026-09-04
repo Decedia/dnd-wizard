@@ -179,7 +179,7 @@ export default function CharacterView() {
     return (
       <div className="min-h-screen bg-paper">
         <AppHeader title="Character" subtitle="Character Sheet" />
-        <main className="px-4 py-6 pb-28">
+         <main className="px-4 py-6 pb-32">
           <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-16 text-center">
              <UserPlus size={48} color="var(--color-text-muted)" className="mb-3 opacity-40" />
             <h2 className="text-page-title mb-2">
@@ -211,7 +211,7 @@ export default function CharacterView() {
       </div>
 
       <CharacterSheetProvider onFieldBlur={debouncedSave} showDescriptions={showDescriptions} onShowDescriptionsChange={setShowDescriptions}>
-        <main className="mx-auto max-w-lg px-4 py-3 pb-28">
+         <main className="mx-auto max-w-lg px-4 py-3 pb-32">
           {activeTab === "combat" && (
             <>
               <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
