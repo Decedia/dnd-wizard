@@ -18,7 +18,7 @@ export function WizardNav({
   showBack = true,
 }: WizardNavProps) {
   return (
-    <div className="fixed bottom-20 left-0 right-0 z-50 flex justify-center">
+    <div className="fixed bottom-28 left-0 right-0 z-50 flex justify-center">
       <div className="mx-auto max-w-lg px-4 w-full">
          <div className="flex items-center gap-2 rounded-full bg-ink/5 p-1">
            {showBack && (
