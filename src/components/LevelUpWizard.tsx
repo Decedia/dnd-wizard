@@ -2871,10 +2871,10 @@ function SubclassSelectionModal({
                       : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
                   }`}
                 >
-                  <div className="text-left">
-                    <div className="text-xs font-semibold">{opt.name}</div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold">{opt.name}</span>
                     {opt.description && (
-                      <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5 leading-relaxed">{opt.description}</div>
+                      <InfoButton title={opt.name} description={opt.description} />
                     )}
                   </div>
                 </button>
