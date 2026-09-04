@@ -86,13 +86,16 @@ export function SpellSelectionModal({
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
   const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
   const cantrips = allSpells.filter((s: any) => s.level === 0);
-  const levelSpells: { [key: number]: any[] } = {};
-  for (const sp of allSpells) {
-    if (sp.level > 0) {
-      if (!levelSpells[sp.level]) levelSpells[sp.level] = [];
-      levelSpells[sp.level].push(sp);
+  const levelSpells: { [key: number]: any[] } = useMemo(() => {
+    const map: { [key: number]: any[] } = {};
+    for (const sp of allSpells) {
+      if (sp.level > 0) {
+        if (!map[sp.level]) map[sp.level] = [];
+        map[sp.level].push(sp);
+      }
     }
-  }
+    return map;
+  }, [allSpells]);
   const sortSpells = (list: any[]) => {
     list.sort((a, b) => {
       const recA = isRecommended("spell", a.name) ? 0 : 1;
@@ -115,11 +118,14 @@ export function SpellSelectionModal({
   const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
 
   const searchLower = searchQuery.trim().toLowerCase();
-  const filterBySearch = (sp: any) => {
-    const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
-    return sp.name.toLowerCase().includes(searchLower) || sp.school?.toLowerCase().includes(searchLower) || desc.toLowerCase().includes(searchLower);
-  };
-  const filteredCantrips = useMemo(() => (searchLower ? cantrips.filter(filterBySearch) : cantrips), [cantrips, searchLower]);
+  const filterBySearch = useMemo(() => {
+    const lower = searchQuery.trim().toLowerCase();
+    return (sp: any) => {
+      const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
+      return sp.name.toLowerCase().includes(lower) || sp.school?.toLowerCase().includes(lower) || desc.toLowerCase().includes(lower);
+    };
+  }, [searchQuery]);
+  const filteredCantrips = useMemo(() => (searchLower ? cantrips.filter(filterBySearch) : cantrips), [cantrips, searchLower, filterBySearch]);
   const filteredLevelSpells = useMemo(() => {
     if (!searchLower) return levelSpells;
     const next: Record<number, any[]> = {};
@@ -128,7 +134,7 @@ export function SpellSelectionModal({
       if (filtered.length > 0) next[level] = filtered;
     }
     return next;
-  }, [levelSpells, searchLower]);
+  }, [levelSpells, searchLower, filterBySearch]);
 
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
   const earlierKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
