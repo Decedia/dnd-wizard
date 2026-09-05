@@ -10,6 +10,7 @@ import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCir
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 import { ItemSelectionModal } from "../modals/ItemSelectionModal";
+import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 
@@ -184,21 +185,51 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     };
   };
 
-  const addCustomItem = useCallback(() => {
-    const newItem: Character["inventory"][number] = {
-      id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-      name: "",
-      quantity: 1,
-      equipped: false,
-      source: "custom",
-      description: "",
-    };
-    onChange({
-      inventory: [...character.inventory, newItem],
-    });
-  }, [character.inventory, onChange]);
-
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
+  const [showCustomItemModal, setShowCustomItemModal] = useState(false);
+  const [editingCustomItem, setEditingCustomItem] = useState<Character["inventory"][number] | null>(null);
+
+  const addCustomItem = useCallback(() => {
+    setEditingCustomItem(null);
+    setShowCustomItemModal(true);
+  }, []);
+
+  const handleCustomItemAdd = useCallback((newItem: Character["inventory"][number]) => {
+    const isEdit = character.inventory.some((i) => i.id === newItem.id);
+    let nextInventory: Character["inventory"];
+    if (isEdit) {
+      nextInventory = character.inventory.map((item) =>
+        item.id === newItem.id ? newItem : item
+      );
+    } else {
+      nextInventory = [...character.inventory, newItem];
+    }
+    const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+    onChange({ inventory: nextInventory, ac, attacks });
+    setShowCustomItemModal(false);
+    setEditingCustomItem(null);
+  }, [character, onChange]);
+
+  const handleCustomItemReplace = useCallback((oldItem: Character["inventory"][number], newItem: Character["inventory"][number]) => {
+    const nextInventory = character.inventory.map((item) =>
+      item.id === oldItem.id ? { ...newItem, id: item.id } : item
+    );
+    const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+    onChange({ inventory: nextInventory, ac, attacks });
+    setEditingItemId(null);
+    setShowCustomItemModal(false);
+    setEditingCustomItem(null);
+  }, [character, onChange]);
+
+  const handleEditCustomItem = useCallback((item: Character["inventory"][number]) => {
+    if (item.source === "custom") {
+      setEditingCustomItem(item);
+      setShowCustomItemModal(true);
+      setEditingItemId(null);
+    } else {
+      setEditingItemId(item.id);
+    }
+  }, []);
 
   const handleReplaceItem = useCallback((oldId: string, newItem: Character["inventory"][number]) => {
     const nextInventory = character.inventory.map((item) =>
@@ -290,14 +321,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
             <div key={item.id} className="list-row flex flex-col gap-2">
                {editMode ? (
                  <>
-                   <div className="flex items-center gap-2 flex-wrap">
-                     <button
-                       type="button"
-                       onClick={() => setEditingItemId(item.id)}
-                       className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex-1 min-w-[120px]"
-                     >
-                       {item.name || "Unnamed Item"}
-                     </button>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <button
+                        type="button"
+                        onClick={() => handleEditCustomItem(item)}
+                        className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex-1 min-w-[120px]"
+                      >
+                        {item.name || "Unnamed Item"}
+                      </button>
                      <input
                        type="number"
                        value={item.quantity}
@@ -503,16 +534,26 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
            );
          })}
        </div>
-       {editMode && (
-         <button
-           type="button"
-           onClick={() => setShowItemPopup(true)}
-           className="mt-4 btn-secondary flex items-center gap-1.5"
-         >
-           <Plus size={16} />
-           Add Item
-         </button>
-       )}
+        {editMode && (
+          <div className="mt-4 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setShowItemPopup(true)}
+              className="flex-1 btn-secondary flex items-center gap-1.5"
+            >
+              <Plus size={16} />
+              Add SRD Item
+            </button>
+            <button
+              type="button"
+              onClick={addCustomItem}
+              className="flex-1 btn-secondary flex items-center gap-1.5"
+            >
+              <Plus size={16} />
+              Add Custom Item
+            </button>
+          </div>
+        )}
 
        {showItemPopup && (
          <ItemSelectionModal
@@ -522,13 +563,25 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
          />
        )}
 
-       {editingItemId && (
-         <ItemSelectionModal
-           character={character}
-           onAdd={(newItem) => handleReplaceItem(editingItemId, newItem)}
-           onClose={() => setEditingItemId(null)}
-         />
-       )}
+        {showCustomItemModal && (
+          <CustomItemModal
+            character={character}
+            onAdd={handleCustomItemAdd}
+            onClose={() => {
+              setShowCustomItemModal(false);
+              setEditingCustomItem(null);
+            }}
+            editingItem={editingCustomItem}
+          />
+        )}
+
+        {editingItemId && (
+          <ItemSelectionModal
+            character={character}
+            onAdd={(newItem) => handleReplaceItem(editingItemId, newItem)}
+            onClose={() => setEditingItemId(null)}
+          />
+        )}
     </SectionCard>
   );
 }
