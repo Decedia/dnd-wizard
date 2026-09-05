@@ -7,6 +7,7 @@ export {
   HiInformationCircle as InfoIcon,
   HiChevronDown as CaretDownIcon,
   HiXMark as XIcon,
+  HiLockClosed as LockIcon,
   HiChartBar as ChartBarIcon,
   HiCheck as CheckIcon,
   HiEye as EyeIcon,
