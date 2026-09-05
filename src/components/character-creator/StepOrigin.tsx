@@ -8,7 +8,7 @@ import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { BasePopup } from "@/components/BasePopup";
-import { RaceFace } from "@/components/race-faces";
+import { RACE_ICONS } from "@/components/race-icons";
 import { WEAPON_ICONS } from "@/components/weapon-icons";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
@@ -32,15 +32,16 @@ const classIcons: Record<string, React.ComponentType<{ className?: string }>> = 
 };
 
 const raceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  Human: HumanIcon,
-  Elf: ElfIcon,
-  Dwarf: DwarfIcon,
-  Halfling: PersonIcon,
-  Dragonborn: DragonHeadIcon,
-  Gnome: GnomeIcon,
-  "Half-Elf": ElfEarIcon,
-  "Half-Orc": HandFist,
-  Tiefling: DevilMaskIcon,
+  Human: RACE_ICONS.Human,
+  Elf: RACE_ICONS.Elf,
+  Dwarf: RACE_ICONS.Dwarf,
+  Halfling: RACE_ICONS.Halfling,
+  Dragonborn: RACE_ICONS.Dragonborn,
+  Gnome: RACE_ICONS.Gnome,
+  "Half-Elf": RACE_ICONS["Half-Elf"],
+  "Half-Orc": RACE_ICONS["Half-Orc"],
+  Tiefling: RACE_ICONS.Tiefling,
+  "Variant Human": RACE_ICONS.VariantHuman,
 };
 
 interface StepOriginProps {
@@ -246,7 +247,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         >
           <div className="flex items-center gap-4">
             <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.race ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              {data.race ? (() => { const Icon = raceIcons[data.race] || Users; return <Icon className="h-7 w-7" />; })() : <Users className="h-7 w-7" />}
+              {data.race ? (() => { const Icon = (data.race === "Human" && data.raceVariant === "variant") ? RACE_ICONS.VariantHuman : (raceIcons[data.race] || Users); return <Icon className="h-7 w-7" />; })() : <Users className="h-7 w-7" />}
             </div>
             <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Race</div>
@@ -333,26 +334,27 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           showFooter={true}
         >
            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-             {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
-              const isSelected = pendingRace === race.name;
-              const isHuman = race.name === "Human";
+              {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
+               const isSelected = pendingRace === race.name;
+               const isHuman = race.name === "Human";
+               const RaceIcon = (isHuman && pendingVariant) ? RACE_ICONS.VariantHuman : (RACE_ICONS[race.name] || Users);
 
-              return (
-                <div key={race.name} className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setPendingRace(race.name)}
-                      className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
-                        isSelected
-                          ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
-                          : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-sm)] overflow-hidden ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                          <RaceFace raceName={race.name} size={56} />
-                        </div>
+               return (
+                 <div key={race.name} className="space-y-2">
+                   <div className="flex items-center gap-2">
+                     <button
+                       type="button"
+                       onClick={() => setPendingRace(race.name)}
+                       className={`flex-1 p-4 text-left rounded-[var(--radius-md)] transition-all ${
+                         isSelected
+                           ? "bg-[var(--color-ink)] border-2 border-[var(--color-ink)]"
+                           : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                       }`}
+                     >
+                       <div className="flex items-center gap-3">
+                         <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                           <RaceIcon className="h-5 w-5" />
+                         </div>
                          <div className="flex-1">
                              <div className="flex items-center justify-between">
                                 <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
