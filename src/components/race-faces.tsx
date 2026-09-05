@@ -30,10 +30,6 @@ const SKIN = {
   triton: "#6fa8dc",
 };
 
-function facePath(skin: string, d: string) {
-  return <path d={d} fill={skin} />;
-}
-
 const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNode> = {
   Dragonborn: (skin, accent) => (
     <g>
@@ -56,10 +52,10 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   Elf: (skin, accent) => (
     <g>
       <path d="M20 55 Q40 18 80 28 Q78 58 70 65 Q55 72 40 68 Q22 62 20 55Z" fill={skin} />
-      <path d="M18 50 L10 20 L28 42 Z" fill={skin} />
-      <path d="M62 50 L70 20 L52 42 Z" fill={skin} />
-      <path d="M20 50 L28 42" fill={accent} />
-      <path d="M60 50 L52 42" fill={accent} />
+      <path d="M18 50 L8 24 L28 42 Z" fill={skin} />
+      <path d="M62 50 L72 24 L52 42 Z" fill={skin} />
+      <path d="M18 50 L28 42" fill={accent} />
+      <path d="M62 50 L52 42" fill={accent} />
       <rect x="30" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <rect x="43" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <path d="M34 55 Q40 58 46 55" fill="none" stroke="#444" strokeWidth="1.5" strokeLinecap="round" />
@@ -68,8 +64,8 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   "Eladrin (Elf)": (skin, accent) => (
     <g>
       <path d="M20 55 Q40 18 80 28 Q78 58 70 65 Q55 72 40 68 Q22 62 20 55Z" fill={skin} />
-      <path d="M18 48 L8 22 L26 40 Z" fill={skin} />
-      <path d="M62 48 L72 22 L54 40 Z" fill={skin} />
+      <path d="M18 48 L8 24 L26 40 Z" fill={skin} />
+      <path d="M62 48 L72 24 L54 40 Z" fill={skin} />
       <path d="M18 48 L26 40" fill={accent} />
       <path d="M62 48 L54 40" fill={accent} />
       <circle cx="32" cy="42" r="2.5" fill="#444" />
@@ -81,8 +77,8 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   Gnome: (skin, accent) => (
     <g>
       <rect x="24" y="30" width="32" height="30" rx="8" fill={skin} />
-      <path d="M24 35 L16 10 L40 25 Z" fill={accent} />
-      <path d="M56 35 L64 10 L40 25 Z" fill={accent} />
+      <path d="M24 38 L14 18 L40 28 Z" fill={accent} />
+      <path d="M56 38 L66 18 L40 28 Z" fill={accent} />
       <circle cx="32" cy="44" r="4" fill="#fff" />
       <circle cx="48" cy="44" r="4" fill="#fff" />
       <circle cx="33" cy="44" r="1.5" fill="#444" />
@@ -93,8 +89,8 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   "Deep Gnome (Svirfneblin)": (skin, accent) => (
     <g>
       <rect x="24" y="30" width="32" height="30" rx="8" fill={skin} />
-      <path d="M24 35 L16 12 L40 25 Z" fill={accent} />
-      <path d="M56 35 L64 12 L40 25 Z" fill={accent} />
+      <path d="M24 38 L14 20 L40 28 Z" fill={accent} />
+      <path d="M56 38 L66 20 L40 28 Z" fill={accent} />
       <ellipse cx="32" cy="44" rx="5" ry="4" fill="#fff" />
       <ellipse cx="48" cy="44" rx="5" ry="4" fill="#fff" />
       <circle cx="32" cy="44" r="1.5" fill="#444" />
@@ -105,11 +101,13 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   "Half-Elf": (skin, accent) => (
     <g>
       <path d="M22 55 Q42 22 78 30 Q76 58 68 65 Q52 72 38 68 Q22 62 22 55Z" fill={skin} />
-      <path d="M20 48 L14 28 L28 42 Z" fill={skin} />
+      <path d="M20 48 L12 26 L28 42 Z" fill={skin} />
+      <path d="M60 48 L68 26 L52 42 Z" fill={skin} />
+      <path d="M20 48 L28 42" fill={accent} opacity="0.6" />
+      <path d="M60 48 L52 42" fill={accent} opacity="0.6" />
       <rect x="30" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <rect x="43" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <path d="M34 54 Q40 57 46 54" fill="none" stroke="#444" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M20 48 L28 42" fill={accent} opacity="0.6" />
     </g>
   ),
   Halfling: (skin, accent) => (
@@ -156,8 +154,8 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   Tiefling: (skin, accent) => (
     <g>
       <path d="M22 55 Q42 20 78 30 Q76 58 68 65 Q52 72 38 68 Q22 62 22 55Z" fill={skin} />
-      <path d="M28 32 L22 14 L32 26 Z" fill={skin} />
-      <path d="M52 32 L58 14 L48 26 Z" fill={skin} />
+      <path d="M28 32 L22 14 L32 26 Z" fill="#444" />
+      <path d="M52 32 L58 14 L48 26 Z" fill="#444" />
       <rect x="30" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <rect x="43" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <path d="M34 54 Q40 57 46 54" fill="none" stroke="#444" strokeWidth="1.5" strokeLinecap="round" />
@@ -216,10 +214,10 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   Githyanki: (skin, accent) => (
     <g>
       <path d="M20 55 Q42 16 80 26 Q78 56 70 64 Q54 72 38 68 Q20 62 20 55Z" fill={skin} />
-      <path d="M18 48 L8 18 L28 38 Z" fill={skin} />
-      <path d="M62 48 L72 18 L52 38 Z" fill={skin} />
-      <path d="M18 48 L28 38" fill={accent} />
-      <path d="M62 48 L52 38" fill={accent} />
+      <path d="M18 48 L8 24 L28 40 Z" fill={skin} />
+      <path d="M62 48 L72 24 L52 40 Z" fill={skin} />
+      <path d="M18 48 L28 40" fill={accent} />
+      <path d="M62 48 L52 40" fill={accent} />
       <rect x="30" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <rect x="43" y="40" width="7" height="2.5" rx="1" fill="#444" />
       <path d="M34 54 Q40 57 46 54" fill="none" stroke="#444" strokeWidth="1.5" strokeLinecap="round" />
@@ -268,8 +266,8 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   Kenku: (skin, accent) => (
     <g>
       <path d="M20 55 Q40 20 80 28 Q78 55 70 64 Q55 72 38 68 Q20 62 20 55Z" fill={skin} />
-      <path d="M18 45 L8 16 L28 38 Z" fill={skin} />
-      <path d="M62 45 L72 16 L52 38 Z" fill={skin} />
+      <path d="M18 45 L8 20 L28 38 Z" fill={skin} />
+      <path d="M62 45 L72 20 L52 38 Z" fill={skin} />
       <path d="M18 45 L28 38" fill={accent} />
       <path d="M62 45 L52 38" fill={accent} />
       <path d="M30 50 L26 48 L34 48 Z" fill="#444" />
@@ -315,8 +313,8 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   Shifter: (skin, accent) => (
     <g>
       <path d="M22 55 Q42 20 78 30 Q76 58 68 65 Q52 72 38 68 Q22 62 22 55Z" fill={skin} />
-      <path d="M18 50 L10 22 L28 40 Z" fill={skin} />
-      <path d="M62 50 L70 22 L52 40 Z" fill={skin} />
+      <path d="M18 50 L10 24 L28 40 Z" fill={skin} />
+      <path d="M62 50 L70 24 L52 40 Z" fill={skin} />
       <path d="M18 50 L28 40" fill={accent} />
       <path d="M62 50 L52 40" fill={accent} />
       <rect x="30" y="40" width="7" height="2.5" rx="1" fill="#444" />
@@ -329,8 +327,8 @@ const RaceFaces: Record<string, (skin: string, accent: string) => React.ReactNod
   Tabaxi: (skin, accent) => (
     <g>
       <path d="M22 55 Q42 20 78 30 Q76 58 68 65 Q52 72 38 68 Q22 62 22 55Z" fill={skin} />
-      <path d="M18 48 L10 22 L28 40 Z" fill={skin} />
-      <path d="M62 48 L70 22 L52 40 Z" fill={skin} />
+      <path d="M18 48 L10 24 L28 40 Z" fill={skin} />
+      <path d="M62 48 L70 24 L52 40 Z" fill={skin} />
       <path d="M18 48 L28 40" fill={accent} />
       <path d="M62 48 L52 40" fill={accent} />
       <rect x="30" y="40" width="7" height="2.5" rx="1" fill="#444" />
