@@ -299,7 +299,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
 
   const sortedInventory = useMemo(() => {
     return [...character.inventory].sort((a, b) => {
-      // Custom items first (source: "custom"), then SRD items
       if (a.source !== b.source) {
         if (a.source === "custom") return -1;
         if (b.source === "custom") return 1;
@@ -308,10 +307,96 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     });
   }, [character.inventory]);
 
+  const [activeInventoryTab, setActiveInventoryTab] = useState<"all" | "weapons" | "armor" | "items">("all");
+  const [weaponSubTab, setWeaponSubTab] = useState<"all" | "simple-melee" | "simple-ranged" | "martial-melee" | "martial-ranged">("all");
+
+  const filteredInventory = useMemo(() => {
+    let items = sortedInventory;
+    if (activeInventoryTab !== "all") {
+      items = items.filter((item) => {
+        if (activeInventoryTab === "weapons") return item.itemType === "weapon";
+        if (activeInventoryTab === "armor") return item.itemType === "armor";
+        if (activeInventoryTab === "items") return item.itemType === "item";
+        return true;
+      });
+    }
+    if (activeInventoryTab === "weapons" && weaponSubTab !== "all") {
+      items = items.filter((item) => {
+        if (item.itemType !== "weapon") return false;
+        const category = (item.category || "").toLowerCase();
+        const isSimple = category.includes("simple");
+        const isMartial = category.includes("martial");
+        const isMelee = category.includes("melee") || !category.includes("ranged");
+        const isRanged = category.includes("ranged");
+        if (weaponSubTab === "simple-melee") return isSimple && isMelee;
+        if (weaponSubTab === "simple-ranged") return isSimple && isRanged;
+        if (weaponSubTab === "martial-melee") return isMartial && isMelee;
+        if (weaponSubTab === "martial-ranged") return isMartial && isRanged;
+        return true;
+      });
+    }
+    return items;
+  }, [sortedInventory, activeInventoryTab, weaponSubTab]);
+
+  const inventoryTabCounts = useMemo(() => {
+    const counts = { all: sortedInventory.length, weapons: 0, armor: 0, items: 0 };
+    for (const item of sortedInventory) {
+      if (item.itemType === "weapon") counts.weapons++;
+      else if (item.itemType === "armor") counts.armor++;
+      else if (item.itemType === "item") counts.items++;
+    }
+    return counts;
+  }, [sortedInventory]);
+
   return (
     <SectionCard id="inventory" title="Inventory" icon={<Backpack className="h-5 w-5" />}>
       <div className="space-y-2">
-        {sortedInventory.map((item: Character["inventory"][number]) => {
+        <div className="flex gap-1.5 border-b border-[var(--color-border)] pb-1">
+          {([
+            { key: "all", label: "All" },
+            { key: "weapons", label: "Weapons" },
+            { key: "armor", label: "Armor" },
+            { key: "items", label: "Items" },
+          ] as const).map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setActiveInventoryTab(tab.key)}
+              className={`flex-1 px-2 py-1.5 text-[10px] font-bold uppercase tracking-wide rounded-t transition-colors ${
+                activeInventoryTab === tab.key
+                  ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
+              }`}
+            >
+              {tab.label} ({inventoryTabCounts[tab.key]})
+            </button>
+            ))}
+          </div>
+          {activeInventoryTab === "weapons" && (
+            <div className="flex gap-1.5 border-b border-[var(--color-border)] pb-1 mt-1">
+              {([
+                { key: "all", label: "All" },
+                { key: "simple-melee", label: "Simple Melee" },
+                { key: "simple-ranged", label: "Simple Ranged" },
+                { key: "martial-melee", label: "Martial Melee" },
+                { key: "martial-ranged", label: "Martial Ranged" },
+              ] as const).map((tab) => (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setWeaponSubTab(tab.key)}
+                  className={`px-2 py-1 text-[10px] font-bold uppercase tracking-wide rounded-t transition-colors ${
+                    weaponSubTab === tab.key
+                      ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
+                      : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          )}
+        {filteredInventory.map((item: Character["inventory"][number]) => {
           const description = getItemDescription(item);
           const equipBtn = canEquip(item);
           const isCustom = item.source === "custom";
