@@ -1381,7 +1381,7 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Baalzebul)",
@@ -1413,7 +1413,7 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Zariel)",
@@ -1445,7 +1445,7 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Dispater)",
@@ -1463,7 +1463,7 @@
       ],
       "languages": ["Common", "Infernal"],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Fierna)",
@@ -1476,7 +1476,7 @@
       ],
       "languages": ["Common", "Infernal"],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Glasya)",
@@ -1489,7 +1489,7 @@
       ],
       "languages": ["Common", "Infernal"],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Levistus)",
@@ -1502,7 +1502,7 @@
       ],
       "languages": ["Common", "Infernal"],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Mammon)",
@@ -1515,7 +1515,7 @@
       ],
       "languages": ["Common", "Infernal"],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "name": "Tiefling (Mephistopheles)",
@@ -1528,7 +1528,7 @@
       ],
       "languages": ["Common", "Infernal"],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MToF"
+      "source": "MTF"
     },
     {
       "index": "triton",
