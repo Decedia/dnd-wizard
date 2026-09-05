@@ -6,7 +6,7 @@ import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
 import { useCallback, useState, useMemo } from "react";
-import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield, SwordIcon as Sword } from "@/components/icons";
+import { BackpackIcon as Backpack, PlusIcon as Plus, CheckCircleIcon as CheckCircle, CircleIcon as Circle, InfoIcon as Info, HandIcon as Hand, ShieldIcon as Shield, SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 import { ItemSelectionModal } from "../modals/ItemSelectionModal";
@@ -353,45 +353,48 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       <div className="space-y-2">
         <div className="flex gap-1.5 border-b border-[var(--color-border)] pb-1">
           {([
-            { key: "all", label: "All" },
-            { key: "weapons", label: "Weapons" },
-            { key: "armor", label: "Armor" },
-            { key: "items", label: "Items" },
+            { key: "all", icon: Backpack },
+            { key: "weapons", icon: Sword },
+            { key: "armor", icon: Shield },
+            { key: "items", icon: Info },
           ] as const).map((tab) => (
             <button
               key={tab.key}
               type="button"
               onClick={() => setActiveInventoryTab(tab.key)}
-              className={`flex-1 px-2 py-1.5 text-[10px] font-bold uppercase tracking-wide rounded-t transition-colors ${
+              className={`flex-1 flex flex-col items-center gap-0.5 px-2 py-2 rounded-t transition-colors relative ${
                 activeInventoryTab === tab.key
                   ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
                   : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
               }`}
+              title={tab.key}
             >
-              {tab.label} ({inventoryTabCounts[tab.key]})
+              <tab.icon className="h-4 w-4" />
+              <span className="text-[9px] font-bold leading-none">{inventoryTabCounts[tab.key]}</span>
             </button>
-            ))}
-          </div>
+          ))}
+        </div>
           {activeInventoryTab === "weapons" && (
             <div className="flex gap-1.5 border-b border-[var(--color-border)] pb-1 mt-1">
               {([
-                { key: "all", label: "All" },
-                { key: "simple-melee", label: "Simple Melee" },
-                { key: "simple-ranged", label: "Simple Ranged" },
-                { key: "martial-melee", label: "Martial Melee" },
-                { key: "martial-ranged", label: "Martial Ranged" },
+                { key: "all", icon: Circle },
+                { key: "simple-melee", icon: Dagger },
+                { key: "simple-ranged", icon: BowArrow },
+                { key: "martial-melee", icon: BattleAxe },
+                { key: "martial-ranged", icon: Crossbow },
               ] as const).map((tab) => (
                 <button
                   key={tab.key}
                   type="button"
                   onClick={() => setWeaponSubTab(tab.key)}
-                  className={`px-2 py-1 text-[10px] font-bold uppercase tracking-wide rounded-t transition-colors ${
+                  className={`flex-1 flex flex-col items-center gap-0.5 px-1 py-2 rounded-t transition-colors ${
                     weaponSubTab === tab.key
                       ? "bg-[var(--color-bg)] text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
                       : "text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
                   }`}
+                  title={tab.key}
                 >
-                  {tab.label}
+                  <tab.icon className="h-4 w-4" />
                 </button>
               ))}
             </div>
