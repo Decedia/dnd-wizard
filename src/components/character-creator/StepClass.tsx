@@ -11,7 +11,7 @@ interface StepClassProps {
 }
 
 export function StepClass({ data, onChange }: StepClassProps) {
-  const classes: SRDClass[] = getStaticClasses();
+  const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset);
 
   const handleSelect = useCallback(
     (className: string) => {

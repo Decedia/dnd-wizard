@@ -1,0 +1,91 @@
+{
+  "races": [
+    {
+      "name": "Human",
+      "ruleset": "2024",
+      "source": "PHB",
+      "abilityScoreIncreases": { "str": 1, "dex": 1, "con": 1, "int": 1, "wis": 1, "cha": 1 },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": false,
+      "traits": [
+        { "name": "Resourceful", "description": "You gain one skill proficiency of your choice." },
+        { "name": "Skillful", "description": "You gain one tool proficiency of your choice." },
+        { "name": "Versatile", "description": "You gain one feat of your choice." }
+      ],
+      "languages": ["Common"],
+      "languageDesc": "You can speak, read, and write Common and one extra language of your choice."
+    },
+    {
+      "name": "Elf",
+      "ruleset": "2024",
+      "source": "PHB",
+      "abilityScoreIncreases": { "dex": 2 },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light." },
+        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic can't put you to sleep." },
+        { "name": "Keen Senses", "description": "You have proficiency in the Perception skill." },
+        { "name": "Trance", "description": "You can enter a trance for 4 hours to gain the benefit of a long rest." }
+      ],
+      "languages": ["Common", "Elvish"],
+      "languageDesc": "You can speak, read, and write Common and Elvish."
+    },
+    {
+      "name": "Dwarf",
+      "ruleset": "2024",
+      "source": "PHB",
+      "abilityScoreIncreases": { "con": 2 },
+      "speed": 25,
+      "size": "Medium",
+      "darkvision": { "range": 60 },
+      "traits": [
+        { "name": "Darkvision", "description": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light." },
+        { "name": "Dwarven Resilience", "description": "You have advantage on saving throws against poison, and you have resistance to poison damage." },
+        { "name": "Dwarven Combat Training", "description": "You have proficiency with battleaxes, handaxes, light hammers, and warhammers." },
+        { "name": "Tool Proficiency", "description": "You have proficiency with one type of artisan's tools of your choice." },
+        { "name": "Stonecunning", "description": "You have proficiency in History checks related to stonework." }
+      ],
+      "languages": ["Common", "Dwarvish"],
+      "languageDesc": "You can speak, read, and write Common and Dwarvish."
+    }
+  ],
+  "classes": [
+    {
+      "name": "Fighter",
+      "ruleset": "2024",
+      "source": "PHB",
+      "hitDie": 10,
+      "hpPerLevel": 10,
+      "primaryAbility": "str",
+      "savingThrows": ["str", "con"],
+      "flavorText": "Fighters are master of combat, skilled with a variety of weapons and armor.",
+      "proficiencies": {
+        "armor": ["light", "medium", "heavy", "shields"],
+        "weapons": ["simple", "martial"],
+        "tools": []
+      },
+      "skillChoices": {
+        "count": 2,
+        "options": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
+      },
+      "startingEquipment": [],
+      "features": [],
+      "levels": [
+        {
+          "features": [{ "name": "Fighting Style", "description": "You adopt a particular style of fighting as your specialty." }],
+          "asi": false,
+          "spellSlots": {}
+        },
+        {
+          "features": [{ "name": "Action Surge", "description": "You can take one additional action on your turn." }],
+          "asi": false,
+          "spellSlots": {}
+        }
+      ],
+      "subclasses": []
+    }
+  ]
+}

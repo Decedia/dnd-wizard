@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BookCard } from "./BookCard";
+import { useSRD } from "@/contexts/SRDContext";
 
 const BOOK_SPECS: Record<
   string,
@@ -237,25 +238,38 @@ const BOOK_SPECS: Record<
   },
 };
 
-export function StepSourceSelection({ data, onChange }: { data: { sources: string[] }; onChange: (patch: { sources: string[] }) => void }) {
+export function StepSourceSelection({ data, onChange }: { data: { sources: string[]; ruleset?: "2014" | "2024" }; onChange: (patch: { sources: string[]; ruleset?: "2014" | "2024" }) => void }) {
   const selectedSources = data.sources || ["PHB"];
+  const ruleset = data.ruleset || "2014";
+  const { setRuleset: setSrdRuleset } = useSRD();
+
+  const syncRuleset = useMemo(() => {
+    if ((data.ruleset || "2014") !== (ruleset)) {
+      setSrdRuleset(ruleset);
+    }
+  }, [data.ruleset, ruleset, setSrdRuleset]);
 
   const toggleSource = (sourceId: string) => {
     if (sourceId === "PHB") return;
     const current = selectedSources;
     if (current.includes(sourceId)) {
-      onChange({ sources: current.filter((s) => s !== sourceId) });
+      onChange({ sources: current.filter((s) => s !== sourceId), ruleset });
     } else {
-      onChange({ sources: [...current, sourceId] });
+      onChange({ sources: [...current, sourceId], ruleset });
     }
   };
 
   const selectAll = () => {
-    onChange({ sources: SOURCE_OPTIONS.map((s) => s.id) });
+    onChange({ sources: SOURCE_OPTIONS.map((s) => s.id), ruleset });
   };
 
   const selectCoreOnly = () => {
-    onChange({ sources: ["PHB"] });
+    onChange({ sources: ["PHB"], ruleset });
+  };
+
+  const setRuleset = (next: "2014" | "2024") => {
+    onChange({ sources: selectedSources, ruleset: next });
+    setSrdRuleset(next);
   };
 
   return (
@@ -268,6 +282,21 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
         <p className="text-xs text-[var(--color-text-secondary)] mt-1">
           Select which books to draw content from. PHB is always included. You can change this per character.
         </p>
+      </div>
+
+      <div className="flex rounded-full bg-[var(--color-bg)] p-1">
+        {(["2014", "2024"] as const).map((rs) => (
+          <button
+            key={rs}
+            type="button"
+            onClick={() => setRuleset(rs)}
+            className={`flex-1 px-3 py-2 text-xs font-semibold rounded-full transition-colors ${
+              ruleset === rs ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] shadow-sm" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
+            }`}
+          >
+            {rs === "2014" ? "2014 Rules" : "2024 Rules"}
+          </button>
+        ))}
       </div>
 
       <div className="flex gap-2">

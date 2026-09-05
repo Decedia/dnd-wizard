@@ -89,6 +89,7 @@ export interface Character {
   activeStates: string[];
   activeBuffs: ActiveBuff[];
   sources: string[];
+  ruleset?: "2014" | "2024";
   buffModifiers?: Record<string, unknown>;
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
@@ -354,6 +355,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     activeStates: [],
     activeBuffs: [],
     sources: ["PHB"],
+    ruleset: "2014",
     preparedSpells: [],
     domainSpells: [],
     circleTerrain: "",

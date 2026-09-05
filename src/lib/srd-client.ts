@@ -13,6 +13,9 @@ import featsData from "@/data/2014_feats.json";
 import subclassSpellsData from "@/data/subclass_spells.json";
 import { equipment as srdEquipment } from "@/data/srd";
 
+// 2024 ruleset data (scaffold)
+import races2024Data from "@/data/2024_phb.json";
+
 export interface SRDRace {
   name: string;
   abilityScoreIncreases: Record<string, number>;
@@ -287,15 +290,17 @@ function getAllLanguages(): SRDLanguage[] {
   ];
 }
 
-export async function fetchSRDData(): Promise<SRDData> {
-  if (memoryCache && Date.now() - memoryCache.timestamp < CACHE_TTL) {
-    return memoryCache.data;
+export async function fetchSRDData(ruleset: string = "2014"): Promise<SRDData> {
+  const cacheKey = `${CACHE_KEY}-${ruleset}`;
+  const cached = memoryCache;
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    return cached.data;
   }
 
   const data: SRDData = {
-    races: getStaticRaces(),
-    classes: getStaticClasses(),
-    spells: getStaticSpells(),
+    races: getStaticRaces([], ruleset),
+    classes: getStaticClasses([], ruleset),
+    spells: getStaticSpells([], ruleset),
     equipment: getAllEquipment(),
     languages: getAllLanguages(),
   };
@@ -304,24 +309,36 @@ export async function fetchSRDData(): Promise<SRDData> {
   return data;
 }
 
-export function getStaticRaces(sources?: string[]): SRDRace[] {
-  const races = racesData.races as SRDRace[];
-  if (!sources || sources.length === 0) return races;
-  return races.filter((r) => sources.includes(r.source || "PHB"));
+export function getStaticRaces(sources?: string[], ruleset?: string): SRDRace[] {
+  const races2014 = (racesData as any).races as SRDRace[];
+  const races2024 = (races2024Data as any).races as SRDRace[];
+  const allRaces = [...races2014, ...races2024];
+  let filtered = allRaces;
+  if (ruleset) {
+    filtered = filtered.filter((r) => (r as any).ruleset === ruleset || (!(r as any).ruleset && ruleset === "2014"));
+  }
+  if (!sources || sources.length === 0) return filtered;
+  return filtered.filter((r) => sources.includes(r.source || "PHB"));
 }
 
-export function getStaticRace(name: string): SRDRace | undefined {
-  return getStaticRaces().find((r) => r.name === name);
+export function getStaticRace(name: string, ruleset?: string): SRDRace | undefined {
+  return getStaticRaces([], ruleset).find((r) => r.name === name);
 }
 
-export function getStaticClasses(sources?: string[]): SRDClass[] {
-  const classes = classesData.classes as unknown as SRDClass[];
-  if (!sources || sources.length === 0) return classes;
-  return classes.filter((c) => sources.includes(c.source || "PHB"));
+export function getStaticClasses(sources?: string[], ruleset?: string): SRDClass[] {
+  const classes2014 = (classesData as any).classes as unknown as SRDClass[];
+  const classes2024 = (races2024Data as any).classes as unknown as SRDClass[];
+  const allClasses = [...classes2014, ...classes2024];
+  let filtered = allClasses;
+  if (ruleset) {
+    filtered = filtered.filter((c) => (c as any).ruleset === ruleset || (!(c as any).ruleset && ruleset === "2014"));
+  }
+  if (!sources || sources.length === 0) return filtered;
+  return filtered.filter((c) => sources.includes(c.source || "PHB"));
 }
 
-export function getStaticClass(name: string): SRDClass | undefined {
-  return getStaticClasses().find((c) => c.name === name);
+export function getStaticClass(name: string, ruleset?: string): SRDClass | undefined {
+  return getStaticClasses([], ruleset).find((c) => c.name === name);
 }
 
 export interface SRDSubclass {
@@ -333,11 +350,14 @@ export interface SRDSubclass {
   source?: string;
 }
 
-export function getStaticSubclasses(className: string, sources?: string[]): SRDSubclass[] {
+export function getStaticSubclasses(className: string, sources?: string[], ruleset?: string): SRDSubclass[] {
   const all = (subclassesData as any).subclasses as any[];
   const choicesMap = (subclassChoicesData as any)[className] || {};
-  return all
-    .filter((s) => s.class === className)
+  let filtered = all.filter((s) => s.class === className);
+  if (ruleset) {
+    filtered = filtered.filter((s) => (s.ruleset || "2014") === ruleset);
+  }
+  return filtered
     .filter((s) => !sources || sources.length === 0 || sources.includes(s.source || "PHB"))
     .map((s) => {
       const subChoices = choicesMap[s.name] || {};
@@ -392,11 +412,15 @@ export function getStaticSubclassDetails(className: string, subclassName: string
   };
 }
 
-export function getStaticSpells(sources?: string[]): SRDSpell[] {
+export function getStaticSpells(sources?: string[], ruleset?: string): SRDSpell[] {
   const raw = Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
   const spells: SRDSpell[] = raw.map(normalizeSpell);
-  if (!sources || sources.length === 0) return spells;
-  return spells.filter((s) => sources.includes(s.source || "PHB"));
+  let filtered = spells;
+  if (ruleset) {
+    filtered = filtered.filter((s) => (s as any).ruleset === ruleset || (!(s as any).ruleset && ruleset === "2014"));
+  }
+  if (!sources || sources.length === 0) return filtered;
+  return filtered.filter((s) => sources.includes(s.source || "PHB"));
 }
 
 export function deduplicateSpells(spells: SRDSpell[]): SRDSpell[] {
@@ -423,44 +447,60 @@ export function getCachedSRDData(): SRDData | null {
   return null;
 }
 
-export function getStaticWeapons(sources?: string[]): SRDWeapon[] {
+export function getStaticWeapons(sources?: string[], ruleset?: string): SRDWeapon[] {
   const weapons = weaponsData.weapons as SRDWeapon[];
-  if (!sources || sources.length === 0) return weapons;
-  return weapons.filter((w) => sources.includes(w.source || "PHB"));
+  let filtered = weapons;
+  if (ruleset) {
+    filtered = filtered.filter((w) => (w as any).ruleset === ruleset || (!(w as any).ruleset && ruleset === "2014"));
+  }
+  if (!sources || sources.length === 0) return filtered;
+  return filtered.filter((w) => sources.includes(w.source || "PHB"));
 }
 
-export function getStaticWeapon(name: string): SRDWeapon | undefined {
-  return getStaticWeapons().find((w) => w.name === name);
+export function getStaticWeapon(name: string, ruleset?: string): SRDWeapon | undefined {
+  return getStaticWeapons([], ruleset).find((w) => w.name === name);
 }
 
-export function getStaticArmors(sources?: string[]): SRDArmor[] {
+export function getStaticArmors(sources?: string[], ruleset?: string): SRDArmor[] {
   const armors = armorsData.armors as SRDArmor[];
-  if (!sources || sources.length === 0) return armors;
-  return armors.filter((a) => sources.includes(a.source || "PHB"));
+  let filtered = armors;
+  if (ruleset) {
+    filtered = filtered.filter((a) => (a as any).ruleset === ruleset || (!(a as any).ruleset && ruleset === "2014"));
+  }
+  if (!sources || sources.length === 0) return filtered;
+  return filtered.filter((a) => sources.includes(a.source || "PHB"));
 }
 
-export function getStaticArmor(name: string): SRDArmor | undefined {
-  return getStaticArmors().find((a) => a.name === name);
+export function getStaticArmor(name: string, ruleset?: string): SRDArmor | undefined {
+  return getStaticArmors([], ruleset).find((a) => a.name === name);
 }
 
-export function getStaticItems(sources?: string[]): SRDItem[] {
+export function getStaticItems(sources?: string[], ruleset?: string): SRDItem[] {
   const items = itemsData.items as SRDItem[];
-  if (!sources || sources.length === 0) return items;
-  return items.filter((i) => sources.includes(i.source || "PHB"));
+  let filtered = items;
+  if (ruleset) {
+    filtered = filtered.filter((i) => (i as any).ruleset === ruleset || (!(i as any).ruleset && ruleset === "2014"));
+  }
+  if (!sources || sources.length === 0) return filtered;
+  return filtered.filter((i) => sources.includes(i.source || "PHB"));
 }
 
-export function getStaticItem(name: string): SRDItem | undefined {
-  return getStaticItems().find((i) => i.name === name);
+export function getStaticItem(name: string, ruleset?: string): SRDItem | undefined {
+  return getStaticItems([], ruleset).find((i) => i.name === name);
 }
 
-export function getStaticEquipments(sources?: string[]): SRDEquipmentDetail[] {
+export function getStaticEquipments(sources?: string[], ruleset?: string): SRDEquipmentDetail[] {
   const equipments = equipmentsData.equipments as SRDEquipmentDetail[];
-  if (!sources || sources.length === 0) return equipments;
-  return equipments.filter((e) => sources.includes(e.source || "PHB"));
+  let filtered = equipments;
+  if (ruleset) {
+    filtered = filtered.filter((e) => (e as any).ruleset === ruleset || (!(e as any).ruleset && ruleset === "2014"));
+  }
+  if (!sources || sources.length === 0) return filtered;
+  return filtered.filter((e) => sources.includes(e.source || "PHB"));
 }
 
-export function getStaticEquipment(name: string): SRDEquipmentDetail | undefined {
-  return getStaticEquipments().find((e) => e.name === name);
+export function getStaticEquipment(name: string, ruleset?: string): SRDEquipmentDetail | undefined {
+  return getStaticEquipments([], ruleset).find((e) => e.name === name);
 }
 
 function mapEquipmentCategory(category: string): "weapon" | "armor" | "item" {
