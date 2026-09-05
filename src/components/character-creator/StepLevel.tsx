@@ -169,7 +169,7 @@ function buildLevelInfos(
 }
 
 export function StepLevel({ data, onChange }: StepLevelProps) {
-  const classData = data.class ? getStaticClass(data.class) : null;
+  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(data.con);
   const level = data.level || 1;
@@ -334,14 +334,14 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
     if (!classData || !data.class) return [];
     const levels = new Set<number>();
     if (classData.subclassLevel) levels.add(classData.subclassLevel);
-    const subclasses = getStaticSubclasses(data.class, data.sources);
+    const subclasses = getStaticSubclasses(data.class, data.sources, data.ruleset);
     for (const sub of subclasses) {
       for (const f of sub.features) {
         if (f.level != null && f.level <= 10) levels.add(f.level);
       }
     }
     return Array.from(levels).sort((a, b) => a - b);
-  }, [classData, data.class, data.sources]);
+  }, [classData, data.class, data.sources, data.ruleset]);
 
   const levelData = classData?.levels[level - 1];
   const features = (levelData?.features || []).map((f: any) => ({

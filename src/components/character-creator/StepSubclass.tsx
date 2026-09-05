@@ -14,8 +14,8 @@ interface StepSubclassProps {
 }
 
 export function StepSubclass({ data, onChange }: StepSubclassProps) {
-  const classData: SRDClass | undefined = data.class ? getStaticClass(data.class) : undefined;
-  const subclasses: SRDSubclass[] = data.class ? getStaticSubclasses(data.class, data.sources) : [];
+  const classData: SRDClass | undefined = data.class ? getStaticClass(data.class, data.ruleset) : undefined;
+  const subclasses: SRDSubclass[] = data.class ? getStaticSubclasses(data.class, data.sources, data.ruleset) : [];
   const unlockLevel = classData?.subclassLevel ?? 3;
 
   // Sort subclasses by source (PHB first), then alphabetically

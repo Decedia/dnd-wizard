@@ -19,9 +19,9 @@ function normalizeItemName(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9\s]/g, "").trim();
 }
 
-export function getLevelOneFeatureChoices(className: string | undefined): { featureName: string; description: string; type: "single" | "multiple" | "skills" | "spells" | "invocations"; options: string[]; optionDescriptions?: Record<string, string>; count?: number; level: number; storageKey: string; optional?: boolean; source?: "class" | "subclass" }[] {
+export function getLevelOneFeatureChoices(className: string | undefined, ruleset?: string): { featureName: string; description: string; type: "single" | "multiple" | "skills" | "spells" | "invocations"; options: string[]; optionDescriptions?: Record<string, string>; count?: number; level: number; storageKey: string; optional?: boolean; source?: "class" | "subclass" }[] {
   if (!className) return [];
-  const classData = getStaticClass(className);
+  const classData = getStaticClass(className, ruleset);
   if (!classData?.levels) return [];
   
   const level1Data = classData.levels[0];
@@ -49,13 +49,13 @@ export function getLevelOneFeatureChoices(className: string | undefined): { feat
     });
 }
 
-function findSRDItemMatch(rawName: string): SRDItemMatch | null {
+function findSRDItemMatch(rawName: string, ruleset?: string): SRDItemMatch | null {
   const normalized = normalizeItemName(rawName);
 
-  const allEquipments = getStaticEquipments();
-  const allWeapons = getStaticWeapons();
-  const allArmors = getStaticArmors();
-  const allItems = getStaticItems();
+  const allEquipments = getStaticEquipments([], ruleset);
+  const allWeapons = getStaticWeapons([], ruleset);
+  const allArmors = getStaticArmors([], ruleset);
+  const allItems = getStaticItems([], ruleset);
 
   if (ARCANE_FOCUS_NAMES.includes(normalized)) {
     const match = allEquipments.find(e => normalizeItemName(e.name) === normalized);
@@ -260,7 +260,7 @@ function findOptionItems(optionLetter: string, allItems: any[], optionText: stri
   return matched;
 }
 
-export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
+export function buildChoiceGroups(startingEquipment: any[], ruleset?: string): ChoiceGroup[] {
   const groups: ChoiceGroup[] = [];
   let groupCounter = 0;
   const firstChoiceGroupId = `choice-${groupCounter++}`;
@@ -304,11 +304,11 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
       const options: EquipmentOption[] = optionMatches.map((part: string, idx: number) => {
         const optionLetter = optionLetters[idx];
         const optionText = optionTexts[idx];
-        const nameWithoutLetter = part.trim().replace(/^\(([a-z])\)\s*/, "").trim().replace(/[,\s]+or\s*$/, "").replace(/[,\s]+$/, "");
+        const nameWithoutLetter = part.trim().replace(/^\(([a-z])\)\s*/, "").trim().replace(/[,\s]+or\s*$/, "").trim();
 
         const optionItems = findOptionItems(optionLetter, items, optionText);
 
-        const srdMatch = findSRDItemMatch(nameWithoutLetter);
+        const srdMatch = findSRDItemMatch(nameWithoutLetter, ruleset);
 
         let isWeaponChoice = false;
         let isInstrumentChoice = false;
@@ -371,7 +371,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
 
         const optionItems = optionLetter ? findOptionItems(optionLetter, items, displayText) : [];
 
-        const srdMatch = findSRDItemMatch(displayText);
+        const srdMatch = findSRDItemMatch(displayText, ruleset);
 
         let isWeaponChoice = false;
         let isInstrumentChoice = false;
@@ -424,7 +424,7 @@ export function buildChoiceGroups(startingEquipment: any[]): ChoiceGroup[] {
       groups.push(group);
     } else if (items.length > 0) {
       group.options = items.map((item: any) => {
-        const srdMatch = findSRDItemMatch(item.name);
+        const srdMatch = findSRDItemMatch(item.name, ruleset);
         return {
           description: srdMatch ? srdMatch.name : item.name,
           items: [item],
@@ -452,7 +452,7 @@ export function getValidationMessage(step: CreationStep, character?: Character):
       if (!character?.level || character.level < 1) return "Please choose a starting level.";
       if (!character.maxHp || character.maxHp <= 0) return "Please enter your character's HP.";
       if ((Object.keys(character.levelHp || {}).length) < (character.level || 1)) return "Please confirm HP for all levels.";
-      const classData = character.class ? getStaticClass(character.class) : null;
+      const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
       const asiLevels = classData?.levels
         .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
         .filter((entry) => entry.asi)
@@ -469,7 +469,7 @@ export function getValidationMessage(step: CreationStep, character?: Character):
 }
 
 export function getCreationSteps(character: Character): CreationStep[] {
-  const classData = character.class ? getStaticClass(character.class) : null;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
 
   const originCompleted = !!character.name.trim() && !!character.class && !!character.race && !(character.race === "Human" && character.raceVariant === "variant" && (!character.featureSelections?.["variant-human-feat"]?.[0] || (character.variantHumanAbilities || []).length < 2 || !character.variantHumanSkill));
   const personalityCompleted = !!character.background && !!character.alignment;
@@ -521,7 +521,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
   ];
 
   // Add feature selection step for level 1 class features with choices (e.g., Fighting Style)
-  const levelOneChoices = getLevelOneFeatureChoices(character.class);
+  const levelOneChoices = getLevelOneFeatureChoices(character.class, character.ruleset);
   const featureSelectionsCompleted = levelOneChoices.length === 0 || levelOneChoices.every(
     (choice) => character.featureSelections?.[choice.storageKey]?.length ?? 0 >= (choice.count || 1)
   );
@@ -617,7 +617,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
 function isEquipmentComplete(character: Character, classData: ReturnType<typeof getStaticClass> | null): boolean {
   if (!classData?.startingEquipment) return character.inventory.length > 0;
 
-  const choiceGroups = buildChoiceGroups(classData.startingEquipment);
+  const choiceGroups = buildChoiceGroups(classData.startingEquipment, character.ruleset);
 
   if (choiceGroups.length === 0) return true;
 
@@ -628,7 +628,7 @@ function isEquipmentComplete(character: Character, classData: ReturnType<typeof 
 }
 
 export function getFeatureSelections(character: Character): FeatureSelection[] {
-  const classData = character.class ? getStaticClass(character.class) : null;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
   if (!classData) return [];
 
   const selections: FeatureSelection[] = [];
@@ -676,11 +676,11 @@ export function getFeatureSelections(character: Character): FeatureSelection[] {
 export function getSubclassFeatureSelections(character: Character): FeatureSelection[] {
   if (!character.subclass || !character.class) return [];
 
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   const unlockLevel = classData?.subclassLevel ?? 3;
   if (character.level < unlockLevel) return [];
 
-  const subclasses = getStaticSubclasses(character.class, character.sources);
+  const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return [];
 
@@ -720,10 +720,10 @@ function normalizeDescription(description: any): string {
 }
 
 function getClassFeaturesAtLevel(character: Character): { name: string; description: string }[] {
-  const classData = character.class ? getStaticClass(character.class) : null;
-  if (!classData) return [];
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
+
   const features: { name: string; description: string }[] = [];
-  classData.levels.forEach((level, index) => {
+  classData?.levels.forEach((level, index) => {
     if (index + 1 > character.level) return;
     (level.features || []).forEach((f: any) => {
       features.push({ name: f.name, description: normalizeDescription(f.description) });
@@ -769,7 +769,7 @@ export function syncBaseFeatures(character: Character): Character {
   const raceFeatures = getRaceTraits(character).map((f) => ({ ...f, source: "race" as const }));
   const base = [...classFeatures, ...raceFeatures];
 
-  const unlockLevel = getStaticClass(character.class)?.subclassLevel ?? 3;
+  const unlockLevel = getStaticClass(character.class, character.ruleset)?.subclassLevel ?? 3;
   const subclassStillValid = !!character.subclass && character.level >= unlockLevel;
 
   const kept = character.features.filter(
@@ -813,11 +813,11 @@ function getEarnedSubclassFeatures(
  */
 export function applySubclassFeatures(character: Character): Character {
   if (!character.subclass) return character;
-  const classData = character.class ? getStaticClass(character.class) : null;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
   const unlockLevel = classData?.subclassLevel ?? 3;
   if (character.level < unlockLevel) return character;
 
-  const subclasses = getStaticSubclasses(character.class, character.sources);
+  const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return character;
 
@@ -866,14 +866,14 @@ interface SubclassSpellGrant {
   srdSpellName: string;
 }
 
-function getSubclassIndexByName(className: string, subclassName: string): string | undefined {
-  const subclasses = getStaticSubclasses(className);
+function getSubclassIndexByName(className: string, subclassName: string, ruleset?: string): string | undefined {
+  const subclasses = getStaticSubclasses(className, [], ruleset);
   const found = subclasses.find(s => s.name.toLowerCase() === subclassName.toLowerCase());
   return found?.index;
 }
 
-function getSubclassSpellGrants(subclass: string, className: string, level: number): SubclassSpellGrant[] {
-  const subclassIndex = getSubclassIndexByName(className, subclass);
+function getSubclassSpellGrants(subclass: string, className: string, level: number, ruleset?: string): SubclassSpellGrant[] {
+  const subclassIndex = getSubclassIndexByName(className, subclass, ruleset);
   if (!subclassIndex) return [];
   const spells = getJsonSubclassSpellGrants(subclassIndex, level);
   return spells.map(name => ({ name, level: 0, srdSpellName: name }));
@@ -881,10 +881,10 @@ function getSubclassSpellGrants(subclass: string, className: string, level: numb
 
 export function applySubclassSpellGrants(character: Character): Character {
   if (!character.subclass) return character;
-  const grants = getSubclassSpellGrants(character.subclass, character.class, character.level);
+  const grants = getSubclassSpellGrants(character.subclass, character.class, character.level, character.ruleset);
   if (grants.length === 0) return character;
 
-  const allSpells = getStaticSpells(character.sources);
+  const allSpells = getStaticSpells(character.sources, character.ruleset);
   const existingSpellNames = new Set((character.spells || []).map(s => s.name?.toLowerCase()));
   const newSpells: Character["spells"] = [];
   const newCantrips: Character["cantrips"] = [];
@@ -926,11 +926,11 @@ export function applySubclassSpellGrants(character: Character): Character {
  */
 export function isSubclassStepComplete(character: Character): boolean {
   if (!character.subclass) return false;
-  const classData = character.class ? getStaticClass(character.class) : null;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
   const unlockLevel = classData?.subclassLevel ?? 3;
   if (character.level < unlockLevel) return false;
 
-  const subclasses = getStaticSubclasses(character.class, character.sources);
+  const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return false;
 
@@ -980,7 +980,7 @@ export async function finalizeCreation(character: Character): Promise<Character>
 
   const derived = computeDerivedStats(final);
 
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   const levelData = classData?.levels?.[(character.level || 1) - 1];
   const spellSlots = levelData?.spellSlots || {};
 

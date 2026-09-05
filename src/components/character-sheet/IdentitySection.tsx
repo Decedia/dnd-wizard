@@ -32,6 +32,7 @@ interface IdentitySectionProps {
     skills: Record<string, boolean>;
     sources?: string[];
     raceChoices?: Record<string, string>;
+    ruleset?: "2014" | "2024";
   };
   onChange: (patch: Partial<IdentitySectionProps["character"]>) => void;
   editMode?: boolean;
@@ -39,9 +40,9 @@ interface IdentitySectionProps {
 
 export function IdentitySection({ character, onChange, editMode = true }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const races = getStaticRaces(character.sources);
+  const races = getStaticRaces(character.sources, character.ruleset);
   const raceNames = races.map((r) => r.name);
-  const classes = getStaticClasses();
+  const classes = getStaticClasses([], character.ruleset);
   const classNames = classes.map((c) => c.name);
 
   const toggleLanguage = useCallback((lang: string) => {

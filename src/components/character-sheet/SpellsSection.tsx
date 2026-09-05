@@ -44,7 +44,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const maxPrepared = getMaxPreparedSpells(character);
   const maxSpellsKnown = getMaxSpellsKnown(character);
   const maxCantripsKnown = getMaxCantripsKnown(character);
-  const maxLevel = getMaxSpellLevel(character.class, character.level);
+  const maxLevel = getMaxSpellLevel(character.class, character.level, character.ruleset);
   const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0).length;
   const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0).length;
   const domainSpells = getDomainSpellNames(character);

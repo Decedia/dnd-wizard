@@ -15,7 +15,7 @@ interface StepSkillsProps {
 }
 
 export function StepSkills({ data, onChange }: StepSkillsProps) {
-  const classData = data.class ? getStaticClass(data.class) : null;
+  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const profBonus = getProficiencyBonus(data.level);
   const skillChoices = classData?.skillChoices || null;
   const background = getBackgroundData(data.background);

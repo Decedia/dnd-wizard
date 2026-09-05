@@ -95,8 +95,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     return initial;
   });
 
-  const classData = data.class ? getStaticClass(data.class) : null;
-  const raceData = data.race ? getStaticRace(data.race) : null;
+  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
+  const raceData = data.race ? getStaticRace(data.race, data.ruleset) : null;
 
   const raceBonuses = useMemo(() => {
     if (!raceData?.abilityScoreIncreases) return {} as Record<AbilityKey, number>;

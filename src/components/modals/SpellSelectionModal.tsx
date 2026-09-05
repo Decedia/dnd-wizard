@@ -77,10 +77,10 @@ export function SpellSelectionModal({
   const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
   const isArcaneTrickster = atFlags.usesMageSpellList;
   const atSpells = isArcaneTrickster ? getStaticArcaneTricksterSpells() : [];
-  const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level)) : (maxLevel || 0);
+  const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset)) : (maxLevel || 0);
   const allSpells = isArcaneTrickster
     ? deduplicateSpells(atSpells.filter((s) => s.level === 0 || s.level <= effectiveMaxLevel))
-    : deduplicateSpells(getStaticSpells(character.sources).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
+    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
 
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));

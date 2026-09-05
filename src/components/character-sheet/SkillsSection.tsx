@@ -21,7 +21,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   const profBonus = getProficiencyBonus(character.level);
   const [infoSkill, setInfoSkill] = useState<string | null>(null);
 
-  const classData = character.class ? getStaticClass(character.class) : null;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;

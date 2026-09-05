@@ -87,17 +87,17 @@ const DRUIDIC_FOCUS_TYPES = [
 ];
 
 export function StepEquipment({ data, onChange }: StepEquipmentProps) {
-  const classData = data.class ? getStaticClass(data.class) : null;
+  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
-  const weapons = useMemo(() => getStaticWeapons(data.sources), [data.sources]);
-  const armors = useMemo(() => getStaticArmors(data.sources), [data.sources]);
+  const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
+  const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset), [data.sources, data.ruleset]);
   const allEquipment = useMemo(() => getEquipmentNames(data.sources), [data.sources]);
 
-  const choiceGroups = useMemo<ChoiceGroup[]>(() => buildChoiceGroups(startingEquipment), [startingEquipment]);
+  const choiceGroups = useMemo<ChoiceGroup[]>(() => buildChoiceGroups(startingEquipment, data.ruleset), [startingEquipment, data.ruleset]);
 
   const getGroupIndex = useCallback((groupId: string) => {
     const match = groupId.match(/choice-(\d+)/);

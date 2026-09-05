@@ -179,7 +179,7 @@ export function clampAbilityScore(score: number): number {
 }
 
 export function getMaxSpellsKnown(character: Character): number {
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   if (!classData) return 0;
 
   const level = character.level || 1;
@@ -219,7 +219,7 @@ export function getMaxSpellsKnown(character: Character): number {
 }
 
 export function getMaxCantripsKnown(character: Character): number {
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   if (!classData?.cantripsKnown) return 0;
 
   const level = character.level || 1;
@@ -237,8 +237,8 @@ export function getMaxCantripsKnown(character: Character): number {
   return cantrips;
 }
 
-export function getMaxSpellLevel(className: string, level: number): number {
-  const classData = getStaticClass(className);
+export function getMaxSpellLevel(className: string, level: number, ruleset?: string): number {
+  const classData = getStaticClass(className, ruleset);
   if (!classData?.levels) return 0;
 
   const levelData = classData.levels[level - 1];
@@ -271,7 +271,7 @@ export function getMaxHpFromLevelHp(levelHp: Record<number, number> | undefined)
 
 export function getMaxExpertiseCount(character: Character): number {
   if (character.class !== "Rogue") return 0;
-  const classData = getStaticClass("Rogue");
+  const classData = getStaticClass("Rogue", character.ruleset);
   const scaling = classData?.scalingFeatures?.find((f) => f.type === "feature" && f.name === "Expertise");
   if (!scaling) return 0;
   let maxCount = 0;
@@ -614,7 +614,7 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
 
 export function getSneakAttackDice(character: Character): string | undefined {
   if (character.class !== "Rogue") return undefined;
-  const classData = getStaticClass("Rogue");
+  const classData = getStaticClass("Rogue", character.ruleset);
   const scaling = classData?.scalingFeatures?.find((f) => f.type === "attack");
   if (!scaling) return undefined;
   const diceCount = scaling.values[character.level] ?? 1;
@@ -622,7 +622,7 @@ export function getSneakAttackDice(character: Character): string | undefined {
 }
 
 export function getClassGrantedAttacks(character: Character): { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source: "class"; classFeatureName: string }[] {
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   if (!classData) return [];
   const attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source: "class"; classFeatureName: string }[] = [];
   const profBonus = getProficiencyBonus(character.level);
@@ -665,7 +665,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   }
 
   const profBonus = getProficiencyBonus(character.level);
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   const savingThrowProfs = classData?.savingThrows || [];
   const activeStates = character.activeStates || [];
   // Compute cover bonuses
@@ -1095,7 +1095,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 }
 
 export function getMaxPreparedSpells(character: Character): number {
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   if (!classData?.spellcastingAbility) return 0;
   const abilityScore = character[classData.spellcastingAbility as keyof Character] as number;
   const abilityMod = getModifier(abilityScore || 10);
@@ -1158,7 +1158,7 @@ export function getOathSpellNames(character: Character): string[] {
 export function getWarlockExpandedSpellNames(character: Character): string[] {
   if (character.class !== "Warlock" || !character.subclass) return [];
   const level = character.level || 1;
-  const classData = getStaticClass("Warlock");
+  const classData = getStaticClass("Warlock", character.ruleset);
   if (!classData?.subclasses) return [];
   const subclass = classData.subclasses.find((s) => s.name.toLowerCase() === character.subclass?.toLowerCase());
   if (!subclass?.expandedSpells) return [];
@@ -1180,7 +1180,7 @@ export function getWizardTraditionSpellNames(character: Character): string[] {
 // ===== REST RECOVERY FUNCTIONS =====
 
 export function applyShortRest(character: Character): Partial<Character> {
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   const draft: Partial<Character> = {
     // Hit Dice recovery: can spend up to half level (min 1)
     hitDiceRemaining: Math.min(character.level, character.hitDiceRemaining + Math.max(1, Math.floor(character.level / 2))),
@@ -1189,7 +1189,7 @@ export function applyShortRest(character: Character): Partial<Character> {
   // Warlock: recover all Pact Magic spell slots on short rest
   if (classData?.name === "Warlock") {
     const warlockSlots: Record<number, number> = {};
-    const classData = getStaticClass("Warlock");
+    const classData = getStaticClass("Warlock", character.ruleset);
     if (classData?.levels) {
       const levelData = classData.levels[character.level - 1];
       if (levelData?.spellSlots) {
@@ -1250,7 +1250,7 @@ export function applyShortRest(character: Character): Partial<Character> {
 }
 
 export function applyLongRest(character: Character): Partial<Character> {
-  const classData = getStaticClass(character.class);
+  const classData = getStaticClass(character.class, character.ruleset);
   
   // Get max spell slots from class data
   const maxSpellSlots: Record<number, number> = {};

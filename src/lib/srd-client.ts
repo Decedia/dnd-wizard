@@ -602,29 +602,31 @@ export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
    return raw.map(normalizeSpell);
  }
 
-export function getStaticFeats(sources?: string[]): SRDFeat[] {
+export function getStaticFeats(sources?: string[], ruleset?: string): SRDFeat[] {
   const feats = featsData.feats as SRDFeat[];
+  let filtered = feats;
+  if (ruleset) {
+    filtered = filtered.filter((f) => (f as any).ruleset === ruleset || (!(f as any).ruleset && ruleset === "2014"));
+  }
   if (!sources || sources.length === 0) {
-    // Deduplicate by name, keeping first occurrence (prefer PHB)
     const seen = new Set<string>();
-    return feats.filter((f) => {
+    return filtered.filter((f) => {
       if (seen.has(f.name)) return false;
       seen.add(f.name);
       return true;
     });
   }
-  const filtered = feats.filter((f) => sources.includes(f.source || "PHB"));
-  // Deduplicate filtered results
+  const sourceFiltered = filtered.filter((f) => sources.includes(f.source || "PHB"));
   const seen = new Set<string>();
-  return filtered.filter((f) => {
+  return sourceFiltered.filter((f) => {
     if (seen.has(f.name)) return false;
     seen.add(f.name);
     return true;
   });
 }
 
-export function getStaticFeat(name: string): SRDFeat | undefined {
-  return getStaticFeats().find((f) => f.name === name);
+export function getStaticFeat(name: string, ruleset?: string): SRDFeat | undefined {
+  return getStaticFeats([], ruleset).find((f) => f.name === name);
 }
 
  export function clearSRDCache() {

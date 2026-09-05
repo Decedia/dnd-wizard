@@ -43,7 +43,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
                 <span className="text-card-title">{cls.name}</span>
                 <div className="flex items-center gap-2">
                   {hasSubclasses && (() => {
-                    const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
+                     const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
                     return (
                       <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">
                         {filteredCount} subclasses at Lv {subclassLevel}

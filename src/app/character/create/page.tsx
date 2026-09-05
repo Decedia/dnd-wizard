@@ -75,7 +75,7 @@ export default function CharacterCreate() {
       case "origin":
         return <StepOrigin data={character} onChange={update} />;
       case "feature-selections":
-        return <StepFeatureSelections data={character} onChange={update} selections={getLevelOneFeatureChoices(character.class)} />;
+        return <StepFeatureSelections data={character} onChange={update} selections={getLevelOneFeatureChoices(character.class, character.ruleset)} />;
       case "personality":
         return <StepPersonality data={character} onChange={update} />;
       case "abilities":

@@ -15,7 +15,7 @@ interface StepRaceProps {
 }
 
 export function StepRace({ data, onChange }: StepRaceProps) {
-  const races: SRDRace[] = getStaticRaces(data.sources);
+  const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset);
   const [featModalOpen, setFeatModalOpen] = useState(false);
 
   const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";

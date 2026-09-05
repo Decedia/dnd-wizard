@@ -115,13 +115,14 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                  </h3>
                </div>
 
-              {selection.type === "spells" ? (
-                <SpellSelector
-                  options={selection.options}
-                  selected={selected}
-                  maxCount={maxCount}
-                  onSelect={(value) => handleSelect(selection.storageKey, value, maxCount)}
-                />
+               {selection.type === "spells" ? (
+                 <SpellSelector
+                   options={selection.options}
+                   selected={selected}
+                   maxCount={maxCount}
+                   ruleset={data.ruleset}
+                   onSelect={(value) => handleSelect(selection.storageKey, value, maxCount)}
+                 />
               ) : (
                 <div className="grid grid-cols-1 gap-2">
                   {selection.options.map((option) => {
@@ -173,8 +174,8 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
   );
 }
 
-function SpellSelector({ options, selected, maxCount, onSelect }: { options: string[]; selected: string[]; maxCount: number; onSelect: (value: string) => void }) {
-  const spells = getStaticSpells();
+function SpellSelector({ options, selected, maxCount, ruleset, onSelect }: { options: string[]; selected: string[]; maxCount: number; ruleset?: string; onSelect: (value: string) => void }) {
+  const spells = getStaticSpells([], ruleset);
 
   return (
     <div className="space-y-2">

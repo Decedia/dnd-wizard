@@ -317,7 +317,7 @@ function buildLevelInfos(
     const spellsKnownChanged = spellsKnown !== undefined && spellsKnown > prevSpellsKnown;
 
     const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster");
-    const maxSpellLevel = getMaxSpellLevel(className, level);
+    const maxSpellLevel = getMaxSpellLevel(className, level, character.ruleset);
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
     const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger", "Paladin"].includes(className);
@@ -417,7 +417,7 @@ function buildLevelInfos(
 }
 
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
-  const classData = character.class ? getStaticClass(character.class) : undefined;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : undefined;
   const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(character.con);

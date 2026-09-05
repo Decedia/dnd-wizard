@@ -16,8 +16,8 @@ interface StepSpellsProps {
   onChange: (patch: Partial<Character>) => void;
 }
 
-function getSpellCountForClass(className: string, level: number, abilityMod: number): { cantrips: number; spells: number } {
-  const classData = getStaticClass(className);
+function getSpellCountForClass(className: string, level: number, abilityMod: number, ruleset?: string): { cantrips: number; spells: number } {
+  const classData = getStaticClass(className, ruleset);
   if (!classData?.spellcastingAbility) return { cantrips: 0, spells: 0 };
 
   const cantripsKnown = classData.cantripsKnown;
@@ -72,15 +72,15 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
 
 export function StepSpells({ data, onChange }: StepSpellsProps) {
   const idCounter = useRef(0);
-  const classData = data.class ? getStaticClass(data.class) : null;
+  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const spellcastingAbility = classData?.spellcastingAbility || "int";
   const abilityKey = spellcastingAbility === "intelligence" ? "int" : spellcastingAbility === "wisdom" ? "wis" : spellcastingAbility === "charisma" ? "cha" : spellcastingAbility === "strength" ? "str" : spellcastingAbility === "dexterity" ? "dex" : spellcastingAbility === "constitution" ? "con" : "int";
   const abilityMod = getModifier(data[abilityKey as keyof Character] as number || 10);
 
-  const allSpells = deduplicateSpells(getStaticSpells(data.sources).filter((s) => s.classes?.includes(data.class)));
-  const maxSpellLevel = getMaxSpellLevel(data.class, data.level);
+  const allSpells = deduplicateSpells(getStaticSpells(data.sources, data.ruleset).filter((s) => s.classes?.includes(data.class)));
+  const maxSpellLevel = getMaxSpellLevel(data.class, data.level, data.ruleset);
 
-  const { cantrips: maxCantrips, spells: maxSpells } = getSpellCountForClass(data.class, data.level, abilityMod);
+  const { cantrips: maxCantrips, spells: maxSpells } = getSpellCountForClass(data.class, data.level, abilityMod, data.ruleset);
 
   const selectedSpells = data.spells || [];
   const selectedCantrips = selectedSpells.filter((s) => s.level === 0);
@@ -167,7 +167,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       const newSpells: Character["spells"] = [];
       const newPreparedIds: string[] = [];
       for (const name of missingDomainSpells) {
-        const spell = getStaticSpells(data.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+        const spell = getStaticSpells(data.sources, data.ruleset).find((s) => s.name?.toLowerCase() === name.toLowerCase());
         if (spell) {
           const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
           newSpells.push({
@@ -214,7 +214,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
 
       for (const name of newCircleSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells(data.sources).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(data.sources, data.ruleset).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spellsToAdd.push({

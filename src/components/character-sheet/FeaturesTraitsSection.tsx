@@ -18,7 +18,7 @@ interface FeaturesTraitsSectionProps {
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
-  const feats = useMemo(() => getStaticFeats(), []);
+  const feats = useMemo(() => getStaticFeats([], character.ruleset), [character.ruleset]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
   const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
     onChange({

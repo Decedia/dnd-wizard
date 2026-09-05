@@ -299,7 +299,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                                 {isRecommended("class", cls.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                               </span>
                               {hasSubclasses && (() => {
-                                const filteredCount = getStaticSubclasses(cls.name, data.sources).length;
+                                 const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
                                 return (
                                   <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
                                     {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
