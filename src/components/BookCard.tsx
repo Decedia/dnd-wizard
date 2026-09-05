@@ -108,6 +108,7 @@ export function BookCard({
             background: topColor,
             transformOrigin: "bottom center",
             transform: "rotateX(90deg)",
+            borderRadius: "0 10px 0 0",
           }}
         />
 
@@ -122,6 +123,7 @@ export function BookCard({
             background: topColor,
             transformOrigin: "top center",
             transform: "rotateX(-90deg)",
+            borderRadius: "0 0 10px 0",
           }}
         />
 
