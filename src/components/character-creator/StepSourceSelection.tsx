@@ -287,7 +287,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-[10px]">
+      <div className="grid grid-cols-2 gap-[10px] items-stretch">
         {SOURCE_OPTIONS.map((source) => {
           const isSelected = selectedSources.includes(source.id);
           const isPHB = source.id === "PHB";

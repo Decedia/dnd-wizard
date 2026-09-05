@@ -31,7 +31,7 @@ export function BookCard({
       type="button"
       onClick={onToggle}
       disabled={locked}
-      className="w-full text-left rounded-[16px] overflow-hidden transition-all duration-150 ease-out"
+      className="w-full text-left rounded-[16px] overflow-hidden transition-all duration-150 ease-out flex flex-col"
       style={{
         background: "var(--surface-2)",
         border: "2px solid transparent",
@@ -42,8 +42,13 @@ export function BookCard({
       }}
     >
       <div
-        className="relative h-[90px] overflow-hidden"
-        style={{ background }}
+        className="relative overflow-hidden"
+        style={{
+          background,
+          height: "90px",
+          minHeight: "90px",
+          maxHeight: "90px",
+        }}
       >
         <div className="absolute inset-0 opacity-[0.13] pointer-events-none">
           {patternSvg}
