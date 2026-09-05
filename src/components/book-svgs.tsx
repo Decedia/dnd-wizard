@@ -133,20 +133,13 @@ export const BookIcons = {
   ),
   SCAG: (
     <svg width="100%" height="100%" viewBox="0 0 140 120" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.22">
-      <circle cx="70" cy="60" r="48" />
-      <polygon points="70,8 78,42 70,36 62,42" />
-      <polygon points="70,112 78,78 70,84 62,78" />
-      <polygon points="8,60 42,52 36,60 42,68" />
-      <polygon points="132,60 98,52 104,60 98,68" />
-      <polygon points="24,24 48,44 44,44 44,48" />
-      <polygon points="116,24 92,44 96,44 96,48" />
-      <polygon points="24,96 48,76 44,76 44,72" />
-      <polygon points="116,96 92,76 96,76 96,72" />
-      <circle cx="70" cy="60" r="8" fill="white" opacity="0.85" />
-      <line x1="70" y1="45" x2="70" y2="52" />
-      <line x1="70" y1="68" x2="70" y2="75" />
-      <line x1="55" y1="60" x2="62" y2="60" />
-      <line x1="78" y1="60" x2="85" y2="60" />
+      <path d="M70 10 L70 52" />
+      <path d="M55 52 L85 52 L80 60 L60 60 Z" />
+      <line x1="60" y1="60" x2="80" y2="60" />
+      <line x1="70" y1="60" x2="70" y2="74" />
+      <path d="M60 74 L80 74 L75 82 L65 82 Z" />
+      <line x1="70" y1="18" x2="70" y2="36" opacity="0.5" />
+      <line x1="62" y1="26" x2="78" y2="26" opacity="0.5" />
     </svg>
   ),
   EGW: (
