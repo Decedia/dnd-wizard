@@ -315,13 +315,6 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
       <div className="text-center text-[11px] text-[var(--color-text-muted)]">
         {selectedSources.length} of {SOURCE_OPTIONS.length} selected
       </div>
-
-      <button
-        type="button"
-        className="w-full px-4 py-2.5 text-sm font-semibold rounded-full bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90 transition-opacity"
-      >
-        Next &rarr;
-      </button>
     </div>
   );
 }

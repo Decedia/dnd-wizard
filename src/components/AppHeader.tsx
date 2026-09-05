@@ -18,7 +18,7 @@ interface AppHeaderProps {
 
 export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave, showThemeToggle, showDescriptions, onShowDescriptionsChange }: AppHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-border-strong bg-paper/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-border-strong bg-paper">
       <div className="mx-auto max-w-lg px-4 py-3">
         <div className="flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center gap-3 group">
