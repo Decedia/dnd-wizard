@@ -113,6 +113,12 @@ export default function Home() {
             <Download className="h-4 w-4 mr-2 inline" />
             Backup All Characters
           </button>
+          <Link
+            href="/test-3d"
+            className="btn btn-secondary w-full"
+          >
+            Test 3D
+          </Link>
           <input
             ref={importInputRef}
             type="file"
