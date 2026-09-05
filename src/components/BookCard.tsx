@@ -44,6 +44,7 @@ export function BookCard({
       disabled={locked}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={() => setIsHovered(false)}
       className="relative w-full text-left"
       style={{
         perspective: "600px",
@@ -62,7 +63,7 @@ export function BookCard({
           paddingTop: "140%",
           transformStyle: "preserve-3d",
           transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          transform: isActive ? "rotateY(-25deg) rotateX(5deg)" : undefined,
+          transform: isActive ? "rotateY(-12deg) rotateX(3deg)" : "none",
         }}
       >
         {/* Spine */}
