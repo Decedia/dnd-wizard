@@ -247,8 +247,6 @@ export default function CharacterView() {
           )}
           {activeTab === "bio" && (
             <>
-              <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
-              <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
               {character.level < 20 && (
                 <button
                   onClick={() => router.push(`/character/${character.id}/level-up`)}
@@ -257,6 +255,8 @@ export default function CharacterView() {
                   Level Up
                 </button>
               )}
+              <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
+              <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
               <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
