@@ -44,7 +44,7 @@ export function BookCard({
       disabled={locked}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onMouseDown={() => setIsHovered(false)}
+      onPointerDown={() => setIsHovered(false)}
       className="relative w-full text-left"
       style={{
         perspective: "600px",
