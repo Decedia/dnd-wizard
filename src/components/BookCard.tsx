@@ -160,7 +160,7 @@ export function BookCard({
             position: "absolute",
             inset: 0,
             background: coverGradient,
-            borderRadius: "3px 10px 10px 3px",
+            borderRadius: "0 10px 10px 0",
             overflow: "hidden",
           }}
         >
@@ -292,7 +292,7 @@ export function BookCard({
             position: "absolute",
             inset: -3,
             border: "2.5px solid #111111",
-            borderRadius: "3px 12px 12px 3px",
+            borderRadius: "0 12px 12px 0",
             opacity: selected ? 1 : 0,
             pointerEvents: "none",
             transition: "opacity 0.2s",
