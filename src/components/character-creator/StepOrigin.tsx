@@ -8,6 +8,8 @@ import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { BasePopup } from "@/components/BasePopup";
+import { RaceFace } from "@/components/race-faces";
+import { WEAPON_ICONS } from "@/components/weapon-icons";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
@@ -269,10 +271,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           showFooter={true}
         >
            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-            {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
+             {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
               const isSelected = pendingClass === cls.name;
               const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
-              const Icon = classIcons[cls.name] || Sparkle;
+              const WeaponIcon = WEAPON_ICONS[cls.name] || Sparkle;
 
               return (
                 <div key={cls.name} className="flex items-center gap-2">
@@ -287,7 +289,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                   >
                     <div className="flex items-center gap-3">
                       <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                        <Icon className="h-5 w-5" />
+                        <WeaponIcon className="h-5 w-5" />
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
@@ -331,9 +333,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           showFooter={true}
         >
            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
-            {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
+             {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
               const isSelected = pendingRace === race.name;
-              const Icon = raceIcons[race.name] || Users;
               const isHuman = race.name === "Human";
 
               return (
@@ -349,8 +350,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                          <Icon className="h-5 w-5" />
+                        <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-sm)] overflow-hidden ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                          <RaceFace raceName={race.name} size={56} />
                         </div>
                          <div className="flex-1">
                              <div className="flex items-center justify-between">
