@@ -248,12 +248,14 @@ export default function CharacterView() {
           {activeTab === "bio" && (
             <>
               {character.level < 20 && (
-                <button
-                  onClick={() => router.push(`/character/${character.id}/level-up`)}
-                  className="btn btn-secondary w-full"
-                >
-                  Level Up
-                </button>
+                <div className="mb-4">
+                  <button
+                    onClick={() => router.push(`/character/${character.id}/level-up`)}
+                    className="btn btn-secondary w-full"
+                  >
+                    Level Up
+                  </button>
+                </div>
               )}
               <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
               <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
