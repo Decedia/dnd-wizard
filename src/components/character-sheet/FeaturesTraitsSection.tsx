@@ -213,7 +213,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                               })()}
                                {feature.name}
                                {feature.value && (
-                                 <span className="text-[10px] font-bold text-[var(--color-text-secondary)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">
+                                 <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
                                    {feature.value}
                                  </span>
                                )}
@@ -232,7 +232,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                               })()}
                               {feature.name}
                               {feature.value && (
-                                <span className="text-[10px] font-bold text-[var(--color-text-secondary)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">
+                                <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
                                   {feature.value}
                                 </span>
                               )}
