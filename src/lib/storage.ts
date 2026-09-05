@@ -56,7 +56,7 @@ export interface Character {
   toolProficiencies: string[];
   expertise: string[];
   passivePerception: number;
-  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive" }[];
+  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string }[];
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
@@ -172,6 +172,80 @@ export function getProficiencyBonus(level: number): number {
 
 export function getModifier(score: number): number {
   return Math.floor((score - 10) / 2);
+}
+
+export function getFeatureValue(featureName: string, character: Character): string | undefined {
+  const level = character.level || 1;
+  const classData = getStaticClass(character.class, character.ruleset);
+  if (!classData) return undefined;
+
+  const lower = featureName.toLowerCase();
+
+  if (lower.includes("lay on hands")) {
+    return `${level * 5} HP`;
+  }
+
+  if (lower.includes("bardic inspiration")) {
+    const chaMod = getModifier(character.cha);
+    if (lower.includes("uses")) return `${Math.max(1, chaMod)}`;
+    const die = getBardicInspirationDie(character);
+    return die;
+  }
+
+  if (lower.includes("song of rest")) {
+    return getSongOfRestDie(character);
+  }
+
+  if (lower.includes("rage uses")) {
+    const uses = classData.rageUses?.[String(level)];
+    return uses !== undefined ? String(uses) : undefined;
+  }
+
+  if (lower.includes("rage damage")) {
+    const bonus = classData.rageDamageBonus?.[String(level)];
+    return bonus !== undefined ? `+${bonus}` : undefined;
+  }
+
+  if (lower.includes("ki points")) {
+    const points = classData.kiPoints?.[String(level)];
+    return points !== undefined ? String(points) : undefined;
+  }
+
+  if (lower.includes("martial arts")) {
+    const die = classData.martialArtsDie?.[String(level)];
+    return die ? `d${die}` : undefined;
+  }
+
+  if (lower.includes("sneak attack")) {
+    const dice = classData.sneakAttackDice?.[String(level)];
+    return dice ? `${dice}d6` : undefined;
+  }
+
+  if (lower.includes("sorcery points")) {
+    const points = classData.sorceryPoints?.[String(level)];
+    return points !== undefined ? String(points) : undefined;
+  }
+
+  if (lower.includes("action surge")) {
+    return "1/short rest";
+  }
+
+  if (lower.includes("indomitable")) {
+    const uses = classData.indomitableUses?.[String(level)];
+    return uses !== undefined ? `${uses}/long rest` : undefined;
+  }
+
+  if (lower.includes("channel divinity")) {
+    const uses = classData.channelDivinityUses?.[String(level)];
+    return uses !== undefined ? `${uses}/short rest` : undefined;
+  }
+
+  if (lower.includes("wild shape")) {
+    const uses = classData.wildShapeUses?.[String(level)];
+    return uses !== undefined ? `${uses}/short rest` : undefined;
+  }
+
+  return undefined;
 }
 
 export function clampAbilityScore(score: number): number {

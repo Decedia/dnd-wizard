@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getStaticArcaneTricksterSpells, getSubclassFlags, getPactBoons, getStaticFeat } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, getFeatureValue, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -204,20 +204,6 @@ function buildLevelInfos(
     }
 
     const classFeatures: { name: string; value: string }[] = [];
-    const classFeatureMap: Record<string, Record<string, any> | undefined> = {
-      Barbarian: { "Rage Uses": classData.rageUses, "Rage Damage": classData.rageDamageBonus },
-      Cleric: { "Channel Divinity": classData.channelDivinityUses },
-      Druid: { "Wild Shape": classData.wildShapeUses },
-      Fighter: { "Action Surge": classData.actionSurgeUses, Indomitable: classData.indomitableUses },
-      Monk: { "Ki Points": classData.kiPoints, "Movement": classData.unarmoredMovement, "Martial Arts": classData.martialArtsDie },
-      Rogue: { "Sneak Attack": classData.sneakAttackDice },
-      Sorcerer: { "Sorcery Points": classData.sorceryPoints },
-      Warlock: { "Invocations": classData.invocationsKnown },
-      Wizard: { "Spellbook": classData.spellbookSpells },
-      Ranger: {},
-      Paladin: {},
-      Bard: {},
-    };
 
     if (className === "Bard") {
       classFeatures.push({ name: "Bardic Inspiration", value: `${getBardicInspirationDie({ ...character, level } as Character)}` });
@@ -226,19 +212,18 @@ function buildLevelInfos(
       classFeatures.push({ name: "Bardic Inspiration Uses", value: `${Math.max(1, chaMod)}` });
     }
 
-    const featureValues = classFeatureMap[className];
-    if (featureValues) {
-      for (const [name, data] of Object.entries(featureValues)) {
-        if (data && typeof data === "object" && String(level) in data) {
-          const val = (data as Record<string, any>)[String(level)];
-          if (val !== undefined) {
-            if (name === "Martial Arts") classFeatures.push({ name, value: `d${val}` });
-            else if (name === "Movement") classFeatures.push({ name, value: `+${val} ft` });
-            else if (name === "Rage Damage") classFeatures.push({ name, value: `+${val}` });
-            else if (name === "Sneak Attack") classFeatures.push({ name, value: `${val}d6` });
-            else classFeatures.push({ name, value: String(val) });
-          }
-        }
+    const featureNames = [
+      "Rage Uses", "Rage Damage", "Channel Divinity", "Wild Shape",
+      "Action Surge", "Indomitable", "Ki Points", "Martial Arts",
+      "Sneak Attack", "Sorcery Points", "Invocations", "Spellbook",
+      "Lay on Hands", "Bardic Inspiration Uses", "Song of Rest",
+      "Movement",
+    ];
+
+    for (const name of featureNames) {
+      const value = getFeatureValue(name, { ...character, level } as Character);
+      if (value) {
+        classFeatures.push({ name, value });
       }
     }
 

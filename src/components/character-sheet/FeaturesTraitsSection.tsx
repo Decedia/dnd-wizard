@@ -6,6 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles, CrownIcon as Crown, BowArrowIcon as BowArrowIcon, ShieldIcon as ShieldIcon, SwordIcon as SwordIcon, BattleAxeIcon as BattleAxeIcon, DaggerIcon as DaggerIcon, MagicWandIcon as MagicWandIcon, HealingIcon as HealingIcon, MusicNotesIcon as MusicNotesIcon, FlameIcon as Flame, SkullIcon as Skull } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
+import { getFeatureValue } from "@/lib/storage";
 import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
 
@@ -210,24 +211,34 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                                 const FeatureIcon = getFeatureIcon(feature.name, feature.source);
                                 return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
                               })()}
+                               {feature.name}
+                               {feature.value && (
+                                 <span className="text-[10px] font-bold text-[var(--color-text-secondary)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">
+                                   {feature.value}
+                                 </span>
+                               )}
+                             </button>
+                           );
+                         }
+                         // For features without matched feat data (custom or class/race features)
+                         return (
+                           <>
+                             {feature.source && feature.source !== "custom" && (
+                               <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
+                             )}
+                              {(() => {
+                                const FeatureIcon = getFeatureIcon(feature.name, feature.source);
+                                return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
+                              })()}
                               {feature.name}
-                            </button>
-                          );
-                        }
-                        // For features without matched feat data (custom or class/race features)
-                        return (
-                          <>
-                            {feature.source && feature.source !== "custom" && (
-                              <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
-                            )}
-                             {(() => {
-                               const FeatureIcon = getFeatureIcon(feature.name, feature.source);
-                               return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
-                             })()}
-                             {feature.name}
-                          </>
-                        );
-                      })()}
+                              {feature.value && (
+                                <span className="text-[10px] font-bold text-[var(--color-text-secondary)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded">
+                                  {feature.value}
+                                </span>
+                              )}
+                           </>
+                         );
+                       })()}
                       {isFeatureUsable(feature) && (character.featuresUsedThisTurn || []).includes(feature.id) && (
                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
                       )}

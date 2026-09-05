@@ -1,4 +1,4 @@
-import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, type Character } from "./storage";
+import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, type Character } from "./storage";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
 import type { CreationStep } from "./creation-types";
 
@@ -779,13 +779,17 @@ export function syncBaseFeatures(character: Character): Character {
       (f.source === "subclass" && subclassStillValid)
   );
 
-  const baseFeatures: Character["features"] = base.map((f) => ({
-    id: `base-${f.source}-${f.name}`.replace(/\s+/g, "-"),
-    name: f.name,
-    description: f.description,
-    source: f.source,
-    locked: true,
-  }));
+  const baseFeatures: Character["features"] = base.map((f) => {
+    const featureValue = getFeatureValue(f.name, character);
+    return {
+      id: `base-${f.source}-${f.name}`.replace(/\s+/g, "-"),
+      name: f.name,
+      description: f.description,
+      source: f.source,
+      locked: true,
+      value: featureValue,
+    };
+  });
 
   return { ...character, features: [...baseFeatures, ...kept] };
 }
