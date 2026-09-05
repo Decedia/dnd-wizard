@@ -35,7 +35,7 @@ export function BookCard({
       style={{
         background: "var(--surface-2)",
         border: "1px solid transparent",
-        boxShadow: selected ? "0 0 0 1px #111111" : "none",
+        boxShadow: selected ? "0 0 0 2px #111111" : "none",
         cursor: locked ? "default" : "pointer",
         pointerEvents: locked ? "none" : "auto",
         opacity: locked ? 0.9 : 1,
