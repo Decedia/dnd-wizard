@@ -1,48 +1,258 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { SwordIcon as Sword, UsersIcon as Users, SparkleIcon as Sparkle, MusicNotesIcon as MusicNotes, ShieldIcon as Shield, FlameIcon as Flame, SkullIcon as Skull, FistIcon as HandFist, LeafIcon as Leaf, EyeIcon as Eye, MagicWandIcon as MagicWand, HeartBottleIcon as Heart, CheckIcon as Check, PlusIcon as Plus, MinusIcon as Minus, StarIcon as Star, BarbarianIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, WarlockIcon, WizardStaffIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, DemonSkullIcon, PersonIcon, GearGiIcon as ArtificerIcon, ElfEarIcon, DevilMaskIcon } from "@/components/icons";
+import { UsersIcon as Users, CheckIcon as Check, StarIcon as Star, PersonIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { BasePopup } from "@/components/BasePopup";
-import { RACE_ICONS } from "@/components/race-icons";
-import { WEAPON_ICONS } from "@/components/weapon-icons";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
+import {
+  PiHandFist as PiHandFistIcon,
+  PiMusicNotes as PiMusicNotesIcon,
+  PiCross as PiCrossIcon,
+  PiLeaf as PiLeafIcon,
+  PiSword as PiSwordIcon,
+  PiHand as PiHandIcon,
+  PiShield as PiShieldIcon,
+  PiCrosshair as PiCrosshairIcon,
+  PiMaskSad as PiMaskSadIcon,
+  PiMagicWand as PiMagicWandIcon,
+  PiHoodie as PiHoodieIcon,
+  PiNotebook as PiNotebookIcon,
+  PiWrench as PiWrenchIcon,
+  PiUser as PiUserIcon,
+  PiMoon as PiMoonIcon,
+  PiHammer as PiHammerIcon,
+  PiFootprints as PiFootprintsIcon,
+  PiFire as PiFireIcon,
+  PiGear as PiGearIcon,
+  PiSkull as PiSkullIcon,
+  PiPerson as PiPersonIcon,
+  PiTarget as PiTargetIcon,
+  PiUserSwitch as PiUserSwitchIcon,
+  PiHeart as PiHeartIcon,
+  PiTree as PiTreeIcon,
+  PiCompass as PiCompassIcon,
+  PiBrain as PiBrainIcon,
+  PiBug as PiBugIcon,
+  PiStar as PiStarIcon,
+  PiBird as PiBirdIcon,
+  PiScales as PiScalesIcon,
+  PiFish as PiFishIcon,
+  PiGhost as PiGhostIcon,
+  PiSun as PiSunIcon,
+  PiPawPrint as PiPawPrintIcon,
+  PiCrown as PiCrownIcon,
+  PiSparkle as PiSparkleIcon,
+  PiAxe as PiAxeIcon,
+} from "react-icons/pi";
 
-const classIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  Barbarian: BarbarianIcon,
-  Bard: MusicNotes,
-  Cleric: ClericIcon,
-  Druid: DruidIcon,
-  Fighter: FighterIcon,
-  Monk: MonkIcon,
-  Paladin: PaladinIcon,
-  Ranger: RangerIcon,
-  Rogue: RogueIcon,
-  Sorcerer: Sparkle,
-  Warlock: WarlockIcon,
-  Wizard: WizardStaffIcon,
-  Artificer: ArtificerIcon,
+const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Barbarian: PiHandFistIcon,
+  Bard: PiMusicNotesIcon,
+  Cleric: PiCrossIcon,
+  Druid: PiLeafIcon,
+  Fighter: PiSwordIcon,
+  Monk: PiHandIcon,
+  Paladin: PiShieldIcon,
+  Ranger: PiCrosshairIcon,
+  Rogue: PiMaskSadIcon,
+  Sorcerer: PiMagicWandIcon,
+  Warlock: PiHoodieIcon,
+  Wizard: PiNotebookIcon,
+  Artificer: PiWrenchIcon,
 };
 
-const raceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  Human: RACE_ICONS.Human,
-  Elf: RACE_ICONS.Elf,
-  Dwarf: RACE_ICONS.Dwarf,
-  Halfling: RACE_ICONS.Halfling,
-  Dragonborn: RACE_ICONS.Dragonborn,
-  Gnome: RACE_ICONS.Gnome,
-  "Half-Elf": RACE_ICONS["Half-Elf"],
-  "Half-Orc": RACE_ICONS["Half-Orc"],
-  Tiefling: RACE_ICONS.Tiefling,
-  "Variant Human": RACE_ICONS.VariantHuman,
+const RACE_SKIN_COLORS: Record<string, string> = {
+  Human: "#f1c27d",
+  Elf: "#ffdbac",
+  Dwarf: "#d2a679",
+  Halfling: "#ffdbac",
+  Dragonborn: "#cd7f32",
+  Gnome: "#ffdbac",
+  "Half-Elf": "#f1c27d",
+  "Half-Orc": "#6b7c5e",
+  Tiefling: "#8b3a3a",
+  "Variant Human": "#f1c27d",
+  Bugbear: "#8b7355",
+  Changeling: "#e0ac69",
+  Dhampir: "#d3d3d3",
+  Firbolg: "#e0ac69",
+  Githyanki: "#d3d3d3",
+  Githzerai: "#e0ac69",
+  Goblin: "#7d8a6e",
+  Hobgoblin: "#8b7355",
+  Kenku: "#5c4033",
+  Lizardfolk: "#6b8e23",
+  Orc: "#5a7248",
+  Reborn: "#d3d3d3",
+  Shifter: "#8b7355",
+  Tabaxi: "#d2a679",
+  Triton: "#5f9ea0",
+  Hexblood: "#e0ac69",
+  "Dragonborn (Chromatic)": "#cd7f32",
+  "Dragonborn (Gem)": "#e0ac69",
+  "Dragonborn (Metallic)": "#c0c0c0",
+  "Deep Gnome (Svirfneblin)": "#ffdbac",
+  "Eladrin (Elf)": "#ffdbac",
+  "Forest Gnome": "#ffdbac",
+  "Rock Gnome": "#ffdbac",
+  "Hill Dwarf": "#d2a679",
+  "Mountain Dwarf": "#d2a679",
+  "Lightfoot Halfling": "#ffdbac",
+  "Stout Halfling": "#ffdbac",
+  "Ghostwise Halfling": "#ffdbac",
+  "Half-Elf (High Elf)": "#f1c27d",
+  "Half-Elf (Wood Elf)": "#f1c27d",
+  "Half-Elf (Drow)": "#f1c27d",
+  "Half-Elf (Moon Elf)": "#f1c27d",
+  "Half-Elf (Sun Elf)": "#f1c27d",
+  "Half-Elf (Sea Elf)": "#f1c27d",
+  "Half-Elf (Shadar-kai)": "#f1c27d",
+  "Half-Elf (Eladrin)": "#f1c27d",
+  "Tiefling (Asmodeus)": "#8b3a3a",
+  "Tiefling (Baalzebul)": "#8b3a3a",
+  "Tiefling (Zariel)": "#c0c0c0",
+  "Tiefling (Dispater)": "#8b3a3a",
+  "Tiefling (Fierna)": "#8b3a3a",
+  "Tiefling (Glasya)": "#8b3a3a",
+  "Tiefling (Levistus)": "#8b3a3a",
+  "Tiefling (Mammon)": "#8b3a3a",
+  "Tiefling (Mephistopheles)": "#8b3a3a",
 };
+
+const RACE_ICONS_PHOSPHOR: Record<string, React.ComponentType<{ className?: string }> | "hybrid"> = {
+  Human: PiUserIcon,
+  Elf: PiMoonIcon,
+  Dwarf: PiHammerIcon,
+  Halfling: PiFootprintsIcon,
+  Dragonborn: PiFireIcon,
+  Gnome: PiGearIcon,
+  "Half-Elf": "hybrid",
+  "Half-Orc": "hybrid",
+  Tiefling: PiSkullIcon,
+  "Variant Human": PiPersonIcon,
+  Bugbear: PiTargetIcon,
+  Changeling: PiUserSwitchIcon,
+  Dhampir: PiHeartIcon,
+  Firbolg: PiTreeIcon,
+  Githyanki: PiCompassIcon,
+  Githzerai: PiBrainIcon,
+  Goblin: PiBugIcon,
+  Hobgoblin: PiStarIcon,
+  Kenku: PiBirdIcon,
+  Lizardfolk: PiScalesIcon,
+  Orc: PiAxeIcon,
+  Reborn: PiGhostIcon,
+  Shifter: PiSunIcon,
+  Tabaxi: PiPawPrintIcon,
+  Triton: PiFishIcon,
+  Hexblood: PiCrownIcon,
+  "Dragonborn (Chromatic)": PiFireIcon,
+  "Dragonborn (Gem)": PiSparkleIcon,
+  "Dragonborn (Metallic)": PiShieldIcon,
+  "Deep Gnome (Svirfneblin)": PiGearIcon,
+  "Eladrin (Elf)": PiMoonIcon,
+  "Forest Gnome": PiGearIcon,
+  "Rock Gnome": PiGearIcon,
+  "Hill Dwarf": PiHammerIcon,
+  "Mountain Dwarf": PiHammerIcon,
+  "Lightfoot Halfling": PiFootprintsIcon,
+  "Stout Halfling": PiFootprintsIcon,
+  "Ghostwise Halfling": PiFootprintsIcon,
+  "Half-Elf (High Elf)": "hybrid",
+  "Half-Elf (Wood Elf)": "hybrid",
+  "Half-Elf (Drow)": "hybrid",
+  "Half-Elf (Moon Elf)": "hybrid",
+  "Half-Elf (Sun Elf)": "hybrid",
+  "Half-Elf (Sea Elf)": "hybrid",
+  "Half-Elf (Shadar-kai)": "hybrid",
+  "Half-Elf (Eladrin)": "hybrid",
+  "Tiefling (Asmodeus)": PiSkullIcon,
+  "Tiefling (Baalzebul)": PiSkullIcon,
+  "Tiefling (Zariel)": PiSkullIcon,
+  "Tiefling (Dispater)": PiSkullIcon,
+  "Tiefling (Fierna)": PiSkullIcon,
+  "Tiefling (Glasya)": PiSkullIcon,
+  "Tiefling (Levistus)": PiSkullIcon,
+  "Tiefling (Mammon)": PiSkullIcon,
+  "Tiefling (Mephistopheles)": PiSkullIcon,
+};
+
+function HybridRaceIcon({
+  topLeftIcon: TopLeftIcon,
+  bottomRightIcon: BottomRightIcon,
+  topLeftColor,
+  bottomRightColor,
+  className,
+}: {
+  topLeftIcon: React.ComponentType<{ className?: string }>;
+  bottomRightIcon: React.ComponentType<{ className?: string }>;
+  topLeftColor: string;
+  bottomRightColor: string;
+  className?: string;
+}) {
+  return (
+    <div className={`relative overflow-hidden ${className || ""}`}>
+      <div className="absolute inset-0 flex items-center justify-center" style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}>
+        <div className="w-full h-full flex items-center justify-center" style={{ color: topLeftColor }}>
+          <TopLeftIcon className="w-full h-full max-w-none" />
+        </div>
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center" style={{ clipPath: "polygon(100% 0, 100% 100%, 0 100%)" }}>
+        <div className="w-full h-full flex items-center justify-center" style={{ color: bottomRightColor }}>
+          <BottomRightIcon className="w-full h-full max-w-none" />
+        </div>
+      </div>
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: "linear-gradient(to top right, transparent calc(50% - 1px), rgba(0,0,0,0.3) 50%, transparent calc(50% + 1px))"
+      }} />
+    </div>
+  );
+}
+
+function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string; isVariant: boolean; className?: string }) {
+  if (raceName === "Human" && isVariant) {
+    return <span style={{ color: RACE_SKIN_COLORS["Variant Human"] }} className="inline-flex"><PiPersonIcon className={className} /></span>;
+  }
+
+  const iconEntry = RACE_ICONS_PHOSPHOR[raceName];
+
+  if (iconEntry === "hybrid") {
+    if (raceName === "Half-Elf" || raceName.startsWith("Half-Elf")) {
+      return (
+        <HybridRaceIcon
+          topLeftIcon={PiUserIcon}
+          bottomRightIcon={PiMoonIcon}
+          topLeftColor={RACE_SKIN_COLORS.Human}
+          bottomRightColor={RACE_SKIN_COLORS.Elf}
+          className={className}
+        />
+      );
+    }
+    if (raceName === "Half-Orc") {
+      return (
+        <HybridRaceIcon
+          topLeftIcon={PiUserIcon}
+          bottomRightIcon={PiAxeIcon}
+          topLeftColor={RACE_SKIN_COLORS.Human}
+          bottomRightColor={RACE_SKIN_COLORS.Orc}
+          className={className}
+        />
+      );
+    }
+  }
+
+  const Icon = iconEntry ? (iconEntry as React.ComponentType<{ className?: string }>) : Users;
+  const color = RACE_SKIN_COLORS[raceName];
+  return <span style={{ color }} className="inline-flex"><Icon className={className} /></span>;
+}
 
 interface StepOriginProps {
   data: Character;
@@ -198,7 +408,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             {
               title: "Choosing a Class",
               content: "Your class determines your main role in the party. Fighters are great for beginners—they're tough and deal consistent damage. Clerics are also beginner-friendly, as they can heal and fight.",
-              icon: Sword,
+              icon: PiSwordIcon,
             },
             {
               title: "Choosing a Race",
@@ -224,7 +434,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         >
           <div className="flex items-center gap-4">
             <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.class ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              {data.class ? (() => { const Icon = classIcons[data.class] || Sword; return <Icon className="h-7 w-7" />; })() : <Sword className="h-7 w-7" />}
+              {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || PiSwordIcon; return <Icon className="h-7 w-7" />; })() : <PiSwordIcon className="h-7 w-7" />}
             </div>
             <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Class</div>
@@ -247,7 +457,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         >
           <div className="flex items-center gap-4">
             <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.race ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              {data.race ? (() => { const Icon = (data.race === "Human" && data.raceVariant === "variant") ? RACE_ICONS.VariantHuman : (raceIcons[data.race] || Users); return <Icon className="h-7 w-7" />; })() : <Users className="h-7 w-7" />}
+              {data.race ? <RaceIconRenderer raceName={data.race} isVariant={data.race === "Human" && data.raceVariant === "variant"} className="h-7 w-7" /> : <Users className="h-7 w-7" />}
             </div>
             <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Race</div>
@@ -275,7 +485,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
              {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
               const isSelected = pendingClass === cls.name;
               const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
-              const WeaponIcon = WEAPON_ICONS[cls.name] || Sparkle;
+              const WeaponIcon = CLASS_ICONS[cls.name] || PiSwordIcon;
 
               return (
                 <div key={cls.name} className="flex items-center gap-2">
@@ -336,10 +546,9 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
               {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
                const isSelected = pendingRace === race.name;
-               const isHuman = race.name === "Human";
-               const RaceIcon = (isHuman && pendingVariant) ? RACE_ICONS.VariantHuman : (RACE_ICONS[race.name] || Users);
+                const isHuman = race.name === "Human";
 
-               return (
+                return (
                  <div key={race.name} className="space-y-2">
                    <div className="flex items-center gap-2">
                      <button
@@ -353,7 +562,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                      >
                        <div className="flex items-center gap-3">
                          <div className={`flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                           <RaceIcon className="h-5 w-5" />
+                            <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-5 w-5" />
                          </div>
                          <div className="flex-1">
                              <div className="flex items-center justify-between">

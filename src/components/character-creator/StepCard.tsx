@@ -3,8 +3,6 @@
 import { SectionCard } from "@/components/character-sheet/SectionCard";
 import {
   UserIcon as User,
-  UsersIcon as Users,
-  SwordIcon as Sword,
   ChartBarIcon as ChartBar,
   ScrollIcon as Scroll,
   ListChecksIcon as ListChecks,
@@ -14,6 +12,7 @@ import {
   CrownIcon as Crown,
   ClipboardTextIcon as ClipboardText,
 } from "@/components/icons";
+import { PiUsers as PiUsersIcon, PiSword as PiSwordIcon } from "react-icons/pi";
 
 interface StepProps {
   title: string;
@@ -37,8 +36,8 @@ export function StepCard({ title, hint, children }: StepProps) {
 function getStepIcon(title: string) {
   const icons: Record<string, React.ReactNode> = {
     Identity: <User className="h-5 w-5" />,
-    Race: <Users className="h-5 w-5" />,
-    Class: <Sword className="h-5 w-5" />,
+    Race: <PiUsersIcon className="h-5 w-5" />,
+    Class: <PiSwordIcon className="h-5 w-5" />,
     "Ability Scores": <ChartBar className="h-5 w-5" />,
     Background: <Scroll className="h-5 w-5" />,
     Skills: <ListChecks className="h-5 w-5" />,
