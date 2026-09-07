@@ -3,7 +3,6 @@
 import { useState, useMemo, useCallback } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
-import { getModifier } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { StarIcon as Star, ChartBarIcon as ChartBar, SparklesIcon as Sparkles, DiceIcon as Dice } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
@@ -242,7 +241,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           {sortedAbilities.map(({ key, label, full }) => {
             const finalScore = getFinalScore(key);
             const baseScore = getBaseScore(key);
-            const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
             const currentSelection = currentSelections[key];
 
@@ -266,34 +264,28 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                      <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
                    )}
                    <select
-                    value={currentSelection ?? "-"}
-                    onChange={(e) => {
-                      const val = e.target.value === "-" ? null : parseInt(e.target.value);
-                      setStandardArraySelections(prev => ({ ...prev, [key]: val }));
-                      if (val !== null) {
-                        onChange({ [key]: val } as Partial<Character>);
-                      }
-                    }}
-                    className="input w-16 text-center border border-border-strong rounded-full"
-                  >
-                    <option value="-">-</option>
-                    {STANDARD_ARRAY.map((val) => {
-                      const isTakenByOther = valuesUsedByOthers.includes(val);
-                      return (
-                        <option key={val} value={val} disabled={isTakenByOther}>{val}</option>
-                      );
-                    })}
-                  </select>
-                  <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
-                      {modifier >= 0 ? `+${modifier}` : modifier}
-                    </span>
-                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                     value={currentSelection ?? "-"}
+                     onChange={(e) => {
+                       const val = e.target.value === "-" ? null : parseInt(e.target.value);
+                       setStandardArraySelections(prev => ({ ...prev, [key]: val }));
+                       if (val !== null) {
+                         onChange({ [key]: val } as Partial<Character>);
+                       }
+                     }}
+                     className="input w-16 text-center border border-border-strong rounded-full"
+                   >
+                     <option value="-">-</option>
+                     {STANDARD_ARRAY.map((val) => {
+                       const isTakenByOther = valuesUsedByOthers.includes(val);
+                       return (
+                         <option key={val} value={val} disabled={isTakenByOther}>{val}</option>
+                       );
+                     })}
+                   </select>
+                 </div>
+               </div>
+             );
+           })}
         </div>
       </div>
     );
@@ -312,7 +304,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           {sortedAbilities.map(({ key, label, full }) => {
             const score = pointBuyScores[key];
             const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
             const cost = POINT_BUY_COSTS[score] || 0;
             const canDecrease = score > 8;
@@ -351,12 +342,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     +
                   </button>
-                  <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
-                      {modifier >= 0 ? `+${modifier}` : modifier}
-                    </span>
-                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
-                  </div>
                 </div>
               </div>
             );
@@ -374,7 +359,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           {sortedAbilities.map(({ key, label, full }) => {
             const score = manualScores[key];
             const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
 
             return (
@@ -410,12 +394,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     +
                   </button>
-                  <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
-                      {modifier >= 0 ? `+${modifier}` : modifier}
-                    </span>
-                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
-                  </div>
                 </div>
               </div>
             );
@@ -442,7 +420,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           {sortedAbilities.map(({ key, label, full }) => {
             const score = freeBuyScores[key];
             const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
             const raceBonus = raceBonuses[key] || 0;
             const canDecrease = score > FREE_BUY_MIN;
             const canIncrease = score < FREE_BUY_MAX && remainingPoints > 0;
@@ -480,12 +457,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     +
                   </button>
-                  <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
-                      {modifier >= 0 ? `+${modifier}` : modifier}
-                    </span>
-                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
-                  </div>
                 </div>
               </div>
             );

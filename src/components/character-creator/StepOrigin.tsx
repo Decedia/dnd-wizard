@@ -443,35 +443,39 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
                return (
                  <div key={cls.name}>
-                   <button
-                     type="button"
-                     onClick={() => setPendingClass(cls.name)}
-                     className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 ${
-                       isSelected
-                         ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
-                         : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                     }`}
-                   >
-                     <div className="flex flex-col items-center text-center gap-2">
-                       <div className={`flex items-center justify-center w-16 h-16 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                         <WeaponIcon className="h-8 w-8" />
-                       </div>
-                       <div className="flex flex-col gap-1">
-                         <span className={`text-card-title flex items-center justify-center gap-1 ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
-                           {cls.name}
-                           {isRecommended("class", cls.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                         </span>
-                         {hasSubclasses && (() => {
-                            const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
-                           return (
-                             <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
-                               {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
-                             </span>
-                           );
-                         })()}
-                       </div>
-                     </div>
-                   </button>
+                    <button
+                      type="button"
+                      onClick={() => setPendingClass(cls.name)}
+                      className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative ${
+                        isSelected
+                          ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
+                          : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      {isRecommended("class", cls.name) && (
+                        <span className="absolute top-2 right-2">
+                          <Star className="h-3.5 w-3.5 text-amber-500" />
+                        </span>
+                      )}
+                      <div className="flex flex-col items-center text-center gap-2">
+                        <div className={`flex items-center justify-center w-16 h-16 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                          <WeaponIcon className="h-8 w-8" />
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                            {cls.name}
+                          </span>
+                          {hasSubclasses && (() => {
+                             const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
+                            return (
+                              <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
+                                {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
+                              </span>
+                            );
+                          })()}
+                        </div>
+                      </div>
+                    </button>
                  </div>
                );
              })}
@@ -502,23 +506,27 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                     <button
                       type="button"
                       onClick={() => setPendingRace(race.name)}
-                      className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 ${
+                      className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative ${
                         isSelected
                           ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
                           : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                       }`}
                     >
+                      {isRecommended("race", race.name) && (
+                        <span className="absolute top-2 right-2">
+                          <Star className="h-3.5 w-3.5 text-amber-500" />
+                        </span>
+                      )}
                       <div className="flex flex-col items-center text-center gap-2">
                         <div className={`flex items-center justify-center w-16 h-16 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                            <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-8 w-8" />
                         </div>
                         <div className="flex flex-col gap-0.5">
-                          <span className={`text-card-title flex items-center justify-center gap-1 ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                          <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
                             {race.name}
                           </span>
                           <div className="flex items-center justify-center gap-1">
                             {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
-                            {isRecommended("race", race.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                           </div>
                           <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
                             {race.size} / Speed {race.speed} ft
