@@ -146,33 +146,26 @@ const RACE_ICONS_GI: Record<string, React.ComponentType<{ className?: string }> 
 };
 
 function HybridRaceIcon({
-  topLeftIcon: TopLeftIcon,
-  bottomRightIcon: BottomRightIcon,
-  topLeftColor,
-  bottomRightColor,
+  leftIcon: LeftIcon,
+  rightIcon: RightIcon,
+  leftColor,
+  rightColor,
   className,
 }: {
-  topLeftIcon: React.ComponentType<{ className?: string }>;
-  bottomRightIcon: React.ComponentType<{ className?: string }>;
-  topLeftColor: string;
-  bottomRightColor: string;
+  leftIcon: React.ComponentType<{ className?: string }>;
+  rightIcon: React.ComponentType<{ className?: string }>;
+  leftColor: string;
+  rightColor: string;
   className?: string;
 }) {
   return (
-    <div className={`relative overflow-hidden ${className || ""}`}>
-      <div className="absolute inset-0 flex items-center justify-center" style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}>
-        <div className="w-full h-full flex items-center justify-center" style={{ color: topLeftColor }}>
-          <TopLeftIcon className="w-full h-full max-w-none" />
-        </div>
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center" style={{ clipPath: "polygon(100% 0, 100% 100%, 0 100%)" }}>
-        <div className="w-full h-full flex items-center justify-center" style={{ color: bottomRightColor }}>
-          <BottomRightIcon className="w-full h-full max-w-none" />
-        </div>
-      </div>
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: "linear-gradient(to bottom left, transparent calc(50% - 1px), rgba(0,0,0,0.3) 50%, transparent calc(50% + 1px))"
-      }} />
+    <div className={`inline-flex ${className || ""}`}>
+      <span style={{ color: leftColor }} className="inline-flex">
+        <LeftIcon className="w-1/2 h-auto" />
+      </span>
+      <span style={{ color: rightColor }} className="inline-flex">
+        <RightIcon className="w-1/2 h-auto" />
+      </span>
     </div>
   );
 }
@@ -188,10 +181,10 @@ function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string
     if (raceName === "Half-Elf" || raceName.startsWith("Half-Elf")) {
       return (
         <HybridRaceIcon
-          topLeftIcon={PersonIcon}
-          bottomRightIcon={ElfIcon}
-          topLeftColor={RACE_SKIN_COLORS.Human}
-          bottomRightColor={RACE_SKIN_COLORS.Elf}
+          leftIcon={PersonIcon}
+          rightIcon={ElfIcon}
+          leftColor={RACE_SKIN_COLORS.Human}
+          rightColor={RACE_SKIN_COLORS.Elf}
           className={className}
         />
       );
@@ -199,10 +192,10 @@ function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string
     if (raceName === "Half-Orc") {
       return (
         <HybridRaceIcon
-          topLeftIcon={PersonIcon}
-          bottomRightIcon={GoblinIcon}
-          topLeftColor={RACE_SKIN_COLORS.Human}
-          bottomRightColor={RACE_SKIN_COLORS.Orc}
+          leftIcon={PersonIcon}
+          rightIcon={GoblinIcon}
+          leftColor={RACE_SKIN_COLORS.Human}
+          rightColor={RACE_SKIN_COLORS.Orc}
           className={className}
         />
       );
