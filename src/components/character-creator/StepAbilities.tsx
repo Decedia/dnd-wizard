@@ -258,12 +258,9 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                    <span className="text-sm font-bold text-ink w-12">{label}</span>
                    <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                  </div>
-                 <div className="flex items-center gap-2">
-                   {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                   {raceBonus > 0 && (
-                     <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
-                   )}
-                   <select
+                  <div className="flex items-center gap-2">
+                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                    <select
                      value={currentSelection ?? "-"}
                      onChange={(e) => {
                        const val = e.target.value === "-" ? null : parseInt(e.target.value);
@@ -303,8 +300,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
         <div className="space-y-3">
           {sortedAbilities.map(({ key, label, full }) => {
             const score = pointBuyScores[key];
-            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const raceBonus = raceBonuses[key] || 0;
             const cost = POINT_BUY_COSTS[score] || 0;
             const canDecrease = score > 8;
             const canIncrease = score < 15 && pointBuyRemaining >= (POINT_BUY_COSTS[score + 1] || 0);
@@ -328,12 +323,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     -
                   </button>
-                  <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-ink">{score}</span>
-                    <span className="text-[10px] text-ink-muted font-medium">
-                      {raceBonus > 0 ? `final: ${finalScore}` : `cost: ${cost}`}
-                    </span>
-                  </div>
+                   <div className="flex flex-col items-center w-20">
+                     <span className="text-lg font-bold text-ink">{score}</span>
+                     <span className="text-[10px] text-ink-muted font-medium">
+                       {cost}
+                     </span>
+                   </div>
                   <button
                     type="button"
                     onClick={() => handlePointBuyChange(key, score + 1)}
@@ -358,8 +353,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
         <div className="space-y-3">
           {sortedAbilities.map(({ key, label, full }) => {
             const score = manualScores[key];
-            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const raceBonus = raceBonuses[key] || 0;
 
             return (
               <div
@@ -380,12 +373,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     -
                   </button>
-                  <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-ink">{score}</span>
-                    <span className="text-[10px] text-ink-muted font-medium">
-                      {raceBonus > 0 ? `final: ${finalScore}` : "max: 15"}
-                    </span>
-                  </div>
+                   <div className="flex flex-col items-center w-20">
+                     <span className="text-lg font-bold text-ink">{score}</span>
+                     <span className="text-[10px] text-ink-muted font-medium">
+                       {"max: 15"}
+                     </span>
+                   </div>
                   <button
                     type="button"
                     onClick={() => handleManualChange(key, score + 1)}
@@ -419,8 +412,6 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
         <div className="space-y-3">
           {sortedAbilities.map(({ key, label, full }) => {
             const score = freeBuyScores[key];
-            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const raceBonus = raceBonuses[key] || 0;
             const canDecrease = score > FREE_BUY_MIN;
             const canIncrease = score < FREE_BUY_MAX && remainingPoints > 0;
 
@@ -443,12 +434,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
                   >
                     -
                   </button>
-                  <div className="flex flex-col items-center w-20">
-                    <span className="text-lg font-bold text-ink">{score}</span>
-                    <span className="text-[10px] text-ink-muted font-medium">
-                      {raceBonus > 0 ? `final: ${finalScore}` : `max: ${FREE_BUY_MAX}`}
-                    </span>
-                  </div>
+                   <div className="flex flex-col items-center w-20">
+                     <span className="text-lg font-bold text-ink">{score}</span>
+                     <span className="text-[10px] text-ink-muted font-medium">
+                       {`max: ${FREE_BUY_MAX}`}
+                     </span>
+                   </div>
                   <button
                     type="button"
                     onClick={() => handleFreeBuyChange(key, score + 1)}
