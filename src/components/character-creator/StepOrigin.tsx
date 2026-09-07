@@ -87,15 +87,15 @@ const RACE_SKIN_COLORS: Record<string, string> = {
   "Tiefling (Mephistopheles)": "#8b3a3a",
 };
 
-const RACE_ICONS_GI: Record<string, React.ComponentType<{ className?: string }> | "hybrid"> = {
+const RACE_ICONS_GI: Record<string, React.ComponentType<{ className?: string }>> = {
   Human: PersonIcon,
   Elf: ElfIcon,
   Dwarf: DwarfIcon,
   Halfling: PersonIcon,
   Dragonborn: DragonHeadIcon,
   Gnome: GnomeIcon,
-  "Half-Elf": "hybrid",
-  "Half-Orc": "hybrid",
+  "Half-Elf": ElfIcon,
+  "Half-Orc": GoblinIcon,
   Tiefling: DevilMaskIcon,
   "Variant Human": HumanIcon,
   Bugbear: PersonIcon,
@@ -126,14 +126,14 @@ const RACE_ICONS_GI: Record<string, React.ComponentType<{ className?: string }> 
   "Lightfoot Halfling": PersonIcon,
   "Stout Halfling": PersonIcon,
   "Ghostwise Halfling": PersonIcon,
-  "Half-Elf (High Elf)": "hybrid",
-  "Half-Elf (Wood Elf)": "hybrid",
-  "Half-Elf (Drow)": "hybrid",
-  "Half-Elf (Moon Elf)": "hybrid",
-  "Half-Elf (Sun Elf)": "hybrid",
-  "Half-Elf (Sea Elf)": "hybrid",
-  "Half-Elf (Shadar-kai)": "hybrid",
-  "Half-Elf (Eladrin)": "hybrid",
+  "Half-Elf (High Elf)": ElfIcon,
+  "Half-Elf (Wood Elf)": ElfIcon,
+  "Half-Elf (Drow)": ElfIcon,
+  "Half-Elf (Moon Elf)": ElfIcon,
+  "Half-Elf (Sun Elf)": ElfIcon,
+  "Half-Elf (Sea Elf)": ElfIcon,
+  "Half-Elf (Shadar-kai)": ElfIcon,
+  "Half-Elf (Eladrin)": ElfIcon,
   "Tiefling (Asmodeus)": DevilMaskIcon,
   "Tiefling (Baalzebul)": DevilMaskIcon,
   "Tiefling (Zariel)": DevilMaskIcon,
@@ -175,34 +175,7 @@ function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string
     return <span style={{ color: RACE_SKIN_COLORS["Variant Human"] }} className="inline-flex"><HumanIcon className={className} /></span>;
   }
 
-  const iconEntry = RACE_ICONS_GI[raceName];
-
-  if (iconEntry === "hybrid") {
-    if (raceName === "Half-Elf" || raceName.startsWith("Half-Elf")) {
-      return (
-        <HybridRaceIcon
-          leftIcon={PersonIcon}
-          rightIcon={ElfIcon}
-          leftColor={RACE_SKIN_COLORS.Human}
-          rightColor={RACE_SKIN_COLORS.Elf}
-          className={className}
-        />
-      );
-    }
-    if (raceName === "Half-Orc") {
-      return (
-        <HybridRaceIcon
-          leftIcon={PersonIcon}
-          rightIcon={GoblinIcon}
-          leftColor={RACE_SKIN_COLORS.Human}
-          rightColor={RACE_SKIN_COLORS.Orc}
-          className={className}
-        />
-      );
-    }
-  }
-
-  const Icon = iconEntry ? (iconEntry as React.ComponentType<{ className?: string }>) : Users;
+  const Icon = RACE_ICONS_GI[raceName] || Users;
   const color = RACE_SKIN_COLORS[raceName];
   return <span style={{ color }} className="inline-flex"><Icon className={className} /></span>;
 }
@@ -463,7 +436,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                            <WeaponIcon className="h-10 w-10" />
                          </div>
                          <div className="flex flex-col gap-1">
-                           <span className={`text-card-title whitespace-nowrap ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                           <span className={`text-card-title text-[10px] sm:text-xs whitespace-nowrap ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
                              {cls.name}
                            </span>
                            {hasSubclasses && (() => {
@@ -549,13 +522,13 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                            <div className={`flex items-center justify-center w-20 h-20 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                               <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-10 w-10" />
                            </div>
-                           <div className="flex flex-col gap-0.5">
-                             <span className={`text-card-title whitespace-nowrap ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
-                               {displayName}
+                          <div className="flex flex-col gap-0.5">
+                            <span className={`text-card-title text-[10px] sm:text-xs whitespace-nowrap ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                              {displayName}
+                            </span>
+                             <span className="text-[9px] sm:text-[10px] font-semibold text-[var(--color-text-muted)] whitespace-nowrap">
+                               {race.size} / Speed {race.speed} ft
                              </span>
-                              <span className="text-[10px] font-semibold text-[var(--color-text-muted)] whitespace-nowrap">
-                                {race.size} / Speed {race.speed} ft
-                              </span>
                             </div>
                          </div>
                          {race.source && <SourceBadge source={race.source} />}
