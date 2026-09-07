@@ -1,72 +1,32 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { UsersIcon as Users, CheckIcon as Check, StarIcon as Star, PersonIcon } from "@/components/icons";
+import { UsersIcon as Users, CheckIcon as Check, StarIcon as Star, PersonIcon, BarbarianIcon, MusicNotesIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, SparkleIcon, WarlockIcon, WizardStaffIcon, GearGiIcon as ArtificerIcon, SwordIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, GoblinIcon, DevilMaskIcon, KenkuIcon, LizardfolkIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { BasePopup } from "@/components/BasePopup";
-import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
-import {
-  PiHandFist as PiHandFistIcon,
-  PiMusicNotes as PiMusicNotesIcon,
-  PiCross as PiCrossIcon,
-  PiLeaf as PiLeafIcon,
-  PiSword as PiSwordIcon,
-  PiHand as PiHandIcon,
-  PiShield as PiShieldIcon,
-  PiCrosshair as PiCrosshairIcon,
-  PiMaskSad as PiMaskSadIcon,
-  PiMagicWand as PiMagicWandIcon,
-  PiHoodie as PiHoodieIcon,
-  PiNotebook as PiNotebookIcon,
-  PiWrench as PiWrenchIcon,
-  PiUser as PiUserIcon,
-  PiMoon as PiMoonIcon,
-  PiHammer as PiHammerIcon,
-  PiFootprints as PiFootprintsIcon,
-  PiFire as PiFireIcon,
-  PiGear as PiGearIcon,
-  PiSkull as PiSkullIcon,
-  PiPerson as PiPersonIcon,
-  PiTarget as PiTargetIcon,
-  PiUserSwitch as PiUserSwitchIcon,
-  PiHeart as PiHeartIcon,
-  PiTree as PiTreeIcon,
-  PiCompass as PiCompassIcon,
-  PiBrain as PiBrainIcon,
-  PiBug as PiBugIcon,
-  PiStar as PiStarIcon,
-  PiBird as PiBirdIcon,
-  PiScales as PiScalesIcon,
-  PiFish as PiFishIcon,
-  PiGhost as PiGhostIcon,
-  PiSun as PiSunIcon,
-  PiPawPrint as PiPawPrintIcon,
-  PiCrown as PiCrownIcon,
-  PiSparkle as PiSparkleIcon,
-  PiAxe as PiAxeIcon,
-} from "react-icons/pi";
+import type { SRDFeat } from "@/lib/srd-client";
 
 const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  Barbarian: PiHandFistIcon,
-  Bard: PiMusicNotesIcon,
-  Cleric: PiCrossIcon,
-  Druid: PiLeafIcon,
-  Fighter: PiSwordIcon,
-  Monk: PiHandIcon,
-  Paladin: PiShieldIcon,
-  Ranger: PiCrosshairIcon,
-  Rogue: PiMaskSadIcon,
-  Sorcerer: PiMagicWandIcon,
-  Warlock: PiHoodieIcon,
-  Wizard: PiNotebookIcon,
-  Artificer: PiWrenchIcon,
+  Barbarian: BarbarianIcon,
+  Bard: MusicNotesIcon,
+  Cleric: ClericIcon,
+  Druid: DruidIcon,
+  Fighter: FighterIcon,
+  Monk: MonkIcon,
+  Paladin: PaladinIcon,
+  Ranger: RangerIcon,
+  Rogue: RogueIcon,
+  Sorcerer: SparkleIcon,
+  Warlock: WarlockIcon,
+  Wizard: WizardStaffIcon,
+  Artificer: ArtificerIcon,
 };
 
 const RACE_SKIN_COLORS: Record<string, string> = {
@@ -127,45 +87,45 @@ const RACE_SKIN_COLORS: Record<string, string> = {
   "Tiefling (Mephistopheles)": "#8b3a3a",
 };
 
-const RACE_ICONS_PHOSPHOR: Record<string, React.ComponentType<{ className?: string }> | "hybrid"> = {
-  Human: PiUserIcon,
-  Elf: PiMoonIcon,
-  Dwarf: PiHammerIcon,
-  Halfling: PiFootprintsIcon,
-  Dragonborn: PiFireIcon,
-  Gnome: PiGearIcon,
+const RACE_ICONS_GI: Record<string, React.ComponentType<{ className?: string }> | "hybrid"> = {
+  Human: PersonIcon,
+  Elf: ElfIcon,
+  Dwarf: DwarfIcon,
+  Halfling: PersonIcon,
+  Dragonborn: DragonHeadIcon,
+  Gnome: GnomeIcon,
   "Half-Elf": "hybrid",
   "Half-Orc": "hybrid",
-  Tiefling: PiSkullIcon,
-  "Variant Human": PiPersonIcon,
-  Bugbear: PiTargetIcon,
-  Changeling: PiUserSwitchIcon,
-  Dhampir: PiHeartIcon,
-  Firbolg: PiTreeIcon,
-  Githyanki: PiCompassIcon,
-  Githzerai: PiBrainIcon,
-  Goblin: PiBugIcon,
-  Hobgoblin: PiStarIcon,
-  Kenku: PiBirdIcon,
-  Lizardfolk: PiScalesIcon,
-  Orc: PiAxeIcon,
-  Reborn: PiGhostIcon,
-  Shifter: PiSunIcon,
-  Tabaxi: PiPawPrintIcon,
-  Triton: PiFishIcon,
-  Hexblood: PiCrownIcon,
-  "Dragonborn (Chromatic)": PiFireIcon,
-  "Dragonborn (Gem)": PiSparkleIcon,
-  "Dragonborn (Metallic)": PiShieldIcon,
-  "Deep Gnome (Svirfneblin)": PiGearIcon,
-  "Eladrin (Elf)": PiMoonIcon,
-  "Forest Gnome": PiGearIcon,
-  "Rock Gnome": PiGearIcon,
-  "Hill Dwarf": PiHammerIcon,
-  "Mountain Dwarf": PiHammerIcon,
-  "Lightfoot Halfling": PiFootprintsIcon,
-  "Stout Halfling": PiFootprintsIcon,
-  "Ghostwise Halfling": PiFootprintsIcon,
+  Tiefling: DevilMaskIcon,
+  "Variant Human": HumanIcon,
+  Bugbear: PersonIcon,
+  Changeling: PersonIcon,
+  Dhampir: PersonIcon,
+  Firbolg: PersonIcon,
+  Githyanki: PersonIcon,
+  Githzerai: PersonIcon,
+  Goblin: GoblinIcon,
+  Hobgoblin: GoblinIcon,
+  Kenku: KenkuIcon,
+  Lizardfolk: LizardfolkIcon,
+  Orc: GoblinIcon,
+  Reborn: PersonIcon,
+  Shifter: PersonIcon,
+  Tabaxi: PersonIcon,
+  Triton: PersonIcon,
+  Hexblood: PersonIcon,
+  "Dragonborn (Chromatic)": DragonHeadIcon,
+  "Dragonborn (Gem)": DragonHeadIcon,
+  "Dragonborn (Metallic)": DragonHeadIcon,
+  "Deep Gnome (Svirfneblin)": GnomeIcon,
+  "Eladrin (Elf)": ElfIcon,
+  "Forest Gnome": GnomeIcon,
+  "Rock Gnome": GnomeIcon,
+  "Hill Dwarf": DwarfIcon,
+  "Mountain Dwarf": DwarfIcon,
+  "Lightfoot Halfling": PersonIcon,
+  "Stout Halfling": PersonIcon,
+  "Ghostwise Halfling": PersonIcon,
   "Half-Elf (High Elf)": "hybrid",
   "Half-Elf (Wood Elf)": "hybrid",
   "Half-Elf (Drow)": "hybrid",
@@ -174,15 +134,15 @@ const RACE_ICONS_PHOSPHOR: Record<string, React.ComponentType<{ className?: stri
   "Half-Elf (Sea Elf)": "hybrid",
   "Half-Elf (Shadar-kai)": "hybrid",
   "Half-Elf (Eladrin)": "hybrid",
-  "Tiefling (Asmodeus)": PiSkullIcon,
-  "Tiefling (Baalzebul)": PiSkullIcon,
-  "Tiefling (Zariel)": PiSkullIcon,
-  "Tiefling (Dispater)": PiSkullIcon,
-  "Tiefling (Fierna)": PiSkullIcon,
-  "Tiefling (Glasya)": PiSkullIcon,
-  "Tiefling (Levistus)": PiSkullIcon,
-  "Tiefling (Mammon)": PiSkullIcon,
-  "Tiefling (Mephistopheles)": PiSkullIcon,
+  "Tiefling (Asmodeus)": DevilMaskIcon,
+  "Tiefling (Baalzebul)": DevilMaskIcon,
+  "Tiefling (Zariel)": DevilMaskIcon,
+  "Tiefling (Dispater)": DevilMaskIcon,
+  "Tiefling (Fierna)": DevilMaskIcon,
+  "Tiefling (Glasya)": DevilMaskIcon,
+  "Tiefling (Levistus)": DevilMaskIcon,
+  "Tiefling (Mammon)": DevilMaskIcon,
+  "Tiefling (Mephistopheles)": DevilMaskIcon,
 };
 
 function HybridRaceIcon({
@@ -219,17 +179,17 @@ function HybridRaceIcon({
 
 function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string; isVariant: boolean; className?: string }) {
   if (raceName === "Human" && isVariant) {
-    return <span style={{ color: RACE_SKIN_COLORS["Variant Human"] }} className="inline-flex"><PiPersonIcon className={className} /></span>;
+    return <span style={{ color: RACE_SKIN_COLORS["Variant Human"] }} className="inline-flex"><HumanIcon className={className} /></span>;
   }
 
-  const iconEntry = RACE_ICONS_PHOSPHOR[raceName];
+  const iconEntry = RACE_ICONS_GI[raceName];
 
   if (iconEntry === "hybrid") {
     if (raceName === "Half-Elf" || raceName.startsWith("Half-Elf")) {
       return (
         <HybridRaceIcon
-          topLeftIcon={PiUserIcon}
-          bottomRightIcon={PiMoonIcon}
+          topLeftIcon={PersonIcon}
+          bottomRightIcon={ElfIcon}
           topLeftColor={RACE_SKIN_COLORS.Human}
           bottomRightColor={RACE_SKIN_COLORS.Elf}
           className={className}
@@ -239,8 +199,8 @@ function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string
     if (raceName === "Half-Orc") {
       return (
         <HybridRaceIcon
-          topLeftIcon={PiUserIcon}
-          bottomRightIcon={PiAxeIcon}
+          topLeftIcon={PersonIcon}
+          bottomRightIcon={GoblinIcon}
           topLeftColor={RACE_SKIN_COLORS.Human}
           bottomRightColor={RACE_SKIN_COLORS.Orc}
           className={className}
@@ -408,7 +368,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             {
               title: "Choosing a Class",
               content: "Your class determines your main role in the party. Fighters are great for beginners—they're tough and deal consistent damage. Clerics are also beginner-friendly, as they can heal and fight.",
-              icon: PiSwordIcon,
+              icon: SwordIcon,
             },
             {
               title: "Choosing a Race",
@@ -434,7 +394,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         >
           <div className="flex items-center gap-4">
             <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.class ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || PiSwordIcon; return <Icon className="h-7 w-7" />; })() : <PiSwordIcon className="h-7 w-7" />}
+              {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || SwordIcon; return <Icon className="h-7 w-7" />; })() : <SwordIcon className="h-7 w-7" />}
             </div>
             <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Class</div>
@@ -485,7 +445,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
              {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
               const isSelected = pendingClass === cls.name;
               const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
-              const WeaponIcon = CLASS_ICONS[cls.name] || PiSwordIcon;
+               const WeaponIcon = CLASS_ICONS[cls.name] || SwordIcon;
 
               return (
                 <div key={cls.name} className="flex items-center gap-2">
