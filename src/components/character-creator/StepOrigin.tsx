@@ -497,46 +497,72 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           showFooter={true}
         >
            <div className="flex-1 overflow-y-auto px-4 py-4">
-             <div className="grid grid-cols-2 gap-3">
-               {[...races].sort((a, b) => (isRecommended("race", b.name) ? 1 : 0) - (isRecommended("race", a.name) ? 1 : 0)).map((race) => {
-                const isSelected = pendingRace === race.name;
-                 const isHuman = race.name === "Human";
+              <div className="grid grid-cols-2 gap-3">
+                {(() => {
+                  const raceEntries: Array<{ name: string; isVariant: boolean; race?: SRDRace }> = [];
+                  races.forEach((race) => {
+                    raceEntries.push({ name: race.name, isVariant: false, race });
+                    if (race.name === "Human") {
+                      raceEntries.push({ name: "Variant Human", isVariant: true, race });
+                    }
+                  });
+                  return raceEntries;
+                })().sort((a, b) => {
+                  const aName = a.isVariant ? "Human" : a.name;
+                  const bName = b.isVariant ? "Human" : b.name;
+                  const aRec = isRecommended("race", aName);
+                  const bRec = isRecommended("race", bName);
+                  return (bRec ? 1 : 0) - (aRec ? 1 : 0);
+                }).map((entry) => {
+                  const race = entry.race!;
+                  const isSelected = entry.isVariant ? (pendingRace === "Human" && pendingVariant) : pendingRace === entry.name;
+                  const isHuman = race.name === "Human";
+                  const displayName = entry.isVariant ? "Variant Human" : race.name;
 
-                 return (
-                  <div key={race.name} className="space-y-2">
-                    <button
-                      type="button"
-                      onClick={() => setPendingRace(race.name)}
-                      className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative ${
-                        isSelected
-                          ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
-                          : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      {isRecommended("race", race.name) && (
-                        <span className="absolute top-2 right-2">
-                          <Star className="h-3.5 w-3.5 text-amber-500" />
-                        </span>
-                      )}
-                      <div className="flex flex-col items-center text-center gap-2">
-                        <div className={`flex items-center justify-center w-16 h-16 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                           <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-8 w-8" />
-                        </div>
-                        <div className="flex flex-col gap-0.5">
-                          <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
-                            {race.name}
-                          </span>
-                          <div className="flex items-center justify-center gap-1">
-                            {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
-                          </div>
-                           <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
-                             {race.size} / Speed {race.speed} ft
-                           </span>
+                  return (
+                   <div key={entry.name + (entry.isVariant ? "-variant" : "")} className="space-y-2">
+                     <button
+                       type="button"
+                       onClick={() => {
+                         if (entry.isVariant) {
+                           setPendingRace("Human");
+                           setPendingVariant(true);
+                           setVariantModalOpen(true);
+                         } else {
+                           setPendingRace(race.name);
+                           setPendingVariant(false);
+                         }
+                       }}
+                       className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative ${
+                         isSelected
+                           ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
+                           : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                       }`}
+                     >
+                       {isRecommended("race", race.name) && !entry.isVariant && (
+                         <span className="absolute top-2 right-2">
+                           <Star className="h-3.5 w-3.5 text-amber-500" />
+                         </span>
+                       )}
+                       <div className="flex flex-col items-center text-center gap-2">
+                         <div className={`flex items-center justify-center w-16 h-16 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                            <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-8 w-8" />
                          </div>
-                      </div>
-                    </button>
+                         <div className="flex flex-col gap-0.5">
+                           <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                             {displayName}
+                           </span>
+                           <div className="flex items-center justify-center gap-1">
+                             {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
+                           </div>
+                            <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
+                              {race.size} / Speed {race.speed} ft
+                            </span>
+                          </div>
+                        </div>
+                      </button>
 
-                    {isSelected && race.choices && race.choices.length > 0 && (
+                      {isSelected && !entry.isVariant && race.choices && race.choices.length > 0 && (
                       <div className="ml-12 mt-2 space-y-2 p-2 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
                         <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">Race Options</div>
                         {race.choices.map((choice) => (
@@ -586,35 +612,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                             )}
                           </div>
                         ))}
-                      </div>
-                    )}
-
-                     {isHuman && isSelected && (
-                       <div className="mt-2">
-                         <button
-                           type="button"
-                           onClick={() => setVariantModalOpen(true)}
-                           className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                             pendingVariant
-                               ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                               : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                           }`}
-                         >
-                           <div className="text-sm font-bold text-[var(--color-text-primary)]">
-                             {pendingVariant ? "Variant Human (configured)" : "Configure Variant Human"}
-                           </div>
-                           <div className="text-[10px] text-[var(--color-text-secondary)]">
-                             +1 to two abilities, one skill proficiency, and one feat
-                           </div>
-                         </button>
                        </div>
                      )}
-                  </div>
-                 );
-               })}
-             </div>
-           </div>
-           </BasePopup>
+                   </div>
+                  );
+                })}
+              </div>
+            </div>
+            </BasePopup>
         )}
 
       {variantModalOpen && (
