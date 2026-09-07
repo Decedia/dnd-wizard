@@ -528,15 +528,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           <div className="flex items-center justify-center gap-1">
                             {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
                           </div>
-                          <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
-                            {race.size} / Speed {race.speed} ft
-                          </span>
-                          <span className="text-[10px] text-[var(--color-text-muted)]">
-                            {Object.entries(race.abilityScoreIncreases || {})
-                              .map(([stat, bonus]) => `+${bonus} ${stat.toUpperCase()}`)
-                              .join(", ")}
-                          </span>
-                        </div>
+                           <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
+                             {race.size} / Speed {race.speed} ft
+                           </span>
+                         </div>
                       </div>
                     </button>
 
