@@ -353,46 +353,46 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         <button
           type="button"
           onClick={() => setPopupType("class")}
-          className={`w-full p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
+          className={`w-full p-5 sm:p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
             data.class
               ? "bg-[var(--color-surface)] border-[var(--color-border-active)]"
               : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
           }`}
         >
           <div className="flex items-center gap-4">
-            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.class ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] shrink-0 ${data.class ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
               {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || SwordIcon; return <Icon className="h-7 w-7" />; })() : <SwordIcon className="h-7 w-7" />}
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Class</div>
-              <div className="text-lg font-bold text-[var(--color-text-primary)] mt-1">
+              <div className="text-base sm:text-lg font-bold text-[var(--color-text-primary)] mt-1 truncate">
                 {data.class || "Select Class"}
               </div>
             </div>
-            <div className="text-2xl text-[var(--color-text-muted)]">→</div>
+            <div className="text-2xl text-[var(--color-text-muted)] shrink-0">→</div>
           </div>
         </button>
 
         <button
           type="button"
           onClick={() => setPopupType("race")}
-          className={`w-full p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
+          className={`w-full p-5 sm:p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
             data.race
               ? "bg-[var(--color-surface)] border-[var(--color-border-active)]"
               : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
           }`}
         >
           <div className="flex items-center gap-4">
-            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] ${data.race ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] shrink-0 ${data.race ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
               {data.race ? <RaceIconRenderer raceName={data.race} isVariant={data.race === "Human" && data.raceVariant === "variant"} className="h-7 w-7" /> : <Users className="h-7 w-7" />}
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Race</div>
-              <div className="text-sm sm:text-base font-semibold text-[var(--color-text-primary)] mt-1">
-                {data.race || "Select Race"}
+               <div className="text-sm sm:text-base font-semibold text-[var(--color-text-primary)] mt-1 break-words truncate whitespace-nowrap">
+                {data.race ? (data.race === "Human" && data.raceVariant === "variant" ? "Variant Human" : data.race) : "Select Race"}
               </div>
             </div>
-            <div className="text-2xl text-[var(--color-text-muted)]">→</div>
+            <div className="text-2xl text-[var(--color-text-muted)] shrink-0">→</div>
           </div>
         </button>
       </div>
@@ -413,14 +413,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
                 const isSelected = pendingClass === cls.name;
                 const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
-                 const WeaponIcon = CLASS_ICONS[cls.name] || SwordIcon;
+                const WeaponIcon = CLASS_ICONS[cls.name] || SwordIcon;
 
-               return (
-                 <div key={cls.name}>
+                return (
+                  <div key={cls.name} className="flex flex-col">
                     <button
                       type="button"
                       onClick={() => setPendingClass(cls.name)}
-                      className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative ${
+                      className={`w-full h-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative flex flex-col items-center justify-between ${
                         isSelected
                           ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
                           : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
@@ -431,25 +431,32 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                           <Star className="h-3.5 w-3.5 text-amber-500" />
                         </span>
                       )}
-                       <div className="flex flex-col items-center text-center gap-2">
-                         <div className={`flex items-center justify-center w-20 h-20 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                       <div className="flex flex-col items-center text-center gap-2 w-full min-w-0">
+                         <div className={`flex items-center justify-center w-20 h-20 rounded-[var(--radius-md)] shrink-0 ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
                            <WeaponIcon className="h-10 w-10" />
                          </div>
-                         <div className="flex flex-col gap-1">
-                           <span className={`text-card-title text-[10px] sm:text-xs whitespace-nowrap ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                         <div className="flex flex-col gap-1 w-full px-1 items-center min-w-0">
+                           <span
+                             title={cls.name}
+                             className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}
+                           >
                              {cls.name}
                            </span>
                            {hasSubclasses && (() => {
                               const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
                              return (
-                               <span className="text-[10px] font-semibold text-[var(--color-text-muted)] whitespace-nowrap">
+                               <span className={`text-[10px] font-semibold text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]/80" : "text-[var(--color-text-muted)]"}`}>
                                  {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
                                </span>
                              );
                            })()}
                          </div>
                        </div>
-                       {cls.source && <SourceBadge source={cls.source} />}
+                       {cls.source && (
+                         <div className="mt-2 flex justify-center w-full shrink-0">
+                           <SourceBadge source={cls.source} />
+                         </div>
+                       )}
                     </button>
                  </div>
                );
@@ -494,48 +501,55 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                   const displayName = entry.isVariant ? "Variant Human" : race.name;
 
                   return (
-                   <div key={entry.name + (entry.isVariant ? "-variant" : "")} className="space-y-2">
-                     <button
-                       type="button"
-                       onClick={() => {
-                         if (entry.isVariant) {
-                           setPendingRace("Human");
-                           setPendingVariant(true);
-                           setVariantModalOpen(true);
-                         } else {
-                           setPendingRace(race.name);
-                           setPendingVariant(false);
-                         }
-                       }}
-                       className={`w-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative ${
-                         isSelected
-                           ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
-                           : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                       }`}
-                     >
-                       {isRecommended("race", race.name) && !entry.isVariant && (
-                         <span className="absolute top-2 right-2">
-                           <Star className="h-3.5 w-3.5 text-amber-500" />
-                         </span>
-                       )}
-                         <div className="flex flex-col items-center text-center gap-2">
-                           <div className={`flex items-center justify-center w-20 h-20 rounded-[var(--radius-md)] ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                              <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-10 w-10" />
-                           </div>
-                          <div className="flex flex-col gap-0.5">
-                            <span className={`text-card-title text-[10px] sm:text-xs whitespace-nowrap ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
-                              {displayName}
-                            </span>
-                             <span className="text-[9px] sm:text-[10px] font-semibold text-[var(--color-text-muted)] whitespace-nowrap">
-                               {race.size} / Speed {race.speed} ft
-                             </span>
+                    <div key={entry.name + (entry.isVariant ? "-variant" : "")} className="space-y-2 flex flex-col">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (entry.isVariant) {
+                            setPendingRace("Human");
+                            setPendingVariant(true);
+                            setVariantModalOpen(true);
+                          } else {
+                            setPendingRace(race.name);
+                            setPendingVariant(false);
+                          }
+                        }}
+                        className={`w-full h-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative flex flex-col items-center justify-between ${
+                          isSelected
+                            ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
+                            : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        }`}
+                      >
+                        {isRecommended("race", race.name) && !entry.isVariant && (
+                          <span className="absolute top-2 right-2">
+                            <Star className="h-3.5 w-3.5 text-amber-500" />
+                          </span>
+                        )}
+                          <div className="flex flex-col items-center text-center gap-2 w-full min-w-0">
+                            <div className={`flex items-center justify-center w-20 h-20 rounded-[var(--radius-md)] shrink-0 ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
+                               <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-10 w-10" />
                             </div>
-                         </div>
-                         {race.source && <SourceBadge source={race.source} />}
-                      </button>
+                            <div className="flex flex-col gap-1 w-full px-1 items-center min-w-0">
+                              <span
+                                title={displayName}
+                                className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}
+                              >
+                                {displayName}
+                              </span>
+                              <span className={`text-[9px] sm:text-[10px] font-medium text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]/80" : "text-[var(--color-text-muted)]"}`}>
+                                {race.size} / Speed {race.speed} ft
+                              </span>
+                            </div>
+                          </div>
+                          {race.source && (
+                            <div className="mt-2 flex justify-center w-full shrink-0">
+                              <SourceBadge source={race.source} />
+                            </div>
+                          )}
+                       </button>
 
                       {isSelected && !entry.isVariant && race.choices && race.choices.length > 0 && (
-                      <div className="ml-12 mt-2 space-y-2 p-2 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
+                      <div className="w-full mt-2 space-y-2 p-2 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
                         <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">Race Options</div>
                         {race.choices.map((choice) => (
                           <div key={choice.id} className="space-y-1">
