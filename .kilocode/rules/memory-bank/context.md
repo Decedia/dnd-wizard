@@ -58,6 +58,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - **ESLint 9.39.1** (flat config), strict TypeScript
 
 ## Recently Completed
+- [x] Made race name in StepOrigin selection card responsive and smaller: changed from `text-lg font-bold` to `text-sm sm:text-base font-semibold` in `src/components/character-creator/StepOrigin.tsx`
 - [x] Moved spell Prepare/Use buttons below spell name row in SpellsSection (new mt-2 flex row); restored spell description paragraph that was accidentally dropped during refactor; typecheck passes
 - [x] Subclass selection modal in LevelUpWizard: subclass option buttons now show descriptions inline via InfoButton instead of raw text; SubclassDetailsModal now has "Got it" footer button matching InfoButton pattern; typecheck passes
 - [x] Reordered SourceBadge to appear before content names across all components (SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection, FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard); typecheck passes

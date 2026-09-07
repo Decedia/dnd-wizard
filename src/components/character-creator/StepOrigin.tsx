@@ -388,7 +388,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             </div>
             <div className="flex-1">
               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Race</div>
-              <div className="text-lg font-bold text-[var(--color-text-primary)] mt-1">
+              <div className="text-sm sm:text-base font-semibold text-[var(--color-text-primary)] mt-1">
                 {data.race || "Select Race"}
               </div>
             </div>
