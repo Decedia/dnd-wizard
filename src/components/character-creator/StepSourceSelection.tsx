@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BookCard } from "@/components/BookCard";
 import { BookPatterns, BookIcons, type BookId } from "@/components/book-svgs";
@@ -116,11 +116,9 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
   const ruleset = data.ruleset || "2014";
   const { setRuleset: setSrdRuleset } = useSRD();
 
-  const syncRuleset = useMemo(() => {
-    if ((data.ruleset || "2014") !== (ruleset)) {
-      setSrdRuleset(ruleset);
-    }
-  }, [data.ruleset, ruleset, setSrdRuleset]);
+  useEffect(() => {
+    setSrdRuleset(ruleset);
+  }, [ruleset, setSrdRuleset]);
 
   const toggleSource = (sourceId: string) => {
     if (sourceId === "PHB") return;

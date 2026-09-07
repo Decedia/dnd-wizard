@@ -146,8 +146,8 @@ export const BookIcons = {
     <svg width="100%" height="100%" viewBox="0 0 140 120" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.22">
       <path d="M70 12 L88 58 L70 48 L52 58 Z" />
       <path d="M52 58 L52 90 Q52 108 70 108 Q88 108 88 90 L88 58" />
-      <line x1="32" y1="75 L18 90" />
-      <line x1="108" y1="75 L122 90" />
+      <line x1="32" y1="75" x2="18" y2="90" />
+      <line x1="108" y1="75" x2="122" y2="90" />
       <circle cx="70" cy="32" r="5" fill="white" opacity="0.8" />
     </svg>
   ),
@@ -156,11 +156,11 @@ export const BookIcons = {
       <path d="M38 58 L24 42 L38 28 L50 42" />
       <path d="M102 58 L116 42 L102 28 L90 42" />
       <path d="M50 68 Q70 95 90 68" />
-      <line x1="70" y1="22 L70 40" />
+      <line x1="70" y1="22" x2="70" y2="40" />
       <path d="M58 30 L70 22 L82 30" />
       <circle cx="70" cy="58" r="10" />
-      <line x1="38" y1="58 L24 52" />
-      <line x1="102" y1="58 L116 52" />
+      <line x1="38" y1="58" x2="24" y2="52" />
+      <line x1="102" y1="58" x2="116" y2="52" />
     </svg>
   ),
   VRGR: (
@@ -168,11 +168,11 @@ export const BookIcons = {
       <path d="M38 52 L24 36 L38 22 L50 36" />
       <path d="M102 52 L116 36 L102 22 L90 36" />
       <path d="M50 62 Q70 85 90 62" />
-      <line x1="58" y1="36 L58 22" />
-      <line x1="82" y1="36 L82 22" />
+      <line x1="58" y1="36" x2="58" y2="22" />
+      <line x1="82" y1="36" x2="82" y2="22" />
       <circle cx="70" cy="16" r="7" fill="white" opacity="0.8" />
-      <line x1="30" y1="68 L18 92" />
-      <line x1="110" y1="68 L122 92" />
+      <line x1="30" y1="68" x2="18" y2="92" />
+      <line x1="110" y1="68" x2="122" y2="92" />
     </svg>
   ),
 };
