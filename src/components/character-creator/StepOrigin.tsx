@@ -215,6 +215,7 @@ interface StepOriginProps {
 export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [popupType, setPopupType] = useState<"class" | "race" | null>(null);
   const [featModalOpen, setFeatModalOpen] = useState(false);
+  const [variantModalOpen, setVariantModalOpen] = useState(false);
   const [pendingClass, setPendingClass] = useState<string | null>(data.class || null);
   const [pendingRace, setPendingRace] = useState<string | null>(data.race || null);
   const [pendingVariant, setPendingVariant] = useState<boolean>(data.raceVariant === "variant");
@@ -588,104 +589,26 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       </div>
                     )}
 
-                    {isHuman && isSelected && (
-                      <div className="ml-4 space-y-2">
-                        <button
-                          type="button"
-                          onClick={handleVariantToggle}
-                          className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                            pendingVariant
-                              ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                              : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                          }`}
-                        >
-                          <div className="flex items-center gap-2">
-                            <div
-                              className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
-                                pendingVariant
-                                  ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
-                                  : "border-[var(--color-border)]"
-                              }`}
-                            >
-                               {pendingVariant && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                            </div>
-                            <div>
-                              <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>
-                              <div className="text-[10px] text-[var(--color-text-secondary)]">
-                                +1 to two abilities, one skill proficiency, and one feat
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-
-                        {pendingVariant && (
-                          <div className="space-y-3">
-                            <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">+1 to Two Abilities</div>
-                              <div className="grid grid-cols-3 gap-1.5">
-                                {abilityOptions.map((ability) => {
-                                  const isSelected = variantAbilities.includes(ability);
-                                  return (
-                                    <button
-                                      key={ability}
-                                      type="button"
-                                      onClick={() => handleVariantAbilityToggle(ability)}
-                                      className={`p-2 text-center rounded-[var(--radius-sm)] border text-xs font-bold uppercase transition-all ${
-                                        isSelected
-                                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                                      }`}
-                                    >
-                                      {ability}
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                              <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
-                                Selected: {variantAbilities.length}/2
-                              </div>
-                            </div>
-
-                            <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">Skill Proficiency</div>
-                              <div className="grid grid-cols-2 gap-1">
-                                {SKILLS.map((skill) => {
-                                  const isSelected = variantSkill === skill.name;
-                                  return (
-                                    <button
-                                      key={skill.name}
-                                      type="button"
-                                      onClick={() => handleVariantSkillSelect(skill.name)}
-                                      className={`p-1.5 text-left rounded-[var(--radius-sm)] border text-[10px] font-semibold transition-all ${
-                                        isSelected
-                                          ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                                      }`}
-                                    >
-                                      {skill.name}
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                            </div>
-
-                            {selectedFeat && (
-                              <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                                <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Selected Feat</div>
-                                <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
-                              </div>
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => setFeatModalOpen(true)}
-                              className="btn btn-secondary w-full text-sm"
-                            >
-                              {selectedFeat ? "Change Feat" : "Choose Feat"}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
+                     {isHuman && isSelected && (
+                       <div className="mt-2">
+                         <button
+                           type="button"
+                           onClick={() => setVariantModalOpen(true)}
+                           className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                             pendingVariant
+                               ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                               : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                           }`}
+                         >
+                           <div className="text-sm font-bold text-[var(--color-text-primary)]">
+                             {pendingVariant ? "Variant Human (configured)" : "Configure Variant Human"}
+                           </div>
+                           <div className="text-[10px] text-[var(--color-text-secondary)]">
+                             +1 to two abilities, one skill proficiency, and one feat
+                           </div>
+                         </button>
+                       </div>
+                     )}
                   </div>
                  );
                })}
@@ -693,6 +616,115 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
            </div>
            </BasePopup>
         )}
+
+      {variantModalOpen && (
+        <BasePopup
+          isOpen={true}
+          onClose={() => setVariantModalOpen(false)}
+          title="Variant Human"
+          confirmLabel="Confirm"
+          cancelLabel="Cancel"
+          onConfirm={() => setVariantModalOpen(false)}
+          showFooter={true}
+        >
+          <div className="space-y-3">
+            <button
+              type="button"
+              onClick={() => setPendingVariant((prev) => !prev)}
+              className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
+                pendingVariant
+                  ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
+                  : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <div
+                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
+                    pendingVariant
+                      ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
+                      : "border-[var(--color-border)]"
+                  }`}
+                >
+                  {pendingVariant && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>
+                  <div className="text-[10px] text-[var(--color-text-secondary)]">
+                    +1 to two abilities, one skill proficiency, and one feat
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            {pendingVariant && (
+              <>
+                <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                  <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">+1 to Two Abilities</div>
+                  <div className="grid grid-cols-3 gap-1.5">
+                    {abilityOptions.map((ability) => {
+                      const isSelected = variantAbilities.includes(ability);
+                      return (
+                        <button
+                          key={ability}
+                          type="button"
+                          onClick={() => handleVariantAbilityToggle(ability)}
+                          className={`p-2 text-center rounded-[var(--radius-sm)] border text-xs font-bold uppercase transition-all ${
+                            isSelected
+                              ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                              : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          {ability}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
+                    Selected: {variantAbilities.length}/2
+                  </div>
+                </div>
+
+                <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                  <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">Skill Proficiency</div>
+                  <div className="grid grid-cols-2 gap-1">
+                    {SKILLS.map((skill) => {
+                      const isSelected = variantSkill === skill.name;
+                      return (
+                        <button
+                          key={skill.name}
+                          type="button"
+                          onClick={() => handleVariantSkillSelect(skill.name)}
+                          className={`p-1.5 text-left rounded-[var(--radius-sm)] border text-[10px] font-semibold transition-all ${
+                            isSelected
+                              ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
+                              : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                          }`}
+                        >
+                          {skill.name}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {selectedFeat && (
+                  <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                    <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Selected Feat</div>
+                    <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setFeatModalOpen(true)}
+                  className="btn btn-secondary w-full text-sm"
+                >
+                  {selectedFeat ? "Change Feat" : "Choose Feat"}
+                </button>
+              </>
+            )}
+          </div>
+        </BasePopup>
+      )}
 
       {featModalOpen && (
         <FeatSelectionModal
