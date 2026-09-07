@@ -231,17 +231,17 @@ export function SpellSelectionModal({
                     : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
           }`}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between">
             {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
             {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
             {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
             <div className="flex items-center gap-1.5">
               <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-              <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""} flex items-center gap-1`}>
+              <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
                 {sp.name}
-                {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
               </span>
             </div>
+            {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
           </div>
           <div className="flex items-center gap-2 mt-0.5 ml-5">
             {sp.school && (() => {

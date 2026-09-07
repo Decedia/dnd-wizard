@@ -305,12 +305,13 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                       <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5">
                         <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
-                         <span className="text-sm font-bold text-inherit flex items-center gap-1">
-                          {spell.name}
-                          {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                        </span>
+                         <span className="text-sm font-bold text-inherit">
+                           {spell.name}
+                         </span>
                       </div>
-                        {spell.school && (() => {
+                        <div className="flex items-center gap-1">
+                          {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                          {spell.school && (() => {
                           const schoolStyle = getSpellSchoolStyle(spell.school);
                           if (!schoolStyle) return <span className="text-xs text-[var(--color-text-muted)] font-medium">{spell.school}</span>;
                           return (
@@ -329,8 +330,9 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                             </span>
                           );
                         })()}
-                      </div>
-                    </button>
+                       </div>
+                     </div>
+                   </button>
                  </div>
                );
              })}
@@ -400,35 +402,35 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                             : "btn-secondary"
                         }`}
                       >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-1.5">
-                               <span className="text-sm font-bold text-inherit flex items-center gap-1">
+                           <div className="flex items-center justify-between">
+                             <div className="flex items-center gap-1.5">
+                                <span className="text-sm font-bold text-inherit">
                           {spell.name}
-                          {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                         </span>
-                              <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
-                            </div>
-                            <div className="flex items-center gap-2">
-                              {spell.school && (() => {
-                                const schoolStyle = getSpellSchoolStyle(spell.school);
-                                if (!schoolStyle) return <span className="text-xs text-[var(--color-text-muted)] font-medium">{spell.school}</span>;
-                                return (
-                                  <span
-                                    className="inline-flex items-center gap-1 font-semibold"
-                                    style={{
-                                      fontSize: "10px",
-                                      padding: "1px 5px",
-                                      borderRadius: "4px",
-                                      backgroundColor: `var(${schoolStyle.bgColorVar})`,
-                                      color: `var(${schoolStyle.colorVar})`,
-                                    }}
-                                  >
-                                    <schoolStyle.icon className="h-3 w-3" />
-                                    {schoolStyle.label}
-                                  </span>
-                                );
-                              })()}
-                            </div>
+                                <SourceBadge source={(spell as any).source || "PHB"} size="sm" />
+                             </div>
+                              <div className="flex items-center gap-1">
+                                {spell.school && (() => {
+                                 const schoolStyle = getSpellSchoolStyle(spell.school);
+                                 if (!schoolStyle) return <span className="text-xs text-[var(--color-text-muted)] font-medium">{spell.school}</span>;
+                                 return (
+                                   <span
+                                     className="inline-flex items-center gap-1 font-semibold"
+                                     style={{
+                                       fontSize: "10px",
+                                       padding: "1px 5px",
+                                       borderRadius: "4px",
+                                       backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                                       color: `var(${schoolStyle.colorVar})`,
+                                     }}
+                                   >
+                                     <schoolStyle.icon className="h-3 w-3" />
+                                     {schoolStyle.label}
+                                   </span>
+                                 );
+                               })()}
+                               {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                             </div>
                           </div>
 <div className="flex items-center gap-2 mt-1">
                             {spell.damage?.damageDice && spell.damage?.damageType && (

@@ -211,7 +211,7 @@ function HybridRaceIcon({
         </div>
       </div>
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: "linear-gradient(to top right, transparent calc(50% - 1px), rgba(0,0,0,0.3) 50%, transparent calc(50% + 1px))"
+        background: "linear-gradient(to bottom left, transparent calc(50% - 1px), rgba(0,0,0,0.3) 50%, transparent calc(50% + 1px))"
       }} />
     </div>
   );
@@ -503,25 +503,25 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                         <WeaponIcon className="h-5 w-5" />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
-                            <div>
-                               <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
-                                {cls.name}
-                                {isRecommended("class", cls.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                              </span>
-                              {hasSubclasses && (() => {
-                                 const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
-                                return (
-                                  <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
-                                    {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
-                                  </div>
-                                );
-                              })()}
-                            </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          {cls.source && cls.source !== "PHB" && <SourceBadge source={cls.source} />}
+                          <div>
+                            <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                              {cls.name}
+                            </span>
+                            {hasSubclasses && (() => {
+                               const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
+                              return (
+                                <div className="text-[10px] font-semibold text-[var(--color-text-muted)] mt-0.5">
+                                  {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
+                        {isRecommended("class", cls.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                      </div>
                       </div>
                     </div>
                   </button>
@@ -565,13 +565,15 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                             <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-5 w-5" />
                          </div>
                          <div className="flex-1">
-                             <div className="flex items-center justify-between">
-                                <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""} flex items-center gap-1`}>
-                                  {race.name}
-                                  {isRecommended("race", race.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                                </span>
-                                {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
-                              </div>
+                              <div className="flex items-center justify-between">
+                                 <span className={`text-card-title ${isSelected ? "text-[var(--color-surface)]" : ""}`}>
+                                   {race.name}
+                                 </span>
+                                 <div className="flex items-center gap-1">
+                                   {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
+                                   {isRecommended("race", race.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                                 </div>
+                               </div>
                               <div className="mt-0.5">
                               <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">
                                 {race.size} / Speed {race.speed} ft

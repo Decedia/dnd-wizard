@@ -252,22 +252,20 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
               .filter((val): val is number => val !== null);
 
             return (
-              <div
-                key={key}
-                className="card flex items-center justify-between px-4 py-3"
-              >
-                <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12 flex items-center gap-1">
-                    {label}
-                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                  </span>
-                  <span className="text-[10px] text-ink-muted font-medium">{full}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {raceBonus > 0 && (
-                    <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
-                  )}
-                  <select
+               <div
+                 key={key}
+                 className="card flex items-center justify-between px-4 py-3 relative"
+               >
+                 <div className="flex flex-col">
+                   <span className="text-sm font-bold text-ink w-12">{label}</span>
+                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
+                 </div>
+                 <div className="flex items-center gap-2">
+                   {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                   {raceBonus > 0 && (
+                     <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
+                   )}
+                   <select
                     value={currentSelection ?? "-"}
                     onChange={(e) => {
                       const val = e.target.value === "-" ? null : parseInt(e.target.value);
@@ -323,16 +321,14 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="card flex items-center justify-between px-4 py-3"
+                className="card flex items-center justify-between px-4 py-3 relative"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12 flex items-center gap-1">
-                    {label}
-                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                  </span>
+                  <span className="text-sm font-bold text-ink w-12">{label}</span>
                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
+                  {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                   <button
                     type="button"
                     onClick={() => handlePointBuyChange(key, score - 1)}
@@ -384,16 +380,14 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="card flex items-center justify-between px-4 py-3"
+                className="card flex items-center justify-between px-4 py-3 relative"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12 flex items-center gap-1">
-                    {label}
-                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                  </span>
+                  <span className="text-sm font-bold text-ink w-12">{label}</span>
                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
+                  {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                   <button
                     type="button"
                     onClick={() => handleManualChange(key, score - 1)}
@@ -456,16 +450,14 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             return (
               <div
                 key={key}
-                className="card flex items-center justify-between px-4 py-3"
+                className="card flex items-center justify-between px-4 py-3 relative"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12 flex items-center gap-1">
-                    {label}
-                    {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                  </span>
+                  <span className="text-sm font-bold text-ink w-12">{label}</span>
                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                 </div>
                 <div className="flex items-center gap-2">
+                  {isRecommended("stat", label, data.class) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                   <button
                     type="button"
                     onClick={() => handleFreeBuyChange(key, score - 1)}

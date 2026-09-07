@@ -101,12 +101,14 @@ export function SubclassSelectionModal({
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <Crown className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />
-                  <span className="text-xs font-semibold flex items-center gap-1">
-                    {opt.name}
-                    {isRecommended("subclass", opt.name, characterClass) && <Star className="h-3.5 w-3.5 text-amber-500" />}
-                  </span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Crown className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />
+                    <span className="text-xs font-semibold">
+                      {opt.name}
+                    </span>
+                  </div>
+                  {isRecommended("subclass", opt.name, characterClass) && <Star className="h-3.5 w-3.5 text-amber-500" />}
                 </div>
                 <p className="text-[10px] text-[var(--color-text-secondary)] mt-1 line-clamp-2">{opt.description}</p>
               </button>
