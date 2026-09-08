@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import type { SpellMechanicSummary } from "@/lib/spell-mechanics-accessor";
-import { DamageBadge } from "./DamageBadge";
 
 interface SpellMechanicsChipsProps {
   mechanic: SpellMechanicSummary | undefined;
@@ -11,6 +10,16 @@ interface SpellMechanicsChipsProps {
 
 function capitalize(s: string): string {
   return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+
+function humanize(s: string): string {
+  return s
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/_/g, " ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 }
 
 function formatTarget(m: SpellMechanicSummary): string {
@@ -44,23 +53,7 @@ function formatResolution(m: SpellMechanicSummary): string | null {
   return null;
 }
 
-function chipColor(color?: string): string | undefined {
-  if (!color) return undefined;
-  // damage type
-  const damageKeys = ["acid","bludgeoning","cold","fire","force","lightning","necrotic","piercing","poison","psychic","radiant","slashing","thunder"];
-  if (damageKeys.includes(color)) return `var(--color-damage-${color})`;
-  if (color === "healing") return "var(--color-success-500)";
-  if (color === "buff") return "var(--color-info-500)";
-  if (color === "debuff") return "var(--color-warning-500)";
-  if (color === "condition") return "var(--color-error-500)";
-  if (color === "control") return "var(--color-accent-purple-500)";
-  if (color === "summon") return "var(--color-accent-teal-500)";
-  if (color === "teleport") return "var(--color-accent-indigo-500)";
-  if (color === "utility") return "var(--color-text-secondary)";
-  return undefined;
-}
-
-function formatEffect(m: SpellMechanicSummary): { label: string; color?: string; icon?: string } | null {
+function formatEffect(m: SpellMechanicSummary): { label: string; color?: string } | null {
   const effects = m.effects;
   if (effects.length === 0) return null;
 
@@ -77,24 +70,24 @@ function formatEffect(m: SpellMechanicSummary): { label: string; color?: string;
   }
   const buff = effects.find((e) => e.type === "buff");
   if (buff) {
-    const desc = buff.description || buff.bonusTo || buff.effectType || "Buff";
-    return { label: desc, color: "buff" };
+    const label = buff.bonusTo ? humanize(buff.bonusTo) : (buff.effectType ? humanize(buff.effectType) : "Buff");
+    return { label, color: "buff" };
   }
   const debuff = effects.find((e) => e.type === "debuff");
   if (debuff) {
-    return { label: debuff.description || "Debuff", color: "debuff" };
+    return { label: debuff.effectType ? humanize(debuff.effectType) : "Debuff", color: "debuff" };
   }
   const cond = effects.find((e) => e.type === "condition");
   if (cond) {
-    return { label: cond.description || "Condition", color: "condition" };
+    return { label: cond.effectType ? humanize(cond.effectType) : "Condition", color: "condition" };
   }
   const control = effects.find((e) => e.type === "control");
   if (control) {
-    return { label: control.description || "Control", color: "control" };
+    return { label: control.effectType ? humanize(control.effectType) : "Control", color: "control" };
   }
   const summon = effects.find((e) => e.type === "summon");
   if (summon) {
-    return { label: summon.description || "Summon", color: "summon" };
+    return { label: summon.effectType ? humanize(summon.effectType) : "Summon", color: "summon" };
   }
   const tele = effects.find((e) => e.type === "teleport");
   if (tele) {
@@ -102,9 +95,25 @@ function formatEffect(m: SpellMechanicSummary): { label: string; color?: string;
   }
   const util = effects.find((e) => e.type === "utility");
   if (util) {
-    return { label: util.description || "Utility", color: "utility" };
+    return { label: util.special ? humanize(util.special) : "Utility", color: "utility" };
   }
   return null;
+}
+
+function chipColor(color?: string): string | undefined {
+  if (!color) return undefined;
+  // damage type
+  const damageKeys = ["acid","bludgeoning","cold","fire","force","lightning","necrotic","piercing","poison","psychic","radiant","slashing","thunder"];
+  if (damageKeys.includes(color)) return `var(--color-damage-${color})`;
+  if (color === "healing") return "var(--color-success-500)";
+  if (color === "buff") return "var(--color-info-500)";
+  if (color === "debuff") return "var(--color-warning-500)";
+  if (color === "condition") return "var(--color-error-500)";
+  if (color === "control") return "var(--color-accent-purple-500)";
+  if (color === "summon") return "var(--color-accent-teal-500)";
+  if (color === "teleport") return "var(--color-accent-indigo-500)";
+  if (color === "utility") return "var(--color-text-secondary)";
+  return undefined;
 }
 
 export function SpellMechanicsChips({ mechanic, size = "sm" }: SpellMechanicsChipsProps) {

@@ -37,7 +37,6 @@ export interface SpellMechanicSummary {
     bonus?: number;
     bonusTo?: string;
     effectType?: string;
-    description?: string;
     special?: string;
   }[];
   scaling?: {
@@ -115,7 +114,6 @@ function toSummary(s: SpellMechanics): SpellMechanicSummary {
       bonus: e.bonus,
       bonusTo: e.bonusTo,
       effectType: e.effectType,
-      description: e.description,
       special: e.special,
     })),
     scaling: s.scaling

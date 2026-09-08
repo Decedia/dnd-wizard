@@ -313,7 +313,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
                       : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                   }`}
-                  title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : (spell.mechanic ? spell.mechanic.effects.map(e => e.description || e.type).filter(Boolean).join("; ") || "Click to mark as used this turn" : "Click to mark as used this turn")}
+                  title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : "Click to mark as used this turn"}
                 >
                   {buffDef ? <Sparkle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
                   {spellUsed ? "Used" : "Use"}
