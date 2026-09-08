@@ -101,6 +101,11 @@ function formatEffect(m: SpellMechanicSummary): string | null {
   const util = effects.find((e) => e.type === "utility");
   if (util) {
     if (util.special && UTILITY_LABELS[util.special]) return UTILITY_LABELS[util.special];
+    if (util.description) {
+      const desc = util.description.trim();
+      const firstSentence = desc.split(". ")[0];
+      return firstSentence.length > 100 ? firstSentence.slice(0, 97) + "..." : firstSentence;
+    }
     return util.special ? humanize(util.special) : "has a special effect";
   }
   return null;
