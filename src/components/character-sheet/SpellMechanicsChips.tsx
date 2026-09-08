@@ -2,8 +2,9 @@
 
 import { useMemo } from "react";
 import type { SpellMechanicSummary } from "@/lib/spell-mechanics-accessor";
+import { DamageBadge } from "./DamageBadge";
 
-interface SpellMechanicsChipsProps {
+interface SpellMechanicsSummaryProps {
   mechanic: SpellMechanicSummary | undefined;
   size?: "sm" | "md";
 }
@@ -24,154 +25,154 @@ function humanize(s: string): string {
 
 function formatTarget(m: SpellMechanicSummary): string {
   const t = m.targeting;
-  if (t.type === "self") return "Self";
-  if (t.type === "point") return "Point";
-  if (t.type === "multiple") return `${t.maxTargets ?? "?"} target${(t.maxTargets ?? 0) !== 1 ? "s" : ""}`;
-  if (t.type === "area") {
-    const shape = t.shape ? capitalize(t.shape) : "Area";
-    const size = t.size ? `${t.size} ft` : "";
-    return `${shape}${size ? " " + size : ""}`;
+  if (t.type === "self") return "you";
+  if (t.type === "point") return "a point you choose";
+  if (t.type === "multiple") {
+    const n = t.maxTargets ?? 1;
+    return `${n} creature${n !== 1 ? "s" : ""} within range`;
   }
-  if (t.selfAllowed) return "Self or creature";
-  return "Creature";
+  if (t.type === "area") {
+    const shape = t.shape ? capitalize(t.shape) : "area";
+    const size = t.size ? `${t.size}-foot` : "";
+    return `a ${size} ${shape}${t.maxRange ? ` within ${t.maxRange} ft` : ""}`;
+  }
+  if (t.selfAllowed) return "you or a creature you can see";
+  return "a creature you can see";
 }
 
 function formatResolution(m: SpellMechanicSummary): string | null {
   const r = m.resolution;
   if (!r) return null;
-  if (r.type === "attack") return "Spell attack";
-  if (r.type === "check") return "Ability check";
+  if (r.type === "attack") return "on a hit";
+  if (r.type === "check") return "on an ability check";
   if (r.type === "save") {
-    const ability = r.ability ? capitalize(r.ability) : "Save";
-    const outcome =
-      r.onSuccess === "negates" ? "no effect on success"
-      : r.onSuccess === "half" ? "half on success"
-      : r.onSuccess === "full" ? "full on success"
-      : "save";
-    return `${ability} save (${outcome})`;
+    const ability = r.ability ? capitalize(r.ability) : "a saving throw";
+    if (r.onSuccess === "negates") return `on a failed ${ability} save (no effect on success)`;
+    if (r.onSuccess === "half") return `on a failed ${ability} save (half on success)`;
+    if (r.onSuccess === "full") return `on a failed ${ability} save (full on success)`;
+    if (r.onFailure === "full") return `on a failed ${ability} save`;
+    return `on a ${ability} save`;
   }
   return null;
 }
 
-function formatEffect(m: SpellMechanicSummary): { label: string; color?: string } | null {
+function formatEffect(m: SpellMechanicSummary): string | null {
   const effects = m.effects;
   if (effects.length === 0) return null;
 
   const damage = effects.find((e) => e.type === "damage");
   if (damage) {
-    return {
-      label: `${damage.amount || "?"} ${damage.damageType ? capitalize(damage.damageType) : "damage"}`,
-      color: damage.damageType,
-    };
+    const amount = damage.amount || "damage";
+    const type = damage.damageType ? capitalize(damage.damageType) : "damage";
+    return `deals ${amount} ${type} damage`;
   }
   const heal = effects.find((e) => e.type === "healing");
   if (heal) {
-    return { label: `Heal ${heal.amount || "?"}`, color: "healing" };
+    return `heals up to ${heal.amount || "hit points"}`;
   }
   const buff = effects.find((e) => e.type === "buff");
   if (buff) {
-    const label = buff.bonusTo ? humanize(buff.bonusTo) : (buff.effectType ? humanize(buff.effectType) : "Buff");
-    return { label, color: "buff" };
+    const key = buff.special || buff.effectType || "";
+    if (BUFF_LABELS[key]) return `grants ${BUFF_LABELS[key]}`;
+    if (buff.bonusTo === "AC") return "grants +2 AC";
+    if (buff.effectType === "advantage") return `grants advantage on ${humanize(buff.bonusTo || "saving throws")}`;
+    return `grants ${humanize(buff.bonusTo || buff.effectType || "a bonus")}`;
   }
   const debuff = effects.find((e) => e.type === "debuff");
   if (debuff) {
-    return { label: debuff.effectType ? humanize(debuff.effectType) : "Debuff", color: "debuff" };
+    return `imposes ${humanize(debuff.effectType || "a disadvantage")}`;
   }
   const cond = effects.find((e) => e.type === "condition");
   if (cond) {
-    return { label: cond.effectType ? humanize(cond.effectType) : "Condition", color: "condition" };
+    return `inflicts ${humanize(cond.effectType || "a condition")}`;
   }
   const control = effects.find((e) => e.type === "control");
   if (control) {
-    return { label: control.effectType ? humanize(control.effectType) : "Control", color: "control" };
+    return `creates ${humanize(control.effectType || "a hazard")}`;
   }
   const summon = effects.find((e) => e.type === "summon");
   if (summon) {
-    return { label: summon.effectType ? humanize(summon.effectType) : "Summon", color: "summon" };
+    return "summons a creature";
   }
   const tele = effects.find((e) => e.type === "teleport");
   if (tele) {
-    return { label: "Teleport", color: "teleport" };
+    return "teleports the target";
   }
   const util = effects.find((e) => e.type === "utility");
   if (util) {
-    return { label: util.special ? humanize(util.special) : "Utility", color: "utility" };
+    if (util.special && UTILITY_LABELS[util.special]) return UTILITY_LABELS[util.special];
+    return util.special ? humanize(util.special) : "has a special effect";
   }
   return null;
 }
 
-function chipColor(color?: string): string | undefined {
-  if (!color) return undefined;
-  // damage type
-  const damageKeys = ["acid","bludgeoning","cold","fire","force","lightning","necrotic","piercing","poison","psychic","radiant","slashing","thunder"];
-  if (damageKeys.includes(color)) return `var(--color-damage-${color})`;
-  if (color === "healing") return "var(--color-success-500)";
-  if (color === "buff") return "var(--color-info-500)";
-  if (color === "debuff") return "var(--color-warning-500)";
-  if (color === "condition") return "var(--color-error-500)";
-  if (color === "control") return "var(--color-accent-purple-500)";
-  if (color === "summon") return "var(--color-accent-teal-500)";
-  if (color === "teleport") return "var(--color-accent-indigo-500)";
-  if (color === "utility") return "var(--color-text-secondary)";
-  return undefined;
-}
+const UTILITY_LABELS: Record<string, string> = {
+  negateSpell: "negates the target spell",
+  negateMagicMissile: "negates Magic Missile",
+  instantKill: "kills the target",
+  freeForm: "produces any effect of 8th level or lower",
+  igniteFlammableObjects: "ignites flammable objects in the area",
+  spreadAroundCorners: "spreads around corners",
+  counterspell: "counters the target spell",
+  endsOnAttackOrCast: "ends if the target attacks or casts a spell",
+  transform: "transforms the target",
+  flammable: "is flammable",
+  doubleSpeed: "doubles the target's speed",
+  extraAction: "grants an extra action",
+  baseAC13PlusDex: "sets base AC to 13 + Dexterity",
+};
 
-export function SpellMechanicsChips({ mechanic, size = "sm" }: SpellMechanicsChipsProps) {
-  const chips = useMemo(() => {
-    if (!mechanic) return [];
-    const list: { key: string; label: string; color?: string }[] = [];
+const BUFF_LABELS: Record<string, string> = {
+  "d4 bonus": "a d4 bonus to attack rolls and saving throws",
+  doubleSpeed: "doubled speed",
+  extraAction: "an extra action",
+  baseAC13PlusDex: "base AC of 13 + Dexterity",
+  resistance: "resistance to a damage type",
+  transform: "a new form",
+};
 
-    list.push({ key: "target", label: formatTarget(mechanic) });
-    const res = formatResolution(mechanic);
-    if (res) list.push({ key: "resolution", label: res });
-    const eff = formatEffect(mechanic);
-    if (eff) list.push({ key: "effect", label: eff.label, color: eff.color });
-    if (mechanic.casting.concentration) list.push({ key: "concentration", label: "Concentration" });
-    return list;
-  }, [mechanic]);
-
-  if (!mechanic) return null;
-
-  const chipClass = size === "sm"
-    ? "px-1.5 py-0.5 text-[10px]"
-    : "px-2 py-1 text-xs";
-
-  return (
-    <div className="flex flex-wrap items-center gap-1">
-      {chips.map((chip) => {
-        const color = chipColor(chip.color);
-        const style = color
-          ? { backgroundColor: color, color: "var(--color-surface)" }
-          : undefined;
-        return (
-          <span
-            key={chip.key}
-            className={`inline-flex items-center font-semibold rounded ${chipClass}`}
-            style={style}
-          >
-            {chip.label}
-          </span>
-        );
-      })}
-    </div>
-  );
-}
-
-export function SpellMechanicsRow({ mechanic, size = "sm" }: SpellMechanicsChipsProps) {
-  if (!mechanic) return null;
+function buildSentence(m: SpellMechanicSummary): string {
+  const target = formatTarget(m);
+  const res = formatResolution(m);
+  const effect = formatEffect(m);
 
   const parts: string[] = [];
-  parts.push(`Range: ${mechanic.casting.range}`);
-  parts.push(`Duration: ${mechanic.casting.duration}`);
-  parts.push(`Target: ${formatTarget(mechanic)}`);
-  const res = formatResolution(mechanic);
+  parts.push(target);
   if (res) parts.push(res);
-  const eff = formatEffect(mechanic);
-  if (eff) parts.push(eff.label);
+  if (effect) parts.push(effect);
+  if (m.casting.concentration) parts.push("Concentration");
+  return parts.join(" · ");
+}
+
+export function SpellMechanicsChips({ mechanic, size = "sm" }: SpellMechanicsSummaryProps) {
+  const sentence = useMemo(() => (mechanic ? buildSentence(mechanic) : ""), [mechanic]);
+
+  if (!mechanic) return null;
+
+  const damageEffect = mechanic.effects.find((e) => e.type === "damage");
+  const hasConcentration = mechanic.casting.concentration;
+
+  const lineClass = size === "sm" ? "text-[11px]" : "text-xs";
 
   return (
-    <div className="text-[10px] text-[var(--color-text-secondary)] leading-snug">
-      {parts.join(" · ")}
+    <div className="flex items-center gap-2">
+      <p className={`text-[var(--color-text-secondary)] leading-snug ${lineClass}`}>
+        {sentence}
+      </p>
+      {damageEffect?.damageType && (
+        <DamageBadge type={damageEffect.damageType} size={size} showLabel={false} />
+      )}
+      {hasConcentration && (
+        <span
+          className="inline-flex items-center font-semibold rounded px-1.5 py-0.5 text-[10px]"
+          style={{
+            backgroundColor: "var(--color-state-concentration-bg)",
+            color: "var(--color-state-concentration)",
+          }}
+        >
+          C
+        </span>
+      )}
     </div>
   );
 }
