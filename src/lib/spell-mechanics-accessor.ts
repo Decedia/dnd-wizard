@@ -38,6 +38,7 @@ export interface SpellMechanicSummary {
     bonusTo?: string;
     effectType?: string;
     special?: string;
+    description?: string;
   }[];
   scaling?: {
     type: "cantrip" | "slotLevel";
@@ -115,6 +116,7 @@ function toSummary(s: SpellMechanics): SpellMechanicSummary {
       bonusTo: e.bonusTo,
       effectType: e.effectType,
       special: e.special,
+      description: e.description,
     })),
     scaling: s.scaling
       ? {
