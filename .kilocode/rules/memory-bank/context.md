@@ -303,6 +303,9 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 | `src/lib/storage.ts` | Character type with source/locked, class-granted attacks helpers | ✅ Ready |
 | `src/lib/level-up.ts` | Level-up computation + `generateLevelUpSteps` with sections consolidation | ✅ Ready |
 | `src/app/character/[id]/level-up/page.tsx` | Dedicated level-up page (replaces modal) | ✅ Ready |
+| `src/data/spell-mechanics.ts` | TypeScript interfaces for spell mechanics schema | ✅ Ready |
+| `src/data/2014_spell_mechanics.json` | Mechanically structured spell data for all 524 2014 spells | ✅ Ready |
+| `scripts/generate_spell_mechanics.ts` | Transformer script: raw spells → mechanics JSON | ✅ Ready |
 | `src/components/character-sheet/FeaturesTraitsSection.tsx` | Locked feature rendering, action type cycling, usable feature filtering (Use button only for action/bonus/reaction/free features) | ✅ Ready |
 | `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Class-granted attack rendering with "class-granted" tag | ✅ Ready |
 
@@ -434,3 +437,29 @@ Wizard restructure complete. Next steps:
 | 2026-09-05 | Replaced expansion selection book cards with 3D CSS book system: new BookCard.tsx with perspective/transform-style 3D book shape, spine/top/bottom/page-edge faces, bookmark ribbon, lock/check badges, selection ring, and hover/selected 3D rotation; created book-svgs.tsx with custom SVG patterns and icons for all 8 expansions; updated StepOrigin to use weapon icons for class selection and RaceFace for race selection; created race-faces.tsx and weapon-icons.tsx; removed old flat BookCard.tsx; typecheck and build pass |
 - [x] Renamed ability score method "Dice Roll" to "Manual Roll" across StepAbilities.tsx and storage.ts type; added new homebrew "Free Buy" method with 80 free points, max 15 per stat, no cost system; updated tabs, NewPlayerTips, hint text, and render logic; typecheck passes, lint only pre-existing errors
 - [x] Added icons for subclass, fighting styles, spell schools, and other features: created src/lib/spell-schools.ts with 8 school icon mappings (Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation) using flat react-icons; added CSS variables for school colors in globals.css; updated SpellsSection, StepSpells, SpellSelectionModal, BonusCantripModal to display colored school badges with icons; added getFeatureIcon helper to FeatureSelectionModal, StepFeatureSelections, and FeaturesTraitsSection for fighting style icons (Archery→BowArrow, Defense→Shield, Dueling→Sword, Great Weapon→BattleAxe, Protection→ShieldCheck, Two-Weapon→Dagger) and subclass/class feature icons (Crown for subclass, Flame for rage, Skull for sneak/death, MagicWand for spell, Healing for heal, MusicNotes for bard); FeaturesTraitsSection subclass header already had Crown icon; typecheck passes, lint only pre-existing errors
+- [x] Extracted spell mechanics from 2014_spells.json into structured mechanics JSON: created `src/data/spell-mechanics.ts` with TypeScript interfaces (SpellMechanics, Effect, Scaling, SpecialRule) and `scripts/generate_spell_mechanics.ts` transformer that parses all 524 2014 spells into a normalized mechanics schema covering casting, targeting, resolution (save/attack/check), effects (damage/healing/buff/debuff/condition/summon/teleport/control/utility), scaling, and special rules; generated `src/data/2014_spell_mechanics.json` (524 entries, ~638KB) with special-case overrides for 20+ complex spells (Fireball, Polymorph, Wish, Counterspell, Haste, Web, Shield, etc.); typecheck passes
+
+## Data Layer Additions
+- **Spell mechanics data**: `src/data/2014_spell_mechanics.json` contains 524 mechanically structured spell entries derived from `2014_spells.json`
+- **Spell mechanics interfaces**: `src/data/spell-mechanics.ts` exports `SpellMechanics`, `Effect`, `Scaling`, `SpecialRule` types
+- **Generator script**: `scripts/generate_spell_mechanics.ts` transforms raw SRD spell data into mechanics JSON with regex-based extraction + special-case overrides
+
+## Spell Mechanics Schema
+Each spell entry includes:
+- `casting`: normalized time, range, components, material, concentration, duration
+- `targeting`: type (self/creature/point/area/multiple), shape (sphere/cube/cone/line), size, maxTargets, maxRange
+- `resolution`: attack/save/check with ability, onSuccess/onFailure outcomes
+- `effects`: ordered list of effects with type, trigger, amount, damageType, condition, bonus, duration, special flags
+- `scaling`: cantrip or slotLevel scaling with increment and description
+- `special`: array of special rules (autoDisintegrate, shapechangerImmune, wishStress, etc.)
+
+## Current Focus
+
+Wizard restructure complete. Next steps:
+1. Add character deletion from home screen
+2. Implement PDF export/import
+3. Add database persistence (via add-database recipe)
+4. Future: Refactor shared step rendering between PerLevelStepsFlow and LevelUpFlow to reduce duplication
+5. Future: Add more PHB subclass features to subclass JSON entries
+6. Future: Add more class feature choice options (e.g., Fighting Style variants, Expertise skills per class)
+7. Future: Consume `2014_spell_mechanics.json` in spell UI for automated buff/debuff tracking and combat automation
