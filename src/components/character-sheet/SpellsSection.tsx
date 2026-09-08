@@ -11,6 +11,8 @@ import { SpellSelectionModal } from "../modals/SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "./DamageBadge";
+import { SpellMechanicsChips } from "./SpellMechanicsChips";
+import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 
 interface SpellsSectionProps {
@@ -31,6 +33,7 @@ interface UnifiedSpell {
   description?: string;
   duration?: string;
   school?: string;
+  mechanic?: ReturnType<typeof getSpellMechanic>;
 }
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
@@ -65,6 +68,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       const duration = srdSpell?.duration || "";
       const srdSource = (srdSpell as any)?.source || "PHB";
       const school = (srdSpell as any)?.school || "";
+      const mechanic = s.source === "srd" && s.srdSpellName
+        ? getSpellMechanic(s.srdSpellName, srdSource) || getSpellMechanic(s.srdSpellName)
+        : undefined;
       return {
         id: s.id,
         name: s.name,
@@ -77,6 +83,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         duration,
         srdSource,
         school,
+        mechanic,
       };
     });
   }, [character.spells, srdSpells]);
@@ -264,6 +271,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 })()}
                 <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
               </div>
+              <div className="mt-1">
+                <SpellMechanicsChips mechanic={spell.mechanic} />
+              </div>
               {spell.duration && (() => {
                 const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
                 if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
@@ -303,7 +313,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
                       : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                   }`}
-                  title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : "Click to mark as used this turn"}
+                  title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : (spell.mechanic ? spell.mechanic.effects.map(e => e.description || e.type).filter(Boolean).join("; ") || "Click to mark as used this turn" : "Click to mark as used this turn")}
                 >
                   {buffDef ? <Sparkle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
                   {spellUsed ? "Used" : "Use"}

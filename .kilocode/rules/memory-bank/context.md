@@ -64,9 +64,10 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - [x] Moved spell Prepare/Use buttons below spell name row in SpellsSection (new mt-2 flex row); restored spell description paragraph that was accidentally dropped during refactor; typecheck passes
 - [x] Subclass selection modal in LevelUpWizard: subclass option buttons now show descriptions inline via InfoButton instead of raw text; SubclassDetailsModal now has "Got it" footer button matching InfoButton pattern; typecheck passes
 - [x] Reordered SourceBadge to appear before content names across all components (SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection, FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard); typecheck passes
+- [x] Implemented spell mechanics display in the character sheet spell list: created `src/lib/spell-mechanics-accessor.ts` (lookup layer over `2014_spell_mechanics.json` with source-preference dedupe) and `src/components/character-sheet/SpellMechanicsChips.tsx` (color-coded chips for target/area, resolution, effect, concentration); wired into `SpellsSection.tsx` so each spell shows at a glance what it does, damage type/amount, area, target, and effect on allies vs enemies; typecheck, lint (no new issues), and build pass
 
 ## Current Focus
-- Ongoing: Subclass popup info button UX improvements
+- Ongoing: Spell mechanics chips are now shown on the character sheet spell list; next is wiring the chips into the spell selection modal and level-up spell selection so preview matches the sheet
 - Pending: character deletion from home screen (already implemented), PDF export/import, database persistence via add-database recipe
 - Future: Refactor shared step rendering between PerLevelStepsFlow and LevelUpFlow to reduce duplication, add more PHB subclass features to subclass JSON entries, add more class feature choice options
 
@@ -306,16 +307,16 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 | `src/data/spell-mechanics.ts` | TypeScript interfaces for spell mechanics schema | ✅ Ready |
 | `src/data/2014_spell_mechanics.json` | Mechanically structured spell data for all 524 2014 spells | ✅ Ready |
 | `scripts/generate_spell_mechanics.ts` | Transformer script: raw spells → mechanics JSON | ✅ Ready |
+| `src/lib/spell-mechanics-accessor.ts` | Lookup layer over `2014_spell_mechanics.json` with source-preference dedupe; exposes `getSpellMechanic(name, source)` | ✅ Ready |
+| `src/components/character-sheet/SpellMechanicsChips.tsx` | Color-coded chips rendered under each spell in `SpellsSection`: target/area, resolution (save/attack), effect (damage/heal/buff/debuff/condition/control/summon/teleport), concentration | ✅ Ready |
 | `src/components/character-sheet/FeaturesTraitsSection.tsx` | Locked feature rendering, action type cycling, usable feature filtering (Use button only for action/bonus/reaction/free features) | ✅ Ready |
 | `src/components/character-sheet/AttacksAndSpellcastingSection.tsx` | Class-granted attack rendering with "class-granted" tag | ✅ Ready |
 
 ## Current Focus
 
-Wizard restructure complete. Next steps:
-1. Add character deletion from home screen
-2. Implement PDF export/import
-3. Add database persistence (via add-database recipe)
-4. Future: Refactor shared step rendering between PerLevelStepsFlow and LevelUpFlow to reduce duplication
+- [x] Spell mechanics now display on the character sheet spell list via `SpellMechanicsChips` (target, area, resolution, effect, concentration). Next: wire the same chips into the spell selection modal and level-up spell selection so preview matches the sheet.
+- Pending: character deletion from home screen (already implemented), PDF export/import, database persistence via add-database recipe
+- Future: Refactor shared step rendering between PerLevelStepsFlow and LevelUpFlow to reduce duplication, add more PHB subclass features to subclass JSON entries, add more class feature choice options
 5. Future: Add more PHB subclass features to subclass JSON entries
 6. Future: Add more class feature choice options (e.g., Fighting Style variants, Expertise skills per class)
 
@@ -435,6 +436,7 @@ Wizard restructure complete. Next steps:
 | 2026-09-03 | Reordered SourceBadge to appear BEFORE content names across all components: SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection (ViewField), FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard; badges now render first (e.g. [PHB] [Fireball]); typecheck passes |
 | 2026-09-05 | Created standalone Three.js 3D character test page at `/test-3d` with `TestCharacters3D.tsx` component: 6 class figures (Fighter, Wizard, Rogue, Barbarian, Cleric, Druid) built from BoxGeometry primitives with class-specific materials and accessories; each card has its own WebGL renderer; preview canvas has OrbitControls with auto-rotation; installed three.js and @types/three; added temporary Test 3D button to home page; typecheck and build pass |
 | 2026-09-05 | Replaced expansion selection book cards with 3D CSS book system: new BookCard.tsx with perspective/transform-style 3D book shape, spine/top/bottom/page-edge faces, bookmark ribbon, lock/check badges, selection ring, and hover/selected 3D rotation; created book-svgs.tsx with custom SVG patterns and icons for all 8 expansions; updated StepOrigin to use weapon icons for class selection and RaceFace for race selection; created race-faces.tsx and weapon-icons.tsx; removed old flat BookCard.tsx; typecheck and build pass |
+| 2026-09-08 | Implemented spell mechanics display on the character sheet spell list: added `src/lib/spell-mechanics-accessor.ts` (lookup over `2014_spell_mechanics.json` with source-preference dedupe) and `src/components/character-sheet/SpellMechanicsChips.tsx` (color-coded chips: target/area, resolution save/attack, effect damage/heal/buff/debuff/condition/control/summon/teleport, concentration); wired into `SpellsSection.tsx` so each spell row shows at a glance what it does, damage type+amount, area, target, and effect on allies vs enemies; typecheck, lint (no new issues), and build pass |
 - [x] Renamed ability score method "Dice Roll" to "Manual Roll" across StepAbilities.tsx and storage.ts type; added new homebrew "Free Buy" method with 80 free points, max 15 per stat, no cost system; updated tabs, NewPlayerTips, hint text, and render logic; typecheck passes, lint only pre-existing errors
 - [x] Added icons for subclass, fighting styles, spell schools, and other features: created src/lib/spell-schools.ts with 8 school icon mappings (Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation) using flat react-icons; added CSS variables for school colors in globals.css; updated SpellsSection, StepSpells, SpellSelectionModal, BonusCantripModal to display colored school badges with icons; added getFeatureIcon helper to FeatureSelectionModal, StepFeatureSelections, and FeaturesTraitsSection for fighting style icons (Archery→BowArrow, Defense→Shield, Dueling→Sword, Great Weapon→BattleAxe, Protection→ShieldCheck, Two-Weapon→Dagger) and subclass/class feature icons (Crown for subclass, Flame for rage, Skull for sneak/death, MagicWand for spell, Healing for heal, MusicNotes for bard); FeaturesTraitsSection subclass header already had Crown icon; typecheck passes, lint only pre-existing errors
 - [x] Extracted spell mechanics from 2014_spells.json into structured mechanics JSON: created `src/data/spell-mechanics.ts` with TypeScript interfaces (SpellMechanics, Effect, Scaling, SpecialRule) and `scripts/generate_spell_mechanics.ts` transformer that parses all 524 2014 spells into a normalized mechanics schema covering casting, targeting, resolution (save/attack/check), effects (damage/healing/buff/debuff/condition/summon/teleport/control/utility), scaling, and special rules; generated `src/data/2014_spell_mechanics.json` (524 entries, ~638KB) with special-case overrides for 20+ complex spells (Fireball, Polymorph, Wish, Counterspell, Haste, Web, Shield, etc.); typecheck passes
