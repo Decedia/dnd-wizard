@@ -104,25 +104,47 @@ function formatEffect(m: SpellMechanicSummary): string | null {
     if (util.description) {
       const desc = util.description.trim();
       const lower = desc.toLowerCase();
-      if (lower.includes("temporary hit point") || lower.includes("temp hp")) {
-        const match = desc.match(/temporary hit points? equal to ([^.]+)/i) ||
-                      desc.match(/gains? ([^.]+) temporary hit points?/i);
-        if (match) return `grants ${match[1]} temp HP/turn`;
-        return "grants temporary HP each turn";
+      
+      // Temp HP each turn (Heroism-style)
+      if (lower.includes("start of each of its turns") && lower.includes("temporary hit point")) {
+        const immuneMatch = lower.match(/immune to being (\w+)/);
+        if (immuneMatch) return `grants immunity to ${immuneMatch[1]} + temp HP/turn`;
+        return "grants temp HP each turn";
       }
-      if (lower.includes("immune to being frightened") || lower.includes("immunity to frightened")) {
-        return "grants immunity to frightened + temp HP/turn";
+      
+      // One-time temp HP gain (False Life, Armor of Agathys)
+      if (lower.includes("gain") && lower.includes("temporary hit point") && !lower.includes("each turn")) {
+        const amountMatch = desc.match(/gain ([^.]+) temporary hit points?/i);
+        if (amountMatch) return `grants ${amountMatch[1]} temp HP`;
+        return "grants temporary HP";
       }
+      
+      // Immunity to condition
+      if (lower.includes("immune to being ") || lower.includes("immunity to ")) {
+        const match = lower.match(/immune to being (\w+)/) || lower.match(/immunity to (\w+)/);
+        if (match) return `grants immunity to ${match[1]}`;
+        return "grants immunity";
+      }
+      
+      // Advantage on checks/saves
       if (lower.includes("advantage on") || lower.includes("advantage to")) {
         const match = desc.match(/advantage on ([^.]+)/i);
         if (match) return `grants advantage on ${match[1]}`;
         return "grants advantage";
       }
+      
+      // Resistance
       if (lower.includes("resistance to")) {
         const match = desc.match(/resistance to ([^.]+)/i);
         if (match) return `grants resistance to ${match[1]}`;
         return "grants resistance";
       }
+      
+      // Disadvantage on enemies
+      if (lower.includes("disadvantage on") && (lower.includes("attack roll") || lower.includes("saving throw"))) {
+        return "imposes disadvantage on attacks/saves";
+      }
+      
       const firstSentence = desc.split(". ")[0];
       return firstSentence.length > 100 ? firstSentence.slice(0, 97) + "..." : firstSentence;
     }
@@ -154,6 +176,8 @@ const BUFF_LABELS: Record<string, string> = {
   baseAC13PlusDex: "base AC of 13 + Dexterity",
   resistance: "resistance to a damage type",
   transform: "a new form",
+  advantage: "advantage",
+  restrained: "restrained condition",
 };
 
 function buildSentence(m: SpellMechanicSummary): string {
