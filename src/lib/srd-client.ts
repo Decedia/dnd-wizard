@@ -112,6 +112,9 @@ export interface SRDSpell {
   duration: string;
   description: string | string[];
   effect: string;
+  target?: string;
+  effectSummary?: string;
+  fullDescription?: string;
   higherLevel?: string[];
   components: string[];
   material?: string;
@@ -137,6 +140,9 @@ export interface SRDWizardSpell {
   duration: string;
   description: string[];
   effect: string;
+  target?: string;
+  effectSummary?: string;
+  fullDescription?: string;
   higherLevel?: string[];
   components: string[];
   material?: string;
