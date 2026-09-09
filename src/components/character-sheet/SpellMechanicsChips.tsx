@@ -108,14 +108,18 @@ function formatEffect(m: SpellMechanicSummary): string | null {
       // Temp HP each turn (Heroism-style)
       if (lower.includes("start of each of its turns") && lower.includes("temporary hit point")) {
         const immuneMatch = lower.match(/immune to being (\w+)/);
-        if (immuneMatch) return `grants immunity to ${immuneMatch[1]} + temp HP/turn`;
-        return "grants temp HP each turn";
+        let tempHPFormula = "temp HP/turn";
+        const amountMatch = desc.match(/temporary hit points? equal to ([^.]+)/i) ||
+                           desc.match(/gains? ([^.]+) temporary hit points?/i);
+        if (amountMatch) tempHPFormula = amountMatch[1].trim() + "/turn";
+        if (immuneMatch) return `grants immunity to ${immuneMatch[1]} + ${tempHPFormula}`;
+        return `grants ${tempHPFormula}`;
       }
       
       // One-time temp HP gain (False Life, Armor of Agathys)
       if (lower.includes("gain") && lower.includes("temporary hit point") && !lower.includes("each turn")) {
         const amountMatch = desc.match(/gain ([^.]+) temporary hit points?/i);
-        if (amountMatch) return `grants ${amountMatch[1]} temp HP`;
+        if (amountMatch) return `grants ${amountMatch[1].trim()} temp HP`;
         return "grants temporary HP";
       }
       
