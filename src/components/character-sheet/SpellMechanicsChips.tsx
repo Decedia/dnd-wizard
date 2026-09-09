@@ -57,107 +57,6 @@ function formatResolution(m: SpellMechanicSummary): string | null {
   return null;
 }
 
-function formatEffect(m: SpellMechanicSummary): string | null {
-  const effects = m.effects;
-  if (effects.length === 0) return null;
-
-  const damage = effects.find((e) => e.type === "damage");
-  if (damage) {
-    const amount = damage.amount || "damage";
-    const type = damage.damageType ? capitalize(damage.damageType) : "damage";
-    return `deals ${amount} ${type} damage`;
-  }
-  const heal = effects.find((e) => e.type === "healing");
-  if (heal) {
-    return `heals up to ${heal.amount || "hit points"}`;
-  }
-  const buff = effects.find((e) => e.type === "buff");
-  if (buff) {
-    const key = buff.special || buff.effectType || "";
-    if (BUFF_LABELS[key]) return `grants ${BUFF_LABELS[key]}`;
-    if (buff.bonusTo === "AC") return "grants +2 AC";
-    if (buff.effectType === "advantage") return `grants advantage on ${humanize(buff.bonusTo || "saving throws")}`;
-    return `grants ${humanize(buff.bonusTo || buff.effectType || "a bonus")}`;
-  }
-  const debuff = effects.find((e) => e.type === "debuff");
-  if (debuff) {
-    return `imposes ${humanize(debuff.effectType || "a disadvantage")}`;
-  }
-  const cond = effects.find((e) => e.type === "condition");
-  if (cond) {
-    return `inflicts ${humanize(cond.effectType || "a condition")}`;
-  }
-  const control = effects.find((e) => e.type === "control");
-  if (control) {
-    return `creates ${humanize(control.effectType || "a hazard")}`;
-  }
-  const summon = effects.find((e) => e.type === "summon");
-  if (summon) {
-    return "summons a creature";
-  }
-  const tele = effects.find((e) => e.type === "teleport");
-  if (tele) {
-    return "teleports the target";
-  }
-  const util = effects.find((e) => e.type === "utility");
-  if (util) {
-    if (util.special && UTILITY_LABELS[util.special]) return UTILITY_LABELS[util.special];
-    if (util.description) {
-      const desc = util.description.trim();
-      const lower = desc.toLowerCase();
-      
-      // Temp HP each turn (Heroism-style)
-      if (lower.includes("start of each of its turns") && lower.includes("temporary hit point")) {
-        const immuneMatch = lower.match(/immune to being (\w+)/);
-        let tempHPFormula = "temp HP/turn";
-        const amountMatch = desc.match(/temporary hit points? equal to ([^.]+)/i) ||
-                           desc.match(/gains? ([^.]+) temporary hit points?/i);
-        if (amountMatch) tempHPFormula = amountMatch[1].trim() + "/turn";
-        if (immuneMatch) return `grants immunity to ${immuneMatch[1]} + ${tempHPFormula}`;
-        return `grants ${tempHPFormula}`;
-      }
-      
-      // One-time temp HP gain (False Life, Armor of Agathys)
-      if (lower.includes("gain") && lower.includes("temporary hit point") && !lower.includes("each turn")) {
-        const amountMatch = desc.match(/gain ([^.]+) temporary hit points?/i);
-        if (amountMatch) return `grants ${amountMatch[1].trim()} temp HP`;
-        return "grants temporary HP";
-      }
-      
-      // Immunity to condition
-      if (lower.includes("immune to being ") || lower.includes("immunity to ")) {
-        const match = lower.match(/immune to being (\w+)/) || lower.match(/immunity to (\w+)/);
-        if (match) return `grants immunity to ${match[1]}`;
-        return "grants immunity";
-      }
-      
-      // Advantage on checks/saves
-      if (lower.includes("advantage on") || lower.includes("advantage to")) {
-        const match = desc.match(/advantage on ([^.]+)/i);
-        if (match) return `grants advantage on ${match[1]}`;
-        return "grants advantage";
-      }
-      
-      // Resistance
-      if (lower.includes("resistance to")) {
-        const match = desc.match(/resistance to ([^.]+)/i);
-        if (match) return `grants resistance to ${match[1]}`;
-        return "grants resistance";
-      }
-      
-      // Disadvantage on enemies
-      if (lower.includes("disadvantage on") && (lower.includes("attack roll") || lower.includes("saving throw"))) {
-        return "imposes disadvantage on attacks/saves";
-      }
-      
-      const firstSentence = desc.split(". ")[0];
-      return firstSentence.length > 100 ? firstSentence.slice(0, 97) + "..." : firstSentence;
-    }
-    return util.special ? humanize(util.special) : "has a special effect";
-  }
-  return null;
-}
-
 const UTILITY_LABELS: Record<string, string> = {
   negateSpell: "negates the target spell",
   negateMagicMissile: "negates Magic Missile",
@@ -204,13 +103,39 @@ function TempHPBadge({ formula, size = "sm" }: { formula: string; size?: "sm" | 
 function buildSentence(m: SpellMechanicSummary): string {
   const target = formatTarget(m);
   const res = formatResolution(m);
-  const effect = formatEffect(m);
+  const hasConcentration = m.casting.concentration;
+  const hasDamage = m.effects.some((e) => e.type === "damage");
+  const hasHealing = m.effects.some((e) => e.type === "healing");
+  const hasTempHP = m.effects.some((e) => e.type === "utility" && e.description?.toLowerCase().includes("temporary hit point"));
+  const hasCondition = m.effects.some((e) => e.type === "condition");
+  const hasBuff = m.effects.some((e) => e.type === "buff");
+  const hasDebuff = m.effects.some((e) => e.type === "debuff");
+  const hasControl = m.effects.some((e) => e.type === "control");
+  const hasSummon = m.effects.some((e) => e.type === "summon");
+  const hasTeleport = m.effects.some((e) => e.type === "teleport");
+  const hasUtility = m.effects.some((e) => e.type === "utility");
 
   const parts: string[] = [];
   parts.push(target);
   if (res) parts.push(res);
-  if (effect) parts.push(effect);
-  if (m.casting.concentration) parts.push("Concentration");
+  
+  // Add generic effect type indicators (badges show details)
+  const effectTypes: string[] = [];
+  if (hasDamage) effectTypes.push("damage");
+  if (hasHealing) effectTypes.push("heal");
+  if (hasTempHP) effectTypes.push("temp HP");
+  if (hasCondition) effectTypes.push("condition");
+  if (hasBuff) effectTypes.push("buff");
+  if (hasDebuff) effectTypes.push("debuff");
+  if (hasControl) effectTypes.push("control");
+  if (hasSummon) effectTypes.push("summon");
+  if (hasTeleport) effectTypes.push("teleport");
+  if (hasUtility && !hasTempHP && !hasCondition && !hasBuff && !hasDebuff) effectTypes.push("utility");
+  
+  if (effectTypes.length > 0) {
+    parts.push(effectTypes.join("/"));
+  }
+  if (hasConcentration) parts.push("Concentration");
   return parts.join(" · ");
 }
 
