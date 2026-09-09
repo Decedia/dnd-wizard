@@ -103,6 +103,26 @@ function formatEffect(m: SpellMechanicSummary): string | null {
     if (util.special && UTILITY_LABELS[util.special]) return UTILITY_LABELS[util.special];
     if (util.description) {
       const desc = util.description.trim();
+      const lower = desc.toLowerCase();
+      if (lower.includes("temporary hit point") || lower.includes("temp hp")) {
+        const match = desc.match(/temporary hit points? equal to ([^.]+)/i) ||
+                      desc.match(/gains? ([^.]+) temporary hit points?/i);
+        if (match) return `grants ${match[1]} temp HP/turn`;
+        return "grants temporary HP each turn";
+      }
+      if (lower.includes("immune to being frightened") || lower.includes("immunity to frightened")) {
+        return "grants immunity to frightened + temp HP/turn";
+      }
+      if (lower.includes("advantage on") || lower.includes("advantage to")) {
+        const match = desc.match(/advantage on ([^.]+)/i);
+        if (match) return `grants advantage on ${match[1]}`;
+        return "grants advantage";
+      }
+      if (lower.includes("resistance to")) {
+        const match = desc.match(/resistance to ([^.]+)/i);
+        if (match) return `grants resistance to ${match[1]}`;
+        return "grants resistance";
+      }
       const firstSentence = desc.split(". ")[0];
       return firstSentence.length > 100 ? firstSentence.slice(0, 97) + "..." : firstSentence;
     }
