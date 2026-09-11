@@ -6,6 +6,8 @@ import { DamageBadge } from "./DamageBadge";
 import { ConditionBadge } from "./ConditionBadge";
 import { DiceBadge } from "../DiceBadge";
 import { resolveSpellMacros } from "@/lib/spell-macros";
+import { getModifier } from "@/lib/storage";
+import { getStaticClass } from "@/lib/srd-client";
 
 interface SpellMechanicsSummaryProps {
   mechanic: SpellMechanicSummary | undefined;
@@ -93,12 +95,29 @@ export function SpellMechanicsChips({ mechanic, effectSummary, character, size =
     if (lower.includes("start of each of its turns") && lower.includes("temporary hit point")) {
       const immuneMatch = lower.match(/immune to being (\w+)/);
       if (immuneMatch) immunityCondition = immuneMatch[1];
-      const amountMatch = desc.match(/temporary hit points? equal to ([^.]+)/i) ||
-                         desc.match(/gains? ([^.]+) temporary hit points?/i);
-      if (amountMatch) tempHPFormula = amountMatch[1].trim() + "/turn";
-      else tempHPFormula = "temp HP/turn";
+      const amountMatch = desc.match(/temporary hit points? equal to ([^.,;]+?)(?:\s+at\s+|\s+for\s+|\s+until\s+|$)/i) ||
+                         desc.match(/gains? ([^.,;]+?) temporary hit points?/i);
+      if (amountMatch) {
+        let formula = amountMatch[1].trim();
+        if (formula.toLowerCase().includes("spellcasting ability modifier")) {
+          const classData = character?.class ? getStaticClass(character.class, character?.ruleset) : undefined;
+          const abilityKey = classData?.spellcastingAbility as keyof Character | undefined;
+          const abilityScore = abilityKey ? (character?.[abilityKey] as number | undefined) : undefined;
+          const modifier = abilityScore !== undefined ? getModifier(abilityScore) : null;
+          if (modifier !== null) {
+            formula = `${modifier} temp HP/turn`;
+          } else {
+            formula = "spellcasting modifier temp HP/turn";
+          }
+        } else if (formula.toLowerCase().includes("your ")) {
+          formula = formula.replace(/your /gi, "").trim();
+        }
+        tempHPFormula = formula;
+      } else {
+        tempHPFormula = "temp HP/turn";
+      }
     } else if (lower.includes("gain") && lower.includes("temporary hit point") && !lower.includes("each turn")) {
-      const amountMatch = desc.match(/gain ([^.]+) temporary hit points?/i);
+      const amountMatch = desc.match(/gain ([^.,;]+?) temporary hit points?/i);
       if (amountMatch) tempHPFormula = amountMatch[1].trim();
       else tempHPFormula = "temporary HP";
     }
@@ -143,6 +162,7 @@ export function SpellMechanicsChips({ mechanic, effectSummary, character, size =
           {resolvedSummary}
         </p>
       </div>
+      <div className="border-t border-[var(--color-border)] mx-2" />
       <div className="px-2 pb-2 space-y-1">
         <InfoRow label="Target">
           <span className="text-[var(--color-text-primary)] font-medium">{target}</span>
