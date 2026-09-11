@@ -11,6 +11,6 @@ export function resolveSpellMacros(text: string, character: Character | undefine
   const modifier = abilityScore !== undefined ? getModifier(abilityScore) : null;
 
   return text.replace(/\{\{spellcastingmodifier\}\}/gi, () => {
-    return modifier !== null ? `+${modifier}` : "";
+    return modifier !== null ? `${modifier}` : "";
   });
 }
