@@ -127,6 +127,10 @@
   --color-damage-thunder: #6366f1;
   --color-damage-thunder-bg: #6366f115;
 
+  --color-effect-summary-bg: #fef3c7;
+  --color-effect-summary-text: #78350f;
+  --color-effect-summary-border: #92400e;
+
   --color-state-concentration: #0891b2;
   --color-state-concentration-bg: #0891b215;
   --color-state-concentration-border: #0891b230;
@@ -276,6 +280,10 @@
   --color-damage-slashing-bg: #94a3b815;
   --color-damage-thunder: #a5b4fc;
   --color-damage-thunder-bg: #a5b4fc15;
+
+  --color-effect-summary-bg: #451a03;
+  --color-effect-summary-text: #fde68a;
+  --color-effect-summary-border: #b45309;
 
   --color-school-abjuration: #60a5fa;
   --color-school-abjuration-bg: #60a5fa15;

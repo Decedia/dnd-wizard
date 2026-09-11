@@ -33,6 +33,7 @@ interface UnifiedSpell {
   description?: string;
   duration?: string;
   school?: string;
+  effectSummary?: string;
   mechanic?: ReturnType<typeof getSpellMechanic>;
 }
 
@@ -83,6 +84,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         duration,
         srdSource,
         school,
+        effectSummary: srdSpell?.effectSummary || "",
         mechanic,
       };
     });
@@ -272,7 +274,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
               </div>
               <div className="mt-1">
-                <SpellMechanicsChips mechanic={spell.mechanic} />
+                <SpellMechanicsChips mechanic={spell.mechanic} effectSummary={spell.effectSummary} />
               </div>
               {spell.duration && (() => {
                 const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
