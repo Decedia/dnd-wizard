@@ -27,7 +27,7 @@
       ],
       "effect": "You hurl a bubble of acid. Choose one creature within range, or choose two creatures within range that are within 5 feet of each other. A target must succeed on a dexterity saving throw or take 1d6 acid damage.",
       "source": "PHB",
-      "effectSummary": "Deal 1d6 acid damage to a target within 60 ft",
+      "effectSummary": "Deal 1d6 acid damage to one or two creatures",
       "fullDescription": "Using 1 action, choose one creature within range, or choose two creatures within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or take 1d6 acid damage; This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6). The effect happens immediately and then ends."
     },
     {
@@ -52,7 +52,7 @@
         "Wizard"
       ],
       "source": "EGW",
-      "effectSummary": "Deal 1d4 force damage to a target within Touch",
+      "effectSummary": "Gain extra attack with optional 1d4 force damage",
       "fullDescription": "Using 1 action, you boost the energy of a creature you touch. If the creature is wielding a weapon that deals piercing damage, it can also push the target of that attack up to 10 feet away from it on a hit; If the additional attack hits, the target takes an extra 1d4 force damage; The spell's extra damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4). The effect lasts for 1 round."
     },
     {
@@ -82,7 +82,7 @@
       ],
       "effect": "You create a ghostly, skeletal hand in the space of a creature within range. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes 1d8 necrotic damage, and it can't regain hit points until the start of your next turn. Until then, the hand clings to the target.",
       "source": "PHB",
-      "effectSummary": "Deal 1d8 necrotic damage to a target within 120 ft",
+      "effectSummary": "Deal 1d8 necrotic damage and prevent healing",
       "fullDescription": "Using 1 action, you create a ghostly, skeletal hand in the space of a creature within range. On a hit, the target takes 1d8 necrotic damage, and it can't regain hit points until the start of your next turn; This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8). On a hit, the target takes 1d8 necrotic damage, and it can't regain hit points until the start of your next turn."
     },
     {
@@ -113,7 +113,7 @@
       ],
       "effect": "You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration. You can also combine the four lights into one glowing vaguely humanoid form of Medium size. Whichever form you choose, each light sheds dim light in a 10-foot radius.",
       "source": "PHB",
-      "effectSummary": "Make an object shed bright light for the duration",
+      "effectSummary": "Create up to four floating lights you can move",
       "fullDescription": "Using 1 action, you create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration. As a bonus action on your turn, you can move the lights up to 60 feet to a new spot within range; A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -138,7 +138,7 @@
         "Wizard"
       ],
       "source": "EGW",
-      "effectSummary": "Deal 1d8 force damage to a target within 60 ft",
+      "effectSummary": "Deal 1d8 force damage and disrupt concentration",
       "fullDescription": "Using 1 action, this spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8). The target must succeed on a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC or take 1d8 force damage and if it is concentrating on a spell, it must immediately make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC to maintain concentration; You disrupt a creature's concentration; This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8). You disrupt a creature's concentration."
     },
     {
@@ -166,7 +166,7 @@
       ],
       "effect": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.",
       "source": "PHB",
-      "effectSummary": "Deal 1d10 fire damage to a target within 120 ft",
+      "effectSummary": "Deal 1d10 fire damage and ignite flammable objects",
       "fullDescription": "Using 1 action, this spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10). On a hit, the target takes 1d10 fire damage; Make a ranged spell attack against the target. The effect happens immediately and then ends."
     },
     {
@@ -190,7 +190,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Pull a creature up to 10 feet in a direction you choose",
+      "effectSummary": "Pull a creature up to 10 feet in chosen direction",
       "fullDescription": "Using 1 action, this spell ends if the target touches the ground or a solid surface. The target must succeed on a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC or be pulled up to 10 feet in a direction of your choice; At 5th level, you can pull the target up to 15 feet; At 5th level, you can pull the target up to 15 feet; At 11th level, you can pull the target up to 20 feet; At 17th level, you can pull the target up to 25 feet. This spell ends if the target touches the ground or a solid surface."
     },
     {
@@ -221,7 +221,7 @@
       ],
       "effect": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.",
       "source": "PHB",
-      "effectSummary": "Make an object shed bright light for the duration",
+      "effectSummary": "Make an object shed bright light for 1 hour",
       "fullDescription": "Using 1 action, you touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet; If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC to avoid the spell. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet."
     },
     {
@@ -252,7 +252,7 @@
       ],
       "effect": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.",
       "source": "PHB",
-      "effectSummary": "Create a spectral hand to manipulate objects within 30 feet",
+      "effectSummary": "Create spectral hand to manipulate objects within 30 feet",
       "fullDescription": "Using 1 action, a spectral, floating hand appears at a point you choose within range. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again; You can move the hand up to 30 feet each time you use it. The hand lasts for the duration or until you dismiss it as an action."
     },
     {
@@ -285,7 +285,7 @@
       ],
       "effect": "This spell repairs a single break or tear in an object you touch, such as a broken key, a torn cloak, or a leaking wineskin. As long as the break or tear is no longer than 1 foot in any dimension, you mend it, leaving no trace of the former damage.",
       "source": "PHB",
-      "effectSummary": "Repair one break or tear up to 1 foot wide",
+      "effectSummary": "Repair a single break or tear in an object",
       "fullDescription": "Using 1 minute, this spell repairs a single break or tear in an object you touch, such as a broken key, a torn cloak, or a leaking wineskin. As long as the break or tear is no longer than 1 foot in any dimension, you mend it, leaving no trace of the former damage; This spell can physically repair a magic item or construct, but the spell can't restore magic to such an object. The effect happens immediately and then ends."
     },
     {
@@ -316,7 +316,7 @@
       ],
       "effect": "You point your finger toward a creature within range and whisper a message. The target (and only the target) hears the message and can reply in a whisper that only you can hear.",
       "source": "PHB",
-      "effectSummary": "Send a private message to a creature within range",
+      "effectSummary": "Whisper a message only the target can hear",
       "fullDescription": "Using 1 action, you point your finger toward a creature within range and whisper a message. Magical silence, 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood blocks the spell; The target (and only the target) hears the message and can reply in a whisper that only you can hear. The effect lasts for 1 round."
     },
     {
@@ -374,7 +374,7 @@
         "Wizard"
       ],
       "source": "FTD",
-      "effectSummary": "Create a magical effect at a point you choose",
+      "effectSummary": "Create a harmless sensory effect at a point",
       "fullDescription": "Using 1 action, you create a minor magical effect to distract a creature. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or have disadvantage on the next attack roll it makes before the end of its next turn. The effect lasts for 1 minute."
     },
     {
@@ -464,7 +464,7 @@
       ],
       "effect": "This spell is a minor magical trick that novice spellcasters use for practice. You create one of the following magical effects within 'range':",
       "source": "PHB",
-      "effectSummary": "Create a magical effect at a point you choose",
+      "effectSummary": "Create a minor magical sensory effect or small trick",
       "fullDescription": "Using 1 action, this spell is a minor magical trick that novice spellcasters use for practice. You make a color, a small mark, or a symbol appear on an object or a surface for 1 hour; You create a nonmagical trinket or an illusory image that can fit in your hand and that lasts until the end of your next turn. You create a nonmagical trinket or an illusory image that can fit in your hand and that lasts until the end of your next turn."
     },
     {
@@ -492,7 +492,7 @@
       ],
       "effect": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn.",
       "source": "PHB",
-      "effectSummary": "Deal 1d8 cold damage to a target within 60 ft",
+      "effectSummary": "Deal 1d8 cold damage and reduce target's speed",
       "fullDescription": "Using 1 action, on a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn. The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8); Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn."
     },
     {
@@ -515,7 +515,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Deal 1d4 necrotic damage to a target within 30 ft",
+      "effectSummary": "Deal 1d4 necrotic damage and knock creature prone",
       "fullDescription": "Using 1 action, the target must succeed on a Constitution saving throw or take 1d4 necrotic damage and have disadvantage on the next attack roll it makes before the end of its next turn. This spell's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4); You sap the vitality of one creature you can see within range; This spell's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4). The effect happens immediately and then ends."
     },
     {
@@ -543,7 +543,7 @@
       ],
       "effect": "Lightning springs from your hand to deliver a shock to a creature you try to touch. Make a melee spell attack against the target. You have advantage on the attack roll if the target is wearing armor made of metal. On a hit, the target takes 1d8 lightning damage, and it can't take reactions until the start of its next turn.",
       "source": "PHB",
-      "effectSummary": "Deal 1d8 lightning damage to a target within Touch",
+      "effectSummary": "Deal 1d8 lightning damage and prevent reactions",
       "fullDescription": "Using 1 action, lightning springs from your hand to deliver a shock to a creature you try to touch. On a hit, the target takes 1d8 lightning damage, and it can't take reactions until the start of its next turn; The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8). On a hit, the target takes 1d8 lightning damage, and it can't take reactions until the start of its next turn."
     },
     {
@@ -568,7 +568,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Teleport up to 30 feet to an unoccupied space you can see",
+      "effectSummary": "Teleport up to 30 feet to an unoccupied space",
       "fullDescription": "Using 1 action, you briefly slow the time around a willing creature you touch. The creature can use its reaction to move up to 10 feet without provoking opportunity attacks; At 5th level, the creature can move up to 15 feet; At 5th level, the creature can move up to 15 feet; At 11th level, the creature can move up to 20 feet; At 17th level, the creature can move up to 25 feet. The effect happens immediately and then ends."
     },
     {
@@ -644,7 +644,7 @@
         "Wizard"
       ],
       "source": "EGW",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create a shadow that can attack or deliver touch spells",
       "fullDescription": "Using 1 action, until the spell ends, you can use a bonus action to become invisible until the start of your next turn, or until you attack, deal damage, or force someone to make a saving throw. You manipulate shadows around you. Until the spell ends, you can use a bonus action to become invisible until the start of your next turn, or until you attack, deal damage, or force someone to make a saving throw; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -670,7 +670,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Write invisible words only you and intended readers can see",
       "fullDescription": "Using 1 action, at 5th level, the writing can be revealed only by a see invisibility spell or similar magic, and it can also be revealed by a creature that touches the surface and speaks a word that you designate when you cast the spell. The writing appears on the surface as normal writing, but it is invisible to all other creatures; The writing can be revealed only by a see invisibility spell or similar magic. The writing lasts for the duration, but it can be ended early by you as a bonus action."
     },
     {
@@ -701,7 +701,7 @@
       ],
       "effect": "You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot cube. Until the spell ends, an alarm alerts you whenever a Tiny or larger creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is mental or audible.",
       "source": "PHB",
-      "effectSummary": "Put low-HP creatures to sleep until damaged or awakened",
+      "effectSummary": "Ward an area against intruders for 8 hours",
       "fullDescription": "Using 1 minute, choose a door, a window, or an area within range that is no larger than a 20-foot cube. An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet; You set an alarm against unwanted intrusion. Until the spell ends, an alarm alerts you whenever a Tiny or larger creature touches or enters the warded area; you can cast it as a ritual."
     },
     {
@@ -731,7 +731,7 @@
       ],
       "effect": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.",
       "source": "PHB",
-      "effectSummary": "Deal 3d6 fire damage to a target within Self",
+      "effectSummary": "Deal 3d6 fire damage to creatures in a 15-foot cone",
       "fullDescription": "Using 1 action, as you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one; Each creature in a 15-foot cone must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st. The effect happens immediately and then ends."
     },
     {
@@ -763,7 +763,7 @@
       ],
       "effect": "You attempt to charm a humanoid you can see within range. It must make a wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Charm a humanoid to regard you as a friendly acquaintance",
       "fullDescription": "Using 1 action, you attempt to charm a humanoid you can see within range. It must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC, and does so with advantage if you or your companions are fighting it; If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it; When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st; The creatures must be within 30 feet of each other when you target them. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it."
     },
     {
@@ -795,7 +795,7 @@
       ],
       "effect": "A dazzling array of flashing, colored light springs from your hand. Roll 6d10; the total is how many hit points of creatures this spell can effect. Creatures in a 15-foot cone originating from you are affected in ascending order of their current hit points (ignoring unconscious creatures and creatures that can't see).",
       "source": "PHB",
-      "effectSummary": "Make a target blinded until it saves or the spell ends",
+      "effectSummary": "Blind creatures for 1 round based on their remaining HP",
       "fullDescription": "Using 1 action, roll 6d10; the total is how many hit points of creatures this spell can effect. Creatures in a 15-foot cone originating from you are affected in ascending order of their current hit points (ignoring unconscious creatures and creatures that can't see); Starting with the creature that has the lowest current hit points, each creature affected by this spell is blinded until the spell ends; When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d10 for each slot level above 1st. Starting with the creature that has the lowest current hit points, each creature affected by this spell is blinded until the spell ends."
     },
     {
@@ -827,7 +827,7 @@
       ],
       "effect": "For the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text.",
       "source": "PHB",
-      "effectSummary": "Send a private message to a creature within range",
+      "effectSummary": "Understand any spoken or written language for 1 hour",
       "fullDescription": "Using 1 action, you also understand any written language that you see, but you must be touching the surface on which the words are written. For the duration, you understand the literal meaning of any spoken language that you hear; It takes about 1 minute to read one page of text. The effect lasts for 1 hour; you can cast it as a ritual."
     },
     {
@@ -860,7 +860,7 @@
       ],
       "effect": "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Sense magic within 30 feet and see its aura for 10 minutes",
       "fullDescription": "Using 1 action, for the duration, you sense the presence of magic within 30 feet of you. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt; If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any. The effect lasts for up to 10 minutes; you must concentrate, and the effect ends if your concentration ends; you can cast it as a ritual."
     },
     {
@@ -974,7 +974,7 @@
       ],
       "effect": "Bolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration.",
       "source": "PHB",
-      "effectSummary": "Gain 1d4+4 hit points for the duration",
+      "effectSummary": "Gain 1d4 + 4 temporary hit points for 1 hour",
       "fullDescription": "Using 1 action, bolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration. Bolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration; When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st. The effect lasts for 1 hour."
     },
     {
@@ -1003,7 +1003,7 @@
       ],
       "effect": "Choose up to five falling creatures within range. A falling creature's rate of descent slows to 60 feet per round until the spell ends. If the creature lands before the spell ends, it takes no falling damage and can land on its feet, and the spell ends for that creature.",
       "source": "PHB",
-      "effectSummary": "it takes no falling damage and can land on its feet, and",
+      "effectSummary": "Slow falling creatures to 60 feet per round",
       "fullDescription": "Using 1 reaction, choose up to five falling creatures within range. A falling creature's rate of descent slows to 60 feet per round until the spell ends; If the creature lands before the spell ends, it takes no falling damage and can land on its feet, and the spell ends for that creature. A falling creature's rate of descent slows to 60 feet per round until the spell ends."
     },
     {
@@ -1037,7 +1037,7 @@
       ],
       "effect": "You gain the service of a familiar, a spirit that takes an animal form you choose: bat, cat, crab, frog (toad), hawk, lizard, octopus, owl, poisonous snake, fish (quipper), rat, raven, sea horse, spider, or weasel. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a celestial, fey, or fiend (your choice) instead of a beast.",
       "source": "PHB",
-      "effectSummary": "Summon a creature to fight for you for the duration",
+      "effectSummary": "Summon a spirit animal to serve you as a familiar",
       "fullDescription": "Using 1 hour, you gain the service of a familiar, a spirit that takes an animal form you choose: bat, cat, crab, frog (toad), hawk, lizard, octopus, owl, poisonous snake, fish (quipper), rat, raven, sea horse, spider, or weasel. When the familiar drops to 0 hit points, it disappears, leaving behind no physical form; While your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as an action, you can see through your familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses that the familiar has; you can cast it as a ritual."
     },
     {
@@ -1098,7 +1098,7 @@
       ],
       "effect": "You create a 20-foot-radius sphere of fog centered on a point within range. The sphere spreads around corners, and its area is heavily obscured. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it.",
       "source": "PHB",
-      "effectSummary": "Create a 20-foot-radius sphere of fog that is heavily obscured",
+      "effectSummary": "Create a 20-foot-radius sphere of heavily obscured fog",
       "fullDescription": "Using 1 action, you create a 20-foot-radius sphere of fog centered on a point within range. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it; The sphere spreads around corners, and its area is heavily obscured; When you cast this spell using a spell slot of 2nd level or higher, the radius of the fog increases by 20 feet for each slot level above 1st. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1127,7 +1127,7 @@
       ],
       "effect": "Slick grease covers the ground in a 10-foot square centered on a point within range and turns it into difficult terrain for the duration.",
       "source": "PHB",
-      "effectSummary": "Make a target prone until it saves or the spell ends",
+      "effectSummary": "Cover ground in slippery grease, causing creatures to fall prone",
       "fullDescription": "Using 1 action, slick grease covers the ground in a 10-foot square centered on a point within range and turns it into difficult terrain for the duration. A creature that enters the area or ends its turn there must also succeed on a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or fall prone; When the grease appears, each creature standing in its area must succeed on a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or fall prone. A creature that enters the area or ends its turn there must also succeed on a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or fall prone."
     },
     {
@@ -1157,7 +1157,7 @@
       ],
       "effect": "A creature of your choice that you can see within range perceives everything as hilariously funny and falls into fits of laughter if this spell affects it. The target must succeed on a wisdom saving throw or fall prone, becoming incapacitated and unable to stand up for the duration. A creature with an Intelligence score of 4 or less isn't affected.",
       "source": "PHB",
-      "effectSummary": "Make a target incapacitated until it saves or the spell ends",
+      "effectSummary": "Incapacitate a creature with uncontrollable laughter",
       "fullDescription": "Using 1 action, at the end of each of its turns, and each time it takes damage, the target can make another wisdom saving throw. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or fall prone, becoming incapacitated and unable to stand up for the duration; The target had advantage on the saving throw if it's triggered by damage. At the end of each of its turns, and each time it takes damage, the target can make another wisdom saving throw; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1187,7 +1187,7 @@
       ],
       "effect": "You choose one object that you must touch throughout the casting of the spell. If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. You learn whether any spells are affecting the item and what they are. If the item was created by a spell, you learn which spell created it.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Learn magical properties of an object or creature",
       "fullDescription": "Using 1 minute, you choose one object that you must touch throughout the casting of the spell. If the item was created by a spell, you learn which spell created it; If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. The effect happens immediately and then ends; you can cast it as a ritual."
     },
     {
@@ -1219,7 +1219,7 @@
       ],
       "effect": "You write on parchment, paper, or some other suitable writing material and imbue it with a potent illusion that lasts for the duration.",
       "source": "PHB",
-      "effectSummary": "Send a private message to a creature within range",
+      "effectSummary": "Create a secret message only you and intended readers can see",
       "fullDescription": "Using 1 minute, to you and any creatures you designate when you cast the spell, the writing appears normal, written in your hand, and conveys whatever meaning you intended when you wrote the text. To all others, the writing appears as if it were written in an unknown or magical script that is unintelligible; A creature with truesight can read the hidden message. You write on parchment, paper, or some other suitable writing material and imbue it with a potent illusion that lasts for the duration; you can cast it as a ritual."
     },
     {
@@ -1341,7 +1341,7 @@
       ],
       "effect": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.",
       "source": "PHB",
-      "effectSummary": "Deal 1d4+1 force damage to a target within 120 ft",
+      "effectSummary": "Create 3 magical darts each dealing 1d4 + 1 force damage",
       "fullDescription": "Using 1 action, you create three glowing darts of magical force. A dart deals 1d4 + 1 force damage to its target; Each dart hits a creature of your choice that you can see within range; When you cast this spell using a spell slot of 2nd level or higher, the spell creates one more dart for each slot level above 1st. The effect happens immediately and then ends."
     },
     {
@@ -1397,7 +1397,7 @@
       ],
       "effect": "Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Protect a creature from aberrations, celestials, elementals, fey, fiends, undead",
       "fullDescription": "Using 1 action, until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead. Creatures of those types have disadvantage on attack rolls against the target; If the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect. Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1424,7 +1424,7 @@
       ],
       "effect": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Gain +5 AC as a reaction when hit",
       "fullDescription": "Using 1 reaction, until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile. An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile."
     },
     {
@@ -1490,7 +1490,7 @@
       ],
       "effect": "This spell sends creatures into a magical slumber. Roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring unconscious creatures).",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Send creatures into magical slumber based on HP total",
       "fullDescription": "Using 1 action, roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring unconscious creatures); Starting with the creature that has the lowest current hit points, each creature affected by this spell falls unconscious until the spell ends, the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake; When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d8 for each slot level above 1st. This spell sends creatures into a magical slumber."
     },
     {
@@ -1578,7 +1578,7 @@
       ],
       "effect": "This spell creates an invisible, mindless, shapeless force that performs simple tasks at your command until the spell ends. The servant springs into existence in an unoccupied space on the ground within range. It has AC 10, 1 hit point, and a Strength of 2, and it can't attack. If it drops to 0 hit points, the spell ends.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create an invisible force to perform simple tasks for you",
       "fullDescription": "Using 1 action, this spell creates an invisible, mindless, shapeless force that performs simple tasks at your command until the spell ends. Once on each of your turns as a bonus action, you can mentally command the servant to move up to 15 feet and interact with an object; If you command the servant to perform a task that would move it more than 60 feet away from you, the spell ends. This spell creates an invisible, mindless, shapeless force that performs simple tasks at your command until the spell ends; you can cast it as a ritual."
     },
     {
@@ -1608,7 +1608,7 @@
       ],
       "effect": "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn.",
       "source": "PHB",
-      "effectSummary": "Deal 4d4 acid damage to a target within 90 ft",
+      "effectSummary": "Deal 4d4 acid damage initially and 2d4 at start of next turn",
       "fullDescription": "Using 1 action, a shimmering green arrow streaks toward a target within range and bursts in a spray of acid. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn; On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn; When you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd. The effect happens immediately and then ends."
     },
     {
@@ -1638,7 +1638,7 @@
       ],
       "effect": "You assume a different form. When you cast the spell, choose one of the following options, the effects of which last for the duration of the spell. While the spell lasts, you can end one option as an action to gain the benefits of a different one.",
       "source": "PHB",
-      "effectSummary": "Deal 1d6 bludgeoning damage to a target within Self",
+      "effectSummary": "Change your appearance, develop natural weapons, or adapt to environment",
       "fullDescription": "Using 1 action, when you cast the spell, choose one of the following options, the effects of which last for the duration of the spell. Your unarmed strikes deal 1d6 bludgeoning, piercing, or slashing damage, as appropriate to the natural weapon you chose, and you are proficient with your unarmed strikes; Finally, the natural weapon is magic and you have a +1 bonus to the attack and damage rolls you make using it. While the spell lasts, you can end one option as an action to gain the benefits of a different one; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1698,7 +1698,7 @@
       ],
       "effect": "You place an illusion on a creature or an object you touch so that divination spells reveal false information about it. The target can be a willing creature or an object that isn't being carried or worn by another creature.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Change a creature or objects magical aura",
       "fullDescription": "Using 1 action, you place an illusion on a creature or an object you touch so that divination spells reveal false information about it. If you cast this spell on the same creature or object every day for 30 days, placing the same effect on it each time, the illusion lasts until it is dispelled; You can make a nonmagical object appear magical, a magical object appear nonmagical, or change the object's magical aura so that it appears to belong to a specific school of magic that you choose. The effect lasts for the duration."
     },
     {
@@ -1728,7 +1728,7 @@
       ],
       "effect": "You can blind or deafen a foe. Choose one creature that you can see within range to make a constitution saving throw. If it fails, the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, the target can make a constitution saving throw. On a success, the spell ends.",
       "source": "PHB",
-      "effectSummary": "Make a target blinded until it saves or the spell ends",
+      "effectSummary": "Blind or deafen a creature for 1 minute",
       "fullDescription": "Using 1 action, choose one creature that you can see within range to make a constitution saving throw. At the end of each of its turns, the target can make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC; If it fails, the target is either blinded or deafened (your choice) for the duration; When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd. On a success, the spell ends."
     },
     {
@@ -1783,7 +1783,7 @@
       ],
       "effect": "A flame, equivalent in brightness to a torch, springs forth from an object that you touch. The effect looks like a regular flame, but it creates no heat and doesn't use oxygen. A continual flame can be covered or hidden but not smothered or quenched.",
       "source": "PHB",
-      "effectSummary": "Create a magical effect at a point you choose",
+      "effectSummary": "Create a magical flame that sheds bright light for 24 hours",
       "fullDescription": "Using 1 action, a flame, equivalent in brightness to a torch, springs forth from an object that you touch. The effect looks like a regular flame, but it creates no heat and doesn't use oxygen; A continual flame can be covered or hidden but not smothered or quenched. The effect lasts for until dispelled."
     },
     {
@@ -1879,7 +1879,7 @@
       ],
       "effect": "For the duration, you can read the thoughts of certain creatures. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If the creature you choose has an Intelligence of 3 or lower or doesn't speak any language, the creature is unaffected.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Read surface thoughts of creatures within 30 feet for 1 minute",
       "fullDescription": "Using 1 action, when you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If you probe deeper, the target must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; The spell can penetrate barriers, but 2 feet of rock, 2 inches of any metal other than lead, or a thin sheet of lead blocks you. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1905,7 +1905,7 @@
         "Wizard"
       ],
       "source": "FTD",
-      "effectSummary": "Make a target frightened until it saves or the spell ends",
+      "effectSummary": "Frighten creatures within 30 feet for 1 minute",
       "fullDescription": "Using 1 action, a frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Each creature in the area must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or become frightened of you for 1 minute; You project a fearsome draconic visage. The effect happens immediately and then ends."
     },
     {
@@ -1932,7 +1932,7 @@
         "Wizard"
       ],
       "source": "FTD",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Gain darkvision and detect invisible creatures",
       "fullDescription": "Using 1 action, you touch a willing creature and grant it draconic senses. Until the spell ends, the target has blindsight with a range of 10 feet, and it has advantage on Wisdom (Perception) checks that rely on sight or hearing. Until the spell ends, the target has blindsight with a range of 10 feet, and it has advantage on Wisdom (Perception) checks that rely on sight or hearing; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1964,7 +1964,7 @@
       ],
       "effect": "You cause a creature or an object you can see within range to grow larger or smaller for the duration. Choose either a creature or an object that is neither worn nor carried. If the target is unwilling, it can make a Constitution saving throw. On a success, the spell has no effect.",
       "source": "PHB",
-      "effectSummary": "Give a creature advantage on saving throws for the duration",
+      "effectSummary": "Double or halve a creature's size for 1 minute",
       "fullDescription": "Using 1 action, choose either a creature or an object that is neither worn nor carried. While these weapons are enlarged, the target's attacks with them deal 1d4 extra damage; While these weapons are reduced, the target's attacks with them deal 1d4 less damage (this can't reduce the damage below 1). Until the spell ends, the target also has advantage on Strength checks and Strength saving throws; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1997,7 +1997,7 @@
       ],
       "effect": "A 5-foot-diameter sphere of fire appears in an unoccupied space of your choice within range and lasts for the duration. Any creature that ends its turn within 5 feet of the sphere must make a dexterity saving throw. The creature takes 2d6 fire damage on a failed save, or half as much damage on a successful one.",
       "source": "PHB",
-      "effectSummary": "Deal 2d6 fire damage to a target within 60 ft",
+      "effectSummary": "Create a 5-foot sphere of fire dealing 2d6 fire damage",
       "fullDescription": "Using 1 action, any creature that ends its turn within 5 feet of the sphere must make a dexterity saving throw. The creature takes 2d6 fire damage on a failed save, or half as much damage on a successful one; As a bonus action, you can move the sphere up to 30 feet; When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd. A 5-foot-diameter sphere of fire appears in an unoccupied space of your choice within range and lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2095,7 +2095,7 @@
       ],
       "effect": "Choose a humanoid that you can see within range. The target must succeed on a wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another wisdom saving throw. On a success, the spell ends on the target.",
       "source": "PHB",
-      "effectSummary": "Make a target paralyzed until it saves or the spell ends",
+      "effectSummary": "Paralyze a humanoid for 1 minute",
       "fullDescription": "Using 1 action, choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be paralyzed for the duration; At the end of each of its turns, the target can make another wisdom saving throw; When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd; The humanoids must be within 30 feet of each other when you target them. On a success, the spell ends on the target; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2128,7 +2128,7 @@
       ],
       "effect": "A creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person. The spell ends for a target that attacks or casts a spell.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "A creature you touch becomes invisible until the spell ends",
       "fullDescription": "Using 1 action, a creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person; The spell ends for a target that attacks or casts a spell; When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd. A creature you touch becomes invisible until the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2224,7 +2224,7 @@
       ],
       "effect": "Describe or name an object that is familiar to you. You sense the direction to the object's location, as long as that object is within 1,000 feet of you. If the object is in motion, you know the direction of its movement.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Sense location of an object within 1,000 feet",
       "fullDescription": "Using 1 action, describe or name an object that is familiar to you. The spell can locate a specific object known to you, as long as you have seen it up close--within 30 feet--at least once; You sense the direction to the object's location, as long as that object is within 1,000 feet of you. The effect lasts for up to 10 minutes; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2256,7 +2256,7 @@
       ],
       "effect": "You plant a message to an object in the range of the spell. The message is verbalized when the trigger conditions are met. Choose an object that you see, and that is not worn or carried by another creature. Then say the message, which should not exceed 25 words but listening can take up to 10 minutes. Finally, establish the circumstances that trigger the spell to deliver your message.",
       "source": "PHB",
-      "effectSummary": "Send a private message to a creature within range",
+      "effectSummary": "Create a mouth that speaks a message when triggered",
       "fullDescription": "Using 1 minute, choose an object that you see, and that is not worn or carried by another creature. The triggering circumstance can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the object; For example, you could instruct the mouth to speak when any creature moves within 30 feet of the object or when a silver bell rings within 30 feet of it. When you cast this spell, you may decide that the spell ends when the message is delivered or it can persist and repeat the message whenever circumstances occur; you can cast it as a ritual."
     },
     {
@@ -2341,7 +2341,7 @@
       ],
       "effect": "Three illusory duplicates of yourself appear in your space. Until the spell ends, the duplicates move with you and mimic your actions, shifting position so it's impossible to track which image is real. You can use your action to dismiss the illusory duplicates.",
       "source": "PHB",
-      "effectSummary": "Create 3 illusory duplicates of yourself to confuse attackers",
+      "effectSummary": "Create 3 illusory duplicates to confuse attackers",
       "fullDescription": "Using 1 action, three illusory duplicates of yourself appear in your space. A duplicate's AC equals 10 + your Dexterity modifier; It ignores all other damage and effects. Until the spell ends, the duplicates move with you and mimic your actions, shifting position so it's impossible to track which image is real."
     },
     {
@@ -2368,7 +2368,7 @@
       ],
       "effect": "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.",
       "source": "PHB",
-      "effectSummary": "Teleport up to Self to a space you can see",
+      "effectSummary": "Teleport up to 30 feet to an unoccupied space you can see",
       "fullDescription": "Using 1 bonus action, briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see. Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see. The effect happens immediately and then ends."
     },
     {
@@ -2392,7 +2392,7 @@
         "Wizard"
       ],
       "source": "SCAG",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Change the magical aura of an object or creature",
       "fullDescription": "Using 1 action, you place an illusion on a creature or an object you touch so that divination spells reveal false information about it. If you cast this spell on the same creature or object every day for 30 days, the illusion lasts until it is dispelled; You can make a nonmagical object appear magical, a magical object appear nonmagical, or change the object's magical aura so that it appears to belong to a specific school of magic of your choice. Either effect lasts for the duration."
     },
     {
@@ -2418,7 +2418,7 @@
         "Wizard"
       ],
       "source": "SCAG",
-      "effectSummary": "Deal 1d6 psychic damage to a target within 60 ft",
+      "effectSummary": "Create a sensory illusion that only the target perceives",
       "fullDescription": "Using 1 action, on a failed save, you create a phantasmal object, creature, or other visible phenomenon of your choice that is size 10-foot cube or smaller and that is perceivable only to the target for the duration. A creature that is subjected to this spell is incapacitated while it interacts with the phantasm and takes 1d6 psychic damage each time it interacts with the phantasm; The target must make an Intelligence saving throw. If the check succeeds, the target realizes that the phantasm is an illusion, and the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2446,7 +2446,7 @@
       ],
       "effect": "A black beam of enervating energy springs from your finger toward a creature within range. Make a ranged spell attack against the target. On a hit, the target deals only half damage with weapon attacks that use Strength until the spell ends.",
       "source": "PHB",
-      "effectSummary": "On a hit, the target deals only half damage with weapon attacks",
+      "effectSummary": "Weaken a creature, halving its damage output for 1 minute",
       "fullDescription": "Using 1 action, at the end of each of the target's turns, it can make a constitution saving throw against the spell. On a hit, the target deals only half damage with weapon attacks that use Strength until the spell ends; Make a ranged spell attack against the target. On a hit, the target deals only half damage with weapon attacks that use Strength until the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2477,7 +2477,7 @@
       ],
       "effect": "You touch a length of rope that is up to 60 feet long. One end of the rope then rises into the air until the whole rope hangs perpendicular to the ground. At the upper end of the rope, an invisible entrance opens to an extradimensional space that lasts until the spell ends.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create an extra-dimensional space hidden by a rope",
       "fullDescription": "Using 1 action, you touch a length of rope that is up to 60 feet long. The rope can be pulled into the space, making the rope disappear from view outside the space; Attacks and spells can't cross through the entrance into or out of the extradimensional space, but those inside can see out of it as if through a 3-foot-by-5-foot window centered on the rope. One end of the rope then rises into the air until the whole rope hangs perpendicular to the ground."
     },
     {
@@ -2507,7 +2507,7 @@
       ],
       "effect": "You create three rays of fire and hurl them at targets within range. You can hurl them at one target or several.",
       "source": "PHB",
-      "effectSummary": "Deal 2d6 fire damage to a target within 120 ft",
+      "effectSummary": "Create 3 rays of fire dealing 2d6 fire damage each",
       "fullDescription": "Using 1 action, you create three rays of fire and hurl them at targets within range. On a hit, the target takes 2d6 fire damage; Make a ranged spell attack for each ray; When you cast this spell using a spell slot of 3rd level or higher, you create one additional ray for each slot level above 2nd. The effect happens immediately and then ends."
     },
     {
@@ -2537,7 +2537,7 @@
       ],
       "effect": "For the duration of the spell, you see invisible creatures and objects as if they were visible, and you can see through Ethereal. The ethereal objects and creatures appear ghostly translucent.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "See invisible creatures and objects for 10 minutes",
       "fullDescription": "Using 1 action, for the duration of the spell, you see invisible creatures and objects as if they were visible, and you can see through Ethereal. The ethereal objects and creatures appear ghostly translucent. The effect lasts for 1 hour."
     },
     {
@@ -2571,7 +2571,7 @@
       ],
       "effect": "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-foot-radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. A creature made of inorganic material such as stone, crystal, or metal has disadvantage on this saving throw.",
       "source": "PHB",
-      "effectSummary": "Deal 3d8 thunder damage to a target within 60 ft",
+      "effectSummary": "Deal 3d8 thunder damage to creatures and objects in a 10-foot sphere",
       "fullDescription": "Using 1 action, a sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one; Each creature in a 10-foot-radius sphere centered on that point must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC; When you cast this spell using a 3 or higher level spell slot, the damage of the spell increases by 1d8 for each level of higher spell slot 2. The effect happens immediately and then ends."
     },
     {
@@ -2634,7 +2634,7 @@
       ],
       "effect": "You suggest a course of activity (limited to a sentence or two) and magically influence a creature you can see within range that can hear and understand you. Creatures that can't be charmed are immune to this effect. The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act ends the spell.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Plant a suggestion into a creature's mind for 8 hours",
       "fullDescription": "Using 1 action, if the condition isn't met before the spell expires, the activity isn't performed. The target must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act ends the spell; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2667,7 +2667,7 @@
       ],
       "effect": "You conjure a mass of thick, sticky webbing at a point of your choice within range. The webs fill a 20-foot cube from that point for the duration. The webs are difficult terrain and lightly obscure their area.",
       "source": "PHB",
-      "effectSummary": "Deal 2d4 fire damage to a target within 60 ft",
+      "effectSummary": "Create a 20-foot cube of sticky webs that restrain creatures",
       "fullDescription": "Using 1 action, you conjure a mass of thick, sticky webbing at a point of your choice within range. Any 5-foot cube of webs exposed to fire burns away in 1 round, dealing 2d4 fire damage to any creature that starts its turn in the fire; Each creature that starts its turn in the webs or that enters them during its turn must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC. If the webs aren't anchored between two solid masses (such as walls or trees) or layered across a floor, wall, or ceiling, the conjured web collapses on itself, and the spell ends at the start of your next turn; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2735,7 +2735,7 @@
       ],
       "effect": "You touch a creature, and that creature must succeed on a wisdom saving throw or become cursed for the duration of the spell. When you cast this spell, choose the nature of the curse from the following options:",
       "source": "PHB",
-      "effectSummary": "Deal 1d8 necrotic damage to a target within Touch",
+      "effectSummary": "Curse a creature, imposing disadvantage on saves or attacks",
       "fullDescription": "Using 1 action, you touch a creature, and that creature must succeed on a wisdom saving throw or become cursed for the duration of the spell. - While the target is cursed, your attacks and spells deal an extra 1d8 necrotic damage to the target; - While cursed, the target has disadvantage on attack rolls against you; If you cast this spell using a spell slot of 4th level or higher, the duration is concentration, up to 10 minutes; If you use a spell slot of 5th level or higher, the duration is 8 hours; If you use a spell slot of 7th level or higher, the duration is 24 hours; If you use a 9th level spell slot, the spell lasts until it is dispelled; Using a spell slot of 5th level or higher grants a duration that doesn't require concentration. A remove curse spell ends this effect; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2763,7 +2763,7 @@
       ],
       "effect": "Roll a d20 at the end of each of your turns for the duration of the spell. On a roll of 11 or higher, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell fails and the casting is wasted if you were already on that plane). At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from. If no unoccupied space is available within that range, you appear in the nearest unoccupied space (chosen at random if more than one space is equally near). You can dismiss this spell as an action.",
       "source": "PHB",
-      "effectSummary": "See and hear a distant creature on the same plane",
+      "effectSummary": "Teleport 30 feet at start and end of each turn",
       "fullDescription": "Using 1 action, roll a d20 at the end of each of your turns for the duration of the spell. At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from; While on the Ethereal Plane, you can see and hear the plane you originated from, which is cast in shades of gray, and you can't see anything there more than 60 feet away. At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from."
     },
     {
@@ -2796,7 +2796,7 @@
       ],
       "effect": "You create an invisible sensor within range in a location familiar to you (a place you have visited or seen before) or in an obvious location that is unfamiliar to you (such as behind a door, around a corner, or in a grove of trees). The sensor remains in place for the duration, and it can't be attacked or otherwise interacted with.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create a magical sensor at a location you choose",
       "fullDescription": "Using 10 minutes, you create an invisible sensor within range in a location familiar to you (a place you have visited or seen before) or in an obvious location that is unfamiliar to you (such as behind a door, around a corner, or in a grove of trees). A creature that can see the sensor (such as a creature benefiting from see invisibility or truesight) sees a luminous, intangible orb about the size of your fist; As your action, you can switch between seeing and hearing. The effect lasts for up to 10 minutes; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2825,7 +2825,7 @@
       ],
       "effect": "You attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect.",
       "source": "PHB",
-      "effectSummary": "make an ability check using your spellcasting ability",
+      "effectSummary": "Interrupt a spell as it's being cast",
       "fullDescription": "Using 1 reaction, you attempt to interrupt a creature in the process of casting a spell. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability; If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect; When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used. The effect happens immediately and then ends."
     },
     {
@@ -2859,7 +2859,7 @@
       ],
       "effect": "Choose one creature, object, or magical effect within range. Any spell of 3rd level or lower on the target ends. For each spell of 4th level or higher on the target, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a successful check, the spell ends.",
       "source": "PHB",
-      "effectSummary": "make an ability check using your spellcasting ability",
+      "effectSummary": "End spells on a creature or object",
       "fullDescription": "Using 1 action, choose one creature, object, or magical effect within range. For each spell of 4th level or higher on the target, make an ability check using your spellcasting ability; Any spell of 3rd level or lower on the target ends; When you cast this spell using a spell slot of 4th level or higher, you automatically end the effects of a spell on the target if the spell's level is equal to or less than the level of the spell slot you used. Any spell of 3rd level or lower on the target ends."
     },
     {
@@ -2944,7 +2944,7 @@
       ],
       "effect": "You project a phantasmal image of a creature's worst fears. Each creature in a 30-foot cone must succeed on a wisdom saving throw or drop whatever it is holding and become frightened for the duration.",
       "source": "PHB",
-      "effectSummary": "Make a target frightened until it saves or the spell ends",
+      "effectSummary": "Frighten creatures within 30 feet for 1 minute",
       "fullDescription": "Using 1 action, while frightened by this spell, a creature must take the Dash action and move away from you by the safest available route on each of its turns, unless there is nowhere to move. Each creature in a 30-foot cone must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or drop whatever it is holding and become frightened for the duration; If the creature ends its turn in a location where it doesn't have line of sight to you, the creature can make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC. If the creature ends its turn in a location where it doesn't have line of sight to you, the creature can make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2976,7 +2976,7 @@
       ],
       "effect": "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.",
       "source": "PHB",
-      "effectSummary": "Deal 8d6 fire damage to a target within 150 ft",
+      "effectSummary": "Deal 8d6 fire damage to creatures in a 20-foot radius",
       "fullDescription": "Using 1 action, a bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one; Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd. The effect happens immediately and then ends."
     },
     {
@@ -3008,7 +3008,7 @@
       ],
       "effect": "You touch a willing creature. The target gains a flying speed of 60 feet for the duration. When the spell ends, the target falls if it is still aloft, unless it can stop the fall.",
       "source": "PHB",
-      "effectSummary": "Give a creature a 60 ft speed for the duration",
+      "effectSummary": "Give a creature a flying speed of 60 feet for 10 minutes",
       "fullDescription": "Using 1 action, you touch a willing creature. The target gains a flying speed of 60 feet for the duration; When the spell ends, the target falls if it is still aloft, unless it can stop the fall; When you cast this spell using a spell slot of 4th level or higher, you can target one additional creature for each slot level above 3rd. When the spell ends, the target falls if it is still aloft, unless it can stop the fall; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3040,7 +3040,7 @@
       ],
       "effect": "You transform a willing creature you touch, along with everything it's wearing and carrying, into a misty cloud for the duration. The spell ends if the creature drops to 0 hit points. An incorporeal creature isn't affected.",
       "source": "PHB",
-      "effectSummary": "Make a target incapacitated until it saves or the spell ends",
+      "effectSummary": "Transform a creature into a misty cloud for 1 hour",
       "fullDescription": "Using 1 action, you transform a willing creature you touch, along with everything it's wearing and carrying, into a misty cloud for the duration. While in this form, the target's only method of movement is a flying speed of 10 feet; The target has resistance to nonmagical damage, and it has advantage on Strength, Dexterity, and constitution saving throws. The spell ends if the creature drops to 0 hit points; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3078,7 +3078,7 @@
       ],
       "effect": "When you cast this spell, you inscribe a glyph that harms other creatures, either upon a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book, a scroll, or a treasure chest) to conceal the glyph. If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered.",
       "source": "PHB",
-      "effectSummary": "Deal 5d8 acid damage to a target within Touch",
+      "effectSummary": "Store a spell in a glyph that triggers when triggered",
       "fullDescription": "Using 1 hour, when you cast this spell, you inscribe a glyph that harms other creatures, either upon a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book, a scroll, or a treasure chest) to conceal the glyph. A creature takes 5d8 acid, cold, fire, lightning, or thunder damage on a failed saving throw (your choice when you create the glyph), or half as much damage on a successful one; If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered; When you cast this spell using a spell slot of 4th level or higher, the damage of an explosive runes glyph increases by 1d8 for each slot level above 3rd; If you create a spell glyph, you can store any spell of up to the same level as the slot you use for the glyph of warding. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered."
     },
     {
@@ -3108,7 +3108,7 @@
       ],
       "effect": "Choose a willing creature that you can see within range. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object action.",
       "source": "PHB",
-      "effectSummary": "Give a creature advantage on saving throws for the duration",
+      "effectSummary": "Double a creature's speed and grant extra action for 1 minute",
       "fullDescription": "Using 1 action, choose a willing creature that you can see within range. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on dexterity saving throws, and it gains an additional action on each of its turns; When the spell ends, the target can't move or take actions until after its next turn, as a wave of lethargy sweeps over it. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on dexterity saving throws, and it gains an additional action on each of its turns; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3139,7 +3139,7 @@
       ],
       "effect": "You create a twisting pattern of colors that weaves through the air inside a 30-foot cube within range. The pattern appears for a moment and vanishes. Each creature in the area who sees the pattern must make a wisdom saving throw. On a failed save, the creature becomes charmed for the duration. While charmed by this spell, the creature is incapacitated and has a speed of 0.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Charm creatures, incapacitating them for 1 minute",
       "fullDescription": "Using 1 action, you create a twisting pattern of colors that weaves through the air inside a 30-foot cube within range. Each creature in the area who sees the pattern must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; While charmed by this spell, the creature is incapacitated and has a speed of 0. The spell ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3197,7 +3197,7 @@
       ],
       "effect": "A stroke of lightning forming a line 100 feet long and 5 feet wide blasts out from you in a direction you choose. Each creature in the line must make a dexterity saving throw. A creature takes 8d6 lightning damage on a failed save, or half as much damage on a successful one.",
       "source": "PHB",
-      "effectSummary": "Deal 8d6 lightning damage to a target within Self",
+      "effectSummary": "Deal 8d6 lightning damage to creatures in a 100-foot line",
       "fullDescription": "Using 1 action, a stroke of lightning forming a line 100 feet long and 5 feet wide blasts out from you in a direction you choose. A creature takes 8d6 lightning damage on a failed save, or half as much damage on a successful one; Each creature in the line must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd. A stroke of lightning forming a line 100 feet long and 5 feet wide blasts out from you in a direction you choose."
     },
     {
@@ -3235,7 +3235,7 @@
       ],
       "effect": "You create a 10-foot radius, 20-foot-tall cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear whenever the cylinder intersects with the floor or other surface.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Create a circle that prevents creatures from entering",
       "fullDescription": "Using 1 minute, you create a 10-foot radius, 20-foot-tall cylinder of magical energy centered on a point on the ground that you can see within range. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a Charisma saving throw; roll a d20, add the CHA modifier, and compare it with your spell save spell save DC; - The creature has disadvantage on attack rolls against targets within the cylinder; When you cast this spell using a spell slot of 4th level or higher, the duration increases by 1 hour for each slot level above 3rd. Choose one or more of the following types of creatures: celestials, elementals, fey, fiends, or undead."
     },
     {
@@ -3327,7 +3327,7 @@
       ],
       "effect": "A Large quasi-real, horselike creature appears on the ground in an unoccupied space of your choice within range. You decide the creature's appearance, but it is equipped with a saddle, bit, and bridle. Any of the equipment created by the spell vanishes in a puff of smoke if it is carried more than 10 feet away from the steed.",
       "source": "PHB",
-      "effectSummary": "Create a magical effect at a point you choose",
+      "effectSummary": "Create a magical mount that can gallop at double speed",
       "fullDescription": "Using 1 minute, any of the equipment created by the spell vanishes in a puff of smoke if it is carried more than 10 feet away from the steed. The creature uses the statistics for a riding horse, except it has a speed of 100 feet and can travel 10 miles in an hour, or 13 miles at a fast pace; The spell ends if you use an action to dismiss it or if the steed takes any damage. When the spell ends, the steed gradually fades, giving the rider 1 minute to dismount; you can cast it as a ritual."
     },
     {
@@ -3357,7 +3357,7 @@
       ],
       "effect": "For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder.",
       "source": "PHB",
-      "effectSummary": "Gain resistance to acid, cold, fire, lightning, thunder for the duration",
+      "effectSummary": "Give a creature resistance to one damage type",
       "fullDescription": "Using 1 action, for the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder. For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder. The effect lasts for up to 1 hour; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3442,7 +3442,7 @@
       ],
       "effect": "You send a short message of twenty-five words or less to a creature with which you are familiar. The creature hears the message in its mind, recognizes you as the sender if it knows you, and can answer in a like manner immediately. The spell enables creatures with Intelligence scores of at least 1 to understand the meaning of your message.",
       "source": "PHB",
-      "effectSummary": "Send a private message to a creature within range",
+      "effectSummary": "Send a 25-word message to a creature anywhere on the same plane",
       "fullDescription": "Using 1 action, you send a short message of twenty-five words or less to a creature with which you are familiar. You can send the message across any distance and even to other planes of existence, but if the target is on a different plane than you, there is a 5 percent chance that the message doesn't arrive; The creature hears the message in its mind, recognizes you as the sender if it knows you, and can answer in a like manner immediately. The effect lasts for 1 round."
     },
     {
@@ -3474,7 +3474,7 @@
       ],
       "effect": "Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is heavily obscured, and exposed flames in the area are doused.",
       "source": "PHB",
-      "effectSummary": "Make a target prone until it saves or the spell ends",
+      "effectSummary": "Create a 40-foot radius of heavy snow and difficult terrain",
       "fullDescription": "Using 1 action, until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. When a creature enters the spell's area for the first time on a turn or starts its turn there, it must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; If a creature is concentrating in the spell's area, the creature must make a successful constitution saving throw against your spell save spell save DC or lose concentration. Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3506,7 +3506,7 @@
       ],
       "effect": "You alter time around up to six creatures of your choice in a 40-foot cube within range. Each target must succeed on a wisdom saving throw or be affected by this spell for the duration.",
       "source": "PHB",
-      "effectSummary": "A creature affected by this spell makes another wisdom saving throw at",
+      "effectSummary": "Slow creatures, halving their speed and reducing their actions",
       "fullDescription": "Using 1 action, on its turn, it can use either an action or a bonus action, not both. A creature affected by this spell makes another wisdom saving throw at the end of its turn; An affected target's speed is halved, it takes a -2 penalty to AC and dexterity saving throws, and it can't use reactions. On an 11 or higher, the spell doesn't take effect until the creature's next turn, and the creature must use its action on that turn to complete the spell; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3532,7 +3532,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Make a target frightened until it saves or the spell ends",
+      "effectSummary": "Call spirits that deal extra damage to nearby creatures",
       "fullDescription": "Using 1 bonus action, if the attack hits a Large or smaller creature, it must also succeed on a Wisdom saving throw or be frightened of you until the end of your next turn. Until the spell ends, any attack you make deals 1d8 extra damage when you hit a creature within 10 feet of you; As a bonus action on your turn, you can increase the radius of the spirit shroud's area by 10 feet; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for every two slot levels above 3rd. Until the spell ends, any attack you make deals 1d8 extra damage when you hit a creature within 10 feet of you; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3591,7 +3591,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Summon a fey creature that fights for you",
+      "effectSummary": "Summon a fey creature to fight for you for 1 hour",
       "fullDescription": "Using 1 action, when you cast the spell, choose a brisk, gentle, or phantasmal spirit. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3616,7 +3616,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Summon a shadow creature that fights for you",
+      "effectSummary": "Summon a shadow creature to fight for you for 1 hour",
       "fullDescription": "Using 1 action, when you cast the spell, choose a fury, despair, or fear spirit. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3641,7 +3641,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Summon an undead creature that fights for you",
+      "effectSummary": "Summon an undead creature to fight for you for 1 hour",
       "fullDescription": "Using 1 action, when you cast the spell, choose a ghostly, putrid, or skeletal spirit. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3732,7 +3732,7 @@
       ],
       "effect": "The touch of your shadow-wreathed hand can siphon life force from others to heal your wounds. Make a melee spell attack against a creature within your reach. On a hit, the target takes 3d6 necrotic damage, and you regain hit points equal to half the amount of necrotic damage dealt. Until the spell ends, you can make the attack again on each of your turns as an action.",
       "source": "PHB",
-      "effectSummary": "Deal 3d6 necrotic damage to a target within Self",
+      "effectSummary": "Deal 3d6 necrotic damage and heal for half the damage dealt",
       "fullDescription": "Using 1 action, the touch of your shadow-wreathed hand can siphon life force from others to heal your wounds. On a hit, the target takes 3d6 necrotic damage, and you regain hit points equal to half the amount of necrotic damage dealt; Make a melee spell attack against a creature within your reach; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd. Until the spell ends, you can make the attack again on each of your turns as an action; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3794,7 +3794,7 @@
       ],
       "effect": "You create an invisible, magical eye within range that hovers in the air for the duration.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create an invisible magical eye you can see through",
       "fullDescription": "Using 1 action, you create an invisible, magical eye within range that hovers in the air for the duration. As an action, you can move the eye up to 30 feet in any direction; You mentally receive visual information from the eye, which has normal vision and darkvision out to 30 feet. The effect lasts for up to 1 hour; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3830,7 +3830,7 @@
       ],
       "effect": "You attempt to send one creature that you can see within range to another plane of existence. The target must succeed on a charisma saving throw or be banished.",
       "source": "PHB",
-      "effectSummary": "Make a target incapacitated until it saves or the spell ends",
+      "effectSummary": "Send a creature to another plane of existence",
       "fullDescription": "Using 1 action, the target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. The target must succeed on a Charisma saving throw; roll a d20, add the CHA modifier, and compare it with your spell save spell save DC or be banished; If the target is native to a different plane of existence than the one you're on, the target is banished with a faint popping noise, returning to its home plane; When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th. The target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3893,7 +3893,7 @@
       ],
       "effect": "Necromantic energy washes over a creature of your choice that you can see within range, draining moisture and vitality from it. The target must make a constitution saving throw. The target takes 8d8 necrotic damage on a failed save, or half as much damage on a successful one. The spell has no effect on undead or constructs.",
       "source": "PHB",
-      "effectSummary": "Deal 8d8 necrotic damage to a target within 30 ft",
+      "effectSummary": "Deal 8d8 necrotic damage to a plant or undead creature",
       "fullDescription": "Using 1 action, necromantic energy washes over a creature of your choice that you can see within range, draining moisture and vitality from it. The target takes 8d8 necrotic damage on a failed save, or half as much damage on a successful one; The target must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 5th level of higher, the damage increases by 1d8 for each slot level above 4th. The effect happens immediately and then ends."
     },
     {
@@ -3970,7 +3970,7 @@
       ],
       "effect": "You summon elementals that appear in unoccupied spaces that you can see within range. You choose one the following options for what appears:",
       "source": "PHB",
-      "effectSummary": "Summon a creature to fight for you for the duration",
+      "effectSummary": "Summon elementals to fight for you for 1 hour",
       "fullDescription": "Using 1 minute, you choose one the following options for what appears: - One elemental of challenge rating 2 or lower - Two elementals of challenge rating 1 or lower - Four elementals of challenge rating 1/2 or lower - Eight elementals of challenge rating 1/4 or lower. An elemental summoned by this spell disappears when it drops to 0 hit points or when the spell ends; The summoned creatures are friendly to you and your companions; When you cast this spell using certain higher-level spell slots, you choose one of the summoning options above, and more creatures appear: twice as many with a 6th-level slot and three times as many with an 8th-level slot. An elemental summoned by this spell disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4008,7 +4008,7 @@
       ],
       "effect": "Until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.",
       "source": "PHB",
-      "effectSummary": "Deal 2d8 bludgeoning damage to a target within 300 ft",
+      "effectSummary": "Control water: create whirlpool, flood, or redirect flow",
       "fullDescription": "Using 1 action, until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. The first time each turn that an object enters the vortex, the object takes 2d8 bludgeoning damage; this damage occurs each round it remains in the vortex; Any creature or object in the water and within 25 feet of the vortex is pulled 10 feet toward it. Until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4064,7 +4064,7 @@
         "Wizard"
       ],
       "source": "FTD",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Charm humanoids for 1 minute",
       "fullDescription": "Using 1 action, the target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be charmed by you for the duration; You can use your action to command the target to move, take an action, or take a bonus action. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4122,7 +4122,7 @@
       ],
       "effect": "You conjure a phantom watchdog in an unoccupied space that you can see within range, where it remains for the duration, until you dismiss it as an action, or until you move more than 100 feet away from it.",
       "source": "PHB",
-      "effectSummary": "Deal 4d8 piercing damage to a target within 30 ft",
+      "effectSummary": "Summon a phantom hound to attack or guard",
       "fullDescription": "Using 1 action, when a Small or larger creature comes within 30 feet of it without first speaking the password that you specify when you cast this spell, the hound starts barking loudly. On a hit, it deals 4d8 piercing damage; At the start of each of your turns, the hound attempts to bite one creature within 5 feet of it that is hostile to you. You conjure a phantom watchdog in an unoccupied space that you can see within range, where it remains for the duration, until you dismiss it as an action, or until you move more than 100 feet away from it."
     },
     {
@@ -4180,7 +4180,7 @@
       ],
       "effect": "You or a creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Make a creature invisible for 1 minute without breaking",
       "fullDescription": "Using 1 action, you or a creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person. You or a creature you touch becomes invisible until the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4245,7 +4245,7 @@
       ],
       "effect": "A hail of rock-hard ice pounds to the ground in a 20-foot-radius, 40-foot-high cylinder centered on a point within range. Each creature in the cylinder must make a dexterity saving throw. A creature takes 2d8 bludgeoning damage and 4d6 cold damage on a failed save, or half as much damage on a successful one.",
       "source": "PHB",
-      "effectSummary": "Deal 2d8 bludgeoning damage to a target within 300 ft",
+      "effectSummary": "Create a 20-foot cylinder of ice dealing 2d8 bludgeoning and 4d6 cold",
       "fullDescription": "Using 1 action, a hail of rock-hard ice pounds to the ground in a 20-foot-radius, 40-foot-high cylinder centered on a point within range. A creature takes 2d8 bludgeoning damage and 4d6 cold damage on a failed save, or half as much damage on a successful one; Each creature in the cylinder must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 5th level or higher, the bludgeoning damage increases by 1d8 for each slot level above 4th. Hailstones turn the storm's area of effect into difficult terrain until the end of your next turn."
     },
     {
@@ -4280,7 +4280,7 @@
       ],
       "effect": "Describe or name a creature that is familiar to you. You sense the direction to the creature's location, as long as that creature is within 1,000 feet of you. If the creature is moving, you know the direction of its movement.",
       "source": "PHB",
-      "effectSummary": "Transform a creature or object into a new form",
+      "effectSummary": "Sense the direction of a known creature within 1,000 feet",
       "fullDescription": "Using 1 action, describe or name a creature that is familiar to you. The spell can locate a specific creature known to you, or the nearest creature of a specific kind (such as a human or a unicorn), so long as you have seen such a creature up close--within 30 feet--at least once; You sense the direction to the creature's location, as long as that creature is within 1,000 feet of you. The effect lasts for up to 1 hour; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4308,7 +4308,7 @@
       ],
       "effect": "You tap into the nightmares of a creature you can see within range and create an illusory manifestation of its deepest fears, visible only to that creature. The target must make a wisdom saving throw. On a failed save, the target becomes frightened for the duration. At the start of each of the target's turns before the spell ends, the target must succeed on a wisdom saving throw or take 4d10 psychic damage. On a successful save, the spell ends.",
       "source": "PHB",
-      "effectSummary": "Deal 4d10 psychic damage to a target within 120 ft",
+      "effectSummary": "Create a terrifying illusion dealing 4d10 psychic damage",
       "fullDescription": "Using 1 action, you tap into the nightmares of a creature you can see within range and create an illusory manifestation of its deepest fears, visible only to that creature. At the start of each of the target's turns before the spell ends, the target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or take 4d10 psychic damage; The target must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d10 for each slot level above 4th. At the start of each of the target's turns before the spell ends, the target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or take 4d10 psychic damage; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4343,7 +4343,7 @@
       ],
       "effect": "This spell transforms a creature that you can see within range into a new form. An unwilling creature must make a wisdom saving throw to avoid the effect. A shapechanger automatically succeeds on this saving throw.",
       "source": "PHB",
-      "effectSummary": "Knock low-HP creatures unconscious until damaged or awakened",
+      "effectSummary": "Transform a creature into a new form for 1 hour",
       "fullDescription": "Using 1 action, the transformation lasts for the duration, or until the target drops to 0 hit points or dies. An unwilling creature must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC to avoid the effect; When it reverts to its normal form, the creature returns to the number of hit points it had before it transformed. The transformation lasts for the duration, or until the target drops to 0 hit points or dies; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4381,7 +4381,7 @@
       ],
       "effect": "You make an area within range magically secure. The area is a cube that can be as small as 5 feet to as large as 100 feet on each side. The spell lasts for the duration or until you use an action to dismiss it.",
       "source": "PHB",
-      "effectSummary": "Teleport up to 120 ft to a space you can see",
+      "effectSummary": "Create a 30-foot cube that blocks divination and sound",
       "fullDescription": "Using 10 minutes, when you cast the spell, you decide what sort of security the spell provides, choosing any or all of the following properties: - Sound can't pass through the barrier at the edge of the warded area. The area is a cube that can be as small as 5 feet to as large as 100 feet on each side; You make an area within range magically secure; When you cast this spell using a spell slot of 5th level or higher, you can increase the size of the cube by 100 feet for each slot level beyond 4th; Thus you could protect a cube that can be up to 200 feet on one side by using a spell slot of 5th level. The spell lasts for the duration or until you use an action to dismiss it."
     },
     {
@@ -4616,7 +4616,7 @@
       ],
       "effect": "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.",
       "source": "PHB",
-      "effectSummary": "Deal 5d8 fire damage to a target within 120 ft",
+      "effectSummary": "Create a 60-foot wall of fire dealing 5d8 fire damage",
       "fullDescription": "Using 1 action, you create a wall of fire on a solid surface within range. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save; You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick; When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th. The wall is opaque and lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4724,7 +4724,7 @@
       ],
       "effect": "You create a 20-foot-radius sphere of poisonous, yellow-green fog centered on a point you choose within range. The fog spreads around corners. It lasts for the duration or until strong wind disperses the fog, ending the spell. Its area is heavily obscured.",
       "source": "PHB",
-      "effectSummary": "Deal 5d8 poison damage to a target within 120 ft",
+      "effectSummary": "Create a 20-foot-radius sphere of poisonous fog dealing 5d8 poison damage",
       "fullDescription": "Using 1 action, you create a 20-foot-radius sphere of poisonous, yellow-green fog centered on a point you choose within range. The creature takes 5d8 poison damage on a failed save, or half as much damage on a successful one; The fog moves 10 feet away from you at the start of each of your turns, rolling along the surface of the ground; When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th. It lasts for the duration or until strong wind disperses the fog, ending the spell; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4790,7 +4790,7 @@
       ],
       "effect": "You call forth an elemental servant. Choose an area of air, earth, fire, or water that fills a 10-foot cube within range. An elemental of challenge rating 5 or lower appropriate to the area you chose appears in an unoccupied space within 10 feet of it. For example, a fire elemental emerges from a bonfire, and an earth elemental rises up from the ground. The elemental disappears when it drops to 0 hit points or when the spell ends.",
       "source": "PHB",
-      "effectSummary": "Summon a creature to fight for you for the duration",
+      "effectSummary": "Summon an elemental to fight for you for 1 hour",
       "fullDescription": "Using 1 minute, choose an area of air, earth, fire, or water that fills a 10-foot cube within range. An elemental of challenge rating 5 or lower appropriate to the area you chose appears in an unoccupied space within 10 feet of it; The elemental disappears when it drops to 0 hit points or when the spell ends; When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th. The elemental disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4890,7 +4890,7 @@
       ],
       "effect": "You attempt to beguile a humanoid that you can see within range. It must succeed on a wisdom saving throw or be charmed by you for the duration. If you or creatures that are friendly to you are fighting it, it has advantage on the saving throw.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Control a humanoid for 1 minute",
       "fullDescription": "Using 1 action, until the end of your next turn, the creature takes only the actions you choose, and doesn't do anything that you don't allow it to do. Each time the target takes damage, it makes a new wisdom saving throw against the spell; It must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be charmed by you for the duration; When you cast this spell using a 6th-level spell slot, the duration is concentration, up to 10 minutes; When you use a 7th-level spell slot, the duration is concentration, up to 1 hour; When you use a spell slot of 8th level or higher, the duration is concentration, up to 8 hours. \" If the creature completes the order and doesn't receive further direction from you, it defends and preserves itself to the best of its ability; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4914,7 +4914,7 @@
         "Wizard"
       ],
       "source": "FTD",
-      "effectSummary": "Teleport up to Self to a space you can see",
+      "effectSummary": "Teleport up to 120 feet to a space you can see",
       "fullDescription": "Using 1 action, you teleport up to 120 feet to an unoccupied space you can see. When you teleport, you can bring up to two willing creatures within 5 feet of you with you. The effect happens immediately and then ends."
     },
     {
@@ -4948,7 +4948,7 @@
       ],
       "effect": "This spell shapes a creature's dreams. Choose a creature known to you as the target of this spell. The target must be on the same plane of existence as you. Creatures that don't sleep, such as elves, can't be contacted by this spell. You, or a willing creature you touch, enters a trance state, acting as a messenger.",
       "source": "PHB",
-      "effectSummary": "Deal 3d6 psychic damage to a target within Special",
+      "effectSummary": "Send a message to a sleeping creature or deal 3d6 psychic damage",
       "fullDescription": "Using 1 minute, choose a creature known to you as the target of this spell. In addition, when the target wakes up, it takes 3d6 psychic damage; If you do, the messenger can deliver a message of no more than ten words and then the target must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC. If the target is awake when you cast the spell, the messenger knows it, and can either end the trance (and the spell) or wait for the target to fall asleep, at which point the messenger appears in the target's dreams."
     },
     {
@@ -4981,7 +4981,7 @@
       ],
       "effect": "You place a magical command on a creature that you can see within range, forcing it to carry out some service or refrain from some action or course of activity as you decide. If the creature can understand you, it must succeed on a wisdom saving throw or become charmed by you for the duration. While the creature is charmed by you, it takes 5d10 psychic damage each time it acts in a manner directly counter to your instructions, but no more than once each day. A creature that can't understand you is unaffected by the spell.",
       "source": "PHB",
-      "effectSummary": "Deal 5d10 psychic damage to a target within 60 ft",
+      "effectSummary": "Compel a creature to follow a command for 30 days",
       "fullDescription": "Using 1 minute, you can issue any command you choose, short of an activity that would result in certain death. While the creature is charmed by you, it takes 5d10 psychic damage each time it acts in a manner directly counter to your instructions, but no more than once each day; If the creature can understand you, it must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or become charmed by you for the duration; When you cast this spell using a spell slot of 7th or 8th level, the duration is 1 year; When you cast this spell using a spell slot of 9th level, the spell lasts until it is ended by one of the spells mentioned above. Should you issue a suicidal command, the spell ends."
     },
     {
@@ -5045,7 +5045,7 @@
       ],
       "effect": "Name or describe a person, place, or object. The spell brings to your mind a brief summary of the significant lore about the thing you named. The lore might consist of current tales, forgotten stories, or even secret lore that has never been widely known. If the thing you named isn't of legendary importance, you gain no information. The more information you already have about the thing, the more precise and detailed the information you receive is.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Learn information about a person, place, or thing",
       "fullDescription": "Using 10 minutes, name or describe a person, place, or object. If the thing you named isn't of legendary importance, you gain no information; The lore might consist of current tales, forgotten stories, or even secret lore that has never been widely known. Only a true Child of Stone, lover and beloved of Moradin, may awaken the true powers of the axe, and only with the sacred word *Rudnogg* on the lips."
     },
     {
@@ -5073,7 +5073,7 @@
       ],
       "effect": "You become invisible at the same time that an illusory double of you appears where you are standing. The double lasts for the duration, but the invisibility ends if you attack or cast a spell.",
       "source": "PHB",
-      "effectSummary": "Make a target blinded until it saves or the spell ends",
+      "effectSummary": "Create an illusory duplicate of yourself",
       "fullDescription": "Using 1 action, the double lasts for the duration, but the invisibility ends if you attack or cast a spell. You can use your action to move your illusory double up to twice your speed and make it gesture, speak, and behave in whatever way you choose; You become invisible at the same time that an illusory double of you appears where you are standing. The double lasts for the duration, but the invisibility ends if you attack or cast a spell; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5106,7 +5106,7 @@
       ],
       "effect": "You attempt to reshape another creature's memories. One creature that you can see must make a wisdom saving throw. If you are fighting the creature, it has advantage on the saving throw. On a failed save, the target becomes charmed by you for the duration. The charmed target is incapacitated and unaware of its surroundings, though it can still hear you. If it takes any damage or is targeted by another spell, this spell ends, and none of the target's memories are modified.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Change a creatures memory of an event",
       "fullDescription": "Using 1 action, you can permanently eliminate all memory of the event, allow the target to recall the event with perfect clarity and exacting detail, change its memory of the details of the event, or create a memory of some other event. One creature that you can see must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; If you are fighting the creature, it has advantage on the saving throw; If you cast this spell using a spell slot of 6th level or higher, you can alter the target's memories of an event that took place up to 7 days ago (6th level), 30 days ago (7th level), 1 year ago (8th level), or any time in the creature's past (9th level). If it takes any damage or is targeted by another spell, this spell ends, and none of the target's memories are modified; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5169,7 +5169,7 @@
       ],
       "effect": "With this spell, you attempt to bind a celestial, an elemental, a fey, or a fiend to your service. The creature must be within range for the entire casting of the spell. (Typically, the creature is first summoned into the center of an inverted magic circle in order to keep it trapped while this spell is cast.) At the completion of the casting, the target must make a charisma saving throw. On a failed save, it is bound to serve you for the duration. If the creature was summoned or created by another spell, that spell's duration is extended to match the duration of this spell.",
       "source": "PHB",
-      "effectSummary": "Summon a creature to fight for you for the duration",
+      "effectSummary": "Bind a celestial, fey, or fiend to serve you for 24 hours",
       "fullDescription": "Using 1 hour, the creature must be within range for the entire casting of the spell. ) At the completion of the casting, the target must make a Charisma saving throw; roll a d20, add the CHA modifier, and compare it with your spell save spell save DC; (Typically, the creature is first summoned into the center of an inverted magic circle in order to keep it trapped while this spell is cast; When you cast this spell using a spell slot of a higher level, the duration increases to 10 days with a 6th-level slot, to 30 days with a 7th-level slot, to 180 days with an 8th-level slot, and to a year and a day with a 9th-level spell slot. If the creature carries out your instructions completely before the spell ends, it travels to you to report this fact if you are on the same plane of existence."
     },
     {
@@ -5215,7 +5215,7 @@
       ],
       "effect": "You can see and hear a particular creature you choose that is on the same plane of existence as you. The target must make a wisdom saving throw, which is modified by how well you know the target and the sort of physical connection you have to it. If a target knows you're casting this spell, it can fail the saving throw voluntarily if it wants to be observed.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create a sensor to watch a creature or location",
       "fullDescription": "Using 10 minutes, you can see and hear a particular creature you choose that is on the same plane of existence as you. The sensor moves with the target, remaining within 10 feet of it for the duration; The target must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC, which is modified by how well you know the target and the sort of physical connection you have to it. The effect lasts for up to 10 minutes; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5278,7 +5278,7 @@
       ],
       "effect": "You gain the ability to move or manipulate creatures or objects by thought. When you cast the spell, and as your action each round for the duration, you can exert your will on one creature or object that you can see within range, causing the appropriate effect below. You can affect the same target round after round, or choose a new one at any time. If you switch targets, the prior target is no longer affected by the spell.",
       "source": "PHB",
-      "effectSummary": "Make a target restrained until it saves or the spell ends",
+      "effectSummary": "Move objects or creatures with your mind",
       "fullDescription": "Using 1 action, when you cast the spell, and as your action each round for the duration, you can exert your will on one creature or object that you can see within range, causing the appropriate effect below. Make an ability check with your spellcasting ability contested by the creature's Strength check; If you win the contest, you move the creature up to 30 feet in any direction, including upward but not beyond the range of this spell. Until the end of your next turn, the creature is restrained in your telekinetic grip; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5307,7 +5307,7 @@
       ],
       "effect": "You forge a telepathic link among up to eight willing creatures of your choice within range, psychically linking each creature to all the others for the duration. Creatures with Intelligence scores of 2 or less aren't affected by this spell.",
       "source": "PHB",
-      "effectSummary": "Send a private message to a creature within range",
+      "effectSummary": "you forge a telepathic link among up to eight willing creatures of",
       "fullDescription": "Using 1 action, the communication is possible over any distance, though it can't extend to other planes of existence. You forge a telepathic link among up to eight willing creatures of your choice within range, psychically linking each creature to all the others for the duration; Creatures with Intelligence scores of 2 or less aren't affected by this spell. Until the spell ends, the targets can communicate telepathically through the bond whether or not they have a common language; you can cast it as a ritual."
     },
     {
@@ -5367,7 +5367,7 @@
       ],
       "effect": "An invisible wall of force springs into existence at a point you choose within range. The wall appears in any orientation you choose, as a horizontal or vertical barrier or at an angle. It can be free floating or resting on a solid surface. You can form it into a hemispherical dome or a sphere with a radius of up to 10 feet, or you can shape a flat surface made up of ten 10-foot-by-10-foot panels. Each panel must be contiguous with another panel. In any form, the wall is 1/4 inch thick. It lasts for the duration. If the wall cuts through a creature's space when it appears, the creature is pushed to one side of the wall (your choice which side).",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create an invisible wall of force",
       "fullDescription": "Using 1 action, an invisible wall of force springs into existence at a point you choose within range. You can form it into a hemispherical dome or a sphere with a radius of up to 10 feet, or you can shape a flat surface made up of ten 10-foot-by-10-foot panels; It is immune to all damage and can't be dispelled by dispel magic. It lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5596,7 +5596,7 @@
       ],
       "effect": "For the spell's duration, your eyes become an inky void imbued with dread power. One creature of your choice within 60 feet of you that you can see must succeed on a wisdom saving throw or be affected by one of the following effects of your choice for the duration. On each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of eyebite.",
       "source": "PHB",
-      "effectSummary": "Make a target frightened until it saves or the spell ends",
+      "effectSummary": "Frighten or sicken a creature with your gaze",
       "fullDescription": "Using 1 action, on each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of eyebite. If the target moves to a place at least 60 feet away from you where it can no longer see you, this effect ends; One creature of your choice within 60 feet of you that you can see must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be affected by one of the following effects of your choice for the duration. On each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of eyebite; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5765,7 +5765,7 @@
       ],
       "effect": "You touch an object weighing 10 pounds or less whose longest dimension is 6 feet or less. The spell leaves an invisible mark on its surface and invisibly inscribes the name of the item on the sapphire you use as the material component. Each time you cast this spell, you must use a different sapphire.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Summon a stored item to your hand",
       "fullDescription": "Using 1 minute, you touch an object weighing 10 pounds or less whose longest dimension is 6 feet or less. The spell leaves an invisible mark on its surface and invisibly inscribes the name of the item on the sapphire you use as the material component; If another creature is holding or carrying the item, crushing the sapphire doesn't transport the item to you, but instead you learn who the creature possessing the object is and roughly where that creature is located at that moment. The item instantly appears in your hand regardless of physical or planar distances, and the spell ends; you can cast it as a ritual."
     },
     {
@@ -5792,7 +5792,7 @@
       ],
       "effect": "Choose one creature that you can see within range. The target begins a comic dance in place: shuffling, tapping its feet, and capering for the duration. Creatures that can't be charmed are immune to this spell.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Force a creature to dance, incapacitating it",
       "fullDescription": "Using 1 action, choose one creature that you can see within range. A dancing creature must use all its movement to dance without leaving its space and has disadvantage on dexterity saving throws and attack rolls; As an action, a dancing creature makes a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC to regain control of itself. On a successful save, the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5826,7 +5826,7 @@
       ],
       "effect": "Your body falls into a catatonic state as your soul leaves it and enters the container you used for the spell's material component. While your soul inhabits the container, you are aware of your surroundings as if you were in the container's space. You can't move or use reactions. The only action you can take is to project your soul up to 100 feet out of the container, either returning to your living body (and ending the spell) or attempting to possess a humanoids body.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Hide your soul in a gem and possess a creature",
       "fullDescription": "Using 1 minute, the only action you can take is to project your soul up to 100 feet out of the container, either returning to your living body (and ending the spell) or attempting to possess a humanoids body. On a success, you return to the container if it is within 100 feet of you; If your body is more than 100 feet away from you or if your body is dead when you attempt to return to it, you die. If the container is destroyed or the spell ends, your soul immediately returns to your body."
     },
     {
@@ -5861,7 +5861,7 @@
       ],
       "effect": "You suggest a course of activity (limited to a sentence or two) and magically influence up to twelve creatures of your choice that you can see within range and that can hear and understand you. Creatures that can't be charmed are immune to this effect. The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act automatically negates the effect of the spell.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Suggest a course of action to up to 12 creatures",
       "fullDescription": "Using 1 action, if the condition isn't met before the spell ends, the activity isn't performed. Each target must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; The suggestion must be worded in such a manner as to make the course of action sound reasonable; When you cast this spell using a 7th-level spell slot, the duration is 10 days; When you use an 8th-level spell slot, the duration is 30 days; When you use a 9th-level spell slot, the duration is a year and a day. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do."
     },
     {
@@ -5895,7 +5895,7 @@
       ],
       "effect": "Choose an area of terrain no larger than 40 feet on a side within range. You can reshape dirt, sand, or clay in the area in any manner you choose for the duration. You can raise or lower the area's elevation, create or fill in a trench, erect or flatten a wall, or form a pillar. The extent of any such changes can't exceed half the area's largest dimension. So, if you affect a 40-foot square, you can create a pillar up to 20 feet high, raise or lower the square's elevation by up to 20 feet, dig a trench up to 20 feet deep, and so on. It takes 10 minutes for these changes to complete.",
       "source": "PHB",
-      "effectSummary": "Transform a creature or object into a new form",
+      "effectSummary": "Shape earth into any form you desire",
       "fullDescription": "Using 1 action, choose an area of terrain no larger than 40 feet on a side within range. So, if you affect a 40-foot square, you can create a pillar up to 20 feet high, raise or lower the square's elevation by up to 20 feet, dig a trench up to 20 feet deep, and so on; It takes 10 minutes for these changes to complete. The effect lasts for up to 2 hours; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5921,7 +5921,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Deal 1d6 force damage to a target within Self",
+      "effectSummary": "Gain resistance to damage and extra damage on attacks",
       "fullDescription": "Using 1 action, you draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: \u2022 Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage; \u2022 You gain a fly speed equal to your walking speed and can hover. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -6138,7 +6138,7 @@
       ],
       "effect": "A beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. When the spell ends, either because your concentration is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners. Each creature in a 20-foot-radius sphere centered on that point must make a dexterity saving throw. A creature takes fire damage equal to the total accumulated damage on a failed save, or half as much damage on a successful one.",
       "source": "PHB",
-      "effectSummary": "Make an object shed bright light for the duration",
+      "effectSummary": "A beam of yellow light flashes from your pointing finger, then condenses",
       "fullDescription": "Using 1 action, a beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. If at the end of your turn the bead has not yet detonated, the damage increases by 1d6; The spell's base damage is 12d6; When you cast this spell using a spell slot of 8th level or higher, the base damage increases by 1d6 for each slot level above 7th. When the spell ends, either because your concentration is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners."
     },
     {
@@ -6191,7 +6191,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Knock low-HP creatures unconscious until damaged or awakened",
+      "effectSummary": "Teleport yourself and up to 8 willing creatures",
       "fullDescription": "Using 10 minutes, if the spell reaches its full duration, the visions conclude with each of you encountering a guardian spirit, which takes the form of a majestic creature such as a dragon, a couatl, or a ki-rin. Once the spell ends, you and the other affected creatures can't be affected by this spell again until you finish a long rest; The spirit offers to transport you and your companions to the world you visited in the dreams. If you reject the spirit's offer, you awaken and the spell ends without effect."
     },
     {
@@ -6291,7 +6291,7 @@
       ],
       "effect": "An immobile, invisible, cube-shaped prison composed of magical force springs into existence around an area you choose within range. The prison can be a cage or a solid box, as you choose.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create an invisible prison of force",
       "fullDescription": "Using 1 action, an immobile, invisible, cube-shaped prison composed of magical force springs into existence around an area you choose within range. If the creature tries to use teleportation or interplanar travel to leave the cage, it must first make a Charisma saving throw; roll a d20, add the CHA modifier, and compare it with your spell save spell save DC; A prison in the shape of a cage can be up to 20 feet on a side and is made from 1/2-inch diameter bars spaced 1/2 inch apart. Creatures only partially within the area, or those too large to fit inside the area, are pushed away from the center of the area until they are completely outside the area."
     },
     {
@@ -6322,7 +6322,7 @@
       ],
       "effect": "You conjure an extradimensional dwelling in range that lasts for the duration. You choose where its one entrance is located. The entrance shimmers faintly and is 5 feet wide and 10 feet tall. You and any creature you designate when you cast the spell can enter the extradimensional dwelling as long as the portal remains open. You can open or close the portal if you are within 30 feet of it. While closed, the portal is invisible.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create an extra-dimensional luxurious mansion",
       "fullDescription": "Using 1 minute, you choose where its one entrance is located. You can create any floor plan you like, but the space can't exceed 50 cubes, each cube being 10 feet on each side; The entrance shimmers faintly and is 5 feet wide and 10 feet tall. You conjure an extradimensional dwelling in range that lasts for the duration."
     },
     {
@@ -6353,7 +6353,7 @@
       ],
       "effect": "You make terrain in an area up to 1 mile square look, sound, smell, and even feel like some other sort of terrain. The terrain's general shape remains the same, however. Open fields or a road could be made to resemble a swamp, hill, crevasse, or some other difficult or impassable terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road.",
       "source": "PHB",
-      "effectSummary": "Turn an area into difficult terrain for the duration",
+      "effectSummary": "Create a 1-mile illusion of natural terrain",
       "fullDescription": "Using 10 minutes, you make terrain in an area up to 1 mile square look, sound, smell, and even feel like some other sort of terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road; The illusion includes audible, visual, tactile, and olfactory elements, so it can turn clear ground into difficult terrain (or vice versa) or otherwise impede movement through the area. The effect lasts for 10 days."
     },
     {
@@ -6454,7 +6454,7 @@
       ],
       "effect": "You create an illusory copy of yourself that lasts for the duration. The copy can appear at any location within range that you have seen before, regardless of intervening obstacles. The illusion looks and sounds like you but is intangible. If the illusion takes any damage, it disappears, and the spell ends.",
       "source": "PHB",
-      "effectSummary": "Make a target blinded until it saves or the spell ends",
+      "effectSummary": "Create an illusory duplicate you can control",
       "fullDescription": "Using 1 action, you create an illusory copy of yourself that lasts for the duration. You can use your action to move this illusion up to twice your speed, and make it gesture, speak, and behave in whatever way you choose; The copy can appear at any location within range that you have seen before, regardless of intervening obstacles. You create an illusory copy of yourself that lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -6516,7 +6516,7 @@
       ],
       "effect": "By means of this spell, a willing creature or an object can be hidden away, safe from detection for the duration. When you cast the spell and touch the target, it becomes invisible and can't be targeted by divination spells or perceived through scrying sensors created by divination spells.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Hide a creature or object in an extra-dimensional space",
       "fullDescription": "Using 1 action, when you cast the spell and touch the target, it becomes invisible and can't be targeted by divination spells or perceived through scrying sensors created by divination spells. The condition can be anything you choose, but it must occur or be visible within 1 mile of the target; You can set a condition for the spell to end early. Examples include \"after 1,000 years\" or \"when the tarrasque awakens."
     },
     {
@@ -6547,7 +6547,7 @@
       ],
       "effect": "You shape an illusory duplicate of one beast or humanoid that is within range for the entire casting time of the spell. The duplicate is a creature, partially real and formed from ice or snow, and it can take actions and otherwise be affected as a normal creature. It appears to be the same as the original, but it has half the creature's hit point maximum and is formed without any equipment. Otherwise, the illusion uses all the statistics of the creature it duplicates.",
       "source": "PHB",
-      "effectSummary": "Repair one break or tear up to 1 foot wide",
+      "effectSummary": "Create a duplicate of a beast or humanoid that obeys you",
       "fullDescription": "Using 12 hours, you shape an illusory duplicate of one beast or humanoid that is within range for the entire casting time of the spell. If the simulacrum is damaged, you can repair it in an alchemical laboratory, using rare herbs and minerals worth 100 gp per hit point it regains; The simulacrum lasts until it drops to 0 hit points, at which point it reverts to snow and melts instantly. The simulacrum lasts until it drops to 0 hit points, at which point it reverts to snow and melts instantly."
     },
     {
@@ -6589,7 +6589,7 @@
       ],
       "effect": "When you cast this spell, you inscribe a harmful glyph either on a surface (such as a section of floor, a wall, or a table) or within an object that can be closed to conceal the glyph (such as a book, a scroll, or a treasure chest). If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered.",
       "source": "PHB",
-      "effectSummary": "Make a target frightened until it saves or the spell ends",
+      "effectSummary": "Create a glyph that triggers a chosen effect",
       "fullDescription": "Using 1 minute, when you cast this spell, you inscribe a harmful glyph either on a surface (such as a section of floor, a wall, or a table) or within an object that can be closed to conceal the glyph (such as a book, a scroll, or a treasure chest). * Each target must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC and falls unconscious for 10 minutes on a failed save; While frightened, the target drops whatever it is holding and must move at least 30 feet away from the glyph on each of its turns, if able. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered."
     },
     {
@@ -6675,7 +6675,7 @@
       ],
       "effect": "A 10-foot-radius invisible sphere of antimagic surrounds you. This area is divorced from the magical energy that suffuses the multiverse. Within the sphere, spells can't be cast, summoned creatures disappear, and even magic items become mundane. Until the spell ends, the sphere moves with you, centered on you.",
       "source": "PHB",
-      "effectSummary": "Make a creature invisible until it attacks or the spell ends",
+      "effectSummary": "Create a 10-foot sphere that negates magic",
       "fullDescription": "Using 1 action, within the sphere, spells can't be cast, summoned creatures disappear, and even magic items become mundane. A 10-foot-radius invisible sphere of antimagic surrounds you; Spells and other magical effects, except those created by an artifact or a deity, are suppressed in the sphere and can't protrude into it. Until the spell ends, the sphere moves with you, centered on you; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -6709,7 +6709,7 @@
       ],
       "effect": "This spell attracts or repels creatures of your choice. You target something within range, either a Huge or smaller object or creature or an area that is no larger than a 200-foot cube. Then specify a kind of intelligent creature, such as red dragons, goblins, or vampires. You invest the target with an aura that either attracts or repels the specified creatures for the duration. Choose antipathy or sympathy as the aura's effect.",
       "source": "PHB",
-      "effectSummary": "Make a target frightened until it saves or the spell ends",
+      "effectSummary": "Make a location attractive or repulsive to creatures",
       "fullDescription": "Using 1 hour, choose antipathy or sympathy as the aura's effect. When such a creature can see the target or comes within 60 feet of it, the creature must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or become frightened; When such a creature can see the target or comes within 60 feet of it, the creature must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or use its movement on each of its turns to enter the area or move within reach of the target. * If an affected creature ends its turn while not within 60 feet of the target or able to see it, the creature makes a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC."
     },
     {
@@ -6822,7 +6822,7 @@
       ],
       "effect": "You create a shadowy door on a flat solid surface that you can see within range. The door is large enough to allow Medium creatures to pass through unhindered. When opened, the door leads to a demiplane that appears to be an empty room 30 feet in each dimension, made of wood or stone. When the spell ends, the door disappears, and any creatures or objects inside the demiplane remain trapped there, as the door also disappears from the other side.",
       "source": "PHB",
-      "effectSummary": "Create a magical effect at a point you choose",
+      "effectSummary": "Create a portable extra-dimensional space",
       "fullDescription": "Using 1 action, you create a shadowy door on a flat solid surface that you can see within range. When opened, the door leads to a demiplane that appears to be an empty room 30 feet in each dimension, made of wood or stone; Each time you cast this spell, you can create a new demiplane, or have the shadowy door connect to a demiplane you created with a previous casting of this spell. When the spell ends, the door disappears, and any creatures or objects inside the demiplane remain trapped there, as the door also disappears from the other side."
     },
     {
@@ -6856,7 +6856,7 @@
       ],
       "effect": "You attempt to beguile a creature that you can see within range. It must succeed on a wisdom saving throw or be charmed by you for the duration. If you or creatures that are friendly to you are fighting it, it has advantage on the saving throw.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Control a monster for 1 minute",
       "fullDescription": "Using 1 action, until the end of your next turn, the creature takes only the actions you choose, and doesn't do anything that you don't allow it to do. Each time the target takes damage, it makes a new wisdom saving throw against the spell; It must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be charmed by you for the duration; When you cast this spell with a 9th-level spell slot, the duration is concentration, up to 8 hours. \" If the creature completes the order and doesn't receive further direction from you, it defends and preserves itself to the best of its ability; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -6974,7 +6974,7 @@
       ],
       "effect": "Until the spell ends, one willing creature you touch is immune to psychic damage, any effect that would sense its emotions or read its thoughts, divination spells, and the charmed condition. The spell even foils wish spells and spells or effects of similar power used to affect the target's mind or to gain information about the target.",
       "source": "PHB",
-      "effectSummary": "Make a target charmed until it saves or the spell ends",
+      "effectSummary": "Protect a creature from mental intrusion for 24 hours",
       "fullDescription": "Using 1 action, until the spell ends, one willing creature you touch is immune to psychic damage, any effect that would sense its emotions or read its thoughts, divination spells, and the charmed condition. The spell even foils wish spells and spells or effects of similar power used to affect the target's mind or to gain information about the target. Until the spell ends, one willing creature you touch is immune to psychic damage, any effect that would sense its emotions or read its thoughts, divination spells, and the charmed condition."
     },
     {
@@ -7003,7 +7003,7 @@
       ],
       "effect": "You speak a word of power that can overwhelm the mind of one creature you can see within range, leaving it dumbfounded. If the target has 150 hit points or fewer, it is stunned. Otherwise, the spell has no effect.",
       "source": "PHB",
-      "effectSummary": "Make a target stunned until it saves or the spell ends",
+      "effectSummary": "Stun a creature with 150 hit points or fewer",
       "fullDescription": "Using 1 action, you speak a word of power that can overwhelm the mind of one creature you can see within range, leaving it dumbfounded. If the target has 150 hit points or fewer, it is stunned; The stunned target must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC at the end of each of its turns. On a successful save, this stunning effect ends."
     },
     {
@@ -7070,7 +7070,7 @@
       ],
       "effect": "You and up to eight willing creatures within range project your astral bodies into the Astral Plane (the spell fails and the casting is wasted if you are already on that plane). The material body you leave behind is unconscious and in a state of suspended animation; it doesn't need food or air and doesn't age.",
       "source": "PHB",
-      "effectSummary": "Knock low-HP creatures unconscious until damaged or awakened",
+      "effectSummary": "Project yourself and up to 8 creatures to the Astral Plane",
       "fullDescription": "Using 1 hour, you and up to eight willing creatures within range project your astral bodies into the Astral Plane (the spell fails and the casting is wasted if you are already on that plane). Any damage or other effects that apply to it have no effect on your physical body, nor do they persist when you return to it; If you are returned to your body prematurely, your companions remain in their astral forms and must find their own way back to their bodies, usually by dropping to 0 hit points. The principal difference is the addition of a silvery cord that extends from between your shoulder blades and trails behind you, fading to invisibility after 1 foot."
     },
     {
@@ -7102,7 +7102,7 @@
       ],
       "effect": "You touch a willing creature and bestow a limited ability to see into the immediate future. For the duration, the target can't be surprised and has advantage on attack rolls, ability checks, and saving throws. Additionally, other creatures have disadvantage on attack rolls against the target for the duration.",
       "source": "PHB",
-      "effectSummary": "Give a creature advantage on saving throws for the duration",
+      "effectSummary": "Give a creature advantage on attacks, saves, and ability checks",
       "fullDescription": "Using 1 minute, you touch a willing creature and bestow a limited ability to see into the immediate future. Additionally, other creatures have disadvantage on attack rolls against the target for the duration; For the duration, the target can't be surprised and has advantage on attack rolls, ability checks, and saving throws. This spell immediately ends if you cast it again before its duration ends."
     },
     {
@@ -7135,7 +7135,7 @@
       ],
       "effect": "You conjure a portal linking an unoccupied space you can see within range to a precise location on a different plane of existence. The portal is a circular opening, which you can make 5 to 20 feet in diameter. You can orient the portal in any direction you choose. The portal lasts for the duration.",
       "source": "PHB",
-      "effectSummary": "Summon a creature to fight for you for the duration",
+      "effectSummary": "Open a portal to another plane of existence",
       "fullDescription": "Using 1 action, you can orient the portal in any direction you choose. The portal is a circular opening, which you can make 5 to 20 feet in diameter; You gain no special power over the creature, and it is free to act as the GM deems appropriate. The portal lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -7178,7 +7178,7 @@
       ],
       "effect": "You create a magical restraint to hold a creature that you can see within range. The target must succeed on a wisdom saving throw or be bound by the spell; if it succeeds, it is immune to this spell if you cast it again. While affected by this spell, the creature doesn't need to breathe, eat, or drink, and it doesn't age. Divination spells can't locate or perceive the target.",
       "source": "PHB",
-      "effectSummary": "Make a target restrained until it saves or the spell ends",
+      "effectSummary": "Imprison a creature in a magical prison",
       "fullDescription": "Using 1 minute, you create a magical restraint to hold a creature that you can see within range. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be bound by the spell; if it succeeds, it is immune to this spell if you cast it again; The condition can be as specific or as elaborate as you choose, but the GM must agree that the condition is reasonable and has a likelihood of coming to pass. The target is restrained until the spell ends, and it can't move or be moved by any means until then."
     },
     {
@@ -7296,7 +7296,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Deal 14d6 psychic damage to a target within 90 ft",
+      "effectSummary": "Deal 14d6 psychic damage and stun creatures",
       "fullDescription": "Using 1 action, a stunned target can make an Intelligence saving throw at the end of each of its turns, ending the effect on itself on a success. On a failed save, a target takes 14d6 psychic damage and is stunned; Each target must make an Intelligence saving throw. The effect happens immediately and then ends."
     },
     {
@@ -7330,7 +7330,7 @@
       ],
       "effect": "You assume the form of a different creature for the duration. The new form can be of any creature with a challenge rating equal to your level or lower. The creature can't be a construct or an undead, and you must have seen the sort of creature at least once. You transform into an average example of that creature, one without any class levels or the Spellcasting trait.",
       "source": "PHB",
-      "effectSummary": "Knock low-HP creatures unconscious until damaged or awakened",
+      "effectSummary": "Transform into any creature for 1 hour",
       "fullDescription": "Using 1 action, you transform into an average example of that creature, one without any class levels or the Spellcasting trait. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature; When you revert to your normal form, you return to the number of hit points you had before you transformed. The effect lasts for up to 1 hour; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -7395,7 +7395,7 @@
       ],
       "effect": "Choose one creature or nonmagical object that you can see within range. You transform the creature into a different creature, the creature into an object, or the object into a creature (the object must be neither worn nor carried by another creature). The transformation lasts for the duration, or until the target drops to 0 hit points or dies. If you concentrate on this spell for the full duration, the transformation becomes permanent.",
       "source": "PHB",
-      "effectSummary": "Knock low-HP creatures unconscious until damaged or awakened",
+      "effectSummary": "Transform a creature or object into a new form permanently",
       "fullDescription": "Using 1 action, choose one creature or nonmagical object that you can see within range. The transformation lasts for the duration, or until the target drops to 0 hit points or dies; The target assumes the hit points of its new form, and when it reverts to its normal form, the creature returns to the number of hit points it had before it transformed. The transformation lasts for the duration, or until the target drops to 0 hit points or dies; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -7421,7 +7421,7 @@
       ],
       "effect": "Drawing on the deepest fears of a group of creatures, you create illusory creatures in their minds, visible only to them. Each creature in a 30-foot-radius sphere centered on a point of your choice within range must make a wisdom saving throw. On a failed save, a creature becomes frightened for the duration. The illusion calls on the creature's deepest fears, manifesting its worst nightmares as an implacable threat. At the start of each of the frightened creature's turns, it must succeed on a wisdom saving throw or take 4d10 psychic damage. On a successful save, the spell ends for that creature.",
       "source": "PHB",
-      "effectSummary": "Deal 4d10 psychic damage to a target within 120 ft",
+      "effectSummary": "Create a terrifying illusion dealing 4d10 psychic damage",
       "fullDescription": "Using 1 action, drawing on the deepest fears of a group of creatures, you create illusory creatures in their minds, visible only to them. At the start of each of the frightened creature's turns, it must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or take 4d10 psychic damage; Each creature in a 30-foot-radius sphere centered on a point of your choice within range must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC. On a successful save, the spell ends for that creature; you must concentrate, and the effect ends if your concentration ends."
     },
     {
