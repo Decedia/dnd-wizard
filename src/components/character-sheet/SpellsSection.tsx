@@ -273,7 +273,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
               </div>
               <div className="mt-1">
-                <SpellMechanicsChips mechanic={spell.mechanic} effectSummary={spell.effectSummary} />
+                <SpellMechanicsChips mechanic={spell.mechanic} effectSummary={spell.effectSummary} character={character} />
               </div>
               {spell.duration && (() => {
                 const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;

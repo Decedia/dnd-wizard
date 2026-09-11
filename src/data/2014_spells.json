@@ -2164,7 +2164,7 @@
         "Warlock"
       ],
       "source": "PHB",
-      "effectSummary": "Gain temporary hit points for the duration",
+      "effectSummary": "Gain 5 temporary hit points for the duration",
       "fullDescription": "Using 1 action, you gain 5 temporary hit points for the duration. If a creature hits you with a melee attack while you have these hit points, the creature takes 5 cold damage; A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear; When you cast this spell using a spell slot of 2nd level or higher, both the temporary hit points and the cold damage increase by 5 for each slot level above 1st. The effect lasts for 1 hour."
     },
     {
@@ -2811,7 +2811,7 @@
       "higherLevel": "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.",
       "castingTime": "1 action",
       "source": "PHB",
-      "effectSummary": "Restore 1d8 + spellcasting modifier HP to a creature",
+      "effectSummary": "Restore 1d8 + {{spellcastingmodifier}} HP to a creature",
       "fullDescription": "Using 1 action, a creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs; When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st. The effect happens immediately and then ends."
     },
     {
@@ -3756,7 +3756,7 @@
       "higherLevel": "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st.",
       "castingTime": "1 bonus action",
       "source": "PHB",
-      "effectSummary": "Restore 1d4 + spellcasting modifier HP to a creature within 60 ft",
+      "effectSummary": "Restore 1d4 + {{spellcastingmodifier}} HP to a creature within 60 ft",
       "fullDescription": "Using 1 bonus action, a creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs; When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st. The effect happens immediately and then ends."
     },
     {
@@ -3857,7 +3857,7 @@
       "higherLevel": [],
       "castingTime": "1 action",
       "source": "PHB",
-      "effectSummary": "Give a creature immunity to frightened and temporary HP each turn",
+      "effectSummary": "Give a creature immunity to frightened and gain {{spellcastingmodifier}} temp HP each turn",
       "fullDescription": "Using 1 action, a willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns; When the spell ends, the target loses any remaining temporary hit points from this spell. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -7342,7 +7342,7 @@
       "higherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the healing increases by 1d8 for each slot level above 2nd.",
       "castingTime": "10 minutes",
       "source": "PHB",
-      "effectSummary": "Restore 2d8 + spellcasting modifier HP to up to 6 creatures",
+      "effectSummary": "Restore 2d8 + {{spellcastingmodifier}} HP to up to 6 creatures",
       "fullDescription": "Using 10 minutes, up to six creatures of your choice that you can see within range each regain hit points equal to 2d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs; When you cast this spell using a spell slot of 3rd level or higher, the healing increases by 1d8 for each slot level above 2nd. The effect happens immediately and then ends."
     },
     {
@@ -7904,7 +7904,7 @@
       "castingTime": "1 bonus action",
       "attackType": "melee",
       "source": "PHB",
-      "effectSummary": "Create a floating weapon dealing 1d8 + spellcasting modifier force damage",
+      "effectSummary": "Create a floating weapon dealing 1d8 + {{spellcastingmodifier}} force damage",
       "fullDescription": "Using 1 bonus action, you create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again. On a hit, the target takes force damage equal to 1d8 + your spellcasting ability modifier; As a bonus action on your turn, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it; When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for every two slot levels above the 2nd. You create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again."
     },
     {
@@ -9529,7 +9529,7 @@
       "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the healing increases by 1d4 for each slot level above 3rd.",
       "castingTime": "1 bonus action",
       "source": "PHB",
-      "effectSummary": "Restore 1d4 + spellcasting modifier HP to up to 6 creatures",
+      "effectSummary": "Restore 1d4 + {{spellcastingmodifier}} HP to up to 6 creatures",
       "fullDescription": "Using 1 bonus action, as you call out words of restoration, up to six creatures of your choice that you can see within range regain hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs; When you cast this spell using a spell slot of 4th level or higher, the healing increases by 1d4 for each slot level above 3rd. The effect happens immediately and then ends."
     },
     {
@@ -14271,7 +14271,7 @@
       "higherLevel": "When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th.",
       "castingTime": "1 action",
       "source": "PHB",
-      "effectSummary": "Each target regains hit points equal to 3d8 + your spellcasting ability",
+      "effectSummary": "Each target regains 3d8 + {{spellcastingmodifier}} HP",
       "fullDescription": "Using 1 action, a wave of healing energy washes out from a point of your choice within range. Each target regains hit points equal to 3d8 + your spellcasting ability modifier; Choose up to six creatures in a 30-foot-radius sphere centered on that point; When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th. The effect happens immediately and then ends."
     },
     {

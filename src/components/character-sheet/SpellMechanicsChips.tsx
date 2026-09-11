@@ -1,13 +1,15 @@
 "use client";
 
 import type { SpellMechanicSummary } from "@/lib/spell-mechanics-accessor";
+import type { Character } from "@/lib/storage";
 import { DamageBadge } from "./DamageBadge";
 import { ConditionBadge } from "./ConditionBadge";
-import { DiceBadge } from "../DiceBadge";
+import { resolveSpellMacros } from "@/lib/spell-macros";
 
 interface SpellMechanicsSummaryProps {
   mechanic: SpellMechanicSummary | undefined;
   effectSummary?: string;
+  character?: Character;
   size?: "sm" | "md";
 }
 
@@ -101,45 +103,7 @@ function TempHPBadge({ formula, size = "sm" }: { formula: string; size?: "sm" | 
   );
 }
 
-function buildSentence(m: SpellMechanicSummary): string {
-  const target = formatTarget(m);
-  const res = formatResolution(m);
-  const hasConcentration = m.casting.concentration;
-  const hasDamage = m.effects.some((e) => e.type === "damage");
-  const hasHealing = m.effects.some((e) => e.type === "healing");
-  const hasTempHP = m.effects.some((e) => e.type === "utility" && e.description?.toLowerCase().includes("temporary hit point"));
-  const hasCondition = m.effects.some((e) => e.type === "condition");
-  const hasBuff = m.effects.some((e) => e.type === "buff");
-  const hasDebuff = m.effects.some((e) => e.type === "debuff");
-  const hasControl = m.effects.some((e) => e.type === "control");
-  const hasSummon = m.effects.some((e) => e.type === "summon");
-  const hasTeleport = m.effects.some((e) => e.type === "teleport");
-  const hasUtility = m.effects.some((e) => e.type === "utility");
-
-  const parts: string[] = [];
-  parts.push(target);
-  if (res) parts.push(res);
-
-  const effectTypes: string[] = [];
-  if (hasDamage) effectTypes.push("damage");
-  if (hasHealing) effectTypes.push("heal");
-  if (hasTempHP) effectTypes.push("temp HP");
-  if (hasCondition) effectTypes.push("condition");
-  if (hasBuff) effectTypes.push("buff");
-  if (hasDebuff) effectTypes.push("debuff");
-  if (hasControl) effectTypes.push("control");
-  if (hasSummon) effectTypes.push("summon");
-  if (hasTeleport) effectTypes.push("teleport");
-  if (hasUtility && !hasTempHP && !hasCondition && !hasBuff && !hasDebuff) effectTypes.push("utility");
-
-  if (effectTypes.length > 0) {
-    parts.push(effectTypes.join("/"));
-  }
-  if (hasConcentration) parts.push("Concentration");
-  return parts.join(" · ");
-}
-
-export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: SpellMechanicsSummaryProps) {
+export function SpellMechanicsChips({ mechanic, effectSummary, character, size = "sm" }: SpellMechanicsSummaryProps) {
   if (!mechanic) return null;
 
   const damageEffect = mechanic.effects.find((e) => e.type === "damage");
@@ -149,9 +113,6 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
   const utilityEffect = mechanic.effects.find((e) => e.type === "utility");
   const buffEffect = mechanic.effects.find((e) => e.type === "buff");
   const debuffEffect = mechanic.effects.find((e) => e.type === "debuff");
-  const controlEffect = mechanic.effects.find((e) => e.type === "control");
-  const summonEffect = mechanic.effects.find((e) => e.type === "summon");
-  const teleportEffect = mechanic.effects.find((e) => e.type === "teleport");
 
   let tempHPFormula: string | null = null;
   let immunityCondition: string | null = null;
@@ -182,68 +143,12 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
     resistanceType = buffEffect.bonusTo.toLowerCase();
   }
 
-  if (!effectSummary) {
-    const sentence = mechanic ? buildSentence(mechanic) : "";
-    return (
-      <div className="flex flex-wrap items-center gap-1.5">
-        <p className={`text-[var(--color-text-secondary)] leading-snug ${size === "sm" ? "text-[11px]" : "text-xs"} min-w-0`}>
-          {sentence}
-        </p>
-        {damageEffect?.damageType && (
-          <DamageBadge type={damageEffect.damageType} size={size} showLabel={false} />
-        )}
-        {healEffect && (
-          <span
-            className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
-            style={{
-              fontSize: size === "sm" ? "10px" : "12px",
-              backgroundColor: "var(--color-heal-bg, #dcfce7)",
-              color: "var(--color-heal, #166534)",
-              border: "1px solid var(--color-heal-border, #86efac)",
-            }}
-          >
-            ♡ {healEffect.amount || "heal"}
-          </span>
-        )}
-        {tempHPFormula && (
-          <TempHPBadge formula={tempHPFormula} size={size} />
-        )}
-        {immunityCondition && (
-          <ConditionBadge condition={immunityCondition} size={size} />
-        )}
-        {inflictedCondition && (
-          <ConditionBadge condition={inflictedCondition} size={size} />
-        )}
-        {resistanceType && (
-          <span
-            className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
-            style={{
-              fontSize: size === "sm" ? "10px" : "12px",
-              backgroundColor: "var(--color-resist-bg, #e0e7ff)",
-              color: "var(--color-resist, #3730a3)",
-              border: "1px solid var(--color-resist-border, #c7d2fe)",
-            }}
-          >
-            ✦ {resistanceType}
-          </span>
-        )}
-        {hasConcentration && (
-          <span
-            className="inline-flex items-center font-semibold rounded px-1.5 py-0.5 text-[10px]"
-            style={{
-              backgroundColor: "var(--color-state-concentration-bg)",
-              color: "var(--color-state-concentration)",
-            }}
-          >
-            Conc
-          </span>
-        )}
-      </div>
-    );
-  }
+  const resolvedSummary = effectSummary ? resolveSpellMacros(effectSummary, character) : "";
 
   const boxFontSize = size === "sm" ? "11px" : "13px";
   const badgeFontSize = size === "sm" ? "10px" : "12px";
+
+  const summaryMentionsTempHP = resolvedSummary.toLowerCase().includes("temporary hit point") || resolvedSummary.toLowerCase().includes("temp hp");
 
   return (
     <div
@@ -255,17 +160,11 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
       }}
     >
       <p className="font-semibold leading-snug" style={{ fontSize: boxFontSize }}>
-        {effectSummary}
+        {resolvedSummary}
       </p>
       <div className="flex flex-wrap items-center gap-1.5 mt-1">
         {damageEffect?.damageType && (
           <DamageBadge type={damageEffect.damageType} size={size} showLabel={false} />
-        )}
-        {damageEffect?.amount && (
-          <DiceBadge dice={damageEffect.amount} size={size} />
-        )}
-        {healEffect?.amount && (
-          <DiceBadge dice={healEffect.amount} size={size} />
         )}
         {healEffect && (
           <span
@@ -280,7 +179,7 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
             ♡ {healEffect.amount || "heal"}
           </span>
         )}
-        {tempHPFormula && (
+        {tempHPFormula && !summaryMentionsTempHP && (
           <TempHPBadge formula={tempHPFormula} size={size} />
         )}
         {immunityCondition && (
