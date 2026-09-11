@@ -10,7 +10,6 @@ import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, Circl
 import { SpellSelectionModal } from "../modals/SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 import { SourceBadge } from "@/components/SourceBadge";
-import { DamageBadge } from "./DamageBadge";
 import { SpellMechanicsChips } from "./SpellMechanicsChips";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
@@ -290,9 +289,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 );
               })()}
               <div className="flex items-center gap-1 mt-2">
-                {spell.damageDice && spell.damageType && (
-                  <DamageBadge type={spell.damageType} size="sm" showLabel={false} />
-                )}
                 {preparationCaster && spell.level > 0 && (
                   <button
                     type="button"

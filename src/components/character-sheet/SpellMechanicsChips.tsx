@@ -1,9 +1,9 @@
 "use client";
 
-import { type SpellMechanicSummary } from "@/lib/spell-mechanics-accessor";
+import type { SpellMechanicSummary } from "@/lib/spell-mechanics-accessor";
 import { DamageBadge } from "./DamageBadge";
 import { ConditionBadge } from "./ConditionBadge";
-import { DiceIcon } from "@/components/icons";
+import { DiceBadge } from "../DiceBadge";
 
 interface SpellMechanicsSummaryProps {
   mechanic: SpellMechanicSummary | undefined;
@@ -97,57 +97,6 @@ function TempHPBadge({ formula, size = "sm" }: { formula: string; size?: "sm" | 
       }}
     >
       ♡ {formula}
-    </span>
-  );
-}
-
-function EffectTypeBadge({ type, size = "sm" }: { type: string; size?: "sm" | "md" }) {
-  const label = humanize(type);
-  return (
-    <span
-      className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
-      style={{
-        fontSize: size === "sm" ? "10px" : "12px",
-        backgroundColor: "var(--color-effect-summary-bg, #fef3c7)",
-        color: "var(--color-effect-summary-text, #78350f)",
-        border: "1px solid var(--color-effect-summary-border, #92400e)",
-      }}
-    >
-      {label}
-    </span>
-  );
-}
-
-function DiceAmountBadge({ amount, size = "sm" }: { amount: string; size?: "sm" | "md" }) {
-  return (
-    <span
-      className="inline-flex items-center gap-1 font-semibold rounded px-1.5 py-0.5"
-      style={{
-        fontSize: size === "sm" ? "10px" : "12px",
-        backgroundColor: "var(--color-effect-summary-bg, #fef3c7)",
-        color: "var(--color-effect-summary-text, #78350f)",
-        border: "1px solid var(--color-effect-summary-border, #92400e)",
-      }}
-    >
-      <DiceIcon className={size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5"} />
-      <span>{amount}</span>
-    </span>
-  );
-}
-
-function ModifierBadge({ bonus, bonusTo, size = "sm" }: { bonus: number; bonusTo: string; size?: "sm" | "md" }) {
-  const label = `+${bonus} ${humanize(bonusTo)}`;
-  return (
-    <span
-      className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
-      style={{
-        fontSize: size === "sm" ? "10px" : "12px",
-        backgroundColor: "var(--color-effect-summary-bg, #fef3c7)",
-        color: "var(--color-effect-summary-text, #78350f)",
-        border: "1px solid var(--color-effect-summary-border, #92400e)",
-      }}
-    >
-      {label}
     </span>
   );
 }
@@ -286,7 +235,7 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
               color: "var(--color-state-concentration)",
             }}
           >
-            C
+            Conc
           </span>
         )}
       </div>
@@ -309,28 +258,14 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
         {effectSummary}
       </p>
       <div className="flex flex-wrap items-center gap-1.5 mt-1">
-        {damageEffect && <EffectTypeBadge type="damage" size={size} />}
-        {healEffect && <EffectTypeBadge type="heal" size={size} />}
-        {tempHPFormula && <EffectTypeBadge type="temp hp" size={size} />}
-        {buffEffect && <EffectTypeBadge type="buff" size={size} />}
-        {debuffEffect && <EffectTypeBadge type="debuff" size={size} />}
-        {controlEffect && <EffectTypeBadge type="control" size={size} />}
-        {summonEffect && <EffectTypeBadge type="summon" size={size} />}
-        {teleportEffect && <EffectTypeBadge type="teleport" size={size} />}
-        {utilityEffect && !tempHPFormula && !conditionEffect && !buffEffect && !debuffEffect && !controlEffect && !summonEffect && !teleportEffect && (
-          <EffectTypeBadge type="utility" size={size} />
-        )}
-        {inflictedCondition && (
-          <ConditionBadge condition={inflictedCondition} size={size} />
-        )}
         {damageEffect?.damageType && (
           <DamageBadge type={damageEffect.damageType} size={size} showLabel={false} />
         )}
         {damageEffect?.amount && (
-          <DiceAmountBadge amount={damageEffect.amount} size={size} />
+          <DiceBadge dice={damageEffect.amount} size={size} />
         )}
         {healEffect?.amount && (
-          <DiceAmountBadge amount={healEffect.amount} size={size} />
+          <DiceBadge dice={healEffect.amount} size={size} />
         )}
         {healEffect && (
           <span
@@ -348,6 +283,12 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
         {tempHPFormula && (
           <TempHPBadge formula={tempHPFormula} size={size} />
         )}
+        {immunityCondition && (
+          <ConditionBadge condition={immunityCondition} size={size} />
+        )}
+        {inflictedCondition && (
+          <ConditionBadge condition={inflictedCondition} size={size} />
+        )}
         {resistanceType && (
           <span
             className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
@@ -362,10 +303,30 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
           </span>
         )}
         {buffEffect?.bonus !== undefined && buffEffect.bonusTo && (
-          <ModifierBadge bonus={buffEffect.bonus} bonusTo={buffEffect.bonusTo} size={size} />
+          <span
+            className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
+            style={{
+              fontSize: badgeFontSize,
+              backgroundColor: "var(--color-info-100, #dbeafe)",
+              color: "var(--color-info-700, #1d4ed8)",
+              border: "1px solid var(--color-info-200, #93c5fd)",
+            }}
+          >
+            +{buffEffect.bonus} {humanize(buffEffect.bonusTo)}
+          </span>
         )}
         {debuffEffect?.bonus !== undefined && debuffEffect.bonusTo && (
-          <ModifierBadge bonus={debuffEffect.bonus} bonusTo={debuffEffect.bonusTo} size={size} />
+          <span
+            className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
+            style={{
+              fontSize: badgeFontSize,
+              backgroundColor: "var(--color-error-100, #fee2e2)",
+              color: "var(--color-error-700, #b91c1c)",
+              border: "1px solid var(--color-error-200, #fecaca)",
+            }}
+          >
+            -{debuffEffect.bonus} {humanize(debuffEffect.bonusTo)}
+          </span>
         )}
         {hasConcentration && (
           <span
@@ -375,7 +336,7 @@ export function SpellMechanicsChips({ mechanic, effectSummary, size = "sm" }: Sp
               color: "var(--color-state-concentration)",
             }}
           >
-            C
+            Conc
           </span>
         )}
       </div>
