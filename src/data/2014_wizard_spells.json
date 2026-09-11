@@ -190,7 +190,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Pull a creature up to 10 feet in a direction you choose",
       "fullDescription": "Using 1 action, this spell ends if the target touches the ground or a solid surface. The target must succeed on a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC or be pulled up to 10 feet in a direction of your choice; At 5th level, you can pull the target up to 15 feet; At 5th level, you can pull the target up to 15 feet; At 11th level, you can pull the target up to 20 feet; At 17th level, you can pull the target up to 25 feet. This spell ends if the target touches the ground or a solid surface."
     },
     {
@@ -252,7 +252,7 @@
       ],
       "effect": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Create a spectral hand to manipulate objects within 30 feet",
       "fullDescription": "Using 1 action, a spectral, floating hand appears at a point you choose within range. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again; You can move the hand up to 30 feet each time you use it. The hand lasts for the duration or until you dismiss it as an action."
     },
     {
@@ -349,7 +349,7 @@
       ],
       "effect": "You create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a harmless sensory effect or an image of an object",
       "fullDescription": "Using 1 action, you create a sound or an image of an object within range that lasts for the duration. If you create a sound, its volume can range from a whisper to a scream; If you create an image of an object--such as a chair, muddy footprints, or a small chest--it must be no larger than a 5-foot cube. You create a sound or an image of an object within range that lasts for the duration."
     },
     {
@@ -568,7 +568,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Teleport up to 30 feet to an unoccupied space you can see",
       "fullDescription": "Using 1 action, you briefly slow the time around a willing creature you touch. The creature can use its reaction to move up to 10 feet without provoking opportunity attacks; At 5th level, the creature can move up to 15 feet; At 5th level, the creature can move up to 15 feet; At 11th level, the creature can move up to 20 feet; At 17th level, the creature can move up to 25 feet. The effect happens immediately and then ends."
     },
     {
@@ -620,7 +620,7 @@
       ],
       "effect": "You extend your hand and point a finger at a target in range. Your magic grants you a brief insight into the target's defenses. On your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn't ended.",
       "source": "PHB",
-      "effectSummary": "Change a target: on your next turn, you gain advantage on your",
+      "effectSummary": "Gain advantage on your next attack roll against a creature",
       "fullDescription": "Using 1 action, you extend your hand and point a finger at a target in range. On your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn't ended; Your magic grants you a brief insight into the target's defenses. The effect lasts for up to 1 round; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -890,7 +890,7 @@
       ],
       "effect": "You make yourself--including your clothing, armor, weapons, and other belongings on your person--look different until the spell ends or until you use your action to dismiss it. You can seem 1 foot shorter or taller and can appear thin, fat, or in between. You can't change your body type, so you must adopt a form that has the same basic arrangement of limbs. Otherwise, the extent of the illusion is up to you.",
       "source": "PHB",
-      "effectSummary": "Change a target: to discern that you are disguised, a creature can",
+      "effectSummary": "Change your appearance and voice for 1 hour",
       "fullDescription": "Using 1 action, you make yourself--including your clothing, armor, weapons, and other belongings on your person--look different until the spell ends or until you use your action to dismiss it. You can seem 1 foot shorter or taller and can appear thin, fat, or in between; To discern that you are disguised, a creature can use its action to inspect your appearance and must succeed on an Intelligence (Investigation) check against your spell save spell save DC. You make yourself--including your clothing, armor, weapons, and other belongings on your person--look different until the spell ends or until you use your action to dismiss it."
     },
     {
@@ -943,7 +943,7 @@
       ],
       "effect": "This spell allows you to move at an incredible pace. When you cast this spell, and then as a bonus action on each of your turns until the spell ends, you can take the Dash action.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Dash as a bonus action each turn for 10 minutes",
       "fullDescription": "Using 1 bonus action, when you cast this spell, and then as a bonus action on each of your turns until the spell ends, you can take the Dash action. This spell allows you to move at an incredible pace. When you cast this spell, and then as a bonus action on each of your turns until the spell ends, you can take the Dash action; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1067,7 +1067,7 @@
       ],
       "effect": "This spell creates a circular, horizontal plane of force, 3 feet in diameter and 1 inch thick, that floats 3 feet above the ground in an unoccupied space of your choice that you can see within range. The disk remains for the duration, and can hold up to 500 pounds. If more weight is placed on it, the spell ends, and everything on the disk falls to the ground.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Create an invisible disk that holds up to 500 pounds",
       "fullDescription": "Using 1 action, this spell creates a circular, horizontal plane of force, 3 feet in diameter and 1 inch thick, that floats 3 feet above the ground in an unoccupied space of your choice that you can see within range. If you move more than 20 feet away from it, the disk follows you so that it remains within 20 feet of you; If can move across uneven terrain, up or down stairs, slopes and the like, but it can't cross an elevation change of 10 feet or more. If more weight is placed on it, the spell ends, and everything on the disk falls to the ground; you can cast it as a ritual."
     },
     {
@@ -1098,7 +1098,7 @@
       ],
       "effect": "You create a 20-foot-radius sphere of fog centered on a point within range. The sphere spreads around corners, and its area is heavily obscured. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a 20-foot-radius sphere of fog that is heavily obscured",
       "fullDescription": "Using 1 action, you create a 20-foot-radius sphere of fog centered on a point within range. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it; The sphere spreads around corners, and its area is heavily obscured; When you cast this spell using a spell slot of 2nd level or higher, the radius of the fog increases by 20 feet for each slot level above 1st. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1250,7 +1250,7 @@
       ],
       "effect": "You touch a creature. The creature's jump distance is tripled until the spell ends.",
       "source": "PHB",
-      "effectSummary": "Change a target: touch a creature",
+      "effectSummary": "Triple a creature's jump distance for 1 minute",
       "fullDescription": "Using 1 action, you touch a creature. The creature's jump distance is tripled until the spell ends. The creature's jump distance is tripled until the spell ends."
     },
     {
@@ -1283,7 +1283,7 @@
       ],
       "effect": "You touch a creature. The target's speed increases by 10 feet until the spell ends.",
       "source": "PHB",
-      "effectSummary": "Change a target: the target's speed increases by 10 feet until the",
+      "effectSummary": "Increase a creature's speed by 10 feet for 1 hour",
       "fullDescription": "Using 1 action, you touch a creature. The target's speed increases by 10 feet until the spell ends; When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each spell slot above 1st. The target's speed increases by 10 feet until the spell ends."
     },
     {
@@ -1312,7 +1312,7 @@
       ],
       "effect": "You touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends. The target's base AC becomes 13 + its Dexterity modifier. The spell ends if the target dons armor or if you dismiss the spell as an action.",
       "source": "PHB",
-      "effectSummary": "Change a target: touch a willing creature who isn't wearing armor, and",
+      "effectSummary": "Gain AC 13 + Dexterity modifier for 8 hours",
       "fullDescription": "Using 1 action, you touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends. The target's base AC becomes 13 + its Dexterity modifier; The spell ends if the target dons armor or if you dismiss the spell as an action. You touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends."
     },
     {
@@ -1365,7 +1365,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Give a creature advantage on saving throws for the duration",
+      "effectSummary": "Cause a creature to experience intense pain, imposing disadvantage",
       "fullDescription": "Using 1 action, you speak a word of power that causes waves of intense pain to assail one creature you can see within range. While the target is affected by crippling pain, any speed it has can be no higher than 10 feet; The target makes a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC at the end of each of its turns, ending the effect on a success. The effect happens immediately and then ends."
     },
     {
@@ -1456,7 +1456,7 @@
       ],
       "effect": "You create the image of an object, a creature, or some other visible phenomenon that is no larger than a 15-foot cube. The image appears at a spot within range and lasts for the duration. The image is purely visual; it isn't accompanied by sound, smell, or other sensory effects.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a visual illusion of an object or creature within range",
       "fullDescription": "Using 1 action, you create the image of an object, a creature, or some other visible phenomenon that is no larger than a 15-foot cube. Physical interaction with the image reveals it to be an illusion, because things can pass through it; A creature that uses its action to examine the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save spell save DC. The image appears at a spot within range and lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1514,7 +1514,7 @@
         "Wizard"
       ],
       "source": "SCAG",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Create an invisible disk that holds up to 500 pounds",
       "fullDescription": "Using 1 action, this spell creates a circular, horizontal plane of force, 3 feet in diameter and 1 inch thick, that floats 3 feet above the ground in an unoccupied space of your choice that you can see within range. If you move more than 20 feet away from it, the disk follows you so that it remains within 20 feet of you; The disk can move across uneven terrain, up or down stairs, slopes and the like, but it can't cross an elevation change of 10 feet or more; When you cast this spell using a spell slot of 2nd level or higher, the spell creates one additional disk for each slot level above 1st. If more weight is placed on it, the spell ends, and everything on the disk falls to the ground; you can cast it as a ritual."
     },
     {
@@ -1667,7 +1667,7 @@
       ],
       "effect": "You touch a closed door, window, gate, chest, or other entryway, and it becomes locked for the duration. You and the creatures you designate when you cast this spell can open the object normally. You can also set a password that, when spoken within 5 feet of the object, suppresses this spell for 1 minute. Otherwise, it is impassable until it is broken or the spell is dispelled or suppressed. Casting knock on the object suppresses arcane lock for 10 minutes.",
       "source": "PHB",
-      "effectSummary": "Change a target: the object is more difficult to break or force",
+      "effectSummary": "Lock a door or container so only you can open it",
       "fullDescription": "Using 1 action, you touch a closed door, window, gate, chest, or other entryway, and it becomes locked for the duration. Casting knock on the object suppresses arcane lock for 10 minutes; You can also set a password that, when spoken within 5 feet of the object, suppresses this spell for 1 minute. Otherwise, it is impassable until it is broken or the spell is dispelled or suppressed."
     },
     {
@@ -1814,7 +1814,7 @@
       ],
       "effect": "Magical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a 15-foot sphere of magical darkness around a point",
       "fullDescription": "Using 1 action, magical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it; If the point you choose is on an object you are holding or one that isn't being worn or carried, the darkness emanates from the object and moves with it. If any of this spell's area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -1845,7 +1845,7 @@
       ],
       "effect": "You touch a willing creature to grant it the ability to see in the dark. For the duration, that creature has darkvision out to a range of 60 feet.",
       "source": "PHB",
-      "effectSummary": "Change a target: that creature has darkvision out to a range of",
+      "effectSummary": "Give a creature 60 feet of darkvision for 8 hours",
       "fullDescription": "Using 1 action, you touch a willing creature to grant it the ability to see in the dark. For the duration, that creature has darkvision out to a range of 60 feet. The effect lasts for 8 hours."
     },
     {
@@ -2027,7 +2027,7 @@
       ],
       "effect": "You touch a corpse or other remains. For the duration, the target is protected from decay and can't become undead.",
       "source": "PHB",
-      "effectSummary": "Change a target: the spell also effectively extends the time limit on",
+      "effectSummary": "Keep a corpse from decaying for 10 days",
       "fullDescription": "Using 1 action, you touch a corpse or other remains. For the duration, the target is protected from decay and can't become undead; The spell also effectively extends the time limit on raising the target from the dead, since days spent under the influence of this spell don't count against the time limit of spells such as raise dead. The spell also effectively extends the time limit on raising the target from the dead, since days spent under the influence of this spell don't count against the time limit of spells such as raise dead; you can cast it as a ritual."
     },
     {
@@ -2060,7 +2060,7 @@
       ],
       "effect": "A line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell's duration. Each creature that starts its turn in the line must succeed on a strength saving throw or be pushed 15 feet away from you in a direction following the line.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Create a 60-foot line of strong wind that pushes creatures",
       "fullDescription": "Using 1 action, a line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell's duration. Each creature that starts its turn in the line must succeed on a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC or be pushed 15 feet away from you in a direction following the line; Any creature in the line must spend 2 feet of movement for every 1 foot it moves when moving closer to you. A line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell's duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2158,7 +2158,7 @@
       ],
       "effect": "Choose an object that you can see within range. The object can be a door, a box, a chest, a set of manacles, a padlock, or another object that contains a mundane or magical means that prevents access.",
       "source": "PHB",
-      "effectSummary": "Change a target: that spell is suppressed for 10 minutes, during which",
+      "effectSummary": "Open a locked or magically sealed door or container",
       "fullDescription": "Using 1 action, choose an object that you can see within range. If you choose a target that is held shut with arcane lock, that spell is suppressed for 10 minutes, during which time the target can be opened and shut normally; The object can be a door, a box, a chest, a set of manacles, a padlock, or another object that contains a mundane or magical means that prevents access. The effect happens immediately and then ends."
     },
     {
@@ -2189,7 +2189,7 @@
       ],
       "effect": "One creature or object of your choice that you can see within range rises vertically, up to 20 feet, and remains suspended there for the duration. The spell can levitate a target that weighs up to 500 pounds. An unwilling creature that succeeds on a constitution saving throw is unaffected.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Float a creature or object up to 20 feet vertically",
       "fullDescription": "Using 1 action, the target can move only by pushing or pulling against a fixed object or surface within reach (such as a wall or a ceiling), which allows it to move as if it were climbing. One creature or object of your choice that you can see within range rises vertically, up to 20 feet, and remains suspended there for the duration; You can change the target's altitude by up to 20 feet in either direction on your turn. When the spell ends, the target floats gently to the ground if it is still aloft; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2285,7 +2285,7 @@
       ],
       "effect": "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls.",
       "source": "PHB",
-      "effectSummary": "Change a target: until the spell ends, that weapon becomes a magic",
+      "effectSummary": "Make a nonmagical weapon magical and give it a +1 bonus",
       "fullDescription": "Using 1 bonus action, you touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls; When you cast this spell using a spell slot of 4th level or higher, the bonus increases to +2; When you use a spell slot of 6th level or higher, the bonus increases to +3. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2341,7 +2341,7 @@
       ],
       "effect": "Three illusory duplicates of yourself appear in your space. Until the spell ends, the duplicates move with you and mimic your actions, shifting position so it's impossible to track which image is real. You can use your action to dismiss the illusory duplicates.",
       "source": "PHB",
-      "effectSummary": "Reveal magical or hidden information within range",
+      "effectSummary": "Create 3 illusory duplicates of yourself to confuse attackers",
       "fullDescription": "Using 1 action, three illusory duplicates of yourself appear in your space. A duplicate's AC equals 10 + your Dexterity modifier; It ignores all other damage and effects. Until the spell ends, the duplicates move with you and mimic your actions, shifting position so it's impossible to track which image is real."
     },
     {
@@ -2601,7 +2601,7 @@
       ],
       "effect": "Until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Allow a creature to climb difficult surfaces and ceilings",
       "fullDescription": "Using 1 action, until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed. Until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -2700,7 +2700,7 @@
       ],
       "effect": "This spell creates an undead servant. Choose a pile of bones or a corpse of a Medium or Small humanoid within range. Your spell imbues the target with a foul mimicry of life, raising it as an undead creature. The target becomes a skeleton if you chose bones or a zombie if you chose a corpse (the GM has the creature's game statistics).",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Create undead minions from bones or a corpse",
       "fullDescription": "Using 1 minute, this spell creates an undead servant. On each of your turns, you can use a bonus action to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one); To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends; When you cast this spell using a spell slot of 4th level or higher, you animate or reassert control over two additional undead creatures for each slot level above 3rd; Each of the creatures must come from a different corpse or pile of bones. If you issue no commands, the creature only defends itself against hostile creatures."
     },
     {
@@ -3270,7 +3270,7 @@
       ],
       "effect": "You create the image of an object, a creature, or some other visible phenomenon that is no larger than a 20-foot cube. The image appears at a spot that you can see within range and lasts for the duration. It seems completely real, including sounds, smells, and temperature appropriate to the thing depicted. You can't create sufficient heat or cold to cause damage, a sound loud enough to deal thunder damage or deafen a creature, or a smell that might sicken a creature (like a troglodyte's stench).",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a realistic visual, auditory, and olfactory illusion",
       "fullDescription": "Using 1 action, you create the image of an object, a creature, or some other visible phenomenon that is no larger than a 20-foot cube. You can't create sufficient heat or cold to cause damage, a sound loud enough to deal thunder damage or deafen a creature, or a smell that might sicken a creature (like a troglodyte's stench); It seems completely real, including sounds, smells, and temperature appropriate to the thing depicted; When you cast this spell using a spell slot of 6th level or higher, the spell lasts until dispelled, without requiring your concentration. The image appears at a spot that you can see within range and lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3300,7 +3300,7 @@
       ],
       "effect": "For the duration, you hide a target that you touch from divination magic. The target can be a willing creature or a place or an object no larger than 10 feet in any dimension. The target can't be targeted by any divination magic or perceived through magical scrying sensors.",
       "source": "PHB",
-      "effectSummary": "Change a target: the target can be a willing creature or a",
+      "effectSummary": "Prevent divination magic from detecting or tracking a target",
       "fullDescription": "Using 1 action, for the duration, you hide a target that you touch from divination magic. The target can be a willing creature or a place or an object no larger than 10 feet in any dimension; The target can't be targeted by any divination magic or perceived through magical scrying sensors. The effect lasts for 8 hours."
     },
     {
@@ -3411,7 +3411,7 @@
       ],
       "effect": "At your touch, all curses affecting one creature or object end. If the object is a cursed magic item, its curse remains, but the spell breaks its owner's attunement to the object so it can be removed or discarded.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Remove a curse from a creature or object",
       "fullDescription": "Using 1 action, at your touch, all curses affecting one creature or object end. If the object is a cursed magic item, its curse remains, but the spell breaks its owner's attunement to the object so it can be removed or discarded. The effect happens immediately and then ends."
     },
     {
@@ -3564,7 +3564,7 @@
       ],
       "effect": "You create a 20-foot-radius sphere of yellow, nauseating gas centered on a point within range. The cloud spreads around corners, and its area is heavily obscured. The cloud lingers in the air for the duration.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a 20-foot-radius sphere of nauseating gas",
       "fullDescription": "Using 1 action, you create a 20-foot-radius sphere of yellow, nauseating gas centered on a point within range. Each creature that is completely within the cloud at the start of its turn must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC against poison; A moderate wind (at least 10 miles per hour) disperses the cloud after 4 rounds. On a failed save, the creature spends its action that turn retching and reeling; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3591,7 +3591,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Summon a fey creature that fights for you",
       "fullDescription": "Using 1 action, when you cast the spell, choose a brisk, gentle, or phantasmal spirit. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3616,7 +3616,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Summon a shadow creature that fights for you",
       "fullDescription": "Using 1 action, when you cast the spell, choose a fury, despair, or fear spirit. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3641,7 +3641,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Summon an undead creature that fights for you",
       "fullDescription": "Using 1 action, when you cast the spell, choose a ghostly, putrid, or skeletal spirit. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -3672,7 +3672,7 @@
       ],
       "effect": "A 10-foot-radius immobile dome of force springs into existence around and above you and remains stationary for the duration. The spell ends if you leave its area.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Create a 10-foot dome that blocks all weather and spells",
       "fullDescription": "Using 1 minute, creatures and objects within the dome when you cast this spell can move through it freely. A 10-foot-radius immobile dome of force springs into existence around and above you and remains stationary for the duration; Nine creatures of Medium size or smaller can fit inside the dome with you. The spell ends if you leave its area; you can cast it as a ritual."
     },
     {
@@ -3703,7 +3703,7 @@
       ],
       "effect": "This spell grants the creature you touch the ability to understand any spoken language it hears. Moreover, when the target speaks, any creature that knows at least one language and can hear the target understands what it says.",
       "source": "PHB",
-      "effectSummary": "Change a target: moreover, when the target speaks, any creature that knows",
+      "effectSummary": "Allow a creature to understand and speak any language for 1 hour",
       "fullDescription": "Using 1 action, this spell grants the creature you touch the ability to understand any spoken language it hears. Moreover, when the target speaks, any creature that knows at least one language and can hear the target understands what it says. The effect lasts for 1 hour."
     },
     {
@@ -3763,7 +3763,7 @@
       ],
       "effect": "This spell gives a maximum of ten willing creatures within range and you can see, the ability to breathe underwater until the end of its term. Affected creatures also retain their normal breathing pattern.",
       "source": "PHB",
-      "effectSummary": "Change a target: gives a maximum of ten willing creatures within range",
+      "effectSummary": "Give up to 10 creatures the ability to breathe underwater",
       "fullDescription": "Using 1 action, this spell gives a maximum of ten willing creatures within range and you can see, the ability to breathe underwater until the end of its term. Affected creatures also retain their normal breathing pattern. This spell gives a maximum of ten willing creatures within range and you can see, the ability to breathe underwater until the end of its term; you can cast it as a ritual."
     },
     {
@@ -3934,7 +3934,7 @@
       ],
       "effect": "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10-foot-radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Creatures in a 10-foot radius act randomly for 1 round",
       "fullDescription": "Using 1 action, each creature in a 10-foot-radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it. | At the end of each of its turns, an affected target can make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; An affected target can't take reactions and must roll a d10 at the start of each of its turns to determine its behavior for that turn; When you cast this spell using a spell slot of 5th level or higher, the radius of the sphere increases by 5 feet for each slot level above 4th. If it succeeds, this effect ends for that target; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4092,7 +4092,7 @@
       ],
       "effect": "You convert raw materials into products of the same material. For example, you can fabricate a wooden bridge from a clump of trees, a rope from a patch of hemp, and clothes from flax or wool.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Convert raw materials into finished objects of your choice",
       "fullDescription": "Using 10 minutes, choose raw materials that you can see within range. You also can't use it to create items that ordinarily require a high degree of craftsmanship, such as jewelry, weapons, glass, or armor, unless you have proficiency with the type of artisan's tools used to craft such objects; Creatures or magic items can't be created or transmuted by this spell. The effect happens immediately and then ends."
     },
     {
@@ -4412,7 +4412,7 @@
       ],
       "effect": "A sphere of shimmering force encloses a creature or object of Large size or smaller within range. An unwilling creature must make a dexterity saving throw. On a failed save, the creature is enclosed for the duration.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Trap a creature inside an indestructible floating sphere",
       "fullDescription": "Using 1 action, a sphere of shimmering force encloses a creature or object of Large size or smaller within range. An unwilling creature must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; An enclosed creature can use its action to push against the sphere's walls and thus roll the sphere at up to half the creature's speed. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4442,7 +4442,7 @@
       ],
       "effect": "You hide a chest, and all its contents, on the Ethereal Plane. You must touch the chest and the miniature replica that serves as a material component for the spell. The chest can contain up to 12 cubic feet of nonliving material (3 feet by 2 feet by 2 feet).",
       "source": "PHB",
-      "effectSummary": "Change a target: this effect ends if you cast this spell again,",
+      "effectSummary": "Hide a chest in a pocket dimension and summon it back",
       "fullDescription": "Using 1 action, you must touch the chest and the miniature replica that serves as a material component for the spell. The chest can contain up to 12 cubic feet of nonliving material (3 feet by 2 feet by 2 feet); It appears in an unoccupied space on the ground within 5 feet of you. After 60 days, there is a cumulative 5 percent chance per day that the spell's effect ends."
     },
     {
@@ -4472,7 +4472,7 @@
       ],
       "effect": "You touch a stone object of Medium size or smaller or a section of stone no more than 5 feet in any dimension and form it into any shape that suits your purpose. So, for example, you could shape a large rock into a weapon, idol, or coffer, or make a small passage through a wall, as long as the wall is less than 5 feet thick. You could also shape a stone door or its frame to seal the door shut. The object you create can have up to two hinges and a latch, but finer mechanical detail isn't possible.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Shape a piece of stone into any form you desire",
       "fullDescription": "Using 1 action, you touch a stone object of Medium size or smaller or a section of stone no more than 5 feet in any dimension and form it into any shape that suits your purpose. So, for example, you could shape a large rock into a weapon, idol, or coffer, or make a small passage through a wall, as long as the wall is less than 5 feet thick; The object you create can have up to two hinges and a latch, but finer mechanical detail isn't possible. The effect happens immediately and then ends."
     },
     {
@@ -4528,7 +4528,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Summon an aberration that fights for you",
       "fullDescription": "Using 1 action, when you cast the spell, choose a type of watcher, slicer, or slime. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4554,7 +4554,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Summon a construct that fights for you",
       "fullDescription": "Using 1 action, when you cast the spell, choose clay, metal, or stone. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4581,7 +4581,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Summon an elemental that fights for you",
       "fullDescription": "Using 1 action, when you cast the spell, choose an air, earth, fire, or water spirit. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -4857,7 +4857,7 @@
       ],
       "effect": "You pull wisps of shadow material from the Shadowfell to create a nonliving object of vegetable matter within range: soft goods, rope, wood, or something similar. You can also use this spell to create mineral objects such as stone, crystal, or metal. The object created must be no larger than a 5-foot cube, and the object must be of a form and material that you have seen before.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a nonliving object of up to 5 cubic feet from nothing",
       "fullDescription": "Using 1 minute, you pull wisps of shadow material from the Shadowfell to create a nonliving object of vegetable matter within range: soft goods, rope, wood, or something similar. The object created must be no larger than a 5-foot cube, and the object must be of a form and material that you have seen before; | Material | Duration | |---|---| | Vegetable matter | 1 day | | Stone or crystal | 12 hours | | Precious metals | 1 hour | | Gems | 10 minutes | | Adamantine or mithral | 1 minute | Using any material created by this spell as another spell's material component causes that spell to fail; When you cast this spell using a spell slot of 6th level or higher, the cube increases by 5 feet for each slot level above 5th. The duration depends on the object's material."
     },
     {
@@ -5135,7 +5135,7 @@
       ],
       "effect": "A passage appears at a point of your choice that you can see on a wooden, plaster, or stone surface (such as a wall, a ceiling, or a floor) within range, and lasts for the duration. You choose the opening's dimensions: up to 5 feet wide, 8 feet tall, and 20 feet deep. The passage creates no instability in a structure surrounding it.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a passage through wooden, plaster, or stone walls",
       "fullDescription": "Using 1 action, a passage appears at a point of your choice that you can see on a wooden, plaster, or stone surface (such as a wall, a ceiling, or a floor) within range, and lasts for the duration. You choose the opening's dimensions: up to 5 feet wide, 8 feet tall, and 20 feet deep; The passage creates no instability in a structure surrounding it. A passage appears at a point of your choice that you can see on a wooden, plaster, or stone surface (such as a wall, a ceiling, or a floor) within range, and lasts for the duration."
     },
     {
@@ -5246,7 +5246,7 @@
       ],
       "effect": "This spell allows you to change the appearance of any number of creatures that you can see within range. You give each target you choose a new, illusory appearance. An unwilling target can make a charisma saving throw, and if it succeeds, it is unaffected by this spell.",
       "source": "PHB",
-      "effectSummary": "Change a target: can make each creature seem 1 foot shorter or",
+      "effectSummary": "Change the appearance of up to 12 creatures you choose",
       "fullDescription": "Using 1 action, you give each target you choose a new, illusory appearance. You can make each creature seem 1 foot shorter or taller and appear thin, fat, or in between; An unwilling target can make a Charisma saving throw; roll a d20, add the CHA modifier, and compare it with your spell save spell save DC, and if it succeeds, it is unaffected by this spell. The spell lasts for the duration, unless you use your action to dismiss it sooner."
     },
     {
@@ -5402,7 +5402,7 @@
       ],
       "effect": "A nonmagical wall of solid stone springs into existence at a point you choose within range. The wall is 6 inches thick and is composed of ten 10-foot-by-10-foot panels. Each panel must be contiguous with at least one other panel. Alternatively, you can create 10-foot-by-20-foot panels that are only 3 inches thick.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a 6-inch-thick stone wall up to 60 feet long",
       "fullDescription": "Using 1 action, a nonmagical wall of solid stone springs into existence at a point you choose within range. If you create a span greater than 20 feet in length, you must halve the size of each panel to create supports; If a creature would be surrounded on all sides by the wall (or the wall and another solid surface), that creature can make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC. If you maintain your concentration on this spell for its whole duration, the wall becomes permanent and can't be dispelled."
     },
     {
@@ -5496,7 +5496,7 @@
       ],
       "effect": "Choose a spell of 5th level or lower that you can cast, that has a casting time of 1 action, and that can target you. You cast that spell--called the contingent spell--as part of casting contingency, expending spell slots for both, but the contingent spell doesn't come into effect. Instead, it takes effect when a certain circumstance occurs. You describe that circumstance when you cast the two spells. For example, a contingency cast with water breathing might stipulate that water breathing comes into effect when you are engulfed in water or a similar liquid.",
       "source": "PHB",
-      "effectSummary": "Change a target: the effect of another contingency spell on you ends",
+      "effectSummary": "Store a spell to cast automatically when a condition is met",
       "fullDescription": "Using 10 minutes, choose a spell of 5th level or lower that you can cast, that has a casting time of 1 action, and that can target you. If you cast this spell again, the effect of another contingency spell on you ends; You cast that spell--called the contingent spell--as part of casting contingency, expending spell slots for both, but the contingent spell doesn't come into effect. and then contingency ends."
     },
     {
@@ -5530,7 +5530,7 @@
       ],
       "effect": "You can cast this spell only at night. Choose up to three corpses of Medium or Small humanoids within range. Each corpse becomes a ghoul under your control. (The GM has game statistics for these creatures.)",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Create ghouls, ghasts, wights, or mummies from corpses",
       "fullDescription": "Using 1 minute, you can cast this spell only at night. ) As a bonus action on each of your turns, you can mentally command any creature you animated with this spell if the creature is within 120 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one); The creature is under your control for 24 hours, after which it stops obeying any command you have given it; When you cast this spell using a 7th-level spell slot, you can animate or reassert control over four ghouls; When you cast this spell using an 8th-level spell slot, you can animate or reassert control over five ghouls or two ghasts or wights; When you cast this spell using a 9th-level spell slot, you can animate or reassert control over six ghouls, three ghasts or wights, or two mummies. If you issue no commands, the creature only defends itself against hostile creatures."
     },
     {
@@ -5692,7 +5692,7 @@
       ],
       "effect": "An immobile, faintly shimmering barrier springs into existence in a 10-foot radius around you and remains for the duration.",
       "source": "PHB",
-      "effectSummary": "Change a target: an immobile, faintly shimmering barrier springs into existence in",
+      "effectSummary": "Create a 10-foot sphere that blocks 5th-level and lower spells",
       "fullDescription": "Using 1 action, any spell of 5th level or lower cast from outside the barrier can't affect creatures or objects within it, even if the spell is cast using a higher level spell slot. An immobile, faintly shimmering barrier springs into existence in a 10-foot radius around you and remains for the duration; Similarly, the area within the barrier is excluded from the areas affected by such spells; When you cast this spell using a spell slot of 7th level or higher, the barrier blocks spells of one level higher for each slot level above 6th. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -5734,7 +5734,7 @@
       ],
       "effect": "You create a ward that protects up to 2,500 square feet of floor space (an area 50 feet square, or one hundred 5-foot squares or twenty-five 10-foot squares). The warded area can be up to 20 feet tall, and shaped as you desire. You can ward several stories of a stronghold by dividing the area among them, as long as you can walk into each contiguous area while you are casting the spell.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create a protective ward that gives enemies disadvantage on attacks",
       "fullDescription": "Using 10 minutes, you create a ward that protects up to 2,500 square feet of floor space (an area 50 feet square, or one hundred 5-foot squares or twenty-five 10-foot squares). The vapors appear in the places you designate; they return within 10 minutes if dispersed by wind while guards and wards lasts; The warded area can be up to 20 feet tall, and shaped as you desire. These strands regrow in 10 minutes if they are burned or torn away while guards and wards lasts."
     },
     {
@@ -5906,7 +5906,7 @@
       "castingTime": "1 Action",
       "range": "Self",
       "duration": "Up to 1 minute",
-      "description": "You draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: • Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. • You gain a fly speed equal to your walking speed and can hover. • You gain resistance to either fire or necrotic damage (your choice). • Your weapons are imbued with otherworldly energy. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage. • You gain a +1 bonus to your spell save DC.",
+      "description": "You draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: \u2022 Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. \u2022 You gain a fly speed equal to your walking speed and can hover. \u2022 You gain resistance to either fire or necrotic damage (your choice). \u2022 Your weapons are imbued with otherworldly energy. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage. \u2022 You gain a +1 bonus to your spell save DC.",
       "higherLevel": "",
       "components": [
         "V",
@@ -5922,7 +5922,7 @@
       ],
       "source": "TCE",
       "effectSummary": "Deal 1d6 force damage to a target within Self",
-      "fullDescription": "Using 1 action, you draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: • Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage; • You gain a fly speed equal to your walking speed and can hover. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
+      "fullDescription": "Using 1 action, you draw on the magic of the Lower Planes or the Upper Planes (your choice) to transform yourself, gaining the following benefits for the duration: \u2022 Your eyes become pools of darkness, and you gain darkvision with a range of 60 feet. When you hit with a melee weapon attack, you can deal an extra 1d6 force damage; \u2022 You gain a fly speed equal to your walking speed and can hover. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
     },
     {
       "index": "programmed-illusion",
@@ -5953,7 +5953,7 @@
       ],
       "effect": "You create an illusion of an object, a creature, or some other visible phenomenon within range that activates when a specific condition occurs. The illusion is imperceptible until then. It must be no larger than a 30-foot cube, and you decide when you cast the spell how the illusion behaves and what sounds it makes. This scripted performance can last up to 5 minutes.",
       "source": "PHB",
-      "effectSummary": "Create a magical area that affects creatures inside it",
+      "effectSummary": "Create an illusion that triggers under specific conditions",
       "fullDescription": "Using 1 action, you create an illusion of an object, a creature, or some other visible phenomenon within range that activates when a specific condition occurs. The triggering condition can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the area; This scripted performance can last up to 5 minutes. The illusion is imperceptible until then."
     },
     {
@@ -5978,7 +5978,7 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Summon a fiend that fights for you",
       "fullDescription": "Using 1 action, when you cast the spell, choose a demon, devil, or yugoloth. The creature disappears when it drops to 0 hit points or when the spell ends; In combat, the creature shares your initiative count, but it takes its turn immediately after yours; When you cast this spell using a spell slot of 7th level or higher, the creature's statistics change as described in the spell's description. The creature disappears when it drops to 0 hit points or when the spell ends; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -6042,7 +6042,7 @@
       ],
       "effect": "This spell gives the willing creature you touch the ability to see things as they actually are. For the duration, the creature has truesight, notices secret doors hidden by magic, and can see into the Ethereal Plane, all out to a range of 120 feet.",
       "source": "PHB",
-      "effectSummary": "Change a target: the creature has truesight, notices secret doors hidden by",
+      "effectSummary": "Give a creature truesight and the ability to see through illusions",
       "fullDescription": "Using 1 action, this spell gives the willing creature you touch the ability to see things as they actually are. For the duration, the creature has truesight, notices secret doors hidden by magic, and can see into the Ethereal Plane, all out to a range of 120 feet. The effect lasts for 1 hour."
     },
     {
@@ -6738,7 +6738,7 @@
       ],
       "effect": "This spell grows an inert duplicate of a living creature as a safeguard against death. This clone forms inside a sealed vessel and grows to full size and maturity after 120 days; you can also choose to have the clone be a younger version of the same creature. It remains inert and endures indefinitely, as long as its vessel remains undisturbed.",
       "source": "PHB",
-      "effectSummary": "Change a target: grows an inert duplicate of a living creature as",
+      "effectSummary": "Create an inert duplicate of a living creature as insurance",
       "fullDescription": "Using 1 hour, this clone forms inside a sealed vessel and grows to full size and maturity after 120 days; you can also choose to have the clone be a younger version of the same creature. At any time after the clone matures, if the original creature dies, its soul transfers to the clone, provided that the soul is free and willing to return; The original creature's physical remains, if they still exist, become inert and can't thereafter be restored to life, since the creature's soul is elsewhere. The effect happens immediately and then ends."
     },
     {
@@ -6795,7 +6795,7 @@
       ],
       "effect": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early.",
       "source": "PHB",
-      "effectSummary": "Change a target: once they do so, you can change the conditions",
+      "effectSummary": "Change the weather conditions for 8 hours",
       "fullDescription": "Using 10 minutes, you must be outdoors to cast this spell. It takes 1d4 x 10 minutes for the new conditions to take effect; Once they do so, you can change the conditions again. Moving to a place where you don't have a clear path to the sky ends the spell early; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -6947,7 +6947,7 @@
       ],
       "effect": "You banish a creature that you can see within range into a labyrinthine demiplane. The target remains there for the duration or until it escapes the maze.",
       "source": "PHB",
-      "effectSummary": "Change a target: it makes a DC 20 Intelligence check",
+      "effectSummary": "Trap a creature in a shifting labyrinth for 10 minutes",
       "fullDescription": "Using 1 action, you banish a creature that you can see within range into a labyrinthine demiplane. When it does so, it makes a spell save DC 20 Intelligence check; The target remains there for the duration or until it escapes the maze. The target remains there for the duration or until it escapes the maze; you must concentrate, and the effect ends if your concentration ends."
     },
     {
@@ -7234,7 +7234,7 @@
       ],
       "effect": "You utter a word of power that can compel one creature you can see within range to die instantly. If the creature you choose has 100 hit points or fewer, it dies. Otherwise, the spell has no effect.",
       "source": "PHB",
-      "effectSummary": "Change a target: it dies",
+      "effectSummary": "Instantly kill a creature with 100 hit points or fewer",
       "fullDescription": "Using 1 action, if the creature you choose has 100 hit points or fewer, it dies. You utter a word of power that can compel one creature you can see within range to die instantly; Otherwise, the spell has no effect. The effect happens immediately and then ends."
     },
     {
@@ -7357,7 +7357,7 @@
       ],
       "effect": "You briefly stop the flow of time for everyone but yourself. No time passes for other creatures, while you take 1d4 + 1 turns in a row, during which you can use actions and move as normal.",
       "source": "PHB",
-      "effectSummary": "Move a creature or object a short distance",
+      "effectSummary": "Stop time for everyone but yourself for 1d4+1 rounds",
       "fullDescription": "Using 1 action, no time passes for other creatures, while you take 1d4 + 1 turns in a row, during which you can use actions and move as normal. In addition, the spell ends if you move to a place more than 1,000 feet from the location where you cast it; You briefly stop the flow of time for everyone but yourself. This spell ends if one of the actions you use during this period, or any effects that you create during this period, affects a creature other than you or an object being worn or carried by someone other than you."
     },
     {
