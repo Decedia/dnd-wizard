@@ -527,6 +527,30 @@ function normalizeCharacter(c: Character): Character {
     costumeSpells: (c.costumeSpells || []).map((cs) => ({ ...cs })),
     variantHumanAbilities: (c as any).variantHumanAbilities,
     variantHumanSkill: (c as any).variantHumanSkill,
+    features: (c.features || []).map((feature) => {
+      const description = feature.description || "";
+      const summary = (feature as any).summary || (() => {
+        const firstSentence = description.split(/[.\n]/)[0].trim();
+        return firstSentence.split(/\s+/).slice(0, 12).join(" ");
+      })();
+      return {
+        ...feature,
+        summary,
+        featureType: (feature as any).featureType || "Passive",
+        actionType: (feature as any).actionType || null,
+        uses: (feature as any).uses || null,
+        requirement: (feature as any).requirement || null,
+        duration: (feature as any).duration || null,
+        endsIf: (feature as any).endsIf || null,
+        onUse: (feature as any).onUse || null,
+        scaling: (feature as any).scaling || null,
+        grantsSpells: (feature as any).grantsSpells ?? false,
+        grantsAttack: (feature as any).grantsAttack ?? false,
+        grantsSkills: (feature as any).grantsSkills ?? false,
+        grantsProficiency: (feature as any).grantsProficiency ?? false,
+        showInSheet: (feature as any).showInSheet ?? true,
+      };
+    }),
   };
 }
 
