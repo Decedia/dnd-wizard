@@ -13,6 +13,7 @@ interface SpellMechanicsSummaryProps {
   mechanic: SpellMechanicSummary | undefined;
   effectSummary?: string;
   character?: Character;
+  ritual?: boolean;
   size?: "sm" | "md";
 }
 
@@ -59,75 +60,22 @@ function formatResolution(m: SpellMechanicSummary): string {
   return "none";
 }
 
-interface InfoField {
-  label: string;
-  value: React.ReactNode;
+function Badge({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  const base: React.CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "3px",
+    borderRadius: "999px",
+    fontSize: "11px",
+    fontWeight: 500,
+    padding: "2px 8px",
+    border: "1.5px solid",
+    ...style,
+  };
+  return <span style={base}>{children}</span>;
 }
 
-const ROWS_PER_TABLE = 3;
-const COLS_PER_ROW = 2;
-const FIELDS_PER_TABLE = ROWS_PER_TABLE * COLS_PER_ROW;
-
-function InfoCell({ label, value }: { label: string; value: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-1 min-w-0">
-      <span className="text-[10px] font-bold text-[var(--color-text-primary)] uppercase tracking-wide shrink-0 whitespace-nowrap">
-        {label}:
-      </span>
-      <div className="flex flex-wrap items-center gap-1 min-w-0">{value}</div>
-    </div>
-  );
-}
-
-function InfoTable({ fields }: { fields: InfoField[] }) {
-  const rows: InfoField[][][] = [];
-  for (let i = 0; i < fields.length; i += FIELDS_PER_TABLE) {
-    const chunk = fields.slice(i, i + FIELDS_PER_TABLE);
-    const tableRows: InfoField[][] = [];
-    for (let j = 0; j < chunk.length; j += COLS_PER_ROW) {
-      tableRows.push(chunk.slice(j, j + COLS_PER_ROW));
-    }
-    rows.push(tableRows);
-  }
-
-  return (
-    <div className="space-y-1">
-      {rows.map((tableRows, tableIdx) => (
-        <div
-          key={tableIdx}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 rounded-md p-1.5"
-          style={{
-            backgroundColor: "var(--color-bg)",
-          }}
-        >
-          {tableRows.map((row, rowIdx) => (
-            <div
-              key={rowIdx}
-              className="contents"
-            >
-              {row.map((field) => (
-                <div
-                  key={field.label}
-                  className="flex items-center gap-1 min-w-0 py-0.5"
-                >
-                  <span className="text-[10px] font-bold text-[var(--color-text-primary)] uppercase tracking-wide shrink-0 whitespace-nowrap">
-                    {field.label}:
-                  </span>
-                  <div className="flex flex-wrap items-center gap-1 min-w-0">{field.value}</div>
-                </div>
-              ))}
-              {row.length === 1 && (
-                <div className="hidden sm:block" />
-              )}
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export function SpellMechanicsChips({ mechanic, effectSummary, character, size = "sm" }: SpellMechanicsSummaryProps) {
+export function SpellMechanicsChips({ mechanic, effectSummary, character, ritual = false, size = "sm" }: SpellMechanicsSummaryProps) {
   if (!mechanic) return null;
 
   const resolvedSummary = effectSummary ? resolveSpellMacros(effectSummary, character) : "";
@@ -204,148 +152,137 @@ export function SpellMechanicsChips({ mechanic, effectSummary, character, size =
   const target = formatTarget(mechanic);
   const resolution = formatResolution(mechanic);
   const duration = mechanic.casting.duration;
+  const rangeText = mechanic.casting.range;
 
-  const badgeFontSize = size === "sm" ? "10px" : "12px";
+  const fields: { label: string; value: React.ReactNode; fullWidth?: boolean }[] = [];
 
-  const fields: InfoField[] = [
-    {
-      label: "Target",
-      value: <span className="text-[var(--color-text-primary)] font-medium">{target}</span>,
-    },
-    {
-      label: "Effect",
+  fields.push({
+    label: "Target",
+    value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{target}</span>,
+  });
+
+  fields.push({
+    label: "Save",
+    value: (
+      <span style={{ color: resolution === "none" ? "#aaa" : "#111", fontWeight: 500, fontSize: "13px" }}>
+        {resolution === "none" ? "None" : resolution}
+      </span>
+    ),
+  });
+
+  if (rangeText && !target.toLowerCase().includes("self") && rangeText !== "Self") {
+    fields.push({
+      label: "Range",
+      value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>,
+    });
+  }
+
+  if (damageEffect?.amount || damageEffect?.damageType) {
+    const amount = damageEffect.amount || "";
+    const dtype = damageEffect.damageType || "";
+    fields.push({
+      label: "Damage",
       value: (
-        <div className="flex flex-wrap items-center gap-1">
-          {effectTypes.map((type) => (
-            <span
-              key={type}
-              className="inline-flex items-center font-semibold rounded px-1.5 py-0.5 capitalize"
-              style={{
-                fontSize: badgeFontSize,
-                backgroundColor: "var(--color-effect-summary-bg, #fef3c7)",
-                color: "var(--color-effect-summary-text, #78350f)",
-                border: "1px solid var(--color-effect-summary-border, #92400e)",
-              }}
-            >
-              {type}
-            </span>
-          ))}
-        </div>
+        <Badge style={{ backgroundColor: "#fff5f5", borderColor: "#feb2b2", color: "#c53030" }}>
+          {amount && <span>{amount}</span>}
+          {dtype && <span>{dtype}</span>}
+        </Badge>
       ),
-    },
-    ...(damageEffect?.amount
-      ? [
-          {
-            label: "Amount",
-            value: <DiceBadge dice={damageEffect.amount} size={size} />,
-          },
-        ]
-      : []),
-    ...(damageEffect?.damageType
-      ? [
-          {
-            label: "Type",
-            value: <DamageBadge type={damageEffect.damageType} size={size} showLabel={false} />,
-          },
-        ]
-      : []),
-    ...(healEffect?.amount
-      ? [
-          {
-            label: "Heal",
-            value: <DiceBadge dice={healEffect.amount} size={size} />,
-          },
-        ]
-      : []),
-    ...(tempHPFormula
-      ? [
-          {
-            label: "Temp HP",
-            value: (
-              <span
-                className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
-                style={{
-                  fontSize: badgeFontSize,
-                  backgroundColor: "var(--color-temp-hp-bg, #fef3c7)",
-                  color: "var(--color-temp-hp, #92400e)",
-                  border: "1px solid var(--color-temp-hp-border, #fcd34d)",
-                }}
-              >
-                ♡ {tempHPFormula}
-              </span>
-            ),
-          },
-        ]
-      : []),
-    ...(inflictedCondition
-      ? [
-          {
-            label: "Condition",
-            value: <ConditionBadge condition={inflictedCondition} size={size} />,
-          },
-        ]
-      : []),
-    ...(immunityCondition
-      ? [
-          {
-            label: "Immune",
-            value: <ConditionBadge condition={immunityCondition} size={size} />,
-          },
-        ]
-      : []),
-    ...(resistanceType
-      ? [
-          {
-            label: "Resist",
-            value: (
-              <span
-                className="inline-flex items-center font-semibold rounded px-1.5 py-0.5"
-                style={{
-                  fontSize: badgeFontSize,
-                  backgroundColor: "var(--color-resist-bg, #e0e7ff)",
-                  color: "var(--color-resist, #3730a3)",
-                  border: "1px solid var(--color-resist-border, #c7d2fe)",
-                }}
-              >
-                ✦ {resistanceType}
-              </span>
-            ),
-          },
-        ]
-      : []),
-    {
-      label: "Save",
-      value: <span className="text-[var(--color-text-primary)] font-medium capitalize">{resolution}</span>,
-    },
-    {
-      label: "Duration",
-      value: <span className="text-[var(--color-text-primary)] font-medium">{duration}</span>,
-    },
-    ...(hasConcentration
-      ? [
-          {
-            label: "Requires",
-            value: (
-              <span
-                className="inline-flex items-center font-semibold rounded px-1.5 py-0.5 text-[10px]"
-                style={{
-                  backgroundColor: "var(--color-state-concentration-bg)",
-                  color: "var(--color-state-concentration)",
-                }}
-              >
-                Concentration
-              </span>
-            ),
-          },
-        ]
-      : []),
-  ];
+    });
+  }
+
+  if (healEffect?.amount) {
+    fields.push({
+      label: "Healing",
+      value: (
+        <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+          <span>♥</span>
+          <span>{healEffect.amount}</span>
+        </Badge>
+      ),
+    });
+  }
+
+  if (tempHPFormula) {
+    fields.push({
+      label: "Temp HP",
+      value: (
+        <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+          <span>♥</span>
+          <span>{tempHPFormula}</span>
+        </Badge>
+      ),
+    });
+  }
+
+  if (inflictedCondition) {
+    fields.push({
+      label: "Condition",
+      value: (
+        <Badge style={{ backgroundColor: "#fff7ed", borderColor: "#fed7aa", color: "#c05621" }}>
+          {inflictedCondition}
+        </Badge>
+      ),
+    });
+  }
+
+  if (immunityCondition) {
+    fields.push({
+      label: "Immune",
+      value: (
+        <Badge style={{ backgroundColor: "#fff7ed", borderColor: "#fed7aa", color: "#c05621" }}>
+          {immunityCondition}
+        </Badge>
+      ),
+    });
+  }
+
+  if (resistanceType) {
+    fields.push({
+      label: "Resist",
+      value: (
+        <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+          <span>✦</span>
+          <span>{resistanceType}</span>
+        </Badge>
+      ),
+    });
+  }
+
+  fields.push({
+    label: "Duration",
+    value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{duration}</span>,
+  });
+
+  if (hasConcentration || ritual) {
+    const badges: React.ReactNode[] = [];
+    if (hasConcentration) {
+      badges.push(
+        <Badge key="conc" style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+          Concentration
+        </Badge>
+      );
+    }
+    if (ritual) {
+      badges.push(
+        <Badge key="ritual" style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+          Ritual
+        </Badge>
+      );
+    }
+    fields.push({
+      label: "Requires",
+      value: <div style={{ display: "inline-flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>{badges}</div>,
+      fullWidth: true,
+    });
+  }
 
   return (
     <div
-      className="rounded-lg overflow-hidden"
       style={{
         backgroundColor: "var(--color-bg)",
+        borderRadius: "8px",
+        overflow: "hidden",
       }}
     >
       <div className="p-2">
@@ -353,9 +290,55 @@ export function SpellMechanicsChips({ mechanic, effectSummary, character, size =
           {resolvedSummary}
         </p>
       </div>
-      <div className="border-t border-[var(--color-border)] mx-2" />
-      <div className="px-2 pb-2 pt-1">
-        <InfoTable fields={fields} />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "1px",
+          backgroundColor: "#f0f0f0",
+          borderTop: "1px solid #f0f0f0",
+          borderBottom: "1px solid #f0f0f0",
+        }}
+      >
+        {fields.map((field) => (
+          <div
+            key={field.label}
+            style={{
+              gridColumn: field.fullWidth ? "1 / -1" : undefined,
+              backgroundColor: "#ffffff",
+              padding: "8px 12px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "3px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "10px",
+                fontWeight: 600,
+                color: "#aaa",
+                textTransform: "uppercase",
+                letterSpacing: "0.06em",
+                marginBottom: "3px",
+              }}
+            >
+              {field.label}
+            </span>
+            <div
+              style={{
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "#111",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+                flexWrap: "wrap",
+              }}
+            >
+              {field.value}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
