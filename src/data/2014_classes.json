@@ -97,7 +97,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Barbarian",
+            "level": null
+          }
         },
         {
           "name": "Unarmored Defense",
@@ -117,7 +122,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Barbarian",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -145,7 +155,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 1
+              }
             },
             {
               "name": "Unarmored Defense",
@@ -165,7 +180,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -192,7 +212,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 2
+              }
             },
             {
               "name": "Danger Sense",
@@ -212,7 +237,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -239,7 +269,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -252,21 +287,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -293,7 +333,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 5
+              }
             },
             {
               "name": "Fast Movement",
@@ -313,7 +358,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -340,7 +390,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -367,7 +422,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -380,21 +440,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -421,7 +486,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 9
+              }
             }
           ],
           "asi": false,
@@ -448,7 +518,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 10
+              }
             },
             {
               "name": "Primal Knowledge",
@@ -469,7 +544,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -496,7 +576,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -509,21 +594,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -550,7 +640,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 13
+              }
             }
           ],
           "asi": false,
@@ -577,7 +672,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -604,7 +704,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -617,21 +722,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -658,7 +768,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -685,7 +800,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -698,21 +818,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -739,7 +864,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Barbarian",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -950,7 +1080,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Bard",
+            "level": null
+          }
         },
         {
           "name": "Bardic Inspiration (d6)",
@@ -970,7 +1105,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Bard",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -995,7 +1135,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 1
+              }
             },
             {
               "name": "Bardic Inspiration (d6)",
@@ -1015,7 +1160,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -1044,7 +1194,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 2
+              }
             },
             {
               "name": "Song of Rest (d6)",
@@ -1064,7 +1219,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -1118,7 +1278,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 3
+              }
             },
             {
               "name": "Bard College",
@@ -1138,7 +1303,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -1154,21 +1324,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -1198,7 +1373,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 5
+              }
             },
             {
               "name": "Font of Inspiration",
@@ -1218,7 +1398,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -1249,7 +1434,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 6
+              }
             },
             {
               "name": "Bard College feature",
@@ -1269,7 +1459,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -1297,21 +1492,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -1343,7 +1543,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 9
+              }
             }
           ],
           "asi": false,
@@ -1401,7 +1606,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 10
+              }
             },
             {
               "name": "Bardic Inspiration (d10)",
@@ -1421,7 +1631,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 10
+              }
             },
             {
               "name": "Magical Secrets",
@@ -1648,7 +1863,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -1680,21 +1900,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -1728,7 +1953,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 13
+              }
             }
           ],
           "asi": false,
@@ -2038,7 +2268,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 14
+              }
             },
             {
               "name": "Bard College feature",
@@ -2058,7 +2293,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -2093,7 +2333,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -2115,21 +2360,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -2165,7 +2415,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -2513,7 +2768,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -2536,21 +2796,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -2587,7 +2852,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Bard",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -2788,7 +3058,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Cleric",
+            "level": null
+          }
         },
         {
           "name": "Divine Domain",
@@ -2808,7 +3083,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Cleric",
+            "level": null
+          }
         },
         {
           "name": "Domain Spells",
@@ -2828,7 +3108,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Cleric",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -2853,7 +3138,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 1
+              }
             },
             {
               "name": "Divine Domain",
@@ -2873,7 +3163,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 1
+              }
             },
             {
               "name": "Domain Spells",
@@ -2893,7 +3188,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -2922,7 +3222,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 2
+              }
             },
             {
               "name": "Channel Divinity: Turn Undead",
@@ -2942,7 +3247,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 2
+              }
             },
             {
               "name": "Divine Domain feature",
@@ -2962,7 +3272,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -2991,7 +3306,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -3007,21 +3327,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -3051,7 +3376,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 5
+              }
             },
             {
               "name": "Destroy Undead (CR 1/2 or below)",
@@ -3071,7 +3401,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -3102,7 +3437,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 6
+              }
             },
             {
               "name": "Divine Domain feature",
@@ -3122,7 +3462,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -3153,7 +3498,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -3171,21 +3521,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 8
+              }
             },
             {
               "name": "Destroy Undead (CR 1 or below)",
@@ -3205,7 +3560,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 8
+              }
             },
             {
               "name": "Divine Domain feature",
@@ -3225,7 +3585,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -3257,7 +3622,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 9
+              }
             }
           ],
           "asi": false,
@@ -3290,7 +3660,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -3323,7 +3698,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -3343,21 +3723,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -3405,7 +3790,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -3441,21 +3831,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -3491,7 +3886,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 17
+              }
             },
             {
               "name": "Divine Domain feature",
@@ -3511,7 +3911,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -3548,7 +3953,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -3571,21 +3981,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -3622,7 +4037,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Cleric",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -3822,7 +4242,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Druid",
+            "level": null
+          }
         },
         {
           "name": "Druidic",
@@ -3842,7 +4267,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Druid",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -3867,7 +4297,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 1
+              }
             },
             {
               "name": "Druidic",
@@ -3887,7 +4322,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -3916,7 +4356,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 2
+              }
             },
             {
               "name": "Druid Circle",
@@ -3936,7 +4381,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -3974,27 +4424,37 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 4
+              }
             },
             {
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -4034,7 +4494,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -4076,27 +4541,37 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 8
+              }
             },
             {
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -4140,7 +4615,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -4172,21 +4652,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -4234,7 +4719,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -4270,21 +4760,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -4336,7 +4831,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 18
+              }
             },
             {
               "name": "Beast Spells",
@@ -4356,7 +4856,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -4379,21 +4884,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -4430,7 +4940,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Druid",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -4625,7 +5140,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Fighter",
+            "level": null
+          }
         },
         {
           "name": "Second Wind",
@@ -4648,7 +5168,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Fighter",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -4690,7 +5215,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 1
+              }
             },
             {
               "name": "Second Wind",
@@ -4713,7 +5243,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -4740,7 +5275,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -4767,7 +5307,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -4780,21 +5325,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -4821,7 +5371,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -4834,21 +5389,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 6
+              }
             }
           ],
           "asi": true,
@@ -4875,7 +5435,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -4888,21 +5453,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -4929,7 +5499,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 9
+              }
             }
           ],
           "asi": false,
@@ -4956,7 +5531,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -4983,7 +5563,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -4996,21 +5581,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -5037,7 +5627,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 13
+              }
             }
           ],
           "asi": false,
@@ -5050,21 +5645,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 14
+              }
             }
           ],
           "asi": true,
@@ -5091,7 +5691,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -5104,21 +5709,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -5145,7 +5755,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 17
+              }
             },
             {
               "name": "Indomitable (3 uses)",
@@ -5165,7 +5780,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -5192,7 +5812,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -5205,21 +5830,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -5246,7 +5876,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Fighter",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -5426,7 +6061,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Monk",
+            "level": null
+          }
         },
         {
           "name": "Martial Arts",
@@ -5446,7 +6086,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Monk",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -5471,7 +6116,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 1
+              }
             },
             {
               "name": "Martial Arts",
@@ -5491,7 +6141,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -5518,7 +6173,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 2
+              }
             },
             {
               "name": "Flurry of Blows",
@@ -5538,7 +6198,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 2
+              }
             },
             {
               "name": "Patient Defense",
@@ -5558,7 +6223,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 2
+              }
             },
             {
               "name": "Step of the Wind",
@@ -5578,7 +6248,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 2
+              }
             },
             {
               "name": "Unarmored Movement",
@@ -5598,7 +6273,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -5625,7 +6305,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 3
+              }
             },
             {
               "name": "Deflect Missiles",
@@ -5645,7 +6330,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -5658,21 +6348,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 4
+              }
             },
             {
               "name": "Slow Fall",
@@ -5692,7 +6387,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -5719,7 +6419,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 5
+              }
             },
             {
               "name": "Stunning Strike",
@@ -5739,7 +6444,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -5766,7 +6476,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 6
+              }
             },
             {
               "name": "Monastic Tradition feature",
@@ -5786,7 +6501,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -5813,7 +6533,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 7
+              }
             },
             {
               "name": "Stillness of Mind",
@@ -5833,7 +6558,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -5846,21 +6576,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -5887,7 +6622,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 9
+              }
             }
           ],
           "asi": false,
@@ -5914,7 +6654,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -5941,7 +6686,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -5954,21 +6704,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -5995,7 +6750,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 13
+              }
             }
           ],
           "asi": false,
@@ -6022,7 +6782,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -6049,7 +6814,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -6062,21 +6832,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -6103,7 +6878,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -6130,7 +6910,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -6143,21 +6928,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -6184,7 +6974,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Monk",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -6397,7 +7192,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Paladin",
+            "level": null
+          }
         },
         {
           "name": "Lay on Hands",
@@ -6417,7 +7217,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Paladin",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -6442,7 +7247,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 1
+              }
             },
             {
               "name": "Lay on Hands",
@@ -6462,7 +7272,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -6501,7 +7316,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 2
+              }
             },
             {
               "name": "Spellcasting: Paladin",
@@ -6521,7 +7341,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 2
+              }
             },
             {
               "name": "Divine Smite",
@@ -6541,7 +7366,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -6570,7 +7400,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 3
+              }
             },
             {
               "name": "Sacred Oath",
@@ -6590,7 +7425,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 3
+              }
             },
             {
               "name": "Oath Spells",
@@ -6610,7 +7450,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 3
+              }
             },
             {
               "name": "Channel Divinity",
@@ -6630,7 +7475,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -6645,21 +7495,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -6688,7 +7543,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -6718,7 +7578,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -6748,7 +7613,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -6764,21 +7634,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -6818,7 +7693,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -6849,7 +7729,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -6866,21 +7751,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -6922,7 +7812,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -6954,7 +7849,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -6972,21 +7872,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -7030,7 +7935,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -7049,21 +7959,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -7096,7 +8011,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Paladin",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -7266,7 +8186,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Ranger",
+            "level": null
+          }
         },
         {
           "name": "Natural Explorer (1 terrain type)",
@@ -7286,7 +8211,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Ranger",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -7331,7 +8261,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 1
+              }
             },
             {
               "name": "Natural Explorer (1 terrain type)",
@@ -7365,7 +8300,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -7404,7 +8344,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 2
+              }
             },
             {
               "name": "Spellcasting: Ranger",
@@ -7424,7 +8369,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -7453,7 +8403,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 3
+              }
             },
             {
               "name": "Primeval Awareness",
@@ -7473,7 +8428,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -7488,21 +8448,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -7531,7 +8496,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -7581,7 +8551,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 6
+              }
             },
             {
               "name": "Natural Explorer (2 terrain types)",
@@ -7615,7 +8590,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -7645,7 +8625,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -7661,21 +8646,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 8
+              }
             },
             {
               "name": "Land's Stride",
@@ -7695,7 +8685,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -7749,7 +8744,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 10
+              }
             },
             {
               "name": "Hide in Plain Sight",
@@ -7769,7 +8769,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -7800,7 +8805,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -7817,21 +8827,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -7893,7 +8908,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 14
+              }
             },
             {
               "name": "Vanish",
@@ -7913,7 +8933,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -7945,7 +8970,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -7963,21 +8993,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -8021,7 +9056,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -8040,21 +9080,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -8087,7 +9132,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Ranger",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -8345,7 +9395,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Rogue",
+            "level": null
+          }
         },
         {
           "name": "Sneak Attack",
@@ -8368,7 +9423,12 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Rogue",
+            "level": null
+          }
         },
         {
           "name": "Thieves' Cant",
@@ -8388,7 +9448,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Rogue",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -8432,7 +9497,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 1
+              }
             },
             {
               "name": "Sneak Attack",
@@ -8455,7 +9525,12 @@
               "grantsAttack": true,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 1
+              }
             },
             {
               "name": "Thieves' Cant",
@@ -8475,7 +9550,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -8502,7 +9582,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -8529,7 +9614,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -8542,21 +9632,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -8583,7 +9678,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -8629,7 +9729,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -8656,7 +9761,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -8669,21 +9779,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -8710,7 +9825,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 9
+              }
             }
           ],
           "asi": false,
@@ -8723,21 +9843,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 10
+              }
             }
           ],
           "asi": true,
@@ -8764,7 +9889,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -8777,21 +9907,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -8818,7 +9953,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 13
+              }
             }
           ],
           "asi": false,
@@ -8845,7 +9985,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -8872,7 +10017,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -8885,21 +10035,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -8926,7 +10081,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -8953,7 +10113,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -8966,21 +10131,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -9007,7 +10177,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Rogue",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -9301,7 +10476,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Sorcerer",
+            "level": null
+          }
         },
         {
           "name": "Sorcerous Origin",
@@ -9321,7 +10501,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Sorcerer",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -9346,7 +10531,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 1
+              }
             },
             {
               "name": "Sorcerous Origin",
@@ -9366,7 +10556,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -9395,7 +10590,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 2
+              }
             },
             {
               "name": "Flexible Casting: Creating Spell Slots",
@@ -9415,7 +10615,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 2
+              }
             },
             {
               "name": "Flexible Casting: Converting Spell Slot",
@@ -9435,7 +10640,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -9503,7 +10713,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -9519,21 +10734,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -9573,7 +10793,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -9601,21 +10826,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -9698,7 +10928,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -9730,21 +10965,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -9792,7 +11032,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -9828,21 +11073,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -9917,7 +11167,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -9954,7 +11209,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -9977,21 +11237,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -10028,7 +11293,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Sorcerer",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -10301,7 +11571,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Warlock",
+            "level": null
+          }
         },
         {
           "name": "Pact Magic",
@@ -10321,7 +11596,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Warlock",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -10346,7 +11626,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 1
+              }
             },
             {
               "name": "Pact Magic",
@@ -10366,7 +11651,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -10439,7 +11729,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -10486,7 +11781,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 3
+              }
             }
           ],
           "asi": false,
@@ -10501,21 +11801,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -10601,7 +11906,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 5
+              }
             }
           ],
           "asi": false,
@@ -10630,7 +11940,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -10716,7 +12031,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 7
+              }
             }
           ],
           "asi": false,
@@ -10731,21 +12051,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -10831,7 +12156,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 9
+              }
             }
           ],
           "asi": false,
@@ -10860,7 +12190,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -10903,7 +12238,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 11
+              }
             }
           ],
           "asi": false,
@@ -10918,21 +12258,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 12
+              }
             },
             {
               "name": "Eldritch Invocations",
@@ -11009,7 +12354,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -11049,7 +12399,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 13
+              }
             }
           ],
           "asi": false,
@@ -11078,7 +12433,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -11119,7 +12479,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 15
+              }
             },
             {
               "name": "Eldritch Invocations",
@@ -11196,7 +12561,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 15
+              }
             }
           ],
           "asi": false,
@@ -11211,21 +12581,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -11266,7 +12641,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 17
+              }
             }
           ],
           "asi": false,
@@ -11289,21 +12669,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -11332,7 +12717,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 20
+              }
             },
             {
               "name": "Eldritch Invocations",
@@ -11409,7 +12799,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -11773,7 +13168,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Wizard",
+            "level": null
+          }
         },
         {
           "name": "Arcane Recovery",
@@ -11793,7 +13193,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "class",
+            "name": "Wizard",
+            "level": null
+          }
         }
       ],
       "levels": [
@@ -11818,7 +13223,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 1
+              }
             },
             {
               "name": "Arcane Recovery",
@@ -11838,7 +13248,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 1
+              }
             }
           ],
           "asi": false,
@@ -11867,7 +13282,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 2
+              }
             }
           ],
           "asi": false,
@@ -11891,21 +13311,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 4
+              }
             }
           ],
           "asi": true,
@@ -11945,7 +13370,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 6
+              }
             }
           ],
           "asi": false,
@@ -11973,21 +13403,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 8
+              }
             }
           ],
           "asi": true,
@@ -12031,7 +13466,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 10
+              }
             }
           ],
           "asi": false,
@@ -12063,21 +13503,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 12
+              }
             }
           ],
           "asi": true,
@@ -12125,7 +13570,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 14
+              }
             }
           ],
           "asi": false,
@@ -12161,21 +13611,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 16
+              }
             }
           ],
           "asi": true,
@@ -12299,7 +13754,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 18
+              }
             }
           ],
           "asi": false,
@@ -12322,21 +13782,26 @@
               "name": "Ability Score Improvement",
               "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 19
+              }
             }
           ],
           "asi": true,
@@ -12408,7 +13873,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Wizard",
+                "level": 20
+              }
             }
           ],
           "asi": false,
@@ -12663,7 +14133,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 1
+              }
             },
             {
               "name": "Spellcasting",
@@ -12682,7 +14157,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 1
+              }
             }
           ],
           "spellSlots": {
@@ -12710,7 +14190,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 2
+              }
             }
           ],
           "spellSlots": {
@@ -12738,7 +14223,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 3
+              }
             },
             {
               "name": "Artificer Specialist",
@@ -12757,7 +14247,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 3
+              }
             }
           ],
           "spellSlots": {
@@ -12771,21 +14266,26 @@
             {
               "name": "Ability Score Improvement",
               "description": "You can increase one ability score by 2, or two ability scores by 1. You can't increase an ability score above 20.",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 4
+              }
             }
           ],
           "spellSlots": {
@@ -12813,7 +14313,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 5
+              }
             }
           ],
           "spellSlots": {
@@ -12842,7 +14347,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 6
+              }
             }
           ],
           "spellSlots": {
@@ -12871,7 +14381,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 7
+              }
             }
           ],
           "spellSlots": {
@@ -12886,21 +14401,26 @@
             {
               "name": "Ability Score Improvement",
               "description": "You can increase one ability score by 2, or two ability scores by 1.",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 8
+              }
             }
           ],
           "spellSlots": {
@@ -12929,7 +14449,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 9
+              }
             }
           ],
           "spellSlots": {
@@ -12959,7 +14484,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 10
+              }
             }
           ],
           "spellSlots": {
@@ -12989,7 +14519,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 11
+              }
             }
           ],
           "spellSlots": {
@@ -13005,21 +14540,26 @@
             {
               "name": "Ability Score Improvement",
               "description": "You can increase one ability score by 2, or two ability scores by 1.",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 12
+              }
             }
           ],
           "spellSlots": {
@@ -13060,7 +14600,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 14
+              }
             }
           ],
           "spellSlots": {
@@ -13091,7 +14636,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 15
+              }
             }
           ],
           "spellSlots": {
@@ -13108,21 +14658,26 @@
             {
               "name": "Ability Score Improvement",
               "description": "You can increase one ability score by 2, or two ability scores by 1.",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 16
+              }
             }
           ],
           "spellSlots": {
@@ -13165,7 +14720,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 18
+              }
             }
           ],
           "spellSlots": {
@@ -13183,21 +14743,26 @@
             {
               "name": "Ability Score Improvement",
               "description": "You can increase one ability score by 2, or two ability scores by 1.",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
               "uses": null,
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
+              "onUse": "Increase two ability scores by 1 each, or one ability score by 2",
               "scaling": null,
               "summary": null,
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 19
+              }
             }
           ],
           "spellSlots": {
@@ -13229,7 +14794,12 @@
               "grantsAttack": false,
               "grantsSkills": false,
               "grantsProficiency": false,
-              "showInSheet": true
+              "showInSheet": true,
+              "source": {
+                "type": "class",
+                "name": "Artificer",
+                "level": 20
+              }
             }
           ],
           "spellSlots": {

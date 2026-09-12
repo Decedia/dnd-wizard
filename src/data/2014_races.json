@@ -27,7 +27,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Bugbear",
+            "level": null
+          }
         },
         {
           "name": "Long-Limbed",
@@ -46,7 +51,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Bugbear",
+            "level": null
+          }
         },
         {
           "name": "Powerful Build",
@@ -65,7 +75,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Bugbear",
+            "level": null
+          }
         },
         {
           "name": "Sneaky",
@@ -84,7 +99,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Bugbear",
+            "level": null
+          }
         },
         {
           "name": "Surprise Attack",
@@ -103,7 +123,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Bugbear",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -143,7 +168,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Changeling",
+            "level": null
+          }
         },
         {
           "name": "Shapechanger",
@@ -162,7 +192,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Changeling",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -204,7 +239,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Deep Gnome (Svirfneblin)",
+            "level": null
+          }
         },
         {
           "name": "Gnome Cunning",
@@ -223,7 +263,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Deep Gnome (Svirfneblin)",
+            "level": null
+          }
         },
         {
           "name": "Stone Camouflage",
@@ -242,7 +287,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Deep Gnome (Svirfneblin)",
+            "level": null
+          }
         },
         {
           "name": "Svirfneblin Magic",
@@ -261,7 +311,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Deep Gnome (Svirfneblin)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -298,7 +353,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Dhampir",
+            "level": null
+          }
         },
         {
           "name": "Deathless Nature",
@@ -317,7 +377,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dhampir",
+            "level": null
+          }
         },
         {
           "name": "Spider Climb",
@@ -336,7 +401,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dhampir",
+            "level": null
+          }
         },
         {
           "name": "Vampiric Bite",
@@ -355,7 +425,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dhampir",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -394,7 +469,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn",
+            "level": null
+          }
         },
         {
           "name": "Breath Weapon",
@@ -413,7 +493,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn",
+            "level": null
+          }
         },
         {
           "name": "Damage Resistance",
@@ -432,7 +517,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -469,7 +559,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Chromatic)",
+            "level": null
+          }
         },
         {
           "name": "Breath Weapon",
@@ -488,7 +583,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Chromatic)",
+            "level": null
+          }
         },
         {
           "name": "Damage Resistance",
@@ -507,7 +607,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Chromatic)",
+            "level": null
+          }
         },
         {
           "name": "Chromatic Breath Weapon",
@@ -526,7 +631,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Chromatic)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -566,7 +676,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Gem)",
+            "level": null
+          }
         },
         {
           "name": "Breath Weapon",
@@ -585,7 +700,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Gem)",
+            "level": null
+          }
         },
         {
           "name": "Damage Resistance",
@@ -604,7 +724,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Gem)",
+            "level": null
+          }
         },
         {
           "name": "Psionic Mind",
@@ -623,7 +748,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Gem)",
+            "level": null
+          }
         },
         {
           "name": "Gem Flight",
@@ -642,7 +772,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Gem)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -682,7 +817,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Metallic)",
+            "level": null
+          }
         },
         {
           "name": "Breath Weapon",
@@ -701,7 +841,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Metallic)",
+            "level": null
+          }
         },
         {
           "name": "Damage Resistance",
@@ -720,7 +865,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Metallic)",
+            "level": null
+          }
         },
         {
           "name": "Metallic Breath Weapon",
@@ -739,7 +889,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dragonborn (Metallic)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -780,7 +935,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Resilience",
@@ -799,7 +959,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Stonecunning",
@@ -818,7 +983,12 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Combat Training",
@@ -837,7 +1007,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Tool Proficiency",
@@ -856,7 +1031,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Dwarf",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -895,7 +1075,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Hill Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Resilience",
@@ -914,7 +1099,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hill Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Combat Training",
@@ -933,7 +1123,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hill Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Tool Proficiency",
@@ -952,7 +1147,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hill Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Stonecunning",
@@ -971,7 +1171,12 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Hill Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Toughness",
@@ -990,7 +1195,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hill Dwarf",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1029,7 +1239,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Mountain Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Resilience",
@@ -1048,7 +1263,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Mountain Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Combat Training",
@@ -1067,7 +1287,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Mountain Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Tool Proficiency",
@@ -1086,7 +1311,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Mountain Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Stonecunning",
@@ -1105,7 +1335,12 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Mountain Dwarf",
+            "level": null
+          }
         },
         {
           "name": "Dwarven Armor Training",
@@ -1124,7 +1359,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Mountain Dwarf",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1161,7 +1401,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Eladrin (Elf)",
+            "level": null
+          }
         },
         {
           "name": "Keen Senses",
@@ -1180,7 +1425,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Eladrin (Elf)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -1199,7 +1449,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Eladrin (Elf)",
+            "level": null
+          }
         },
         {
           "name": "Trance",
@@ -1218,7 +1473,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Eladrin (Elf)",
+            "level": null
+          }
         },
         {
           "name": "Eladrin Season",
@@ -1237,7 +1497,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Eladrin (Elf)",
+            "level": null
+          }
         },
         {
           "name": "Fey Step",
@@ -1256,7 +1521,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Eladrin (Elf)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1323,7 +1593,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Elf",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -1342,7 +1617,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Elf",
+            "level": null
+          }
         },
         {
           "name": "Trance",
@@ -1361,7 +1641,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Elf",
+            "level": null
+          }
         },
         {
           "name": "Keen Senses",
@@ -1380,7 +1665,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Elf",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1417,7 +1707,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Firbolg",
+            "level": null
+          }
         },
         {
           "name": "Hidden Step",
@@ -1436,7 +1731,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Firbolg",
+            "level": null
+          }
         },
         {
           "name": "Powerful Build",
@@ -1455,7 +1755,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Firbolg",
+            "level": null
+          }
         },
         {
           "name": "Speech of Beast and Leaf",
@@ -1474,7 +1779,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Firbolg",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1515,7 +1825,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Githyanki",
+            "level": null
+          }
         },
         {
           "name": "Psychic Resilience",
@@ -1534,7 +1849,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Githyanki",
+            "level": null
+          }
         },
         {
           "name": "Githyanki Psionics",
@@ -1553,7 +1873,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Githyanki",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1607,7 +1932,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Githzerai",
+            "level": null
+          }
         },
         {
           "name": "Psychic Resilience",
@@ -1626,7 +1956,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Githzerai",
+            "level": null
+          }
         },
         {
           "name": "Githzerai Psionics",
@@ -1645,7 +1980,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Githzerai",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1686,7 +2026,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Gnome",
+            "level": null
+          }
         },
         {
           "name": "Gnome Cunning",
@@ -1705,7 +2050,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Gnome",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1744,7 +2094,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Forest Gnome",
+            "level": null
+          }
         },
         {
           "name": "Gnome Cunning",
@@ -1763,7 +2118,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Forest Gnome",
+            "level": null
+          }
         },
         {
           "name": "Natural Illusionist",
@@ -1782,7 +2142,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Forest Gnome",
+            "level": null
+          }
         },
         {
           "name": "Speak with Small Beasts",
@@ -1801,7 +2166,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Forest Gnome",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1840,7 +2210,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Rock Gnome",
+            "level": null
+          }
         },
         {
           "name": "Gnome Cunning",
@@ -1859,7 +2234,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Rock Gnome",
+            "level": null
+          }
         },
         {
           "name": "Artificer's Lore",
@@ -1878,7 +2258,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Rock Gnome",
+            "level": null
+          }
         },
         {
           "name": "Tinker",
@@ -1897,7 +2282,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Rock Gnome",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -1934,7 +2324,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Goblin",
+            "level": null
+          }
         },
         {
           "name": "Fury of the Small",
@@ -1953,7 +2348,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Goblin",
+            "level": null
+          }
         },
         {
           "name": "Nimble Escape",
@@ -1972,7 +2372,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Goblin",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2013,7 +2418,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2032,7 +2442,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2051,7 +2466,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2089,7 +2509,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (High Elf)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2108,7 +2533,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (High Elf)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2127,7 +2557,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (High Elf)",
+            "level": null
+          }
         },
         {
           "name": "High Elf Heritage",
@@ -2146,7 +2581,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (High Elf)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2193,7 +2633,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Wood Elf)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2212,7 +2657,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Wood Elf)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2231,7 +2681,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Wood Elf)",
+            "level": null
+          }
         },
         {
           "name": "Wood Elf Heritage",
@@ -2250,7 +2705,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Wood Elf)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2288,7 +2748,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Drow)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2307,7 +2772,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Drow)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2326,7 +2796,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Drow)",
+            "level": null
+          }
         },
         {
           "name": "Drow Heritage",
@@ -2345,7 +2820,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Drow)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2383,7 +2863,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Moon Elf)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2402,7 +2887,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Moon Elf)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2421,7 +2911,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Moon Elf)",
+            "level": null
+          }
         },
         {
           "name": "Moon Elf Heritage",
@@ -2440,7 +2935,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Moon Elf)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2478,7 +2978,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sun Elf)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2497,7 +3002,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sun Elf)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2516,7 +3026,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sun Elf)",
+            "level": null
+          }
         },
         {
           "name": "Sun Elf Heritage",
@@ -2535,7 +3050,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sun Elf)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2573,7 +3093,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sea Elf)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2592,7 +3117,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sea Elf)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2611,7 +3141,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sea Elf)",
+            "level": null
+          }
         },
         {
           "name": "Sea Elf Heritage",
@@ -2630,7 +3165,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Sea Elf)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2668,7 +3208,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Shadar-kai)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2687,7 +3232,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Shadar-kai)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2706,7 +3256,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Shadar-kai)",
+            "level": null
+          }
         },
         {
           "name": "Shadar-kai Heritage",
@@ -2725,7 +3280,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Shadar-kai)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2763,7 +3323,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Eladrin)",
+            "level": null
+          }
         },
         {
           "name": "Fey Ancestry",
@@ -2782,7 +3347,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Eladrin)",
+            "level": null
+          }
         },
         {
           "name": "Skill Versatility",
@@ -2801,7 +3371,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Eladrin)",
+            "level": null
+          }
         },
         {
           "name": "Eladrin Heritage",
@@ -2820,7 +3395,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Elf (Eladrin)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2859,7 +3439,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Half-Orc",
+            "level": null
+          }
         },
         {
           "name": "Savage Attacks",
@@ -2878,7 +3463,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Orc",
+            "level": null
+          }
         },
         {
           "name": "Relentless Endurance",
@@ -2897,7 +3487,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Orc",
+            "level": null
+          }
         },
         {
           "name": "Menacing",
@@ -2916,7 +3511,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Half-Orc",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -2952,7 +3552,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Halfling",
+            "level": null
+          }
         },
         {
           "name": "Halfling Nimbleness",
@@ -2971,7 +3576,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Halfling",
+            "level": null
+          }
         },
         {
           "name": "Lucky",
@@ -2990,7 +3600,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Halfling",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3027,7 +3642,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lightfoot Halfling",
+            "level": null
+          }
         },
         {
           "name": "Halfling Nimbleness",
@@ -3046,7 +3666,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lightfoot Halfling",
+            "level": null
+          }
         },
         {
           "name": "Lucky",
@@ -3065,7 +3690,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lightfoot Halfling",
+            "level": null
+          }
         },
         {
           "name": "Naturally Stealthy",
@@ -3084,7 +3714,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lightfoot Halfling",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3121,7 +3756,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Stout Halfling",
+            "level": null
+          }
         },
         {
           "name": "Halfling Nimbleness",
@@ -3140,7 +3780,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Stout Halfling",
+            "level": null
+          }
         },
         {
           "name": "Lucky",
@@ -3159,7 +3804,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Stout Halfling",
+            "level": null
+          }
         },
         {
           "name": "Stout Resilience",
@@ -3178,7 +3828,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Stout Halfling",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3215,7 +3870,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Ghostwise Halfling",
+            "level": null
+          }
         },
         {
           "name": "Halfling Nimbleness",
@@ -3234,7 +3894,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Ghostwise Halfling",
+            "level": null
+          }
         },
         {
           "name": "Lucky",
@@ -3253,7 +3918,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Ghostwise Halfling",
+            "level": null
+          }
         },
         {
           "name": "Silent Speech",
@@ -3272,7 +3942,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Ghostwise Halfling",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3309,7 +3984,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hexblood",
+            "level": null
+          }
         },
         {
           "name": "Hex Magic",
@@ -3328,7 +4008,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hexblood",
+            "level": null
+          }
         },
         {
           "name": "Eerie Token",
@@ -3347,7 +4032,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hexblood",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3386,7 +4076,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Hobgoblin",
+            "level": null
+          }
         },
         {
           "name": "Martial Training",
@@ -3405,7 +4100,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hobgoblin",
+            "level": null
+          }
         },
         {
           "name": "Saving Face",
@@ -3424,7 +4124,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Hobgoblin",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3450,27 +4155,7 @@
       "speed": 30,
       "size": "Medium",
       "darkvision": false,
-      "traits": [
-        {
-          "name": "Versatile",
-          "description": "Humans are the most adaptable and ambitious people among the common races. They have a drive to achieve and a capacity for innovation, making them excellent at a wide variety of roles.",
-          "featureType": null,
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": null,
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "showInSheet": true
-        }
-      ],
+      "traits": [],
       "languages": [
         "Common"
       ],
@@ -3504,7 +4189,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Kenku",
+            "level": null
+          }
         },
         {
           "name": "Kenku Training",
@@ -3523,7 +4213,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Kenku",
+            "level": null
+          }
         },
         {
           "name": "Mimicry",
@@ -3542,7 +4237,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Kenku",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3582,7 +4282,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lizardfolk",
+            "level": null
+          }
         },
         {
           "name": "Cunning Artisan",
@@ -3601,7 +4306,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lizardfolk",
+            "level": null
+          }
         },
         {
           "name": "Hold Breath",
@@ -3620,7 +4330,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lizardfolk",
+            "level": null
+          }
         },
         {
           "name": "Natural Armor",
@@ -3639,7 +4354,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Lizardfolk",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3679,7 +4399,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Orc",
+            "level": null
+          }
         },
         {
           "name": "Menacing",
@@ -3698,7 +4423,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Orc",
+            "level": null
+          }
         },
         {
           "name": "Powerful Build",
@@ -3717,7 +4447,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Orc",
+            "level": null
+          }
         },
         {
           "name": "Relentless Endurance",
@@ -3736,7 +4471,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Orc",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3776,7 +4516,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Reborn",
+            "level": null
+          }
         },
         {
           "name": "Knowledge from a Past Life",
@@ -3795,7 +4540,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Reborn",
+            "level": null
+          }
         },
         {
           "name": "Reborn Resilience",
@@ -3814,7 +4564,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Reborn",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3853,7 +4608,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Shifter",
+            "level": null
+          }
         },
         {
           "name": "Keen Senses",
@@ -3872,7 +4632,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Shifter",
+            "level": null
+          }
         },
         {
           "name": "Shifting",
@@ -3891,7 +4656,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Shifter",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -3960,7 +4730,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tabaxi",
+            "level": null
+          }
         },
         {
           "name": "Feline Agility",
@@ -3979,7 +4754,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tabaxi",
+            "level": null
+          }
         },
         {
           "name": "Cat's Claws",
@@ -3998,7 +4778,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tabaxi",
+            "level": null
+          }
         },
         {
           "name": "Cat's Talent",
@@ -4017,7 +4802,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tabaxi",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4058,7 +4848,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4077,7 +4872,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy",
@@ -4096,7 +4896,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4135,7 +4940,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Asmodeus)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4154,7 +4964,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Asmodeus)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Asmodeus)",
@@ -4173,7 +4988,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Asmodeus)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4212,7 +5032,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Baalzebul)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4231,7 +5056,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Baalzebul)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Baalzebul)",
@@ -4250,7 +5080,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Baalzebul)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4289,7 +5124,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Zariel)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4308,7 +5148,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Zariel)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Zariel)",
@@ -4327,7 +5172,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Zariel)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4366,7 +5216,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Dispater)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4385,7 +5240,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Dispater)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Dispater)",
@@ -4404,7 +5264,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Dispater)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4443,7 +5308,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Fierna)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4462,7 +5332,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Fierna)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Fierna)",
@@ -4481,7 +5356,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Fierna)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4520,7 +5400,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Glasya)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4539,7 +5424,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Glasya)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Glasya)",
@@ -4558,7 +5448,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Glasya)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4597,7 +5492,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Levistus)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4616,7 +5516,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Levistus)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Levistus)",
@@ -4635,7 +5540,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Levistus)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4674,7 +5584,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Mammon)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4693,7 +5608,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Mammon)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Mammon)",
@@ -4712,7 +5632,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Mammon)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4751,7 +5676,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Mephistopheles)",
+            "level": null
+          }
         },
         {
           "name": "Hellish Resistance",
@@ -4770,7 +5700,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Mephistopheles)",
+            "level": null
+          }
         },
         {
           "name": "Infernal Legacy (Mephistopheles)",
@@ -4789,7 +5724,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Tiefling (Mephistopheles)",
+            "level": null
+          }
         }
       ],
       "languages": [
@@ -4827,7 +5767,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Triton",
+            "level": null
+          }
         },
         {
           "name": "Control Air and Water",
@@ -4846,7 +5791,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Triton",
+            "level": null
+          }
         },
         {
           "name": "Emissary of the Sea",
@@ -4865,7 +5815,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Triton",
+            "level": null
+          }
         },
         {
           "name": "Guardians of the Depths",
@@ -4884,7 +5839,12 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Triton",
+            "level": null
+          }
         }
       ],
       "languages": [

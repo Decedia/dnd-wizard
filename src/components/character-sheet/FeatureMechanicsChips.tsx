@@ -4,6 +4,7 @@ import React from "react";
 
 interface FeatureMechanicsSummaryProps {
   summary?: string | null;
+  description?: string | null;
   featureType?: string | null;
   actionType?: string | null;
   uses?: { total: number | string; recharge: string; current: number } | null;
@@ -13,6 +14,7 @@ interface FeatureMechanicsSummaryProps {
   effect?: string | null;
   onUse?: string | null;
   scaling?: string | null;
+  source?: { type: string; name: string; level: number | null } | null;
   showInSheet?: boolean;
   size?: "sm" | "md";
 }
@@ -78,6 +80,7 @@ function BlankCell() {
 
 export function FeatureMechanicsChips({
   summary,
+  description,
   featureType,
   actionType,
   uses,
@@ -87,6 +90,7 @@ export function FeatureMechanicsChips({
   effect,
   onUse,
   scaling,
+  source,
   showInSheet = true,
   size = "sm",
 }: FeatureMechanicsSummaryProps) {
@@ -97,15 +101,19 @@ export function FeatureMechanicsChips({
   const hasOnUse = !!onUse;
   const hasScaling = !!scaling;
 
+  // Derive summary from description if missing
+  const resolvedSummary = summary || (description ? description.split(/[.\n]/)[0].trim().split(/\s+/).slice(0, 12).join(" ") : null);
+
+  // Default featureType to Passive badge
+  const effectiveFeatureType = featureType || "Passive";
+
   const rows: [React.ReactNode, React.ReactNode][] = [];
 
   // Row 1: Type | Action
-  const typeBadge = featureType === "Active" ? (
+  const typeBadge = effectiveFeatureType === "Active" ? (
     <Badge style={{ backgroundColor: "#ebf8ff", borderColor: "#90cdf4", color: "#2b6cb0" }}>Active</Badge>
-  ) : featureType === "Passive" ? (
-    <Badge style={{ backgroundColor: "#f0f0f0", borderColor: "#e0e0e0", color: "#666" }}>Passive</Badge>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+    <Badge style={{ backgroundColor: "#f0f0f0", borderColor: "#e0e0e0", color: "#666" }}>Passive</Badge>
   );
 
   const actionValue = actionType ? (
@@ -120,6 +128,17 @@ export function FeatureMechanicsChips({
   ]);
 
   // Row 2: Source | Uses
+  let sourceValue: React.ReactNode;
+  if (source) {
+    if (source.type === "race") {
+      sourceValue = <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{source.name} · Racial</span>;
+    } else {
+      sourceValue = <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{source.name} · Level {source.level}</span>;
+    }
+  } else {
+    sourceValue = <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>;
+  }
+
   const usesValue = hasUses ? (
     <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>
       {typeof uses.total === "number" ? `${uses.total}` : uses.total} / {uses.recharge}
@@ -129,7 +148,7 @@ export function FeatureMechanicsChips({
   );
 
   rows.push([
-    <Cell key="source" label="Source" value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>—</span>} />,
+    <Cell key="source" label="Source" value={sourceValue} />,
     <Cell key="uses" label="Uses" value={usesValue} />,
   ]);
 
@@ -181,11 +200,9 @@ export function FeatureMechanicsChips({
         overflow: "hidden",
       }}
     >
-      {summary && (
-        <div className="p-2">
-          <p className="font-semibold leading-snug text-[var(--color-text-primary)]" style={{ fontSize: size === "sm" ? "11px" : "13px" }}>
-            {summary}
-          </p>
+      {resolvedSummary && (
+        <div style={{ padding: "8px 14px", background: "#fff" }}>
+          <p style={{ fontSize: "14px", fontWeight: 500, color: "#333", lineHeight: 1.5 }}>{resolvedSummary}</p>
         </div>
       )}
       {showInSheet && (

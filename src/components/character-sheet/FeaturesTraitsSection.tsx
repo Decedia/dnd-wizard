@@ -150,52 +150,67 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const enrichedFeatures = useMemo(() => {
     return visibleFeatures.map((feature) => {
       const existing = feature as any;
-      if (existing.summary !== undefined && existing.summary !== null) return feature;
       
       let srdFeature: any = null;
+      let derivedSource: { type: string; name: string; level: number | null } | undefined;
+      
       if (feature.source === "class" && character.class) {
         const classData = getStaticClass(character.class, character.ruleset);
         if (classData) {
           for (const level of classData.levels || []) {
             srdFeature = (level.features || []).find((f: any) => f.name === feature.name);
-            if (srdFeature) break;
+            if (srdFeature) {
+              derivedSource = { type: "class", name: character.class, level: (level as any).level };
+              break;
+            }
           }
           if (!srdFeature) {
             srdFeature = (classData.features || []).find((f: any) => f.name === feature.name);
+            if (srdFeature) {
+              derivedSource = { type: "class", name: character.class, level: null };
+            }
           }
         }
       } else if (feature.source === "race" && character.race) {
         const race = getStaticRace(character.race);
         srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
+        if (srdFeature) {
+          derivedSource = { type: "race", name: character.race, level: null };
+        }
       } else if (feature.source === "subclass" && character.class && character.subclass) {
         const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
         const sub = subclasses.find((s) => s.name === character.subclass);
         srdFeature = (sub?.features || []).find((f: any) => f.name === feature.name);
+        if (srdFeature) {
+          derivedSource = { type: "subclass", name: character.subclass, level: (srdFeature as any).level ?? null };
+        }
       } else if (feature.source === "custom" || !feature.source) {
         const matchedFeat = feats.find((f) => f.name === feature.name);
         if (matchedFeat) {
           srdFeature = matchedFeat as any;
+          derivedSource = { type: "feat", name: matchedFeat.source || "Feat", level: null };
         }
       }
       
-      if (!srdFeature) return feature;
+      const srdSource = (srdFeature as any)?.source ? { type: (srdFeature as any).source.type || feature.source, name: (srdFeature as any).source.name || feature.name, level: (srdFeature as any).source.level ?? derivedSource?.level ?? null } : derivedSource;
       
       return {
         ...feature,
-        summary: srdFeature.summary ?? existing.summary ?? null,
-        featureType: srdFeature.featureType ?? existing.featureType ?? null,
-        actionType: srdFeature.actionType ?? existing.actionType ?? null,
-        uses: srdFeature.uses ?? existing.uses ?? null,
-        requirement: srdFeature.requirement ?? existing.requirement ?? null,
-        duration: srdFeature.duration ?? existing.duration ?? null,
-        endsIf: srdFeature.endsIf ?? existing.endsIf ?? null,
-        onUse: srdFeature.onUse ?? existing.onUse ?? null,
-        scaling: srdFeature.scaling ?? existing.scaling ?? null,
-        grantsSpells: srdFeature.grantsSpells ?? existing.grantsSpells ?? false,
-        grantsAttack: srdFeature.grantsAttack ?? existing.grantsAttack ?? false,
-        grantsSkills: srdFeature.grantsSkills ?? existing.grantsSkills ?? false,
-        grantsProficiency: srdFeature.grantsProficiency ?? existing.grantsProficiency ?? false,
-        showInSheet: srdFeature.showInSheet ?? existing.showInSheet ?? true,
+        summary: srdFeature?.summary ?? existing.summary ?? null,
+        featureType: srdFeature?.featureType ?? existing.featureType ?? null,
+        actionType: srdFeature?.actionType ?? existing.actionType ?? null,
+        uses: srdFeature?.uses ?? existing.uses ?? null,
+        requirement: srdFeature?.requirement ?? existing.requirement ?? null,
+        duration: srdFeature?.duration ?? existing.duration ?? null,
+        endsIf: srdFeature?.endsIf ?? existing.endsIf ?? null,
+        onUse: srdFeature?.onUse ?? existing.onUse ?? null,
+        scaling: srdFeature?.scaling ?? existing.scaling ?? null,
+        grantsSpells: srdFeature?.grantsSpells ?? existing.grantsSpells ?? false,
+        grantsAttack: srdFeature?.grantsAttack ?? existing.grantsAttack ?? false,
+        grantsSkills: srdFeature?.grantsSkills ?? existing.grantsSkills ?? false,
+        grantsProficiency: srdFeature?.grantsProficiency ?? existing.grantsProficiency ?? false,
+        showInSheet: srdFeature?.showInSheet ?? existing.showInSheet ?? true,
+        source: srdSource ?? existing.source ?? derivedSource ?? null,
       };
     });
   }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats]);
@@ -330,23 +345,25 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                    {showDescriptions && feature.description && (
                      <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
                    )}
-                   {(feature as any).showInSheet !== false && (
-                     <div className="mt-2">
-                       <FeatureMechanicsChips
-                         summary={(feature as any).summary}
-                         featureType={(feature as any).featureType}
-                         actionType={feature.actionType}
-                         uses={(feature as any).uses}
-                         requirement={(feature as any).requirement}
-                         duration={(feature as any).duration}
-                         endsIf={(feature as any).endsIf}
-                         effect={(feature as any).effect}
-                         onUse={(feature as any).onUse}
-                         scaling={(feature as any).scaling}
-                         showInSheet={(feature as any).showInSheet}
-                       />
-                     </div>
-                   )}
+                    {(feature as any).showInSheet !== false && (
+                      <div className="mt-2">
+                        <FeatureMechanicsChips
+                          summary={(feature as any).summary}
+                          description={feature.description}
+                          featureType={(feature as any).featureType}
+                          actionType={feature.actionType}
+                          uses={(feature as any).uses}
+                          requirement={(feature as any).requirement}
+                          duration={(feature as any).duration}
+                          endsIf={(feature as any).endsIf}
+                          effect={(feature as any).effect}
+                          onUse={(feature as any).onUse}
+                          scaling={(feature as any).scaling}
+                          source={(feature as any).source}
+                          showInSheet={(feature as any).showInSheet}
+                        />
+                      </div>
+                    )}
                    {(feature.actionType || isFeatureUsable(feature)) && (
                      <div className="flex items-center gap-1.5 mt-2">
                        {feature.actionType && (
