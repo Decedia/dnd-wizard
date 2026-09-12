@@ -174,9 +174,19 @@ export function FeatureMechanicsChips({
   }
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "var(--color-bg)",
+        borderRadius: "8px",
+        overflow: "hidden",
+      }}
+    >
       {summary && (
-        <p style={{ fontSize: "13px", fontWeight: 500, color: "#111", marginBottom: "6px", lineHeight: "1.4" }}>{summary}</p>
+        <div className="p-2">
+          <p className="font-semibold leading-snug text-[var(--color-text-primary)]" style={{ fontSize: size === "sm" ? "11px" : "13px" }}>
+            {summary}
+          </p>
+        </div>
       )}
       {showInSheet && (
         <div

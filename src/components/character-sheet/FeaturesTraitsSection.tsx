@@ -221,96 +221,58 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 </>
               ) : (
                 <div style={(feature as any).showInSheet === false ? { opacity: 0.6 } : undefined}>
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 flex-1">
-                      {(() => {
-                        const matchedFeat = feats.find((f) => f.name === feature.name);
-                        if (matchedFeat) {
-                          return (
-                            <button
-                              type="button"
-                              onClick={() => setPopupFeatName(feature.name)}
-                              className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex items-center gap-1.5"
-                            >
-                              <SourceBadge source={matchedFeat.source || "PHB"} size="sm" />
-                              {(() => {
-                                const FeatureIcon = getFeatureIcon(feature.name, feature.source);
-                                return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
-                              })()}
-                               {feature.name}
-                               {(feature as any).showInSheet === false && (
-                                 <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
-                               )}
-                               {feature.value && (
-                                 <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
-                                   {feature.value}
-                                 </span>
-                               )}
-                              </button>
-                            );
-                          }
-                          // For features without matched feat data (custom or class/race features)
-                          return (
-                            <>
-                              {feature.source && feature.source !== "custom" && (
-                                <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
-                              )}
-                               {(() => {
-                                 const FeatureIcon = getFeatureIcon(feature.name, feature.source);
-                                 return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
-                               })()}
-                               {feature.name}
-                               {(feature as any).showInSheet === false && (
-                                 <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
-                               )}
-                               {feature.value && (
-                                 <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
-                                   {feature.value}
-                                 </span>
-                               )}
-                            </>
+                  <div className="flex items-center gap-2 flex-1">
+                    {(() => {
+                      const matchedFeat = feats.find((f) => f.name === feature.name);
+                      if (matchedFeat) {
+                        return (
+                          <button
+                            type="button"
+                            onClick={() => setPopupFeatName(feature.name)}
+                            className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left flex items-center gap-1.5"
+                          >
+                            <SourceBadge source={matchedFeat.source || "PHB"} size="sm" />
+                            {(() => {
+                              const FeatureIcon = getFeatureIcon(feature.name, feature.source);
+                              return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
+                            })()}
+                             {feature.name}
+                             {(feature as any).showInSheet === false && (
+                               <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
+                             )}
+                             {feature.value && (
+                               <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
+                                 {feature.value}
+                               </span>
+                             )}
+                            </button>
                           );
-                        })()}
-                       {isFeatureUsable(feature) && (character.featuresUsedThisTurn || []).includes(feature.id) && (
-                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
-                       )}
-                     </div>
-                     <div className="flex items-center gap-1.5">
-                       {feature.name && (
-                         <>
-                           {feature.actionType && (
-                             <button
-                               type="button"
-                               onClick={() => toggleActionType(feature.id)}
-                               className="shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors bg-[var(--color-info-100)] text-[var(--color-info-700)] border border-[var(--color-info-300)] hover:bg-[var(--color-info-200)]"
-                               title={`Action type: ${getActionTypeLabel(feature.actionType)}. Click to change.`}
-                             >
-                               {getActionTypeIcon(feature.actionType)}
-                               <span>{getActionTypeLabel(feature.actionType)}</span>
-                             </button>
-                           )}
-                           {isFeatureUsable(feature) && (
-                             <>
-                               {(character.featuresUsedThisTurn || []).includes(feature.id) && (
-                                 <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
-                               )}
-                               <button
-                                 type="button"
-                                 onClick={() => toggleFeatureUsed(feature.id)}
-                                 className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                                   (character.featuresUsedThisTurn || []).includes(feature.id)
-                                     ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
-                                     : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                                 }`}
-                               >
-                                 <Clock className="h-4 w-4" />
-                                 {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
-                               </button>
-                             </>
-                           )}
-                         </>
-                       )}
-                     </div>
+                        }
+                        // For features without matched feat data (custom or class/race features)
+                        return (
+                          <>
+                            {feature.source && feature.source !== "custom" && (
+                              <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
+                            )}
+                             {(() => {
+                               const FeatureIcon = getFeatureIcon(feature.name, feature.source);
+                               return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
+                             })()}
+                             {feature.name}
+                             {(feature as any).showInSheet === false && (
+                               <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
+                             )}
+                             {feature.value && (
+                               <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
+                                 {feature.value}
+                               </span>
+                             )}
+                          </>
+                        );
+                      })()}
+                     {isFeatureUsable(feature) && (character.featuresUsedThisTurn || []).includes(feature.id) && (
+                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
+                     )}
                    </div>
                    {showDescriptions && feature.description && (
                      <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
@@ -330,6 +292,40 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                          scaling={(feature as any).scaling}
                          showInSheet={(feature as any).showInSheet}
                        />
+                     </div>
+                   )}
+                   {(feature.actionType || isFeatureUsable(feature)) && (
+                     <div className="flex items-center gap-1.5 mt-2">
+                       {feature.actionType && (
+                         <button
+                           type="button"
+                           onClick={() => toggleActionType(feature.id)}
+                           className="shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors bg-[var(--color-info-100)] text-[var(--color-info-700)] border border-[var(--color-info-300)] hover:bg-[var(--color-info-200)]"
+                           title={`Action type: ${getActionTypeLabel(feature.actionType)}. Click to change.`}
+                         >
+                           {getActionTypeIcon(feature.actionType)}
+                           <span>{getActionTypeLabel(feature.actionType)}</span>
+                         </button>
+                       )}
+                       {isFeatureUsable(feature) && (
+                         <>
+                           {(character.featuresUsedThisTurn || []).includes(feature.id) && (
+                             <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
+                           )}
+                           <button
+                             type="button"
+                             onClick={() => toggleFeatureUsed(feature.id)}
+                             className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                               (character.featuresUsedThisTurn || []).includes(feature.id)
+                                 ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                                 : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                             }`}
+                           >
+                             <Clock className="h-4 w-4" />
+                             {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
+                           </button>
+                         </>
+                       )}
                      </div>
                    )}
                  </div>
