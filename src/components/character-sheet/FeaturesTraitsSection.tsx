@@ -17,9 +17,10 @@ interface FeaturesTraitsSectionProps {
 }
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
-  const { onFieldBlur, showDescriptions } = useCharacterSheet();
+  const { onFieldBlur } = useCharacterSheet();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const [showHiddenFeatures, setShowHiddenFeatures] = useState(false);
+  const [expandedFeatures, setExpandedFeatures] = useState<Set<string>>(new Set());
   const feats = useMemo(() => getStaticFeats([], character.ruleset), [character.ruleset]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
   const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
@@ -42,6 +43,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const removeItem = (id: string) => {
     onChange({
       features: character.features.filter((f) => f.id !== id),
+    });
+  };
+
+  const toggleExpanded = (id: string) => {
+    setExpandedFeatures(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
     });
   };
 
@@ -176,6 +189,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             const isLocked = feature.locked === true;
             const borderColor = (feature as any).source === "race" ? "#6b46c1" : (feature as any).source === "subclass" ? "#276749" : "#2b6cb0";
             const safeFeature = { ...feature, source: (feature as any).source || "class" };
+            const isExpanded = expandedFeatures.has(feature.id);
+            const summaryText = (feature as any).summary || feature.description || "";
+            const fullText = feature.description || "";
             return (
               <div key={safeFeature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
                 <div className="flex items-center justify-between gap-2">
@@ -186,8 +202,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                     )}
                   </div>
                 </div>
-                {feature.description && (
-                  <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
+                <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{summaryText}</p>
+                {fullText && fullText !== summaryText && (
+                  <button
+                    type="button"
+                    onClick={() => toggleExpanded(feature.id)}
+                    className="text-[10px] font-bold text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] mt-2 underline"
+                  >
+                    {isExpanded ? "Show less" : "Show more"}
+                  </button>
+                )}
+                {isExpanded && fullText !== summaryText && (
+                  <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed whitespace-pre-line">{fullText}</p>
                 )}
               </div>
             );
