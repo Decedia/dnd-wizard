@@ -139,8 +139,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   }, [character.features]);
 
   const visibleFeatures = useMemo(() => {
-    if (showHiddenFeatures) return sortedFeatures;
-    return sortedFeatures.filter(f => (f as any).showInSheet !== false);
+    const base = showHiddenFeatures ? sortedFeatures : sortedFeatures.filter(f => (f as any).showInSheet !== false);
+    return base.filter(f => f.id && f.name);
   }, [sortedFeatures, showHiddenFeatures]);
 
   const hiddenCount = useMemo(() => {
@@ -148,71 +148,79 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   }, [character.features]);
 
   const enrichedFeatures = useMemo(() => {
-    return visibleFeatures.map((feature) => {
-      const existing = feature as any;
-      
-      let srdFeature: any = null;
-      let derivedSource: { type: string; name: string; level: number | null } | undefined;
-      
-      if (feature.source === "class" && character.class) {
-        const classData = getStaticClass(character.class, character.ruleset);
-        if (classData) {
-          for (const level of classData.levels || []) {
-            srdFeature = (level.features || []).find((f: any) => f.name === feature.name);
+    try {
+      return visibleFeatures.map((feature) => {
+        const existing = feature as any;
+        
+        let srdFeature: any = null;
+        let derivedSource: { type: string; name: string; level: number | null } | undefined;
+        
+        try {
+          if (existing.source === "class" && character.class) {
+            const classData = getStaticClass(character.class, character.ruleset);
+            if (classData) {
+              for (const level of classData.levels || []) {
+                srdFeature = (level.features || []).find((f: any) => f.name === feature.name);
+                if (srdFeature) {
+                  derivedSource = { type: "class", name: character.class, level: (level as any).level };
+                  break;
+                }
+              }
+              if (!srdFeature) {
+                srdFeature = (classData.features || []).find((f: any) => f.name === feature.name);
+                if (srdFeature) {
+                  derivedSource = { type: "class", name: character.class, level: null };
+                }
+              }
+            }
+          } else if (existing.source === "race" && character.race) {
+            const race = getStaticRace(character.race);
+            srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
             if (srdFeature) {
-              derivedSource = { type: "class", name: character.class, level: (level as any).level };
-              break;
+              derivedSource = { type: "race", name: character.race, level: null };
+            }
+          } else if (existing.source === "subclass" && character.class && character.subclass) {
+            const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
+            const sub = subclasses.find((s) => s.name === character.subclass);
+            srdFeature = (sub?.features || []).find((f: any) => f.name === feature.name);
+            if (srdFeature) {
+              derivedSource = { type: "subclass", name: character.subclass, level: (srdFeature as any).level ?? null };
+            }
+          } else if (existing.source === "custom" || !existing.source) {
+            const matchedFeat = feats.find((f) => f.name === feature.name);
+            if (matchedFeat) {
+              srdFeature = matchedFeat as any;
+              derivedSource = { type: "feat", name: matchedFeat.source || "Feat", level: null };
             }
           }
-          if (!srdFeature) {
-            srdFeature = (classData.features || []).find((f: any) => f.name === feature.name);
-            if (srdFeature) {
-              derivedSource = { type: "class", name: character.class, level: null };
-            }
-          }
+        } catch {
+          // SRD lookup failed; fall back to existing feature data
         }
-      } else if (feature.source === "race" && character.race) {
-        const race = getStaticRace(character.race);
-        srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
-        if (srdFeature) {
-          derivedSource = { type: "race", name: character.race, level: null };
-        }
-      } else if (feature.source === "subclass" && character.class && character.subclass) {
-        const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
-        const sub = subclasses.find((s) => s.name === character.subclass);
-        srdFeature = (sub?.features || []).find((f: any) => f.name === feature.name);
-        if (srdFeature) {
-          derivedSource = { type: "subclass", name: character.subclass, level: (srdFeature as any).level ?? null };
-        }
-      } else if (feature.source === "custom" || !feature.source) {
-        const matchedFeat = feats.find((f) => f.name === feature.name);
-        if (matchedFeat) {
-          srdFeature = matchedFeat as any;
-          derivedSource = { type: "feat", name: matchedFeat.source || "Feat", level: null };
-        }
-      }
-      
-      const srdSource = (srdFeature as any)?.source ? { type: (srdFeature as any).source.type || feature.source, name: (srdFeature as any).source.name || feature.name, level: (srdFeature as any).source.level ?? derivedSource?.level ?? null } : derivedSource;
-      
-      return {
-        ...feature,
-        summary: srdFeature?.summary ?? existing.summary ?? null,
-        featureType: srdFeature?.featureType ?? existing.featureType ?? null,
-        actionType: srdFeature?.actionType ?? existing.actionType ?? null,
-        uses: srdFeature?.uses ?? existing.uses ?? null,
-        requirement: srdFeature?.requirement ?? existing.requirement ?? null,
-        duration: srdFeature?.duration ?? existing.duration ?? null,
-        endsIf: srdFeature?.endsIf ?? existing.endsIf ?? null,
-        onUse: srdFeature?.onUse ?? existing.onUse ?? null,
-        scaling: srdFeature?.scaling ?? existing.scaling ?? null,
-        grantsSpells: srdFeature?.grantsSpells ?? existing.grantsSpells ?? false,
-        grantsAttack: srdFeature?.grantsAttack ?? existing.grantsAttack ?? false,
-        grantsSkills: srdFeature?.grantsSkills ?? existing.grantsSkills ?? false,
-        grantsProficiency: srdFeature?.grantsProficiency ?? existing.grantsProficiency ?? false,
-        showInSheet: srdFeature?.showInSheet ?? existing.showInSheet ?? true,
-        source: srdSource ?? existing.source ?? derivedSource ?? null,
-      };
-    });
+        
+        const srdSource = (srdFeature as any)?.source ? { type: (srdFeature as any).source.type || existing.source, name: (srdFeature as any).source.name || feature.name, level: (srdFeature as any).source.level ?? derivedSource?.level ?? null } : derivedSource;
+        
+        return {
+          ...feature,
+          summary: srdFeature?.summary ?? existing.summary ?? null,
+          featureType: srdFeature?.featureType ?? existing.featureType ?? null,
+          actionType: srdFeature?.actionType ?? existing.actionType ?? null,
+          uses: srdFeature?.uses ?? existing.uses ?? null,
+          requirement: srdFeature?.requirement ?? existing.requirement ?? null,
+          duration: srdFeature?.duration ?? existing.duration ?? null,
+          endsIf: srdFeature?.endsIf ?? existing.endsIf ?? null,
+          onUse: srdFeature?.onUse ?? existing.onUse ?? null,
+          scaling: srdFeature?.scaling ?? existing.scaling ?? null,
+          grantsSpells: srdFeature?.grantsSpells ?? existing.grantsSpells ?? false,
+          grantsAttack: srdFeature?.grantsAttack ?? existing.grantsAttack ?? false,
+          grantsSkills: srdFeature?.grantsSkills ?? existing.grantsSkills ?? false,
+          grantsProficiency: srdFeature?.grantsProficiency ?? existing.grantsProficiency ?? false,
+          showInSheet: srdFeature?.showInSheet ?? existing.showInSheet ?? true,
+          source: srdSource ?? existing.source ?? derivedSource ?? null,
+        };
+      });
+    } catch {
+      return visibleFeatures;
+    }
   }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats]);
 
   return (
@@ -246,10 +254,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           </div>
         )}
          {enrichedFeatures.map((feature) => {
-           const isLocked = feature.locked === true;
-           const borderColor = feature.source === "race" ? "#6b46c1" : feature.source === "subclass" ? "#276749" : "#2b6cb0";
-           return (
-             <div key={feature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
+            const isLocked = feature.locked === true;
+            const borderColor = (feature as any).source === "race" ? "#6b46c1" : (feature as any).source === "subclass" ? "#276749" : "#2b6cb0";
+            const safeFeature = { ...feature, source: (feature as any).source || "class" };
+            return (
+              <div key={safeFeature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
               {editMode ? (
                 <>
                   <div className="flex items-center justify-between gap-3">

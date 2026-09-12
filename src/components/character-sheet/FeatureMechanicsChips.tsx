@@ -129,20 +129,18 @@ export function FeatureMechanicsChips({
   ]);
 
   // Row 2: Source | Uses
-  let sourceValue: React.ReactNode;
-  if (source) {
-    if (source.type === "race") {
-      sourceValue = <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{source.name} · Racial</span>;
-    } else {
-      sourceValue = <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{source.name} · Level {source.level}</span>;
-    }
-  } else {
-    sourceValue = <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>;
-  }
-
-  const usesValue = hasUses ? (
+  const sourceSource = (source || {}) as { type?: string; name?: string; level?: number | null };
+  const sourceValue = sourceSource.type ? (
     <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>
-      {typeof uses.total === "number" ? `${uses.total}` : uses.total} / {uses.recharge}
+      {sourceSource.name}{sourceSource.type === "race" ? " · Racial" : ` · Level ${sourceSource.level ?? "?"}`}
+    </span>
+  ) : (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+  );
+
+  const usesValue = hasUses && uses ? (
+    <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>
+      {typeof uses.total === "number" ? `${uses.total}` : (uses.total || "?")} / {uses.recharge || "?"}
     </span>
   ) : (
     <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>Unlimited</span>
@@ -193,6 +191,18 @@ export function FeatureMechanicsChips({
     ]);
   }
 
+  let gridRows: React.ReactNode;
+  try {
+    gridRows = rows.map(([left, right], idx) => (
+      <React.Fragment key={idx}>
+        {left}
+        {right}
+      </React.Fragment>
+    ));
+  } catch {
+    gridRows = null;
+  }
+
   return (
     <div
       style={{
@@ -206,7 +216,7 @@ export function FeatureMechanicsChips({
           <p style={{ fontSize: "14px", fontWeight: 500, color: "#333", lineHeight: 1.5 }}>{resolvedSummary}</p>
         </div>
       )}
-      {showInSheet && (
+      {showInSheet && gridRows && (
         <div
           style={{
             display: "grid",
@@ -217,12 +227,7 @@ export function FeatureMechanicsChips({
             borderBottom: "1px solid #f0f0f0",
           }}
         >
-          {rows.map(([left, right], idx) => (
-            <React.Fragment key={idx}>
-              {left}
-              {right}
-            </React.Fragment>
-          ))}
+          {gridRows}
         </div>
       )}
     </div>
