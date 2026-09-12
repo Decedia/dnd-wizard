@@ -102,7 +102,8 @@ export function FeatureMechanicsChips({
   const hasScaling = !!scaling;
 
   // Derive summary from description if missing
-  const resolvedSummary = summary || (description ? description.split(/[.\n]/)[0].trim().split(/\s+/).slice(0, 12).join(" ") : null);
+  const normalizedDescription = Array.isArray(description) ? description.filter(Boolean).join(" ") : (description || "");
+  const resolvedSummary = summary || (normalizedDescription ? normalizedDescription.split(/[.\n]/)[0].trim().split(/\s+/).slice(0, 12).join(" ") : null);
 
   // Default featureType to Passive badge
   const effectiveFeatureType = featureType || "Passive";

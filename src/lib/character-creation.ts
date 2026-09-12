@@ -879,7 +879,7 @@ export function applySubclassFeatures(character: Character): Character {
             newFeatures.push({
               id: `subclass-${opt.name}`.replace(/\s+/g, "-"),
               name: opt.name,
-              description: opt.description,
+              description: normalizeDescription(opt.description),
               source: "subclass" as const,
               locked: true,
               ...extractFeatureFields(feature),
@@ -892,7 +892,7 @@ export function applySubclassFeatures(character: Character): Character {
         newFeatures.push({
           id: `subclass-${feature.name}`.replace(/\s+/g, "-"),
           name: feature.name,
-          description: feature.description,
+          description: normalizeDescription(feature.description),
           source: "subclass" as const,
           locked: true,
           ...extractFeatureFields(feature),
