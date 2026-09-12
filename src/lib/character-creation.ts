@@ -719,30 +719,55 @@ function normalizeDescription(description: any): string {
   return description || "";
 }
 
-function getClassFeaturesAtLevel(character: Character): { name: string; description: string }[] {
+function extractFeatureFields(f: any): Record<string, any> {
+  return {
+    summary: f.summary ?? null,
+    featureType: f.featureType ?? null,
+    actionType: f.actionType ?? null,
+    uses: f.uses ?? null,
+    requirement: f.requirement ?? null,
+    duration: f.duration ?? null,
+    endsIf: f.endsIf ?? null,
+    onUse: f.onUse ?? null,
+    scaling: f.scaling ?? null,
+    grantsSpells: f.grantsSpells ?? false,
+    grantsAttack: f.grantsAttack ?? false,
+    grantsSkills: f.grantsSkills ?? false,
+    grantsProficiency: f.grantsProficiency ?? false,
+    showInSheet: f.showInSheet ?? true,
+  };
+}
+
+function getClassFeaturesAtLevel(character: Character): any[] {
   const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
 
-  const features: { name: string; description: string }[] = [];
+  const features: any[] = [];
   classData?.levels.forEach((level, index) => {
     if (index + 1 > character.level) return;
     (level.features || []).forEach((f: any) => {
-      features.push({ name: f.name, description: normalizeDescription(f.description) });
+      features.push({
+        name: f.name,
+        description: normalizeDescription(f.description),
+        ...extractFeatureFields(f),
+      });
     });
   });
   return features;
 }
 
-function getRaceTraits(character: Character): { name: string; description: string }[] {
+function getRaceTraits(character: Character): any[] {
   const race = character.race ? getStaticRace(character.race) : null;
   if (!race) return [];
   const traits = (race.traits || []).map((t: any) => ({
     name: t.name,
     description: normalizeDescription(t.description),
+    ...extractFeatureFields(t),
   }));
   if (character.race === "Human" && character.raceVariant === "variant") {
     traits.push({
       name: "Variant Human",
       description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
+      ...extractFeatureFields({}),
     });
     const featName = character.featureSelections?.["variant-human-feat"]?.[0];
     if (featName) {
@@ -751,6 +776,7 @@ function getRaceTraits(character: Character): { name: string; description: strin
         traits.push({
           name: featData.name,
           description: featData.description,
+          ...extractFeatureFields({}),
         });
       }
     }
@@ -788,6 +814,20 @@ export function syncBaseFeatures(character: Character): Character {
       source: f.source,
       locked: true,
       value: featureValue,
+      summary: f.summary ?? null,
+      featureType: f.featureType ?? null,
+      actionType: f.actionType ?? null,
+      uses: f.uses ?? null,
+      requirement: f.requirement ?? null,
+      duration: f.duration ?? null,
+      endsIf: f.endsIf ?? null,
+      onUse: f.onUse ?? null,
+      scaling: f.scaling ?? null,
+      grantsSpells: f.grantsSpells ?? false,
+      grantsAttack: f.grantsAttack ?? false,
+      grantsSkills: f.grantsSkills ?? false,
+      grantsProficiency: f.grantsProficiency ?? false,
+      showInSheet: f.showInSheet ?? true,
     };
   });
 
@@ -842,6 +882,7 @@ export function applySubclassFeatures(character: Character): Character {
               description: opt.description,
               source: "subclass" as const,
               locked: true,
+              ...extractFeatureFields(feature),
             });
           }
         }
@@ -854,6 +895,7 @@ export function applySubclassFeatures(character: Character): Character {
           description: feature.description,
           source: "subclass" as const,
           locked: true,
+          ...extractFeatureFields(feature),
         });
       }
     }

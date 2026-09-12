@@ -5,7 +5,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles, CrownIcon as Crown, BowArrowIcon as BowArrowIcon, ShieldIcon as ShieldIcon, SwordIcon as SwordIcon, BattleAxeIcon as BattleAxeIcon, DaggerIcon as DaggerIcon, MagicWandIcon as MagicWandIcon, HealingIcon as HealingIcon, MusicNotesIcon as MusicNotesIcon, FlameIcon as Flame, SkullIcon as Skull, EyeIcon } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
-import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
+import { getStaticFeats, getStaticSubclasses, getStaticClass, getStaticRace, getStaticFeat } from "@/lib/srd-client";
 import { getFeatureValue } from "@/lib/storage";
 import { SourceBadge } from "../SourceBadge";
 import { FeatureMechanicsChips } from "./FeatureMechanicsChips";
@@ -147,6 +147,59 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return character.features.filter(f => (f as any).showInSheet === false).length;
   }, [character.features]);
 
+  const enrichedFeatures = useMemo(() => {
+    return visibleFeatures.map((feature) => {
+      const existing = feature as any;
+      if (existing.summary !== undefined && existing.summary !== null) return feature;
+      
+      let srdFeature: any = null;
+      if (feature.source === "class" && character.class) {
+        const classData = getStaticClass(character.class, character.ruleset);
+        if (classData) {
+          for (const level of classData.levels || []) {
+            srdFeature = (level.features || []).find((f: any) => f.name === feature.name);
+            if (srdFeature) break;
+          }
+          if (!srdFeature) {
+            srdFeature = (classData.features || []).find((f: any) => f.name === feature.name);
+          }
+        }
+      } else if (feature.source === "race" && character.race) {
+        const race = getStaticRace(character.race);
+        srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
+      } else if (feature.source === "subclass" && character.class && character.subclass) {
+        const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
+        const sub = subclasses.find((s) => s.name === character.subclass);
+        srdFeature = (sub?.features || []).find((f: any) => f.name === feature.name);
+      } else if (feature.source === "custom" || !feature.source) {
+        const matchedFeat = feats.find((f) => f.name === feature.name);
+        if (matchedFeat) {
+          srdFeature = matchedFeat as any;
+        }
+      }
+      
+      if (!srdFeature) return feature;
+      
+      return {
+        ...feature,
+        summary: srdFeature.summary ?? existing.summary ?? null,
+        featureType: srdFeature.featureType ?? existing.featureType ?? null,
+        actionType: srdFeature.actionType ?? existing.actionType ?? null,
+        uses: srdFeature.uses ?? existing.uses ?? null,
+        requirement: srdFeature.requirement ?? existing.requirement ?? null,
+        duration: srdFeature.duration ?? existing.duration ?? null,
+        endsIf: srdFeature.endsIf ?? existing.endsIf ?? null,
+        onUse: srdFeature.onUse ?? existing.onUse ?? null,
+        scaling: srdFeature.scaling ?? existing.scaling ?? null,
+        grantsSpells: srdFeature.grantsSpells ?? existing.grantsSpells ?? false,
+        grantsAttack: srdFeature.grantsAttack ?? existing.grantsAttack ?? false,
+        grantsSkills: srdFeature.grantsSkills ?? existing.grantsSkills ?? false,
+        grantsProficiency: srdFeature.grantsProficiency ?? existing.grantsProficiency ?? false,
+        showInSheet: srdFeature.showInSheet ?? existing.showInSheet ?? true,
+      };
+    });
+  }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats]);
+
   return (
     <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
       <div className="space-y-3">
@@ -177,7 +230,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             </button>
           </div>
         )}
-         {visibleFeatures.map((feature) => {
+         {enrichedFeatures.map((feature) => {
            const isLocked = feature.locked === true;
            const borderColor = feature.source === "race" ? "#6b46c1" : feature.source === "subclass" ? "#276749" : "#2b6cb0";
            return (
