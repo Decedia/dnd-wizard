@@ -157,10 +157,18 @@ function buildLevelInfos(
     const levelData = classData.levels[level - 1];
     const prevLevelData = level > 1 ? classData.levels[level - 2] : null;
 
-    const features = (levelData?.features || []).map((f: any) => ({
-      name: f.name,
-      description: normalizeDescription(f.description),
-    }));
+    const features = (levelData?.features || [])
+      .filter((f: any) => {
+        const src = f.source;
+        if (!src) return true;
+        if (src.type === "class") return src.name === className;
+        if (src.type === "subclass") return src.name === subclassSelection;
+        return true;
+      })
+      .map((f: any) => ({
+        name: f.name,
+        description: normalizeDescription(f.description),
+      }));
 
     const asi = levelData?.asi || false;
     let spellSlots = levelData?.spellSlots;

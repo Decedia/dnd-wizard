@@ -86,6 +86,12 @@ export function generateLevelUpSteps(
     }
 
     const classFeatureChoices = (levelData?.features || [])
+      .filter((f: any) => {
+        const src = f.source;
+        if (!src) return true;
+        if (src.type === "class") return src.name === className;
+        return true;
+      })
       .filter((f: any) => f.choices && f.choices.options && f.choices.options.length > 0)
       .map((f: any) => {
         const descriptions: Record<string, string> = {};
@@ -101,7 +107,14 @@ export function generateLevelUpSteps(
         };
       });
 
-    let features = (levelData?.features || []).map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
+    let features = (levelData?.features || [])
+      .filter((f: any) => {
+        const src = f.source;
+        if (!src) return true;
+        if (src.type === "class") return src.name === className;
+        return true;
+      })
+      .map((f: any) => ({ name: f.name, description: normalizeDescription(f.description) }));
 
     let featureChoices = [...(getFeatureChoices(className, features) || []), ...classFeatureChoices];
 

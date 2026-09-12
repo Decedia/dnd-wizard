@@ -181,18 +181,18 @@ export function getFeatureValue(featureName: string, character: Character): stri
 
   const lower = featureName.toLowerCase();
 
-  if (lower.includes("lay on hands")) {
+  if (lower.includes("lay on hands") && classData.name === "Paladin") {
     return `${level * 5} HP`;
   }
 
-  if (lower.includes("bardic inspiration")) {
+  if (lower.includes("bardic inspiration") && classData.name === "Bard") {
     const chaMod = getModifier(character.cha);
     if (lower.includes("uses")) return `${Math.max(1, chaMod)}`;
     const die = getBardicInspirationDie(character);
     return die;
   }
 
-  if (lower.includes("song of rest")) {
+  if (lower.includes("song of rest") && classData.name === "Bard") {
     return getSongOfRestDie(character);
   }
 
@@ -226,7 +226,7 @@ export function getFeatureValue(featureName: string, character: Character): stri
     return points !== undefined ? String(points) : undefined;
   }
 
-  if (lower.includes("action surge")) {
+  if (lower.includes("action surge") && classData.name === "Fighter") {
     return "1/short rest";
   }
 
