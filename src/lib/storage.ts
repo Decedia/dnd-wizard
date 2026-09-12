@@ -56,7 +56,7 @@ export interface Character {
   toolProficiencies: string[];
   expertise: string[];
   passivePerception: number;
-  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null }[];
+  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; summary?: string | null; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null; grantsSpells?: boolean; grantsAttack?: boolean; grantsSkills?: boolean; grantsProficiency?: boolean; showInSheet?: boolean }[];
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;

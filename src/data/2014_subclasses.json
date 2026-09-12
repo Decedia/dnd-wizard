@@ -20,7 +20,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Experimental Elixir",
@@ -34,7 +40,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Alchemical Savant",
@@ -48,7 +60,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Restorative Reagents",
@@ -62,7 +80,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Chemical Mastery",
@@ -76,7 +100,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "EGW"
@@ -99,7 +129,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Armor",
@@ -113,7 +149,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Armor Model",
@@ -127,7 +169,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Extra Attack",
@@ -141,7 +189,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Armor Modifications",
@@ -155,7 +209,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Perfected Armor",
@@ -169,7 +229,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "EGW"
@@ -192,7 +258,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Eldritch Cannon",
@@ -206,7 +278,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Firearm",
@@ -220,7 +298,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Explosive Cannon",
@@ -234,7 +318,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fortified Position",
@@ -248,7 +338,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "EGW"
@@ -271,7 +367,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Battle Ready",
@@ -285,7 +387,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Steel Defender",
@@ -299,7 +407,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Extra Attack",
@@ -313,7 +427,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Jolt",
@@ -327,7 +447,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved Defender",
@@ -341,7 +467,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "EGW"
@@ -370,7 +502,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spirit Shield",
@@ -386,7 +524,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Consult the Spirits",
@@ -402,7 +546,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Vengeful Ancestors",
@@ -418,7 +568,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -447,7 +603,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mindless Rage",
@@ -463,7 +625,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Intimidating Presence",
@@ -479,7 +647,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Retaliation",
@@ -495,7 +669,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -524,7 +704,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Storm Soul",
@@ -540,7 +726,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shielding Storm",
@@ -556,7 +748,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Raging Storm",
@@ -572,7 +770,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -602,7 +806,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Totem Spirit",
@@ -621,7 +831,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aspect of the Beast",
@@ -640,7 +856,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spirit Walker",
@@ -656,7 +878,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Totemic Attunement",
@@ -675,7 +903,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -704,7 +938,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Warrior of the Gods",
@@ -720,7 +960,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fanatical Focus",
@@ -736,7 +982,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Zealous Presence",
@@ -752,7 +1004,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -781,7 +1039,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Enthralling Performance",
@@ -797,7 +1061,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mantle of Majesty",
@@ -813,7 +1083,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -836,7 +1112,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tales from Beyond",
@@ -850,7 +1132,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spiritual Focus (Improved)",
@@ -864,7 +1152,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spirit Session",
@@ -878,7 +1172,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mystical Connection",
@@ -892,7 +1192,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "VRGR"
@@ -921,7 +1227,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fighting Style",
@@ -952,7 +1264,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Blade Flourish",
@@ -968,7 +1286,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Extra Attack",
@@ -984,7 +1308,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Master Flourish",
@@ -1000,7 +1330,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -1029,7 +1365,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Words of Terror",
@@ -1045,7 +1387,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mantle of Whispers",
@@ -1061,7 +1409,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -1090,7 +1444,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Cutting Words",
@@ -1106,7 +1466,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Additional Magical Secrets",
@@ -1132,7 +1498,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Peerless Skill",
@@ -1148,7 +1520,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -1178,7 +1556,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Combat Inspiration",
@@ -1194,7 +1578,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Extra Attack",
@@ -1210,7 +1600,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Battle Magic",
@@ -1226,7 +1622,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -1255,7 +1657,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Blessing of the Forge",
@@ -1271,7 +1679,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Artisan's Blessing",
@@ -1287,7 +1701,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Soul of the Forge",
@@ -1303,7 +1723,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Divine Strike",
@@ -1319,7 +1745,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Saint of Forge and Fire",
@@ -1335,7 +1767,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -1364,7 +1802,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Circle of Mortality",
@@ -1380,7 +1824,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Eyes of the Grave",
@@ -1396,7 +1846,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Path to the Grave",
@@ -1412,7 +1868,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sentinel at Death's Door",
@@ -1428,7 +1890,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Divine Strike",
@@ -1444,7 +1912,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Keeper of Souls",
@@ -1460,7 +1934,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -1490,7 +1970,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Knowledge of the Ages",
@@ -1506,7 +1992,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Read Thoughts",
@@ -1522,7 +2014,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Potent Spellcasting",
@@ -1538,7 +2036,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Visions of the Past",
@@ -1554,7 +2058,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -1583,7 +2093,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Disciple of Life",
@@ -1599,7 +2115,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Preserve Life",
@@ -1615,7 +2137,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Blessed Healer",
@@ -1631,7 +2159,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Divine Strike",
@@ -1647,7 +2181,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Supreme Healing",
@@ -1663,7 +2203,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -1693,7 +2239,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Warding Flare",
@@ -1709,7 +2261,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Radiance of the Dawn",
@@ -1725,7 +2283,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved Flare",
@@ -1741,7 +2305,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Potent Spellcasting",
@@ -1757,7 +2327,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Corona of Light",
@@ -1773,7 +2349,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "SCAG"
@@ -1803,7 +2385,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Charm Animals and Plants",
@@ -1819,7 +2407,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Charm Animals and Plants",
@@ -1835,7 +2429,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Dampen Elements",
@@ -1851,7 +2451,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Potent Spellcasting",
@@ -1867,7 +2473,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Master of Nature",
@@ -1883,7 +2495,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -1913,7 +2531,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Wrath of the Storm",
@@ -1929,7 +2553,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Destructive Wrath",
@@ -1945,7 +2575,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Thunderbolt Strike",
@@ -1961,7 +2597,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Potent Spellcasting",
@@ -1977,7 +2619,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Stormborn",
@@ -1993,7 +2641,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -2023,7 +2677,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Invoke Duplicity",
@@ -2039,7 +2699,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Cloak of Shadows",
@@ -2055,7 +2721,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Potent Spellcasting",
@@ -2071,7 +2743,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Divine Strike",
@@ -2087,7 +2765,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved Duplicity",
@@ -2103,7 +2787,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "SCAG"
@@ -2133,7 +2823,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "War Priest",
@@ -2149,7 +2845,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Guided Strike",
@@ -2165,7 +2867,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: War God's Blessing",
@@ -2181,7 +2889,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Potent Spellcasting",
@@ -2197,7 +2911,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Avatar of Battle",
@@ -2213,7 +2933,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "SCAG"
@@ -2242,7 +2968,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hearth of Moonlight and Shadow",
@@ -2258,7 +2990,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hidden Paths",
@@ -2274,7 +3012,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Walker in Dreams",
@@ -2290,7 +3034,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -2319,7 +3069,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spirit Totem",
@@ -2335,7 +3091,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mighty Summoner",
@@ -2351,7 +3113,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Guardian Spirit",
@@ -2367,7 +3135,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Faithful Summons",
@@ -2383,7 +3157,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -2418,7 +3198,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Natural Recovery",
@@ -2434,7 +3220,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Circle Spells",
@@ -2456,7 +3248,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Land's Stride",
@@ -2472,7 +3270,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Nature's Ward",
@@ -2488,7 +3292,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Nature's Sanctuary",
@@ -2504,7 +3314,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -2534,7 +3350,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Circle Forms",
@@ -2550,7 +3372,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Primal Strike",
@@ -2566,7 +3394,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Elemental Wild Shape",
@@ -2582,7 +3416,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Thousand Forms",
@@ -2598,7 +3438,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -2627,7 +3473,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Shot",
@@ -2643,7 +3495,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Shot Options",
@@ -2698,7 +3556,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Magic Arrow",
@@ -2714,7 +3578,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Curving Shot",
@@ -2730,7 +3600,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Ever-Ready Shot",
@@ -2746,7 +3622,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -2850,7 +3732,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Student of War",
@@ -2871,7 +3759,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Know Your Enemy",
@@ -2887,7 +3781,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved Combat Superiority (d10)",
@@ -2903,7 +3803,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Relentless",
@@ -2919,7 +3825,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved Combat Superiority (d12)",
@@ -2935,7 +3847,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -2991,7 +3909,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Born to the Saddle",
@@ -3007,7 +3931,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Unwavering Mark",
@@ -3023,7 +3953,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Warding Maneuver",
@@ -3039,7 +3975,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hold the Line",
@@ -3055,7 +3997,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Ferocious Charger",
@@ -3071,7 +4019,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Vigilant Defender",
@@ -3087,7 +4041,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -3116,7 +4076,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Remarkable Athlete",
@@ -3132,7 +4098,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Additional Fighting Style",
@@ -3148,7 +4120,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Superior Critical",
@@ -3164,7 +4142,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Survivor",
@@ -3180,7 +4164,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -3203,7 +4193,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Unleash Incarnation",
@@ -3217,7 +4213,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Echo Avatar",
@@ -3231,7 +4233,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shadow Martyr",
@@ -3245,7 +4253,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Reclaim Potential",
@@ -3259,7 +4273,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Legion of One",
@@ -3273,7 +4293,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "EGW"
@@ -3430,7 +4456,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Weapon Bond",
@@ -3448,7 +4480,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "War Magic",
@@ -3464,7 +4502,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Eldritch Strike",
@@ -3480,7 +4524,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Charge",
@@ -3496,7 +4546,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved War Magic",
@@ -3512,7 +4568,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -3564,7 +4626,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fighting Spirit",
@@ -3580,7 +4648,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Elegant Courtier",
@@ -3596,7 +4670,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tireless Spirit",
@@ -3612,7 +4692,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Rapid Strike",
@@ -3628,7 +4714,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Strength Before Death",
@@ -3644,7 +4736,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -3667,7 +4765,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Breath of the Dragon",
@@ -3681,7 +4785,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Wings Unfurled",
@@ -3695,7 +4805,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aspect of the Wyrm",
@@ -3709,7 +4825,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Ascendant Aspect",
@@ -3723,7 +4845,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "FTD"
@@ -3774,7 +4902,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -3803,7 +4937,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Wholeness of Body",
@@ -3819,7 +4959,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tranquility",
@@ -3835,7 +4981,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Quivering Palm",
@@ -3851,7 +5003,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -3881,7 +5039,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shadow Step",
@@ -3897,7 +5061,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Cloak of Shadows",
@@ -3913,7 +5083,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Opportunist",
@@ -3929,7 +5105,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -3958,7 +5140,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Drunken Technique",
@@ -3974,7 +5162,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tipsy Sway",
@@ -3990,7 +5184,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Drunkard's Luck",
@@ -4006,7 +5206,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Intoxicated Frenzy",
@@ -4022,7 +5228,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -4062,7 +5274,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "One with the Blade",
@@ -4078,7 +5296,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sharpen the Blade",
@@ -4094,7 +5318,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Unerring Accuracy",
@@ -4110,7 +5340,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -4139,7 +5375,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Searing Arc Strike",
@@ -4155,7 +5397,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Searing Sunburst",
@@ -4171,7 +5419,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sun Shield",
@@ -4187,7 +5441,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -4217,7 +5477,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Nature's Wrath",
@@ -4233,7 +5499,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Turn the Faithless",
@@ -4251,7 +5523,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aura of Warding",
@@ -4268,7 +5546,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Undying Sentinel",
@@ -4285,7 +5569,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Elder Champion",
@@ -4306,7 +5596,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -4335,7 +5631,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Sacred Weapon",
@@ -4351,7 +5653,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Turn the Unholy",
@@ -4367,7 +5675,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aura of Devotion",
@@ -4383,7 +5697,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Purity of Spirit",
@@ -4399,7 +5719,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Holy Nimbus",
@@ -4415,7 +5741,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -4438,7 +5770,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Draconic Might",
@@ -4452,7 +5790,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aura of the Dragon",
@@ -4466,7 +5810,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Draconic Resilience",
@@ -4480,7 +5830,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Dragon Knight",
@@ -4494,7 +5850,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "FTD"
@@ -4523,7 +5885,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aura of Conquest",
@@ -4539,7 +5907,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Scared Earth",
@@ -4555,7 +5929,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Invincible Conqueror",
@@ -4571,7 +5951,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -4600,7 +5986,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aura of the Guardian",
@@ -4616,7 +6008,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Protective Spirit",
@@ -4632,7 +6030,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Emissary of Redemption",
@@ -4648,7 +6052,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -4677,7 +6087,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aura of the Sentinel",
@@ -4693,7 +6109,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Vigilant Rebuke",
@@ -4709,7 +6131,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mortal Bulwark",
@@ -4725,7 +6153,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -4748,7 +6182,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Rebuke the Violent",
@@ -4762,7 +6202,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Aura of the Guardian",
@@ -4776,7 +6222,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Protective Spirit",
@@ -4790,7 +6242,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Emissary of Redemption",
@@ -4804,7 +6262,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "MTF"
@@ -4834,7 +6298,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Abjure Enemy",
@@ -4852,7 +6322,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Channel Divinity: Vow of Enmity",
@@ -4868,7 +6344,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Relentless Avenger",
@@ -4884,7 +6366,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Soul of Vengeance",
@@ -4900,7 +6388,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Avenging Angel",
@@ -4919,7 +6413,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -4952,7 +6452,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Exceptional Training",
@@ -4968,7 +6474,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Bestial Fury",
@@ -4984,7 +6496,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Share Spells",
@@ -5000,7 +6518,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -5023,7 +6547,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Bond of Fang and Scale",
@@ -5037,7 +6567,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Drake's Breath",
@@ -5051,7 +6587,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Perfected Bond",
@@ -5065,7 +6607,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Reflexive Resistance",
@@ -5079,7 +6627,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "FTD"
@@ -5108,7 +6662,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fey Wanderer Magic",
@@ -5124,7 +6684,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Otherworldly Glamour",
@@ -5140,7 +6706,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Beguiling Twist",
@@ -5156,7 +6728,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fey Reinforcements",
@@ -5172,7 +6750,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Misty Wanderer",
@@ -5188,7 +6772,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -5217,7 +6807,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Planar Warrior",
@@ -5233,7 +6829,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Ethereal Step",
@@ -5249,7 +6851,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Distant Strike",
@@ -5265,7 +6873,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spectral Defense",
@@ -5281,7 +6895,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -5310,7 +6930,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Defensive Tactics",
@@ -5326,7 +6952,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Multiattack",
@@ -5342,7 +6974,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Superior Hunter's Defense",
@@ -5358,7 +6996,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -5387,7 +7031,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Slayer's Prey",
@@ -5403,7 +7053,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Supernatural Defense",
@@ -5419,7 +7075,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Magic-User's Nemesis",
@@ -5435,7 +7097,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Slayer's Counter",
@@ -5451,7 +7119,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -5480,7 +7154,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Gathered Swarm",
@@ -5496,7 +7176,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Writhing Tide",
@@ -5512,7 +7198,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mighty Swarm",
@@ -5528,7 +7220,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Swarming Dispersal",
@@ -5544,7 +7242,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -5578,7 +7282,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mage Hand Legerdemain",
@@ -5599,7 +7309,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Magical Ambush",
@@ -5615,7 +7331,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Versatile Trickster",
@@ -5631,7 +7353,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spell Thief",
@@ -5647,7 +7375,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -5677,7 +7411,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Assassinate",
@@ -5693,7 +7433,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infiltration Expertise",
@@ -5709,7 +7455,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Impostor",
@@ -5725,7 +7477,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Death Strike",
@@ -5741,7 +7499,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -5770,7 +7534,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Eye for Detail",
@@ -5786,7 +7556,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Insightful Fighting",
@@ -5802,7 +7578,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Steady Eye",
@@ -5818,7 +7600,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Unerring Eye",
@@ -5834,7 +7622,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Eye for Weakness",
@@ -5850,7 +7644,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -5879,7 +7679,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Master of Tactics",
@@ -5895,7 +7701,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Insightful Manipulator",
@@ -5911,7 +7723,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Misdirection",
@@ -5927,7 +7745,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Soul of Deceit",
@@ -5943,7 +7767,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -5972,7 +7802,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Survivalist",
@@ -5988,7 +7824,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Superior Mobility",
@@ -6004,7 +7846,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Ambush Master",
@@ -6020,7 +7868,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sudden Strike",
@@ -6036,7 +7890,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -6065,7 +7925,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Rakish Audacity",
@@ -6081,7 +7947,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Panache",
@@ -6097,7 +7969,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Elegant Maneuver",
@@ -6113,7 +7991,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Duelist's Defense",
@@ -6129,7 +8013,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -6158,7 +8048,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Second-Story Work",
@@ -6174,7 +8070,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Supreme Sneak",
@@ -6190,7 +8092,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Use Magic Device",
@@ -6206,7 +8114,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Thief's Reflexes",
@@ -6222,7 +8136,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -6251,7 +8171,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Psionic Spells",
@@ -6267,7 +8193,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Psychic Deflection",
@@ -6283,7 +8215,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Revelation in Flesh",
@@ -6299,7 +8237,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Warping Implosion",
@@ -6315,7 +8259,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -6344,7 +8294,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Restore Balance",
@@ -6360,7 +8316,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Bastion of Law",
@@ -6376,7 +8338,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Trance of Order",
@@ -6392,7 +8360,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Clockwork Cavalcade",
@@ -6408,7 +8382,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -6437,7 +8417,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Favored by the Gods",
@@ -6453,7 +8439,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Empowered Healing",
@@ -6469,7 +8461,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Otherworldly Wings",
@@ -6485,7 +8483,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Unnerving Defense",
@@ -6501,7 +8505,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -6572,7 +8582,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Draconic Resilience",
@@ -6588,7 +8604,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Elemental Affinity",
@@ -6604,7 +8626,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Dragon Wings",
@@ -6620,7 +8648,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Draconic Presence",
@@ -6636,7 +8670,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -6665,7 +8705,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Strength of the Grave",
@@ -6681,7 +8727,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hound of Ill Omen",
@@ -6697,7 +8749,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shadow Walk",
@@ -6713,7 +8771,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Umbral Form",
@@ -6729,7 +8793,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -6758,7 +8828,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tempestuous Magic",
@@ -6774,7 +8850,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Heart of the Storm",
@@ -6790,7 +8872,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Storm Guide",
@@ -6806,7 +8894,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Storm's Fury",
@@ -6822,7 +8916,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Wind Soul",
@@ -6838,7 +8938,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -6920,7 +9026,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tides of Chaos",
@@ -6937,7 +9049,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Bend Luck",
@@ -6954,7 +9072,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Controlled Chaos",
@@ -6970,7 +9094,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spell Bombardment",
@@ -6986,7 +9116,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -7011,7 +9147,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "level": 6,
@@ -7025,7 +9167,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "level": 10,
@@ -7039,7 +9187,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "level": 14,
@@ -7053,7 +9207,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -7082,7 +9242,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Dark One's Own Luck",
@@ -7098,7 +9264,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fiendish Resilience",
@@ -7114,7 +9286,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hurl Through Hell",
@@ -7130,7 +9308,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -7160,7 +9344,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Entropic Ward",
@@ -7176,7 +9366,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Thought Shield",
@@ -7192,7 +9388,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Create Thrall",
@@ -7208,7 +9410,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -7233,7 +9441,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "level": 1,
@@ -7247,7 +9461,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "level": 6,
@@ -7261,7 +9481,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "level": 10,
@@ -7275,7 +9501,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "level": 14,
@@ -7289,7 +9521,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -7318,7 +9556,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Healing Light",
@@ -7334,7 +9578,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Radiant Soul",
@@ -7350,7 +9600,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Celestial Resilience",
@@ -7366,7 +9622,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Searing Vengeance",
@@ -7382,7 +9644,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -7411,7 +9679,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tentacle of the Deep",
@@ -7427,7 +9701,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Gift of the Sea",
@@ -7443,7 +9723,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Oceanic Soul",
@@ -7459,7 +9745,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Guardian Coil",
@@ -7475,7 +9767,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Grasping Tentacles",
@@ -7491,7 +9789,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -7520,7 +9824,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Genie's Vessel",
@@ -7536,7 +9846,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Elemental Gift",
@@ -7552,7 +9868,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sanctuary Vessel",
@@ -7568,7 +9890,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Limited Wish",
@@ -7584,7 +9912,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -7607,7 +9941,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Grave Touched",
@@ -7621,7 +9961,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Necrotic Husk",
@@ -7635,7 +9981,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spirit Projection",
@@ -7649,7 +10001,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "VRGR"
@@ -7679,7 +10037,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Undying Nature",
@@ -7695,7 +10059,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Beyond the Grave",
@@ -7711,7 +10081,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Indestructible Life",
@@ -7727,7 +10103,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Undying Nature",
@@ -7743,7 +10125,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "SCAG"
@@ -7773,7 +10161,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Ward",
@@ -7789,7 +10183,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Projected Ward",
@@ -7805,7 +10205,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved Abjuration",
@@ -7821,7 +10227,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spell Resistance",
@@ -7837,7 +10249,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -7866,7 +10284,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Training in War and Song",
@@ -7882,7 +10306,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Bladesong",
@@ -7898,7 +10328,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Extra Attack",
@@ -7914,7 +10350,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Song of Defense",
@@ -7930,7 +10372,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Song of Victory",
@@ -7946,7 +10394,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"
@@ -7975,7 +10429,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Temporal Awareness",
@@ -7991,7 +10451,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Momentary Stasis",
@@ -8007,7 +10473,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Abeyance",
@@ -8023,7 +10495,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Convergent Future",
@@ -8039,7 +10517,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -8069,7 +10553,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Minor Conjuration",
@@ -8085,7 +10575,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Benign Transportation",
@@ -8101,7 +10597,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Focused Conjuration",
@@ -8117,7 +10619,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Durable Summons",
@@ -8133,7 +10641,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -8163,7 +10677,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Portent",
@@ -8179,7 +10699,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Expert Divination",
@@ -8195,7 +10721,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Third Eye",
@@ -8211,7 +10743,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Greater Portent",
@@ -8227,7 +10765,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -8257,7 +10801,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hypnotic Gaze",
@@ -8273,7 +10823,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Instinctive Charm",
@@ -8289,7 +10845,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Split Enchantment",
@@ -8305,7 +10867,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Alter Memories",
@@ -8321,7 +10889,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -8350,7 +10924,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sculpt Spells",
@@ -8366,7 +10946,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Potent Cantrip",
@@ -8382,7 +10968,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Empowered Evocation",
@@ -8398,7 +10990,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Overchannel",
@@ -8414,7 +11012,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -8443,7 +11047,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Gravity Well",
@@ -8459,7 +11069,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Violent Attraction",
@@ -8475,7 +11091,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Gravity Sinkhole",
@@ -8491,7 +11113,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -8521,7 +11149,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Improved Minor Illusion",
@@ -8537,7 +11171,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Illusory Self",
@@ -8553,7 +11193,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Illusory Self",
@@ -8569,7 +11215,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Illusory Reality",
@@ -8585,7 +11237,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -8615,7 +11273,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Grim Harvest",
@@ -8631,7 +11295,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Undead Thralls",
@@ -8647,7 +11317,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Inured to Undeath",
@@ -8663,7 +11339,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Command Undead",
@@ -8679,7 +11361,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -8708,7 +11396,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Awakened Spellbook",
@@ -8724,7 +11418,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Manifest Mind",
@@ -8740,7 +11440,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Master Scrivian",
@@ -8756,7 +11462,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "One with Words",
@@ -8772,7 +11484,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "TCE"
@@ -8802,7 +11520,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Minor Alchemy",
@@ -8818,7 +11542,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Transmuter's Stone",
@@ -8834,7 +11564,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shapechanger",
@@ -8850,7 +11586,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Master Transmuter",
@@ -8866,7 +11608,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "PHB"
@@ -8895,7 +11643,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tactical Wit",
@@ -8911,7 +11665,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Power Surge",
@@ -8927,7 +11687,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Durable Magic",
@@ -8943,7 +11709,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Deflecting Shroud",
@@ -8959,7 +11731,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "source": "XGE"

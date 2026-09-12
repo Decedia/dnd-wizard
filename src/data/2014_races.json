@@ -13,15 +13,21 @@
         {
           "name": "Darkvision",
           "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Long-Limbed",
@@ -34,7 +40,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Powerful Build",
@@ -47,7 +59,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sneaky",
@@ -60,7 +78,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Surprise Attack",
@@ -73,7 +97,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -107,7 +137,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shapechanger",
@@ -120,7 +156,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -148,15 +190,21 @@
         {
           "name": "Darkvision",
           "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Gnome Cunning",
@@ -169,7 +217,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Stone Camouflage",
@@ -182,7 +236,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Svirfneblin Magic",
@@ -195,7 +255,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -218,15 +284,21 @@
         {
           "name": "Darkvision",
           "description": "Thanks to your vampiric heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Deathless Nature",
@@ -239,7 +311,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Spider Climb",
@@ -252,7 +330,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Vampiric Bite",
@@ -265,7 +349,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -298,7 +388,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Breath Weapon",
@@ -311,7 +407,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Damage Resistance",
@@ -324,7 +426,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -355,7 +463,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Breath Weapon",
@@ -368,7 +482,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Damage Resistance",
@@ -381,7 +501,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Chromatic Breath Weapon",
@@ -394,7 +520,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -428,7 +560,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Breath Weapon",
@@ -441,7 +579,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Damage Resistance",
@@ -454,7 +598,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Psionic Mind",
@@ -467,7 +617,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Gem Flight",
@@ -480,7 +636,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -514,7 +676,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Breath Weapon",
@@ -527,7 +695,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Damage Resistance",
@@ -540,7 +714,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Metallic Breath Weapon",
@@ -553,7 +733,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -580,15 +766,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Dwarven Resilience",
@@ -601,20 +793,32 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Stonecunning",
           "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "Double proficiency on History checks related to stonework",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": true,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Dwarven Combat Training",
@@ -627,7 +831,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tool Proficiency",
@@ -640,7 +850,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -665,15 +881,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Dwarven Resilience",
@@ -686,7 +908,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Dwarven Combat Training",
@@ -699,7 +927,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tool Proficiency",
@@ -712,20 +946,32 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Stonecunning",
           "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "Double proficiency on History checks related to stonework",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": true,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Dwarven Toughness",
@@ -738,7 +984,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -763,15 +1015,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Dwarven Resilience",
@@ -784,7 +1042,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Dwarven Combat Training",
@@ -797,7 +1061,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tool Proficiency",
@@ -810,20 +1080,32 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Stonecunning",
           "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "Double proficiency on History checks related to stonework",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": true,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Dwarven Armor Training",
@@ -836,7 +1118,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -859,15 +1147,21 @@
         {
           "name": "Darkvision",
           "description": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Keen Senses",
@@ -880,7 +1174,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fey Ancestry",
@@ -893,20 +1193,32 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Trance",
           "description": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. The word for this meditation is \"trance\", a word borrowed from the human language. While meditating in this way, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "Rest with 4 hours of meditation instead of 8 hours sleep",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Eladrin Season",
@@ -919,7 +1231,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Fey Step",
@@ -932,7 +1250,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -985,15 +1309,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1006,20 +1336,32 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Trance",
           "description": "Elves do not need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting this way, you gain the same benefit that a human does from 8 hours of sleep.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "Rest with 4 hours of meditation instead of 8 hours sleep",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Keen Senses",
@@ -1032,7 +1374,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1063,7 +1411,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hidden Step",
@@ -1076,7 +1430,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Powerful Build",
@@ -1089,7 +1449,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Speech of Beast and Leaf",
@@ -1102,7 +1468,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1137,7 +1509,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Psychic Resilience",
@@ -1150,7 +1528,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Githyanki Psionics",
@@ -1163,7 +1547,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1211,7 +1601,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Psychic Resilience",
@@ -1224,7 +1620,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Githzerai Psionics",
@@ -1237,7 +1639,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1264,15 +1672,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Gnome Cunning",
@@ -1285,7 +1699,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1310,15 +1730,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Gnome Cunning",
@@ -1331,7 +1757,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Natural Illusionist",
@@ -1344,7 +1776,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Speak with Small Beasts",
@@ -1357,7 +1795,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1382,15 +1826,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Gnome Cunning",
@@ -1403,7 +1853,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Artificer's Lore",
@@ -1416,7 +1872,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Tinker",
@@ -1429,7 +1891,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1452,15 +1920,21 @@
         {
           "name": "Darkvision",
           "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fury of the Small",
@@ -1473,7 +1947,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Nimble Escape",
@@ -1486,7 +1966,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1513,15 +1999,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1534,7 +2026,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -1547,7 +2045,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1571,15 +2075,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1592,7 +2102,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -1605,7 +2121,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "High Elf Heritage",
@@ -1618,7 +2140,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1651,15 +2179,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1672,7 +2206,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -1685,7 +2225,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Wood Elf Heritage",
@@ -1698,7 +2244,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1722,15 +2274,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1743,7 +2301,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -1756,7 +2320,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Drow Heritage",
@@ -1769,7 +2339,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1793,15 +2369,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1814,7 +2396,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -1827,7 +2415,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Moon Elf Heritage",
@@ -1840,7 +2434,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1864,15 +2464,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1885,7 +2491,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -1898,7 +2510,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sun Elf Heritage",
@@ -1911,7 +2529,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -1935,15 +2559,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -1956,7 +2586,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -1969,7 +2605,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sea Elf Heritage",
@@ -1982,7 +2624,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2006,15 +2654,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -2027,7 +2681,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -2040,7 +2700,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shadar-kai Heritage",
@@ -2053,7 +2719,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2077,15 +2749,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Fey Ancestry",
@@ -2098,7 +2776,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Skill Versatility",
@@ -2111,7 +2795,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Eladrin Heritage",
@@ -2124,7 +2814,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2149,15 +2845,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Savage Attacks",
@@ -2170,7 +2872,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Relentless Endurance",
@@ -2183,7 +2891,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Menacing",
@@ -2196,7 +2910,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2226,7 +2946,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Halfling Nimbleness",
@@ -2239,7 +2965,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Lucky",
@@ -2252,7 +2984,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2283,7 +3021,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Halfling Nimbleness",
@@ -2296,7 +3040,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Lucky",
@@ -2309,7 +3059,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Naturally Stealthy",
@@ -2322,7 +3078,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2353,7 +3115,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Halfling Nimbleness",
@@ -2366,7 +3134,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Lucky",
@@ -2379,7 +3153,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Stout Resilience",
@@ -2392,7 +3172,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2423,7 +3209,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Halfling Nimbleness",
@@ -2436,7 +3228,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Lucky",
@@ -2449,7 +3247,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Silent Speech",
@@ -2462,7 +3266,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2493,7 +3303,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hex Magic",
@@ -2506,7 +3322,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Eerie Token",
@@ -2519,7 +3341,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2544,15 +3372,21 @@
         {
           "name": "Darkvision",
           "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Martial Training",
@@ -2565,7 +3399,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Saving Face",
@@ -2578,7 +3418,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2616,7 +3462,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2646,7 +3498,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Kenku Training",
@@ -2659,7 +3517,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Mimicry",
@@ -2672,7 +3536,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2706,7 +3576,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Cunning Artisan",
@@ -2719,7 +3595,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Hold Breath",
@@ -2732,7 +3614,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Natural Armor",
@@ -2745,7 +3633,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2771,15 +3665,21 @@
         {
           "name": "Darkvision",
           "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Menacing",
@@ -2792,7 +3692,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Powerful Build",
@@ -2805,7 +3711,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Relentless Endurance",
@@ -2818,7 +3730,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2852,7 +3770,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Knowledge from a Past Life",
@@ -2865,7 +3789,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Reborn Resilience",
@@ -2878,7 +3808,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2903,15 +3839,21 @@
         {
           "name": "Darkvision",
           "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Keen Senses",
@@ -2924,7 +3866,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Shifting",
@@ -2937,7 +3885,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -2992,15 +3946,21 @@
         {
           "name": "Darkvision",
           "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Feline Agility",
@@ -3013,7 +3973,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Cat's Claws",
@@ -3026,7 +3992,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Cat's Talent",
@@ -3039,7 +4011,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3066,15 +4044,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3087,7 +4071,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy",
@@ -3100,7 +4090,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3125,15 +4121,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3146,7 +4148,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Asmodeus)",
@@ -3159,7 +4167,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3184,15 +4198,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3205,7 +4225,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Baalzebul)",
@@ -3218,7 +4244,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3243,15 +4275,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3264,7 +4302,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Zariel)",
@@ -3277,7 +4321,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3302,15 +4352,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3323,7 +4379,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Dispater)",
@@ -3336,7 +4398,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3361,15 +4429,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3382,7 +4456,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Fierna)",
@@ -3395,7 +4475,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3420,15 +4506,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3441,7 +4533,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Glasya)",
@@ -3454,7 +4552,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3479,15 +4583,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3500,7 +4610,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Levistus)",
@@ -3513,7 +4629,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3538,15 +4660,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3559,7 +4687,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Mammon)",
@@ -3572,7 +4706,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3597,15 +4737,21 @@
         {
           "name": "Darkvision",
           "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": null,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
-          "duration": null,
+          "duration": "Permanent",
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false
         },
         {
           "name": "Hellish Resistance",
@@ -3618,7 +4764,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Infernal Legacy (Mephistopheles)",
@@ -3631,7 +4783,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [
@@ -3663,7 +4821,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Control Air and Water",
@@ -3676,7 +4840,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Emissary of the Sea",
@@ -3689,7 +4859,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Guardians of the Depths",
@@ -3702,7 +4878,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "languages": [

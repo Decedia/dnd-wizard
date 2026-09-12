@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles, CrownIcon as Crown, BowArrowIcon as BowArrowIcon, ShieldIcon as ShieldIcon, SwordIcon as SwordIcon, BattleAxeIcon as BattleAxeIcon, DaggerIcon as DaggerIcon, MagicWandIcon as MagicWandIcon, HealingIcon as HealingIcon, MusicNotesIcon as MusicNotesIcon, FlameIcon as Flame, SkullIcon as Skull } from "@/components/icons";
+import { StarIcon as Star, XIcon as X, PlusIcon as Plus, ClockIcon as Clock, LightningBoltIcon as LightningBolt, ShieldCheckIcon as ShieldCheck, SparklesIcon as Sparkles, CrownIcon as Crown, BowArrowIcon as BowArrowIcon, ShieldIcon as ShieldIcon, SwordIcon as SwordIcon, BattleAxeIcon as BattleAxeIcon, DaggerIcon as DaggerIcon, MagicWandIcon as MagicWandIcon, HealingIcon as HealingIcon, MusicNotesIcon as MusicNotesIcon, FlameIcon as Flame, SkullIcon as Skull, EyeIcon } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
 import { getFeatureValue } from "@/lib/storage";
@@ -20,6 +20,7 @@ interface FeaturesTraitsSectionProps {
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
+  const [showHiddenFeatures, setShowHiddenFeatures] = useState(false);
   const feats = useMemo(() => getStaticFeats([], character.ruleset), [character.ruleset]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
   const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
@@ -137,6 +138,15 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     });
   }, [character.features]);
 
+  const visibleFeatures = useMemo(() => {
+    if (showHiddenFeatures) return sortedFeatures;
+    return sortedFeatures.filter(f => (f as any).showInSheet !== false);
+  }, [sortedFeatures, showHiddenFeatures]);
+
+  const hiddenCount = useMemo(() => {
+    return character.features.filter(f => (f as any).showInSheet === false).length;
+  }, [character.features]);
+
   return (
     <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
       <div className="space-y-3">
@@ -153,7 +163,21 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             </div>
           </div>
         )}
-         {sortedFeatures.map((feature) => {
+        {hiddenCount > 0 && (
+          <div className="flex items-center justify-between px-1">
+            <span className="text-xs text-[var(--color-text-secondary)]">{hiddenCount} feature{hiddenCount !== 1 ? 's' : ''} hidden</span>
+            <button
+              type="button"
+              onClick={() => setShowHiddenFeatures(!showHiddenFeatures)}
+              className="text-xs text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] flex items-center gap-1"
+              title={showHiddenFeatures ? "Hide reference features" : "Show all features including reference"}
+            >
+              <EyeIcon className="h-4 w-4" />
+              {showHiddenFeatures ? "Show default only" : "Show all"}
+            </button>
+          </div>
+        )}
+         {visibleFeatures.map((feature) => {
            const isLocked = feature.locked === true;
            const borderColor = feature.source === "race" ? "#6b46c1" : feature.source === "subclass" ? "#276749" : "#2b6cb0";
            return (
@@ -196,7 +220,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                   />
                 </>
               ) : (
-                <div>
+                <div style={(feature as any).showInSheet === false ? { opacity: 0.6 } : undefined}>
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2 flex-1">
                       {(() => {
@@ -214,92 +238,102 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                                 return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
                               })()}
                                {feature.name}
+                               {(feature as any).showInSheet === false && (
+                                 <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
+                               )}
                                {feature.value && (
                                  <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
                                    {feature.value}
                                  </span>
                                )}
-                             </button>
-                           );
-                         }
-                         // For features without matched feat data (custom or class/race features)
-                         return (
-                           <>
-                             {feature.source && feature.source !== "custom" && (
-                               <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
-                             )}
-                              {(() => {
-                                const FeatureIcon = getFeatureIcon(feature.name, feature.source);
-                                return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
-                              })()}
-                              {feature.name}
-                              {feature.value && (
-                                <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
-                                  {feature.value}
-                                </span>
-                              )}
-                           </>
-                         );
-                       })()}
-                      {isFeatureUsable(feature) && (character.featuresUsedThisTurn || []).includes(feature.id) && (
-                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      {feature.name && (
-                        <>
-                          {feature.actionType && (
-                            <button
-                              type="button"
-                              onClick={() => toggleActionType(feature.id)}
-                              className="shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors bg-[var(--color-info-100)] text-[var(--color-info-700)] border border-[var(--color-info-300)] hover:bg-[var(--color-info-200)]"
-                              title={`Action type: ${getActionTypeLabel(feature.actionType)}. Click to change.`}
-                            >
-                              {getActionTypeIcon(feature.actionType)}
-                              <span>{getActionTypeLabel(feature.actionType)}</span>
-                            </button>
-                          )}
-                          {isFeatureUsable(feature) && (
-                            <>
-                              {(character.featuresUsedThisTurn || []).includes(feature.id) && (
-                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
-                              )}
-                              <button
-                                type="button"
-                                onClick={() => toggleFeatureUsed(feature.id)}
-                                className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                                  (character.featuresUsedThisTurn || []).includes(feature.id)
-                                    ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
-                                    : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                                }`}
-                              >
-                                <Clock className="h-4 w-4" />
-                                {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
                               </button>
+                            );
+                          }
+                          // For features without matched feat data (custom or class/race features)
+                          return (
+                            <>
+                              {feature.source && feature.source !== "custom" && (
+                                <SourceBadge source={feature.source === "subclass" ? "TCE" : feature.source === "class" ? "PHB" : feature.source === "race" ? "PHB" : feature.source} size="sm" />
+                              )}
+                               {(() => {
+                                 const FeatureIcon = getFeatureIcon(feature.name, feature.source);
+                                 return FeatureIcon ? <FeatureIcon className="h-4 w-4 shrink-0" /> : null;
+                               })()}
+                               {feature.name}
+                               {(feature as any).showInSheet === false && (
+                                 <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
+                               )}
+                               {feature.value && (
+                                 <span className="text-[10px] font-bold text-[var(--color-info-700)] bg-[var(--color-info-100)] border border-[var(--color-info-300)] px-1.5 py-0.5 rounded">
+                                   {feature.value}
+                                 </span>
+                               )}
                             </>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  {showDescriptions && feature.description && (
-                    <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
-                  )}
-                  <div className="mt-2">
-                    <FeatureMechanicsChips
-                      featureType={(feature as any).featureType}
-                      actionType={feature.actionType}
-                      uses={(feature as any).uses}
-                      requirement={(feature as any).requirement}
-                      duration={(feature as any).duration}
-                      endsIf={(feature as any).endsIf}
-                      effect={(feature as any).effect}
-                      onUse={(feature as any).onUse}
-                      scaling={(feature as any).scaling}
-                    />
-                  </div>
-                </div>
-              )}
+                          );
+                        })()}
+                       {isFeatureUsable(feature) && (character.featuresUsedThisTurn || []).includes(feature.id) && (
+                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
+                       )}
+                     </div>
+                     <div className="flex items-center gap-1.5">
+                       {feature.name && (
+                         <>
+                           {feature.actionType && (
+                             <button
+                               type="button"
+                               onClick={() => toggleActionType(feature.id)}
+                               className="shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors bg-[var(--color-info-100)] text-[var(--color-info-700)] border border-[var(--color-info-300)] hover:bg-[var(--color-info-200)]"
+                               title={`Action type: ${getActionTypeLabel(feature.actionType)}. Click to change.`}
+                             >
+                               {getActionTypeIcon(feature.actionType)}
+                               <span>{getActionTypeLabel(feature.actionType)}</span>
+                             </button>
+                           )}
+                           {isFeatureUsable(feature) && (
+                             <>
+                               {(character.featuresUsedThisTurn || []).includes(feature.id) && (
+                                 <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">USED</span>
+                               )}
+                               <button
+                                 type="button"
+                                 onClick={() => toggleFeatureUsed(feature.id)}
+                                 className={`shrink-0 flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                                   (character.featuresUsedThisTurn || []).includes(feature.id)
+                                     ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                                     : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                                 }`}
+                               >
+                                 <Clock className="h-4 w-4" />
+                                 {(character.featuresUsedThisTurn || []).includes(feature.id) ? "Used" : "Use"}
+                               </button>
+                             </>
+                           )}
+                         </>
+                       )}
+                     </div>
+                   </div>
+                   {showDescriptions && feature.description && (
+                     <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
+                   )}
+                   {(feature as any).showInSheet !== false && (
+                     <div className="mt-2">
+                       <FeatureMechanicsChips
+                         summary={(feature as any).summary}
+                         featureType={(feature as any).featureType}
+                         actionType={feature.actionType}
+                         uses={(feature as any).uses}
+                         requirement={(feature as any).requirement}
+                         duration={(feature as any).duration}
+                         endsIf={(feature as any).endsIf}
+                         effect={(feature as any).effect}
+                         onUse={(feature as any).onUse}
+                         scaling={(feature as any).scaling}
+                         showInSheet={(feature as any).showInSheet}
+                       />
+                     </div>
+                   )}
+                 </div>
+               )}
             </div>
           );
         })}

@@ -83,16 +83,21 @@
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": {
-            "total": "see rage count table",
-            "recharge": "Long Rest",
-            "current": 0
+            "total": "see class table",
+            "recharge": "Long Rest"
           },
           "requirement": "Must not be wearing heavy armor",
           "duration": "1 minute",
-          "endsIf": "You are knocked unconscious, or your turn ends without you attacking a hostile creature or taking damage since your last turn",
+          "endsIf": "Knocked unconscious, or turn ends without attacking or taking damage",
           "effect": "Enter a furious battle state",
-          "onUse": "Gain advantage on STR checks and saves, bonus damage on STR melee attacks, resistance to bludgeoning/piercing/slashing damage",
-          "scaling": "Rage damage bonus increases at levels 9 (+3) and 16 (+4)"
+          "onUse": "Advantage on STR checks/saves, bonus melee damage, resistance to bludgeoning/piercing/slashing",
+          "scaling": "Rage damage +2 at level 1, +3 at level 9, +4 at level 16",
+          "summary": "Enter a rage for advantage, damage bonus, and damage resistance",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Unarmored Defense",
@@ -106,7 +111,13 @@
           "endsIf": "Immediately ends if you put on any armor",
           "effect": "Calculate AC without armor",
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": "Calculate AC without armor",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -117,29 +128,44 @@
               "name": "Rage",
               "description": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor:\n- You have advantage on Strength checks and Strength saving throws.\n- When you make a melee weapon Attack using Strength, you gain a +2 bonus to the damage roll. This bonus increases as you level.\n- You have Resistance to bludgeoning, piercing, and slashing damage.\nIf you are able to cast Spells, you can't cast them or concentrate on them while raging.\nYour rage lasts for 1 minute. It ends early if you are knocked Unconscious or if Your Turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on Your Turn as a Bonus Action.\nOnce you have raged the maximum number of times for your barbarian level, you must finish a Long Rest before you can rage again. You may rage 2 times at 1st level, 3 at 3rd, 4 at 6th, 5 at 12th, and 6 at 17th.",
               "type": "feature",
-              "featureType": null,
-              "actionType": null,
-              "uses": null,
-              "requirement": null,
-              "duration": null,
-              "endsIf": null,
+              "featureType": "Active",
+              "actionType": "Bonus Action",
+              "uses": {
+                "total": "see class table",
+                "recharge": "Long Rest"
+              },
+              "requirement": "Must not be wearing heavy armor",
+              "duration": "1 minute",
+              "endsIf": "Knocked unconscious, or turn ends without attacking or taking damage",
               "effect": null,
-              "onUse": null,
-              "scaling": null
+              "onUse": "Advantage on STR checks/saves, bonus melee damage, resistance to bludgeoning/piercing/slashing",
+              "scaling": "Rage damage +2 at level 1, +3 at level 9, +4 at level 16",
+              "summary": "Enter a rage for advantage, damage bonus, and damage resistance",
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Unarmored Defense",
               "description": "While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Passive",
               "actionType": null,
               "uses": null,
-              "requirement": null,
-              "duration": null,
-              "endsIf": null,
+              "requirement": "Must not be wearing armor",
+              "duration": "Permanent while unarmored",
+              "endsIf": "Immediately ends if you put on any armor",
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": "Calculate AC without armor",
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -160,7 +186,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Danger Sense",
@@ -174,7 +206,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -195,7 +233,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -216,7 +260,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -237,7 +287,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Fast Movement",
@@ -251,7 +307,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -272,7 +334,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -293,7 +361,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -314,7 +388,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -335,7 +415,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -356,7 +442,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Primal Knowledge",
@@ -371,7 +463,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -392,7 +490,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -413,7 +517,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -434,7 +544,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -455,7 +571,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -476,7 +598,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -497,7 +625,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -518,7 +652,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -539,7 +679,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -560,7 +706,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -581,7 +733,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -786,7 +944,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Bardic Inspiration (d6)",
@@ -800,7 +964,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -819,7 +989,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Bardic Inspiration (d6)",
@@ -833,7 +1009,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -856,7 +1038,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Song of Rest (d6)",
@@ -870,7 +1058,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -918,7 +1112,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Bard College",
@@ -932,7 +1132,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -956,7 +1162,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -980,7 +1192,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Font of Inspiration",
@@ -994,7 +1212,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -1019,7 +1243,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Bard College feature",
@@ -1033,7 +1263,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -1069,7 +1305,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -1095,7 +1337,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -1147,7 +1395,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Bardic Inspiration (d10)",
@@ -1161,7 +1415,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Magical Secrets",
@@ -1382,7 +1642,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -1422,7 +1688,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -1450,7 +1722,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -1754,7 +2032,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Bard College feature",
@@ -1768,7 +2052,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -1797,7 +2087,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -1827,7 +2123,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -1857,7 +2159,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2199,7 +2507,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2230,7 +2544,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -2261,7 +2581,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2456,7 +2782,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Divine Domain",
@@ -2470,7 +2802,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Domain Spells",
@@ -2484,7 +2822,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -2503,7 +2847,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Divine Domain",
@@ -2517,7 +2867,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Domain Spells",
@@ -2531,7 +2887,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2554,7 +2916,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Channel Divinity: Turn Undead",
@@ -2568,7 +2936,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Divine Domain feature",
@@ -2582,7 +2956,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2605,7 +2985,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2629,7 +3015,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -2653,7 +3045,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Destroy Undead (CR 1/2 or below)",
@@ -2667,7 +3065,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2692,7 +3096,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Divine Domain feature",
@@ -2706,7 +3116,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2731,7 +3147,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2757,7 +3179,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Destroy Undead (CR 1 or below)",
@@ -2771,7 +3199,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Divine Domain feature",
@@ -2785,7 +3219,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -2811,7 +3251,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2838,7 +3284,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2865,7 +3317,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2893,7 +3351,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -2935,7 +3399,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -2979,7 +3449,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -3009,7 +3485,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Divine Domain feature",
@@ -3023,7 +3505,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3054,7 +3542,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3085,7 +3579,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -3116,7 +3616,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3310,7 +3816,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Druidic",
@@ -3324,7 +3836,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -3343,7 +3861,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Druidic",
@@ -3357,7 +3881,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3380,7 +3910,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Druid Circle",
@@ -3394,7 +3930,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3426,7 +3968,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Ability Score Improvement",
@@ -3440,7 +3988,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -3474,7 +4028,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3510,7 +4070,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Ability Score Improvement",
@@ -3524,7 +4090,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -3562,7 +4134,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3602,7 +4180,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -3644,7 +4228,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3688,7 +4278,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -3734,7 +4330,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Beast Spells",
@@ -3748,7 +4350,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3779,7 +4387,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -3810,7 +4424,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -3999,7 +4619,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Second Wind",
@@ -4009,15 +4635,20 @@
           "actionType": "Bonus Action",
           "uses": {
             "total": 1,
-            "recharge": "Short Rest",
-            "current": 1
+            "recharge": "Short Rest"
           },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": "Recover from injuries mid-combat",
           "onUse": "Regain 1d10 + Fighter level HP",
-          "scaling": null
+          "scaling": null,
+          "summary": "Heal yourself with a bonus action once per short rest",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -4053,21 +4684,36 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Second Wind",
               "description": "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again.",
               "type": "feature",
-              "featureType": null,
-              "actionType": null,
-              "uses": null,
+              "featureType": "Active",
+              "actionType": "Bonus Action",
+              "uses": {
+                "total": 1,
+                "recharge": "Short Rest"
+              },
               "requirement": null,
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
-              "scaling": null
+              "onUse": "Regain 1d10 + Fighter level HP",
+              "scaling": null,
+              "summary": "Heal yourself with a bonus action once per short rest",
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4088,7 +4734,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4109,7 +4761,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4130,7 +4788,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4151,7 +4815,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4172,7 +4842,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4193,7 +4869,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4214,7 +4896,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4235,7 +4923,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4256,7 +4950,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4277,7 +4977,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4298,7 +5004,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4319,7 +5031,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4340,7 +5058,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4361,7 +5085,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4382,7 +5112,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4403,7 +5139,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Indomitable (3 uses)",
@@ -4417,7 +5159,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4438,7 +5186,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4459,7 +5213,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4480,7 +5240,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4654,7 +5420,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Martial Arts",
@@ -4668,7 +5440,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -4687,7 +5465,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Martial Arts",
@@ -4701,7 +5485,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4722,7 +5512,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Flurry of Blows",
@@ -4736,7 +5532,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Patient Defense",
@@ -4750,7 +5552,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Step of the Wind",
@@ -4764,7 +5572,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Unarmored Movement",
@@ -4778,7 +5592,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4799,7 +5619,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Deflect Missiles",
@@ -4813,7 +5639,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4834,7 +5666,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Slow Fall",
@@ -4848,7 +5686,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4869,7 +5713,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Stunning Strike",
@@ -4883,7 +5733,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4904,7 +5760,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Monastic Tradition feature",
@@ -4918,7 +5780,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4939,7 +5807,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Stillness of Mind",
@@ -4953,7 +5827,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -4974,7 +5854,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -4995,7 +5881,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5016,7 +5908,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5037,7 +5935,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5058,7 +5962,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5079,7 +5989,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5100,7 +6016,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5121,7 +6043,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5142,7 +6070,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5163,7 +6097,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5184,7 +6124,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5205,7 +6151,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5226,7 +6178,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5433,7 +6391,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Lay on Hands",
@@ -5447,7 +6411,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -5466,7 +6436,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Lay on Hands",
@@ -5480,7 +6456,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5513,7 +6495,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Spellcasting: Paladin",
@@ -5527,7 +6515,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Divine Smite",
@@ -5541,7 +6535,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5564,7 +6564,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Sacred Oath",
@@ -5578,7 +6584,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Oath Spells",
@@ -5592,7 +6604,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Channel Divinity",
@@ -5606,7 +6624,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5629,7 +6653,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5652,7 +6682,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5676,7 +6712,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5700,7 +6742,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5724,7 +6772,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5758,7 +6812,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5783,7 +6843,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5808,7 +6874,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5844,7 +6916,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5870,7 +6948,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5896,7 +6980,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5934,7 +7024,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -5961,7 +7057,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -5988,7 +7090,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6152,7 +7260,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Natural Explorer (1 terrain type)",
@@ -6166,7 +7280,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -6205,7 +7325,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Natural Explorer (1 terrain type)",
@@ -6233,7 +7359,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6266,7 +7398,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Spellcasting: Ranger",
@@ -6280,7 +7418,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6303,7 +7447,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Primeval Awareness",
@@ -6317,7 +7467,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6340,7 +7496,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -6363,7 +7525,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6407,7 +7575,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Natural Explorer (2 terrain types)",
@@ -6435,7 +7609,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6459,7 +7639,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6483,7 +7669,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Land's Stride",
@@ -6497,7 +7689,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -6545,7 +7743,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Hide in Plain Sight",
@@ -6559,7 +7763,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6584,7 +7794,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6609,7 +7825,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -6665,7 +7887,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Vanish",
@@ -6679,7 +7907,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6705,7 +7939,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6731,7 +7971,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -6769,7 +8015,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -6796,7 +8048,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -6823,7 +8081,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7075,7 +8339,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sneak Attack",
@@ -7085,15 +8355,20 @@
           "actionType": null,
           "uses": {
             "total": "once per turn",
-            "recharge": "Turn",
-            "current": 1
+            "recharge": "Turn"
           },
-          "requirement": "Must use a finesse or ranged weapon and have advantage on the attack roll OR an ally adjacent to the target",
+          "requirement": "Must have advantage OR an ally adjacent to the target, using a finesse or ranged weapon",
           "duration": null,
           "endsIf": null,
           "effect": "Deal extra damage when you have advantage",
-          "onUse": "Deal extra damage dice on one attack per turn",
-          "scaling": "Sneak Attack dice increase every two Rogue levels \u2014 1d6 at level 1, up to 10d6 at level 19"
+          "onUse": "Add Sneak Attack dice to one attack's damage",
+          "scaling": "1d6 at level 1, increases by 1d6 every two Rogue levels",
+          "summary": "Deal extra damage dice once per turn with finesse or ranged weapon",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Thieves' Cant",
@@ -7107,7 +8382,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -7145,21 +8426,36 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Sneak Attack",
               "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
               "type": "feature",
-              "featureType": null,
+              "featureType": "Active",
               "actionType": null,
-              "uses": null,
-              "requirement": null,
+              "uses": {
+                "total": "once per turn",
+                "recharge": "Turn"
+              },
+              "requirement": "Must have advantage OR an ally adjacent to the target, using a finesse or ranged weapon",
               "duration": null,
               "endsIf": null,
               "effect": null,
-              "onUse": null,
-              "scaling": null
+              "onUse": "Add Sneak Attack dice to one attack's damage",
+              "scaling": "1d6 at level 1, increases by 1d6 every two Rogue levels",
+              "summary": "Deal extra damage dice once per turn with finesse or ranged weapon",
+              "grantsSpells": false,
+              "grantsAttack": true,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Thieves' Cant",
@@ -7173,7 +8469,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7194,7 +8496,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7215,7 +8523,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7236,7 +8550,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -7257,7 +8577,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7297,7 +8623,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7318,7 +8650,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7339,7 +8677,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -7360,7 +8704,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7381,7 +8731,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -7402,7 +8758,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7423,7 +8785,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -7444,7 +8812,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7465,7 +8839,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7486,7 +8866,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7507,7 +8893,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -7528,7 +8920,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7549,7 +8947,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7570,7 +8974,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -7591,7 +9001,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7879,7 +9295,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Sorcerous Origin",
@@ -7893,7 +9315,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -7912,7 +9340,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Sorcerous Origin",
@@ -7926,7 +9360,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -7949,7 +9389,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Flexible Casting: Creating Spell Slots",
@@ -7963,7 +9409,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Flexible Casting: Converting Spell Slot",
@@ -7977,7 +9429,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8039,7 +9497,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8063,7 +9527,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -8097,7 +9567,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8133,7 +9609,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -8210,7 +9692,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8250,7 +9738,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -8292,7 +9786,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8336,7 +9836,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -8405,7 +9911,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8436,7 +9948,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8467,7 +9985,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -8498,7 +10022,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8765,7 +10295,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Pact Magic",
@@ -8779,7 +10315,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -8798,7 +10340,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Pact Magic",
@@ -8812,7 +10360,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8879,7 +10433,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8920,7 +10480,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -8943,7 +10509,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -9023,7 +10595,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9046,7 +10624,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9126,7 +10710,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9149,7 +10739,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -9229,7 +10825,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9252,7 +10854,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9289,7 +10897,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9312,7 +10926,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Eldritch Invocations",
@@ -9383,7 +11003,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -9417,7 +11043,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9440,7 +11072,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9475,7 +11113,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Eldritch Invocations",
@@ -9546,7 +11190,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9569,7 +11219,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -9604,7 +11260,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -9635,7 +11297,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -9658,7 +11326,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Eldritch Invocations",
@@ -9729,7 +11403,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10087,7 +11767,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         },
         {
           "name": "Arcane Recovery",
@@ -10101,7 +11787,13 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "summary": null,
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true
         }
       ],
       "levels": [
@@ -10120,7 +11812,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Arcane Recovery",
@@ -10134,7 +11832,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10157,7 +11861,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10189,7 +11899,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -10223,7 +11939,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10259,7 +11981,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -10297,7 +12025,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10337,7 +12071,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -10379,7 +12119,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10423,7 +12169,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -10541,7 +12293,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10572,7 +12330,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": true,
@@ -10638,7 +12402,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "asi": false,
@@ -10887,7 +12657,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Spellcasting",
@@ -10900,7 +12676,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -10922,7 +12704,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -10944,7 +12732,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             },
             {
               "name": "Artificer Specialist",
@@ -10957,7 +12751,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -10979,7 +12779,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11001,7 +12807,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11024,7 +12836,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11047,7 +12865,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11070,7 +12894,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11093,7 +12923,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11117,7 +12953,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11141,7 +12983,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11165,7 +13013,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11200,7 +13054,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11225,7 +13085,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11250,7 +13116,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11287,7 +13159,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11313,7 +13191,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {
@@ -11339,7 +13223,13 @@
               "endsIf": null,
               "effect": null,
               "onUse": null,
-              "scaling": null
+              "scaling": null,
+              "summary": null,
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "showInSheet": true
             }
           ],
           "spellSlots": {

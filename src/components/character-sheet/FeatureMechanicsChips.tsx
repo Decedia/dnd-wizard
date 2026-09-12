@@ -3,6 +3,7 @@
 import React from "react";
 
 interface FeatureMechanicsSummaryProps {
+  summary?: string | null;
   featureType?: string | null;
   actionType?: string | null;
   uses?: { total: number | string; recharge: string; current: number } | null;
@@ -12,6 +13,7 @@ interface FeatureMechanicsSummaryProps {
   effect?: string | null;
   onUse?: string | null;
   scaling?: string | null;
+  showInSheet?: boolean;
   size?: "sm" | "md";
 }
 
@@ -75,6 +77,7 @@ function BlankCell() {
 }
 
 export function FeatureMechanicsChips({
+  summary,
   featureType,
   actionType,
   uses,
@@ -84,6 +87,7 @@ export function FeatureMechanicsChips({
   effect,
   onUse,
   scaling,
+  showInSheet = true,
   size = "sm",
 }: FeatureMechanicsSummaryProps) {
   const hasUses = !!uses;
@@ -170,22 +174,29 @@ export function FeatureMechanicsChips({
   }
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "1px",
-        backgroundColor: "#f0f0f0",
-        borderTop: "1px solid #f0f0f0",
-        borderBottom: "1px solid #f0f0f0",
-      }}
-    >
-      {rows.map(([left, right], idx) => (
-        <React.Fragment key={idx}>
-          {left}
-          {right}
-        </React.Fragment>
-      ))}
+    <div>
+      {summary && (
+        <p style={{ fontSize: "13px", fontWeight: 500, color: "#111", marginBottom: "6px", lineHeight: "1.4" }}>{summary}</p>
+      )}
+      {showInSheet && (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "1px",
+            backgroundColor: "#f0f0f0",
+            borderTop: "1px solid #f0f0f0",
+            borderBottom: "1px solid #f0f0f0",
+          }}
+        >
+          {rows.map(([left, right], idx) => (
+            <React.Fragment key={idx}>
+              {left}
+              {right}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
