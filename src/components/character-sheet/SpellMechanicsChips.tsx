@@ -14,6 +14,16 @@ interface SpellMechanicsSummaryProps {
   effectSummary?: string;
   character?: Character;
   ritual?: boolean;
+  actionType?: string | null;
+  onHit?: string | null;
+  saveType?: string | null;
+  onFailedSave?: string | null;
+  onSuccessfulSave?: string | null;
+  ongoingEffect?: string | null;
+  escapeCondition?: string | null;
+  immunities?: string | null;
+  upcastEffect?: string | null;
+  components?: { verbal: boolean; somatic: boolean; material: boolean; materialDesc: string | null };
   size?: "sm" | "md";
 }
 
@@ -75,7 +85,23 @@ function Badge({ children, style }: { children: React.ReactNode; style?: React.C
   return <span style={base}>{children}</span>;
 }
 
-export function SpellMechanicsChips({ mechanic, effectSummary, character, ritual = false, size = "sm" }: SpellMechanicsSummaryProps) {
+export function SpellMechanicsChips({
+  mechanic,
+  effectSummary,
+  character,
+  ritual = false,
+  actionType,
+  onHit,
+  saveType,
+  onFailedSave,
+  onSuccessfulSave,
+  ongoingEffect,
+  escapeCondition,
+  immunities,
+  upcastEffect,
+  components,
+  size = "sm",
+}: SpellMechanicsSummaryProps) {
   if (!mechanic) return null;
 
   const resolvedSummary = effectSummary ? resolveSpellMacros(effectSummary, character) : "";
@@ -161,11 +187,12 @@ export function SpellMechanicsChips({ mechanic, effectSummary, character, ritual
     value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{target}</span>,
   });
 
+  const saveDisplay = saveType ? `${saveType} Save` : "None";
   fields.push({
     label: "Save",
     value: (
-      <span style={{ color: resolution === "none" ? "#aaa" : "#111", fontWeight: 500, fontSize: "13px" }}>
-        {resolution === "none" ? "None" : resolution}
+      <span style={{ color: saveType ? "#111" : "#aaa", fontWeight: 500, fontSize: "13px" }}>
+        {saveDisplay}
       </span>
     ),
   });
@@ -274,6 +301,91 @@ export function SpellMechanicsChips({ mechanic, effectSummary, character, ritual
       label: "Requires",
       value: <div style={{ display: "inline-flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>{badges}</div>,
       fullWidth: true,
+    });
+  }
+
+  if (actionType) {
+    const isReaction = actionType === "Reaction";
+    fields.push({
+      label: "Action",
+      value: isReaction ? (
+        <Badge style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+          {actionType}
+        </Badge>
+      ) : (
+        <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{actionType}</span>
+      ),
+    });
+  }
+
+  if (onHit) {
+    fields.push({
+      label: "On Hit",
+      value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{onHit}</span>,
+    });
+  }
+
+  if (onFailedSave) {
+    fields.push({
+      label: "On Fail",
+      value: <span style={{ color: "#c53030", fontWeight: 500, fontSize: "13px" }}>{onFailedSave}</span>,
+      fullWidth: onFailedSave.length > 30,
+    });
+  }
+
+  if (onSuccessfulSave) {
+    fields.push({
+      label: "On Save",
+      value: <span style={{ color: "#276749", fontWeight: 500, fontSize: "13px" }}>{onSuccessfulSave}</span>,
+    });
+  }
+
+  if (ongoingEffect) {
+    fields.push({
+      label: "Each Turn",
+      value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{ongoingEffect}</span>,
+      fullWidth: true,
+    });
+  }
+
+  if (escapeCondition) {
+    fields.push({
+      label: "Ends If",
+      value: <span style={{ color: "#2b6cb0", fontWeight: 500, fontSize: "13px" }}>{escapeCondition}</span>,
+      fullWidth: true,
+    });
+  }
+
+  if (immunities) {
+    fields.push({
+      label: "Immune",
+      value: <span style={{ color: "#888", fontWeight: 500, fontSize: "13px" }}>{immunities}</span>,
+      fullWidth: true,
+    });
+  }
+
+  if (upcastEffect) {
+    fields.push({
+      label: "Upcast",
+      value: <span style={{ color: "#6b46c1", fontWeight: 500, fontSize: "13px" }}>{upcastEffect}</span>,
+      fullWidth: true,
+    });
+  }
+
+  if (components) {
+    const parts: string[] = [];
+    if (components.verbal) parts.push("V");
+    if (components.somatic) parts.push("S");
+    if (components.material) parts.push("M");
+    const abbrev = parts.join(", ") || "None";
+    
+    fields.push({
+      label: "Needs",
+      value: (
+        <div style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+          <span style={{ color: "#888", fontWeight: 500, fontSize: "13px" }}>{abbrev}</span>
+        </div>
+      ),
     });
   }
 

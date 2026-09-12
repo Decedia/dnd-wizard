@@ -35,6 +35,16 @@ interface UnifiedSpell {
   effectSummary?: string;
   mechanic?: ReturnType<typeof getSpellMechanic>;
   ritual?: boolean;
+  actionType?: string | null;
+  components?: { verbal: boolean; somatic: boolean; material: boolean; materialDesc: string | null };
+  onHit?: string | null;
+  saveType?: string | null;
+  onFailedSave?: string | null;
+  onSuccessfulSave?: string | null;
+  ongoingEffect?: string | null;
+  escapeCondition?: string | null;
+  immunities?: string | null;
+  upcastEffect?: string | null;
 }
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
@@ -87,6 +97,16 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         effectSummary: srdSpell?.effectSummary || "",
         mechanic,
         ritual: (srdSpell as any)?.ritual || false,
+        actionType: (srdSpell as any)?.actionType || null,
+        components: (srdSpell as any)?.components || null,
+        onHit: (srdSpell as any)?.onHit || null,
+        saveType: (srdSpell as any)?.saveType || null,
+        onFailedSave: (srdSpell as any)?.onFailedSave || null,
+        onSuccessfulSave: (srdSpell as any)?.onSuccessfulSave || null,
+        ongoingEffect: (srdSpell as any)?.ongoingEffect || null,
+        escapeCondition: (srdSpell as any)?.escapeCondition || null,
+        immunities: (srdSpell as any)?.immunities || null,
+        upcastEffect: (srdSpell as any)?.upcastEffect || null,
       };
     });
   }, [character.spells, srdSpells]);
@@ -275,7 +295,22 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
               </div>
               <div className="mt-1">
-                <SpellMechanicsChips mechanic={spell.mechanic} effectSummary={spell.effectSummary} character={character} ritual={spell.ritual} />
+                <SpellMechanicsChips
+                  mechanic={spell.mechanic}
+                  effectSummary={spell.effectSummary}
+                  character={character}
+                  ritual={spell.ritual}
+                  actionType={spell.actionType}
+                  onHit={spell.onHit}
+                  saveType={spell.saveType}
+                  onFailedSave={spell.onFailedSave}
+                  onSuccessfulSave={spell.onSuccessfulSave}
+                  ongoingEffect={spell.ongoingEffect}
+                  escapeCondition={spell.escapeCondition}
+                  immunities={spell.immunities}
+                  upcastEffect={spell.upcastEffect}
+                  components={spell.components}
+                />
               </div>
               {spell.duration && (() => {
                 const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
