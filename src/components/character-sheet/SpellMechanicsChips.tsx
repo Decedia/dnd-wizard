@@ -1,10 +1,12 @@
 "use client";
 
+import React from "react";
 import type { SpellMechanicSummary } from "@/lib/spell-mechanics-accessor";
 import type { Character } from "@/lib/storage";
 import { DamageBadge } from "./DamageBadge";
 import { ConditionBadge } from "./ConditionBadge";
 import { DiceBadge } from "../DiceBadge";
+import { InfoButton } from "@/components/InfoButton";
 import { resolveSpellMacros } from "@/lib/spell-macros";
 import { getModifier } from "@/lib/storage";
 import { getStaticClass } from "@/lib/srd-client";
@@ -83,6 +85,56 @@ function Badge({ children, style }: { children: React.ReactNode; style?: React.C
     ...style,
   };
   return <span style={base}>{children}</span>;
+}
+
+function Cell({
+  label,
+  value,
+}: {
+  label: string;
+  value: React.ReactNode;
+}) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#ffffff",
+        padding: "8px 12px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "3px",
+      }}
+    >
+      <span
+        style={{
+          fontSize: "10px",
+          fontWeight: 600,
+          color: "#aaa",
+          textTransform: "uppercase",
+          letterSpacing: "0.06em",
+          marginBottom: "3px",
+        }}
+      >
+        {label}
+      </span>
+      <div
+        style={{
+          fontSize: "13px",
+          fontWeight: 500,
+          color: "#111",
+          display: "flex",
+          alignItems: "center",
+          gap: "4px",
+          flexWrap: "wrap",
+        }}
+      >
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function BlankCell() {
+  return <div style={{ backgroundColor: "#ffffff", padding: "8px 12px" }} />;
 }
 
 export function SpellMechanicsChips({
@@ -180,213 +232,263 @@ export function SpellMechanicsChips({
   const duration = mechanic.casting.duration;
   const rangeText = mechanic.casting.range;
 
-  const fields: { label: string; value: React.ReactNode; fullWidth?: boolean }[] = [];
+  const hasDamage = !!(damageEffect?.amount || damageEffect?.damageType);
+  const hasHealing = !!healEffect?.amount;
+  const hasTempHP = !!tempHPFormula;
+  const hasOnHit = !!onHit;
+  const hasOngoing = !!ongoingEffect;
+  const hasOnFail = !!onFailedSave;
+  const hasOnSave = !!onSuccessfulSave;
+  const hasEscape = !!escapeCondition && escapeCondition !== "Effect ends when duration expires";
+  const hasImmunities = !!immunities;
+  const hasUpcast = !!upcastEffect;
+  const hasRange = !!rangeText && !target.toLowerCase().includes("self") && rangeText !== "Self";
+  const hasRequirements = hasConcentration || ritual;
+  const hasComponents = !!components;
 
-  fields.push({
-    label: "Target",
-    value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{target}</span>,
-  });
+  const rows: [React.ReactNode, React.ReactNode][] = [];
 
-  const saveDisplay = saveType ? `${saveType} Save` : "None";
-  fields.push({
-    label: "Save",
-    value: (
-      <span style={{ color: saveType ? "#111" : "#aaa", fontWeight: 500, fontSize: "13px" }}>
-        {saveDisplay}
-      </span>
-    ),
-  });
+  // Row 1: Target | Save
+  rows.push([
+    <Cell
+      key="target"
+      label="Target"
+      value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{target}</span>}
+    />,
+    <Cell
+      key="save"
+      label="Save"
+      value={
+        <span style={{ color: saveType ? "#111" : "#aaa", fontWeight: 500, fontSize: "13px" }}>
+          {saveType ? `${saveType} Save` : "None"}
+        </span>
+      }
+    />,
+  ]);
 
-  if (rangeText && !target.toLowerCase().includes("self") && rangeText !== "Self") {
-    fields.push({
-      label: "Range",
-      value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>,
-    });
-  }
+  // Row 2: Action | Duration
+  rows.push([
+    <Cell
+      key="action"
+      label="Action"
+      value={
+        actionType === "Reaction" ? (
+          <Badge style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+            {actionType}
+          </Badge>
+        ) : (
+          <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{actionType || "Action"}</span>
+        )
+      }
+    />,
+    <Cell
+      key="duration"
+      label="Duration"
+      value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{duration}</span>}
+    />,
+  ]);
 
-  if (damageEffect?.amount || damageEffect?.damageType) {
-    const amount = damageEffect.amount || "";
-    const dtype = damageEffect.damageType || "";
-    fields.push({
-      label: "Damage",
-      value: (
-        <Badge style={{ backgroundColor: "#fff5f5", borderColor: "#feb2b2", color: "#c53030" }}>
-          {amount && <span>{amount}</span>}
-          {dtype && <span>{dtype}</span>}
-        </Badge>
-      ),
-    });
-  }
-
-  if (healEffect?.amount) {
-    fields.push({
-      label: "Healing",
-      value: (
-        <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
-          <span>♥</span>
-          <span>{healEffect.amount}</span>
-        </Badge>
-      ),
-    });
-  }
-
-  if (tempHPFormula) {
-    fields.push({
-      label: "Temp HP",
-      value: (
-        <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
-          <span>♥</span>
-          <span>{tempHPFormula}</span>
-        </Badge>
-      ),
-    });
-  }
-
-  if (inflictedCondition) {
-    fields.push({
-      label: "Condition",
-      value: (
-        <Badge style={{ backgroundColor: "#fff7ed", borderColor: "#fed7aa", color: "#c05621" }}>
-          {inflictedCondition}
-        </Badge>
-      ),
-    });
-  }
-
-  if (immunityCondition) {
-    fields.push({
-      label: "Immune",
-      value: (
-        <Badge style={{ backgroundColor: "#fff7ed", borderColor: "#fed7aa", color: "#c05621" }}>
-          {immunityCondition}
-        </Badge>
-      ),
-    });
-  }
-
-  if (resistanceType) {
-    fields.push({
-      label: "Resist",
-      value: (
-        <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
-          <span>✦</span>
-          <span>{resistanceType}</span>
-        </Badge>
-      ),
-    });
-  }
-
-  fields.push({
-    label: "Duration",
-    value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{duration}</span>,
-  });
-
-  if (hasConcentration || ritual) {
-    const badges: React.ReactNode[] = [];
-    if (hasConcentration) {
-      badges.push(
-        <Badge key="conc" style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
-          Concentration
-        </Badge>
-      );
-    }
-    if (ritual) {
-      badges.push(
-        <Badge key="ritual" style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
-          Ritual
-        </Badge>
-      );
-    }
-    fields.push({
-      label: "Requires",
-      value: <div style={{ display: "inline-flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>{badges}</div>,
-      fullWidth: true,
-    });
-  }
-
-  if (actionType) {
-    const isReaction = actionType === "Reaction";
-    fields.push({
-      label: "Action",
-      value: isReaction ? (
-        <Badge style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
-          {actionType}
-        </Badge>
+  // Row 3: Damage | Range (if has damage OR range)
+  if (hasDamage || hasRange) {
+    rows.push([
+      hasDamage ? (
+        <Cell
+          key="damage"
+          label="Damage"
+          value={
+            <Badge style={{ backgroundColor: "#fff5f5", borderColor: "#feb2b2", color: "#c53030" }}>
+              {damageEffect?.amount && <span>{damageEffect.amount}</span>}
+              {damageEffect?.damageType && <span>{damageEffect.damageType}</span>}
+            </Badge>
+          }
+        />
       ) : (
-        <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{actionType}</span>
+        <BlankCell key="damage-blank" />
       ),
-    });
-  }
-
-  if (onHit) {
-    fields.push({
-      label: "On Hit",
-      value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{onHit}</span>,
-    });
-  }
-
-  if (onFailedSave) {
-    fields.push({
-      label: "On Fail",
-      value: <span style={{ color: "#c53030", fontWeight: 500, fontSize: "13px" }}>{onFailedSave}</span>,
-      fullWidth: onFailedSave.length > 30,
-    });
-  }
-
-  if (onSuccessfulSave) {
-    fields.push({
-      label: "On Save",
-      value: <span style={{ color: "#276749", fontWeight: 500, fontSize: "13px" }}>{onSuccessfulSave}</span>,
-    });
-  }
-
-  if (ongoingEffect) {
-    fields.push({
-      label: "Each Turn",
-      value: <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{ongoingEffect}</span>,
-      fullWidth: true,
-    });
-  }
-
-  if (escapeCondition) {
-    fields.push({
-      label: "Ends If",
-      value: <span style={{ color: "#2b6cb0", fontWeight: 500, fontSize: "13px" }}>{escapeCondition}</span>,
-      fullWidth: true,
-    });
-  }
-
-  if (immunities) {
-    fields.push({
-      label: "Immune",
-      value: <span style={{ color: "#888", fontWeight: 500, fontSize: "13px" }}>{immunities}</span>,
-      fullWidth: true,
-    });
-  }
-
-  if (upcastEffect) {
-    fields.push({
-      label: "Upcast",
-      value: <span style={{ color: "#6b46c1", fontWeight: 500, fontSize: "13px" }}>{upcastEffect}</span>,
-      fullWidth: true,
-    });
-  }
-
-  if (components) {
-    const parts: string[] = [];
-    if (components.verbal) parts.push("V");
-    if (components.somatic) parts.push("S");
-    if (components.material) parts.push("M");
-    const abbrev = parts.join(", ") || "None";
-    
-    fields.push({
-      label: "Needs",
-      value: (
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
-          <span style={{ color: "#888", fontWeight: 500, fontSize: "13px" }}>{abbrev}</span>
-        </div>
+      hasRange ? (
+        <Cell
+          key="range"
+          label="Range"
+          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>}
+        />
+      ) : (
+        <BlankCell key="range-blank" />
       ),
-    });
+    ]);
+  }
+
+  // Row 4: Healing | Temp HP (if has healing OR temp HP)
+  if (hasHealing || hasTempHP) {
+    rows.push([
+      hasHealing ? (
+        <Cell
+          key="healing"
+          label="Healing"
+          value={
+            <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+              <span>♥</span>
+              <span>{healEffect?.amount}</span>
+            </Badge>
+          }
+        />
+      ) : (
+        <BlankCell key="healing-blank" />
+      ),
+      hasTempHP ? (
+        <Cell
+          key="tempHP"
+          label="Temp HP"
+          value={
+            <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+              <span>♥</span>
+              <span>{tempHPFormula}</span>
+            </Badge>
+          }
+        />
+      ) : (
+        <BlankCell key="tempHP-blank" />
+      ),
+    ]);
+  }
+
+  // Row 5: On Hit | Each Turn (if has onHit OR ongoingEffect)
+  if (hasOnHit || hasOngoing) {
+    rows.push([
+      hasOnHit ? (
+        <Cell
+          key="onHit"
+          label="On Hit"
+          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{onHit}</span>}
+        />
+      ) : (
+        <BlankCell key="onHit-blank" />
+      ),
+      hasOngoing ? (
+        <Cell
+          key="ongoing"
+          label="Each Turn"
+          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{ongoingEffect}</span>}
+        />
+      ) : (
+        <BlankCell key="ongoing-blank" />
+      ),
+    ]);
+  }
+
+  // Row 6: On Fail | On Save (if has onFailedSave OR onSuccessfulSave)
+  if (hasOnFail || hasOnSave) {
+    rows.push([
+      hasOnFail ? (
+        <Cell
+          key="onFail"
+          label="On Fail"
+          value={<span style={{ color: "#c53030", fontWeight: 500, fontSize: "13px" }}>{onFailedSave}</span>}
+        />
+      ) : (
+        <BlankCell key="onFail-blank" />
+      ),
+      hasOnSave ? (
+        <Cell
+          key="onSave"
+          label="On Save"
+          value={<span style={{ color: "#276749", fontWeight: 500, fontSize: "13px" }}>{onSuccessfulSave}</span>}
+        />
+      ) : (
+        <BlankCell key="onSave-blank" />
+      ),
+    ]);
+  }
+
+  // Row 7: Ends If | Immune (if has escapeCondition OR immunities)
+  if (hasEscape || hasImmunities) {
+    rows.push([
+      hasEscape ? (
+        <Cell
+          key="escape"
+          label="Ends If"
+          value={<span style={{ color: "#2b6cb0", fontWeight: 500, fontSize: "13px" }}>{escapeCondition}</span>}
+        />
+      ) : (
+        <BlankCell key="escape-blank" />
+      ),
+      hasImmunities ? (
+        <Cell
+          key="immune"
+          label="Immune"
+          value={<span style={{ color: "#888", fontWeight: 500, fontSize: "13px" }}>{immunities}</span>}
+        />
+      ) : (
+        <BlankCell key="immune-blank" />
+      ),
+    ]);
+  }
+
+  // Row 8: Requires | Needs (always shown)
+  const requireBadges: React.ReactNode[] = [];
+  if (hasConcentration) {
+    requireBadges.push(
+      <Badge key="conc" style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+        Concentration
+      </Badge>
+    );
+  }
+  if (ritual) {
+    requireBadges.push(
+      <Badge key="ritual" style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+        Ritual
+      </Badge>
+    );
+  }
+  if (actionType === "Reaction") {
+    requireBadges.push(
+      <Badge key="reaction" style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+        Reaction
+      </Badge>
+    );
+  }
+
+  const requireValue = requireBadges.length > 0 ? (
+    <div style={{ display: "inline-flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>
+      {requireBadges}
+    </div>
+  ) : (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>None</span>
+  );
+
+  const needsParts: React.ReactNode[] = [];
+  if (components?.verbal) needsParts.push(<span key="v">V</span>);
+  if (components?.somatic) needsParts.push(<span key="s">S</span>);
+  if (components?.material) {
+    needsParts.push(
+      <span key="m" style={{ display: "inline-flex", alignItems: "center", gap: "2px" }}>
+        M
+        {components.materialDesc && <InfoButton title="Material Component" description={components.materialDesc} />}
+      </span>
+    );
+  }
+  const needsValue = needsParts.length > 0 ? (
+    <div style={{ display: "inline-flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>
+      {needsParts}
+    </div>
+  ) : (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>None</span>
+  );
+
+  rows.push([
+    <Cell key="requires" label="Requires" value={requireValue} />,
+    <Cell key="needs" label="Needs" value={needsValue} />,
+  ]);
+
+  // Row 9: Upcast | blank (if has upcastEffect)
+  if (hasUpcast) {
+    rows.push([
+      <Cell
+        key="upcast"
+        label="Upcast"
+        value={<span style={{ color: "#6b46c1", fontWeight: 500, fontSize: "13px" }}>{upcastEffect}</span>}
+      />,
+      <BlankCell key="upcast-blank" />,
+    ]);
   }
 
   return (
@@ -412,44 +514,11 @@ export function SpellMechanicsChips({
           borderBottom: "1px solid #f0f0f0",
         }}
       >
-        {fields.map((field) => (
-          <div
-            key={field.label}
-            style={{
-              gridColumn: field.fullWidth ? "1 / -1" : undefined,
-              backgroundColor: "#ffffff",
-              padding: "8px 12px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "3px",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "10px",
-                fontWeight: 600,
-                color: "#aaa",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                marginBottom: "3px",
-              }}
-            >
-              {field.label}
-            </span>
-            <div
-              style={{
-                fontSize: "13px",
-                fontWeight: 500,
-                color: "#111",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-                flexWrap: "wrap",
-              }}
-            >
-              {field.value}
-            </div>
-          </div>
+        {rows.map(([left, right], idx) => (
+          <React.Fragment key={idx}>
+            {left}
+            {right}
+          </React.Fragment>
         ))}
       </div>
     </div>

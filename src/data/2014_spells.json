@@ -675,14 +675,14 @@
       "effectSummary": "Deal 1d10 fire damage and ignite flammable objects",
       "fullDescription": "Using 1 action, you hurl a mote of fire at a creature or object within range. On a hit, the target takes 1d10 fire damage; Make a ranged spell attack against the target; This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10). The effect happens immediately and then ends.",
       "actionType": "Action",
-      "onHit": "Deal 1d10 fire damage",
+      "onHit": "Deal 1d10 fire damage to a creature within 120 ft",
       "saveType": null,
       "onFailedSave": null,
       "onSuccessfulSave": null,
       "ongoingEffect": null,
       "escapeCondition": null,
       "immunities": null,
-      "upcastEffect": null
+      "upcastEffect": "Each slot level above 1st adds 1d10 fire damage"
     },
     {
       "index": "friends",
@@ -3347,13 +3347,13 @@
       "fullDescription": "Using 1 action, you attempt to charm a humanoid you can see within range. It must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC, and does so with advantage if you or your companions are fighting it; If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it; When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st; The creatures must be within 30 feet of each other when you target them. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it.",
       "actionType": "Action",
       "onHit": null,
-      "saveType": "wisdom",
-      "onFailedSave": "Takes full effect",
-      "onSuccessfulSave": "Reduced effect",
+      "saveType": "WIS",
+      "onFailedSave": "Target is charmed \u2014 regards caster as a friendly acquaintance and will not attack them",
+      "onSuccessfulSave": "No effect \u2014 target is unaffected and does not know the spell was cast",
       "ongoingEffect": null,
-      "escapeCondition": "Effect ends when duration expires",
-      "immunities": null,
-      "upcastEffect": null
+      "escapeCondition": "Effect ends immediately if caster or allies harm the target, or when the spell's duration expires",
+      "immunities": "Creatures immune to being charmed automatically succeed on the save",
+      "upcastEffect": "Each slot level above 1st targets one additional creature"
     },
     {
       "index": "chromatic-orb",
@@ -5044,14 +5044,14 @@
       "effectSummary": "Give a creature immunity to frightened and gain {{spellcastingmodifier}} temp HP each turn",
       "fullDescription": "Using 1 action, a willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns; When the spell ends, the target loses any remaining temporary hit points from this spell. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns; you must concentrate, and the effect ends if your concentration ends.",
       "actionType": "Action",
-      "onHit": null,
+      "onHit": "Target becomes immune to frightened and gains 3 temp HP at the start of each turn",
       "saveType": null,
       "onFailedSave": null,
       "onSuccessfulSave": null,
-      "ongoingEffect": "A willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the ",
-      "escapeCondition": "Effect ends when duration expires",
+      "ongoingEffect": "Target gains 3 temp HP at the start of each of its turns for the duration",
+      "escapeCondition": "Effect ends when caster loses concentration or duration expires",
       "immunities": null,
-      "upcastEffect": null
+      "upcastEffect": "Each slot level above 1st targets one additional creature"
     },
     {
       "higher_level": [],
@@ -5585,14 +5585,14 @@
       "effectSummary": "Create 3 magical darts each dealing 1d4 + 1 force damage",
       "fullDescription": "Using 1 action, you create three glowing darts of magical force. A dart deals 1d4 + 1 force damage to its target; Each dart hits a creature of your choice that you can see within range; When you cast this spell using a spell slot of 2nd level or higher, the spell creates one more dart for each slot level above 1st. The effect happens immediately and then ends.",
       "actionType": "Action",
-      "onHit": "Deal 1d4 + 1 force damage",
+      "onHit": "Each dart automatically hits \u2014 no attack roll or save",
       "saveType": null,
       "onFailedSave": null,
       "onSuccessfulSave": null,
       "ongoingEffect": null,
       "escapeCondition": null,
-      "immunities": null,
-      "upcastEffect": null
+      "immunities": "Creatures with Shield spell active take no damage from Magic Missile",
+      "upcastEffect": "Each slot level above 1st adds one additional dart"
     },
     {
       "index": "power-word-pain",
@@ -6096,14 +6096,14 @@
       "effectSummary": "Send creatures into magical slumber based on HP total",
       "fullDescription": "Using 1 action, roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring unconscious creatures); Starting with the creature that has the lowest current hit points, each creature affected by this spell falls unconscious until the spell ends, the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake; When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d8 for each slot level above 1st. This spell sends creatures into a magical slumber.",
       "actionType": "Action",
-      "onHit": null,
+      "onHit": "Roll 5d8 HP pool \u2014 creatures with lowest current HP drop unconscious first until pool is exhausted",
       "saveType": null,
       "onFailedSave": null,
       "onSuccessfulSave": null,
       "ongoingEffect": null,
-      "escapeCondition": "Effect ends when duration expires",
-      "immunities": null,
-      "upcastEffect": null
+      "escapeCondition": "Target wakes if it takes any damage, or if an ally uses an action to shake it awake",
+      "immunities": "Undead and creatures immune to being charmed are unaffected",
+      "upcastEffect": "Each slot level above 1st adds 2d8 to the HP pool"
     },
     {
       "index": "snare",
