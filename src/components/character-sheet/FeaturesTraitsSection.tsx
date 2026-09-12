@@ -7,8 +7,8 @@ import { StarIcon as Star, PlusIcon as Plus, CrownIcon as Crown, EyeIcon } from 
 import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses, getStaticClass, getStaticRace, getStaticFeat } from "@/lib/srd-client";
 import { getFeatureValue } from "@/lib/storage";
-import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
+import { FeatureMechanicsChips } from "./FeatureMechanicsChips";
 
 interface FeaturesTraitsSectionProps {
   character: Character;
@@ -47,12 +47,10 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
 
   const sortedFeatures = useMemo(() => {
     return [...character.features].sort((a, b) => {
-      // Sort by source: race/class/subclass first, then custom
       const sourceOrder = { race: 0, class: 1, subclass: 2, custom: 3 };
       const orderA = sourceOrder[a.source as keyof typeof sourceOrder] ?? 3;
       const orderB = sourceOrder[b.source as keyof typeof sourceOrder] ?? 3;
       if (orderA !== orderB) return orderA - orderB;
-      // Then alphabetically
       return a.name.localeCompare(b.name);
     });
   }, [character.features]);
@@ -142,9 +140,29 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     }
   }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats]);
 
+  const getBorderColor = (feature: any): string => {
+    const sourceType = typeof feature.source === "string" ? feature.source : feature.source?.type;
+    if (sourceType === "race") return "#6b46c1";
+    if (sourceType === "subclass") return "#276749";
+    if (sourceType === "feat" || sourceType === "custom") return "#b7791f";
+    return "#2b6cb0";
+  };
+
+  const getBookTag = (feature: any): string | null => {
+    if (typeof feature.source === "object" && feature.source?.name) {
+      return feature.source.name;
+    }
+    if (typeof feature.source === "string") {
+      if (feature.source === "class" && character.class) return character.class;
+      if (feature.source === "race" && character.race) return character.race;
+      if (feature.source === "subclass" && character.subclass) return character.subclass;
+    }
+    return null;
+  };
+
   return (
     <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
-      <div className="space-y-3">
+      <div className="space-y-2">
         {character.subclass && (
           <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
             <div className="flex items-center gap-2">
@@ -152,7 +170,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               {(() => {
                 const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
                 const sub = subclasses.find(s => s.name === character.subclass);
-                return sub?.source ? <SourceBadge source={sub.source} /> : null;
+                return sub?.source ? <span className="inline-flex items-center font-semibold" style={{ fontSize: "9px", padding: "1px 5px", borderRadius: "4px", backgroundColor: "var(--color-bg)", color: "var(--color-text-secondary)" }}>{sub.source}</span> : null;
               })()}
               <span className="text-sm font-bold text-ink">{character.subclass}</span>
             </div>
@@ -174,22 +192,39 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         )}
          {enrichedFeatures.map((feature) => {
             const isLocked = feature.locked === true;
-            const borderColor = (feature as any).source === "race" ? "#6b46c1" : (feature as any).source === "subclass" ? "#276749" : "#2b6cb0";
+            const borderColor = getBorderColor(feature);
             const safeFeature = { ...feature, source: (feature as any).source || "class" };
             const summaryText = (feature as any).summary || feature.description || "";
+            const bookTag = getBookTag(feature);
             return (
-              <div key={safeFeature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 flex-1">
-                    <span className="text-sm font-bold text-[var(--color-text-primary)]">{feature.name}</span>
-                    {(feature as any).showInSheet === false && (
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
-                    )}
-                  </div>
+              <div key={safeFeature.id} className={`card ${isLocked ? "bg-paper-muted" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-[17px] font-semibold text-[#111]">{feature.name}</span>
+                  {(feature as any).showInSheet === false && (
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
+                  )}
                 </div>
-                {summaryText && (
-                  <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{summaryText}</p>
-                )}
+                <FeatureMechanicsChips
+                  summary={summaryText}
+                  description={(feature as any).description}
+                  featureType={(feature as any).featureType}
+                  actionType={(feature as any).actionType}
+                  uses={(feature as any).uses}
+                  requirement={(feature as any).requirement}
+                  duration={(feature as any).duration}
+                  endsIf={(feature as any).endsIf}
+                  effect={(feature as any).effect}
+                  onUse={(feature as any).onUse}
+                  scaling={(feature as any).scaling}
+                  source={typeof (feature as any).source === "object" ? (feature as any).source : (feature as any).source ? { type: (feature as any).source, name: (feature as any).source === "class" ? character.class : (feature as any).source === "race" ? character.race : (feature as any).source === "subclass" ? character.subclass : "Custom", level: null } : null}
+                  book={bookTag}
+                  onUseClick={() => {
+                    if ((feature as any).onUse) {
+                      updateItem(feature.id, { onUse: (feature as any).onUse });
+                    }
+                  }}
+                  showInSheet={(feature as any).showInSheet !== false}
+                />
               </div>
             );
           })}
@@ -208,4 +243,3 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     </SectionCard>
   );
 }
-

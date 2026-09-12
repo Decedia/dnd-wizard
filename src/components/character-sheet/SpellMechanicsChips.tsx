@@ -10,6 +10,7 @@ import { InfoButton } from "@/components/InfoButton";
 import { resolveSpellMacros } from "@/lib/spell-macros";
 import { getModifier } from "@/lib/storage";
 import { getStaticClass } from "@/lib/srd-client";
+import { getSpellSchoolStyle } from "@/lib/spell-schools";
 
 interface SpellMechanicsSummaryProps {
   mechanic: SpellMechanicSummary | undefined;
@@ -27,6 +28,8 @@ interface SpellMechanicsSummaryProps {
   upcastEffect?: string | null;
   components?: { verbal: boolean; somatic: boolean; material: boolean; materialDesc: string | null };
   size?: "sm" | "md";
+  school?: string | null;
+  srdSource?: string | null;
 }
 
 function capitalize(s: string): string {
@@ -49,7 +52,7 @@ function formatTarget(m: SpellMechanicSummary): string {
   if (t.type === "point") return "point";
   if (t.type === "multiple") {
     const n = t.maxTargets ?? 1;
-    return `${n} targets`;
+    return `${n} target${n === 1 ? "" : "s"}`;
   }
   if (t.type === "area") {
     const shape = t.shape ? capitalize(t.shape) : "area";
@@ -90,9 +93,11 @@ function Badge({ children, style }: { children: React.ReactNode; style?: React.C
 function Cell({
   label,
   value,
+  style,
 }: {
   label: string;
   value: React.ReactNode;
+  style?: React.CSSProperties;
 }) {
   return (
     <div
@@ -102,6 +107,7 @@ function Cell({
         display: "flex",
         flexDirection: "column",
         gap: "3px",
+        ...style,
       }}
     >
       <span
@@ -133,8 +139,8 @@ function Cell({
   );
 }
 
-function BlankCell() {
-  return <div style={{ backgroundColor: "#ffffff", padding: "8px 12px" }} />;
+function BlankCell({ style }: { style?: React.CSSProperties }) {
+  return <div style={{ backgroundColor: "#ffffff", padding: "8px 12px", ...style }} />;
 }
 
 export function SpellMechanicsChips({
@@ -153,6 +159,8 @@ export function SpellMechanicsChips({
   upcastEffect,
   components,
   size = "sm",
+  school,
+  srdSource,
 }: SpellMechanicsSummaryProps) {
   if (!mechanic) return null;
 
@@ -246,7 +254,40 @@ export function SpellMechanicsChips({
   const hasRequirements = hasConcentration || ritual;
   const hasComponents = !!components;
 
-  const rows: [React.ReactNode, React.ReactNode][] = [];
+  const rows: (React.ReactNode | [React.ReactNode, React.ReactNode])[] = [];
+
+  // Row 0: School | Source book tag (always shown)
+  const schoolStyle = school ? getSpellSchoolStyle(school) : undefined;
+  const schoolValue = schoolStyle ? (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "#111", fontWeight: 500, fontSize: "13px" }}>
+      <schoolStyle.icon className="h-3.5 w-3.5" />
+      {schoolStyle.label}
+    </span>
+  ) : (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+  );
+
+  const sourceValue = srdSource ? (
+    <span
+      style={{
+        backgroundColor: "#111",
+        color: "#fff",
+        fontSize: "10px",
+        fontWeight: 600,
+        padding: "2px 7px",
+        borderRadius: "4px",
+      }}
+    >
+      {srdSource}
+    </span>
+  ) : (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+  );
+
+  rows.push([
+    <Cell key="school" label="School" value={schoolValue} />,
+    <Cell key="source" label="Source" value={sourceValue} />,
+  ]);
 
   // Row 1: Target | Save
   rows.push([
@@ -290,8 +331,8 @@ export function SpellMechanicsChips({
 
   // Row 3: Damage | Range (if has damage OR range)
   if (hasDamage || hasRange) {
-    rows.push([
-      hasDamage ? (
+    if (hasDamage && hasRange) {
+      rows.push([
         <Cell
           key="damage"
           label="Damage"
@@ -301,20 +342,38 @@ export function SpellMechanicsChips({
               {damageEffect?.damageType && <span>{damageEffect.damageType}</span>}
             </Badge>
           }
-        />
-      ) : (
-        <BlankCell key="damage-blank" />
-      ),
-      hasRange ? (
+        />,
         <Cell
           key="range"
           label="Range"
           value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>}
-        />
-      ) : (
-        <BlankCell key="range-blank" />
-      ),
-    ]);
+        />,
+      ]);
+    } else if (hasDamage) {
+      rows.push([
+        <Cell
+          key="damage"
+          label="Damage"
+          value={
+            <Badge style={{ backgroundColor: "#fff5f5", borderColor: "#feb2b2", color: "#c53030" }}>
+              {damageEffect?.amount && <span>{damageEffect.amount}</span>}
+              {damageEffect?.damageType && <span>{damageEffect.damageType}</span>}
+            </Badge>
+          }
+        />,
+        <BlankCell key="range-blank" />,
+      ]);
+    } else if (hasRange) {
+      rows.push([
+        <Cell
+          key="range"
+          label="Range"
+          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>}
+          style={{ gridColumn: "1 / -1" }}
+        />,
+        <BlankCell key="range-blank" style={{ display: "none" }} />,
+      ]);
+    }
   }
 
   // Row 4: Healing | Temp HP (if has healing OR temp HP)
@@ -499,10 +558,8 @@ export function SpellMechanicsChips({
         overflow: "hidden",
       }}
     >
-      <div className="p-2">
-        <p className="font-semibold leading-snug text-[var(--color-text-primary)]" style={{ fontSize: size === "sm" ? "11px" : "13px" }}>
-          {resolvedSummary}
-        </p>
+      <div style={{ padding: "8px 14px", background: "#fff" }}>
+        <p style={{ fontSize: "15px", fontWeight: 500, color: "#111", lineHeight: 1.5 }}>{resolvedSummary}</p>
       </div>
       <div
         style={{
@@ -514,10 +571,16 @@ export function SpellMechanicsChips({
           borderBottom: "1px solid #f0f0f0",
         }}
       >
-        {rows.map(([left, right], idx) => (
+        {rows.map((row, idx) => (
           <React.Fragment key={idx}>
-            {left}
-            {right}
+            {Array.isArray(row) ? (
+              <>
+                {row[0]}
+                {row[1]}
+              </>
+            ) : (
+              row
+            )}
           </React.Fragment>
         ))}
       </div>

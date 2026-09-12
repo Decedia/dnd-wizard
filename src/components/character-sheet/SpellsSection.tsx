@@ -271,28 +271,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           const buffDef = getSpellBuff(spell.name);
           return (
             <div key={spell.id} className={`card p-3 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
-              <div className="flex items-center gap-1.5">
-                <SourceBadge source={spell.srdSource || "PHB"} size="sm" />
-                {spell.school && (() => {
-                  const schoolStyle = getSpellSchoolStyle(spell.school);
-                  if (!schoolStyle) return null;
-                  return (
-                    <span
-                      className="inline-flex items-center gap-1 font-semibold"
-                      style={{
-                        fontSize: "10px",
-                        padding: "1px 5px",
-                        borderRadius: "4px",
-                        backgroundColor: `var(${schoolStyle.bgColorVar})`,
-                        color: `var(${schoolStyle.colorVar})`,
-                      }}
-                    >
-                      <schoolStyle.icon className="h-3 w-3" />
-                      {schoolStyle.label}
-                    </span>
-                  );
-                })()}
-                <span className={`text-sm font-bold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+              <div className="flex items-center gap-2">
+                <span className={`text-[17px] font-semibold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[#111]"}`}>{spell.name}</span>
               </div>
               <div className="mt-1">
                 <SpellMechanicsChips
@@ -310,6 +290,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   immunities={spell.immunities}
                   upcastEffect={spell.upcastEffect}
                   components={spell.components}
+                  school={spell.school}
+                  srdSource={spell.srdSource}
                 />
               </div>
               {spell.duration && (() => {
@@ -345,7 +327,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   onClick={() => toggleSpellUsed(spell.id, buffDef, spell.duration)}
                   className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                     spellUsed
-                      ? "bg-[var(--color-warning-500)] text-[var(--color-surface)]"
+                      ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
                       : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                   }`}
                   title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : "Click to mark as used this turn"}

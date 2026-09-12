@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { SwordIcon, UserIcon, StarIcon, ClockIcon as ClockIconBase } from "@/components/icons";
+import { InfoButton } from "@/components/InfoButton";
 
 interface FeatureMechanicsSummaryProps {
   summary?: string | null;
@@ -15,6 +17,8 @@ interface FeatureMechanicsSummaryProps {
   onUse?: string | null;
   scaling?: string | null;
   source?: { type: string; name: string; level: number | null } | null;
+  book?: string | null;
+  onUseClick?: () => void;
   showInSheet?: boolean;
   size?: "sm" | "md";
 }
@@ -34,7 +38,7 @@ function Badge({ children, style }: { children: React.ReactNode; style?: React.C
   return <span style={base}>{children}</span>;
 }
 
-function Cell({ label, value }: { label: string; value: React.ReactNode }) {
+function Cell({ label, value, style }: { label: string; value: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <div
       style={{
@@ -43,6 +47,7 @@ function Cell({ label, value }: { label: string; value: React.ReactNode }) {
         display: "flex",
         flexDirection: "column",
         gap: "3px",
+        ...style,
       }}
     >
       <span
@@ -78,6 +83,11 @@ function BlankCell() {
   return <div style={{ backgroundColor: "#ffffff", padding: "8px 12px" }} />;
 }
 
+const SourceIcon = ({ type }: { type?: string }) => {
+  const Icon = type === "race" ? UserIcon : type === "subclass" ? StarIcon : SwordIcon;
+  return <Icon className="h-3.5 w-3.5" style={{ color: "#888" }} />;
+};
+
 export function FeatureMechanicsChips({
   summary,
   description,
@@ -91,6 +101,8 @@ export function FeatureMechanicsChips({
   onUse,
   scaling,
   source,
+  book,
+  onUseClick,
   showInSheet = true,
   size = "sm",
 }: FeatureMechanicsSummaryProps) {
@@ -101,14 +113,46 @@ export function FeatureMechanicsChips({
   const hasOnUse = !!onUse;
   const hasScaling = !!scaling;
 
-  // Derive summary from description if missing
   const normalizedDescription = Array.isArray(description) ? description.filter(Boolean).join(" ") : (description || "");
   const resolvedSummary = summary || (normalizedDescription ? normalizedDescription.split(/[.\n]/)[0].trim().split(/\s+/).slice(0, 12).join(" ") : null);
 
-  // Default featureType to Passive badge
   const effectiveFeatureType = featureType || "Passive";
+  const showUseButton = effectiveFeatureType === "Active";
 
-  const rows: [React.ReactNode, React.ReactNode][] = [];
+  const rows: (React.ReactNode | [React.ReactNode, React.ReactNode])[] = [];
+
+  // Row 0: Source icon+name | Book tag (always shown)
+  const sourceSource = (source || {}) as { type?: string; name?: string; level?: number | null };
+  const sourceValue = sourceSource.type ? (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "#111", fontWeight: 500, fontSize: "13px" }}>
+      <SourceIcon type={sourceSource.type} />
+      {sourceSource.name}
+    </span>
+  ) : (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+  );
+
+  const bookValue = book ? (
+    <span
+      style={{
+        backgroundColor: "#111",
+        color: "#fff",
+        fontSize: "10px",
+        fontWeight: 600,
+        padding: "2px 7px",
+        borderRadius: "4px",
+      }}
+    >
+      {book}
+    </span>
+  ) : (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+  );
+
+  rows.push([
+    <Cell key="source" label="Source" value={sourceValue} />,
+    <Cell key="book" label="Book" value={bookValue} />,
+  ]);
 
   // Row 1: Type | Action
   const typeBadge = effectiveFeatureType === "Active" ? (
@@ -129,8 +173,7 @@ export function FeatureMechanicsChips({
   ]);
 
   // Row 2: Source | Uses
-  const sourceSource = (source || {}) as { type?: string; name?: string; level?: number | null };
-  const sourceValue = sourceSource.type ? (
+  const sourceDetailValue = sourceSource.type ? (
     <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>
       {sourceSource.name}{sourceSource.type === "race" ? " · Racial" : ` · Level ${sourceSource.level ?? "?"}`}
     </span>
@@ -147,7 +190,7 @@ export function FeatureMechanicsChips({
   );
 
   rows.push([
-    <Cell key="source" label="Source" value={sourceValue} />,
+    <Cell key="source-detail" label="Source" value={sourceDetailValue} />,
     <Cell key="uses" label="Uses" value={usesValue} />,
   ]);
 
@@ -193,15 +236,60 @@ export function FeatureMechanicsChips({
 
   let gridRows: React.ReactNode;
   try {
-    gridRows = rows.map(([left, right], idx) => (
+    gridRows = rows.map((row, idx) => (
       <React.Fragment key={idx}>
-        {left}
-        {right}
+        {Array.isArray(row) ? (
+          <>
+            {row[0]}
+            {row[1]}
+          </>
+        ) : (
+          row
+        )}
       </React.Fragment>
     ));
   } catch {
     gridRows = null;
   }
+
+  const footer = (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        background: "#fafafa",
+        borderTop: "1px solid #f0f0f0",
+        padding: "8px 14px",
+      }}
+    >
+      <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#aaa" }}>
+        <ClockIconBase className="h-3.5 w-3.5" />
+        {duration || "Passive"}
+      </span>
+      <div style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+        {showUseButton && (
+          <button
+            type="button"
+            onClick={onUseClick}
+            style={{
+              backgroundColor: "#fff",
+              border: "1.5px solid #111",
+              color: "#000",
+              borderRadius: "999px",
+              padding: "5px 14px",
+              fontSize: "12px",
+              fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >
+            Use
+          </button>
+        )}
+        {description && <InfoButton title="Feature Details" description={description} />}
+      </div>
+    </div>
+  );
 
   return (
     <div
@@ -211,11 +299,11 @@ export function FeatureMechanicsChips({
         overflow: "hidden",
       }}
     >
-      {resolvedSummary && (
-        <div style={{ padding: "8px 14px", background: "#fff" }}>
-          <p style={{ fontSize: "14px", fontWeight: 500, color: "#333", lineHeight: 1.5 }}>{resolvedSummary}</p>
-        </div>
-      )}
+      <div style={{ padding: "8px 14px", background: "#fff" }}>
+        <p style={{ fontSize: "15px", fontWeight: 500, color: "#111", lineHeight: 1.5 }}>
+          {resolvedSummary || "\u00A0"}
+        </p>
+      </div>
       {showInSheet && gridRows && (
         <div
           style={{
@@ -230,6 +318,7 @@ export function FeatureMechanicsChips({
           {gridRows}
         </div>
       )}
+      {footer}
     </div>
   );
 }

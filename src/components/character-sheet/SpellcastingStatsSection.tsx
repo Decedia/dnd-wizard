@@ -73,7 +73,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
               className="input bg-paper-muted"
             />
           ) : (
-            <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.spellcastingAbility || "—"}</span>
+            <span className="text-sm font-bold text-[var(--color-text-primary)]">{(character.spellcastingAbility || "—").toUpperCase()}</span>
           )}
         </Field>
         <div className="grid grid-cols-2 gap-3">
