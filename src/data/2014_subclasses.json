@@ -31,7 +31,8 @@
             "type": "subclass",
             "name": "Alchemist",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Experimental Elixir",
@@ -56,7 +57,8 @@
             "type": "subclass",
             "name": "Alchemist",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Alchemical Savant",
@@ -81,7 +83,8 @@
             "type": "subclass",
             "name": "Alchemist",
             "level": 5
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Restorative Reagents",
@@ -106,7 +109,8 @@
             "type": "subclass",
             "name": "Alchemist",
             "level": 9
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Chemical Mastery",
@@ -131,7 +135,8 @@
             "type": "subclass",
             "name": "Alchemist",
             "level": 15
-          }
+          },
+          "book": "EGW"
         }
       ],
       "source": "EGW"
@@ -165,7 +170,8 @@
             "type": "subclass",
             "name": "Armorer",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Arcane Armor",
@@ -190,7 +196,8 @@
             "type": "subclass",
             "name": "Armorer",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Armor Model",
@@ -215,7 +222,8 @@
             "type": "subclass",
             "name": "Armorer",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Extra Attack",
@@ -240,7 +248,8 @@
             "type": "subclass",
             "name": "Armorer",
             "level": 5
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Armor Modifications",
@@ -265,7 +274,8 @@
             "type": "subclass",
             "name": "Armorer",
             "level": 9
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Perfected Armor",
@@ -290,7 +300,8 @@
             "type": "subclass",
             "name": "Armorer",
             "level": 15
-          }
+          },
+          "book": "EGW"
         }
       ],
       "source": "EGW"
@@ -324,7 +335,8 @@
             "type": "subclass",
             "name": "Artillerist",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Eldritch Cannon",
@@ -349,7 +361,8 @@
             "type": "subclass",
             "name": "Artillerist",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Arcane Firearm",
@@ -374,7 +387,8 @@
             "type": "subclass",
             "name": "Artillerist",
             "level": 5
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Explosive Cannon",
@@ -399,7 +413,8 @@
             "type": "subclass",
             "name": "Artillerist",
             "level": 9
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Fortified Position",
@@ -424,7 +439,8 @@
             "type": "subclass",
             "name": "Artillerist",
             "level": 15
-          }
+          },
+          "book": "EGW"
         }
       ],
       "source": "EGW"
@@ -458,7 +474,8 @@
             "type": "subclass",
             "name": "Battle Smith",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Battle Ready",
@@ -483,7 +500,8 @@
             "type": "subclass",
             "name": "Battle Smith",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Steel Defender",
@@ -508,7 +526,8 @@
             "type": "subclass",
             "name": "Battle Smith",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Extra Attack",
@@ -533,7 +552,8 @@
             "type": "subclass",
             "name": "Battle Smith",
             "level": 5
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Arcane Jolt",
@@ -558,7 +578,8 @@
             "type": "subclass",
             "name": "Battle Smith",
             "level": 9
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Improved Defender",
@@ -583,7 +604,8 @@
             "type": "subclass",
             "name": "Battle Smith",
             "level": 15
-          }
+          },
+          "book": "EGW"
         }
       ],
       "source": "EGW"
@@ -621,7 +643,8 @@
             "type": "subclass",
             "name": "Ancestral Guardian",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Spirit Shield",
@@ -646,7 +669,8 @@
             "type": "subclass",
             "name": "Ancestral Guardian",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Consult the Spirits",
@@ -671,7 +695,8 @@
             "type": "subclass",
             "name": "Ancestral Guardian",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Vengeful Ancestors",
@@ -696,7 +721,8 @@
             "type": "subclass",
             "name": "Ancestral Guardian",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -734,7 +760,8 @@
             "type": "subclass",
             "name": "Berserker",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Mindless Rage",
@@ -759,7 +786,8 @@
             "type": "subclass",
             "name": "Berserker",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Intimidating Presence",
@@ -784,7 +812,8 @@
             "type": "subclass",
             "name": "Berserker",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Retaliation",
@@ -809,7 +838,8 @@
             "type": "subclass",
             "name": "Berserker",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -847,7 +877,8 @@
             "type": "subclass",
             "name": "Storm Herald",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Storm Soul",
@@ -872,7 +903,8 @@
             "type": "subclass",
             "name": "Storm Herald",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Shielding Storm",
@@ -897,7 +929,8 @@
             "type": "subclass",
             "name": "Storm Herald",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Raging Storm",
@@ -922,7 +955,8 @@
             "type": "subclass",
             "name": "Storm Herald",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -961,11 +995,12 @@
             "type": "subclass",
             "name": "Totem Warrior",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Totem Spirit",
-          "description": "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object \u2014 an amulet or similar adornment \u2014 that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are: Bear. While raging, you have resistance to all damage except psychic damage. Eagle. While raging, other creatures have disadvantage on opportunity attacks against you, and you can use the Dash action as a bonus action on your turn. Wolf. While raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you.",
+          "description": "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object — an amulet or similar adornment — that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are: Bear. While raging, you have resistance to all damage except psychic damage. Eagle. While raging, other creatures have disadvantage on opportunity attacks against you, and you can use the Dash action as a bonus action on your turn. Wolf. While raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -986,7 +1021,8 @@
             "type": "subclass",
             "name": "Totem Warrior",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Aspect of the Beast",
@@ -1011,7 +1047,8 @@
             "type": "subclass",
             "name": "Totem Warrior",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Spirit Walker",
@@ -1036,7 +1073,8 @@
             "type": "subclass",
             "name": "Totem Warrior",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Totemic Attunement",
@@ -1061,7 +1099,8 @@
             "type": "subclass",
             "name": "Totem Warrior",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -1073,7 +1112,7 @@
       "name": "Zealot",
       "flavorText": "Primal Path",
       "description": [
-        "Some deities inspire their followers to channel unrelenting ferocity. These barbarians are zealots\u2014warriors who channel their rage into powerful displays of divine might."
+        "Some deities inspire their followers to channel unrelenting ferocity. These barbarians are zealots—warriors who channel their rage into powerful displays of divine might."
       ],
       "features": [
         {
@@ -1099,7 +1138,8 @@
             "type": "subclass",
             "name": "Zealot",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Warrior of the Gods",
@@ -1124,7 +1164,8 @@
             "type": "subclass",
             "name": "Zealot",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Fanatical Focus",
@@ -1149,7 +1190,8 @@
             "type": "subclass",
             "name": "Zealot",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Zealous Presence",
@@ -1174,7 +1216,8 @@
             "type": "subclass",
             "name": "Zealot",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -1212,7 +1255,8 @@
             "type": "subclass",
             "name": "College of Glamour",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Enthralling Performance",
@@ -1237,7 +1281,8 @@
             "type": "subclass",
             "name": "College of Glamour",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Mantle of Majesty",
@@ -1262,7 +1307,8 @@
             "type": "subclass",
             "name": "College of Glamour",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -1296,7 +1342,8 @@
             "type": "subclass",
             "name": "College of Spirits",
             "level": 3
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Tales from Beyond",
@@ -1321,7 +1368,8 @@
             "type": "subclass",
             "name": "College of Spirits",
             "level": 3
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Spiritual Focus (Improved)",
@@ -1346,7 +1394,8 @@
             "type": "subclass",
             "name": "College of Spirits",
             "level": 6
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Spirit Session",
@@ -1371,7 +1420,8 @@
             "type": "subclass",
             "name": "College of Spirits",
             "level": 6
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Mystical Connection",
@@ -1396,7 +1446,8 @@
             "type": "subclass",
             "name": "College of Spirits",
             "level": 14
-          }
+          },
+          "book": "VRGR"
         }
       ],
       "source": "VRGR"
@@ -1434,7 +1485,8 @@
             "type": "subclass",
             "name": "College of Swords",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Fighting Style",
@@ -1474,7 +1526,8 @@
             "type": "subclass",
             "name": "College of Swords",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Blade Flourish",
@@ -1499,7 +1552,8 @@
             "type": "subclass",
             "name": "College of Swords",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Extra Attack",
@@ -1524,7 +1578,8 @@
             "type": "subclass",
             "name": "College of Swords",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Master Flourish",
@@ -1549,7 +1604,8 @@
             "type": "subclass",
             "name": "College of Swords",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -1587,7 +1643,8 @@
             "type": "subclass",
             "name": "College of Whispers",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Words of Terror",
@@ -1612,7 +1669,8 @@
             "type": "subclass",
             "name": "College of Whispers",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Mantle of Whispers",
@@ -1637,7 +1695,8 @@
             "type": "subclass",
             "name": "College of Whispers",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -1675,7 +1734,8 @@
             "type": "subclass",
             "name": "Lore",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Cutting Words",
@@ -1700,7 +1760,8 @@
             "type": "subclass",
             "name": "Lore",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Additional Magical Secrets",
@@ -1735,7 +1796,8 @@
             "type": "subclass",
             "name": "Lore",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Peerless Skill",
@@ -1760,7 +1822,8 @@
             "type": "subclass",
             "name": "Lore",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -1799,7 +1862,8 @@
             "type": "subclass",
             "name": "Valor",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Combat Inspiration",
@@ -1824,7 +1888,8 @@
             "type": "subclass",
             "name": "Valor",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Extra Attack",
@@ -1849,7 +1914,8 @@
             "type": "subclass",
             "name": "Valor",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Battle Magic",
@@ -1874,7 +1940,8 @@
             "type": "subclass",
             "name": "Valor",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -1912,7 +1979,8 @@
             "type": "subclass",
             "name": "Forge Domain",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Blessing of the Forge",
@@ -1937,7 +2005,8 @@
             "type": "subclass",
             "name": "Forge Domain",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Channel Divinity: Artisan's Blessing",
@@ -1962,7 +2031,8 @@
             "type": "subclass",
             "name": "Forge Domain",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Soul of the Forge",
@@ -1987,7 +2057,8 @@
             "type": "subclass",
             "name": "Forge Domain",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Divine Strike",
@@ -2012,7 +2083,8 @@
             "type": "subclass",
             "name": "Forge Domain",
             "level": 8
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Saint of Forge and Fire",
@@ -2037,7 +2109,8 @@
             "type": "subclass",
             "name": "Forge Domain",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -2075,7 +2148,8 @@
             "type": "subclass",
             "name": "Grave Domain",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Circle of Mortality",
@@ -2100,7 +2174,8 @@
             "type": "subclass",
             "name": "Grave Domain",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Eyes of the Grave",
@@ -2125,7 +2200,8 @@
             "type": "subclass",
             "name": "Grave Domain",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Path to the Grave",
@@ -2150,7 +2226,8 @@
             "type": "subclass",
             "name": "Grave Domain",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Sentinel at Death's Door",
@@ -2175,7 +2252,8 @@
             "type": "subclass",
             "name": "Grave Domain",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Divine Strike",
@@ -2200,7 +2278,8 @@
             "type": "subclass",
             "name": "Grave Domain",
             "level": 8
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Keeper of Souls",
@@ -2225,7 +2304,8 @@
             "type": "subclass",
             "name": "Grave Domain",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -2238,7 +2318,7 @@
       "flavorText": "Divine Domain",
       "description": [
         "The Knowledge domain represents the pursuit of knowledge and understanding of the world and the gods. Its clerics are scholars, sages, and seekers of truth, using their divine gifts to uncover secrets and illuminate the mysteries of existence.",
-        "Gods of knowledge\u2014including Oghma, Boccob, Gilean, and Aureon\u2014value learning and understanding above all. Some teach that knowledge is to be gathered and shared in libraries and universities, while others believe it should be kept secret and used only by the worthy."
+        "Gods of knowledge—including Oghma, Boccob, Gilean, and Aureon—value learning and understanding above all. Some teach that knowledge is to be gathered and shared in libraries and universities, while others believe it should be kept secret and used only by the worthy."
       ],
       "features": [
         {
@@ -2264,7 +2344,8 @@
             "type": "subclass",
             "name": "Knowledge",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Knowledge of the Ages",
@@ -2289,7 +2370,8 @@
             "type": "subclass",
             "name": "Knowledge",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Read Thoughts",
@@ -2314,7 +2396,8 @@
             "type": "subclass",
             "name": "Knowledge",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Potent Spellcasting",
@@ -2339,7 +2422,8 @@
             "type": "subclass",
             "name": "Knowledge",
             "level": 8
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Visions of the Past",
@@ -2364,7 +2448,8 @@
             "type": "subclass",
             "name": "Knowledge",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -2402,7 +2487,8 @@
             "type": "subclass",
             "name": "Life",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Disciple of Life",
@@ -2427,7 +2513,8 @@
             "type": "subclass",
             "name": "Life",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Preserve Life",
@@ -2452,7 +2539,8 @@
             "type": "subclass",
             "name": "Life",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Blessed Healer",
@@ -2477,7 +2565,8 @@
             "type": "subclass",
             "name": "Life",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Divine Strike",
@@ -2502,7 +2591,8 @@
             "type": "subclass",
             "name": "Life",
             "level": 8
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Supreme Healing",
@@ -2527,7 +2617,8 @@
             "type": "subclass",
             "name": "Life",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -2540,7 +2631,7 @@
       "flavorText": "Divine Domain",
       "description": [
         "The Light domain represents the power of light, fire, and revelation. Its clerics are beacons of hope and clarity, using radiant energy to burn away darkness, undeath, and deception.",
-        "Gods of light\u2014including Lathander, Pelor, Ra, and Apollo\u2014promote the ideals of rebirth and renewal, truth, vigilance, and beauty, often using the symbol of the sun. Gods of the Light domain are often associated with fire as a symbol of purity and truth."
+        "Gods of light—including Lathander, Pelor, Ra, and Apollo—promote the ideals of rebirth and renewal, truth, vigilance, and beauty, often using the symbol of the sun. Gods of the Light domain are often associated with fire as a symbol of purity and truth."
       ],
       "features": [
         {
@@ -2566,7 +2657,8 @@
             "type": "subclass",
             "name": "Light",
             "level": 1
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Warding Flare",
@@ -2591,7 +2683,8 @@
             "type": "subclass",
             "name": "Light",
             "level": 1
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Channel Divinity: Radiance of the Dawn",
@@ -2616,7 +2709,8 @@
             "type": "subclass",
             "name": "Light",
             "level": 2
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Improved Flare",
@@ -2641,7 +2735,8 @@
             "type": "subclass",
             "name": "Light",
             "level": 6
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Potent Spellcasting",
@@ -2666,7 +2761,8 @@
             "type": "subclass",
             "name": "Light",
             "level": 8
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Corona of Light",
@@ -2691,7 +2787,8 @@
             "type": "subclass",
             "name": "Light",
             "level": 17
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "source": "SCAG"
@@ -2704,7 +2801,7 @@
       "flavorText": "Divine Domain",
       "description": [
         "The Nature domain represents the power of the natural world. Its clerics are guardians of the wild, calling upon the primal forces of nature to protect the land and all its creatures.",
-        "Gods of nature\u2014including Silvanus, Mielikki, and the Oak Father\u2014revere the natural world and protect it from those who would do it harm. They teach that all living things are connected and that the balance of nature must be maintained."
+        "Gods of nature—including Silvanus, Mielikki, and the Oak Father—revere the natural world and protect it from those who would do it harm. They teach that all living things are connected and that the balance of nature must be maintained."
       ],
       "features": [
         {
@@ -2730,7 +2827,8 @@
             "type": "subclass",
             "name": "Nature",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Charm Animals and Plants",
@@ -2755,7 +2853,8 @@
             "type": "subclass",
             "name": "Nature",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Charm Animals and Plants",
@@ -2780,7 +2879,8 @@
             "type": "subclass",
             "name": "Nature",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dampen Elements",
@@ -2805,7 +2905,8 @@
             "type": "subclass",
             "name": "Nature",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Potent Spellcasting",
@@ -2830,7 +2931,8 @@
             "type": "subclass",
             "name": "Nature",
             "level": 8
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Master of Nature",
@@ -2855,7 +2957,8 @@
             "type": "subclass",
             "name": "Nature",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -2868,7 +2971,7 @@
       "flavorText": "Divine Domain",
       "description": [
         "The Tempest domain represents the power of storms and the sea. Its clerics are fierce warriors who call upon the fury of thunder and lightning to smite their enemies and protect the innocent.",
-        "Gods of the Tempest domain\u2014including Talos, Umberlee, and Zeus\u2014embrace the destructive power of nature and teach that only through conflict and struggle can strength be gained. They are often patrons of sailors and those who make their living on the sea."
+        "Gods of the Tempest domain—including Talos, Umberlee, and Zeus—embrace the destructive power of nature and teach that only through conflict and struggle can strength be gained. They are often patrons of sailors and those who make their living on the sea."
       ],
       "features": [
         {
@@ -2894,7 +2997,8 @@
             "type": "subclass",
             "name": "Tempest",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Wrath of the Storm",
@@ -2919,7 +3023,8 @@
             "type": "subclass",
             "name": "Tempest",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Destructive Wrath",
@@ -2944,7 +3049,8 @@
             "type": "subclass",
             "name": "Tempest",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Thunderbolt Strike",
@@ -2969,7 +3075,8 @@
             "type": "subclass",
             "name": "Tempest",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Potent Spellcasting",
@@ -2994,7 +3101,8 @@
             "type": "subclass",
             "name": "Tempest",
             "level": 8
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Stormborn",
@@ -3019,7 +3127,8 @@
             "type": "subclass",
             "name": "Tempest",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -3032,7 +3141,7 @@
       "flavorText": "Divine Domain",
       "description": [
         "The Trickery domain represents the power of deception and illusion. Its clerics are cunning and resourceful, using their divine gifts to confuse and misdirect their enemies.",
-        "Gods of trickery\u2014including Olidammara, the Traveler, and Loki\u2014are patrons of thieves, scoundrels, and tricksters. They teach that one must be clever to survive in a world full of dangers and that sometimes the best way to defeat an enemy is through cunning rather than force."
+        "Gods of trickery—including Olidammara, the Traveler, and Loki—are patrons of thieves, scoundrels, and tricksters. They teach that one must be clever to survive in a world full of dangers and that sometimes the best way to defeat an enemy is through cunning rather than force."
       ],
       "features": [
         {
@@ -3058,7 +3167,8 @@
             "type": "subclass",
             "name": "Trickery",
             "level": 1
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Channel Divinity: Invoke Duplicity",
@@ -3083,7 +3193,8 @@
             "type": "subclass",
             "name": "Trickery",
             "level": 2
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Channel Divinity: Cloak of Shadows",
@@ -3108,7 +3219,8 @@
             "type": "subclass",
             "name": "Trickery",
             "level": 6
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Potent Spellcasting",
@@ -3133,7 +3245,8 @@
             "type": "subclass",
             "name": "Trickery",
             "level": 8
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Divine Strike",
@@ -3158,7 +3271,8 @@
             "type": "subclass",
             "name": "Trickery",
             "level": 8
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Improved Duplicity",
@@ -3183,7 +3297,8 @@
             "type": "subclass",
             "name": "Trickery",
             "level": 17
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "source": "SCAG"
@@ -3196,7 +3311,7 @@
       "flavorText": "Divine Domain",
       "description": [
         "The War domain represents the power of battle and conflict. Its clerics are divine warriors who inspire their allies and strike down their foes with righteous fury.",
-        "Gods of war\u2014including Tempus, Nike, and Tyr\u2014embrace the glory of combat and teach that conflict can be a noble pursuit when waged for a just cause. They inspire their followers to fight with honor and courage in the face of overwhelming odds."
+        "Gods of war—including Tempus, Nike, and Tyr—embrace the glory of combat and teach that conflict can be a noble pursuit when waged for a just cause. They inspire their followers to fight with honor and courage in the face of overwhelming odds."
       ],
       "features": [
         {
@@ -3222,7 +3337,8 @@
             "type": "subclass",
             "name": "War",
             "level": 1
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "War Priest",
@@ -3247,7 +3363,8 @@
             "type": "subclass",
             "name": "War",
             "level": 1
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Channel Divinity: Guided Strike",
@@ -3272,7 +3389,8 @@
             "type": "subclass",
             "name": "War",
             "level": 2
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Channel Divinity: War God's Blessing",
@@ -3297,7 +3415,8 @@
             "type": "subclass",
             "name": "War",
             "level": 6
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Potent Spellcasting",
@@ -3322,7 +3441,8 @@
             "type": "subclass",
             "name": "War",
             "level": 8
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Avatar of Battle",
@@ -3347,7 +3467,8 @@
             "type": "subclass",
             "name": "War",
             "level": 17
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "source": "SCAG"
@@ -3385,7 +3506,8 @@
             "type": "subclass",
             "name": "Circle of Dreams",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Hearth of Moonlight and Shadow",
@@ -3410,7 +3532,8 @@
             "type": "subclass",
             "name": "Circle of Dreams",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Hidden Paths",
@@ -3435,7 +3558,8 @@
             "type": "subclass",
             "name": "Circle of Dreams",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Walker in Dreams",
@@ -3460,7 +3584,8 @@
             "type": "subclass",
             "name": "Circle of Dreams",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -3498,7 +3623,8 @@
             "type": "subclass",
             "name": "Circle of the Shepherd",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Spirit Totem",
@@ -3523,7 +3649,8 @@
             "type": "subclass",
             "name": "Circle of the Shepherd",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Mighty Summoner",
@@ -3548,7 +3675,8 @@
             "type": "subclass",
             "name": "Circle of the Shepherd",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Guardian Spirit",
@@ -3573,7 +3701,8 @@
             "type": "subclass",
             "name": "Circle of the Shepherd",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Faithful Summons",
@@ -3598,7 +3727,8 @@
             "type": "subclass",
             "name": "Circle of the Shepherd",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -3642,7 +3772,8 @@
             "type": "subclass",
             "name": "Land",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Natural Recovery",
@@ -3667,7 +3798,8 @@
             "type": "subclass",
             "name": "Land",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Circle Spells",
@@ -3698,7 +3830,8 @@
             "type": "subclass",
             "name": "Land",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Land's Stride",
@@ -3723,7 +3856,8 @@
             "type": "subclass",
             "name": "Land",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Nature's Ward",
@@ -3748,7 +3882,8 @@
             "type": "subclass",
             "name": "Land",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Nature's Sanctuary",
@@ -3773,7 +3908,8 @@
             "type": "subclass",
             "name": "Land",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -3812,7 +3948,8 @@
             "type": "subclass",
             "name": "Moon",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Circle Forms",
@@ -3837,7 +3974,8 @@
             "type": "subclass",
             "name": "Moon",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Primal Strike",
@@ -3862,7 +4000,8 @@
             "type": "subclass",
             "name": "Moon",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Elemental Wild Shape",
@@ -3887,7 +4026,8 @@
             "type": "subclass",
             "name": "Moon",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Thousand Forms",
@@ -3912,7 +4052,8 @@
             "type": "subclass",
             "name": "Moon",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -3929,7 +4070,7 @@
       "features": [
         {
           "name": "Arcane Archer Lore",
-          "description": "At 3rd level, you learn magical theory or some of the secrets of nature\u2014typically related to the force of archery and the importance of focus. You learn either the prestidigitation or the druidcraft cantrip of your choice.",
+          "description": "At 3rd level, you learn magical theory or some of the secrets of nature—typically related to the force of archery and the importance of focus. You learn either the prestidigitation or the druidcraft cantrip of your choice.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -3950,7 +4091,8 @@
             "type": "subclass",
             "name": "Arcane Archer",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Arcane Shot",
@@ -3975,7 +4117,8 @@
             "type": "subclass",
             "name": "Arcane Archer",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Arcane Shot Options",
@@ -4039,7 +4182,8 @@
             "type": "subclass",
             "name": "Arcane Archer",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Magic Arrow",
@@ -4064,7 +4208,8 @@
             "type": "subclass",
             "name": "Arcane Archer",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Curving Shot",
@@ -4089,7 +4234,8 @@
             "type": "subclass",
             "name": "Arcane Archer",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Ever-Ready Shot",
@@ -4114,7 +4260,8 @@
             "type": "subclass",
             "name": "Arcane Archer",
             "level": 15
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -4224,7 +4371,8 @@
             "type": "subclass",
             "name": "Battle Master",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Student of War",
@@ -4254,7 +4402,8 @@
             "type": "subclass",
             "name": "Battle Master",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Know Your Enemy",
@@ -4279,7 +4428,8 @@
             "type": "subclass",
             "name": "Battle Master",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Improved Combat Superiority (d10)",
@@ -4304,7 +4454,8 @@
             "type": "subclass",
             "name": "Battle Master",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Relentless",
@@ -4329,7 +4480,8 @@
             "type": "subclass",
             "name": "Battle Master",
             "level": 15
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Improved Combat Superiority (d12)",
@@ -4354,7 +4506,8 @@
             "type": "subclass",
             "name": "Battle Master",
             "level": 18
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -4419,7 +4572,8 @@
             "type": "subclass",
             "name": "Cavalier",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Born to the Saddle",
@@ -4444,7 +4598,8 @@
             "type": "subclass",
             "name": "Cavalier",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Unwavering Mark",
@@ -4469,7 +4624,8 @@
             "type": "subclass",
             "name": "Cavalier",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Warding Maneuver",
@@ -4494,7 +4650,8 @@
             "type": "subclass",
             "name": "Cavalier",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Hold the Line",
@@ -4519,7 +4676,8 @@
             "type": "subclass",
             "name": "Cavalier",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Ferocious Charger",
@@ -4544,7 +4702,8 @@
             "type": "subclass",
             "name": "Cavalier",
             "level": 15
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Vigilant Defender",
@@ -4569,7 +4728,8 @@
             "type": "subclass",
             "name": "Cavalier",
             "level": 18
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -4607,7 +4767,8 @@
             "type": "subclass",
             "name": "Champion",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Remarkable Athlete",
@@ -4632,7 +4793,8 @@
             "type": "subclass",
             "name": "Champion",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Additional Fighting Style",
@@ -4657,7 +4819,8 @@
             "type": "subclass",
             "name": "Champion",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Superior Critical",
@@ -4682,7 +4845,8 @@
             "type": "subclass",
             "name": "Champion",
             "level": 15
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Survivor",
@@ -4707,7 +4871,8 @@
             "type": "subclass",
             "name": "Champion",
             "level": 18
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -4741,7 +4906,8 @@
             "type": "subclass",
             "name": "Echo Knight",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Unleash Incarnation",
@@ -4766,7 +4932,8 @@
             "type": "subclass",
             "name": "Echo Knight",
             "level": 3
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Echo Avatar",
@@ -4791,7 +4958,8 @@
             "type": "subclass",
             "name": "Echo Knight",
             "level": 7
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Shadow Martyr",
@@ -4816,7 +4984,8 @@
             "type": "subclass",
             "name": "Echo Knight",
             "level": 10
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Reclaim Potential",
@@ -4841,7 +5010,8 @@
             "type": "subclass",
             "name": "Echo Knight",
             "level": 15
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Legion of One",
@@ -4866,7 +5036,8 @@
             "type": "subclass",
             "name": "Echo Knight",
             "level": 18
-          }
+          },
+          "book": "EGW"
         }
       ],
       "source": "EGW"
@@ -5029,7 +5200,8 @@
             "type": "subclass",
             "name": "Eldritch Knight",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Weapon Bond",
@@ -5054,7 +5226,8 @@
             "type": "subclass",
             "name": "Eldritch Knight",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "War Magic",
@@ -5079,7 +5252,8 @@
             "type": "subclass",
             "name": "Eldritch Knight",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Eldritch Strike",
@@ -5104,7 +5278,8 @@
             "type": "subclass",
             "name": "Eldritch Knight",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Arcane Charge",
@@ -5129,7 +5304,8 @@
             "type": "subclass",
             "name": "Eldritch Knight",
             "level": 15
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Improved War Magic",
@@ -5154,7 +5330,8 @@
             "type": "subclass",
             "name": "Eldritch Knight",
             "level": 18
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -5215,7 +5392,8 @@
             "type": "subclass",
             "name": "Samurai",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Fighting Spirit",
@@ -5240,7 +5418,8 @@
             "type": "subclass",
             "name": "Samurai",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Elegant Courtier",
@@ -5265,7 +5444,8 @@
             "type": "subclass",
             "name": "Samurai",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Tireless Spirit",
@@ -5290,7 +5470,8 @@
             "type": "subclass",
             "name": "Samurai",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Rapid Strike",
@@ -5315,7 +5496,8 @@
             "type": "subclass",
             "name": "Samurai",
             "level": 15
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Strength Before Death",
@@ -5340,7 +5522,8 @@
             "type": "subclass",
             "name": "Samurai",
             "level": 18
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -5374,7 +5557,8 @@
             "type": "subclass",
             "name": "Ascendant Dragon",
             "level": 3
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Breath of the Dragon",
@@ -5399,7 +5583,8 @@
             "type": "subclass",
             "name": "Ascendant Dragon",
             "level": 3
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Wings Unfurled",
@@ -5424,7 +5609,8 @@
             "type": "subclass",
             "name": "Ascendant Dragon",
             "level": 6
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Aspect of the Wyrm",
@@ -5449,7 +5635,8 @@
             "type": "subclass",
             "name": "Ascendant Dragon",
             "level": 11
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Ascendant Aspect",
@@ -5474,7 +5661,8 @@
             "type": "subclass",
             "name": "Ascendant Dragon",
             "level": 17
-          }
+          },
+          "book": "FTD"
         }
       ],
       "source": "FTD"
@@ -5486,7 +5674,7 @@
       "index": "four-elements",
       "flavorText": "Monastic Tradition",
       "description": [
-        "Monks of the Way of the Four Elements harness the power of the elements\u2014earth, air, fire, and water\u2014to perform fantastic feats. Through rigorous training and meditation, they learn to channel ki to create elemental effects.",
+        "Monks of the Way of the Four Elements harness the power of the elements—earth, air, fire, and water—to perform fantastic feats. Through rigorous training and meditation, they learn to channel ki to create elemental effects.",
         "These monks study the natural world and learn to emulate its forces. They can summon blasts of fire, create walls of stone, call down lightning, and even fly on the wind. Their training is both physically and mentally demanding."
       ],
       "features": [
@@ -5518,7 +5706,8 @@
             "type": "subclass",
             "name": "Four Elements",
             "level": 3
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -5556,7 +5745,8 @@
             "type": "subclass",
             "name": "Open Hand",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Wholeness of Body",
@@ -5581,7 +5771,8 @@
             "type": "subclass",
             "name": "Open Hand",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Tranquility",
@@ -5606,7 +5797,8 @@
             "type": "subclass",
             "name": "Open Hand",
             "level": 11
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Quivering Palm",
@@ -5631,7 +5823,8 @@
             "type": "subclass",
             "name": "Open Hand",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -5670,7 +5863,8 @@
             "type": "subclass",
             "name": "Shadow",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Shadow Step",
@@ -5695,7 +5889,8 @@
             "type": "subclass",
             "name": "Shadow",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Cloak of Shadows",
@@ -5720,7 +5915,8 @@
             "type": "subclass",
             "name": "Shadow",
             "level": 11
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Opportunist",
@@ -5745,7 +5941,8 @@
             "type": "subclass",
             "name": "Shadow",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -5783,7 +5980,8 @@
             "type": "subclass",
             "name": "Way of the Drunken Master",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Drunken Technique",
@@ -5808,7 +6006,8 @@
             "type": "subclass",
             "name": "Way of the Drunken Master",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Tipsy Sway",
@@ -5833,7 +6032,8 @@
             "type": "subclass",
             "name": "Way of the Drunken Master",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Drunkard's Luck",
@@ -5858,7 +6058,8 @@
             "type": "subclass",
             "name": "Way of the Drunken Master",
             "level": 11
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Intoxicated Frenzy",
@@ -5883,7 +6084,8 @@
             "type": "subclass",
             "name": "Way of the Drunken Master",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -5932,7 +6134,8 @@
             "type": "subclass",
             "name": "Way of the Kensei",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "One with the Blade",
@@ -5957,7 +6160,8 @@
             "type": "subclass",
             "name": "Way of the Kensei",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Sharpen the Blade",
@@ -5982,7 +6186,8 @@
             "type": "subclass",
             "name": "Way of the Kensei",
             "level": 11
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Unerring Accuracy",
@@ -6007,7 +6212,8 @@
             "type": "subclass",
             "name": "Way of the Kensei",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -6045,7 +6251,8 @@
             "type": "subclass",
             "name": "Way of the Sun Soul",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Searing Arc Strike",
@@ -6070,7 +6277,8 @@
             "type": "subclass",
             "name": "Way of the Sun Soul",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Searing Sunburst",
@@ -6095,7 +6303,8 @@
             "type": "subclass",
             "name": "Way of the Sun Soul",
             "level": 11
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Sun Shield",
@@ -6120,7 +6329,8 @@
             "type": "subclass",
             "name": "Way of the Sun Soul",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -6133,7 +6343,7 @@
       "flavorText": "Sacred Oath",
       "description": [
         "The Oath of the Ancients is as old as the race of elves and the rituals of the druids. Sometimes called fey knights, green knights, or horned knights, paladins who swear this oath cast their lot with the side of the light in the cosmic struggle against darkness.",
-        "These paladins love the beautiful and life-giving things of the world, not necessarily because they believe in principles of honor, courage, and justice. They adorn their armor and clothing with images of growing things\u2014leaves, antlers, or flowers\u2014to reflect their commitment to preserving life and light in the world."
+        "These paladins love the beautiful and life-giving things of the world, not necessarily because they believe in principles of honor, courage, and justice. They adorn their armor and clothing with images of growing things—leaves, antlers, or flowers—to reflect their commitment to preserving life and light in the world."
       ],
       "features": [
         {
@@ -6159,7 +6369,8 @@
             "type": "subclass",
             "name": "Ancients",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Nature's Wrath",
@@ -6184,7 +6395,8 @@
             "type": "subclass",
             "name": "Ancients",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Turn the Faithless",
@@ -6209,7 +6421,8 @@
             "type": "subclass",
             "name": "Ancients",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Aura of Warding",
@@ -6234,7 +6447,8 @@
             "type": "subclass",
             "name": "Ancients",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Undying Sentinel",
@@ -6259,7 +6473,8 @@
             "type": "subclass",
             "name": "Ancients",
             "level": 15
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Elder Champion",
@@ -6284,7 +6499,8 @@
             "type": "subclass",
             "name": "Ancients",
             "level": 20
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -6322,7 +6538,8 @@
             "type": "subclass",
             "name": "Devotion",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Sacred Weapon",
@@ -6347,7 +6564,8 @@
             "type": "subclass",
             "name": "Devotion",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Turn the Unholy",
@@ -6372,7 +6590,8 @@
             "type": "subclass",
             "name": "Devotion",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Aura of Devotion",
@@ -6397,7 +6616,8 @@
             "type": "subclass",
             "name": "Devotion",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Purity of Spirit",
@@ -6422,7 +6642,8 @@
             "type": "subclass",
             "name": "Devotion",
             "level": 15
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Holy Nimbus",
@@ -6447,7 +6668,8 @@
             "type": "subclass",
             "name": "Devotion",
             "level": 20
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -6481,7 +6703,8 @@
             "type": "subclass",
             "name": "Draconic Disciple",
             "level": 3
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Channel Divinity: Draconic Might",
@@ -6506,7 +6729,8 @@
             "type": "subclass",
             "name": "Draconic Disciple",
             "level": 3
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Aura of the Dragon",
@@ -6531,7 +6755,8 @@
             "type": "subclass",
             "name": "Draconic Disciple",
             "level": 7
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Draconic Resilience",
@@ -6556,7 +6781,8 @@
             "type": "subclass",
             "name": "Draconic Disciple",
             "level": 15
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Dragon Knight",
@@ -6581,7 +6807,8 @@
             "type": "subclass",
             "name": "Draconic Disciple",
             "level": 20
-          }
+          },
+          "book": "FTD"
         }
       ],
       "source": "FTD"
@@ -6619,7 +6846,8 @@
             "type": "subclass",
             "name": "Oath of Conquest",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Aura of Conquest",
@@ -6644,7 +6872,8 @@
             "type": "subclass",
             "name": "Oath of Conquest",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Scared Earth",
@@ -6669,7 +6898,8 @@
             "type": "subclass",
             "name": "Oath of Conquest",
             "level": 15
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Invincible Conqueror",
@@ -6694,7 +6924,8 @@
             "type": "subclass",
             "name": "Oath of Conquest",
             "level": 20
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -6732,7 +6963,8 @@
             "type": "subclass",
             "name": "Oath of Redemption",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Aura of the Guardian",
@@ -6757,7 +6989,8 @@
             "type": "subclass",
             "name": "Oath of Redemption",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Protective Spirit",
@@ -6782,7 +7015,8 @@
             "type": "subclass",
             "name": "Oath of Redemption",
             "level": 15
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Emissary of Redemption",
@@ -6807,7 +7041,8 @@
             "type": "subclass",
             "name": "Oath of Redemption",
             "level": 20
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -6845,7 +7080,8 @@
             "type": "subclass",
             "name": "Oath of the Watchers",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Aura of the Sentinel",
@@ -6870,7 +7106,8 @@
             "type": "subclass",
             "name": "Oath of the Watchers",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Vigilant Rebuke",
@@ -6895,7 +7132,8 @@
             "type": "subclass",
             "name": "Oath of the Watchers",
             "level": 15
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Mortal Bulwark",
@@ -6920,7 +7158,8 @@
             "type": "subclass",
             "name": "Oath of the Watchers",
             "level": 20
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -6954,7 +7193,8 @@
             "type": "subclass",
             "name": "Redemption",
             "level": 3
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Channel Divinity: Rebuke the Violent",
@@ -6979,7 +7219,8 @@
             "type": "subclass",
             "name": "Redemption",
             "level": 3
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Aura of the Guardian",
@@ -7004,7 +7245,8 @@
             "type": "subclass",
             "name": "Redemption",
             "level": 7
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Protective Spirit",
@@ -7029,7 +7271,8 @@
             "type": "subclass",
             "name": "Redemption",
             "level": 15
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Emissary of Redemption",
@@ -7054,7 +7297,8 @@
             "type": "subclass",
             "name": "Redemption",
             "level": 20
-          }
+          },
+          "book": "MTF"
         }
       ],
       "source": "MTF"
@@ -7093,7 +7337,8 @@
             "type": "subclass",
             "name": "Vengeance",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Abjure Enemy",
@@ -7118,7 +7363,8 @@
             "type": "subclass",
             "name": "Vengeance",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Channel Divinity: Vow of Enmity",
@@ -7143,7 +7389,8 @@
             "type": "subclass",
             "name": "Vengeance",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Relentless Avenger",
@@ -7168,7 +7415,8 @@
             "type": "subclass",
             "name": "Vengeance",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Soul of Vengeance",
@@ -7193,7 +7441,8 @@
             "type": "subclass",
             "name": "Vengeance",
             "level": 15
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Avenging Angel",
@@ -7218,7 +7467,8 @@
             "type": "subclass",
             "name": "Vengeance",
             "level": 20
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -7257,7 +7507,8 @@
             "type": "subclass",
             "name": "Beast Master",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Exceptional Training",
@@ -7282,7 +7533,8 @@
             "type": "subclass",
             "name": "Beast Master",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Bestial Fury",
@@ -7307,7 +7559,8 @@
             "type": "subclass",
             "name": "Beast Master",
             "level": 11
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Share Spells",
@@ -7332,7 +7585,8 @@
             "type": "subclass",
             "name": "Beast Master",
             "level": 15
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -7366,7 +7620,8 @@
             "type": "subclass",
             "name": "Drake Warden",
             "level": 3
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Bond of Fang and Scale",
@@ -7391,7 +7646,8 @@
             "type": "subclass",
             "name": "Drake Warden",
             "level": 3
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Drake's Breath",
@@ -7416,7 +7672,8 @@
             "type": "subclass",
             "name": "Drake Warden",
             "level": 7
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Perfected Bond",
@@ -7441,7 +7698,8 @@
             "type": "subclass",
             "name": "Drake Warden",
             "level": 11
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Reflexive Resistance",
@@ -7466,7 +7724,8 @@
             "type": "subclass",
             "name": "Drake Warden",
             "level": 15
-          }
+          },
+          "book": "FTD"
         }
       ],
       "source": "FTD"
@@ -7504,7 +7763,8 @@
             "type": "subclass",
             "name": "Fey Wanderer",
             "level": 3
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Fey Wanderer Magic",
@@ -7529,7 +7789,8 @@
             "type": "subclass",
             "name": "Fey Wanderer",
             "level": 3
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Otherworldly Glamour",
@@ -7554,7 +7815,8 @@
             "type": "subclass",
             "name": "Fey Wanderer",
             "level": 3
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Beguiling Twist",
@@ -7579,7 +7841,8 @@
             "type": "subclass",
             "name": "Fey Wanderer",
             "level": 7
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Fey Reinforcements",
@@ -7604,7 +7867,8 @@
             "type": "subclass",
             "name": "Fey Wanderer",
             "level": 11
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Misty Wanderer",
@@ -7629,7 +7893,8 @@
             "type": "subclass",
             "name": "Fey Wanderer",
             "level": 15
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -7667,7 +7932,8 @@
             "type": "subclass",
             "name": "Horizon Walker",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Planar Warrior",
@@ -7692,7 +7958,8 @@
             "type": "subclass",
             "name": "Horizon Walker",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Ethereal Step",
@@ -7717,7 +7984,8 @@
             "type": "subclass",
             "name": "Horizon Walker",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Distant Strike",
@@ -7742,7 +8010,8 @@
             "type": "subclass",
             "name": "Horizon Walker",
             "level": 11
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Spectral Defense",
@@ -7767,7 +8036,8 @@
             "type": "subclass",
             "name": "Horizon Walker",
             "level": 15
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -7805,7 +8075,8 @@
             "type": "subclass",
             "name": "Hunter",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Defensive Tactics",
@@ -7830,7 +8101,8 @@
             "type": "subclass",
             "name": "Hunter",
             "level": 7
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Multiattack",
@@ -7855,7 +8127,8 @@
             "type": "subclass",
             "name": "Hunter",
             "level": 11
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Superior Hunter's Defense",
@@ -7880,7 +8153,8 @@
             "type": "subclass",
             "name": "Hunter",
             "level": 15
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -7918,7 +8192,8 @@
             "type": "subclass",
             "name": "Monster Slayer",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Slayer's Prey",
@@ -7943,7 +8218,8 @@
             "type": "subclass",
             "name": "Monster Slayer",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Supernatural Defense",
@@ -7968,7 +8244,8 @@
             "type": "subclass",
             "name": "Monster Slayer",
             "level": 7
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Magic-User's Nemesis",
@@ -7993,7 +8270,8 @@
             "type": "subclass",
             "name": "Monster Slayer",
             "level": 11
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Slayer's Counter",
@@ -8018,7 +8296,8 @@
             "type": "subclass",
             "name": "Monster Slayer",
             "level": 15
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -8056,7 +8335,8 @@
             "type": "subclass",
             "name": "Swarmkeeper",
             "level": 3
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Gathered Swarm",
@@ -8081,7 +8361,8 @@
             "type": "subclass",
             "name": "Swarmkeeper",
             "level": 3
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Writhing Tide",
@@ -8106,7 +8387,8 @@
             "type": "subclass",
             "name": "Swarmkeeper",
             "level": 7
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Mighty Swarm",
@@ -8131,7 +8413,8 @@
             "type": "subclass",
             "name": "Swarmkeeper",
             "level": 11
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Swarming Dispersal",
@@ -8156,7 +8439,8 @@
             "type": "subclass",
             "name": "Swarmkeeper",
             "level": 15
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -8198,7 +8482,8 @@
             "type": "subclass",
             "name": "Arcane Trickster",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Mage Hand Legerdemain",
@@ -8223,7 +8508,8 @@
             "type": "subclass",
             "name": "Arcane Trickster",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Magical Ambush",
@@ -8248,7 +8534,8 @@
             "type": "subclass",
             "name": "Arcane Trickster",
             "level": 9
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Versatile Trickster",
@@ -8273,7 +8560,8 @@
             "type": "subclass",
             "name": "Arcane Trickster",
             "level": 13
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Spell Thief",
@@ -8298,7 +8586,8 @@
             "type": "subclass",
             "name": "Arcane Trickster",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -8337,7 +8626,8 @@
             "type": "subclass",
             "name": "Assassin",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Assassinate",
@@ -8362,7 +8652,8 @@
             "type": "subclass",
             "name": "Assassin",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Infiltration Expertise",
@@ -8387,7 +8678,8 @@
             "type": "subclass",
             "name": "Assassin",
             "level": 9
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Impostor",
@@ -8412,7 +8704,8 @@
             "type": "subclass",
             "name": "Assassin",
             "level": 13
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Death Strike",
@@ -8437,7 +8730,8 @@
             "type": "subclass",
             "name": "Assassin",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -8475,7 +8769,8 @@
             "type": "subclass",
             "name": "Inquisitive",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Eye for Detail",
@@ -8500,7 +8795,8 @@
             "type": "subclass",
             "name": "Inquisitive",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Insightful Fighting",
@@ -8525,7 +8821,8 @@
             "type": "subclass",
             "name": "Inquisitive",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Steady Eye",
@@ -8550,7 +8847,8 @@
             "type": "subclass",
             "name": "Inquisitive",
             "level": 9
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Unerring Eye",
@@ -8575,7 +8873,8 @@
             "type": "subclass",
             "name": "Inquisitive",
             "level": 13
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Eye for Weakness",
@@ -8600,7 +8899,8 @@
             "type": "subclass",
             "name": "Inquisitive",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -8638,7 +8938,8 @@
             "type": "subclass",
             "name": "Mastermind",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Master of Tactics",
@@ -8663,7 +8964,8 @@
             "type": "subclass",
             "name": "Mastermind",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Insightful Manipulator",
@@ -8688,7 +8990,8 @@
             "type": "subclass",
             "name": "Mastermind",
             "level": 9
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Misdirection",
@@ -8713,7 +9016,8 @@
             "type": "subclass",
             "name": "Mastermind",
             "level": 13
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Soul of Deceit",
@@ -8738,7 +9042,8 @@
             "type": "subclass",
             "name": "Mastermind",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -8776,7 +9081,8 @@
             "type": "subclass",
             "name": "Scout",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Survivalist",
@@ -8801,7 +9107,8 @@
             "type": "subclass",
             "name": "Scout",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Superior Mobility",
@@ -8826,7 +9133,8 @@
             "type": "subclass",
             "name": "Scout",
             "level": 9
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Ambush Master",
@@ -8851,7 +9159,8 @@
             "type": "subclass",
             "name": "Scout",
             "level": 13
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Sudden Strike",
@@ -8876,7 +9185,8 @@
             "type": "subclass",
             "name": "Scout",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -8914,7 +9224,8 @@
             "type": "subclass",
             "name": "Swashbuckler",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Rakish Audacity",
@@ -8939,7 +9250,8 @@
             "type": "subclass",
             "name": "Swashbuckler",
             "level": 3
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Panache",
@@ -8964,7 +9276,8 @@
             "type": "subclass",
             "name": "Swashbuckler",
             "level": 9
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Elegant Maneuver",
@@ -8989,7 +9302,8 @@
             "type": "subclass",
             "name": "Swashbuckler",
             "level": 13
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Duelist's Defense",
@@ -9014,7 +9328,8 @@
             "type": "subclass",
             "name": "Swashbuckler",
             "level": 17
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -9052,7 +9367,8 @@
             "type": "subclass",
             "name": "Thief",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Second-Story Work",
@@ -9077,7 +9393,8 @@
             "type": "subclass",
             "name": "Thief",
             "level": 3
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Supreme Sneak",
@@ -9102,7 +9419,8 @@
             "type": "subclass",
             "name": "Thief",
             "level": 9
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Use Magic Device",
@@ -9127,7 +9445,8 @@
             "type": "subclass",
             "name": "Thief",
             "level": 13
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Thief's Reflexes",
@@ -9152,7 +9471,8 @@
             "type": "subclass",
             "name": "Thief",
             "level": 17
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -9190,7 +9510,8 @@
             "type": "subclass",
             "name": "Aberrant Mind",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Psionic Spells",
@@ -9215,7 +9536,8 @@
             "type": "subclass",
             "name": "Aberrant Mind",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Psychic Deflection",
@@ -9240,7 +9562,8 @@
             "type": "subclass",
             "name": "Aberrant Mind",
             "level": 6
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Revelation in Flesh",
@@ -9265,7 +9588,8 @@
             "type": "subclass",
             "name": "Aberrant Mind",
             "level": 14
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Warping Implosion",
@@ -9290,7 +9614,8 @@
             "type": "subclass",
             "name": "Aberrant Mind",
             "level": 18
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -9302,7 +9627,7 @@
       "name": "Clockwork Magic",
       "flavorText": "Sorcerous Origin",
       "description": [
-        "The cosmic force of order has suffused your magic. You can tap into the Great Work\u2014the multiverse's grand design\u2014to ensure that all things remain in their proper place."
+        "The cosmic force of order has suffused your magic. You can tap into the Great Work—the multiverse's grand design—to ensure that all things remain in their proper place."
       ],
       "features": [
         {
@@ -9328,7 +9653,8 @@
             "type": "subclass",
             "name": "Clockwork Magic",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Restore Balance",
@@ -9353,7 +9679,8 @@
             "type": "subclass",
             "name": "Clockwork Magic",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Bastion of Law",
@@ -9378,7 +9705,8 @@
             "type": "subclass",
             "name": "Clockwork Magic",
             "level": 6
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Trance of Order",
@@ -9403,7 +9731,8 @@
             "type": "subclass",
             "name": "Clockwork Magic",
             "level": 14
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Clockwork Cavalcade",
@@ -9428,7 +9757,8 @@
             "type": "subclass",
             "name": "Clockwork Magic",
             "level": 18
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -9466,7 +9796,8 @@
             "type": "subclass",
             "name": "Divine Soul",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Favored by the Gods",
@@ -9491,7 +9822,8 @@
             "type": "subclass",
             "name": "Divine Soul",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Empowered Healing",
@@ -9516,7 +9848,8 @@
             "type": "subclass",
             "name": "Divine Soul",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Otherworldly Wings",
@@ -9541,7 +9874,8 @@
             "type": "subclass",
             "name": "Divine Soul",
             "level": 14
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Unnerving Defense",
@@ -9566,7 +9900,8 @@
             "type": "subclass",
             "name": "Divine Soul",
             "level": 18
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -9646,7 +9981,8 @@
             "type": "subclass",
             "name": "Draconic",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Draconic Resilience",
@@ -9671,7 +10007,8 @@
             "type": "subclass",
             "name": "Draconic",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Elemental Affinity",
@@ -9696,7 +10033,8 @@
             "type": "subclass",
             "name": "Draconic",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dragon Wings",
@@ -9721,7 +10059,8 @@
             "type": "subclass",
             "name": "Draconic",
             "level": 14
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Draconic Presence",
@@ -9746,7 +10085,8 @@
             "type": "subclass",
             "name": "Draconic",
             "level": 18
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -9784,7 +10124,8 @@
             "type": "subclass",
             "name": "Shadow Magic",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Strength of the Grave",
@@ -9809,7 +10150,8 @@
             "type": "subclass",
             "name": "Shadow Magic",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Hound of Ill Omen",
@@ -9834,7 +10176,8 @@
             "type": "subclass",
             "name": "Shadow Magic",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Shadow Walk",
@@ -9859,7 +10202,8 @@
             "type": "subclass",
             "name": "Shadow Magic",
             "level": 14
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Umbral Form",
@@ -9884,7 +10228,8 @@
             "type": "subclass",
             "name": "Shadow Magic",
             "level": 18
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -9922,7 +10267,8 @@
             "type": "subclass",
             "name": "Storm Sorcery",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Tempestuous Magic",
@@ -9947,7 +10293,8 @@
             "type": "subclass",
             "name": "Storm Sorcery",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Heart of the Storm",
@@ -9972,7 +10319,8 @@
             "type": "subclass",
             "name": "Storm Sorcery",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Storm Guide",
@@ -9997,7 +10345,8 @@
             "type": "subclass",
             "name": "Storm Sorcery",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Storm's Fury",
@@ -10022,7 +10371,8 @@
             "type": "subclass",
             "name": "Storm Sorcery",
             "level": 14
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Wind Soul",
@@ -10047,7 +10397,8 @@
             "type": "subclass",
             "name": "Storm Sorcery",
             "level": 18
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -10086,7 +10437,8 @@
             "type": "subclass",
             "name": "Wild Magic",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Tides of Chaos",
@@ -10111,7 +10463,8 @@
             "type": "subclass",
             "name": "Wild Magic",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Bend Luck",
@@ -10136,7 +10489,8 @@
             "type": "subclass",
             "name": "Wild Magic",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Controlled Chaos",
@@ -10161,7 +10515,8 @@
             "type": "subclass",
             "name": "Wild Magic",
             "level": 14
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Spell Bombardment",
@@ -10186,7 +10541,8 @@
             "type": "subclass",
             "name": "Wild Magic",
             "level": 18
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -10222,7 +10578,8 @@
             "type": "subclass",
             "name": "Archfey",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "level": 6,
@@ -10247,7 +10604,8 @@
             "type": "subclass",
             "name": "Archfey",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "level": 10,
@@ -10272,7 +10630,8 @@
             "type": "subclass",
             "name": "Archfey",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "level": 14,
@@ -10297,7 +10656,8 @@
             "type": "subclass",
             "name": "Archfey",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -10335,7 +10695,8 @@
             "type": "subclass",
             "name": "Fiend",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dark One's Own Luck",
@@ -10360,7 +10721,8 @@
             "type": "subclass",
             "name": "Fiend",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Fiendish Resilience",
@@ -10385,7 +10747,8 @@
             "type": "subclass",
             "name": "Fiend",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Hurl Through Hell",
@@ -10410,7 +10773,8 @@
             "type": "subclass",
             "name": "Fiend",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -10449,7 +10813,8 @@
             "type": "subclass",
             "name": "Great Old One",
             "level": 1
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Entropic Ward",
@@ -10474,7 +10839,8 @@
             "type": "subclass",
             "name": "Great Old One",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Thought Shield",
@@ -10499,7 +10865,8 @@
             "type": "subclass",
             "name": "Great Old One",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Create Thrall",
@@ -10524,7 +10891,8 @@
             "type": "subclass",
             "name": "Great Old One",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -10533,7 +10901,7 @@
       "class": "Warlock",
       "name": "Hexblade",
       "description": [
-        "You have made a pact with a mysterious entity from the Shadowfell\u2014a force that manifests in sentient magic weapons. The Hexblade might have forged the blade you wield as your pact weapon, or it might have revealed itself through a ritual of dark binding.",
+        "You have made a pact with a mysterious entity from the Shadowfell—a force that manifests in sentient magic weapons. The Hexblade might have forged the blade you wield as your pact weapon, or it might have revealed itself through a ritual of dark binding.",
         "The Hexblade patron represents the power of the Shadowfell and its connection to death and darkness. Warlocks who serve these beings gain abilities that reflect this connection, including the power to curse their enemies and channel dark energy through their weapons."
       ],
       "features": [
@@ -10560,7 +10928,8 @@
             "type": "subclass",
             "name": "Hexblade",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "level": 1,
@@ -10585,7 +10954,8 @@
             "type": "subclass",
             "name": "Hexblade",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "level": 6,
@@ -10610,7 +10980,8 @@
             "type": "subclass",
             "name": "Hexblade",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "level": 10,
@@ -10635,7 +11006,8 @@
             "type": "subclass",
             "name": "Hexblade",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "level": 14,
@@ -10660,7 +11032,8 @@
             "type": "subclass",
             "name": "Hexblade",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -10698,7 +11071,8 @@
             "type": "subclass",
             "name": "The Celestial",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Healing Light",
@@ -10723,7 +11097,8 @@
             "type": "subclass",
             "name": "The Celestial",
             "level": 1
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Radiant Soul",
@@ -10748,7 +11123,8 @@
             "type": "subclass",
             "name": "The Celestial",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Celestial Resilience",
@@ -10773,7 +11149,8 @@
             "type": "subclass",
             "name": "The Celestial",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Searing Vengeance",
@@ -10798,7 +11175,8 @@
             "type": "subclass",
             "name": "The Celestial",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -10836,7 +11214,8 @@
             "type": "subclass",
             "name": "The Fathomless",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Tentacle of the Deep",
@@ -10861,7 +11240,8 @@
             "type": "subclass",
             "name": "The Fathomless",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Gift of the Sea",
@@ -10886,7 +11266,8 @@
             "type": "subclass",
             "name": "The Fathomless",
             "level": 6
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Oceanic Soul",
@@ -10911,7 +11292,8 @@
             "type": "subclass",
             "name": "The Fathomless",
             "level": 10
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Guardian Coil",
@@ -10936,7 +11318,8 @@
             "type": "subclass",
             "name": "The Fathomless",
             "level": 14
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Grasping Tentacles",
@@ -10961,7 +11344,8 @@
             "type": "subclass",
             "name": "The Fathomless",
             "level": 18
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -10999,7 +11383,8 @@
             "type": "subclass",
             "name": "The Genie",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Genie's Vessel",
@@ -11024,7 +11409,8 @@
             "type": "subclass",
             "name": "The Genie",
             "level": 1
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Elemental Gift",
@@ -11049,7 +11435,8 @@
             "type": "subclass",
             "name": "The Genie",
             "level": 6
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Sanctuary Vessel",
@@ -11074,7 +11461,8 @@
             "type": "subclass",
             "name": "The Genie",
             "level": 10
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Limited Wish",
@@ -11099,7 +11487,8 @@
             "type": "subclass",
             "name": "The Genie",
             "level": 14
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -11133,7 +11522,8 @@
             "type": "subclass",
             "name": "The Undead",
             "level": 1
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Grave Touched",
@@ -11158,7 +11548,8 @@
             "type": "subclass",
             "name": "The Undead",
             "level": 6
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Necrotic Husk",
@@ -11183,7 +11574,8 @@
             "type": "subclass",
             "name": "The Undead",
             "level": 10
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Spirit Projection",
@@ -11208,7 +11600,8 @@
             "type": "subclass",
             "name": "The Undead",
             "level": 14
-          }
+          },
+          "book": "VRGR"
         }
       ],
       "source": "VRGR"
@@ -11247,7 +11640,8 @@
             "type": "subclass",
             "name": "Undying",
             "level": 1
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Undying Nature",
@@ -11272,7 +11666,8 @@
             "type": "subclass",
             "name": "Undying",
             "level": 1
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Beyond the Grave",
@@ -11297,7 +11692,8 @@
             "type": "subclass",
             "name": "Undying",
             "level": 6
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Indestructible Life",
@@ -11322,7 +11718,8 @@
             "type": "subclass",
             "name": "Undying",
             "level": 10
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Undying Nature",
@@ -11347,7 +11744,8 @@
             "type": "subclass",
             "name": "Undying",
             "level": 14
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "source": "SCAG"
@@ -11386,7 +11784,8 @@
             "type": "subclass",
             "name": "Abjuration",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Arcane Ward",
@@ -11411,7 +11810,8 @@
             "type": "subclass",
             "name": "Abjuration",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Projected Ward",
@@ -11436,7 +11836,8 @@
             "type": "subclass",
             "name": "Abjuration",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Improved Abjuration",
@@ -11461,7 +11862,8 @@
             "type": "subclass",
             "name": "Abjuration",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Spell Resistance",
@@ -11486,7 +11888,8 @@
             "type": "subclass",
             "name": "Abjuration",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -11524,7 +11927,8 @@
             "type": "subclass",
             "name": "Bladesinging",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Training in War and Song",
@@ -11549,7 +11953,8 @@
             "type": "subclass",
             "name": "Bladesinging",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Bladesong",
@@ -11574,7 +11979,8 @@
             "type": "subclass",
             "name": "Bladesinging",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Extra Attack",
@@ -11599,7 +12005,8 @@
             "type": "subclass",
             "name": "Bladesinging",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Song of Defense",
@@ -11624,7 +12031,8 @@
             "type": "subclass",
             "name": "Bladesinging",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Song of Victory",
@@ -11649,7 +12057,8 @@
             "type": "subclass",
             "name": "Bladesinging",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"
@@ -11687,7 +12096,8 @@
             "type": "subclass",
             "name": "Chronurgy Magic",
             "level": 2
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Temporal Awareness",
@@ -11712,7 +12122,8 @@
             "type": "subclass",
             "name": "Chronurgy Magic",
             "level": 2
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Momentary Stasis",
@@ -11737,7 +12148,8 @@
             "type": "subclass",
             "name": "Chronurgy Magic",
             "level": 6
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Arcane Abeyance",
@@ -11762,7 +12174,8 @@
             "type": "subclass",
             "name": "Chronurgy Magic",
             "level": 10
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Convergent Future",
@@ -11787,7 +12200,8 @@
             "type": "subclass",
             "name": "Chronurgy Magic",
             "level": 14
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -11826,7 +12240,8 @@
             "type": "subclass",
             "name": "Conjuration",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Minor Conjuration",
@@ -11851,7 +12266,8 @@
             "type": "subclass",
             "name": "Conjuration",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Benign Transportation",
@@ -11876,7 +12292,8 @@
             "type": "subclass",
             "name": "Conjuration",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Focused Conjuration",
@@ -11901,7 +12318,8 @@
             "type": "subclass",
             "name": "Conjuration",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Durable Summons",
@@ -11926,7 +12344,8 @@
             "type": "subclass",
             "name": "Conjuration",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -11965,7 +12384,8 @@
             "type": "subclass",
             "name": "Divination",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Portent",
@@ -11990,7 +12410,8 @@
             "type": "subclass",
             "name": "Divination",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Expert Divination",
@@ -12015,7 +12436,8 @@
             "type": "subclass",
             "name": "Divination",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Third Eye",
@@ -12040,7 +12462,8 @@
             "type": "subclass",
             "name": "Divination",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Greater Portent",
@@ -12065,7 +12488,8 @@
             "type": "subclass",
             "name": "Divination",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -12104,7 +12528,8 @@
             "type": "subclass",
             "name": "Enchantment",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Hypnotic Gaze",
@@ -12129,7 +12554,8 @@
             "type": "subclass",
             "name": "Enchantment",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Instinctive Charm",
@@ -12154,7 +12580,8 @@
             "type": "subclass",
             "name": "Enchantment",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Split Enchantment",
@@ -12179,7 +12606,8 @@
             "type": "subclass",
             "name": "Enchantment",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Alter Memories",
@@ -12204,7 +12632,8 @@
             "type": "subclass",
             "name": "Enchantment",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -12242,7 +12671,8 @@
             "type": "subclass",
             "name": "Evocation",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Sculpt Spells",
@@ -12267,7 +12697,8 @@
             "type": "subclass",
             "name": "Evocation",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Potent Cantrip",
@@ -12292,7 +12723,8 @@
             "type": "subclass",
             "name": "Evocation",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Empowered Evocation",
@@ -12317,7 +12749,8 @@
             "type": "subclass",
             "name": "Evocation",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Overchannel",
@@ -12342,7 +12775,8 @@
             "type": "subclass",
             "name": "Evocation",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -12380,7 +12814,8 @@
             "type": "subclass",
             "name": "Graviturgy Magic",
             "level": 2
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Gravity Well",
@@ -12405,7 +12840,8 @@
             "type": "subclass",
             "name": "Graviturgy Magic",
             "level": 6
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Violent Attraction",
@@ -12430,7 +12866,8 @@
             "type": "subclass",
             "name": "Graviturgy Magic",
             "level": 10
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Gravity Sinkhole",
@@ -12455,7 +12892,8 @@
             "type": "subclass",
             "name": "Graviturgy Magic",
             "level": 14
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -12494,7 +12932,8 @@
             "type": "subclass",
             "name": "Illusion",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Improved Minor Illusion",
@@ -12519,7 +12958,8 @@
             "type": "subclass",
             "name": "Illusion",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Illusory Self",
@@ -12544,7 +12984,8 @@
             "type": "subclass",
             "name": "Illusion",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Illusory Self",
@@ -12569,7 +13010,8 @@
             "type": "subclass",
             "name": "Illusion",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Illusory Reality",
@@ -12594,7 +13036,8 @@
             "type": "subclass",
             "name": "Illusion",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -12633,7 +13076,8 @@
             "type": "subclass",
             "name": "Necromancy",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Grim Harvest",
@@ -12658,7 +13102,8 @@
             "type": "subclass",
             "name": "Necromancy",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Undead Thralls",
@@ -12683,7 +13128,8 @@
             "type": "subclass",
             "name": "Necromancy",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Inured to Undeath",
@@ -12708,7 +13154,8 @@
             "type": "subclass",
             "name": "Necromancy",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Command Undead",
@@ -12733,7 +13180,8 @@
             "type": "subclass",
             "name": "Necromancy",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -12771,7 +13219,8 @@
             "type": "subclass",
             "name": "Order of Scribes",
             "level": 2
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Awakened Spellbook",
@@ -12796,7 +13245,8 @@
             "type": "subclass",
             "name": "Order of Scribes",
             "level": 2
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Manifest Mind",
@@ -12821,7 +13271,8 @@
             "type": "subclass",
             "name": "Order of Scribes",
             "level": 6
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "Master Scrivian",
@@ -12846,7 +13297,8 @@
             "type": "subclass",
             "name": "Order of Scribes",
             "level": 10
-          }
+          },
+          "book": "TCE"
         },
         {
           "name": "One with Words",
@@ -12871,7 +13323,8 @@
             "type": "subclass",
             "name": "Order of Scribes",
             "level": 14
-          }
+          },
+          "book": "TCE"
         }
       ],
       "source": "TCE"
@@ -12910,7 +13363,8 @@
             "type": "subclass",
             "name": "Transmutation",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Minor Alchemy",
@@ -12935,7 +13389,8 @@
             "type": "subclass",
             "name": "Transmutation",
             "level": 2
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Transmuter's Stone",
@@ -12960,7 +13415,8 @@
             "type": "subclass",
             "name": "Transmutation",
             "level": 6
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Shapechanger",
@@ -12985,7 +13441,8 @@
             "type": "subclass",
             "name": "Transmutation",
             "level": 10
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Master Transmuter",
@@ -13010,7 +13467,8 @@
             "type": "subclass",
             "name": "Transmutation",
             "level": 14
-          }
+          },
+          "book": "PHB"
         }
       ],
       "source": "PHB"
@@ -13048,7 +13506,8 @@
             "type": "subclass",
             "name": "War Magic",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Tactical Wit",
@@ -13073,7 +13532,8 @@
             "type": "subclass",
             "name": "War Magic",
             "level": 2
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Power Surge",
@@ -13098,7 +13558,8 @@
             "type": "subclass",
             "name": "War Magic",
             "level": 6
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Durable Magic",
@@ -13123,7 +13584,8 @@
             "type": "subclass",
             "name": "War Magic",
             "level": 10
-          }
+          },
+          "book": "XGE"
         },
         {
           "name": "Deflecting Shroud",
@@ -13148,7 +13610,8 @@
             "type": "subclass",
             "name": "War Magic",
             "level": 14
-          }
+          },
+          "book": "XGE"
         }
       ],
       "source": "XGE"

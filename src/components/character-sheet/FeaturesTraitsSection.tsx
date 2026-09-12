@@ -71,6 +71,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         
         let srdFeature: any = null;
         let derivedSource: { type: string; name: string; level: number | null } | undefined;
+        let book: string | null = null;
         
         try {
           if (existing.source === "class" && character.class) {
@@ -80,6 +81,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 srdFeature = (level.features || []).find((f: any) => f.name === feature.name);
                 if (srdFeature) {
                   derivedSource = { type: "class", name: character.class, level: (level as any).level };
+                  book = srdFeature.book || classData.source || "PHB";
                   break;
                 }
               }
@@ -87,6 +89,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 srdFeature = (classData.features || []).find((f: any) => f.name === feature.name);
                 if (srdFeature) {
                   derivedSource = { type: "class", name: character.class, level: null };
+                  book = srdFeature.book || classData.source || "PHB";
                 }
               }
             }
@@ -95,6 +98,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
             if (srdFeature) {
               derivedSource = { type: "race", name: character.race, level: null };
+              book = srdFeature.book || race?.source || "PHB";
             }
           } else if (existing.source === "subclass" && character.class && character.subclass) {
             const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
@@ -102,12 +106,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             srdFeature = (sub?.features || []).find((f: any) => f.name === feature.name);
             if (srdFeature) {
               derivedSource = { type: "subclass", name: character.subclass, level: (srdFeature as any).level ?? null };
+              book = srdFeature.book || sub?.source || "PHB";
             }
           } else if (existing.source === "custom" || !existing.source) {
             const matchedFeat = feats.find((f) => f.name === feature.name);
             if (matchedFeat) {
               srdFeature = matchedFeat as any;
               derivedSource = { type: "feat", name: matchedFeat.source || "Feat", level: null };
+              book = srdFeature.book || matchedFeat.source || "PHB";
             }
           }
         } catch {
@@ -133,6 +139,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           grantsProficiency: srdFeature?.grantsProficiency ?? existing.grantsProficiency ?? false,
           showInSheet: srdFeature?.showInSheet ?? existing.showInSheet ?? true,
           source: srdSource ?? existing.source ?? derivedSource ?? null,
+          book: book ?? (existing as any).book ?? null,
         };
       });
     } catch {
@@ -140,24 +147,16 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     }
   }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats]);
 
+  const getBookTag = (feature: any): string | null => {
+    return feature.book || null;
+  };
+
   const getBorderColor = (feature: any): string => {
     const sourceType = typeof feature.source === "string" ? feature.source : feature.source?.type;
     if (sourceType === "race") return "#6b46c1";
     if (sourceType === "subclass") return "#276749";
     if (sourceType === "feat" || sourceType === "custom") return "#b7791f";
     return "#2b6cb0";
-  };
-
-  const getBookTag = (feature: any): string | null => {
-    if (typeof feature.source === "object" && feature.source?.name) {
-      return feature.source.name;
-    }
-    if (typeof feature.source === "string") {
-      if (feature.source === "class" && character.class) return character.class;
-      if (feature.source === "race" && character.race) return character.race;
-      if (feature.source === "subclass" && character.subclass) return character.subclass;
-    }
-    return null;
   };
 
   return (
@@ -197,13 +196,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             const summaryText = (feature as any).summary || feature.description || "";
             const bookTag = getBookTag(feature);
             return (
-              <div key={safeFeature.id} className={`card ${isLocked ? "bg-paper-muted" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
+              <div key={safeFeature.id} className={`card p-3 ${isLocked ? "" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
                 <div className="flex items-center gap-2">
                   <span className="text-[17px] font-semibold text-[#111]">{feature.name}</span>
                   {(feature as any).showInSheet === false && (
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
                   )}
                 </div>
+                <div className="mt-1">
                 <FeatureMechanicsChips
                   summary={summaryText}
                   description={(feature as any).description}
@@ -225,6 +225,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                   }}
                   showInSheet={(feature as any).showInSheet !== false}
                 />
+                </div>
               </div>
             );
           })}

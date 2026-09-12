@@ -19,7 +19,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Aberrant Dragonmark",
@@ -40,7 +41,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Skilled at mimicry and dramatics, you gain the following benefits:\n- Increase your Charisma score by 1, to a maximum of 20.\n- You have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.\n- You can mimic the speech of another person or the sounds made by other creatures. You must have heard the person speaking, or heard the creature make the sound, for at least 1 minute. A successful Wisdom (Insight) check contested by your Charisma (Deception) check allows a listener to determine that the effect is faked.",
@@ -61,7 +63,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "Always on the lookout for danger, you gain the following benefits:\n- You can't be surprised while you are conscious.\n- You gain a +5 bonus to initiative.\n- Other creatures don't gain advantage on attack rolls against you as a result of being hidden from you.",
@@ -82,7 +85,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Alert",
@@ -103,7 +107,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Alert",
@@ -124,7 +129,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have undergone extensive physical training to gain the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- When you are prone, standing up uses only 5 feet of your movement.\n- Climbing doesn't halve your speed.\n- You can make a running jump or a running high jump after moving only 5 feet on foot, rather than 10 feet.",
@@ -145,7 +151,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Blade Master",
@@ -166,7 +173,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Bountiful Luck",
@@ -187,7 +195,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Bountiful Luck",
@@ -208,7 +217,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Bountiful Luck",
@@ -229,7 +239,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Bountiful Luck",
@@ -250,7 +261,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "When you use your action to Dash, you can use a bonus action to make one melee weapon attack or to shove a creature.\nIf you move at least 10 feet in a straight line immediately before taking this bonus action, you either gain a +5 bonus to the attack's damage roll (if you choose and hit with a melee weapon attack) or push the target 10 feet away from you (if you choose to shove and succeed).",
@@ -271,7 +283,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Critter",
@@ -292,7 +305,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Critter",
@@ -313,7 +327,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Thanks to extensive practice with crossbows, you gain the following benefits:\n- You ignore the loading quality of crossbows with which you are proficient.\n- Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls.\n- When you use the Attack action and attack with a one-handed weapon, you can use a bonus action to attack with a hand crossbow you are holding.",
@@ -334,11 +349,12 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Crusher",
-      "description": "You are practiced in the art of crushing your enemies, granting you the following benefits: \u2022 Increase your Strength or Constitution by 1, to a maximum of 20. \u2022 Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you. \u2022 When you score a critical hit that deals bludgeoning damage to a creature, attack rolls against that target have advantage until the start of your next turn.",
+      "description": "You are practiced in the art of crushing your enemies, granting you the following benefits: • Increase your Strength or Constitution by 1, to a maximum of 20. • Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you. • When you score a critical hit that deals bludgeoning damage to a creature, attack rolls against that target have advantage until the start of your next turn.",
       "prerequisites": null,
       "source": "Crusher",
       "featureType": "Active",
@@ -355,28 +371,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
-    },
-    {
-      "name": "Crusher",
-      "description": "You are practiced in the art of crushing your enemies, granting you the following benefits:\n- Increase your Strength or Constitution by 1, to a maximum of 20.\n- Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you.\n- When you score a critical hit with an attack that deals bludgeoning damage, the target's speed is halved until the start of your next turn.",
-      "prerequisites": null,
-      "source": "Crusher",
-      "featureType": "Passive",
-      "actionType": null,
-      "uses": null,
-      "requirement": null,
-      "duration": null,
-      "endsIf": null,
-      "effect": null,
-      "onUse": null,
-      "scaling": null,
-      "summary": "You are practiced in the art of crushing your enemies, granting you",
-      "grantsSpells": false,
-      "grantsAttack": false,
-      "grantsSkills": false,
-      "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Crusher",
@@ -397,7 +393,30 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
+    },
+    {
+      "name": "Crusher",
+      "description": "You are practiced in the art of crushing your enemies, granting you the following benefits:\n- Increase your Strength or Constitution by 1, to a maximum of 20.\n- Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you.\n- When you score a critical hit with an attack that deals bludgeoning damage, the target's speed is halved until the start of your next turn.",
+      "prerequisites": null,
+      "source": "Crusher",
+      "featureType": "Passive",
+      "actionType": null,
+      "uses": null,
+      "requirement": null,
+      "duration": null,
+      "endsIf": null,
+      "effect": null,
+      "onUse": null,
+      "scaling": null,
+      "summary": "You are practiced in the art of crushing your enemies, granting you",
+      "grantsSpells": false,
+      "grantsAttack": false,
+      "grantsSkills": false,
+      "grantsProficiency": false,
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.",
@@ -418,7 +437,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Defensive Duelist",
@@ -439,7 +459,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Defensive Duelist",
@@ -460,7 +481,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Diplomat",
@@ -481,7 +503,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Divinely Favored",
@@ -502,7 +525,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dragon Fear",
@@ -523,7 +547,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dragon Fear",
@@ -544,7 +569,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dragon Hide",
@@ -565,7 +591,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dragon Hide",
@@ -586,7 +613,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Drow High Magic",
@@ -607,7 +635,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Drow High Magic",
@@ -628,7 +657,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Drow High Magic",
@@ -649,7 +679,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Drow High Magic",
@@ -670,7 +701,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You master fighting with two weapons, gaining the following benefits:\n- You gain a +1 bonus to AC while you are wielding a separate melee weapon in each hand.\n- You can use two-weapon fighting even when the one-handed melee weapons you aren't wielding aren't light.\n- You can draw or stow two one-handed weapons when you would normally be able to draw or stow only one.",
@@ -691,7 +723,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Alert to the hidden traps and secret doors found in many dungeons, you gain the following benefits:\n- You have advantage on Wisdom (Perception) and Intelligence (Investigation) checks made to detect the presence of secret doors.\n- You have advantage on saving throws made to resist or avoid traps.\n- You have resistance to the damage dealt by traps.\n- You can search for traps while traveling at a normal pace instead of a slow pace.",
@@ -712,7 +745,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "Hardy and resilient, you gain the following benefits:\n- Increase your Constitution score by 1, to a maximum of 20.\n- When you roll a Hit Die to regain hit points, the minimum number of hit points you regain from the roll equals twice your Constitution modifier (minimum of 2).",
@@ -733,7 +767,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dwarven Fortitude",
@@ -754,7 +789,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dwarven Fortitude",
@@ -775,7 +811,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dwarven Fortitude",
@@ -796,7 +833,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Dwarven Fortitude",
@@ -817,7 +855,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Eldritch Adept",
@@ -838,7 +877,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Eldritch Adept",
@@ -859,7 +899,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "When you gain this feat, choose one of the following damage types: acid, cold, fire, lightning, or thunder.\nSpells you cast ignore resistance to the damage type you chose. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2.\nYou can select this feat multiple times. Each time you do so, you must choose a different damage type.",
@@ -880,7 +921,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Elven Accuracy",
@@ -901,7 +943,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Elven Accuracy",
@@ -922,7 +965,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Elven Accuracy",
@@ -943,7 +987,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Elven Accuracy",
@@ -964,7 +1009,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Everybody's Friend",
@@ -985,7 +1031,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fade Away",
@@ -1006,7 +1053,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fade Away",
@@ -1027,7 +1075,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fade Away",
@@ -1048,7 +1097,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fade Away",
@@ -1069,7 +1119,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Favored by the Gods",
@@ -1090,11 +1141,12 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fell Thrower",
-      "description": "You have perfected the technique of throwing your weapon at an enemy, granting you the following benefits: \u2022 Increase your Strength or Dexterity by 1, to a maximum of 20. \u2022 When you hit a creature with a ranged attack using a thrown weapon, you can use a bonus action to make a melee attack with the same weapon against the same target. This attack deals damage equal to 1d4 + your Strength modifier, and the damage type is the same as the ranged attack. \u2022 When you hit a creature with a thrown weapon, you can use a bonus action to grapple the target (escape DC equals your spell save DC or 8 + your proficiency bonus + your Strength modifier). This grapple is possible only if the target is no more than one size larger than you and if you have a hand free to grab it.",
+      "description": "You have perfected the technique of throwing your weapon at an enemy, granting you the following benefits: • Increase your Strength or Dexterity by 1, to a maximum of 20. • When you hit a creature with a ranged attack using a thrown weapon, you can use a bonus action to make a melee attack with the same weapon against the same target. This attack deals damage equal to 1d4 + your Strength modifier, and the damage type is the same as the ranged attack. • When you hit a creature with a thrown weapon, you can use a bonus action to grapple the target (escape DC equals your spell save DC or 8 + your proficiency bonus + your Strength modifier). This grapple is possible only if the target is no more than one size larger than you and if you have a hand free to grab it.",
       "prerequisites": null,
       "source": "Fell Thrower",
       "featureType": "Active",
@@ -1111,7 +1163,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fey Teleportation",
@@ -1132,7 +1185,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fey Teleportation",
@@ -1153,7 +1207,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Fey Teleportation",
@@ -1174,7 +1229,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Fey Teleportation",
@@ -1195,7 +1251,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Fey Touched",
@@ -1216,7 +1273,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fighting Initiate",
@@ -1237,7 +1295,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Fighting Initiate",
@@ -1258,7 +1317,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Flames of Phlegethos",
@@ -1279,7 +1339,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Flames of Phlegethos",
@@ -1300,7 +1361,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Flames of Phlegethos",
@@ -1321,7 +1383,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Flames of Phlegethos",
@@ -1342,7 +1405,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Gift of the Chromatic Dragon",
@@ -1363,7 +1427,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Gift of the Chromatic Dragon",
@@ -1384,7 +1449,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Gift of the Dragon Champion",
@@ -1405,7 +1471,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Gift of the Dragon Champion",
@@ -1426,7 +1493,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Gift of the Metallic Dragon",
@@ -1447,7 +1515,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Gift of the Metallic Dragon",
@@ -1468,7 +1537,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You've developed the skills necessary to hold your own in close-quarters grappling. You gain the following benefits:\n- You have advantage on attack rolls against a creature you are grappling.\n- You can use your action to try to pin a creature grappled by you. To do so, make another grapple check. If you succeed, you and the creature are both restrained until the grapple ends.",
@@ -1489,7 +1559,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You've learned to put the weight of a weapon into your strikes, gaining the following benefits:\n- On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action.\n- Before you make a melee attack with a heavy weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage.",
@@ -1510,7 +1581,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You are an able physician, allowing you to mend wounds quickly and get people back on their feet. You gain the following benefits:\n- When you use a healer's kit to stabilize a dying creature, that creature also regains 1 hit point.\n- As an action, you can spend one use of a healer's kit to tend to a creature and restore 1d6 + 4 hit points to it, plus additional hit points equal to the creature's maximum number of Hit Dice. The creature can't benefit from this feat again until it finishes a short or long rest.",
@@ -1531,7 +1603,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have trained to master the use of heavy armor, gaining the following benefits:\n- Increase your Strength score by 1, to a maximum of 20.\n- You gain proficiency with heavy armor.",
@@ -1552,7 +1625,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Heavily Armored",
@@ -1573,7 +1647,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Heavily Armored",
@@ -1594,7 +1669,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You can use your armor to deflect strikes that would kill others. You gain the following benefits:\n- Increase your Strength score by 1, to a maximum of 20.\n- While you are wearing heavy armor, bludgeoning, piercing, and slashing damage that you take from nonmagical weapons is reduced by 3.",
@@ -1615,11 +1691,12 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Infernal Constitution",
-      "description": "Fiendish blood runs strong in you, unlocking a resilience akin to that possessed by some fiends. You gain the following benefits: \u2022 You have resistance to cold and poison damage. \u2022 You have advantage on saving throws against being poisoned. \u2022 You can't be poisoned.",
+      "description": "Fiendish blood runs strong in you, unlocking a resilience akin to that possessed by some fiends. You gain the following benefits: • You have resistance to cold and poison damage. • You have advantage on saving throws against being poisoned. • You can't be poisoned.",
       "prerequisites": "Tiefling",
       "source": "Infernal Constitution",
       "featureType": "Passive",
@@ -1636,7 +1713,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Infernal Constitution",
@@ -1657,7 +1735,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Infernal Constitution",
@@ -1678,7 +1757,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Infernal Constitution",
@@ -1699,7 +1779,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "You can spend 10 minutes inspiring your companions, shoring up their resolve to fight. When you do so, choose up to six friendly creatures (which can include yourself) within 30 feet of you who can see or hear you and who can understand you. Each creature gains temporary hit points equal to your level + your Charisma modifier. A creature can't gain temporary hit points from this feat again until it finishes a short or long rest.",
@@ -1720,7 +1801,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have a mind that can track time, direction, and detail with uncanny precision. You gain the following benefits:\n- Increase your Intelligence score by 1, to a maximum of 20.\n- You always know which way is north.\n- You always know the number of hours left before the next sunrise or sunset.\n- You can accurately recall anything you have seen or heard within the past month.",
@@ -1741,7 +1823,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "You have trained to master the use of light armor, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with light armor.",
@@ -1762,7 +1845,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Lightly Armored",
@@ -1783,7 +1867,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Lightly Armored",
@@ -1804,7 +1889,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "You have studied languages and the patterns of communication, gaining the following benefits:\n- Increase your Intelligence score by 1, to a maximum of 20.\n- You learn three languages of your choice.\n- You can ably create written ciphers. Others can't decipher a cipher you create unless you teach them, they succeed on an Intelligence check (DC equal to your Intelligence score + your proficiency bonus), or they use magic to decipher it.",
@@ -1825,7 +1911,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have inexplicable luck that seems to kick in at just the right moment.\nYou have 3 luck points. Whenever you make an attack roll, an ability check, or a saving throw, you can spend one luck point to roll an additional d20. You can choose to spend one of your luck points after you roll the die, but before the outcome is determined. You choose which of the d20s is used for the attack roll, ability check, or saving throw.\nYou can also spend one luck point when an attack roll is made against you. Roll a d20, and then choose whether the attack uses the attacker's roll or yours.\nIf more than one creature spends a luck point to influence the outcome of a roll, the points cancel each other out; no additional dice are rolled.\nYou regain your expended luck points when you finish a long rest.",
@@ -1849,7 +1936,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have practiced techniques useful in melee combat against spellcasters, gaining the following benefits:\n- When a creature within 5 feet of you casts a spell, you can use your reaction to make a melee weapon attack against that creature.\n- When you damage a creature that is concentrating on a spell, it has disadvantage on the saving throw it makes to maintain its concentration.\n- You have advantage on saving throws against spells cast by creatures within 5 feet of you.",
@@ -1870,7 +1958,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list.\nIn addition, choose one 1st-level spell from that same list. You learn that spell and can cast it at its lowest level. Once you cast it, you must finish a long rest before you can cast it again.\nYour spellcasting ability for these spells depends on the class you chose: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; Intelligence for wizard.",
@@ -1891,7 +1980,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have martial training that allows you to perform special combat maneuvers. You gain the following benefits:\n- You learn two maneuvers of your choice from among those available to the Battle Master fighter archetype. If a maneuver you use requires your target to make a saving throw to resist the maneuver's effects, the saving throw DC equals 8 + your proficiency bonus + your Strength or Dexterity modifier (your choice).\n- You gain one superiority die, which is a d6. This die is used to fuel your maneuvers. A superiority die is expended when you use it. You regain your expended superiority dice when you finish a short or long rest.",
@@ -1912,7 +2002,8 @@
       "grantsAttack": true,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have practiced moving in medium armor to gain the following benefits:\n- Wearing medium armor doesn't impose disadvantage on your Dexterity (Stealth) checks.\n- When you wear medium armor, you can add 3, rather than 2, to your AC from your Dexterity modifier.",
@@ -1933,7 +2024,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Medium Armor Master",
@@ -1954,7 +2046,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Medium Armor Master",
@@ -1975,7 +2068,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Metamagic Adept",
@@ -1996,7 +2090,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Metamagic Adept",
@@ -2017,7 +2112,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You are exceptionally speedy and agile. You gain the following benefits:\n- Your speed increases by 10 feet.\n- When you use the Dash action, difficult terrain doesn't cost you extra movement on that turn.\n- When you make a melee attack against a creature, you don't provoke opportunity attacks from that creature for the rest of the turn, whether you hit or not.",
@@ -2038,7 +2134,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have trained to master the use of medium armor and shields, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with medium armor and shields.",
@@ -2059,7 +2156,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Moderately Armored",
@@ -2080,7 +2178,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Moderately Armored",
@@ -2101,7 +2200,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You are a dangerous foe to face while mounted. While you are mounted and aren't incapacitated, you gain the following benefits:\n- You have advantage on melee attack rolls against any unmounted creature that is smaller than your mount.\n- You can force an attack targeted at your mount to target you instead.\n- If your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, the mount instead takes no damage if it succeeds on the saving throw, and only half damage if it fails.",
@@ -2122,7 +2222,8 @@
       "grantsAttack": true,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Quick to notice details about your surroundings, you gain the following benefits:\n- Increase your Intelligence or Wisdom score by 1, to a maximum of 20.\n- If you can see a creature's mouth while it speaks a language you understand, you can interpret what it's saying by reading its lips.\n- You have a +5 bonus to your passive Wisdom (Perception) and passive Intelligence (Investigation) scores.",
@@ -2143,11 +2244,12 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Orcish Fury",
-      "description": "Your fury burns tirelessly. You gain the following benefits: \u2022 When you hit with an attack using a simple or martial weapon, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the attack. Once you use this ability, you can't use it again until you finish a short or long rest. \u2022 When you score a critical hit with a melee weapon, you can treat any 1 or 2 on a damage die as the highest number on that die.",
+      "description": "Your fury burns tirelessly. You gain the following benefits: • When you hit with an attack using a simple or martial weapon, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the attack. Once you use this ability, you can't use it again until you finish a short or long rest. • When you score a critical hit with a melee weapon, you can treat any 1 or 2 on a damage die as the highest number on that die.",
       "prerequisites": "Half-Orc",
       "source": "Orcish Fury",
       "featureType": "Active",
@@ -2164,7 +2266,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Orcish Fury",
@@ -2185,7 +2288,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Orcish Fury",
@@ -2206,7 +2310,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Orcish Fury",
@@ -2227,7 +2332,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Piercer",
@@ -2248,7 +2354,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Piercer",
@@ -2269,7 +2376,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You can keep your enemies at bay with a reach weapon. You gain the following benefits:\n- When you take the Attack action and attack with only a glaive, halberd, or quarterstaff, you can use a bonus action to make a melee attack with the opposite end of the weapon. The weapon's damage die for this attack is a d4, and the attack deals bludgeoning damage.\n- While you are wielding a glaive, halberd, pike, or quarterstaff, other creatures provoke an opportunity attack from you when they enter your reach.",
@@ -2290,11 +2398,12 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Prodigy",
-      "description": "You have a knack for learning new things. You gain the following benefits: \u2022 You gain one skill proficiency of your choice, one tool proficiency of your choice, and fluency in one language of your choice. \u2022 Choose one skill in which you have proficiency. You gain expertise with that skill, which means your proficiency bonus is doubled for any ability check you make with it. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus for it.",
+      "description": "You have a knack for learning new things. You gain the following benefits: • You gain one skill proficiency of your choice, one tool proficiency of your choice, and fluency in one language of your choice. • Choose one skill in which you have proficiency. You gain expertise with that skill, which means your proficiency bonus is doubled for any ability check you make with it. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus for it.",
       "prerequisites": "Half-elf, half-orc, or human",
       "source": "Prodigy",
       "featureType": "Active",
@@ -2311,7 +2420,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Prodigy",
@@ -2332,7 +2442,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Prodigy",
@@ -2353,7 +2464,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Prodigy",
@@ -2374,7 +2486,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Choose one ability score. You gain the following benefits:\n- Increase the chosen ability score by 1, to a maximum of 20.\n- You gain proficiency in saving throws using the chosen ability.",
@@ -2395,7 +2508,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have learned a number of spells that you can cast as rituals. These spells are written in a ritual book, which you must have in hand while casting one of them.\nWhen you choose this feat, you acquire a ritual book holding two 1st-level spells of your choice. Choose one of the following classes: bard, cleric, druid, sorcerer, warlock, or wizard. You must choose your spells from that class's spell list, and the spells you choose must have the ritual tag. The class you choose also determines your spellcasting ability for these spells: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; Intelligence for wizard.\nIf you come across a spell in written form, such as a magical spell scroll or a wizard's spellbook, you might be able to add it to your ritual book. The spell must be on the spell list for the class you chose, the spell's level can be no higher than half your level (rounded up), and adding it requires time and gold equal to twice the spell's level.",
@@ -2416,7 +2530,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Once per turn when you roll damage for a melee weapon attack, you can reroll the weapon's damage dice and must use the new roll.",
@@ -2437,7 +2552,8 @@
       "grantsAttack": true,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Second Chance",
@@ -2458,7 +2574,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Second Chance",
@@ -2479,7 +2596,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Second Chance",
@@ -2500,7 +2618,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Second Chance",
@@ -2521,7 +2640,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have mastered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits:\n- When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.\n- Creatures within 5 feet of you provoke opportunity attacks from you even if they take the Disengage action before leaving your reach.\n- When a creature within 5 feet of you makes an attack against a target other than you (or no target), you can use your reaction to make a melee weapon attack against the attacking creature.",
@@ -2542,7 +2662,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Shadow Touched",
@@ -2563,7 +2684,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have mastered ranged weapons and can make shots that others find impossible. You gain the following benefits:\n- Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls.\n- Your ranged weapon attacks ignore half cover and three-quarters cover.\n- Before you make an attack with a ranged weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage.",
@@ -2584,7 +2706,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You use shields not just for protection, but also for offense. You gain the following benefits:\n- If you take the Attack action on your turn, you can use a bonus action to try to shove a creature within 5 feet of you with your shield.\n- If you aren't incapacitated, you can add your shield's AC bonus to any Dexterity saving throw you make against a spell or other harmful effect that targets only you.\n- If you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can use your reaction to take no damage if you succeed on the saving throw, interposing your shield between yourself and the source of the effect.",
@@ -2605,7 +2728,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Shield Master",
@@ -2626,7 +2750,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Shield Master",
@@ -2647,7 +2772,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Skill Expert",
@@ -2668,7 +2794,8 @@
       "grantsAttack": false,
       "grantsSkills": true,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Skill Expert",
@@ -2689,7 +2816,8 @@
       "grantsAttack": false,
       "grantsSkills": true,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You gain proficiency in any combination of three skills or tools of your choice.",
@@ -2710,7 +2838,8 @@
       "grantsAttack": false,
       "grantsSkills": true,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "You are expert at slinking through the shadows. You gain the following benefits:\n- You can try to hide when you are lightly obscured from the creature from which you are hiding.\n- When you are hidden from a creature and miss it with a ranged attack, making the attack doesn't reveal your position.\n- Dim light doesn't impose disadvantage on your Wisdom (Perception) checks relying on sight.",
@@ -2731,7 +2860,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Slasher",
@@ -2752,7 +2882,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Slasher",
@@ -2773,7 +2904,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have learned techniques to enhance your attacks with certain kinds of spells, gaining the following benefits:\n- When you cast a spell that requires you to make an attack roll, the spell's range is doubled.\n- Your ranged spell attacks ignore half cover and three-quarters cover.\n- You learn one cantrip that requires an attack roll. Choose the cantrip from the bard, cleric, druid, sorcerer, warlock, or wizard spell list. Your spellcasting ability for this cantrip depends on the class you chose: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; Intelligence for wizard.",
@@ -2794,11 +2926,12 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "name": "Squat Nimbleness",
-      "description": "You are uncommonly nimble for your race. You gain the following benefits: \u2022 Increase your Strength or Dexterity score by 1, to a maximum of 20. \u2022 Increase your walking speed by 5 feet. \u2022 You have advantage on any ability check you make to escape from being grappled or restrained.",
+      "description": "You are uncommonly nimble for your race. You gain the following benefits: • Increase your Strength or Dexterity score by 1, to a maximum of 20. • Increase your walking speed by 5 feet. • You have advantage on any ability check you make to escape from being grappled or restrained.",
       "prerequisites": "Dwarf or small race",
       "source": "Squat Nimbleness",
       "featureType": "Passive",
@@ -2815,7 +2948,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Squat Nimbleness",
@@ -2836,7 +2970,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Squat Nimbleness",
@@ -2857,7 +2992,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Squat Nimbleness",
@@ -2878,7 +3014,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Svirfneblin Magic",
@@ -2899,7 +3036,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "Accustomed to rough-and-tumble fighting using whatever comes to hand, you gain the following benefits:\n- Increase your Strength or Constitution score by 1, to a maximum of 20.\n- You are proficient with improvised weapons.\n- Your unarmed strike uses a d4 for damage.\n- When you hit a creature with an unarmed strike or an improvised weapon on your turn, you can use a bonus action to attempt to grapple the target.",
@@ -2920,7 +3058,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "Your hit point maximum increases by an amount equal to twice your level when you gain this feat. Whenever you gain a level thereafter, your hit point maximum increases by an additional 2 hit points.",
@@ -2941,7 +3080,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "description": "You have practiced casting spells in the midst of combat, learning techniques that grant you the following benefits:\n- You have advantage on Constitution saving throws that you make to maintain your concentration on a spell when you take damage.\n- You can perform the somatic components of spells even when you have weapons or a shield in one or both hands.\n- When a hostile creature's movement provokes an opportunity attack from you, you can use your reaction to cast a spell at the creature, rather than making an opportunity attack. The spell must have a casting time of 1 action and must target only the creature.",
@@ -2962,7 +3102,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     },
     {
       "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:\n- Increase your Strength or Dexterity score by 1, to a maximum of 20.\n- You gain proficiency with four simple or martial weapons of your choice.",
@@ -2983,7 +3124,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Weapon Master",
@@ -3004,7 +3146,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Weapon Master",
@@ -3025,7 +3168,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": true,
-      "showInSheet": false
+      "showInSheet": false,
+      "book": "PHB"
     },
     {
       "name": "Wood Elf Magic",
@@ -3046,7 +3190,8 @@
       "grantsAttack": false,
       "grantsSkills": false,
       "grantsProficiency": false,
-      "showInSheet": true
+      "showInSheet": true,
+      "book": "PHB"
     }
   ],
   "generated": "2026-08-31T10:21:03.826Z"

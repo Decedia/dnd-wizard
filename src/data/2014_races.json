@@ -32,7 +32,8 @@
             "type": "race",
             "name": "Bugbear",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Long-Limbed",
@@ -56,7 +57,8 @@
             "type": "race",
             "name": "Bugbear",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Powerful Build",
@@ -80,7 +82,8 @@
             "type": "race",
             "name": "Bugbear",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Sneaky",
@@ -104,7 +107,8 @@
             "type": "race",
             "name": "Bugbear",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Surprise Attack",
@@ -128,7 +132,8 @@
             "type": "race",
             "name": "Bugbear",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -173,7 +178,8 @@
             "type": "race",
             "name": "Changeling",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Shapechanger",
@@ -197,7 +203,8 @@
             "type": "race",
             "name": "Changeling",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -244,7 +251,8 @@
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Gnome Cunning",
@@ -268,7 +276,8 @@
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Stone Camouflage",
@@ -292,7 +301,8 @@
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Svirfneblin Magic",
@@ -316,7 +326,8 @@
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -358,7 +369,8 @@
             "type": "race",
             "name": "Dhampir",
             "level": null
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Deathless Nature",
@@ -382,7 +394,8 @@
             "type": "race",
             "name": "Dhampir",
             "level": null
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Spider Climb",
@@ -406,7 +419,8 @@
             "type": "race",
             "name": "Dhampir",
             "level": null
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Vampiric Bite",
@@ -430,7 +444,8 @@
             "type": "race",
             "name": "Dhampir",
             "level": null
-          }
+          },
+          "book": "VRGR"
         }
       ],
       "languages": [
@@ -474,7 +489,8 @@
             "type": "race",
             "name": "Dragonborn",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Breath Weapon",
@@ -498,7 +514,8 @@
             "type": "race",
             "name": "Dragonborn",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Damage Resistance",
@@ -522,7 +539,8 @@
             "type": "race",
             "name": "Dragonborn",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -564,7 +582,8 @@
             "type": "race",
             "name": "Dragonborn (Chromatic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Breath Weapon",
@@ -588,7 +607,8 @@
             "type": "race",
             "name": "Dragonborn (Chromatic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Damage Resistance",
@@ -612,7 +632,8 @@
             "type": "race",
             "name": "Dragonborn (Chromatic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Chromatic Breath Weapon",
@@ -636,7 +657,8 @@
             "type": "race",
             "name": "Dragonborn (Chromatic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         }
       ],
       "languages": [
@@ -681,7 +703,8 @@
             "type": "race",
             "name": "Dragonborn (Gem)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Breath Weapon",
@@ -705,7 +728,8 @@
             "type": "race",
             "name": "Dragonborn (Gem)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Damage Resistance",
@@ -729,7 +753,8 @@
             "type": "race",
             "name": "Dragonborn (Gem)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Psionic Mind",
@@ -753,7 +778,8 @@
             "type": "race",
             "name": "Dragonborn (Gem)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Gem Flight",
@@ -777,7 +803,8 @@
             "type": "race",
             "name": "Dragonborn (Gem)",
             "level": null
-          }
+          },
+          "book": "FTD"
         }
       ],
       "languages": [
@@ -822,7 +849,8 @@
             "type": "race",
             "name": "Dragonborn (Metallic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Breath Weapon",
@@ -846,7 +874,8 @@
             "type": "race",
             "name": "Dragonborn (Metallic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Damage Resistance",
@@ -870,7 +899,8 @@
             "type": "race",
             "name": "Dragonborn (Metallic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         },
         {
           "name": "Metallic Breath Weapon",
@@ -894,7 +924,8 @@
             "type": "race",
             "name": "Dragonborn (Metallic)",
             "level": null
-          }
+          },
+          "book": "FTD"
         }
       ],
       "languages": [
@@ -940,7 +971,8 @@
             "type": "race",
             "name": "Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Resilience",
@@ -964,7 +996,8 @@
             "type": "race",
             "name": "Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Stonecunning",
@@ -988,7 +1021,8 @@
             "type": "race",
             "name": "Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Combat Training",
@@ -1012,7 +1046,8 @@
             "type": "race",
             "name": "Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Tool Proficiency",
@@ -1036,7 +1071,8 @@
             "type": "race",
             "name": "Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -1080,7 +1116,8 @@
             "type": "race",
             "name": "Hill Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Resilience",
@@ -1104,7 +1141,8 @@
             "type": "race",
             "name": "Hill Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Combat Training",
@@ -1128,7 +1166,8 @@
             "type": "race",
             "name": "Hill Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Tool Proficiency",
@@ -1152,7 +1191,8 @@
             "type": "race",
             "name": "Hill Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Stonecunning",
@@ -1176,7 +1216,8 @@
             "type": "race",
             "name": "Hill Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Toughness",
@@ -1200,7 +1241,8 @@
             "type": "race",
             "name": "Hill Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -1244,7 +1286,8 @@
             "type": "race",
             "name": "Mountain Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Resilience",
@@ -1268,7 +1311,8 @@
             "type": "race",
             "name": "Mountain Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Combat Training",
@@ -1292,7 +1336,8 @@
             "type": "race",
             "name": "Mountain Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Tool Proficiency",
@@ -1316,7 +1361,8 @@
             "type": "race",
             "name": "Mountain Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Stonecunning",
@@ -1340,7 +1386,8 @@
             "type": "race",
             "name": "Mountain Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Dwarven Armor Training",
@@ -1364,7 +1411,8 @@
             "type": "race",
             "name": "Mountain Dwarf",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -1406,7 +1454,8 @@
             "type": "race",
             "name": "Eladrin (Elf)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Keen Senses",
@@ -1430,7 +1479,8 @@
             "type": "race",
             "name": "Eladrin (Elf)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Fey Ancestry",
@@ -1454,7 +1504,8 @@
             "type": "race",
             "name": "Eladrin (Elf)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Trance",
@@ -1478,7 +1529,8 @@
             "type": "race",
             "name": "Eladrin (Elf)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Eladrin Season",
@@ -1502,7 +1554,8 @@
             "type": "race",
             "name": "Eladrin (Elf)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Fey Step",
@@ -1526,7 +1579,8 @@
             "type": "race",
             "name": "Eladrin (Elf)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -1598,7 +1652,8 @@
             "type": "race",
             "name": "Elf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Fey Ancestry",
@@ -1622,7 +1677,8 @@
             "type": "race",
             "name": "Elf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Trance",
@@ -1646,7 +1702,8 @@
             "type": "race",
             "name": "Elf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Keen Senses",
@@ -1670,7 +1727,8 @@
             "type": "race",
             "name": "Elf",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -1712,7 +1770,8 @@
             "type": "race",
             "name": "Firbolg",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Hidden Step",
@@ -1736,7 +1795,8 @@
             "type": "race",
             "name": "Firbolg",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Powerful Build",
@@ -1760,7 +1820,8 @@
             "type": "race",
             "name": "Firbolg",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Speech of Beast and Leaf",
@@ -1784,7 +1845,8 @@
             "type": "race",
             "name": "Firbolg",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -1830,7 +1892,8 @@
             "type": "race",
             "name": "Githyanki",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Psychic Resilience",
@@ -1854,7 +1917,8 @@
             "type": "race",
             "name": "Githyanki",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Githyanki Psionics",
@@ -1878,7 +1942,8 @@
             "type": "race",
             "name": "Githyanki",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -1937,7 +2002,8 @@
             "type": "race",
             "name": "Githzerai",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Psychic Resilience",
@@ -1961,7 +2027,8 @@
             "type": "race",
             "name": "Githzerai",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Githzerai Psionics",
@@ -1985,7 +2052,8 @@
             "type": "race",
             "name": "Githzerai",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -2031,7 +2099,8 @@
             "type": "race",
             "name": "Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Gnome Cunning",
@@ -2055,7 +2124,8 @@
             "type": "race",
             "name": "Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -2099,7 +2169,8 @@
             "type": "race",
             "name": "Forest Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Gnome Cunning",
@@ -2123,7 +2194,8 @@
             "type": "race",
             "name": "Forest Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Natural Illusionist",
@@ -2147,7 +2219,8 @@
             "type": "race",
             "name": "Forest Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Speak with Small Beasts",
@@ -2171,7 +2244,8 @@
             "type": "race",
             "name": "Forest Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -2215,7 +2289,8 @@
             "type": "race",
             "name": "Rock Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Gnome Cunning",
@@ -2239,7 +2314,8 @@
             "type": "race",
             "name": "Rock Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Artificer's Lore",
@@ -2263,7 +2339,8 @@
             "type": "race",
             "name": "Rock Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Tinker",
@@ -2287,7 +2364,8 @@
             "type": "race",
             "name": "Rock Gnome",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -2329,7 +2407,8 @@
             "type": "race",
             "name": "Goblin",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Fury of the Small",
@@ -2353,7 +2432,8 @@
             "type": "race",
             "name": "Goblin",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Nimble Escape",
@@ -2377,7 +2457,8 @@
             "type": "race",
             "name": "Goblin",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -2423,7 +2504,8 @@
             "type": "race",
             "name": "Half-Elf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Fey Ancestry",
@@ -2447,7 +2529,8 @@
             "type": "race",
             "name": "Half-Elf",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Skill Versatility",
@@ -2471,7 +2554,8 @@
             "type": "race",
             "name": "Half-Elf",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -2514,7 +2598,8 @@
             "type": "race",
             "name": "Half-Elf (High Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -2538,7 +2623,8 @@
             "type": "race",
             "name": "Half-Elf (High Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -2562,7 +2648,8 @@
             "type": "race",
             "name": "Half-Elf (High Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "High Elf Heritage",
@@ -2586,7 +2673,8 @@
             "type": "race",
             "name": "Half-Elf (High Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -2638,7 +2726,8 @@
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -2662,7 +2751,8 @@
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -2686,7 +2776,8 @@
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Wood Elf Heritage",
@@ -2710,7 +2801,8 @@
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -2753,7 +2845,8 @@
             "type": "race",
             "name": "Half-Elf (Drow)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -2777,7 +2870,8 @@
             "type": "race",
             "name": "Half-Elf (Drow)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -2801,7 +2895,8 @@
             "type": "race",
             "name": "Half-Elf (Drow)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Drow Heritage",
@@ -2825,7 +2920,8 @@
             "type": "race",
             "name": "Half-Elf (Drow)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -2868,7 +2964,8 @@
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -2892,7 +2989,8 @@
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -2916,7 +3014,8 @@
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Moon Elf Heritage",
@@ -2940,7 +3039,8 @@
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -2983,7 +3083,8 @@
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -3007,7 +3108,8 @@
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -3031,7 +3133,8 @@
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Sun Elf Heritage",
@@ -3055,7 +3158,8 @@
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -3098,7 +3202,8 @@
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -3122,7 +3227,8 @@
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -3146,7 +3252,8 @@
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Sea Elf Heritage",
@@ -3170,7 +3277,8 @@
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -3213,7 +3321,8 @@
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -3237,7 +3346,8 @@
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -3261,7 +3371,8 @@
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Shadar-kai Heritage",
@@ -3285,7 +3396,8 @@
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -3328,7 +3440,8 @@
             "type": "race",
             "name": "Half-Elf (Eladrin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Fey Ancestry",
@@ -3352,7 +3465,8 @@
             "type": "race",
             "name": "Half-Elf (Eladrin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Skill Versatility",
@@ -3376,7 +3490,8 @@
             "type": "race",
             "name": "Half-Elf (Eladrin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Eladrin Heritage",
@@ -3400,7 +3515,8 @@
             "type": "race",
             "name": "Half-Elf (Eladrin)",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -3444,7 +3560,8 @@
             "type": "race",
             "name": "Half-Orc",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Savage Attacks",
@@ -3468,7 +3585,8 @@
             "type": "race",
             "name": "Half-Orc",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Relentless Endurance",
@@ -3492,7 +3610,8 @@
             "type": "race",
             "name": "Half-Orc",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Menacing",
@@ -3516,7 +3635,8 @@
             "type": "race",
             "name": "Half-Orc",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -3557,7 +3677,8 @@
             "type": "race",
             "name": "Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Halfling Nimbleness",
@@ -3581,7 +3702,8 @@
             "type": "race",
             "name": "Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Lucky",
@@ -3608,7 +3730,8 @@
             "type": "race",
             "name": "Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -3650,7 +3773,8 @@
             "type": "race",
             "name": "Lightfoot Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Halfling Nimbleness",
@@ -3674,7 +3798,8 @@
             "type": "race",
             "name": "Lightfoot Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Lucky",
@@ -3701,7 +3826,8 @@
             "type": "race",
             "name": "Lightfoot Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Naturally Stealthy",
@@ -3725,7 +3851,8 @@
             "type": "race",
             "name": "Lightfoot Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -3767,7 +3894,8 @@
             "type": "race",
             "name": "Stout Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Halfling Nimbleness",
@@ -3791,7 +3919,8 @@
             "type": "race",
             "name": "Stout Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Lucky",
@@ -3818,7 +3947,8 @@
             "type": "race",
             "name": "Stout Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Stout Resilience",
@@ -3842,7 +3972,8 @@
             "type": "race",
             "name": "Stout Halfling",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -3884,7 +4015,8 @@
             "type": "race",
             "name": "Ghostwise Halfling",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Halfling Nimbleness",
@@ -3908,7 +4040,8 @@
             "type": "race",
             "name": "Ghostwise Halfling",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Lucky",
@@ -3935,7 +4068,8 @@
             "type": "race",
             "name": "Ghostwise Halfling",
             "level": null
-          }
+          },
+          "book": "SCAG"
         },
         {
           "name": "Silent Speech",
@@ -3959,7 +4093,8 @@
             "type": "race",
             "name": "Ghostwise Halfling",
             "level": null
-          }
+          },
+          "book": "SCAG"
         }
       ],
       "languages": [
@@ -4001,7 +4136,8 @@
             "type": "race",
             "name": "Hexblood",
             "level": null
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Hex Magic",
@@ -4025,7 +4161,8 @@
             "type": "race",
             "name": "Hexblood",
             "level": null
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Eerie Token",
@@ -4049,7 +4186,8 @@
             "type": "race",
             "name": "Hexblood",
             "level": null
-          }
+          },
+          "book": "VRGR"
         }
       ],
       "languages": [
@@ -4093,7 +4231,8 @@
             "type": "race",
             "name": "Hobgoblin",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Martial Training",
@@ -4117,7 +4256,8 @@
             "type": "race",
             "name": "Hobgoblin",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Saving Face",
@@ -4141,7 +4281,8 @@
             "type": "race",
             "name": "Hobgoblin",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -4206,7 +4347,8 @@
             "type": "race",
             "name": "Kenku",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Kenku Training",
@@ -4230,7 +4372,8 @@
             "type": "race",
             "name": "Kenku",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Mimicry",
@@ -4254,7 +4397,8 @@
             "type": "race",
             "name": "Kenku",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -4299,7 +4443,8 @@
             "type": "race",
             "name": "Lizardfolk",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Cunning Artisan",
@@ -4323,7 +4468,8 @@
             "type": "race",
             "name": "Lizardfolk",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Hold Breath",
@@ -4347,7 +4493,8 @@
             "type": "race",
             "name": "Lizardfolk",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Natural Armor",
@@ -4371,7 +4518,8 @@
             "type": "race",
             "name": "Lizardfolk",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -4416,7 +4564,8 @@
             "type": "race",
             "name": "Orc",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Menacing",
@@ -4440,7 +4589,8 @@
             "type": "race",
             "name": "Orc",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Powerful Build",
@@ -4464,7 +4614,8 @@
             "type": "race",
             "name": "Orc",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Relentless Endurance",
@@ -4488,7 +4639,8 @@
             "type": "race",
             "name": "Orc",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -4533,7 +4685,8 @@
             "type": "race",
             "name": "Reborn",
             "level": null
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Knowledge from a Past Life",
@@ -4557,7 +4710,8 @@
             "type": "race",
             "name": "Reborn",
             "level": null
-          }
+          },
+          "book": "VRGR"
         },
         {
           "name": "Reborn Resilience",
@@ -4581,7 +4735,8 @@
             "type": "race",
             "name": "Reborn",
             "level": null
-          }
+          },
+          "book": "VRGR"
         }
       ],
       "languages": [
@@ -4625,7 +4780,8 @@
             "type": "race",
             "name": "Shifter",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Keen Senses",
@@ -4649,7 +4805,8 @@
             "type": "race",
             "name": "Shifter",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Shifting",
@@ -4673,7 +4830,8 @@
             "type": "race",
             "name": "Shifter",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -4747,7 +4905,8 @@
             "type": "race",
             "name": "Tabaxi",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Feline Agility",
@@ -4771,7 +4930,8 @@
             "type": "race",
             "name": "Tabaxi",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Cat's Claws",
@@ -4795,7 +4955,8 @@
             "type": "race",
             "name": "Tabaxi",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Cat's Talent",
@@ -4819,7 +4980,8 @@
             "type": "race",
             "name": "Tabaxi",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [
@@ -4865,7 +5027,8 @@
             "type": "race",
             "name": "Tiefling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Hellish Resistance",
@@ -4889,7 +5052,8 @@
             "type": "race",
             "name": "Tiefling",
             "level": null
-          }
+          },
+          "book": "PHB"
         },
         {
           "name": "Infernal Legacy",
@@ -4913,7 +5077,8 @@
             "type": "race",
             "name": "Tiefling",
             "level": null
-          }
+          },
+          "book": "PHB"
         }
       ],
       "languages": [
@@ -4957,7 +5122,8 @@
             "type": "race",
             "name": "Tiefling (Asmodeus)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -4981,7 +5147,8 @@
             "type": "race",
             "name": "Tiefling (Asmodeus)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Asmodeus)",
@@ -5005,7 +5172,8 @@
             "type": "race",
             "name": "Tiefling (Asmodeus)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5049,7 +5217,8 @@
             "type": "race",
             "name": "Tiefling (Baalzebul)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5073,7 +5242,8 @@
             "type": "race",
             "name": "Tiefling (Baalzebul)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Baalzebul)",
@@ -5097,7 +5267,8 @@
             "type": "race",
             "name": "Tiefling (Baalzebul)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5141,7 +5312,8 @@
             "type": "race",
             "name": "Tiefling (Zariel)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5165,7 +5337,8 @@
             "type": "race",
             "name": "Tiefling (Zariel)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Zariel)",
@@ -5189,7 +5362,8 @@
             "type": "race",
             "name": "Tiefling (Zariel)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5233,7 +5407,8 @@
             "type": "race",
             "name": "Tiefling (Dispater)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5257,7 +5432,8 @@
             "type": "race",
             "name": "Tiefling (Dispater)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Dispater)",
@@ -5281,7 +5457,8 @@
             "type": "race",
             "name": "Tiefling (Dispater)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5325,7 +5502,8 @@
             "type": "race",
             "name": "Tiefling (Fierna)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5349,7 +5527,8 @@
             "type": "race",
             "name": "Tiefling (Fierna)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Fierna)",
@@ -5373,7 +5552,8 @@
             "type": "race",
             "name": "Tiefling (Fierna)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5417,7 +5597,8 @@
             "type": "race",
             "name": "Tiefling (Glasya)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5441,7 +5622,8 @@
             "type": "race",
             "name": "Tiefling (Glasya)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Glasya)",
@@ -5465,7 +5647,8 @@
             "type": "race",
             "name": "Tiefling (Glasya)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5509,7 +5692,8 @@
             "type": "race",
             "name": "Tiefling (Levistus)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5533,7 +5717,8 @@
             "type": "race",
             "name": "Tiefling (Levistus)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Levistus)",
@@ -5557,7 +5742,8 @@
             "type": "race",
             "name": "Tiefling (Levistus)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5601,7 +5787,8 @@
             "type": "race",
             "name": "Tiefling (Mammon)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5625,7 +5812,8 @@
             "type": "race",
             "name": "Tiefling (Mammon)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Mammon)",
@@ -5649,7 +5837,8 @@
             "type": "race",
             "name": "Tiefling (Mammon)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5693,7 +5882,8 @@
             "type": "race",
             "name": "Tiefling (Mephistopheles)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Hellish Resistance",
@@ -5717,7 +5907,8 @@
             "type": "race",
             "name": "Tiefling (Mephistopheles)",
             "level": null
-          }
+          },
+          "book": "MTF"
         },
         {
           "name": "Infernal Legacy (Mephistopheles)",
@@ -5741,7 +5932,8 @@
             "type": "race",
             "name": "Tiefling (Mephistopheles)",
             "level": null
-          }
+          },
+          "book": "MTF"
         }
       ],
       "languages": [
@@ -5784,7 +5976,8 @@
             "type": "race",
             "name": "Triton",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Control Air and Water",
@@ -5808,7 +6001,8 @@
             "type": "race",
             "name": "Triton",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Emissary of the Sea",
@@ -5832,7 +6026,8 @@
             "type": "race",
             "name": "Triton",
             "level": null
-          }
+          },
+          "book": "EGW"
         },
         {
           "name": "Guardians of the Depths",
@@ -5856,7 +6051,8 @@
             "type": "race",
             "name": "Triton",
             "level": null
-          }
+          },
+          "book": "EGW"
         }
       ],
       "languages": [

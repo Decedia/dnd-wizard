@@ -155,28 +155,28 @@ export function FeatureMechanicsChips({
   ]);
 
   // Row 1: Type | Action
-  const typeBadge = effectiveFeatureType === "Active" ? (
+  const typeValue = effectiveFeatureType === "Active" ? (
     <Badge style={{ backgroundColor: "#ebf8ff", borderColor: "#90cdf4", color: "#2b6cb0" }}>Active</Badge>
   ) : (
-    <Badge style={{ backgroundColor: "#f0f0f0", borderColor: "#e0e0e0", color: "#666" }}>Passive</Badge>
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>Passive</span>
   );
 
   const actionValue = actionType ? (
     <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{actionType}</span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>Passive</span>
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
 
   rows.push([
-    <Cell key="type" label="Type" value={typeBadge} />,
+    <Cell key="type" label="Type" value={typeValue} />,
     <Cell key="action" label="Action" value={actionValue} />,
   ]);
 
-  // Row 2: Source | Uses
-  const sourceDetailValue = sourceSource.type ? (
-    <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>
-      {sourceSource.name}{sourceSource.type === "race" ? " · Racial" : ` · Level ${sourceSource.level ?? "?"}`}
-    </span>
+  // Row 2: Level | Uses
+  const levelValue = sourceSource.type === "race" ? (
+    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>Racial</span>
+  ) : sourceSource.level != null ? (
+    <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>Level {sourceSource.level}</span>
   ) : (
     <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
@@ -190,7 +190,7 @@ export function FeatureMechanicsChips({
   );
 
   rows.push([
-    <Cell key="source-detail" label="Source" value={sourceDetailValue} />,
+    <Cell key="level" label="Level" value={levelValue} />,
     <Cell key="uses" label="Uses" value={usesValue} />,
   ]);
 
@@ -252,6 +252,8 @@ export function FeatureMechanicsChips({
     gridRows = null;
   }
 
+  const footerDuration = effectiveFeatureType === "Active" && !duration ? "Instantaneous" : duration || "";
+
   const footer = (
     <div
       style={{
@@ -264,8 +266,8 @@ export function FeatureMechanicsChips({
       }}
     >
       <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#aaa" }}>
-        <ClockIconBase className="h-3.5 w-3.5" />
-        {duration || "Passive"}
+        {effectiveFeatureType === "Active" && <ClockIconBase className="h-3.5 w-3.5" />}
+        {footerDuration}
       </span>
       <div style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
         {showUseButton && (
@@ -275,7 +277,7 @@ export function FeatureMechanicsChips({
             style={{
               backgroundColor: "#fff",
               border: "1.5px solid #111",
-              color: "#000",
+              color: "#111",
               borderRadius: "999px",
               padding: "5px 14px",
               fontSize: "12px",
@@ -294,12 +296,12 @@ export function FeatureMechanicsChips({
   return (
     <div
       style={{
-        backgroundColor: "var(--color-bg)",
+        backgroundColor: "#ffffff",
         borderRadius: "8px",
         overflow: "hidden",
       }}
     >
-      <div style={{ padding: "8px 14px", background: "#fff" }}>
+      <div style={{ padding: "0 14px 10px", background: "#fff" }}>
         <p style={{ fontSize: "15px", fontWeight: 500, color: "#111", lineHeight: 1.5 }}>
           {resolvedSummary || "\u00A0"}
         </p>

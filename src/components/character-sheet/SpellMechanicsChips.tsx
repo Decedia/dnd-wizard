@@ -553,12 +553,12 @@ export function SpellMechanicsChips({
   return (
     <div
       style={{
-        backgroundColor: "var(--color-bg)",
+        backgroundColor: "#ffffff",
         borderRadius: "8px",
         overflow: "hidden",
       }}
     >
-      <div style={{ padding: "8px 14px", background: "#fff" }}>
+      <div style={{ padding: "0 14px 10px", background: "#fff" }}>
         <p style={{ fontSize: "15px", fontWeight: 500, color: "#111", lineHeight: 1.5 }}>{resolvedSummary}</p>
       </div>
       <div

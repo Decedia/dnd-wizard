@@ -22,7 +22,7 @@ export interface SRDRace {
   speed: number;
   size: string;
   darkvision: boolean | { range: number };
-  traits: { name: string; description: string }[];
+  traits: { name: string; description: string; book?: string }[];
   languages: string[];
   languageDesc?: string;
   source?: string;
@@ -59,9 +59,9 @@ export interface SRDClass {
     description: string;
     items: any[];
   }[];
-  features: { name: string; description: string; type?: string }[];
+  features: { name: string; description: string; type?: string; book?: string }[];
   levels: {
-    features: { name: string; description?: string | string[]; type?: string }[];
+    features: { name: string; description?: string | string[]; type?: string; book?: string }[];
     asi: boolean;
     spellSlots?: Record<string, number>;
   }[];
@@ -231,6 +231,7 @@ export interface SRDFeat {
   description: string;
   prerequisites: string | null;
   source?: string;
+  book?: string;
 }
 
  export interface SRDLanguage {
@@ -351,7 +352,7 @@ export interface SRDSubclass {
   index?: string;
   name: string;
   description: string;
-  features: { name: string; description: string; level?: number; choices?: { name: string; description: string }[]; choicesCount?: number }[];
+  features: { name: string; description: string; level?: number; book?: string; choices?: { name: string; description: string }[]; choicesCount?: number }[];
   expandedSpells?: Record<string, string[]>;
   source?: string;
 }
