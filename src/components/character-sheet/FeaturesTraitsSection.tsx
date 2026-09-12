@@ -8,6 +8,7 @@ import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
 import { getFeatureValue } from "@/lib/storage";
 import { SourceBadge } from "../SourceBadge";
+import { FeatureMechanicsChips } from "./FeatureMechanicsChips";
 import type { Character } from "@/lib/storage";
 
 interface FeaturesTraitsSectionProps {
@@ -152,10 +153,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             </div>
           </div>
         )}
-        {sortedFeatures.map((feature) => {
-          const isLocked = feature.locked === true;
-          return (
-            <div key={feature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`}>
+         {sortedFeatures.map((feature) => {
+           const isLocked = feature.locked === true;
+           const borderColor = feature.source === "race" ? "#6b46c1" : feature.source === "subclass" ? "#276749" : "#2b6cb0";
+           return (
+             <div key={feature.id} className={`card p-3 ${isLocked ? "bg-paper-muted" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
               {editMode ? (
                 <>
                   <div className="flex items-center justify-between gap-3">
@@ -283,6 +285,19 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                   {showDescriptions && feature.description && (
                     <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{feature.description}</p>
                   )}
+                  <div className="mt-2">
+                    <FeatureMechanicsChips
+                      featureType={(feature as any).featureType}
+                      actionType={feature.actionType}
+                      uses={(feature as any).uses}
+                      requirement={(feature as any).requirement}
+                      duration={(feature as any).duration}
+                      endsIf={(feature as any).endsIf}
+                      effect={(feature as any).effect}
+                      onUse={(feature as any).onUse}
+                      scaling={(feature as any).scaling}
+                    />
+                  </div>
                 </div>
               )}
             </div>

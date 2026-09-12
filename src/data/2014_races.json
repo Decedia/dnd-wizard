@@ -12,23 +12,68 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Long-Limbed",
-          "description": "When you make a melee attack on your turn, your reach for it is 5 feet greater than normal."
+          "description": "When you make a melee attack on your turn, your reach for it is 5 feet greater than normal.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Powerful Build",
-          "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+          "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Sneaky",
-          "description": "You are proficient in the Stealth skill."
+          "description": "You are proficient in the Stealth skill.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Surprise Attack",
-          "description": "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra 2d6 damage to it. You can use this trait only once per combat."
+          "description": "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra 2d6 damage to it. You can use this trait only once per combat.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -53,11 +98,29 @@
       "traits": [
         {
           "name": "Duplicity",
-          "description": "You have proficiency in the Deception skill."
+          "description": "You have proficiency in the Deception skill.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Shapechanger",
-          "description": "As an action, you can change your appearance and your voice to or from any Medium humanoid you have seen, or back to your true form. However, your clothing and other equipment aren't changed by this trait. You can remain in a new form until you use an action to revert to your true form or until you die. If you are damaged while in a new form, your true form is revealed."
+          "description": "As an action, you can change your appearance and your voice to or from any Medium humanoid you have seen, or back to your true form. However, your clothing and other equipment aren't changed by this trait. You can remain in a new form until you use an action to revert to your true form or until you die. If you are damaged while in a new form, your true form is revealed.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -84,19 +147,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Gnome Cunning",
-          "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+          "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Stone Camouflage",
-          "description": "You have advantage on Dexterity (Stealth) checks to hide in rocky terrain."
+          "description": "You have advantage on Dexterity (Stealth) checks to hide in rocky terrain.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Svirfneblin Magic",
-          "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component. You can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest. Intelligence is your spellcasting ability for these spells."
+          "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component. You can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest. Intelligence is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -118,19 +217,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Thanks to your vampiric heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "Thanks to your vampiric heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Deathless Nature",
-          "description": "You have escaped death once; it is harder for death to find you again. You don't need to breathe, and you have advantage on death saving throws."
+          "description": "You have escaped death once; it is harder for death to find you again. You don't need to breathe, and you have advantage on death saving throws.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Spider Climb",
-          "description": "You have a climbing speed equal to your walking speed. In addition, at 3rd level, you can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free."
+          "description": "You have a climbing speed equal to your walking speed. In addition, at 3rd level, you can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Vampiric Bite",
-          "description": "Your fanged bite is a natural weapon, which you can use to make unarmed strikes. If you hit with it, you deal piercing damage equal to 1d4 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike. When you damage a creature with your bite and that creature has a humanoid shape, you can regain hit points equal to the piercing damage dealt."
+          "description": "Your fanged bite is a natural weapon, which you can use to make unarmed strikes. If you hit with it, you deal piercing damage equal to 1d4 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike. When you damage a creature with your bite and that creature has a humanoid shape, you can regain hit points equal to the piercing damage dealt.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -154,15 +289,42 @@
       "traits": [
         {
           "name": "Draconic Ancestry",
-          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest."
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Damage Resistance",
-          "description": "You have resistance to the damage type associated with your draconic ancestry."
+          "description": "You have resistance to the damage type associated with your draconic ancestry.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -184,19 +346,55 @@
       "traits": [
         {
           "name": "Draconic Ancestry",
-          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest."
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Damage Resistance",
-          "description": "You have resistance to the damage type associated with your draconic ancestry."
+          "description": "You have resistance to the damage type associated with your draconic ancestry.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Chromatic Breath Weapon",
-          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 damage of the type associated with your draconic ancestry. On a successful save, a creature takes half as much damage. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 damage of the type associated with your draconic ancestry. On a successful save, a creature takes half as much damage. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -221,23 +419,68 @@
       "traits": [
         {
           "name": "Draconic Ancestry",
-          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest."
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Damage Resistance",
-          "description": "You have resistance to the damage type associated with your draconic ancestry."
+          "description": "You have resistance to the damage type associated with your draconic ancestry.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Psionic Mind",
-          "description": "You can send telepathic messages to any creature you can see within 30 feet of you. You don't need to share a language with the creature for it to understand your telepathy, but the creature must be able to understand at least one language or be telepathic itself."
+          "description": "You can send telepathic messages to any creature you can see within 30 feet of you. You don't need to share a language with the creature for it to understand your telepathy, but the creature must be able to understand at least one language or be telepathic itself.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Gem Flight",
-          "description": "When you reach 5th level, you can use a bonus action to manifest spectral wings from your back for 1 minute. While the wings are present, you have a flying speed equal to your walking speed. Your wings look like shimmering, translucent versions of your draconic ancestry's wings. Once you use this trait, you can't use it again until you finish a long rest."
+          "description": "When you reach 5th level, you can use a bonus action to manifest spectral wings from your back for 1 minute. While the wings are present, you have a flying speed equal to your walking speed. Your wings look like shimmering, translucent versions of your draconic ancestry's wings. Once you use this trait, you can't use it again until you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -262,19 +505,55 @@
       "traits": [
         {
           "name": "Draconic Ancestry",
-          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
+          "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest."
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Damage Resistance",
-          "description": "You have resistance to the damage type associated with your draconic ancestry."
+          "description": "You have resistance to the damage type associated with your draconic ancestry.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Metallic Breath Weapon",
-          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of psychic energy. Each creature in the area must make a Wisdom saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 psychic damage and is frightened of you until the end of your next turn. On a successful save, a creature takes half as much damage and isn't frightened. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of psychic energy. Each creature in the area must make a Wisdom saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 psychic damage and is frightened of you until the end of your next turn. On a successful save, a creature takes half as much damage and isn't frightened. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -300,23 +579,68 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Dwarven Resilience",
-          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Stonecunning",
-          "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
+          "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Dwarven Combat Training",
-          "description": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer."
+          "description": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Tool Proficiency",
-          "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools."
+          "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -328,33 +652,197 @@
     },
     {
       "name": "Hill Dwarf",
-      "abilityScoreIncreases": { "con": 2, "wis": 1 },
-      "speed": 25, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "con": 2,
+        "wis": 1
+      },
+      "speed": 25,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Dwarven Resilience", "description": "You have advantage on saving throws against poison, and you have resistance against poison damage." },
-        { "name": "Dwarven Combat Training", "description": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer." },
-        { "name": "Tool Proficiency", "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools." },
-        { "name": "Stonecunning", "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus." },
-        { "name": "Dwarven Toughness", "description": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Dwarven Resilience",
+          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Dwarven Combat Training",
+          "description": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Tool Proficiency",
+          "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Stonecunning",
+          "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Dwarven Toughness",
+          "description": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Dwarvish"],
+      "languages": [
+        "Common",
+        "Dwarvish"
+      ],
       "languageDesc": "You can speak, read, and write Common and Dwarvish.",
       "source": "PHB"
     },
     {
       "name": "Mountain Dwarf",
-      "abilityScoreIncreases": { "con": 2, "str": 2 },
-      "speed": 25, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "con": 2,
+        "str": 2
+      },
+      "speed": 25,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Dwarven Resilience", "description": "You have advantage on saving throws against poison, and you have resistance against poison damage." },
-        { "name": "Dwarven Combat Training", "description": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer." },
-        { "name": "Tool Proficiency", "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools." },
-        { "name": "Stonecunning", "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus." },
-        { "name": "Dwarven Armor Training", "description": "You have proficiency with light and medium armor." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Dwarven Resilience",
+          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Dwarven Combat Training",
+          "description": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Tool Proficiency",
+          "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Stonecunning",
+          "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Dwarven Armor Training",
+          "description": "You have proficiency with light and medium armor.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Dwarvish"],
+      "languages": [
+        "Common",
+        "Dwarvish"
+      ],
       "languageDesc": "You can speak, read, and write Common and Dwarvish.",
       "source": "PHB"
     },
@@ -370,27 +858,81 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Keen Senses",
-          "description": "You have proficiency in the Perception skill."
+          "description": "You have proficiency in the Perception skill.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Trance",
-          "description": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. The word for this meditation is \"trance\", a word borrowed from the human language. While meditating in this way, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep."
+          "description": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. The word for this meditation is \"trance\", a word borrowed from the human language. While meditating in this way, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Eladrin Season",
-          "description": "When you finish a long rest, you can change your season. You can also change your season as a bonus action on your turn. Your season determines your Fey Step effect."
+          "description": "When you finish a long rest, you can change your season. You can also change your season as a bonus action on your turn. Your season determines your Fey Step effect.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fey Step",
-          "description": "You can cast the misty step spell once using this trait. You regain the ability to do so when you finish a short or long rest. When you use Fey Step, your season determines the effect:\n- **Autumn**: When you teleport, up to two creatures of your choice that you can see within 10 feet of you must succeed on a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or be charmed by you for 1 minute, or until you or your allies damage them.\n- **Winter**: When you teleport, one creature of your choice that you can see within 5 feet of the space you left must succeed on a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn.\n- **Spring**: When you teleport, you can touch one willing creature within 5 feet of you. That creature then teleports to an unoccupied space of your choice that you can see within 5 feet of your destination.\n- **Summer**: When you teleport, each creature of your choice that you can see within 5 feet of you takes fire damage equal to your Charisma modifier (minimum of 1)."
+          "description": "You can cast the misty step spell once using this trait. You regain the ability to do so when you finish a short or long rest. When you use Fey Step, your season determines the effect:\n- **Autumn**: When you teleport, up to two creatures of your choice that you can see within 10 feet of you must succeed on a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or be charmed by you for 1 minute, or until you or your allies damage them.\n- **Winter**: When you teleport, one creature of your choice that you can see within 5 feet of the space you left must succeed on a Wisdom saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn.\n- **Spring**: When you teleport, you can touch one willing creature within 5 feet of you. That creature then teleports to an unoccupied space of your choice that you can see within 5 feet of your destination.\n- **Summer**: When you teleport, each creature of your choice that you can see within 5 feet of you takes fire damage equal to your Charisma modifier (minimum of 1).",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -442,19 +984,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Trance",
-          "description": "Elves do not need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting this way, you gain the same benefit that a human does from 8 hours of sleep."
+          "description": "Elves do not need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting this way, you gain the same benefit that a human does from 8 hours of sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Keen Senses",
-          "description": "You have proficiency in the Perception skill."
+          "description": "You have proficiency in the Perception skill.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -476,19 +1054,55 @@
       "traits": [
         {
           "name": "Firbolg Magic",
-          "description": "You can cast the detect magic and disguise self spells with this trait. When you use this version of disguise self, you can seem to be a humanoid of normal size. When you cast either spell with this trait, you can cast it again with this trait when you finish a long rest. Wisdom is your spellcasting ability for these spells."
+          "description": "You can cast the detect magic and disguise self spells with this trait. When you use this version of disguise self, you can seem to be a humanoid of normal size. When you cast either spell with this trait, you can cast it again with this trait when you finish a long rest. Wisdom is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Hidden Step",
-          "description": "As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this trait, you can't use it again until you finish a short or long rest."
+          "description": "As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this trait, you can't use it again until you finish a short or long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Powerful Build",
-          "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+          "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Speech of Beast and Leaf",
-          "description": "You have the ability to communicate in a limited manner with beasts and plants. They can understand the meaning of your words, though you have no special ability to understand them in return. You have advantage on all Charisma checks you make to influence them."
+          "description": "You have the ability to communicate in a limited manner with beasts and plants. They can understand the meaning of your words, though you have no special ability to understand them in return. You have advantage on all Charisma checks you make to influence them.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -514,15 +1128,42 @@
       "traits": [
         {
           "name": "Decadent Mastery",
-          "description": "You learn one language of your choice, and you gain proficiency with one skill or tool of your choice. In the timeless city of Tu'narath, githyanki have honed psionic disciplines for eons."
+          "description": "You learn one language of your choice, and you gain proficiency with one skill or tool of your choice. In the timeless city of Tu'narath, githyanki have honed psionic disciplines for eons.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Psychic Resilience",
-          "description": "You have resistance to psychic damage."
+          "description": "You have resistance to psychic damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Githyanki Psionics",
-          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait. When you reach 3rd level, you can cast the jump spell once with this trait, and you regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the misty step spell once with this trait, and you regain the ability to do so when you finish a long rest. Intelligence is your spellcasting ability for these spells. When you cast them with this trait, you don't need components."
+          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait. When you reach 3rd level, you can cast the jump spell once with this trait, and you regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the misty step spell once with this trait, and you regain the ability to do so when you finish a long rest. Intelligence is your spellcasting ability for these spells. When you cast them with this trait, you don't need components.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -561,15 +1202,42 @@
       "traits": [
         {
           "name": "Mental Discipline",
-          "description": "You have advantage on saving throws against the charmed and frightened conditions."
+          "description": "You have advantage on saving throws against the charmed and frightened conditions.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Psychic Resilience",
-          "description": "You have resistance to psychic damage."
+          "description": "You have resistance to psychic damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Githzerai Psionics",
-          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait. When you reach 3rd level, you can cast the shield spell once with this trait, and you regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the detect thoughts spell once with this trait, and you regain the ability to do so when you finish a long rest. Wisdom is your spellcasting ability for these spells. When you cast them with this trait, you don't need components."
+          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait. When you reach 3rd level, you can cast the shield spell once with this trait, and you regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the detect thoughts spell once with this trait, and you regain the ability to do so when you finish a long rest. Wisdom is your spellcasting ability for these spells. When you cast them with this trait, you don't need components.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -595,11 +1263,29 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Gnome Cunning",
-          "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+          "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -611,29 +1297,145 @@
     },
     {
       "name": "Forest Gnome",
-      "abilityScoreIncreases": { "int": 2, "dex": 1 },
-      "speed": 25, "size": "Small", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "int": 2,
+        "dex": 1
+      },
+      "speed": 25,
+      "size": "Small",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Gnome Cunning", "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic." },
-        { "name": "Natural Illusionist", "description": "You know the minor illusion cantrip. Intelligence is your spellcasting ability for it." },
-        { "name": "Speak with Small Beasts", "description": "Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Gnome Cunning",
+          "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Natural Illusionist",
+          "description": "You know the minor illusion cantrip. Intelligence is your spellcasting ability for it.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Speak with Small Beasts",
+          "description": "Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Gnomish"],
+      "languages": [
+        "Common",
+        "Gnomish"
+      ],
       "languageDesc": "You can speak, read, and write Common and Gnomish.",
       "source": "PHB"
     },
     {
       "name": "Rock Gnome",
-      "abilityScoreIncreases": { "int": 2, "con": 1 },
-      "speed": 25, "size": "Small", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "int": 2,
+        "con": 1
+      },
+      "speed": 25,
+      "size": "Small",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Gnome Cunning", "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic." },
-        { "name": "Artificer's Lore", "description": "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus instead of any proficiency bonus you normally apply." },
-        { "name": "Tinker", "description": "You have proficiency with artisan's tools (tinker's tools). You can spend 1 hour and 10 gp of materials to construct a Tiny clockwork device (AC 5, 1 hp). You can have up to three such devices active at a time." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Gnome Cunning",
+          "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Artificer's Lore",
+          "description": "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus instead of any proficiency bonus you normally apply.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Tinker",
+          "description": "You have proficiency with artisan's tools (tinker's tools). You can spend 1 hour and 10 gp of materials to construct a Tiny clockwork device (AC 5, 1 hp). You can have up to three such devices active at a time.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Gnomish"],
+      "languages": [
+        "Common",
+        "Gnomish"
+      ],
       "languageDesc": "You can speak, read, and write Common and Gnomish.",
       "source": "PHB"
     },
@@ -649,15 +1451,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fury of the Small",
-          "description": "When you damage a creature with an attack or spell, you can deal extra damage equal to your level. Once you use this trait, you can't use it again until you finish a short or long rest."
+          "description": "When you damage a creature with an attack or spell, you can deal extra damage equal to your level. Once you use this trait, you can't use it again until you finish a short or long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Nimble Escape",
-          "description": "You can take the Disengage or Hide action as a bonus action on each of your turns."
+          "description": "You can take the Disengage or Hide action as a bonus action on each of your turns.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -683,15 +1512,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice."
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -714,19 +1570,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice."
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "High Elf Heritage",
-          "description": "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it."
+          "description": "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -758,19 +1650,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice."
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Wood Elf Heritage",
-          "description": "You have proficiency with longsword, shortsword, shortbow, and longbow. Your base walking speed increases to 35 feet."
+          "description": "You have proficiency with longsword, shortsword, shortbow, and longbow. Your base walking speed increases to 35 feet.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -793,19 +1721,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep."
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice."
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Drow Heritage",
-          "description": "You know the dancing lights cantrip. When you reach 3rd level, you can cast the faerie fire spell once per long rest. When you reach 5th level, you can cast the darkness spell once per long rest. Charisma is your spellcasting ability for these spells."
+          "description": "You know the dancing lights cantrip. When you reach 3rd level, you can cast the faerie fire spell once per long rest. When you reach 5th level, you can cast the darkness spell once per long rest. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -817,71 +1781,356 @@
     },
     {
       "name": "Half-Elf (Moon Elf)",
-      "abilityScoreIncreases": { "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
-        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
-        { "name": "Moon Elf Heritage", "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the silent image spell once per long rest. When you reach 5th level, you can cast the hypnotic pattern spell once per long rest. Intelligence is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Moon Elf Heritage",
+          "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the silent image spell once per long rest. When you reach 5th level, you can cast the hypnotic pattern spell once per long rest. Intelligence is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Elvish"],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
       "source": "SCAG"
     },
     {
       "name": "Half-Elf (Sun Elf)",
-      "abilityScoreIncreases": { "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
-        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
-        { "name": "Sun Elf Heritage", "description": "You know the fire bolt cantrip. When you reach 3rd level, you can cast the burning hands spell once per long rest. When you reach 5th level, you can cast the scorching ray spell once per long rest. Intelligence is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Sun Elf Heritage",
+          "description": "You know the fire bolt cantrip. When you reach 3rd level, you can cast the burning hands spell once per long rest. When you reach 5th level, you can cast the scorching ray spell once per long rest. Intelligence is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Elvish"],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
       "source": "SCAG"
     },
     {
       "name": "Half-Elf (Sea Elf)",
-      "abilityScoreIncreases": { "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
-        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
-        { "name": "Sea Elf Heritage", "description": "You have a swimming speed of 30 feet and can breathe air and water. You know the minor illusion cantrip. When you reach 3rd level, you can cast the water walk spell once per long rest. When you reach 5th level, you can cast the control water spell once per long rest. Charisma is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Sea Elf Heritage",
+          "description": "You have a swimming speed of 30 feet and can breathe air and water. You know the minor illusion cantrip. When you reach 3rd level, you can cast the water walk spell once per long rest. When you reach 5th level, you can cast the control water spell once per long rest. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Elvish"],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
       "source": "SCAG"
     },
     {
       "name": "Half-Elf (Shadar-kai)",
-      "abilityScoreIncreases": { "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
-        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
-        { "name": "Shadar-kai Heritage", "description": "You have resistance to necrotic damage. You know the spare the dying cantrip. When you reach 3rd level, you can cast the ray of sickness spell once per long rest. When you reach 5th level, you can cast the blindness/deafness spell once per long rest. Charisma is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Shadar-kai Heritage",
+          "description": "You have resistance to necrotic damage. You know the spare the dying cantrip. When you reach 3rd level, you can cast the ray of sickness spell once per long rest. When you reach 5th level, you can cast the blindness/deafness spell once per long rest. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Elvish"],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
       "source": "SCAG"
     },
     {
       "name": "Half-Elf (Eladrin)",
-      "abilityScoreIncreases": { "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Fey Ancestry", "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep." },
-        { "name": "Skill Versatility", "description": "You gain proficiency in two skills of your choice." },
-        { "name": "Eladrin Heritage", "description": "You can cast the misty step spell once per long rest without expending a spell slot. Charisma is your spellcasting ability for it. Choose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), Summer (fire damage)." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Fey Ancestry",
+          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Skill Versatility",
+          "description": "You gain proficiency in two skills of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Eladrin Heritage",
+          "description": "You can cast the misty step spell once per long rest without expending a spell slot. Charisma is your spellcasting ability for it. Choose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), Summer (fire damage).",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Elvish"],
+      "languages": [
+        "Common",
+        "Elvish"
+      ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
       "source": "SCAG"
     },
@@ -899,19 +2148,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Savage Attacks",
-          "description": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit."
+          "description": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Relentless Endurance",
-          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. you cannot use this feature again until you finish a long rest."
+          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. you cannot use this feature again until you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Menacing",
-          "description": "You gain proficiency in the Intimidation skill."
+          "description": "You gain proficiency in the Intimidation skill.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -932,15 +2217,42 @@
       "traits": [
         {
           "name": "Brave",
-          "description": "You have advantage on saving throw against being frightened."
+          "description": "You have advantage on saving throw against being frightened.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Halfling Nimbleness",
-          "description": "You can move through the space of any creature that is of a size larger than yours."
+          "description": "You can move through the space of any creature that is of a size larger than yours.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Lucky",
-          "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
+          "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -952,43 +2264,211 @@
     },
     {
       "name": "Lightfoot Halfling",
-      "abilityScoreIncreases": { "dex": 2, "cha": 1 },
-      "speed": 25, "size": "Small", "darkvision": false,
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "cha": 1
+      },
+      "speed": 25,
+      "size": "Small",
+      "darkvision": false,
       "traits": [
-        { "name": "Brave", "description": "You have advantage on saving throws against being frightened." },
-        { "name": "Halfling Nimbleness", "description": "You can move through the space of any creature that is of a size larger than yours." },
-        { "name": "Lucky", "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll." },
-        { "name": "Naturally Stealthy", "description": "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you." }
+        {
+          "name": "Brave",
+          "description": "You have advantage on saving throws against being frightened.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Halfling Nimbleness",
+          "description": "You can move through the space of any creature that is of a size larger than yours.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Lucky",
+          "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Naturally Stealthy",
+          "description": "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Halfling"],
+      "languages": [
+        "Common",
+        "Halfling"
+      ],
       "languageDesc": "You can speak, read, and write Common and Halfling.",
       "source": "PHB"
     },
     {
       "name": "Stout Halfling",
-      "abilityScoreIncreases": { "dex": 2, "con": 1 },
-      "speed": 25, "size": "Small", "darkvision": false,
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "con": 1
+      },
+      "speed": 25,
+      "size": "Small",
+      "darkvision": false,
       "traits": [
-        { "name": "Brave", "description": "You have advantage on saving throws against being frightened." },
-        { "name": "Halfling Nimbleness", "description": "You can move through the space of any creature that is of a size larger than yours." },
-        { "name": "Lucky", "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll." },
-        { "name": "Stout Resilience", "description": "You have advantage on saving throws against poison, and you have resistance against poison damage." }
+        {
+          "name": "Brave",
+          "description": "You have advantage on saving throws against being frightened.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Halfling Nimbleness",
+          "description": "You can move through the space of any creature that is of a size larger than yours.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Lucky",
+          "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Stout Resilience",
+          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Halfling"],
+      "languages": [
+        "Common",
+        "Halfling"
+      ],
       "languageDesc": "You can speak, read, and write Common and Halfling.",
       "source": "PHB"
     },
     {
       "name": "Ghostwise Halfling",
-      "abilityScoreIncreases": { "dex": 2, "wis": 1 },
-      "speed": 25, "size": "Small", "darkvision": false,
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "wis": 1
+      },
+      "speed": 25,
+      "size": "Small",
+      "darkvision": false,
       "traits": [
-        { "name": "Brave", "description": "You have advantage on saving throws against being frightened." },
-        { "name": "Halfling Nimbleness", "description": "You can move through the space of any creature that is of a size larger than yours." },
-        { "name": "Lucky", "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll." },
-        { "name": "Silent Speech", "description": "You can speak telepathically to any creature within 30 feet that shares a language with you." }
+        {
+          "name": "Brave",
+          "description": "You have advantage on saving throws against being frightened.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Halfling Nimbleness",
+          "description": "You can move through the space of any creature that is of a size larger than yours.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Lucky",
+          "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Silent Speech",
+          "description": "You can speak telepathically to any creature within 30 feet that shares a language with you.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Halfling"],
+      "languages": [
+        "Common",
+        "Halfling"
+      ],
       "languageDesc": "You can speak, read, and write Common and Halfling.",
       "source": "SCAG"
     },
@@ -1004,15 +2484,42 @@
       "traits": [
         {
           "name": "Fey",
-          "description": "Your creature type is Fey, rather than Humanoid."
+          "description": "Your creature type is Fey, rather than Humanoid.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Hex Magic",
-          "description": "You can cast the hex spell with this trait. Starting at 3rd level, you can also cast the blindness/deafness spell with this trait. Starting at 5th level, you can also cast the ray of enfeeblement spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for these spells."
+          "description": "You can cast the hex spell with this trait. Starting at 3rd level, you can also cast the blindness/deafness spell with this trait. Starting at 5th level, you can also cast the ray of enfeeblement spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Eerie Token",
-          "description": "As a bonus action, you can remove a lock of hair, one of your teeth, or some other part of your body and incorporate it into a token. If your token is destroyed, you take 1d6 psychic damage. You can use the token as a spellcasting focus for your spells, and you can use the token to cast the sending spell without expending a spell slot. Once you cast sending in this way, you can't do so again until you finish a long rest."
+          "description": "As a bonus action, you can remove a lock of hair, one of your teeth, or some other part of your body and incorporate it into a token. If your token is destroyed, you take 1d6 psychic damage. You can use the token as a spellcasting focus for your spells, and you can use the token to cast the sending spell without expending a spell slot. Once you cast sending in this way, you can't do so again until you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1036,15 +2543,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Martial Training",
-          "description": "You are proficient with two martial weapons of your choice."
+          "description": "You are proficient with two martial weapons of your choice.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Saving Face",
-          "description": "Whenever you make an ability check and miss by 4 or less, you can treat the roll as if you had missed by 5. If you do so, you gain a luck point. You can spend a luck point when you make an attack roll, ability check, or saving throw to roll an additional d6 and add it to your roll. You regain all luck points when you finish a long rest."
+          "description": "Whenever you make an ability check and miss by 4 or less, you can treat the roll as if you had missed by 5. If you do so, you gain a luck point. You can spend a luck point when you make an attack roll, ability check, or saving throw to roll an additional d6 and add it to your roll. You regain all luck points when you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1073,7 +2607,16 @@
       "traits": [
         {
           "name": "Versatile",
-          "description": "Humans are the most adaptable and ambitious people among the common races. They have a drive to achieve and a capacity for innovation, making them excellent at a wide variety of roles."
+          "description": "Humans are the most adaptable and ambitious people among the common races. They have a drive to achieve and a capacity for innovation, making them excellent at a wide variety of roles.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1094,15 +2637,42 @@
       "traits": [
         {
           "name": "Expert Forgery",
-          "description": "You can duplicate other creatures' handwriting and craftwork. You have advantage on all checks made to produce forgeries or duplicates of existing objects."
+          "description": "You can duplicate other creatures' handwriting and craftwork. You have advantage on all checks made to produce forgeries or duplicates of existing objects.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Kenku Training",
-          "description": "You are proficient in your choice of two of the following skills: Acrobatics, Deception, Stealth, and Sleight of Hand."
+          "description": "You are proficient in your choice of two of the following skills: Acrobatics, Deception, Stealth, and Sleight of Hand.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Mimicry",
-          "description": "You can mimic sounds you have heard, including voices. A creature that hears the sounds can tell they are imitations with a successful Wisdom (Insight) check opposed by your Charisma (Deception) check."
+          "description": "You can mimic sounds you have heard, including voices. A creature that hears the sounds can tell they are imitations with a successful Wisdom (Insight) check opposed by your Charisma (Deception) check.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1127,19 +2697,55 @@
       "traits": [
         {
           "name": "Bite",
-          "description": "Your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit, you deal piercing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike."
+          "description": "Your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit, you deal piercing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Cunning Artisan",
-          "description": "As part of a short rest, you can harvest bone and hide from a slain beast, construct, dragon, monstrosity, or plant creature of size Small or larger to create one of the following items: a shield, a club, a javelin, or 4d4 pieces of ammunition. To use this trait, you need a blade, such as a dagger, or appropriate artisan's tools, such as leatherworker's tools."
+          "description": "As part of a short rest, you can harvest bone and hide from a slain beast, construct, dragon, monstrosity, or plant creature of size Small or larger to create one of the following items: a shield, a club, a javelin, or 4d4 pieces of ammunition. To use this trait, you need a blade, such as a dagger, or appropriate artisan's tools, such as leatherworker's tools.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Hold Breath",
-          "description": "You can hold your breath for 15 minutes at a time."
+          "description": "You can hold your breath for 15 minutes at a time.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Natural Armor",
-          "description": "When you aren't wearing armor, your AC is 13 + your Dexterity modifier. You can use a shield and still gain this benefit."
+          "description": "When you aren't wearing armor, your AC is 13 + your Dexterity modifier. You can use a shield and still gain this benefit.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1164,19 +2770,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Menacing",
-          "description": "You are proficient in the Intimidation skill."
+          "description": "You are proficient in the Intimidation skill.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Powerful Build",
-          "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+          "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Relentless Endurance",
-          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest."
+          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1201,15 +2843,42 @@
       "traits": [
         {
           "name": "Deathless Nature",
-          "description": "You have escaped death once; it is harder for death to find you again. You have advantage on death saving throws, and you don't need to eat, drink, or breathe."
+          "description": "You have escaped death once; it is harder for death to find you again. You have advantage on death saving throws, and you don't need to eat, drink, or breathe.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Knowledge from a Past Life",
-          "description": "You have fragments of memories from a past life. When you make an ability check that uses a skill, you can roll a d6 and add it to your roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+          "description": "You have fragments of memories from a past life. When you make an ability check that uses a skill, you can roll a d6 and add it to your roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Reborn Resilience",
-          "description": "Your body is partially spectral, granting you resistance to necrotic damage. In addition, you have advantage on saving throws against disease and poison."
+          "description": "Your body is partially spectral, granting you resistance to necrotic damage. In addition, you have advantage on saving throws against disease and poison.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1233,15 +2902,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Keen Senses",
-          "description": "You are proficient in the Perception skill."
+          "description": "You are proficient in the Perception skill.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Shifting",
-          "description": "As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your bonus action. When you shift, you gain temporary hit points equal to your level + your Constitution modifier (minimum of 1 temporary hit point). You also gain additional benefits that depend on one of the following shifter options you choose: Beasthide, Longtooth, Swiftstride, or Wildhunt. Once you shift, you can't do so again until you finish a short or long rest."
+          "description": "As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your bonus action. When you shift, you gain temporary hit points equal to your level + your Constitution modifier (minimum of 1 temporary hit point). You also gain additional benefits that depend on one of the following shifter options you choose: Beasthide, Longtooth, Swiftstride, or Wildhunt. Once you shift, you can't do so again until you finish a short or long rest.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1295,19 +2991,55 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Feline Agility",
-          "description": "Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed until the end of the turn. Once you use this trait, you can't use it again until you move 0 feet on one or more of your turns."
+          "description": "Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed until the end of the turn. Once you use this trait, you can't use it again until you move 0 feet on one or more of your turns.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Cat's Claws",
-          "description": "Because of your retractable claws, you have a climbing speed of 20 feet. In addition, your claws are natural weapons, which you can use to make unarmed strikes. If you hit, you deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal damage for an unarmed strike."
+          "description": "Because of your retractable claws, you have a climbing speed of 20 feet. In addition, your claws are natural weapons, which you can use to make unarmed strikes. If you hit, you deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal damage for an unarmed strike.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Cat's Talent",
-          "description": "You have proficiency in the Perception and Stealth skills."
+          "description": "You have proficiency in the Perception and Stealth skills.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1333,15 +3065,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Hellish Resistance",
-          "description": "You have resistance to fire damage."
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Infernal Legacy",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells."
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1365,15 +3124,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Hellish Resistance",
-          "description": "You have resistance to fire damage."
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Infernal Legacy (Asmodeus)",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells."
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1397,15 +3183,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Hellish Resistance",
-          "description": "You have resistance to fire damage."
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Infernal Legacy (Baalzebul)",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the ray of sickness spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the crown of madness spell once with this trait. Charisma is your spellcasting ability for these spells."
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the ray of sickness spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the crown of madness spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1429,15 +3242,42 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray."
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Hellish Resistance",
-          "description": "You have resistance to fire damage."
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Infernal Legacy (Zariel)",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the searing smite spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the branding smite spell once with this trait. Charisma is your spellcasting ability for these spells."
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the searing smite spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the branding smite spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
@@ -1455,78 +3295,349 @@
       },
       "speed": 30,
       "size": "Medium",
-      "darkvision": { "range": 60 },
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
-        { "name": "Infernal Legacy (Dispater)", "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the detect thoughts spell once with this trait. Charisma is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Infernal Legacy (Dispater)",
+          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the detect thoughts spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Infernal"],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
       "source": "MTF"
     },
     {
       "name": "Tiefling (Fierna)",
-      "abilityScoreIncreases": { "wis": 1, "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "wis": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
-        { "name": "Infernal Legacy (Fierna)", "description": "You know the friends cantrip. When you reach 3rd level, you can cast the charm person spell once with this trait. When you reach 5th level, you can cast the suggestion spell once with this trait. Charisma is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Infernal Legacy (Fierna)",
+          "description": "You know the friends cantrip. When you reach 3rd level, you can cast the charm person spell once with this trait. When you reach 5th level, you can cast the suggestion spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Infernal"],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
       "source": "MTF"
     },
     {
       "name": "Tiefling (Glasya)",
-      "abilityScoreIncreases": { "dex": 1, "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "dex": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
-        { "name": "Infernal Legacy (Glasya)", "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the invisibility spell once with this trait. Charisma is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Infernal Legacy (Glasya)",
+          "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the invisibility spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Infernal"],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
       "source": "MTF"
     },
     {
       "name": "Tiefling (Levistus)",
-      "abilityScoreIncreases": { "con": 1, "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "con": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
-        { "name": "Infernal Legacy (Levistus)", "description": "You know the ray of frost cantrip. When you reach 3rd level, you can cast the armor of Agathys spell once with this trait. When you reach 5th level, you can cast the darkness spell once with this trait. Charisma is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Infernal Legacy (Levistus)",
+          "description": "You know the ray of frost cantrip. When you reach 3rd level, you can cast the armor of Agathys spell once with this trait. When you reach 5th level, you can cast the darkness spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Infernal"],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
       "source": "MTF"
     },
     {
       "name": "Tiefling (Mammon)",
-      "abilityScoreIncreases": { "int": 1, "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "int": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
-        { "name": "Infernal Legacy (Mammon)", "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the Tenser's floating disk spell once with this trait. When you reach 5th level, you can cast the arcane lock spell once with this trait. Intelligence is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Infernal Legacy (Mammon)",
+          "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the Tenser's floating disk spell once with this trait. When you reach 5th level, you can cast the arcane lock spell once with this trait. Intelligence is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Infernal"],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
       "source": "MTF"
     },
     {
       "name": "Tiefling (Mephistopheles)",
-      "abilityScoreIncreases": { "int": 1, "cha": 2 },
-      "speed": 30, "size": "Medium", "darkvision": { "range": 60 },
+      "abilityScoreIncreases": {
+        "int": 1,
+        "cha": 2
+      },
+      "speed": 30,
+      "size": "Medium",
+      "darkvision": {
+        "range": 60
+      },
       "traits": [
-        { "name": "Darkvision", "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray." },
-        { "name": "Hellish Resistance", "description": "You have resistance to fire damage." },
-        { "name": "Infernal Legacy (Mephistopheles)", "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the burning hands spell once with this trait. When you reach 5th level, you can cast the flame blade spell once with this trait. Intelligence is your spellcasting ability for these spells." }
+        {
+          "name": "Darkvision",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Hellish Resistance",
+          "description": "You have resistance to fire damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        },
+        {
+          "name": "Infernal Legacy (Mephistopheles)",
+          "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the burning hands spell once with this trait. When you reach 5th level, you can cast the flame blade spell once with this trait. Intelligence is your spellcasting ability for these spells.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
       ],
-      "languages": ["Common", "Infernal"],
+      "languages": [
+        "Common",
+        "Infernal"
+      ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
       "source": "MTF"
     },
@@ -1543,19 +3654,55 @@
       "traits": [
         {
           "name": "Amphibious",
-          "description": "You can breathe air and water."
+          "description": "You can breathe air and water.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Control Air and Water",
-          "description": "A child of the sea, you can call on the magic of elemental air and water. You can cast the fog cloud spell with this trait. Starting at 3rd level, you can cast the gust of wind spell with this trait. Starting at 5th level, you can cast the water walk spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for them."
+          "description": "A child of the sea, you can call on the magic of elemental air and water. You can cast the fog cloud spell with this trait. Starting at 3rd level, you can cast the gust of wind spell with this trait. Starting at 5th level, you can cast the water walk spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for them.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Emissary of the Sea",
-          "description": "Aquatic beasts have an instinctive understanding of your telepathic utterances. You have advantage on all Charisma checks you make to influence beasts that can breathe water."
+          "description": "Aquatic beasts have an instinctive understanding of your telepathic utterances. You have advantage on all Charisma checks you make to influence beasts that can breathe water.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         },
         {
           "name": "Guardians of the Depths",
-          "description": "Adapted to even the most extreme ocean depths, you have resistance to cold damage."
+          "description": "Adapted to even the most extreme ocean depths, you have resistance to cold damage.",
+          "featureType": null,
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
         }
       ],
       "languages": [
