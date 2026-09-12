@@ -64,22 +64,61 @@ interface InfoField {
   value: React.ReactNode;
 }
 
-function InfoGrid({ fields }: { fields: InfoField[] }) {
-  const pairs: InfoField[][] = [];
-  for (let i = 0; i < fields.length; i += 2) {
-    pairs.push(fields.slice(i, i + 2));
+const ROWS_PER_TABLE = 3;
+const COLS_PER_ROW = 2;
+const FIELDS_PER_TABLE = ROWS_PER_TABLE * COLS_PER_ROW;
+
+function InfoCell({ label, value }: { label: string; value: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-1 min-w-0">
+      <span className="text-[10px] font-bold text-[var(--color-text-primary)] uppercase tracking-wide shrink-0 whitespace-nowrap">
+        {label}:
+      </span>
+      <div className="flex flex-wrap items-center gap-1 min-w-0">{value}</div>
+    </div>
+  );
+}
+
+function InfoTable({ fields }: { fields: InfoField[] }) {
+  const rows: InfoField[][][] = [];
+  for (let i = 0; i < fields.length; i += FIELDS_PER_TABLE) {
+    const chunk = fields.slice(i, i + FIELDS_PER_TABLE);
+    const tableRows: InfoField[][] = [];
+    for (let j = 0; j < chunk.length; j += COLS_PER_ROW) {
+      tableRows.push(chunk.slice(j, j + COLS_PER_ROW));
+    }
+    rows.push(tableRows);
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
-      {pairs.map((pair, idx) => (
-        <div key={idx} className="grid grid-cols-[auto_1fr] gap-x-2 gap-y-1 col-span-1 sm:col-span-1">
-          {pair.map((field) => (
-            <div key={field.label} className="contents">
-              <span className="text-[10px] font-bold text-[var(--color-text-primary)] uppercase tracking-wide shrink-0 whitespace-nowrap">
-                {field.label}:
-              </span>
-              <div className="flex flex-wrap items-center gap-1 min-w-0">{field.value}</div>
+    <div className="space-y-1">
+      {rows.map((tableRows, tableIdx) => (
+        <div
+          key={tableIdx}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 rounded-md p-1.5"
+          style={{
+            backgroundColor: "var(--color-bg)",
+          }}
+        >
+          {tableRows.map((row, rowIdx) => (
+            <div
+              key={rowIdx}
+              className="contents"
+            >
+              {row.map((field) => (
+                <div
+                  key={field.label}
+                  className="flex items-center gap-1 min-w-0 py-0.5"
+                >
+                  <span className="text-[10px] font-bold text-[var(--color-text-primary)] uppercase tracking-wide shrink-0 whitespace-nowrap">
+                    {field.label}:
+                  </span>
+                  <div className="flex flex-wrap items-center gap-1 min-w-0">{field.value}</div>
+                </div>
+              ))}
+              {row.length === 1 && (
+                <div className="hidden sm:block" />
+              )}
             </div>
           ))}
         </div>
@@ -316,7 +355,7 @@ export function SpellMechanicsChips({ mechanic, effectSummary, character, size =
       </div>
       <div className="border-t border-[var(--color-border)] mx-2" />
       <div className="px-2 pb-2 pt-1">
-        <InfoGrid fields={fields} />
+        <InfoTable fields={fields} />
       </div>
     </div>
   );
