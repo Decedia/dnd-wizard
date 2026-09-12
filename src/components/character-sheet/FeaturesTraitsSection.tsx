@@ -151,14 +151,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return feature.book || null;
   };
 
-  const getBorderColor = (feature: any): string => {
-    const sourceType = typeof feature.source === "string" ? feature.source : feature.source?.type;
-    if (sourceType === "race") return "#6b46c1";
-    if (sourceType === "subclass") return "#276749";
-    if (sourceType === "feat" || sourceType === "custom") return "#b7791f";
-    return "#2b6cb0";
-  };
-
   return (
     <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
       <div className="space-y-2">
@@ -191,12 +183,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         )}
          {enrichedFeatures.map((feature) => {
             const isLocked = feature.locked === true;
-            const borderColor = getBorderColor(feature);
             const safeFeature = { ...feature, source: (feature as any).source || "class" };
             const summaryText = (feature as any).summary || feature.description || "";
             const bookTag = getBookTag(feature);
             return (
-              <div key={safeFeature.id} className={`card p-3 ${isLocked ? "" : ""}`} style={{ borderLeft: `3px solid ${borderColor}` }}>
+              <div key={safeFeature.id} className={`card p-3 ${isLocked ? "" : ""}`}>
                 <div className="flex items-center gap-2">
                   <span className="text-[17px] font-semibold text-[#111]">{feature.name}</span>
                   {(feature as any).showInSheet === false && (
