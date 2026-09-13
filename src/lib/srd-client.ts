@@ -329,7 +329,10 @@ export function getStaticRaces(sources?: string[], ruleset?: string): SRDRace[] 
 }
 
 export function getStaticRace(name: string, ruleset?: string): SRDRace | undefined {
-  return getStaticRaces([], ruleset).find((r) => r.name === name);
+  const matches = getStaticRaces([], ruleset).filter((r) => r.name === name);
+  if (matches.length === 0) return undefined;
+  if (matches.length === 1) return matches[0];
+  return matches.reduce((best, r) => ((r.traits || []).length > (best.traits || []).length ? r : best), matches[0]);
 }
 
 export function getStaticClasses(sources?: string[], ruleset?: string): SRDClass[] {
