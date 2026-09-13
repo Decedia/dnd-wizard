@@ -592,9 +592,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   const handleFinish = () => {
     if (!classData) return;
+    const subclassIndex = subclassSelection
+      ? getStaticSubclasses(character.class, character.sources, character.ruleset).find(s => s.name === subclassSelection)?.index
+      : undefined;
     let draft: Character = {
       ...character,
       subclass: subclassSelection || character.subclass,
+      subclassIndex: subclassIndex || character.subclassIndex,
       featureSelections: {
         ...character.featureSelections,
         ...Object.fromEntries(

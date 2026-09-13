@@ -34,9 +34,10 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
 
   const handleSelect = (subclassName: string) => {
     if (subclassName === data.subclass) {
-      onChange({ subclass: "" });
+      onChange({ subclass: "", subclassIndex: undefined });
     } else {
-      onChange({ subclass: subclassName });
+      const sub = subclasses.find(s => s.name === subclassName);
+      onChange({ subclass: subclassName, subclassIndex: sub?.index });
     }
   };
 
