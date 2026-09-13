@@ -484,10 +484,14 @@ export function getCreationSteps(character: Character): CreationStep[] {
     .map((entry) => entry.level) || [];
 
   const pendingAsiCount = asiLevels.filter((asiLevel) => !character.appliedAsi.includes(asiLevel) && asiLevel <= character.level).length;
+  const pendingLevelOneFeatures = getLevelOneFeatureChoices(character.class, character.ruleset).filter(
+    (choice) => !(choice.optional) && (character.featureSelections?.[choice.storageKey]?.length ?? 0) < (choice.count || 1)
+  ).length;
   const levelCompleted =
     character.level >= 1 &&
     character.maxHp > 0 &&
     pendingAsiCount === 0 &&
+    pendingLevelOneFeatures === 0 &&
     (Object.keys(character.levelHp || {}).length >= character.level);
 
   const steps: CreationStep[] = [
@@ -519,24 +523,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: abilitiesCompleted,
     },
   ];
-
-  // Add feature selection step for level 1 class features with choices (e.g., Fighting Style)
-  const levelOneChoices = getLevelOneFeatureChoices(character.class, character.ruleset);
-  const featureSelectionsCompleted = levelOneChoices.length === 0 || levelOneChoices.every(
-    (choice) => character.featureSelections?.[choice.storageKey]?.length ?? 0 >= (choice.count || 1)
-  );
-  
-  if (levelOneChoices.length > 0) {
-    steps.push({
-      id: "feature-selections",
-      title: "Class Features",
-      description: "Choose your level 1 class features",
-      hint: "Some classes have feature choices at level 1, such as Fighting Style for Fighters.",
-      type: "feature-selections",
-      required: true,
-      completed: featureSelectionsCompleted,
-    });
-  }
 
   steps.push(
     {
@@ -591,25 +577,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
       completed: levelCompleted,
     });
   }
-
-  // Keep all feature choices for character creation (class, subclass, etc.)
-  const featureSelections = getFeatureSelections(character);
-  featureSelections.forEach((selection, index) => {
-    const existing = (character as any).featureSelections?.[selection.storageKey];
-    const isComplete = selection.optional
-      ? true
-      : Array.isArray(existing) && existing.length >= (selection.count || 1);
-
-    steps.push({
-      id: `feature-selection-${index}`,
-      title: `${selection.featureName} (Level ${selection.level})`,
-      description: selection.description,
-      hint: `You must make a selection for ${selection.featureName}. This is a class feature that requires you to choose from the available options.`,
-      type: "feature-selections",
-      required: true,
-      completed: isComplete,
-    });
-  });
 
   return steps;
 }
