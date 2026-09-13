@@ -4081,7 +4081,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 3rd level, you learn magical theory or some of the secrets",
+          "summary": "Learn prestidigitation or druidcraft cantrip at 3rd level",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,

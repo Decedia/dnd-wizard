@@ -2329,7 +2329,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can add twice your proficiency bonus instead of any",
+          "summary": "Add double proficiency bonus to History checks about magic items or tech",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
