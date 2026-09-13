@@ -427,7 +427,7 @@ export function getStaticSpells(sources?: string[], ruleset?: string): SRDSpell[
   const spells: SRDSpell[] = raw.map(normalizeSpell);
   let filtered = spells;
   if (ruleset) {
-    filtered = filtered.filter((s) => (s as any).ruleset === ruleset || (!(s as any).ruleset && ruleset === "2014"));
+    filtered = filtered.filter((s) => !(s as any).ruleset || (s as any).ruleset === ruleset);
   }
   if (!sources || sources.length === 0) return filtered;
   return filtered.filter((s) => sources.includes(s.source || "PHB"));
