@@ -11,6 +11,7 @@ import { BasePopup } from "@/components/BasePopup";
 import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
 import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club } from "@/components/icons";
 import { SourceBadge } from "@/components/SourceBadge";
+import { ItemSlot, ItemDetailPanel, InventoryGrid, type ItemSlotData } from "@/components/character-sheet/InventoryGrid";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -68,6 +69,7 @@ const getWeaponIcon = (name: string, weaponType?: string) => {
 interface StepEquipmentProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
+  onNext?: () => void;
 }
 
 const MUSICAL_INSTRUMENTS = [
@@ -86,7 +88,7 @@ const DRUIDIC_FOCUS_TYPES = [
   "Sprig of Mistletoe", "Totem", "Wooden Staff", "Yew Wand"
 ];
 
-export function StepEquipment({ data, onChange }: StepEquipmentProps) {
+export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
@@ -118,6 +120,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         properties: weapon.properties?.map((p: any) => p.name) || [],
         category: weapon.category_range,
         description: weapon.description || "",
+        icon: "⚔️",
       };
     }
 
@@ -130,6 +133,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         maxDex: armor.armor_class?.max_bonus ?? (armor.armor_class?.dex_bonus ? null : 0),
         armorType,
         description: armor.description || "",
+        icon: "🛡️",
       };
     }
 
@@ -137,6 +141,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       return {
         type: "instrument",
         description: "Musical instrument. Bards use musical instruments as a spellcasting focus.",
+        icon: "🎵",
       };
     }
 
@@ -152,6 +157,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
         damageType: equipmentData.damageType,
         category: equipmentData.category,
         contents: equipmentData.contents,
+        icon: "📦",
       };
     }
 
@@ -160,7 +166,6 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
 
   const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {
     const groupIndex = getGroupIndex(group.id);
-
     return data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === optionIndex);
   }, [data.inventory, getGroupIndex]);
 
@@ -216,23 +221,15 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
       return;
     }
 
-    // Remove all items from this choice group
     let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
 
-    // Check if this is the gold/equipment choice group (first group)
     const isFirstChoiceGroup = groupIndex === 0;
 
     if (isFirstChoiceGroup) {
       if (optionIndex === 1) {
-        // Gold option selected - remove all equipment items from other choice groups
-        newInventory = newInventory.filter(item => {
-          // Keep only items from the first choice group
-          return item.choiceGroupIndex === 0;
-        });
+        newInventory = newInventory.filter(item => item.choiceGroupIndex === 0);
       } else {
-        // Starting Equipment option selected - remove gold item
         newInventory = newInventory.filter(item => {
-          // Remove gold item (option index 1)
           if (item.choiceGroupIndex === 0 && item.choiceOptionIndex === 1) return false;
           return true;
         });
@@ -607,327 +604,198 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const popupCategoryWeapons = popupOption?.isWeaponChoice ? getWeaponsByCategory(popupOption.weaponType || "") : [];
   const popupSelectedWeapons = popupGroup ? getSelectedWeaponsForGroup(popupGroup.group.id, popupGroup.optionIndex) : [];
 
+  const grantedItems = useMemo(() => {
+    return data.inventory.filter(item => item.isGranted);
+  }, [data.inventory]);
+
+  const choiceItems = useMemo(() => {
+    return data.inventory.filter(item => item.choiceGroupIndex !== undefined && !item.isGranted);
+  }, [data.inventory]);
+
+  const mapToSlotData = useCallback((item: Character["inventory"][number]): ItemSlotData => {
+    const itemInfo = item.description ? JSON.parse(item.description) : null;
+    return {
+      id: item.id,
+      name: item.name || "Unnamed Item",
+      icon: (itemInfo as any)?.icon || "📦",
+      category: (itemInfo as any)?.category || "misc",
+      itemType: item.itemType || "item",
+      equipped: item.equipped,
+      quantity: item.quantity,
+      description: (itemInfo as any)?.description || item.description || "",
+      damageDice: item.damageDice,
+      damageType: item.damageType,
+      properties: item.properties,
+      baseAC: item.baseAC,
+      armorType: item.armorType,
+      maxDexBonus: item.maxDexBonus,
+      stealthDisadvantage: (itemInfo as any)?.stealthDisadvantage,
+      strengthRequirement: (itemInfo as any)?.strengthRequirement,
+      toolUse: (itemInfo as any)?.toolUse,
+      associatedAbility: (itemInfo as any)?.associatedAbility,
+      effect: (itemInfo as any)?.effect,
+      uses: (itemInfo as any)?.uses,
+      value: (itemInfo as any)?.value,
+      weight: (itemInfo as any)?.weight ?? item.weight ?? null,
+      hand: item.hand,
+      range: (item as any).range,
+      versatileDice: (item as any).versatileDice,
+      isGranted: item.isGranted,
+      choiceGroupIndex: item.choiceGroupIndex,
+      choiceOptionIndex: item.choiceOptionIndex,
+    };
+  }, []);
+
+  const grantedSlotItems = useMemo(() => grantedItems.map(mapToSlotData), [grantedItems, mapToSlotData]);
+  const choiceSlotItems = useMemo(() => choiceItems.map(mapToSlotData), [choiceItems, mapToSlotData]);
+
+  const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
+    const groupIndex = getGroupIndex(group.id);
+    const hasPopupChoice = group.options.some(opt =>
+      opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
+    );
+
+    if (hasPopupChoice) {
+      const selectedOptionIndex = group.options.findIndex(opt => {
+        if (opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice) {
+          return data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === group.options.indexOf(opt));
+        }
+        return false;
+      });
+
+      if (selectedOptionIndex >= 0) {
+        setPopupGroup({ group, optionIndex: selectedOptionIndex });
+      } else {
+        const firstPopupIndex = group.options.findIndex(opt =>
+          opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
+        );
+        if (firstPopupIndex >= 0) {
+          setPopupGroup({ group, optionIndex: firstPopupIndex });
+        }
+      }
+    } else {
+      const firstUnselected = group.options.findIndex((_, idx) => !isOptionSelected(group, idx));
+      if (firstUnselected >= 0) {
+        handleOptionClick(group, firstUnselected);
+      }
+    }
+  }, [data.inventory, getGroupIndex, isOptionSelected, handleOptionClick]);
+
   return (
-    <StepCard title="Equipment" hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.">
-      {choiceGroups.length > 0 && (
-        <div className="mb-5">
-          <span className="text-card-title text-[var(--color-text-primary)]">
-            Choose Your Equipment
-          </span>
-          <div className="space-y-4">
-             {choiceGroups.map((group) => {
-               const groupIndex = getGroupIndex(group.id);
-               const hasSelection = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
-
-                 return (
-                   <div key={group.id} className="space-y-2">
-                     <p className="text-[11px] text-[var(--color-text-muted)] font-medium">Select from options below:</p>
-                     <div className="space-y-2">
-                         {group.options.map((option, optionIndex) => {
-                         const isSelected = isOptionSelected(group, optionIndex);
-                         const isWeaponChoice = option.isWeaponChoice;
-                         const isPopupChoice = option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice;
-                         const primaryItem = option.items[0];
-                         const primaryInfo = primaryItem?.name ? getItemInfo(primaryItem.name) : null;
-                         const selectedWeapon = isWeaponChoice ? getSelectedWeaponForGroup(group.id) : null;
-                          const selectedWeapons = isWeaponChoice ? getSelectedWeaponsForGroup(group.id, optionIndex) : [];
-                         const weaponStats = selectedWeapon ? getWeaponStats(selectedWeapon.name, selectedWeapon.category) : null;
-                         const selectedItem = isPopupChoice && !isWeaponChoice ? getSelectedItemForGroup(group.id) : null;
-                         const selectionCount = option.selectionCount || 1;
-                         const hasMultiSelect = selectionCount > 1;
-                          const isDisabled = hasSelection && !isSelected;
-
-                         if (isWeaponChoice) {
-                           const categoryWeapons = getWeaponsByCategory(option.weaponType || "");
-                            const needsMoreSelections = selectedWeapons.length < selectionCount;
-
-                              return (
-                                 <div
-                                   key={optionIndex}
-                                   className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
-                                     isSelected
-                                       ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
-                                       : isDisabled
-                                         ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20"
-                                         : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                                   }`}
-                                 >
-                                  {isSelected && selectedWeapons.length > 0 ? (
-                                    <div className="space-y-2">
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-xs font-semibold text-[var(--color-surface)]">{getOptionLabel(option)}</span>
-                                        {needsMoreSelections && (
-                                          <button
-                                            type="button"
-                                            onClick={() => setPopupGroup({ group, optionIndex })}
-                                            className="text-[10px] text-[var(--color-surface)]/70 hover:text-[var(--color-surface)] underline"
-                                          >
-                                            + Add more ({selectedWeapons.length}/{selectionCount})
-                                          </button>
-                                        )}
-                                      </div>
-                                      {selectedWeapons.map((weapon, wIdx) => {
-                                        const wStats = getWeaponStats(weapon.name, weapon.category);
-                                        const WIcon = getWeaponIcon(weapon.name, option.weaponType);
-                                        return (
-                                           <div key={weapon.id || wIdx} className="flex items-start justify-between p-2 rounded border border-[var(--color-surface)] bg-[var(--color-surface)]/10">
-                                            <div className="flex-1">
-                                              <div className="flex items-center gap-2">
-                                                <WIcon className="h-4 w-4 text-[var(--color-surface)] shrink-0" />
-                                                <span className="text-body font-semibold text-[var(--color-surface)]">{weapon.name}</span>
-                                              </div>
-                                              {wStats && (
-                                                <div className="flex items-center gap-1.5 mt-1.5 ml-6">
-                                                  <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
-                                                  <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                    {wStats.damageDice}
-                                                  </span>
-                                                  <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                    {wStats.abilityKey} {wStats.damageBonus}
-                                                  </span>
-                                                  <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                    {wStats.attackBonus} to hit
-                                                  </span>
-                                                </div>
-                                              )}
-                                            </div>
-                                            <button
-                                              type="button"
-                                              onClick={() => {
-                                                const newInventory = data.inventory.filter(item => item.id !== weapon.id);
-                                                onChange({ inventory: newInventory });
-                                              }}
-                                              className="text-[var(--color-surface)] hover:text-[var(--color-error-300)] ml-2 text-lg leading-none"
-                                            >
-                                              ×
-                                            </button>
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                  ) : (
-                                    <button
-                                      type="button"
-                                      onClick={() => !isDisabled && handleOptionClick(group, optionIndex)}
-                                      disabled={isDisabled}
-                                      className={`w-full text-left text-body ${isDisabled ? "cursor-not-allowed opacity-50" : ""}`}
-                                    >
-                                      <span>{getOptionLabel(option)}</span>
-                                    </button>
-                                  )}
-                              </div>
-                          );
-                        }
-
-                              return (
-                               <div
-                                 key={optionIndex}
-                                 className={`w-full px-3 py-2 text-left text-sm transition-all rounded-[var(--border-radius-sm)] ${
-                                   isSelected
-                                     ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
-                                     : isDisabled
-                                       ? "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] opacity-20 cursor-not-allowed"
-                                       : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                                 }`}
-                               >
-                                  {isSelected ? (
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center gap-2">
-                                         {primaryInfo?.type === "weapon" && (() => {
-                                           const WIcon = getWeaponIcon(primaryItem?.name || "", primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee");
-                                           return <WIcon className={`h-4 w-4 shrink-0 ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-muted)]"}`} />;
-                                         })()}
-                                          <span className="text-body font-semibold text-[var(--color-surface)]">{getOptionLabel(option)}</span>
-                                        </div>
-                                        {primaryInfo?.type === "weapon" && (() => {
-                                          const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
-                                          return wStats ? (
-                                            <div className="flex items-center gap-1.5 mt-1.5 ml-6">
-                                              <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
-                                              <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                {wStats.damageDice}
-                                              </span>
-                                              <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                {wStats.abilityKey} {wStats.damageBonus}
-                                              </span>
-                                              <span className="text-[10px] font-bold text-[var(--color-surface)] bg-[var(--color-surface)]/20 px-1.5 py-0.5 rounded">
-                                                {wStats.attackBonus} to hit
-                                              </span>
-                                            </div>
-                                          ) : null;
-                                        })()}
-                                        {primaryInfo?.type !== "weapon" && (
-                                          <div className="text-[10px] text-[var(--color-surface)]/70 mt-0.5">{getOptionSummary(option)}</div>
-                                        )}
-                                      </div>
-                                      <div className="flex items-center gap-1">
-                                        <button
-                                          type="button"
-                                          onClick={() => handleChoiceRemove(group)}
-                                          className="text-[var(--color-text-muted)] hover:text-[var(--color-error-500)] ml-1 text-lg leading-none"
-                                        >
-                                          ×
-                                        </button>
-                                      </div>
-                                    </div>
-                                  ) : (
-                                    <button
-                                      type="button"
-                                      onClick={() => !isDisabled && handleOptionClick(group, optionIndex)}
-                                      disabled={isDisabled}
-                                      className={`w-full text-left text-body ${isDisabled ? "cursor-not-allowed opacity-50" : ""}`}
-                                    >
-                                      <div className="flex items-center gap-2">
-                                        {primaryInfo?.type === "weapon" && (() => {
-                                          const WIcon = getWeaponIcon(primaryItem?.name || "", primaryInfo.category === "Ranged" ? "simple_ranged" : "simple_melee");
-                                          return <WIcon className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />;
-                                        })()}
-                                        <span>{getOptionLabel(option)}</span>
-                                      </div>
-                                      {primaryInfo?.type === "weapon" && (() => {
-                                        const wStats = primaryItem?.name ? getWeaponStats(primaryItem.name, primaryInfo.category) : null;
-                                        return wStats ? (
-                                          <div className="flex items-center gap-1.5 mt-1.5 ml-6">
-                                            <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
-                                            <span
-                                              className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                                              style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
-                                            >
-                                              {wStats.damageDice}
-                                            </span>
-                                            <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
-                                              {wStats.abilityKey} {wStats.damageBonus}
-                                            </span>
-                                            <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                                              {wStats.attackBonus} to hit
-                                            </span>
-                                          </div>
-                                        ) : null;
-                                      })()}
-                                      {primaryInfo?.type !== "weapon" && getOptionSummary(option) && (
-                                        <span className="block text-[10px] text-[var(--color-text-muted)] mt-0.5">{getOptionSummary(option)}</span>
-                                      )}
-                                    </button>
-                                   )}
-                              </div>
-                              );
-                     })}
-                   </div>
-                 </div>
-               );
-             })}
-           </div>
-         </div>
-        )}
-
-         <div>
-            <span className="text-card-title text-[var(--color-text-primary)]">
-             Current Inventory
-           </span>
-          {data.inventory.length === 0 ? (
-           <p className="text-description">No equipment yet.</p>
-         ) : (
-           <div className="space-y-2">
-             {data.inventory.map((item) => {
-               const itemInfo = item.description ? JSON.parse(item.description) : null;
-               const isGranted = item.isGranted;
-               const wStats = itemInfo?.type === "weapon" ? getWeaponStats(item.name, itemInfo.category) : null;
-
-               return (
-                  <div key={item.id} className="flex flex-col gap-1 px-3 py-2.5 border border-[var(--color-border)] rounded-[var(--border-radius-sm)] bg-[var(--color-surface)]">
-                   <div className="flex items-center justify-between">
-                     <div className="flex items-center gap-2">
-                        {itemInfo?.type === "weapon" && (() => {
-                          const WIcon = getWeaponIcon(item.name, itemInfo.category === "Ranged" ? "simple_ranged" : "simple_melee");
-                          return <WIcon className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />;
-                        })()}
-                       <span className="text-body text-[var(--color-text-primary)]">{item.name}</span>
-                       {isGranted && (
-                         <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">GRANTED</span>
-                       )}
-                     </div>
-                     <div className="flex items-center gap-2">
-                       <span className="text-[var(--color-text-muted)]">x{item.quantity || 1}</span>
-                       {itemInfo && (
-                         <InfoButton
-                           title={item.name}
-                           description={getItemDescription(itemInfo)}
-                         />
-                       )}
-                     </div>
-                   </div>
-                   {wStats && (
-                     <div className="flex items-center gap-1.5 ml-6">
-                       <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
-                       <span
-                         className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                         style={{ color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) }}
-                       >
-                         {wStats.damageDice}
-                       </span>
-                       <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
-                         {wStats.abilityKey} {wStats.damageBonus}
-                       </span>
-                       <span className="text-[10px] font-bold text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)] px-1.5 py-0.5 rounded">
-                         {wStats.attackBonus} to hit
-                       </span>
-                     </div>
-                   )}
-                 </div>
-               );
-             })}
+    <StepCard
+      title="Equipment"
+      hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear."
+    >
+      <div className="space-y-5">
+        {grantedSlotItems.length > 0 && (
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-card-title text-[var(--color-text-primary)]">Granted Equipment</span>
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]">
+                LOCKED
+              </span>
+            </div>
+            <InventoryGrid
+              items={grantedSlotItems}
+              totalSlots={grantedSlotItems.length}
+              onItemClick={() => {}}
+              showEmptySlots={false}
+              lockedSlotCount={grantedSlotItems.length}
+            />
           </div>
         )}
-      </div>
 
-      {popupGroup && popupOption && (
-        <BasePopup
-          isOpen={true}
-          onClose={() => setPopupGroup(null)}
-          title={popupOption.isWeaponChoice ? `Choose ${popupOption.selectionCount || 1} ${popupOption.weaponType?.replace('_', ' ')} weapon${(popupOption.selectionCount || 1) > 1 ? "s" : ""}` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : popupOption.isHolySymbolChoice ? "Choose a holy symbol" : popupOption.isDruidicFocusChoice ? "Choose a druidic focus" : "Select an item"}
-          confirmLabel={popupOption.isWeaponChoice ? (popupOption.selectionCount && popupOption.selectionCount > 1 ? `Confirm (${popupSelectedWeapons.length}/${popupOption.selectionCount})` : "Confirm") : undefined}
-          onConfirm={() => setPopupGroup(null)}
-          cancelLabel="Cancel"
-          onCancel={() => setPopupGroup(null)}
-          showFooter={popupOption.isWeaponChoice}
-          confirmDisabled={popupOption.isWeaponChoice && popupSelectedWeapons.length !== (popupOption.selectionCount || 1)}
-        >
-          {popupOption.isWeaponChoice && (
-            <div className="mb-3 p-2 rounded border border-[var(--color-border)] bg-[var(--color-bg)]">
-              <div className="text-xs font-semibold text-[var(--color-text-muted)] mb-1">
-                Selected: {popupSelectedWeapons.length} / {popupOption.selectionCount || 1}
-              </div>
-              {popupSelectedWeapons.length > 0 && (
-                <div className="flex flex-wrap gap-1">
-                  {popupSelectedWeapons.map((w: any) => (
-                      <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[var(--color-border)] bg-[var(--color-surface)] text-xs font-semibold text-[var(--color-text-primary)]">
-                      {w.name}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const newInventory = data.inventory.filter(item => item.id !== w.id);
-                          onChange({ inventory: newInventory });
-                        }}
-                        className="text-[var(--color-success-600)] hover:text-[var(--color-error-500)] ml-1"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-          <div className="space-y-2">
-            {popupOption.isWeaponChoice && popupCategoryWeapons.map((weapon: any) => {
-              const wStats = getWeaponStats(weapon.name, weapon.category_range);
-              const isWeaponSelected = popupSelectedWeapons.some((w: any) => w.name === weapon.name);
-              const selectionCount = popupOption.selectionCount || 1;
-              const isDisabled = !isWeaponSelected && popupSelectedWeapons.length >= selectionCount;
-              const WIcon = getWeaponIcon(weapon.name, popupOption.weaponType);
+        <div>
+          <span className="text-card-title text-[var(--color-text-primary)] block mb-2">
+            Your Choices
+          </span>
+          <div className="grid grid-cols-4 gap-[6px]">
+            {choiceGroups.map((group) => {
+              const groupIndex = getGroupIndex(group.id);
+              const selectedItem = data.inventory.find(item => item.choiceGroupIndex === groupIndex);
+              const hasSelection = !!selectedItem;
+              const itemInfo = selectedItem?.description ? JSON.parse(selectedItem.description) : null;
+
               return (
-                 <button
+                <button
+                  key={group.id}
+                  type="button"
+                  onClick={() => handleChoiceSlotClick(group)}
+                  className={`aspect-square rounded-[8px] border-2 flex flex-col items-center justify-center gap-1 p-1.5 transition-all relative ${
+                    hasSelection
+                      ? "border-[var(--color-ink)] bg-[var(--color-ink)]/10"
+                      : "border-dashed border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-text-muted)]"
+                  }`}
+                >
+                  {hasSelection ? (
+                    <>
+                      <span className="text-2xl leading-none">{(itemInfo as any)?.icon || "📦"}</span>
+                      <span className="text-[9px] font-bold text-[var(--color-text-secondary)] text-center leading-tight line-clamp-2 w-full">
+                        {selectedItem.name}
+                      </span>
+                      {selectedItem.quantity > 1 && (
+                        <span className="text-[10px] font-bold text-[var(--color-text-muted)]">x{selectedItem.quantity}</span>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-2xl text-[var(--color-text-muted)] leading-none">?</span>
+                      <span className="text-[9px] font-bold text-[var(--color-text-muted)]">Choose</span>
+                    </>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {popupGroup && popupOption && (
+          <BasePopup
+            isOpen={true}
+            onClose={() => setPopupGroup(null)}
+            title={popupOption.isWeaponChoice ? `Choose ${popupOption.selectionCount || 1} ${popupOption.weaponType?.replace('_', ' ')} weapon${(popupOption.selectionCount || 1) > 1 ? "s" : ""}` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : popupOption.isHolySymbolChoice ? "Choose a holy symbol" : popupOption.isDruidicFocusChoice ? "Choose a druidic focus" : "Select an item"}
+            confirmLabel={popupOption.isWeaponChoice ? (popupOption.selectionCount && popupOption.selectionCount > 1 ? `Confirm (${popupSelectedWeapons.length}/${popupOption.selectionCount})` : "Confirm") : undefined}
+            onConfirm={() => setPopupGroup(null)}
+            cancelLabel="Cancel"
+            onCancel={() => setPopupGroup(null)}
+            showFooter={popupOption.isWeaponChoice}
+            confirmDisabled={popupOption.isWeaponChoice && popupSelectedWeapons.length !== (popupOption.selectionCount || 1)}
+          >
+            {popupOption.isWeaponChoice && (
+              <div className="mb-3 p-2 rounded border border-[var(--color-border)] bg-[var(--color-bg)]">
+                <div className="text-xs font-semibold text-[var(--color-text-muted)] mb-1">
+                  Selected: {popupSelectedWeapons.length} / {popupOption.selectionCount || 1}
+                </div>
+                {popupSelectedWeapons.length > 0 && (
+                  <div className="flex flex-wrap gap-1">
+                    {popupSelectedWeapons.map((w: any) => (
+                      <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[var(--color-border)] bg-[var(--color-surface)] text-xs font-semibold text-[var(--color-text-primary)]">
+                        {w.name}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const newInventory = data.inventory.filter(item => item.id !== w.id);
+                            onChange({ inventory: newInventory });
+                          }}
+                          className="text-[var(--color-success-600)] hover:text-[var(--color-error-500)] ml-1"
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="space-y-2">
+              {popupOption.isWeaponChoice && popupCategoryWeapons.map((weapon: any) => {
+                const wStats = getWeaponStats(weapon.name, weapon.category_range);
+                const isWeaponSelected = popupSelectedWeapons.some((w: any) => w.name === weapon.name);
+                const selectionCount = popupOption.selectionCount || 1;
+                const isDisabled = !isWeaponSelected && popupSelectedWeapons.length >= selectionCount;
+                const WIcon = getWeaponIcon(weapon.name, popupOption.weaponType);
+                return (
+                  <button
                     key={weapon.name}
                     type="button"
                     onClick={() => handleWeaponSelect(weapon, popupGroup.group.id, popupGroup.optionIndex)}
@@ -966,51 +834,65 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
                       </div>
                     )}
                   </button>
-              );
-            })}
-            {popupOption.isInstrumentChoice && MUSICAL_INSTRUMENTS.map((instrument) => (
-              <button
-                key={instrument}
-                type="button"
-                onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
-                className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-              >
-                {instrument}
-              </button>
-            ))}
-            {popupOption.isArcaneFocusChoice && ARCANE_FOCUS_TYPES.map((focus) => (
-              <button
-                key={focus}
-                type="button"
-                onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
-                className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-              >
-                {focus}
-              </button>
-            ))}
-            {popupOption.isHolySymbolChoice && HOLY_SYMBOL_TYPES.map((symbol) => (
-              <button
-                key={symbol}
-                type="button"
-                onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
-                className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-              >
-                {symbol}
-              </button>
-            ))}
-            {popupOption.isDruidicFocusChoice && DRUIDIC_FOCUS_TYPES.map((focus) => (
-              <button
-                key={focus}
-                type="button"
-                onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
-                className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-              >
-                {focus}
-              </button>
-            ))}
-          </div>
-        </BasePopup>
-      )}
+                );
+              })}
+              {popupOption.isInstrumentChoice && MUSICAL_INSTRUMENTS.map((instrument) => (
+                <button
+                  key={instrument}
+                  type="button"
+                  onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                >
+                  {instrument}
+                </button>
+              ))}
+              {popupOption.isArcaneFocusChoice && ARCANE_FOCUS_TYPES.map((focus) => (
+                <button
+                  key={focus}
+                  type="button"
+                  onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                >
+                  {focus}
+                </button>
+              ))}
+              {popupOption.isHolySymbolChoice && HOLY_SYMBOL_TYPES.map((symbol) => (
+                <button
+                  key={symbol}
+                  type="button"
+                  onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                >
+                  {symbol}
+                </button>
+              ))}
+              {popupOption.isDruidicFocusChoice && DRUIDIC_FOCUS_TYPES.map((focus) => (
+                <button
+                  key={focus}
+                  type="button"
+                  onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
+                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
+                >
+                  {focus}
+                </button>
+              ))}
+            </div>
+          </BasePopup>
+        )}
+
+        <button
+          type="button"
+          onClick={onNext}
+          disabled={!isAllRequiredSelected}
+          className={`w-full py-3 rounded-[var(--radius)] font-bold text-sm transition-colors ${
+            isAllRequiredSelected
+              ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:opacity-90"
+              : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
+          }`}
+        >
+          {isAllRequiredSelected ? "Continue" : "Complete all choices to continue"}
+        </button>
+      </div>
     </StepCard>
   );
 }
