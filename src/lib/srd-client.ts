@@ -612,8 +612,8 @@ export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
   return raw.map(normalizeSpell);
 }
 
-export function getClassSpells(classId: string): SRDSpell[] {
-  const lower = classId.toLowerCase().replace(/\s+/g, "_");
+export function getClassSpells(classOrSubclassId: string): SRDSpell[] {
+  const lower = classOrSubclassId.toLowerCase().replace(/\s+/g, "_");
   const dataFiles: Record<string, any> = {
     "arcane_trickster": arcaneTricksterSpellsData,
   };
