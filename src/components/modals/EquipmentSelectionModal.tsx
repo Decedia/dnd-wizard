@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { XIcon as X, CheckIcon as Check } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 
@@ -37,16 +38,34 @@ export function EquipmentSelectionModal({
   confirmDisabled = false,
   renderRightContent,
 }: EquipmentSelectionModalProps) {
-  if (!isOpen) return null;
+  const [mounted, setMounted] = useState(false);
 
-  return (
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
     <div className="fixed inset-0 z-[100000] flex items-end justify-center bg-black/50" onClick={onClose}>
       <div
-        className="w-full max-w-lg bg-white rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
+        className="w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-center pt-3">
-          <div className="w-[36px] h-1 rounded bg-[#ddd]" />
+          <div className="w-[36px] h-1 rounded bg-[var(--color-border)]" />
         </div>
 
         <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
@@ -57,7 +76,7 @@ export function EquipmentSelectionModal({
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-3 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+            className="absolute top-3 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--color-bg)] transition-colors"
           >
             <X className="h-5 w-5 text-[var(--color-text-muted)]" />
           </button>
@@ -125,7 +144,8 @@ export function EquipmentSelectionModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
