@@ -125,9 +125,10 @@ export interface ItemSlotProps {
   onClick: () => void;
   label?: string;
   showEquippedBadge?: boolean;
+  selected?: boolean;
 }
 
-export function ItemSlot({ item, onClick, label, showEquippedBadge = true }: ItemSlotProps) {
+export function ItemSlot({ item, onClick, label, showEquippedBadge = true, selected = false }: ItemSlotProps) {
   return (
     <button
       type="button"
@@ -136,7 +137,9 @@ export function ItemSlot({ item, onClick, label, showEquippedBadge = true }: Ite
         item
           ? item.equipped
             ? "border-[var(--color-ink)] bg-[var(--color-ink)]/10"
-            : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+            : selected
+              ? "border-[var(--color-accent)] bg-[var(--color-accent)]/10 shadow-[0_0_0_2px_var(--color-accent)]"
+              : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
           : "border-dashed border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-text-muted)]"
       }`}
     >
@@ -345,6 +348,7 @@ export function InventoryGrid({
             onClick={() => handleSlotClick(item, index)}
             label={!item && index < lockedSlotCount ? "🔒" : (emptySlotLabel || (index < lockedSlotCount ? "?" : "+"))}
             showEquippedBadge={index >= lockedSlotCount}
+            selected={!!item && item.id === selectedItemId}
           />
         ))}
       </div>
