@@ -61,7 +61,7 @@ export function EquipmentSelectionModal({
   return createPortal(
     <div className="fixed inset-0 z-[999999] flex items-end sm:items-center justify-center bg-black/50" onClick={onClose}>
       <div
-        className="mx-auto w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl z-50"
+        className="mx-auto w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-center pt-3">
@@ -93,10 +93,10 @@ export function EquipmentSelectionModal({
             return (
               <div
                 key={index}
-                role="button"
-                tabIndex={0}
-                onClick={() => onOptionSelect(index)}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOptionSelect(index); } }}
+                onClick={() => {
+                  console.log("[Modal] row tapped", index, option.name, "isSelected:", isSelected);
+                  onOptionSelect(index);
+                }}
                 className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all cursor-pointer ${
                   isSelected
                     ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
@@ -113,7 +113,9 @@ export function EquipmentSelectionModal({
 
                   <div className="flex-1 min-w-0">
                     <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">{name}</div>
-                    {description && <div className="text-[12px] text-[var(--color-text-secondary)] truncate">{description}</div>}
+                    {description && (
+                      <div className="text-[12px] text-[var(--color-text-secondary)] truncate">{description}</div>
+                    )}
                   </div>
 
                   {statSummary && (
@@ -121,20 +123,15 @@ export function EquipmentSelectionModal({
                   )}
                 </div>
 
-                <div
-                  className="shrink-0"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {renderRightContent ? renderRightContent(option, isSelected) : (
-                    isSelected ? (
-                      <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
-                    ) : (
-                      <InfoButton title={name} description={description} />
-                    )
-                  )}
+                <div className="shrink-0">
+                  {(() => {
+                    if (renderRightContent) return renderRightContent(option, isSelected);
+                    if (isSelected) return <Check className="h-4 w-4 text-[var(--color-text-primary)]" />;
+                    return <InfoButton title={name} description={description} />;
+                  })()}
                 </div>
               </div>
-            );
+              );
           })}
         </div>
 

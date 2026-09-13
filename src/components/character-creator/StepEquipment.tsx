@@ -833,6 +833,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
               options={modalOptions}
               selectedIndices={selectedIndices}
               onOptionSelect={(index) => {
+                console.log("[StepEquipment] onOptionSelect", index, modalOptions[index]?.name, "isWeaponChoice:", modalOption.isWeaponChoice);
                 if (modalOption.isWeaponChoice) {
                   const weaponName = modalOptions[index].name;
                   handleWeaponSelect(weaponName, modalGroup.group.id, modalGroup.selectedOptionIndex ?? 0);
