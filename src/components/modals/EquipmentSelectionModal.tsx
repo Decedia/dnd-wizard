@@ -59,9 +59,9 @@ export function EquipmentSelectionModal({
   if (!isOpen || !mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100000] flex items-end justify-center bg-black/50" onClick={onClose}>
+    <div className="fixed inset-0 z-[100000] flex items-end sm:items-center justify-center bg-black/50" onClick={onClose}>
       <div
-        className="w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
+        className="mx-auto w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-center pt-3">
@@ -91,40 +91,46 @@ export function EquipmentSelectionModal({
             const statSummary = option.statSummary || getStatSummary(option.data);
 
             return (
-              <button
+              <div
                 key={index}
-                type="button"
-                onClick={() => onOptionSelect(index)}
-                className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition-all text-left ${
+                className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
                   isSelected
                     ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
               >
-                <div
-                  className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: "var(--color-bg)" }}
+                <button
+                  type="button"
+                  onClick={() => onOptionSelect(index)}
+                  className="flex-1 flex items-center gap-3 text-left min-w-0"
                 >
-                  <span className="text-[22px] leading-none">{icon}</span>
-                </div>
+                  <div
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: "var(--color-bg)" }}
+                  >
+                    <span className="text-[22px] leading-none">{icon}</span>
+                  </div>
 
-                <div className="flex-1 min-w-0">
-                  <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">{name}</div>
-                  {description && <div className="text-[12px] text-[var(--color-text-secondary)] truncate">{description}</div>}
-                </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">{name}</div>
+                    {description && <div className="text-[12px] text-[var(--color-text-secondary)] truncate">{description}</div>}
+                  </div>
 
-                <div className="flex items-center gap-2 shrink-0">
                   {statSummary && (
-                    <span className="text-[12px] font-medium text-[var(--color-text-primary)]">{statSummary}</span>
+                    <span className="text-[12px] font-medium text-[var(--color-text-primary)] shrink-0">{statSummary}</span>
                   )}
+                </button>
+
+                <div className="shrink-0">
                   {renderRightContent ? renderRightContent(option, isSelected) : (
-                    <>
+                    isSelected ? (
+                      <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
+                    ) : (
                       <InfoButton title={name} description={description} />
-                      {isSelected && <Check className="h-4 w-4 text-[var(--color-text-primary)]" />}
-                    </>
+                    )
                   )}
                 </div>
-              </button>
+              </div>
             );
           })}
         </div>
