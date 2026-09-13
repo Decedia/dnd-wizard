@@ -879,19 +879,6 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
             </div>
           </BasePopup>
         )}
-
-        <button
-          type="button"
-          onClick={onNext}
-          disabled={!isAllRequiredSelected}
-          className={`w-full py-3 rounded-[var(--radius)] font-bold text-sm transition-colors ${
-            isAllRequiredSelected
-              ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:opacity-90"
-              : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
-          }`}
-        >
-          {isAllRequiredSelected ? "Continue" : "Complete all choices to continue"}
-        </button>
       </div>
     </StepCard>
   );

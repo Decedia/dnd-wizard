@@ -327,6 +327,10 @@ export function InventoryGrid({
   const selectedItem = items.find((i) => i.id === selectedItemId) || null;
   const [detailVisible, setDetailVisible] = useState(false);
 
+  useEffect(() => {
+    setDetailVisible(!!selectedItemId);
+  }, [selectedItemId]);
+
   const handleSlotClick = (item: ItemSlotData | null, index: number) => {
     if (!item) {
       onEmptySlotClick?.();
