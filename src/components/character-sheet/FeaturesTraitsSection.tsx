@@ -155,17 +155,17 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
       <div className="space-y-2">
         {character.subclass && (
-          <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
-            <div className="flex items-center gap-2">
-              <Crown className="h-4 w-4 text-[var(--color-text-muted)]" />
-              {(() => {
-                const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
-                const sub = subclasses.find(s => s.name === character.subclass);
-                return sub?.source ? <span className="inline-flex items-center font-semibold" style={{ fontSize: "9px", padding: "1px 5px", borderRadius: "4px", backgroundColor: "var(--color-bg)", color: "var(--color-text-secondary)" }}>{sub.source}</span> : null;
-              })()}
-              <span className="text-sm font-bold text-ink">{character.subclass}</span>
-            </div>
-          </div>
+              <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
+                <div className="flex items-center gap-2">
+                  <Crown className="h-4 w-4 text-[var(--color-text-muted)]" />
+                  {(() => {
+                    const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
+                    const sub = subclasses.find(s => s.name === character.subclass);
+                    return sub?.source ? <span className="inline-flex items-center font-semibold" style={{ fontSize: "9px", padding: "1px 5px", borderRadius: "4px", backgroundColor: "var(--color-bg)", color: "var(--color-text-secondary)" }}>{sub.source}</span> : null;
+                  })()}
+                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.subclass}</span>
+                </div>
+              </div>
         )}
         {hiddenCount > 0 && (
           <div className="flex items-center justify-between px-1">
@@ -189,7 +189,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             return (
               <div key={safeFeature.id} className={`card p-3 ${isLocked ? "" : ""}`}>
                 <div className="flex items-center gap-2">
-                  <span className="text-[17px] font-semibold text-[#111]">{feature.name}</span>
+                  <span className="text-[17px] font-semibold text-[var(--color-text-primary)]">{feature.name}</span>
                   {(feature as any).showInSheet === false && (
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
                   )}

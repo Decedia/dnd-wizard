@@ -272,7 +272,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           return (
             <div key={spell.id} className={`card p-3 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
               <div className="flex items-center gap-2">
-                <span className={`text-[17px] font-semibold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[#111]"}`}>{spell.name}</span>
+                <span className={`text-[17px] font-semibold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
               </div>
               <div className="mt-1">
                 <SpellMechanicsChips

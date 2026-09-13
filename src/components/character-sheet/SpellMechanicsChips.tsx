@@ -102,7 +102,7 @@ function Cell({
   return (
     <div
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "transparent",
         padding: "8px 12px",
         display: "flex",
         flexDirection: "column",
@@ -114,7 +114,7 @@ function Cell({
         style={{
           fontSize: "10px",
           fontWeight: 600,
-          color: "#aaa",
+          color: "var(--color-text-muted)",
           textTransform: "uppercase",
           letterSpacing: "0.06em",
           marginBottom: "3px",
@@ -126,7 +126,7 @@ function Cell({
         style={{
           fontSize: "13px",
           fontWeight: 500,
-          color: "#111",
+          color: "var(--color-text-primary)",
           display: "flex",
           alignItems: "center",
           gap: "4px",
@@ -140,7 +140,7 @@ function Cell({
 }
 
 function BlankCell({ style }: { style?: React.CSSProperties }) {
-  return <div style={{ backgroundColor: "#ffffff", padding: "8px 12px", ...style }} />;
+  return <div style={{ backgroundColor: "transparent", padding: "8px 12px", ...style }} />;
 }
 
 export function SpellMechanicsChips({
@@ -259,19 +259,19 @@ export function SpellMechanicsChips({
   // Row 0: School | Source book tag (always shown)
   const schoolStyle = school ? getSpellSchoolStyle(school) : undefined;
   const schoolValue = schoolStyle ? (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "#111", fontWeight: 500, fontSize: "13px" }}>
+    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>
       <schoolStyle.icon className="h-3.5 w-3.5" />
       {schoolStyle.label}
     </span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
 
   const sourceValue = srdSource ? (
     <span
       style={{
-        backgroundColor: "#111",
-        color: "#fff",
+        backgroundColor: "var(--color-ink)",
+        color: "var(--color-surface)",
         fontSize: "10px",
         fontWeight: 600,
         padding: "2px 7px",
@@ -281,7 +281,7 @@ export function SpellMechanicsChips({
       {srdSource}
     </span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
 
   rows.push([
@@ -294,13 +294,13 @@ export function SpellMechanicsChips({
     <Cell
       key="target"
       label="Target"
-      value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{target}</span>}
+      value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{target}</span>}
     />,
     <Cell
       key="save"
       label="Save"
       value={
-        <span style={{ color: saveType ? "#111" : "#aaa", fontWeight: 500, fontSize: "13px" }}>
+        <span style={{ color: saveType ? "var(--color-text-primary)" : "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>
           {saveType ? `${saveType} Save` : "None"}
         </span>
       }
@@ -314,18 +314,18 @@ export function SpellMechanicsChips({
       label="Action"
       value={
         actionType === "Reaction" ? (
-          <Badge style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+          <Badge style={{ backgroundColor: "var(--color-warning-50)", borderColor: "var(--color-warning-300)", color: "var(--color-warning-600)" }}>
             {actionType}
           </Badge>
         ) : (
-          <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{actionType || "Action"}</span>
+          <span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{actionType || "Action"}</span>
         )
       }
     />,
     <Cell
       key="duration"
       label="Duration"
-      value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{duration}</span>}
+      value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{duration}</span>}
     />,
   ]);
 
@@ -337,7 +337,7 @@ export function SpellMechanicsChips({
           key="damage"
           label="Damage"
           value={
-            <Badge style={{ backgroundColor: "#fff5f5", borderColor: "#feb2b2", color: "#c53030" }}>
+            <Badge style={{ backgroundColor: "var(--color-error-50)", borderColor: "var(--color-error-200)", color: "var(--color-error-600)" }}>
               {damageEffect?.amount && <span>{damageEffect.amount}</span>}
               {damageEffect?.damageType && <span>{damageEffect.damageType}</span>}
             </Badge>
@@ -346,7 +346,7 @@ export function SpellMechanicsChips({
         <Cell
           key="range"
           label="Range"
-          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>}
+          value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>}
         />,
       ]);
     } else if (hasDamage) {
@@ -355,7 +355,7 @@ export function SpellMechanicsChips({
           key="damage"
           label="Damage"
           value={
-            <Badge style={{ backgroundColor: "#fff5f5", borderColor: "#feb2b2", color: "#c53030" }}>
+            <Badge style={{ backgroundColor: "var(--color-error-50)", borderColor: "var(--color-error-200)", color: "var(--color-error-600)" }}>
               {damageEffect?.amount && <span>{damageEffect.amount}</span>}
               {damageEffect?.damageType && <span>{damageEffect.damageType}</span>}
             </Badge>
@@ -368,7 +368,7 @@ export function SpellMechanicsChips({
         <Cell
           key="range"
           label="Range"
-          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>}
+          value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{rangeText}</span>}
           style={{ gridColumn: "1 / -1" }}
         />,
         <BlankCell key="range-blank" style={{ display: "none" }} />,
@@ -384,7 +384,7 @@ export function SpellMechanicsChips({
           key="healing"
           label="Healing"
           value={
-            <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+            <Badge style={{ backgroundColor: "var(--color-success-50)", borderColor: "var(--color-success-200)", color: "var(--color-success-600)" }}>
               <span>♥</span>
               <span>{healEffect?.amount}</span>
             </Badge>
@@ -398,7 +398,7 @@ export function SpellMechanicsChips({
           key="tempHP"
           label="Temp HP"
           value={
-            <Badge style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+            <Badge style={{ backgroundColor: "var(--color-success-50)", borderColor: "var(--color-success-200)", color: "var(--color-success-600)" }}>
               <span>♥</span>
               <span>{tempHPFormula}</span>
             </Badge>
@@ -417,7 +417,7 @@ export function SpellMechanicsChips({
         <Cell
           key="onHit"
           label="On Hit"
-          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{onHit}</span>}
+          value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{onHit}</span>}
         />
       ) : (
         <BlankCell key="onHit-blank" />
@@ -426,7 +426,7 @@ export function SpellMechanicsChips({
         <Cell
           key="ongoing"
           label="Each Turn"
-          value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{ongoingEffect}</span>}
+          value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{ongoingEffect}</span>}
         />
       ) : (
         <BlankCell key="ongoing-blank" />
@@ -441,7 +441,7 @@ export function SpellMechanicsChips({
         <Cell
           key="onFail"
           label="On Fail"
-          value={<span style={{ color: "#c53030", fontWeight: 500, fontSize: "13px" }}>{onFailedSave}</span>}
+          value={<span style={{ color: "var(--color-error-600)", fontWeight: 500, fontSize: "13px" }}>{onFailedSave}</span>}
         />
       ) : (
         <BlankCell key="onFail-blank" />
@@ -450,7 +450,7 @@ export function SpellMechanicsChips({
         <Cell
           key="onSave"
           label="On Save"
-          value={<span style={{ color: "#276749", fontWeight: 500, fontSize: "13px" }}>{onSuccessfulSave}</span>}
+          value={<span style={{ color: "var(--color-success-600)", fontWeight: 500, fontSize: "13px" }}>{onSuccessfulSave}</span>}
         />
       ) : (
         <BlankCell key="onSave-blank" />
@@ -465,7 +465,7 @@ export function SpellMechanicsChips({
         <Cell
           key="escape"
           label="Ends If"
-          value={<span style={{ color: "#2b6cb0", fontWeight: 500, fontSize: "13px" }}>{escapeCondition}</span>}
+          value={<span style={{ color: "var(--color-info-600)", fontWeight: 500, fontSize: "13px" }}>{escapeCondition}</span>}
         />
       ) : (
         <BlankCell key="escape-blank" />
@@ -474,7 +474,7 @@ export function SpellMechanicsChips({
         <Cell
           key="immune"
           label="Immune"
-          value={<span style={{ color: "#888", fontWeight: 500, fontSize: "13px" }}>{immunities}</span>}
+          value={<span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>{immunities}</span>}
         />
       ) : (
         <BlankCell key="immune-blank" />
@@ -486,21 +486,21 @@ export function SpellMechanicsChips({
   const requireBadges: React.ReactNode[] = [];
   if (hasConcentration) {
     requireBadges.push(
-      <Badge key="conc" style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+      <Badge key="conc" style={{ backgroundColor: "var(--color-warning-50)", borderColor: "var(--color-warning-300)", color: "var(--color-warning-600)" }}>
         Concentration
       </Badge>
     );
   }
   if (ritual) {
     requireBadges.push(
-      <Badge key="ritual" style={{ backgroundColor: "#f0fff4", borderColor: "#9ae6b4", color: "#276749" }}>
+      <Badge key="ritual" style={{ backgroundColor: "var(--color-success-50)", borderColor: "var(--color-success-200)", color: "var(--color-success-600)" }}>
         Ritual
       </Badge>
     );
   }
   if (actionType === "Reaction") {
     requireBadges.push(
-      <Badge key="reaction" style={{ backgroundColor: "#fff8e1", borderColor: "#f6e05e", color: "#b7791f" }}>
+      <Badge key="reaction" style={{ backgroundColor: "var(--color-warning-50)", borderColor: "var(--color-warning-300)", color: "var(--color-warning-600)" }}>
         Reaction
       </Badge>
     );
@@ -511,7 +511,7 @@ export function SpellMechanicsChips({
       {requireBadges}
     </div>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>None</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>None</span>
   );
 
   const needsParts: React.ReactNode[] = [];
@@ -530,7 +530,7 @@ export function SpellMechanicsChips({
       {needsParts}
     </div>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>None</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>None</span>
   );
 
   rows.push([
@@ -544,7 +544,7 @@ export function SpellMechanicsChips({
       <Cell
         key="upcast"
         label="Upcast"
-        value={<span style={{ color: "#6b46c1", fontWeight: 500, fontSize: "13px" }}>{upcastEffect}</span>}
+        value={<span style={{ color: "var(--color-accent-purple-600)", fontWeight: 500, fontSize: "13px" }}>{upcastEffect}</span>}
       />,
       <BlankCell key="upcast-blank" />,
     ]);
@@ -553,22 +553,22 @@ export function SpellMechanicsChips({
   return (
     <div
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "transparent",
         borderRadius: "8px",
         overflow: "hidden",
       }}
     >
-      <div style={{ padding: "0 14px 10px", background: "#fff" }}>
-        <p style={{ fontSize: "15px", fontWeight: 500, color: "#111", lineHeight: 1.5 }}>{resolvedSummary}</p>
+      <div style={{ padding: "0 14px 10px", background: "transparent" }}>
+        <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>{resolvedSummary}</p>
       </div>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "1px",
-          backgroundColor: "#f0f0f0",
-          borderTop: "1px solid #f0f0f0",
-          borderBottom: "1px solid #f0f0f0",
+          backgroundColor: "var(--color-border-muted)",
+          borderTop: "1px solid var(--color-border-muted)",
+          borderBottom: "1px solid var(--color-border-muted)",
         }}
       >
         {rows.map((row, idx) => (
