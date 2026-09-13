@@ -72,13 +72,19 @@ const weaponTypeEmojis: Record<string, string> = {
   simple: "🗡️",
 };
 
-const getWeaponIcon = (name: string, weaponType?: string) => {
+function getWeaponIcon(name: string, weaponType?: string): React.ComponentType<{ className?: string }> {
   return weaponNameIcons[name] || weaponTypeIcons[weaponType || ""] || Sword;
-};
+}
 
-const getWeaponEmoji = (name: string, weaponType?: string) => {
+function getWeaponEmoji(name: string, weaponType?: string): string {
+  const lower = name.toLowerCase();
+  if (lower.includes("crossbow")) return "🏹";
+  if (lower.includes("bow")) return "🏹";
+  if (lower.includes("arrow") || lower.includes("bolt")) return "↗️";
+  if (lower.includes("spear") || lower.includes("polearm") || lower.includes("glaive") || lower.includes("halberd") || lower.includes("lance") || lower.includes("pike") || lower.includes("trident") || lower.includes("javelin")) return "🔱";
+  if (lower.includes("whip")) return "🥢";
   return weaponTypeEmojis[weaponType || ""] || "⚔️";
-};
+}
 
 interface StepEquipmentProps {
   data: Character;
@@ -136,7 +142,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
         properties: weapon.properties?.map((p: any) => p.name) || [],
         category: weapon.category_range,
         description: weapon.description || "",
-        icon: "⚔️",
+        icon: getWeaponEmoji(itemName, weapon.category_range),
       };
     }
 
@@ -651,7 +657,14 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
         }
       }
 
-      setModalGroup({ group, selectedOptionIndex: popupOptIndex });
+      const priorSelection = group.options.findIndex((_, idx) =>
+        data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === idx)
+      );
+
+      setModalGroup({
+        group,
+        selectedOptionIndex: priorSelection >= 0 ? priorSelection : null,
+      });
       setTempWeaponSelections(selectedWeaponNames);
       setTempSelectedName(selectedName);
     } else {

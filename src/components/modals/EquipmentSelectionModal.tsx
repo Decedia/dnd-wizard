@@ -59,9 +59,9 @@ export function EquipmentSelectionModal({
   if (!isOpen || !mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100000] flex items-end sm:items-center justify-center bg-black/50" onClick={onClose}>
+    <div className="fixed inset-0 z-[999999] flex items-end sm:items-center justify-center bg-black/50" onClick={onClose}>
       <div
-        className="mx-auto w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
+        className="mx-auto w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl z-50"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-center pt-3">
@@ -82,7 +82,7 @@ export function EquipmentSelectionModal({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
+        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2 pb-20">
           {options.map((option, index) => {
             const isSelected = selectedIndices.includes(index);
             const icon = option.icon || "📦";
@@ -93,17 +93,17 @@ export function EquipmentSelectionModal({
             return (
               <div
                 key={index}
-                className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                role="button"
+                tabIndex={0}
+                onClick={() => onOptionSelect(index)}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOptionSelect(index); } }}
+                className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all cursor-pointer ${
                   isSelected
                     ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
               >
-                <button
-                  type="button"
-                  onClick={() => onOptionSelect(index)}
-                  className="flex-1 flex items-center gap-3 text-left min-w-0"
-                >
+                <div className="flex-1 flex items-center gap-3 text-left min-w-0">
                   <div
                     className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
                     style={{ backgroundColor: "var(--color-bg)" }}
@@ -119,9 +119,12 @@ export function EquipmentSelectionModal({
                   {statSummary && (
                     <span className="text-[12px] font-medium text-[var(--color-text-primary)] shrink-0">{statSummary}</span>
                   )}
-                </button>
+                </div>
 
-                <div className="shrink-0">
+                <div
+                  className="shrink-0"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   {renderRightContent ? renderRightContent(option, isSelected) : (
                     isSelected ? (
                       <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
@@ -135,7 +138,7 @@ export function EquipmentSelectionModal({
           })}
         </div>
 
-        <div className="border-t border-[var(--color-border)] px-4 py-3">
+        <div className="border-t border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3">
           <button
             type="button"
             onClick={onConfirm}
