@@ -587,7 +587,17 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     });
   }, [choiceGroups, data.inventory, getGroupIndex]);
 
-  const modalOption = modalGroup ? modalGroup.group.options[modalGroup.selectedOptionIndex ?? -1] : null;
+  const modalOption = useMemo(() => {
+    if (!modalGroup) return null;
+    if (modalGroup.selectedOptionIndex !== null) {
+      return modalGroup.group.options[modalGroup.selectedOptionIndex] ?? null;
+    }
+    return (
+      modalGroup.group.options.find((opt) =>
+        opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
+      ) ?? modalGroup.group.options[0] ?? null
+    );
+  }, [modalGroup]);
 
   const grantedItems = useMemo(() => {
     return data.inventory.filter(item => item.isGranted);
