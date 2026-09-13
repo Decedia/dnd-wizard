@@ -428,6 +428,15 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
   const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
+  const [subclassIndex, setSubclassIndex] = useState<string>(character.subclassIndex || "");
+
+  const handleSubclassSelect = useCallback((name: string) => {
+    setSubclassSelection(name);
+    const normalized = name.toLowerCase().replace(/[\s-]+/g, "_");
+    setSubclassIndex(normalized);
+  }, []);
+
+
   const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
@@ -1105,7 +1114,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onAsiChange={(patch) => setAsi(info.level, patch)}
               baseScores={baseScores(info.level)}
               subclassSelection={subclassSelection}
-              onSubclassSelect={setSubclassSelection}
+              onSubclassSelect={handleSubclassSelect}
               subclassFeatureChoices={subclassFeatureChoices[info.level] || {}}
               onSubclassFeatureChoice={(name, value) =>
                 setSubclassFeatureChoices((prev) => ({
@@ -1132,8 +1141,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onCircleTerrainChange={(terrain) => setCircleTerrain(info.level, terrain)}
               bonusCantrip={bonusCantripSelections[info.level] || ""}
               onBonusCantripChange={(cantrip) => setBonusCantrip(info.level, cantrip)}
-              character={character}
-              hitDie={hitDie}
+              character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/[\s-]+/g, '_') }}
+               hitDie={hitDie}
               diceType={diceType}
               conMod={conMod}
               averageHp={averageHp}
@@ -2041,7 +2050,7 @@ function LevelCard({
       {showSpellModal && info.hasSpellSelection && (
         <SpellSelectionModal
           key={`spell-modal-${lvl}`}
-          character={character}
+          character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/[\s-]+/g, '_') }}
           subclassSelection={subclassSelection}
           count={spellModalMode === "cantrips" ? 0 : info.spellSelectionCount}
           cantripCount={spellModalMode === "spells" ? 0 : info.cantripSelectionCount}
@@ -2238,7 +2247,7 @@ function LevelCard({
         <TerrainModal
           isOpen={showTerrainModal}
           onClose={() => setShowTerrainModal(false)}
-          character={character}
+          character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/[\s-]+/g, '_') }}
           level={info.level}
           maxSpellLevel={info.maxSpellLevel}
           selectedTerrain={circleTerrain}
