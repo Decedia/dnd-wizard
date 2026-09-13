@@ -301,7 +301,7 @@ export function FeatureMechanicsChips({
         overflow: "hidden",
       }}
     >
-      <div style={{ padding: "0 14px 10px", background: "#fff" }}>
+      <div style={{ padding: "0 14px 10px", background: "#f5f5f5" }}>
         <p style={{ fontSize: "15px", fontWeight: 500, color: "#111", lineHeight: 1.5 }}>
           {resolvedSummary || "\u00A0"}
         </p>
