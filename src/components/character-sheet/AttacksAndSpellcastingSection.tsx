@@ -108,8 +108,13 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                 <div className="flex flex-col gap-1.5">
                   {details && (
                     <>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <DamageBadge type={details.damageType} size="sm" />
+                        {details.damageDice && (
+                          <span className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-bg)] px-1.5 py-0.5 rounded border border-[var(--color-border)]">
+                            {details.damageDice}
+                          </span>
+                        )}
                         <span className="text-[10px] font-bold text-[var(--color-info-600)] bg-[var(--color-info-50)] px-1.5 py-0.5 rounded">
                           +{details.damageBonus}
                         </span>
