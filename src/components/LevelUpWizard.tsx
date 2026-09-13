@@ -312,7 +312,9 @@ function buildLevelInfos(
     const spellsKnownChanged = spellsKnown !== undefined && spellsKnown > prevSpellsKnown;
 
     const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster");
-    const maxSpellLevel = getMaxSpellLevel(className, level, character.ruleset);
+    const maxSpellLevel = spellSlots
+      ? Math.max(...Object.keys(spellSlots).map(Number))
+      : getMaxSpellLevel(className, level, character.ruleset);
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
     const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger", "Paladin"].includes(className);

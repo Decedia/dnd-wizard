@@ -613,7 +613,7 @@ export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
 }
 
 export function getClassSpells(classOrSubclassId: string): SRDSpell[] {
-  const lower = classOrSubclassId.toLowerCase().replace(/\s+/g, "_");
+  const lower = classOrSubclassId.toLowerCase().replace(/[\s-]+/g, "_");
   const dataFiles: Record<string, any> = {
     "arcane_trickster": arcaneTricksterSpellsData,
   };
