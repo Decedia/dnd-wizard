@@ -51,7 +51,7 @@ export function EquipmentSelectionModal({
 
         <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
           <div>
-            <div className="text-[16px] font-medium text-[#111]">{title}</div>
+            <div className="text-[16px] font-medium text-[var(--color-text-primary)]">{title}</div>
             {subtitle && <div className="text-[12px] text-[var(--color-text-muted)] mt-0.5">{subtitle}</div>}
           </div>
           <button
@@ -78,30 +78,30 @@ export function EquipmentSelectionModal({
                 onClick={() => onOptionSelect(index)}
                 className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition-all text-left ${
                   isSelected
-                    ? "border-[#111] bg-[var(--color-bg)]"
+                    ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
               >
                 <div
                   className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: "#f5f5f5" }}
+                  style={{ backgroundColor: "var(--color-bg)" }}
                 >
                   <span className="text-[22px] leading-none">{icon}</span>
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <div className="text-[14px] font-medium text-[#111] truncate">{name}</div>
-                  {description && <div className="text-[12px] text-[#666] truncate">{description}</div>}
+                  <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">{name}</div>
+                  {description && <div className="text-[12px] text-[var(--color-text-secondary)] truncate">{description}</div>}
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0">
                   {statSummary && (
-                    <span className="text-[12px] font-medium text-[#111]">{statSummary}</span>
+                    <span className="text-[12px] font-medium text-[var(--color-text-primary)]">{statSummary}</span>
                   )}
                   {renderRightContent ? renderRightContent(option, isSelected) : (
                     <>
                       <InfoButton title={name} description={description} />
-                      {isSelected && <Check className="h-4 w-4 text-[#111]" />}
+                      {isSelected && <Check className="h-4 w-4 text-[var(--color-text-primary)]" />}
                     </>
                   )}
                 </div>
@@ -117,7 +117,7 @@ export function EquipmentSelectionModal({
             disabled={confirmDisabled}
             className={`w-full py-3 rounded-full font-bold text-sm transition-colors ${
               !confirmDisabled
-                ? "bg-[#111] text-white hover:opacity-90"
+                ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:opacity-90"
                 : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
             }`}
           >

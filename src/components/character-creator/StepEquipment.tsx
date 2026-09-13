@@ -106,6 +106,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null } | null>(null);
   const [tempWeaponSelections, setTempWeaponSelections] = useState<string[]>([]);
+  const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
@@ -293,21 +294,25 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
     setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+    setTempSelectedName(instrumentName);
   }, [getGroupIndex]);
 
   const handleArcaneFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
     setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+    setTempSelectedName(focusName);
   }, [getGroupIndex]);
 
   const handleHolySymbolSelect = useCallback((symbolName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
     setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+    setTempSelectedName(symbolName);
   }, [getGroupIndex]);
 
   const handleDruidicFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
     setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+    setTempSelectedName(focusName);
   }, [getGroupIndex]);
 
   const handleModalConfirm = useCallback(() => {
@@ -348,7 +353,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     } else if (option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
       let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
 
-      const itemName = option.items[0]?.name || option.description || "Item";
+      const itemName = tempSelectedName || option.items[0]?.name || option.description || "Item";
       const itemInfo = getItemInfo(itemName);
       const newItem: Character["inventory"][number] = {
         id: generateId(),
@@ -364,15 +369,18 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
       onChange({ inventory: [...newInventory, newItem] });
       setModalGroup(null);
+      setTempSelectedName(null);
     } else {
       handleOptionClick(group, selectedOptionIndex);
       setModalGroup(null);
+      setTempSelectedName(null);
     }
-  }, [modalGroup, tempWeaponSelections, data.inventory, getGroupIndex, getItemInfo, weapons, generateId, onChange, handleOptionClick]);
+  }, [modalGroup, tempWeaponSelections, tempSelectedName, data.inventory, getGroupIndex, getItemInfo, weapons, generateId, onChange, handleOptionClick]);
 
   const handleModalClose = useCallback(() => {
     setModalGroup(null);
     setTempWeaponSelections([]);
+    setTempSelectedName(null);
   }, []);
 
   const handleChoiceRemove = useCallback((group: ChoiceGroup) => {
@@ -630,19 +638,27 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     if (popupOptIndex >= 0) {
       const popupOpt = group.options[popupOptIndex];
       let selectedWeaponNames: string[] = [];
+      let selectedName: string | null = null;
 
       if (popupOpt.isWeaponChoice) {
         selectedWeaponNames = data.inventory
           .filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon" && item.choiceOptionIndex === popupOptIndex)
           .map(w => w.name);
+      } else {
+        const existingItem = data.inventory.find(item => item.choiceGroupIndex === groupIndex);
+        if (existingItem) {
+          selectedName = existingItem.name;
+        }
       }
 
       setModalGroup({ group, selectedOptionIndex: popupOptIndex });
       setTempWeaponSelections(selectedWeaponNames);
+      setTempSelectedName(selectedName);
     } else {
       const selectedIndex = group.options.findIndex((_, idx) => isOptionSelected(group, idx));
-      setModalGroup({ group, selectedOptionIndex: selectedIndex >= 0 ? selectedIndex : 0 });
+      setModalGroup({ group, selectedOptionIndex: selectedIndex >= 0 ? selectedIndex : null });
       setTempWeaponSelections([]);
+      setTempSelectedName(null);
     }
   }, [data.inventory, getGroupIndex, isOptionSelected]);
 
@@ -808,14 +824,16 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                   const weaponName = modalOptions[index].name;
                   handleWeaponSelect(weaponName, modalGroup.group.id, modalGroup.selectedOptionIndex ?? 0);
                 } else {
+                  const selectedOption = modalOptions[index];
                   setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: index } : null);
+                  setTempSelectedName(selectedOption?.name || null);
                 }
               }}
               multiple={multiple}
               confirmDisabled={confirmDisabled}
               renderRightContent={(option, isSelected) => {
                 if (isSelected) {
-                  return <Check className="h-4 w-4 text-[#111]" />;
+                  return <Check className="h-4 w-4 text-[var(--color-text-primary)]" />;
                 }
                 return <InfoButton title={option.name} description={option.description} />;
               }}
