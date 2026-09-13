@@ -7,12 +7,21 @@ import { InfoButton } from "@/components/InfoButton";
 export interface EquipmentSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: (item: any) => void;
+  onConfirm: () => void;
   title: string;
   subtitle?: string;
-  options: any[];
-  selectedOptionIndex: number | null;
+  options: Array<{
+    icon?: string;
+    name: string;
+    description?: string;
+    statSummary?: string | null;
+    data?: any;
+  }>;
+  selectedIndices: number[];
   onOptionSelect: (index: number) => void;
+  multiple?: boolean;
+  confirmDisabled?: boolean;
+  renderRightContent?: (option: any, isSelected: boolean) => React.ReactNode;
 }
 
 export function EquipmentSelectionModal({
@@ -22,22 +31,13 @@ export function EquipmentSelectionModal({
   title,
   subtitle,
   options,
-  selectedOptionIndex,
+  selectedIndices,
   onOptionSelect,
+  multiple = false,
+  confirmDisabled = false,
+  renderRightContent,
 }: EquipmentSelectionModalProps) {
-  const [selected, setSelected] = useState<number | null>(selectedOptionIndex);
-
-  useEffect(() => {
-    setSelected(selectedOptionIndex);
-  }, [selectedOptionIndex]);
-
   if (!isOpen) return null;
-
-  const handleConfirm = () => {
-    if (selected !== null) {
-      onConfirm(options[selected]);
-    }
-  };
 
   return (
     <div className="fixed inset-0 z-[100000] flex items-end justify-center bg-black/50" onClick={onClose}>
@@ -65,21 +65,17 @@ export function EquipmentSelectionModal({
 
         <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
           {options.map((option, index) => {
-            const isSelected = selected === index;
-            const itemInfo = option.itemInfo || option;
-            const icon = itemInfo?.icon || "📦";
-            const name = option.name || itemInfo?.name || "Unknown";
-            const description = itemInfo?.description || "";
-            const statSummary = getStatSummary(itemInfo);
+            const isSelected = selectedIndices.includes(index);
+            const icon = option.icon || "📦";
+            const name = option.name;
+            const description = option.description || "";
+            const statSummary = option.statSummary || getStatSummary(option.data);
 
             return (
               <button
                 key={index}
                 type="button"
-                onClick={() => {
-                  setSelected(index);
-                  onOptionSelect(index);
-                }}
+                onClick={() => onOptionSelect(index)}
                 className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition-all text-left ${
                   isSelected
                     ? "border-[#111] bg-[var(--color-bg)]"
@@ -102,8 +98,12 @@ export function EquipmentSelectionModal({
                   {statSummary && (
                     <span className="text-[12px] font-medium text-[#111]">{statSummary}</span>
                   )}
-                  <InfoButton title={name} description={description} />
-                  {isSelected && <Check className="h-4 w-4 text-[#111]" />}
+                  {renderRightContent ? renderRightContent(option, isSelected) : (
+                    <>
+                      <InfoButton title={name} description={description} />
+                      {isSelected && <Check className="h-4 w-4 text-[#111]" />}
+                    </>
+                  )}
                 </div>
               </button>
             );
@@ -113,10 +113,10 @@ export function EquipmentSelectionModal({
         <div className="border-t border-[var(--color-border)] px-4 py-3">
           <button
             type="button"
-            onClick={handleConfirm}
-            disabled={selected === null}
+            onClick={onConfirm}
+            disabled={confirmDisabled}
             className={`w-full py-3 rounded-full font-bold text-sm transition-colors ${
-              selected !== null
+              !confirmDisabled
                 ? "bg-[#111] text-white hover:opacity-90"
                 : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
             }`}

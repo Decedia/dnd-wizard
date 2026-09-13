@@ -9,9 +9,10 @@ import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib
 import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
 import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
-import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club } from "@/components/icons";
+import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, CheckIcon as Check } from "@/components/icons";
 import { SourceBadge } from "@/components/SourceBadge";
 import { ItemSlot, ItemDetailPanel, InventoryGrid, type ItemSlotData } from "@/components/character-sheet/InventoryGrid";
+import { EquipmentSelectionModal } from "@/components/modals/EquipmentSelectionModal";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -62,8 +63,21 @@ const weaponNameIcons: Record<string, React.ComponentType<{ className?: string }
   Sling: BowArrow,
 };
 
+const weaponTypeEmojis: Record<string, string> = {
+  martial_melee: "⚔️",
+  martial_ranged: "🏹",
+  martial: "⚔️",
+  simple_melee: "🗡️",
+  simple_ranged: "⚙️",
+  simple: "🗡️",
+};
+
 const getWeaponIcon = (name: string, weaponType?: string) => {
   return weaponNameIcons[name] || weaponTypeIcons[weaponType || ""] || Sword;
+};
+
+const getWeaponEmoji = (name: string, weaponType?: string) => {
+  return weaponTypeEmojis[weaponType || ""] || "⚔️";
 };
 
 interface StepEquipmentProps {
@@ -90,7 +104,8 @@ const DRUIDIC_FOCUS_TYPES = [
 
 export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
-  const [popupGroup, setPopupGroup] = useState<{ group: ChoiceGroup; optionIndex: number } | null>(null);
+  const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null } | null>(null);
+  const [tempWeaponSelections, setTempWeaponSelections] = useState<string[]>([]);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
 
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
@@ -216,11 +231,6 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     const option = group.options[optionIndex];
     const groupIndex = getGroupIndex(group.id);
 
-    if (option.isWeaponChoice || option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
-      setPopupGroup({ group, optionIndex });
-      return;
-    }
-
     let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
 
     const isFirstChoiceGroup = groupIndex === 0;
@@ -268,139 +278,102 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     const itemInfo = getItemInfo(weapon.name);
     const selectionCount = option?.selectionCount || 1;
 
-    const existingWeapons = data.inventory.filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon" && item.choiceOptionIndex === optionIndex);
-
-    const alreadySelectedIndex = existingWeapons.findIndex(w => w.name === weapon.name);
-    if (alreadySelectedIndex >= 0) {
-      const newInventory = data.inventory.filter(item => item.id !== existingWeapons[alreadySelectedIndex].id);
-      onChange({ inventory: newInventory });
-      return;
-    }
-
-    if (existingWeapons.length >= selectionCount) {
-      return;
-    }
-
-    const weaponItem: Character["inventory"][number] = {
-      id: generateId(),
-      name: weapon.name,
-      quantity: 1,
-      equipped: false,
-      source: "srd" as const,
-      description: itemInfo ? JSON.stringify(itemInfo) : "",
-      itemType: "weapon" as const,
-      damageDice: weapon.damage?.damage_dice || "",
-      damageType: weapon.damage?.damage_type?.name || "",
-      category: weapon.category_range || weapon.weapon_category,
-      choiceGroupIndex: groupIndex,
-      choiceOptionIndex: optionIndex,
-    };
-
-    const nextInventory = [...data.inventory, weaponItem];
-
-    if (option?.description?.toLowerCase().includes("shield") && !data.inventory.some(i => i.name === "Shield" && i.choiceGroupIndex === groupIndex)) {
-      const shieldInfo = getItemInfo("Shield");
-      if (shieldInfo) {
-        nextInventory.push({
-          id: generateId(),
-          name: "Shield",
-          quantity: 1,
-          equipped: false,
-          source: "srd" as const,
-          description: JSON.stringify(shieldInfo),
-          itemType: "armor" as const,
-          choiceGroupIndex: groupIndex,
-          choiceOptionIndex: optionIndex,
-        });
+    setTempWeaponSelections(prev => {
+      const alreadySelectedIndex = prev.findIndex(w => w === weapon.name);
+      if (alreadySelectedIndex >= 0) {
+        return prev.filter(w => w !== weapon.name);
       }
-    }
-
-    onChange({ inventory: nextInventory });
-  }, [data.inventory, getGroupIndex, getItemInfo, onChange, choiceGroups]);
+      if (prev.length >= selectionCount) {
+        return prev;
+      }
+      return [...prev, weapon.name];
+    });
+  }, [getGroupIndex, getItemInfo, choiceGroups]);
 
   const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-
-    const itemInfo = getItemInfo(instrumentName);
-    const newItem: Character["inventory"][number] = {
-      id: generateId(),
-      name: instrumentName,
-      quantity: 1,
-      equipped: false,
-      source: "srd" as const,
-      description: itemInfo ? JSON.stringify(itemInfo) : "",
-      itemType: "instrument" as const,
-      choiceGroupIndex: groupIndex,
-      choiceOptionIndex: optionIndex,
-    };
-
-    onChange({ inventory: [...newInventory, newItem] });
-    setPopupGroup(null);
-  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+  }, [getGroupIndex]);
 
   const handleArcaneFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-
-    const itemInfo = getItemInfo(focusName);
-    const newItem: Character["inventory"][number] = {
-      id: generateId(),
-      name: focusName,
-      quantity: 1,
-      equipped: false,
-      source: "srd" as const,
-      description: itemInfo ? JSON.stringify(itemInfo) : "",
-      itemType: "item" as const,
-      choiceGroupIndex: groupIndex,
-      choiceOptionIndex: optionIndex,
-    };
-
-    onChange({ inventory: [...newInventory, newItem] });
-    setPopupGroup(null);
-  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+  }, [getGroupIndex]);
 
   const handleHolySymbolSelect = useCallback((symbolName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-
-    const itemInfo = getItemInfo(symbolName);
-    const newItem: Character["inventory"][number] = {
-      id: generateId(),
-      name: symbolName,
-      quantity: 1,
-      equipped: false,
-      source: "srd" as const,
-      description: itemInfo ? JSON.stringify(itemInfo) : "",
-      itemType: "item" as const,
-      choiceGroupIndex: groupIndex,
-      choiceOptionIndex: optionIndex,
-    };
-
-    onChange({ inventory: [...newInventory, newItem] });
-    setPopupGroup(null);
-  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+  }, [getGroupIndex]);
 
   const handleDruidicFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
+  }, [getGroupIndex]);
 
-    const itemInfo = getItemInfo(focusName);
-    const newItem: Character["inventory"][number] = {
-      id: generateId(),
-      name: focusName,
-      quantity: 1,
-      equipped: false,
-      source: "srd" as const,
-      description: itemInfo ? JSON.stringify(itemInfo) : "",
-      itemType: "item" as const,
-      choiceGroupIndex: groupIndex,
-      choiceOptionIndex: optionIndex,
-    };
+  const handleModalConfirm = useCallback(() => {
+    if (!modalGroup) return;
 
-    onChange({ inventory: [...newInventory, newItem] });
-    setPopupGroup(null);
-  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
+    const { group, selectedOptionIndex } = modalGroup;
+    if (selectedOptionIndex === null) return;
+
+    const option = group.options[selectedOptionIndex];
+    const groupIndex = getGroupIndex(group.id);
+
+    if (option.isWeaponChoice) {
+      let newInventory = data.inventory.filter(item => !(item.choiceGroupIndex === groupIndex && item.itemType === "weapon"));
+
+      const selectionCount = option.selectionCount || 1;
+      tempWeaponSelections.slice(0, selectionCount).forEach(weaponName => {
+        const itemInfo = getItemInfo(weaponName);
+        const weapon = weapons.find((w: any) => w.name === weaponName);
+        newInventory.push({
+          id: generateId(),
+          name: weaponName,
+          quantity: 1,
+          equipped: false,
+          source: "srd" as const,
+          description: itemInfo ? JSON.stringify(itemInfo) : "",
+          itemType: "weapon" as const,
+          damageDice: weapon?.damage?.damage_dice || "",
+          damageType: weapon?.damage?.damage_type?.name || "",
+          category: weapon?.category_range || weapon?.weapon_category,
+          choiceGroupIndex: groupIndex,
+          choiceOptionIndex: selectedOptionIndex,
+        });
+      });
+
+      onChange({ inventory: newInventory });
+      setModalGroup(null);
+      setTempWeaponSelections([]);
+    } else if (option.isInstrumentChoice || option.isArcaneFocusChoice || option.isHolySymbolChoice || option.isDruidicFocusChoice) {
+      let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+
+      const itemName = option.items[0]?.name || option.description || "Item";
+      const itemInfo = getItemInfo(itemName);
+      const newItem: Character["inventory"][number] = {
+        id: generateId(),
+        name: itemName,
+        quantity: 1,
+        equipped: false,
+        source: "srd" as const,
+        description: itemInfo ? JSON.stringify(itemInfo) : "",
+        itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
+        choiceGroupIndex: groupIndex,
+        choiceOptionIndex: selectedOptionIndex,
+      };
+
+      onChange({ inventory: [...newInventory, newItem] });
+      setModalGroup(null);
+    } else {
+      handleOptionClick(group, selectedOptionIndex);
+      setModalGroup(null);
+    }
+  }, [modalGroup, tempWeaponSelections, data.inventory, getGroupIndex, getItemInfo, weapons, generateId, onChange, handleOptionClick]);
+
+  const handleModalClose = useCallback(() => {
+    setModalGroup(null);
+    setTempWeaponSelections([]);
+  }, []);
 
   const handleChoiceRemove = useCallback((group: ChoiceGroup) => {
     const groupIndex = getGroupIndex(group.id);
@@ -600,9 +573,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     });
   }, [choiceGroups, data.inventory, getGroupIndex]);
 
-  const popupOption = popupGroup ? popupGroup.group.options[popupGroup.optionIndex] : null;
-  const popupCategoryWeapons = popupOption?.isWeaponChoice ? getWeaponsByCategory(popupOption.weaponType || "") : [];
-  const popupSelectedWeapons = popupGroup ? getSelectedWeaponsForGroup(popupGroup.group.id, popupGroup.optionIndex) : [];
+  const modalOption = modalGroup ? modalGroup.group.options[modalGroup.selectedOptionIndex ?? -1] : null;
 
   const grantedItems = useMemo(() => {
     return data.inventory.filter(item => item.isGranted);
@@ -651,35 +622,29 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
   const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
     const groupIndex = getGroupIndex(group.id);
-    const hasPopupChoice = group.options.some(opt =>
+
+    const popupOptIndex = group.options.findIndex(opt =>
       opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
     );
 
-    if (hasPopupChoice) {
-      const selectedOptionIndex = group.options.findIndex(opt => {
-        if (opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice) {
-          return data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === group.options.indexOf(opt));
-        }
-        return false;
-      });
+    if (popupOptIndex >= 0) {
+      const popupOpt = group.options[popupOptIndex];
+      let selectedWeaponNames: string[] = [];
 
-      if (selectedOptionIndex >= 0) {
-        setPopupGroup({ group, optionIndex: selectedOptionIndex });
-      } else {
-        const firstPopupIndex = group.options.findIndex(opt =>
-          opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
-        );
-        if (firstPopupIndex >= 0) {
-          setPopupGroup({ group, optionIndex: firstPopupIndex });
-        }
+      if (popupOpt.isWeaponChoice) {
+        selectedWeaponNames = data.inventory
+          .filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon" && item.choiceOptionIndex === popupOptIndex)
+          .map(w => w.name);
       }
+
+      setModalGroup({ group, selectedOptionIndex: popupOptIndex });
+      setTempWeaponSelections(selectedWeaponNames);
     } else {
-      const firstUnselected = group.options.findIndex((_, idx) => !isOptionSelected(group, idx));
-      if (firstUnselected >= 0) {
-        handleOptionClick(group, firstUnselected);
-      }
+      const selectedIndex = group.options.findIndex((_, idx) => isOptionSelected(group, idx));
+      setModalGroup({ group, selectedOptionIndex: selectedIndex >= 0 ? selectedIndex : 0 });
+      setTempWeaponSelections([]);
     }
-  }, [data.inventory, getGroupIndex, isOptionSelected, handleOptionClick]);
+  }, [data.inventory, getGroupIndex, isOptionSelected]);
 
   return (
     <StepCard
@@ -749,136 +714,114 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           </div>
         </div>
 
-        {popupGroup && popupOption && (
-          <BasePopup
-            isOpen={true}
-            onClose={() => setPopupGroup(null)}
-            title={popupOption.isWeaponChoice ? `Choose ${popupOption.selectionCount || 1} ${popupOption.weaponType?.replace('_', ' ')} weapon${(popupOption.selectionCount || 1) > 1 ? "s" : ""}` : popupOption.isInstrumentChoice ? "Choose a musical instrument" : popupOption.isArcaneFocusChoice ? "Choose an arcane focus" : popupOption.isHolySymbolChoice ? "Choose a holy symbol" : popupOption.isDruidicFocusChoice ? "Choose a druidic focus" : "Select an item"}
-            confirmLabel={popupOption.isWeaponChoice ? (popupOption.selectionCount && popupOption.selectionCount > 1 ? `Confirm (${popupSelectedWeapons.length}/${popupOption.selectionCount})` : "Confirm") : undefined}
-            onConfirm={() => setPopupGroup(null)}
-            cancelLabel="Cancel"
-            onCancel={() => setPopupGroup(null)}
-            showFooter={popupOption.isWeaponChoice}
-            confirmDisabled={popupOption.isWeaponChoice && popupSelectedWeapons.length !== (popupOption.selectionCount || 1)}
-          >
-            {popupOption.isWeaponChoice && (
-              <div className="mb-3 p-2 rounded border border-[var(--color-border)] bg-[var(--color-bg)]">
-                <div className="text-xs font-semibold text-[var(--color-text-muted)] mb-1">
-                  Selected: {popupSelectedWeapons.length} / {popupOption.selectionCount || 1}
-                </div>
-                {popupSelectedWeapons.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
-                    {popupSelectedWeapons.map((w: any) => (
-                      <span key={w.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-[var(--color-border)] bg-[var(--color-surface)] text-xs font-semibold text-[var(--color-text-primary)]">
-                        {w.name}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const newInventory = data.inventory.filter(item => item.id !== w.id);
-                            onChange({ inventory: newInventory });
-                          }}
-                          className="text-[var(--color-success-600)] hover:text-[var(--color-error-500)] ml-1"
-                        >
-                          ×
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-            <div className="space-y-2">
-              {popupOption.isWeaponChoice && popupCategoryWeapons.map((weapon: any) => {
-                const wStats = getWeaponStats(weapon.name, weapon.category_range);
-                const isWeaponSelected = popupSelectedWeapons.some((w: any) => w.name === weapon.name);
-                const selectionCount = popupOption.selectionCount || 1;
-                const isDisabled = !isWeaponSelected && popupSelectedWeapons.length >= selectionCount;
-                const WIcon = getWeaponIcon(weapon.name, popupOption.weaponType);
-                return (
-                  <button
-                    key={weapon.name}
-                    type="button"
-                    onClick={() => handleWeaponSelect(weapon, popupGroup.group.id, popupGroup.optionIndex)}
-                    disabled={isDisabled}
-                    className={`w-full px-3 py-2 text-left text-sm rounded-[var(--border-radius-sm)] transition-colors ${
-                      isWeaponSelected
-                        ? "border border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
-                        : isDisabled
-                          ? "border border-[var(--color-border)] opacity-20 cursor-not-allowed"
-                          : "border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <WIcon className={`h-4 w-4 shrink-0 ${isWeaponSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-muted)]"}`} />
-                        <span className={`text-body ${isWeaponSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}>{weapon.name}</span>
-                      </div>
-                      {wStats && (
-                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-accent-orange-600)] bg-[var(--color-accent-orange-50)]"}`}>
-                          {wStats.attackBonus} to hit
-                        </span>
-                      )}
-                    </div>
-                    {wStats && (
-                      <div className="flex items-center gap-1.5 mt-1 ml-6">
-                        <DamageBadge type={wStats.damageType} size="sm" showLabel={true} />
-                        <span
-                          className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : ""}`}
-                          style={!isWeaponSelected ? { color: getDamageTypeColor(wStats.damageType), backgroundColor: getDamageTypeBgColor(wStats.damageType) } : undefined}
-                        >
-                          {wStats.damageDice}
-                        </span>
-                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${isWeaponSelected ? "text-[var(--color-surface)] bg-[var(--color-surface)]/20" : "text-[var(--color-info-600)] bg-[var(--color-info-50)]"}`}>
-                          {wStats.abilityKey} {wStats.damageBonus}
-                        </span>
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
-              {popupOption.isInstrumentChoice && MUSICAL_INSTRUMENTS.map((instrument) => (
-                <button
-                  key={instrument}
-                  type="button"
-                  onClick={() => handleInstrumentSelect(instrument, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-                >
-                  {instrument}
-                </button>
-              ))}
-              {popupOption.isArcaneFocusChoice && ARCANE_FOCUS_TYPES.map((focus) => (
-                <button
-                  key={focus}
-                  type="button"
-                  onClick={() => handleArcaneFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-                >
-                  {focus}
-                </button>
-              ))}
-              {popupOption.isHolySymbolChoice && HOLY_SYMBOL_TYPES.map((symbol) => (
-                <button
-                  key={symbol}
-                  type="button"
-                  onClick={() => handleHolySymbolSelect(symbol, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-                >
-                  {symbol}
-                </button>
-              ))}
-              {popupOption.isDruidicFocusChoice && DRUIDIC_FOCUS_TYPES.map((focus) => (
-                <button
-                  key={focus}
-                  type="button"
-                  onClick={() => handleDruidicFocusSelect(focus, popupGroup.group.id, popupGroup.optionIndex)}
-                  className="w-full px-3 py-2 text-left text-sm rounded-[var(--radius-sm)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)] transition-colors"
-                >
-                  {focus}
-                </button>
-              ))}
-            </div>
-          </BasePopup>
-        )}
+        {modalGroup && modalOption && (() => {
+          const groupIndex = getGroupIndex(modalGroup.group.id);
+          let modalOptions: Array<{ icon: string; name: string; description: string; statSummary?: string | null; data?: any }> = [];
+          let multiple = false;
+          let confirmDisabled = false;
+
+          if (modalOption.isWeaponChoice) {
+            multiple = true;
+            const categoryWeapons = getWeaponsByCategory(modalOption.weaponType || "");
+            modalOptions = categoryWeapons.map((w: any) => {
+              const itemInfo = getItemInfo(w.name);
+              return {
+                icon: getWeaponEmoji(w.name, modalOption.weaponType) || "⚔️",
+                name: w.name,
+                description: w.description || "",
+                statSummary: `${w.damage?.damage_dice || ""} ${w.damage?.damage_type?.name || ""}`.trim() || undefined,
+                data: w,
+              };
+            });
+            const selectionCount = modalOption.selectionCount || 1;
+            confirmDisabled = tempWeaponSelections.length === 0 || tempWeaponSelections.length < selectionCount;
+          } else if (modalOption.isInstrumentChoice) {
+            modalOptions = MUSICAL_INSTRUMENTS.map(name => {
+              const itemInfo = getItemInfo(name);
+              return {
+                icon: "🎵",
+                name,
+                description: itemInfo?.description || "",
+                statSummary: "Spellcasting focus",
+                data: itemInfo,
+              };
+            });
+          } else if (modalOption.isArcaneFocusChoice) {
+            modalOptions = ARCANE_FOCUS_TYPES.map(name => {
+              const itemInfo = getItemInfo(name);
+              return {
+                icon: "🔮",
+                name,
+                description: itemInfo?.description || "",
+                data: itemInfo,
+              };
+            });
+          } else if (modalOption.isHolySymbolChoice) {
+            modalOptions = HOLY_SYMBOL_TYPES.map(name => {
+              const itemInfo = getItemInfo(name);
+              return {
+                icon: "✨",
+                name,
+                description: itemInfo?.description || "",
+                data: itemInfo,
+              };
+            });
+          } else if (modalOption.isDruidicFocusChoice) {
+            modalOptions = DRUIDIC_FOCUS_TYPES.map(name => {
+              const itemInfo = getItemInfo(name);
+              return {
+                icon: "🌿",
+                name,
+                description: itemInfo?.description || "",
+                data: itemInfo,
+              };
+            });
+          } else {
+            modalOptions = modalOption.items.map(item => {
+              const itemInfo = getItemInfo(item.name);
+              return {
+                icon: itemInfo?.icon || "📦",
+                name: item.name,
+                description: itemInfo?.description || "",
+                statSummary: itemInfo?.type === "weapon" ? `${itemInfo.damageDice} ${itemInfo.damageType}` :
+                             itemInfo?.type === "armor" ? `AC ${itemInfo.baseAC}` : undefined,
+                data: itemInfo,
+              };
+            });
+          }
+
+          const selectedIndices = modalOption.isWeaponChoice
+            ? tempWeaponSelections.map(name => modalOptions.findIndex(o => o.name === name)).filter(i => i >= 0)
+            : modalGroup.selectedOptionIndex !== null ? [modalGroup.selectedOptionIndex] : [];
+
+          return (
+            <EquipmentSelectionModal
+              isOpen={!!modalGroup}
+              onClose={handleModalClose}
+              onConfirm={handleModalConfirm}
+              title={modalOption.isWeaponChoice ? `Choose ${modalOption.selectionCount || 1} ${modalOption.weaponType?.replace('_', ' ')} weapon${(modalOption.selectionCount || 1) > 1 ? "s" : ""}` : modalOption.isInstrumentChoice ? "Choose a musical instrument" : modalOption.isArcaneFocusChoice ? "Choose an arcane focus" : modalOption.isHolySymbolChoice ? "Choose a holy symbol" : modalOption.isDruidicFocusChoice ? "Choose a druidic focus" : `Choose ${modalOption.items.map(i => i.name).join(" + ")}`}
+              subtitle={`${modalGroup.group.description} — option ${(modalGroup.selectedOptionIndex || 0) + 1}`}
+              options={modalOptions}
+              selectedIndices={selectedIndices}
+              onOptionSelect={(index) => {
+                if (modalOption.isWeaponChoice) {
+                  const weaponName = modalOptions[index].name;
+                  handleWeaponSelect(weaponName, modalGroup.group.id, modalGroup.selectedOptionIndex ?? 0);
+                } else {
+                  setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: index } : null);
+                }
+              }}
+              multiple={multiple}
+              confirmDisabled={confirmDisabled}
+              renderRightContent={(option, isSelected) => {
+                if (isSelected) {
+                  return <Check className="h-4 w-4 text-[#111]" />;
+                }
+                return <InfoButton title={option.name} description={option.description} />;
+              }}
+            />
+          );
+        })()}
       </div>
     </StepCard>
   );
