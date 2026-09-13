@@ -42,7 +42,7 @@ function Cell({ label, value, style }: { label: string; value: React.ReactNode; 
   return (
     <div
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "transparent",
         padding: "8px 12px",
         display: "flex",
         flexDirection: "column",
@@ -54,7 +54,7 @@ function Cell({ label, value, style }: { label: string; value: React.ReactNode; 
         style={{
           fontSize: "10px",
           fontWeight: 600,
-          color: "#aaa",
+          color: "var(--color-text-muted)",
           textTransform: "uppercase",
           letterSpacing: "0.06em",
           marginBottom: "3px",
@@ -66,7 +66,7 @@ function Cell({ label, value, style }: { label: string; value: React.ReactNode; 
         style={{
           fontSize: "13px",
           fontWeight: 500,
-          color: "#111",
+          color: "var(--color-text-primary)",
           display: "flex",
           alignItems: "center",
           gap: "4px",
@@ -80,12 +80,12 @@ function Cell({ label, value, style }: { label: string; value: React.ReactNode; 
 }
 
 function BlankCell() {
-  return <div style={{ backgroundColor: "#ffffff", padding: "8px 12px" }} />;
+  return <div style={{ backgroundColor: "transparent", padding: "8px 12px" }} />;
 }
 
 const SourceIcon = ({ type }: { type?: string }) => {
   const Icon = type === "race" ? UserIcon : type === "subclass" ? StarIcon : SwordIcon;
-  return <Icon className="h-3.5 w-3.5" style={{ color: "#888" }} />;
+  return <Icon className="h-3.5 w-3.5" style={{ color: "var(--color-text-muted)" }} />;
 };
 
 export function FeatureMechanicsChips({
@@ -124,19 +124,19 @@ export function FeatureMechanicsChips({
   // Row 0: Source icon+name | Book tag (always shown)
   const sourceSource = (source || {}) as { type?: string; name?: string; level?: number | null };
   const sourceValue = sourceSource.type ? (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "#111", fontWeight: 500, fontSize: "13px" }}>
+    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>
       <SourceIcon type={sourceSource.type} />
       {sourceSource.name}
     </span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
 
   const bookValue = book ? (
     <span
       style={{
-        backgroundColor: "#111",
-        color: "#fff",
+        backgroundColor: "var(--color-ink)",
+        color: "var(--color-surface)",
         fontSize: "10px",
         fontWeight: 600,
         padding: "2px 7px",
@@ -146,7 +146,7 @@ export function FeatureMechanicsChips({
       {book}
     </span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
 
   rows.push([
@@ -156,15 +156,15 @@ export function FeatureMechanicsChips({
 
   // Row 1: Type | Action
   const typeValue = effectiveFeatureType === "Active" ? (
-    <Badge style={{ backgroundColor: "#ebf8ff", borderColor: "#90cdf4", color: "#2b6cb0" }}>Active</Badge>
+    <Badge style={{ backgroundColor: "var(--color-info-50)", borderColor: "var(--color-info-200)", color: "var(--color-info-700)" }}>Active</Badge>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>Passive</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>Passive</span>
   );
 
   const actionValue = actionType ? (
-    <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{actionType}</span>
+    <span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{actionType}</span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
 
   rows.push([
@@ -174,19 +174,19 @@ export function FeatureMechanicsChips({
 
   // Row 2: Level | Uses
   const levelValue = sourceSource.type === "race" ? (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>Racial</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>Racial</span>
   ) : sourceSource.level != null ? (
-    <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>Level {sourceSource.level}</span>
+    <span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>Level {sourceSource.level}</span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>—</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
 
   const usesValue = hasUses && uses ? (
-    <span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>
+    <span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>
       {typeof uses.total === "number" ? `${uses.total}` : (uses.total || "?")} / {uses.recharge || "?"}
     </span>
   ) : (
-    <span style={{ color: "#aaa", fontWeight: 500, fontSize: "13px" }}>Unlimited</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>Unlimited</span>
   );
 
   rows.push([
@@ -198,12 +198,12 @@ export function FeatureMechanicsChips({
   if (hasOnUse || hasRequirement) {
     rows.push([
       hasOnUse ? (
-        <Cell key="onUse" label="On Use" value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{onUse}</span>} />
+        <Cell key="onUse" label="On Use" value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{onUse}</span>} />
       ) : (
         <BlankCell key="onUse-blank" />
       ),
       hasRequirement ? (
-        <Cell key="requires" label="Requires" value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{requirement}</span>} />
+        <Cell key="requires" label="Requires" value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{requirement}</span>} />
       ) : (
         <BlankCell key="requires-blank" />
       ),
@@ -214,12 +214,12 @@ export function FeatureMechanicsChips({
   if (hasDuration || hasEndsIf) {
     rows.push([
       hasDuration ? (
-        <Cell key="duration" label="Duration" value={<span style={{ color: "#111", fontWeight: 500, fontSize: "13px" }}>{duration}</span>} />
+        <Cell key="duration" label="Duration" value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{duration}</span>} />
       ) : (
         <BlankCell key="duration-blank" />
       ),
       hasEndsIf ? (
-        <Cell key="endsIf" label="Ends If" value={<span style={{ color: "#2b6cb0", fontWeight: 500, fontSize: "13px" }}>{endsIf}</span>} />
+        <Cell key="endsIf" label="Ends If" value={<span style={{ color: "var(--color-info-600)", fontWeight: 500, fontSize: "13px" }}>{endsIf}</span>} />
       ) : (
         <BlankCell key="endsIf-blank" />
       ),
@@ -229,7 +229,7 @@ export function FeatureMechanicsChips({
   // Row 5: Scales | blank (if has scaling)
   if (hasScaling) {
     rows.push([
-      <Cell key="scales" label="Scales" value={<span style={{ color: "#6b46c1", fontWeight: 500, fontSize: "13px" }}>{scaling}</span>} />,
+      <Cell key="scales" label="Scales" value={<span style={{ color: "var(--color-accent-purple-600)", fontWeight: 500, fontSize: "13px" }}>{scaling}</span>} />,
       <BlankCell key="scales-blank" />,
     ]);
   }
@@ -260,12 +260,12 @@ export function FeatureMechanicsChips({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: "#fafafa",
-        borderTop: "1px solid #f0f0f0",
+        background: "transparent",
+        borderTop: "1px solid var(--color-border)",
         padding: "8px 14px",
       }}
     >
-      <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#aaa" }}>
+      <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "var(--color-text-muted)" }}>
         {effectiveFeatureType === "Active" && <ClockIconBase className="h-3.5 w-3.5" />}
         {footerDuration}
       </span>
@@ -275,9 +275,9 @@ export function FeatureMechanicsChips({
             type="button"
             onClick={onUseClick}
             style={{
-              backgroundColor: "#fff",
-              border: "1.5px solid #111",
-              color: "#111",
+              backgroundColor: "var(--color-surface)",
+              border: "1.5px solid var(--color-ink)",
+              color: "var(--color-ink)",
               borderRadius: "999px",
               padding: "5px 14px",
               fontSize: "12px",
@@ -296,13 +296,13 @@ export function FeatureMechanicsChips({
   return (
     <div
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "transparent",
         borderRadius: "8px",
         overflow: "hidden",
       }}
     >
-      <div style={{ padding: "0 14px 10px", background: "#f5f5f5" }}>
-        <p style={{ fontSize: "15px", fontWeight: 500, color: "#111", lineHeight: 1.5 }}>
+      <div style={{ padding: "0 14px 10px", background: "transparent" }}>
+        <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
           {resolvedSummary || "\u00A0"}
         </p>
       </div>
@@ -312,9 +312,9 @@ export function FeatureMechanicsChips({
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "1px",
-            backgroundColor: "#f0f0f0",
-            borderTop: "1px solid #f0f0f0",
-            borderBottom: "1px solid #f0f0f0",
+            backgroundColor: "var(--color-border-muted)",
+            borderTop: "1px solid var(--color-border-muted)",
+            borderBottom: "1px solid var(--color-border-muted)",
           }}
         >
           {gridRows}
