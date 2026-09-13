@@ -1932,7 +1932,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": null,
+      "summary": "3 luck points; reroll any d20 and choose which result to use",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
