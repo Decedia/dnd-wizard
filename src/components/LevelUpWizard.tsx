@@ -179,8 +179,10 @@ function buildLevelInfos(
       spellSlots = (classData as any).arcaneTricksterSpellSlots[String(level)] || undefined;
     }
 
+    const rogueWithoutArcaneTrickster = className === "Rogue" && !isArcaneTricksterSubclass;
+
     let cantripsKnown: number | undefined;
-    if (classData.cantripsKnown) {
+    if (classData.cantripsKnown && !rogueWithoutArcaneTrickster) {
       if (Array.isArray(classData.cantripsKnown)) {
         const idx = Math.min(level - 1, classData.cantripsKnown.length - 1);
         cantripsKnown = classData.cantripsKnown[idx >= 0 ? idx : 0];
@@ -193,7 +195,7 @@ function buildLevelInfos(
     }
 
     let spellsKnown: number | undefined;
-    if ((classData as any)?.spellsKnown) {
+    if ((classData as any)?.spellsKnown && !rogueWithoutArcaneTrickster) {
       const known = (classData as any).spellsKnown;
       if (known[String(level)] !== undefined) {
         spellsKnown = known[String(level)];
