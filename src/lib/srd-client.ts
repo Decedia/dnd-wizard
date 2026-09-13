@@ -8,7 +8,7 @@ import armorsData from "@/data/2014_armor.json";
 import itemsData from "@/data/2014_items.json";
 import equipmentsData from "@/data/2014_equipments.json";
 import wizardSpellsData from "@/data/2014_wizard_spells.json";
-import arcaneTricksterSpellsData from "@/data/2014_arcane_trickster_spells.json";
+import arcaneTricksterSpellsData from "@/data/arcane_trickster_spells.json";
 import featsData from "@/data/2014_feats.json";
 import subclassSpellsData from "@/data/subclass_spells.json";
 import { equipment as srdEquipment } from "@/data/srd";
@@ -608,9 +608,20 @@ export function getWizardSpellNames(): string[] {
 }
 
 export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
-   const raw = (arcaneTricksterSpellsData as any).spells || [];
-   return raw.map(normalizeSpell);
- }
+  const raw = (arcaneTricksterSpellsData as any).spells || [];
+  return raw.map(normalizeSpell);
+}
+
+export function getClassSpells(classId: string): SRDSpell[] {
+  const lower = classId.toLowerCase().replace(/\s+/g, "_");
+  const dataFiles: Record<string, any> = {
+    "arcane_trickster": arcaneTricksterSpellsData,
+  };
+  const source = dataFiles[lower];
+  if (!source) return [];
+  const raw = (source as any).spells || [];
+  return raw.map(normalizeSpell);
+}
 
 export function getStaticFeats(sources?: string[], ruleset?: string): SRDFeat[] {
   const feats = featsData.feats as SRDFeat[];

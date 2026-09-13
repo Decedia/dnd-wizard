@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { getStaticSpells, getStaticArcaneTricksterSpells, getStaticWizardSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
+import { getStaticSpells, getClassSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
@@ -77,8 +77,11 @@ export function SpellSelectionModal({
   const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
   const isArcaneTrickster = atFlags.usesMageSpellList;
   const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset)) : (maxLevel || 0);
-  const allSpells = isArcaneTrickster
-    ? deduplicateSpells(getStaticWizardSpells(character.sources).filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
+  const classSpells = isArcaneTrickster
+    ? getClassSpells("arcane-trickster")
+    : [];
+  const allSpells = classSpells.length > 0
+    ? deduplicateSpells(classSpells.filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
     : deduplicateSpells(getStaticSpells(character.sources, character.ruleset).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
 
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
