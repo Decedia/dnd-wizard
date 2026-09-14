@@ -122,15 +122,6 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   }, [tempWeaponSelections, modalGroup, debug]);
 
   useEffect(() => {
-    if (!modalGroup || tempWeaponSelections.length !== 0) return;
-    const groupIndex = getGroupIndex(modalGroup.group.id);
-    const hasItems = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
-    if (!hasItems) return;
-    debug.log('CLEARING inventory for deselected group', { groupIndex, modalGroupId: modalGroup.group.id });
-    onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
-  }, [tempWeaponSelections, modalGroup, data.inventory, onChange, getGroupIndex, debug]);
-
-  useEffect(() => {
     debug.log('inventory CHANGED', { inventoryCount: data.inventory.length, items: data.inventory.map(i => ({ name: i.name, choiceGroupIndex: i.choiceGroupIndex, choiceOptionIndex: i.choiceOptionIndex })) });
   }, [data.inventory, debug]);
 
@@ -139,23 +130,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     return JSON.parse(JSON.stringify(data));
   }, [classData?.startingEquipment]);
 
-  const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
-  const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset), [data.sources, data.ruleset]);
-  const allEquipment = useMemo(() => getEquipmentNames(data.sources), [data.sources]);
-
-  useEffect(() => {
-    debug.log('startingEquipment CHANGED', {
-      count: startingEquipment.length,
-      entries: startingEquipment.map((e: any) => ({
-        description: e.description?.slice(0, 40),
-        isWeaponChoice: e.isWeaponChoice,
-        selectionCount: e.selectionCount,
-        granted: e.granted,
-      })),
-    });
-  }, [startingEquipment, debug]);
-
-  const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
+   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
   const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset), [data.sources, data.ruleset]);
   const allEquipment = useMemo(() => getEquipmentNames(data.sources), [data.sources]);
 
