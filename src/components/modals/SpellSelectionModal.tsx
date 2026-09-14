@@ -307,6 +307,11 @@ export function SpellSelectionModal({
     'allSpells.length': allSpells.length,
     'allSpells[0]': allSpells[0] ?? 'EMPTY',
     'atFlags': atFlags,
+    'atFlags.usesMageSpellList': atFlags.usesMageSpellList,
+    'getSubclassFlags return': (() => {
+      const raw = getSubclassFlags(character.subclassIndex || '');
+      return JSON.stringify(raw);
+    })(),
     'spellSlots': character.spellSlots ?? 'NULL',
     'character.class': character.class,
     'character.level': character.level,
