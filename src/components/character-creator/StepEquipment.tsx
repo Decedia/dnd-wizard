@@ -729,7 +729,61 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           <div className="grid grid-cols-4 gap-[6px]">
             {choiceGroups.map((group) => {
               const groupIndex = getGroupIndex(group.id);
-              const selectedItem = data.inventory.find(item => item.choiceGroupIndex === groupIndex);
+              const weaponChoiceOpt = group.options.find((opt: any) =>
+                opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
+              ) ?? null;
+              const selectionCount = weaponChoiceOpt?.selectionCount || 1;
+              const isMultiWeapon = weaponChoiceOpt && selectionCount > 1;
+              
+              const selectedItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
+              
+              if (isMultiWeapon) {
+                return (
+                  <div
+                    key={group.id}
+                    className="flex gap-[6px]"
+                    style={{ gridColumn: `span ${Math.min(selectionCount, 4)}` }}
+                  >
+                    {Array.from({ length: selectionCount }).map((_, idx) => {
+                      const selectedItem = selectedItems[idx];
+                      const hasSelection = !!selectedItem;
+                      const itemInfo = selectedItem?.description ? JSON.parse(selectedItem.description) : null;
+
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => handleChoiceSlotClick(group)}
+                          className={`flex-1 aspect-square rounded-[8px] border-2 flex flex-col items-center justify-center gap-1 p-1.5 transition-all relative ${
+                            hasSelection
+                              ? "border-[var(--color-ink)] bg-[var(--color-ink)]/10"
+                              : "border-dashed border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-text-muted)]"
+                          }`}
+                        >
+                          {hasSelection ? (
+                            <>
+                              <span className="text-2xl leading-none">{(itemInfo as any)?.icon || "📦"}</span>
+                              <span className="text-[9px] font-bold text-[var(--color-text-secondary)] text-center leading-tight line-clamp-2 w-full">
+                                {selectedItem.name}
+                              </span>
+                              {selectedItem.quantity > 1 && (
+                                <span className="text-[10px] font-bold text-[var(--color-text-muted)]">x{selectedItem.quantity}</span>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <span className="text-2xl text-[var(--color-text-muted)] leading-none">+</span>
+                              <span className="text-[9px] font-bold text-[var(--color-text-muted)]">Choose</span>
+                            </>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                );
+              }
+
+              const selectedItem = selectedItems[0];
               const hasSelection = !!selectedItem;
               const itemInfo = selectedItem?.description ? JSON.parse(selectedItem.description) : null;
 
