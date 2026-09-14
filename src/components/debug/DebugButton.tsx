@@ -47,7 +47,7 @@ export function DebugButton() {
 
   if (!enabled) {
     return (
-      <div className="fixed bottom-4 left-4 z-[999999]">
+      <div className="fixed bottom-4 left-4 z-[9999999]">
         <button
           type="button"
           onClick={handleButtonClick}
@@ -108,7 +108,7 @@ export function DebugButton() {
 
   return (
     <>
-      <div className="fixed bottom-4 left-4 z-[999999]">
+      <div className="fixed bottom-4 left-4 z-[9999999]">
         <button
           type="button"
           onClick={handleButtonClick}
