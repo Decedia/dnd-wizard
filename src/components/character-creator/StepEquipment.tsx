@@ -122,6 +122,15 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   }, [tempWeaponSelections, modalGroup, debug]);
 
   useEffect(() => {
+    if (!modalGroup || tempWeaponSelections.length !== 0) return;
+    const groupIndex = getGroupIndex(modalGroup.group.id);
+    const hasItems = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
+    if (!hasItems) return;
+    debug.log('CLEARING inventory for deselected group', { groupIndex, modalGroupId: modalGroup.group.id });
+    onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
+  }, [tempWeaponSelections, modalGroup, data.inventory, onChange, getGroupIndex, debug]);
+
+  useEffect(() => {
     debug.log('inventory CHANGED', { inventoryCount: data.inventory.length, items: data.inventory.map(i => ({ name: i.name, choiceGroupIndex: i.choiceGroupIndex, choiceOptionIndex: i.choiceOptionIndex })) });
   }, [data.inventory, debug]);
 
@@ -129,6 +138,22 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     const data = classData?.startingEquipment || [];
     return JSON.parse(JSON.stringify(data));
   }, [classData?.startingEquipment]);
+
+  const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
+  const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset), [data.sources, data.ruleset]);
+  const allEquipment = useMemo(() => getEquipmentNames(data.sources), [data.sources]);
+
+  useEffect(() => {
+    debug.log('startingEquipment CHANGED', {
+      count: startingEquipment.length,
+      entries: startingEquipment.map((e: any) => ({
+        description: e.description?.slice(0, 40),
+        isWeaponChoice: e.isWeaponChoice,
+        selectionCount: e.selectionCount,
+        granted: e.granted,
+      })),
+    });
+  }, [startingEquipment, debug]);
 
   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
   const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset), [data.sources, data.ruleset]);
@@ -314,11 +339,12 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
   const handleWeaponSelect = useCallback((weaponName: string) => {
+    debug.log('handleWeaponSelect CALLED', { weaponName, currentTempWeaponSelections: tempWeaponSelections, currentSelectedOptionIndex: modalGroup?.selectedOptionIndex, currentInventoryCount: data.inventory.length });
     setTempWeaponSelections(prev => {
       const alreadySelectedIndex = prev.findIndex(w => w.toLowerCase() === weaponName.toLowerCase());
       if (alreadySelectedIndex >= 0) {
         const newList = prev.filter(w => w.toLowerCase() !== weaponName.toLowerCase());
-        debug.log('handleWeaponSelect DESELECT', { weaponName, newList });
+        debug.log('handleWeaponSelect DESELECT', { weaponName, newList, wasSelected: true });
         return newList;
       }
       const selectionCount = modalGroup?.group.options.find(o =>
@@ -332,7 +358,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     });
     setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: null } : null);
     setTempSelectedName(null);
-  }, [modalGroup, debug]);
+  }, [modalGroup, debug, tempWeaponSelections, data.inventory]);
 
   const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
@@ -732,7 +758,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
         data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === idx)
       );
 
-      debug.log('handleChoiceSlotClick OPEN', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection, groupOptions: group.options.map(o => ({ desc: o.description, isWeaponChoice: o.isWeaponChoice, selectionCount: o.selectionCount })) });
+      debug.log('handleChoiceSlotClick OPEN', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection, groupOptions: group.options.map(o => ({ desc: o.description?.slice(0, 30), isWeaponChoice: o.isWeaponChoice, selectionCount: o.selectionCount, isInstrumentChoice: o.isInstrumentChoice, isArcaneFocusChoice: o.isArcaneFocusChoice, isHolySymbolChoice: o.isHolySymbolChoice, isDruidicFocusChoice: o.isDruidicFocusChoice })) });
       setModalGroup({
         group,
         selectedOptionIndex: priorSelection >= 0 ? priorSelection : null,
