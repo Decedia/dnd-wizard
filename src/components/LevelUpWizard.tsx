@@ -432,7 +432,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   const handleSubclassSelect = useCallback((name: string) => {
     setSubclassSelection(name);
-    const normalized = name.toLowerCase().replace(/[\s-]+/g, "_");
+    const normalized = name.toLowerCase().replace(/\s+/g, "-");
     setSubclassIndex(normalized);
   }, []);
 
@@ -1141,7 +1141,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onCircleTerrainChange={(terrain) => setCircleTerrain(info.level, terrain)}
               bonusCantrip={bonusCantripSelections[info.level] || ""}
               onBonusCantripChange={(cantrip) => setBonusCantrip(info.level, cantrip)}
-              character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/[\s-]+/g, '_') }}
+              character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/\s+/g, '-') }}
                hitDie={hitDie}
               diceType={diceType}
               conMod={conMod}
@@ -2050,7 +2050,7 @@ function LevelCard({
       {showSpellModal && info.hasSpellSelection && (
         <SpellSelectionModal
           key={`spell-modal-${lvl}`}
-          character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/[\s-]+/g, '_') }}
+          character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/\s+/g, '-') }}
           subclassSelection={subclassSelection}
           count={spellModalMode === "cantrips" ? 0 : info.spellSelectionCount}
           cantripCount={spellModalMode === "spells" ? 0 : info.cantripSelectionCount}
@@ -2247,7 +2247,7 @@ function LevelCard({
         <TerrainModal
           isOpen={showTerrainModal}
           onClose={() => setShowTerrainModal(false)}
-          character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/[\s-]+/g, '_') }}
+          character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/\s+/g, '-') }}
           level={info.level}
           maxSpellLevel={info.maxSpellLevel}
           selectedTerrain={circleTerrain}
