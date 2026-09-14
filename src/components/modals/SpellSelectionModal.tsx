@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { getStaticSpells, getClassSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
-import { DebugPanel } from "@/components/DebugPanel";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
@@ -235,9 +234,11 @@ export function SpellSelectionModal({
           }`}
         >
           <div className="flex items-center justify-between">
-            {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
-            {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-            {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+            <div className="w-3 shrink-0">
+              {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+              {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+              {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+            </div>
             <div className="flex items-center gap-1.5">
               <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
               <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
@@ -297,32 +298,6 @@ export function SpellSelectionModal({
     return "Replace a Spell";
   };
 
-  const debugData = {
-    'subclassIndex': character.subclassIndex ?? 'NULL',
-    'subclassSelection': subclassSelection ?? 'NULL',
-    'isArcaneTrickster': isArcaneTrickster,
-    'effectiveMaxLevel': effectiveMaxLevel,
-    'classSpells.length': classSpells.length,
-    'classSpells[0]': classSpells[0] ?? 'EMPTY',
-    'allSpells.length': allSpells.length,
-    'allSpells[0]': allSpells[0] ?? 'EMPTY',
-    'atFlags': atFlags,
-    'atFlags.usesMageSpellList': atFlags.usesMageSpellList,
-    'getSubclassFlags return': (() => {
-      const raw = getSubclassFlags(character.subclassIndex || '');
-      return JSON.stringify(raw);
-    })(),
-    'getSubclassFlags input': character.subclassIndex || '',
-    'spellSlots': character.spellSlots ?? 'NULL',
-    'character.class': character.class,
-    'character.level': character.level,
-    'getClassSpells result': (() => {
-      const result = getClassSpells('arcane-trickster');
-      return 'length: ' + result.length + (result[0] ? ' | first: ' + result[0].name : ' | EMPTY');
-    })(),
-    'normalizedKey': 'arcane-trickster'.toLowerCase().replace(/[\s-]+/g, '_'),
-  };
-
   return (
     <BasePopup
       isOpen={true}
@@ -333,7 +308,6 @@ export function SpellSelectionModal({
       onConfirm={onClose}
       showFooter={true}
     >
-      <DebugPanel data={debugData} />
       <div className="px-4 py-3 border-b border-[var(--color-border)] -mx-4 -mt-3 mb-3">
         <div className="relative">
           <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-text-muted)]" />
