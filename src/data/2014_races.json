@@ -6064,6 +6064,579 @@
         "cha": 2,
         "str": 1
       }
+    },
+    {
+      "index": "aarakocra",
+      "name": "Aarakocra",
+      "size": "Medium",
+      "speed": 25,
+      "abilityBonuses": {
+        "dexterity": 2,
+        "wisdom": 1
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Aarakocra",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Flying Speed",
+          "description": "You have a flying speed of 50 feet. To use this speed, you must not be wearing medium or heavy armor.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Flying speed of 50 feet",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Aarakocra",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Talons",
+          "description": "You have talons that you can use to make unarmed strikes. When you hit with them, the strike deals 1d4 slashing damage.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Unarmed strikes deal 1d4 slashing damage",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Aarakocra",
+            "level": null
+          },
+          "book": "VGTM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "Auran"
+      ],
+      "source": "VGTM",
+      "abilityScoreIncreases": {
+        "dexterity": 2,
+        "wisdom": 1
+      }
+    },
+    {
+      "index": "yuan-ti-pureblood",
+      "name": "Yuan-ti Pureblood",
+      "size": "Medium",
+      "speed": 30,
+      "abilityBonuses": {
+        "charisma": 2,
+        "intelligence": 1
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Yuan-ti Pureblood",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Innate Spellcasting",
+          "description": "You know the poison spray cantrip. Starting at 3rd level, you can cast suggestion once per long rest. Starting at 5th level, you can cast fear once per long rest. Your spellcasting ability for these spells is Charisma.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Cast poison spray, suggestion, and fear",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Yuan-ti Pureblood",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Magic Resistance",
+          "description": "You have advantage on saving throws against spells and other magical effects.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Advantage on saving throws against spells",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Yuan-ti Pureblood",
+            "level": null
+          },
+          "book": "VGTM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "Abyssal",
+        "Draconic"
+      ],
+      "source": "VGTM",
+      "abilityScoreIncreases": {
+        "charisma": 2,
+        "intelligence": 1
+      }
+    },
+    {
+      "index": "kobold",
+      "name": "Kobold",
+      "size": "Small",
+      "speed": 30,
+      "abilityBonuses": {
+        "dexterity": 2,
+        "strength": -2
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Kobold",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Grovel, Cower, and Beg",
+          "description": "As a bonus action, you can cower to distract nearby foes. Until the end of your next turn, your allies have advantage on attack rolls against enemies within 10 feet of you.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Until end of next turn",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Cower to give allies advantage on attacks",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Kobold",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Pack Tactics",
+          "description": "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't incapacitated.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Advantage on attacks if ally is within 5ft",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Kobold",
+            "level": null
+          },
+          "book": "VGTM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "Draconic"
+      ],
+      "source": "VGTM",
+      "abilityScoreIncreases": {
+        "dexterity": 2,
+        "strength": -2
+      }
+    },
+    {
+      "index": "goliath",
+      "name": "Goliath",
+      "size": "Medium",
+      "speed": 30,
+      "abilityBonuses": {
+        "strength": 2,
+        "constitution": 1
+      },
+      "traits": [
+        {
+          "name": "Stone's Endurance",
+          "description": "When you take damage, you can use your reaction to reduce the damage by 1d12 + your Constitution modifier. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Instant",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Reduce damage by 1d12 + Con mod",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Goliath",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Powerful Build",
+          "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Count as one size larger for carrying capacity",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Goliath",
+            "level": null
+          },
+          "book": "VGTM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "Giant"
+      ],
+      "source": "VGTM",
+      "abilityScoreIncreases": {
+        "strength": 2,
+        "constitution": 1
+      }
+    },
+    {
+      "index": "autognome",
+      "name": "Autognome",
+      "size": "Small",
+      "speed": 30,
+      "abilityBonuses": {
+        "dexterity": 2,
+        "constitution": 1
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Autognome",
+            "level": null
+          },
+          "book": "MPMM"
+        },
+        {
+          "name": "Gnome Cunning",
+          "description": "You have advantage on Intelligence, Wisdom, and Charisma saving throws.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Advantage on Int, Wis, Cha saves",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Autognome",
+            "level": null
+          },
+          "book": "MPMM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "any"
+      ],
+      "source": "MPMM",
+      "abilityScoreIncreases": {
+        "dexterity": 2,
+        "constitution": 1
+      }
+    },
+    {
+      "index": "plasmoid",
+      "name": "Plasmoid",
+      "size": "Medium",
+      "speed": 30,
+      "abilityBonuses": {
+        "constitution": 2,
+        "dexterity": 1
+      },
+      "traits": [
+        {
+          "name": "Shape Yourself",
+          "description": "As a bonus action, you can reshape your body to change your appearance. You can't change your overall size or your basic shape, but you can alter your coloration, texture, and other superficial features.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "1 hour",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Change appearance with bonus action",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Plasmoid",
+            "level": null
+          },
+          "book": "MPMM"
+        },
+        {
+          "name": "Plasmatic Resistance",
+          "description": "You have resistance to acid and poison damage, and you have advantage on saving throws against the poisoned condition.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Resistance to acid and poison",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Plasmoid",
+            "level": null
+          },
+          "book": "MPMM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "any"
+      ],
+      "source": "MPMM",
+      "abilityScoreIncreases": {
+        "constitution": 2,
+        "dexterity": 1
+      }
+    },
+    {
+      "index": "thri-kreen",
+      "name": "Thri-kreen",
+      "size": "Medium",
+      "speed": 30,
+      "abilityBonuses": {
+        "strength": 2,
+        "dexterity": 2
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You can see in dim light within 30 feet of you as if it were bright light, and in darkness as if it were dim light.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "See in dim light within 30ft",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Thri-kreen",
+            "level": null
+          },
+          "book": "MPMM"
+        },
+        {
+          "name": "Thri-kreen Psionics",
+          "description": "You can cast the mage hand cantrip, and the hand is invisible. Starting at 3rd level, you can cast detect magic once per long rest. Starting at 5th level, you can cast suggestion once per long rest. Your spellcasting ability for these spells is Wisdom.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Cast mage hand, detect magic, and suggestion",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Thri-kreen",
+            "level": null
+          },
+          "book": "MPMM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "any"
+      ],
+      "source": "MPMM",
+      "abilityScoreIncreases": {
+        "strength": 2,
+        "dexterity": 2
+      }
     }
   ]
 }
