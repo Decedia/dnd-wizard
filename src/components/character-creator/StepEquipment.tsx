@@ -125,11 +125,26 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     debug.log('inventory CHANGED', { inventoryCount: data.inventory.length, items: data.inventory.map(i => ({ name: i.name, choiceGroupIndex: i.choiceGroupIndex, choiceOptionIndex: i.choiceOptionIndex })) });
   }, [data.inventory, debug]);
 
-  const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
+  const startingEquipment = useMemo(() => {
+    const data = classData?.startingEquipment || [];
+    return JSON.parse(JSON.stringify(data));
+  }, [classData?.startingEquipment]);
 
   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
   const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset), [data.sources, data.ruleset]);
   const allEquipment = useMemo(() => getEquipmentNames(data.sources), [data.sources]);
+
+  useEffect(() => {
+    debug.log('startingEquipment CHANGED', {
+      count: startingEquipment.length,
+      entries: startingEquipment.map((e: any) => ({
+        description: e.description?.slice(0, 40),
+        isWeaponChoice: e.isWeaponChoice,
+        selectionCount: e.selectionCount,
+        granted: e.granted,
+      })),
+    });
+  }, [startingEquipment, debug]);
 
   const choiceGroups = useMemo<ChoiceGroup[]>(() => buildChoiceGroups(startingEquipment, data.ruleset), [startingEquipment, data.ruleset]);
 
