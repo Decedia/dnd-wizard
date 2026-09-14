@@ -283,12 +283,13 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     setTempWeaponSelections(prev => {
       const alreadySelectedIndex = prev.findIndex(w => w === weaponName);
       if (alreadySelectedIndex >= 0) {
+        console.log('[StepEquipment] handleWeaponSelect DESELECT', { weaponName, newList: prev.filter(w => w !== weaponName) });
         return prev.filter(w => w !== weaponName);
       }
       const selectionCount = modalGroup?.group.options.find(o =>
         o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
       )?.selectionCount || 1;
-      console.log('[StepEquipment] handleWeaponSelect', { weaponName, prevLength: prev.length, selectionCount, modalGroupId: modalGroup?.group.id });
+      console.log('[StepEquipment] handleWeaponSelect SELECT', { weaponName, prevLength: prev.length, selectionCount, modalGroupId: modalGroup?.group.id, willAdd: prev.length < selectionCount });
       if (prev.length >= selectionCount) {
         return prev;
       }
@@ -342,7 +343,18 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       effectiveOptionIndex = selectedOptionIndex;
     }
 
-    if (!option) return;
+    console.log('[StepEquipment] handleModalConfirm', { groupId: group.id, tempWeaponSelectionsLength: tempWeaponSelections.length, selectedOptionIndex, optionDescription: option?.description, effectiveOptionIndex });
+
+    if (!option) {
+      if (tempWeaponSelections.length === 0 && selectedOptionIndex === null) {
+        console.log('[StepEquipment] handleModalConfirm CLEARING group', groupIndex);
+        onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
+      }
+      setModalGroup(null);
+      setTempWeaponSelections([]);
+      setTempSelectedName(null);
+      return;
+    }
 
     let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
     const newItems: Character["inventory"] = [];
