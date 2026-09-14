@@ -293,6 +293,8 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       }
       return [...prev, weaponName];
     });
+    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: null } : null);
+    setTempSelectedName(null);
   }, [modalGroup]);
 
   const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
@@ -323,15 +325,23 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     if (!modalGroup) return;
 
     const { group, selectedOptionIndex } = modalGroup;
-    if (selectedOptionIndex === null) return;
-
-    const option = group.options[selectedOptionIndex];
     const groupIndex = getGroupIndex(group.id);
-    let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-    const newItems: Character["inventory"] = [];
 
     const isChoiceOption = (opt: EquipmentOption) =>
       opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
+
+    let option = selectedOptionIndex !== null ? group.options[selectedOptionIndex] : null;
+
+    if (!option && tempWeaponSelections.length > 0) {
+      option = group.options.find(isChoiceOption) ?? null;
+    }
+
+    if (!option) return;
+
+    const effectiveOptionIndex = selectedOptionIndex ?? group.options.findIndex(isChoiceOption);
+
+    let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+    const newItems: Character["inventory"] = [];
 
     if (!isChoiceOption(option)) {
       (option.items || []).forEach((item: any) => {
@@ -345,7 +355,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           description: itemInfo ? JSON.stringify(itemInfo) : "",
           itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
           choiceGroupIndex: groupIndex,
-          choiceOptionIndex: selectedOptionIndex,
+          choiceOptionIndex: effectiveOptionIndex,
         });
       });
     } else if (tempWeaponSelections.length > 0) {
@@ -366,7 +376,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           damageType: weapon?.damage?.damage_type?.name || "",
           category: weapon?.category_range || weapon?.weapon_category,
           choiceGroupIndex: groupIndex,
-          choiceOptionIndex: selectedOptionIndex,
+          choiceOptionIndex: effectiveOptionIndex,
         });
       });
 
@@ -381,7 +391,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           description: itemInfo ? JSON.stringify(itemInfo) : "",
           itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
           choiceGroupIndex: groupIndex,
-          choiceOptionIndex: selectedOptionIndex,
+          choiceOptionIndex: effectiveOptionIndex,
         });
       });
     }
