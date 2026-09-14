@@ -117,6 +117,10 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
 
+  useEffect(() => {
+    debug.log('tempWeaponSelections CHANGED', { tempWeaponSelections, modalGroupId: modalGroup?.group.id });
+  }, [tempWeaponSelections, modalGroup, debug]);
+
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
@@ -699,7 +703,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
         data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === idx)
       );
 
-      debug.log('handleChoiceSlotClick OPEN', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection });
+      debug.log('handleChoiceSlotClick OPEN', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection, groupOptions: group.options.map(o => ({ desc: o.description, isWeaponChoice: o.isWeaponChoice, selectionCount: o.selectionCount })) });
       setModalGroup({
         group,
         selectedOptionIndex: priorSelection >= 0 ? priorSelection : null,
