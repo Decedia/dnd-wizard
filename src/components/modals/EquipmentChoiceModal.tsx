@@ -86,9 +86,6 @@ export function EquipmentChoiceModal({
         <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
           <div className="pr-8">
             <div className="text-[16px] font-medium text-[var(--color-text-primary)]">{title}</div>
-            {group.description && (
-              <div className="text-[12px] text-[var(--color-text-muted)] mt-0.5">{group.description}</div>
-            )}
           </div>
           <button
             type="button"

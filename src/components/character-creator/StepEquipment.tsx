@@ -923,7 +923,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                 isOpen={!!modalGroup}
                 onClose={handleModalClose}
                 onConfirm={handleModalConfirm}
-                title={group.description}
+                title="Select from the options below"
                 group={group}
                 concreteOptions={concreteOptions}
                 selectedConcreteIndex={modalGroup.selectedOptionIndex}
