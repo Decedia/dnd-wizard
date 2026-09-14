@@ -709,45 +709,20 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
     const groupIndex = getGroupIndex(group.id);
 
-    const popupOptIndex = group.options.findIndex(opt =>
-      opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
-    );
-
-    if (popupOptIndex >= 0) {
-      const popupOpt = group.options[popupOptIndex];
-      let selectedWeaponNames: string[] = [];
-      let selectedName: string | null = null;
-
-      if (popupOpt.isWeaponChoice) {
-        selectedWeaponNames = data.inventory
-          .filter(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon" && item.choiceOptionIndex === popupOptIndex)
-          .map(w => w.name);
-      } else {
-        const existingItem = data.inventory.find(item => item.choiceGroupIndex === groupIndex);
-        if (existingItem) {
-          selectedName = existingItem.name;
-        }
-      }
-
-      const priorSelection = group.options.findIndex((_, idx) =>
-        data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === idx)
-      );
-
-      debug.log('handleChoiceSlotClick OPEN', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection, groupOptions: group.options.map(o => ({ desc: o.description?.slice(0, 30), isWeaponChoice: o.isWeaponChoice, selectionCount: o.selectionCount, isInstrumentChoice: o.isInstrumentChoice, isArcaneFocusChoice: o.isArcaneFocusChoice, isHolySymbolChoice: o.isHolySymbolChoice, isDruidicFocusChoice: o.isDruidicFocusChoice })) });
-      setModalGroup({
-        group,
-        selectedOptionIndex: priorSelection >= 0 ? priorSelection : null,
-      });
-      setTempWeaponSelections(selectedWeaponNames);
-      setTempSelectedName(selectedName);
-    } else {
-      const selectedIndex = group.options.findIndex((_, idx) => isOptionSelected(group, idx));
-      debug.log('handleChoiceSlotClick CONCRETE', { groupId: group.id, selectedIndex });
-      setModalGroup({ group, selectedOptionIndex: selectedIndex >= 0 ? selectedIndex : null });
-      setTempWeaponSelections([]);
-      setTempSelectedName(null);
+    const existingItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
+    if (existingItems.length > 0) {
+      debug.log('handleChoiceSlotClick CLEARING group', { groupIndex, groupId: group.id, count: existingItems.length });
+      onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
     }
-  }, [data.inventory, getGroupIndex, isOptionSelected, debug]);
+
+    debug.log('handleChoiceSlotClick OPEN empty', { groupId: group.id, groupIndex });
+    setModalGroup({
+      group,
+      selectedOptionIndex: null,
+    });
+    setTempWeaponSelections([]);
+    setTempSelectedName(null);
+  }, [data.inventory, getGroupIndex, onChange, debug]);
 
   return (
     <StepCard
