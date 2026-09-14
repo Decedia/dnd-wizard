@@ -306,10 +306,11 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
   const handleWeaponSelect = useCallback((weaponName: string) => {
     setTempWeaponSelections(prev => {
-      const alreadySelectedIndex = prev.findIndex(w => w === weaponName);
+      const alreadySelectedIndex = prev.findIndex(w => w.toLowerCase() === weaponName.toLowerCase());
       if (alreadySelectedIndex >= 0) {
-        debug.log('handleWeaponSelect DESELECT', { weaponName, newList: prev.filter(w => w !== weaponName) });
-        return prev.filter(w => w !== weaponName);
+        const newList = prev.filter(w => w.toLowerCase() !== weaponName.toLowerCase());
+        debug.log('handleWeaponSelect DESELECT', { weaponName, newList });
+        return newList;
       }
       const selectionCount = modalGroup?.group.options.find(o =>
         o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
