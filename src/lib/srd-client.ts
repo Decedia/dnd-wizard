@@ -733,6 +733,7 @@ export function getSubclassSpellGrants(subclassIndex: string, level: number): st
 }
 
 export function getSubclassFlags(subclassIndex: string): Record<string, boolean> {
+  console.log("[getSubclassFlags] input:", subclassIndex, "data keys:", Object.keys((subclassSpellsData as any).subclassFlags || {}));
   return (subclassSpellsData as any).subclassFlags[subclassIndex] || {};
 }
 
