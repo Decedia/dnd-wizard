@@ -736,8 +736,9 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
               const isMultiWeapon = weaponChoiceOpt && selectionCount > 1;
               
               const selectedItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
+              const hasWeaponChoiceSelection = isMultiWeapon && selectedItems.some(item => item.choiceOptionIndex === group.options.indexOf(weaponChoiceOpt));
               
-              if (isMultiWeapon) {
+              if (isMultiWeapon && hasWeaponChoiceSelection) {
                 return (
                   <div
                     key={group.id}
