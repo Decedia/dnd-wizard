@@ -312,6 +312,11 @@ export function SpellSelectionModal({
       const raw = getSubclassFlags(character.subclassIndex || '');
       return JSON.stringify(raw);
     })(),
+    'getSubclassFlags input': character.subclassIndex || '',
+    'subclassFlags keys': (() => {
+      const flags = (subclassSpellsData as any).subclassFlags || {};
+      return Object.keys(flags).join(', ');
+    })(),
     'spellSlots': character.spellSlots ?? 'NULL',
     'character.class': character.class,
     'character.level': character.level,
