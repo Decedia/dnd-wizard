@@ -288,6 +288,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       const selectionCount = modalGroup?.group.options.find(o =>
         o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
       )?.selectionCount || 1;
+      console.log('[StepEquipment] handleWeaponSelect', { weaponName, prevLength: prev.length, selectionCount, modalGroupId: modalGroup?.group.id });
       if (prev.length >= selectionCount) {
         return prev;
       }
@@ -684,6 +685,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
         data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === idx)
       );
 
+      console.log('[StepEquipment] handleChoiceSlotClick', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection });
       setModalGroup({
         group,
         selectedOptionIndex: priorSelection >= 0 ? priorSelection : null,
@@ -692,6 +694,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       setTempSelectedName(selectedName);
     } else {
       const selectedIndex = group.options.findIndex((_, idx) => isOptionSelected(group, idx));
+      console.log('[StepEquipment] handleChoiceSlotClick concrete', { groupId: group.id, selectedIndex });
       setModalGroup({ group, selectedOptionIndex: selectedIndex >= 0 ? selectedIndex : null });
       setTempWeaponSelections([]);
       setTempSelectedName(null);
