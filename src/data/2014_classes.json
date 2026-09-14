@@ -3069,14 +3069,16 @@
         {
           "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
-            {
-              "name": "Crossbow, light",
-              "quantity": 1
-            },
-            {
-              "name": "Crossbow bolt",
-              "quantity": 20
-            }
+              {
+                "name": "Crossbow, light",
+                "description": "(a) a light crossbow",
+                "quantity": 1
+              },
+              {
+                "name": "Crossbow bolt",
+                "description": "(a) 20 bolts",
+                "quantity": 20
+              }
           ]
         },
         {
@@ -5185,11 +5187,11 @@
         {
           "description": "(a) a martial weapon and a shield or (b) two martial weapons",
           "items": [
-            {
-              "name": "Shield",
-              "description": "a shield",
-              "quantity": 1
-            }
+              {
+                "name": "Shield",
+                "description": "(a) a shield",
+                "quantity": 1
+              }
           ]
         },
         {
@@ -5200,11 +5202,11 @@
               "description": "(a) a light crossbow",
               "quantity": 1
             },
-            {
-              "name": "Crossbow bolt",
-              "description": "20 bolts",
-              "quantity": 20
-            },
+              {
+                "name": "Crossbow bolt",
+                "description": "(a) 20 bolts",
+                "quantity": 20
+              },
             {
               "name": "Handaxe",
               "description": "(b) two handaxes",
@@ -7305,11 +7307,11 @@
         {
           "description": "(a) a martial weapon and a shield or (b) two martial weapons",
           "items": [
-            {
-              "name": "Shield",
-              "description": "a shield",
-              "quantity": 1
-            }
+              {
+                "name": "Shield",
+                "description": "(a) a shield",
+                "quantity": 1
+              }
           ]
         },
         {
@@ -10660,14 +10662,16 @@
         {
           "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
-            {
-              "name": "Crossbow, light",
-              "quantity": 1
-            },
-            {
-              "name": "Crossbow bolt",
-              "quantity": 20
-            }
+              {
+                "name": "Crossbow, light",
+                "description": "(a) a light crossbow",
+                "quantity": 1
+              },
+              {
+                "name": "Crossbow bolt",
+                "description": "(a) 20 bolts",
+                "quantity": 20
+              }
           ]
         },
         {
@@ -11775,14 +11779,16 @@
         {
           "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
-            {
-              "name": "Crossbow, light",
-              "quantity": 1
-            },
-            {
-              "name": "Crossbow bolt",
-              "quantity": 20
-            }
+              {
+                "name": "Crossbow, light",
+                "description": "(a) a light crossbow",
+                "quantity": 1
+              },
+              {
+                "name": "Crossbow bolt",
+                "description": "(a) 20 bolts",
+                "quantity": 20
+              }
           ]
         },
         {
@@ -15172,14 +15178,16 @@
           "granted": true,
           "description": "Light Crossbow and 20 bolts",
           "items": [
-            {
-              "name": "Light Crossbow",
-              "quantity": 1
-            },
-            {
-              "name": "Crossbow Bolts",
-              "quantity": 20
-            }
+              {
+                "name": "Crossbow, light",
+                "description": "(a) a light crossbow",
+                "quantity": 1
+              },
+              {
+                "name": "Crossbow bolt",
+                "description": "(a) 20 bolts",
+                "quantity": 20
+              }
           ]
         },
         {

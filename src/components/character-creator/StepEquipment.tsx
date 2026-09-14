@@ -112,14 +112,14 @@ const DRUIDIC_FOCUS_TYPES = [
 export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const debug = useDebugLogger("StepEquipment");
-  const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null } | null>(null);
-  const [tempWeaponSelections, setTempWeaponSelections] = useState<string[]>([]);
+  const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null; selectedWeaponChoiceIndex: number | null } | null>(null);
+  const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
   const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
-    debug.log('tempWeaponSelections CHANGED', { tempWeaponSelections, modalGroupId: modalGroup?.group.id });
-  }, [tempWeaponSelections, modalGroup, debug]);
+    debug.log('tempWeaponSelectionsMap CHANGED', { tempWeaponSelectionsMap, modalGroupId: modalGroup?.group.id });
+  }, [tempWeaponSelectionsMap, modalGroup, debug]);
 
   useEffect(() => {
     debug.log('inventory CHANGED', { inventoryCount: data.inventory.length, items: data.inventory.map(i => ({ name: i.name, choiceGroupIndex: i.choiceGroupIndex, choiceOptionIndex: i.choiceOptionIndex })) });
@@ -154,13 +154,15 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   }, []);
 
   useEffect(() => {
-    if (!modalGroup || tempWeaponSelections.length !== 0) return;
+    if (!modalGroup) return;
     const groupIndex = getGroupIndex(modalGroup.group.id);
+    const hasSelections = Object.values(tempWeaponSelectionsMap).some(selections => selections.length > 0);
+    if (hasSelections) return;
     const hasItems = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
     if (!hasItems) return;
     debug.log('CLEARING inventory for deselected group', { groupIndex, modalGroupId: modalGroup.group.id });
     onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
-  }, [tempWeaponSelections, modalGroup, data.inventory, onChange, getGroupIndex, debug]);
+  }, [tempWeaponSelectionsMap, modalGroup, data.inventory, onChange, getGroupIndex, debug]);
 
   const isMusicalInstrument = useCallback((itemName: string) => {
     return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
@@ -313,27 +315,28 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     onChange({ inventory: [...newInventory, ...newItems] });
   }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
-  const handleWeaponSelect = useCallback((weaponName: string) => {
-    debug.log('handleWeaponSelect CALLED', { weaponName, currentTempWeaponSelections: tempWeaponSelections, currentSelectedOptionIndex: modalGroup?.selectedOptionIndex, currentInventoryCount: data.inventory.length });
-    setTempWeaponSelections(prev => {
-      const alreadySelectedIndex = prev.findIndex(w => w.toLowerCase() === weaponName.toLowerCase());
+  const handleWeaponSelect = useCallback((weaponName: string, choiceIndex: number) => {
+    debug.log('handleWeaponSelect CALLED', { weaponName, choiceIndex, currentTempWeaponSelectionsMap: tempWeaponSelectionsMap, currentSelectedOptionIndex: modalGroup?.selectedOptionIndex, currentSelectedWeaponChoiceIndex: modalGroup?.selectedWeaponChoiceIndex, currentInventoryCount: data.inventory.length });
+    setTempWeaponSelectionsMap(prev => {
+      const current = prev[choiceIndex] || [];
+      const alreadySelectedIndex = current.findIndex(w => w.toLowerCase() === weaponName.toLowerCase());
       if (alreadySelectedIndex >= 0) {
-        const newList = prev.filter(w => w.toLowerCase() !== weaponName.toLowerCase());
+        const newList = current.filter(w => w.toLowerCase() !== weaponName.toLowerCase());
         debug.log('handleWeaponSelect DESELECT', { weaponName, newList, wasSelected: true });
-        return newList;
+        return { ...prev, [choiceIndex]: newList };
       }
-      const selectionCount = modalGroup?.group.options.find(o =>
+      const selectionCount = modalGroup?.group.options.filter(o =>
         o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
-      )?.selectionCount || 1;
-      debug.log('handleWeaponSelect SELECT', { weaponName, prevLength: prev.length, selectionCount, modalGroupId: modalGroup?.group.id, willAdd: prev.length < selectionCount });
-      if (prev.length >= selectionCount) {
+      )[choiceIndex]?.selectionCount || 1;
+      debug.log('handleWeaponSelect SELECT', { weaponName, prevLength: current.length, selectionCount, choiceIndex, modalGroupId: modalGroup?.group.id, willAdd: current.length < selectionCount });
+      if (current.length >= selectionCount) {
         return prev;
       }
-      return [...prev, weaponName];
+      return { ...prev, [choiceIndex]: [...current, weaponName] };
     });
-    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: null } : null);
+    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: null, selectedWeaponChoiceIndex: choiceIndex } : null);
     setTempSelectedName(null);
-  }, [modalGroup, debug, tempWeaponSelections, data.inventory]);
+  }, [modalGroup, debug, tempWeaponSelectionsMap, data.inventory]);
 
   const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
@@ -362,7 +365,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const handleModalConfirm = useCallback(() => {
     if (!modalGroup) return;
 
-    const { group, selectedOptionIndex } = modalGroup;
+    const { group, selectedOptionIndex, selectedWeaponChoiceIndex } = modalGroup;
     const groupIndex = getGroupIndex(group.id);
 
     const isChoiceOption = (opt: EquipmentOption) =>
@@ -371,23 +374,24 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     let option: EquipmentOption | null = null;
     let effectiveOptionIndex: number | undefined;
 
-    if (tempWeaponSelections.length > 0) {
-      option = group.options.find(isChoiceOption) ?? null;
-      effectiveOptionIndex = option ? group.options.findIndex(isChoiceOption) : undefined;
+    if (selectedWeaponChoiceIndex !== null) {
+      const choiceOptions = group.options.filter(isChoiceOption);
+      option = choiceOptions[selectedWeaponChoiceIndex] ?? null;
+      effectiveOptionIndex = option ? group.options.indexOf(option) : undefined;
     } else if (selectedOptionIndex !== null) {
       option = group.options[selectedOptionIndex];
       effectiveOptionIndex = selectedOptionIndex;
     }
 
-    debug.log('handleModalConfirm', { groupId: group.id, tempWeaponSelectionsLength: tempWeaponSelections.length, selectedOptionIndex, optionDescription: option?.description, effectiveOptionIndex });
+    debug.log('handleModalConfirm', { groupId: group.id, selectedOptionIndex, selectedWeaponChoiceIndex, tempWeaponSelectionsMap, optionDescription: option?.description, effectiveOptionIndex });
 
     if (!option) {
-      if (tempWeaponSelections.length === 0 && selectedOptionIndex === null) {
+      if (selectedWeaponChoiceIndex === null && selectedOptionIndex === null) {
         debug.log('handleModalConfirm CLEARING group', groupIndex);
         onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
       }
       setModalGroup(null);
-      setTempWeaponSelections([]);
+      setTempWeaponSelectionsMap({});
       setTempSelectedName(null);
       return;
     }
@@ -410,10 +414,11 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           choiceOptionIndex: effectiveOptionIndex,
         });
       });
-    } else if (tempWeaponSelections.length > 0) {
+    } else if (selectedWeaponChoiceIndex !== null) {
       const selectionCount = option.selectionCount || 1;
+      const selections = tempWeaponSelectionsMap[selectedWeaponChoiceIndex] || [];
 
-      tempWeaponSelections.slice(0, selectionCount).forEach(weaponName => {
+      selections.slice(0, selectionCount).forEach(weaponName => {
         const itemInfo = getItemInfo(weaponName);
         const weapon = weapons.find((w: any) => w.name === weaponName);
         newItems.push({
@@ -453,13 +458,13 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     }
 
     setModalGroup(null);
-    setTempWeaponSelections([]);
+    setTempWeaponSelectionsMap({});
     setTempSelectedName(null);
-  }, [modalGroup, tempWeaponSelections, data.inventory, getGroupIndex, getItemInfo, weapons, generateId, onChange]);
+  }, [modalGroup, tempWeaponSelectionsMap, data.inventory, getGroupIndex, getItemInfo, weapons, generateId, onChange, debug]);
 
   const handleModalClose = useCallback(() => {
     setModalGroup(null);
-    setTempWeaponSelections([]);
+    setTempWeaponSelectionsMap({});
     setTempSelectedName(null);
   }, []);
 
@@ -719,8 +724,9 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     setModalGroup({
       group,
       selectedOptionIndex: null,
+      selectedWeaponChoiceIndex: null,
     });
-    setTempWeaponSelections([]);
+    setTempWeaponSelectionsMap({});
     setTempSelectedName(null);
   }, [data.inventory, getGroupIndex, onChange, debug]);
 
@@ -854,67 +860,81 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           const isChoiceOption = (opt: EquipmentOption) =>
             opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
 
-          const weaponChoiceOpt = group.options.find(isChoiceOption) ?? null;
+          const choiceOptions = group.options.filter(isChoiceOption);
           const concreteOptions = group.options.filter((o) => !isChoiceOption(o));
-          const selectionCount = weaponChoiceOpt?.selectionCount || 1;
 
-          let weaponOpts: Array<{ icon: string; name: string; description: string; data?: any }> = [];
-          if (weaponChoiceOpt?.isWeaponChoice) {
-            const categoryWeapons = getWeaponsByCategory(weaponChoiceOpt.weaponType || "");
-            weaponOpts = categoryWeapons.map((w: any) => {
-              const itemInfo = getItemInfo(w.name);
-              return {
-                icon: getWeaponEmoji(w.name, weaponChoiceOpt.weaponType),
-                name: w.name,
-                description: w.description || "",
-                data: w,
-              };
-            });
-          } else if (weaponChoiceOpt?.isInstrumentChoice) {
-            weaponOpts = MUSICAL_INSTRUMENTS.map(name => {
-              const itemInfo = getItemInfo(name);
-              return {
-                icon: "🎵",
-                name,
-                description: itemInfo?.description || "",
-                data: itemInfo,
-              };
-            });
-          } else if (weaponChoiceOpt?.isArcaneFocusChoice) {
-            weaponOpts = ARCANE_FOCUS_TYPES.map(name => {
-              const itemInfo = getItemInfo(name);
-              return {
-                icon: "🔮",
-                name,
-                description: itemInfo?.description || "",
-                data: itemInfo,
-              };
-            });
-          } else if (weaponChoiceOpt?.isHolySymbolChoice) {
-            weaponOpts = HOLY_SYMBOL_TYPES.map(name => {
-              const itemInfo = getItemInfo(name);
-              return {
-                icon: "✨",
-                name,
-                description: itemInfo?.description || "",
-                data: itemInfo,
-              };
-            });
-          } else if (weaponChoiceOpt?.isDruidicFocusChoice) {
-            weaponOpts = DRUIDIC_FOCUS_TYPES.map(name => {
-              const itemInfo = getItemInfo(name);
-              return {
-                icon: "🌿",
-                name,
-                description: itemInfo?.description || "",
-                data: itemInfo,
-              };
-            });
-          }
+          const weaponChoiceOptions = choiceOptions.map((opt, idx) => {
+            const selectionCount = opt.selectionCount || 1;
+            let weaponOpts: Array<{ icon: string; name: string; description: string; data?: any }> = [];
+
+            if (opt.isWeaponChoice) {
+              const categoryWeapons = getWeaponsByCategory(opt.weaponType || "");
+              weaponOpts = categoryWeapons.map((w: any) => {
+                const itemInfo = getItemInfo(w.name);
+                return {
+                  icon: getWeaponEmoji(w.name, opt.weaponType),
+                  name: w.name,
+                  description: w.description || "",
+                  data: w,
+                };
+              });
+            } else if (opt.isInstrumentChoice) {
+              weaponOpts = MUSICAL_INSTRUMENTS.map(name => {
+                const itemInfo = getItemInfo(name);
+                return {
+                  icon: "🎵",
+                  name,
+                  description: itemInfo?.description || "",
+                  data: itemInfo,
+                };
+              });
+            } else if (opt.isArcaneFocusChoice) {
+              weaponOpts = ARCANE_FOCUS_TYPES.map(name => {
+                const itemInfo = getItemInfo(name);
+                return {
+                  icon: "🔮",
+                  name,
+                  description: itemInfo?.description || "",
+                  data: itemInfo,
+                };
+              });
+            } else if (opt.isHolySymbolChoice) {
+              weaponOpts = HOLY_SYMBOL_TYPES.map(name => {
+                const itemInfo = getItemInfo(name);
+                return {
+                  icon: "✨",
+                  name,
+                  description: itemInfo?.description || "",
+                  data: itemInfo,
+                };
+              });
+            } else if (opt.isDruidicFocusChoice) {
+              weaponOpts = DRUIDIC_FOCUS_TYPES.map(name => {
+                const itemInfo = getItemInfo(name);
+                return {
+                  icon: "🌿",
+                  name,
+                  description: itemInfo?.description || "",
+                  data: itemInfo,
+                };
+              });
+            }
+
+            return {
+              id: `wc-${idx}`,
+              label: opt.description,
+              bonusItems: (opt.items || []).map(item => ({ name: item.name, quantity: item.quantity || 1 })),
+              selectionCount,
+              weaponOptions: weaponOpts,
+              selectedWeaponNames: tempWeaponSelectionsMap[idx] || [],
+              onWeaponSelect: (name: string) => handleWeaponSelect(name, idx),
+            };
+          });
 
           const selectedOpt = modalGroup.selectedOptionIndex !== null ? group.options[modalGroup.selectedOptionIndex] : null;
           const hasConcreteSelection = selectedOpt !== null && !isChoiceOption(selectedOpt);
-          const hasWeaponSelection = weaponChoiceOpt && tempWeaponSelections.length >= selectionCount;
+          const selectedWcIdx = modalGroup.selectedWeaponChoiceIndex;
+          const hasWeaponSelection = selectedWcIdx !== null && (tempWeaponSelectionsMap[selectedWcIdx] || []).length >= (weaponChoiceOptions[selectedWcIdx]?.selectionCount || 1);
           const confirmDisabled = !hasConcreteSelection && !hasWeaponSelection;
 
           return (
@@ -928,15 +948,15 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                 concreteOptions={concreteOptions}
                 selectedConcreteIndex={modalGroup.selectedOptionIndex}
                 onConcreteSelect={(idx) => {
-                  setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: idx } : null);
-                  setTempWeaponSelections([]);
+                  setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: idx, selectedWeaponChoiceIndex: null } : null);
+                  setTempWeaponSelectionsMap({});
                   setTempSelectedName(null);
                 }}
-                weaponOptions={weaponOpts}
-                selectedWeaponNames={tempWeaponSelections}
-                onWeaponSelect={handleWeaponSelect}
-                weaponSelectionCount={selectionCount}
-                weaponType={weaponChoiceOpt?.weaponType}
+                weaponChoiceOptions={weaponChoiceOptions}
+                selectedWeaponChoiceIndex={modalGroup.selectedWeaponChoiceIndex}
+                onWeaponChoiceSelect={(idx) => {
+                  setModalGroup(prev => prev ? { ...prev, selectedWeaponChoiceIndex: idx, selectedOptionIndex: null } : null);
+                }}
                 confirmDisabled={confirmDisabled}
                 renderRightContent={(option, isSelected) => {
                   if (isSelected) {

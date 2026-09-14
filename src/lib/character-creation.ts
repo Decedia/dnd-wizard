@@ -332,7 +332,9 @@ export function buildChoiceGroups(startingEquipment: any[], ruleset?: string): C
           isDruidicFocusChoice = true;
         }
 
-        const displayDescription = srdMatch ? srdMatch.name : nameWithoutLetter.charAt(0).toUpperCase() + nameWithoutLetter.slice(1);
+        const displayDescription = srdMatch?.isChoice
+          ? nameWithoutLetter.charAt(0).toUpperCase() + nameWithoutLetter.slice(1)
+          : (srdMatch?.name || nameWithoutLetter.charAt(0).toUpperCase() + nameWithoutLetter.slice(1));
 
         return {
           description: displayDescription,
@@ -395,7 +397,9 @@ export function buildChoiceGroups(startingEquipment: any[], ruleset?: string): C
           isDruidicFocusChoice = true;
         }
 
-        const displayDescription = srdMatch ? srdMatch.name : displayText.charAt(0).toUpperCase() + displayText.slice(1);
+        const displayDescription = srdMatch?.isChoice
+          ? displayText.charAt(0).toUpperCase() + displayText.slice(1)
+          : (srdMatch?.name || displayText.charAt(0).toUpperCase() + displayText.slice(1));
 
         return {
           description: displayDescription,
