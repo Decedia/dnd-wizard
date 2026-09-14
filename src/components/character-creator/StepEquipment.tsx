@@ -121,6 +121,10 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     debug.log('tempWeaponSelections CHANGED', { tempWeaponSelections, modalGroupId: modalGroup?.group.id });
   }, [tempWeaponSelections, modalGroup, debug]);
 
+  useEffect(() => {
+    debug.log('inventory CHANGED', { inventoryCount: data.inventory.length, items: data.inventory.map(i => ({ name: i.name, choiceGroupIndex: i.choiceGroupIndex, choiceOptionIndex: i.choiceOptionIndex })) });
+  }, [data.inventory, debug]);
+
   const startingEquipment = useMemo(() => classData?.startingEquipment || [], [classData?.startingEquipment]);
 
   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
