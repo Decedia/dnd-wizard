@@ -153,6 +153,15 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     return match ? parseInt(match[1], 10) : -1;
   }, []);
 
+  useEffect(() => {
+    if (!modalGroup || tempWeaponSelections.length !== 0) return;
+    const groupIndex = getGroupIndex(modalGroup.group.id);
+    const hasItems = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
+    if (!hasItems) return;
+    debug.log('CLEARING inventory for deselected group', { groupIndex, modalGroupId: modalGroup.group.id });
+    onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
+  }, [tempWeaponSelections, modalGroup, data.inventory, onChange, getGroupIndex, debug]);
+
   const isMusicalInstrument = useCallback((itemName: string) => {
     return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
   }, []);
