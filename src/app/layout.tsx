@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { BottomNav } from "@/components/BottomNav";
 import { SRDProvider } from "@/contexts/SRDContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { DebugProvider } from "@/lib/debug/DebugContext";
+import { DebugButton } from "@/components/debug/DebugButton";
 import "./globals.css";
 
 const inter = Inter({
@@ -35,9 +37,12 @@ export default function RootLayout({
       >
         <SRDProvider>
           <ThemeProvider>
-            <div className="mx-auto max-w-lg pb-36">
-              {children}
-            </div>
+            <DebugProvider>
+              <div className="mx-auto max-w-lg pb-36">
+                {children}
+              </div>
+              <DebugButton />
+            </DebugProvider>
           </ThemeProvider>
         </SRDProvider>
         <BottomNav />

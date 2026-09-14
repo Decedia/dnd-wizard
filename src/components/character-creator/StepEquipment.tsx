@@ -13,6 +13,7 @@ import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, Cro
 import { SourceBadge } from "@/components/SourceBadge";
 import { ItemSlot, ItemDetailPanel, InventoryGrid, type ItemSlotData } from "@/components/character-sheet/InventoryGrid";
 import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
+import { useDebugLogger } from "@/lib/debug/DebugContext";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -110,6 +111,7 @@ const DRUIDIC_FOCUS_TYPES = [
 
 export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
+  const debug = useDebugLogger("StepEquipment");
   const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null } | null>(null);
   const [tempWeaponSelections, setTempWeaponSelections] = useState<string[]>([]);
   const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
@@ -283,13 +285,13 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     setTempWeaponSelections(prev => {
       const alreadySelectedIndex = prev.findIndex(w => w === weaponName);
       if (alreadySelectedIndex >= 0) {
-        console.log('[StepEquipment] handleWeaponSelect DESELECT', { weaponName, newList: prev.filter(w => w !== weaponName) });
+        debug.log('handleWeaponSelect DESELECT', { weaponName, newList: prev.filter(w => w !== weaponName) });
         return prev.filter(w => w !== weaponName);
       }
       const selectionCount = modalGroup?.group.options.find(o =>
         o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
       )?.selectionCount || 1;
-      console.log('[StepEquipment] handleWeaponSelect SELECT', { weaponName, prevLength: prev.length, selectionCount, modalGroupId: modalGroup?.group.id, willAdd: prev.length < selectionCount });
+      debug.log('handleWeaponSelect SELECT', { weaponName, prevLength: prev.length, selectionCount, modalGroupId: modalGroup?.group.id, willAdd: prev.length < selectionCount });
       if (prev.length >= selectionCount) {
         return prev;
       }
@@ -297,7 +299,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     });
     setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: null } : null);
     setTempSelectedName(null);
-  }, [modalGroup]);
+  }, [modalGroup, debug]);
 
   const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
     const groupIndex = getGroupIndex(groupId);
@@ -343,11 +345,11 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       effectiveOptionIndex = selectedOptionIndex;
     }
 
-    console.log('[StepEquipment] handleModalConfirm', { groupId: group.id, tempWeaponSelectionsLength: tempWeaponSelections.length, selectedOptionIndex, optionDescription: option?.description, effectiveOptionIndex });
+    debug.log('handleModalConfirm', { groupId: group.id, tempWeaponSelectionsLength: tempWeaponSelections.length, selectedOptionIndex, optionDescription: option?.description, effectiveOptionIndex });
 
     if (!option) {
       if (tempWeaponSelections.length === 0 && selectedOptionIndex === null) {
-        console.log('[StepEquipment] handleModalConfirm CLEARING group', groupIndex);
+        debug.log('handleModalConfirm CLEARING group', groupIndex);
         onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
       }
       setModalGroup(null);
@@ -697,7 +699,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
         data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === idx)
       );
 
-      console.log('[StepEquipment] handleChoiceSlotClick', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection });
+      debug.log('handleChoiceSlotClick OPEN', { groupId: group.id, popupOptIndex, selectedWeaponNames, priorSelection });
       setModalGroup({
         group,
         selectedOptionIndex: priorSelection >= 0 ? priorSelection : null,
@@ -706,12 +708,12 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       setTempSelectedName(selectedName);
     } else {
       const selectedIndex = group.options.findIndex((_, idx) => isOptionSelected(group, idx));
-      console.log('[StepEquipment] handleChoiceSlotClick concrete', { groupId: group.id, selectedIndex });
+      debug.log('handleChoiceSlotClick CONCRETE', { groupId: group.id, selectedIndex });
       setModalGroup({ group, selectedOptionIndex: selectedIndex >= 0 ? selectedIndex : null });
       setTempWeaponSelections([]);
       setTempSelectedName(null);
     }
-  }, [data.inventory, getGroupIndex, isOptionSelected]);
+  }, [data.inventory, getGroupIndex, isOptionSelected, debug]);
 
   return (
     <StepCard
@@ -934,17 +936,6 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                   return <InfoButton title={(option as any).name || ""} description={(option as any).description || ""} />;
                 }}
               />
-              <div className="fixed bottom-4 right-4 z-[999999] max-w-sm w-full">
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-2xl p-4 space-y-2 text-[11px] font-mono">
-                  <div className="text-[var(--color-text-primary)] font-bold text-xs mb-1">StepEquipment debug</div>
-                  <div>modalGroup.group.id: {modalGroup.group.id}</div>
-                  <div>selectedOptionIndex: {String(modalGroup.selectedOptionIndex)}</div>
-                  <div>tempWeaponSelections: {JSON.stringify(tempWeaponSelections)}</div>
-                  <div>tempSelectedName: {String(tempSelectedName)}</div>
-                  <div>selectionCount: {selectionCount}</div>
-                  <div>confirmDisabled: {String(confirmDisabled)}</div>
-                </div>
-              </div>
             </>
           );
         })()}
