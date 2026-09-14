@@ -330,15 +330,18 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     const isChoiceOption = (opt: EquipmentOption) =>
       opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
 
-    let option = selectedOptionIndex !== null ? group.options[selectedOptionIndex] : null;
+    let option: EquipmentOption | null = null;
+    let effectiveOptionIndex: number | undefined;
 
-    if (!option && tempWeaponSelections.length > 0) {
+    if (tempWeaponSelections.length > 0) {
       option = group.options.find(isChoiceOption) ?? null;
+      effectiveOptionIndex = option ? group.options.findIndex(isChoiceOption) : undefined;
+    } else if (selectedOptionIndex !== null) {
+      option = group.options[selectedOptionIndex];
+      effectiveOptionIndex = selectedOptionIndex;
     }
 
     if (!option) return;
-
-    const effectiveOptionIndex = selectedOptionIndex ?? group.options.findIndex(isChoiceOption);
 
     let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
     const newItems: Character["inventory"] = [];
