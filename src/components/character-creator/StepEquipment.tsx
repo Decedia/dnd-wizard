@@ -907,32 +907,45 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           const confirmDisabled = !hasConcreteSelection && !hasWeaponSelection;
 
           return (
-            <EquipmentChoiceModal
-              isOpen={!!modalGroup}
-              onClose={handleModalClose}
-              onConfirm={handleModalConfirm}
-              title={group.description}
-              group={group}
-              concreteOptions={concreteOptions}
-              selectedConcreteIndex={modalGroup.selectedOptionIndex}
-              onConcreteSelect={(idx) => {
-                setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: idx } : null);
-                setTempWeaponSelections([]);
-                setTempSelectedName(null);
-              }}
-              weaponOptions={weaponOpts}
-              selectedWeaponNames={tempWeaponSelections}
-              onWeaponSelect={handleWeaponSelect}
-              weaponSelectionCount={selectionCount}
-              weaponType={weaponChoiceOpt?.weaponType}
-              confirmDisabled={confirmDisabled}
-              renderRightContent={(option, isSelected) => {
-                if (isSelected) {
-                  return <Check className="h-4 w-4 text-[var(--color-text-primary)]" />;
-                }
-                return <InfoButton title={(option as any).name || ""} description={(option as any).description || ""} />;
-              }}
-            />
+            <>
+              <EquipmentChoiceModal
+                isOpen={!!modalGroup}
+                onClose={handleModalClose}
+                onConfirm={handleModalConfirm}
+                title={group.description}
+                group={group}
+                concreteOptions={concreteOptions}
+                selectedConcreteIndex={modalGroup.selectedOptionIndex}
+                onConcreteSelect={(idx) => {
+                  setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: idx } : null);
+                  setTempWeaponSelections([]);
+                  setTempSelectedName(null);
+                }}
+                weaponOptions={weaponOpts}
+                selectedWeaponNames={tempWeaponSelections}
+                onWeaponSelect={handleWeaponSelect}
+                weaponSelectionCount={selectionCount}
+                weaponType={weaponChoiceOpt?.weaponType}
+                confirmDisabled={confirmDisabled}
+                renderRightContent={(option, isSelected) => {
+                  if (isSelected) {
+                    return <Check className="h-4 w-4 text-[var(--color-text-primary)]" />;
+                  }
+                  return <InfoButton title={(option as any).name || ""} description={(option as any).description || ""} />;
+                }}
+              />
+              <div className="fixed bottom-4 right-4 z-[999999] max-w-sm w-full">
+                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-2xl p-4 space-y-2 text-[11px] font-mono">
+                  <div className="text-[var(--color-text-primary)] font-bold text-xs mb-1">StepEquipment debug</div>
+                  <div>modalGroup.group.id: {modalGroup.group.id}</div>
+                  <div>selectedOptionIndex: {String(modalGroup.selectedOptionIndex)}</div>
+                  <div>tempWeaponSelections: {JSON.stringify(tempWeaponSelections)}</div>
+                  <div>tempSelectedName: {String(tempSelectedName)}</div>
+                  <div>selectionCount: {selectionCount}</div>
+                  <div>confirmDisabled: {String(confirmDisabled)}</div>
+                </div>
+              </div>
+            </>
           );
         })()}
       </div>
