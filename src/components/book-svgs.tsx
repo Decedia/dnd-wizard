@@ -66,6 +66,14 @@ export const BookPatterns = {
       <line x1="50" y1="85" x2="90" y2="85" stroke="white" strokeWidth="0.8" opacity="0.08" />
     </svg>
   ),
+  MPMM: (
+    <svg width="100%" height="100%" viewBox="0 0 140 120" preserveAspectRatio="none">
+      <circle cx="70" cy="60" r="45" fill="none" stroke="white" strokeWidth="1" opacity="0.08" />
+      <circle cx="70" cy="60" r="28" fill="none" stroke="white" strokeWidth="1" opacity="0.08" />
+      <circle cx="70" cy="60" r="12" fill="none" stroke="white" strokeWidth="1" opacity="0.08" />
+      <rect x="15" y="5" width="110" height="110" fill="none" stroke="white" strokeWidth="1" opacity="0.07" transform="rotate(45 70 60)" />
+    </svg>
+  ),
 };
 
 export const BookIcons = {
@@ -173,6 +181,17 @@ export const BookIcons = {
       <circle cx="70" cy="16" r="7" fill="white" opacity="0.8" />
       <line x1="30" y1="68" x2="18" y2="92" />
       <line x1="110" y1="68" x2="122" y2="92" />
+    </svg>
+  ),
+  MPMM: (
+    <svg width="100%" height="100%" viewBox="0 0 140 120" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.22">
+      <circle cx="70" cy="60" r="35" />
+      <circle cx="70" cy="60" r="20" />
+      <path d="M70 25 L70 40" />
+      <path d="M70 80 L70 95" />
+      <path d="M35 60 L50 60" />
+      <path d="M90 60 L105 60" />
+      <circle cx="70" cy="60" r="6" fill="white" opacity="0.8" />
     </svg>
   ),
 };

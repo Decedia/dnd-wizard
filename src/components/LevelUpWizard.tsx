@@ -38,6 +38,7 @@ import {
   LeafIcon as Leaf,
   SwapIcon as Swap,
   MagnifyingGlassIcon as MagnifyingGlass,
+  TargetIcon as Target,
 } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
@@ -125,6 +126,7 @@ interface LevelInfo {
   spellbookTotal?: number;
   maxPrepared?: number;
   preparedCount?: number;
+  expertise?: { count: number; selected: string[]; availableOptions: string[] };
 }
 
 function getProficiencyBonus(level: number): number {
@@ -377,6 +379,38 @@ function buildLevelInfos(
       : undefined;
     const preparedCount = isPrepCaster && maxPrepared ? maxPrepared : undefined;
 
+    // Rogue Expertise
+    let expertise: LevelInfo["expertise"];
+    if (className === "Rogue") {
+      const expertiseScaling = (classData as any).scalingFeatures?.find((f: any) => f.type === "feature" && f.name === "Expertise");
+      if (expertiseScaling?.values) {
+        const sortedLevels = Object.keys(expertiseScaling.values).map(Number).sort((a, b) => a - b);
+        const currentIndex = sortedLevels.indexOf(level);
+        if (currentIndex >= 0) {
+          const currentValue = expertiseScaling.values[level];
+          const prevValue = currentIndex > 0 ? (expertiseScaling.values[sortedLevels[currentIndex - 1]] || 0) : 0;
+          if (currentValue > prevValue) {
+            const newCount = currentValue - prevValue;
+            const proficientSkills = Object.entries(character.skills)
+              .filter(([, proficient]) => proficient)
+              .map(([name]) => name);
+            const hasThievesTools = character.class === "Rogue";
+            const allOptions = [...proficientSkills];
+            if (hasThievesTools && !allOptions.includes("Thieves' Tools")) {
+              allOptions.push("Thieves' Tools");
+            }
+            const currentExpertise = character.expertise || [];
+            const availableOptions = allOptions.filter(opt => !currentExpertise.includes(opt));
+            expertise = {
+              count: newCount,
+              selected: [],
+              availableOptions,
+            };
+          }
+        }
+      }
+    }
+
     const allFeatures = [...features, ...passiveSubclassFeatures];
 
     infos.push({
@@ -407,6 +441,7 @@ function buildLevelInfos(
       spellbookTotal: spellbookTotal,
       maxPrepared: maxPrepared,
       preparedCount: preparedCount,
+      expertise,
     });
   }
 
@@ -448,6 +483,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [invocationSelections, setInvocationSelections] = useState<Record<number, string[]>>({});
   const [replacedInvocations, setReplacedInvocations] = useState<Record<number, string>>({});
   const [pactTomeCantrips, setPactTomeCantrips] = useState<string[]>([]);
+  const [expertiseSelections, setExpertiseSelections] = useState<Record<number, string[]>>({});
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
   const prevTargetLevelRef = useRef(targetLevel);
@@ -480,6 +516,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setBonusCantrip = (level: number, cantrip: string) => setBonusCantripSelections((prev) => ({ ...prev, [level]: cantrip }));
   const setInvocations = (level: number, list: string[]) => setInvocationSelections((prev) => ({ ...prev, [level]: list }));
   const setReplacedInvocation = (level: number, invocation: string) => setReplacedInvocations((prev) => ({ ...prev, [level]: invocation }));
+  const setExpertise = (level: number, list: string[]) => setExpertiseSelections((prev) => ({ ...prev, [level]: list }));
 
   const buildAllocation = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
@@ -591,6 +628,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `class-fc-${lvl}` });
         }
       }
+      if (info.expertise && expertiseSelections[lvl] && expertiseSelections[lvl].length < info.expertise.count) {
+        items.push({ level: lvl, label: `Level ${lvl} — Expertise`, sectionId: `expertise-${lvl}` });
+      }
       if (info.hasSpellSelection) {
         const lvlSpells = spellSelections[lvl] || [];
         const cantripsCount = lvlSpells.filter((s) => s.endsWith(":0")).length;
@@ -601,7 +641,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
     return items;
-  }, [levelInfos, asiSelections, subclassSelection, spellSelections, subclassFeatureChoices, classFeatureChoices, hpValues, startFromLevelOne]);
+  }, [levelInfos, asiSelections, subclassSelection, spellSelections, subclassFeatureChoices, classFeatureChoices, hpValues, startFromLevelOne, expertiseSelections]);
 
   const handleFinish = () => {
     if (!classData) return;
@@ -622,6 +662,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         ...Object.fromEntries(
           Object.entries(classFeatureChoices).flatMap(([lvl, choices]) =>
             Object.entries(choices).map(([name, value]) => [`class-feature-${lvl}-${name}`, [value]])
+          )
+        ),
+        ...Object.fromEntries(
+          Object.entries(expertiseSelections).flatMap(([lvl, list]) =>
+            list.map((skill) => [`expertise-${lvl}-${skill}`, [skill]])
           )
         ),
       },
@@ -1152,11 +1197,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               onInvocationsChange={(list) => setInvocations(info.level, list)}
               replacedInvocation={replacedInvocations[info.level] || ""}
               onReplacedInvocationChange={(inv) => setReplacedInvocation(info.level, inv)}
-              pactTomeCantrips={pactTomeCantrips}
-              onPactTomeCantripsChange={setPactTomeCantrips}
+               pactTomeCantrips={pactTomeCantrips}
+               onPactTomeCantripsChange={setPactTomeCantrips}
+               expertise={expertiseSelections[info.level] || []}
+               onExpertiseChange={(list) => setExpertise(info.level, list)}
                allInvocationSelections={invocationSelections}
-               sectionRefs={sectionRefs}
-            />
+                sectionRefs={sectionRefs}
+             />
             </div>
           ))}
         </div>
@@ -1212,6 +1259,8 @@ interface LevelCardProps {
   onReplacedInvocationChange: (inv: string) => void;
   pactTomeCantrips: string[];
   onPactTomeCantripsChange: (list: string[]) => void;
+  expertise: string[];
+  onExpertiseChange: (list: string[]) => void;
   allInvocationSelections?: Record<number, string[]>;
   sectionRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
 }
@@ -1254,6 +1303,8 @@ function LevelCard({
   onReplacedInvocationChange,
   pactTomeCantrips,
   onPactTomeCantripsChange,
+  expertise,
+  onExpertiseChange,
   allInvocationSelections,
   sectionRefs,
 }: LevelCardProps) {
@@ -1268,6 +1319,23 @@ function LevelCard({
     const [featureSelections, setFeatureSelections] = useState<string[]>([]);
     const [showHumanoidPopup, setShowHumanoidPopup] = useState<{ featureName: string; level: number } | null>(null);
     const [humanoidSelections, setHumanoidSelections] = useState<string[]>([]);
+
+    const getAllSelectedMetamagic = useCallback(() => {
+      const selected = new Set<string>();
+      (Object.values(classFeatureChoices) as unknown as Record<string, string>[]).forEach((choices) => {
+        const metamagic = choices["Metamagic"];
+        if (metamagic) {
+          metamagic.split(", ").forEach((opt) => selected.add(opt));
+        }
+      });
+      (Object.values(subclassFeatureChoices) as unknown as Record<string, string>[]).forEach((choices) => {
+        const metamagic = choices["Metamagic"];
+        if (metamagic) {
+          metamagic.split(", ").forEach((opt) => selected.add(opt));
+        }
+      });
+      return selected;
+    }, [classFeatureChoices, subclassFeatureChoices]);
     const [showSpellMasteryModal, setShowSpellMasteryModal] = useState(false);
     const [spellMasterySelections, setSpellMasterySelections] = useState<string[]>([]);
     const [showSignatureSpellsModal, setShowSignatureSpellsModal] = useState(false);
@@ -1275,6 +1343,7 @@ function LevelCard({
     const [showAsiModal, setShowAsiModal] = useState(false);
     const [asiAllocation, setAsiAllocation] = useState<Record<AbilityKey, number>>({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
     const [showAsiFeatModal, setShowAsiFeatModal] = useState(false);
+    const [showExpertiseModal, setShowExpertiseModal] = useState(false);
     const lvl = info.level;
     const { data } = useSRD();
   const srdSpells = data?.spells || [];
@@ -1284,13 +1353,14 @@ function LevelCard({
   const isSubclassComplete = !info.subclassOptions || !!subclassSelection;
   const isFeatureChoicesComplete = !info.subclassFeatureChoices || info.subclassFeatureChoices.every((fc) => subclassFeatureChoices[fc.name]);
   const isClassFeatureChoicesComplete = !info.classFeatureChoices || info.classFeatureChoices.every((fc) => classFeatureChoices[fc.name]);
+  const isExpertiseComplete = !info.expertise || expertise.length >= info.expertise.count;
   const isSpellSelectionComplete = !info.hasSpellSelection || (() => {
     const lvlSpells = (allSpellSelections || {})[lvl] || [];
     const cantripsCount = lvlSpells.filter((s: string) => s.endsWith(":0")).length;
     const spellsCount = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
     return cantripsCount >= info.cantripSelectionCount && spellsCount >= info.spellSelectionCount;
   })();
-  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete && isSpellSelectionComplete;
+  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete && isExpertiseComplete && isSpellSelectionComplete;
 
   const setSectionRef = (id: string) => (el: HTMLDivElement | null) => {
     sectionRefs.current[id] = el;
@@ -1398,13 +1468,44 @@ function LevelCard({
             )}
           </div>
 
-          <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
-            <Star className="h-4 w-4 text-[var(--color-text-muted)]" />
-            <div className="flex-1">
-              <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Proficiency Bonus</div>
-              <div className="text-xs text-[var(--color-text-primary)]">+{info.proficiencyBonus}</div>
-            </div>
-          </div>
+           <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
+             <Star className="h-4 w-4 text-[var(--color-text-muted)]" />
+             <div className="flex-1">
+               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Proficiency Bonus</div>
+               <div className="text-xs text-[var(--color-text-primary)]">+{info.proficiencyBonus}</div>
+             </div>
+           </div>
+
+           {info.expertise && info.expertise.count > 0 && (() => {
+             const expCount = info.expertise.count;
+             const selectedCount = expertise.length;
+             const isComplete = selectedCount >= expCount;
+             const availableOptions = info.expertise.availableOptions || [];
+             return (
+               <div className={`flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${!isComplete ? "border border-red-400 bg-red-50/30" : ""}`}>
+                 <Target className={`h-4 w-4 ${!isComplete ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
+                 <div className="flex-1">
+                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Expertise</div>
+                   <div className={`text-xs ${!isComplete ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
+                     Choose {expCount} skill{expCount !== 1 ? "s" : ""} to double proficiency
+                     {selectedCount > 0 && <span className="ml-1">({selectedCount}/{expCount} selected)</span>}
+                   </div>
+                   {selectedCount > 0 && (
+                     <div className="text-[10px] text-[var(--color-text-primary)] mt-0.5">
+                       {expertise.join(", ")}
+                     </div>
+                   )}
+                 </div>
+                 <button
+                   type="button"
+                   onClick={() => { setShowExpertiseModal(true); }}
+                   className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${!isComplete ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
+                 >
+                   {isComplete ? "Change" : "Select"}
+                 </button>
+               </div>
+             );
+           })()}
 
           {info.classFeatures.length > 0 && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
@@ -1687,26 +1788,37 @@ function LevelCard({
                 ))
               )}
               {info.classFeatureChoices && info.classFeatureChoices.length > 0 && (
-                info.classFeatureChoices.map((fc) => (
-                  <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
-                     <div className="flex items-center gap-2 mb-1">
-                       <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
-                       <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
-                       {fc.description && (
-                         <InfoButton title={fc.name} description={fc.description} />
-                       )}
-                     </div>
-                    <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
-                      <button
-                        type="button"
-                        onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, isSubclass: false, count: fc.count }); }}
-                        className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                       >
-                       <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
-                       <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
-                     </button>
-                  </div>
-                ))
+                info.classFeatureChoices.map((fc) => {
+                  const isMetamagic = fc.name === "Metamagic";
+                  const availableOptions = isMetamagic
+                    ? (() => {
+                        const selected = getAllSelectedMetamagic();
+                        return fc.options.filter((opt) => !selected.has(opt.name));
+                      })()
+                    : fc.options;
+                  const canSelect = isMetamagic ? availableOptions.length >= (fc.count || 1) : true;
+                  return (
+                    <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
+                       <div className="flex items-center gap-2 mb-1">
+                        <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                        <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                        {fc.description && (
+                          <InfoButton title={fc.name} description={fc.description} />
+                        )}
+                      </div>
+                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
+                       <button
+                         type="button"
+                         onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, options: availableOptions, isSubclass: false, count: fc.count }); }}
+                         disabled={isMetamagic && !canSelect}
+                         className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all text-left flex items-center justify-between ${isMetamagic && !canSelect ? "border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-muted)] opacity-60 cursor-not-allowed" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"}`}
+                        >
+                        <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
+                        <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                      </button>
+                    </div>
+                  );
+                })
               )}
             </div>
           ) : null}
@@ -2262,6 +2374,42 @@ function LevelCard({
           selectedCantrip={bonusCantrip}
           onCantripChange={onBonusCantripChange}
         />
+      )}
+
+      {showExpertiseModal && info.expertise && (
+        <BasePopup isOpen={showExpertiseModal} onClose={() => setShowExpertiseModal(false)} title="Select Expertise">
+          <div className="space-y-2">
+            <p className="text-xs text-[var(--color-text-secondary)]">Choose {info.expertise.count} skill{info.expertise.count !== 1 ? "s" : ""} to double your proficiency bonus.</p>
+            <div className="space-y-1.5 max-h-64 overflow-y-auto">
+              {(info.expertise.availableOptions || []).map((skill) => {
+                const isSelected = expertise.includes(skill);
+                const isDisabled = !isSelected && expertise.length >= info.expertise!.count;
+                return (
+                  <label
+                    key={skill}
+                    className={`flex items-center gap-3 p-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] cursor-pointer transition-all ${isDisabled ? "opacity-40" : "hover:border-[var(--color-border-active)]"}`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => {
+                        if (isSelected) {
+                          onExpertiseChange(expertise.filter((s) => s !== skill));
+                        } else if (expertise.length < info.expertise!.count) {
+                          onExpertiseChange([...expertise, skill]);
+                        }
+                      }}
+                      disabled={isDisabled}
+                      className="checkbox"
+                    />
+                    <span className="text-sm font-bold text-[var(--color-text-primary)]">{skill}</span>
+                    {isSelected && <span className="badge text-ink bg-paper-muted ml-auto">EXPERTISE</span>}
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+        </BasePopup>
       )}
     </div>
   );

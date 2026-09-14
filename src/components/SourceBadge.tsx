@@ -54,6 +54,8 @@ export const SOURCE_OPTIONS = [
   { id: "XGE", name: "Xanathar's Guide to Everything" },
   { id: "TCE", name: "Tasha's Cauldron of Everything" },
   { id: "MTF", name: "Mordenkainen's Tome of Foes" },
+  { id: "VGTM", name: "Volo's Guide to Monsters" },
+  { id: "MPMM", name: "Mordenkainen Presents: Monsters of the Multiverse" },
   { id: "EGW", name: "Explorer's Guide to Wildemount" },
   { id: "FTD", name: "Fizban's Treasury of Dragons" },
   { id: "VRGR", name: "Van Richten's Guide to Ravenloft" },

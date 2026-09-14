@@ -69,6 +69,16 @@ const BOOK_SPECS: Record<
     patternSvg: BookPatterns.VGtM,
     iconSvg: BookIcons.VGtM,
   },
+  MPMM: {
+    name: "Mordenkainen Presents: Monsters of the Multiverse",
+    tags: ["Races", "Monsters", "Lore"],
+    spineColor: "#4a148c",
+    coverGradient: "linear-gradient(160deg, #6a1fa8 0%, #2d0a5e 100%)",
+    topColor: "#4a148c",
+    bookmarkColor: "#9c27b0",
+    patternSvg: BookPatterns.MPMM,
+    iconSvg: BookIcons.MPMM,
+  },
   SCAG: {
     name: "Sword Coast Adventurer's Guide",
     tags: ["Subclasses", "Setting"],
