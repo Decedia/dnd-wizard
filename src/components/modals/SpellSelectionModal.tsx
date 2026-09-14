@@ -217,63 +217,63 @@ export function SpellSelectionModal({
 
     return (
       <div key={sp.name} className="flex gap-1.5">
-        <button
-          type="button"
-          onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
-          disabled={finalDisabled}
-          className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
-            isDisabled
-              ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
-              : isAlreadyKnown
-                ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
-                : isSel
-                  ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
-                  : disabled
-                    ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                    : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <div className="w-3 shrink-0">
-              {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
-              {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-              {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-            </div>
-            <div className="flex items-center gap-1.5">
-              <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-              <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
-                {sp.name}
-              </span>
-            </div>
-            {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
-          </div>
-          <div className="flex items-center gap-2 mt-0.5 ml-5">
-            {sp.school && (() => {
-              const schoolStyle = getSpellSchoolStyle(sp.school);
-              if (!schoolStyle) return <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>;
-              return (
-                <span
-                  className="inline-flex items-center gap-1 font-semibold"
-                  style={{
-                    fontSize: "10px",
-                    padding: "1px 5px",
-                    borderRadius: "4px",
-                    backgroundColor: `var(${schoolStyle.bgColorVar})`,
-                    color: `var(${schoolStyle.colorVar})`,
-                  }}
-                >
-                  <schoolStyle.icon className="h-3 w-3" />
-                  {schoolStyle.label}
-                </span>
-              );
-            })()}
-            {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">·</span>}
-            {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>}
-            {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium ml-1">From higher level</span>}
-            {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium ml-1">Already known</span>}
-            {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium ml-1">Selected</span>}
-          </div>
-        </button>
+         <button
+           type="button"
+           onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
+           disabled={finalDisabled}
+           className={`flex-1 px-3 py-2 text-right rounded-lg border transition-all ${
+             isDisabled
+               ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
+               : isAlreadyKnown
+                 ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
+                 : isSel
+                   ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
+                   : disabled
+                     ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                     : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+           }`}
+         >
+           <div className="flex items-center justify-between flex-row-reverse">
+             <div className="w-3 shrink-0">
+               {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+               {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+               {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+             </div>
+             <div className="flex items-center gap-1.5">
+               <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+               <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
+                 {sp.name}
+               </span>
+             </div>
+             {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
+           </div>
+           <div className="flex items-center gap-2 mt-0.5 mr-5 flex-row-reverse">
+             {sp.school && (() => {
+               const schoolStyle = getSpellSchoolStyle(sp.school);
+               if (!schoolStyle) return <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>;
+               return (
+                 <span
+                   className="inline-flex items-center gap-1 font-semibold"
+                   style={{
+                     fontSize: "10px",
+                     padding: "1px 5px",
+                     borderRadius: "4px",
+                     backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                     color: `var(${schoolStyle.colorVar})`,
+                   }}
+                 >
+                   <schoolStyle.icon className="h-3 w-3" />
+                   {schoolStyle.label}
+                 </span>
+               );
+             })()}
+             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">·</span>}
+             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>}
+             {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium mr-1">From higher level</span>}
+             {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium mr-1">Already known</span>}
+             {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium mr-1">Selected</span>}
+           </div>
+         </button>
       </div>
     );
   };
