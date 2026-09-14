@@ -299,6 +299,7 @@ export function SpellSelectionModal({
 
   const debugData = {
     'subclassIndex': character.subclassIndex ?? 'NULL',
+    'subclassSelection': subclassSelection ?? 'NULL',
     'isArcaneTrickster': isArcaneTrickster,
     'effectiveMaxLevel': effectiveMaxLevel,
     'classSpells.length': classSpells.length,
