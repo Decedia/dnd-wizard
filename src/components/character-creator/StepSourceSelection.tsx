@@ -59,15 +59,15 @@ const BOOK_SPECS: Record<
     patternSvg: BookPatterns.MTF,
     iconSvg: BookIcons.MTF,
   },
-  VGtM: {
+  VGTM: {
     name: "Volo's Guide to Monsters",
     tags: ["Races", "Monsters"],
     spineColor: "#1b5e20",
     coverGradient: "linear-gradient(160deg, #2e7d32 0%, #0a3d0a 100%)",
     topColor: "#1b5e20",
     bookmarkColor: "#4caf50",
-    patternSvg: BookPatterns.VGtM,
-    iconSvg: BookIcons.VGtM,
+    patternSvg: BookPatterns.VGTM,
+    iconSvg: BookIcons.VGTM,
   },
   MPMM: {
     name: "Mordenkainen Presents: Monsters of the Multiverse",

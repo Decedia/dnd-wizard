@@ -30,7 +30,7 @@ export const BookPatterns = {
       <rect x="85" y="5" width="40" height="115" fill="none" stroke="white" strokeWidth="1" opacity="0.08" />
     </svg>
   ),
-  VGtM: (
+  VGTM: (
     <svg width="100%" height="100%" viewBox="0 0 140 120" preserveAspectRatio="none">
       <circle cx="50" cy="45" r="28" fill="none" stroke="white" strokeWidth="1" opacity="0.08" />
       <circle cx="90" cy="75" r="28" fill="none" stroke="white" strokeWidth="1" opacity="0.08" />
@@ -127,7 +127,7 @@ export const BookIcons = {
       <line x1="105" y1="22" x2="35" y2="98" />
     </svg>
   ),
-  VGtM: (
+  VGTM: (
     <svg width="100%" height="100%" viewBox="0 0 140 120" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.22">
       <ellipse cx="70" cy="68" rx="38" ry="32" />
       <path d="M44 56 Q55 48 66 56" />
