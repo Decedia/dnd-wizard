@@ -525,7 +525,7 @@ function normalizeCharacter(c: Character): Character {
       const srdSpellName = spell.srdSpellName || spell.name;
       const mechanic = spell.source === "srd" ? getSpellMechanic(srdSpellName) : undefined;
       
-      let summary = spell.summary;
+      let summary = spell.summary || "";
       if (!summary && mechanic) {
         const effectTypes = mechanic.effects.map(e => e.type).filter((v, i, a) => a.indexOf(v) === i);
         const resolution = mechanic.resolution ? `${mechanic.resolution.type}: ${mechanic.resolution.ability || ""}`.trim() : "none";
@@ -547,6 +547,8 @@ function normalizeCharacter(c: Character): Character {
         const firstSentence = spell.description.split(/[.\n]/)[0].trim();
         summary = firstSentence;
       }
+      const summaryWords = summary.split(/\s+/);
+      if (summaryWords.length > 30) summary = summaryWords.slice(0, 30).join(" ");
       
       return {
         ...defaults.spells[0],
@@ -584,7 +586,10 @@ function normalizeCharacter(c: Character): Character {
 
       const summary = (feature as any).summary || (() => {
         const firstSentence = description.split(/[.\n]/)[0].trim();
-        return firstSentence + mechanismStr;
+        let s = firstSentence + mechanismStr;
+        const words = s.split(/\s+/);
+        if (words.length > 30) s = words.slice(0, 30).join(" ");
+        return s;
       })();
       return {
         ...feature,

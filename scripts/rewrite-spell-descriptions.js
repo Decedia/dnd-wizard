@@ -143,8 +143,8 @@ function makeSummary(spell) {
     .trim();
   if (!summary) summary = "Change a target with a magical effect";
   let words = summary.split(/\s+/);
-  if (words.length > 12) {
-    words = words.slice(0, 12);
+  if (words.length > 30) {
+    words = words.slice(0, 30);
     while (words.length && !/[A-Za-z0-9)]$/.test(words[words.length - 1])) words.pop();
     summary = words.join(" ");
   }
@@ -154,7 +154,7 @@ function makeSummary(spell) {
     summary = `Change a target: ${summary.charAt(0).toLowerCase() + summary.slice(1)}`;
   }
   words = summary.split(/\s+/);
-  if (words.length > 12) summary = words.slice(0, 12).join(" ");
+  if (words.length > 30) summary = words.slice(0, 30).join(" ");
   if (VAGUE_WORDS.has(summary.toLowerCase().replace(/[^a-z]/g, ""))) summary = `Change a target with magic`;
   return summary.replace(/[.!?]+$/, "");
 }
@@ -212,7 +212,7 @@ function makeFullDescription(spell) {
 
 function validateSummary(summary, name) {
   const words = summary.trim().split(/\s+/).filter(Boolean);
-  if (words.length > 12) throw new Error(`${name}: effectSummary has ${words.length} words`);
+  if (words.length > 30) throw new Error(`${name}: effectSummary has ${words.length} words`);
   if (VAGUE_WORDS.has(summary.trim().toLowerCase())) throw new Error(`${name}: vague effectSummary`);
   if (!/[A-Za-z]/.test(summary)) throw new Error(`${name}: empty effectSummary`);
 }
