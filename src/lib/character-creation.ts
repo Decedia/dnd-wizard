@@ -739,7 +739,8 @@ function getRaceTraits(character: Character): any[] {
       name: "Variant Human",
       description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
       ...extractFeatureFields({}),
-    });
+      summary: "+1 to two abilities, one skill proficiency, and one feat",
+    } as any);
     const featName = character.featureSelections?.["variant-human-feat"]?.[0];
     if (featName) {
       const featData = getStaticFeat(featName);
@@ -748,7 +749,8 @@ function getRaceTraits(character: Character): any[] {
           name: featData.name,
           description: featData.description,
           ...extractFeatureFields({}),
-        });
+          summary: (featData as any).summary || null,
+        } as any);
       }
     }
   }

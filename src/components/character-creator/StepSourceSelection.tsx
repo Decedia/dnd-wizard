@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BookCard } from "@/components/BookCard";
 import { BookPatterns, BookEmojis, type BookId } from "@/components/book-svgs";
+import { BookExplainer } from "@/components/BookExplainer";
 import { useSRD } from "@/contexts/SRDContext";
 
 const BOOK_SPECS: Record<
@@ -122,6 +123,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
 
   const totalBooks = SOURCE_OPTIONS.length;
   const selectedCount = selectedSources.length;
+  const [showBookExplainer, setShowBookExplainer] = useState(false);
 
   return (
     <div className="space-y-3">
@@ -130,8 +132,16 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           Step 1 of {totalBooks > 0 ? "8" : "6"}
         </div>
         <h2 className="text-xl font-bold text-[var(--color-text-primary)]">Choose rulebooks</h2>
-        <p className="text-xs text-[var(--color-text-secondary)] mt-1">
-          Select which books to draw content from.
+        <p className="text-xs text-[var(--color-text-secondary)] mt-1 inline-flex items-center gap-1.5 flex-wrap">
+          <span>Select which books to draw content from.</span>
+          <button
+            type="button"
+            onClick={() => setShowBookExplainer(true)}
+            className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+            aria-label="Info: Rulebooks"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          </button>
         </p>
       </div>
 
@@ -207,6 +217,8 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           );
         })}
       </div>
+
+      <BookExplainer isOpen={showBookExplainer} onClose={() => setShowBookExplainer(false)} />
     </div>
   );
 }
