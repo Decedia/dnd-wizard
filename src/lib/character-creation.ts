@@ -988,6 +988,7 @@ export async function finalizeCreation(character: Character): Promise<Character>
               id: `feat-${featName}`.replace(/\s+/g, "-"),
               name: featData.name,
               description: featData.description,
+              summary: featData.summary || null,
               source: "race" as const,
               locked: true,
             },

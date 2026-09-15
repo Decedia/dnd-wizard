@@ -232,6 +232,7 @@ export interface SRDFeat {
   prerequisites: string | null;
   source?: string;
   book?: string;
+  summary?: string;
 }
 
  export interface SRDLanguage {
