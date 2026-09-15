@@ -113,8 +113,7 @@ export function FeatureMechanicsChips({
   const hasOnUse = !!onUse;
   const hasScaling = !!scaling;
 
-  const normalizedDescription = Array.isArray(description) ? description.filter(Boolean).join(" ") : (description || "");
-  const resolvedSummary = summary || (normalizedDescription ? normalizedDescription.split(/[.\n]/)[0].trim().split(/\s+/).slice(0, 12).join(" ") : null);
+  const resolvedSummary = summary || "empty";
 
   const effectiveFeatureType = featureType || "Passive";
   const showUseButton = effectiveFeatureType === "Active";
@@ -303,7 +302,7 @@ export function FeatureMechanicsChips({
     >
       <div style={{ padding: "0 14px 10px", background: "transparent" }}>
         <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
-          {resolvedSummary || "\u00A0"}
+          {resolvedSummary}
         </p>
       </div>
       {showInSheet && gridRows && (

@@ -184,7 +184,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
          {enrichedFeatures.map((feature) => {
             const isLocked = feature.locked === true;
             const safeFeature = { ...feature, source: (feature as any).source || "class" };
-            const summaryText = (feature as any).summary || feature.description || "";
+             const summaryText = (feature as any).summary || "";
             const bookTag = getBookTag(feature);
             return (
               <div key={safeFeature.id} className={`card p-3 ${isLocked ? "" : ""}`}>
