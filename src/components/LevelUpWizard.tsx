@@ -489,6 +489,45 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const prevTargetLevelRef = useRef(targetLevel);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
+  const getAutoGrantedSpells = useCallback((subclassName: string, level: number): string[] => {
+    if (!subclassName) return [];
+    const key = subclassName.toLowerCase().replace(/\s+/g, "-");
+    const AUTO_GRANTED_SPELLS: Record<string, Record<number, string[]>> = {
+      "arcane-trickster": { 3: ["Mage Hand:0"] },
+      "totem-warrior": { 3: ["Beast Sense:2", "Speak with Animals:2"] },
+      "shadow": { 3: ["Minor Illusion:0"] },
+      "the-celestial": { 1: ["Sacred Flame:0", "Light:0"] },
+      "dreams": { 3: ["Sleep:1"] },
+      "grave": { 1: ["Spare the Dying:0"] },
+    };
+    return AUTO_GRANTED_SPELLS[key]?.[level] || [];
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!subclassSelection) return;
+    const autoSpells: Record<number, string[]> = {};
+    for (let lvl = currentLevel; lvl <= targetLevel; lvl++) {
+      const granted = getAutoGrantedSpells(subclassSelection, lvl);
+      if (granted.length > 0) {
+        autoSpells[lvl] = granted;
+      }
+    }
+    const entries = Object.entries(autoSpells);
+    if (entries.length === 0) return;
+    setSpellSelections((prev) => {
+      const next = { ...prev };
+      for (const [lvl, spells] of entries) {
+        const level = Number(lvl);
+        const existing = next[level] || [];
+        const newSpells = spells.filter((s) => !existing.includes(s));
+        if (newSpells.length > 0) {
+          next[level] = [...existing, ...newSpells];
+        }
+      }
+      return next;
+    });
+  }, [subclassSelection, currentLevel]);
+
   useEffect(() => {
     if (targetLevel > prevTargetLevelRef.current) {
       const newLevels = targetLevel - prevTargetLevelRef.current;
