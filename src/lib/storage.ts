@@ -1,5 +1,6 @@
 import { getStaticClass, getStaticRace, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
+import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter } from "@/lib/db";
 export interface Character {
   id: string;
@@ -64,7 +65,7 @@ export interface Character {
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class" | "grapple" | "shove"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
-  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string }[];
+  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string }[];
   spellcastingAbility: string;
   spellSaveDc: number;
   spellAttackBonus: number;
@@ -520,30 +521,82 @@ function normalizeCharacter(c: Character): Character {
       ...defaults.inventory[0],
       ...item,
     })),
-    spells: (c.spells || []).map((spell) => ({
-      ...defaults.spells[0],
-      ...spell,
-    })),
+    spells: (c.spells || []).map((spell) => {
+      const srdSpellName = spell.srdSpellName || spell.name;
+      const mechanic = spell.source === "srd" ? getSpellMechanic(srdSpellName) : undefined;
+      
+      let summary = spell.summary;
+      if (!summary && mechanic) {
+        const effectTypes = mechanic.effects.map(e => e.type).filter((v, i, a) => a.indexOf(v) === i);
+        const resolution = mechanic.resolution ? `${mechanic.resolution.type}: ${mechanic.resolution.ability || ""}`.trim() : "none";
+        const target = mechanic.targeting.type;
+        const duration = mechanic.casting.duration;
+        const concentration = mechanic.casting.concentration ? "concentration" : "";
+        
+        const mechanismParts = [
+          ...effectTypes,
+          resolution,
+          target,
+          duration.toLowerCase(),
+          concentration
+        ].filter(Boolean);
+        
+        summary = mechanismParts.join(", ");
+      }
+      if (!summary && spell.description) {
+        const firstSentence = spell.description.split(/[.\n]/)[0].trim();
+        summary = firstSentence.split(/\s+/).slice(0, 30).join(" ");
+      }
+      
+      return {
+        ...defaults.spells[0],
+        ...spell,
+        summary,
+      };
+    }),
     costumeSpells: (c.costumeSpells || []).map((cs) => ({ ...cs })),
     variantHumanAbilities: (c as any).variantHumanAbilities,
     variantHumanSkill: (c as any).variantHumanSkill,
     features: (c.features || []).map((feature) => {
       const description = feature.description || "";
+      const actionType = (feature as any).actionType;
+      const uses = (feature as any).uses;
+      const requirement = (feature as any).requirement;
+      const duration = (feature as any).duration;
+      const featureType = (feature as any).featureType || "Passive";
+      const onUse = (feature as any).onUse;
+      const scaling = (feature as any).scaling;
+
+      const mechanismParts: string[] = [];
+      if (actionType && actionType !== "passive") mechanismParts.push(actionType.toLowerCase());
+      if (uses) {
+        const total = typeof uses.total === "number" ? uses.total : uses.total;
+        const recharge = uses.recharge;
+        mechanismParts.push(`${total}/${recharge}`);
+      }
+      if (requirement) mechanismParts.push(requirement.toLowerCase());
+      if (duration && duration !== "Instantaneous") mechanismParts.push(duration.toLowerCase());
+      if (featureType === "Active" && !actionType) mechanismParts.push("action");
+      if (onUse) mechanismParts.push(onUse.toLowerCase());
+      if (scaling) mechanismParts.push("scales");
+
+      const mechanismStr = mechanismParts.length > 0 ? ` (${mechanismParts.join(", ")})` : "";
+
       const summary = (feature as any).summary || (() => {
         const firstSentence = description.split(/[.\n]/)[0].trim();
-        return firstSentence.split(/\s+/).slice(0, 12).join(" ");
+        return firstSentence.split(/\s+/).slice(0, 30).join(" ") + mechanismStr;
       })();
       return {
         ...feature,
         summary,
-        featureType: (feature as any).featureType || "Passive",
-        actionType: (feature as any).actionType || null,
-        uses: (feature as any).uses || null,
-        requirement: (feature as any).requirement || null,
-        duration: (feature as any).duration || null,
+        featureType: featureType,
+        actionType: actionType || null,
+        uses: uses || null,
+        requirement: requirement || null,
+        duration: duration || null,
         endsIf: (feature as any).endsIf || null,
-        onUse: (feature as any).onUse || null,
-        scaling: (feature as any).scaling || null,
+        onUse: onUse || null,
+        scaling: scaling || null,
         grantsSpells: (feature as any).grantsSpells ?? false,
         grantsAttack: (feature as any).grantsAttack ?? false,
         grantsSkills: (feature as any).grantsSkills ?? false,
