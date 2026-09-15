@@ -25784,6 +25784,96 @@
       "escapeCondition": null,
       "immunities": null,
       "upcastEffect": null
+    },
+    {
+      "index": "summon-draconic-spirit",
+      "name": "Summon Draconic Spirit",
+      "level": 4,
+      "school": "Conjuration",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "subclasses": [],
+      "source": "VGTM",
+      "casting_time": "1 action",
+      "range": "60 feet",
+      "components": {
+        "verbal": true,
+        "somatic": true,
+        "material": true,
+        "materialDesc": "a dragon scale"
+      },
+      "duration": "1 hour",
+      "concentration": true,
+      "ritual": false,
+      "desc": [
+        "You summon a draconic spirit to aid you in battle."
+      ],
+      "higher_level": [],
+      "damage": null,
+      "dc": null,
+      "url": "",
+      "updated_at": "",
+      "description": "Summon a draconic spirit.",
+      "higherLevel": [],
+      "castingTime": "1 action",
+      "effectSummary": "Summon a draconic spirit",
+      "fullDescription": "You summon a draconic spirit to aid you in battle.",
+      "actionType": "action",
+      "onHit": null,
+      "saveType": null,
+      "onFailedSave": null,
+      "onSuccessfulSave": null,
+      "ongoingEffect": null,
+      "escapeCondition": null,
+      "immunities": null,
+      "upcastEffect": null
+    },
+    {
+      "index": "bigbys-hand",
+      "name": "Bigby's Hand",
+      "level": 5,
+      "school": "Evocation",
+      "classes": [
+        "Wizard"
+      ],
+      "subclasses": [],
+      "source": "VGTM",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": {
+        "verbal": true,
+        "somatic": true,
+        "material": true,
+        "materialDesc": "an eggshell and a piece of parchment"
+      },
+      "duration": "1 minute",
+      "concentration": true,
+      "ritual": false,
+      "desc": [
+        "You create a Large hand of shimmering force that can manipulate objects and creatures."
+      ],
+      "higher_level": [],
+      "damage": null,
+      "dc": null,
+      "url": "",
+      "updated_at": "",
+      "description": "Create a Large hand of shimmering force.",
+      "higherLevel": [],
+      "castingTime": "1 action",
+      "effectSummary": "Create a Large hand of force",
+      "fullDescription": "You create a Large hand of shimmering force that can manipulate objects and creatures.",
+      "actionType": "action",
+      "onHit": null,
+      "saveType": null,
+      "onFailedSave": null,
+      "onSuccessfulSave": null,
+      "ongoingEffect": null,
+      "escapeCondition": null,
+      "immunities": null,
+      "upcastEffect": null
     }
   ],
   "generated": "2026-08-31T10:19:09.073Z"

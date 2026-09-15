@@ -13758,6 +13758,552 @@
         }
       ],
       "source": "MPMM"
+    },
+    {
+      "class": "Ranger",
+      "classIndex": "ranger",
+      "index": "gloom-stalker",
+      "name": "Gloom Stalker",
+      "flavorText": "Gloom Stalker",
+      "description": [
+        "Gloom Stalkers are rangers who specialize in fighting in dark places."
+      ],
+      "features": [
+        {
+          "name": "Dread Ambusher",
+          "description": "At 3rd level, you master the art of the ambush. You gain a +10 bonus to initiative rolls. In addition, the first creature you hit during the first round of combat takes an extra 2d6 damage from one of your attacks.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Gain +10 initiative and extra damage on first hit",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Gloom Stalker",
+            "level": 3
+          },
+          "book": "XGE"
+        }
+      ],
+      "source": "XGE"
+    },
+    {
+      "class": "Druid",
+      "classIndex": "druid",
+      "index": "dreams",
+      "name": "Dreams",
+      "flavorText": "Circle of Dreams",
+      "description": [
+        "The Circle of Dreams is a druid circle that draws power from the Feywild."
+      ],
+      "features": [
+        {
+          "name": "Balm of the Summer Court",
+          "description": "At 3rd level, you learn the sleep spell. If you are already able to cast sleep, you can instead cast it once per long rest without expending a spell slot.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Cast sleep spell",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Dreams",
+            "level": 3
+          },
+          "book": "XGE"
+        }
+      ],
+      "source": "XGE"
+    },
+    {
+      "class": "Druid",
+      "classIndex": "druid",
+      "index": "shepherd",
+      "name": "Shepherd",
+      "flavorText": "Circle of the Shepherd",
+      "description": [
+        "The Circle of the Shepherd is a druid circle that focuses on summoning and supporting creatures."
+      ],
+      "features": [
+        {
+          "name": "Spirit Totem",
+          "description": "At 3rd level, you can summon a spirit that aids you and your allies. As a bonus action, you can summon the spirit in an unoccupied space within 60 feet of you.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Summon a spirit totem",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Shepherd",
+            "level": 3
+          },
+          "book": "XGE"
+        }
+      ],
+      "source": "XGE"
+    },
+    {
+      "class": "Bard",
+      "classIndex": "bard",
+      "index": "satire",
+      "name": "College of Satire",
+      "flavorText": "College of Satire",
+      "description": [
+        "The College of Satire is a bard college that focuses on comedy and mockery."
+      ],
+      "features": [
+        {
+          "name": "Satire",
+          "description": "At 3rd level, you gain proficiency in two skills of your choice from the following list: Acrobatics, Performance, Persuasion, Sleight of Hand, or Stealth.",
+          "level": 3,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Gain proficiency in two skills",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": true,
+          "grantsProficiency": true,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "College of Satire",
+            "level": 3
+          },
+          "book": "XGE"
+        }
+      ],
+      "source": "XGE"
+    },
+    {
+      "class": "Cleric",
+      "classIndex": "cleric",
+      "index": "twilight",
+      "name": "Twilight",
+      "flavorText": "Twilight Domain",
+      "description": [
+        "The Twilight Domain is a cleric domain that draws power from the twilight."
+      ],
+      "features": [
+        {
+          "name": "Twilight Domain Spells",
+          "description": "You gain access to spells that harness the power of twilight.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Gain twilight domain spells",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Twilight",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Cleric",
+      "classIndex": "cleric",
+      "index": "peace",
+      "name": "Peace",
+      "flavorText": "Peace Domain",
+      "description": [
+        "The Peace Domain is a cleric domain that focuses on peace and tranquility."
+      ],
+      "features": [
+        {
+          "name": "Peace Domain Spells",
+          "description": "You gain access to spells that promote peace.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Gain peace domain spells",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Peace",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Cleric",
+      "classIndex": "cleric",
+      "index": "order",
+      "name": "Order",
+      "flavorText": "Order Domain",
+      "description": [
+        "The Order Domain is a cleric domain that focuses on law and order."
+      ],
+      "features": [
+        {
+          "name": "Order Domain Spells",
+          "description": "You gain access to spells that enforce order.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Gain order domain spells",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Order",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Sorcerer",
+      "classIndex": "sorcerer",
+      "index": "clockwork-soul",
+      "name": "Clockwork Soul",
+      "flavorText": "Clockwork Soul",
+      "description": [
+        "Clockwork Souls are sorcerers who draw power from the plane of Mechanus."
+      ],
+      "features": [
+        {
+          "name": "Clockwork Magic",
+          "description": "You learn additional spells when you reach certain levels.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Learn additional spells",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Clockwork Soul",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Fighter",
+      "classIndex": "fighter",
+      "index": "psi-warrior",
+      "name": "Psi Warrior",
+      "flavorText": "Psi Warrior",
+      "description": [
+        "Psi Warriors are fighters who wield psionic power."
+      ],
+      "features": [
+        {
+          "name": "Psionic Power",
+          "description": "You can use psionic energy to enhance your abilities.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Use psionic energy",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Psi Warrior",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Fighter",
+      "classIndex": "fighter",
+      "index": "rune-knight",
+      "name": "Rune Knight",
+      "flavorText": "Rune Knight",
+      "description": [
+        "Rune Knights are fighters who use ancient runes to enhance their abilities."
+      ],
+      "features": [
+        {
+          "name": "Runic Magic",
+          "description": "You learn to inscribe runes on your equipment.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Inscribe runes on equipment",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Rune Knight",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Bard",
+      "classIndex": "bard",
+      "index": "creation",
+      "name": "College of Creation",
+      "flavorText": "College of Creation",
+      "description": [
+        "The College of Creation is a bard college that focuses on creation and manifestation."
+      ],
+      "features": [
+        {
+          "name": "Mote of Potential",
+          "description": "At 3rd level, you learn to create a mote of potential that you can use to enhance your spells.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Create mote of potential",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "College of Creation",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Bard",
+      "classIndex": "bard",
+      "index": "eloquence",
+      "name": "College of Eloquence",
+      "flavorText": "College of Eloquence",
+      "description": [
+        "The College of Eloquence is a bard college that focuses on rhetoric and persuasion."
+      ],
+      "features": [
+        {
+          "name": "Silver Tongue",
+          "description": "At 3rd level, you gain proficiency in the Persuasion skill.",
+          "level": 3,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Gain Persuasion proficiency",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": true,
+          "grantsProficiency": true,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "College of Eloquence",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Barbarian",
+      "classIndex": "barbarian",
+      "index": "beast",
+      "name": "Path of the Beast",
+      "flavorText": "Path of the Beast",
+      "description": [
+        "The Path of the Beast is a barbarian path that focuses on transforming into a beast."
+      ],
+      "features": [
+        {
+          "name": "Bestial Soul",
+          "description": "At 3rd level, you can channel your rage into a bestial form.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Transform into a beast",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Beast",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
+    },
+    {
+      "class": "Barbarian",
+      "classIndex": "barbarian",
+      "index": "wild-magic",
+      "name": "Path of Wild Magic",
+      "flavorText": "Path of Wild Magic",
+      "description": [
+        "The Path of Wild Magic is a barbarian path that channels wild magic."
+      ],
+      "features": [
+        {
+          "name": "Wild Magic Surge",
+          "description": "At 3rd level, when you enter your rage, roll on the Wild Magic Surge table.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Roll on Wild Magic Surge table",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "subclass",
+            "name": "Path of Wild Magic",
+            "level": 3
+          },
+          "book": "TCE"
+        }
+      ],
+      "source": "TCE"
     }
   ]
 }

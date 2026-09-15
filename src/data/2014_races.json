@@ -6637,6 +6637,127 @@
         "strength": 2,
         "dexterity": 2
       }
+    },
+    {
+      "index": "aasimar",
+      "name": "Aasimar",
+      "size": "Medium",
+      "speed": 30,
+      "abilityBonuses": {
+        "charisma": 2,
+        "constitution": 1
+      },
+      "traits": [
+        {
+          "name": "Darkvision",
+          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "See in darkness up to 60ft as if it were dim light",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Aasimar",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Celestial Resistance",
+          "description": "You have resistance to necrotic damage and radiant damage.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Permanent",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Resistance to necrotic and radiant damage",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Aasimar",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Healing Hands",
+          "description": "As an action, you can touch a creature and cause it to regain a number of hit points equal to your level + your Charisma modifier. Once you use this trait, you can't use it again until you finish a long rest.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": "Instant",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Heal a creature for level + Cha mod",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": true,
+          "source": {
+            "type": "race",
+            "name": "Aasimar",
+            "level": null
+          },
+          "book": "VGTM"
+        },
+        {
+          "name": "Light Bearer",
+          "description": "You know the light cantrip. Charisma is your spellcasting ability for it.",
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Cast light cantrip",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "showInSheet": false,
+          "source": {
+            "type": "race",
+            "name": "Aasimar",
+            "level": null
+          },
+          "book": "VGTM"
+        }
+      ],
+      "languages": [
+        "Common",
+        "Celestial"
+      ],
+      "source": "VGTM",
+      "abilityScoreIncreases": {
+        "charisma": 2,
+        "constitution": 1
+      }
     }
   ]
 }
