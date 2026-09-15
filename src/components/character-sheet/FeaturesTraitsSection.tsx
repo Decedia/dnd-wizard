@@ -6,7 +6,8 @@ import { SectionCard } from "./SectionCard";
 import { StarIcon as Star, PlusIcon as Plus, CrownIcon as Crown, EyeIcon } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
 import { getStaticFeats, getStaticSubclasses, getStaticClass, getStaticRace, getStaticFeat } from "@/lib/srd-client";
-import { getFeatureValue } from "@/lib/storage";
+import { syncBaseFeatures } from "@/lib/character-creation";
+import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { FeatureMechanicsChips } from "./FeatureMechanicsChips";
 
@@ -20,6 +21,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const { onFieldBlur } = useCharacterSheet();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const [showHiddenFeatures, setShowHiddenFeatures] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const feats = useMemo(() => getStaticFeats([], character.ruleset), [character.ruleset]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
   const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
@@ -43,6 +45,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     onChange({
       features: character.features.filter((f) => f.id !== id),
     });
+  };
+
+  const handleSyncFeatures = async () => {
+    if (!character || syncing) return;
+    setSyncing(true);
+    try {
+      const synced = syncBaseFeatures(character);
+      onChange({ features: synced.features });
+      await saveCharacter({ ...character, features: synced.features });
+    } finally {
+      setSyncing(false);
+    }
   };
 
   const sortedFeatures = useMemo(() => {
@@ -178,6 +192,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             >
               <EyeIcon className="h-4 w-4" />
               {showHiddenFeatures ? "Show default only" : "Show all"}
+            </button>
+          </div>
+        )}
+        {editMode && (
+          <div className="px-1">
+            <button
+              type="button"
+              onClick={handleSyncFeatures}
+              disabled={syncing}
+              className="text-xs font-semibold px-3 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-colors disabled:opacity-60"
+            >
+              {syncing ? "Syncing..." : "Sync with SRD"}
             </button>
           </div>
         )}
