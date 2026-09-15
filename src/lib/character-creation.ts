@@ -13,6 +13,7 @@ interface SRDItemMatch {
   isChoice?: boolean;
   choiceType?: "weapon" | "instrument" | "arcane_focus" | "holy_symbol" | "druidic_focus";
   weaponType?: string;
+  description?: string;
 }
 
 function normalizeItemName(name: string): string {
@@ -60,7 +61,7 @@ function findSRDItemMatch(rawName: string, ruleset?: string): SRDItemMatch | nul
   if (ARCANE_FOCUS_NAMES.includes(normalized)) {
     const match = allEquipments.find(e => normalizeItemName(e.name) === normalized);
     if (match) {
-      return { name: match.name, type: "item", isChoice: false };
+      return { name: match.name, type: "item", isChoice: false, description: match.description || match.name };
     }
     return { name: rawName.charAt(0).toUpperCase() + rawName.slice(1), type: "item", isChoice: false };
   }
@@ -68,7 +69,7 @@ function findSRDItemMatch(rawName: string, ruleset?: string): SRDItemMatch | nul
   if (HOLY_SYMBOL_NAMES.includes(normalized)) {
     const match = allEquipments.find(e => normalizeItemName(e.name) === normalized);
     if (match) {
-      return { name: match.name, type: "item", isChoice: false };
+      return { name: match.name, type: "item", isChoice: false, description: match.description || match.name };
     }
     return { name: rawName.charAt(0).toUpperCase() + rawName.slice(1), type: "item", isChoice: false };
   }
@@ -76,7 +77,7 @@ function findSRDItemMatch(rawName: string, ruleset?: string): SRDItemMatch | nul
   if (DRUIDIC_FOCUS_NAMES.includes(normalized)) {
     const match = allEquipments.find(e => normalizeItemName(e.name) === normalized);
     if (match) {
-      return { name: match.name, type: "item", isChoice: false };
+      return { name: match.name, type: "item", isChoice: false, description: match.description || match.name };
     }
     return { name: rawName.charAt(0).toUpperCase() + rawName.slice(1), type: "item", isChoice: false };
   }
@@ -112,43 +113,43 @@ function findSRDItemMatch(rawName: string, ruleset?: string): SRDItemMatch | nul
 
   for (const w of allWeapons) {
     if (normalizeItemName(w.name) === normalized || normalized.includes(normalizeItemName(w.name))) {
-      return { name: w.name, type: "weapon" };
+      return { name: w.name, type: "weapon", description: w.description || w.name };
     }
   }
 
   for (const a of allArmors) {
     if (normalizeItemName(a.name) === normalized || normalized.includes(normalizeItemName(a.name))) {
-      return { name: a.name, type: "armor" };
+      return { name: a.name, type: "armor", description: a.description || a.name };
     }
   }
 
   for (const e of allEquipments) {
     if (normalizeItemName(e.name) === normalized || normalized.includes(normalizeItemName(e.name))) {
       const type = e.equipment_category === "weapon" ? "weapon" : e.equipment_category === "armor" ? "armor" : "item";
-      return { name: e.name, type };
+      return { name: e.name, type, description: e.description || e.name };
     }
   }
 
   for (const i of allItems) {
     if (normalizeItemName(i.name) === normalized || normalized.includes(normalizeItemName(i.name))) {
-      return { name: i.name, type: "item" };
+      return { name: i.name, type: "item", description: i.description || i.name };
     }
   }
 
-  let bestMatch: { name: string; type: "weapon" | "armor" | "item"; score: number } | null = null;
+  let bestMatch: { name: string; type: "weapon" | "armor" | "item"; score: number; description?: string } | null = null;
   for (const e of allEquipments) {
     const eqName = normalizeItemName(e.name);
     if (eqName.includes(normalized) || normalized.includes(eqName)) {
       const score = Math.min(eqName.length, normalized.length) / Math.max(eqName.length, normalized.length);
       if (!bestMatch || score > bestMatch.score) {
         const type = e.equipment_category === "weapon" ? "weapon" : e.equipment_category === "armor" ? "armor" : "item";
-        bestMatch = { name: e.name, type, score };
+        bestMatch = { name: e.name, type, score, description: e.description || e.name };
       }
     }
   }
 
   if (bestMatch && bestMatch.score > 0.5) {
-    return { name: bestMatch.name, type: bestMatch.type };
+    return { name: bestMatch.name, type: bestMatch.type, description: bestMatch.description };
   }
 
   return null;
@@ -430,7 +431,7 @@ export function buildChoiceGroups(startingEquipment: any[], ruleset?: string): C
       group.options = items.map((item: any) => {
         const srdMatch = findSRDItemMatch(item.name, ruleset);
         return {
-          description: srdMatch ? srdMatch.name : item.name,
+          description: srdMatch ? (srdMatch.description || srdMatch.name) : (item.description || item.name),
           items: [item],
         };
       });

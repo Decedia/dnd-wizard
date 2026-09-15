@@ -3,9 +3,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { getStaticSubclasses, getStaticSubclassDetails } from "@/lib/srd-client";
 import { isRecommended } from "@/lib/recommendations";
-import { MagnifyingGlassIcon as MagnifyingGlass, StarIcon as Star, CrownIcon as Crown, InfoIcon as Info } from "@/components/icons";
+import { MagnifyingGlassIcon as MagnifyingGlass, StarIcon as Star, CrownIcon as Crown } from "@/components/icons";
 import { SourceBadge } from "@/components/SourceBadge";
 import { BasePopup } from "@/components/BasePopup";
+import { InfoButton } from "@/components/InfoButton";
 
 interface SubclassSelectionModalProps {
   options: { name: string; description: string; hasDetails: boolean }[];
@@ -27,7 +28,6 @@ export function SubclassSelectionModal({
   const [detailsView, setDetailsView] = useState<string | null>(null);
   const [previewSubclass, setPreviewSubclass] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [infoSubclass, setInfoSubclass] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -93,7 +93,6 @@ export function SubclassSelectionModal({
                 onClick={() => {
                   setPreviewSubclass(opt.name);
                   setDetailsView(null);
-                  setInfoSubclass(null);
                 }}
                 className={`flex-1 p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
                   previewSubclass === opt.name
@@ -116,42 +115,23 @@ export function SubclassSelectionModal({
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setInfoSubclass(infoSubclass === opt.name ? null : opt.name);
-                  setDetailsView(null);
                 }}
-                className={`h-10 w-10 flex items-center justify-center rounded-[var(--radius-sm)] border transition-all shrink-0 ${
-                  infoSubclass === opt.name
-                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)] text-[var(--color-text-primary)]"
-                    : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
-                }`}
+                className={`h-10 w-10 flex items-center justify-center rounded-[var(--radius-sm)] border transition-all shrink-0 border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]`}
                 aria-label={`Info: ${opt.name}`}
               >
-                <Info className="h-4 w-4" />
+                <InfoButton
+                  title={opt.name}
+                  description={(() => {
+                    const details = getStaticSubclassDetails(characterClass, opt.name);
+                    const parts = [opt.description];
+                    if (details?.features && details.features.length > 0) {
+                      parts.push("\n\nFEATURES\n" + details.features.map((f: any) => `• ${f.name} (Lv ${f.level || "?"}): ${(f.description || "").split("\n")[0]}`).join("\n"));
+                    }
+                    return parts.join("\n");
+                  })()}
+                />
               </button>
             </div>
-            {infoSubclass === opt.name && (
-              <div className="ml-4 p-3 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
-                <div className="text-xs font-bold text-[var(--color-text-primary)] mb-1">{opt.name}</div>
-                <div className="text-[10px] text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{opt.description}</div>
-                {(() => {
-                  const details = getStaticSubclassDetails(characterClass, opt.name);
-                  if (details?.features && details.features.length > 0) {
-                    return (
-                      <div className="mt-2 space-y-1">
-                        <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">Features</div>
-                        {details.features.map((f: any, idx: number) => (
-                          <div key={idx} className="text-[10px] text-[var(--color-text-secondary)]">
-                            <span className="font-semibold">{f.name}</span>
-                            {f.level && <span className="text-[var(--color-text-muted)]"> (Lv {f.level})</span>}
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  }
-                  return null;
-                })()}
-              </div>
-            )}
           </div>
         ))}
       </div>

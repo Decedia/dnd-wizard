@@ -9,6 +9,7 @@ import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
 import { BasePopup } from "@/components/BasePopup";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
+import { InfoButton } from "@/components/InfoButton";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
 
@@ -195,15 +196,15 @@ export function SpellSelectionModal({
     }
   };
 
-  const currentCantrips = onChange
+  const currentCantrips = useMemo(() => onChange
     ? (character.spells || []).filter(s => s.level === 0)
-    : selectedSpells.filter((s) => s.endsWith(":0"));
-  const currentSpells = onChange
+    : selectedSpells.filter((s) => s.endsWith(":0")), [onChange, character.spells, selectedSpells]);
+  const currentSpells = useMemo(() => onChange
     ? (character.spells || []).filter(s => s.level > 0)
-    : selectedSpells.filter((s) => !s.endsWith(":0"));
+    : selectedSpells.filter((s) => !s.endsWith(":0")), [onChange, character.spells, selectedSpells]);
 
-  const selectedCantripNames = new Set(currentCantrips.map(s => typeof s === "string" ? s.split(":")[0] : s.name));
-  const selectedSpellNames = new Set(currentSpells.map(s => typeof s === "string" ? s.split(":")[0] : s.name));
+  const selectedCantripNames = useMemo(() => new Set(currentCantrips.map(s => typeof s === "string" ? s.split(":")[0] : s.name)), [currentCantrips]);
+  const selectedSpellNames = useMemo(() => new Set(currentSpells.map(s => typeof s === "string" ? s.split(":")[0] : s.name)), [currentSpells]);
 
   const renderSpell = (sp: any) => {
     const level = sp.level ?? 0;
@@ -214,6 +215,7 @@ export function SpellSelectionModal({
     const disabled = !isSel && !isAlreadyKnown && !isDisabled && (level === 0 ? currentCantrips.length : currentSpells.length) >= maxForLevel;
     const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
     const finalDisabled = disabled || isAlreadyKnown || isDisabled;
+    const spellId = `${sp.name}:${level}`;
 
     return (
       <div key={sp.name} className="flex gap-1.5">
@@ -221,7 +223,7 @@ export function SpellSelectionModal({
            type="button"
            onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
            disabled={finalDisabled}
-           className={`flex-1 px-3 py-2 text-right rounded-lg border transition-all ${
+           className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
              isDisabled
                ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
                : isAlreadyKnown
@@ -233,21 +235,23 @@ export function SpellSelectionModal({
                      : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
            }`}
          >
-           <div className="flex items-center justify-between flex-row-reverse">
+           <div className="flex items-center gap-2">
+             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+             <span className={`text-xs font-bold flex-1 ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
+               {sp.name}
+             </span>
+             {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500 shrink-0" />}
+             <InfoButton
+               title={sp.name}
+               description={(() => { const d = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description; const s = (sp as any).effectSummary || (sp as any).summary || ""; return s || d || ""; })()}
+             />
              <div className="w-3 shrink-0">
                {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
                {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
                {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
              </div>
-             <div className="flex items-center gap-1.5">
-               <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-               <span className={`text-xs font-bold ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
-                 {sp.name}
-               </span>
-             </div>
-             {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500" />}
            </div>
-           <div className="flex items-center gap-2 mt-0.5 mr-5 flex-row-reverse">
+           <div className="flex items-center gap-2 mt-0.5 ml-1">
              {sp.school && (() => {
                const schoolStyle = getSpellSchoolStyle(sp.school);
                if (!schoolStyle) return <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>;
@@ -269,14 +273,14 @@ export function SpellSelectionModal({
              })()}
              {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">·</span>}
              {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>}
-             {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium mr-1">From higher level</span>}
-             {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium mr-1">Already known</span>}
-             {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium mr-1">Selected</span>}
+             {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium">From higher level</span>}
+             {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
+             {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
            </div>
          </button>
-      </div>
-    );
-  };
+       </div>
+     );
+   };
 
   const renderLevelContent = (spellsForLevel: any[]) => {
     if (spellsForLevel.length === 0 && searchQuery) {
