@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BookCard } from "@/components/BookCard";
-import { BookPatterns, type BookId } from "@/components/book-svgs";
+import { BookPatterns, BookEmojis, type BookId } from "@/components/book-svgs";
 import { useSRD } from "@/contexts/SRDContext";
 
 const BOOK_SPECS: Record<
@@ -13,7 +13,6 @@ const BOOK_SPECS: Record<
     tags: string[];
     color: string;
     stripColor: string;
-    icon: string;
     patternSvg: React.ReactNode;
   }
 > = {
@@ -22,7 +21,6 @@ const BOOK_SPECS: Record<
     tags: ["Core rules", "Always on"],
     color: "#8B0000",
     stripColor: "#cc0000",
-    icon: "📖",
     patternSvg: BookPatterns.PHB,
   },
   XGE: {
@@ -30,7 +28,6 @@ const BOOK_SPECS: Record<
     tags: ["Subclasses", "Feats", "Spells"],
     color: "#1c2f9e",
     stripColor: "#3f51b5",
-    icon: "👁️",
     patternSvg: BookPatterns.XGE,
   },
   TCE: {
@@ -38,7 +35,6 @@ const BOOK_SPECS: Record<
     tags: ["Optional rules", "Subclasses"],
     color: "#4a148c",
     stripColor: "#9c27b0",
-    icon: "🪄",
     patternSvg: BookPatterns.TCE,
   },
   MTF: {
@@ -46,7 +42,6 @@ const BOOK_SPECS: Record<
     tags: ["Races", "Lore"],
     color: "#7f1111",
     stripColor: "#d32f2f",
-    icon: "💀",
     patternSvg: BookPatterns.MTF,
   },
   VGTM: {
@@ -54,7 +49,6 @@ const BOOK_SPECS: Record<
     tags: ["Races", "Monsters"],
     color: "#1b5e20",
     stripColor: "#4caf50",
-    icon: "🐉",
     patternSvg: BookPatterns.VGTM,
   },
   MPMM: {
@@ -62,7 +56,6 @@ const BOOK_SPECS: Record<
     tags: ["Races", "Monsters", "Lore"],
     color: "#4a148c",
     stripColor: "#9c27b0",
-    icon: "👾",
     patternSvg: BookPatterns.MPMM,
   },
   SCAG: {
@@ -70,7 +63,6 @@ const BOOK_SPECS: Record<
     tags: ["Subclasses", "Setting"],
     color: "#0d47a1",
     stripColor: "#2196f3",
-    icon: "⚔️",
     patternSvg: BookPatterns.SCAG,
   },
   EGW: {
@@ -78,7 +70,6 @@ const BOOK_SPECS: Record<
     tags: ["Races", "Setting"],
     color: "#2d4a22",
     stripColor: "#66bb6a",
-    icon: "🗺️",
     patternSvg: BookPatterns.EGW,
   },
   FTD: {
@@ -86,7 +77,6 @@ const BOOK_SPECS: Record<
     tags: ["Dragons", "Races"],
     color: "#8a3a00",
     stripColor: "#ff7043",
-    icon: "🔥",
     patternSvg: BookPatterns.FTD,
   },
   VRGR: {
@@ -94,7 +84,6 @@ const BOOK_SPECS: Record<
     tags: ["Races", "Horror"],
     color: "#311b92",
     stripColor: "#673ab7",
-    icon: "🧛",
     patternSvg: BookPatterns.VRGR,
   },
 };
@@ -135,7 +124,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
   const selectedCount = selectedSources.length;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div>
         <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-1">
           Step 1 of {totalBooks > 0 ? "8" : "6"}
@@ -179,20 +168,24 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
       </div>
 
       <div
-        className="flex items-center justify-between rounded-[12px] border px-[14px] py-[10px]"
-        style={{ borderColor: "#e0e0e0", background: "#fff" }}
+        className="sticky top-0 z-10 flex items-center justify-between rounded-[12px] border px-[14px] py-[10px]"
+        style={{
+          borderColor: "var(--color-border)",
+          background: "var(--color-surface)",
+        }}
       >
-        <span style={{ fontSize: 13, color: "#888" }}>Books selected</span>
-        <span style={{ fontSize: 15, fontWeight: 600, color: "#111" }}>
+        <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>Books selected</span>
+        <span style={{ fontSize: 15, fontWeight: 600, color: "var(--color-text-primary)" }}>
           {selectedCount} / {totalBooks}
         </span>
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-2 items-stretch pb-24">
         {SOURCE_OPTIONS.map((source) => {
           const isSelected = selectedSources.includes(source.id);
           const isPHB = source.id === "PHB";
           const spec = BOOK_SPECS[source.id as BookId];
+          const icon = BookEmojis[source.id as BookId] || "📜";
 
           if (!spec) return null;
 
@@ -208,7 +201,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
               onToggle={() => toggleSource(source.id)}
               color={spec.color}
               stripColor={spec.stripColor}
-              icon={spec.icon}
+              icon={icon}
               patternSvg={spec.patternSvg}
             />
           );
