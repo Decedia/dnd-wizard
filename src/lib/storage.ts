@@ -545,7 +545,7 @@ function normalizeCharacter(c: Character): Character {
       }
       if (!summary && spell.description) {
         const firstSentence = spell.description.split(/[.\n]/)[0].trim();
-        summary = firstSentence.split(/\s+/).slice(0, 30).join(" ");
+        summary = firstSentence;
       }
       
       return {
@@ -584,7 +584,7 @@ function normalizeCharacter(c: Character): Character {
 
       const summary = (feature as any).summary || (() => {
         const firstSentence = description.split(/[.\n]/)[0].trim();
-        return firstSentence.split(/\s+/).slice(0, 30).join(" ") + mechanismStr;
+        return firstSentence + mechanismStr;
       })();
       return {
         ...feature,
