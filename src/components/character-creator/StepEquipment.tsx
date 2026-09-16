@@ -958,12 +958,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                   setModalGroup(prev => prev ? { ...prev, selectedWeaponChoiceIndex: idx, selectedOptionIndex: null } : null);
                 }}
                 confirmDisabled={confirmDisabled}
-                renderRightContent={(option, isSelected) => {
-                  if (isSelected) {
-                    return <Check className="h-4 w-4 text-[var(--color-text-primary)]" />;
-                  }
-                  return <InfoButton title={(option as any).name || ""} description={(option as any).description || ""} />;
-                }}
+                getItemInfo={getItemInfo}
               />
             </>
           );

@@ -38,6 +38,7 @@ interface EquipmentChoiceModalProps {
   onWeaponChoiceSelect: (index: number) => void;
   confirmDisabled: boolean;
   renderRightContent?: (option: any, isSelected: boolean) => React.ReactNode;
+  getItemInfo?: (name: string) => { icon: string; description: string } | null;
 }
 
 export function EquipmentChoiceModal({
@@ -54,10 +55,9 @@ export function EquipmentChoiceModal({
   onWeaponChoiceSelect,
   confirmDisabled,
   renderRightContent,
+  getItemInfo,
 }: EquipmentChoiceModalProps) {
   const [mounted, setMounted] = useState(false);
-  const [activeWeaponPicker, setActiveWeaponPicker] = useState<number | null>(null);
-  const [selectedWeaponInPicker, setSelectedWeaponInPicker] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -109,6 +109,9 @@ export function EquipmentChoiceModal({
               {concreteOptions.map((opt) => {
                 const globalIdx = group.options.indexOf(opt);
                 const isSelected = selectedConcreteIndex === globalIdx;
+                const primaryItem = opt.items[0];
+                const itemInfo = primaryItem ? getItemInfo?.(primaryItem.name) : null;
+                const icon = itemInfo?.icon || "📦";
                 const itemNames = (opt.items || [])
                   .map((i) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
                   .join(", ");
@@ -118,12 +121,18 @@ export function EquipmentChoiceModal({
                     key={globalIdx}
                     type="button"
                     onClick={() => onConcreteSelect(globalIdx)}
-                    className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                    className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
                       isSelected
                         ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
                         : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
                   >
+                    <div
+                      className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: "var(--color-bg)" }}
+                    >
+                      <span className="text-[22px] leading-none">{icon}</span>
+                    </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
                         {opt.description}
@@ -156,115 +165,104 @@ export function EquipmentChoiceModal({
           )}
 
           {hasWeaponChoices && (
-            <div className="space-y-2">
+            <div className="space-y-4">
               {weaponChoiceOptions.map((wc, idx) => {
                 const isSelected = selectedWeaponChoiceIndex === idx;
+                const selectionCount = wc.selectionCount || 1;
+                const selectedNames = wc.selectedWeaponNames || [];
 
                 return (
-                  <button
+                  <div
                     key={wc.id}
-                    type="button"
-                    onClick={() => {
-                      onWeaponChoiceSelect(idx);
-                      setActiveWeaponPicker(idx);
-                      setSelectedWeaponInPicker(null);
-                    }}
-                    className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                    className={`rounded-lg border-2 p-3 transition-all ${
                       isSelected
                         ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                        : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                        : "border-[var(--color-border)]"
                     }`}
                   >
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                        {wc.label}
-                      </div>
-                      {isSelected && wc.selectedWeaponNames.length > 0 && (
-                        <div className="text-[12px] text-[var(--color-text-secondary)] truncate mt-0.5">
-                          {wc.selectedWeaponNames.join(" + ")}
-                          {wc.bonusItems && wc.bonusItems.length > 0 && ` + ${wc.bonusItems.map(i => i.name).join(", ")}`}
-                        </div>
-                      )}
-                      {!isSelected && wc.bonusItems && wc.bonusItems.length > 0 && (
-                        <div className="text-[12px] text-[var(--color-text-secondary)] truncate mt-0.5">
-                          Includes:{" "}
-                          {wc.bonusItems
-                            .map((i) => `${i.quantity > 1 ? `${i.quantity}\u00d7 ` : ""}${i.name}`)
-                            .join(", ")}
-                        </div>
-                      )}
-                    </div>
-                    <div className="shrink-0">
-                      {isSelected ? (
-                        <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
-                      ) : (
-                        <span className="text-[11px] text-[var(--color-text-muted)]">Choose weapon →</span>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          )}
-
-          {activeWeaponPicker !== null && weaponChoiceOptions[activeWeaponPicker] && (
-            <div className="mt-3 pt-3 border-t border-[var(--color-border)]">
-              <div className="text-[12px] font-bold text-[var(--color-text-secondary)] mb-2 uppercase tracking-wider">
-                Choose your {weaponChoiceOptions[activeWeaponPicker].label.toLowerCase()}
-              </div>
-              <div className="space-y-1.5">
-                {weaponChoiceOptions[activeWeaponPicker].weaponOptions.map((weapon, wIdx) => {
-                  const isWeaponSelected = weaponChoiceOptions[activeWeaponPicker].selectedWeaponNames.includes(weapon.name);
-                  const isPicked = selectedWeaponInPicker === wIdx;
-
-                  return (
-                    <button
-                      key={wIdx}
-                      type="button"
-                      onClick={() => {
-                        setSelectedWeaponInPicker(prev => prev === wIdx ? null : wIdx);
-                        weaponChoiceOptions[activeWeaponPicker].onWeaponSelect(weapon.name);
-                      }}
-                      className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
-                        isPicked
-                          ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      <div
-                        className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                        style={{ backgroundColor: "var(--color-bg)" }}
-                      >
-                        <span className="text-[22px] leading-none">{weapon.icon || "📦"}</span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                          {weapon.name}
-                        </div>
-                        {weapon.description && (
-                          <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
-                            {weapon.description}
-                          </div>
-                        )}
-                      </div>
-                      {weapon.statSummary && (
-                        <span className="text-[12px] font-medium text-[var(--color-text-primary)] shrink-0">
-                          {weapon.statSummary}
+                    <div className="text-[14px] font-medium text-[var(--color-text-primary)] mb-2">
+                      {wc.label}
+                      {selectionCount > 1 && (
+                        <span className="text-[12px] text-[var(--color-text-secondary)] ml-2">
+                          ({selectedNames.length}/{selectionCount} selected)
                         </span>
                       )}
-                      <div className="shrink-0">
-                        {renderRightContent ? renderRightContent(weapon, isPicked) : (
-                          isPicked ? (
-                            <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
-                          ) : (
-                            <InfoButton title={weapon.name || ""} description={weapon.description || ""} />
-                          )
-                        )}
+                    </div>
+
+                    {wc.bonusItems && wc.bonusItems.length > 0 && (
+                      <div className="mb-3 space-y-2">
+                        {wc.bonusItems.map((item, i) => {
+                          const itemInfo = getItemInfo?.(item.name);
+                          const icon = itemInfo?.icon || "📦";
+
+                          return (
+                            <div
+                              key={i}
+                              className="flex items-center gap-3 p-3 rounded-lg border-2 border-dashed border-[var(--color-border)] opacity-60"
+                            >
+                              <div
+                                className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                                style={{ backgroundColor: "var(--color-bg)" }}
+                              >
+                                <span className="text-[22px] leading-none">{icon}</span>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-[14px] font-medium text-[var(--color-text-muted)] truncate">
+                                  {item.name}
+                                </div>
+                                <div className="text-[12px] text-[var(--color-text-muted)]">
+                                  Included
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
-                    </button>
-                  );
-                })}
-              </div>
+                    )}
+
+                    <div className="max-h-[40vh] overflow-y-auto space-y-1.5">
+                      {wc.weaponOptions.map((weapon, wIdx) => {
+                        const isWeaponSelected = selectedNames.includes(weapon.name);
+
+                        return (
+                          <button
+                            key={wIdx}
+                            type="button"
+                            onClick={() => {
+                              wc.onWeaponSelect(weapon.name);
+                            }}
+                            className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                              isWeaponSelected
+                                ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
+                                : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                            }`}
+                          >
+                            <div
+                              className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                              style={{ backgroundColor: "var(--color-bg)" }}
+                            >
+                              <span className="text-[22px] leading-none">{weapon.icon || "📦"}</span>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
+                                {weapon.name}
+                              </div>
+                              {weapon.description && (
+                                <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
+                                  {weapon.description}
+                                </div>
+                              )}
+                            </div>
+                            {isWeaponSelected && (
+                              <Check className="h-4 w-4 text-[var(--color-text-primary)] shrink-0" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
