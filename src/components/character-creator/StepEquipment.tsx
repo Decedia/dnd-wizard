@@ -168,16 +168,53 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
   }, []);
 
+  const generateFallbackDescription = (itemName: string, info: any): string => {
+    if (info.type === "weapon") {
+      const parts: string[] = [];
+      if (info.category) parts.push(`A ${info.category} weapon.`);
+      if (info.damageDice) parts.push(`Deals ${info.damageDice} ${info.damageType || "damage"}.`);
+      if (info.properties?.length) parts.push(`Properties: ${info.properties.join(", ")}.`);
+      return parts.join(" ") || `A weapon called ${itemName}.`;
+    }
+    if (info.type === "armor") {
+      const parts: string[] = [];
+      const armorLabel = info.armorType ? info.armorType.charAt(0).toUpperCase() + info.armorType.slice(1) : "A type of";
+      parts.push(`${armorLabel} armor.`);
+      if (info.baseAC) parts.push(`Base AC ${info.baseAC}.`);
+      if (info.maxDex !== undefined && info.maxDex !== null) {
+        parts.push(info.maxDex === 0 ? "No Dex bonus." : `Max Dex bonus +${info.maxDex}.`);
+      }
+      return parts.join(" ") || `A type of armor called ${itemName}.`;
+    }
+    if (info.type === "instrument") {
+      return "Musical instrument used as a spellcasting focus.";
+    }
+    if (info.contents) {
+      return `Contains: ${info.contents}.`;
+    }
+    return `A ${itemName}.`;
+  };
+
   const getItemInfo = useCallback((itemName: string) => {
     const weapon = weapons.find((w: any) => w.name === itemName) as any;
     if (weapon) {
+      const rawDescription = weapon.description || "";
+      const description = rawDescription.length >= 30 && rawDescription !== weapon.name
+        ? rawDescription
+        : generateFallbackDescription(itemName, {
+            type: "weapon",
+            damageDice: weapon.damage?.damage_dice || "",
+            damageType: weapon.damage?.damage_type?.name || "",
+            properties: weapon.properties?.map((p: any) => p.name) || [],
+            category: weapon.category_range,
+          });
       return {
         type: "weapon",
         damageDice: weapon.damage?.damage_dice || "",
         damageType: weapon.damage?.damage_type?.name || "",
         properties: weapon.properties?.map((p: any) => p.name) || [],
         category: weapon.category_range,
-        description: weapon.description || "",
+        description,
         icon: getWeaponEmoji(itemName, weapon.category_range),
       };
     }
@@ -185,12 +222,21 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     const armor = armors.find((a: any) => a.name === itemName) as any;
     if (armor) {
       const armorType = armor.armor_category === "Light" ? "light" : armor.armor_category === "Medium" ? "medium" : armor.armor_category === "Heavy" ? "heavy" : armor.armor_category === "Shield" ? "shield" : "unknown";
+      const rawDescription = armor.description || "";
+      const description = rawDescription.length >= 30 && rawDescription !== armor.name
+        ? rawDescription
+        : generateFallbackDescription(itemName, {
+            type: "armor",
+            baseAC: armor.armor_class?.base || 0,
+            maxDex: armor.armor_class?.max_bonus ?? (armor.armor_class?.dex_bonus ? null : 0),
+            armorType,
+          });
       return {
         type: "armor",
         baseAC: armor.armor_class?.base || 0,
         maxDex: armor.armor_class?.max_bonus ?? (armor.armor_class?.dex_bonus ? null : 0),
         armorType,
-        description: armor.description || "",
+        description,
         icon: "🛡️",
       };
     }
@@ -205,9 +251,22 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
     const equipmentData = getEquipmentData(itemName);
     if (equipmentData) {
+      const rawDescription = equipmentData.description || "";
+      const description = rawDescription.length >= 30 && rawDescription !== itemName
+        ? rawDescription
+        : generateFallbackDescription(itemName, {
+            type: equipmentData.type,
+            baseAC: equipmentData.baseAC,
+            armorType: equipmentData.armorType,
+            maxDex: equipmentData.maxDexBonus,
+            damageDice: equipmentData.damageDice,
+            damageType: equipmentData.damageType,
+            category: equipmentData.category,
+            contents: equipmentData.contents,
+          });
       return {
         type: equipmentData.type,
-        description: equipmentData.description || "",
+        description,
         baseAC: equipmentData.baseAC,
         armorType: equipmentData.armorType,
         maxDex: equipmentData.maxDexBonus ?? null,
@@ -219,7 +278,11 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       };
     }
 
-    return null;
+    return {
+      type: "unknown",
+      description: generateFallbackDescription(itemName, { type: "unknown" }),
+      icon: "📦",
+    };
   }, [weapons, armors, isMusicalInstrument]);
 
   const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {

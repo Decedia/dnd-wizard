@@ -220,6 +220,11 @@ export function EquipmentChoiceModal({
                                   Included
                                 </div>
                               </div>
+                              {itemInfo?.description && (
+                                <div className="shrink-0">
+                                  <InfoButton title={item.name} description={itemInfo.description} />
+                                </div>
+                              )}
                             </div>
                           );
                         })}
@@ -229,6 +234,7 @@ export function EquipmentChoiceModal({
                     <div className="max-h-[40vh] overflow-y-auto space-y-1.5">
                       {wc.weaponOptions.map((weapon, wIdx) => {
                         const isWeaponSelected = selectedNames.includes(weapon.name);
+                        const weaponInfo = getItemInfo?.(weapon.name);
 
                         return (
                           <button
@@ -259,8 +265,14 @@ export function EquipmentChoiceModal({
                                 </div>
                               )}
                             </div>
-                            {isWeaponSelected && (
+                            {isWeaponSelected ? (
                               <Check className="h-4 w-4 text-[var(--color-text-primary)] shrink-0" />
+                            ) : (
+                              weaponInfo?.description && (
+                                <div className="shrink-0">
+                                  <InfoButton title={weapon.name} description={weaponInfo.description} />
+                                </div>
+                              )
                             )}
                           </button>
                         );
