@@ -10,6 +10,7 @@ interface WeaponOption {
   name: string;
   description?: string;
   icon?: string;
+  statSummary?: string | null;
   data?: any;
 }
 
@@ -35,7 +36,6 @@ interface EquipmentChoiceModalProps {
   weaponChoiceOptions: WeaponChoiceSection[];
   selectedWeaponChoiceIndex: number | null;
   onWeaponChoiceSelect: (index: number) => void;
-  onWeaponChoiceOpen?: (choiceIndex: number) => void;
   confirmDisabled: boolean;
   renderRightContent?: (option: any, isSelected: boolean) => React.ReactNode;
 }
@@ -52,11 +52,12 @@ export function EquipmentChoiceModal({
   weaponChoiceOptions,
   selectedWeaponChoiceIndex,
   onWeaponChoiceSelect,
-  onWeaponChoiceOpen,
   confirmDisabled,
   renderRightContent,
 }: EquipmentChoiceModalProps) {
   const [mounted, setMounted] = useState(false);
+  const [activeWeaponPicker, setActiveWeaponPicker] = useState<number | null>(null);
+  const [selectedWeaponInPicker, setSelectedWeaponInPicker] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -102,7 +103,7 @@ export function EquipmentChoiceModal({
           </button>
         </div>
 
-        <div className="flex-1 overflow-hidden px-4 py-3">
+        <div className="flex-1 overflow-y-auto px-4 py-3">
           {hasConcrete && (
             <div className="space-y-2 mb-2">
               {concreteOptions.map((opt) => {
@@ -157,19 +158,16 @@ export function EquipmentChoiceModal({
           {hasWeaponChoices && (
             <div className="space-y-2">
               {weaponChoiceOptions.map((wc, idx) => {
-                const weaponChoiceOpt = group.options.find((o) =>
-                  o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
-                );
-                const globalIdx = weaponChoiceOpt ? group.options.indexOf(weaponChoiceOpt) : idx;
                 const isSelected = selectedWeaponChoiceIndex === idx;
 
                 return (
-                  <div key={wc.id}>
                   <button
+                    key={wc.id}
                     type="button"
                     onClick={() => {
                       onWeaponChoiceSelect(idx);
-                      onWeaponChoiceOpen?.(idx);
+                      setActiveWeaponPicker(idx);
+                      setSelectedWeaponInPicker(null);
                     }}
                     className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
                       isSelected
@@ -204,9 +202,69 @@ export function EquipmentChoiceModal({
                       )}
                     </div>
                   </button>
-                  </div>
                 );
               })}
+            </div>
+          )}
+
+          {activeWeaponPicker !== null && weaponChoiceOptions[activeWeaponPicker] && (
+            <div className="mt-3 pt-3 border-t border-[var(--color-border)]">
+              <div className="text-[12px] font-bold text-[var(--color-text-secondary)] mb-2 uppercase tracking-wider">
+                Choose your {weaponChoiceOptions[activeWeaponPicker].label.toLowerCase()}
+              </div>
+              <div className="space-y-1.5">
+                {weaponChoiceOptions[activeWeaponPicker].weaponOptions.map((weapon, wIdx) => {
+                  const isWeaponSelected = weaponChoiceOptions[activeWeaponPicker].selectedWeaponNames.includes(weapon.name);
+                  const isPicked = selectedWeaponInPicker === wIdx;
+
+                  return (
+                    <button
+                      key={wIdx}
+                      type="button"
+                      onClick={() => {
+                        setSelectedWeaponInPicker(prev => prev === wIdx ? null : wIdx);
+                        weaponChoiceOptions[activeWeaponPicker].onWeaponSelect(weapon.name);
+                      }}
+                      className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                        isPicked
+                          ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
+                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                    >
+                      <div
+                        className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: "var(--color-bg)" }}
+                      >
+                        <span className="text-[22px] leading-none">{weapon.icon || "📦"}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
+                          {weapon.name}
+                        </div>
+                        {weapon.description && (
+                          <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
+                            {weapon.description}
+                          </div>
+                        )}
+                      </div>
+                      {weapon.statSummary && (
+                        <span className="text-[12px] font-medium text-[var(--color-text-primary)] shrink-0">
+                          {weapon.statSummary}
+                        </span>
+                      )}
+                      <div className="shrink-0">
+                        {renderRightContent ? renderRightContent(weapon, isPicked) : (
+                          isPicked ? (
+                            <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
+                          ) : (
+                            <InfoButton title={weapon.name || ""} description={weapon.description || ""} />
+                          )
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>
