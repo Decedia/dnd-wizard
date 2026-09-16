@@ -109,12 +109,13 @@ export function EquipmentChoiceModal({
               {concreteOptions.map((opt) => {
                 const globalIdx = group.options.indexOf(opt);
                 const isSelected = selectedConcreteIndex === globalIdx;
-                const primaryItem = opt.items[0];
-                const itemInfo = primaryItem ? getItemInfo?.(primaryItem.name) : null;
-                const icon = itemInfo?.icon || "📦";
                 const itemNames = (opt.items || [])
                   .map((i) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
                   .join(", ");
+                const itemIcons = (opt.items || []).map((i) => {
+                  const info = getItemInfo?.(i.name);
+                  return info?.icon || "📦";
+                });
 
                 return (
                   <button
@@ -127,11 +128,16 @@ export function EquipmentChoiceModal({
                         : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
                   >
-                    <div
-                      className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: "var(--color-bg)" }}
-                    >
-                      <span className="text-[22px] leading-none">{icon}</span>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {itemIcons.map((icon, i) => (
+                        <div
+                          key={i}
+                          className="w-10 h-10 rounded-[10px] flex items-center justify-center"
+                          style={{ backgroundColor: "var(--color-bg)" }}
+                        >
+                          <span className="text-[20px] leading-none">{icon}</span>
+                        </div>
+                      ))}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
