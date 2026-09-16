@@ -125,7 +125,7 @@ export function SubclassSelectionModal({
                     const details = getStaticSubclassDetails(characterClass, opt.name);
                     const parts = [opt.description];
                     if (details?.features && details.features.length > 0) {
-                      parts.push("\n\nFEATURES\n" + details.features.map((f: any) => `• ${f.name} (Lv ${f.level || "?"}): ${(f.description || "").split("\n")[0]}`).join("\n"));
+                      parts.push("\n\nFEATURES\n" + details.features.map((f: any) => `• ${f.name} (Lv ${f.level || "?"}): ${(f.description || [""]).join(" ")}`).join("\n"));
                     }
                     return parts.join("\n");
                   })()}
