@@ -116,6 +116,10 @@ export function EquipmentChoiceModal({
                   const info = getItemInfo?.(i.name);
                   return info?.icon || "📦";
                 });
+                const itemDescriptions = (opt.items || [])
+                  .map((i) => getItemInfo?.(i.name)?.description)
+                  .filter(Boolean) as string[];
+                const infoDescription = itemDescriptions.join("\n\n") || itemNames;
 
                 return (
                   <button
@@ -153,7 +157,7 @@ export function EquipmentChoiceModal({
                       {isSelected ? (
                         <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
                       ) : (
-                        <InfoButton title={opt.description} description={itemNames} />
+                        <InfoButton title={opt.description} description={infoDescription} />
                       )}
                     </div>
                   </button>
