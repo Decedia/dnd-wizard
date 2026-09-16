@@ -348,8 +348,10 @@ export function getStaticClasses(sources?: string[], ruleset?: string): SRDClass
   return filtered.filter((c) => sources.includes(c.source || "PHB"));
 }
 
-export function getStaticClass(name: string, ruleset?: string): SRDClass | undefined {
-  return getStaticClasses([], ruleset).find((c) => c.name === name);
+export function getStaticClass(name: string, sourcesOrRuleset?: string[] | string, ruleset?: string): SRDClass | undefined {
+  const sources = Array.isArray(sourcesOrRuleset) ? sourcesOrRuleset : undefined;
+  const actualRuleset = Array.isArray(sourcesOrRuleset) ? ruleset : sourcesOrRuleset;
+  return getStaticClasses(sources, actualRuleset).find((c) => c.name === name);
 }
 
 export interface SRDSubclass {

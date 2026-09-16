@@ -15,6 +15,7 @@ interface SubclassSelectionModalProps {
   onSelect: (name: string) => void;
   onClose: () => void;
   character?: any;
+  characterSources?: string[];
 }
 
 export function SubclassSelectionModal({
@@ -24,6 +25,7 @@ export function SubclassSelectionModal({
   onSelect,
   onClose,
   character,
+  characterSources,
 }: SubclassSelectionModalProps) {
   const [detailsView, setDetailsView] = useState<string | null>(null);
   const [previewSubclass, setPreviewSubclass] = useState<string | null>(null);
@@ -37,13 +39,13 @@ export function SubclassSelectionModal({
   }, []);
 
   const subclassData = useMemo(() => {
-    const subclasses = getStaticSubclasses(characterClass);
+    const subclasses = getStaticSubclasses(characterClass, characterSources);
     const map: Record<string, any> = {};
     for (const s of subclasses) {
       map[s.name] = s;
     }
     return map;
-  }, [characterClass]);
+  }, [characterClass, characterSources]);
 
   const filteredOptions = useMemo(() => {
     if (!searchQuery.trim()) return options;

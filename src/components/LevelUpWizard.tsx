@@ -499,7 +499,7 @@ function buildLevelInfos(
 }
 
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
-  const classData = character.class ? getStaticClass(character.class, character.ruleset) : undefined;
+  const classData = character.class ? getStaticClass(character.class, character.sources, character.ruleset) : undefined;
   const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(character.con);
@@ -2252,6 +2252,7 @@ function LevelCard({
           options={info.subclassOptions}
           selected={subclassSelection}
           characterClass={character.class}
+          characterSources={character.sources}
           onSelect={(name) => { onSubclassSelect(name); setShowSubclassModal(false); }}
           onClose={() => setShowSubclassModal(false)}
         />
