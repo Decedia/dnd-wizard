@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, generateId } from "@/lib/storage";
@@ -13,6 +13,7 @@ import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, Cro
 import { SourceBadge } from "@/components/SourceBadge";
 import { ItemSlot, ItemDetailPanel, InventoryGrid, type ItemSlotData } from "@/components/character-sheet/InventoryGrid";
 import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
+import { EquipmentSelectionModal } from "@/components/modals/EquipmentSelectionModal";
 import { useDebugLogger } from "@/lib/debug/DebugContext";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -116,6 +117,9 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
   const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
+  const [weaponPickerGroup, setWeaponPickerGroup] = useState<{ group: ChoiceGroup; choiceIndex: number; weaponType: string; selectionCount: number; bonusItems: Array<{ name: string; quantity: number }> } | null>(null);
+  const [selectedWeaponPickerIndex, setSelectedWeaponPickerIndex] = useState<number | null>(null);
+  const secondaryCompletedRef = useRef<{ groupId: string; choiceIndex: number } | null>(null);
 
   useEffect(() => {
     debug.log('tempWeaponSelectionsMap CHANGED', { tempWeaponSelectionsMap, modalGroupId: modalGroup?.group.id });
@@ -362,6 +366,77 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     setTempSelectedName(focusName);
   }, [getGroupIndex]);
 
+  const onWeaponChoiceOpen = useCallback((choiceIndex: number) => {
+    if (!modalGroup) return;
+    const choiceOptions = modalGroup.group.options.filter(o =>
+      o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
+    );
+    const choiceOpt = choiceOptions[choiceIndex];
+    if (!choiceOpt) return;
+
+    setWeaponPickerGroup({
+      group: modalGroup.group,
+      choiceIndex,
+      weaponType: choiceOpt.weaponType || "",
+      selectionCount: choiceOpt.selectionCount || 1,
+      bonusItems: (choiceOpt.items || []).map(item => ({ name: item.name, quantity: item.quantity || 1 })),
+    });
+    setSelectedWeaponPickerIndex(null);
+  }, [modalGroup]);
+
+  const handleWeaponPickerConfirm = useCallback(() => {
+    if (selectedWeaponPickerIndex === null || !weaponPickerGroup) return;
+
+    const weaponOptions = weapons.filter((w: any) => {
+      const wt = weaponPickerGroup.weaponType;
+      if (wt === "martial") return w.weapon_category === "Martial";
+      if (wt === "simple") return w.weapon_category === "Simple";
+      if (wt === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
+      if (wt === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
+      if (wt === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
+      if (wt === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
+      return false;
+    });
+    const selectedWeapon = weaponOptions[selectedWeaponPickerIndex];
+    if (!selectedWeapon) return;
+
+    setTempWeaponSelectionsMap(prev => ({
+      ...prev,
+      [weaponPickerGroup.choiceIndex]: [selectedWeapon.name]
+    }));
+
+    secondaryCompletedRef.current = {
+      groupId: weaponPickerGroup.group.id,
+      choiceIndex: weaponPickerGroup.choiceIndex,
+    };
+
+    setWeaponPickerGroup(null);
+    setSelectedWeaponPickerIndex(null);
+  }, [weaponPickerGroup, selectedWeaponPickerIndex, weapons]);
+
+  const weaponPickerOptions = useMemo(() => {
+    if (!weaponPickerGroup) return [];
+    return weapons.filter((w: any) => {
+      const wt = weaponPickerGroup.weaponType;
+      if (wt === "martial") return w.weapon_category === "Martial";
+      if (wt === "simple") return w.weapon_category === "Simple";
+      if (wt === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
+      if (wt === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
+      if (wt === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
+      if (wt === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
+      return false;
+    }).map((w: any) => {
+      const itemInfo = getItemInfo(w.name);
+      return {
+        icon: getWeaponEmoji(w.name, weaponPickerGroup.weaponType),
+        name: w.name,
+        description: w.description || "",
+        statSummary: w.damage?.damage_dice ? `${w.damage.damage_dice} ${w.damage.damage_type?.name || ""}`.trim() : null,
+        data: w,
+      };
+    });
+  }, [weaponPickerGroup, weapons, getItemInfo]);
+
   const handleModalConfirm = useCallback(() => {
     if (!modalGroup) return;
 
@@ -381,6 +456,16 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     } else if (selectedOptionIndex !== null) {
       option = group.options[selectedOptionIndex];
       effectiveOptionIndex = selectedOptionIndex;
+    }
+
+    if (selectedWeaponChoiceIndex !== null && secondaryCompletedRef.current?.groupId === group.id && secondaryCompletedRef.current?.choiceIndex === selectedWeaponChoiceIndex) {
+      secondaryCompletedRef.current = null;
+      setModalGroup(null);
+      setTempWeaponSelectionsMap({});
+      setTempSelectedName(null);
+      setWeaponPickerGroup(null);
+      setSelectedWeaponPickerIndex(null);
+      return;
     }
 
     debug.log('handleModalConfirm', { groupId: group.id, selectedOptionIndex, selectedWeaponChoiceIndex, tempWeaponSelectionsMap, optionDescription: option?.description, effectiveOptionIndex });
@@ -466,6 +551,9 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     setModalGroup(null);
     setTempWeaponSelectionsMap({});
     setTempSelectedName(null);
+    setWeaponPickerGroup(null);
+    setSelectedWeaponPickerIndex(null);
+    secondaryCompletedRef.current = null;
   }, []);
 
   const handleChoiceRemove = useCallback((group: ChoiceGroup) => {
@@ -728,6 +816,9 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     });
     setTempWeaponSelectionsMap({});
     setTempSelectedName(null);
+    setWeaponPickerGroup(null);
+    setSelectedWeaponPickerIndex(null);
+    secondaryCompletedRef.current = null;
   }, [data.inventory, getGroupIndex, onChange, debug]);
 
   return (
@@ -957,6 +1048,9 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                 onWeaponChoiceSelect={(idx) => {
                   setModalGroup(prev => prev ? { ...prev, selectedWeaponChoiceIndex: idx, selectedOptionIndex: null } : null);
                 }}
+                onWeaponChoiceOpen={(idx) => {
+                  onWeaponChoiceOpen(idx);
+                }}
                 confirmDisabled={confirmDisabled}
                 renderRightContent={(option, isSelected) => {
                   if (isSelected) {
@@ -965,6 +1059,24 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                   return <InfoButton title={(option as any).name || ""} description={(option as any).description || ""} />;
                 }}
               />
+              {weaponPickerGroup && (
+                <EquipmentSelectionModal
+                  isOpen={!!weaponPickerGroup}
+                  onClose={() => {
+                    setWeaponPickerGroup(null);
+                    setSelectedWeaponPickerIndex(null);
+                  }}
+                  onConfirm={handleWeaponPickerConfirm}
+                  title={`Choose your ${weaponPickerGroup.weaponType.replace('_', ' ')} weapon`}
+                  options={weaponPickerOptions}
+                  selectedIndices={selectedWeaponPickerIndex !== null ? [selectedWeaponPickerIndex] : []}
+                  onOptionSelect={(idx) => {
+                    setSelectedWeaponPickerIndex(prev => prev === idx ? null : idx);
+                  }}
+                  confirmDisabled={selectedWeaponPickerIndex === null}
+                  manageBodyScroll={false}
+                />
+              )}
             </>
           );
         })()}

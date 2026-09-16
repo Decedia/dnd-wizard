@@ -5298,17 +5298,61 @@
               "choices": {
                 "type": "single",
                 "options": [
-                  "Archery",
-                  "Blind Fighting",
-                  "Defense",
-                  "Dueling",
-                  "Great Weapon Fighting",
-                  "Interception",
-                  "Protection",
-                  "Superior Technique",
-                  "Thrown Weapon Fighting",
-                  "Two-Weapon Fighting",
-                  "Unarmed Fighting"
+                  {
+                    "name": "Archery",
+                    "description": "Gain +2 bonus to attack rolls with ranged weapons",
+                    "icon": "🏹"
+                  },
+                  {
+                    "name": "Blind Fighting",
+                    "description": "Gain blindsight while you can see",
+                    "icon": "😵"
+                  },
+                  {
+                    "name": "Defense",
+                    "description": "Gain +1 to AC while wearing armor",
+                    "icon": "🛡️"
+                  },
+                  {
+                    "name": "Dueling",
+                    "description": "Gain +2 damage when wielding a one-handed melee weapon and no other weapon",
+                    "icon": "⚔️"
+                  },
+                  {
+                    "name": "Great Weapon Fighting",
+                    "description": "Reroll 1s and 2s on damage dice when using a two-handed or versatile weapon with both hands",
+                    "icon": "🪓"
+                  },
+                  {
+                    "name": "Interception",
+                    "description": "Use reaction to reduce damage when an ally within 5ft is hit",
+                    "icon": "🛡️"
+                  },
+                  {
+                    "name": "Protection",
+                    "description": "Use reaction to impose disadvantage on an attack against an adjacent ally when holding a shield",
+                    "icon": "🔰"
+                  },
+                  {
+                    "name": "Superior Technique",
+                    "description": "Learn a superiority die and a maneuver",
+                    "icon": "📖"
+                  },
+                  {
+                    "name": "Thrown Weapon Fighting",
+                    "description": "Draw thrown weapons as part of attack and add proficiency to damage",
+                    "icon": "🗡️"
+                  },
+                  {
+                    "name": "Two-Weapon Fighting",
+                    "description": "Add ability modifier to damage of your off-hand attack",
+                    "icon": "🗡️"
+                  },
+                  {
+                    "name": "Unarmed Fighting",
+                    "description": "Deal more damage with unarmed strikes and grapple",
+                    "icon": "👊"
+                  }
                 ],
                 "description": "Choose a fighting style option."
               },

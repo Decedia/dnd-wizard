@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } from "react";
 import { WizardNav } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, getFeatureValue, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
@@ -87,6 +87,43 @@ function getAvailableInvocations(level: number, pactBoon: string, knownInvocatio
   });
 }
 
+const TOOL_EMOJI_MAP: Record<string, string> = {
+  "Alchemist's Supplies": "⚗️",
+  "Brewer's Supplies": "🍺",
+  "Calligrapher's Supplies": "✒️",
+  "Carpenter's Tools": "🪚",
+  "Cartographer's Tools": "🗺️",
+  "Cobbler's Tools": "👞",
+  "Cook's utensils": "🍳",
+  "Dice Set": "🎲",
+  "Drum": "🥁",
+  "Dulcimer": "🎵",
+  "Flute": "🎵",
+  "Glassblower's Tools": "🫧",
+  "Horn": "📯",
+  "Jeweler's Tools": "💎",
+  "Leatherworker's Tools": "🧵",
+  "Lute": "🎵",
+  "Lyre": "🎵",
+  "Mason's Tools": "🧱",
+  "Navigator's Tools": "🧭",
+  "Painter's Supplies": "🎨",
+  "Pan flute": "🎵",
+  "Playing Card Set": "🃏",
+  "Potter's Tools": "🏺",
+  "Shawm": "🎵",
+  "Smith's Tools": "⚒️",
+  "Thieves' Tools": "🔓",
+  "Tinker's Tools": "🔧",
+  "Viol": "🎵",
+  "Weaver's Tools": "🪡",
+  "Woodcarver's Tools": "🪵",
+};
+
+function toolEmoji(name: string): string {
+  return TOOL_EMOJI_MAP[name] || "🔧";
+}
+
 interface LevelUpWizardProps {
   character: Character;
   onCancel: () => void;
@@ -109,8 +146,8 @@ interface LevelInfo {
   spellsKnown?: number;
   classFeatures: { name: string; value: string }[];
   subclassOptions?: { name: string; description: string; hasDetails: boolean }[];
-  subclassFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[];
-  classFeatureChoices?: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[];
+  subclassFeatureChoices?: { name: string; description: string; options: { name: string; description: string; icon?: string }[]; count?: number }[];
+  classFeatureChoices?: { name: string; description: string; options: { name: string; description: string; icon?: string }[]; count?: number }[];
   hasSpellSelection: boolean;
   spellSelectionType: "known" | "book" | "prepare";
   spellSelectionCount: number;
@@ -260,7 +297,7 @@ function buildLevelInfos(
             subclassFeatureChoices.push({
               name: f.name,
               description: desc,
-              options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "" })),
+              options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
               count: f.choicesCount || 1,
             });
           } else {
@@ -271,17 +308,30 @@ function buildLevelInfos(
     }
 
     // Class feature choices (e.g., Primal Knowledge for Barbarian)
-    const classFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];
+    const classFeatureChoices: { name: string; description: string; options: { name: string; description: string; icon?: string }[]; count?: number }[] = [];
     const levelFeatures = classData.levels[level - 1]?.features || [];
     for (const feature of levelFeatures) {
       const f = feature as any;
-      if (f.choices && f.choices.options && f.choices.options.length > 0) {
+      if (f.choices && f.choices.type === "tools") {
+        const tools = getStaticEquipments([], character.ruleset).filter((e: any) => e.equipment_category === "Tools");
+        classFeatureChoices.push({
+          name: f.name,
+          description: f.description || "",
+          options: tools.map((t: any) => ({
+            name: t.name,
+            description: t.description || "",
+            icon: toolEmoji(t.name),
+          })),
+          count: f.choices.count || 1,
+        });
+      } else if (f.choices && f.choices.options && f.choices.options.length > 0) {
         classFeatureChoices.push({
           name: f.name,
           description: f.description || "",
           options: f.choices.options.map((opt: any) => ({
             name: typeof opt === "string" ? opt : opt.name,
             description: typeof opt === "string" ? "" : (opt.description || ""),
+            icon: typeof opt === "string" ? undefined : opt.icon,
           })),
           count: f.choices.count || 1,
         });
@@ -710,6 +760,15 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         ),
       },
     };
+
+    const toolNames = new Set(getStaticEquipments([], character.ruleset).filter((e: any) => e.equipment_category === "Tools").map((e: any) => e.name));
+    const newToolProficiencies = new Set(character.toolProficiencies || []);
+    for (const sel of Object.values(draft.featureSelections).flat()) {
+      if (typeof sel === "string" && toolNames.has(sel)) {
+        newToolProficiencies.add(sel);
+      }
+    }
+    draft.toolProficiencies = Array.from(newToolProficiencies);
 
     if (startFromLevelOne) {
       const levelHp: Record<number, number> = { 1: hitDie + conMod };
@@ -1354,7 +1413,7 @@ function LevelCard({
     const [spellModalMode, setSpellModalMode] = useState<"all" | "cantrips" | "spells">("all");
     const [showTerrainModal, setShowTerrainModal] = useState(false);
     const [showBonusCantripModal, setShowBonusCantripModal] = useState(false);
-    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string }[]; isSubclass: boolean; count?: number } | null>(null);
+    const [showFeaturePopup, setShowFeaturePopup] = useState<{ name: string; description: string; options: { name: string; description: string; icon?: string }[]; isSubclass: boolean; count?: number } | null>(null);
     const [featureSelections, setFeatureSelections] = useState<string[]>([]);
     const [showHumanoidPopup, setShowHumanoidPopup] = useState<{ featureName: string; level: number } | null>(null);
     const [humanoidSelections, setHumanoidSelections] = useState<string[]>([]);

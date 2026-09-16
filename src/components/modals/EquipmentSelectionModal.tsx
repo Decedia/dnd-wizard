@@ -23,6 +23,7 @@ export interface EquipmentSelectionModalProps {
   multiple?: boolean;
   confirmDisabled?: boolean;
   renderRightContent?: (option: any, isSelected: boolean) => React.ReactNode;
+  manageBodyScroll?: boolean;
 }
 
 export function EquipmentSelectionModal({
@@ -37,6 +38,7 @@ export function EquipmentSelectionModal({
   multiple = false,
   confirmDisabled = false,
   renderRightContent,
+  manageBodyScroll = true,
 }: EquipmentSelectionModalProps) {
   const [mounted, setMounted] = useState(false);
 
@@ -46,15 +48,19 @@ export function EquipmentSelectionModal({
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (manageBodyScroll) {
+      if (isOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
     }
     return () => {
-      document.body.style.overflow = "";
+      if (manageBodyScroll) {
+        document.body.style.overflow = "";
+      }
     };
-  }, [isOpen]);
+  }, [isOpen, manageBodyScroll]);
 
   if (!isOpen || !mounted) return null;
 

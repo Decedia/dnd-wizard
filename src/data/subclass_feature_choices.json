@@ -33,71 +33,87 @@
     "Battle Master": {
       "Combat Superiority": {
         "count": 3,
-        "description": "You learn three maneuvers of your choice from the list. You can use only one maneuver per attack.",
+        "description": "You learn maneuvers fueled by superiority dice (d8s). You gain 4 superiority dice at level 3, regaining them on a short or long rest. You learn 3 maneuvers at level 3, and additional maneuvers at higher levels.",
         "options": [
           {
             "name": "Commander's Strike",
-            "description": "Forgo one attack to let an ally attack a creature with advantage."
+            "description": "Use bonus action to direct an ally to attack — they add your superiority die to their damage",
+            "icon": "📢"
           },
           {
             "name": "Disarming Attack",
-            "description": "Add superiority die to attack; target drops a held item on failed save."
+            "description": "Add superiority die to damage — target makes STR save or drops one held item",
+            "icon": "✋"
           },
           {
             "name": "Distracting Strike",
-            "description": "Add superiority die; next attack roll against target has advantage."
+            "description": "Add superiority die to damage — next attack against target before your next turn has advantage",
+            "icon": "👁️"
           },
           {
             "name": "Evasive Footwork",
-            "description": "Spend die to gain AC bonus while you move."
+            "description": "Add superiority die to AC until end of your move",
+            "icon": "💨"
           },
           {
             "name": "Feinting Attack",
-            "description": "Spend die to gain advantage on your next attack."
+            "description": "Use bonus action to feint — gain advantage on next attack and add superiority die to damage",
+            "icon": "🎭"
           },
           {
             "name": "Goading Attack",
-            "description": "Add die; target has disadvantage vs others on failed save."
+            "description": "Add superiority die to damage — target makes WIS save or has disadvantage attacking anyone but you",
+            "icon": "😤"
           },
           {
             "name": "Lunging Attack",
-            "description": "Spend die to increase your reach on an attack."
+            "description": "Increase melee attack reach by 5ft and add superiority die to damage",
+            "icon": "⚡"
           },
           {
             "name": "Maneuvering Attack",
-            "description": "Add die; an ally can move without opportunity attacks."
+            "description": "Add superiority die to damage — ally can move half speed without provoking opportunity attacks",
+            "icon": "🔄"
           },
           {
             "name": "Menacing Attack",
-            "description": "Add die; frighten target on failed save."
+            "description": "Add superiority die to damage — target makes WIS save or becomes frightened until end of next turn",
+            "icon": "😨"
           },
           {
             "name": "Parry",
-            "description": "Spend die to reduce melee damage taken."
+            "description": "Use reaction when hit — reduce damage by superiority die plus DEX modifier",
+            "icon": "🛡️"
           },
           {
             "name": "Precision Attack",
-            "description": "Spend die to add to an attack roll."
+            "description": "Add superiority die to an attack roll before knowing if it hits",
+            "icon": "🎯"
           },
           {
             "name": "Pushing Attack",
-            "description": "Add die; push target away on failed save."
+            "description": "Add superiority die to damage — target makes STR save or is pushed up to 15ft away",
+            "icon": "💥"
           },
           {
             "name": "Rally",
-            "description": "Spend die to grant temporary hit points to an ally."
+            "description": "Use bonus action to give an ally temporary HP equal to superiority die plus CHA modifier",
+            "icon": "❤️"
           },
           {
             "name": "Riposte",
-            "description": "Spend die to attack a creature that missed you."
+            "description": "Use reaction when a creature misses you — make one melee attack and add superiority die to damage",
+            "icon": "⚔️"
           },
           {
             "name": "Sweeping Attack",
-            "description": "Spend die to deal damage to a second creature."
+            "description": "Deal superiority die damage to a second creature adjacent to the first target",
+            "icon": "🌀"
           },
           {
             "name": "Trip Attack",
-            "description": "Add die; knock target prone on failed save."
+            "description": "Add superiority die to damage — target makes STR save or is knocked prone if Large or smaller",
+            "icon": "🦵"
           }
         ]
       }

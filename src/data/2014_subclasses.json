@@ -4279,7 +4279,7 @@
       "features": [
         {
           "name": "Combat Superiority",
-          "description": "When you choose this archetype at 3rd level, you learn maneuvers that are fueled by special dice called superiority dice. Maneuvers. You learn three maneuvers of your choice. Many maneuvers enhance an attack in some way. You can use only one maneuver per attack. You learn two additional maneuvers of your choice at 7th, 10th, and 15th level. Each time you learn new maneuvers, you can also replace one maneuver you know with a different one. Superiority Dice. You have four superiority dice, which are d8s. A superiority die is expended when you use it. You regain all of your expended superiority dice when you finish a short or long rest. You gain another superiority die at 7th level and one more at 15th level. Saving Throws. Some of your maneuvers require your target to make a saving throw to resist the maneuver's effects. The saving throw DC is calculated as follows: Maneuver save DC = 8 + your proficiency bonus + your Strength or Dexterity modifier (your choice)",
+          "description": "You learn maneuvers fueled by superiority dice (d8s). You gain 4 superiority dice at level 3, regaining them on a short or long rest. You learn 3 maneuvers at level 3, and additional maneuvers at higher levels.",
           "level": 3,
           "choices": {
             "type": "maneuvers",
@@ -4288,67 +4288,83 @@
             "options": [
               {
                 "name": "Commander's Strike",
-                "description": "Forgo one attack to let an ally attack a creature with advantage."
+                "description": "Use bonus action to direct an ally to attack — they add your superiority die to their damage",
+                "icon": "📢"
               },
               {
                 "name": "Disarming Attack",
-                "description": "Add superiority die to attack; target drops a held item on failed save."
+                "description": "Add superiority die to damage — target makes STR save or drops one held item",
+                "icon": "✋"
               },
               {
                 "name": "Distracting Strike",
-                "description": "Add superiority die; next attack roll against target has advantage."
+                "description": "Add superiority die to damage — next attack against target before your next turn has advantage",
+                "icon": "👁️"
               },
               {
                 "name": "Evasive Footwork",
-                "description": "Spend die to gain AC bonus while you move."
+                "description": "Add superiority die to AC until end of your move",
+                "icon": "💨"
               },
               {
                 "name": "Feinting Attack",
-                "description": "Spend die to gain advantage on your next attack."
+                "description": "Use bonus action to feint — gain advantage on next attack and add superiority die to damage",
+                "icon": "🎭"
               },
               {
                 "name": "Goading Attack",
-                "description": "Add die; target has disadvantage vs others on failed save."
+                "description": "Add superiority die to damage — target makes WIS save or has disadvantage attacking anyone but you",
+                "icon": "😤"
               },
               {
                 "name": "Lunging Attack",
-                "description": "Spend die to increase your reach on an attack."
+                "description": "Increase melee attack reach by 5ft and add superiority die to damage",
+                "icon": "⚡"
               },
               {
                 "name": "Maneuvering Attack",
-                "description": "Add die; an ally can move without opportunity attacks."
+                "description": "Add superiority die to damage — ally can move half speed without provoking opportunity attacks",
+                "icon": "🔄"
               },
               {
                 "name": "Menacing Attack",
-                "description": "Add die; frighten target on failed save."
+                "description": "Add superiority die to damage — target makes WIS save or becomes frightened until end of next turn",
+                "icon": "😨"
               },
               {
                 "name": "Parry",
-                "description": "Spend die to reduce melee damage taken."
+                "description": "Use reaction when hit — reduce damage by superiority die plus DEX modifier",
+                "icon": "🛡️"
               },
               {
                 "name": "Precision Attack",
-                "description": "Spend die to add to an attack roll."
+                "description": "Add superiority die to an attack roll before knowing if it hits",
+                "icon": "🎯"
               },
               {
                 "name": "Pushing Attack",
-                "description": "Add die; push target away on failed save."
+                "description": "Add superiority die to damage — target makes STR save or is pushed up to 15ft away",
+                "icon": "💥"
               },
               {
                 "name": "Rally",
-                "description": "Spend die to grant temporary hit points to an ally."
+                "description": "Use bonus action to give an ally temporary HP equal to superiority die plus CHA modifier",
+                "icon": "❤️"
               },
               {
                 "name": "Riposte",
-                "description": "Spend die to attack a creature that missed you."
+                "description": "Use reaction when a creature misses you — make one melee attack and add superiority die to damage",
+                "icon": "⚔️"
               },
               {
                 "name": "Sweeping Attack",
-                "description": "Spend die to deal damage to a second creature."
+                "description": "Deal superiority die damage to a second creature adjacent to the first target",
+                "icon": "🌀"
               },
               {
                 "name": "Trip Attack",
-                "description": "Add die; knock target prone on failed save."
+                "description": "Add superiority die to damage — target makes STR save or is knocked prone if Large or smaller",
+                "icon": "🦵"
               }
             ]
           },
@@ -4361,7 +4377,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Some of your maneuvers require your target to make a saving throw to resist the maneuver's effects. (action)",
+          "summary": "Spend superiority dice to fuel powerful combat maneuvers",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -4381,7 +4397,164 @@
           "choices": {
             "type": "tools",
             "count": 1,
-            "description": "Choose one type of artisan's tools."
+            "description": "Choose one type of artisan's tools.",
+            "options": [
+              {
+                "name": "Alchemist's Supplies",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "⚗️"
+              },
+              {
+                "name": "Bagpipes",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🔧"
+              },
+              {
+                "name": "Brewer's Supplies",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🍺"
+              },
+              {
+                "name": "Calligrapher's Supplies",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "✒️"
+              },
+              {
+                "name": "Carpenter's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🪚"
+              },
+              {
+                "name": "Cartographer's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🗺️"
+              },
+              {
+                "name": "Cobbler's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "👞"
+              },
+              {
+                "name": "Cook's utensils",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🍳"
+              },
+              {
+                "name": "Dice Set",
+                "description": "This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.",
+                "icon": "🎲"
+              },
+              {
+                "name": "Drum",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🥁"
+              },
+              {
+                "name": "Dulcimer",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🎵"
+              },
+              {
+                "name": "Flute",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🎵"
+              },
+              {
+                "name": "Glassblower's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🫧"
+              },
+              {
+                "name": "Horn",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "📯"
+              },
+              {
+                "name": "Jeweler's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "💎"
+              },
+              {
+                "name": "Leatherworker's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🧵"
+              },
+              {
+                "name": "Lute",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🎵"
+              },
+              {
+                "name": "Lyre",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🎵"
+              },
+              {
+                "name": "Mason's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🧱"
+              },
+              {
+                "name": "Navigator's Tools",
+                "description": "This set of instruments is used for navigation at sea. Proficiency with navigator's tools lets you chart a ship's course and follow navigation charts. In addition, these tools allow you to add your proficiency bonus to any ability check you make to avoid getting lost at sea.",
+                "icon": "🧭"
+              },
+              {
+                "name": "Painter's Supplies",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🎨"
+              },
+              {
+                "name": "Pan flute",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🎵"
+              },
+              {
+                "name": "Playing Card Set",
+                "description": "This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.",
+                "icon": "🃏"
+              },
+              {
+                "name": "Potter's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🏺"
+              },
+              {
+                "name": "Shawm",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🎵"
+              },
+              {
+                "name": "Smith's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "⚒️"
+              },
+              {
+                "name": "Thieves' Tools",
+                "description": "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks.",
+                "icon": "🔓"
+              },
+              {
+                "name": "Tinker's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🔧"
+              },
+              {
+                "name": "Viol",
+                "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+                "icon": "🎵"
+              },
+              {
+                "name": "Weaver's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🪡"
+              },
+              {
+                "name": "Woodcarver's Tools",
+                "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+                "icon": "🪵"
+              }
+            ]
           },
           "featureType": "Passive",
           "actionType": null,

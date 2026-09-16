@@ -35,6 +35,7 @@ interface EquipmentChoiceModalProps {
   weaponChoiceOptions: WeaponChoiceSection[];
   selectedWeaponChoiceIndex: number | null;
   onWeaponChoiceSelect: (index: number) => void;
+  onWeaponChoiceOpen?: (choiceIndex: number) => void;
   confirmDisabled: boolean;
   renderRightContent?: (option: any, isSelected: boolean) => React.ReactNode;
 }
@@ -51,6 +52,7 @@ export function EquipmentChoiceModal({
   weaponChoiceOptions,
   selectedWeaponChoiceIndex,
   onWeaponChoiceSelect,
+  onWeaponChoiceOpen,
   confirmDisabled,
   renderRightContent,
 }: EquipmentChoiceModalProps) {
@@ -163,106 +165,45 @@ export function EquipmentChoiceModal({
 
                 return (
                   <div key={wc.id}>
-                    <button
-                      type="button"
-                      onClick={() => onWeaponChoiceSelect(idx)}
-                      className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
-                        isSelected
-                          ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                          : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      <div className="flex-1 min-w-0">
-                        <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                          {wc.label}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onWeaponChoiceSelect(idx);
+                      onWeaponChoiceOpen?.(idx);
+                    }}
+                    className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                      isSelected
+                        ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
+                        : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                    }`}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
+                        {wc.label}
+                      </div>
+                      {isSelected && wc.selectedWeaponNames.length > 0 && (
+                        <div className="text-[12px] text-[var(--color-text-secondary)] truncate mt-0.5">
+                          {wc.selectedWeaponNames.join(" + ")}
+                          {wc.bonusItems && wc.bonusItems.length > 0 && ` + ${wc.bonusItems.map(i => i.name).join(", ")}`}
                         </div>
-                        {wc.bonusItems && wc.bonusItems.length > 0 && (
-                          <div className="text-[12px] text-[var(--color-text-secondary)] truncate mt-0.5">
-                            Includes:{" "}
-                            {wc.bonusItems
-                              .map((i) => `${i.quantity > 1 ? `${i.quantity}\u00d7 ` : ""}${i.name}`)
-                              .join(", ")}
-                          </div>
-                        )}
-                      </div>
-                      <div className="shrink-0">
-                        {isSelected ? (
-                          <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
-                        ) : (
-                          <InfoButton
-                            title={wc.label}
-                            description={wc.bonusItems?.map((i) => i.name).join(", ") || ""}
-                          />
-                        )}
-                      </div>
-                    </button>
-
-                    {isSelected && (
-                      <div className="ml-4 mt-2 space-y-2 border-l-2 border-[var(--color-border)] pl-3">
-                        <div className="text-[13px] font-semibold text-[var(--color-text-primary)] px-1 mb-2">
-                          Choose {wc.selectionCount} {wc.label.replace(/^Choose \d+ /, "").replace(/s$/, "")}
-                          {wc.selectionCount !== 1 ? "s" : ""}
+                      )}
+                      {!isSelected && wc.bonusItems && wc.bonusItems.length > 0 && (
+                        <div className="text-[12px] text-[var(--color-text-secondary)] truncate mt-0.5">
+                          Includes:{" "}
+                          {wc.bonusItems
+                            .map((i) => `${i.quantity > 1 ? `${i.quantity}\u00d7 ` : ""}${i.name}`)
+                            .join(", ")}
                         </div>
-                        {wc.weaponOptions.map((weapon, wIdx) => {
-                          const isWeaponSelected = wc.selectedWeaponNames.includes(weapon.name);
-                          const icon = weapon.icon || "📦";
-                          const name = weapon.name;
-                          const description = weapon.description || "";
-                          const statSummary = weapon.data?.damage?.damage_dice
-                            ? `${weapon.data.damage.damage_dice} ${weapon.data.damage.damage_type?.name || ""}`.trim()
-                            : null;
-
-                          return (
-                            <button
-                              key={wIdx}
-                              type="button"
-                              onClick={() => wc.onWeaponSelect(weapon.name)}
-                              className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
-                                isWeaponSelected
-                                  ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                                  : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                              }`}
-                            >
-                              <div className="flex-1 flex items-center gap-3 text-left min-w-0">
-                                <div
-                                  className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                                  style={{ backgroundColor: "var(--color-bg)" }}
-                                >
-                                  <span className="text-[22px] leading-none">{icon}</span>
-                                </div>
-
-                                <div className="flex-1 min-w-0">
-                                  <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                                    {name}
-                                  </div>
-                                  {description && (
-                                    <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
-                                      {description}
-                                    </div>
-                                  )}
-                                </div>
-
-                                {statSummary && (
-                                  <span className="text-[12px] font-medium text-[var(--color-text-primary)] shrink-0">
-                                    {statSummary}
-                                  </span>
-                                )}
-                              </div>
-
-                              <div className="shrink-0">
-                                {renderRightContent ? renderRightContent(weapon, isWeaponSelected) : (
-                                  isWeaponSelected ? (
-                                    <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
-                                  ) : (
-                                    <InfoButton title={name} description={description} />
-                                  )
-                                )}
-                              </div>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
+                      )}
+                    </div>
+                    <div className="shrink-0">
+                      {isSelected ? (
+                        <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
+                      ) : (
+                        <span className="text-[11px] text-[var(--color-text-muted)]">Choose weapon →</span>
+                      )}
+                    </div>
+                  </button>
                   </div>
                 );
               })}

@@ -387,6 +387,7 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             out.choices = featChoices.options.map((opt: any) => ({
               name: opt.name,
               description: opt.description || "",
+              icon: opt.icon,
             }));
             if (typeof featChoices.count === "number") {
               out.choicesCount = featChoices.count;
@@ -395,6 +396,7 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             out.choices = f.choices.map((opt: any) => ({
               name: opt.name,
               description: opt.description || "",
+              icon: opt.icon,
             }));
             if (typeof f.choicesCount === "number") {
               out.choicesCount = f.choicesCount;

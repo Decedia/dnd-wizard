@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import { getStaticSpells, getWizardSpellsByLevel } from "@/lib/srd-client";
-import { CheckIcon as Check, XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, ShieldCheckIcon as ShieldCheck, DaggerIcon as Dagger, BattleAxeIcon as BattleAxe, BowArrowIcon as BowArrow, CrownIcon as Crown, SkullIcon as Skull, FlameIcon as Flame, LightningBoltIcon as LightningBolt, SparklesIcon as Sparkles } from "@/components/icons";
+import { CheckIcon as Check, XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, ShieldCheckIcon as ShieldCheck, DaggerIcon as Dagger, BattleAxeIcon as BattleAxe, BowArrowIcon as BowArrow, CrownIcon as Crown, SkullIcon as Skull, FlameIcon as Flame, LightningBoltIcon as LightningBolt, SparklesIcon as Sparkles, InfoIcon } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
+import { InfoButton } from "@/components/InfoButton";
 
 interface FeatureSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
   name: string;
   description?: string;
-  options: { name: string; description: string }[];
+  options: { name: string; description: string; icon?: string }[];
   count?: number;
   isSubclass: boolean;
   onSelect: (value: string) => void;
@@ -32,22 +33,6 @@ export function FeatureSelectionModal({
 }: FeatureSelectionModalProps) {
   const [featureSelections, setFeatureSelections] = useState<string[]>([]);
   const isMultiSelect = count > 1;
-
-  const getOptionIcon = (optName: string) => {
-    const lower = optName.toLowerCase();
-    if (lower.includes("archery")) return BowArrow;
-    if (lower.includes("defense")) return Shield;
-    if (lower.includes("dueling")) return Sword;
-    if (lower.includes("great weapon")) return BattleAxe;
-    if (lower.includes("protection")) return ShieldCheck;
-    if (lower.includes("two-weapon")) return Dagger;
-    if (lower.includes("subclass")) return Crown;
-    if (lower.includes("necromancy") || lower.includes("undead") || lower.includes("death")) return Skull;
-    if (lower.includes("fire") || lower.includes("evocation")) return Flame;
-    if (lower.includes("lightning") || lower.includes("thunder")) return LightningBolt;
-    if (lower.includes("magic") || lower.includes("enchantment") || lower.includes("illusion")) return Sparkles;
-    return null;
-  };
 
   const handleOptionClick = (optName: string) => {
     if (optName === "Humanoid (2 races)") {
@@ -91,40 +76,72 @@ export function FeatureSelectionModal({
         {options.map((opt, idx) => {
           const isSelected = isMultiSelect ? featureSelections.includes(opt.name) : false;
           const isDisabled = isMultiSelect && !isSelected && featureSelections.length >= count;
+          const icon = opt.icon || getOptionIcon(opt.name);
           return (
             <div
               key={idx}
-              className={`rounded-[var(--radius-sm)] border transition-all ${
+              className={`rounded-[var(--radius-sm)] border-2 transition-all ${
                 isSelected
-                  ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
-                  : "border-[var(--color-border)] bg-[var(--color-surface)]"
+                  ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
+                  : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
               }`}
             >
-              <div className="w-full p-3">
-                <button
-                  type="button"
-                  onClick={() => handleOptionClick(opt.name)}
-                  disabled={isDisabled}
-                  className={`w-full p-3 text-left ${
-                    isSelected ? "text-[var(--color-surface)]" : "hover:border-[var(--color-border-active)]"
-                  }`}
+              <button
+                type="button"
+                onClick={() => handleOptionClick(opt.name)}
+                disabled={isDisabled}
+                className={`w-full flex items-center gap-3 p-3 text-left ${
+                  isSelected ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-primary)]"
+                }`}
+              >
+                <div
+                  className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: "var(--color-bg)" }}
                 >
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="text-xs font-semibold flex items-center gap-2">
-                      {isSelected && <Check className="h-3 w-3 shrink-0" />}
-                      {(() => {
-                        const OptionIcon = getOptionIcon(opt.name);
-                        return OptionIcon ? <OptionIcon className="h-4 w-4 shrink-0" /> : null;
-                      })()}
-                      {opt.name}
-                    </div>
+                  {icon ? (
+                    <span className="text-[22px] leading-none">{icon}</span>
+                  ) : (
+                    <InfoIcon className="h-5 w-5 text-[var(--color-text-muted)]" />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
+                    {opt.name}
                   </div>
-                </button>
-              </div>
+                  {opt.description && (
+                    <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
+                      {opt.description}
+                    </div>
+                  )}
+                </div>
+                <div className="shrink-0">
+                  {isSelected ? (
+                    <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
+                  ) : (
+                    <InfoButton title={opt.name} description={opt.description} />
+                  )}
+                </div>
+              </button>
             </div>
           );
         })}
       </div>
     </BasePopup>
   );
+}
+
+function getOptionIcon(optName: string): string | null {
+  const lower = optName.toLowerCase();
+  if (lower.includes("archery")) return "🏹";
+  if (lower.includes("defense")) return "🛡️";
+  if (lower.includes("dueling")) return "⚔️";
+  if (lower.includes("great weapon")) return "🪓";
+  if (lower.includes("protection")) return "🔰";
+  if (lower.includes("two-weapon")) return "🗡️";
+  if (lower.includes("subclass")) return "👑";
+  if (lower.includes("necromancy") || lower.includes("undead") || lower.includes("death")) return "💀";
+  if (lower.includes("fire") || lower.includes("evocation")) return "🔥";
+  if (lower.includes("lightning") || lower.includes("thunder")) return "⚡";
+  if (lower.includes("magic") || lower.includes("enchantment") || lower.includes("illusion")) return "✨";
+  return null;
 }
