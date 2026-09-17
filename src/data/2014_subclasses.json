@@ -10723,6 +10723,7 @@
     {
       "class": "Warlock",
       "name": "Archfey",
+      "index": "archfey",
       "description": [
         "Your patron is a lord or lady of the fey, a creature of legend who holds secrets that were forgotten before the mortal races were born. These beings are capricious and unpredictable, but they can grant great power to those who serve them.",
         "The Archfey patron represents the wild magic of the fey courts. Warlocks who serve these beings gain abilities that reflect the fey's connection to nature and illusion, including the power to charm and beguile others."
@@ -11073,6 +11074,7 @@
     {
       "class": "Warlock",
       "name": "Hexblade",
+      "index": "hexblade",
       "description": [
         "You have made a pact with a mysterious entity from the Shadowfell—a force that manifests in sentient magic weapons. The Hexblade might have forged the blade you wield as your pact weapon, or it might have revealed itself through a ritual of dark binding.",
         "The Hexblade patron represents the power of the Shadowfell and its connection to death and darkness. Warlocks who serve these beings gain abilities that reflect this connection, including the power to curse their enemies and channel dark energy through their weapons."
