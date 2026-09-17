@@ -8,6 +8,7 @@ import {
   getStaticArcaneTricksterSpells,
   getStaticFeats,
   getStaticWeapons,
+  getSubclassSpellGrants,
   type SRDClass,
   type SRDSubclass,
   type SRDRace,
@@ -298,8 +299,12 @@ async function generateSingleCharacter({
         const allSpells = getStaticSpells(ALL_SOURCES, "2014");
         spellList = allSpells.filter((s) => s.level >= 1 && s.level <= 5);
       }
-      const uniqueSpells = Array.from(new Set(spellList.map((s) => s.name)));
-      const selectedSpellNames = randomChoices(uniqueSpells, totalSpellCount);
+      let uniqueSpells = Array.from(new Set(spellList.map((s) => s.name)));
+      const subclassGrants = subclassData?.index ? getSubclassSpellGrants(subclassData.index, character.level) : [];
+      const grantSet = new Set(subclassGrants.map((n) => n.toLowerCase()));
+      const availableSpells = uniqueSpells.filter((name) => !grantSet.has(name.toLowerCase()));
+      const pickFrom = availableSpells.length >= totalSpellCount ? availableSpells : uniqueSpells;
+      const selectedSpellNames = randomChoices(pickFrom, totalSpellCount);
       const selectedSpells = selectedSpellNames.map((name) => {
         const srdSpell = spellList.find((s) => s.name === name);
         return {

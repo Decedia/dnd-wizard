@@ -925,24 +925,24 @@ export function applySubclassSpellGrants(character: Character): Character {
     if (!srdSpell) continue;
 
     const id = `subclass-spell-${grant.name}-${grant.level}`.replace(/\s+/g, "-");
-    const spellLevel = grant.level;
+    const spellLevel = srdSpell.level ?? 0;
     const desc = Array.isArray(srdSpell.description) ? srdSpell.description.join("\n") : (srdSpell.description || "");
-
-    newSpells.push({
-      id,
-      name: grant.name,
-      level: spellLevel,
-      source: "srd" as const,
-      srdSpellName: grant.srdSpellName,
-      description: desc,
-    });
 
     if (spellLevel === 0) {
       newCantrips.push({ id, name: grant.name });
+    } else {
+      newSpells.push({
+        id,
+        name: grant.name,
+        level: spellLevel,
+        source: "srd" as const,
+        srdSpellName: grant.srdSpellName,
+        description: desc,
+      });
     }
   }
 
-  if (newSpells.length === 0) return character;
+  if (newSpells.length === 0 && newCantrips.length === 0) return character;
   return {
     ...character,
     spells: [...(character.spells || []), ...newSpells],

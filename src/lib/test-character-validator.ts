@@ -5,6 +5,7 @@ import {
   getStaticRace,
   getStaticSpells,
   getStaticEquipments,
+  getSubclassSpellGrants,
   type SRDClass,
   type SRDSubclass,
   type SRDRace,
@@ -476,7 +477,26 @@ function validateSpells(character: Character, classData: SRDClass | null | undef
   const profBonus = getProficiencyBonus(character.level);
 
   const cantripsKnown = classData.cantripsKnown as Record<number, number> | undefined;
-  const expectedCantrips = cantripsKnown ? (cantripsKnown[character.level] || cantripsKnown[5] || cantripsKnown[4] || cantripsKnown[1] || 0) : 0;
+  let expectedCantrips = cantripsKnown ? (cantripsKnown[character.level] || cantripsKnown[5] || cantripsKnown[4] || cantripsKnown[1] || 0) : 0;
+
+  const spellsKnown = classData.spellsKnown as Record<number, number> | undefined;
+  let expectedSpellsKnown = spellsKnown ? (spellsKnown[character.level] || 0) : 0;
+
+  if (subclassData?.index) {
+    const grantedSpellNames = getSubclassSpellGrants(subclassData.index, character.level);
+    if (grantedSpellNames.length > 0) {
+      const allSpells = getStaticSpells(character.sources, character.ruleset);
+      const spellMap = new Map(allSpells.map(s => [s.name.toLowerCase(), s.level]));
+      for (const name of grantedSpellNames) {
+        const spellLevel = spellMap.get(name.toLowerCase());
+        if (spellLevel === 0) {
+          expectedCantrips += 1;
+        } else if (typeof spellLevel === "number") {
+          expectedSpellsKnown += 1;
+        }
+      }
+    }
+  }
 
   if (character.cantrips.length !== expectedCantrips) {
     results.push({
@@ -489,9 +509,7 @@ function validateSpells(character: Character, classData: SRDClass | null | undef
     });
   }
 
-  const spellsKnown = classData.spellsKnown as Record<number, number> | undefined;
   if (spellsKnown) {
-    const expectedSpellsKnown = spellsKnown[character.level] || 0;
     if (character.spells.length !== expectedSpellsKnown) {
       results.push({
         category: "Spells",
