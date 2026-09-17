@@ -784,3 +784,88 @@ export function getValidationSummary(reports: CharacterValidationReport[]): { to
   }
   return { total: reports.length, passed, failed, warnings };
 }
+
+export function generateAISummary(reports: CharacterValidationReport[]): string {
+  const summary = getValidationSummary(reports);
+  const lines: string[] = [];
+
+  lines.push("=== D&D 5e Test Character Validation Summary ===");
+  lines.push(`Total Characters: ${summary.total}`);
+  lines.push(`Passed All Checks: ${summary.passed}`);
+  lines.push(`Have Failures: ${summary.failed}`);
+  lines.push(`Have Warnings Only: ${summary.warnings}`);
+  lines.push("");
+
+  if (summary.failed > 0) {
+    lines.push("=== FAILURES BY CATEGORY ===");
+    const failuresByCategory = new Map<string, { character: string; check: string; message: string; expected?: any; actual?: any }[]>();
+    for (const report of reports) {
+      for (const result of report.results) {
+        if (result.status === "fail") {
+          const existing = failuresByCategory.get(result.category) || [];
+          existing.push({ character: report.characterName, check: result.check, message: result.message, expected: result.expected, actual: result.actual });
+          failuresByCategory.set(result.category, existing);
+        }
+      }
+    }
+    for (const [category, failures] of failuresByCategory) {
+      lines.push(`\n[${category}]`);
+      for (const f of failures) {
+        lines.push(`  - ${f.character}: ${f.check}`);
+        lines.push(`    ${f.message}`);
+        if (f.expected !== undefined && f.actual !== undefined) {
+          lines.push(`    Expected: ${JSON.stringify(f.expected)}`);
+          lines.push(`    Got: ${JSON.stringify(f.actual)}`);
+        }
+      }
+    }
+    lines.push("");
+  }
+
+  if (summary.warnings > 0) {
+    lines.push("=== WARNINGS BY CATEGORY ===");
+    const warningsByCategory = new Map<string, { character: string; check: string; message: string }[]>();
+    for (const report of reports) {
+      for (const result of report.results) {
+        if (result.status === "warning") {
+          const existing = warningsByCategory.get(result.category) || [];
+          existing.push({ character: report.characterName, check: result.check, message: result.message });
+          warningsByCategory.set(result.category, existing);
+        }
+      }
+    }
+    for (const [category, warnings] of warningsByCategory) {
+      lines.push(`\n[${category}]`);
+      for (const w of warnings) {
+        lines.push(`  - ${w.character}: ${w.check}`);
+        lines.push(`    ${w.message}`);
+      }
+    }
+    lines.push("");
+  }
+
+  const failingReports = reports.filter((r) => r.failed > 0);
+  if (failingReports.length > 0) {
+    lines.push("=== FAILING CHARACTERS DETAIL ===");
+    for (const report of failingReports) {
+      lines.push(`\n${report.characterName}:`);
+      lines.push(`  Failed: ${report.failed}, Warnings: ${report.warnings}, Passed: ${report.passed}`);
+      for (const result of report.results) {
+        if (result.status === "fail") {
+          lines.push(`  [FAIL] ${result.check}: ${result.message}`);
+        }
+      }
+    }
+    lines.push("");
+  }
+
+  lines.push("=== PASSING CHARACTERS ===");
+  const passingReports = reports.filter((r) => r.failed === 0 && r.warnings === 0);
+  for (const report of passingReports) {
+    lines.push(`  - ${report.characterName} (${report.passed} checks passed)`);
+  }
+  lines.push("");
+  lines.push("=== END OF REPORT ===");
+
+  return lines.join("\n");
+}
