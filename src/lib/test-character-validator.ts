@@ -580,17 +580,17 @@ function validatePreparedSpells(character: Character, classData: SRDClass | null
     });
   }
 
-  for (const spellName of character.preparedSpells) {
-    const inSpellbook = character.spells.some((s) => s.name === spellName);
-    const isCantrip = character.cantrips.some((c) => c.name === spellName);
+  for (const spellId of character.preparedSpells) {
+    const inSpellbook = character.spells.some((s) => s.id === spellId);
+    const isCantrip = character.cantrips.some((c) => c.id === spellId);
     if (!inSpellbook && !isCantrip) {
       results.push({
         category: "Prepared Spells",
         check: "Prepared spell validity",
         status: "fail",
-        message: `Prepared spell not in spellbook: ${spellName}`,
+        message: `Prepared spell not in spellbook: ${spellId}`,
         expected: "Spell must be in spellbook or cantrip",
-        actual: spellName,
+        actual: spellId,
       });
     }
   }
@@ -654,7 +654,12 @@ function validateEquipment(character: Character, classData: SRDClass | null | un
     });
   }
 
-  const hasWeapon = character.inventory.some((item) => item.itemType === "weapon");
+  const weaponNames = ["sword", "axe", "bow", "crossbow", "mace", "staff", "dagger", "spear", "hammer", "warhammer", "longsword", "greatsword", "rapier", "scimitar", "shortsword", "glaive", "halberd", "lance", "pike", "trident", "whip", "blowgun", "handaxe"];
+  const hasWeapon = character.inventory.some((item) => {
+    if (item.itemType === "weapon") return true;
+    const name = (item.name || "").toLowerCase();
+    return weaponNames.some((w) => name.includes(w));
+  });
   const martialClasses = ["Fighter", "Paladin", "Ranger", "Barbarian"];
   if (martialClasses.includes(character.class) && !hasWeapon) {
     results.push({
