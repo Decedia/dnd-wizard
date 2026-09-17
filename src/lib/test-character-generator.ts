@@ -10,8 +10,9 @@ import {
   type SRDRace,
 } from "@/lib/srd-client";
 import { backgroundsData } from "@/data/backgrounds";
-import { createEmptyCharacter, saveCharacter, type Character } from "@/lib/storage";
+import { createEmptyCharacter, saveCharacter, getCharacters, type Character } from "@/lib/storage";
 import { finalizeCreation } from "@/lib/character-creation";
+import { validateTestCharacter, type CharacterValidationReport } from "@/lib/test-character-validator";
 
 const TEST_RACES = [
   "Human",
@@ -41,7 +42,12 @@ export interface GenerationResult {
   error?: string;
 }
 
-export async function generateTestCharacters(onProgress?: (current: number, total: number, name: string) => void): Promise<GenerationResult[]> {
+export interface TestGenerationOutput {
+  results: GenerationResult[];
+  validationReports: CharacterValidationReport[];
+}
+
+export async function generateTestCharacters(onProgress?: (current: number, total: number, name: string) => void): Promise<TestGenerationOutput> {
   const classes = getStaticClasses(["PHB"], "2014");
   const backgrounds = backgroundsData;
   const firstBackground = backgrounds[0]?.name || "Acolyte";
@@ -49,6 +55,7 @@ export async function generateTestCharacters(onProgress?: (current: number, tota
   const raceNames = races.map((r) => r.name);
 
   const results: GenerationResult[] = [];
+  const validationReports: CharacterValidationReport[] = [];
   let total = 0;
 
   for (const cls of classes) {
@@ -79,6 +86,7 @@ export async function generateTestCharacters(onProgress?: (current: number, tota
           subclassData: subclass,
         });
         await saveCharacter(character);
+        validationReports.push(validateTestCharacter(character));
         results.push({ name: displayName, success: true });
       } catch (err) {
         results.push({
@@ -90,7 +98,7 @@ export async function generateTestCharacters(onProgress?: (current: number, tota
     }
   }
 
-  return results;
+  return { results, validationReports };
 }
 
 async function generateSingleCharacter({

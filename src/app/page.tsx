@@ -7,7 +7,8 @@ import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@
 import { importCharacterFromJson } from "@/lib/character-io";
 import { useDebug } from "@/lib/debug/DebugContext";
 import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash, FileJsonIcon as FileJson, DownloadIcon as Download, GearIcon as Gear } from "@/components/icons";
-import { generateTestCharacters, getTestCharacterCount, removeTestCharacters, type GenerationResult } from "@/lib/test-character-generator";
+import { generateTestCharacters, getTestCharacterCount, removeTestCharacters, type GenerationResult, type TestGenerationOutput } from "@/lib/test-character-generator";
+import type { CharacterValidationReport } from "@/lib/test-character-validator";
 
 export default function Home() {
   const debug = useDebug();
@@ -18,6 +19,9 @@ export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState<{ current: number; total: number; currentName: string } | null>(null);
   const [generationResults, setGenerationResults] = useState<GenerationResult[] | null>(null);
+  const [validationReports, setValidationReports] = useState<CharacterValidationReport[] | null>(null);
+  const [validationFilter, setValidationFilter] = useState<"all" | "failures" | "warnings" | "passing">("all");
+  const [expandedCharacters, setExpandedCharacters] = useState<Set<string>>(new Set());
   const [showGenerateConfirm, setShowGenerateConfirm] = useState(false);
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const importInputRef = useRef<HTMLInputElement | null>(null);
@@ -101,12 +105,14 @@ export default function Home() {
     setShowGenerateConfirm(false);
     setIsGenerating(true);
     setGenerationResults(null);
+    setValidationReports(null);
     setGenerationProgress(null);
     try {
-      const results = await generateTestCharacters((current, total, currentName) => {
+      const output = await generateTestCharacters((current, total, currentName) => {
         setGenerationProgress({ current, total, currentName });
       });
-      setGenerationResults(results);
+      setGenerationResults(output.results);
+      setValidationReports(output.validationReports);
       await loadCharacters();
     } catch (err) {
       setImportError(err instanceof Error ? err.message : "Failed to generate test characters.");
@@ -229,6 +235,120 @@ export default function Home() {
                     className="mt-2 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
                   >
                     Dismiss
+                  </button>
+                </div>
+              )}
+              {validationReports && validationReports.length > 0 && (
+                <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="font-semibold">
+                      Validation Report — {validationReports.filter((r) => r.failed === 0 && r.warnings === 0).length} passed, {validationReports.filter((r) => r.failed > 0).length} failed, {validationReports.filter((r) => r.warnings > 0 && r.failed === 0).length} warnings
+                    </div>
+                    <button
+                      onClick={() => {
+                        const text = validationReports.map((r) => {
+                          const lines = r.results.map((res) => {
+                            const prefix = res.status === "pass" ? "PASS" : res.status === "fail" ? "FAIL" : "WARN";
+                            return `[${prefix}] ${res.category} - ${res.check}: ${res.message}`;
+                          });
+                          return `${r.characterName}:\n${lines.join("\n")}`;
+                        }).join("\n\n");
+                        navigator.clipboard.writeText(text);
+                      }}
+                      className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+                    >
+                      Copy report
+                    </button>
+                  </div>
+                  <div className="flex gap-1 mb-2">
+                    {(["all", "failures", "warnings", "passing"] as const).map((filter) => (
+                      <button
+                        key={filter}
+                        onClick={() => setValidationFilter(filter)}
+                        className={`text-[10px] px-2 py-0.5 rounded-full border ${
+                          validationFilter === filter
+                            ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
+                            : "border-[var(--color-border)] text-[var(--color-text-secondary)]"
+                        }`}
+                      >
+                        {filter === "failures" ? "Failures" : filter === "warnings" ? "Warnings" : filter === "passing" ? "Passing" : "All"}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="space-y-1 max-h-[50vh] overflow-y-auto">
+                    {validationReports
+                      .filter((report) => {
+                        if (validationFilter === "all") return true;
+                        if (validationFilter === "failures") return report.failed > 0;
+                        if (validationFilter === "warnings") return report.warnings > 0 && report.failed === 0;
+                        if (validationFilter === "passing") return report.failed === 0 && report.warnings === 0;
+                        return true;
+                      })
+                      .map((report) => {
+                        const isExpanded = expandedCharacters.has(report.characterName);
+                        const statusColor = report.failed > 0 ? "bg-red-500" : report.warnings > 0 ? "bg-yellow-500" : "bg-green-500";
+                        return (
+                          <div key={report.characterName} className="border border-[var(--color-border)] rounded-lg">
+                            <button
+                              onClick={() => {
+                                const next = new Set(expandedCharacters);
+                                if (next.has(report.characterName)) next.delete(report.characterName);
+                                else next.add(report.characterName);
+                                setExpandedCharacters(next);
+                              }}
+                              className="w-full flex items-center justify-between p-2 text-left"
+                            >
+                              <div className="flex items-center gap-2">
+                                <div className={`w-2 h-2 rounded-full ${statusColor}`} />
+                                <span className="text-xs font-medium">{report.characterName}</span>
+                                <span className="text-[10px] text-[var(--color-text-muted)]">
+                                  {report.passed} pass, {report.failed} fail, {report.warnings} warn
+                                </span>
+                              </div>
+                              <span className="text-[10px] text-[var(--color-text-muted)]">{isExpanded ? "Collapse" : "Expand"}</span>
+                            </button>
+                            {isExpanded && (
+                              <div className="px-2 pb-2 space-y-1">
+                                {report.results
+                                  .filter((r) => {
+                                    if (validationFilter === "all") return true;
+                                    if (validationFilter === "failures") return r.status === "fail";
+                                    if (validationFilter === "warnings") return r.status === "warning";
+                                    if (validationFilter === "passing") return r.status === "pass";
+                                    return true;
+                                  })
+                                  .map((r, i) => (
+                                    <div key={i} className="flex items-start gap-2 text-[10px]">
+                                      <span className="shrink-0 mt-0.5">
+                                        {r.status === "pass" ? (
+                                          <span className="text-green-600 font-bold">PASS</span>
+                                        ) : r.status === "fail" ? (
+                                          <span className="text-red-600 font-bold">FAIL</span>
+                                        ) : (
+                                          <span className="text-yellow-600 font-bold">WARN</span>
+                                        )}
+                                      </span>
+                                      <div className="flex-1">
+                                        <span className="text-[var(--color-text-secondary)]">{r.category}: </span>
+                                        <span className="text-[var(--color-text-primary)]">{r.check}</span>
+                                        <span className="text-[var(--color-text-muted)]"> — {r.message}</span>
+                                        {r.expected !== undefined && r.actual !== undefined && (
+                                          <span className="text-[var(--color-text-muted)]"> (Expected: {JSON.stringify(r.expected)}, Got: {JSON.stringify(r.actual)})</span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                  </div>
+                  <button
+                    onClick={() => setValidationReports(null)}
+                    className="mt-2 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+                  >
+                    Dismiss validation report
                   </button>
                 </div>
               )}
