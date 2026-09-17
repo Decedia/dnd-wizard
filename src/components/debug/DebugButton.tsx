@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { LockIcon, XIcon } from "@/components/icons";
+import Link from "next/link";
+import { LockIcon, XIcon, GearIcon } from "@/components/icons";
 import { useDebug } from "@/lib/debug/DebugContext";
 
 export function DebugButton() {
@@ -106,9 +107,11 @@ export function DebugButton() {
     );
   }
 
+  const isAdmin = enabled && unlocked;
+
   return (
     <>
-      <div className="fixed bottom-4 left-4 z-[9999999]">
+      <div className="fixed bottom-4 left-4 z-[9999999] flex items-center gap-2">
         <button
           type="button"
           onClick={handleButtonClick}
@@ -117,6 +120,15 @@ export function DebugButton() {
         >
           <span className="text-[var(--color-text-primary)] font-mono text-xs font-bold">$</span>
         </button>
+        {isAdmin && (
+          <Link
+            href="/admin"
+            className="w-10 h-10 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-lg flex items-center justify-center hover:border-[var(--color-border-active)] transition-colors"
+            title="Admin Test Lab"
+          >
+            <GearIcon className="h-5 w-5 text-[var(--color-text-primary)]" />
+          </Link>
+        )}
       </div>
       {showTerminal && (
         <DebugTerminal
