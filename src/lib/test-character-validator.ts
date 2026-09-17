@@ -13,6 +13,8 @@ import { backgroundsData } from "@/data/backgrounds";
 import { ALIGNMENTS, SKILLS } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 
+const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD"];
+
 export interface ValidationResult {
   category: string;
   check: string;
@@ -40,10 +42,10 @@ function getProficiencyBonus(level: number): number {
 
 export function validateTestCharacter(character: Character): CharacterValidationReport {
   const results: ValidationResult[] = [];
-  const classData = character.class ? getStaticClasses(["PHB"], "2014").find((c) => c.name === character.class) : null;
+  const classData = character.class ? getStaticClasses(ALL_SOURCES, "2014").find((c) => c.name === character.class) : null;
   const raceData = character.race ? getStaticRace(character.race, "2014") : null;
   const subclassData = character.class && character.subclass
-    ? getStaticSubclasses(character.class, ["PHB"], "2014").find((s) => s.name === character.subclass)
+    ? getStaticSubclasses(character.class, ALL_SOURCES, "2014").find((s) => s.name === character.subclass)
     : null;
   const profBonus = getProficiencyBonus(character.level);
 
@@ -441,7 +443,7 @@ function validateSubclass(character: Character, classData: SRDClass | null | und
     return;
   }
 
-  const validSubclasses = getStaticSubclasses(character.class, ["PHB"], "2014");
+  const validSubclasses = getStaticSubclasses(character.class, ALL_SOURCES, "2014");
   const validNames = validSubclasses.map((s) => s.name);
   if (!validNames.includes(character.subclass)) {
     results.push({
@@ -715,7 +717,7 @@ function validateCompleteness(character: Character, classData: SRDClass | null |
     });
   }
 
-  const validClasses = getStaticClasses(["PHB"], "2014").map((c) => c.name);
+  const validClasses = getStaticClasses(ALL_SOURCES, "2014").map((c) => c.name);
   if (!validClasses.includes(character.class)) {
     results.push({
       category: "Completeness",
@@ -727,7 +729,7 @@ function validateCompleteness(character: Character, classData: SRDClass | null |
     });
   }
 
-  const validRaces = getStaticRaces(["PHB"], "2014").map((r) => r.name);
+  const validRaces = getStaticRaces(ALL_SOURCES, "2014").map((r) => r.name);
   if (!validRaces.includes(character.race)) {
     results.push({
       category: "Completeness",
