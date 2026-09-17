@@ -183,6 +183,24 @@ async function generateSingleCharacter({
     }
   }
 
+  const martialClasses = ["Fighter", "Paladin", "Ranger", "Barbarian"];
+  const hasWeapon = character.inventory.some((item) => {
+    const name = item.name.toLowerCase();
+    return name.includes("sword") || name.includes("axe") || name.includes("bow") || name.includes("crossbow") || name.includes("mace") || name.includes("staff") || name.includes("dagger") || name.includes("spear") || name.includes("hammer") || name.includes("warhammer") || name.includes("longsword") || name.includes("greatsword") || name.includes("rapier") || name.includes("scimitar") || name.includes("shortsword") || name.includes("glaive") || name.includes("halberd") || name.includes("lance") || name.includes("pike") || name.includes("trident") || name.includes("whip") || name.includes("blowgun") || name.includes("handaxe");
+  });
+  if (martialClasses.includes(className) && !hasWeapon) {
+    const defaultWeapon = "Longsword";
+    character.inventory.push({
+      id: `test-weapon-${Date.now()}`,
+      name: defaultWeapon,
+      quantity: 1,
+      equipped: false,
+      source: "srd",
+      srdItemName: defaultWeapon,
+      isGranted: false,
+    });
+  }
+
   if (classData.spellcastingAbility) {
     const spellcastingAbility = classData.spellcastingAbility as keyof typeof STANDARD_ARRAY;
     const abilityMod = Math.floor((character[spellcastingAbility] - 10) / 2);
@@ -208,9 +226,13 @@ async function generateSingleCharacter({
       }));
     }
 
+    const spellbookSpells = classData.spellbookSpells as Record<string, number> | undefined;
+    const spellbookCount = spellbookSpells ? (spellbookSpells[5] || spellbookSpells[4] || spellbookSpells[1] || 0) : 0;
     const spellsKnown = classData.spellsKnown as Record<number, number> | undefined;
     const spellCount = spellsKnown ? (spellsKnown[5] || 0) : 0;
-    if (spellCount > 0) {
+    const totalSpellCount = spellbookCount || spellCount;
+
+    if (totalSpellCount > 0) {
       let spellList: { name: string; level: number }[] = [];
       if (className === "Wizard") {
         spellList = getStaticWizardSpells(["PHB"]).filter((s) => s.level >= 1 && s.level <= 5);
@@ -221,16 +243,24 @@ async function generateSingleCharacter({
         spellList = allSpells.filter((s) => s.level >= 1 && s.level <= 5);
       }
       const uniqueSpells = Array.from(new Set(spellList.map((s) => s.name)));
-      character.spells = uniqueSpells.slice(0, spellCount).map((name) => {
+      const selectedSpells = uniqueSpells.slice(0, totalSpellCount).map((name) => {
         const srdSpell = spellList.find((s) => s.name === name);
         return {
           id: `spell-test-${name}`.replace(/\s+/g, "-"),
           name,
           level: srdSpell?.level || 1,
-          source: "srd",
+          source: "srd" as const,
           srdSpellName: name,
         };
       });
+      character.spells = selectedSpells;
+      if (className === "Wizard") {
+        character.spellbookSpells = selectedSpells.length;
+        character.maxSpellbookSpells = selectedSpells.length;
+        const maxPrepared = Math.max(1, abilityMod + character.level);
+        const preparedSpellNames = selectedSpells.slice(0, maxPrepared).map((s) => s.id);
+        character.preparedSpells = preparedSpellNames;
+      }
     }
 
     const spellSlots: Record<number, number> = {};
@@ -342,6 +372,7 @@ function collectSubclassFeatureChoices(subclassData: SRDSubclass, unlockLevel: n
   const choices: FeatureChoice[] = [];
   for (const feature of (subclassData.features || []) as any[]) {
     if (feature.level == null || feature.level < unlockLevel || feature.level > maxLevel) continue;
+    
     if (feature.choices && feature.choices.length > 0) {
       const optionNames = feature.choices.map((c: any) => c.name).filter(Boolean);
       choices.push({
@@ -350,6 +381,19 @@ function collectSubclassFeatureChoices(subclassData: SRDSubclass, unlockLevel: n
         options: optionNames,
         count: feature.choicesCount || 1,
       });
+    } else if (feature.choices === false && feature.description) {
+      const desc = feature.description;
+      const afterChoice = desc.split("of your choice.")[1] || desc.split("your choice.")[1] || "";
+      const lines = afterChoice.split("\n").map((l: string) => l.trim()).filter((l: string) => l.length > 0 && l !== "Colossus Slayer" && l !== "Giant Killer" && l !== "Horde Breaker" && l !== "Volley" && l !== "Whirlwind Attack");
+      const optionNames = lines.filter((l: string) => !l.includes(":") && !l.includes("(") && l.length > 2);
+      if (optionNames.length > 0) {
+        choices.push({
+          name: feature.name,
+          level: feature.level,
+          options: optionNames,
+          count: 1,
+        });
+      }
     }
   }
   return choices;
