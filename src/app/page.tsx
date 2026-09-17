@@ -5,12 +5,18 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
-import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash, FileJsonIcon as FileJson, DownloadIcon as Download } from "@/components/icons";
+import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash, FileJsonIcon as FileJson, DownloadIcon as Download, GearIcon as Gear } from "@/components/icons";
+import { generateTestCharacters, getTestCharacterCount, removeTestCharacters, type GenerationResult } from "@/lib/test-character-generator";
 
 export default function Home() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState<{ current: number; total: number; currentName: string } | null>(null);
+  const [generationResults, setGenerationResults] = useState<GenerationResult[] | null>(null);
+  const [showGenerateConfirm, setShowGenerateConfirm] = useState(false);
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const jsonImportInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -84,6 +90,50 @@ export default function Home() {
     exportAllCharactersToJson(chars);
   }, []);
 
+  const handleGenerateClick = useCallback(() => {
+    setShowGenerateConfirm(true);
+  }, []);
+
+  const handleGenerateConfirm = useCallback(async () => {
+    setShowGenerateConfirm(false);
+    setIsGenerating(true);
+    setGenerationResults(null);
+    setGenerationProgress(null);
+    try {
+      const results = await generateTestCharacters((current, total, currentName) => {
+        setGenerationProgress({ current, total, currentName });
+      });
+      setGenerationResults(results);
+      await loadCharacters();
+    } catch (err) {
+      setImportError(err instanceof Error ? err.message : "Failed to generate test characters.");
+    } finally {
+      setIsGenerating(false);
+      setGenerationProgress(null);
+    }
+  }, [loadCharacters]);
+
+  const handleRemoveClick = useCallback(async () => {
+    const count = await getTestCharacterCount();
+    if (count === 0) {
+      alert("No test characters found.");
+      return;
+    }
+    setShowRemoveConfirm(true);
+  }, []);
+
+  const handleRemoveConfirm = useCallback(async () => {
+    setShowRemoveConfirm(false);
+    try {
+      const removed = await removeTestCharacters();
+      setImportSuccess(`Removed ${removed} test character${removed !== 1 ? "s" : ""}.`);
+      await loadCharacters();
+    } catch (err) {
+      setImportError(err instanceof Error ? err.message : "Failed to remove test characters.");
+    }
+  }, [loadCharacters]);
+
+
   return (
     <div className="min-h-screen bg-paper">
       <AppHeader title="DND Wizard" subtitle="My Characters" showThemeToggle />
@@ -119,6 +169,109 @@ export default function Home() {
           >
             Test 3D
           </Link>
+          <div className="flex gap-2">
+            <button
+              onClick={handleGenerateClick}
+              disabled={isGenerating}
+              className="btn btn-secondary flex-1 opacity-70 hover:opacity-100"
+            >
+              <Gear className="h-4 w-4 mr-2 inline" />
+              {isGenerating ? "Generating..." : "Generate Test Characters"}
+            </button>
+            <button
+              onClick={handleRemoveClick}
+              disabled={isGenerating}
+              className="btn btn-secondary flex-1 opacity-70 hover:opacity-100"
+            >
+              <Trash className="h-4 w-4 mr-2 inline" />
+              Remove Test Characters
+            </button>
+          </div>
+          {isGenerating && generationProgress && (
+            <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
+              <div className="flex items-center justify-between mb-1">
+                <span>Generating test characters...</span>
+                <span className="text-xs text-[var(--color-text-muted)]">{generationProgress.current} / {generationProgress.total}</span>
+              </div>
+              <div className="w-full bg-[var(--color-border)] rounded-full h-2 mb-1">
+                <div
+                  className="bg-[var(--color-ink)] h-2 rounded-full transition-all"
+                  style={{ width: `${(generationProgress.current / generationProgress.total) * 100}%` }}
+                />
+              </div>
+              <p className="text-xs text-[var(--color-text-muted)] truncate">{generationProgress.currentName}</p>
+            </div>
+          )}
+          {generationResults && (
+            <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
+              <div className="font-semibold mb-1">
+                Generated {generationResults.length} characters — {generationResults.filter((r) => r.success).length} succeeded, {generationResults.filter((r) => !r.success).length} failed
+              </div>
+              {generationResults.filter((r) => !r.success).length > 0 && (
+                <div className="mt-2 space-y-1">
+                  {generationResults.filter((r) => !r.success).map((r, i) => (
+                    <div key={i} className="text-xs text-[var(--color-error-600)]">
+                      {r.name} — {r.error}
+                    </div>
+                  ))}
+                </div>
+              )}
+              <button
+                onClick={() => setGenerationResults(null)}
+                className="mt-2 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+              >
+                Dismiss
+              </button>
+            </div>
+          )}
+          {showGenerateConfirm && (
+            <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/50" onClick={() => setShowGenerateConfirm(false)}>
+              <div className="mx-auto w-full max-w-sm bg-[var(--color-surface)] rounded-t-[20px] p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2">Generate Test Characters</h3>
+                <p className="text-sm text-[var(--color-text-secondary)] mb-4">
+                  This will generate {getTestCharacterCount()} test characters covering all class/subclass combinations. Continue?
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowGenerateConfirm(false)}
+                    className="btn btn-secondary flex-1"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleGenerateConfirm}
+                    className="btn btn-primary flex-1"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          {showRemoveConfirm && (
+            <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/50" onClick={() => setShowRemoveConfirm(false)}>
+              <div className="mx-auto w-full max-w-sm bg-[var(--color-surface)] rounded-t-[20px] p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2">Remove Test Characters</h3>
+                <p className="text-sm text-[var(--color-text-secondary)] mb-4">
+                  This will permanently delete all test characters. Continue?
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowRemoveConfirm(false)}
+                    className="btn btn-secondary flex-1"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleRemoveConfirm}
+                    className="btn btn-primary flex-1"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <input
             ref={importInputRef}
             type="file"
