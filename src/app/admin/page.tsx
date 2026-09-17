@@ -111,7 +111,7 @@ export default function AdminPage() {
             Back to Home
           </Link>
 
-          <div className="flex gap-2 mt-[5px]">
+          <div className="flex gap-2 -mt-[10px]">
             <button
               onClick={handleGenerateClick}
               disabled={isGenerating}
