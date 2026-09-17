@@ -110,6 +110,10 @@ export default function AdminPage() {
             <Home className="h-4 w-4 mr-2 inline" />
             Back to Home
           </Link>
+          <Link href="/admin/srd-data" className="btn btn-secondary w-full">
+            <FileJson className="h-4 w-4 mr-2 inline" />
+            SRD Data Tests
+          </Link>
 
           <div className="flex gap-2 mt-[20px]">
             <button
