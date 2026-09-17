@@ -519,8 +519,9 @@ export function getStaticEquipment(name: string, ruleset?: string): SRDEquipment
 }
 
 function mapEquipmentCategory(category: string): "weapon" | "armor" | "item" {
-  if (category === "weapon") return "weapon";
-  if (category === "armor") return "armor";
+  const lower = category.toLowerCase();
+  if (lower === "weapon") return "weapon";
+  if (lower === "armor") return "armor";
   return "item";
 }
 
