@@ -130,6 +130,8 @@ async function generateSingleCharacter({
     ruleset: "2014",
   });
 
+  character.subclassIndex = subclassData.index;
+
   const raceData = getStaticRace(raceName, "2014");
   const abilityBonuses = raceData?.abilityScoreIncreases || {};
 
