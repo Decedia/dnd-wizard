@@ -4,6 +4,9 @@ import {
   getStaticRaces,
   getStaticRace,
   getStaticSpells,
+  getStaticWizardSpells,
+  getStaticArcaneTricksterSpells,
+  getStaticFeats,
   getStaticEquipments,
   type SRDClass,
   type SRDSubclass,
@@ -191,8 +194,14 @@ async function generateSingleCharacter({
     const cantripsKnown = classData.cantripsKnown as Record<number, number> | undefined;
     const cantripCount = cantripsKnown ? (cantripsKnown[5] || cantripsKnown[4] || cantripsKnown[1] || 0) : 0;
     if (cantripCount > 0) {
-      const allSpells = getStaticSpells(["PHB"], "2014");
-      const uniqueCantrips = Array.from(new Set(allSpells.filter((s) => s.level === 0).map((s) => s.name)));
+      let cantripList: { name: string; level: number }[] = [];
+      if (className === "Wizard") {
+        cantripList = getStaticWizardSpells(["PHB"]).filter((s) => s.level === 0);
+      } else {
+        const allSpells = getStaticSpells(["PHB"], "2014");
+        cantripList = allSpells.filter((s) => s.level === 0);
+      }
+      const uniqueCantrips = Array.from(new Set(cantripList.map((s) => s.name)));
       character.cantrips = uniqueCantrips.slice(0, cantripCount).map((name) => ({
         id: `cantrip-test-${name}`.replace(/\s+/g, "-"),
         name,
@@ -202,10 +211,18 @@ async function generateSingleCharacter({
     const spellsKnown = classData.spellsKnown as Record<number, number> | undefined;
     const spellCount = spellsKnown ? (spellsKnown[5] || 0) : 0;
     if (spellCount > 0) {
-      const allSpells = getStaticSpells(["PHB"], "2014");
-      const uniqueSpells = Array.from(new Set(allSpells.filter((s) => s.level >= 1 && s.level <= 5).map((s) => s.name)));
+      let spellList: { name: string; level: number }[] = [];
+      if (className === "Wizard") {
+        spellList = getStaticWizardSpells(["PHB"]).filter((s) => s.level >= 1 && s.level <= 5);
+      } else if (className === "Rogue" && subclassName === "Arcane Trickster") {
+        spellList = getStaticArcaneTricksterSpells().filter((s) => s.level >= 1 && s.level <= 5);
+      } else {
+        const allSpells = getStaticSpells(["PHB"], "2014");
+        spellList = allSpells.filter((s) => s.level >= 1 && s.level <= 5);
+      }
+      const uniqueSpells = Array.from(new Set(spellList.map((s) => s.name)));
       character.spells = uniqueSpells.slice(0, spellCount).map((name) => {
-        const srdSpell = allSpells.find((s) => s.name === name);
+        const srdSpell = spellList.find((s) => s.name === name);
         return {
           id: `spell-test-${name}`.replace(/\s+/g, "-"),
           name,
@@ -259,6 +276,19 @@ async function generateSingleCharacter({
     }
     if (allInvocations.length > 0) {
       character.featureSelections["warlock-invocations"] = allInvocations;
+    }
+  }
+
+  const hasAsiByLevel5 = (classData.levels || []).some((lvl) => {
+    const names = (lvl.features || []).map((f: any) => f.name || "");
+    return names.some((n: string) => /Ability Score Improvement|ASI/.test(n));
+  });
+  if (hasAsiByLevel5) {
+    const feats = getStaticFeats(["PHB"], "2014");
+    if (feats.length > 0) {
+      const featName = feats[0].name;
+      character.featureSelections["class-feature-4-Ability Score Improvement"] = [featName];
+      character.featureSelections["feat-selection"] = [featName];
     }
   }
 
