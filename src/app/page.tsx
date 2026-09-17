@@ -5,10 +5,13 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
+import { useDebug } from "@/lib/debug/DebugContext";
 import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash, FileJsonIcon as FileJson, DownloadIcon as Download, GearIcon as Gear } from "@/components/icons";
 import { generateTestCharacters, getTestCharacterCount, removeTestCharacters, type GenerationResult } from "@/lib/test-character-generator";
 
 export default function Home() {
+  const debug = useDebug();
+  const isAdmin = debug.enabled && debug.unlocked;
   const [characters, setCharacters] = useState<Character[]>([]);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
@@ -169,108 +172,115 @@ export default function Home() {
           >
             Test 3D
           </Link>
-          <div className="flex gap-2">
-            <button
-              onClick={handleGenerateClick}
-              disabled={isGenerating}
-              className="btn btn-secondary flex-1 opacity-70 hover:opacity-100"
-            >
-              <Gear className="h-4 w-4 mr-2 inline" />
-              {isGenerating ? "Generating..." : "Generate Test Characters"}
-            </button>
-            <button
-              onClick={handleRemoveClick}
-              disabled={isGenerating}
-              className="btn btn-secondary flex-1 opacity-70 hover:opacity-100"
-            >
-              <Trash className="h-4 w-4 mr-2 inline" />
-              Remove Test Characters
-            </button>
-          </div>
-          {isGenerating && generationProgress && (
-            <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
-              <div className="flex items-center justify-between mb-1">
-                <span>Generating test characters...</span>
-                <span className="text-xs text-[var(--color-text-muted)]">{generationProgress.current} / {generationProgress.total}</span>
+          {isAdmin && (
+            <>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+                Admin Tools
               </div>
-              <div className="w-full bg-[var(--color-border)] rounded-full h-2 mb-1">
-                <div
-                  className="bg-[var(--color-ink)] h-2 rounded-full transition-all"
-                  style={{ width: `${(generationProgress.current / generationProgress.total) * 100}%` }}
-                />
+              <div className="flex gap-2">
+                <button
+                  onClick={handleGenerateClick}
+                  disabled={isGenerating}
+                  className="btn btn-secondary flex-1 opacity-70 hover:opacity-100"
+                >
+                  <Gear className="h-4 w-4 mr-2 inline" />
+                  {isGenerating ? "Generating..." : "Generate Test Characters"}
+                </button>
+                <button
+                  onClick={handleRemoveClick}
+                  disabled={isGenerating}
+                  className="btn btn-secondary flex-1 opacity-70 hover:opacity-100"
+                >
+                  <Trash className="h-4 w-4 mr-2 inline" />
+                  Remove Test Characters
+                </button>
               </div>
-              <p className="text-xs text-[var(--color-text-muted)] truncate">{generationProgress.currentName}</p>
-            </div>
-          )}
-          {generationResults && (
-            <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
-              <div className="font-semibold mb-1">
-                Generated {generationResults.length} characters — {generationResults.filter((r) => r.success).length} succeeded, {generationResults.filter((r) => !r.success).length} failed
-              </div>
-              {generationResults.filter((r) => !r.success).length > 0 && (
-                <div className="mt-2 space-y-1">
-                  {generationResults.filter((r) => !r.success).map((r, i) => (
-                    <div key={i} className="text-xs text-[var(--color-error-600)]">
-                      {r.name} — {r.error}
-                    </div>
-                  ))}
+              {isGenerating && generationProgress && (
+                <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
+                  <div className="flex items-center justify-between mb-1">
+                    <span>Generating test characters...</span>
+                    <span className="text-xs text-[var(--color-text-muted)]">{generationProgress.current} / {generationProgress.total}</span>
+                  </div>
+                  <div className="w-full bg-[var(--color-border)] rounded-full h-2 mb-1">
+                    <div
+                      className="bg-[var(--color-ink)] h-2 rounded-full transition-all"
+                      style={{ width: `${(generationProgress.current / generationProgress.total) * 100}%` }}
+                    />
+                  </div>
+                  <p className="text-xs text-[var(--color-text-muted)] truncate">{generationProgress.currentName}</p>
                 </div>
               )}
-              <button
-                onClick={() => setGenerationResults(null)}
-                className="mt-2 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
-              >
-                Dismiss
-              </button>
-            </div>
-          )}
-          {showGenerateConfirm && (
-            <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/50" onClick={() => setShowGenerateConfirm(false)}>
-              <div className="mx-auto w-full max-w-sm bg-[var(--color-surface)] rounded-t-[20px] p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
-                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2">Generate Test Characters</h3>
-                <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-                  This will generate {getTestCharacterCount()} test characters covering all class/subclass combinations. Continue?
-                </p>
-                <div className="flex gap-2">
+              {generationResults && (
+                <div className="mt-2.5 surface bg-paper px-3 py-2.5 text-body">
+                  <div className="font-semibold mb-1">
+                    Generated {generationResults.length} characters — {generationResults.filter((r) => r.success).length} succeeded, {generationResults.filter((r) => !r.success).length} failed
+                  </div>
+                  {generationResults.filter((r) => !r.success).length > 0 && (
+                    <div className="mt-2 space-y-1">
+                      {generationResults.filter((r) => !r.success).map((r, i) => (
+                        <div key={i} className="text-xs text-[var(--color-error-600)]">
+                          {r.name} — {r.error}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   <button
-                    onClick={() => setShowGenerateConfirm(false)}
-                    className="btn btn-secondary flex-1"
+                    onClick={() => setGenerationResults(null)}
+                    className="mt-2 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
                   >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleGenerateConfirm}
-                    className="btn btn-primary flex-1"
-                  >
-                    Confirm
+                    Dismiss
                   </button>
                 </div>
-              </div>
-            </div>
-          )}
-          {showRemoveConfirm && (
-            <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/50" onClick={() => setShowRemoveConfirm(false)}>
-              <div className="mx-auto w-full max-w-sm bg-[var(--color-surface)] rounded-t-[20px] p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
-                <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2">Remove Test Characters</h3>
-                <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-                  This will permanently delete all test characters. Continue?
-                </p>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => setShowRemoveConfirm(false)}
-                    className="btn btn-secondary flex-1"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleRemoveConfirm}
-                    className="btn btn-primary flex-1"
-                  >
-                    Confirm
-                  </button>
+              )}
+              {showGenerateConfirm && (
+                <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/50" onClick={() => setShowGenerateConfirm(false)}>
+                  <div className="mx-auto w-full max-w-sm bg-[var(--color-surface)] rounded-t-[20px] p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+                    <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2">Generate Test Characters</h3>
+                    <p className="text-sm text-[var(--color-text-secondary)] mb-4">
+                      This will generate {getTestCharacterCount()} test characters covering all class/subclass combinations. Continue?
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setShowGenerateConfirm(false)}
+                        className="btn btn-secondary flex-1"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleGenerateConfirm}
+                        className="btn btn-primary flex-1"
+                      >
+                        Confirm
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              )}
+              {showRemoveConfirm && (
+                <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/50" onClick={() => setShowRemoveConfirm(false)}>
+                  <div className="mx-auto w-full max-w-sm bg-[var(--color-surface)] rounded-t-[20px] p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+                    <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2">Remove Test Characters</h3>
+                    <p className="text-sm text-[var(--color-text-secondary)] mb-4">
+                      This will permanently delete all test characters. Continue?
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setShowRemoveConfirm(false)}
+                        className="btn btn-secondary flex-1"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleRemoveConfirm}
+                        className="btn btn-primary flex-1"
+                      >
+                        Confirm
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
           )}
           <input
             ref={importInputRef}
