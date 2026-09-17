@@ -202,6 +202,7 @@ function buildLevelInfos(
         if (!src) return true;
         if (src.type === "class") return src.name === className;
         if (src.type === "subclass") return src.name === subclassSelection;
+        if (f.choices) return false;
         return true;
       })
       .map((f: any) => ({
@@ -1886,38 +1887,38 @@ function LevelCard({
                 ))
               )}
               {info.classFeatureChoices && info.classFeatureChoices.length > 0 && (
-                info.classFeatureChoices.map((fc) => {
-                  const isMetamagic = fc.name === "Metamagic";
-                  const availableOptions = isMetamagic
-                    ? (() => {
-                        const selected = getAllSelectedMetamagic();
-                        return fc.options.filter((opt) => !selected.has(opt.name));
-                      })()
-                    : fc.options;
-                  const canSelect = isMetamagic ? availableOptions.length >= (fc.count || 1) : true;
-                  return (
-                    <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
-                       <div className="flex items-center gap-2 mb-1">
-                        <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
-                        <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
-                        {fc.description && (
-                          <InfoButton title={fc.name} description={fc.description} />
-                        )}
-                      </div>
-                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
-                       <button
-                         type="button"
-                         onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, options: availableOptions, isSubclass: false, count: fc.count }); }}
-                         disabled={isMetamagic && !canSelect}
-                         className={`w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border transition-all text-left flex items-center justify-between ${isMetamagic && !canSelect ? "border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-muted)] opacity-60 cursor-not-allowed" : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"}`}
-                        >
-                        <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
-                        <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
-                      </button>
-                    </div>
-                  );
-                })
-              )}
+                info.classFeatureChoices
+                  .filter((fc) => fc.name !== "Pact Boon")
+                  .map((fc) => {
+                    const isMetamagic = fc.name === "Metamagic";
+                    const availableOptions = isMetamagic
+                      ? (() => {
+                          const selected = getAllSelectedMetamagic();
+                          return fc.options.filter((opt) => !selected.has(opt.name));
+                        })()
+                      : fc.options;
+                    return (
+                      <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
+                         <div className="flex items-center gap-2 mb-1">
+                          <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                          <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                          {fc.description && (
+                            <InfoButton title={fc.name} description={fc.description} />
+                          )}
+                        </div>
+                       <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
+                        <button
+                          type="button"
+                          onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, options: availableOptions, isSubclass: false, count: fc.count }); }}
+                          className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                         >
+                         <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
+                         <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                       </button>
+                     </div>
+                   );
+                 })
+               )}
             </div>
           ) : null}
 
@@ -1941,37 +1942,6 @@ function LevelCard({
               </div>
             );
           })()}
-
-          {character.class === "Wizard" && info.level === 20 && (() => {
-            const signatureSpellsSelection = classFeatureChoices["Signature Spells"] || "";
-            return (
-              <div className="p-3 rounded-lg border border-rose-300 bg-rose-50/30">
-                <div className="flex items-center gap-2 mb-1">
-                  <Star className="h-3.5 w-3.5 text-rose-600" />
-                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Signature Spells</span>
-                </div>
-                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose two 3rd-level spells. They&apos;re always prepared and you can cast each once per short rest without a spell slot.</p>
-                <button
-                  type="button"
-                  onClick={() => { setSignatureSpellsSelections([]); setShowSignatureSpellsModal(true); }}
-                  className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                >
-                  <span>{signatureSpellsSelection || "Select 2 signature spells..."}</span>
-                  <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
-                </button>
-              </div>
-            );
-          })()}
-
-          {character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
-            <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
-              <div className="flex items-center gap-2 mb-1">
-                <Crown className="h-3.5 w-3.5 text-purple-600" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon Required</span>
-              </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your subclass (Otherworldly Patron) first to unlock Pact Boon selection.</p>
-            </div>
-          )}
 
           {character.class === "Warlock" && info.level === 3 && subclassSelection && (() => {
             const pactBoon = classFeatureChoices["Pact Boon"] || "";
@@ -2026,6 +1996,16 @@ function LevelCard({
               </div>
             );
           })()}
+
+          {character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
+            <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
+              <div className="flex items-center gap-2 mb-1">
+                <Crown className="h-3.5 w-3.5 text-purple-600" />
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon Required</span>
+              </div>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your subclass (Otherworldly Patron) first to unlock Pact Boon selection.</p>
+            </div>
+          )}
 
           {character.class === "Warlock" && info.level >= 2 && (() => {
             const invocationFeature = info.classFeatureChoices?.find(fc => fc.name === "Eldritch Invocations");
@@ -2451,6 +2431,16 @@ function LevelCard({
             }
           }}
           characterSources={character.sources}
+          selectedValues={(() => {
+            const current = showFeaturePopup.isSubclass
+              ? subclassFeatureChoices[showFeaturePopup.name]
+              : classFeatureChoices[showFeaturePopup.name];
+            if (!current) return [];
+            if (showFeaturePopup.count && showFeaturePopup.count > 1) {
+              return current.split(", ").filter(Boolean);
+            }
+            return [current];
+          })()}
         />
       )}
 

@@ -348,6 +348,10 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - [x] Performance improvements: render only active tab panel, memoize context values, lazy-load PDF libraries, memoize expensive computations, remove window.location.reload() on delete; typecheck and build pass
 - [x] Implemented P2 features: cover (half, three-quarters, total) affecting AC and Dex saves, difficult terrain halving speed, universal grapple and shove attacks, reaction/bonus action tracking, exhaustion level tracker with visual effects.
 - [x] Fixed typecheck errors in storage.ts by properly declaring cover variables before use and fixing attack source typing for grapple/shove with as const assertions.
+- [x] Fixed duplicate class/subclass feature rendering in LevelUpWizard: features with `choices` were appearing in both the "New Features" list and the "Class Feature" selection buttons; changed `buildLevelInfos` filter to exclude ALL features with `choices` (not just those with `choices.options`) from the passive features list
+- [x] Removed duplicate custom blocks in LevelCard: "Signature Spells" custom block was removed because the generic `classFeatureChoices` loop already handles "Signature Spell" (singular) from the class data; "Pact Boon" custom block was deduplicated by filtering it out of the generic loop rendering while keeping its own specialized UI (cantrip selection, familiar info)
+- [x] Moved Spell Mastery and Pact Boon custom blocks outside the `classFeatureChoices.length > 0` conditional so they render independently at their required levels
+- [x] Fixed FeatureSelectionModal UX: added `selectedValues` prop so the modal pre-populates with the current selection when opened; removed incorrect Metamagic button disable logic (`canSelect` check) so users can always open the modal to change selections
 
 ## Available Recipes
 
@@ -468,7 +472,7 @@ Each spell entry includes:
 
 ## Current Focus
 
-Wizard restructure complete. Next steps:
+LevelUpWizard feature selection UX/UI cleanup complete. Next steps:
 1. Add character deletion from home screen
 2. Implement PDF export/import
 3. Add database persistence (via add-database recipe)
@@ -476,3 +480,39 @@ Wizard restructure complete. Next steps:
 5. Future: Add more PHB subclass features to subclass JSON entries
 6. Future: Add more class feature choice options (e.g., Fighting Style variants, Expertise skills per class)
 7. Future: Consume `2014_spell_mechanics.json` in spell UI for automated buff/debuff tracking and combat automation
+
+## Session History
+
+| Date | Changes |
+|------|---------|
+| Initial | Template created with base setup |
+| 2026-08-18 | Replaced nav demo with DND Wizard app scaffold |
+| 2026-08-18 | Built full character sheet screen with 7 sections, auto-save, sticky header, section nav |
+| 2026-08-18 | Replaced all placeholder data with real 5e SRD data, added racial bonus auto-calculation, auto-skip Spells for non-Wizards |
+| 2026-08-18 | Added Level Up system with reusable modal, SRD levels 1-10 data, ASI picker, and Wizard spell slot summaries |
+| 2026-08-19 | Wired SRD data into UI and calculations: HP auto-calc, skills restricted list + count, equipment choice packages, sneak attack numeric effect, expertise picker for Rogue |
+| 2026-08-19 | Replaced single LevelUpModal with multi-step LevelUpFlow; added subclass data (Fighter/Rogue L3, Wizard L2); added Dice Roller screen and reusable Dice component |
+| 2026-08-19 | Full wizard restructure: Steps 1-8 fixes, new Step 9 (Level & HP), per-level step sequence, spell selection tabs, locked race/class features, class-granted attacks rendering |
+| 2026-08-19 | Consolidated per-level steps: each level produces one step with multiple sections (hp/features/subclass/asi/expertise/spellSlots/spellSelection); updated LevelUpStep type and both PerLevelStepsFlow and LevelUpFlow to render sections |
+| 2026-08-20 | Replaced LevelUpFlow modal with dedicated `/character/[id]/level-up` page; modified `generateLevelUpSteps` to always include level 1 step with expertise; removed expertise from StepSkills for Rogue during creation; level 1 step skips HP rolling; removed +/- level buttons from character sheet; level up navigates to dedicated page |
+| 2026-08-20 | Fixed granted equipment quantity display bug; added editable quantity and dice dropdown for custom/editable inventory items in StepEquipment |
+| 2026-08-20 | Replaced live API race fetching with static `src/data/2026_races.json` containing all 9 common 2014 SRD races |
+| 2026-08-20 | Fetched equipment data from API into `2014_weapon.json` (37), `2014_armor.json` (13), `2014_items.json` (187), `2014_equipments.json` (237 total) |
+| 2026-08-20 | Added `getStaticWeapons/Armors/Items/Equipments()` and `getEquipmentData()` to `srd-client.ts`; migrated StepEquipment and InventorySection to use static equipment data |
+| 2026-08-20 | Fetched all subclass data from API into `2014_subclasses.json`; updated `2014_classes.json` subclass features with real API descriptions |
+| 2026-08-20 | Verified all class feature descriptions match API; no changes needed (already correct) |
+| 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |
+| 2026-08-20 | Fetched all 204 wizard spells from D&D 5e API into `2014_wizard_spells.json` (levels 0-9, 14-27-31-28-23-23-19-15-12-12 spells per level) |
+| 2026-08-20 | Added `SRDWizardSpell` interface and `getStaticWizardSpells()`, `getStaticWizardSpell()`, `getWizardSpellNames()` to `srd-client.ts` |
+| 2026-08-20 | Updated spell selection in `PerLevelStepsFlow.tsx`, `level-up/page.tsx`, and `LevelUpFlow.tsx` to use wizard-only spell list when class is Wizard |
+| 2026-08-20 | Fixed LevelUpFlow prop naming: renamed `className` to `charClass` to avoid TSX parsing conflicts; updated child components `HpStep` and `ExpertiseStep` |
+| 2026-08-20 | Migrated all remaining components off `src/data/srd.ts` to `src/lib/srd-client.ts` static data accessors; lint and typecheck pass |
+| 2026-08-23 | Fixed Barbarian level progression bug: Feral Instinct moved from level 6 to level 7; ASI remains at level 8 |
+| 2026-08-23 | Added `subclassInfo` section type to `generateLevelUpSteps`; selected subclass now displays on every level-up step for classes that have subclasses |
+| 2026-08-23 | Updated `LevelUpFlow`, `level-up/page`, and `PerLevelStepsFlow` with `SubclassInfoStep` read-only components; lint and typecheck pass |
+| 2026-08-23 | Refreshed subclass data from D&D 5e API: updated `2014_subclasses.json` and embedded subclass features in `2014_classes.json` for 12 API-available subclasses; preserved static-only subclasses (Totem Warrior) |
+| 2026-09-15 | Updated spell/feature/trait summaries from 12 words max to 30 words max with mechanism inclusion: changed feature summary generation in `src/lib/storage.ts` to use 30 words and append mechanism info (action type, uses, requirement, duration, onUse, scaling); added `summary` field to spells in Character interface; implemented spell summary generation from spell mechanics data (effect types, resolution, targeting, duration, concentration); typecheck and build pass |
+| 2026-09-16 | Redesigned equipment selection modal UX: concrete options now render as icon buttons with a row of item icons for all included equipment, weapon/focus choices show scrollable item lists directly visible under the "or" divider, mixed options show disabled visual buttons for bonus items at the top, and multi-select lists show a live "X/N selected" counter; added InfoButton to weapon option buttons and bonus items in the scrollable list; concrete option buttons now show rich item descriptions from `getItemInfo` in their InfoButton instead of just item names; added `generateFallbackDescription` helper in `StepEquipment.tsx` that creates rich descriptions for weapons (damage dice/type/properties), armor (AC/dex bonus/type), and generic items when raw descriptions are missing or too short; updated `EquipmentChoiceModal.tsx` and passed `getItemInfo` from `StepEquipment.tsx` to modal for icon resolution; typecheck passes |
+| 2026-09-16 | Fixed cleric subclass modal crash in LevelUpWizard: `SubclassSelectionModal.tsx` line 128 was calling `.split("\n")` on `f.description` which is a `string[]` from `getStaticSubclassDetails`, causing `TypeError: f.description.split is not a function`; changed to `(f.description || [""]).join(" ")` to handle array descriptions; typecheck passes |
+| 2026-09-16 | Added sourcebook-aware class/subclass filtering in LevelUpWizard: updated `getStaticClass` in `srd-client.ts` to accept `sources` parameter with backward-compatible overload; updated `LevelUpWizard.tsx` to pass `character.sources` when looking up class data; updated `SubclassSelectionModal.tsx` to accept `characterSources` prop and pass it to `getStaticSubclasses`; typecheck passes |
+| 2026-09-17 | Fixed duplicate class/subclass feature rendering in LevelUpWizard: features with `choices` were appearing in both "New Features" list and "Class Feature" selection buttons; changed `buildLevelInfos` filter to exclude ALL features with `choices` from passive list; removed duplicate "Signature Spells" custom block (class data uses "Signature Spell" singular, already handled by generic loop); filtered "Pact Boon" out of generic loop rendering to avoid duplicate with its specialized custom block (cantrips, familiar info); moved Spell Mastery and Pact Boon custom blocks outside `classFeatureChoices.length > 0` conditional so they render independently at required levels; fixed Metamagic button disable logic (removed incorrect `canSelect` check); added `selectedValues` prop to `FeatureSelectionModal` so it pre-populates with current selection when opened; typecheck passes, lint only pre-existing errors |

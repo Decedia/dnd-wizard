@@ -17,6 +17,7 @@ interface FeatureSelectionModalProps {
   onSelect: (value: string) => void;
   onSpecialOption?: (optName: string) => void;
   characterSources?: string[];
+  selectedValues?: string[];
 }
 
 export function FeatureSelectionModal({
@@ -30,8 +31,9 @@ export function FeatureSelectionModal({
   onSelect,
   onSpecialOption,
   characterSources = [],
+  selectedValues = [],
 }: FeatureSelectionModalProps) {
-  const [featureSelections, setFeatureSelections] = useState<string[]>([]);
+  const [featureSelections, setFeatureSelections] = useState<string[]>(() => selectedValues);
   const isMultiSelect = count > 1;
 
   const handleOptionClick = (optName: string) => {
