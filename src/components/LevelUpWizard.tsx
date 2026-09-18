@@ -645,6 +645,24 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     return !!st.d1 && !!st.d2 && st.d1 !== st.d2;
   };
 
+  const isFeatureSelected = useCallback((lvl: number, name: string, isSubclass: boolean): boolean => {
+    if (name === "Eldritch Invocations") {
+      const stateValue = invocationSelections[lvl];
+      if (stateValue && stateValue.length > 0) return true;
+      const persisted = character.featureSelections?.["warlock-invocations"];
+      if (Array.isArray(persisted) && persisted.length > 0) return true;
+      return false;
+    }
+    const stateChoices = isSubclass ? subclassFeatureChoices : classFeatureChoices;
+    const stateValue = stateChoices[lvl]?.[name];
+    if (stateValue) return true;
+    const persistKey = isSubclass ? `subclass-feature-${lvl}-${name}` : `class-feature-${lvl}-${name}`;
+    const persisted = character.featureSelections?.[persistKey];
+    if (Array.isArray(persisted) && persisted.length > 0 && persisted[0] !== "") return true;
+    if (typeof persisted === "string" && persisted) return true;
+    return false;
+  }, [character, subclassFeatureChoices, classFeatureChoices, invocationSelections]);
+
   const allLevelsComplete = levelInfos.length === 0 || levelInfos.every((info) => {
     const lvl = info.level;
     const lvlSpells = spellSelections[lvl] || [];
@@ -657,15 +675,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       if (info.subclassOptions && !subclassSelection) return false;
       if (!spellSelectionComplete) return false;
       if (info.subclassFeatureChoices) {
-        const choices = subclassFeatureChoices[lvl] || {};
         for (const fc of info.subclassFeatureChoices) {
-          if (!choices[fc.name]) return false;
+          if (!isFeatureSelected(lvl, fc.name, true)) return false;
         }
       }
       if (info.classFeatureChoices) {
-        const choices = classFeatureChoices[lvl] || {};
         for (const fc of info.classFeatureChoices) {
-          if (!choices[fc.name]) return false;
+          if (!isFeatureSelected(lvl, fc.name, false)) return false;
         }
       }
       return true;
@@ -675,15 +691,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (info.subclassOptions && !subclassSelection) return false;
     if (!spellSelectionComplete) return false;
     if (info.subclassFeatureChoices) {
-      const choices = subclassFeatureChoices[lvl] || {};
       for (const fc of info.subclassFeatureChoices) {
-        if (!choices[fc.name]) return false;
+        if (!isFeatureSelected(lvl, fc.name, true)) return false;
       }
     }
     if (info.classFeatureChoices) {
-      const choices = classFeatureChoices[lvl] || {};
       for (const fc of info.classFeatureChoices) {
-        if (!choices[fc.name]) return false;
+        if (!isFeatureSelected(lvl, fc.name, false)) return false;
       }
     }
     return true;
@@ -708,15 +722,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         items.push({ level: lvl, label: `Level ${lvl} — Choose Subclass`, sectionId: `subclass-${lvl}` });
       }
       if (info.subclassFeatureChoices) {
-        const choices = subclassFeatureChoices[lvl] || {};
         for (const fc of info.subclassFeatureChoices) {
-          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `subclass-fc-${lvl}` });
+          if (!isFeatureSelected(lvl, fc.name, true)) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `subclass-fc-${lvl}` });
         }
       }
       if (info.classFeatureChoices) {
-        const choices = classFeatureChoices[lvl] || {};
         for (const fc of info.classFeatureChoices) {
-          if (!choices[fc.name]) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `class-fc-${lvl}` });
+          if (!isFeatureSelected(lvl, fc.name, false)) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `class-fc-${lvl}` });
         }
       }
       if (info.expertise && expertiseSelections[lvl] && expertiseSelections[lvl].length < info.expertise.count) {
@@ -732,7 +744,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
     return items;
-  }, [levelInfos, asiSelections, subclassSelection, spellSelections, subclassFeatureChoices, classFeatureChoices, hpValues, startFromLevelOne, expertiseSelections]);
+  }, [levelInfos, asiSelections, subclassSelection, spellSelections, hpValues, startFromLevelOne, expertiseSelections, isFeatureSelected]);
 
   const handleFinish = () => {
     if (!classData) return;
