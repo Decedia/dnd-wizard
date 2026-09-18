@@ -1254,6 +1254,10 @@ const translations: Record<Language, Record<string, string>> = {
     "section.savingThrows": "Roll Saving",
     "section.expertise": "Keahlian",
     "section.backgroundSkills": "Keterampilan Latar Belakang",
+    "spell.desc.acid-splash": "Kamu melemparkan gelembung asam (Acid Splash). Pilih satu makhluk dalam jangkauan, atau pilih dua makhluk dalam jangkauan yang berjarak 5 kaki satu sama lain. Sasaran harus berhasil pada Dexterity saving throw atau menerima 1d6 Acid damage.",
+    "spell.desc.fireball": "Sebuah bola api meledak di titik yang kamu pilih dalam jangkauan. Setiap makhluk dalam radius 20 feet harus membuat Dexterity saving throw. Sasaran mengambil 8d6 Fire damage pada kegagalan, atau setengahnya pada keberhasilan.",
+    "feature.desc.darkvision": "Kamu memiliki Darkvision. Dalam cahaya redup, kamu bisa melihat dalam radius 60 feet seolah-olah di dalam cahaya terang.",
+    "feature.desc.fey-ancestry": "Kamu memiliki Kejelibutan Peri (Fey Ancestry). Kamu memiliki keunggulan pada saving throw terhadap being Charmed, dan magic tidak bisa membuatmu tertidur.",
   },
 };
 
@@ -1286,10 +1290,22 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const tDesc = useCallback(
     (key: string, fallback: string) => {
       const dict = translations[language];
-      if (dict && dict[key]) return dict[key];
+      if (dict && dict[key]) {
+        const translated = dict[key];
+        if (language === "en") return translated;
+        let result = translated;
+        const matches = fallback.match(protectedTermsRegex);
+        if (matches) {
+          for (const term of matches) {
+            const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(escaped, 'gi');
+            result = result.replace(regex, term);
+          }
+        }
+        return result;
+      }
       const enDict = translations.en;
       if (enDict && enDict[key]) return enDict[key];
-      // Return fallback (English) with protected terms preserved
       return fallback;
     },
     [language]

@@ -20,7 +20,7 @@ interface FeaturesTraitsSectionProps {
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const { t } = useLanguage();
+  const { t, tDesc } = useLanguage();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const [showHiddenFeatures, setShowHiddenFeatures] = useState(false);
   const [syncing, setSyncing] = useState(false);
@@ -223,9 +223,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                   )}
                 </div>
                 <div className="mt-1">
-                <FeatureMechanicsChips
+                 <FeatureMechanicsChips
                   summary={summaryText}
-                  description={(feature as any).description}
+                  description={tDesc(`feature.desc.${feature.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, (feature as any).description || "")}
                   featureType={(feature as any).featureType}
                   actionType={(feature as any).actionType}
                   uses={(feature as any).uses}

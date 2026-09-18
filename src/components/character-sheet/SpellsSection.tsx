@@ -50,7 +50,7 @@ interface UnifiedSpell {
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
-  const { t } = useLanguage();
+  const { t, tDesc } = useLanguage();
   const { data } = useSRD();
   const srdSpells = data?.spells || [];
   const [showSpellModal, setShowSpellModal] = useState(false);
@@ -365,7 +365,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 )}
               </div>
               {showDescriptions && spell.description && (
-                <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">{spell.description}</p>
+                <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">
+                  {tDesc(`spell.desc.${spell.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, spell.description)}
+                </p>
               )}
             </div>
           );

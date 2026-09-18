@@ -15,7 +15,7 @@ interface SubclassDetailsModalProps {
 }
 
 export function SubclassDetailsModal({ characterClass, subclass, onClose, character }: SubclassDetailsModalProps) {
-  const { t } = useLanguage();
+  const { t, tDesc } = useLanguage();
   const details = getStaticSubclassDetails(characterClass, subclass);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function SubclassDetailsModal({ characterClass, subclass, onClose, charac
           <div className="space-y-2">
             {details.description.map((desc: string, idx: number) => (
               <p key={idx} className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
-                {desc}
+                {tDesc(`subclass.desc.${characterClass.toLowerCase()}-${subclass.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, desc)}
               </p>
             ))}
           </div>
@@ -49,7 +49,7 @@ export function SubclassDetailsModal({ characterClass, subclass, onClose, charac
         {details.features && details.features.length > 0 && (
           <div className="space-y-3">
             <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
-              Features
+              {t("section.featuresTraits", "Features & Traits")}
             </div>
             {details.features.map((f: any, idx: number) => (
               <div key={idx} className="rounded-[var(--radius-sm)] border border-[var(--color-border)] p-3 space-y-1">
@@ -63,7 +63,7 @@ export function SubclassDetailsModal({ characterClass, subclass, onClose, charac
                 </div>
                 {f.description && f.description.length > 0 && (
                   <p className="text-[10px] text-[var(--color-text-muted)] leading-relaxed">
-                    {f.description.join(" ")}
+                    {tDesc(`subclass.feature.desc.${characterClass.toLowerCase()}-${subclass.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${f.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, f.description.join(" "))}
                   </p>
                 )}
               </div>
