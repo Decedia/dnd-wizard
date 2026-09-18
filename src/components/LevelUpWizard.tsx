@@ -1889,7 +1889,7 @@ function LevelCard({
               )}
               {info.classFeatureChoices && info.classFeatureChoices.length > 0 && (
                 info.classFeatureChoices
-                  .filter((fc) => fc.name !== "Pact Boon")
+                  .filter((fc) => fc.name !== "Pact Boon" && fc.name !== "Eldritch Invocations")
                   .map((fc) => {
                     const isMetamagic = fc.name === "Metamagic";
                     const availableOptions = isMetamagic
@@ -1898,28 +1898,44 @@ function LevelCard({
                           return fc.options.filter((opt) => !selected.has(opt.name));
                         })()
                       : fc.options;
+                    const currentValue = classFeatureChoices[fc.name] || "";
+                    const currentValues = currentValue.split(", ").filter(Boolean);
+                    const maxCount = fc.count || 1;
+
                     return (
                       <div key={fc.name} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)]">
                          <div className="flex items-center gap-2 mb-1">
-                          <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
-                          <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
-                          {fc.description && (
-                            <InfoButton title={fc.name} description={fc.description} />
-                          )}
-                        </div>
-                       <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
-                        <button
-                          type="button"
-                          onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, options: availableOptions, isSubclass: false, count: fc.count }); }}
-                          className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
-                         >
-                         <span>{classFeatureChoices[fc.name] || "Select an option..."}</span>
-                         <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
-                       </button>
-                     </div>
-                   );
-                 })
-               )}
+                           <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
+                           <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
+                           {fc.description && (
+                             <InfoButton title={fc.name} description={fc.description} />
+                           )}
+                         </div>
+                        <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
+                        {maxCount > 1 ? (
+                          <FeatureChipSelector
+                            name={fc.name}
+                            description={fc.description}
+                            options={availableOptions.map((opt) => ({ name: opt.name, description: opt.description, icon: opt.icon }))}
+                            selectedValues={currentValues}
+                            maxCount={maxCount}
+                            onChange={(values) => onClassFeatureChoice(fc.name, values.join(", "))}
+                            isSubclass={false}
+                          />
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, options: availableOptions, isSubclass: false, count: fc.count }); }}
+                            className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
+                          >
+                            <span>{currentValue || "Select an option..."}</span>
+                            <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })
+              )}
             </div>
           ) : null}
 
