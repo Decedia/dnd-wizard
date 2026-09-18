@@ -6,8 +6,10 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
+import { importCharacterFromJson } from "@/lib/character-io";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { useSRD } from "@/contexts/SRDContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
 import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
@@ -33,6 +35,7 @@ export default function CharacterView() {
   const router = useRouter();
   const id = params.id as string;
   const { data: srdData } = useSRD();
+  const { t } = useLanguage();
 
   const [character, setCharacter] = useState<Character | null>(null);
 
@@ -95,11 +98,11 @@ export default function CharacterView() {
   }, [character]);
 
   const handleDelete = useCallback(async () => {
-    if (character && window.confirm(`Are you sure you want to delete ${character.name || "this character"}? This action cannot be undone.`)) {
+    if (character && window.confirm(t("delete.confirm", { "char.name": character.name || t("home.unnamedHero") } as any))) {
       await deleteCharacter(character.id);
       router.push("/");
     }
-  }, [character, router]);
+  }, [character, router, t]);
 
   const handleExport = async () => {
     if (!character || exportingPdf) return;
@@ -131,10 +134,10 @@ export default function CharacterView() {
       const { importCharacterFromPdf } = await import("@/lib/pdf");
       const imported = await importCharacterFromPdf(file);
       await saveCharacter(imported);
-      setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
       router.push(`/character/${imported.id}`);
     } catch (err) {
-      setImportError("This PDF doesn't contain DND Wizard character data.");
+      setImportError(t("import.pdfError"));
     } finally {
       e.target.value = "";
     }
@@ -150,13 +153,12 @@ export default function CharacterView() {
     setImportError(null);
     setImportSuccess(null);
     try {
-      const { importCharacterFromJson } = await import("@/lib/character-io");
       const imported = await importCharacterFromJson(file);
       await saveCharacter(imported);
-      setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
       router.push(`/character/${imported.id}`);
     } catch (err) {
-      setImportError("Failed to import character JSON.");
+      setImportError(t("import.jsonError"));
     } finally {
       e.target.value = "";
     }
@@ -178,21 +180,21 @@ export default function CharacterView() {
   if (!character) {
     return (
       <div className="min-h-screen bg-paper">
-        <AppHeader title="Character" subtitle="Character Sheet" />
+        <AppHeader title={t("character.sheet")} subtitle={t("character.sheet")} />
          <main className="px-4 py-6 pb-32">
           <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-16 text-center">
              <UserPlus size={48} color="var(--color-text-muted)" className="mb-3 opacity-40" />
             <h2 className="text-page-title mb-2">
-              Character Not Found
+              {t("character.notFound", "Character Not Found")}
             </h2>
             <p className="text-description max-w-xs mb-5">
-              This character could not be found. It may have been deleted.
+              {t("character.notFoundDesc", "This character could not be found. It may have been deleted.")}
             </p>
             <Link
               href="/"
               className="btn btn-primary"
             >
-              Return Home
+              {t("character.returnHome")}
             </Link>
           </div>
         </main>
@@ -202,7 +204,7 @@ export default function CharacterView() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title="" subtitle="Character Sheet" editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} showDescriptions={showDescriptions} onShowDescriptionsChange={setShowDescriptions} />
+      <AppHeader title="" subtitle={t("character.sheet")} editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} showDescriptions={showDescriptions} onShowDescriptionsChange={setShowDescriptions} />
 
       <div className="sticky top-[52px] z-30 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
         <div className="mx-auto max-w-lg px-4 py-2.5">
@@ -253,7 +255,7 @@ export default function CharacterView() {
                     onClick={() => router.push(`/character/${character.id}/level-up`)}
                     className="btn btn-secondary w-full"
                   >
-                    Level Up
+                    {t("character.levelUp", "Level Up")}
                   </button>
                 </div>
               )}
@@ -273,12 +275,12 @@ export default function CharacterView() {
                 {exportingPdf ? (
                   <>
                     <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border border-ink border-t-transparent" />
-                    <span className="text-xs">Generating...</span>
+                    <span className="text-xs">{t("admin.generating")}</span>
                   </>
                 ) : (
                   <>
                     <Export className="h-4 w-4" />
-                    Export PDF
+                    {t("character.exportPdf", "Export PDF")}
                   </>
                 )}
               </button>
@@ -287,7 +289,7 @@ export default function CharacterView() {
                 className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
                 <FileJson className="h-4 w-4" />
-                Export JSON
+                {t("character.exportJson", "Export JSON")}
               </button>
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -296,14 +298,14 @@ export default function CharacterView() {
                 className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
                 <Upload className="h-4 w-4" />
-                Import PDF
+                {t("home.importPdf")}
               </button>
               <button
                 onClick={handleImportJsonClick}
                 className="btn btn-secondary flex items-center justify-center gap-1.5"
               >
                 <FileJson className="h-4 w-4" />
-                Import JSON
+                {t("home.importJson")}
               </button>
             </div>
             <button
@@ -311,12 +313,12 @@ export default function CharacterView() {
               className="w-full flex items-center justify-center gap-1.5 py-2.5 text-sm font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] transition-all"
             >
               <Trash className="h-4 w-4" />
-              Delete Character
+              {t("character.delete", "Delete Character")}
             </button>
             {savedAt && (
               <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-[var(--color-nav-icon)] bg-[var(--color-nav-bg)] py-2 surface">
                 <CheckCircle className="h-4 w-4" />
-                Saved
+                {t("character.saved", "Saved")}
               </div>
             )}
             <input
@@ -360,7 +362,7 @@ export default function CharacterView() {
             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] shadow-lg hover:opacity-90 transition-all"
           >
             <Clock className="h-4 w-4" />
-            <span className="text-xs font-semibold">End Turn</span>
+            <span className="text-xs font-semibold">{t("character.endTurn", "End Turn")}</span>
           </button>
         </div>
       )}
@@ -369,5 +371,3 @@ export default function CharacterView() {
     </div>
   );
 }
-
-

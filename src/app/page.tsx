@@ -6,10 +6,12 @@ import { AppHeader } from "@/components/AppHeader";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
 import { useDebug } from "@/lib/debug/DebugContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { UploadIcon as Upload, CaretRightIcon as CaretRight, UserPlusIcon as UserPlus, UserIcon as User, TrashIcon as Trash, FileJsonIcon as FileJson, DownloadIcon as Download, GearIcon as Gear } from "@/components/icons";
 
 export default function Home() {
   const debug = useDebug();
+  const { t } = useLanguage();
   const isAdmin = debug.enabled && debug.unlocked;
   const [characters, setCharacters] = useState<Character[]>([]);
   const [importError, setImportError] = useState<string | null>(null);
@@ -43,14 +45,14 @@ export default function Home() {
       const { importCharacterFromPdf } = await import("@/lib/pdf");
       const imported = await importCharacterFromPdf(file);
       await saveCharacter(imported);
-      setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
       await loadCharacters();
     } catch (err) {
-      setImportError("This PDF doesn't contain DND Wizard character data.");
+      setImportError(t("import.pdfError"));
     } finally {
       e.target.value = "";
     }
-  }, [loadCharacters]);
+  }, [loadCharacters, t]);
 
   const handleImportJsonFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -60,21 +62,21 @@ export default function Home() {
     try {
       const imported = await importCharacterFromJson(file);
       await saveCharacter(imported);
-      setImportSuccess(`Imported "${imported.name || "Unnamed"}" successfully.`);
+      setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
       await loadCharacters();
     } catch (err) {
-      setImportError("Failed to import character JSON.");
+      setImportError(t("import.jsonError"));
     } finally {
       e.target.value = "";
     }
-  }, [loadCharacters]);
+  }, [loadCharacters, t]);
 
   const handleDelete = useCallback(async (char: Character) => {
-    if (window.confirm(`Are you sure you want to delete ${char.name || "this character"}? This action cannot be undone.`)) {
+    if (window.confirm(t("delete.confirm", { "char.name": char.name || t("home.unnamedHero") } as any))) {
       await deleteCharacter(char.id);
       await loadCharacters();
     }
-  }, [loadCharacters]);
+  }, [loadCharacters, t]);
 
   const handleExportJson = useCallback((char: Character) => {
     const { exportCharacterToJson } = require("@/lib/character-io");
@@ -90,7 +92,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title="DND Wizard" subtitle="My Characters" showThemeToggle />
+      <AppHeader title={t("app.name")} subtitle={t("nav.myCharacters")} showThemeToggle />
 
       <main className="px-4 py-4 pb-32">
         <div className="mb-5 space-y-2">
@@ -100,14 +102,14 @@ export default function Home() {
               className="btn btn-secondary flex-1"
             >
               <Upload className="h-4 w-4 mr-2 inline" />
-              Import PDF
+              {t("home.importPdf")}
             </button>
             <button
               onClick={handleImportJsonClick}
               className="btn btn-secondary flex-1"
             >
               <FileJson className="h-4 w-4 mr-2 inline" />
-              Import JSON
+              {t("home.importJson")}
             </button>
           </div>
           <button
@@ -115,7 +117,7 @@ export default function Home() {
             className="btn btn-secondary w-full"
           >
             <Download className="h-4 w-4 mr-2 inline" />
-            Backup All Characters
+            {t("home.backupAll")}
           </button>
           {isAdmin && (
             <Link
@@ -123,7 +125,7 @@ export default function Home() {
               className="btn btn-secondary w-full opacity-70 hover:opacity-100"
             >
               <Gear className="h-4 w-4 mr-2 inline" />
-              Admin Test Lab
+              {t("home.adminLab")}
             </Link>
           )}
           <input
@@ -154,14 +156,14 @@ export default function Home() {
 
         <section>
           <h2 className="text-card-title mb-3">
-            My Characters
+            {t("home.myCharacters")}
           </h2>
 
           {characters.length === 0 ? (
                <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-10 text-center">
                 <UserPlus size={48} color="var(--color-text-muted)" className="mb-2.5 opacity-40" />
               <p className="text-muted">
-                No characters yet. Create your first hero to begin your adventure.
+                {t("home.noCharacters")}
               </p>
             </div>
           ) : (
@@ -179,10 +181,10 @@ export default function Home() {
                         </div>
                         <div>
                           <h3 className="text-card-title">
-                            {char.name || "Unnamed Hero"}
+                            {char.name || t("home.unnamedHero")}
                           </h3>
                           <p className="text-muted">
-                            Created {formatDate(char.createdAt)}
+                            {t("home.created")} {formatDate(char.createdAt)}
                           </p>
                         </div>
                       </div>
@@ -192,14 +194,14 @@ export default function Home() {
                   <button
                     onClick={(e) => { e.preventDefault(); handleExportJson(char); }}
                     className="flex h-9 w-9 shrink-0 items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-all"
-                    aria-label={`Export ${char.name || "character"} as JSON`}
+                    aria-label={t("export.json", { "char.name": char.name || t("home.unnamedHero") } as any)}
                   >
                     <FileJson size={18} />
                   </button>
                   <button
                     onClick={(e) => { e.preventDefault(); handleDelete(char); }}
                     className="flex h-9 w-9 shrink-0 items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-error-600)] transition-all"
-                    aria-label={`Delete ${char.name || "character"}`}
+                    aria-label={t("delete.confirm", { "char.name": char.name || t("home.unnamedHero") } as any)}
                   >
                     <Trash size={18} />
                   </button>
@@ -210,7 +212,7 @@ export default function Home() {
         </section>
     </main>
   </div>
-);
+  );
 }
 
 function formatDate(timestamp: number): string {

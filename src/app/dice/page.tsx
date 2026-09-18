@@ -3,10 +3,12 @@
 import { useState, useRef } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { Dice, DiceType, DiceHandle } from "@/components/Dice";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const DICE_TYPES: DiceType[] = ["d4", "d6", "d8", "d10", "d12", "d20", "d100"];
 
 export default function DiceRoller() {
+  const { t } = useLanguage();
   const diceRefs = useRef<Record<DiceType, DiceHandle | null>>({
     d4: null,
     d6: null,
@@ -41,7 +43,7 @@ export default function DiceRoller() {
 
   return (
     <div className="min-h-screen bg-ink">
-      <AppHeader title="Dice Roller" subtitle="Roll the bones" />
+      <AppHeader title={t("dice.roller")} subtitle={t("dice.rollTheBones")} />
 
       <main className="px-4 py-6 pb-32">
         <div className="mx-auto max-w-lg">
@@ -49,7 +51,7 @@ export default function DiceRoller() {
             onClick={rollAll}
             className="btn btn-primary w-full mb-6"
           >
-            Roll All Dice
+            {t("dice.rollAll", "Roll All Dice")}
           </button>
 
           <div className="grid grid-cols-2 gap-4">
@@ -69,12 +71,12 @@ export default function DiceRoller() {
                    <span className="text-xs text-paper-muted uppercase tracking-wider font-bold">
                     {type}
                   </span>
-                  {lastResults[type] !== null && (
-                    <span className="text-sm font-bold text-paper">
-                    Last: {lastResults[type]}
-                  </span>
-                )}
-              </div>
+                   {lastResults[type] !== null && (
+                     <span className="text-sm font-bold text-paper">
+                     {t("dice.lastResult", "Last:")} {lastResults[type]}
+                   </span>
+                 )}
+               </div>
             ))}
           </div>
         </div>
