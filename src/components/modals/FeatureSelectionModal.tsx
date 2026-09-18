@@ -11,7 +11,7 @@ interface FeatureSelectionModalProps {
   onClose: () => void;
   name: string;
   description?: string;
-  options: { name: string; description: string; icon?: string }[];
+  options: { name: string; description: string; icon?: string; disabled?: boolean; unavailableReason?: string }[];
   count?: number;
   isSubclass: boolean;
   onSelect: (value: string) => void;
@@ -77,7 +77,9 @@ export function FeatureSelectionModal({
       <div className="space-y-2">
         {options.map((opt, idx) => {
           const isSelected = isMultiSelect ? featureSelections.includes(opt.name) : false;
-          const isDisabled = isMultiSelect && !isSelected && featureSelections.length >= count;
+          const isMaxed = isMultiSelect && !isSelected && featureSelections.length >= count;
+          const isUnavailable = !!opt.disabled;
+          const isDisabled = isMaxed || isUnavailable;
           const icon = opt.icon || getOptionIcon(opt.name);
           return (
             <div
@@ -85,16 +87,18 @@ export function FeatureSelectionModal({
               className={`rounded-[var(--radius-sm)] border-2 transition-all ${
                 isSelected
                   ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                  : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  : isUnavailable
+                    ? "border-[var(--color-border)] opacity-60"
+                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
               }`}
             >
               <button
                 type="button"
-                onClick={() => handleOptionClick(opt.name)}
+                onClick={() => !isDisabled && handleOptionClick(opt.name)}
                 disabled={isDisabled}
                 className={`w-full flex items-center gap-3 p-3 text-left ${
                   isSelected ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-primary)]"
-                }`}
+                } ${isDisabled ? "cursor-not-allowed" : ""}`}
               >
                 <div
                   className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
@@ -115,10 +119,17 @@ export function FeatureSelectionModal({
                       {opt.description}
                     </div>
                   )}
+                  {isUnavailable && opt.unavailableReason && (
+                    <div className="text-[11px] text-[var(--color-error-600)] truncate">
+                      {opt.unavailableReason}
+                    </div>
+                  )}
                 </div>
                 <div className="shrink-0">
                   {isSelected ? (
                     <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
+                  ) : isUnavailable ? (
+                    <span className="text-[10px] text-[var(--color-text-muted)]">Locked</span>
                   ) : (
                     <InfoButton title={opt.name} description={opt.description} />
                   )}

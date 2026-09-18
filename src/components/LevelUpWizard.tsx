@@ -13,6 +13,7 @@ import { FeatSelectionModal } from "./modals/FeatSelectionModal";
 import { SubclassDetailsModal } from "./modals/SubclassDetailsModal";
 import { SubclassSelectionModal } from "./modals/SubclassSelectionModal";
 import { FeatureSelectionModal } from "./modals/FeatureSelectionModal";
+import { FeatureChipSelector } from "./FeatureChipSelector";
 import { HumanoidRacesModal } from "./modals/HumanoidRacesModal";
 import { TerrainModal } from "./modals/TerrainModal";
 import { BonusCantripModal } from "./modals/BonusCantripModal";
@@ -1971,21 +1972,17 @@ function LevelCard({
                         </span>
                       ))}
                     </div>
-                    <select
-                      value=""
-                      onChange={(e) => {
-                        if (e.target.value && pactTomeCantrips.length < 3 && !pactTomeCantrips.includes(e.target.value)) {
-                          onPactTomeCantripsChange([...pactTomeCantrips, e.target.value]);
-                        }
-                        e.target.value = "";
-                      }}
-                      className="w-full py-1.5 px-2 text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]"
-                    >
-                      <option value="">{pactTomeCantrips.length >= 3 ? "3 cantrips selected" : `Select cantrip (${pactTomeCantrips.length}/3)...`}</option>
-                      {getStaticSpells(character.sources).filter(s => s.level === 0 && !pactTomeCantrips.includes(s.name)).map(s => (
-                        <option key={s.name} value={s.name}>{s.name}</option>
-                      ))}
-                    </select>
+                    <FeatureChipSelector
+                      name="Bonus Cantrip"
+                      description="Choose one additional druid cantrip (does not count against cantrip limit)"
+                      options={getStaticSpells(character.sources)
+                        .filter((s) => s.level === 0 && !pactTomeCantrips.includes(s.name))
+                        .map((s) => ({ name: s.name, description: s.school || "" }))}
+                      selectedValues={pactTomeCantrips}
+                      maxCount={3}
+                      onChange={onPactTomeCantripsChange}
+                      isSubclass={false}
+                    />
                   </div>
                 )}
                 {pactBoon === "Pact of the Chain" && (
@@ -2024,49 +2021,50 @@ function LevelCard({
                   <span className="text-sm font-bold text-[var(--color-text-primary)]">Eldritch Invocations</span>
                 </div>
                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {invocationCount} invocation{invocationCount > 1 ? "s" : ""}. Spell slots recover on short rest.</p>
-                {currentInvocations.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mb-2">
-                    {currentInvocations.map((inv) => (
-                      <span key={inv} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-indigo-100 border border-indigo-300 rounded-full text-indigo-800">
-                        {inv}
-                        <button type="button" onClick={() => onInvocationsChange(currentInvocations.filter(x => x !== inv))} className="hover:text-red-600 font-bold">×</button>
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <FeatureChipSelector
+                  name="Eldritch Invocations"
+                  description={`Choose ${invocationCount} invocation${invocationCount > 1 ? "s" : ""}`}
+                  options={availableInvocations.map((i) => ({
+                    name: i.name,
+                    description: i.available ? `Available at level ${info.level}` : i.reason || "Not available",
+                    disabled: !i.available,
+                    unavailableReason: i.reason,
+                  }))}
+                  selectedValues={currentInvocations}
+                  maxCount={invocationCount}
+                  onChange={onInvocationsChange}
+                  isSubclass={false}
+                />
                 {hasPriorInvocations && info.level > 2 && (
-                  <div className="mb-2">
+                  <div className="mt-3">
                     <p className="text-[10px] font-semibold text-orange-700 mb-1">Replace an invocation (optional):</p>
-                    <select
-                      value={replacedInvocation}
-                      onChange={(e) => onReplacedInvocationChange(e.target.value)}
-                      className="w-full py-1.5 px-2 text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]"
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowFeaturePopup({
+                          name: "__replace_invocation__",
+                          description: "Choose an existing invocation to replace.",
+                          options: priorInvocations.map((inv) => ({ name: inv, description: `Replace ${inv}` })),
+                          isSubclass: false,
+                          count: 1,
+                        })
+                      }
+                      className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                     >
-                      <option value="">No replacement</option>
-                      {priorInvocations.map((inv) => (
-                        <option key={inv} value={inv}>{inv}</option>
-                      ))}
-                    </select>
+                      <span>{replacedInvocation || "No replacement"}</span>
+                      <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+                    </button>
+                    {replacedInvocation && (
+                      <button
+                        type="button"
+                        onClick={() => onReplacedInvocationChange("")}
+                        className="mt-1 text-[10px] text-[var(--color-error-600)] hover:underline"
+                      >
+                        Clear replacement
+                      </button>
+                    )}
                   </div>
                 )}
-                <select
-                  value=""
-                  onChange={(e) => {
-                    if (e.target.value && currentInvocations.length < invocationCount && !currentInvocations.includes(e.target.value)) {
-                      onInvocationsChange([...currentInvocations, e.target.value]);
-                    }
-                    e.target.value = "";
-                  }}
-                  className="w-full py-1.5 px-2 text-xs rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]"
-                >
-                  <option value="">{currentInvocations.length >= invocationCount ? `${invocationCount} invocation${invocationCount > 1 ? "s" : ""} selected` : `Select invocation (${currentInvocations.length}/${invocationCount})...`}</option>
-                  {availableInvocations.filter(i => i.available && !currentInvocations.includes(i.name)).map(i => (
-                    <option key={i.name} value={i.name}>{i.name}</option>
-                  ))}
-                  {availableInvocations.filter(i => !i.available && !currentInvocations.includes(i.name)).map(i => (
-                    <option key={i.name} value={i.name} disabled>{i.name} ({i.reason})</option>
-                  ))}
-                </select>
               </div>
             );
           })()}
@@ -2148,16 +2146,33 @@ function LevelCard({
                 <span className="text-sm font-bold text-[var(--color-text-primary)]">Replace Known Spell</span>
               </div>
               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Optionally replace one known spell with another from the {character.class} spell list</p>
-              <select
-                value={replacedSpell}
-                onChange={(e) => onReplacedSpellChange(e.target.value)}
-                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              <button
+                type="button"
+                onClick={() =>
+                  setShowFeaturePopup({
+                    name: "__replace_spell__",
+                    description: `Optionally replace one known spell with another from the ${character.class} spell list`,
+                    options: (character.spells || [])
+                      .filter((s) => s.level > 0)
+                      .map((s) => ({ name: s.id, description: `${s.name} (Level ${s.level})` })),
+                    isSubclass: false,
+                    count: 1,
+                  })
+                }
+                className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <option value="">No replacement</option>
-                {(character.spells || []).filter((s) => s.level > 0).map((s) => (
-                  <option key={s.id} value={s.id}>{s.name} (Level {s.level})</option>
-                ))}
-              </select>
+                <span>{replacedSpell ? (character.spells || []).find((s) => s.id === replacedSpell)?.name || "No replacement" : "No replacement"}</span>
+                <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
+              </button>
+              {replacedSpell && (
+                <button
+                  type="button"
+                  onClick={() => onReplacedSpellChange("")}
+                  className="mt-1 text-[10px] text-[var(--color-error-600)] hover:underline"
+                >
+                  Clear replacement
+                </button>
+              )}
             </div>
           )}
 
@@ -2418,7 +2433,11 @@ function LevelCard({
           count={showFeaturePopup.count}
           isSubclass={showFeaturePopup.isSubclass}
           onSelect={(value) => {
-            if (showFeaturePopup.isSubclass) {
+            if (showFeaturePopup.name === "__replace_invocation__") {
+              onReplacedInvocationChange(value);
+            } else if (showFeaturePopup.name === "__replace_spell__") {
+              onReplacedSpellChange(value);
+            } else if (showFeaturePopup.isSubclass) {
               onSubclassFeatureChoice(showFeaturePopup.name, value);
             } else {
               onClassFeatureChoice(showFeaturePopup.name, value);
