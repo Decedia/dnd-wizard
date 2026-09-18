@@ -11,22 +11,30 @@
     "traits": [
       {
         "name": "Darkvision",
-        "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+        "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+        "summary": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 120 feet of you as i..."
       },
       {
         "name": "Gnome Cunning",
-        "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+        "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+        "summary": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
       },
       {
         "name": "Stone Camouflage",
-        "description": "You have advantage on Dexterity (Stealth) checks to hide in rocky terrain."
+        "description": "You have advantage on Dexterity (Stealth) checks to hide in rocky terrain.",
+        "summary": "You have advantage on Dexterity (Stealth) checks to hide in rocky terrain."
       },
       {
         "name": "Svirfneblin Magic",
-        "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component. You can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest. Intelligence is your spellcasting ability for these spells."
+        "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component. You can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest. Intelligence is your spellcasting ability for these spells.",
+        "summary": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will,..."
       }
     ],
-    "languages": ["Common", "Gnomish", "Undercommon"],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Undercommon"
+    ],
     "source": "SCAG"
   }
 ]

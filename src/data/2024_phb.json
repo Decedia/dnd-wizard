@@ -169,7 +169,8 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "You adopt a particular style of fighting as your specialty."
+              "description": "You adopt a particular style of fighting as your specialty.",
+              "summary": "You adopt a particular style of fighting as your specialty."
             }
           ],
           "asi": false,
@@ -179,7 +180,8 @@
           "features": [
             {
               "name": "Action Surge",
-              "description": "You can take one additional action on your turn."
+              "description": "You can take one additional action on your turn.",
+              "summary": "You can take one additional action on your turn."
             }
           ],
           "asi": false,
