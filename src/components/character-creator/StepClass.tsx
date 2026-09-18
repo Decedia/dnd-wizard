@@ -3,6 +3,7 @@
 import { useCallback } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticSubclasses, type SRDClass } from "@/lib/srd-client";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 
 interface StepClassProps {
@@ -11,6 +12,7 @@ interface StepClassProps {
 }
 
 export function StepClass({ data, onChange }: StepClassProps) {
+  const { t } = useLanguage();
   const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset);
 
   const handleSelect = useCallback(
@@ -19,6 +21,8 @@ export function StepClass({ data, onChange }: StepClassProps) {
     },
     [onChange]
   );
+
+  const translateClass = (name: string) => t(`class.${name}`, name);
 
   return (
     <StepCard title="Class" hint="Choose your character's class. This determines your core abilities, hit points, and when you'll pick a subclass.">
@@ -40,7 +44,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
             }`}
           >
               <div className="flex items-center justify-between">
-                <span className="text-card-title">{cls.name}</span>
+                <span className="text-card-title">{translateClass(cls.name)}</span>
                 <div className="flex items-center gap-2">
                   {hasSubclasses && (() => {
                      const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;

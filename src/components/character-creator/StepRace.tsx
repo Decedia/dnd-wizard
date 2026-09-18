@@ -5,6 +5,7 @@ import { StepCard } from "./StepCard";
 import { getStaticRaces, type SRDRace } from "@/lib/srd-client";
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { CheckIcon as Check } from "@/components/icons";
@@ -15,6 +16,7 @@ interface StepRaceProps {
 }
 
 export function StepRace({ data, onChange }: StepRaceProps) {
+  const { t } = useLanguage();
   const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset);
   const [featModalOpen, setFeatModalOpen] = useState(false);
 
@@ -63,6 +65,8 @@ export function StepRace({ data, onChange }: StepRaceProps) {
 
   const selectedRace = useMemo(() => races.find(r => r.name === data.race), [races, data.race]);
 
+  const translateRace = (name: string) => t(`race.${name}`, name);
+
   return (
     <>
       <StepCard title="Race" hint="Choose your character's race. Each race has unique traits, ability bonuses, and special abilities.">
@@ -71,7 +75,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
             const isSelected = data.race === race.name;
             const isHuman = race.name === "Human";
 
-return (
+ return (
               <div key={race.name} className="space-y-2">
                 <div className="w-full text-left rounded-[var(--radius-md)] transition-all">
                   <button
@@ -86,7 +90,7 @@ return (
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         {race.source && race.source !== "PHB" && <SourceBadge source={race.source} />}
-                        <span className="text-card-title">{race.name}</span>
+                        <span className="text-card-title">{translateRace(race.name)}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-muted">

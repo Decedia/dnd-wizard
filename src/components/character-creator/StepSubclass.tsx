@@ -4,6 +4,7 @@ import { CheckCircleIcon as CheckCircle, CrownIcon as Crown } from "@/components
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses, type SRDClass, type SRDSubclass } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { normalizeDescription } from "@/lib/level-up";
 import { useMemo } from "react";
@@ -14,9 +15,12 @@ interface StepSubclassProps {
 }
 
 export function StepSubclass({ data, onChange }: StepSubclassProps) {
+  const { t } = useLanguage();
   const classData: SRDClass | undefined = data.class ? getStaticClass(data.class, data.ruleset) : undefined;
   const subclasses: SRDSubclass[] = data.class ? getStaticSubclasses(data.class, data.sources, data.ruleset) : [];
   const unlockLevel = classData?.subclassLevel ?? 3;
+
+  const translateClass = (name: string) => t(`class.${name}`, name);
 
   // Sort subclasses by source (PHB first), then alphabetically
   const sortedSubclasses = useMemo(() => {
@@ -43,16 +47,16 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
 
   if (!classData) {
     return (
-      <StepCard title="Subclass">
-        <p className="text-description">Select a class first.</p>
+      <StepCard title={t("creator.selectSubclass", "Subclass")}>
+        <p className="text-description">{t("creator.selectClassFirst", "Select a class first.")}</p>
       </StepCard>
     );
   }
 
   return (
     <StepCard
-      title="Subclass"
-      hint={`Choose your ${classData.name} subclass. You unlock subclass features starting at level ${unlockLevel}.`}
+      title={t("creator.selectSubclass", "Subclass")}
+      hint={t("creator.subclassHint", `Choose your ${classData.name} subclass. You unlock subclass features starting at level ${unlockLevel}.`).replace("{class}", translateClass(classData.name)).replace("{level}", String(unlockLevel))}
     >
       <div className="space-y-3">
         {sortedSubclasses.map((sub) => {
