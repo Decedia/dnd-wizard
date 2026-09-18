@@ -9,9 +9,10 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
   t: (key: string, fallback?: string) => string;
   tDesc: (key: string, fallback: string) => string;
+  tSummary: (key: string, fallback: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType>({ language: "en", setLanguage: () => {}, t: (k) => k, tDesc: (k, fb) => fb });
+const LanguageContext = createContext<LanguageContextType>({ language: "en", setLanguage: () => {}, t: (k) => k, tDesc: (k, fb) => fb, tSummary: (k, fb) => fb });
 
 export function useLanguage() {
   return useContext(LanguageContext);
@@ -1311,7 +1312,31 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     [language]
   );
 
-  const value = useMemo(() => ({ language, setLanguage, t, tDesc }), [language, setLanguage, t, tDesc]);
+  const tSummary = useCallback(
+    (key: string, fallback: string) => {
+      const dict = translations[language];
+      const translated = dict && dict[key] ? dict[key] : summaryTranslations[key];
+      if (translated) {
+        if (language === "en") return translated;
+        let result = translated;
+        const matches = fallback.match(protectedTermsRegex);
+        if (matches) {
+          for (const term of matches) {
+            const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(escaped, 'gi');
+            result = result.replace(regex, term);
+          }
+        }
+        return result;
+      }
+      const enDict = translations.en;
+      if (enDict && enDict[key]) return enDict[key];
+      return fallback;
+    },
+    [language]
+  );
+
+  const value = useMemo(() => ({ language, setLanguage, t, tDesc, tSummary }), [language, setLanguage, t, tDesc, tSummary]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }

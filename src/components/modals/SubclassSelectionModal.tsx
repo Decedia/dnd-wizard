@@ -7,6 +7,7 @@ import { MagnifyingGlassIcon as MagnifyingGlass, StarIcon as Star, CrownIcon as 
 import { SourceBadge } from "@/components/SourceBadge";
 import { BasePopup } from "@/components/BasePopup";
 import { InfoButton } from "@/components/InfoButton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SubclassSelectionModalProps {
   options: { name: string; description: string; hasDetails: boolean }[];
@@ -18,6 +19,10 @@ interface SubclassSelectionModalProps {
   characterSources?: string[];
 }
 
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 export function SubclassSelectionModal({
   options,
   selected,
@@ -27,6 +32,7 @@ export function SubclassSelectionModal({
   character,
   characterSources,
 }: SubclassSelectionModalProps) {
+  const { tDesc } = useLanguage();
   const [detailsView, setDetailsView] = useState<string | null>(null);
   const [previewSubclass, setPreviewSubclass] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -125,7 +131,9 @@ export function SubclassSelectionModal({
                   title={opt.name}
                   description={(() => {
                     const details = getStaticSubclassDetails(characterClass, opt.name);
-                    const parts = [opt.description];
+                    const descKey = `subclass.desc.${characterClass.toLowerCase()}-${slugify(opt.name)}`;
+                    const translatedDesc = tDesc(descKey, opt.description);
+                    const parts = [translatedDesc];
                     if (details?.features && details.features.length > 0) {
                       parts.push("\n\nFEATURES\n" + details.features.map((f: any) => `• ${f.name} (Lv ${f.level || "?"}): ${(f.description || [""]).join(" ")}`).join("\n"));
                     }

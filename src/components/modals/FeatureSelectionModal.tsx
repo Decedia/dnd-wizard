@@ -131,7 +131,11 @@ export function FeatureSelectionModal({
                   ) : isUnavailable ? (
                     <span className="text-[10px] text-[var(--color-text-muted)]">Locked</span>
                   ) : (
-                    <InfoButton title={opt.name} description={opt.description} />
+                    <InfoButton
+                      title={opt.name}
+                      description={opt.description}
+                      descKey={`feature.choice.desc.${slugify(opt.name)}`}
+                    />
                   )}
                 </div>
               </button>
@@ -156,5 +160,10 @@ function getOptionIcon(optName: string): string | null {
   if (lower.includes("fire") || lower.includes("evocation")) return "🔥";
   if (lower.includes("lightning") || lower.includes("thunder")) return "⚡";
   if (lower.includes("magic") || lower.includes("enchantment") || lower.includes("illusion")) return "✨";
-  return null;
+    return null;
+  }
+}
+
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }

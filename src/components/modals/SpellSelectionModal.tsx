@@ -10,8 +10,13 @@ import { GroupedList } from "@/components/GroupedList";
 import { BasePopup } from "@/components/BasePopup";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { InfoButton } from "@/components/InfoButton";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
+
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 interface SpellSelectionModalProps {
   character: Character;
@@ -60,6 +65,7 @@ export function SpellSelectionModal({
   allKnownSpells = [],
   disabledSpells = [],
 }: SpellSelectionModalProps) {
+  const { tDesc } = useLanguage();
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
   const [searchQuery, setSearchQuery] = useState("");
@@ -241,10 +247,15 @@ export function SpellSelectionModal({
                {sp.name}
              </span>
              {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500 shrink-0" />}
-             <InfoButton
-               title={sp.name}
-               description={(() => { const d = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description; const s = (sp as any).effectSummary || (sp as any).summary || ""; return s || d || ""; })()}
-             />
+<InfoButton
+                title={sp.name}
+                description={(() => {
+                  const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                  const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, rawDesc);
+                  const s = (sp as any).effectSummary || (sp as any).summary || "";
+                  return s ? `${s}\n\n${translatedDesc}` : translatedDesc;
+                })()}
+              />
              <div className="w-3 shrink-0">
                {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
                {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}

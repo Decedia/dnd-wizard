@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { XIcon as X, CheckIcon as Check } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface EquipmentSelectionModalProps {
   isOpen: boolean;
@@ -17,6 +18,7 @@ export interface EquipmentSelectionModalProps {
     description?: string;
     statSummary?: string | null;
     data?: any;
+    descKey?: string;
   }>;
   selectedIndices: number[];
   onOptionSelect: (index: number) => void;
@@ -40,6 +42,7 @@ export function EquipmentSelectionModal({
   renderRightContent,
   manageBodyScroll = true,
 }: EquipmentSelectionModalProps) {
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -133,7 +136,7 @@ export function EquipmentSelectionModal({
                   {(() => {
                     if (renderRightContent) return renderRightContent(option, isSelected);
                     if (isSelected) return <Check className="h-4 w-4 text-[var(--color-text-primary)]" />;
-                    return <InfoButton title={name} description={description} />;
+                    return <InfoButton title={name} description={description} descKey={option.descKey} />;
                   })()}
                 </div>
               </div>
@@ -152,7 +155,7 @@ export function EquipmentSelectionModal({
                 : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
             }`}
           >
-            Confirm selection
+            {t("equipment.confirmSelection", "Confirm selection")}
           </button>
         </div>
       </div>

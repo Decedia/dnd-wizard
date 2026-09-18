@@ -19,6 +19,7 @@ import { TerrainModal } from "./modals/TerrainModal";
 import { BonusCantripModal } from "./modals/BonusCantripModal";
 import { SpellMasteryModal } from "./modals/SpellMasteryModal";
 import { SignatureSpellsModal } from "./modals/SignatureSpellsModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   HeartBottleIcon as Heart,
   LightningIcon as Lightning,
@@ -45,6 +46,11 @@ import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
 import { useSRD } from "@/contexts/SRDContext";
 import { isRecommended } from "@/lib/recommendations";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 function getSubclassFlagsByName(className: string, subclassName: string, sources?: string[]): Record<string, boolean> {
   if (!subclassName) return {};
@@ -501,6 +507,7 @@ function buildLevelInfos(
 }
 
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
+  const { tDesc } = useLanguage();
   const classData = character.class ? getStaticClass(character.class, character.sources, character.ruleset) : undefined;
   const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
   const hitDie = classData?.hitDie || 10;
@@ -1646,9 +1653,9 @@ function LevelCard({
                          <div className="text-xs text-[var(--color-text-primary)] flex items-center gap-2">
                            {f.source && f.source !== "PHB" && <SourceBadge source={f.source} />}
                            <span className="font-semibold">{f.name}</span>
-                           {f.description && (
-                             <InfoButton title={f.name} description={f.description} />
-                           )}
+{f.description && (
+                              <InfoButton title={f.name} description={f.description} descKey={`feature.desc.${slugify(f.name)}`} />
+                            )}
                          </div>
                       </div>
                     ))}
@@ -1883,9 +1890,9 @@ function LevelCard({
                      <div className="flex items-center gap-2 mb-1">
                        <Crown className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                        <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
-                       {fc.description && (
-                         <InfoButton title={fc.name} description={fc.description} />
-                       )}
+{fc.description && (
+                          <InfoButton title={fc.name} description={fc.description} descKey={`feature.desc.${slugify(fc.name)}`} />
+                        )}
                      </div>
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
                       <button
@@ -1919,9 +1926,9 @@ function LevelCard({
                          <div className="flex items-center gap-2 mb-1">
                            <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                            <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
-                           {fc.description && (
-                             <InfoButton title={fc.name} description={fc.description} />
-                           )}
+{fc.description && (
+                              <InfoButton title={fc.name} description={fc.description} descKey={`feature.desc.${slugify(fc.name)}`} />
+                            )}
                          </div>
                         <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
                         {maxCount > 1 ? (

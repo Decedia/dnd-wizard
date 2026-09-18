@@ -9,15 +9,18 @@ import { useLanguage } from "@/contexts/LanguageContext";
 interface InfoButtonProps {
   title: string;
   description: string | string[];
+  /** Optional translation key passed to `tDesc`; when set, the Bahasa variant of this description is used */
+  descKey?: string;
 }
 
-export function InfoButton({ title, description }: InfoButtonProps) {
-  const { t } = useLanguage();
+export function InfoButton({ title, description, descKey }: InfoButtonProps) {
+  const { t, tDesc } = useLanguage();
   const [show, setShow] = useState(false);
 
   if (!description) return null;
 
   const descText = Array.isArray(description) ? description.join("\n") : description;
+  const localized = descKey ? tDesc(descKey, descText) : descText;
 
   return (
     <>
@@ -40,7 +43,7 @@ export function InfoButton({ title, description }: InfoButtonProps) {
         onConfirm={() => setShow(false)}
         showFooter={true}
       >
-        <FormattedDescription>{descText}</FormattedDescription>
+        <FormattedDescription>{localized}</FormattedDescription>
       </BasePopup>
     </>
   );
