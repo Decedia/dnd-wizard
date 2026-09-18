@@ -5,6 +5,7 @@ import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
 import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
@@ -21,6 +22,7 @@ interface CombatStatsSectionProps {
 
 export function CombatStatsSection({ character, onChange, editMode = true }: CombatStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
   const hpPercent = character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0;
   const isSorcerer = character.class === "Sorcerer";
   const [hpModal, setHpModal] = useState<{ mode: "heal" | "damage" } | null>(null);
@@ -65,7 +67,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
   }, [hpModal, hpAmount, character, onChange, hasConcentration]);
 
   return (
-    <SectionCard id="combat-stats" title="Combat Stats" icon={<Sword className="h-5 w-5" />}>
+    <SectionCard id="combat-stats" title={t("section.combatStats", "Combat Stats")} icon={<Sword className="h-5 w-5" />}>
       {editMode ? (
         <div className="flex items-center gap-2 mb-3">
           <input
@@ -77,12 +79,12 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             className="checkbox"
           />
           <label htmlFor="custom-hp" className="text-xs font-semibold text-ink cursor-pointer select-none">
-            Custom HP
+            {t("button.customHp", "Custom HP")}
           </label>
         </div>
       ) : (
         character.isCustomHp && (
-          <div className="mb-3 text-xs font-semibold text-ink-muted">Custom HP enabled</div>
+          <div className="mb-3 text-xs font-semibold text-ink-muted">{t("sheet.customHpEnabled")}</div>
         )
       )}
 
@@ -150,7 +152,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-success-200)] text-[var(--color-success-700)] hover:bg-[var(--color-success-50)] transition-all"
         >
           <Heart className="h-4 w-4" />
-          <span className="text-xs font-semibold">Heal</span>
+          <span className="text-xs font-semibold">{t("character.heal")}</span>
         </button>
         <button
           type="button"
@@ -158,7 +160,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-error-200)] text-[var(--color-error-700)] hover:bg-[var(--color-error-50)] transition-all"
         >
           <Drop className="h-4 w-4" />
-          <span className="text-xs font-semibold">Damage</span>
+          <span className="text-xs font-semibold">{t("character.damage")}</span>
         </button>
       </div>
 
@@ -175,7 +177,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             }`}
           >
             <LightningBolt className="h-5 w-5" />
-            <span className="text-[10px] font-bold">Action</span>
+            <span className="text-[10px] font-bold">{t("spell.action")}</span>
           </button>
           <button
             type="button"
@@ -187,7 +189,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             }`}
           >
             <Clock className="h-5 w-5" />
-            <span className="text-[10px] font-bold">Bonus</span>
+            <span className="text-[10px] font-bold">{t("spell.bonusAction")}</span>
           </button>
           <button
             type="button"
@@ -199,7 +201,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             }`}
           >
             <ShieldCheck className="h-5 w-5" />
-            <span className="text-[10px] font-bold">Reaction</span>
+            <span className="text-[10px] font-bold">{t("spell.reaction")}</span>
           </button>
         </div>
       </div>
@@ -346,20 +348,20 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         <BasePopup
           isOpen={true}
           onClose={() => { setHpModal(null); setHpAmount(""); setConcentrationCheck(null); }}
-          title={hpModal.mode === "heal" ? "Heal" : "Take Damage"}
-          confirmLabel={hpModal.mode === "heal" ? "Heal" : "Apply"}
-          cancelLabel="Cancel"
+          title={hpModal.mode === "heal" ? t("character.heal") : t("button.takeDamage", "Take Damage")}
+          confirmLabel={hpModal.mode === "heal" ? t("character.heal") : t("button.apply")}
+          cancelLabel={t("common.cancel")}
           onConfirm={handleHpAction}
           confirmDisabled={!hpAmount || parseInt(hpAmount, 10) <= 0}
           showFooter={true}
         >
           <div className="px-4 py-4">
-            <label className="field-label-light">Amount</label>
+            <label className="field-label-light">{t("equipment.amount")}</label>
             <input
               type="number"
               value={hpAmount}
               onChange={(e) => setHpAmount(e.target.value)}
-              placeholder="Enter amount..."
+              placeholder={t("equipment.enterAmount")}
               className="input w-full mt-1"
               autoFocus
               min={1}

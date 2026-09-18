@@ -13,6 +13,7 @@ import { SourceBadge } from "@/components/SourceBadge";
 import { SpellMechanicsChips } from "./SpellMechanicsChips";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SpellsSectionProps {
   character: Character;
@@ -49,6 +50,7 @@ interface UnifiedSpell {
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
+  const { t } = useLanguage();
   const { data } = useSRD();
   const srdSpells = data?.spells || [];
   const [showSpellModal, setShowSpellModal] = useState(false);
@@ -215,7 +217,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   };
 
   return (
-    <SectionCard id="spells" title="Spells" icon={<Lightning className="h-5 w-5" />}>
+    <SectionCard id="spells" title={t("section.spells")} icon={<Lightning className="h-5 w-5" />}>
       {preparationCaster && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Prepared Spells: {preparedCount}/{maxPrepared}</span>
@@ -377,7 +379,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           className="mt-3 btn-secondary flex items-center gap-1.5"
         >
           <Plus size={16} />
-          Add Spells
+          {t("button.addSpells", "Add Spells")}
         </button>
       )}
 

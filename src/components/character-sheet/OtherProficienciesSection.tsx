@@ -4,6 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { ScrollIcon as Scroll } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface OtherProficienciesSectionProps {
   otherProficiencies: string;
@@ -15,9 +16,10 @@ interface OtherProficienciesSectionProps {
 
 export function OtherProficienciesSection({ otherProficiencies, toolProficiencies, onChange, onToolsChange, editMode = true }: OtherProficienciesSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
 
   return (
-    <SectionCard id="proficiencies" title="Other Proficiencies & Languages" icon={<Scroll className="h-5 w-5" />}>
+    <SectionCard id="proficiencies" title={t("section.otherProficiencies")} icon={<Scroll className="h-5 w-5" />}>
       {toolProficiencies.length > 0 && (
         <div className="mb-3">
           <span className="field-label">Tool Proficiencies</span>

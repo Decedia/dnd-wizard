@@ -4,10 +4,12 @@ import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { useDebug } from "@/lib/debug/DebugContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { SrdTestReport, SrdTestResult } from "@/lib/srd-data-tests";
 
 export default function AdminSrdDataPage() {
   const debug = useDebug();
+  const { t } = useLanguage();
   const isAdmin = debug.enabled && debug.unlocked;
   const [report, setReport] = useState<SrdTestReport | null>(null);
   const [loading, setLoading] = useState(false);
@@ -39,9 +41,9 @@ export default function AdminSrdDataPage() {
         <AppHeader title="DND Wizard" subtitle="SRD Data Tests" showThemeToggle />
         <main className="px-4 py-4">
           <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-10 text-center">
-            <p className="text-muted">Admin access required.</p>
+            <p className="text-muted">{t("admin.accessRequired", "Admin access required.")}</p>
             <Link href="/admin" className="btn btn-secondary mt-4">
-              Back to Admin
+              {t("admin.backToAdmin", "Back to Admin")}
             </Link>
           </div>
         </main>
@@ -51,7 +53,7 @@ export default function AdminSrdDataPage() {
 
   const summary = report
     ? `${report.passed} passed, ${report.failed} failed, ${report.warnings} warnings`
-    : "No report loaded";
+    : t("admin.noReportLoaded", "No report loaded");
 
   return (
     <div className="min-h-screen bg-paper">
@@ -59,11 +61,11 @@ export default function AdminSrdDataPage() {
       <main className="px-4 py-4 pb-32">
         <div className="mb-5 space-y-2">
           <Link href="/admin" className="btn btn-secondary w-full">
-            Back to Admin
+            {t("admin.backToAdmin", "Back to Admin")}
           </Link>
 
           <button onClick={loadReport} disabled={loading} className="btn btn-secondary w-full opacity-70 hover:opacity-100">
-            {loading ? "Running tests..." : "Refresh SRD Data Tests"}
+            {loading ? t("common.loading", "Running tests...") : t("admin.refreshTests", "Refresh SRD Data Tests")}
           </button>
         </div>
 

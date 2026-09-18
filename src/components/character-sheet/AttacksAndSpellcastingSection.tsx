@@ -8,6 +8,7 @@ import { useDerivedStats } from "@/lib/useCharacterStats";
 import { SwordIcon as Sword } from "@/components/icons";
 import { DamageBadge } from "./DamageBadge";
 import { ConditionBadges } from "./ConditionBadge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -17,6 +18,7 @@ interface AttacksAndSpellcastingSectionProps {
 
 export function AttacksAndSpellcastingSection({ character, onChange, editMode = true }: AttacksAndSpellcastingSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
   const sneakAttack = getSneakAttackDice(character);
   const classAttacks = character.attacks.filter((a) => a.source === "class");
   const weaponAttacks = character.attacks.filter((a) => a.source === "weapon");
@@ -60,7 +62,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   };
 
   return (
-    <SectionCard id="attacks" title="Attacks" icon={<Sword className="h-5 w-5" />}>
+    <SectionCard id="attacks" title={t("section.attacks")} icon={<Sword className="h-5 w-5" />}>
       {character.class === "Rogue" && sneakAttack && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">Sneak Attack: {sneakAttack}</span>

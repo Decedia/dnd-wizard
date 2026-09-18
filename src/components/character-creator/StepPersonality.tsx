@@ -8,6 +8,7 @@ import type { Character } from "@/lib/storage";
 import { CaretDownIcon as CaretDown, XIcon as X } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StepPersonalityProps {
   data: Character;
@@ -41,6 +42,7 @@ function getRaceBonusLanguages(race: string): number {
 }
 
 export function StepPersonality({ data, onChange }: StepPersonalityProps) {
+  const { t } = useLanguage();
 
   const raceLanguages = getRaceLanguages(data.race);
   const raceBonusLanguages = getRaceBonusLanguages(data.race);
@@ -86,10 +88,10 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
 
   const getPopupTitle = () => {
     switch (popupType) {
-      case "personality": return "Choose Personality Trait";
-      case "ideal": return "Choose Ideal";
-      case "bond": return "Choose Bond";
-      case "flaw": return "Choose Flaw";
+      case "personality": return t("creator.choosePersonalityTrait", "Choose Personality Trait");
+      case "ideal": return t("creator.chooseIdeal", "Choose Ideal");
+      case "bond": return t("creator.chooseBond", "Choose Bond");
+      case "flaw": return t("creator.chooseFlaw", "Choose Flaw");
       default: return "";
     }
   };
@@ -156,7 +158,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
             onChange={(e) => onChange({ alignment: e.target.value })}
             className="input w-full"
           >
-            <option value="">Select alignment</option>
+            <option value="">{t("creator.selectAlignment", "Select alignment")}</option>
             {alignmentOptions.map((alignment) => (
               <option key={alignment} value={alignment}>{alignment}</option>
             ))}
@@ -164,7 +166,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
         </div>
 
         <div>
-          <label className="field-label-light">Background</label>
+          <label className="field-label-light">{t("form.background", "Background")}</label>
           <select
             value={data.background}
             onChange={(e) => {
@@ -306,8 +308,8 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
           isOpen={true}
           onClose={handleCancel}
           title={getPopupTitle()}
-          confirmLabel="Confirm"
-          cancelLabel="Cancel"
+          confirmLabel={t("button.confirm", "Confirm")}
+          cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={handleConfirm}
           confirmDisabled={!pendingValue}
           showFooter={true}

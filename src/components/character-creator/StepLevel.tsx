@@ -15,6 +15,7 @@ import {
 import { normalizeDescription } from "@/lib/level-up";
 import { Dice, type DiceType } from "@/components/Dice";
 import { BasePopup } from "@/components/BasePopup";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   HeartBottleIcon as Heart,
   LightningIcon as Lightning,
@@ -155,6 +156,7 @@ function buildLevelInfos(
 }
 
 export function StepLevel({ data, onChange }: StepLevelProps) {
+  const { t } = useLanguage();
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(data.con);
@@ -612,7 +614,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
           }}
           title={`Level ${currentAsiLevel} Improvement`}
           confirmLabel="Apply"
-          cancelLabel="Cancel"
+          cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={applyAsi}
           confirmDisabled={!canApplyAsi}
           showFooter={true}

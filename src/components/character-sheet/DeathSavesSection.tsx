@@ -3,6 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { SkullIcon as Skull, CircleIcon as Circle, CheckIcon as Check, XIcon as X } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 
 interface DeathSavesSectionProps {
@@ -13,6 +14,7 @@ interface DeathSavesSectionProps {
 
 export function DeathSavesSection({ character, onChange, editMode = true }: DeathSavesSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
 
   const renderDot = (filled: boolean, color: string) => (
     <span
@@ -54,7 +56,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
   };
 
   return (
-    <SectionCard id="death-saves" title="Death Saves" icon={<Skull className="h-5 w-5" />}>
+    <SectionCard id="death-saves" title={t("section.deathSaves")} icon={<Skull className="h-5 w-5" />}>
       <div className="flex flex-col items-center gap-4">
         <div className="flex items-center gap-3">
           <button
@@ -66,7 +68,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
                 ? "bg-[var(--color-success-100)] border-[var(--color-success-300)] text-[var(--color-success-700)] cursor-not-allowed opacity-50"
                 : "btn-secondary"
             }`}
-            title="Add Success"
+            title={t("button.addSuccess")}
           >
             <Check className="h-4 w-4" />
             <span>Success</span>
@@ -80,7 +82,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
                 ? "bg-[var(--color-error-100)] border-[var(--color-error-300)] text-[var(--color-error-700)] cursor-not-allowed opacity-50"
                 : "btn-secondary"
             }`}
-            title="Add Failure"
+            title={t("button.addFailure")}
           >
             <X className="h-4 w-4" />
             <span>Failure</span>
@@ -88,7 +90,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
         </div>
         {(character.deathSaveSuccesses >= 3 || character.deathSaveFailures >= 3) && (
           <p className="text-xs text-center font-semibold text-[var(--color-error-500)]">
-            {character.deathSaveSuccesses >= 3 ? "Stable" : "Dead"}
+            {character.deathSaveSuccesses >= 3 ? t("status.stable") : t("status.dead")}
           </p>
         )}
         <div className="flex items-center gap-6">
@@ -119,7 +121,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
                 onClick={removeSuccess}
                 disabled={(character.deathSaveSuccesses || 0) === 0}
                 className="btn-ghost ml-2 px-2 py-1"
-                title="Remove Success"
+                title={t("button.removeSuccess")}
               >
                 <X className="h-3 w-3" />
               </button>
@@ -152,7 +154,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
                 onClick={removeFailure}
                 disabled={(character.deathSaveFailures || 0) === 0}
                 className="btn-ghost ml-2 px-2 py-1"
-                title="Remove Failure"
+                title={t("button.removeFailure")}
               >
                 <X className="h-3 w-3" />
               </button>

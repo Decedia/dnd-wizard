@@ -69,7 +69,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
 
   return (
     <>
-      <StepCard title="Race" hint="Choose your character's race. Each race has unique traits, ability bonuses, and special abilities.">
+      <StepCard title={t("form.race", "Race")} hint={t("creator.raceHint", "Choose your character's race. Each race has unique traits, ability bonuses, and special abilities.")}>
         <div className="space-y-3">
           {races.map((race) => {
             const isSelected = data.race === race.name;
@@ -139,7 +139,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
                             onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
                             className="input text-xs mt-1"
                           >
-                            <option value="">Select language...</option>
+                            <option value="">{t("placeholder.selectLanguage", "Select language...")}</option>
                             {["Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Gith", "Quori", "Thri-kreen", "Druidic"].map(lang => (
                               <option key={lang} value={lang}>{lang}</option>
                             ))}
@@ -151,7 +151,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
                             onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
                             className="input text-xs mt-1"
                           >
-                            <option value="">Select skill or tool...</option>
+                            <option value="">{t("placeholder.selectSkillOrTool", "Select skill or tool...")}</option>
                             {["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival", "Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies", "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools", "Cook's Utensils", "Glassblower's Tools", "Jeweler's Tools", "Leatherworker's Tools", "Mason's Tools", "Painter's Supplies", "Potter's Tools", "Smith's Tools", "Tinker's Tools", "Weaver's Tools", "Woodcarver's Tools", "Dice Set", "Dragonchess Set", "Playing Card Set", "Three-Dragon Ante Set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan Flute", "Shawm", "Viol", "Navigator's Tools", "Poisoner's Kit", "Thieves' Tools", "Herbalism Kit", "Disguise Kit", "Forgery Kit"].map(prof => (
                               <option key={prof} value={prof}>{prof}</option>
                             ))}
@@ -196,7 +196,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
                       <div className="space-y-2">
                         {selectedFeat && (
                           <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                            <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Selected Feat</div>
+                            <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{t("creator.selectedFeat", "Selected Feat")}</div>
                             <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
                           </div>
                         )}
@@ -205,7 +205,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
                           onClick={() => setFeatModalOpen(true)}
                           className="btn btn-secondary w-full text-sm"
                         >
-                          {selectedFeat ? "Change Feat" : "Choose Feat"}
+                          {selectedFeat ? t("creator.changeFeat", "Change Feat") : t("creator.chooseFeat", "Choose Feat")}
                         </button>
                       </div>
                     )}

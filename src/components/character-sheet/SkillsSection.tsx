@@ -9,6 +9,7 @@ import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage"
 import { getBackgroundData } from "@/data/backgrounds";
 import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle, InfoIcon } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -18,6 +19,7 @@ interface SkillsSectionProps {
 
 export function SkillsSection({ character, onChange, editMode = true }: SkillsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
   const profBonus = getProficiencyBonus(character.level);
   const [infoSkill, setInfoSkill] = useState<string | null>(null);
 
@@ -53,11 +55,11 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   }, [character.skills, isAtMaxSelections, isBackgroundSkill, onChange]);
 
   return (
-    <SectionCard id="skills" title="Skills" icon={<ListChecks className="h-5 w-5" />}>
+    <SectionCard id="skills" title={t("section.skills")} icon={<ListChecks className="h-5 w-5" />}>
       {skillChoices && editMode && (
         <div className="mb-2.5 hint-box-light">
           <span className="text-[11px] text-ink-muted">
-            Select {maxSelections} skills from your class list ({currentSelections} of {maxSelections} selected)
+            {t("creator.selectSkillsFromClass", "Select {max} skills from your class list ({current} of {max} selected)").replace("{max}", String(maxSelections)).replace("{current}", String(currentSelections))}
           </span>
         </div>
       )}

@@ -6,6 +6,7 @@ import { BookCard } from "@/components/BookCard";
 import { BookPatterns, BookEmojis, type BookId } from "@/components/book-svgs";
 import { BookExplainer } from "@/components/BookExplainer";
 import { useSRD } from "@/contexts/SRDContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BOOK_SPECS: Record<
   BookId,
@@ -90,6 +91,7 @@ const BOOK_SPECS: Record<
 };
 
 export function StepSourceSelection({ data, onChange }: { data: { sources: string[]; ruleset?: "2014" | "2024" }; onChange: (patch: { sources: string[]; ruleset?: "2014" | "2024" }) => void }) {
+  const { t } = useLanguage();
   const selectedSources = data.sources || ["PHB"];
   const ruleset = data.ruleset || "2014";
   const { setRuleset: setSrdRuleset } = useSRD();
@@ -129,7 +131,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
     <div className="space-y-3">
       <div>
         <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-1">
-          Step 1 of {totalBooks > 0 ? "8" : "6"}
+          {t("wizard.stepOf", "Step {step} of {total}").replace("{step}", "1").replace("{total}", totalBooks > 0 ? "8" : "6")}
         </div>
         <h2 className="text-xl font-bold text-[var(--color-text-primary)]">Choose rulebooks</h2>
         <p className="text-xs text-[var(--color-text-secondary)] mt-1 inline-flex items-center gap-1.5 flex-wrap">

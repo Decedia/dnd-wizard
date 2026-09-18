@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { getCharacter, saveCharacter, computeDerivedStats, type Character } from "@/lib/storage";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { LevelUpWizard } from "@/components/LevelUpWizard";
 
 export default function LevelUpPage() {
   const params = useParams();
   const router = useRouter();
+  const { t } = useLanguage();
   const id = params.id as string;
 
   const [character, setCharacter] = useState<Character | null>(null);
@@ -39,7 +41,7 @@ export default function LevelUpPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-paper flex items-center justify-center">
-        <div className="text-ink-muted font-semibold text-sm">Loading...</div>
+        <div className="text-ink-muted font-semibold text-sm">{t("common.loading")}</div>
       </div>
     );
   }
@@ -47,7 +49,7 @@ export default function LevelUpPage() {
   if (!character) {
     return (
       <div className="min-h-screen bg-paper flex items-center justify-center">
-        <div className="text-ink-muted font-semibold text-sm">Character not found.</div>
+        <div className="text-ink-muted font-semibold text-sm">{t("common.noData", "Character not found.")}</div>
       </div>
     );
   }

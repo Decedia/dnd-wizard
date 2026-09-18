@@ -1,6 +1,7 @@
 "use client";
 
 import { StepCard } from "./StepCard";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 
 interface StepAppearanceProps {
@@ -9,6 +10,7 @@ interface StepAppearanceProps {
 }
 
 export function StepAppearance({ data, onChange }: StepAppearanceProps) {
+  const { t } = useLanguage();
   const updateAppearance = (field: string, value: string) => {
     onChange({
       appearance: {
@@ -98,7 +100,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
         </div>
         <div>
           <label className="field-label-light">
-            Backstory
+            {t("form.backstory", "Backstory")}
           </label>
           <textarea
             value={data.appearance?.backstory || ""}

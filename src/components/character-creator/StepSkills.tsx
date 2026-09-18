@@ -8,6 +8,7 @@ import { getProficiencyBonus } from "@/lib/storage";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import type { Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StepSkillsProps {
   data: Character;
@@ -15,6 +16,7 @@ interface StepSkillsProps {
 }
 
 export function StepSkills({ data, onChange }: StepSkillsProps) {
+  const { t } = useLanguage();
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const profBonus = getProficiencyBonus(data.level);
   const skillChoices = classData?.skillChoices || null;
@@ -101,7 +103,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
               icon: Trophy,
             },
             {
-              title: "Background Skills",
+              title: t("section.backgroundSkills", "Background Skills"),
               content: "Green 'BG' badges mean the skill comes from your background. These are automatically added and can't be changed.",
               icon: Book,
             },

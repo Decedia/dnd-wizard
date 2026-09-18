@@ -23,6 +23,7 @@ import { ItemSelectionModal } from "../modals/ItemSelectionModal";
 import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   CurrencyRow,
   CategoryFilter,
@@ -65,6 +66,7 @@ function canEquipItemCheck(item: Character["inventory"][number]): boolean {
 
 export function InventorySection({ character, onChange, editMode = true }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
   const derived = useDerivedStats(character);
   const rageDamage = derived.rageDamage || 0;
   const isBarbarian = character.class === "Barbarian";
@@ -457,7 +459,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   }, [addCustomItem]);
 
   return (
-    <SectionCard id="inventory" title="Inventory" icon={<Backpack className="h-5 w-5" />}>
+    <SectionCard id="inventory" title={t("section.inventory")} icon={<Backpack className="h-5 w-5" />}>
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold text-[var(--color-text-muted)]">
@@ -496,7 +498,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
               className="flex-1 btn-secondary flex items-center gap-1.5"
             >
               <Plus size={16} />
-              Add SRD Item
+              {t("button.addSrdItem", "Add SRD Item")}
             </button>
             <button
               type="button"
@@ -504,7 +506,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
               className="flex-1 btn-secondary flex items-center gap-1.5"
             >
               <Plus size={16} />
-              Add Custom Item
+              {t("button.addCustomItem", "Add Custom Item")}
             </button>
           </div>
         )}

@@ -7,6 +7,7 @@ import { getModifier } from "@/lib/storage";
 import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
 import { ChartBarIcon as ChartBar, StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const STATS = [
   { key: "str", label: "STR" },
@@ -37,6 +38,7 @@ interface StatsSectionProps {
 
 export function StatsSection({ character, onChange, editMode = true }: StatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
 
   const sortedStats = useMemo(() => {
     return [...STATS].sort((a, b) => (isRecommended("stat", b.label, character.class) ? 1 : 0) - (isRecommended("stat", a.label, character.class) ? 1 : 0));
@@ -45,7 +47,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
   const savingThrowKeys = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
   return (
-    <SectionCard id="stats" title="Stats" icon={<ChartBar className="h-5 w-5" />}>
+    <SectionCard id="stats" title={t("section.stats")} icon={<ChartBar className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-2.5">
         {sortedStats.map(({ key, label }) => (
           <AbilityScoreBlock

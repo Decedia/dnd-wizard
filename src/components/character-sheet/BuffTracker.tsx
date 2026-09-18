@@ -2,6 +2,7 @@
 
 import { SparklesIcon as Sparkle, XIcon as X } from "@/components/icons";
 import { BUFF_DEFINITIONS, type BuffDefinition } from "@/lib/spellEffects";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface BuffTrackerProps {
   activeBuffs: { spellId: string; name: string; concentration: boolean; turnsRemaining: number | null }[];
@@ -14,6 +15,7 @@ interface BuffTrackerProps {
 }
 
 export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, onBreakConcentration, className = "", editMode = true, filterClass }: BuffTrackerProps) {
+  const { t } = useLanguage();
   const allBuffs = Object.values(BUFF_DEFINITIONS);
   const availableBuffs = filterClass
     ? allBuffs.filter(b => b.classes.includes(filterClass))
@@ -58,7 +60,7 @@ export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, onBreakConc
               type="button"
               onClick={onBreakConcentration}
               className="inline-flex items-center gap-1 rounded border border-[var(--color-error-200)] px-2 py-1 text-[10px] font-semibold text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] hover:border-[var(--color-error-300)] transition-all"
-              title="Break concentration - all concentration buffs end"
+              title={t("button.breakConcentrationAll")}
             >
               <span className="text-[10px]">💥</span>
               <span>Break</span>

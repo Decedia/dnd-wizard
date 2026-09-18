@@ -12,6 +12,7 @@ import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
 import { StepAppearance } from "@/components/character-creator/StepAppearance";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { WizardNav } from "@/components/WizardNav";
 import {
   initializeCharacter,
@@ -24,6 +25,7 @@ import {
 
 export default function CharacterCreate() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [character, setCharacter] = useState<Character>(initializeCharacter);
   const [step, setStep] = useState(0);
 
@@ -127,7 +129,7 @@ export default function CharacterCreate() {
         onBack={handleBack}
         onNext={handleNext}
         canProceed={canProceed()}
-        nextLabel={isLastStep ? "Create Character" : "Next"}
+        nextLabel={isLastStep ? t("creator.createCharacter", "Create Character") : t("common.next", "Next")}
         showBack={step > 0}
       />
     </div>

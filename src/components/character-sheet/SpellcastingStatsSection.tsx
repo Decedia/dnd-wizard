@@ -3,6 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { SparklesIcon as Sparkle } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 
 interface SpellcastingStatsSectionProps {
@@ -13,6 +14,7 @@ interface SpellcastingStatsSectionProps {
 
 export function SpellcastingStatsSection({ character, onChange, editMode = true }: SpellcastingStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
 
   const updateCantrip = (id: string, name: string) => {
     onChange({
@@ -62,7 +64,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
   };
 
   return (
-    <SectionCard id="spellcasting" title="Spellcasting Stats" icon={<Sparkle className="h-5 w-5" />}>
+    <SectionCard id="spellcasting" title={t("section.spellcastingStats")} icon={<Sparkle className="h-5 w-5" />}>
       <div className="grid grid-cols-1 gap-4">
         <Field label="SPELLCASTING ABILITY">
           {editMode ? (

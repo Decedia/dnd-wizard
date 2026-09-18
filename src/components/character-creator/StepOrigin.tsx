@@ -8,6 +8,7 @@ import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { BasePopup } from "@/components/BasePopup";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
@@ -186,6 +187,7 @@ interface StepOriginProps {
 }
 
 export function StepOrigin({ data, onChange }: StepOriginProps) {
+  const { t } = useLanguage();
   const [popupType, setPopupType] = useState<"class" | "race" | null>(null);
   const [featModalOpen, setFeatModalOpen] = useState(false);
   const [variantModalOpen, setVariantModalOpen] = useState(false);
@@ -403,7 +405,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           onClose={() => { setPopupType(null); setPendingClass(data.class || null); }}
           title="Select Class"
           confirmLabel="Confirm"
-          cancelLabel="Cancel"
+          cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={handleConfirmClass}
           confirmDisabled={!pendingClass}
           showFooter={true}
@@ -472,7 +474,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           onClose={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
           title="Select Race"
           confirmLabel="Confirm"
-          cancelLabel="Cancel"
+          cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={handleConfirmRace}
           confirmDisabled={!canConfirmRace}
           showFooter={true}
@@ -614,7 +616,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           onClose={() => setVariantModalOpen(false)}
           title="Variant Human"
           confirmLabel="Confirm"
-          cancelLabel="Cancel"
+          cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={() => setVariantModalOpen(false)}
           showFooter={true}
         >

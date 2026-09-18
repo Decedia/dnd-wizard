@@ -7,6 +7,7 @@ import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
 import { InfoButton } from "@/components/InfoButton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FeatureSelection {
   featureName: string;
@@ -28,6 +29,7 @@ interface StepFeatureSelectionsProps {
 }
 
 export function StepFeatureSelections({ data, onChange, selections }: StepFeatureSelectionsProps) {
+  const { t } = useLanguage();
   const [selectedValues, setSelectedValues] = useState<Record<string, string[]>>(() => {
     const initial: Record<string, string[]> = {};
     selections.forEach((sel) => {
@@ -84,7 +86,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
 
   if (selections.length === 0) {
     return (
-      <StepCard title="Feature Selections">
+      <StepCard title={t("creator.featureSelections", "Feature Selections")}>
         <p className="text-description">No feature selections required at this time.</p>
       </StepCard>
     );
@@ -95,7 +97,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
   return (
     <StepCard
       title={primarySelection.featureName}
-      hint={`You must make a selection for ${primarySelection.featureName}. This is a class feature that requires you to choose from the available options.`}
+      hint={t("creator.featureSelectionHint", "You must make a selection for {feature}. This is a class feature that requires you to choose from the available options.").replace("{feature}", primarySelection.featureName)}
     >
       <div className="space-y-6">
         {selections.map((selection) => {

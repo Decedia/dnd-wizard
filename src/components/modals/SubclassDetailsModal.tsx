@@ -5,6 +5,7 @@ import { getStaticSubclassDetails } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 import type { Character } from "@/lib/storage";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SubclassDetailsModalProps {
   characterClass: string;
@@ -14,6 +15,7 @@ interface SubclassDetailsModalProps {
 }
 
 export function SubclassDetailsModal({ characterClass, subclass, onClose, character }: SubclassDetailsModalProps) {
+  const { t } = useLanguage();
   const details = getStaticSubclassDetails(characterClass, subclass);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export function SubclassDetailsModal({ characterClass, subclass, onClose, charac
       isOpen={true}
       onClose={onClose}
       title={subclass}
-      confirmLabel="Got it"
+      confirmLabel={t("common.gotIt", "Got it")}
       onConfirm={onClose}
       showFooter={true}
     >

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { InfoIcon as Info } from "@/components/icons";
 import { BasePopup } from "./BasePopup";
 import { FormattedDescription } from "./FormattedDescription";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface InfoButtonProps {
   title: string;
@@ -11,6 +12,7 @@ interface InfoButtonProps {
 }
 
 export function InfoButton({ title, description }: InfoButtonProps) {
+  const { t } = useLanguage();
   const [show, setShow] = useState(false);
 
   if (!description) return null;
@@ -34,7 +36,7 @@ export function InfoButton({ title, description }: InfoButtonProps) {
         isOpen={show}
         onClose={() => setShow(false)}
         title={title}
-        confirmLabel="Got it"
+        confirmLabel={t("common.gotIt", "Got it")}
         onConfirm={() => setShow(false)}
         showFooter={true}
       >
@@ -54,15 +56,17 @@ interface DescriptionModalProps {
   confirmLabel?: string;
 }
 
-export function DescriptionModal({ title, content, onClose, children, showConfirm, onConfirm, confirmLabel = "Confirm" }: DescriptionModalProps) {
+export function DescriptionModal({ title, content, onClose, children, showConfirm, onConfirm, confirmLabel }: DescriptionModalProps) {
+  const { t } = useLanguage();
   const text = Array.isArray(content) ? content.join(" ") : content;
+  const label = confirmLabel ?? t("common.confirm", "Confirm");
 
   return (
     <BasePopup
       isOpen={true}
       onClose={onClose}
       title={title}
-      confirmLabel={confirmLabel}
+        confirmLabel={label}
       onConfirm={onConfirm}
       showFooter={!!showConfirm && !!onConfirm}
     >

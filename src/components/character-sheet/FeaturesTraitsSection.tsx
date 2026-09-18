@@ -10,6 +10,7 @@ import { syncBaseFeatures } from "@/lib/character-creation";
 import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { FeatureMechanicsChips } from "./FeatureMechanicsChips";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FeaturesTraitsSectionProps {
   character: Character;
@@ -19,6 +20,7 @@ interface FeaturesTraitsSectionProps {
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const [showHiddenFeatures, setShowHiddenFeatures] = useState(false);
   const [syncing, setSyncing] = useState(false);
@@ -166,7 +168,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   };
 
   return (
-    <SectionCard id="features" title="Features & Traits" icon={<Star className="h-5 w-5" />}>
+    <SectionCard id="features" title={t("section.featuresTraits")} icon={<Star className="h-5 w-5" />}>
       <div className="space-y-2">
         {character.subclass && (
               <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
@@ -254,7 +256,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             className="mt-3 btn-secondary flex items-center gap-1.5"
           >
             <Plus size={16} />
-            Add Feature
+            {t("button.addFeature", "Add Feature")}
           </button>
       )}
       {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}

@@ -6,6 +6,7 @@ import { BasePopup } from "@/components/BasePopup";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
 import { DAMAGE_TYPES, type DamageType } from "@/lib/damage-types";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface CustomItemModalProps {
   character: Character;
@@ -17,6 +18,7 @@ interface CustomItemModalProps {
 type CustomItemType = "weapon" | "armor" | "item";
 
 export function CustomItemModal({ character, onAdd, onClose, editingItem }: CustomItemModalProps) {
+  const { t } = useLanguage();
   const [itemType, setItemType] = useState<CustomItemType>(editingItem?.itemType === "armor" ? "armor" : editingItem?.itemType === "weapon" ? "weapon" : "item");
   const [name, setName] = useState(editingItem?.name || "");
   const [quantity, setQuantity] = useState(editingItem?.quantity || 1);
@@ -77,7 +79,7 @@ export function CustomItemModal({ character, onAdd, onClose, editingItem }: Cust
     <BasePopup
       isOpen={true}
       onClose={onClose}
-      title={editingItem ? "Edit Custom Item" : "Add Custom Item"}
+      title={editingItem ? t("modal.editCustomItem", "Edit Custom Item") : t("modal.addCustomItem", "Add Custom Item")}
       confirmLabel={editingItem ? "Save" : "Add"}
       cancelLabel="Cancel"
       onConfirm={handleSubmit}

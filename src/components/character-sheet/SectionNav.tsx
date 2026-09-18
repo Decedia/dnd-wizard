@@ -16,24 +16,26 @@ import {
   SparklesIcon as Sparkle,
   SunIcon as Sun,
 } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const sections = [
-  { id: "identity", label: "Identity", Icon: User },
-  { id: "stats", label: "Stats", Icon: ChartBar },
-  { id: "combat", label: "Combat", Icon: Sword },
-  { id: "death-saves", label: "Death Saves", Icon: Skull },
-   { id: "hit-dice", label: "Hit Dice", Icon: DiceFive },
-  { id: "skills", label: "Skills", Icon: ListChecks },
-  { id: "features", label: "Features", Icon: Star },
-  { id: "attacks", label: "Attacks", Icon: Sword },
-  { id: "inventory", label: "Inventory", Icon: Backpack },
-  { id: "proficiencies", label: "Proficiencies", Icon: Scroll },
-  { id: "spells", label: "Spells", Icon: Lightning },
-  { id: "spellcasting", label: "Spellcasting", Icon: Sparkle },
-  { id: "appearance", label: "Appearance", Icon: Sun },
+  { id: "identity", label: "character.identity", Icon: User },
+  { id: "stats", label: "section.stats", Icon: ChartBar },
+  { id: "combat", label: "section.combatStats", Icon: Sword },
+  { id: "death-saves", label: "section.deathSaves", Icon: Skull },
+   { id: "hit-dice", label: "section.hitDice", Icon: DiceFive },
+  { id: "skills", label: "section.skills", Icon: ListChecks },
+  { id: "features", label: "section.featuresTraits", Icon: Star },
+  { id: "attacks", label: "section.attacks", Icon: Sword },
+  { id: "inventory", label: "section.inventory", Icon: Backpack },
+  { id: "proficiencies", label: "section.otherProficiencies", Icon: Scroll },
+  { id: "spells", label: "section.spells", Icon: Lightning },
+  { id: "spellcasting", label: "character.spellcasting", Icon: Sparkle },
+  { id: "appearance", label: "section.appearanceBio", Icon: Sun },
 ];
 
 export function SectionNav() {
+  const { t } = useLanguage();
   const [active, setActive] = useState(sections[0].id);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -71,8 +73,8 @@ export function SectionNav() {
         <button
           key={id}
           onClick={() => scrollTo(id)}
-          aria-label={label}
-          title={label}
+          aria-label={t(label)}
+          title={t(label)}
            className={`flex items-center justify-center rounded-md transition-all ${
             active === id
               ? "h-7 w-7 md:h-8 md:w-8 text-[var(--color-nav-icon)] bg-[var(--color-nav-bg)] border border-[var(--color-nav-bg)]"

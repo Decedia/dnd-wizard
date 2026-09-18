@@ -4,6 +4,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { SunIcon as Sun } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 
 interface AppearanceBioSectionProps {
@@ -29,6 +30,7 @@ interface AppearanceBioSectionProps {
 
 export function AppearanceBioSection({ character, onChange, editMode = true }: AppearanceBioSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
+  const { t } = useLanguage();
   const updateField = (field: keyof Character["appearance"], value: string) => {
     onChange({
       appearance: { ...character.appearance, [field]: value },
@@ -36,7 +38,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
   };
 
   return (
-    <SectionCard id="appearance" title="Appearance & Bio" icon={<Sun className="h-5 w-5" />}>
+    <SectionCard id="appearance" title={t("section.appearanceBio")} icon={<Sun className="h-5 w-5" />}>
       {editMode ? (
         <>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
@@ -47,7 +49,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("age", e.target.value)}
                 onBlur={onFieldBlur}
                 className="input"
-                placeholder="e.g. 27"
+                placeholder={t("placeholder.e.g27")}
               />
             </Field>
             <Field label="HEIGHT" className="pl-4">
@@ -57,7 +59,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("height", e.target.value)}
                 onBlur={onFieldBlur}
                 className="input"
-                placeholder="e.g. 6'2&quot;"
+                placeholder={t("placeholder.e.g6ft2")}
               />
             </Field>
           </div>
@@ -69,7 +71,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("weight", e.target.value)}
                 onBlur={onFieldBlur}
                 className="input"
-                placeholder="e.g. 180 lbs"
+                placeholder={t("placeholder.e.g180lbs")}
               />
             </Field>
             <Field label="EYES" className="pl-4">
@@ -79,7 +81,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("eyes", e.target.value)}
                 onBlur={onFieldBlur}
                 className="input"
-                placeholder="e.g. Blue"
+                placeholder={t("placeholder.e.gBlue")}
               />
             </Field>
           </div>
@@ -91,7 +93,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("skin", e.target.value)}
                 onBlur={onFieldBlur}
                 className="input"
-                placeholder="e.g. Fair"
+                placeholder={t("placeholder.e.gFair")}
               />
             </Field>
             <Field label="HAIR" className="pl-4">
@@ -101,7 +103,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("hair", e.target.value)}
                 onBlur={onFieldBlur}
                 className="input"
-                placeholder="e.g. Brown"
+                placeholder={t("placeholder.e.gBrown")}
               />
             </Field>
           </div>
@@ -113,7 +115,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("characterAppearance", e.target.value)}
                 onBlur={onFieldBlur}
                 className="textarea min-h-[80px]"
-                placeholder="Describe your character's physical appearance..."
+                placeholder={t("placeholder.describeAppearance")}
               />
             </Field>
             <Field label="PERSONALITY">
@@ -122,7 +124,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("personality", e.target.value)}
                 onBlur={onFieldBlur}
                 className="textarea min-h-[80px]"
-                placeholder="Describe your character's personality traits, ideals, bonds, and flaws..."
+                placeholder={t("placeholder.describePersonality")}
               />
             </Field>
             <Field label="BACKSTORY">
@@ -131,7 +133,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("backstory", e.target.value)}
                 onBlur={onFieldBlur}
                 className="textarea min-h-[120px]"
-                placeholder="Where did your character come from? What drives them?"
+                placeholder={t("placeholder.whereFrom")}
               />
             </Field>
             <Field label="ALLIES & ORGANIZATIONS">
@@ -140,7 +142,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("alliesOrganizations", e.target.value)}
                 onBlur={onFieldBlur}
                 className="textarea min-h-[80px]"
-                placeholder="List allies, organizations, or contacts..."
+                placeholder={t("placeholder.listAllies")}
               />
             </Field>
             <Field label="ADDITIONAL FEATURES & TRAITS">
@@ -149,7 +151,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("additionalFeaturesTraits", e.target.value)}
                 onBlur={onFieldBlur}
                 className="textarea min-h-[80px]"
-                placeholder="Any additional features or traits not listed elsewhere..."
+                placeholder={t("placeholder.additionalFeatures")}
               />
             </Field>
             <Field label="TREASURE">
@@ -158,7 +160,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 onChange={(e) => updateField("treasure", e.target.value)}
                 onBlur={onFieldBlur}
                 className="textarea min-h-[80px]"
-                placeholder="Notable treasure, magic items, or valuables..."
+                placeholder={t("placeholder.notableTreasure")}
               />
             </Field>
           </div>

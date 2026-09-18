@@ -25,7 +25,7 @@ export function StepClass({ data, onChange }: StepClassProps) {
   const translateClass = (name: string) => t(`class.${name}`, name);
 
   return (
-    <StepCard title="Class" hint="Choose your character's class. This determines your core abilities, hit points, and when you'll pick a subclass.">
+    <StepCard title={t("form.class", "Class")} hint={t("creator.classHint", "Choose your character's class. This determines your core abilities, hit points, and when you'll pick a subclass.")}>
       <div className="space-y-3">
         {classes.map((cls) => {
           const isSelected = data.class === cls.name;
