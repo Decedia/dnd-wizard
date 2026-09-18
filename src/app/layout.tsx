@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { BottomNav } from "@/components/BottomNav";
 import { SRDProvider } from "@/contexts/SRDContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import { DebugProvider } from "@/lib/debug/DebugContext";
 import { DebugButton } from "@/components/debug/DebugButton";
 import "./globals.css";
@@ -37,12 +38,14 @@ export default function RootLayout({
       >
         <SRDProvider>
           <ThemeProvider>
-            <DebugProvider>
-              <div className="mx-auto max-w-lg pb-36">
-                {children}
-              </div>
-              <DebugButton />
-            </DebugProvider>
+            <LanguageProvider>
+              <DebugProvider>
+                <div className="mx-auto max-w-lg pb-36">
+                  {children}
+                </div>
+                <DebugButton />
+              </DebugProvider>
+            </LanguageProvider>
           </ThemeProvider>
         </SRDProvider>
         <BottomNav />

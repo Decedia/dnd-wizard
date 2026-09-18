@@ -4,15 +4,16 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { HomeIcon, PlusCircleIcon } from "@/components/icons";
 import { WizardHatIcon } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const navItems = [
   {
-    name: "Home",
+    nameKey: "nav.home",
     href: "/",
     icon: HomeIcon,
   },
   {
-    name: "New",
+    nameKey: "nav.new",
     href: "/character/create",
     icon: PlusCircleIcon,
   },
@@ -20,6 +21,7 @@ const navItems = [
 
 export function BottomNav() {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   const activeIndex = navItems.findIndex((item) => {
     return pathname === item.href;
@@ -33,7 +35,7 @@ export function BottomNav() {
              const isActive = index === activeIndex;
              return (
                <Link
-                 key={item.name}
+                 key={item.nameKey}
                  href={item.href}
                  className={`
                    flex flex-col items-center justify-center gap-1 flex-1 py-2.5 transition-all duration-200 relative z-10 rounded-full
@@ -43,12 +45,12 @@ export function BottomNav() {
                >
                 <Icon className={`h-5 w-5`} />
                 <span className={`font-medium text-[10px]`}>
-                  {item.name}
+                  {t(item.nameKey)}
                 </span>
               </Link>
             );
            })}
-        </div>
+       </div>
     </nav>
   );
 }

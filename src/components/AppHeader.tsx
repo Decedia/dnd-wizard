@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import { WizardHatIcon, EyeIcon as Eye, EyeSlashIcon as EyeSlash } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AppHeaderProps {
   title?: string;
@@ -17,6 +19,7 @@ interface AppHeaderProps {
 }
 
 export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave, showThemeToggle, showDescriptions, onShowDescriptionsChange }: AppHeaderProps) {
+  const { t } = useLanguage();
   return (
     <header className="sticky top-0 z-40 border-b border-border-strong bg-paper">
       <div className="mx-auto max-w-lg px-4 py-3">
@@ -49,8 +52,8 @@ export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave,
                     ? "border-[var(--color-border-active)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
                     : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)]"
                 }`}
-                aria-label={showDescriptions ? "Hide descriptions" : "Show descriptions"}
-                title={showDescriptions ? "Hide descriptions" : "Show descriptions"}
+                aria-label={showDescriptions ? t("description.hide") : t("description.show")}
+                title={showDescriptions ? t("description.hide") : t("description.show")}
               >
                 {showDescriptions ? (
                   <Eye className="h-4 w-4" />
@@ -60,6 +63,7 @@ export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave,
               </button>
             )}
             {showThemeToggle && <ThemeToggle />}
+            <LanguageToggle />
           </div>
         </div>
       </div>
