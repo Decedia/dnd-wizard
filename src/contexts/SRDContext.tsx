@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useMemo, useCallback, type ReactNode } from "react";
 import { fetchSRDData, clearSRDCache, type SRDData } from "@/lib/srd-client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SRDContextValue {
   data: SRDData | null;
@@ -19,19 +20,20 @@ export function SRDProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [ruleset, setRuleset] = useState<"2014" | "2024">("2014");
+  const { language } = useLanguage();
 
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const srd = await fetchSRDData(ruleset);
+      const srd = await fetchSRDData(ruleset, language);
       setData(srd);
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Failed to load SRD data"));
     } finally {
       setLoading(false);
     }
-  }, [ruleset]);
+  }, [ruleset, language]);
 
   useEffect(() => {
     load();

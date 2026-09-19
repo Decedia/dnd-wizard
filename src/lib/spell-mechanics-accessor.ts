@@ -1,4 +1,4 @@
-import spellMechanicsData from "@/data/2014_spell_mechanics.json";
+import spellMechanicsData from "@/data/en/2014_spell_mechanics.json";
 import type { SpellMechanics } from "@/data/spell-mechanics";
 
 export interface SpellMechanicSummary {

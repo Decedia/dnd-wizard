@@ -1,20 +1,53 @@
-import racesData from "@/data/2014_races.json";
-import classesData from "@/data/2014_classes.json";
-import subclassesData from "@/data/2014_subclasses.json";
+import racesDataEn from "@/data/en/2014_races.json";
+import racesDataId from "@/data/id/2014_races.json";
+const racesDataMap = { en: racesDataEn, id: racesDataId } as const;
+
+import classesDataEn from "@/data/en/2014_classes.json";
+import classesDataId from "@/data/id/2014_classes.json";
+const classesDataMap = { en: classesDataEn, id: classesDataId } as const;
+
+import subclassesDataEn from "@/data/en/2014_subclasses.json";
+import subclassesDataId from "@/data/id/2014_subclasses.json";
+const subclassesDataMap = { en: subclassesDataEn, id: subclassesDataId } as const;
+
 import subclassChoicesData from "@/data/subclass_feature_choices.json";
-import spellsData from "@/data/2014_spells.json";
-import weaponsData from "@/data/2014_weapon.json";
-import armorsData from "@/data/2014_armor.json";
-import itemsData from "@/data/2014_items.json";
-import equipmentsData from "@/data/2014_equipments.json";
-import wizardSpellsData from "@/data/2014_wizard_spells.json";
+
+import spellsDataEn from "@/data/en/2014_spells.json";
+import spellsDataId from "@/data/id/2014_spells.json";
+const spellsDataMap = { en: spellsDataEn, id: spellsDataId } as const;
+
+import weaponsDataEn from "@/data/en/2014_weapon.json";
+import weaponsDataId from "@/data/id/2014_weapon.json";
+const weaponsDataMap = { en: weaponsDataEn, id: weaponsDataId } as const;
+
+import armorsDataEn from "@/data/en/2014_armor.json";
+import armorsDataId from "@/data/id/2014_armor.json";
+const armorsDataMap = { en: armorsDataEn, id: armorsDataId } as const;
+
+import itemsDataEn from "@/data/en/2014_items.json";
+import itemsDataId from "@/data/id/2014_items.json";
+const itemsDataMap = { en: itemsDataEn, id: itemsDataId } as const;
+
+import equipmentsDataEn from "@/data/en/2014_equipments.json";
+import equipmentsDataId from "@/data/id/2014_equipments.json";
+const equipmentsDataMap = { en: equipmentsDataEn, id: equipmentsDataId } as const;
+
+import wizardSpellsDataEn from "@/data/en/2014_wizard_spells.json";
+import wizardSpellsDataId from "@/data/id/2014_wizard_spells.json";
+const wizardSpellsDataMap = { en: wizardSpellsDataEn, id: wizardSpellsDataId } as const;
+
 import arcaneTricksterSpellsData from "@/data/arcane_trickster_spells.json";
-import featsData from "@/data/2014_feats.json";
+
+import featsDataEn from "@/data/en/2014_feats.json";
+import featsDataId from "@/data/id/2014_feats.json";
+const featsDataMap = { en: featsDataEn, id: featsDataId } as const;
+
 import subclassSpellsData from "@/data/subclass_spells.json";
 import { equipment as srdEquipment } from "@/data/srd";
 
-// 2024 ruleset data (scaffold)
-import races2024Data from "@/data/2024_phb.json";
+import races2024DataEn from "@/data/en/2024_phb.json";
+import races2024DataId from "@/data/id/2024_phb.json";
+const races2024DataMap = { en: races2024DataEn, id: races2024DataId } as const;
 
 export interface SRDRace {
   name: string;
@@ -81,7 +114,6 @@ export interface SRDClass {
     type: "feature" | "attack";
     values: Record<number, number>;
   }[];
-  // Level-up progression features
   rageUses?: Record<string, number | string>;
   rageDamageBonus?: Record<string, number>;
   channelDivinityUses?: Record<string, number>;
@@ -251,7 +283,11 @@ export interface SRDData {
 const CACHE_KEY = "srd-cache";
 const CACHE_TTL = 5 * 60 * 1000;
 
-let memoryCache: { data: SRDData; timestamp: number } | null = null;
+let memoryCache: { data: SRDData; timestamp: number; locale: string; ruleset: string } | null = null;
+
+function pickLocaleData<T>(map: Record<string, T>, locale: string): T {
+  return map[locale] || map.en;
+}
 
 function getAllEquipment(): SRDEquipment[] {
   return getStaticEquipments().map((detail) => {
@@ -298,27 +334,27 @@ function getAllLanguages(): SRDLanguage[] {
   ];
 }
 
-export async function fetchSRDData(ruleset: string = "2014"): Promise<SRDData> {
-  const cacheKey = `${CACHE_KEY}-${ruleset}`;
-  const cached = memoryCache;
-  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-    return cached.data;
+export async function fetchSRDData(ruleset: string = "2014", locale: string = "en"): Promise<SRDData> {
+  if (memoryCache && memoryCache.locale === locale && memoryCache.ruleset === ruleset && Date.now() - memoryCache.timestamp < CACHE_TTL) {
+    return memoryCache.data;
   }
 
   const data: SRDData = {
-    races: getStaticRaces([], ruleset),
-    classes: getStaticClasses([], ruleset),
-    spells: getStaticSpells([], ruleset),
+    races: getStaticRaces([], ruleset, locale),
+    classes: getStaticClasses([], ruleset, locale),
+    spells: getStaticSpells([], ruleset, locale),
     equipment: getAllEquipment(),
     languages: getAllLanguages(),
   };
 
-  memoryCache = { data, timestamp: Date.now() };
+  memoryCache = { data, timestamp: Date.now(), locale, ruleset };
   return data;
 }
 
-export function getStaticRaces(sources?: string[], ruleset?: string): SRDRace[] {
-  const races2014 = (racesData as any).races as SRDRace[];
+export function getStaticRaces(sources?: string[], ruleset?: string, locale: string = "en"): SRDRace[] {
+  const racesData = pickLocaleData(racesDataMap, locale) as any;
+  const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
+  const races2014 = racesData.races as SRDRace[];
   const races2024 = (races2024Data as any).races as SRDRace[];
   const allRaces = [...races2014, ...races2024];
   let filtered = allRaces;
@@ -329,15 +365,17 @@ export function getStaticRaces(sources?: string[], ruleset?: string): SRDRace[] 
   return filtered.filter((r) => sources.includes(r.source || "PHB"));
 }
 
-export function getStaticRace(name: string, ruleset?: string): SRDRace | undefined {
-  const matches = getStaticRaces([], ruleset).filter((r) => r.name === name);
+export function getStaticRace(name: string, ruleset?: string, locale: string = "en"): SRDRace | undefined {
+  const matches = getStaticRaces([], ruleset, locale).filter((r) => r.name === name);
   if (matches.length === 0) return undefined;
   if (matches.length === 1) return matches[0];
   return matches.reduce((best, r) => ((r.traits || []).length > (best.traits || []).length ? r : best), matches[0]);
 }
 
-export function getStaticClasses(sources?: string[], ruleset?: string): SRDClass[] {
-  const classes2014 = (classesData as any).classes as unknown as SRDClass[];
+export function getStaticClasses(sources?: string[], ruleset?: string, locale: string = "en"): SRDClass[] {
+  const classesData = pickLocaleData(classesDataMap, locale) as any;
+  const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
+  const classes2014 = classesData.classes as unknown as SRDClass[];
   const classes2024 = (races2024Data as any).classes as unknown as SRDClass[];
   const allClasses = [...classes2014, ...classes2024];
   let filtered = allClasses;
@@ -348,10 +386,10 @@ export function getStaticClasses(sources?: string[], ruleset?: string): SRDClass
   return filtered.filter((c) => sources.includes(c.source || "PHB"));
 }
 
-export function getStaticClass(name: string, sourcesOrRuleset?: string[] | string, ruleset?: string): SRDClass | undefined {
+export function getStaticClass(name: string, sourcesOrRuleset?: string[] | string, ruleset?: string, locale: string = "en"): SRDClass | undefined {
   const sources = Array.isArray(sourcesOrRuleset) ? sourcesOrRuleset : undefined;
   const actualRuleset = Array.isArray(sourcesOrRuleset) ? ruleset : sourcesOrRuleset;
-  return getStaticClasses(sources, actualRuleset).find((c) => c.name === name);
+  return getStaticClasses(sources, actualRuleset, locale).find((c) => c.name === name);
 }
 
 export interface SRDSubclass {
@@ -363,7 +401,8 @@ export interface SRDSubclass {
   source?: string;
 }
 
-export function getStaticSubclasses(className: string, sources?: string[], ruleset?: string): SRDSubclass[] {
+export function getStaticSubclasses(className: string, sources?: string[], ruleset?: string, locale: string = "en"): SRDSubclass[] {
+  const subclassesData = pickLocaleData(subclassesDataMap, locale) as any;
   const all = (subclassesData as any).subclasses as any[];
   const choicesMap = (subclassChoicesData as any)[className] || {};
   let filtered = all.filter((s) => s.class === className);
@@ -411,7 +450,8 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
     });
 }
 
-export function getStaticSubclassDetails(className: string, subclassName: string): { name: string; description: string[]; features: { name: string; description: string[]; level?: number }[] } | null {
+export function getStaticSubclassDetails(className: string, subclassName: string, locale: string = "en"): { name: string; description: string[]; features: { name: string; description: string[]; level?: number }[] } | null {
+  const subclassesData = pickLocaleData(subclassesDataMap, locale) as any;
   const all = (subclassesData as any).subclasses as any[];
   const found = all.find((s) => s.class === className && s.name === subclassName);
   if (!found) return null;
@@ -427,7 +467,8 @@ export function getStaticSubclassDetails(className: string, subclassName: string
   };
 }
 
-export function getStaticSpells(sources?: string[], ruleset?: string): SRDSpell[] {
+export function getStaticSpells(sources?: string[], ruleset?: string, locale: string = "en"): SRDSpell[] {
+  const spellsData = pickLocaleData(spellsDataMap, locale) as any;
   const raw = Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
   const spells: SRDSpell[] = raw.map(normalizeSpell);
   let filtered = spells;
@@ -462,7 +503,8 @@ export function getCachedSRDData(): SRDData | null {
   return null;
 }
 
-export function getStaticWeapons(sources?: string[], ruleset?: string): SRDWeapon[] {
+export function getStaticWeapons(sources?: string[], ruleset?: string, locale: string = "en"): SRDWeapon[] {
+  const weaponsData = pickLocaleData(weaponsDataMap, locale) as any;
   const weapons = weaponsData.weapons as SRDWeapon[];
   let filtered = weapons;
   if (ruleset) {
@@ -472,11 +514,12 @@ export function getStaticWeapons(sources?: string[], ruleset?: string): SRDWeapo
   return filtered.filter((w) => sources.includes(w.source || "PHB"));
 }
 
-export function getStaticWeapon(name: string, ruleset?: string): SRDWeapon | undefined {
-  return getStaticWeapons([], ruleset).find((w) => w.name === name);
+export function getStaticWeapon(name: string, ruleset?: string, locale: string = "en"): SRDWeapon | undefined {
+  return getStaticWeapons([], ruleset, locale).find((w) => w.name === name);
 }
 
-export function getStaticArmors(sources?: string[], ruleset?: string): SRDArmor[] {
+export function getStaticArmors(sources?: string[], ruleset?: string, locale: string = "en"): SRDArmor[] {
+  const armorsData = pickLocaleData(armorsDataMap, locale) as any;
   const armors = armorsData.armors as SRDArmor[];
   let filtered = armors;
   if (ruleset) {
@@ -486,11 +529,12 @@ export function getStaticArmors(sources?: string[], ruleset?: string): SRDArmor[
   return filtered.filter((a) => sources.includes(a.source || "PHB"));
 }
 
-export function getStaticArmor(name: string, ruleset?: string): SRDArmor | undefined {
-  return getStaticArmors([], ruleset).find((a) => a.name === name);
+export function getStaticArmor(name: string, ruleset?: string, locale: string = "en"): SRDArmor | undefined {
+  return getStaticArmors([], ruleset, locale).find((a) => a.name === name);
 }
 
-export function getStaticItems(sources?: string[], ruleset?: string): SRDItem[] {
+export function getStaticItems(sources?: string[], ruleset?: string, locale: string = "en"): SRDItem[] {
+  const itemsData = pickLocaleData(itemsDataMap, locale) as any;
   const items = itemsData.items as SRDItem[];
   let filtered = items;
   if (ruleset) {
@@ -500,11 +544,12 @@ export function getStaticItems(sources?: string[], ruleset?: string): SRDItem[] 
   return filtered.filter((i) => sources.includes(i.source || "PHB"));
 }
 
-export function getStaticItem(name: string, ruleset?: string): SRDItem | undefined {
-  return getStaticItems([], ruleset).find((i) => i.name === name);
+export function getStaticItem(name: string, ruleset?: string, locale: string = "en"): SRDItem | undefined {
+  return getStaticItems([], ruleset, locale).find((i) => i.name === name);
 }
 
-export function getStaticEquipments(sources?: string[], ruleset?: string): SRDEquipmentDetail[] {
+export function getStaticEquipments(sources?: string[], ruleset?: string, locale: string = "en"): SRDEquipmentDetail[] {
+  const equipmentsData = pickLocaleData(equipmentsDataMap, locale) as any;
   const equipments = equipmentsData.equipments as SRDEquipmentDetail[];
   let filtered = equipments;
   if (ruleset) {
@@ -514,8 +559,8 @@ export function getStaticEquipments(sources?: string[], ruleset?: string): SRDEq
   return filtered.filter((e) => sources.includes(e.source || "PHB"));
 }
 
-export function getStaticEquipment(name: string, ruleset?: string): SRDEquipmentDetail | undefined {
-  return getStaticEquipments([], ruleset).find((e) => e.name === name);
+export function getStaticEquipment(name: string, ruleset?: string, locale: string = "en"): SRDEquipmentDetail | undefined {
+  return getStaticEquipments([], ruleset, locale).find((e) => e.name === name);
 }
 
 function mapEquipmentCategory(category: string): "weapon" | "armor" | "item" {
@@ -540,8 +585,8 @@ function mapWeaponCategory(range: string | undefined): "melee" | "ranged" | unde
   return undefined;
 }
 
-export function getEquipmentData(name: string): SRDEquipment | undefined {
-  const detail = getStaticEquipment(name);
+export function getEquipmentData(name: string, locale: string = "en"): SRDEquipment | undefined {
+  const detail = getStaticEquipment(name, undefined, locale);
   if (!detail) return undefined;
   const contents = detail.contents;
   const contentsStr = Array.isArray(contents)
@@ -564,20 +609,20 @@ export function getEquipmentData(name: string): SRDEquipment | undefined {
   };
 }
 
-export function getEquipmentNames(sources?: string[]): string[] {
-  return getStaticEquipments(sources).map((e) => e.name);
+export function getEquipmentNames(sources?: string[], locale: string = "en"): string[] {
+  return getStaticEquipments(sources, undefined, locale).map((e) => e.name);
 }
 
-export function getWeaponNames(): string[] {
-  return getStaticWeapons().map((w) => w.name);
+export function getWeaponNames(sources?: string[], locale: string = "en"): string[] {
+  return getStaticWeapons(sources, undefined, locale).map((w) => w.name);
 }
 
-export function getArmorNames(): string[] {
-  return getStaticArmors().map((a) => a.name);
+export function getArmorNames(sources?: string[], locale: string = "en"): string[] {
+  return getStaticArmors(sources, undefined, locale).map((a) => a.name);
 }
 
-export function getItemNames(): string[] {
-  return getStaticItems().map((i) => i.name);
+export function getItemNames(sources?: string[], locale: string = "en"): string[] {
+  return getStaticItems(sources, undefined, locale).map((i) => i.name);
 }
 
 export function normalizeSpell(s: any): any {
@@ -598,19 +643,20 @@ export function normalizeSpell(s: any): any {
   };
 }
 
-export function getStaticWizardSpells(sources?: string[]): SRDWizardSpell[] {
+export function getStaticWizardSpells(sources?: string[], locale: string = "en"): SRDWizardSpell[] {
+  const wizardSpellsData = pickLocaleData(wizardSpellsDataMap, locale) as any;
   const raw = (wizardSpellsData as any).spells || [];
   const spells: SRDWizardSpell[] = raw.map(normalizeSpell);
   if (!sources || sources.length === 0) return spells;
   return spells.filter((s) => sources.includes(s.source || "PHB"));
 }
 
-export function getStaticWizardSpell(name: string): SRDWizardSpell | undefined {
-  return getStaticWizardSpells().find((s) => s.name === name);
+export function getStaticWizardSpell(name: string, locale: string = "en"): SRDWizardSpell | undefined {
+  return getStaticWizardSpells([], locale).find((s) => s.name === name);
 }
 
-export function getWizardSpellNames(): string[] {
-  return getStaticWizardSpells().map((s) => s.name);
+export function getWizardSpellNames(sources?: string[], locale: string = "en"): string[] {
+  return getStaticWizardSpells(sources, locale).map((s) => s.name);
 }
 
 export function getStaticArcaneTricksterSpells(): SRDWizardSpell[] {
@@ -629,7 +675,8 @@ export function getClassSpells(classOrSubclassId: string): SRDSpell[] {
   return raw.map(normalizeSpell);
 }
 
-export function getStaticFeats(sources?: string[], ruleset?: string): SRDFeat[] {
+export function getStaticFeats(sources?: string[], ruleset?: string, locale: string = "en"): SRDFeat[] {
+  const featsData = pickLocaleData(featsDataMap, locale) as any;
   const feats = featsData.feats as SRDFeat[];
   let filtered = feats;
   if (ruleset) {
@@ -652,8 +699,8 @@ export function getStaticFeats(sources?: string[], ruleset?: string): SRDFeat[] 
   });
 }
 
-export function getStaticFeat(name: string, ruleset?: string): SRDFeat | undefined {
-  return getStaticFeats([], ruleset).find((f) => f.name === name);
+export function getStaticFeat(name: string, ruleset?: string, locale: string = "en"): SRDFeat | undefined {
+  return getStaticFeats([], ruleset, locale).find((f) => f.name === name);
 }
 
  export function clearSRDCache() {
@@ -663,7 +710,10 @@ export function getStaticFeat(name: string, ruleset?: string): SRDFeat | undefin
   }
 }
 
-export function getAvailableSources(): string[] {
+export function getAvailableSources(locale: string = "en"): string[] {
+  const subclassesData = pickLocaleData(subclassesDataMap, locale) as any;
+  const racesData = pickLocaleData(racesDataMap, locale) as any;
+  const spellsData = pickLocaleData(spellsDataMap, locale) as any;
   const sources = new Set<string>();
   (subclassesData as any).subclasses.forEach((s: any) => sources.add(s.source || "PHB"));
   (racesData as any).races.forEach((r: any) => sources.add(r.source || "PHB"));
@@ -747,8 +797,8 @@ export function getPactBoons(): { index: string; name: string; description: stri
   return (subclassSpellsData as any).pactBoons || [];
 }
 
-export function getWizardSpellsByLevel(level: number, sources?: string[]): string[] {
-  const allSpells = getStaticWizardSpells(sources);
+export function getWizardSpellsByLevel(level: number, sources?: string[], locale: string = "en"): string[] {
+  const allSpells = getStaticWizardSpells(sources, locale);
   return allSpells
     .filter((s: any) => s.level === level)
     .map((s: any) => s.name)
