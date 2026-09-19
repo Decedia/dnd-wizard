@@ -71,7 +71,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             title={t("button.addSuccess")}
           >
             <Check className="h-4 w-4" />
-            <span>Success</span>
+            <span>{t("deathSaves.success")}</span>
           </button>
           <button
             type="button"
@@ -85,7 +85,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             title={t("button.addFailure")}
           >
             <X className="h-4 w-4" />
-            <span>Failure</span>
+            <span>{t("deathSaves.failure")}</span>
           </button>
         </div>
         {(character.deathSaveSuccesses >= 3 || character.deathSaveFailures >= 3) && (
@@ -95,7 +95,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
         )}
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Successes</span>
+             <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("deathSaves.successes")}</span>
             {editMode
               ? [0, 1, 2].map((i) => (
                   <label key={`ds-s-${i}`} className="flex items-center cursor-pointer">
@@ -128,7 +128,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             )}
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">Failures</span>
+             <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("deathSaves.failures")}</span>
             {editMode
               ? [0, 1, 2].map((i) => (
                   <label key={`ds-f-${i}`} className="flex items-center cursor-pointer">
@@ -162,13 +162,13 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
           </div>
         </div>
         {editMode && (
-          <button
-            type="button"
-            onClick={resetDeathSaves}
-            className="btn-ghost text-xs"
-          >
-            Reset
-          </button>
+             <button
+               type="button"
+               onClick={resetDeathSaves}
+               className="btn-ghost text-xs"
+             >
+               {t("deathSaves.reset")}
+             </button>
         )}
       </div>
     </SectionCard>

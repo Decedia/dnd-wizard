@@ -43,7 +43,7 @@ export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, onBreakConc
                     ? "opacity-100 border-[var(--color-border-active)] bg-[var(--color-accent)] text-[var(--color-surface)]"
                     : "opacity-50 hover:opacity-70 border-[var(--color-border)] text-[var(--color-text-muted)]"
                 } ${!isActive && hasConcentration && buff.concentration ? "cursor-not-allowed opacity-30" : ""}`}
-                title={!isActive && hasConcentration && buff.concentration ? "Concentration already active" : buff.effects.map((e) => e.description).join("; ")}
+                 title={!isActive && hasConcentration && buff.concentration ? t("buff.concentrationAlreadyActive") : buff.effects.map((e) => e.description).join("; ")}
               >
                 <Sparkle className="h-3 w-3" />
                 <span>{buff.name}</span>
@@ -63,7 +63,7 @@ export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, onBreakConc
               title={t("button.breakConcentrationAll")}
             >
               <span className="text-[10px]">💥</span>
-              <span>Break</span>
+              <span>{t("buff.break")}</span>
             </button>
           )}
           {activeBuffs.map((buff) => {
@@ -99,7 +99,7 @@ export function BuffTracker({ activeBuffs, onToggleBuff, onClearAll, onBreakConc
               onClick={onClearAll}
               className="inline-flex items-center gap-1 rounded border border-[var(--color-border)] px-2 py-1 text-[10px] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
             >
-              Clear All
+               {t("buff.clearAll")}
             </button>
           )}
         </div>

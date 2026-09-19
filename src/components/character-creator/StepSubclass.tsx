@@ -47,17 +47,17 @@ export function StepSubclass({ data, onChange }: StepSubclassProps) {
 
   if (!classData) {
     return (
-      <StepCard title={t("creator.selectSubclass", "Subclass")}>
-        <p className="text-description">{t("creator.selectClassFirst", "Select a class first.")}</p>
+      <StepCard title={t("creator.selectSubclass")}>
+        <p className="text-description">{t("creator.selectClassFirst")}</p>
       </StepCard>
     );
   }
 
   return (
-    <StepCard
-      title={t("creator.selectSubclass", "Subclass")}
-      hint={t("creator.subclassHint", `Choose your ${classData.name} subclass. You unlock subclass features starting at level ${unlockLevel}.`).replace("{class}", translateClass(classData.name)).replace("{level}", String(unlockLevel))}
-    >
+      <StepCard
+        title={t("creator.selectSubclass")}
+        hint={t("creator.subclassHint").replace("{class}", translateClass(classData.name)).replace("{level}", String(unlockLevel))}
+      >
       <div className="space-y-3">
         {sortedSubclasses.map((sub) => {
           const isSelected = data.subclass === sub.name;

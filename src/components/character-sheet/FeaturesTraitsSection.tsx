@@ -185,15 +185,15 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         )}
         {hiddenCount > 0 && (
           <div className="flex items-center justify-between px-1">
-            <span className="text-xs text-[var(--color-text-secondary)]">{hiddenCount} feature{hiddenCount !== 1 ? 's' : ''} hidden</span>
+             <span className="text-xs text-[var(--color-text-secondary)]">{t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}</span>
             <button
               type="button"
               onClick={() => setShowHiddenFeatures(!showHiddenFeatures)}
               className="text-xs text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] flex items-center gap-1"
-              title={showHiddenFeatures ? "Hide reference features" : "Show all features including reference"}
+              title={showHiddenFeatures ? t("features.hideReference") : t("features.showAll")}
             >
               <EyeIcon className="h-4 w-4" />
-              {showHiddenFeatures ? "Show default only" : "Show all"}
+              {showHiddenFeatures ? t("features.showDefaultOnly") : t("features.showAllShort")}
             </button>
           </div>
         )}
@@ -205,7 +205,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               disabled={syncing}
               className="text-xs font-semibold px-3 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-colors disabled:opacity-60"
             >
-              {syncing ? "Syncing..." : "Sync with SRD"}
+              {syncing ? t("features.syncing") : t("features.syncWithSrd")}
             </button>
           </div>
         )}
@@ -219,7 +219,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 <div className="flex items-center gap-2">
                   <span className="text-[17px] font-semibold text-[var(--color-text-primary)]">{feature.name}</span>
                   {(feature as any).showInSheet === false && (
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">Reference only</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">{t("sheet.referenceOnly")}</span>
                   )}
                 </div>
                 <div className="mt-1">

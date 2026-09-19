@@ -209,9 +209,9 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
       {/* Exhaustion Level Tracker */}
       <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
         <div className="flex items-center justify-between mb-2">
-          <span className="field-label-light mb-0">Exhaustion</span>
+          <span className="field-label-light mb-0">{t("combat.exhaustion")}</span>
           <span className="text-xs font-semibold text-[var(--color-text-secondary)]">
-            Level {character.exhaustionLevel || 0} / 6
+            {t("combat.exhaustionLevel", { level: character.exhaustionLevel || 0 })}
           </span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -235,12 +235,12 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             {(() => {
               const l = character.exhaustionLevel || 0;
               const effects = [
-                "Disadvantage on ability checks",
-                "Speed halved",
-                "Disadvantage on attack rolls and saving throws",
-                "Hit point maximum halved",
-                "Speed reduced to 0",
-                "Death"
+                t("combat.exhaustion.effect.1"),
+                t("combat.exhaustion.effect.2"),
+                t("combat.exhaustion.effect.3"),
+                t("combat.exhaustion.effect.4"),
+                t("combat.exhaustion.effect.5"),
+                t("combat.exhaustion.effect.6"),
               ];
               return effects.slice(0, l).join("; ");
             })()}
@@ -371,13 +371,13 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
               <div className="flex items-center gap-2">
                 <span className="text-xs">⚠️</span>
-                <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
-                  Concentration check required! Roll DC {Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2))} CON save
-                </span>
+                 <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
+                  {t("combat.concentrationCheck", { dc: Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2)) })}
+                 </span>
               </div>
               <div className="mt-2">
                 <Dice type="d20" size={56} advantage={isWarCaster ? "advantage" : "normal"} onRoll={(roll) => setConcentrationCheck({ damage: parseInt(hpAmount || "0", 10), roll })} />
-                {isWarCaster && <p className="text-center text-[10px] text-[var(--color-success-600)] mt-1">War Caster: rolling with advantage</p>}
+                 {isWarCaster && <p className="text-center text-[10px] text-[var(--color-success-600)] mt-1">{t("combat.warCasterAdvantage")}</p>}
               </div>
             </div>
           )}
@@ -397,16 +397,16 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
                     onChange({ activeBuffs: current.filter((b) => !b.concentration) });
                     handleHpAction();
                   }}
-                  className="flex-1 text-[10px] font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] underline py-1"
+                   className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
                 >
-                  Failed — Break Concentration
+                  {t("combat.failedBreakConcentration")}
                 </button>
                 <button
                   type="button"
                   onClick={() => { setConcentrationCheck(null); handleHpAction(); }}
-                  className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
+                   className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
                 >
-                  Success — Maintain
+                  {t("combat.successMaintain")}
                 </button>
               </div>
             </div>

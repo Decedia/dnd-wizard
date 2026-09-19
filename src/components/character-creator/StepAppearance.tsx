@@ -22,92 +22,92 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
 
   return (
     <StepCard
-      title="Appearance & Details"
+      title={t("creator.finalTouches")}
       hint="Add the finishing touches to your character - appearance, personality, and any other details that bring them to life."
     >
       <div className="space-y-4">
         <div>
           <label className="field-label-light">
-            Height
+            {t("form.height")}
           </label>
           <input
             type="text"
             value={data.appearance?.height || ""}
             onChange={(e) => updateAppearance("height", e.target.value)}
             className="input w-full"
-            placeholder="e.g., 6'2&quot;"
+            placeholder={t("form.e.g6ft2")}
           />
         </div>
         <div>
           <label className="field-label-light">
-            Weight
+            {t("form.weight")}
           </label>
           <input
             type="text"
             value={data.appearance?.weight || ""}
             onChange={(e) => updateAppearance("weight", e.target.value)}
             className="input w-full"
-            placeholder="e.g., 180 lbs"
+            placeholder={t("form.e.g180lbs")}
           />
         </div>
         <div>
           <label className="field-label-light">
-            Eyes
+            {t("form.eyes")}
           </label>
           <input
             type="text"
             value={data.appearance?.eyes || ""}
             onChange={(e) => updateAppearance("eyes", e.target.value)}
             className="input w-full"
-            placeholder="e.g., Blue"
+            placeholder={t("form.e.gBlue")}
           />
         </div>
         <div>
           <label className="field-label-light">
-            Hair
+            {t("form.hair")}
           </label>
           <input
             type="text"
             value={data.appearance?.hair || ""}
             onChange={(e) => updateAppearance("hair", e.target.value)}
             className="input w-full"
-            placeholder="e.g., Brown, curly"
+            placeholder={t("form.e.gBrownCurly")}
           />
         </div>
         <div>
           <label className="field-label-light">
-            Skin
+            {t("form.skin")}
           </label>
           <input
             type="text"
             value={data.appearance?.skin || ""}
             onChange={(e) => updateAppearance("skin", e.target.value)}
             className="input w-full"
-            placeholder="e.g., Fair, tanned"
+            placeholder={t("form.e.gFairTanned")}
           />
         </div>
         <div>
           <label className="field-label-light">
-            Personality Traits
+            {t("form.personality")}
           </label>
           <textarea
             value={data.appearance?.personality || ""}
             onChange={(e) => updateAppearance("personality", e.target.value)}
             className="input w-full"
             rows={3}
-            placeholder="Describe your character's personality..."
+            placeholder={t("form.describePersonalityShort")}
           />
         </div>
         <div>
           <label className="field-label-light">
-            {t("form.backstory", "Backstory")}
+            {t("form.backstory")}
           </label>
           <textarea
             value={data.appearance?.backstory || ""}
             onChange={(e) => updateAppearance("backstory", e.target.value)}
             className="input w-full"
             rows={4}
-            placeholder="Write your character's backstory..."
+            placeholder={t("form.writeBackstory")}
           />
         </div>
       </div>

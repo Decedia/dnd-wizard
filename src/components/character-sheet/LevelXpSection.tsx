@@ -27,7 +27,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
         <div className="relative flex flex-col items-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-xl border-[3px] border-paper bg-paper">
             <div className="flex flex-col items-center">
-              <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">Level</span>
+              <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">{t("levelXp.level")}</span>
               <span className="text-3xl font-bold text-ink">{level}</span>
             </div>
           </div>
@@ -38,7 +38,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
             <div className="flex items-center gap-3">
               <div className="flex-1">
                 <label className="field-label-light">
-                  Current XP
+                  {t("levelXp.currentXp")}
                 </label>
                 <input
                   type="number"
@@ -54,7 +54,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
               </div>
               <div className="flex-1">
                 <label className="field-label-light">
-                  Max XP
+                  {t("levelXp.maxXp")}
                 </label>
                 <input
                   type="number"
@@ -69,14 +69,14 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
           ) : (
             <div className="flex items-center gap-3">
               <div className="flex-1 text-center">
-                <span className="field-label-light">Current XP</span>
+                 <span className="field-label-light">{t("levelXp.currentXp")}</span>
                 <span className="text-lg font-bold text-[var(--color-text-primary)]">{currentXp.toLocaleString()}</span>
               </div>
               <div className="flex items-center justify-center pt-4">
                 <span className="text-[var(--color-text-secondary)] font-bold text-lg">/</span>
               </div>
               <div className="flex-1 text-center">
-                <span className="field-label-light">Max XP</span>
+                 <span className="field-label-light">{t("levelXp.maxXp")}</span>
                 <span className="text-lg font-bold text-[var(--color-text-primary)]">{maxXp.toLocaleString()}</span>
               </div>
             </div>
@@ -91,7 +91,7 @@ export function LevelXpSection({ character, onChange, editMode = true }: LevelXp
             </div>
             <div className="flex items-center justify-between text-[10px] text-[var(--color-text-secondary)] font-medium">
               <span>
-                {progressPercent.toFixed(1)}% Complete
+                {t("levelXp.complete", { percent: progressPercent.toFixed(1) })}
               </span>
               <span>
                 {currentXp.toLocaleString()} / {maxXp.toLocaleString()} XP

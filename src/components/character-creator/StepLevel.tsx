@@ -379,8 +379,8 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
   return (
     <>
       <StepCard
-        title="Starting Level"
-        hint="Choose your character's starting level. Higher levels mean more abilities, but also more complexity."
+        title={t("creator.startingLevel")}
+        hint={t("creator.chooseStartingLevel")}
       >
         <div className="space-y-5">
           {/* Level Selector with +/- */}
@@ -395,7 +395,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             </button>
             <div className="text-center">
               <div className="text-3xl font-bold text-[var(--color-text-primary)]">{level}</div>
-              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Level</div>
+              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{t("levelXp.level")}</div>
             </div>
             <button
               type="button"
@@ -411,16 +411,16 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
           {level >= 1 && (
             <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-[var(--color-text-primary)]">Level {level} Summary</h3>
+                <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{t("creator.levelSummary", { level })}</h3>
                 <span className="text-[10px] font-bold text-[var(--color-text-muted)] bg-[var(--color-bg)] px-2 py-0.5 rounded-full">
-                  +{getProficiencyBonus(level)} Proficiency
+                  +{getProficiencyBonus(level)} {t("creator.proficiencyLabel", "Proficiency")}
                 </span>
               </div>
 
               <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                 <Heart className="h-4 w-4 text-[var(--color-text-muted)]" />
                 <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
+                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.hitPoints")}</div>
                   <div className="text-xs text-[var(--color-text-primary)]">
                     {level === 1 ? `${hitDie} + CON (${conMod >= 0 ? `+${conMod}` : conMod}) = ${baselineHp}` : `Roll d${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} (avg: ${averageHp})`}
                   </div>
@@ -434,7 +434,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                   <Sword className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                   <div className="flex-1">
-                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
+                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.classFeatures")}</div>
                     <div className="space-y-1 mt-1">
                       {classFeatures.map((f) => (
                         <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
@@ -450,7 +450,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                   <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                   <div className="flex-1">
-                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
+                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.newFeatures")}</div>
                     <div className="space-y-1 mt-1">
                       {features.map((f) => (
                         <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
@@ -466,7 +466,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                   <Sparkle className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                   <div className="flex-1">
-                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
+                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.spellSlots")}</div>
                     <div className="flex flex-wrap gap-1.5 mt-1">
                       {Object.entries(spellSlots).map(([lvl, count]) => (
                         <span key={lvl} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
@@ -482,7 +482,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                   <MagicWand className="h-4 w-4 text-[var(--color-text-muted)]" />
                   <div className="flex-1">
-                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.cantripsKnown")}</div>
                     <div className="text-xs text-[var(--color-text-primary)]">{cantripsKnown}</div>
                   </div>
                 </div>
@@ -492,7 +492,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                   <Book className="h-4 w-4 text-[var(--color-text-muted)]" />
                   <div className="flex-1">
-                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
+                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.spellsKnown")}</div>
                     <div className="text-xs text-[var(--color-text-primary)]">{spellsKnown}</div>
                   </div>
                 </div>
@@ -502,8 +502,8 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                 <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                   <ChartBar className="h-4 w-4 text-[var(--color-text-muted)]" />
                   <div className="flex-1">
-                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
-                    <div className="text-xs text-[var(--color-text-primary)]">+2 to one ability or +1 to two</div>
+                     <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.abilityScoreImprovement")}</div>
+                     <div className="text-xs text-[var(--color-text-primary)]">{t("creator.improveAbilityScoresHint")}</div>
                   </div>
                 </div>
               )}
@@ -514,13 +514,13 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
           {level >= 2 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <div className="text-xs text-[var(--color-text-secondary)] uppercase tracking-wider">HP Roll</div>
+                 <div className="text-xs text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.hpRoll", "HP Roll")}</div>
                 <button
                   type="button"
                   onClick={rollAllHp}
                   className="text-[10px] font-semibold text-[var(--color-text-primary)] bg-[var(--color-bg)] px-2 py-1 rounded-full hover:bg-[var(--color-border)] transition-all"
                 >
-                  🎲 Roll All
+                   🎲 {t("creator.rollAllHp", "Roll All")}
                 </button>
               </div>
 
@@ -540,7 +540,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
               {activeHpLevel && (
                 <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 space-y-4">
                   <div className="text-xs text-[var(--color-text-secondary)] text-center">
-                    Level {activeHpLevel} — d{hitDie} + CON ({conMod >= 0 ? `+${conMod}` : conMod})
+                     {t("creator.levelXpHint", { level: activeHpLevel, hitDie, conMod: conMod >= 0 ? `+${conMod}` : conMod })}
                   </div>
 
                   <div className="text-center text-4xl font-display font-bold text-[var(--color-text-primary)]">
@@ -551,10 +551,10 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                     <button
                       type="button"
                       onClick={takeAverage}
-                      className="btn btn-secondary rounded-full px-3 py-2 text-xs"
-                    >
-                      Avg ({averageHp})
-                    </button>
+                       className="btn btn-secondary rounded-full px-3 py-2 text-xs"
+                     >
+                       {t("creator.avgLabel", "Avg")} ({averageHp})
+                     </button>
                     <Dice type={diceType} size={72} onRoll={(result) => setCurrentHpValue(result + conMod)} />
                     <input
                       type="number"
@@ -571,15 +571,15 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                       onClick={confirmHp}
                       disabled={currentHpValue <= 0}
                       className="rounded-full bg-[var(--color-text-primary)] px-5 py-2.5 text-sm font-semibold text-[var(--color-surface)] transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
-                    >
-                      Confirm Level {currentHpValue > 0 ? activeHpLevel : ""} HP
-                    </button>
+                       >
+                        {t("creator.confirmLevelHp", { level: currentHpValue > 0 ? activeHpLevel : "" })}
+                     </button>
                   </div>
                 </div>
               )}
 
               {allHpConfirmed(level, confirmedHpLevels) && hpLevelsToProcess(level).length > 0 && (
-                <div className="text-center text-xs text-[var(--color-success-600)] font-semibold">✓ All HP confirmed</div>
+                 <div className="text-center text-xs text-[var(--color-success-600)] font-semibold">{t("creator.allHpConfirmed")}</div>
               )}
             </div>
           )}
@@ -587,16 +587,16 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
           {/* ASI Section */}
           {currentAsiLevel && !asiModalOpen && (
             <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-center">
-              <button type="button" onClick={() => setAsiModalOpen(true)} className="btn btn-primary w-full">
-                Complete Ability Score Improvement (Level {currentAsiLevel})
-              </button>
+               <button type="button" onClick={() => setAsiModalOpen(true)} className="btn btn-primary w-full">
+                 {t("creator.completeAsi", { level: currentAsiLevel })}
+               </button>
             </div>
           )}
 
           {!currentAsiLevel && pendingAsiLevels.length > 0 && (
             <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
               <p className="text-xs text-[var(--color-text-primary)] font-medium leading-relaxed">
-                Complete the current Ability Score Improvement to continue.
+                {t("creator.completeAsiToContinue")}
               </p>
             </div>
           )}
@@ -612,8 +612,8 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             setAsiState({});
             setAsiModalOpen(false);
           }}
-          title={`Level ${currentAsiLevel} Improvement`}
-          confirmLabel="Apply"
+           title={t("creator.levelImprovement", { level: currentAsiLevel })}
+           confirmLabel={t("creator.applyLabel")}
           cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={applyAsi}
           confirmDisabled={!canApplyAsi}
@@ -630,8 +630,8 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
               >
-                <div className="text-sm font-bold text-[var(--color-text-primary)]">Ability Score Improvement</div>
-                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">+2 to one ability or +1 to two abilities</div>
+                <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("creator.asiOptionTitle")}</div>
+                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">{t("creator.asiOptionHint")}</div>
               </button>
               <button
                 type="button"
@@ -642,15 +642,15 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
               >
-                <div className="text-sm font-bold text-[var(--color-text-primary)]">Take a Feat</div>
-                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">Gain a feat instead of ability score improvements</div>
+                <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("creator.featOptionTitle")}</div>
+                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">{t("creator.featOptionHint")}</div>
               </button>
             </div>
 
             {asiState.choice === "asi" && (
               <>
                 <p className="text-xs text-[var(--color-text-secondary)]">
-                  Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
+                  {t("creator.distributePoints")}
                 </p>
                 <div className="space-y-2">
                   {ABILITIES.map(({ key, label, full }) => {
@@ -709,7 +709,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
                   onClick={() => setFeatModalOpen(true)}
                   className="btn btn-secondary w-full"
                 >
-                  {asiState.feat ? "Change Feat" : "Choose Feat"}
+                  {asiState.feat ? t("creator.changeFeat") : t("creator.chooseFeat")}
                 </button>
               </div>
             )}

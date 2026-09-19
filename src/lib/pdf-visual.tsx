@@ -3,6 +3,23 @@
 import { Document, Page, Text, View, StyleSheet, pdf, Font, Svg, Path, Rect, Circle } from "@react-pdf/renderer";
 import type { Character } from "./storage";
 import { getModifier } from "./storage";
+import { translations as enTranslations } from "@/locales/en";
+import { translations as idTranslations } from "@/locales/id";
+
+type PdfLanguage = "en" | "id";
+
+const pdfTranslations: Record<PdfLanguage, Record<string, string>> = {
+  en: enTranslations,
+  id: idTranslations,
+};
+
+function pdfT(language: PdfLanguage, key: string, fallback?: string): string {
+  const dict = pdfTranslations[language];
+  if (dict && dict[key]) return dict[key];
+  const enDict = pdfTranslations.en;
+  if (enDict && enDict[key]) return enDict[key];
+  return fallback || key;
+}
 
 Font.register({
   family: "Inter",
@@ -548,7 +565,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function CharacterPdfDocument({ character }: { character: Character }) {
+function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { character: Character; language?: PdfLanguage }) {
   const profBonus = character.proficiencyBonus || 2;
   const abilityKeys = ["str", "dex", "con", "int", "wis", "cha"] as const;
   const abilityLabels = ["STR", "DEX", "CON", "INT", "WIS", "CHA"] as const;
@@ -642,7 +659,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         </View>
 
         {/* Ability Scores - 3 column grid */}
-        <Text style={styles.sectionHeader}>Stats</Text>
+        <Text style={styles.sectionHeader}>{pdfT(language, "section.stats", "Stats")}</Text>
         <View style={styles.abilityGrid}>
           {abilityKeys.map((key, idx) => {
             const score = character[key];
@@ -659,7 +676,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
 
         {/* Saving Throws */}
         <View style={styles.savesSection}>
-          <Text style={styles.sectionHeader}>Saving Throws</Text>
+          <Text style={styles.sectionHeader}>{pdfT(language, "section.savingThrows", "Saving Throws")}</Text>
           {abilityKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
             return (
@@ -680,7 +697,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         </View>
 
         {/* Skills */}
-        <Text style={styles.sectionHeader}>Skills</Text>
+        <Text style={styles.sectionHeader}>{pdfT(language, "section.skills", "Skills")}</Text>
         <View style={styles.skillsGrid}>
           {skillsList.map(({ name, ability }) => {
             const proficient = character.skills[name] ?? false;
@@ -711,7 +728,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
       {/* ===== PAGE 2: Attacks, Features, Inventory ===== */}
       <Page size="A4" style={styles.page}>
         {/* Attacks */}
-        <Text style={styles.sectionHeader}>Attacks & Spellcasting</Text>
+        <Text style={styles.sectionHeader}>{pdfT(language, "section.attacks", "Attacks & Spellcasting")}</Text>
         {attacks.length > 0 ? (
           <View style={{ marginBottom: 10 }}>
             {attacks.map((attack) => (
@@ -728,11 +745,11 @@ function CharacterPdfDocument({ character }: { character: Character }) {
             ))}
           </View>
         ) : (
-          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No attacks configured</Text>
+          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>{pdfT(language, "sheet.attacksConfigured", "No attacks configured")}</Text>
         )}
 
         {/* Features & Traits */}
-        <Text style={styles.sectionHeader}>Features & Traits</Text>
+        <Text style={styles.sectionHeader}>{pdfT(language, "section.featuresTraits", "Features & Traits")}</Text>
         {features.length > 0 ? (
           <View style={{ marginBottom: 10 }}>
             {features.map((feature) => (
@@ -743,11 +760,11 @@ function CharacterPdfDocument({ character }: { character: Character }) {
             ))}
           </View>
         ) : (
-          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No features</Text>
+          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>{pdfT(language, "sheet.noFeaturesInfo2", "No features")}</Text>
         )}
 
         {/* Inventory */}
-        <Text style={styles.sectionHeader}>Inventory</Text>
+        <Text style={styles.sectionHeader}>{pdfT(language, "section.inventory", "Inventory")}</Text>
         {inventory.length > 0 ? (
           <View style={styles.inventoryGrid}>
             {inventory.map((item) => (
@@ -761,11 +778,11 @@ function CharacterPdfDocument({ character }: { character: Character }) {
             ))}
           </View>
         ) : (
-          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>No items</Text>
+          <Text style={[styles.cardDesc, { marginBottom: 10 }]}>{pdfT(language, "item.noItems", "No items")}</Text>
         )}
 
         {/* Currency */}
-        <Text style={styles.sectionHeader}>Currency</Text>
+        <Text style={styles.sectionHeader}>{pdfT(language, "section.currency", "Currency")}</Text>
         <View style={styles.currencyRow}>
           {character.currency.platinum > 0 && <Text style={styles.currencyItem}>PP: {character.currency.platinum}</Text>}
           {character.currency.gold > 0 && <Text style={styles.currencyItem}>GP: {character.currency.gold}</Text>}
@@ -773,7 +790,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
           {character.currency.silver > 0 && <Text style={styles.currencyItem}>SP: {character.currency.silver}</Text>}
           {character.currency.copper > 0 && <Text style={styles.currencyItem}>CP: {character.currency.copper}</Text>}
           {character.currency.platinum === 0 && character.currency.gold === 0 && character.currency.electrum === 0 && character.currency.silver === 0 && character.currency.copper === 0 && (
-            <Text style={styles.cardDesc}>No currency</Text>
+            <Text style={styles.cardDesc}>{pdfT(language, "item.noCurrency", "No currency")}</Text>
           )}
         </View>
       </Page>
@@ -783,22 +800,22 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         {/* Spellcasting */}
         {hasSpellcasting && (
           <>
-            <Text style={styles.sectionHeader}>Spellcasting</Text>
+            <Text style={styles.sectionHeader}>{pdfT(language, "section.spellcastingStats", "Spellcasting")}</Text>
             <View style={styles.spellcastGrid}>
               <View style={styles.spellcastBox}>
-                <Text style={styles.spellcastLabel}>Spell Save DC</Text>
+                <Text style={styles.spellcastLabel}>{pdfT(language, "spell.spellSaveDC", "Spell Save DC")}</Text>
                 <Text style={styles.spellcastValue}>
                   {8 + profBonus + getModifier(character[character.spellcastingAbility as keyof Character] as number)}
                 </Text>
               </View>
               <View style={styles.spellcastBox}>
-                <Text style={styles.spellcastLabel}>Spell Attack</Text>
+                <Text style={styles.spellcastLabel}>{pdfT(language, "spell.spellAttackBonus", "Spell Attack")}</Text>
                 <Text style={styles.spellcastValue}>
                   +{profBonus + getModifier(character[character.spellcastingAbility as keyof Character] as number)}
                 </Text>
               </View>
               <View style={styles.spellcastBox}>
-                <Text style={styles.spellcastLabel}>Ability</Text>
+                <Text style={styles.spellcastLabel}>{pdfT(language, "form.spellcastingAbility", "Ability")}</Text>
                 <Text style={[styles.spellcastValue, { color: C.accent }]}>
                   {character.spellcastingAbility.toUpperCase()}
                 </Text>
@@ -810,14 +827,14 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         {/* Spell Slots */}
         {hasSpellSlots && (
           <>
-            <Text style={styles.sectionHeader}>Spell Slots</Text>
+            <Text style={styles.sectionHeader}>{pdfT(language, "spell.spellSlots", "Spell Slots")}</Text>
             <View style={styles.spellSlotRow}>
               {Object.entries(character.spellSlots).map(([level, count]) => {
                 const expended = character.spellSlotsExpended?.[Number(level)] ?? 0;
                 const remaining = (count as number) - expended;
                 return (
                   <View key={level} style={styles.spellSlotBox}>
-                    <Text style={styles.spellcastLabel}>Level {level}</Text>
+                    <Text style={styles.spellcastLabel}>{pdfT(language, "spell.level", "Level")} {level}</Text>
                     <Text style={[styles.cardTitle, { fontSize: 11, marginTop: 1 }]}>
                       {remaining}<Text style={{ fontSize: 8, color: C.textMuted }}>/{count as number}</Text>
                     </Text>
@@ -831,13 +848,13 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         {/* Spells */}
         {spells.length > 0 && (
           <>
-            <Text style={styles.sectionHeader}>Spells</Text>
+            <Text style={styles.sectionHeader}>{pdfT(language, "section.spells", "Spells")}</Text>
             <View style={styles.skillsGrid}>
               {spells.map((spell) => (
                 <View key={spell.id} style={styles.spellItem}>
                   <View style={styles.spellRow}>
                     <Text style={styles.spellName}>{spell.name}</Text>
-                    <Text style={styles.spellLevel}>{spell.level === 0 ? "Cantrip" : `Lvl ${spell.level}`}</Text>
+                    <Text style={styles.spellLevel}>{spell.level === 0 ? pdfT(language, "spell.cantripsKnown", "Cantrip") : `Lvl ${spell.level}`}</Text>
                   </View>
                   {(spell.damageDice || spell.damageType) && (
                     <Text style={styles.spellDamageBadge}>{spell.damageType} {spell.damageDice}</Text>
@@ -849,7 +866,7 @@ function CharacterPdfDocument({ character }: { character: Character }) {
         )}
 
         {/* Appearance & Bio */}
-        <Text style={styles.sectionHeader}>Appearance & Bio</Text>
+        <Text style={styles.sectionHeader}>{pdfT(language, "section.appearanceBio", "Appearance & Bio")}</Text>
         <View>
           {bioFields.length > 0 ? (
             bioFields.map((field) => (
@@ -859,29 +876,29 @@ function CharacterPdfDocument({ character }: { character: Character }) {
               </View>
             ))
           ) : (
-            <Text style={styles.cardDesc}>No bio information</Text>
+            <Text style={styles.cardDesc}>{pdfT(language, "sheet.noBio", "No bio information")}</Text>
           )}
         </View>
 
         {/* Other Proficiencies */}
         {character.otherProficiencies ? (
           <>
-            <Text style={styles.sectionHeader}>Other Proficiencies & Languages</Text>
+            <Text style={styles.sectionHeader}>{pdfT(language, "section.otherProficiencies", "Other Proficiencies & Languages")}</Text>
             <Text style={styles.bioText}>{character.otherProficiencies}</Text>
           </>
         ) : null}
 
         {/* Footer */}
         <Text style={styles.footer}>
-          Generated by DND Wizard \u2022 {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          {pdfT(language, "app.name", "DND Wizard")} • {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
         </Text>
       </Page>
     </Document>
   );
 }
 
-export async function exportCharacterToPdf(character: Character): Promise<void> {
-  const doc = <CharacterPdfDocument character={character} />;
+export async function exportCharacterToPdf(character: Character, language: PdfLanguage = "en"): Promise<void> {
+  const doc = <CharacterPdfDocument character={character} language={language} />;
   const blob = await pdf(doc).toBlob();
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");

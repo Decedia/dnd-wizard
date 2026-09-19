@@ -14,12 +14,14 @@ import { SubclassDetailsModal } from "./modals/SubclassDetailsModal";
 import { SubclassSelectionModal } from "./modals/SubclassSelectionModal";
 import { FeatureSelectionModal } from "./modals/FeatureSelectionModal";
 import { FeatureChipSelector } from "./FeatureChipSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations as enTranslations } from "@/locales/en";
+import { translations as idTranslations } from "@/locales/id";
 import { HumanoidRacesModal } from "./modals/HumanoidRacesModal";
 import { TerrainModal } from "./modals/TerrainModal";
 import { BonusCantripModal } from "./modals/BonusCantripModal";
 import { SpellMasteryModal } from "./modals/SpellMasteryModal";
 import { SignatureSpellsModal } from "./modals/SignatureSpellsModal";
-import { useLanguage } from "@/contexts/LanguageContext";
 import {
   HeartBottleIcon as Heart,
   LightningIcon as Lightning,
@@ -506,7 +508,9 @@ function buildLevelInfos(
 }
 
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
-  const { tDesc } = useLanguage();
+  const { language } = useLanguage();
+  const dict = language === "id" ? idTranslations : enTranslations;
+  const t = (key: string, fb?: string) => (dict as Record<string, string>)[key] || fb || key;
   const classData = character.class ? getStaticClass(character.class, character.sources, character.ruleset) : undefined;
   const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
   const hitDie = classData?.hitDie || 10;
@@ -1426,6 +1430,10 @@ function LevelCard({
   allInvocationSelections,
   sectionRefs,
 }: LevelCardProps) {
+    const { language } = useLanguage();
+    const dict = language === "id" ? idTranslations : enTranslations;
+    const t = (key: string, fb?: string) => (dict as Record<string, string>)[key] || fb || key;
+
     const [showSpellSelection, setShowSpellSelection] = useState(false);
     const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
     const [showSubclassModal, setShowSubclassModal] = useState(false);
@@ -2032,9 +2040,9 @@ function LevelCard({
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
               <div className="flex items-center gap-2 mb-1">
                 <Crown className="h-3.5 w-3.5 text-purple-600" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon Required</span>
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.pactBoonRequired", "Pact Boon Required")}</span>
               </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your subclass (Otherworldly Patron) first to unlock Pact Boon selection.</p>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("creator.pactBoonHint", "Choose your subclass (Otherworldly Patron) first to unlock Pact Boon selection.")}</p>
             </div>
           )}
 
@@ -2232,9 +2240,9 @@ function LevelCard({
             <div className="p-3 rounded-lg border border-green-300 bg-green-50/30">
               <div className="flex items-center gap-2 mb-1">
                 <Leaf className="h-3.5 w-3.5 text-green-600" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Circle Spells - Choose Terrain</span>
+                <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("creator.circleSpellsTitle", "Circle Spells - Choose Terrain")}</span>
               </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose your terrain type to gain circle spells (always prepared, do not count against limit)</p>
+              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("creator.circleSpellsHint", "Choose your terrain type to gain circle spells (always prepared, do not count against limit)")}</p>
               <button
                 type="button"
                 onClick={() => setShowTerrainModal(true)}

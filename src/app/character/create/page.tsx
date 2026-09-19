@@ -102,8 +102,8 @@ export default function CharacterCreate() {
         }}
         minLevel={1}
         maxLevel={10}
-        title="Starting Level"
-        subtitle="Choose your starting level and roll HP"
+        title={t("creator.startingLevel")}
+        subtitle={t("creator.startingLevelHint", "Choose your starting level and roll HP")}
         startFromLevelOne
       />
     );
@@ -111,7 +111,7 @@ export default function CharacterCreate() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title="Character Creator" subtitle={`Step ${step + 1} of ${totalSteps}`} />
+      <AppHeader title={t("creator.title", "Character Creator")} subtitle={t("wizard.stepOf", { step: step + 1, total: totalSteps })} />
 
       <main className="px-4 py-5 pb-40">
         <div className="mx-auto max-w-lg">

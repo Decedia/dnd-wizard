@@ -79,27 +79,26 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
 
   return (
     <StepCard
-      title="Skills & Proficiencies"
-      hint="Choose your character's skill proficiencies. Skills represent your character's abilities and training, from Athletics to Persuasion."
+      title={t("creator.skills", "Skills & Proficiencies")}
+      hint={t("creator.skillsHint", "Choose your character's skill proficiencies. Skills represent your character's abilities and training, from Athletics to Persuasion.")}
     >
       {skillChoices && (
         <div className="mb-4 hint-box-light">
           <p className="text-body">
-            Select <span className="font-bold">{skillChoices.count}</span> skills from your class list.
-            <span className="text-[var(--color-text-muted)]">({selectedCount} of {skillChoices.count} selected)</span>
+            {t("creator.selectSkillsFromClass", { n: skillChoices.count, current: selectedCount, max: skillChoices.count })}
           </p>
         </div>
         )}
         <NewPlayerTips
           tips={[
             {
-              title: "Choosing Skills",
-              content: "Skills represent what your character is good at. Choose skills that match your class—Fighters pick Athletics and combat skills, while Rogues pick Stealth and Sleight of Hand.",
+              title: t("newPlayerTips.skillsTitle", "Choosing Skills"),
+              content: t("newPlayerTips.skillsContent", "Skills represent what your character is good at. Choose skills that match your class—Fighters pick Athletics and combat skills, while Rogues pick Stealth and Sleight of Hand."),
               icon: ListChecks,
             },
             {
-              title: "Gold Star = Recommended",
-              content: "Gold stars mark skills that work especially well with your class. These are great choices for new players!",
+              title: t("newPlayerTips.recommendedTitle", "Gold Star = Recommended"),
+              content: t("newPlayerTips.recommendedContent", "Gold stars mark skills that work especially well with your class. These are great choices for new players!"),
               icon: Trophy,
             },
             {

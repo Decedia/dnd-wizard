@@ -42,7 +42,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
       {editMode ? (
         <>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
-            <Field label="AGE">
+            <Field label={t("appearance.age")}>
               <input
                 type="text"
                 value={character.appearance.age}
@@ -52,7 +52,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.e.g27")}
               />
             </Field>
-            <Field label="HEIGHT" className="pl-4">
+            <Field label={t("appearance.height")} className="pl-4">
               <input
                 type="text"
                 value={character.appearance.height}
@@ -64,7 +64,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
             </Field>
           </div>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
-            <Field label="WEIGHT">
+            <Field label={t("appearance.weight")}>
               <input
                 type="text"
                 value={character.appearance.weight}
@@ -74,7 +74,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.e.g180lbs")}
               />
             </Field>
-            <Field label="EYES" className="pl-4">
+            <Field label={t("appearance.eyes")} className="pl-4">
               <input
                 type="text"
                 value={character.appearance.eyes}
@@ -86,7 +86,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
             </Field>
           </div>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
-            <Field label="SKIN">
+            <Field label={t("appearance.skin")}>
               <input
                 type="text"
                 value={character.appearance.skin}
@@ -96,7 +96,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.e.gFair")}
               />
             </Field>
-            <Field label="HAIR" className="pl-4">
+            <Field label={t("appearance.hair")} className="pl-4">
               <input
                 type="text"
                 value={character.appearance.hair}
@@ -109,7 +109,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
           </div>
 
           <div className="mt-4 space-y-4">
-            <Field label="CHARACTER APPEARANCE">
+            <Field label={t("appearance.characterAppearance")}>
               <textarea
                 value={character.appearance.characterAppearance}
                 onChange={(e) => updateField("characterAppearance", e.target.value)}
@@ -118,7 +118,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.describeAppearance")}
               />
             </Field>
-            <Field label="PERSONALITY">
+            <Field label={t("appearance.personality")}>
               <textarea
                 value={character.appearance.personality}
                 onChange={(e) => updateField("personality", e.target.value)}
@@ -127,7 +127,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.describePersonality")}
               />
             </Field>
-            <Field label="BACKSTORY">
+            <Field label={t("appearance.backstory")}>
               <textarea
                 value={character.appearance.backstory}
                 onChange={(e) => updateField("backstory", e.target.value)}
@@ -136,7 +136,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.whereFrom")}
               />
             </Field>
-            <Field label="ALLIES & ORGANIZATIONS">
+            <Field label={t("appearance.allies")}>
               <textarea
                 value={character.appearance.alliesOrganizations}
                 onChange={(e) => updateField("alliesOrganizations", e.target.value)}
@@ -145,7 +145,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.listAllies")}
               />
             </Field>
-            <Field label="ADDITIONAL FEATURES & TRAITS">
+            <Field label={t("appearance.additionalFeatures")}>
               <textarea
                 value={character.appearance.additionalFeaturesTraits}
                 onChange={(e) => updateField("additionalFeaturesTraits", e.target.value)}
@@ -154,7 +154,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
                 placeholder={t("placeholder.additionalFeatures")}
               />
             </Field>
-            <Field label="TREASURE">
+            <Field label={t("appearance.treasure")}>
               <textarea
                 value={character.appearance.treasure}
                 onChange={(e) => updateField("treasure", e.target.value)}
@@ -168,36 +168,36 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
       ) : (
         <>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
-            <ViewField label="AGE" value={character.appearance.age} />
-            <ViewField label="HEIGHT" value={character.appearance.height} className="pl-4" />
+            <ViewField label={t("appearance.age")} value={character.appearance.age} />
+            <ViewField label={t("appearance.height")} value={character.appearance.height} className="pl-4" />
           </div>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
-            <ViewField label="WEIGHT" value={character.appearance.weight} />
-            <ViewField label="EYES" value={character.appearance.eyes} className="pl-4" />
+            <ViewField label={t("appearance.weight")} value={character.appearance.weight} />
+            <ViewField label={t("appearance.eyes")} value={character.appearance.eyes} className="pl-4" />
           </div>
           <div className="grid grid-cols-2 divide-x-2 divide-paper/20">
-            <ViewField label="SKIN" value={character.appearance.skin} />
-            <ViewField label="HAIR" value={character.appearance.hair} className="pl-4" />
+            <ViewField label={t("appearance.skin")} value={character.appearance.skin} />
+            <ViewField label={t("appearance.hair")} value={character.appearance.hair} className="pl-4" />
           </div>
 
           <div className="mt-4 space-y-3">
-            {character.appearance.characterAppearance && (
-              <ViewField label="CHARACTER APPEARANCE" value={character.appearance.characterAppearance} />
+             {character.appearance.characterAppearance && (
+              <ViewField label={t("appearance.characterAppearance")} value={character.appearance.characterAppearance} />
             )}
             {character.appearance.personality && (
-              <ViewField label="PERSONALITY" value={character.appearance.personality} />
+              <ViewField label={t("appearance.personality")} value={character.appearance.personality} />
             )}
             {character.appearance.backstory && (
-              <ViewField label="BACKSTORY" value={character.appearance.backstory} />
+              <ViewField label={t("appearance.backstory")} value={character.appearance.backstory} />
             )}
             {character.appearance.alliesOrganizations && (
-              <ViewField label="ALLIES & ORGANIZATIONS" value={character.appearance.alliesOrganizations} />
+              <ViewField label={t("appearance.allies")} value={character.appearance.alliesOrganizations} />
             )}
             {character.appearance.additionalFeaturesTraits && (
-              <ViewField label="ADDITIONAL FEATURES & TRAITS" value={character.appearance.additionalFeaturesTraits} />
+              <ViewField label={t("appearance.additionalFeatures")} value={character.appearance.additionalFeaturesTraits} />
             )}
             {character.appearance.treasure && (
-              <ViewField label="TREASURE" value={character.appearance.treasure} />
+              <ViewField label={t("appearance.treasure")} value={character.appearance.treasure} />
             )}
           </div>
         </>

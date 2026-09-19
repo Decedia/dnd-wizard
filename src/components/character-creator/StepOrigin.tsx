@@ -319,34 +319,34 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const canConfirmRace = pendingRace && (!pendingVariant || (variantAbilities.length === 2 && variantSkill && selectedFeat));
 
   return (
-    <StepCard title="Origin" hint="Choose your character's class and race. Your class defines your abilities and role, while your race provides unique traits and ability bonuses.">
+    <StepCard title={t("origin.title")} hint={t("origin.hint")}>
       <div className="space-y-4">
         <div className="card p-4">
-          <label className="field-label-light">Character Name *</label>
+          <label className="field-label-light">{t("origin.characterNameRequired")}</label>
           <input
             type="text"
             value={data.name}
             onChange={(e) => onChange({ name: e.target.value })}
             className="input w-full text-lg font-semibold mt-1"
-            placeholder="Enter character name"
+            placeholder={t("origin.enterCharacterName")}
           />
         </div>
 
         <NewPlayerTips
           tips={[
             {
-              title: "Choosing a Class",
-              content: "Your class determines your main role in the party. Fighters are great for beginners—they're tough and deal consistent damage. Clerics are also beginner-friendly, as they can heal and fight.",
+              title: t("origin.tip.class"),
+              content: t("origin.tip.classContent"),
               icon: SwordIcon,
             },
             {
-              title: "Choosing a Race",
-              content: "Race gives you special abilities and ability score bonuses. Humans are versatile, Dwarves are tough, and Elves are agile. Pick one that fits your character concept!",
+              title: t("origin.tip.race"),
+              content: t("origin.tip.raceContent"),
               icon: PersonIcon,
             },
             {
-              title: "Golden Star Icon",
-              content: "Look for the gold star icon—it marks options that are especially good for new players.",
+              title: t("origin.tip.star"),
+              content: t("origin.tip.starContent"),
               icon: Star,
             },
           ]}
@@ -366,10 +366,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || SwordIcon; return <Icon className="h-7 w-7" />; })() : <SwordIcon className="h-7 w-7" />}
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Class</div>
-              <div className="text-base sm:text-lg font-bold text-[var(--color-text-primary)] mt-1 truncate">
-                {data.class || "Select Class"}
-              </div>
+               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">{t("origin.classLabel")}</div>
+               <div className="text-base sm:text-lg font-bold text-[var(--color-text-primary)] mt-1 truncate">
+                 {data.class || t("origin.selectClass")}
+               </div>
             </div>
             <div className="text-2xl text-[var(--color-text-muted)] shrink-0">→</div>
           </div>
@@ -389,10 +389,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               {data.race ? <RaceIconRenderer raceName={data.race} isVariant={data.race === "Human" && data.raceVariant === "variant"} className="h-7 w-7" /> : <Users className="h-7 w-7" />}
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Race</div>
-               <div className="text-sm sm:text-base font-semibold text-[var(--color-text-primary)] mt-1 break-words truncate whitespace-nowrap">
-                {data.race ? (data.race === "Human" && data.raceVariant === "variant" ? "Variant Human" : data.race) : "Select Race"}
-              </div>
+               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">{t("origin.raceLabel")}</div>
+                <div className="text-sm sm:text-base font-semibold text-[var(--color-text-primary)] mt-1 break-words truncate whitespace-nowrap">
+                 {data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman") : data.race) : t("origin.selectRace")}
+               </div>
             </div>
             <div className="text-2xl text-[var(--color-text-muted)] shrink-0">→</div>
           </div>
@@ -403,8 +403,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         <BasePopup
           isOpen={true}
           onClose={() => { setPopupType(null); setPendingClass(data.class || null); }}
-          title="Select Class"
-          confirmLabel="Confirm"
+           title={t("origin.selectClassPopup")}
+           confirmLabel={t("wizard.confirm")}
           cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={handleConfirmClass}
           confirmDisabled={!pendingClass}
@@ -472,8 +472,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         <BasePopup
           isOpen={true}
           onClose={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
-          title="Select Race"
-          confirmLabel="Confirm"
+           title={t("origin.selectRacePopup")}
+           confirmLabel={t("wizard.confirm")}
           cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={handleConfirmRace}
           confirmDisabled={!canConfirmRace}
@@ -580,7 +580,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                                 onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
                                 className="input text-xs"
                               >
-                                <option value="">Select language...</option>
+                                 <option value="">{t("placeholder.selectLanguage")}</option>
                                 {["Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Gith", "Quori", "Thri-kreen", "Druidic"].map(lang => (
                                   <option key={lang} value={lang}>{lang}</option>
                                 ))}
@@ -592,7 +592,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                                 onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
                                 className="input text-xs"
                               >
-                                <option value="">Select skill or tool...</option>
+                                 <option value="">{t("placeholder.selectSkillOrTool")}</option>
                                 {["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival", "Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies", "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools", "Cook's Utensils", "Glassblower's Tools", "Jeweler's Tools", "Leatherworker's Tools", "Mason's Tools", "Painter's Supplies", "Potter's Tools", "Smith's Tools", "Tinker's Tools", "Weaver's Tools", "Woodcarver's Tools", "Dice Set", "Dragonchess Set", "Playing Card Set", "Three-Dragon Ante Set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan Flute", "Shawm", "Viol", "Navigator's Tools", "Poisoner's Kit", "Thieves' Tools", "Herbalism Kit", "Disguise Kit", "Forgery Kit"].map(prof => (
                                   <option key={prof} value={prof}>{prof}</option>
                                 ))}
@@ -614,8 +614,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         <BasePopup
           isOpen={true}
           onClose={() => setVariantModalOpen(false)}
-          title="Variant Human"
-          confirmLabel="Confirm"
+           title={t("origin.variantHuman")}
+           confirmLabel={t("wizard.confirm")}
           cancelLabel={t("button.cancel", "Cancel")}
           onConfirm={() => setVariantModalOpen(false)}
           showFooter={true}
@@ -641,9 +641,9 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                   {pendingVariant && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>
+                   <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("origin.variantHuman")}</div>
                   <div className="text-[10px] text-[var(--color-text-secondary)]">
-                    +1 to two abilities, one skill proficiency, and one feat
+                    {t("origin.variantHumanBonus")}
                   </div>
                 </div>
               </div>
@@ -652,7 +652,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             {pendingVariant && (
               <>
                 <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                  <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">+1 to Two Abilities</div>
+                  <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">{t("origin.plusOneToTwoAbilities")}</div>
                   <div className="grid grid-cols-3 gap-1.5">
                     {abilityOptions.map((ability) => {
                       const isSelected = variantAbilities.includes(ability);
@@ -672,13 +672,13 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                       );
                     })}
                   </div>
-                  <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
-                    Selected: {variantAbilities.length}/2
-                  </div>
+                   <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
+                     {t("origin.selectedCount", { count: variantAbilities.length })}
+                   </div>
                 </div>
 
-                <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                  <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">Skill Proficiency</div>
+                 <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                   <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">{t("origin.skillProficiency")}</div>
                   <div className="grid grid-cols-2 gap-1">
                     {SKILLS.map((skill) => {
                       const isSelected = variantSkill === skill.name;
@@ -700,18 +700,18 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                   </div>
                 </div>
 
-                {selectedFeat && (
+                 {selectedFeat && (
                   <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                    <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Selected Feat</div>
-                    <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
-                  </div>
-                )}
+                      <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{t("origin.selectedFeat")}</div>
+                      <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
+                    </div>
+                  )}
                 <button
                   type="button"
                   onClick={() => setFeatModalOpen(true)}
                   className="btn btn-secondary w-full text-sm"
                 >
-                  {selectedFeat ? "Change Feat" : "Choose Feat"}
+                  {selectedFeat ? t("origin.changeFeat") : t("origin.chooseFeat")}
                 </button>
               </>
             )}

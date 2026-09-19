@@ -93,7 +93,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                       <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                         {name}
                         {isRecommended("skill", name) && <Star className="h-3 w-3 text-amber-500" />}
-                        {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">BG</span>}
+                        {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">{t("skills.backgroundBadge")}</span>}
                       </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
@@ -137,7 +137,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                             <span className={`text-[9px] font-bold px-1 rounded block text-center ${
                               isExpert ? "text-purple-700 bg-purple-100" : isBgSkill ? "text-green-700 bg-green-100" : "text-ink bg-paper-muted"
                             }`}>
-                              {isExpert ? "expertise" : isBgSkill ? "background" : `normal +${profBonus}`}
+                               {isExpert ? t("skills.proficiencyType.expertise") : isBgSkill ? t("skills.proficiencyType.background") : t("skills.proficiencyType.normal", { bonus: profBonus })}
                             </span>
                           </div>
                         )}
@@ -153,7 +153,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
 
       {editMode && (
         <div className="mt-3">
-          <span className="field-label-light">Passive Wisdom (Perception)</span>
+           <span className="field-label-light">{t("skills.passiveWisdomPerception")}</span>
           <input
             type="number"
             value={character.passivePerception}

@@ -19,7 +19,7 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
   return (
     <SectionCard id="hit-dice" title={t("section.hitDice")} icon={<DiceFive className="h-5 w-5" />}>
       <div className="grid grid-cols-2 gap-3">
-        <Field label="TOTAL">
+        <Field label={t("hitDice.total")}>
           {editMode ? (
             <input
               type="text"
@@ -27,13 +27,13 @@ export function HitDiceSection({ character, onChange, editMode = true }: HitDice
               onChange={(e) => onChange({ hitDiceTotal: e.target.value })}
               onBlur={onFieldBlur}
               className="input"
-              placeholder="e.g. 10d8"
+              placeholder={t("hitDice.placeholder")}
             />
           ) : (
             <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.hitDiceTotal || "—"}</span>
           )}
         </Field>
-        <Field label="REMAINING">
+        <Field label={t("hitDice.remaining")}>
           {editMode ? (
             <input
               type="number"

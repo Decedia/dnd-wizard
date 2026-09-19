@@ -9,7 +9,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 **App Status**: ✅ Fully functional D&D 5e character manager with creation wizard, level-up flow, character sheet, and combat tracking. Supports English and Indonesian (Bahasa Indonesia) via custom i18n system.
 
 ### Localization
-- **LanguageContext**: `src/contexts/LanguageContext.tsx` provides 300+ translation keys for `en` and `id`; `useLanguage().t(key, fallback)` for UI strings, `useLanguage().tDesc(key, fallback)` for descriptions/summaries with protected English game terms
+ - **LanguageContext**: `src/contexts/LanguageContext.tsx` provides 300+ translation keys for `en` and `id`; `useLanguage().t(key, params?, fallback?)` for UI strings with template interpolation support, `useLanguage().tDesc(key, fallback)` for descriptions/summaries with protected English game terms
 - **Protected terms**: `PROTECTED_TERMS` array (~200 D&D terms: spell names, class names, damage types, conditions, skills, alignments, equipment) with `protectedTermsRegex`; `tDesc()` scans English fallback and preserves exact casing of protected terms in Bahasa translations
 - **LanguageToggle**: `src/components/LanguageToggle.tsx` switcher in AppHeader; preference persisted in `localStorage` under `dnd-language`
 - **Description coverage**: SpellsSection, FeaturesTraitsSection, FeatModal, SubclassDetailsModal wired to `tDesc`; translation keys follow `spell.desc.{name}`, `feature.desc.{name}`, `feat.desc.{name}`, `subclass.desc.{class}-{subclass}` patterns
@@ -288,7 +288,8 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - [x] Lint, typecheck, and build verified
 - [x] Comprehensive character sheet dark theme restyle: updated all 14 section components, tabs, toggles, and global CSS to near-black backgrounds with red/burgundy accents; lint and typecheck pass
 - [x] Reordered SourceBadge to appear BEFORE content names across all components: SpellsSection, FeaturesTraitsSection, FeatPopup, SpellSelectionModal, InventorySection, IdentitySection (ViewField), FeatSelector, StepSpells, StepOrigin, StepFeatureSelections, StepSubclass, StepRace, LevelUpWizard; badges now render first (e.g. [PHB] [Fireball]); typecheck passes
-- [x] Moved spell Prepare and Use buttons in SpellsSection to appear below the spell name row (new `mt-2` flex row under spell name + duration); Prepare/Use/concentration break/remove buttons no longer inline with spell name; typecheck and lint pass
+ - [x] Moved spell Prepare and Use buttons in SpellsSection to appear below the spell name row (new `mt-2` flex row under spell name + duration); Prepare/Use/concentration break/remove buttons no longer inline with spell name; typecheck and lint pass
+ - [x] Audited character sheet and creator components for hardcoded English strings and replaced with `t()` calls using existing translation keys; added missing translation keys to `src/locales/en.js` and `src/locales/id.js` for appearance fields, spellcasting stats, level/XP, passive stats, death saves, hit dice, other proficiencies, character creator steps (appearance, personality, subclass, level, source selection, origin), and page files; updated `LanguageContext.tsx` `t()` type signature to support `params` for template interpolation; typecheck passes (only pre-existing errors remain), lint passes (only pre-existing errors remain)
 
 ## Current Structure
 

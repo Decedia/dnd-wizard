@@ -64,11 +64,11 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
 
       <div className="mt-3.5 grid grid-cols-3 gap-2.5">
         <div className="stat-box-light">
-          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">Prof.</span>
+          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">{t("stats.prof")}</span>
           <span className="text-sm font-bold text-ink">+{character.proficiencyBonus}</span>
         </div>
         <div className="stat-box-light">
-          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">Init.</span>
+          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">{t("stats.init")}</span>
           <span className="text-sm font-bold text-ink">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
         </div>
         <div className="stat-box-light flex-row items-center justify-center gap-2">
@@ -79,12 +79,12 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             onBlur={onFieldBlur}
             className="checkbox"
           />
-          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">Insp.</span>
+          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">{t("stats.insp")}</span>
         </div>
       </div>
 
       <div className="mt-3.5">
-        <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider block mb-2">Saving Throws</span>
+         <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider block mb-2">{t("stats.savingThrows")}</span>
         <div className="space-y-1">
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };

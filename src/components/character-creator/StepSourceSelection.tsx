@@ -133,9 +133,9 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
         <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-1">
           {t("wizard.stepOf", "Step {step} of {total}").replace("{step}", "1").replace("{total}", totalBooks > 0 ? "8" : "6")}
         </div>
-        <h2 className="text-xl font-bold text-[var(--color-text-primary)]">Choose rulebooks</h2>
+         <h2 className="text-xl font-bold text-[var(--color-text-primary)]">{t("creator.chooseRulebooks")}</h2>
         <p className="text-xs text-[var(--color-text-secondary)] mt-1 inline-flex items-center gap-1.5 flex-wrap">
-          <span>Select which books to draw content from.</span>
+          <span>{t("creator.selectRulebooks")}</span>
           <button
             type="button"
             onClick={() => setShowBookExplainer(true)}
@@ -157,7 +157,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
               ruleset === rs ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] shadow-sm" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
             }`}
           >
-            {rs === "2014" ? "2014 Rules" : "2024 Rules"}
+             {rs === "2014" ? t("ruleset.2014", "2014 Rules") : t("ruleset.2024", "2024 Rules")}
           </button>
         ))}
       </div>
@@ -168,14 +168,14 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           onClick={selectCoreOnly}
           className="flex-1 px-3 py-2 text-xs font-semibold rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-bg)] transition-colors"
         >
-          PHB only
+          {t("creator.phbOnly")}
         </button>
         <button
           type="button"
           onClick={selectAll}
           className="flex-1 px-3 py-2 text-xs font-semibold rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-bg)] transition-colors"
         >
-          Select all
+          {t("creator.selectAll")}
         </button>
       </div>
 
@@ -186,7 +186,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           background: "var(--color-surface)",
         }}
       >
-        <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>Books selected</span>
+         <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>{t("creator.booksSelected")}</span>
         <span style={{ fontSize: 15, fontWeight: 600, color: "var(--color-text-primary)" }}>
           {selectedCount} / {totalBooks}
         </span>

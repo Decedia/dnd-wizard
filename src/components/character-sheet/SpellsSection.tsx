@@ -262,7 +262,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           className="mb-3 flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold rounded border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)] transition-colors"
         >
           <Clock className="h-4 w-4" />
-          Reset Turn
+          {t("spells.resetTurn")}
         </button>
       )}
 
@@ -319,9 +319,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         ? "bg-[var(--color-success-500)] text-[var(--color-surface)]"
                         : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
-                    title={spellPrepared ? "Click to unprepare" : "Click to prepare"}
+                     title={spellPrepared ? t("spells.clickToUnprepare") : t("spells.clickToPrepare")}
                   >
-                    {spellPrepared ? "Prepared" : "Prepare"}
+                     {spellPrepared ? t("spells.prepared") : t("spells.prepare")}
                   </button>
                 )}
                 <button
@@ -332,10 +332,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
                       : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                   }`}
-                  title={spellUsed ? "Click to mark as unused" : buffDef ? `Use: ${buffDef.effects.map(e => e.description).join("; ")}` : "Click to mark as used this turn"}
+                   title={spellUsed ? t("spells.clickToMarkUnused") : buffDef ? t("spells.clickToMarkUsed") : t("spells.clickToMarkUsed")}
                 >
-                  {buffDef ? <Sparkle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
-                  {spellUsed ? "Used" : "Use"}
+                   {buffDef ? <Sparkle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
+                   {spellUsed ? t("spells.used") : t("spells.use")}
                   {buffDef?.concentration && <span className="text-[8px] opacity-70">C</span>}
                 </button>
                 {spellUsed && buffDef?.concentration && (
@@ -348,7 +348,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spell.id) });
                     }}
                     className="flex items-center justify-center w-5 h-5 text-[10px] font-bold rounded border border-[var(--color-error-200)] text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] hover:border-[var(--color-error-300)] transition-all"
-                    title="Break concentration"
+                     title={t("spells.breakConcentration")}
                   >
                     ✕
                   </button>
@@ -358,7 +358,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     type="button"
                     onClick={() => removeSpell(spell.id)}
                     className="text-[var(--color-text-secondary)] hover:text-[var(--color-error-500)]"
-                    aria-label="Remove spell"
+                     aria-label={t("spells.remove")}
                   >
                     <X className="h-4 w-4" />
                   </button>

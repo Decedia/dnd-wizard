@@ -14,6 +14,7 @@ import { SourceBadge } from "@/components/SourceBadge";
 import { ItemSlot, ItemDetailPanel, InventoryGrid, type ItemSlotData } from "@/components/character-sheet/InventoryGrid";
 import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
 import { useDebugLogger } from "@/lib/debug/DebugContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -112,6 +113,7 @@ const DRUIDIC_FOCUS_TYPES = [
 export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const debug = useDebugLogger("StepEquipment");
+  const { t } = useLanguage();
   const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null; selectedWeaponChoiceIndex: number | null } | null>(null);
   const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
   const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
@@ -795,16 +797,16 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
   return (
     <StepCard
-      title="Equipment"
-      hint="Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear."
+      title={t("creator.equipment", "Equipment")}
+      hint={t("creator.equipmentHint", "Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.")}
     >
       <div className="space-y-5">
         {grantedSlotItems.length > 0 && (
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-card-title text-[var(--color-text-primary)]">Granted Equipment</span>
+              <span className="text-card-title text-[var(--color-text-primary)]">{t("sheet.grantedEquipment", "Granted Equipment")}</span>
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]">
-                LOCKED
+                {t("sheet.locked", "LOCKED")}
               </span>
             </div>
             <InventoryGrid
@@ -819,7 +821,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
         <div>
           <span className="text-card-title text-[var(--color-text-primary)] block mb-2">
-            Your Choices
+            {t("creator.yourChoices", "Your Choices")}
           </span>
           <div className="grid grid-cols-4 gap-[6px]">
             {choiceGroups.map((group) => {

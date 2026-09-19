@@ -148,17 +148,17 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
   );
 
   return (
-    <StepCard title="Personality" hint="Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
+    <StepCard title={t("creator.finalTouches")} hint="Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
       <div className="space-y-6">
 
         <div>
-          <label className="field-label-light">Alignment</label>
+          <label className="field-label-light">{t("form.alignment")}</label>
           <select
             value={data.alignment}
             onChange={(e) => onChange({ alignment: e.target.value })}
             className="input w-full"
           >
-            <option value="">{t("creator.selectAlignment", "Select alignment")}</option>
+            <option value="">{t("form.selectAlignment")}</option>
             {alignmentOptions.map((alignment) => (
               <option key={alignment} value={alignment}>{alignment}</option>
             ))}
@@ -166,7 +166,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
         </div>
 
         <div>
-          <label className="field-label-light">{t("form.background", "Background")}</label>
+          <label className="field-label-light">{t("form.background")}</label>
           <select
             value={data.background}
             onChange={(e) => {
@@ -213,7 +213,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
             }}
             className="input w-full"
           >
-            <option value="">Select background</option>
+            <option value="">{t("form.selectBackground")}</option>
             {backgroundsData.map((bg) => (
               <option key={bg.name} value={bg.name}>{bg.name}</option>
             ))}
@@ -224,22 +224,22 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
                  <InfoButton title={selectedBackground.feature.name} description={selectedBackground.feature.description} />
                </div>
               <div className="mt-2 flex flex-wrap gap-2">
-                <div>
-                  <span className="text-[10px] font-bold text-[var(--color-text-muted)]">Skills:</span>
-                  <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">{selectedBackground.skillProficiencies.join(", ")}</span>
-                </div>
-                {selectedBackground.toolProficiencies.length > 0 && (
-                  <div>
-                    <span className="text-[10px] font-bold text-[var(--color-text-muted)]">Tools:</span>
-                    <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">{selectedBackground.toolProficiencies.join(", ")}</span>
-                  </div>
-                )}
-                {selectedBackground.languages > 0 && (
-                  <div>
-                    <span className="text-[10px] font-bold text-[var(--color-text-muted)]">Languages:</span>
-                    <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">+{selectedBackground.languages}</span>
-                  </div>
-                )}
+              <div>
+                   <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{t("creator.skillsLabel", "Skills:")}</span>
+                   <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">{selectedBackground.skillProficiencies.join(", ")}</span>
+                 </div>
+                 {selectedBackground.toolProficiencies.length > 0 && (
+                   <div>
+                     <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{t("creator.toolsLabel", "Tools:")}</span>
+                     <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">{selectedBackground.toolProficiencies.join(", ")}</span>
+                   </div>
+                 )}
+                 {selectedBackground.languages > 0 && (
+                   <div>
+                     <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{t("creator.languagesLabel", "Languages:")}</span>
+                     <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">+{selectedBackground.languages}</span>
+                   </div>
+                 )}
               </div>
             </div>
           )}
@@ -247,7 +247,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
 
         <div>
           <label className="field-label-light">
-            Languages
+            {t("form.languages")}
             <span className="text-[var(--color-text-muted)] font-normal ml-2">
               ({data.languages?.length || defaultLanguages.length}/{raceLanguages.length + totalBonusLanguages})
             </span>
@@ -285,7 +285,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
                   }}
                   className="input w-full text-sm"
                 >
-                  <option value="">Add a language...</option>
+                   <option value="">{t("creator.addLanguage", "Add a language...")}</option>
                   {availableLanguages
                     .filter(l => !(data.languages || defaultLanguages).includes(l))
                     .map((lang) => (
@@ -297,10 +297,10 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
           </div>
         </div>
 
-        {personalityTraits.length > 0 && renderSelectButton("Personality Trait", data.personalityTrait1, "Select a personality trait...", "personality")}
-        {ideals.length > 0 && renderSelectButton("Ideal", data.ideal, "Select an ideal...", "ideal")}
-        {bonds.length > 0 && renderSelectButton("Bond", data.bond, "Select a bond...", "bond")}
-        {flaws.length > 0 && renderSelectButton("Flaw", data.flaw, "Select a flaw...", "flaw")}
+        {personalityTraits.length > 0 && renderSelectButton(t("creator.personalityTrait", "Personality Trait"), data.personalityTrait1, t("creator.selectPersonalityTrait", "Select a personality trait..."), "personality")}
+        {ideals.length > 0 && renderSelectButton(t("creator.ideal", "Ideal"), data.ideal, t("creator.selectIdeal", "Select an ideal..."), "ideal")}
+        {bonds.length > 0 && renderSelectButton(t("creator.bond", "Bond"), data.bond, t("creator.selectBond", "Select a bond..."), "bond")}
+        {flaws.length > 0 && renderSelectButton(t("creator.flaw", "Flaw"), data.flaw, t("creator.selectFlaw", "Select a flaw..."), "flaw")}
       </div>
 
       {popupType && (

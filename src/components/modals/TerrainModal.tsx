@@ -4,6 +4,7 @@ import { useState } from "react";
 import { getCircleTerrainTypes, getCircleSpells, getStaticSpells } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 
 interface TerrainModalProps {
@@ -25,19 +26,20 @@ export function TerrainModal({
   selectedTerrain,
   onTerrainChange,
 }: TerrainModalProps) {
+  const { t } = useLanguage();
   const srdSpells = getStaticSpells(character.sources);
 
   return (
     <BasePopup
       isOpen={isOpen}
       onClose={onClose}
-      title="Choose Terrain"
+      title={t("creator.chooseTerrain", "Choose Terrain")}
       confirmLabel={undefined}
       cancelLabel={undefined}
       showFooter={false}
     >
       <p className="text-xs text-[var(--color-text-secondary)] mb-4">
-        Choose your terrain type to gain circle spells. These spells are always prepared and do not count against your preparation limit.
+        {t("creator.terrainHint", "Choose your terrain type to gain circle spells. These spells are always prepared and do not count against your preparation limit.")}
       </p>
       <div className="space-y-2">
         {getCircleTerrainTypes().map((terrain) => {

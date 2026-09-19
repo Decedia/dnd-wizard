@@ -66,7 +66,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
   return (
     <SectionCard id="spellcasting" title={t("section.spellcastingStats")} icon={<Sparkle className="h-5 w-5" />}>
       <div className="grid grid-cols-1 gap-4">
-        <Field label="SPELLCASTING ABILITY">
+        <Field label={t("spellcasting.ability")}>
           {editMode ? (
             <input
               type="text"
@@ -79,7 +79,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
           )}
         </Field>
         <div className="grid grid-cols-2 gap-3">
-          <Field label="SPELL SAVE DC">
+          <Field label={t("spellcasting.saveDc")}>
             {editMode ? (
               <input
                 type="number"
@@ -91,7 +91,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
               <span className="text-sm font-bold text-ink">{character.spellSaveDc}</span>
             )}
           </Field>
-          <Field label="SPELL ATTACK BONUS">
+          <Field label={t("spellcasting.attackBonus")}>
             {editMode ? (
               <input
                 type="number"
@@ -107,8 +107,8 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
       </div>
 
       <div className="mt-4">
-        <span className="field-label-light">Spell Slots</span>
-        <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Spell slots represent your magical energy for casting spells. Higher level slots can cast lower level spells, and some spells can be upcast using higher level slots.</p>
+        <span className="field-label-light">{t("spellcasting.slots")}</span>
+        <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spellcasting.slotsDescription")}</p>
         {Object.keys(character.spellSlots).length > 0 ? (
           <div className="grid grid-cols-1 gap-2">
             {Object.entries(character.spellSlots)
@@ -135,7 +135,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                             : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
                         }`}
                       >
-                        Use
+                        {t("spellcasting.use")}
                       </button>
                       <button
                         type="button"
@@ -147,7 +147,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                             : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
                         }`}
                       >
-                        Restore
+                        {t("spellcasting.restore")}
                       </button>
                     </div>
                   </div>
@@ -155,13 +155,13 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
               })}
           </div>
         ) : (
-          <p className="text-xs text-[var(--color-text-muted)] mt-1">No spell slots</p>
+          <p className="text-xs text-[var(--color-text-muted)] mt-1">{t("spellcasting.noSlots")}</p>
         )}
       </div>
 
       {character.class === "Sorcerer" && (
         <div className="mt-4">
-          <span className="field-label-light">Creating Spell Slots (Flexible Casting)</span>
+          <span className="field-label-light">{t("spellcasting.flexibleCasting")}</span>
           <div className="grid grid-cols-5 gap-2 mt-2">
             {[
               { level: "1st", cost: 2 },
@@ -177,7 +177,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
             ))}
           </div>
           <p className="text-[10px] text-[var(--color-text-muted)] mt-2">
-            You can also convert a spell slot into sorcery points equal to the slot&apos;s level.
+            {t("spellcasting.convertSlot")}
           </p>
         </div>
       )}

@@ -10,6 +10,7 @@ import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrain
 import { StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StepSpellsProps {
   data: Character;
@@ -71,6 +72,7 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
 }
 
 export function StepSpells({ data, onChange }: StepSpellsProps) {
+  const { t } = useLanguage();
   const idCounter = useRef(0);
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const spellcastingAbility = classData?.spellcastingAbility || "int";
@@ -268,10 +270,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
 
   return (
     <StepCard
-      title="Spells"
+      title={t("creator.spells", "Spells")}
       hint={prepCaster
-        ? `Choose your prepared spells. You prepare ${maxCantrips} cantrips and ${maxSpells} spells. You can change prepared spells after a long rest.`
-        : `Choose your starting spells. You know ${maxCantrips} cantrips and ${maxSpells} spells. Spells are from the D&D 5e SRD.`
+        ? t("creator.prepareSpellsHint", { maxCantrips, maxSpells })
+        : t("creator.startingSpellsHint", { maxCantrips, maxSpells })
       }
     >
       <div className="space-y-6">

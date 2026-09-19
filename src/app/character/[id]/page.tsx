@@ -35,7 +35,7 @@ export default function CharacterView() {
   const router = useRouter();
   const id = params.id as string;
   const { data: srdData } = useSRD();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [character, setCharacter] = useState<Character | null>(null);
 
@@ -109,7 +109,7 @@ export default function CharacterView() {
     setExportingPdf(true);
     try {
       const { exportCharacterToPdf } = await import("@/lib/pdf-visual");
-      await exportCharacterToPdf(character);
+      await exportCharacterToPdf(character, language);
     } finally {
       setExportingPdf(false);
     }
