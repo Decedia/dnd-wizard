@@ -1262,6 +1262,8 @@ const translations: Record<Language, Record<string, string>> = {
   },
 };
 
+const summaryTranslations: Record<string, string> = {};
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
 

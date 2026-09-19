@@ -160,8 +160,7 @@ function getOptionIcon(optName: string): string | null {
   if (lower.includes("fire") || lower.includes("evocation")) return "🔥";
   if (lower.includes("lightning") || lower.includes("thunder")) return "⚡";
   if (lower.includes("magic") || lower.includes("enchantment") || lower.includes("illusion")) return "✨";
-    return null;
-  }
+  return null;
 }
 
 function slugify(name: string): string {

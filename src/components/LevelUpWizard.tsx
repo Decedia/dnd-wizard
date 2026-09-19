@@ -46,7 +46,6 @@ import { InfoButton } from "@/components/InfoButton";
 import { BasePopup } from "@/components/BasePopup";
 import { useSRD } from "@/contexts/SRDContext";
 import { isRecommended } from "@/lib/recommendations";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
