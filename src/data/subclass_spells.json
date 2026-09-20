@@ -198,6 +198,270 @@
         "Antilife Shell",
         "Raise Dead"
       ]
+    },
+    "twilight": {
+      "1": [
+        "Faerie Fire",
+        "Sleep"
+      ],
+      "3": [
+        "Moonbeam",
+        "See Invisibility"
+      ],
+      "5": [
+        "Aura of Vitality",
+        "Tiny Hut"
+      ],
+      "7": [
+        "Aura of Life",
+        "Greater Invisibility"
+      ],
+      "9": [
+        "Circle of Power",
+        "Mislead"
+      ]
+    },
+    "peace": {
+      "1": [
+        "Heroism",
+        "Sanctuary"
+      ],
+      "3": [
+        "Aid",
+        "Warding Bond"
+      ],
+      "5": [
+        "Beacon of Hope",
+        "Sending"
+      ],
+      "7": [
+        "Aura of Purity",
+        "Otiluke's Resilient Sphere"
+      ],
+      "9": [
+        "Greater Restoration",
+        "Rary's Telepathic Bond"
+      ]
+    },
+    "order": {
+      "1": [
+        "Command",
+        "Heroism"
+      ],
+      "3": [
+        "Hold Person",
+        "Zone of Truth"
+      ],
+      "5": [
+        "Mass Healing Word",
+        "Slow"
+      ],
+      "7": [
+        "Compulsion",
+        "Locate Creature"
+      ],
+      "9": [
+        "Commune",
+        "Dominate Person"
+      ]
+    },
+    "arcana": {
+      "1": [
+        "Detect Magic",
+        "Magic Missile"
+      ],
+      "3": [
+        "Magic Weapon",
+        "Nondetection"
+      ],
+      "5": [
+        "Dispel Magic",
+        "Magic Circle"
+      ],
+      "7": [
+        "Arcane Eye",
+        "Leomund's Secret Chest"
+      ],
+      "9": [
+        "Planar Binding",
+        "Teleportation Circle"
+      ]
+    },
+    "death": {
+      "1": [
+        "False Life",
+        "Ray of Sickness"
+      ],
+      "3": [
+        "Blindness/Deafness",
+        "Ray of Enfeeblement"
+      ],
+      "5": [
+        "Animate Dead",
+        "Vampiric Touch"
+      ],
+      "7": [
+        "Blight",
+        "Death Ward"
+      ],
+      "9": [
+        "Antilife Shell",
+        "Cloudkill"
+      ]
+    },
+    "circle-of-stars": {
+      "2": [
+        "Guidance",
+        "Guiding Bolt"
+      ]
+    },
+    "circle-of-wildfire": {
+      "2": [
+        "Burning Hands",
+        "Cure Wounds"
+      ],
+      "3": [
+        "Flaming Sphere",
+        "Scorching Ray"
+      ],
+      "5": [
+        "Plant Growth",
+        "Revivify"
+      ],
+      "7": [
+        "Aura of Life",
+        "Fire Shield"
+      ],
+      "9": [
+        "Flame Strike",
+        "Mass Cure Wounds"
+      ]
+    },
+    "circle-of-spores": {
+      "2": [
+        "Chill Touch"
+      ],
+      "3": [
+        "Blindness/Deafness",
+        "Gentle Repose"
+      ],
+      "5": [
+        "Animate Dead",
+        "Gaseous Form"
+      ],
+      "7": [
+        "Blight",
+        "Confusion"
+      ],
+      "9": [
+        "Cloudkill",
+        "Contagion"
+      ]
+    },
+    "oath-of-glory": {
+      "3": [
+        "Guiding Bolt",
+        "Heroism"
+      ],
+      "5": [
+        "Enhance Ability",
+        "Magic Weapon"
+      ],
+      "9": [
+        "Haste",
+        "Protection from Energy"
+      ],
+      "13": [
+        "Compulsion",
+        "Freedom of Movement"
+      ],
+      "17": [
+        "Commune",
+        "Flame Strike"
+      ]
+    },
+    "gloom-stalker": {
+      "3": [
+        "Disguise Self"
+      ],
+      "5": [
+        "Rope Trick"
+      ],
+      "9": [
+        "Fear"
+      ],
+      "13": [
+        "Greater Invisibility"
+      ],
+      "17": [
+        "Seeming"
+      ]
+    },
+    "clockwork-soul": {
+      "1": [
+        "Alarm",
+        "Protection from Evil and Good"
+      ],
+      "3": [
+        "Aid",
+        "Lesser Restoration"
+      ],
+      "5": [
+        "Dispel Magic",
+        "Protection from Energy"
+      ],
+      "7": [
+        "Freedom of Movement",
+        "Summon Construct"
+      ],
+      "9": [
+        "Greater Restoration",
+        "Wall of Force"
+      ]
+    },
+    "oath-of-the-crown": {
+      "3": [
+        "Command",
+        "Compelled Duel"
+      ],
+      "5": [
+        "Warding Bond",
+        "Zone of Truth"
+      ],
+      "9": [
+        "Aura of Vitality",
+        "Spirit Guardians"
+      ],
+      "13": [
+        "Banishment",
+        "Guardian of Faith"
+      ],
+      "17": [
+        "Circle of Power",
+        "Geas"
+      ]
+    },
+    "oathbreaker": {
+      "3": [
+        "Hellish Rebuke",
+        "Inflict Wounds"
+      ],
+      "5": [
+        "Crown of Madness",
+        "Darkness"
+      ],
+      "9": [
+        "Animate Dead",
+        "Bestow Curse"
+      ],
+      "13": [
+        "Blight",
+        "Confusion"
+      ],
+      "17": [
+        "Contagion",
+        "Dominate Person"
+      ]
     }
   },
   "circleSpells": {

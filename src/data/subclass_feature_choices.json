@@ -117,6 +117,38 @@
           }
         ]
       }
+    },
+    "Rune Knight": {
+      "Rune Carver": {
+        "count": 2,
+        "description": "Choose runes to inscribe onto your weapons or armor. Each rune grants a passive trait and an active invocation.",
+        "options": [
+          {
+            "name": "Cloud Rune",
+            "description": "Advantage on Sleight of Hand and Deception; reaction to redirect an attack roll within 30 feet to another creature."
+          },
+          {
+            "name": "Fire Rune",
+            "description": "Double proficiency bonus for tools with which you are proficient; on hit, restrain target in fiery shackles dealing 2d6 fire damage per turn."
+          },
+          {
+            "name": "Frost Rune",
+            "description": "Advantage on Animal Handling and Intimidation; bonus action gain +2 to Strength and Constitution checks and saves for 10 minutes."
+          },
+          {
+            "name": "Stone Rune",
+            "description": "Advantage on Insight and 120 ft darkvision; reaction charm and incapacitate a creature that ends its turn within 30 feet."
+          },
+          {
+            "name": "Hill Rune (Level 7+)",
+            "description": "Advantage on saves against poison and resistance to poison damage; bonus action gain resistance to bludgeoning, piercing, and slashing damage for 1 minute."
+          },
+          {
+            "name": "Storm Rune (Level 7+)",
+            "description": "Advantage on Arcana and can't be surprised; bonus action enter a prophetic state for 1 minute to grant advantage or disadvantage to rolls within 60 feet."
+          }
+        ]
+      }
     }
   },
   "Sorcerer": {
@@ -387,6 +419,26 @@
           }
         ]
       }
+    },
+    "Path of the Beast": {
+      "Form of the Beast": {
+        "count": 1,
+        "description": "Choose which natural weapon manifests when you enter your rage.",
+        "options": [
+          {
+            "name": "Bite",
+            "description": "1d8 piercing damage. Once on each of your turns when below half HP, restore hit points equal to your proficiency bonus on a hit."
+          },
+          {
+            "name": "Claws",
+            "description": "1d6 slashing damage. Once on each of your turns when taking the Attack action, make an additional claw attack as part of that action."
+          },
+          {
+            "name": "Tail",
+            "description": "1d8 piercing damage with Reach. Reaction to roll 1d8 and add the result to your AC against an attack that would hit you."
+          }
+        ]
+      }
     }
   },
   "Warlock": {
@@ -528,6 +580,28 @@
           {
             "name": "Wave of Rolling Earth",
             "description": "Spend 3 ki to cast erupting earth."
+          }
+        ]
+      }
+    }
+  },
+  "Druid": {
+    "Circle of Stars": {
+      "Starry Form": {
+        "count": 1,
+        "description": "Choose your active starry constellation when entering Starry Form.",
+        "options": [
+          {
+            "name": "Archer",
+            "description": "Make a ranged spell attack as a bonus action (range 60 ft) dealing 1d8 + Wisdom modifier radiant damage."
+          },
+          {
+            "name": "Chalice",
+            "description": "Whenever you cast a spell using a spell slot that restores hit points, you or another creature within 30 ft regains 1d8 + Wisdom modifier hit points."
+          },
+          {
+            "name": "Dragon",
+            "description": "Treat any d20 roll of 9 or lower as a 10 for Concentration checks to maintain spells, as well as Intelligence and Wisdom checks."
           }
         ]
       }

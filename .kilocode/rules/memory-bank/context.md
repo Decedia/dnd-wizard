@@ -16,7 +16,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 
 ### Data Layer
 - **Character type**: 130+ field interface in `src/lib/storage.ts` covering identity, abilities, combat, features, spells, inventory, class resources, active states/buffs, currency, appearance
-- **Static data**: 17 JSON/TS files in `src/data/` — races (24), classes (12), subclasses (82), spells (475+), wizard spells (240+), weapons (37), armor (13), equipment (237+), items (549), feats (127), backgrounds (9), warlock invocations, subclass spells/choices
+- **Static data**: Centralized JSON datasets in `src/data/en/` and `src/data/id/` — classes (13), subclasses (116 complete across PHB, XGE, TCE, SCAG, EGW, VRGR, FTD, DMG), class feature entries (314), subclass features (601), spells (475+), wizard spells (240+), weapons (37), armor (13), equipment (237+), items (549), feats (127), backgrounds (9), warlock invocations, subclass spells/choices. 100% of features have non-truncated, gameplay-relevant summaries and full descriptions aligned with official D&D 5e API.
 - **SRD client**: `src/lib/srd-client.ts` provides 30+ accessor functions with memory + localStorage caching (5min TTL); supports sourcebook filtering (PHB, SCAG, XGE, TCE, MTF, EGW, FTD, VRGR)
 - **Persistence**: Dexie.js (`dnd-wizard-db` IndexedDB) primary, localStorage fallback; `normalizeCharacter()` merges legacy saves against current defaults
 - **Derived stats**: `computeDerivedStats()` computes AC, speed, initiative, saving throws, spell DCs, class resources, exhaustion/cover/grapple/shove effects
