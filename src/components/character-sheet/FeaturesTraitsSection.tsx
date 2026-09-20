@@ -5,8 +5,9 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { StarIcon as Star, PlusIcon as Plus, CrownIcon as Crown, EyeIcon } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
+import { FeatureSelectionModal } from "../modals/FeatureSelectionModal";
 import { getStaticFeats, getStaticSubclasses, getStaticClass, getStaticRace, getStaticFeat } from "@/lib/srd-client";
-import { syncBaseFeatures } from "@/lib/character-creation";
+import { syncBaseFeatures, getMissingFeatureChoices, resolveFeatureChoice } from "@/lib/character-creation";
 import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { FeatureMechanicsChips } from "./FeatureMechanicsChips";
@@ -24,6 +25,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const [showHiddenFeatures, setShowHiddenFeatures] = useState(false);
   const [syncing, setSyncing] = useState(false);
+  const [missingChoices, setMissingChoices] = useState<ReturnType<typeof getMissingFeatureChoices>>([]);
+  const [currentChoiceIndex, setCurrentChoiceIndex] = useState(0);
   const feats = useMemo(() => getStaticFeats([], character.ruleset), [character.ruleset]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
   const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
@@ -56,10 +59,40 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
       const synced = syncBaseFeatures(character);
       onChange({ features: synced.features });
       await saveCharacter({ ...character, features: synced.features });
+
+      const missing = getMissingFeatureChoices(synced);
+      if (missing.length > 0) {
+        setMissingChoices(missing);
+        setCurrentChoiceIndex(0);
+      }
     } finally {
       setSyncing(false);
     }
   };
+
+  const handleChoiceSelect = async (selectedOptionName: string) => {
+    const currentChoice = missingChoices[currentChoiceIndex];
+    if (!currentChoice) return;
+
+    const updated = resolveFeatureChoice(character, currentChoice, selectedOptionName);
+    onChange(updated);
+    await saveCharacter(updated);
+
+    const nextIndex = currentChoiceIndex + 1;
+    if (nextIndex < missingChoices.length) {
+      setCurrentChoiceIndex(nextIndex);
+    } else {
+      setMissingChoices([]);
+      setCurrentChoiceIndex(0);
+    }
+  };
+
+  const handleChoiceClose = () => {
+    setMissingChoices([]);
+    setCurrentChoiceIndex(0);
+  };
+
+  const currentChoice = missingChoices[currentChoiceIndex] || null;
 
   const sortedFeatures = useMemo(() => {
     return [...character.features].sort((a, b) => {
@@ -250,16 +283,29 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           })}
       </div>
       {editMode && (
-          <button
-            type="button"
-            onClick={addItem}
-            className="mt-3 btn-secondary flex items-center gap-1.5"
-          >
-            <Plus size={16} />
-            {t("button.addFeature", "Add Feature")}
-          </button>
-      )}
-      {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
-    </SectionCard>
+           <button
+             type="button"
+             onClick={addItem}
+             className="mt-3 btn-secondary flex items-center gap-1.5"
+           >
+             <Plus size={16} />
+             {t("button.addFeature", "Add Feature")}
+           </button>
+       )}
+       {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
+       {currentChoice && (
+         <FeatureSelectionModal
+           isOpen={!!currentChoice}
+           onClose={handleChoiceClose}
+           name={currentChoice.featureName}
+           description={currentChoice.description}
+           options={currentChoice.options}
+           count={currentChoice.count}
+           isSubclass={currentChoice.source === "subclass"}
+           onSelect={handleChoiceSelect}
+           selectedValues={[]}
+         />
+       )}
+     </SectionCard>
   );
 }

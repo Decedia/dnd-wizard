@@ -891,6 +891,153 @@ export function applySubclassFeatures(character: Character): Character {
   return { ...character, features: [...character.features, ...toAdd] };
 }
 
+export type MissingFeatureChoice = {
+  featureName: string;
+  description: string;
+  options: { name: string; description: string; icon?: string }[];
+  count?: number;
+  level: number;
+  storageKey: string;
+  source: "class" | "subclass";
+};
+
+export function getMissingFeatureChoices(character: Character): MissingFeatureChoice[] {
+  const missing: MissingFeatureChoice[] = [];
+
+  if (character.subclass && character.class) {
+    const classData = getStaticClass(character.class, character.ruleset);
+    const unlockLevel = classData?.subclassLevel ?? 3;
+    if (character.level >= unlockLevel) {
+      const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
+      const subclass = subclasses.find((s) => s.name === character.subclass);
+      if (subclass) {
+        for (const feature of subclass.features) {
+          if (!feature.choices || feature.choices.length === 0) continue;
+          if (feature.level != null && feature.level > character.level) continue;
+
+          const key = feature.level != null ? `subclass-feature-${feature.level}-${feature.name}` : `subclass-feature-${feature.name}`;
+          const oldKey = `subclass-feature-${feature.name}`;
+          const selected = (character.featureSelections as any)?.[key] || (character.featureSelections as any)?.[oldKey];
+          const selectedValues = Array.isArray(selected) ? selected : selected ? [selected] : [];
+
+          if (selectedValues.length === 0) {
+            missing.push({
+              featureName: feature.name,
+              description: (feature.description as string) || `Make a selection for ${feature.name}`,
+              options: feature.choices.map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
+              count: (feature as any).choicesCount || 1,
+              level: feature.level ?? unlockLevel,
+              storageKey: key,
+              source: "subclass",
+            });
+          }
+        }
+      }
+    }
+  }
+
+  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
+  if (classData) {
+    for (let i = 0; i < classData.levels.length; i++) {
+      const levelNumber = i + 1;
+      if (levelNumber > character.level) break;
+      const levelData = classData.levels[i];
+      for (const feature of (levelData.features || [])) {
+        const feat = feature as any;
+        if (!feat.choices) continue;
+        const raw = feat.choices;
+        const options = Array.isArray(raw?.options) ? raw.options : [];
+        if (options.length === 0) continue;
+
+        const key = `feature-${feature.name}`;
+        const oldKey = `class-feature-${levelNumber}-${feature.name}`;
+        const selected = (character.featureSelections as any)?.[key] || (character.featureSelections as any)?.[oldKey];
+        const selectedValues = Array.isArray(selected) ? selected : selected ? [selected] : [];
+
+        if (selectedValues.length === 0) {
+          const optionObjects = options.map((opt: any) =>
+            typeof opt === "string" ? { name: opt, description: "" } : { name: opt.name, description: opt.description || "", icon: opt.icon }
+          );
+          missing.push({
+            featureName: feature.name,
+            description: ((raw as any)?.description || feature.description || `Make a selection for ${feature.name}`) as string,
+            options: optionObjects,
+            count: (raw as any)?.count || 1,
+            level: levelNumber,
+            storageKey: key,
+            source: "class",
+          });
+        }
+      }
+    }
+  }
+
+  return missing;
+}
+
+export function resolveFeatureChoice(character: Character, choice: MissingFeatureChoice, selectedOptionName: string): Character {
+  const featureSelections = {
+    ...character.featureSelections,
+    [choice.storageKey]: [selectedOptionName],
+  };
+
+  const features = [...character.features];
+
+  let parentFeature: any = null;
+  if (choice.source === "subclass") {
+    const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
+    const subclass = subclasses.find((s) => s.name === character.subclass);
+    if (subclass) {
+      parentFeature = subclass.features.find((f: any) => f.name === choice.featureName);
+    }
+  } else {
+    const classData = getStaticClass(character.class, character.ruleset);
+    if (classData) {
+      for (const level of classData.levels) {
+        const found = (level.features || []).find((f: any) => f.name === choice.featureName);
+        if (found) {
+          parentFeature = found;
+          break;
+        }
+      }
+    }
+  }
+
+  if (parentFeature) {
+    const parentId = `${choice.source}-${choice.featureName}`.replace(/\s+/g, "-");
+    const hasParent = features.some((f) => f.id === parentId || f.name === choice.featureName);
+
+    if (!hasParent) {
+      features.push({
+        id: parentId,
+        name: choice.featureName,
+        description: normalizeDescription(parentFeature.description),
+        source: choice.source,
+        locked: true,
+        ...extractFeatureFields(parentFeature),
+      });
+    }
+
+    const choiceId = `${choice.source}-${selectedOptionName}`.replace(/\s+/g, "-");
+    const hasChoice = features.some((f) => f.id === choiceId || f.name === selectedOptionName);
+
+    if (!hasChoice) {
+      const option = parentFeature.choices?.find((c: any) => c.name === selectedOptionName);
+      features.push({
+        id: choiceId,
+        name: selectedOptionName,
+        description: normalizeDescription(option?.description || selectedOptionName),
+        source: choice.source,
+        locked: true,
+        showInSheet: true,
+        ...extractFeatureFields(parentFeature),
+      });
+    }
+  }
+
+  return { ...character, featureSelections, features };
+}
+
 interface SubclassSpellGrant {
   name: string;
   level: number;
