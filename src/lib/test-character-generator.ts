@@ -353,7 +353,8 @@ async function generateSingleCharacter({
   const subclassFeatureChoices = collectSubclassFeatureChoices(subclassData, classData.subclassLevel || 3, 5);
   for (const choice of subclassFeatureChoices) {
     const selected = randomChoices(choice.options, choice.count || 1);
-    character.featureSelections[`subclass-feature-${choice.name}`] = selected;
+    const levelKey = choice.level != null ? `${choice.level}-` : "";
+    character.featureSelections[`subclass-feature-${levelKey}${choice.name}`] = selected;
   }
 
   if (className === "Warlock") {

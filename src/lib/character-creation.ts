@@ -844,7 +844,7 @@ export function applySubclassFeatures(character: Character): Character {
   const newFeatures: Character["features"] = [];
   for (const feature of earnedFeatures) {
     if (feature.choices && feature.choices.length > 0) {
-      const key = `subclass-feature-${feature.name}`;
+      const key = feature.level != null ? `subclass-feature-${feature.level}-${feature.name}` : `subclass-feature-${feature.name}`;
       const selected = (character as any).featureSelections?.[key];
       if (!newFeatures.some((f) => f.name === feature.name)) {
         newFeatures.push({
@@ -866,6 +866,7 @@ export function applySubclassFeatures(character: Character): Character {
               description: normalizeDescription(opt.description),
               source: "subclass" as const,
               locked: true,
+              showInSheet: true,
               ...extractFeatureFields(feature),
             });
           }
