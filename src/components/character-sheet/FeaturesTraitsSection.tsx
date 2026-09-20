@@ -170,10 +170,42 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         }
         
         const srdSource = (srdFeature as any)?.source ? { type: (srdFeature as any).source.type || existing.source, name: (srdFeature as any).source.name || feature.name, level: (srdFeature as any).source.level ?? derivedSource?.level ?? null } : derivedSource;
-        
+
+        const description = feature.description || "";
+        const actionType = (feature as any).actionType;
+        const uses = (feature as any).uses;
+        const requirement = (feature as any).requirement;
+        const duration = (feature as any).duration;
+        const featureType = (feature as any).featureType || "Passive";
+        const onUse = (feature as any).onUse;
+        const scaling = (feature as any).scaling;
+
+        const mechanismParts: string[] = [];
+        if (actionType && actionType !== "passive") mechanismParts.push(actionType.toLowerCase());
+        if (uses) {
+          const total = typeof uses.total === "number" ? uses.total : uses.total;
+          const recharge = uses.recharge;
+          mechanismParts.push(`${total}/${recharge}`);
+        }
+        if (requirement) mechanismParts.push(requirement.toLowerCase());
+        if (duration && duration !== "Instantaneous") mechanismParts.push(duration.toLowerCase());
+        if (featureType === "Active" && !actionType) mechanismParts.push("action");
+        if (onUse) mechanismParts.push(onUse.toLowerCase());
+        if (scaling) mechanismParts.push("scales");
+
+        const mechanismStr = mechanismParts.length > 0 ? ` (${mechanismParts.join(", ")})` : "";
+
+        const fallbackSummary = (() => {
+          const firstSentence = description.split(/[.\n]/)[0].trim();
+          let s = firstSentence + mechanismStr;
+          const words = s.split(/\s+/);
+          if (words.length > 30) s = words.slice(0, 30).join(" ");
+          return s;
+        })();
+
         return {
           ...feature,
-          summary: srdFeature?.summary ?? existing.summary ?? null,
+          summary: srdFeature?.summary ?? existing.summary ?? (fallbackSummary || null),
           featureType: srdFeature?.featureType ?? existing.featureType ?? null,
           actionType: srdFeature?.actionType ?? existing.actionType ?? null,
           uses: srdFeature?.uses ?? existing.uses ?? null,
