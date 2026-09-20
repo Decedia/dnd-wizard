@@ -20,6 +20,7 @@ interface FeatureMechanicsSummaryProps {
   book?: string | null;
   onUseClick?: () => void;
   showInSheet?: boolean;
+  showFullDescription?: boolean;
   size?: "sm" | "md";
 }
 
@@ -104,6 +105,7 @@ export function FeatureMechanicsChips({
   book,
   onUseClick,
   showInSheet = true,
+  showFullDescription = false,
   size = "sm",
 }: FeatureMechanicsSummaryProps) {
   const hasUses = !!uses;
@@ -287,7 +289,7 @@ export function FeatureMechanicsChips({
             Use
           </button>
         )}
-        {description && <InfoButton title="Feature Details" description={description} />}
+        {description && !showFullDescription && <InfoButton title="Feature Details" description={description} />}
       </div>
     </div>
   );
@@ -301,9 +303,15 @@ export function FeatureMechanicsChips({
       }}
     >
       <div style={{ padding: "0 14px 10px", background: "transparent" }}>
-        <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
-          {resolvedSummary}
-        </p>
+        {showFullDescription && description ? (
+          <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
+            {description}
+          </p>
+        ) : (
+          <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
+            {resolvedSummary}
+          </p>
+        )}
       </div>
       {showInSheet && gridRows && (
         <div

@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { StarIcon as Star, PlusIcon as Plus, CrownIcon as Crown, EyeIcon } from "@/components/icons";
+import { StarIcon as Star, PlusIcon as Plus, CrownIcon as Crown } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
 import { FeatureSelectionModal } from "../modals/FeatureSelectionModal";
 import { getStaticFeats, getStaticSubclasses, getStaticClass, getStaticRace, getStaticFeat } from "@/lib/srd-client";
@@ -20,10 +20,9 @@ interface FeaturesTraitsSectionProps {
 }
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
-  const { onFieldBlur } = useCharacterSheet();
+  const { onFieldBlur, showDescriptions } = useCharacterSheet();
   const { t, tDesc } = useLanguage();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
-  const [showHiddenFeatures, setShowHiddenFeatures] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [missingChoices, setMissingChoices] = useState<ReturnType<typeof getMissingFeatureChoices>>([]);
   const [currentChoiceIndex, setCurrentChoiceIndex] = useState(0);
@@ -105,9 +104,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   }, [character.features]);
 
   const visibleFeatures = useMemo(() => {
-    const base = showHiddenFeatures ? sortedFeatures : sortedFeatures.filter(f => (f as any).showInSheet !== false);
+    const base = showDescriptions ? sortedFeatures : sortedFeatures.filter(f => (f as any).showInSheet !== false);
     return base.filter(f => f.id && f.name);
-  }, [sortedFeatures, showHiddenFeatures]);
+  }, [sortedFeatures, showDescriptions]);
 
   const hiddenCount = useMemo(() => {
     return character.features.filter(f => (f as any).showInSheet === false).length;
@@ -248,18 +247,10 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 </div>
               </div>
         )}
-        {hiddenCount > 0 && (
+        {hiddenCount > 0 && !showDescriptions && (
           <div className="flex items-center justify-between px-1">
              <span className="text-xs text-[var(--color-text-secondary)]">{t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}</span>
-            <button
-              type="button"
-              onClick={() => setShowHiddenFeatures(!showHiddenFeatures)}
-              className="text-xs text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] flex items-center gap-1"
-              title={showHiddenFeatures ? t("features.hideReference") : t("features.showAll")}
-            >
-              <EyeIcon className="h-4 w-4" />
-              {showHiddenFeatures ? t("features.showDefaultOnly") : t("features.showAllShort")}
-            </button>
+            <span className="text-xs text-[var(--color-text-muted)]">{t("description.show")}</span>
           </div>
         )}
         {editMode && (
@@ -289,7 +280,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 </div>
                 <div className="mt-1">
                  <FeatureMechanicsChips
-                  summary={summaryText}
+                  summary={showDescriptions ? "" : summaryText}
                   description={tDesc(`feature.desc.${feature.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, (feature as any).description || "")}
                   featureType={(feature as any).featureType}
                   actionType={(feature as any).actionType}
@@ -307,7 +298,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                       updateItem(feature.id, { onUse: (feature as any).onUse });
                     }
                   }}
-                  showInSheet={(feature as any).showInSheet !== false}
+                  showInSheet={showDescriptions || (feature as any).showInSheet !== false}
+                  showFullDescription={showDescriptions}
                 />
                 </div>
               </div>
@@ -338,6 +330,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
            selectedValues={[]}
          />
        )}
-     </SectionCard>
+    </SectionCard>
   );
 }
