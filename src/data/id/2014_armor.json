@@ -1,1 +1,282 @@
-{}
+{
+  "armors": [
+    {
+      "index": "breastplate",
+      "name": "Breastplate",
+      "equipment_category": "Armor",
+      "description": "Sepasang logam yang dipasang di dada, menutupi torso sambil membiarkan kaki bebas untuk mobilitas. Menawarkan perlindungan solid tanpa bobot setelan penuh, menjadikannya pilihan favorit prajurit dan pengembara yang menghargai pertahanan dan agility.",
+      "special": "",
+      "cost": {
+        "quantity": 400,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 14,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "chain-mail",
+      "name": "Chain Mail",
+      "equipment_category": "Armor",
+      "description": "Jaket kulit yang dilapisi lencana logam. Ringan dan fleksibel, cocok untuk pejuang yang membutuhkan perlindungan tanpa mengorbankan mobilitas.",
+      "special": "",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 55,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 16,
+        "dex_bonus": false
+      },
+      "str_minimum": 13,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "chain-shirt",
+      "name": "Chain Shirt",
+      "equipment_category": "Armor",
+      "description": "Kulit tebal yang dibuat dari dua lapisan yang dijahit bersama, dengan lapisan dalam dari cangkang atau tanduk, dilapis lemak. Ringan dan fleksibel, cocok untuk pejuang yang membutuhkan perlindungan tanpa mengorbankan mobilitas.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 13,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "half-plate-armor",
+      "name": "Half Plate Armor",
+      "equipment_category": "Armor",
+      "description": "A combination of plate armor pieces covering roughly half the body, paired with brigandine or leather on the rest. It offers substantial protection with less weight than full plate, though its articulated joints create slight noise.",
+      "special": "",
+      "cost": {
+        "quantity": 750,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 15,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "hide-armor",
+      "name": "Hide Armor",
+      "equipment_category": "Armor",
+      "description": "Armor tebal dari kulit hewan yang diasah. Pakaian dalam yang kaku dan kasar, sering dipadukan dengan baju zirah untuk perlindungan tambahan. Biasanya digunakan oleh barbarian dan ranger.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 12,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 12,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "leather-armor",
+      "name": "Leather Armor",
+      "equipment_category": "Armor",
+      "description": "Zirah kulit yang dipakai di dada, bahu, dan pinggang. Terbuat dari kulit yang tidak terlalu tebal, dilumat dan diolah agar tetap fleksibel saat kering. Melindungi torso dan bagian atas kaki.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "armor_category": "Light",
+      "armor_class": {
+        "base": 11,
+        "dex_bonus": true
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "padded-armor",
+      "name": "Padded Armor",
+      "equipment_category": "Armor",
+      "description": "Pakaian dalam tebal yang terdiri dari lapisan kain atau wol yang dijahit bersama, sering dipadukan dengan baju zirah untuk perlindungan tambahan. Ringan tetapi memberikan perlindungan minimal.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "armor_category": "Light",
+      "armor_class": {
+        "base": 11,
+        "dex_bonus": true
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "plate-armor",
+      "name": "Plate Armor",
+      "equipment_category": "Armor",
+      "description": "Zirah penuh yang terdiri dari papan metal yang dipotong dan dirancang untuk menutupi seluruh tubuh. Menawarkan perlindungan terbaik tetapi sangat berat dan mahal.",
+      "special": "",
+      "cost": {
+        "quantity": 1500,
+        "unit": "gp"
+      },
+      "weight": 65,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 18,
+        "dex_bonus": false
+      },
+      "str_minimum": 15,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "ring-mail",
+      "name": "Ring Mail",
+      "equipment_category": "Armor",
+      "description": "Zirah kulit yang dilapis cincin metal yang dijahit ke tempatnya. Lebih baik dari leather armor tetapi masih rentan terhadap serangan yang menusuk.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 14,
+        "dex_bonus": false
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "scale-mail",
+      "name": "Scale Mail",
+      "equipment_category": "Armor",
+      "description": "Zirah kulit yang dilapis sisik-sisik logam yang dijahit ke tempatnya. Menawarkan perlindungan yang baik tetapi berat dan berisik.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 45,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 14,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "shield",
+      "name": "Shield",
+      "equipment_category": "Armor",
+      "description": "Perisai kayu atau logam yang dipegang di satu tangan. Memberikan bonus +2 ke AC. Bisa digunakan bersama armor lainnya.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "armor_category": "Shield",
+      "armor_class": {
+        "base": 2,
+        "dex_bonus": false
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "splint-armor",
+      "name": "Splint Armor",
+      "equipment_category": "Armor",
+      "description": "Zirah yang terbuat dari pita-pita tipis logam yang diikat bersama untuk menutupi badan. Menawarkan perlindungan yang sangat baik tetapi sangat berat dan mahal.",
+      "special": "",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 60,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 17,
+        "dex_bonus": false
+      },
+      "str_minimum": 15,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "studded-leather-armor",
+      "name": "Studded Leather Armor",
+      "equipment_category": "Armor",
+      "description": "Hardened leather reinforced with closely spaced metal studs or rivets. It offers better protection than standard leather armor while maintaining the light weight and flexibility favored by rangers and scouts.",
+      "special": "",
+      "cost": {
+        "quantity": 45,
+        "unit": "gp"
+      },
+      "weight": 13,
+      "armor_category": "Light",
+      "armor_class": {
+        "base": 12,
+        "dex_bonus": true
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB"
+    }
+  ]
+}

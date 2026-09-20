@@ -1,1 +1,5766 @@
-{}
+{
+  "equipments": [
+    {
+      "index": "abacus",
+      "name": "Abacus",
+      "equipment_category": "Adventuring Gear",
+      "description": "Rangkaian manik-manik pada batang yang digunakan untuk menghitung dan perhitungan. Penting untuk pedagang, bankir, dan siapa pun yang perlu menjaga catatan yang tepat saat bepergian.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "acid-vial",
+      "name": "Acid (vial)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Sebagai Action, kamu dapat menyiramkan isi vial ini ke creature dalam 5 feet darimu atau melempar vial hingga 20 feet. Saat melempar, setiap creatures dalam 5 feet dari target harus melakukan DC 10 DEX saving throw. Kegagalan = 1d6 acid damage, Keberhasilan = setengah damage.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "alchemists-fire-flask",
+      "name": "Alchemist's fire (flask)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Cairan lengket dan mengadhesif yang menyala saat terpapar udara. Sebagai Action, kamu dapat melempar flask ini hingga 20 feet, menghancurkannya saat menghantam permukaan. Setiap creatures dalam 5 feet dari area harus melakukan DC 10 DEX saving throw. Kegagalan = 1d4 fire damage saat awal dan 1d4 fire damage di akhir setiap giliranmu selama 1 minute. Keberhasilan = setengah damage saat awal, tanpa damage berkelanjutan.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "50 gp"
+    },
+    {
+      "index": "alchemists-supplies",
+      "name": "Alchemist's Supplies",
+      "equipment_category": "Tools",
+      "description": "Alat-alat khusus ini mencakup item-item yang diperlukan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh jenis kerajinan yang paling umum.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "50 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "alms-box",
+      "name": "Alms box",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kotak kecil untuk sedekah, biasanya ditemukan dalam priest's pack.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 cp"
+    },
+    {
+      "index": "amulet",
+      "name": "Amulet",
+      "equipment_category": "Adventuring Gear",
+      "description": "Sebuah holy symbol adalah representasi dari seorang god atau pantheon. Bisa menjadi amulet, reliquary, atau item lainnya.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "animal-feed-1-day",
+      "name": "Animal Feed (1 day)",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Satu hari pakan untuk tunggal mount atau beast of burden. Biasanya campuran dari biji-bijian, sayuran kering, dan hay.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 cp"
+    },
+    {
+      "index": "antitoxin-vial",
+      "name": "Antitoxin (vial)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Creature yang meminum vial cairan ini mendapatkan advantage pada saving throws terhadap poison selama 1 hour. Tidak memberikan manfaat jika creature sedang terkena poison.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "50 gp"
+    },
+    {
+      "index": "arrow",
+      "name": "Arrow",
+      "equipment_category": "Adventuring Gear",
+      "description": "Proyektil bertangkah yang dirancang untuk digunakan dengan bow. Setiap arrow terdiri dari shaft kayu, fletching, dan kepala arrow logam.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "↗️",
+      "value": "1 gp"
+    },
+    {
+      "index": "backpack",
+      "name": "Backpack",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kantong kulit yang kuat dengan tali bahu, dirancang untuk membawa peralatan di punggung. Memiliki banyak kompartemen dan dapat menampung hingga 30 pounds.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "bagpipes",
+      "name": "Bagpipes",
+      "equipment_category": "Tools",
+      "description": "Beberapa jenis paling umum dari musical instruments ditunjukkan pada tabel. Bagi banyak races, penyediaan ini hanya mencakup instrument yang paling umum untuk race tersebut.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "30 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "ball-bearings-bag-of-1000",
+      "name": "Ball bearings (bag of 1,000)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Sebagai Action, kamu dapat menuangkan bola-bola logam kecil ini dari kantongnya untuk menutupi area 10 feet square. Setiap creatures yang bergerak melalui area ini harus melakukan DC 10 DEX saving throw atau terpeleset. Kegagalan = terjerat sampai beristirahat.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "barding-breastplate",
+      "name": "Barding: Breastplate",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 1600,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1600 gp"
+    },
+    {
+      "index": "barding-chain-mail",
+      "name": "Barding: Chain mail",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 300,
+        "unit": "gp"
+      },
+      "weight": 110,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "300 gp"
+    },
+    {
+      "index": "barding-chain-shirt",
+      "name": "Barding: Chain shirt",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "200 gp"
+    },
+    {
+      "index": "barding-half-plate",
+      "name": "Barding: Half plate",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 3000,
+        "unit": "gp"
+      },
+      "weight": 80,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "3000 gp"
+    },
+    {
+      "index": "barding-hide",
+      "name": "Barding: Hide",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 24,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "40 gp"
+    },
+    {
+      "index": "barding-leather",
+      "name": "Barding: Leather",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "40 gp"
+    },
+    {
+      "index": "barding-padded",
+      "name": "Barding: Padded",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 16,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "20 gp"
+    },
+    {
+      "index": "barding-plate",
+      "name": "Barding: Plate",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 6000,
+        "unit": "gp"
+      },
+      "weight": 130,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "6000 gp"
+    },
+    {
+      "index": "barding-ring-mail",
+      "name": "Barding: Ring mail",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 80,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "12 gp"
+    },
+    {
+      "index": "barding-scale-mail",
+      "name": "Barding: Scale mail",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 90,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "200 gp"
+    },
+    {
+      "index": "barding-splint",
+      "name": "Barding: Splint",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 800,
+        "unit": "gp"
+      },
+      "weight": 120,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "800 gp"
+    },
+    {
+      "index": "barding-studded-leather",
+      "name": "Barding: Studded Leather",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "special": "",
+      "cost": {
+        "quantity": 180,
+        "unit": "gp"
+      },
+      "weight": 26,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "180 gp"
+    },
+    {
+      "index": "barrel",
+      "name": "Barrel",
+      "equipment_category": "Adventuring Gear",
+      "description": "Tong kayu yang kuat, sering digunakan untuk menyimpan cairan, makanan, atau barang lainnya. Beratnya sekitar 40 pounds ketika kosong.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 70,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "basket",
+      "name": "Basket",
+      "equipment_category": "Adventuring Gear",
+      "description": "Keranjang anyaman dari bambu atau rotan, digunakan untuk membawa barang-barang ringan.",
+      "special": "",
+      "cost": {
+        "quantity": 4,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "4 sp"
+    },
+    {
+      "index": "battleaxe",
+      "name": "Battleaxe",
+      "equipment_category": "Weapon",
+      "description": "A broad-bladed axe mounted on a sturdy haft, designed for war. Its heavy head delivers devastating chopping blows, cleaving through armor and shield alike.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "10 gp",
+      "damageDice": "1d8",
+      "damageType": "Slashing",
+      "versatileDice": "1d10"
+    },
+    {
+      "index": "bedroll",
+      "name": "Bedroll",
+      "equipment_category": "Adventuring Gear",
+      "description": "Selimut tebal yang dilipat, digunakan untuk tidur di luar. Memberikan comfort dan kehangatan saat beristirahat di alam liar.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 7,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "bell",
+      "name": "Bell",
+      "equipment_category": "Adventuring Gear",
+      "description": "Bel kecil yang menghasilkan suara nyaring saat diketuk. Sering digunakan untuk penandaan atau peringatan.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "bit-and-bridle",
+      "name": "Bit and bridle",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "The headgear used to control a horse or similar mount, consisting of metal bars (bit) placed in the animal's mouth and straps (bridle) fitting around the head.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "blanket",
+      "name": "Blanket",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kain tebal yang ditenun, digunakan untuk kehangatan saat tidur atau sebagai tirai, pembungkus, atau pelapis.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 sp"
+    },
+    {
+      "index": "block-and-tackle",
+      "name": "Block and tackle",
+      "equipment_category": "Adventuring Gear",
+      "description": "A set of pulleys with a cable threaded through them and a hook to attach to objects, a block and tackle allows you to hoist up to four times the weight you can normally lift.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "block-of-incense",
+      "name": "Block of incense",
+      "equipment_category": "Adventuring Gear",
+      "description": "Batang wewangian, biasanya ditemukan dalam priest's pack. Digunakan untuk ritual keagamaan.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 cp"
+    },
+    {
+      "index": "blowgun",
+      "name": "Blowgun",
+      "equipment_category": "Weapon",
+      "description": "A narrow tube used to propel small darts with a breath of air. Silent and deadly, it favors stealth over brute force.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "10 gp",
+      "damageDice": "1",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "blowgun-needle",
+      "name": "Blowgun needle",
+      "equipment_category": "Adventuring Gear",
+      "description": "A small, lightweight dart designed for use with a blowgun. Often coated with poison for silent takedowns.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "book",
+      "name": "Book",
+      "equipment_category": "Adventuring Gear",
+      "description": "Buku yang berisi pengetahuan, cerita, atau catatan. Bisa menjadi sumber informasi berharga.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "bottle-glass",
+      "name": "Bottle, glass",
+      "equipment_category": "Adventuring Gear",
+      "description": "Botol kaca yang digunakan untuk menyimpan cairan. Rapuh dan bisa pecah jika jatuh.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "breastplate",
+      "name": "Breastplate",
+      "equipment_category": "Armor",
+      "description": "A fitted metal chest piece that covers the torso while leaving the legs free for mobility. It offers solid protection without the weight of a full suit, making it a favored choice of soldiers and adventurers who value both defense and agility.",
+      "special": "",
+      "cost": {
+        "quantity": 400,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 14,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🧥",
+      "value": "400 gp",
+      "baseAC": 14,
+      "armorType": "medium",
+      "maxDexBonus": 2,
+      "stealthDisadvantage": false,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "brewers-supplies",
+      "name": "Brewer's Supplies",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 9,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "20 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "bucket",
+      "name": "Bucket",
+      "equipment_category": "Adventuring Gear",
+      "description": "Ember yang digunakan untuk membawa air atau barang lainnya. Bisa terbuat dari kayu, logam, atau plastik.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 cp"
+    },
+    {
+      "index": "burglars-pack",
+      "name": "Burglar's Pack",
+      "equipment_category": "Adventuring Gear",
+      "description": "A curated collection of gear for the aspiring rogue, including a backpack, ball bearings, string, bells, candles, crowbar, hammer, pitons, a lantern, oil, rations, tinderbox, waterskin, and rope.",
+      "special": "",
+      "cost": {
+        "quantity": 16,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [
+        {
+          "item": {
+            "index": "backpack",
+            "name": "Backpack",
+            "url": "/api/2014/equipment/backpack"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "ball-bearings-bag-of-1000",
+            "name": "Ball bearings (bag of 1,000)",
+            "url": "/api/2014/equipment/ball-bearings-bag-of-1000"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "string-10-feet",
+            "name": "String (10 feet)",
+            "url": "/api/2014/equipment/string-10-feet"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "bell",
+            "name": "Bell",
+            "url": "/api/2014/equipment/bell"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "candle",
+            "name": "Candle",
+            "url": "/api/2014/equipment/candle"
+          },
+          "quantity": 5
+        },
+        {
+          "item": {
+            "index": "crowbar",
+            "name": "Crowbar",
+            "url": "/api/2014/equipment/crowbar"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "hammer",
+            "name": "Hammer",
+            "url": "/api/2014/equipment/hammer"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "piton",
+            "name": "Piton",
+            "url": "/api/2014/equipment/piton"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "lantern-hooded",
+            "name": "Lantern, hooded",
+            "url": "/api/2014/equipment/lantern-hooded"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "oil-flask",
+            "name": "Oil (flask)",
+            "url": "/api/2014/equipment/oil-flask"
+          },
+          "quantity": 2
+        },
+        {
+          "item": {
+            "index": "rations-1-day",
+            "name": "Rations (1 day)",
+            "url": "/api/2014/equipment/rations-1-day"
+          },
+          "quantity": 5
+        },
+        {
+          "item": {
+            "index": "tinderbox",
+            "name": "Tinderbox",
+            "url": "/api/2014/equipment/tinderbox"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "waterskin",
+            "name": "Waterskin",
+            "url": "/api/2014/equipment/waterskin"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "rope-hempen-50-feet",
+            "name": "Rope, hempen (50 feet)",
+            "url": "/api/2014/equipment/rope-hempen-50-feet"
+          },
+          "quantity": 1
+        }
+      ],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🎒",
+      "value": "16 gp"
+    },
+    {
+      "index": "calligraphers-supplies",
+      "name": "Calligrapher's Supplies",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "10 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "caltrops",
+      "name": "Caltrops",
+      "equipment_category": "Adventuring Gear",
+      "description": "Jejak-jejak logam dengan paku-paku tajam yang ditempatkan di tanah. Setiap creatures yang bergerak melalui area caltrops harus melakukan DC 10 DEX saving throw. Kegagalan = 1 piercing damage dan speed berkurang 10 feet sampai beristirahat.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 cp"
+    },
+    {
+      "index": "camel",
+      "name": "Camel",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A large desert beast of burden, capable of carrying heavy loads across arid terrain for days without water. Slower than a horse but better suited to desert conditions.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "50 gp"
+    },
+    {
+      "index": "candle",
+      "name": "Candle",
+      "equipment_category": "Adventuring Gear",
+      "description": "Selama 1 hour, candle menyala terang dalam radius 5 feet dan cahaya remang untuk tambahan 5 feet.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 cp"
+    },
+    {
+      "index": "carpenters-tools",
+      "name": "Carpenter's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 8,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "8 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "carriage",
+      "name": "Carriage",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A four-wheeled enclosed vehicle designed to carry passengers in relative comfort. Drawn by horses, it features padded seating and a roof.",
+      "special": "",
+      "cost": {
+        "quantity": 100,
+        "unit": "gp"
+      },
+      "weight": 600,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "100 gp"
+    },
+    {
+      "index": "cart",
+      "name": "Cart",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A two-wheeled open vehicle pulled by a draft animal, used for hauling goods, supplies, or refuse. Simple and utilitarian.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 200,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "15 gp"
+    },
+    {
+      "index": "cartographers-tools",
+      "name": "Cartographer's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "15 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "case-crossbow-bolt",
+      "name": "Case, crossbow bolt",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kotak kayu ini dapat menampung hingga dua puluh crossbow bolts.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "case-map-or-scroll",
+      "name": "Case, map or scroll",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kotak kayu atau pipa logam yang digunakan untuk melindungi peta atau scroll dari kerusakan dan kelembaban.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "censer",
+      "name": "Censer",
+      "equipment_category": "Adventuring Gear",
+      "description": "Dispenser wewangian, biasanya ditemukan dalam priest's pack. Digunakan untuk ritual keagamaan.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 cp"
+    },
+    {
+      "index": "chain-10-feet",
+      "name": "Chain (10 feet)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Rantai memiliki 10 hit points. Bisa dipatahkan dengan successful DC 20 STR check.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "chain-mail",
+      "name": "Chain Mail",
+      "equipment_category": "Armor",
+      "description": "Interlocking metal rings woven into a shirt that covers the torso and arms. Heavy and durable, it provides excellent protection but is noisy and requires considerable strength to wear effectively.",
+      "special": "",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 55,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 16,
+        "dex_bonus": false
+      },
+      "str_minimum": 13,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🔗",
+      "value": "75 gp",
+      "baseAC": 16,
+      "armorType": "heavy",
+      "maxDexBonus": 0,
+      "stealthDisadvantage": true,
+      "strengthRequirement": 13
+    },
+    {
+      "index": "chain-shirt",
+      "name": "Chain Shirt",
+      "equipment_category": "Armor",
+      "description": "A shirt of interlocking metal rings worn as a lighter alternative to chain mail. It offers decent protection while allowing greater freedom of movement, often worn under clothing or combined with other armor.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 13,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🔗",
+      "value": "50 gp",
+      "baseAC": 13,
+      "armorType": "medium",
+      "maxDexBonus": 2,
+      "stealthDisadvantage": false,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "chalk-1-piece",
+      "name": "Chalk (1 piece)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Batu kapur kecil, biasanya digunakan untuk menandai atau menulis di permukaan keras.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 cp"
+    },
+    {
+      "index": "chariot",
+      "name": "Chariot",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A lightweight, two-wheeled vehicle drawn by horses, used for rapid transport or mounted combat. Its open design allows the rider to fight while moving.",
+      "special": "",
+      "cost": {
+        "quantity": 250,
+        "unit": "gp"
+      },
+      "weight": 100,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "250 gp"
+    },
+    {
+      "index": "chest",
+      "name": "Chest",
+      "equipment_category": "Adventuring Gear",
+      "description": "Peti kayu yang kuat dengan kunci, digunakan untuk menyimpan barang berharga. Beratnya sekitar 25 pounds ketika kosong.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 25,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "climbers-kit",
+      "name": "Climber's Kit",
+      "equipment_category": "Adventuring Gear",
+      "description": "Perkakas panjat yang termasuk tali, karabiner, dan pijak. Memungkinkan kamu memanjat permukaan yang sulit dengan advantage pada STR (Athletics) checks.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 12,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "clothes-common",
+      "name": "Clothes, common",
+      "equipment_category": "Adventuring Gear",
+      "description": "Pakaian sehari-hari yang sederhana dan fungsional. Cocok untuk kebanyakan situasi.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 sp"
+    },
+    {
+      "index": "clothes-costume",
+      "name": "Clothes, costume",
+      "equipment_category": "Adventuring Gear",
+      "description": "Pakaian kostum yang dirancang untuk penampilan atau peran tertentu. Bisa digunakan untuk menyamar atau panggung.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "clothes-fine",
+      "name": "Clothes, fine",
+      "equipment_category": "Adventuring Gear",
+      "description": "Pakaian halus yang terbuat dari bahan berkualitas tinggi. Memberikan kesan status sosial tinggi.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "15 gp"
+    },
+    {
+      "index": "clothes-travelers",
+      "name": "Clothes, traveler's",
+      "equipment_category": "Adventuring Gear",
+      "description": "Pakaian bepergian yang tahan lama dan nyaman. Dirancang untuk perjalanan panjang dan kondisi alam liar.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "club",
+      "name": "Club",
+      "equipment_category": "Weapon",
+      "description": "A simple length of wood shaped into a weapon. Crude but effective, it has served as a tool of violence since the earliest days.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "1 sp",
+      "damageDice": "1d4",
+      "damageType": "Bludgeoning",
+      "versatileDice": null
+    },
+    {
+      "index": "cobblers-tools",
+      "name": "Cobbler's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "5 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "component-pouch",
+      "name": "Component pouch",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kantong kecil yang berisi komponen-komponen material yang dibutuhkan untuk mencatat spell. Menggantikan material components yang tidak memiliki cost.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "cooks-utensils",
+      "name": "Cook's utensils",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "1 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "crossbow-bolt",
+      "name": "Crossbow bolt",
+      "equipment_category": "Adventuring Gear",
+      "description": "A short, thick shaft designed for use with a crossbow. Shorter and heavier than an arrow, it delivers tremendous impact at close to medium range.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1.5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "crossbow-hand",
+      "name": "Crossbow, hand",
+      "equipment_category": "Weapon",
+      "description": "A compact crossbow that can be wielded and fired with one hand. Its concealed size makes it a favored tool of assassins and scouts.",
+      "special": "",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚙️",
+      "value": "75 gp",
+      "damageDice": "1d6",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "crossbow-heavy",
+      "name": "Crossbow, heavy",
+      "equipment_category": "Weapon",
+      "description": "A large crossbow with a powerful draw, capable of launching bolts with tremendous force. Its weight and bulk demand two hands to operate.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 18,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚙️",
+      "value": "50 gp",
+      "damageDice": "1d10",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "crossbow-light",
+      "name": "Crossbow, light",
+      "equipment_category": "Weapon",
+      "description": "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚙️",
+      "value": "25 gp",
+      "damageDice": "1d8",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "crowbar",
+      "name": "Crowbar",
+      "equipment_category": "Adventuring Gear",
+      "description": "Menggunakan crowbar memberikan advantage pada STR checks dimana leverage crowbar dapat diterapkan.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "crystal",
+      "name": "Crystal",
+      "equipment_category": "Adventuring Gear",
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "dagger",
+      "name": "Dagger",
+      "equipment_category": "Weapon",
+      "description": "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "🗡️",
+      "value": "2 gp",
+      "damageDice": "1d4",
+      "damageType": "Piercing",
+      "range": {
+        "normal": 20,
+        "long": 60
+      },
+      "versatileDice": null
+    },
+    {
+      "index": "dart",
+      "name": "Dart",
+      "equipment_category": "Weapon",
+      "description": "A small, weighted projectile designed to be thrown with accuracy. Easy to conceal and quick to throw, darts are favored by those who prefer ranged precision.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 0.25,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "5 cp",
+      "damageDice": "1d4",
+      "damageType": "Piercing",
+      "range": {
+        "normal": 20,
+        "long": 60
+      },
+      "versatileDice": null
+    },
+    {
+      "index": "dice-set",
+      "name": "Dice Set",
+      "equipment_category": "Tools",
+      "description": "This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "1 sp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "diplomats-pack",
+      "name": "Diplomat's Pack",
+      "equipment_category": "Adventuring Gear",
+      "description": "A collection of items for the traveling negotiator, including a chest, map cases, fine clothes, writing supplies, lamp, oil, paper, perfume, sealing wax, and soap.",
+      "special": "",
+      "cost": {
+        "quantity": 39,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [
+        {
+          "item": {
+            "index": "chest",
+            "name": "Chest",
+            "url": "/api/2014/equipment/chest"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "case-map-or-scroll",
+            "name": "Case, map or scroll",
+            "url": "/api/2014/equipment/case-map-or-scroll"
+          },
+          "quantity": 2
+        },
+        {
+          "item": {
+            "index": "clothes-fine",
+            "name": "Clothes, fine",
+            "url": "/api/2014/equipment/clothes-fine"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "ink-1-ounce-bottle",
+            "name": "Ink (1 ounce bottle)",
+            "url": "/api/2014/equipment/ink-1-ounce-bottle"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "ink-pen",
+            "name": "Ink pen",
+            "url": "/api/2014/equipment/ink-pen"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "lamp",
+            "name": "Lamp",
+            "url": "/api/2014/equipment/lamp"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "oil-flask",
+            "name": "Oil (flask)",
+            "url": "/api/2014/equipment/oil-flask"
+          },
+          "quantity": 2
+        },
+        {
+          "item": {
+            "index": "paper-one-sheet",
+            "name": "Paper (one sheet)",
+            "url": "/api/2014/equipment/paper-one-sheet"
+          },
+          "quantity": 5
+        },
+        {
+          "item": {
+            "index": "perfume-vial",
+            "name": "Perfume (vial)",
+            "url": "/api/2014/equipment/perfume-vial"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "sealing-wax",
+            "name": "Sealing wax",
+            "url": "/api/2014/equipment/sealing-wax"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "soap",
+            "name": "Soap",
+            "url": "/api/2014/equipment/soap"
+          },
+          "quantity": 1
+        }
+      ],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🎒",
+      "value": "39 gp"
+    },
+    {
+      "index": "disguise-kit",
+      "name": "Disguise Kit",
+      "equipment_category": "Adventuring Gear",
+      "description": "This pouch of cosmetics, hair dye, and small props lets you create disguises that change your physical appearance. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a visual disguise.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "donkey",
+      "name": "Donkey",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A sturdy, sure-footed beast of burden. Slower than a horse but more reliable on rough terrain and less expensive to maintain.",
+      "special": "",
+      "cost": {
+        "quantity": 8,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "8 gp"
+    },
+    {
+      "index": "drum",
+      "name": "Drum",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 6,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "6 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "dulcimer",
+      "name": "Dulcimer",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "25 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "dungeoneers-pack",
+      "name": "Dungeoneer's Pack",
+      "equipment_category": "Adventuring Gear",
+      "description": "Essential gear for exploring underground, including a backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, and rope.",
+      "special": "",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [
+        {
+          "item": {
+            "index": "backpack",
+            "name": "Backpack",
+            "url": "/api/2014/equipment/backpack"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "crowbar",
+            "name": "Crowbar",
+            "url": "/api/2014/equipment/crowbar"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "hammer",
+            "name": "Hammer",
+            "url": "/api/2014/equipment/hammer"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "piton",
+            "name": "Piton",
+            "url": "/api/2014/equipment/piton"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "torch",
+            "name": "Torch",
+            "url": "/api/2014/equipment/torch"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "tinderbox",
+            "name": "Tinderbox",
+            "url": "/api/2014/equipment/tinderbox"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "rations-1-day",
+            "name": "Rations (1 day)",
+            "url": "/api/2014/equipment/rations-1-day"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "waterskin",
+            "name": "Waterskin",
+            "url": "/api/2014/equipment/waterskin"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "rope-hempen-50-feet",
+            "name": "Rope, hempen (50 feet)",
+            "url": "/api/2014/equipment/rope-hempen-50-feet"
+          },
+          "quantity": 1
+        }
+      ],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🎒",
+      "value": "12 gp"
+    },
+    {
+      "index": "elephant",
+      "name": "Elephant",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A massive beast used as a living war machine or heavy transport. Elephants can carry enormous loads and are fearsome in battle.",
+      "special": "",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "200 gp"
+    },
+    {
+      "index": "emblem",
+      "name": "Emblem",
+      "equipment_category": "Adventuring Gear",
+      "description": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic.\nAppendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "entertainers-pack",
+      "name": "Entertainer's Pack",
+      "equipment_category": "Adventuring Gear",
+      "description": "Gear for the traveling performer, including a backpack, bedroll, costumes, candles, rations, waterskin, and a disguise kit.",
+      "special": "",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [
+        {
+          "item": {
+            "index": "backpack",
+            "name": "Backpack",
+            "url": "/api/2014/equipment/backpack"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "bedroll",
+            "name": "Bedroll",
+            "url": "/api/2014/equipment/bedroll"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "clothes-costume",
+            "name": "Clothes, costume",
+            "url": "/api/2014/equipment/clothes-costume"
+          },
+          "quantity": 2
+        },
+        {
+          "item": {
+            "index": "candle",
+            "name": "Candle",
+            "url": "/api/2014/equipment/candle"
+          },
+          "quantity": 5
+        },
+        {
+          "item": {
+            "index": "rations-1-day",
+            "name": "Rations (1 day)",
+            "url": "/api/2014/equipment/rations-1-day"
+          },
+          "quantity": 5
+        },
+        {
+          "item": {
+            "index": "waterskin",
+            "name": "Waterskin",
+            "url": "/api/2014/equipment/waterskin"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "disguise-kit",
+            "name": "Disguise Kit",
+            "url": "/api/2014/equipment/disguise-kit"
+          },
+          "quantity": 1
+        }
+      ],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🎒",
+      "value": "40 gp"
+    },
+    {
+      "index": "explorers-pack",
+      "name": "Explorer's Pack",
+      "equipment_category": "Adventuring Gear",
+      "description": "A well-rounded kit for wilderness travel, including a backpack, bedroll, mess kit, tinderbox, torches, rations, waterskin, and rope.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [
+        {
+          "item": {
+            "index": "backpack",
+            "name": "Backpack",
+            "url": "/api/2014/equipment/backpack"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "bedroll",
+            "name": "Bedroll",
+            "url": "/api/2014/equipment/bedroll"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "mess-kit",
+            "name": "Mess Kit",
+            "url": "/api/2014/equipment/mess-kit"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "tinderbox",
+            "name": "Tinderbox",
+            "url": "/api/2014/equipment/tinderbox"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "torch",
+            "name": "Torch",
+            "url": "/api/2014/equipment/torch"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "rations-1-day",
+            "name": "Rations (1 day)",
+            "url": "/api/2014/equipment/rations-1-day"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "waterskin",
+            "name": "Waterskin",
+            "url": "/api/2014/equipment/waterskin"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "rope-hempen-50-feet",
+            "name": "Rope, hempen (50 feet)",
+            "url": "/api/2014/equipment/rope-hempen-50-feet"
+          },
+          "quantity": 1
+        }
+      ],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🎒",
+      "value": "10 gp"
+    },
+    {
+      "index": "fishing-tackle",
+      "name": "Fishing tackle",
+      "equipment_category": "Adventuring Gear",
+      "description": "Peralatan pancing yang termasuk pancing, umpan, dan joran. Digunakan untuk menangkap ikan di sungai atau danau.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "flail",
+      "name": "Flail",
+      "equipment_category": "Weapon",
+      "description": "A spiked metal ball attached to a handle by a chain. Its swinging strikes can bypass shields and deliver crushing bludgeoning damage.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "10 gp",
+      "damageDice": "1d8",
+      "damageType": "Bludgeoning",
+      "versatileDice": null
+    },
+    {
+      "index": "flask-or-tankard",
+      "name": "Flask or tankard",
+      "equipment_category": "Adventuring Gear",
+      "description": "Botol atau gelas yang digunakan untuk menyimpan dan minum cairan.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 cp"
+    },
+    {
+      "index": "flute",
+      "name": "Flute",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "2 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "forgery-kit",
+      "name": "Forgery Kit",
+      "equipment_category": "Adventuring Gear",
+      "description": "This small box contains a variety of papers and parchments, pens and inks, seals and sealing wax, gold and silver leaf, and other supplies necessary to create convincing forgeries of physical documents. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a physical forgery of a document.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "15 gp"
+    },
+    {
+      "index": "galley",
+      "name": "Galley",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A large warship propelled by rows of oars and sails. Used for naval combat and transporting troops across open water.",
+      "special": "",
+      "cost": {
+        "quantity": 30000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "30000 gp"
+    },
+    {
+      "index": "glaive",
+      "name": "Glaive",
+      "equipment_category": "Weapon",
+      "description": "A polearm with a single-edged blade mounted at the end of a long shaft. Its reach allows wielders to strike foes from a safe distance.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "20 gp",
+      "damageDice": "1d10",
+      "damageType": "Slashing",
+      "versatileDice": null
+    },
+    {
+      "index": "glassblowers-tools",
+      "name": "Glassblower's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "30 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "grappling-hook",
+      "name": "Grappling hook",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kait baja yang digunakan untuk memanjat dinding atau menambatkan kapal. Bisa dilempar hingga 30 feet.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "greataxe",
+      "name": "Greataxe",
+      "equipment_category": "Weapon",
+      "description": "An immense axe with a heavy, broad blade. Wielded with two hands, it delivers devastating slashing blows that can cleave through the toughest defenses.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 7,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d12",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "30 gp",
+      "damageDice": "1d12",
+      "damageType": "Slashing",
+      "versatileDice": null
+    },
+    {
+      "index": "greatclub",
+      "name": "Greatclub",
+      "equipment_category": "Weapon",
+      "description": "A massive, heavy club fashioned from a thick log or bound timber. Crude and oversized, its weight delivers tremendous blunt force.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 10,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "2 sp",
+      "damageDice": "1d8",
+      "damageType": "Bludgeoning",
+      "versatileDice": null
+    },
+    {
+      "index": "greatsword",
+      "name": "Greatsword",
+      "equipment_category": "Weapon",
+      "description": "A towering two-handed blade of exceptional length and weight. Mastery of this weapon allows for sweeping cuts that can fell multiple foes.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "2d6",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "50 gp",
+      "damageDice": "2d6",
+      "damageType": "Slashing",
+      "versatileDice": null
+    },
+    {
+      "index": "halberd",
+      "name": "Halberd",
+      "equipment_category": "Weapon",
+      "description": "A versatile polearm combining an axe blade with a spear point and a hook. Effective for both chopping and thrusting, it is a staple of battlefield infantry.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "20 gp",
+      "damageDice": "1d10",
+      "damageType": "Slashing",
+      "versatileDice": null
+    },
+    {
+      "index": "half-plate-armor",
+      "name": "Half Plate Armor",
+      "equipment_category": "Armor",
+      "description": "A combination of plate armor pieces covering roughly half the body, paired with brigandine or leather on the rest. It offers substantial protection with less weight than full plate, though its articulated joints create slight noise.",
+      "special": "",
+      "cost": {
+        "quantity": 750,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 15,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🛡️",
+      "value": "750 gp",
+      "baseAC": 15,
+      "armorType": "medium",
+      "maxDexBonus": 2,
+      "stealthDisadvantage": true,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "hammer",
+      "name": "Hammer",
+      "equipment_category": "Adventuring Gear",
+      "description": "Palu kecil yang digunakan untuk memukul benda atau menaruh paku.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "hammer-sledge",
+      "name": "Hammer, sledge",
+      "equipment_category": "Adventuring Gear",
+      "description": "Palu besar yang digunakan untuk memukul benda dengan kekuatan besar.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "handaxe",
+      "name": "Handaxe",
+      "equipment_category": "Weapon",
+      "description": "A small, light axe designed for one-handed use or throwing. Its balance makes it equally effective in close combat or hurled at distant targets.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "5 gp",
+      "damageDice": "1d6",
+      "damageType": "Slashing",
+      "range": {
+        "normal": 20,
+        "long": 60
+      },
+      "versatileDice": null
+    },
+    {
+      "index": "healers-kit",
+      "name": "Healer's Kit",
+      "equipment_category": "Adventuring Gear",
+      "description": "This kit is a leather pouch containing bandages, salves, and splints. The kit has ten uses. As an action, you can expend one use of the kit to stabilize a creature that has 0 hit points, without needing to make a Wisdom (Medicine) check.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "herbalism-kit",
+      "name": "Herbalism Kit",
+      "equipment_category": "Adventuring Gear",
+      "description": "This kit contains a variety of instruments such as clippers, mortar and pestle, and pouches and vials used by herbalists to create remedies and potions. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to identify or apply herbs. Also, proficiency with this kit is required to create antitoxin and potions of healing.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "hide-armor",
+      "name": "Hide Armor",
+      "equipment_category": "Armor",
+      "description": "Thick animal hides layered and boiled for rigidity, fashioned into a crude but functional suit. Common among barbarians and wilderness dwellers, it provides basic protection at low cost.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 12,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 12,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🧥",
+      "value": "10 gp",
+      "baseAC": 12,
+      "armorType": "medium",
+      "maxDexBonus": 2,
+      "stealthDisadvantage": false,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "holy-water-flask",
+      "name": "Holy water (flask)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Air suci yang dikuduskan oleh cleric. Sebagai Action, kamu dapat melempar flask ini hingga 20 feet atau menyiramkannya ke undead. Undead yang terkena harus melakukan DC 10 WIS saving throw. Kegagalan = 2d6 radiant damage, Keberhasilan = setengah damage.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "horn",
+      "name": "Horn",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 3,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "3 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "horse-draft",
+      "name": "Horse, draft",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A large, powerful horse bred for pulling heavy loads rather than speed. Essential for hauling wagons and carts over long distances.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "50 gp"
+    },
+    {
+      "index": "horse-riding",
+      "name": "Horse, riding",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A trained mount suitable for riding. Faster and more agile than a draft horse, it is the standard steed for adventurers and cavalry.",
+      "special": "",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "75 gp"
+    },
+    {
+      "index": "hourglass",
+      "name": "Hourglass",
+      "equipment_category": "Adventuring Gear",
+      "description": "Pasir yang mengalir melalui lapisan-lapisan kaca, digunakan untuk mengukur waktu.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "hunting-trap",
+      "name": "Hunting trap",
+      "equipment_category": "Adventuring Gear",
+      "description": "Jebak yang digunakan untuk menangkap hewan. Membutuhkan 1 minute untuk dipasang. Ketika activated, makhluk yang memijaknya harus melakukan DC 13 DEX saving throw atau terjebak. Terjebak = 1d4 piercing damage dan speed berkurang 10 feet hingga beristirahat.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 25,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "ink-1-ounce-bottle",
+      "name": "Ink (1 ounce bottle)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Botol tinta 1 ons, digunakan untuk menulis atau melukis. Tinta hitam adalah yang paling umum.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "ink-pen",
+      "name": "Ink pen",
+      "equipment_category": "Adventuring Gear",
+      "description": "Pena tinta yang digunakan untuk menulis dengan tinta. Bisa digunakan untuk menandatangani dokumen atau menulis surat.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 cp"
+    },
+    {
+      "index": "javelin",
+      "name": "Javelin",
+      "equipment_category": "Weapon",
+      "description": "A light spear designed primarily for throwing. Its aerodynamic design allows it to be hurled with great distance and penetrating force.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 30,
+        "long": 120
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "5 sp",
+      "damageDice": "1d6",
+      "damageType": "Piercing",
+      "range": {
+        "normal": 30,
+        "long": 120
+      },
+      "versatileDice": null
+    },
+    {
+      "index": "jewelers-tools",
+      "name": "Jeweler's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "25 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "jug-or-pitcher",
+      "name": "Jug or pitcher",
+      "equipment_category": "Adventuring Gear",
+      "description": "Buyung atau kendi yang digunakan untuk menyimpan dan menuang cairan. Bisa menampung hingga 1 gallon.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 cp"
+    },
+    {
+      "index": "keelboat",
+      "name": "Keelboat",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Keelboats and rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A rowboat weighs 100 pounds, in case adventurers carry it over land.",
+      "special": "",
+      "cost": {
+        "quantity": 3000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "3000 gp"
+    },
+    {
+      "index": "ladder-10-foot",
+      "name": "Ladder (10-foot)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Tangga kayu 10 feet yang digunakan untuk memanjat ke tempat yang lebih tinggi.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 25,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 sp"
+    },
+    {
+      "index": "lamp",
+      "name": "Lamp",
+      "equipment_category": "Adventuring Gear",
+      "description": "Lampu yang menyala dengan minyak atau lilin. Menyediakan cahaya terang dalam radius 15 feet dan cahaya remang untuk tambahan 15 feet.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 sp"
+    },
+    {
+      "index": "lance",
+      "name": "Lance",
+      "equipment_category": "Weapon",
+      "description": "A long, sturdy weapon designed for mounted combat. When couched under the arm during a charge, it delivers devastating piercing damage.",
+      "special": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d12",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "special",
+          "name": "Special"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "10 gp",
+      "damageDice": "1d12",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "lantern-bullseye",
+      "name": "Lantern, bullseye",
+      "equipment_category": "Adventuring Gear",
+      "description": "Lentera dengan lensa yang memfokuskan cahaya menjadi sinar terang. Menyediakan cahaya terang 60 feet di depan dan cahaya remang 30 feet di sekitarnya.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "lantern-hooded",
+      "name": "Lantern, hooded",
+      "equipment_category": "Adventuring Gear",
+      "description": "Lentera dengan tudung yang dapat ditutup atau dibuka. Menyediakan cahaya terang dalam radius 30 feet. Bisa ditutup untuk menyembunyikan cahaya.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "leather-armor",
+      "name": "Leather Armor",
+      "equipment_category": "Armor",
+      "description": "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "armor_category": "Light",
+      "armor_class": {
+        "base": 11,
+        "dex_bonus": true
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🧥",
+      "value": "10 gp",
+      "baseAC": 11,
+      "armorType": "light",
+      "maxDexBonus": null,
+      "stealthDisadvantage": false,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "leatherworkers-tools",
+      "name": "Leatherworker's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "5 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "light-hammer",
+      "name": "Light hammer",
+      "equipment_category": "Weapon",
+      "description": "A small, balanced hammer that can be thrown or wielded in close combat. Its compact head delivers focused bludgeoning force.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "2 gp",
+      "damageDice": "1d4",
+      "damageType": "Bludgeoning",
+      "range": {
+        "normal": 20,
+        "long": 60
+      },
+      "versatileDice": null
+    },
+    {
+      "index": "little-bag-of-sand",
+      "name": "Little bag of sand",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kantong pasir kecil, biasanya ditemukan dalam scholar's pack. Digunakan untuk menimbu atau mensterilkan.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 cp"
+    },
+    {
+      "index": "lock",
+      "name": "Lock",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kunci yang digunakan untuk mengamankan peti, pintu, atau petak. Memerlukan thieves' tools untuk dibuka.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "longbow",
+      "name": "Longbow",
+      "equipment_category": "Weapon",
+      "description": "A tall bow with a powerful draw, capable of sending arrows great distances with deadly accuracy. Crafted from a single piece of quality wood, it requires strength and skill to master.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "50 gp",
+      "damageDice": "1d8",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "longship",
+      "name": "Longship",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A long, shallow-draft vessel propelled by oars and a single sail. Designed for both open-ocean voyages and river navigation.",
+      "special": "",
+      "cost": {
+        "quantity": 10000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10000 gp"
+    },
+    {
+      "index": "longsword",
+      "name": "Longsword",
+      "equipment_category": "Weapon",
+      "description": "A versatile blade of moderate length, balanced for one or two-handed use. The quintessential knightly weapon, it excels at both slashing and thrusting.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "15 gp",
+      "damageDice": "1d8",
+      "damageType": "Slashing",
+      "versatileDice": "1d10"
+    },
+    {
+      "index": "lute",
+      "name": "Lute",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 35,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "35 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "lyre",
+      "name": "Lyre",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "30 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "mace",
+      "name": "Mace",
+      "equipment_category": "Weapon",
+      "description": "A heavy metal head mounted on a sturdy shaft, designed to crush and bludgeon. Against heavily armored foes, its concentrated impact is particularly effective.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "🔨",
+      "value": "5 gp",
+      "damageDice": "1d6",
+      "damageType": "Bludgeoning",
+      "versatileDice": null
+    },
+    {
+      "index": "magnifying-glass",
+      "name": "Magnifying glass",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kaca pembesar yang digunakan untuk melihat objek kecil dengan lebih jelas. Memberikan advantage pada checks yang memerlukan pemeriksaan detail.",
+      "special": "",
+      "cost": {
+        "quantity": 100,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "100 gp"
+    },
+    {
+      "index": "manacles",
+      "name": "Manacles",
+      "equipment_category": "Adventuring Gear",
+      "description": "Besi belintang yang digunakan untuk membelenggu creature. Memerlukan DC 20 DEX check untuk dibuka dengan thieves' tools, atau DC 15 STR check untuk mematahkannya.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "masons-tools",
+      "name": "Mason's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "10 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "mastiff",
+      "name": "Mastiff",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A large, powerful breed of dog trained for guarding, hunting, or warfare. Loyal and fierce, mastiffs make excellent companions and guard animals.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25 gp"
+    },
+    {
+      "index": "maul",
+      "name": "Maul",
+      "equipment_category": "Weapon",
+      "description": "An enormous two-headed sledgehammer of immense weight. Wielded with two hands, its crushing blows can shatter bone and splinter shields.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "2d6",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "10 gp",
+      "damageDice": "2d6",
+      "damageType": "Bludgeoning",
+      "versatileDice": null
+    },
+    {
+      "index": "mess-kit",
+      "name": "Mess Kit",
+      "equipment_category": "Adventuring Gear",
+      "description": "This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 sp"
+    },
+    {
+      "index": "mirror-steel",
+      "name": "Mirror, steel",
+      "equipment_category": "Adventuring Gear",
+      "description": "Cermin baja yang digunakan untuk melihat sekitar sudut, memeriksa kondisi, atau sebagai sinyal.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0.5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "morningstar",
+      "name": "Morningstar",
+      "equipment_category": "Weapon",
+      "description": "A spiked mace with a heavy, flanged head designed to puncture and tear. Its brutal design inflicts grievous piercing wounds.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "15 gp",
+      "damageDice": "1d8",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "mule",
+      "name": "Mule",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A hybrid offspring of a horse and donkey, combining the best traits of both. Sure-footed, patient, and strong, mules are excellent pack animals.",
+      "special": "",
+      "cost": {
+        "quantity": 8,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "8 gp"
+    },
+    {
+      "index": "navigators-tools",
+      "name": "Navigator's Tools",
+      "equipment_category": "Tools",
+      "description": "This set of instruments is used for navigation at sea. Proficiency with navigator's tools lets you chart a ship's course and follow navigation charts. In addition, these tools allow you to add your proficiency bonus to any ability check you make to avoid getting lost at sea.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "25 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "net",
+      "name": "Net",
+      "equipment_category": "Weapon",
+      "description": "A weighted mesh net designed to entangle and restrain foes. When thrown effectively, it can immobilize a creature, rendering it helpless.",
+      "special": "A Large or smaller creature hit by a net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make.",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "special",
+          "name": "Special"
+        }
+      ],
+      "throw_range": {
+        "normal": 5,
+        "long": 15
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "1 gp",
+      "damageDice": "",
+      "damageType": "",
+      "range": {
+        "normal": 5,
+        "long": 15
+      },
+      "versatileDice": null
+    },
+    {
+      "index": "oil-flask",
+      "name": "Oil (flask)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Minyak yang bisa digunakan sebagai bahan bakar. Sebagai Action, kamu dapat menuangkan minyak ini ke ground dalam 5 feet. Sebagai Action, kamu dapat menerangkan minyak dengan api, menciptakan area cahaya 10 feet untuk 1 minute. Jika dilempar pada creature, harus melakukan DC 10 DEX saving throw. Kegagalan = 1 fire damage dari api.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 sp"
+    },
+    {
+      "index": "orb",
+      "name": "Orb",
+      "equipment_category": "Adventuring Gear",
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "20 gp"
+    },
+    {
+      "index": "padded-armor",
+      "name": "Padded Armor",
+      "equipment_category": "Armor",
+      "description": "A quilted coat of layered cloth and batting that absorbs blows. While offering minimal protection, it is better than nothing and has the advantage of being wearable under other armor.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "armor_category": "Light",
+      "armor_class": {
+        "base": 11,
+        "dex_bonus": true
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🧥",
+      "value": "5 gp",
+      "baseAC": 11,
+      "armorType": "light",
+      "maxDexBonus": null,
+      "stealthDisadvantage": true,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "painters-supplies",
+      "name": "Painter's Supplies",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "10 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "pan-flute",
+      "name": "Pan flute",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "12 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "paper-one-sheet",
+      "name": "Paper (one sheet)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Sepotong kertas yang digunakan untuk menulis, melukis, atau melipat menjadi origami.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 sp"
+    },
+    {
+      "index": "parchment-one-sheet",
+      "name": "Parchment (one sheet)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Sepotong parchment yang terbuat dari kulit hewan, digunakan untuk menulis dokumen penting atau spell.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 sp"
+    },
+    {
+      "index": "perfume-vial",
+      "name": "Perfume (vial)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Botol wewangian yang digunakan untuk menutupi bau atau membuat aroma yang menyenangkan.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "pick-miners",
+      "name": "Pick, miner's",
+      "equipment_category": "Adventuring Gear",
+      "description": "Batu akik yang digunakan oleh penambang untuk memecahkan batu. Bisa digunakan sebagai senjata.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "pike",
+      "name": "Pike",
+      "equipment_category": "Weapon",
+      "description": "An exceptionally long thrusting spear used by formations of infantry. Its extreme reach allows ranks of soldiers to strike at approaching enemies from behind the front line.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 18,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "5 gp",
+      "damageDice": "1d10",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "piton",
+      "name": "Piton",
+      "equipment_category": "Adventuring Gear",
+      "description": "Paku baja yang ditanam ke dinding atau tebing untuk memanjat atau mengamankan tali.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 0.25,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 cp"
+    },
+    {
+      "index": "plate-armor",
+      "name": "Plate Armor",
+      "equipment_category": "Armor",
+      "description": "A full suit of carefully fitted and articulated steel plates covering the entire body. The pinnacle of armorcraft, it provides unmatched protection but is prohibitively expensive and requires great strength to wear.",
+      "special": "",
+      "cost": {
+        "quantity": 1500,
+        "unit": "gp"
+      },
+      "weight": 65,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 18,
+        "dex_bonus": false
+      },
+      "str_minimum": 15,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🛡️",
+      "value": "1500 gp",
+      "baseAC": 18,
+      "armorType": "heavy",
+      "maxDexBonus": 0,
+      "stealthDisadvantage": true,
+      "strengthRequirement": 15
+    },
+    {
+      "index": "playing-card-set",
+      "name": "Playing Card Set",
+      "equipment_category": "Tools",
+      "description": "This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "5 sp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "poison-basic-vial",
+      "name": "Poison, basic (vial)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Racun dasar yang bisa ditambahkan ke senjata. Sebagai bonus action, kamu dapat menerapkan racun ini ke senjata atau amunisi. Creature yang terkena serangan dengan senjata ini harus melakukan DC 10 CON saving throw. Kegagalan = 1d4 poison damage.",
+      "special": "",
+      "cost": {
+        "quantity": 100,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "consumable",
+      "icon": "📦",
+      "value": "100 gp",
+      "effect": "You can use the poison in this vial to coat one slashing or piercing weapon or up to three pieces of",
+      "uses": 1
+    },
+    {
+      "index": "poisoners-kit",
+      "name": "Poisoner's Kit",
+      "equipment_category": "Adventuring Gear",
+      "description": "A poisoner's kit includes the vials, chemicals, and other equipment necessary for the creation of poisons. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to craft or use poisons.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "consumable",
+      "icon": "📦",
+      "value": "50 gp",
+      "effect": "A poisoner's kit includes the vials, chemicals, and other equipment necessary for the creation of po",
+      "uses": 1
+    },
+    {
+      "index": "pole-10-foot",
+      "name": "Pole (10-foot)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Tongkat 10 feet yang digunakan untuk memeriksa lantai, menyeimbangkan, atau menolak benda dari jarak jauh.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 7,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 cp"
+    },
+    {
+      "index": "pony",
+      "name": "Pony",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A small horse suitable for lighter riders or as a pack animal. Sure-footed on mountain trails, ponies are favored by halflings and dwarves.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "30 gp"
+    },
+    {
+      "index": "pot-iron",
+      "name": "Pot, iron",
+      "equipment_category": "Adventuring Gear",
+      "description": "Panci besi yang digunakan untuk memasak makanan di api unggun.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "potters-tools",
+      "name": "Potter's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "10 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "pouch",
+      "name": "Pouch",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kantong kecil yang digunakan untuk menyimpan item kecil seperti koin atau bolt.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 sp"
+    },
+    {
+      "index": "priests-pack",
+      "name": "Priest's Pack",
+      "equipment_category": "Adventuring Gear",
+      "description": "A collection of items for the traveling cleric, including a backpack, blanket, candles, an alms box, incense, censer, vestments, rations, waterskin, and robes.",
+      "special": "",
+      "cost": {
+        "quantity": 19,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [
+        {
+          "item": {
+            "index": "backpack",
+            "name": "Backpack",
+            "url": "/api/2014/equipment/backpack"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "blanket",
+            "name": "Blanket",
+            "url": "/api/2014/equipment/blanket"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "candle",
+            "name": "Candle",
+            "url": "/api/2014/equipment/candle"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "tinderbox",
+            "name": "Tinderbox",
+            "url": "/api/2014/equipment/tinderbox"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "rations-1-day",
+            "name": "Rations (1 day)",
+            "url": "/api/2014/equipment/rations-1-day"
+          },
+          "quantity": 2
+        },
+        {
+          "item": {
+            "index": "waterskin",
+            "name": "Waterskin",
+            "url": "/api/2014/equipment/waterskin"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "alms-box",
+            "name": "Alms box",
+            "url": "/api/2014/equipment/alms-box"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "block-of-incense",
+            "name": "Block of incense",
+            "url": "/api/2014/equipment/block-of-incense"
+          },
+          "quantity": 2
+        },
+        {
+          "item": {
+            "index": "censer",
+            "name": "Censer",
+            "url": "/api/2014/equipment/censer"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "vestments",
+            "name": "Vestments",
+            "url": "/api/2014/equipment/vestments"
+          },
+          "quantity": 1
+        }
+      ],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🎒",
+      "value": "19 gp"
+    },
+    {
+      "index": "quarterstaff",
+      "name": "Quarterstaff",
+      "equipment_category": "Weapon",
+      "description": "A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 4,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "2 sp",
+      "damageDice": "1d6",
+      "damageType": "Bludgeoning",
+      "versatileDice": "1d8"
+    },
+    {
+      "index": "quiver",
+      "name": "Quiver",
+      "equipment_category": "Adventuring Gear",
+      "description": "Tabung yang dapat menampung hingga 20 arrows.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "ram-portable",
+      "name": "Ram, portable",
+      "equipment_category": "Adventuring Gear",
+      "description": "You can use a portable ram to break down doors. When doing so, you gain a +4 bonus on the Strength check. One other character can help you use the ram, giving you advantage on this check.",
+      "special": "",
+      "cost": {
+        "quantity": 4,
+        "unit": "gp"
+      },
+      "weight": 35,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "4 gp"
+    },
+    {
+      "index": "rapier",
+      "name": "Rapier",
+      "equipment_category": "Weapon",
+      "description": "A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "25 gp",
+      "damageDice": "1d8",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "rations-1-day",
+      "name": "Rations (1 day)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Makanan sehari yang terdiri dari daging kering, roti keras, dan makanan tahan lama. Cukup untuk 1 hari.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "consumable",
+      "icon": "🍖",
+      "value": "5 sp",
+      "effect": "Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, a",
+      "uses": 1
+    },
+    {
+      "index": "reliquary",
+      "name": "Reliquary",
+      "equipment_category": "Adventuring Gear",
+      "description": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic.\nAppendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "ring-mail",
+      "name": "Ring Mail",
+      "equipment_category": "Armor",
+      "description": "A leather suit with heavy rings sewn onto it for additional protection. An older design that offers modest defense, it is less effective than chain armor but easier to produce.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 14,
+        "dex_bonus": false
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🧥",
+      "value": "30 gp",
+      "baseAC": 14,
+      "armorType": "heavy",
+      "maxDexBonus": 0,
+      "stealthDisadvantage": true,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "robes",
+      "name": "Robes",
+      "equipment_category": "Adventuring Gear",
+      "description": "Jubah panjang yang dikenakan oleh cleric, druid, atau wizard. Nyaman dan tidak menghalangi gerakan.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "rod",
+      "name": "Rod",
+      "equipment_category": "Adventuring Gear",
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "rope-hempen-50-feet",
+      "name": "Rope, hempen (50 feet)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🪢",
+      "value": "1 gp"
+    },
+    {
+      "index": "rope-silk-50-feet",
+      "name": "Rope, silk (50 feet)",
+      "equipment_category": "Adventuring Gear",
+      "description": "Tali sutra 50 feet yang ringan dan kuat. Bisa menampung hingga 600 pounds.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🪢",
+      "value": "10 gp"
+    },
+    {
+      "index": "rowboat",
+      "name": "Rowboat",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Keelboats and rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A rowboat weighs 100 pounds, in case adventurers carry it over land.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "50 gp"
+    },
+    {
+      "index": "sack",
+      "name": "Sack",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kantong besar yang digunakan untuk menyimpan barang-barang. Bisa menampung hingga 30 pounds.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 0.5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 cp"
+    },
+    {
+      "index": "saddle-exotic",
+      "name": "Saddle, Exotic",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "An exotic saddle is required for riding any aquatic or flying mount.",
+      "special": "",
+      "cost": {
+        "quantity": 60,
+        "unit": "gp"
+      },
+      "weight": 50,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "60 gp"
+    },
+    {
+      "index": "saddle-military",
+      "name": "Saddle, Military",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A military saddle braces the rider, helping you keep your seat on an active mount in battle. It gives you advantage on any check you make to remain mounted.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 30,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "20 gp"
+    },
+    {
+      "index": "saddle-pack",
+      "name": "Saddle, Pack",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A pair of leather bags designed to hang on either side of a horse's saddle, used for carrying supplies on long journeys.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 15,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "saddle-riding",
+      "name": "Saddle, Riding",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A leather seat secured to a horse's back with straps and buckles, providing stability and comfort for the rider.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 25,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "saddlebags",
+      "name": "Saddlebags",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "Reinforced leather bags that attach behind a saddle, used for carrying provisions, gear, and personal items during travel.",
+      "special": "",
+      "cost": {
+        "quantity": 4,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "4 gp"
+    },
+    {
+      "index": "sailing-ship",
+      "name": "Sailing ship",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A large ocean-going vessel powered by multiple masts and sails. Capable of crossing seas and carrying significant cargo or crew.",
+      "special": "",
+      "cost": {
+        "quantity": 10000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10000 gp"
+    },
+    {
+      "index": "scale-mail",
+      "name": "Scale Mail",
+      "equipment_category": "Armor",
+      "description": "A coat of leather covered with overlapping metal scales, resembling the hide of a dragon or fish. It offers good protection with moderate weight, though its many small scales can catch and snag.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 45,
+      "armor_category": "Medium",
+      "armor_class": {
+        "base": 14,
+        "dex_bonus": true,
+        "max_bonus": 2
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🔗",
+      "value": "50 gp",
+      "baseAC": 14,
+      "armorType": "medium",
+      "maxDexBonus": 2,
+      "stealthDisadvantage": true,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "scale-merchants",
+      "name": "Scale, merchant's",
+      "equipment_category": "Adventuring Gear",
+      "description": "Timbangan pedagang yang digunakan untuk menimbang barang dagangan. Memungkinkan kamu menentukan berat item dengan akurat.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "scholars-pack",
+      "name": "Scholar's Pack",
+      "equipment_category": "Adventuring Gear",
+      "description": "A kit for the traveling academic, including a backpack, book of lore, ink, ink pen, parchment, sand, and a small knife.",
+      "special": "",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [
+        {
+          "item": {
+            "index": "backpack",
+            "name": "Backpack",
+            "url": "/api/2014/equipment/backpack"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "book",
+            "name": "Book",
+            "url": "/api/2014/equipment/book"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "ink-1-ounce-bottle",
+            "name": "Ink (1 ounce bottle)",
+            "url": "/api/2014/equipment/ink-1-ounce-bottle"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "ink-pen",
+            "name": "Ink pen",
+            "url": "/api/2014/equipment/ink-pen"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "parchment-one-sheet",
+            "name": "Parchment (one sheet)",
+            "url": "/api/2014/equipment/parchment-one-sheet"
+          },
+          "quantity": 10
+        },
+        {
+          "item": {
+            "index": "little-bag-of-sand",
+            "name": "Little bag of sand",
+            "url": "/api/2014/equipment/little-bag-of-sand"
+          },
+          "quantity": 1
+        },
+        {
+          "item": {
+            "index": "small-knife",
+            "name": "Small knife",
+            "url": "/api/2014/equipment/small-knife"
+          },
+          "quantity": 1
+        }
+      ],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "🎒",
+      "value": "40 gp"
+    },
+    {
+      "index": "scimitar",
+      "name": "Scimitar",
+      "equipment_category": "Weapon",
+      "description": "A curved, single-edged sword designed for slashing. Its sweeping blade allows for quick, graceful cuts and is favored by cavalry and skirmishers.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "25 gp",
+      "damageDice": "1d6",
+      "damageType": "Slashing",
+      "versatileDice": null
+    },
+    {
+      "index": "sealing-wax",
+      "name": "Sealing wax",
+      "equipment_category": "Adventuring Gear",
+      "description": "Lilin segel yang dilebur dan diterapkan pada amplop atau dokumen untuk menutupnya dengan aman.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 sp"
+    },
+    {
+      "index": "shawm",
+      "name": "Shawm",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "2 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "shield",
+      "name": "Shield",
+      "equipment_category": "Armor",
+      "description": "A hand-held barrier of wood or metal used to block blows. Wielded in the off-hand, it provides a quick boost to defense and can be used offensively in a shield bash.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "armor_category": "Shield",
+      "armor_class": {
+        "base": 2,
+        "dex_bonus": false
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🛡️",
+      "value": "10 gp",
+      "baseAC": 2,
+      "armorType": "shield",
+      "maxDexBonus": 0,
+      "stealthDisadvantage": false,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "shortbow",
+      "name": "Shortbow",
+      "equipment_category": "Weapon",
+      "description": "A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "25 gp",
+      "damageDice": "1d6",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "shortsword",
+      "name": "Shortsword",
+      "equipment_category": "Weapon",
+      "description": "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "10 gp",
+      "damageDice": "1d6",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "shovel",
+      "name": "Shovel",
+      "equipment_category": "Adventuring Gear",
+      "description": "Sekop yang digunakan untuk menggali tanah, pasir, atau salju.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "sickle",
+      "name": "Sickle",
+      "equipment_category": "Weapon",
+      "description": "A curved agricultural blade adapted for combat. Its hooked edge can catch limbs and deliver slashing cuts, though it is primarily a farming tool.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "1 gp",
+      "damageDice": "1d4",
+      "damageType": "Slashing",
+      "versatileDice": null
+    },
+    {
+      "index": "signal-whistle",
+      "name": "Signal whistle",
+      "equipment_category": "Adventuring Gear",
+      "description": "Peluit yang digunakan untuk mengirim sinyal. Suaranya bisa terdengar hingga 600 feet.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 cp"
+    },
+    {
+      "index": "signet-ring",
+      "name": "Signet ring",
+      "equipment_category": "Adventuring Gear",
+      "description": "Cincin dengan segi yang ditanam, digunakan untuk menandatangani dokumen dengan cap.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "sled",
+      "name": "Sled",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A flat-bottomed vehicle designed to slide over snow or ice. Pulled by animals or people, it is essential for transporting goods in arctic environments.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 300,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "20 gp"
+    },
+    {
+      "index": "sling",
+      "name": "Sling",
+      "equipment_category": "Weapon",
+      "description": "A simple leather strap used to hurl stones or lead bullets at high velocity. Ancient yet deadly, it requires skill but can strike from great range.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "1 sp",
+      "damageDice": "1d4",
+      "damageType": "Bludgeoning",
+      "versatileDice": null
+    },
+    {
+      "index": "sling-bullet",
+      "name": "Sling bullet",
+      "equipment_category": "Adventuring Gear",
+      "description": "A smooth, rounded stone or lead pellet designed for use with a sling. Easily found or manufactured, sling bullets are the ammunition of the common folk.",
+      "special": "",
+      "cost": {
+        "quantity": 4,
+        "unit": "cp"
+      },
+      "weight": 1.5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "4 cp"
+    },
+    {
+      "index": "small-knife",
+      "name": "Small knife",
+      "equipment_category": "Adventuring Gear",
+      "description": "A small knife, typically found in a scholar's pack.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 cp"
+    },
+    {
+      "index": "smiths-tools",
+      "name": "Smith's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "20 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "soap",
+      "name": "Soap",
+      "equipment_category": "Adventuring Gear",
+      "description": "Sabun yang digunakan untuk membersihkan diri atau pakaian.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 cp"
+    },
+    {
+      "index": "spear",
+      "name": "Spear",
+      "equipment_category": "Weapon",
+      "description": "A simple shaft tipped with a sharpened point, usable for thrusting or throwing. One of the oldest and most reliable weapons known to civilization.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "🔱",
+      "value": "1 gp",
+      "damageDice": "1d6",
+      "damageType": "Piercing",
+      "range": {
+        "normal": 20,
+        "long": 60
+      },
+      "versatileDice": "1d8"
+    },
+    {
+      "index": "spellbook",
+      "name": "Spellbook",
+      "equipment_category": "Adventuring Gear",
+      "description": "Buku yang berisi catatan spell yang dipelajari oleh wizard. Diperlukan untuk mempersiapkan dan mencatat spell.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "50 gp"
+    },
+    {
+      "index": "spike-iron",
+      "name": "Spike, iron",
+      "equipment_category": "Adventuring Gear",
+      "description": "A heavy iron spike, larger and sturdier than a piton. Used as a door anchor, improvised weapon, or structural support.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 sp"
+    },
+    {
+      "index": "splint-armor",
+      "name": "Splint Armor",
+      "equipment_category": "Armor",
+      "description": "Vertical strips of metal riveted to a backing of leather and cloth. Similar in construction to a flail, it offers heavy protection at moderate cost, though its weight limits mobility.",
+      "special": "",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 60,
+      "armor_category": "Heavy",
+      "armor_class": {
+        "base": 17,
+        "dex_bonus": false
+      },
+      "str_minimum": 15,
+      "stealth_disadvantage": true,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🧥",
+      "value": "200 gp",
+      "baseAC": 17,
+      "armorType": "heavy",
+      "maxDexBonus": 0,
+      "stealthDisadvantage": true,
+      "strengthRequirement": 15
+    },
+    {
+      "index": "sprig-of-mistletoe",
+      "name": "Sprig of mistletoe",
+      "equipment_category": "Adventuring Gear",
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "spyglass",
+      "name": "Spyglass",
+      "equipment_category": "Adventuring Gear",
+      "description": "Teropong yang digunakan untuk melihat objek dari jarak jauh. Memungkinkan kamu melihat detail hingga 10 kali lipat lebih jauh.",
+      "special": "",
+      "cost": {
+        "quantity": 1000,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1000 gp"
+    },
+    {
+      "index": "stabling-1-day",
+      "name": "Stabling (1 day)",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A day's board for a single mount, including a stall, feed, water, and basic grooming.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 sp"
+    },
+    {
+      "index": "staff",
+      "name": "Staff",
+      "equipment_category": "Adventuring Gear",
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "string-10-feet",
+      "name": "String (10 feet)",
+      "equipment_category": "Adventuring Gear",
+      "description": "A 10-foot length of string, typically found in a burglar's pack.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 cp"
+    },
+    {
+      "index": "studded-leather-armor",
+      "name": "Studded Leather Armor",
+      "equipment_category": "Armor",
+      "description": "Hardened leather reinforced with closely spaced metal studs or rivets. It offers better protection than standard leather armor while maintaining the light weight and flexibility favored by rangers and scouts.",
+      "special": "",
+      "cost": {
+        "quantity": 45,
+        "unit": "gp"
+      },
+      "weight": 13,
+      "armor_category": "Light",
+      "armor_class": {
+        "base": 12,
+        "dex_bonus": true
+      },
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "contents": [],
+      "source": "PHB",
+      "category": "armor",
+      "icon": "🧥",
+      "value": "45 gp",
+      "baseAC": 12,
+      "armorType": "light",
+      "maxDexBonus": null,
+      "stealthDisadvantage": false,
+      "strengthRequirement": 0
+    },
+    {
+      "index": "tent-two-person",
+      "name": "Tent, two-person",
+      "equipment_category": "Adventuring Gear",
+      "description": "Tenda yang cukup untuk dua orang. Memberikan perlindungan dari cuaca ekstrem.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 gp"
+    },
+    {
+      "index": "thieves-tools",
+      "name": "Thieves' Tools",
+      "equipment_category": "Tools",
+      "description": "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "25 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "DEX"
+    },
+    {
+      "index": "tinderbox",
+      "name": "Tinderbox",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kotak yang berisi batu api, baja, dan korek api. Digunakan untuk menyalakan api.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 sp"
+    },
+    {
+      "index": "tinkers-tools",
+      "name": "Tinker's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "50 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "torch",
+      "name": "Torch",
+      "equipment_category": "Adventuring Gear",
+      "description": "Tongkat yang dilapisi bahan mudah terbakar. Menyediakan cahaya terang dalam radius 20 feet dan cahaya remang untuk tambahan 20 feet. Dapat dilemparkan untuk menyerang (1 fire damage).",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "consumable",
+      "icon": "🕯️",
+      "value": "1 cp",
+      "effect": "A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional",
+      "uses": 1
+    },
+    {
+      "index": "totem",
+      "name": "Totem",
+      "equipment_category": "Adventuring Gear",
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 gp"
+    },
+    {
+      "index": "trident",
+      "name": "Trident",
+      "equipment_category": "Weapon",
+      "description": "A three-pronged spear designed for both melee and throwing. Associated with coastal peoples and waterborne combat, it is effective on land and sea.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "5 gp",
+      "damageDice": "1d6",
+      "damageType": "Piercing",
+      "range": {
+        "normal": 20,
+        "long": 60
+      },
+      "versatileDice": "1d8"
+    },
+    {
+      "index": "vestments",
+      "name": "Vestments",
+      "equipment_category": "Adventuring Gear",
+      "description": "Religious clothing, typically found in a priest's pack.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 cp"
+    },
+    {
+      "index": "vial",
+      "name": "Vial",
+      "equipment_category": "Adventuring Gear",
+      "description": "Botol kecil yang digunakan untuk menyimpan cairan atau racun.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "consumable",
+      "icon": "🧪",
+      "value": "1 gp",
+      "effect": "A small glass container with a tight stopper, used for holding potions, poison, or other precious li",
+      "uses": 1
+    },
+    {
+      "index": "viol",
+      "name": "Viol",
+      "equipment_category": "Tools",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "30 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "wagon",
+      "name": "Wagon",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A four-wheeled vehicle pulled by draft animals, used for hauling goods, supplies, or passengers over roads and trails.",
+      "special": "",
+      "cost": {
+        "quantity": 35,
+        "unit": "gp"
+      },
+      "weight": 400,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "35 gp"
+    },
+    {
+      "index": "wand",
+      "name": "Wand",
+      "equipment_category": "Adventuring Gear",
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "war-pick",
+      "name": "War pick",
+      "equipment_category": "Weapon",
+      "description": "A specialized hammer with a pointed spike opposite the hammer face. Designed to pierce armor, its concentrated impact can punch through metal plate.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "5 gp",
+      "damageDice": "1d8",
+      "damageType": "Piercing",
+      "versatileDice": null
+    },
+    {
+      "index": "warhammer",
+      "name": "Warhammer",
+      "equipment_category": "Weapon",
+      "description": "A heavy hammer designed for combat, balanced for one or two-handed use. Its solid head delivers tremendous concussive force against armor and flesh alike.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "⚔️",
+      "value": "15 gp",
+      "damageDice": "1d8",
+      "damageType": "Bludgeoning",
+      "versatileDice": "1d10"
+    },
+    {
+      "index": "warhorse",
+      "name": "Warhorse",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A powerful, specially trained mount bred for combat. Warhorses are trained to remain calm in battle and can wear barding armor.",
+      "special": "",
+      "cost": {
+        "quantity": 400,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "400 gp"
+    },
+    {
+      "index": "warship",
+      "name": "Warship",
+      "equipment_category": "Mounts and Vehicles",
+      "description": "A large, heavily armed vessel designed for naval warfare. Equipped with rams, ballistae, and marines, it dominates the seas.",
+      "special": "",
+      "cost": {
+        "quantity": 25000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "25000 gp"
+    },
+    {
+      "index": "waterskin",
+      "name": "Waterskin",
+      "equipment_category": "Adventuring Gear",
+      "description": "Kantong kulit yang digunakan untuk menyimpan air atau minuman lainnya. Bisa menampung hingga 4 pounds cairan.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "2 sp"
+    },
+    {
+      "index": "weavers-tools",
+      "name": "Weaver's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "1 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "whetstone",
+      "name": "Whetstone",
+      "equipment_category": "Adventuring Gear",
+      "description": "Batu asahan yang digunakan untuk menajamkan senjata tajam.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "1 cp"
+    },
+    {
+      "index": "whip",
+      "name": "Whip",
+      "equipment_category": "Weapon",
+      "description": "A long, flexible lash of braided leather or cord. Though not a weapon of war in the traditional sense, its reach and finesse make it deadly in skilled hands.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        }
+      ],
+      "contents": [],
+      "source": "PHB",
+      "category": "weapon",
+      "icon": "🪢",
+      "value": "2 gp",
+      "damageDice": "1d4",
+      "damageType": "Slashing",
+      "versatileDice": null
+    },
+    {
+      "index": "woodcarvers-tools",
+      "name": "Woodcarver's Tools",
+      "equipment_category": "Tools",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "contents": [],
+      "source": "PHB",
+      "category": "tool",
+      "icon": "🔧",
+      "value": "1 gp",
+      "toolUse": "Crafting or performance check with proficiency bonus",
+      "associatedAbility": "INT"
+    },
+    {
+      "index": "wooden-staff",
+      "name": "Wooden staff",
+      "equipment_category": "Adventuring Gear",
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "5 gp"
+    },
+    {
+      "index": "yew-wand",
+      "name": "Yew wand",
+      "equipment_category": "Adventuring Gear",
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "10 gp"
+    },
+    {
+      "index": "arcane-focus",
+      "name": "Arcane Focus",
+      "equipment_category": "Adventuring Gear",
+      "description": "An arcane focus is a special item designed to channel arcane magic. A spellcaster can use a crystal, orb, rod, staff, or wand as an arcane focus.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 gp"
+    },
+    {
+      "index": "musical-instrument",
+      "name": "Musical Instrument",
+      "equipment_category": "Adventuring Gear",
+      "description": "A musical instrument. Bards use musical instruments as a spellcasting focus.",
+      "special": "",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "0 gp"
+    },
+    {
+      "index": "pan-flute",
+      "name": "Pan Flute",
+      "equipment_category": "Adventuring Gear",
+      "description": "A wind instrument consisting of multiple pipes of graduated length bound together. Produces an airy, haunting tone.",
+      "special": "",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "contents": [],
+      "source": "PHB",
+      "category": "misc",
+      "icon": "📦",
+      "value": "12 gp"
+    }
+  ]
+}

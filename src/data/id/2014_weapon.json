@@ -1,1 +1,1293 @@
-{}
+{
+  "weapons": [
+    {
+      "index": "battleaxe",
+      "name": "Battleaxe",
+      "equipment_category": "Weapon",
+      "description": "Sangkur dengan kepala berbentuk anak panah, dapat digunakan dengan satu atau dua tangan.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "blowgun",
+      "name": "Blowgun",
+      "equipment_category": "Weapon",
+      "description": "Tabung kecil yang digunakan untuk menembakkan dosis kecil racun atau jarum dengan napas. Senjata stealthy yang sering digunakan oleh assassin.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "club",
+      "name": "Club",
+      "equipment_category": "Weapon",
+      "description": "Tongkat kayu pendek, sering digunakan sebagai senjata sederhana.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "crossbow-hand",
+      "name": "Crossbow, hand",
+      "equipment_category": "Weapon",
+      "description": "Busur kecil yang ringkas, bisa dipegang dan ditembakkan dengan satu tangan. Ukurannya yang kecil memungkinkan penyembunyian dengan mudah.",
+      "special": "",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "crossbow-heavy",
+      "name": "Crossbow, heavy",
+      "equipment_category": "Weapon",
+      "description": "Busur besar dengan kekuatan tarikan yang luar biasa, mampu meluncurkan bolt dengan kekuatan yang menghentikan makhluk besar. Memerlukan loading property.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 18,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "crossbow-light",
+      "name": "Crossbow, light",
+      "equipment_category": "Weapon",
+      "description": "Busur kecil yang ringan dan mudah digerakkan. Cocok untuk pejuang yang membutuhkan senjata ranged yang portabel.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "loading",
+          "name": "Loading"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "dagger",
+      "name": "Dagger",
+      "equipment_category": "Weapon",
+      "description": "Belati kecil yang bisa digunakan untuk menikam atau melempar.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "dart",
+      "name": "Dart",
+      "equipment_category": "Weapon",
+      "description": "Panah kecil yang bisa dilempar dengan tangan atau menggunakan blowgun.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 0.25,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "flail",
+      "name": "Flail",
+      "equipment_category": "Weapon",
+      "description": "Senjata yang terdiri dari bola besi yang diikat pada gagang dengan rantai.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "glaive",
+      "name": "Glaive",
+      "equipment_category": "Weapon",
+      "description": "Tombak panjang dengan kepala pisau yang melengkung di satu sisi.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "greataxe",
+      "name": "Greataxe",
+      "equipment_category": "Weapon",
+      "description": "Sangkur besar yang membutuhkan dua tangan untuk digunakan.",
+      "special": "",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 7,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d12",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "greatclub",
+      "name": "Greatclub",
+      "equipment_category": "Weapon",
+      "description": "Tongkat kayu besar dan tebal, sangat keras.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 10,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "greatsword",
+      "name": "Greatsword",
+      "equipment_category": "Weapon",
+      "description": "Pedang besar yang membutuhkan dua tangan untuk digunakan.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "2d6",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "halberd",
+      "name": "Halberd",
+      "equipment_category": "Weapon",
+      "description": "Tombak panjang dengan kepala yang menggabungkan tombak dan sabit.",
+      "special": "",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "handaxe",
+      "name": "Handaxe",
+      "equipment_category": "Weapon",
+      "description": "Kapak kecil yang bisa digunakan untuk menebas atau melempar.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "javelin",
+      "name": "Javelin",
+      "equipment_category": "Weapon",
+      "description": "Tombak ringan yang bisa dilempar dengan jarak jauh.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 30,
+        "long": 120
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "lance",
+      "name": "Lance",
+      "equipment_category": "Weapon",
+      "description": "Tombak panjang yang sangat efektif saat digunakan berkuda.",
+      "special": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d12",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "special",
+          "name": "Special"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "light-hammer",
+      "name": "Light hammer",
+      "equipment_category": "Weapon",
+      "description": "Palu kecil yang bisa digunakan untuk menebas atau melempar.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "longbow",
+      "name": "Longbow",
+      "equipment_category": "Weapon",
+      "description": "Busur panjang yang kuat dan akurat, membutuhkan kekuatan untuk digunakan.",
+      "special": "",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "longsword",
+      "name": "Longsword",
+      "equipment_category": "Weapon",
+      "description": "Pedang panjang yang bisa digunakan dengan satu atau dua tangan.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "mace",
+      "name": "Mace",
+      "equipment_category": "Weapon",
+      "description": "Tongkat dengan kepala besi bulat, sering digunakan oleh cleric.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "maul",
+      "name": "Maul",
+      "equipment_category": "Weapon",
+      "description": "Palu besar yang membutuhkan dua tangan untuk digunakan.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "2d6",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "morningstar",
+      "name": "Morningstar",
+      "equipment_category": "Weapon",
+      "description": "Tongkat dengan kepala yang dilengkapi duri-duri besi.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "net",
+      "name": "Net",
+      "equipment_category": "Weapon",
+      "description": "Jaring yang digunakan untuk menjerat musuh. Setelah kamu menggunakan net untuk menyerang, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest.",
+      "special": "A Large or smaller creature hit by a net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make.",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Ranged",
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "special",
+          "name": "Special"
+        }
+      ],
+      "throw_range": {
+        "normal": 5,
+        "long": 15
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "pike",
+      "name": "Pike",
+      "equipment_category": "Weapon",
+      "description": "Tombak sangat panjang yang digunakan untuk formasi pertahanan.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 18,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "heavy",
+          "name": "Heavy"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "quarterstaff",
+      "name": "Quarterstaff",
+      "equipment_category": "Weapon",
+      "description": "Tongkat kayu panjang yang bisa digunakan dengan satu atau dua tangan.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 4,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "rapier",
+      "name": "Rapier",
+      "equipment_category": "Weapon",
+      "description": "Pedang tipis dan lurus yang dirancang untuk menikam dengan cepat.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "scimitar",
+      "name": "Scimitar",
+      "equipment_category": "Weapon",
+      "description": "Pedang melengkung yang cepat dan elegan, sering digunakan olehEastern warriors.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "shortbow",
+      "name": "Shortbow",
+      "equipment_category": "Weapon",
+      "description": "Busur pendek yang ringan dan mudah dibawa.",
+      "special": "",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        },
+        {
+          "index": "two-handed",
+          "name": "Two-Handed"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "shortsword",
+      "name": "Shortsword",
+      "equipment_category": "Weapon",
+      "description": "Pedang pendek yang ringan dan cepat, sering digunakan oleh rogue.",
+      "special": "",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "sickle",
+      "name": "Sickle",
+      "equipment_category": "Weapon",
+      "description": "Alat pemotong yang melengkung, biasanya digunakan untuk memanen tanaman tetapi juga bisa digunakan sebagai senjata.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "light",
+          "name": "Light"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "sling",
+      "name": "Sling",
+      "equipment_category": "Weapon",
+      "description": "Alat untuk melempar batu dengan jarak jauh.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "weapon_category": "Simple",
+      "category_range": "Ranged",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "ammunition",
+          "name": "Ammunition"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "spear",
+      "name": "Spear",
+      "equipment_category": "Weapon",
+      "description": "Tombak panjang yang bisa dilempar atau digunakan untuk menikam.",
+      "special": "",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Simple",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        },
+        {
+          "index": "monk",
+          "name": "Monk"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "trident",
+      "name": "Trident",
+      "equipment_category": "Weapon",
+      "description": "Tombak dengan tiga mata, sering digunakan oleh aquatic creatures.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d6",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [
+        {
+          "index": "thrown",
+          "name": "Thrown"
+        },
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "throw_range": {
+        "normal": 20,
+        "long": 60
+      },
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "war-pick",
+      "name": "War pick",
+      "equipment_category": "Weapon",
+      "description": "Alat yang menggabungkan palu dan pik, dirancang untuk menembus armor.",
+      "special": "",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "piercing",
+          "name": "Piercing"
+        }
+      },
+      "properties": [],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "warhammer",
+      "name": "Warhammer",
+      "equipment_category": "Weapon",
+      "description": "Palu besar yang bisa digunakan dengan satu atau dua tangan.",
+      "special": "",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d8",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "two_handed_damage": {
+        "damage_dice": "1d10",
+        "damage_type": {
+          "index": "bludgeoning",
+          "name": "Bludgeoning"
+        }
+      },
+      "properties": [
+        {
+          "index": "versatile",
+          "name": "Versatile"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    },
+    {
+      "index": "whip",
+      "name": "Whip",
+      "equipment_category": "Weapon",
+      "description": "Tali panjang dengan ujung yang dilapisi kulit atau logam.",
+      "special": "",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "weapon_category": "Martial",
+      "category_range": "Melee",
+      "damage": {
+        "damage_dice": "1d4",
+        "damage_type": {
+          "index": "slashing",
+          "name": "Slashing"
+        }
+      },
+      "properties": [
+        {
+          "index": "finesse",
+          "name": "Finesse"
+        },
+        {
+          "index": "reach",
+          "name": "Reach"
+        }
+      ],
+      "contents": [],
+      "source": "PHB"
+    }
+  ]
+}
