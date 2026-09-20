@@ -423,6 +423,23 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             name: f.name,
             description: Array.isArray(f.description) ? f.description.join("\n") : f.description || "",
             level: f.level,
+            summary: f.summary ?? null,
+            featureType: f.featureType ?? null,
+            actionType: f.actionType ?? null,
+            uses: f.uses ?? null,
+            requirement: f.requirement ?? null,
+            duration: f.duration ?? null,
+            endsIf: f.endsIf ?? null,
+            effect: f.effect ?? null,
+            onUse: f.onUse ?? null,
+            scaling: f.scaling ?? null,
+            grantsSpells: f.grantsSpells ?? false,
+            grantsAttack: f.grantsAttack ?? false,
+            grantsSkills: f.grantsSkills ?? false,
+            grantsProficiency: f.grantsProficiency ?? false,
+            showInSheet: f.showInSheet ?? true,
+            source: f.source ?? undefined,
+            book: f.book ?? undefined,
           };
           if (featChoices && Array.isArray(featChoices.options)) {
             out.choices = featChoices.options.map((opt: any) => ({
