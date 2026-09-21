@@ -242,7 +242,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           </div>
           {hiddenCount > 0 && !showDescriptions && (
             <span className="text-sm text-gray-400">
-              {hiddenCount} {t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}
+              {t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}
             </span>
           )}
         </div>
