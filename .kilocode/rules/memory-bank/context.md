@@ -64,6 +64,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - **ESLint 9.39.1** (flat config), strict TypeScript
 
 ## Recently Completed
+- [x] Translated 29 subclass part files from `src/locales/parts/en/` to `src/locales/parts/id/`: shadow, shadow-2, shepherd, soulknife, storm-herald, storm-sorcery, sun-soul, swarmkeeper, swashbuckler, swords, tempest, the-undead, thief, totem, transmutation, trickery, twilight, undying, valor, vengeance, war, war-magic, watchers, way-of-mercy, way-of-the-astral-self, way-of-the-long-death, whispers, wild-magic, zealot; narrative text translated to Bahasa Indonesia while preserving all D&D 5e mechanical terms in English (spell names, class names, feature names, ability scores, conditions, damage types, action economy terms, dice notation, distances/areas, etc.); keys unchanged
 - [x] Enforced single-line race and class names (`whitespace-nowrap truncate`) and equalized button card heights in `src/components/character-creator/StepOrigin.tsx`, ensuring popup selection buttons never expand into 2 or 3 lines and maintain uniform dimensions across the grid; typecheck passes.
 - [x] Fixed race name overflow in StepOrigin: added `whitespace-nowrap` and proper container sizing (`min-w-0`, `truncate`) to the Origin card trigger button and popup race selection buttons in `src/components/character-creator/StepOrigin.tsx`; verified with `bun run build` and production server launch.
 - [x] Made race name in StepOrigin selection card responsive and smaller: changed from `text-lg font-bold` to `text-sm sm:text-base font-semibold` in `src/components/character-creator/StepOrigin.tsx`
@@ -73,8 +74,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - [x] Implemented spell mechanics display in the character sheet spell list: created `src/lib/spell-mechanics-accessor.ts` (lookup layer over `2014_spell_mechanics.json` with source-preference dedupe) and `src/components/character-sheet/SpellMechanicsChips.tsx` (color-coded chips for target/area, resolution, effect, concentration); wired into `SpellsSection.tsx` so each spell shows at a glance what it does, damage type/amount, area, target, and effect on allies vs enemies; typecheck, lint (no new issues), and build pass
 ## Current Focus
 
-- Bahasa Indonesia description/summary translations: `tDesc()` now preserves English game terms (spell names, class names, damage types, conditions, etc.) in Bahasa descriptions via `protectedTermsRegex`; example translations added for Acid Splash, Fireball, Darkvision, Fey Ancestry; wired into SpellsSection, FeaturesTraitsSection, FeatModal, SubclassDetailsModal
-- Pending: add more description translations for remaining spells/features/subclasses, wire `tDesc` into remaining description rendering components (InfoButton callers, FeatureSelectionModal, EquipmentSelectionModal, LevelUpWizard), PDF export localization
+- Pending: continue adding description translations for remaining spells/features/subclasses not yet in `parts/id/`
 
 ## Session History
 | Date | Changes |

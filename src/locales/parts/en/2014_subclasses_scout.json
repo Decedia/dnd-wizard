@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.scout.flavorText": "Roguish Archetype",
+  "2014_subclasses.scout.description": "Skirmishers are skirmishers who excel at scouting ahead of the main group. They are skilled in stealth, tracking, and survival, and they use their knowledge of the wilderness to aid their allies.",
+  "2014_subclasses.scout.skirmisher.description": "Starting at 3rd level, you are difficult to pin down during a fight. You can move up to half your speed as a reaction when an enemy ends its turn within 5 feet of you. This movement doesn't provoke opportunity attacks.",
+  "2014_subclasses.scout.skirmisher.summary": "Can move up to half your speed as a reaction when an enemy ends its turn within 5 feet of you. (reaction).",
+  "2014_subclasses.scout.survivalist.description": "When you choose this archetype at 3rd level, you gain proficiency in the Nature and Survival skills if you don't already have them. Your proficiency bonus is doubled for any ability check you make that uses either of those proficiencies.",
+  "2014_subclasses.scout.survivalist.summary": "Your proficiency bonus is doubled for any ability check you make that uses either of those proficiencies. (action).",
+  "2014_subclasses.scout.superior-mobility.description": "At 9th level, your walking speed increases by 10 feet. If you are wearing medium or heavy armor, this bonus is reduced to 5 feet.",
+  "2014_subclasses.scout.superior-mobility.summary": "At 9th level, your walking speed increases by 10 feet.",
+  "2014_subclasses.scout.ambush-master.description": "At 13th level, you excel at setting ambushes. When you use the Hide action during combat, you can make a Dexterity (Stealth) check with advantage. In addition, if you are hidden from a creature when you make an attack roll against it, you have advantage on the attack roll.",
+  "2014_subclasses.scout.ambush-master.summary": "In addition, if you are hidden from a creature when you make an attack roll against it, you have advantage on the attack roll. (action).",
+  "2014_subclasses.scout.sudden-strike.description": "Starting at 17th level, you can strike with deadly speed. If you use the Attack action on your turn, you can make one additional attack as a bonus action. This attack can use your Sneak Attack even if you already used it this turn, but you can't use your Sneak Attack on both attacks against the same target.",
+  "2014_subclasses.scout.sudden-strike.summary": "Starting at 17th level, you can strike with deadly speed. (bonus action)."
+}

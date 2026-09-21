@@ -1,0 +1,11 @@
+{
+  "2014_subclasses.way-of-the-long-death.description": "Monk dari Way of the Long Death obsesi atas makna dan mekanisme mati. Mereka mempelajari creature saat mereka mati dan mencatat exact moment ketika jiwa meninggalkan tubuh.",
+  "2014_subclasses.way-of-the-long-death.touch-of-death.summary": "Memperoleh temporary hit points sama dengan Wisdom modifier + monk level ketika mengurangi creature dalam 5 ft menjadi 0 HP.",
+  "2014_subclasses.way-of-the-long-death.touch-of-death.description": "Studi kematianmu memungkinkan kamu mengekstrak vitality dari creature yang sedang mati. Ketika kamu mengurangi creature dalam 5 feet darimu menjadi 0 hit points, kamu memperoleh temporary hit points sama dengan Wisdom modifier + monk level kamu (minimal 1).",
+  "2014_subclasses.way-of-the-long-death.hour-of-reaping.summary": "Frighten semua creature dalam 30 feet yang dapat melihat kamu pada failed Wisdom saving throw.",
+  "2014_subclasses.way-of-the-long-death.hour-of-reaping.description": "Sebagai action, kamu melepaskan kehadiran macabre kematian. Setiap creature dalam 30 feet dari kamu yang dapat melihat kamu harus berhasil pada Wisdom saving throw atau menjadi frightened terhadap kamu sampai akhir turn berikutnya.",
+  "2014_subclasses.way-of-the-long-death.mastery-of-death.summary": "Habiskan 1 ki point ketika menjadi 0 hit points untuk menjadi 1 hit point sebagai gantinya.",
+  "2014_subclasses.way-of-the-long-death.mastery-of-death.description": "Starting di level 11, kamu menggunakan familiarity kamu dengan kematian untuk melarikan diri dari cengkramannya. Ketika kamu menjadi 0 hit points, kamu dapat menghabiskan 1 ki point (tidak memerlukan action) untuk memiliki 1 hit point sebagai gantinya.",
+  "2014_subclasses.way-of-the-long-death.touch-of-the-long-death.summary": "Habiskan 1 sampai 10 ki points pada creature yang disentuh untuk memberikan 2d10 necrotic damage per ki point yang dihabiskan.",
+  "2014_subclasses.way-of-the-long-death.touch-of-the-long-death.description": "Sentuhanmu menyalakan pure energy of death. Sebagai action, kamu menyentuh satu creature dalam 5 feet darimu dan menghabiskan 1 sampai 10 ki points. Target harus membuat Constitution saving throw, mengambil 2d10 necrotic damage per ki point yang dihabiskan pada kegagalan, atau setengahnya pada keberhasilan."
+}

@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.scout.flavorText": "Arketipe Rogue",
+  "2014_subclasses.scout.description": "Skirmishers adalah penjelajah yang unggul dalam menyusuri ke depan kelompok utama. Mereka terampil dalam stealth, tracking, dan survival, dan mereka menggunakan pengetahuan mereka tentang liar untuk membantu sekutu mereka.",
+  "2014_subclasses.scout.skirmisher.description": "Mulai dari level 3, Anda sulit ditangkap selama pertempuran. Anda bisa bergerak hingga setengah speed Anda sebagai reaksi saat musuh mengakhiri turn dalam 5 feet dari Anda. Pergerakan ini tidak memancing opportunity attacks.",
+  "2014_subclasses.scout.skirmisher.summary": "Bisa bergerak hingga setengah speed Anda sebagai reaksi saat musuh mengakhiri turn dalam 5 feet dari Anda. (reaction).",
+  "2014_subclasses.scout.survivalist.description": "Saat Anda memilih arketipe ini di level 3, Anda mendapatkan proficiency dalam skill Nature dan Survival jika Anda belum memilikinya. Proficiency bonus Anda digandakan untuk ability check apa pun yang Anda buat yang menggunakan salah satu dari proficiency itu.",
+  "2014_subclasses.scout.survivalist.summary": "Proficiency bonus Anda digandakan untuk ability check apa pun yang Anda buat yang menggunakan salah satu dari proficiency itu. (action).",
+  "2014_subclasses.scout.superior-mobility.description": "Di level 9, walking speed Anda meningkat sebesar 10 feet. Jika Anda memakai medium atau heavy armor, bonus ini berkurang menjadi 5 feet.",
+  "2014_subclasses.scout.superior-mobility.summary": "Di level 9, walking speed Anda meningkat sebesar 10 feet.",
+  "2014_subclasses.scout.ambush-master.description": "Di level 13, Anda unggul dalam menyiapkan ambush. Saat Anda menggunakan Hide action selama combat, Anda bisa membuat Dexterity (Stealth) check dengan Advantage. Selain itu, jika Anda tersembunyi dari makhluk saat Anda membuat attack roll terhadapnya, Anda memiliki Advantage pada attack roll itu.",
+  "2014_subclasses.scout.ambush-master.summary": "Selain itu, jika Anda tersembunyi dari makhluk saat Anda membuat attack roll terhadapnya, Anda memiliki Advantage pada attack roll itu. (action).",
+  "2014_subclasses.scout.sudden-strike.description": "Mulai dari level 17, Anda bisa menyerang dengan kecepatan mematikan. Jika Anda mengambil Attack action pada turn Anda, Anda bisa membuat satu serangan tambahan sebagai Bonus Action. Serangan ini bisa menggunakan Sneak Attack Anda meskipun Anda sudah menggunakannya pada turn ini, tetapi Anda tidak bisa menggunakan Sneak Attack pada kedua serangan terhadap target yang sama.",
+  "2014_subclasses.scout.sudden-strike.summary": "Mulai dari level 17, Anda bisa menyerang dengan kecepatan mematikan. (bonus action)."
+}

@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.moon.flavorText": "Druid Circle",
+  "2014_subclasses.moon.description": "Druids of the Circle of the Moon are fierce guardians of the natural order. They undergo special rituals that allow them to take on more powerful beast forms, transforming into creatures of great strength and ferocity.\n\nThese druids meet in secret places to share information and pass along warnings. They are masters of the wild, able to call upon the most powerful beasts to aid them in their sacred duty to protect nature from those who would do it harm.",
+  "2014_subclasses.moon.combat-wild-shape.description": "At 2nd level, you can use Wild Shape as a bonus action.",
+  "2014_subclasses.moon.combat-wild-shape.summary": "At 2nd level, you can use Wild Shape as a bonus action. (bonus action).",
+  "2014_subclasses.moon.circle-forms.description": "Also at 2nd level, you can transform into more powerful beasts.",
+  "2014_subclasses.moon.circle-forms.summary": "Also at 2nd level, you can transform into more powerful beasts.",
+  "2014_subclasses.moon.primal-strike.description": "Starting at 6th level, your attacks in beast form count as magical.",
+  "2014_subclasses.moon.primal-strike.summary": "Starting at 6th level, your attacks in beast form count as magical.",
+  "2014_subclasses.moon.elemental-wild-shape.description": "At 10th level, you can expend two uses of Wild Shape to transform into an elemental.",
+  "2014_subclasses.moon.elemental-wild-shape.summary": "At 10th level, you can expend two uses of Wild Shape to transform into an elemental. (action).",
+  "2014_subclasses.moon.thousand-forms.description": "At 14th level, you can cast the alter self spell at will.",
+  "2014_subclasses.moon.thousand-forms.summary": "At 14th level, you can cast the alter self spell at will."
+}

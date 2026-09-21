@@ -1,0 +1,12 @@
+{
+  "2014_subclasses.valor.flavorText": "Bard College",
+  "2014_subclasses.valor.description": "Bard dari College of Valor adalah skalds berani, menceritakan kisah pahlawan besar dan melakukan perbuatan yang layak dipuji. Mereka mengembara di tanah untuk menyaksikan peristiwa besar secara langsung dan melihat perbuatan pahlawan legendaris.\n\nSaat bepergian dari tempat ke tempat, bard ini menginspirasi orang lain dengan lagu dan cerita kejayaan masa lalu, mendorong audiens mereka untuk kebesaran dan mendorong mereka untuk bertindak. Anggota college berkumpul untuk berbagi lore mereka satu sama lain dan merayakan ikatan bersama mereka.",
+  "2014_subclasses.valor.bonus-proficiencies.description": "Ketika kamu bergabung dengan College of Lore di level 3, kamu memperoleh proficiency dengan tiga skills pilihanmu.",
+  "2014_subclasses.valor.bonus-proficiencies.summary": "Memperoleh proficiency dengan tiga skills pilihanmu.",
+  "2014_subclasses.valor.combat-inspiration.description": "Juga di level 3, kamu belajar menginspirasi orang lain dalam combat. Creature yang memiliki Bardic Inspiration die darimu dapat me-roll die tersebut dan menambahkan angka yang diroll ke weapon damage roll yang baru saja dibuat. Alternatifnya, ketika attack roll dibuat terhadap creature, creature dapat menggunakan reaction untuk me-roll Bardic Inspiration die dan menambahkan angka yang diroll ke ACnya melawan attack tersebut, setelah melihat roll tetapi sebelum mengetahui apakah hit atau miss.",
+  "2014_subclasses.valor.combat-inspiration.summary": "Alternatifnya, ketika attack roll dibuat terhadap creature, creature dapat menggunakan reaction untuk me-roll Bardic Inspiration die dan menambahkan angka yang diroll ke AC melawan.",
+  "2014_subclasses.valor.extra-attack.description": "Starting di level 5, kamu dapat attack dua kali, bukan sekali, setiap kali kamu mengambil Attack action pada turn kamu.",
+  "2014_subclasses.valor.extra-attack.summary": "Starting di level 5, kamu dapat attack dua kali, bukan sekali, setiap kali kamu mengambil Attack action pada turn kamu. (only when taking the attack action, permanent, scales).",
+  "2014_subclasses.valor.battle-magic.description": "Di level 14, kamu telah menguasai seni menyatukan spellcasting dan penggunaan weapon. Ketika kamu menggunakan action untuk menyalakan bard spell, kamu dapat membuat satu weapon attack sebagai bonus action.",
+  "2014_subclasses.valor.battle-magic.summary": "Dapat membuat satu weapon attack sebagai bonus action. (bonus action)."
+}

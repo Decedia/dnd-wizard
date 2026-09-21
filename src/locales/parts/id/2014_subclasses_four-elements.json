@@ -1,0 +1,23 @@
+{
+  "2014_subclasses.four-elements.description": "Kamu mengikuti monastic tradition yang mengajarkan kamu untuk menguasai elemen. Ketika kamu focus ki-mu, kamu bisa menyelaraskan dirimu dengan forces of creation dan menundukkan empat elemen ke kehendakmu.",
+  "2014_subclasses.four-elements.disciple-of-the-elements.summary": "Pelajari magical disciplines yang menguasai earth, air, fire, dan water dengan menghabiskan ki points.",
+  "2014_subclasses.four-elements.disciple-of-the-elements.description": "Kamu belajar magical disciplines yang menguasai kekuatan dari empat elemen. Disiplin membutuhkan kamu menghabiskan ki points setiap kali kamu menggunakannya. Kamu tahu disiplin Elemental Attunement dan satu disiplin elemental lain sesuai pilihanmu. Kamu mempelajari satu disiplin elemental tambahan sesuai pilihanmu di level 6, 11, dan 17.",
+  "2014_subclasses.four-elements.elemental-attunement.summary": "Hasilkan minor harmless elemental effects, buat percikan api, dinginkan atau panaskan objek, atau bentuk kabut.",
+  "2014_subclasses.four-elements.elemental-attunement.description": "Kamu bisa menggunakan action untuk briefly mengendalikan forces elemental di sekitar: buat harmless sensory effects seperti shower of sparks, puff of wind, atau mist; nyalakan atau matikan lilin atau api perkemahan; dinginkan atau panaskan sampai 1 pound nonliving material; atau bentuk earth, fire, water, atau mist menjadi bentuk kasar selama 1 minute.",
+  "2014_subclasses.four-elements.fangs-of-the-fire-snake.summary": "Habisi 1 ki untuk memperluas unarmed strike reach sebesar 10 ft dan deal fire damage; habiskan extra ki untuk +1d10 fire.",
+  "2014_subclasses.four-elements.fangs-of-the-fire-snake.description": "Ketika kamu menggunakan Attack action di turn-mu, kamu bisa menghabiskan 1 ki point untuk menyebabkan tendrils of flame stretch dari fists dan feet-mu. Reach unarmed strikes-mu meningkat 10 feet untuk action itu, serta sisa turn. Hit dengan attack seperti itu deals fire damage instead of bludgeoning damage, dan jika kamu menghabiskan 1 additional ki point ketika attack hits, ia deals extra 1d10 fire damage.",
+  "2014_subclasses.four-elements.water-whip.summary": "Habisi 2 ki untuk membuat water whip yang deals 3d10 bludgeoning dan menarik target 25 ft atau knocked prone.",
+  "2014_subclasses.four-elements.water-whip.description": "Kamu bisa menghabiskan 2 ki points sebagai action untuk membuat whip of water yang shoves dan menarik creature untuk menyeimbangkannya. Creature yang bisa kamu lihat dalam 30 kaki darimu harus membuat Dexterity saving throw. Pada failed save, ia takes 3d10 bludgeoning damage plus extra 1d10 untuk setiap additional ki point spent, dan kamu bisa baik knock prone atau pull 25 feet lebih dekat ke kamu.",
+  "2014_subclasses.four-elements.fist-of-four-thunders.summary": "Habisi 2 ki points untuk cast Thunderwave.",
+  "2014_subclasses.four-elements.fist-of-four-thunders.description": "Kamu bisa menghabiskan 2 ki points untuk cast Thunderwave.",
+  "2014_subclasses.four-elements.sweeping-cinder-strike.summary": "Habisi 2 ki points untuk cast Burning Hands.",
+  "2014_subclasses.four-elements.sweeping-cinder-strike.description": "Kamu bisa menghabiskan 2 ki points untuk cast Burning Hands.",
+  "2014_subclasses.four-elements.gong-of-the-summit.summary": "Habisi 3 ki points untuk cast Shatter.",
+  "2014_subclasses.four-elements.gong-of-the-summit.description": "Kamu bisa menghabiskan 3 ki points untuk cast Shatter.",
+  "2014_subclasses.four-elements.flames-of-the-phoenix.summary": "Habisi 4 ki points untuk cast Fireball.",
+  "2014_subclasses.four-elements.flames-of-the-phoenix.description": "Kamu bisa menghabiskan 4 ki points untuk cast Fireball.",
+  "2014_subclasses.four-elements.ride-the-wind.summary": "Habisi 4 ki points untuk cast Fly pada dirimu.",
+  "2014_subclasses.four-elements.ride-the-wind.description": "Kamu bisa menghabiskan 4 ki points untuk cast Fly, menargetkan dirimu.",
+  "2014_subclasses.four-elements.river-of-hungry-flame.summary": "Habisi 5 ki points untuk cast Wall of Fire.",
+  "2014_subclasses.four-elements.river-of-hungry-flame.description": "Kamu bisa menghabiskan 5 ki points untuk cast Wall of Fire."
+}

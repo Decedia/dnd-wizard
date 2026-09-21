@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.enchantment.flavorText": "Arcane Tradition",
+  "2014_subclasses.enchantment.description": "Enchanters specializes dalam memanipulasi pikiran orang lain. Mereka bisa charm, beguile, dan control creatures, mengubah musuh menjadi sekutu dan menundukkan orang lain ke kehendak mereka.\n\nStudi enchantment memerlukan subtlety dan finesse. Enchanters belajar menenun spells yang mempengaruhi pikiran dan emosi, menggunakan abilities mereka untuk menghindari konflik atau mendapatkan keuntungan dalam situasi sosial.",
+  "2014_subclasses.enchantment.savant.description": "Di level 2, gold dan waktu yang kamu habiskan untuk copy enchantment spell ke spellbook-mu adalah dibagi dua.",
+  "2014_subclasses.enchantment.savant.summary": "Di level 2, gold dan waktu yang kamu habiskan untuk copy enchantment spell ke spellbook-mu adalah dibagi dua. (action).",
+  "2014_subclasses.enchantment.hypnotic-gaze.description": "Juga di level 2, kamu bisa charm creature dengan pandangan.",
+  "2014_subclasses.enchantment.hypnotic-gaze.summary": "Juga di level 2, kamu bisa charm creature dengan pandangan.",
+  "2014_subclasses.enchantment.instinctive-charm.description": "Di level 6, kamu bisa mengalihkan attacks yang dilakukan terhadapmu.",
+  "2014_subclasses.enchantment.instinctive-charm.summary": "Di level 6, kamu bisa mengalihkan attacks yang dilakukan terhadapmu.",
+  "2014_subclasses.enchantment.split-enchantment.description": "Di level 10, kamu bisa menargetkan dua creatures dengan enchantment spells.",
+  "2014_subclasses.enchantment.split-enchantment.summary": "Di level 10, kamu bisa menargetkan dua creatures dengan enchantment spells.",
+  "2014_subclasses.enchantment.alter-memories.description": "Di level 14, kamu bisa mengubah memory creature.",
+  "2014_subclasses.enchantment.alter-memories.summary": "Di level 14, ketika kamu charm creature, kamu bisa mengubah memory-nya tentang kejadian itu. Creature harus berhasil pada Wisdom saving throw atau memory-nya diubah."
+}

@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.war-magic.flavorText": "Arcane Tradition",
+  "2014_subclasses.war-magic.description": "War Magic tradition adalah school of wizardry yang berfokus pada aplikasi praktis magic dalam combat. War mages terampil dalam baik offensive maupun defensive magic, dan mereka menggunakan pengetahuan mereka untuk bertahan di medan perang.",
+  "2014_subclasses.war-magic.arcane-deflection.description": "Di level 2, kamu belajar menyatukan magic kamu menjadi protective shield. Ketika kamu terkena attack atau kamu gagal saving throw terhadap spell atau magical effect lain, kamu dapat menggunakan reaction untuk memperoleh +2 bonus ke AC kamu melawan attack tersebut atau +4 bonus ke saving throw tersebut. Jika kamu melakukannya, kamu tidak dapat menyalakan spells selain cantrips sampai akhir turn berikutnya.",
+  "2014_subclasses.war-magic.arcane-deflection.summary": "Dapat menggunakan reaction untuk memperoleh +2 bonus ke AC kamu melawan attack tersebut atau +4 bonus ke saving throw tersebut. (reaction).",
+  "2014_subclasses.war-magic.tactical-wit.description": "Starting di level 2, kamu menambahkan Intelligence modifier kamu ke initiative rolls.",
+  "2014_subclasses.war-magic.tactical-wit.summary": "Starting di level 2, kamu menambahkan Intelligence modifier kamu ke initiative rolls. (action).",
+  "2014_subclasses.war-magic.power-surge.description": "Starting di level 6, kamu dapat menyimpan magical energy di dalam tubuhmu untuk menyalakan spells kamu. Kamu memiliki pool of power surges, diwakili oleh jumlah d6s sama dengan wizard level kamu. Ketika kamu membuat attack roll atau saving throw, kamu dapat menghabiskan satu power surge untuk menambahkan roll satu d6 ke total. Kamu dapat menggunakan fitur ini hanya sekali per turn. Kamu memperoleh kembali semua power surges yang dihabiskan ketika kamu menyelesaikan long rest.",
+  "2014_subclasses.war-magic.power-surge.summary": "Dapat menghabiskan satu power surge untuk menambahkan roll satu d6 ke total. (action).",
+  "2014_subclasses.war-magic.durable-magic.description": "Di level 10, spell yang kamu salakan membantu mempertahankan pertahananmu. Saat kamu maintaining concentration pada spell, kamu memperoleh +2 bonus ke AC dan semua saving throws.",
+  "2014_subclasses.war-magic.durable-magic.summary": "Di level 10, saat kamu maintaining concentration pada spell, kamu memperoleh +2 bonus ke AC dan semua saving throws.",
+  "2014_subclasses.war-magic.deflecting-shroud.description": "Di level 14, Arcane Deflection kamu menjadi lebih kuat. Ketika kamu menggunakan Arcane Deflection, kamu dapat memilih hingga tiga creature dalam 10 feet dari kamu. Bonus yang kamu peroleh dari Arcane Deflection diberikan kepada creature tersebut juga.",
+  "2014_subclasses.war-magic.deflecting-shroud.summary": "Dapat memilih hingga tiga creature dalam 10 feet dari kamu. (action)."
+}

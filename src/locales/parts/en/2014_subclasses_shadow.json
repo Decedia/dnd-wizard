@@ -1,0 +1,12 @@
+{
+  "2014_subclasses.shadow.flavorText": "Monastic Tradition",
+  "2014_subclasses.shadow.description": "Monks of the Way of Shadow follow the path of darkness and stealth. They learn to use ki to manipulate shadows, becoming invisible and striking from the darkness with deadly precision.\n\nThese monks are spies, assassins, and infiltrators, using their abilities to move unseen and gather information. They are masters of the night, able to blend into the shadows and disappear at will.",
+  "2014_subclasses.shadow.shadow-arts.description": "At 3rd level, you can use ki to replicate certain spells. As an action, you can spend 2 ki points to cast the darkness, darkvision, pass without trace, or silence spells, without providing material components. Additionally, you gain the minor illusion cantrip if you don't already know it.",
+  "2014_subclasses.shadow.shadow-arts.summary": "Additionally, you gain the minor illusion cantrip if you don't already know it. (action).",
+  "2014_subclasses.shadow.shadow-step.description": "At 6th level, you gain the ability to step from one shadow into another. When you are in dim light or darkness, as a bonus action you can teleport up to 60 feet to an unoccupied space you can see that is also in dim light or darkness. You then have advantage on the first melee attack you make before the end of the turn.",
+  "2014_subclasses.shadow.shadow-step.summary": "As a bonus action you can teleport up to 60 feet to an unoccupied space you can see that is also in dim light or darkness. (bonus action).",
+  "2014_subclasses.shadow.cloak-of-shadows.description": "By 11th level, you have learned to become one with the shadows. When you are in an area of dim light or darkness, you can use your action to become invisible. You remain invisible until you make an attack, cast a spell, or are in an area of bright light.",
+  "2014_subclasses.shadow.cloak-of-shadows.summary": "Remain invisible until you make an attack, cast a spell, or are in an area of bright light. (action).",
+  "2014_subclasses.shadow.opportunist.description": "At 17th level, you can exploit a creature's momentary distraction when it is hit by an attack. When a creature within 5 feet of you is hit by an attack from an attacker other than you, you can use your reaction to make a melee attack against that creature.",
+  "2014_subclasses.shadow.opportunist.summary": "Can use your reaction to make a melee attack against that creature. (reaction)."
+}

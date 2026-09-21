@@ -1,0 +1,15 @@
+{
+  "2014_subclasses.arcana.description": "Magic adalah energi yang menyeluruhkan multiverse. Clerics dari Arcana Domain memuja dewa-dewa dari magic, mengetahui bahwa arcane magic dan dedication ilahi dapat menyelimuti dalam misteri yang luhur.",
+  "2014_subclasses.arcana.arcane-initiate.summary": "Dapatkan proficiency dalam Arcana dan pelajari dua wizard cantrips yang dihitung sebagai cleric cantrips.",
+  "2014_subclasses.arcana.arcane-initiate.description": "Ketika Anda memilih domain ini di level 1, Anda mendapatkan proficiency dalam skill Arcana, dan Anda mendapatkan dua cantrips pilihan Anda dari wizard spell list. Bagi Anda, cantrips ini dihitung sebagai cleric cantrips.",
+  "2014_subclasses.arcana.arcana-domain-spells.summary": "Dapatkan domain spells di level 1, 3, 5, 7, dan 9.",
+  "2014_subclasses.arcana.arcana-domain-spells.description": "1st: Detect Magic, Magic Missile; 3rd: Magic Weapon, Nondetection; 5th: Dispel Magic, Magic Circle; 7th: Arcane Eye, Leomund's Secret Chest; 9th: Planar Binding, Teleportation Circle.",
+  "2014_subclasses.arcana.channel-divinity-arcane-abjuration.summary": "Turn atau banish makhluk celestial, elemental, fey, atau fiend dalam 30 feet.",
+  "2014_subclasses.arcana.channel-divinity-arcane-abjuration.description": "Sebagai action, Anda menyajikan holy symbol Anda dan salah satu makhluk celestial, elemental, fey, atau fiend dalam 30 feet harus berhasil dalam saving throw Wisdom atau di-turned selama 1 menit. Mulai di level 5, makhluk yang di-turned dengan CR rendah dibanish ke plane asal mereka sebagai gantinya.",
+  "2014_subclasses.arcana.spell-breaker.summary": "Ketika Anda menyembuhkan sekutu dengan mantra, akhiri satu mantra level yang sama atau lebih rendah pada sekutu tersebut.",
+  "2014_subclasses.arcana.spell-breaker.description": "Mulai di level 6, ketika Anda mengembalikan hit points kepada sekutu dengan mantra level 1 atau lebih tinggi, Anda juga dapat mengakhiri satu mantra pilihan Anda pada makhluk tersebut. Level dari mantra yang Anda akhiri harus sama dengan atau lebih rendah dari level spell slot yang Anda gunakan untuk menyalin mantra penyembuhan.",
+  "2014_subclasses.arcana.potent-spellcasting.summary": "Tambahkan modifier Wisdom ke cleric cantrip damage.",
+  "2014_subclasses.arcana.potent-spellcasting.description": "Mulai di level 8, Anda menambahkan modifier Wisdom Anda ke damage yang Anda hasilkan dengan cleric cantrip mana pun.",
+  "2014_subclasses.arcana.arcane-mastery.summary": "Pelajari empat wizard spells (satu masing-masing level 6th, 7th, 8th, dan 9th) sebagai domain spells.",
+  "2014_subclasses.arcana.arcane-mastery.description": "Di level 17, Anda memilih empat mantra dari wizard spell list, satu dari masing-masing level berikut: 6th, 7th, 8th, dan 9th. Anda menambahkannya ke domain spells Anda, selalu dipersiapkan dan disalakan sebagai cleric spells."
+}

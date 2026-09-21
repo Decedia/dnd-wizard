@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.war-magic.flavorText": "Arcane Tradition",
+  "2014_subclasses.war-magic.description": "The War Magic tradition is a school of wizardry that focuses on the practical application of magic in combat. War mages are skilled in both offensive and defensive magic, and they use their knowledge to survive on the battlefield.",
+  "2014_subclasses.war-magic.arcane-deflection.description": "At 2nd level, you learn to weave your magic into a protective shield. When you are hit by an attack or you fail a saving throw against a spell or other magical effect, you can use your reaction to gain a +2 bonus to your AC against that attack or a +4 bonus to that saving throw. If you do so, you can't cast spells other than cantrips until the end of your next turn.",
+  "2014_subclasses.war-magic.arcane-deflection.summary": "Can use your reaction to gain a +2 bonus to your AC against that attack or a +4 bonus to that saving throw. (reaction).",
+  "2014_subclasses.war-magic.tactical-wit.description": "Starting at 2nd level, you add your Intelligence modifier to your initiative rolls.",
+  "2014_subclasses.war-magic.tactical-wit.summary": "Starting at 2nd level, you add your Intelligence modifier to your initiative rolls. (action).",
+  "2014_subclasses.war-magic.power-surge.description": "Starting at 6th level, you can store magical energy inside your body to fuel your spells. You have a pool of power surges, represented by a number of d6s equal to your wizard level. When you make an attack roll or a saving throw, you can spend one power surge to add the roll of one d6 to the total. You can use this feature only once per turn. You regain all expended power surges when you finish a long rest.",
+  "2014_subclasses.war-magic.power-surge.summary": "Can spend one power surge to add the roll of one d6 to the total. (action).",
+  "2014_subclasses.war-magic.durable-magic.description": "At 10th level, the spells you cast help sustain your defenses. While you are maintaining concentration on a spell, you gain a +2 bonus to AC and to all saving throws.",
+  "2014_subclasses.war-magic.durable-magic.summary": "At 10th level, while you are maintaining concentration on a spell, you gain a +2 bonus to AC and to all saving throws.",
+  "2014_subclasses.war-magic.deflecting-shroud.description": "At 14th level, your Arcane Deflection becomes more powerful. When you use your Arcane Deflection, you can choose up to three creatures within 10 feet of you. The bonus you gain from Arcane Deflection is granted to those creatures as well.",
+  "2014_subclasses.war-magic.deflecting-shroud.summary": "Can choose up to three creatures within 10 feet of you. (action)."
+}

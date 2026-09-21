@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.champion.flavorText": "Martial Archetype",
+  "2014_subclasses.champion.description": "Champion arketipikal berfokus pada pengembangan kekuatan fisik mentah yang diasah hingga kesempurnaan mematikan. Mereka yang meniru diri pada arketipe ini menggabungkan pelatihan ketat dengan keunggulan fisik untuk memberikan pukulan yang menghancurkan.",
+  "2014_subclasses.champion.improved-critical.description": "Mulai ketika Anda memilih arketipe ini di level 3, serangan senjata Anda mendapatkan critical hit pada roll 19 atau 20.",
+  "2014_subclasses.champion.improved-critical.summary": "Mulai ketika Anda memilih arketipe ini di level 3, serangan senjata Anda mendapatkan critical hit pada roll 19 atau 20. (action).",
+  "2014_subclasses.champion.remarkable-athlete.description": "Mulai di level 7, Anda dapat menambahkan setengah proficiency bonus Anda (bulatkan ke atas) ke Strength, Dexterity, atau Constitution check mana pun yang Anda buat yang tidak sudah menggunakan proficiency bonus Anda. Selain itu, ketika Anda melakukan running long jump, jarak yang dapat Anda lewati meningkat sejumlah feet sama dengan modifier Strength Anda.",
+  "2014_subclasses.champion.remarkable-athlete.summary": "Mulai di level 7, Anda dapat menambahkan setengah proficiency bonus Anda (bulatkan ke atas) ke Strength, Dexterity, atau Constitution check mana pun yang Anda buat yang tidak sudah menggunakan proficiency bonus Anda. (action).",
+  "2014_subclasses.champion.additional-fighting-style.description": "Di level 10, Anda dapat memilih opsi kedua dari fitur kelas Fighting Style.",
+  "2014_subclasses.champion.additional-fighting-style.summary": "Di level 10, Anda dapat memilih opsi kedua dari fitur kelas Fighting Style. (action).",
+  "2014_subclasses.champion.superior-critical.description": "Mulai di level 15, serangan senjata Anda mendapatkan critical hit pada roll 18-20.",
+  "2014_subclasses.champion.superior-critical.summary": "Mulai di level 15, serangan senjata Anda mendapatkan critical hit pada roll 18-20. (action).",
+  "2014_subclasses.champion.survivor.description": "Di level 18, Anda mencapai puncak ketahanan dalam pertempuran. Di awal setiap turn Anda, Anda mendapatkan kembali hit points sama dengan 5 + modifier Constitution Anda jika Anda tidak memiliki lebih dari setengah hit points yang tersisa. Anda tidak mendapatkan manfaat ini jika Anda memiliki 0 hit points.",
+  "2014_subclasses.champion.survivor.summary": "Di awal setiap turn Anda, Anda mendapatkan kembali hit points sama dengan 5 + modifier Constitution Anda jika Anda tidak memiliki lebih dari setengah hit points."
+}

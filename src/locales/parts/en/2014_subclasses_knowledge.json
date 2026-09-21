@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.knowledge.flavorText": "Divine Domain",
+  "2014_subclasses.knowledge.description": "The Knowledge domain represents the pursuit of knowledge and understanding of the world and the gods. Its clerics are scholars, sages, and seekers of truth, using their divine gifts to uncover secrets and illuminate the mysteries of existence.\n\nGods of knowledge—including Oghma, Boccob, Gilean, and Aureon—value learning and understanding above all. Some teach that knowledge is to be gathered and shared in libraries and universities, while others believe it should be kept secret and used only by the worthy.",
+  "2014_subclasses.knowledge.blessings-of-knowledge.description": "At 1st level, you learn two languages of your choice and gain two skills of your choice.",
+  "2014_subclasses.knowledge.blessings-of-knowledge.summary": "At 1st level, you learn two languages of your choice and gain two skills of your choice.",
+  "2014_subclasses.knowledge.channel-divinity-knowledge-of-the-ages.description": "Starting at 2nd level, you can use your Channel Divinity to tap into a reservoir of knowledge. As an action, you become proficient in one skill or tool of your choice until you finish a short or long rest. You can use this feature again after a short or long rest.",
+  "2014_subclasses.knowledge.channel-divinity-knowledge-of-the-ages.summary": "Can use this feature again after a short or long rest. (action).",
+  "2014_subclasses.knowledge.channel-divinity-read-thoughts.description": "At 6th level, you can use your Channel Divinity to read a creature's thoughts. You can then use your access to the creature's mind to command it, probe it, or probe its memories.",
+  "2014_subclasses.knowledge.channel-divinity-read-thoughts.summary": "At 6th level, you can use your Channel Divinity to read a creature's thoughts. (action).",
+  "2014_subclasses.knowledge.potent-spellcasting.description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+  "2014_subclasses.knowledge.potent-spellcasting.summary": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells. (action).",
+  "2014_subclasses.knowledge.visions-of-the-past.description": "Starting at 17th level, you can call upon your deity to reveal visions of the past. You can receive visions of the past by spending at least 1 minute in meditation and prayer, and you can receive visions of the past of a specific object, creature, or location.",
+  "2014_subclasses.knowledge.visions-of-the-past.summary": "Starting at 17th level, you can call upon your deity to reveal visions of the past. (action)."
+}

@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.trickery.flavorText": "Divine Domain",
+  "2014_subclasses.trickery.description": "The Trickery domain represents the power of deception and illusion. Its clerics are cunning and resourceful, using their divine gifts to confuse and misdirect their enemies.\n\nGods of trickery—including Olidammara, the Traveler, and Loki—are patrons of thieves, scoundrels, and tricksters. They teach that one must be clever to survive in a world full of dangers and that sometimes the best way to defeat an enemy is through cunning rather than force.",
+  "2014_subclasses.trickery.blessing-of-the-trickster.description": "At 1st level, you can use your action to touch a willing creature to give it advantage on Dexterity (Stealth) checks.",
+  "2014_subclasses.trickery.blessing-of-the-trickster.summary": "At 1st level, you can use your action to touch a willing creature to give it advantage on Dexterity (Stealth) checks. (action).",
+  "2014_subclasses.trickery.channel-divinity-invoke-duplicity.description": "Starting at 2nd level, you can use your Channel Divinity to create an illusory duplicate of yourself. As an action, you create a perfect illusion of yourself that lasts for 1 minute, or until you lose concentration (as if you were concentrating on a spell). You can use your action to move the illusion up to 30 feet to a space you can see. The illusion is intangible and can't attack or take damage.",
+  "2014_subclasses.trickery.channel-divinity-invoke-duplicity.summary": "Can use your action to move the illusion up to 30 feet to a space you can see. (action).",
+  "2014_subclasses.trickery.channel-divinity-cloak-of-shadows.description": "At 6th level, you can use your Channel Divinity to become invisible. As an action, you become invisible until the end of your next turn, or until you attack or force a creature to make a saving throw.",
+  "2014_subclasses.trickery.channel-divinity-cloak-of-shadows.summary": "Become invisible until the end of your next turn, or until you attack or force a creature to make a saving throw. (action).",
+  "2014_subclasses.trickery.potent-spellcasting.description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+  "2014_subclasses.trickery.potent-spellcasting.summary": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells. (action).",
+  "2014_subclasses.trickery.divine-strike.description": "At 8th level, you gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 radiant damage to the target. When you reach 14th level, the extra damage increases to 2d8.",
+  "2014_subclasses.trickery.divine-strike.summary": "Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 radiant damage.",
+  "2014_subclasses.trickery.improved-duplicity.description": "At 17th level, you can create up to four illusory duplicates of yourself instead of one. You can use your action to move any number of them up to 30 feet, to spaces you can see.",
+  "2014_subclasses.trickery.improved-duplicity.summary": "Can use your action to move any number of them up to 30 feet, to spaces you can see. (action)."
+}

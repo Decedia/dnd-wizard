@@ -1,0 +1,12 @@
+{
+  "2014_subclasses.hunter.flavorText": "Arketipe Ranger",
+  "2014_subclasses.hunter.description": "Meniru arketipe Hunter berarti menerima tempat Anda sebagai benteng antara peradaban dan teror liar. Saat Anda berjalan di jalan Hunter, Anda mempelajari teknik khusus untuk melawan ancaman yang dihadapi, dari ogre yang menyerbu dan gerombolan orc hingga raksasa menjulang dan naga menakutkan.",
+  "2014_subclasses.hunter.hunter-s-prey.description": "Di level 3, Anda mendapatkan salah satu fitur berikut sesuai pilihan Anda.\nColossus Slayer\nGiant Killer\nHorde Breaker",
+  "2014_subclasses.hunter.hunter-s-prey.summary": "Pilih satu: Colossus Slayer (kerusakan tambahan 1d8 sekali per turn), Giant Killer (gunakan reaksi untuk menyerang ketika makhluk Large atau lebih besar menghantam Anda), atau Horde Breaker (buat serangan tambahan terhadap makhluk berbeda dalam 5 feet dari target).",
+  "2014_subclasses.hunter.defensive-tactics.description": "Di level 7, Anda mendapatkan salah satu fitur berikut sesuai pilihan Anda.\nEscape the Horde\nMultiattack Defense\nSteel Will",
+  "2014_subclasses.hunter.defensive-tactics.summary": "Pilih satu: Escape the Horde (serangan opportunity terhadap Anda memiliki Disadvantage), Multiattack Defense (ketika dihantam serangan, dapatkan +4 AC terhadap penyerang sampai akhir turn Anda berikutnya), atau Steel Will (Advantage pada saving throw terhadap menjadi Frightened).",
+  "2014_subclasses.hunter.multiattack.description": "Di level 11, Anda mendapatkan salah satu fitur berikut sesuai pilihan Anda.\nVolley\nWhirlwind Attack",
+  "2014_subclasses.hunter.multiattack.summary": "Pilih satu: Volley (gunakan Action Anda untuk membuat serangan ranged terhadap setiap makhluk dalam 10 feet dari titik yang bisa Anda lihat dalam range) atau Whirlwind Attack (buat serangan melee terhadap setiap makhluk dalam 5 feet dari Anda).",
+  "2014_subclasses.hunter.superior-hunter-s-defense.description": "Di level 15, Anda mendapatkan salah satu fitur berikut sesuai pilihan Anda.\nEvasion\nStand Against the Tide\nUncanny Dodge",
+  "2014_subclasses.hunter.superior-hunter-s-defense.summary": "Pilih satu: Evasion (tidak menerima kerusakan pada Dexterity saving throw yang berhasil terhadap efek), Stand Against the Tide (gunakan reaksi untuk mengalihkan serangan yang meleset ke makhluk lain), atau Uncanny Dodge (gunakan reaksi untuk mengurangi kerusakan serangan menjadi setengah)."
+}

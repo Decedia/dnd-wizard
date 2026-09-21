@@ -1,0 +1,21 @@
+{
+  "2014_subclasses.samurai.flavorText": "Martial Archetype",
+  "2014_subclasses.samurai.description": "The Samurai is a fighter who draws on an implacable fighting spirit to overcome enemies. A Samurai's resolve is nearly unbreakable, and the Samurai's fighting spirit grants strength and speed.",
+  "2014_subclasses.samurai.bonus-proficiency.description": "When you choose this archetype at 3rd level, you gain proficiency with one of the following skills of your choice: History, Insight, Performance, or Persuasion. Alternatively, you learn one language of your choice.",
+  "2014_subclasses.samurai.bonus-proficiency.history.description": "Gain proficiency in History skill.",
+  "2014_subclasses.samurai.bonus-proficiency.insight.description": "Gain proficiency in Insight skill.",
+  "2014_subclasses.samurai.bonus-proficiency.performance.description": "Gain proficiency in Performance skill.",
+  "2014_subclasses.samurai.bonus-proficiency.persuasion.description": "Gain proficiency in Persuasion skill.",
+  "2014_subclasses.samurai.bonus-proficiency.language-choice.description": "Learn one language of your choice.",
+  "2014_subclasses.samurai.bonus-proficiency.summary": "Alternatively, you learn one language of your choice. (action).",
+  "2014_subclasses.samurai.fighting-spirit.description": "Starting at 3rd level, your intensity in battle can shield you and help you strike true. As a bonus action on your turn, you can give yourself advantage on weapon attack rolls until the end of your current turn, gaining 5 temporary hit points. The number of temporary hit points increases to 10 at 10th level and to 15 at 15th level. You can use this feature three times, and you regain all expended uses of it when you finish a long rest.",
+  "2014_subclasses.samurai.fighting-spirit.summary": "Can give yourself advantage on weapon attack rolls until the end of your current turn, gaining 5 temporary hit points. (bonus action).",
+  "2014_subclasses.samurai.elegant-courtier.description": "Starting at 7th level, your discipline and attention to detail allow you to excel in social situations. Whenever you make a Wisdom (Insight) check, you can treat a d20 roll of 9 or lower as a 10. In addition, you gain proficiency in Wisdom saving throws. If you already have proficiency in Wisdom saving throws, you instead gain proficiency in Intelligence or Charisma saving throws (your choice).",
+  "2014_subclasses.samurai.elegant-courtier.summary": "In addition, you gain proficiency in Wisdom saving throws. (action).",
+  "2014_subclasses.samurai.tireless-spirit.description": "Starting at 10th level, when you roll initiative and have no uses of Fighting Spirit remaining, you regain one use.",
+  "2014_subclasses.samurai.tireless-spirit.summary": "Starting at 10th level, when you roll initiative and have no uses of Fighting Spirit remaining, you regain one use. (action).",
+  "2014_subclasses.samurai.rapid-strike.description": "Starting at 15th level, you can sacrifice accuracy to make additional strikes. If you take the Attack action on your turn, you can forgo advantage on one of the attacks to make an additional weapon attack as a bonus action.",
+  "2014_subclasses.samurai.rapid-strike.summary": "Can forgo advantage on one of the attacks to make an additional weapon attack as a bonus action. (bonus action).",
+  "2014_subclasses.samurai.strength-before-death.description": "Starting at 18th level, your fighting spirit can delay the grasp of death. If you take damage that reduces you to 0 hit points and doesn't kill you outright, you can use your reaction to delay falling unconscious, and you can immediately take an extra turn, interrupting the current turn. While you have 0 hit points during that extra turn, taking damage causes a death saving throw failure, and three failures can kill you. When the extra turn ends, you fall unconscious if you still have 0 hit points. Once you use this feature, you can't use it again until you finish a long rest.",
+  "2014_subclasses.samurai.strength-before-death.summary": "Taking damage causes a death saving throw failure, and three failures can kill you. (reaction)."
+}

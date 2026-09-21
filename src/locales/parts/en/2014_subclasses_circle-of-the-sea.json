@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.circle-of-the-sea.flavorText": "Circle of the Sea",
+  "2014_subclasses.circle-of-the-sea.description": "The Circle of the Sea is a druid circle that draws power from the ocean and its depths. These druids are at home in the water, and they command the tides and the creatures within them.",
+  "2014_subclasses.circle-of-the-sea.oceanic-resilience.description": "Starting at 2nd level, you can breathe air and water, and you have a swimming speed equal to your walking speed.",
+  "2014_subclasses.circle-of-the-sea.oceanic-resilience.summary": "Starting at 2nd level, you can breathe air and water, and you have a swimming speed equal to your walking speed. (permanent).",
+  "2014_subclasses.circle-of-the-sea.wrath-of-the-sea.description": "Starting at 2nd level, you can use your action to magically summon a watery spray that lashes out at nearby creatures. Each creature within 30 feet of you that you can see must make a Dexterity saving throw against your druid spell save DC. On a failed save, a creature takes 2d6 bludgeoning damage and is pushed 10 feet away from you. On a successful save, a creature takes half as much damage and isn't pushed.",
+  "2014_subclasses.circle-of-the-sea.wrath-of-the-sea.summary": "On a failed save, a creature takes 2d6 bludgeoning damage and is pushed 10 feet away from you. (instant, action).",
+  "2014_subclasses.circle-of-the-sea.elemental-wild-shape.description": "At 6th level, you can expend two uses of Wild Shape instead of one to transform into a water elemental or a steamweird.",
+  "2014_subclasses.circle-of-the-sea.elemental-wild-shape.summary": "At 6th level, you can expend two uses of Wild Shape instead of one to transform into a water elemental or a steamweird. (action).",
+  "2014_subclasses.circle-of-the-sea.aquatic-master.description": "Starting at 10th level, you have advantage on attack rolls against creatures that are underwater, and creatures have disadvantage on attack rolls against you while you are underwater.",
+  "2014_subclasses.circle-of-the-sea.aquatic-master.summary": "Starting at 10th level, you have advantage on attack rolls against creatures that are underwater, and creatures have disadvantage on attack rolls against you while you are underwater. (permanent).",
+  "2014_subclasses.circle-of-the-sea.oceanic-guardian.description": "Starting at 14th level, you can cast control water once per long rest without expending a spell slot. Additionally, you can breathe underwater indefinitely, and you have resistance to cold damage.",
+  "2014_subclasses.circle-of-the-sea.oceanic-guardian.summary": "Additionally, you can breathe underwater indefinitely, and you have resistance to cold damage. (action)."
+}

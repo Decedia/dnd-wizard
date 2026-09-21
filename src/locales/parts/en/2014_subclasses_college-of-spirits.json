@@ -1,0 +1,13 @@
+{
+  "2014_subclasses.college-of-spirits.description": "Bards of the College of Spirits seek to tell the stories of those who have passed on, using their magic to channel the spirits of the dead. These bards are often found in graveyards, haunted houses, and other places where the dead linger.",
+  "2014_subclasses.college-of-spirits.spiritual-focus.description": "You employ tools that aid you in channeling spirits, such as a candle, crystal, or totem. When you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a d6 and add it to the roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+  "2014_subclasses.college-of-spirits.spiritual-focus.summary": "When you cast a bard spell that deals damage or restores Hit Points while holding your spiritual focus, roll a d6 and add it to the damage or healing roll.",
+  "2014_subclasses.college-of-spirits.tales-from-beyond.description": "You can reach out to the spirits of the dead to tell you stories. As a bonus action, you can roll a d6 and add it to your next ability check, attack roll, or saving throw. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+  "2014_subclasses.college-of-spirits.tales-from-beyond.summary": "Can roll a d6 and add it to your next ability check, attack roll, or saving throw. (bonus action).",
+  "2014_subclasses.college-of-spirits.spiritual-focus-improved.description": "Your spiritual focus becomes more powerful. When you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a d8 instead of a d6 and add it to the roll.",
+  "2014_subclasses.college-of-spirits.spiritual-focus-improved.summary": "Can roll a d8 instead of a d6 and add it to the roll. (action).",
+  "2014_subclasses.college-of-spirits.spirit-session.description": "You can cast the speak with dead spell at will, without expending a spell slot. When you cast the spell in this way, you can ask the corpse up to seven questions, rather than five.",
+  "2014_subclasses.college-of-spirits.spirit-session.summary": "Can cast the speak with dead spell at will, without expending a spell slot. (action).",
+  "2014_subclasses.college-of-spirits.mystical-connection.description": "You can use your Tales from Beyond feature without expending a use of it. When you do so, you roll a d8 instead of a d6.",
+  "2014_subclasses.college-of-spirits.mystical-connection.summary": "Use Tales from Beyond without expending a use. When you do so, roll a d8 instead of a d6."
+}

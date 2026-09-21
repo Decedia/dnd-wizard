@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.divination.flavorText": "Arcane Tradition",
+  "2014_subclasses.divination.description": "Diviners mempelajari seni memprediksi masa depan. Mereka bisa glimpsing moments yang belum terjadi, mendapatkan insight ke outcomes of actions dan intentions of others.\n\nStudi divination memerlukan keen intellect dan intuition. Diviners belajar membaca tanda dan portent yang dilewatkan orang lain, menggunakan pengetahuan mereka untuk membimbing sekutu dan mengalahkan musuh.",
+  "2014_subclasses.divination.divination-savant.description": "Di level 2, gold dan waktu yang kamu habiskan untuk copy divination spell ke spellbook-mu adalah dibagi dua.",
+  "2014_subclasses.divination.divination-savant.summary": "Di level 2, gold dan waktu yang kamu habiskan untuk copy divination spell ke spellbook-mu adalah dibagi dua. (action).",
+  "2014_subclasses.divination.portent.description": "Juga di level 2, kamu bisa mengganti attack roll, ability check, atau saving throw mana pun.",
+  "2014_subclasses.divination.portent.summary": "Juga di level 2, kamu bisa mengganti attack roll, ability check, atau saving throw mana pun. (action).",
+  "2014_subclasses.divination.expert-divination.description": "Di level 6, kamu bisa regain spell slots ketika kamu cast divination spells.",
+  "2014_subclasses.divination.expert-divination.summary": "Di level 6, kamu bisa regain spell slots ketika kamu cast divination spells.",
+  "2014_subclasses.divination.third-eye.description": "Di level 10, kamu bisa mendapatkan darkvision, melihat invisible creatures, dll.",
+  "2014_subclasses.divination.third-eye.summary": "Di level 10, kamu bisa mendapatkan darkvision, melihat invisible creatures, dll.",
+  "2014_subclasses.divination.greater-portent.description": "Di level 14, kamu bisa cast foresight spell once per long rest.",
+  "2014_subclasses.divination.greater-portent.summary": "Di level 14, kamu bisa cast foresight spell once per long rest."
+}

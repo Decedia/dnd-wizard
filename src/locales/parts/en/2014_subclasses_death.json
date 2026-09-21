@@ -1,0 +1,17 @@
+{
+  "2014_subclasses.death.description": "The Death domain is concerned with the forces that cause death, as well as the negative energy that powers undead creatures. Clerics of death are feared necromancers and heralds of finality.",
+  "2014_subclasses.death.bonus-proficiency.summary": "Gain proficiency with martial weapons.",
+  "2014_subclasses.death.bonus-proficiency.description": "At 1st level, you gain proficiency with martial weapons.",
+  "2014_subclasses.death.reaper.summary": "Target two adjacent creatures with necromancy cantrips that normally target one.",
+  "2014_subclasses.death.reaper.description": "At 1st level, when the cleric casts a necromancy cantrip that normally targets only one creature, the spell can instead target two creatures within range and within 5 feet of each other.",
+  "2014_subclasses.death.death-domain-spells.summary": "Gain domain spells at levels 1, 3, 5, 7, and 9.",
+  "2014_subclasses.death.death-domain-spells.description": "1st: False Life, Ray of Sickness; 3rd: Blindness/Deafness, Ray of Enfeeblement; 5th: Animate Dead, Vampiric Touch; 7th: Blight, Death Ward; 9th: Antilife Shell, Cloudkill.",
+  "2014_subclasses.death.channel-divinity-touch-of-death.summary": "Add 5 + (2 x cleric level) necrotic damage to a successful melee attack.",
+  "2014_subclasses.death.channel-divinity-touch-of-death.description": "Starting at 2nd level, when the cleric hits a creature with a melee attack, the cleric can use Channel Divinity to deal extra necrotic damage to the target equal to 5 + twice his or her cleric level.",
+  "2014_subclasses.death.inescapable-destruction.summary": "Necrotic damage dealt by your cleric spells and Channel Divinity ignores resistance to necrotic damage.",
+  "2014_subclasses.death.inescapable-destruction.description": "Starting at 6th level, the cleric's ability to channel negative energy becomes more potent. Necrotic damage dealt by the character's cleric spells and Channel Divinity options ignores resistance to necrotic damage.",
+  "2014_subclasses.death.divine-strike.summary": "Once on each turn, deal extra 1d8 necrotic damage on a weapon hit (2d8 at 14th).",
+  "2014_subclasses.death.divine-strike.description": "At 8th level, the cleric gains the ability to infuse his or her weapon strikes with necrotic energy. Once on each of the cleric's turns when he or she hits a creature with a weapon attack, the cleric can cause the attack to deal an extra 1d8 necrotic damage. At 14th level, this increases to 2d8.",
+  "2014_subclasses.death.improved-reaper.summary": "Target two adjacent creatures with 1st through 5th level necromancy spells.",
+  "2014_subclasses.death.improved-reaper.description": "Starting at 17th level, when the cleric casts a necromancy spell of 1st through 5th level that targets only one creature, the spell can instead target two creatures within range and within 5 feet of each other."
+}

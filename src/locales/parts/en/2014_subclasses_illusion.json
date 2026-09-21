@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.illusion.flavorText": "Arcane Tradition",
+  "2014_subclasses.illusion.description": "Illusionists create false images and manipulate perceptions. They can make things appear or disappear, create phantasmal creatures, and alter the appearance of themselves and others.\n\nThe study of illusion requires creativity and imagination. Illusionists learn to bend light and sound, creating realistic illusions that can deceive even the most perceptive observers.",
+  "2014_subclasses.illusion.illusion-savant.description": "At 2nd level, the gold and time you spend to copy an illusion spell into your spellbook is halved.",
+  "2014_subclasses.illusion.illusion-savant.summary": "At 2nd level, the gold and time you spend to copy an illusion spell into your spellbook is halved. (action).",
+  "2014_subclasses.illusion.improved-minor-illusion.description": "Also at 2nd level, you can change the nature of your illusions.",
+  "2014_subclasses.illusion.improved-minor-illusion.summary": "Also at 2nd level, you can change the nature of your illusions.",
+  "2014_subclasses.illusion.illusory-self.description": "At 6th level, you can create an illusory duplicate of yourself.",
+  "2014_subclasses.illusion.illusory-self.summary": "At 10th level, when a creature makes an attack roll against you, you can use your reaction to create an illusory duplicate of yourself, causing the attack to miss you instead.",
+  "2014_subclasses.illusion.illusory-self-2.description": "At 10th level, you can make an illusion real.",
+  "2014_subclasses.illusion.illusory-self-2.summary": "At 10th level, when a creature makes an attack roll against you, you can use your reaction to create an illusory duplicate of yourself, causing the attack to miss you instead.",
+  "2014_subclasses.illusion.illusory-reality.description": "At 14th level, you can create an illusory creature.",
+  "2014_subclasses.illusion.illusory-reality.summary": "At 14th level, you can create an illusory creature."
+}

@@ -1,0 +1,13 @@
+{
+  "2014_subclasses.artillerist.description": "An Artillerist specializes in harnessing the power of magic to create destructive energy. They can conjure a magical cannon that unleashes powerful blasts of elemental energy.",
+  "2014_subclasses.artillerist.tool-proficiency.description": "You gain proficiency with woodcarver's tools.",
+  "2014_subclasses.artillerist.tool-proficiency.summary": "Gain proficiency with woodcarver's tools. (permanent).",
+  "2014_subclasses.artillerist.eldritch-cannon.description": "You can use woodcarver's tools and 10 gp worth of raw materials to create a Small eldritch cannon in an unoccupied space within 5 feet of you. The cannon has AC 18 and hit points equal to five times your artificer level. You can have only one cannon at a time. As an action, you can command the cannon to move up to 15 feet. You can use a bonus action to activate the cannon, causing it to produce one of the following effects: Flamethrower (15-foot cone, 2d8 fire damage, Dexterity saving throw), Force Ballista (ranged spell attack, 2d8 force damage, push 5 feet), or Protector (10-foot radius, 1d8 + Intelligence modifier temporary hit points).",
+  "2014_subclasses.artillerist.eldritch-cannon.summary": "Can use woodcarver's tools and 10 gp worth of raw materials to create a Small eldritch cannon in an unoccupied space within 5 feet of you. (bonus action).",
+  "2014_subclasses.artillerist.arcane-firearm.description": "You can use a wand, staff, or rod as a spellcasting focus. When you cast an artificer spell through this focus, you can roll a d8 and add it to one damage roll of the spell.",
+  "2014_subclasses.artillerist.arcane-firearm.summary": "Can roll a d8 and add it to one damage roll of the spell. (action).",
+  "2014_subclasses.artillerist.explosive-cannon.description": "Your cannon's damage increases by 1d8. In addition, you can detonate your cannon as an action. Each creature within 20 feet of the cannon must make a Dexterity saving throw against your spell save DC, taking 3d8 force damage on a failed save, or half as much damage on a successful one.",
+  "2014_subclasses.artillerist.explosive-cannon.summary": "Each creature within 20 feet of the cannon must make a Dexterity saving throw against your spell save DC, taking 3d8 force damage on a failed save, or half.",
+  "2014_subclasses.artillerist.fortified-position.description": "You and your allies have half cover while within 10 feet of your cannon. In addition, you can have two cannons at a time, and you can activate both with the same bonus action.",
+  "2014_subclasses.artillerist.fortified-position.summary": "And your allies have half cover while within 10 feet of your cannon. (bonus action)."
+}

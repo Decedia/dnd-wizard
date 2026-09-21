@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.light.flavorText": "Divine Domain",
+  "2014_subclasses.light.description": "The Light domain represents the power of light, fire, and revelation. Its clerics are beacons of hope and clarity, using radiant energy to burn away darkness, undeath, and deception.\n\nGods of light—including Lathander, Pelor, Ra, and Apollo—promote the ideals of rebirth and renewal, truth, vigilance, and beauty, often using the symbol of the sun. Gods of the Light domain are often associated with fire as a symbol of purity and truth.",
+  "2014_subclasses.light.bonus-cantrip.description": "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice.",
+  "2014_subclasses.light.bonus-cantrip.summary": "Learn one additional druid cantrip of your choice. (action).",
+  "2014_subclasses.light.warding-flare.description": "At 1st level, you can interpose divine light between yourself and an enemy. When you are attacked by a creature within 30 feet of you that you can see, you can use your reaction to impose disadvantage on the attack roll, causing light to flare before the attacker. An attacker can't benefit from this feature if it can't see or is immune to being blinded. You can use this number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest.",
+  "2014_subclasses.light.warding-flare.summary": "Can use your reaction to impose disadvantage on the attack roll, causing light to flare before the attacker. (reaction).",
+  "2014_subclasses.light.channel-divinity-radiance-of-the-dawn.description": "Starting at 2nd level, you can use your Channel Divinity to flood an area with radiant energy.",
+  "2014_subclasses.light.channel-divinity-radiance-of-the-dawn.summary": "Starting at 2nd level, you can use your Channel Divinity to flood an area with radiant energy. (action).",
+  "2014_subclasses.light.improved-flare.description": "Starting at 6th level, you can cast the fireball spell once per long rest.",
+  "2014_subclasses.light.improved-flare.summary": "Starting at 6th level, you can cast the fireball spell once per long rest.",
+  "2014_subclasses.light.potent-spellcasting.description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+  "2014_subclasses.light.potent-spellcasting.summary": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells. (action).",
+  "2014_subclasses.light.corona-of-light.description": "Starting at 17th level, you can use your action to emanate a bright light. For 1 minute, bright light shines from you in a 30-foot radius, and dim light shines 30 feet beyond that. Creatures of your choice in the bright light have disadvantage on Dexterity (Stealth) checks and on saving throws against spells that deal fire or radiant damage. You can end this effect on yourself early by using a bonus action to dismiss it.",
+  "2014_subclasses.light.corona-of-light.summary": "Creatures of your choice in the bright light have disadvantage on Dexterity (Stealth) checks and on saving throws against spells that deal fire or radiant damage. (bonus action)."
+}

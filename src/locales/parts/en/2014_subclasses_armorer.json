@@ -1,0 +1,15 @@
+{
+  "2014_subclasses.armorer.description": "An Armorer uses their artificer magic to empower a suit of armor, turning it into a powerful magical protection. The Armorer can transform their armor into different modes for combat or stealth.",
+  "2014_subclasses.armorer.tools-of-the-trade.description": "You gain proficiency with heavy armor and smith's tools.",
+  "2014_subclasses.armorer.tools-of-the-trade.summary": "Gain proficiency with heavy armor and smith's tools.",
+  "2014_subclasses.armorer.arcane-armor.description": "Your armor becomes magical. You can don or doff your armor as an action, and it can't be removed against your will. While wearing your armor, you gain the following benefits: You have a +1 bonus to AC, you can use your Intelligence modifier instead of Strength for attack and damage rolls with weapons, and you can use your armor as a spellcasting focus.",
+  "2014_subclasses.armorer.arcane-armor.summary": "Can don or doff your armor as an action, and it can't be removed against your will. (action).",
+  "2014_subclasses.armorer.armor-model.description": "You can customize your armor for combat or stealth. When you finish a long rest, you can change your armor model. Choose one of the following: Guardian (you have advantage on Charisma (Intimidation) checks, and when you take the Attack action on your turn, you can make an additional melee attack from the armor's thunder gauntlets) or Infiltrator (you have advantage on Charisma (Stealth) checks, and your armor's lightning launcher deals an extra 1d6 lightning damage).",
+  "2014_subclasses.armorer.armor-model.summary": "Choose one of the following: Guardian (you have advantage on Charisma (Intimidation) checks, and when you take the Attack action on your turn, you can make an additional melee attack.",
+  "2014_subclasses.armorer.extra-attack.description": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+  "2014_subclasses.armorer.extra-attack.summary": "Can attack twice, instead of once, whenever you take the Attack action on your turn. (only when taking the attack action, permanent, scales).",
+  "2014_subclasses.armorer.armor-modifications.description": "You learn 2 additional artificer infusions, and you can apply them to your armor. You can have up to 4 infusions active on your armor at a time.",
+  "2014_subclasses.armorer.armor-modifications.summary": "Learn 2 additional artificer infusions, and you can apply them to your armor.",
+  "2014_subclasses.armorer.perfected-armor.description": "Your armor's power increases. While wearing your armor, you gain the following benefits based on your armor model: Guardian (when a creature within 5 feet of you hits you with an attack, you can use your reaction to deal 1d6 thunder damage to that creature) or Infiltrator (when you hit a creature with an attack, you can deal an additional 1d6 lightning damage).",
+  "2014_subclasses.armorer.perfected-armor.summary": "Gain the following benefits based on your armor model: Guardian."
+}

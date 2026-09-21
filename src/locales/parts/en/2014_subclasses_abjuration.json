@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.abjuration.flavorText": "Arcane Tradition",
+  "2014_subclasses.abjuration.description": "The abjuration specialist is a wizard who focuses on protective and defensive magic. They are masters of wards, shields, and counterspells, able to protect themselves and their allies from magical and physical harm.\n\nAbjurers study the theory and practice of defensive magic, learning to create magical barriers that can absorb damage and deflect attacks. They are often found on the front lines, using their abilities to keep their companions safe.",
+  "2014_subclasses.abjuration.abjuration-savant.description": "At 2nd level, the gold and time you spend to copy an abjuration spell into your spellbook is halved.",
+  "2014_subclasses.abjuration.abjuration-savant.summary": "At 2nd level, the gold and time you spend to copy an abjuration spell into your spellbook is halved. (action).",
+  "2014_subclasses.abjuration.arcane-ward.description": "Also at 2nd level, you can create a magical ward.",
+  "2014_subclasses.abjuration.arcane-ward.summary": "At 2nd level, when you cast an abjuration spell, you create a magical ward with Hit Points equal to twice your wizard level + your Intelligence modifier. The ward takes damage first and recharges when you cast an abjuration spell.",
+  "2014_subclasses.abjuration.projected-ward.description": "At 6th level, you can use your Arcane Ward to protect others.",
+  "2014_subclasses.abjuration.projected-ward.summary": "At 6th level, you can use your Arcane Ward to protect others. (action).",
+  "2014_subclasses.abjuration.improved-abjuration.description": "At 10th level, your Arcane Ward regains hit points when you finish a short rest.",
+  "2014_subclasses.abjuration.improved-abjuration.summary": "At 10th level, your Arcane Ward regains hit points when you finish a short rest.",
+  "2014_subclasses.abjuration.spell-resistance.description": "At 14th level, you have advantage on saving throws against spells.",
+  "2014_subclasses.abjuration.spell-resistance.summary": "At 14th level, you have advantage on saving throws against spells."
+}

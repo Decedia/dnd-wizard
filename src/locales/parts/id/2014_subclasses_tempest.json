@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.tempest.flavorText": "Divine Domain",
+  "2014_subclasses.tempest.description": "Tempest domain mewakili kekuatan storm dan laut. Cleric-nya adalah pejuang garang yang memanggil fury thunder dan lightning untuk menghancurkan musuh dan melindungi yang tidak bersalah.\n\nGods of the Tempest domain—termasuk Talos, Umberlee, dan Zeus—menerima kekuatan destruktif alam dan mengajarkan bahwa hanya melalui konflik dan perjuangan strength dapat diperoleh. Mereka sering menjadi patron dari sailor dan mereka yang mencari kehidupan di laut.",
+  "2014_subclasses.tempest.bonus-proficiencies.description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+  "2014_subclasses.tempest.bonus-proficiencies.summary": "Memperoleh proficiency dengan tiga skills pilihanmu.",
+  "2014_subclasses.tempest.wrath-of-the-storm.description": "Juga di level 1, kamu dapat menggunakan reaction untuk memberikan lightning damage kepada creature dalam 5 feet dari kamu yang kamu lihat. Ketika creature dalam 5 feet dari kamu yang kamu lihat menyerang kamu dengan attack, kamu dapat menggunakan reaction untuk memberikan 2d8 lightning damage kepada attacker. Kamu dapat menggunakan fitur ini sebanyak Wisdom modifier kamu (minimal sekali). Kamu memperoleh kembali semua penggunaan yang dihabiskan ketika kamu menyelesaikan long rest.",
+  "2014_subclasses.tempest.wrath-of-the-storm.summary": "Juga di level 1, kamu dapat menggunakan reaction untuk memberikan lightning damage kepada creature dalam 5 feet dari kamu yang kamu lihat. (reaction).",
+  "2014_subclasses.tempest.channel-divinity-destructive-wrath.description": "Starting di level 2, kamu dapat menggunakan Channel Divinity untuk memaksimalkan damage dari lightning atau thunder spells kamu.",
+  "2014_subclasses.tempest.channel-divinity-destructive-wrath.summary": "Starting di level 2, kamu dapat menggunakan Channel Divinity untuk memaksimalkan damage dari lightning atau thunder spells kamu. (action).",
+  "2014_subclasses.tempest.thunderbolt-strike.description": "Starting di level 6, ketika kamu memberikan lightning damage kepada creature, kamu dapat mendorongnya hingga 10 feet jauhnya.",
+  "2014_subclasses.tempest.thunderbolt-strike.summary": "Starting di level 6, ketika kamu memberikan lightning damage kepada creature, kamu dapat mendorongnya hingga 10 feet jauhnya.",
+  "2014_subclasses.tempest.potent-spellcasting.description": "Starting di level 8, kamu menambahkan Wisdom modifier kamu ke damage rolls dari cleric spells kamu.",
+  "2014_subclasses.tempest.potent-spellcasting.summary": "Starting di level 8, kamu menambahkan Wisdom modifier kamu ke damage rolls dari cleric spells kamu. (action).",
+  "2014_subclasses.tempest.stormborn.description": "Starting di level 17, kamu memperoleh resistance terhadap lightning dan thunder damage. Selain itu, setiap kali kamu menyalakan spell level 1 atau lebih tinggi yang memberikan lightning atau thunder damage, kamu dapat terbang hingga 10 feet tanpa memicu opportunity attacks.",
+  "2014_subclasses.tempest.stormborn.summary": "Selain itu, setiap kali kamu menyalakan spell level 1 atau lebih tinggi yang memberikan lightning atau thunder damage, kamu dapat terbang hingga 10 feet tanpa memicu opportunity attacks."
+}

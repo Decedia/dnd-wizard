@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.light.flavorText": "Domain Ilahi",
+  "2014_subclasses.light.description": "Domain Light mewakili kuasa cahaya, api, dan wahyu. Cleric-nya adalah mercu harapan dan kejelasan, menggunakan energi radiant untuk membakar gelap, undeath, dan penipuan.\n\nDewa cahaya—termasuk Lathander, Pelor, Ra, dan Apollo—mempromosikan ideal kebangkitan dan pembaruan, kebenaran, kewaspadaan, dan keindahan, sering menggunakan simbol matahari. Dewa Domain Light sering diasosiasikan dengan api sebagai simbol kemurnian dan kebenaran.",
+  "2014_subclasses.light.bonus-cantrip.description": "Saat Anda memilih circle ini di level 2, Anda mempelajari satu druid cantrip tambahan sesuai pilihan Anda.",
+  "2014_subclasses.light.bonus-cantrip.summary": "Pelajari satu druid cantrip tambahan sesuai pilihan Anda. (action).",
+  "2014_subclasses.light.warding-flare.description": "Di level 1, Anda bisa menempatkan cahaya ilahi antara Anda dan musuh. Ketika Anda diserang oleh makhluk dalam 30 feet dari Anda yang bisa Anda lihat, Anda bisa menggunakan reaksi untuk memberikan Disadvantage pada attack roll, menyebabkan cahaya menyala sebelum penyerang. Penyerang tidak bisa mendapatkan manfaat dari fitur ini jika tidak bisa melihat atau kebal terhadap being blinded. Anda bisa menggunakan fitur ini sebanyak Wisdom modifier Anda (minimal sekali). Anda mendapatkan kembali semua penggunaan saat menyelesaikan long rest.",
+  "2014_subclasses.light.warding-flare.summary": "Bisa menggunakan reaksi untuk memberikan Disadvantage pada attack roll, menyebabkan cahaya menyala sebelum penyerang. (reaction).",
+  "2014_subclasses.light.channel-divinity-radiance-of-the-dawn.description": "Mulai dari level 2, Anda bisa menggunakan Channel Divinity untuk membanjiri area dengan energi radiant.",
+  "2014_subclasses.light.channel-divinity-radiance-of-the-dawn.summary": "Mulai dari level 2, Anda bisa menggunakan Channel Divinity untuk membanjiri area dengan energi radiant. (action).",
+  "2014_subclasses.light.improved-flare.description": "Mulai dari level 6, Anda bisa cast spell fireball sekali per long rest.",
+  "2014_subclasses.light.improved-flare.summary": "Mulai dari level 6, Anda bisa cast spell fireball sekali per long rest.",
+  "2014_subclasses.light.potent-spellcasting.description": "Mulai dari level 8, Anda menambahkan Wisdom modifier Anda ke damage roll spell cleric Anda.",
+  "2014_subclasses.light.potent-spellcasting.summary": "Mulai dari level 8, Anda menambahkan Wisdom modifier Anda ke damage roll spell cleric Anda. (action).",
+  "2014_subclasses.light.corona-of-light.description": "Mulai dari level 17, Anda bisa menggunakan Action Anda untuk memancarkan cahaya terang. Selama 1 menit, cahaya terang bersinar dari Anda dalam radius 30-foot, dan cahaya redup bersinar 30 feet di luar itu. Makhluk pilihan Anda dalam cahaya terang memiliki Disadvantage pada Dexterity (Stealth) check dan pada saving throw terhadap spell yang deal fire atau radiant damage. Anda bisa mengakhiri efek ini pada diri Anda lebih awal dengan menggunakan Bonus Action untuk menutupnya.",
+  "2014_subclasses.light.corona-of-light.summary": "Makhluk pilihan Anda dalam cahaya terang memiliki Disadvantage pada Dexterity (Stealth) check dan pada saving throw terhadap spell yang deal fire atau radiant damage. (bonus action)."
+}

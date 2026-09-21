@@ -1,0 +1,15 @@
+{
+  "2014_subclasses.oath-of-the-crown.description": "The Oath of the Crown is sworn to the ideals of civilization, the law, and the preservation of an established sovereign realm.",
+  "2014_subclasses.oath-of-the-crown.oath-spells.summary": "Gain oath spells at levels 3, 5, 9, 13, and 17.",
+  "2014_subclasses.oath-of-the-crown.oath-spells.description": "3rd: Command, Compelled Duel; 5th: Warding Bond, Zone of Truth; 9th: Aura of Vitality, Spirit Guardians; 13th: Banishment, Guardian of Faith; 17th: Circle of Power, Geas.",
+  "2014_subclasses.oath-of-the-crown.channel-divinity-champion-challenge.summary": "Force hostile creatures within 30 feet to stay within 30 feet of you on a failed Wisdom saving throw.",
+  "2014_subclasses.oath-of-the-crown.channel-divinity-champion-challenge.description": "As a bonus action, you issue a challenge that compels other creatures to do battle with you. Each creature of your choice that you can see within 30 feet of you must make a Wisdom saving throw. On a failed save, a creature can't willingly move more than 30 feet away from you.",
+  "2014_subclasses.oath-of-the-crown.channel-divinity-turn-the-tide.summary": "Restore 1d6 + Cha mod hit points to allies within 30 feet that have no more than half their max HP.",
+  "2014_subclasses.oath-of-the-crown.channel-divinity-turn-the-tide.description": "As a bonus action, you can bolster injured creatures with your Channel Divinity. Each creature of your choice within 30 feet of you that can hear you and has no more than half its hit points regains hit points equal to 1d6 + your Charisma modifier (minimum 1).",
+  "2014_subclasses.oath-of-the-crown.divine-allegiance.summary": "When an ally within 5 feet takes damage, use your reaction to magically take that damage instead.",
+  "2014_subclasses.oath-of-the-crown.divine-allegiance.description": "Starting at 7th level, when a creature within 5 feet of you takes damage, you can use your reaction to magically substitute your own health for that of the target creature, taking that damage in its place. This damage to you cannot be reduced or prevented in any way.",
+  "2014_subclasses.oath-of-the-crown.unyielding-saint.summary": "Gain advantage on saving throws to avoid being paralyzed or stunned.",
+  "2014_subclasses.oath-of-the-crown.unyielding-saint.description": "Beginning at 15th level, you have advantage on saving throws to avoid becoming paralyzed or stunned.",
+  "2014_subclasses.oath-of-the-crown.exalted-champion.summary": "For 1 hour: resistance to nonmagical weapon damage, allies within 30 ft have advantage on death and Wisdom saves.",
+  "2014_subclasses.oath-of-the-crown.exalted-champion.description": "At 20th level, your presence on the battlefield becomes an inspiration to your allies. As an action, you gain the following benefits for 1 hour: resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons; your allies within 30 feet have advantage on death saving throws; and you and your allies within 30 feet have advantage on Wisdom saving throws."
+}

@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.knowledge.flavorText": "Domain Ilahi",
+  "2014_subclasses.knowledge.description": "Domain Knowledge mewakili pengejaran pengetahuan dan pemahaman tentang dunia dan para dewa. Cleric-nya adalah sarjana, pemuka ilmu, dan pencari kebenaran, menggunakan hadiah ilahi mereka untuk mengungkap rahasia dan menerangi misteri eksistensi.\n\nDewa pengetahuan—termasuk Oghma, Boccob, Gilean, dan Aureon—menghargai pembelajaran dan pemahaman di atas segalanya. Beberapa mengajarkan bahwa pengetahuan harus dikumpulkan dan dibagikan di perpustakaan dan universitas, sementara yang lain percaya itu harus dirahasiakan dan hanya digunakan oleh yang layak.",
+  "2014_subclasses.knowledge.blessings-of-knowledge.description": "Di level 1, Anda mempelajari dua bahasa sesuai pilihan Anda dan mendapatkan dua skill sesuai pilihan Anda.",
+  "2014_subclasses.knowledge.blessings-of-knowledge.summary": "Di level 1, Anda mempelajari dua bahasa sesuai pilihan Anda dan mendapatkan dua skill sesuai pilihan Anda.",
+  "2014_subclasses.knowledge.channel-divinity-knowledge-of-the-ages.description": "Mulai dari level 2, Anda bisa menggunakan Channel Divinity untuk menembur ke dalam reservoir pengetahuan. Sebagai Action, Anda menjadi proficient dalam satu skill atau tool sesuai pilihan Anda sampai menyelesaikan short atau long rest. Anda bisa menggunakan fitur ini lagi setelah short atau long rest.",
+  "2014_subclasses.knowledge.channel-divinity-knowledge-of-the-ages.summary": "Bisa menggunakan fitur ini lagi setelah short atau long rest. (action).",
+  "2014_subclasses.knowledge.channel-divinity-read-thoughts.description": "Di level 6, Anda bisa menggunakan Channel Divinity untuk membaca pikiran makhluk. Anda kemudian bisa menggunakan akses Anda ke pikiran makhluk itu untuk memerintahnya, menyelidikinya, atau menyelidiki ingatannya.",
+  "2014_subclasses.knowledge.channel-divinity-read-thoughts.summary": "Di level 6, Anda bisa menggunakan Channel Divinity untuk membaca pikiran makhluk. (action).",
+  "2014_subclasses.knowledge.potent-spellcasting.description": "Mulai dari level 8, Anda menambahkan Wisdom modifier Anda ke damage roll spell cleric Anda.",
+  "2014_subclasses.knowledge.potent-spellcasting.summary": "Mulai dari level 8, Anda menambahkan Wisdom modifier Anda ke damage roll spell cleric Anda. (action).",
+  "2014_subclasses.knowledge.visions-of-the-past.description": "Mulai dari level 17, Anda bisa memanggil dewa Anda untuk mengungkap visi masa lalu. Anda bisa menerima visi masa lalu dengan menghabiskan setidaknya 1 menit dalam meditasi dan doa, dan Anda bisa menerima visi masa lalu dari benda, makhluk, atau lokasi spesifik.",
+  "2014_subclasses.knowledge.visions-of-the-past.summary": "Mulai dari level 17, Anda bisa memanggil dewa Anda untuk mengungkap visi masa lalu. (action)."
+}

@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.necromancy.flavorText": "Arcane Tradition",
+  "2014_subclasses.necromancy.description": "Necromancers study the forces of life and death. They can animate the dead, drain life force from living creatures, and even cheat death itself.\n\nThe study of necromancy requires a strong will and a willingness to confront the darker aspects of existence. Necromancers learn to harness the power of negative energy, using it to create undead servants and protect themselves from harm.",
+  "2014_subclasses.necromancy.savant.description": "At 2nd level, the gold and time you spend to copy a necromancy spell into your spellbook is halved.",
+  "2014_subclasses.necromancy.savant.summary": "At 2nd level, the gold and time you spend to copy a necromancy spell into your spellbook is halved. (action).",
+  "2014_subclasses.necromancy.grim-harvest.description": "Also at 2nd level, you can regain hit points when you kill a creature.",
+  "2014_subclasses.necromancy.grim-harvest.summary": "Also at 2nd level, you can regain hit points when you kill a creature.",
+  "2014_subclasses.necromancy.undead-thralls.description": "At 6th level, you can animate undead.",
+  "2014_subclasses.necromancy.undead-thralls.summary": "At 6th level, when you raise a creature as an undead, it gains additional Hit Points and your proficiency bonus to its attacks and damage rolls. You can also command it as a bonus action.",
+  "2014_subclasses.necromancy.inured-to-undeath.description": "At 10th level, you have resistance to necrotic damage.",
+  "2014_subclasses.necromancy.inured-to-undeath.summary": "At 10th level, you have resistance to necrotic damage.",
+  "2014_subclasses.necromancy.command-undead.description": "At 14th level, you can command undead creatures.",
+  "2014_subclasses.necromancy.command-undead.summary": "At 14th level, you can use your action to target one undead creature within 60 feet of you. The target must make a Wisdom saving throw or be charmed by you for 1 minute. You can use this feature a number of times equal to your proficiency bonus, regaining all uses on a long rest."
+}

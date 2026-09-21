@@ -1,0 +1,23 @@
+{
+  "2014_subclasses.four-elements.description": "You follow a monastic tradition that teaches you to harness the elements. When you focus your ki, you can align yourself with the forces of creation and bend the four elements to your will.",
+  "2014_subclasses.four-elements.disciple-of-the-elements.summary": "Learn magical disciplines that harness earth, air, fire, and water by spending ki points.",
+  "2014_subclasses.four-elements.disciple-of-the-elements.description": "You learn magical disciplines that harness the power of the four elements. A discipline requires you to spend ki points each time you use it. You know the Elemental Attunement discipline and one other elemental discipline of your choice. You learn one additional elemental discipline of your choice at 6th, 11th, and 17th level.",
+  "2014_subclasses.four-elements.elemental-attunement.summary": "Produce minor harmless elemental effects, create sparks, cool or warm objects, or shape mist.",
+  "2014_subclasses.four-elements.elemental-attunement.description": "You can use your action to briefly control elemental forces nearby: create harmless sensory effects like showers of sparks, puff of wind, or mist; light or snuff a candle or campfire; chill or warm up to 1 pound of nonliving material; or shape earth, fire, water, or mist into crude shapes for 1 minute.",
+  "2014_subclasses.four-elements.fangs-of-the-fire-snake.summary": "Spend 1 ki to extend unarmed strike reach by 10 ft and deal fire damage; spend extra ki for +1d10 fire.",
+  "2014_subclasses.four-elements.fangs-of-the-fire-snake.description": "When you use the Attack action on your turn, you can spend 1 ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by 10 feet for that action, as well as the rest of the turn. A hit with such an attack deals fire damage instead of bludgeoning damage, and if you spend 1 additional ki point when the attack hits, it deals an extra 1d10 fire damage.",
+  "2014_subclasses.four-elements.water-whip.summary": "Spend 2 ki to create a water whip dealing 3d10 bludgeoning and pulling the target 25 ft or knocking prone.",
+  "2014_subclasses.four-elements.water-whip.description": "You can spend 2 ki points as an action to create a whip of water that shoves and pulls a creature to unbalance it. A creature that you can see that is within 30 feet of you must make a Dexterity saving throw. On a failed save, it takes 3d10 bludgeoning damage plus an extra 1d10 for each additional ki point spent, and you can either knock it prone or pull it up to 25 feet closer to you.",
+  "2014_subclasses.four-elements.fist-of-four-thunders.summary": "Spend 2 ki points to cast Thunderwave.",
+  "2014_subclasses.four-elements.fist-of-four-thunders.description": "You can spend 2 ki points to cast Thunderwave.",
+  "2014_subclasses.four-elements.sweeping-cinder-strike.summary": "Spend 2 ki points to cast Burning Hands.",
+  "2014_subclasses.four-elements.sweeping-cinder-strike.description": "You can spend 2 ki points to cast Burning Hands.",
+  "2014_subclasses.four-elements.gong-of-the-summit.summary": "Spend 3 ki points to cast Shatter.",
+  "2014_subclasses.four-elements.gong-of-the-summit.description": "You can spend 3 ki points to cast Shatter.",
+  "2014_subclasses.four-elements.flames-of-the-phoenix.summary": "Spend 4 ki points to cast Fireball.",
+  "2014_subclasses.four-elements.flames-of-the-phoenix.description": "You can spend 4 ki points to cast Fireball.",
+  "2014_subclasses.four-elements.ride-the-wind.summary": "Spend 4 ki points to cast Fly on yourself.",
+  "2014_subclasses.four-elements.ride-the-wind.description": "You can spend 4 ki points to cast Fly, targeting yourself.",
+  "2014_subclasses.four-elements.river-of-hungry-flame.summary": "Spend 5 ki points to cast Wall of Fire.",
+  "2014_subclasses.four-elements.river-of-hungry-flame.description": "You can spend 5 ki points to cast Wall of Fire."
+}

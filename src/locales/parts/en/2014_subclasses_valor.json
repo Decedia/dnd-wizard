@@ -1,0 +1,12 @@
+{
+  "2014_subclasses.valor.flavorText": "Bard College",
+  "2014_subclasses.valor.description": "Bards of the College of Valor are daring skalds, telling tales of great heroes and performing deeds worthy of song. They wander the land to witness great events firsthand and see the deeds of legendary heroes.\n\nAs they travel from place to place, these bards inspire others with songs and stories of past glories, stirring their audiences to greatness and spurring them to action. The college's members gather to share their lore with one another and celebrate their common bond.",
+  "2014_subclasses.valor.bonus-proficiencies.description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+  "2014_subclasses.valor.bonus-proficiencies.summary": "Gain proficiency with three skills of your choice.",
+  "2014_subclasses.valor.combat-inspiration.description": "Also at 3rd level, you learn to inspire others in combat. A creature that has a Bardic Inspiration die from you can roll that die and add the number rolled to a weapon damage roll it just made. Alternatively, when an attack roll is made against the creature, it can use its reaction to roll the Bardic Inspiration die and add the number rolled to its AC against that attack, after seeing the roll but before knowing whether it hits or misses.",
+  "2014_subclasses.valor.combat-inspiration.summary": "Alternatively, when an attack roll is made against the creature, it can use its reaction to roll the Bardic Inspiration die and add the number rolled to its AC against.",
+  "2014_subclasses.valor.extra-attack.description": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.",
+  "2014_subclasses.valor.extra-attack.summary": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. (only when taking the attack action, permanent, scales).",
+  "2014_subclasses.valor.battle-magic.description": "At 14th level, you have mastered the art of weaving spellcasting and weapon use together. When you use your action to cast a bard spell, you can make one weapon attack as a bonus action.",
+  "2014_subclasses.valor.battle-magic.summary": "Can make one weapon attack as a bonus action. (bonus action)."
+}

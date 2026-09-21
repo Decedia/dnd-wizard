@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.enchantment.flavorText": "Arcane Tradition",
+  "2014_subclasses.enchantment.description": "Enchanters specialize in manipulating the minds of others. They can charm, beguile, and control creatures, turning enemies into allies and bending others to their will.\n\nThe study of enchantment requires subtlety and finesse. Enchanters learn to weave spells that influence thoughts and emotions, using their abilities to avoid conflict or gain advantage in social situations.",
+  "2014_subclasses.enchantment.savant.description": "At 2nd level, the gold and time you spend to copy an enchantment spell into your spellbook is halved.",
+  "2014_subclasses.enchantment.savant.summary": "At 2nd level, the gold and time you spend to copy an enchantment spell into your spellbook is halved. (action).",
+  "2014_subclasses.enchantment.hypnotic-gaze.description": "Also at 2nd level, you can charm a creature with a look.",
+  "2014_subclasses.enchantment.hypnotic-gaze.summary": "Also at 2nd level, you can charm a creature with a look.",
+  "2014_subclasses.enchantment.instinctive-charm.description": "At 6th level, you can divert attacks made against you.",
+  "2014_subclasses.enchantment.instinctive-charm.summary": "At 6th level, you can divert attacks made against you.",
+  "2014_subclasses.enchantment.split-enchantment.description": "At 10th level, you can target two creatures with enchantment spells.",
+  "2014_subclasses.enchantment.split-enchantment.summary": "At 10th level, you can target two creatures with enchantment spells.",
+  "2014_subclasses.enchantment.alter-memories.description": "At 14th level, you can modify a creature's memory.",
+  "2014_subclasses.enchantment.alter-memories.summary": "At 14th level, when you charm a creature, you can modify its memory of the event. The creature must succeed on a Wisdom saving throw or have its memory altered."
+}

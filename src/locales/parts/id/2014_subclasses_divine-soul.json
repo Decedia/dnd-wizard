@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.divine-soul.flavorText": "Sorcerous Origin",
+  "2014_subclasses.divine-soul.description": "Divine soul telah disentuh oleh grace dari being ilahi. Magic yang kamu geledahi adalah gift dari para dewa, dan kamu adalah conduit untuk kekuatan mereka.",
+  "2014_subclasses.divine-soul.bonus-proficiency.description": "Di level 1, kamu mendapatkan proficiency di skill Religion.",
+  "2014_subclasses.divine-soul.bonus-proficiency.summary": "Di level 1, kamu mendapatkan proficiency di skill Religion.",
+  "2014_subclasses.divine-soul.favored-by-the-gods.description": "Dimulai di level 1, kekuatan ilahi melindungi takdirmu. Jika kamu gagal saving throw atau miss dengan attack roll, kamu bisa roll 2d4 dan menambahkannya ke total, mungkin mengubah hasilnya. Setelah kamu menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
+  "2014_subclasses.divine-soul.favored-by-the-gods.summary": "Bisa roll 2d4 dan tambahkan ke total, mungkin mengubah hasilnya. (action).",
+  "2014_subclasses.divine-soul.empowered-healing.description": "Dimulai di level 6, divine energy yang mengalir melalui kamu bisa memperkuat healing spells. Ketika kamu atau ally dalam 60 kaki darimu roll dice untuk menentukan jumlah hit points yang spell restore, kamu bisa menghabiskan 1 sorcery point untuk reroll sejumlah dice tersebut. Kamu bisa menggunakan fitur ini hanya sekali per turn.",
+  "2014_subclasses.divine-soul.empowered-healing.summary": "Ketika kamu atau ally dalam 60 kaki darimu roll dice untuk menentukan jumlah hit points yang spell restore, kamu bisa menghabiskan 1 sorcery point untuk reroll.",
+  "2014_subclasses.divine-soul.otherworldly-wings.description": "Di level 14, kamu bisa menggunakan bonus action untuk memunculkan pasang sayap spectral dari punggungmu. Selama sayap ada, kamu memiliki flying speed of 30 feet. Sayap bertahan sampai kamu incapacitated, kamu mati, atau kamu dismiss mereka sebagai bonus action. Kamu bisa membuat sayap sebanyak proficiency bonus-mu, dan kamu regain semua penggunaan yang dihabiskan saat kamu menyelesaikan long rest.",
+  "2014_subclasses.divine-soul.otherworldly-wings.summary": "Sebagai bonus action, manifest spectral wings. Selama ada, kamu memiliki flying speed of 30 feet. Sayap bertahan sampai kamu incapacitated atau mati.",
+  "2014_subclasses.divine-soul.unnerving-defense.description": "Dimulai di level 18, kamu bisa channel kekuatan ilahi untuk melindungi diri dari damage. Ketika kamu menerima damage, kamu bisa menggunakan reaction untuk mengurangi damage sejumlah sorcerer level-mu + Charisma modifier-mu. Jika damage berkurang menjadi 0, attacker takes psychic damage sama dengan half damage yang seharusnya kamu terima.",
+  "2014_subclasses.divine-soul.unnerving-defense.summary": "Attacker takes psychic damage sama dengan half damage yang seharusnya kamu terima. (reaction)."
+}

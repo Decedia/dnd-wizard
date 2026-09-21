@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.war.flavorText": "Divine Domain",
+  "2014_subclasses.war.description": "The War domain represents the power of battle and conflict. Its clerics are divine warriors who inspire their allies and strike down their foes with righteous fury.\n\nGods of war—including Tempus, Nike, and Tyr—embrace the glory of combat and teach that conflict can be a noble pursuit when waged for a just cause. They inspire their followers to fight with honor and courage in the face of overwhelming odds.",
+  "2014_subclasses.war.bonus-proficiencies.description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+  "2014_subclasses.war.bonus-proficiencies.summary": "Gain proficiency with three skills of your choice.",
+  "2014_subclasses.war.war-priest.description": "Also at 1st level, you can make a bonus action attack when you use the Attack action. When you take the Attack action on your turn, you can make one weapon attack as a bonus action. You can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest.",
+  "2014_subclasses.war.war-priest.summary": "Regain all expended uses when you finish a long rest. (bonus action).",
+  "2014_subclasses.war.channel-divinity-guided-strike.description": "Starting at 2nd level, you can use your Channel Divinity to add +10 to an attack roll.",
+  "2014_subclasses.war.channel-divinity-guided-strike.summary": "Starting at 2nd level, you can use your Channel Divinity to add +10 to an attack roll. (action).",
+  "2014_subclasses.war.channel-divinity-war-god-s-blessing.description": "At 6th level, you can use your Channel Divinity to grant resistance to an ally. When a creature you can see within 30 feet of you makes an attack roll, you can use your reaction to grant that creature a +10 bonus to its attack roll.",
+  "2014_subclasses.war.channel-divinity-war-god-s-blessing.summary": "Can use your reaction to grant that creature a +10 bonus to its attack roll. (reaction).",
+  "2014_subclasses.war.potent-spellcasting.description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+  "2014_subclasses.war.potent-spellcasting.summary": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells. (action).",
+  "2014_subclasses.war.avatar-of-battle.description": "At 17th level, you gain resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons.",
+  "2014_subclasses.war.avatar-of-battle.summary": "At 17th level, you gain resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons."
+}

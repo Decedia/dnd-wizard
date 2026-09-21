@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.abjuration.flavorText": "Tradisi Arkana",
+  "2014_subclasses.abjuration.description": "Ahli abjuration adalah seorang wizard yang berfokus pada sihir perlindungan dan pertahanan. Mereka adalah master dalam wards, perisai, dan counterspells, yang dapat melindungi diri mereka dan sekutu mereka dari bahaya magis dan fisik.\n\nAhli Abjuration mempelajari teori dan praktik sihir pertahanan, belajar untuk menciptakan penghalang magis yang dapat menyerap damage dan menangkis serangan. Mereka sering ditemukan di garis depan, menggunakan kemampuan mereka untuk menjaga keselamatan rekan-rekan mereka.",
+  "2014_subclasses.abjuration.abjuration-savant.description": "Di level 2, emas dan waktu yang Anda habiskan untuk menyalin mantra abjuration ke spellbook Anda adalah setengahnya.",
+  "2014_subclasses.abjuration.abjuration-savant.summary": "Di level 2, emas dan waktu yang Anda habiskan untuk menyalin mantra abjuration ke spellbook Anda adalah setengahnya. (action).",
+  "2014_subclasses.abjuration.arcane-ward.description": "Juga di level 2, Anda dapat menciptakan ward magis.",
+  "2014_subclasses.abjuration.arcane-ward.summary": "Di level 2, ketika Anda menyalin mantra abjuration, Anda menciptakan ward magis dengan Hit Points yang sama dengan dua kali wizard level Anda + modifier Intelligence Anda. Ward tersebut menerima damage terlebih dahulu dan mengisi ulang ketika Anda menyalin mantra abjuration.",
+  "2014_subclasses.abjuration.projected-ward.description": "Di level 6, Anda dapat menggunakan Arcane Ward Anda untuk melindungi orang lain.",
+  "2014_subclasses.abjuration.projected-ward.summary": "Di level 6, Anda dapat menggunakan Arcane Ward Anda untuk melindungi orang lain. (action).",
+  "2014_subclasses.abjuration.improved-abjuration.description": "Di level 10, Arcane Ward Anda mendapatkan kembali hit points ketika Anda menyelesaikan short rest.",
+  "2014_subclasses.abjuration.improved-abjuration.summary": "Di level 10, Arcane Ward Anda mendapatkan kembali hit points ketika Anda menyelesaikan short rest.",
+  "2014_subclasses.abjuration.spell-resistance.description": "Di level 14, Anda memiliki Advantage pada saving throws terhadap mantra.",
+  "2014_subclasses.abjuration.spell-resistance.summary": "Di level 14, Anda memiliki Advantage pada saving throws terhadap mantra."
+}

@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.war.flavorText": "Divine Domain",
+  "2014_subclasses.war.description": "War domain mewakili kekuatan pertempuran dan konflik. Cleric-nya adalah pejuang ilahi yang menginspirasi sekutu dan menghancurkan musuh dengan righteous fury.\n\nGods of war—termasuk Tempus, Nike, dan Tyr—menerima kemuliaan combat dan mengajarkan bahwa konflik dapat menjadi pursuits yang mulia ketika diperjuangkan untuk cause yang adil. Mereka menginspirasi pengikut mereka untuk bertarung dengan kehormatan dan keberanian menghadapi odds yang menumpulkan.",
+  "2014_subclasses.war.bonus-proficiencies.description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+  "2014_subclasses.war.bonus-proficiencies.summary": "Memperoleh proficiency dengan tiga skills pilihanmu.",
+  "2014_subclasses.war.war-priest.description": "Juga di level 1, kamu dapat membuat bonus action attack ketika kamu menggunakan Attack action. Ketika kamu mengambil Attack action pada turn kamu, kamu dapat membuat satu weapon attack sebagai bonus action. Kamu dapat menggunakan fitur ini sebanyak Wisdom modifier kamu (minimal sekali). Kamu memperoleh kembali semua penggunaan yang dihabiskan ketika kamu menyelesaikan long rest.",
+  "2014_subclasses.war.war-priest.summary": "Memperoleh kembali semua penggunaan yang dihabiskan ketika kamu menyelesaikan long rest. (bonus action).",
+  "2014_subclasses.war.channel-divinity-guided-strike.description": "Starting di level 2, kamu dapat menggunakan Channel Divinity untuk menambahkan +10 ke attack roll.",
+  "2014_subclasses.war.channel-divinity-guided-strike.summary": "Starting di level 2, kamu dapat menggunakan Channel Divinity untuk menambahkan +10 ke attack roll. (action).",
+  "2014_subclasses.war.channel-divinity-war-god-s-blessing.description": "Di level 6, kamu dapat menggunakan Channel Divinity untuk memberikan resistance kepada sekutu. Ketika creature yang kamu lihat dalam 30 feet dari kamu membuat attack roll, kamu dapat menggunakan reaction untuk memberikan +10 bonus ke attack roll creature tersebut.",
+  "2014_subclasses.war.channel-divinity-war-god-s-blessing.summary": "Dapat menggunakan reaction untuk memberikan +10 bonus ke attack roll creature tersebut. (reaction).",
+  "2014_subclasses.war.potent-spellcasting.description": "Starting di level 8, kamu menambahkan Wisdom modifier kamu ke damage rolls dari cleric spells kamu.",
+  "2014_subclasses.war.potent-spellcasting.summary": "Starting di level 8, kamu menambahkan Wisdom modifier kamu ke damage rolls dari cleric spells kamu. (action).",
+  "2014_subclasses.war.avatar-of-battle.description": "Di level 17, kamu memperoleh resistance terhadap bludgeoning, piercing, dan slashing damage dari nonmagical weapons.",
+  "2014_subclasses.war.avatar-of-battle.summary": "Di level 17, kamu memperoleh resistance terhadap bludgeoning, piercing, dan slashing damage dari nonmagical weapons."
+}

@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.nature.flavorText": "Divine Domain",
+  "2014_subclasses.nature.description": "The Nature domain represents the power of the natural world. Its clerics are guardians of the wild, calling upon the primal forces of nature to protect the land and all its creatures.\n\nGods of nature—including Silvanus, Mielikki, and the Oak Father—revere the natural world and protect it from those who would do it harm. They teach that all living things are connected and that the balance of nature must be maintained.",
+  "2014_subclasses.nature.acolyte-of-nature.description": "At 1st level, you learn one druid cantrip of your choice.",
+  "2014_subclasses.nature.acolyte-of-nature.summary": "At 1st level, you learn one druid cantrip of your choice.",
+  "2014_subclasses.nature.charm-animals-and-plants.description": "Starting at 1st level, you can use your action to charm one beast or plant creature within 30 feet of you that can see or hear you. The target must succeed on a Wisdom saving throw or be charmed by you for 1 minute or until you or your allies damage it.",
+  "2014_subclasses.nature.charm-animals-and-plants.summary": "Starting at 1st level, you can use your action to charm one beast or plant creature within 30 feet of you that can see or hear you. (action).",
+  "2014_subclasses.nature.channel-divinity-charm-animals-and-plants.description": "Starting at 2nd level, you can use your Channel Divinity to charm animals and plants. As an action, you touch a beast or plant creature within 30 feet of you that can see or hear you. The target must succeed on a Wisdom saving throw or be charmed by you for 1 minute or until you or your allies damage it.",
+  "2014_subclasses.nature.channel-divinity-charm-animals-and-plants.summary": "Touch a beast or plant creature within 30 feet of you that can see or hear you. (action).",
+  "2014_subclasses.nature.dampen-elements.description": "Starting at 6th level, you can use your reaction to reduce damage. When you or a creature within 30 feet of you takes acid, cold, fire, lightning, or thunder damage, you can use your reaction to grant resistance to the creature against that instance of damage.",
+  "2014_subclasses.nature.dampen-elements.summary": "Cold, fire, lightning, or thunder damage, you can use your reaction to grant resistance to the creature against that instance of damage. (reaction).",
+  "2014_subclasses.nature.potent-spellcasting.description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+  "2014_subclasses.nature.potent-spellcasting.summary": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells. (action).",
+  "2014_subclasses.nature.master-of-nature.description": "Starting at 17th level, you can use your action to charm beasts and plants. When you use your Channel Divinity to charm animals and plants, the target must succeed on a Wisdom saving throw or be charmed by you for 10 minutes or until you or your allies damage it.",
+  "2014_subclasses.nature.master-of-nature.summary": "The target must succeed on a Wisdom saving throw or be charmed by you for 10 minutes or until you or your allies damage it. (action)."
+}

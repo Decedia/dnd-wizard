@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.conjuration.flavorText": "Arcane Tradition",
+  "2014_subclasses.conjuration.description": "Conjurers specializes in membuat objek dan makhluk dari tidak ada apa-apa. Mereka bisa summon senjata, armor, dan bahkan makhluk hidup untuk membantu mereka dalam battle atau menjalankan tugas.\n\nStudi conjuration memerlukan presisi dan spatial awareness. Conjurers belajar untuk membuka portal ke plane lain, memanggil makhluk dan objek untuk memenuhi kebutuhan mereka. Mereka adalah versatile spellcasters yang bisa beradaptasi dengan situasi apa pun.",
+  "2014_subclasses.conjuration.conjuration-savant.description": "Di level 2, gold dan waktu yang kamu habiskan untuk copy conjuration spell ke spellbook-mu adalah dibagi dua.",
+  "2014_subclasses.conjuration.conjuration-savant.summary": "Di level 2, gold dan waktu yang kamu habiskan untuk copy conjuration spell ke spellbook-mu adalah dibagi dua. (action).",
+  "2014_subclasses.conjuration.minor-conjuration.description": "Juga di level 2, kamu bisa conjure objek kecil.",
+  "2014_subclasses.conjuration.minor-conjuration.summary": "Di level 2, kamu bisa conjure objek nonmagical di unoccupied space dalam 10 kaki darimu. Objek bisa tidak lebih besar dari 3 kaki di sisi dan tidak lebih berat dari 10 pounds. Objek hilang setelah 1 jam atau jika menerima damage.",
+  "2014_subclasses.conjuration.benign-transportation.description": "Di level 6, kamu bisa swap places dengan creature.",
+  "2014_subclasses.conjuration.benign-transportation.summary": "Di level 6, sebagai bonus action, kamu bisa teleport sampai 30 kaki ke unoccupied space yang bisa kamu lihat. Jika kamu teleport dalam 5 kaki dari creature yang willing, kamu bisa swap places dengan creature itu.",
+  "2014_subclasses.conjuration.focused-conjuration.description": "Di level 10, concentration-mu pada conjuration spells tidak rusak ketika kamu menerima damage.",
+  "2014_subclasses.conjuration.focused-conjuration.summary": "Di level 10, concentration-mu pada conjuration spells tidak rusak ketika kamu menerima damage.",
+  "2014_subclasses.conjuration.durable-summons.description": "Di level 14, summoned creatures-mu mendapatkan temporary hit points.",
+  "2014_subclasses.conjuration.durable-summons.summary": "Di level 14, summoned creatures-mu mendapatkan temporary hit points."
+}

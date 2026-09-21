@@ -1,0 +1,13 @@
+{
+  "2014_subclasses.alchemist.description": "An Alchemist is an expert in magical chemistry, combining reagents to produce mystical effects. Alchemists use their potions and elixirs to heal allies and hinder foes.",
+  "2014_subclasses.alchemist.tool-proficiency.description": "You gain proficiency with alchemist's supplies. If you already have this proficiency, you gain proficiency with another type of artisan's tools of your choice.",
+  "2014_subclasses.alchemist.tool-proficiency.summary": "Gain proficiency with alchemist's supplies. (permanent).",
+  "2014_subclasses.alchemist.experimental-elixir.description": "Whenever you finish a long rest, you can produce a number of experimental elixirs equal to your Intelligence modifier (minimum of 1). You can use a bonus action to drink one of your elixirs or administer it to another creature. The elixir produces one of the following effects (your choice): Healing (regains 2d4 + Intelligence modifier hit points), Swiftness (speed increases by 10 feet for 1 hour), or Resilience (gain a +1 bonus to AC for 10 minutes).",
+  "2014_subclasses.alchemist.experimental-elixir.summary": "Whenever you finish a long rest, you can produce a number of experimental elixirs equal to your Intelligence modifier (minimum of 1).",
+  "2014_subclasses.alchemist.alchemical-savant.description": "When you cast a spell using your alchemist's supplies as the spellcasting focus, you can add your Intelligence modifier to one roll of acid, fire, necrotic, or poison damage.",
+  "2014_subclasses.alchemist.alchemical-savant.summary": "Can add your Intelligence modifier to one roll of acid, fire, necrotic, or poison damage. (action).",
+  "2014_subclasses.alchemist.restorative-reagents.description": "You can cast the lesser restoration spell without expending a spell slot or requiring material components. You can do so a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+  "2014_subclasses.alchemist.restorative-reagents.summary": "Can do so a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest. (action).",
+  "2014_subclasses.alchemist.chemical-mastery.description": "You gain resistance to acid and poison damage, and you have advantage on saving throws against being poisoned.",
+  "2014_subclasses.alchemist.chemical-mastery.summary": "Gain resistance to acid and poison damage, and you have advantage on saving throws against being poisoned."
+}

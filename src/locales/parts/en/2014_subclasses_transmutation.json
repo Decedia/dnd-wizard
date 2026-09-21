@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.transmutation.flavorText": "Arcane Tradition",
+  "2014_subclasses.transmutation.description": "Transmuters manipulate the physical world. They can change the shape and properties of objects, transform one substance into another, and even alter their own bodies.\n\nThe study of transmutation requires a deep understanding of the natural world. Transmuters learn to reshape reality at a fundamental level, using their abilities to adapt to any situation and overcome any obstacle.",
+  "2014_subclasses.transmutation.savant.description": "At 2nd level, the gold and time you spend to copy a transmutation spell into your spellbook is halved.",
+  "2014_subclasses.transmutation.savant.summary": "At 2nd level, the gold and time you spend to copy a transmutation spell into your spellbook is halved. (action).",
+  "2014_subclasses.transmutation.minor-alchemy.description": "Also at 2nd level, you can transmute materials.",
+  "2014_subclasses.transmutation.minor-alchemy.summary": "At 2nd level, you can transmute one object into another material of the same size and value. The effect lasts for 1 hour or until the object takes any damage.",
+  "2014_subclasses.transmutation.transmuter-s-stone.description": "At 6th level, you can create a stone that grants benefits.",
+  "2014_subclasses.transmutation.transmuter-s-stone.summary": "At 6th level, you can create a stone that grants benefits.",
+  "2014_subclasses.transmutation.shapechanger.description": "At 10th level, you can cast the polymorph spell on yourself.",
+  "2014_subclasses.transmutation.shapechanger.summary": "At 10th level, you can cast the polymorph spell on yourself.",
+  "2014_subclasses.transmutation.master-transmuter.description": "At 14th level, you can transmute matter at a touch.",
+  "2014_subclasses.transmutation.master-transmuter.summary": "At 14th level, you can transmute matter at a touch."
+}

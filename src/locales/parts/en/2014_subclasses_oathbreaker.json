@@ -1,0 +1,15 @@
+{
+  "2014_subclasses.oathbreaker.description": "An Oathbreaker is a paladin who has broken their sacred vows to pursue a dark ambition or serve a fiendish power. Only malice and dark magic remain where virtue once stood.",
+  "2014_subclasses.oathbreaker.oathbreaker-spells.summary": "Gain dark oathbreaker spells at levels 3, 5, 9, 13, and 17.",
+  "2014_subclasses.oathbreaker.oathbreaker-spells.description": "3rd: Hellish Rebuke, Inflict Wounds; 5th: Crown of Madness, Darkness; 9th: Animate Dead, Bestow Curse; 13th: Blight, Confusion; 17th: Contagion, Dominate Person.",
+  "2014_subclasses.oathbreaker.channel-divinity-control-undead.summary": "Take control of an undead creature within 30 feet with CR lower than your paladin level for 24 hours.",
+  "2014_subclasses.oathbreaker.channel-divinity-control-undead.description": "As an action, you target one undead creature you can see within 30 feet. The target must make a Wisdom saving throw. On a failed save, the target must obey your commands for the next 24 hours, or until you use this Channel Divinity option again. An undead whose challenge rating is equal to or greater than your paladin level is immune.",
+  "2014_subclasses.oathbreaker.channel-divinity-dreadful-aspect.summary": "Frighten all hostile creatures within 30 feet for 1 minute on a failed Wisdom saving throw.",
+  "2014_subclasses.oathbreaker.channel-divinity-dreadful-aspect.description": "As an action, the paladin channels the darkest emotions and focuses them into a burst of magical menace. Each creature of the paladin's choice within 30 feet must make a Wisdom saving throw if it can see the paladin. On a failed save, the target is frightened of the paladin for 1 minute.",
+  "2014_subclasses.oathbreaker.aura-of-hate.summary": "Add your Charisma modifier to melee weapon damage rolls for yourself and friendly fiends/undead within 10 ft.",
+  "2014_subclasses.oathbreaker.aura-of-hate.description": "Starting at 7th level, the paladin, as well as any fiends and undead within 10 feet of the paladin, gains a bonus to melee weapon damage rolls equal to the paladin's Charisma modifier (minimum of +1). At 18th level, the range increases to 30 feet.",
+  "2014_subclasses.oathbreaker.supernatural-resistance.summary": "Gain resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
+  "2014_subclasses.oathbreaker.supernatural-resistance.description": "At 15th level, the paladin gains resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons.",
+  "2014_subclasses.oathbreaker.dread-lord.summary": "Transform into an avatar of darkness for 1 minute: 30 ft gloomy aura, 4d10 psychic damage, bonus action shadow attack.",
+  "2014_subclasses.oathbreaker.dread-lord.description": "At 20th level, the paladin can surround himself or herself with an aura of gloom for 1 minute. The aura sheds dim light in a 30-foot radius. Enemies in the aura take 4d10 psychic damage at the start of their turns if frightened, and the paladin can use a bonus action to make a melee spell attack dealing 3d10 + Cha necrotic damage."
+}

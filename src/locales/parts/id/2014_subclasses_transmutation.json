@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.transmutation.flavorText": "Arcane Tradition",
+  "2014_subclasses.transmutation.description": "Transmuter memanipulasi dunia fisik. Mereka dapat mengubah bentuk dan properti objek, mengubah satu substance menjadi substance lain, dan bahkan mengubah tubuh mereka sendiri.\n\nStudi transmutation memerlukan pemahaman mendalam tentang dunia alam. Transmuter belajar untuk reshape reality pada tingkat fundamental, menggunakan kemampuan mereka untuk beradaptasi dengan situasi apa pun dan mengatasi rintangan apa pun.",
+  "2014_subclasses.transmutation.savant.description": "Di level 2, gold dan waktu yang kamu habiskan untuk menyalin transmutation spell ke spellbook kamu setengahnya.",
+  "2014_subclasses.transmutation.savant.summary": "Di level 2, gold dan waktu yang kamu habiskan untuk menyalin transmutation spell ke spellbook kamu setengahnya. (action).",
+  "2014_subclasses.transmutation.minor-alchemy.description": "Juga di level 2, kamu dapat transmute materials.",
+  "2014_subclasses.transmutation.minor-alchemy.summary": "Di level 2, kamu dapat transmute satu objek menjadi material lain dengan ukuran dan nilai yang sama. Efek ini bertahan selama 1 jam atau sampai objek mengambil damage apa pun.",
+  "2014_subclasses.transmutation.transmuter-s-stone.description": "Di level 6, kamu dapat membuat stone yang memberikan manfaat.",
+  "2014_subclasses.transmutation.transmuter-s-stone.summary": "Di level 6, kamu dapat membuat stone yang memberikan manfaat.",
+  "2014_subclasses.transmutation.shapechanger.description": "Di level 10, kamu dapat menyalakan polymorph spell pada dirimu sendiri.",
+  "2014_subclasses.transmutation.shapechanger.summary": "Di level 10, kamu dapat menyalakan polymorph spell pada dirimu sendiri.",
+  "2014_subclasses.transmutation.master-transmuter.description": "Di level 14, kamu dapat transmute matter dengan sentuhan.",
+  "2014_subclasses.transmutation.master-transmuter.summary": "Di level 14, kamu dapat transmute matter dengan sentuhan."
+}

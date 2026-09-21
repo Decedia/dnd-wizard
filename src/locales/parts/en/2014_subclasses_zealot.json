@@ -1,0 +1,12 @@
+{
+  "2014_subclasses.zealot.flavorText": "Primal Path",
+  "2014_subclasses.zealot.description": "Some deities inspire their followers to channel unrelenting ferocity. These barbarians are zealots—warriors who channel their rage into powerful displays of divine might.",
+  "2014_subclasses.zealot.divine-fury.description": "Starting when you choose this path at 3rd level, you can channel divine power to fuel your attacks. If you hit a creature with a melee weapon attack while raging, you can roll one additional damage die and add it to the damage of the attack. The damage is of the same type as the attack's normal damage type. At 14th level, you roll two additional damage dice instead of one.",
+  "2014_subclasses.zealot.divine-fury.summary": "The damage is of the same type as the attack's normal damage type. (action).",
+  "2014_subclasses.zealot.warrior-of-the-gods.description": "At 6th level, the divine power that fuels your rage allows you to shrug off fatal blows. When you would drop to 0 hit points as a result of taking damage, you can make a Charisma saving throw (DC 5 + the damage taken). On a success, you drop to 1 hit point instead. After the saving throw succeeds, you can't use this feature again until you finish a long rest.",
+  "2014_subclasses.zealot.warrior-of-the-gods.summary": "Can make a Charisma saving throw (DC 5 + the damage taken). (action).",
+  "2014_subclasses.zealot.fanatical-focus.description": "At 10th level, the divine power that fuels your rage can help you push through harm. If you fail a saving throw while raging, you can reroll it, and you must use the new roll. You can use this ability only once per rage.",
+  "2014_subclasses.zealot.fanatical-focus.summary": "At 10th level, the divine power that fuels your rage can help you push through harm. (action).",
+  "2014_subclasses.zealot.zealous-presence.description": "At 14th level, you learn to channel divine power to inspire zealotry in others. As a bonus action, you unleash a battle cry infused with divine energy. Up to ten creatures of your choice within 60 feet of you that can hear you have advantage on attack rolls and saving throws until the start of your next turn. Once you use this feature, you can't use it again until you finish a long rest.",
+  "2014_subclasses.zealot.zealous-presence.summary": "Up to ten creatures of your choice within 60 feet of you that can hear you have advantage on attack rolls and saving throws until the start of your next."
+}

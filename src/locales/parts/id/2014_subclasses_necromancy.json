@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.necromancy.flavorText": "Tradisi Arka",
+  "2014_subclasses.necromancy.description": "Necromancers mempelajari kekuatan kehidupan dan kematian. Mereka bisa menghidupkan mayat, menguras life force dari makhluk hidup, dan bahkan menipu kematian itu sendiri.\n\nStudi tentang necromancy membutuhkan kehendak yang kuat dan kemauan untuk menghadapi aspek gelap dari eksistensi. Necromancers belajar untuk menyalurkan kekuatan negative energy, menggunakannya untuk menciptakan undead servants dan melindungi diri mereka sendiri dari kerusakan.",
+  "2014_subclasses.necromancy.savant.description": "Di level 2, emas dan waktu yang Anda habiskan untuk menyalin spell necromancy ke spellbook Anda dibagi dua.",
+  "2014_subclasses.necromancy.savant.summary": "Di level 2, emas dan waktu yang Anda habiskan untuk menyalin spell necromancy ke spellbook Anda dibagi dua. (action).",
+  "2014_subclasses.necromancy.grim-harvest.description": "Juga di level 2, Anda bisa regain Hit Points ketika Anda membunuh makhluk.",
+  "2014_subclasses.necromancy.grim-harvest.summary": "Juga di level 2, Anda bisa regain Hit Points ketika Anda membunuh makhluk.",
+  "2014_subclasses.necromancy.undead-thralls.description": "Di level 6, Anda bisa menghidupkan undead.",
+  "2014_subclasses.necromancy.undead-thralls.summary": "Di level 6, ketika Anda raise makhluk sebagai undead, itu mendapatkan additional Hit Points dan proficiency bonus Anda ke attack dan damage roll-nya. Anda juga bisa memerintahnya sebagai Bonus Action.",
+  "2014_subclasses.necromancy.inured-to-undeath.description": "Di level 10, Anda memiliki resistance terhadap necrotic damage.",
+  "2014_subclasses.necromancy.inured-to-undeath.summary": "Di level 10, Anda memiliki resistance terhadap necrotic damage.",
+  "2014_subclasses.necromancy.command-undead.description": "Di level 14, Anda bisa memerintah makhluk undead.",
+  "2014_subclasses.necromancy.command-undead.summary": "Di level 14, Anda bisa menggunakan Action Anda untuk menargetkan satu undead creature dalam 60 feet dari Anda. Target harus membuat Wisdom saving throw atau di- Charmed oleh Anda selama 1 menit. Anda bisa menggunakan fitur ini sebanyak proficiency bonus Anda, mendapatkan kembali semua penggunaan pada long rest."
+}

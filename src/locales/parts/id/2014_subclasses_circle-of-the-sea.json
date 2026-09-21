@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.circle-of-the-sea.flavorText": "Circle of the Sea",
+  "2014_subclasses.circle-of-the-sea.description": "Circle of the Sea adalah circle druid yang menarik kekuatan dari lautan dan kedalaman. Para druids ini merasa seperti di rumah di dalam air, dan mereka memerintah ombak dan makhluk-makhluk di dalamnya.",
+  "2014_subclasses.circle-of-the-sea.oceanic-resilience.description": "Mulai di level 2, Anda dapat bernapas udara dan air, dan Anda memiliki swimming speed sama dengan walking speed Anda.",
+  "2014_subclasses.circle-of-the-sea.oceanic-resilience.summary": "Mulai di level 2, Anda dapat bernapas udara dan air, dan Anda memiliki swimming speed sama dengan walking speed Anda. (permanent).",
+  "2014_subclasses.circle-of-the-sea.wrath-of-the-sea.description": "Mulai di level 2, Anda dapat menggunakan action untuk secara magis memanggil semprotan air yang memukul makhluk-makhluk di sekitar. Setiap makhluk dalam 30 feet dari Anda yang dapat Anda lihat harus melakukan saving throw Dexterity terhadap druid spell save DC Anda. Pada save yang gagal, makhluk tersebut menerima 2d6 bludgeoning damage dan didorong 10 feet menjauh dari Anda. Pada save yang berhasil, makhluk tersebut menerima setengahnya dan tidak didorong.",
+  "2014_subclasses.circle-of-the-sea.wrath-of-the-sea.summary": "Pada save yang gagal, makhluk menerima 2d6 bludgeoning damage dan didorong 10 feet menjauh dari Anda. (instant, action).",
+  "2014_subclasses.circle-of-the-sea.elemental-wild-shape.description": "Di level 6, Anda dapat menghabiskan dua penggunaan Wild Shape sebagai ganti satu untuk mentransformasikan diri menjadi water elemental atau steamweird.",
+  "2014_subclasses.circle-of-the-sea.elemental-wild-shape.summary": "Di level 6, Anda dapat menghabiskan dua penggunaan Wild Shape sebagai ganti satu untuk mentransformasikan diri menjadi water elemental atau steamweird. (action).",
+  "2014_subclasses.circle-of-the-sea.aquatic-master.description": "Mulai di level 10, Anda memiliki Advantage pada attack rolls terhadap makhluk yang sedang di bawah air, dan makhluk memiliki Disadvantage pada attack rolls terhadap Anda saat Anda di bawah air.",
+  "2014_subclasses.circle-of-the-sea.aquatic-master.summary": "Mulai di level 10, Anda memiliki Advantage pada attack rolls terhadap makhluk yang sedang di bawah air, dan makhluk memiliki Disadvantage pada attack rolls terhadap Anda saat Anda di bawah air. (permanent).",
+  "2014_subclasses.circle-of-the-sea.oceanic-guardian.description": "Mulai di level 14, Anda dapat menyalin control water sekali per long rest tanpa menghabiskan spell slot. Selain itu, Anda dapat bernapas di bawah air tanpa batas, dan Anda memiliki resistance terhadap cold damage.",
+  "2014_subclasses.circle-of-the-sea.oceanic-guardian.summary": "Selain itu, Anda dapat bernapas di bawah air tanpa batas, dan Anda memiliki resistance terhadap cold damage. (action)."
+}

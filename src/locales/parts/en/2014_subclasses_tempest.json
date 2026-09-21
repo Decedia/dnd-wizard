@@ -1,0 +1,16 @@
+{
+  "2014_subclasses.tempest.flavorText": "Divine Domain",
+  "2014_subclasses.tempest.description": "The Tempest domain represents the power of storms and the sea. Its clerics are fierce warriors who call upon the fury of thunder and lightning to smite their enemies and protect the innocent.\n\nGods of the Tempest domain—including Talos, Umberlee, and Zeus—embrace the destructive power of nature and teach that only through conflict and struggle can strength be gained. They are often patrons of sailors and those who make their living on the sea.",
+  "2014_subclasses.tempest.bonus-proficiencies.description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+  "2014_subclasses.tempest.bonus-proficiencies.summary": "Gain proficiency with three skills of your choice.",
+  "2014_subclasses.tempest.wrath-of-the-storm.description": "Also at 1st level, you can use your reaction to deal lightning damage to a creature within 5 feet of you that you can see. When a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to deal 2d8 lightning damage to the attacker. You can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest.",
+  "2014_subclasses.tempest.wrath-of-the-storm.summary": "Also at 1st level, you can use your reaction to deal lightning damage to a creature within 5 feet of you that you can see. (reaction).",
+  "2014_subclasses.tempest.channel-divinity-destructive-wrath.description": "Starting at 2nd level, you can use your Channel Divinity to maximize the damage of your lightning or thunder spells.",
+  "2014_subclasses.tempest.channel-divinity-destructive-wrath.summary": "Starting at 2nd level, you can use your Channel Divinity to maximize the damage of your lightning or thunder spells. (action).",
+  "2014_subclasses.tempest.thunderbolt-strike.description": "Starting at 6th level, when you deal lightning damage to a creature, you can push it up to 10 feet away.",
+  "2014_subclasses.tempest.thunderbolt-strike.summary": "Starting at 6th level, when you deal lightning damage to a creature, you can push it up to 10 feet away.",
+  "2014_subclasses.tempest.potent-spellcasting.description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+  "2014_subclasses.tempest.potent-spellcasting.summary": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells. (action).",
+  "2014_subclasses.tempest.stormborn.description": "Starting at 17th level, you gain resistance to lightning and thunder damage. Additionally, whenever you cast a spell of 1st level or higher that deals lightning or thunder damage, you can fly up to 10 feet without provoking opportunity attacks.",
+  "2014_subclasses.tempest.stormborn.summary": "Additionally, whenever you cast a spell of 1st level or higher that deals lightning or thunder damage, you can fly up to 10 feet without provoking opportunity attacks."
+}

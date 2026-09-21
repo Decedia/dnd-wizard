@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.conjuration.flavorText": "Arcane Tradition",
+  "2014_subclasses.conjuration.description": "Conjurers specialize in creating objects and creatures from nothing. They can summon weapons, armor, and even living creatures to aid them in battle or perform tasks.\n\nThe study of conjuration requires precision and spatial awareness. Conjurers learn to open portals to other planes, calling forth creatures and objects to serve their needs. They are versatile spellcasters who can adapt to any situation.",
+  "2014_subclasses.conjuration.conjuration-savant.description": "At 2nd level, the gold and time you spend to copy a conjuration spell into your spellbook is halved.",
+  "2014_subclasses.conjuration.conjuration-savant.summary": "At 2nd level, the gold and time you spend to copy a conjuration spell into your spellbook is halved. (action).",
+  "2014_subclasses.conjuration.minor-conjuration.description": "Also at 2nd level, you can conjure small objects.",
+  "2014_subclasses.conjuration.minor-conjuration.summary": "At 2nd level, you can conjure a nonmagical object in an unoccupied space within 10 feet of you. The object can be no larger than 3 feet on a side and weighs no more than 10 pounds. It disappears after 1 hour or if it takes any damage.",
+  "2014_subclasses.conjuration.benign-transportation.description": "At 6th level, you can swap places with a creature.",
+  "2014_subclasses.conjuration.benign-transportation.summary": "At 6th level, as a bonus action, you can teleport up to 30 feet to an unoccupied space you can see. If you teleport within 5 feet of a willing creature, you can swap places with that creature.",
+  "2014_subclasses.conjuration.focused-conjuration.description": "At 10th level, your concentration on conjuration spells is not broken when you take damage.",
+  "2014_subclasses.conjuration.focused-conjuration.summary": "At 10th level, your concentration on conjuration spells is not broken when you take damage.",
+  "2014_subclasses.conjuration.durable-summons.description": "At 14th level, your summoned creatures gain temporary hit points.",
+  "2014_subclasses.conjuration.durable-summons.summary": "At 14th level, your summoned creatures gain temporary hit points."
+}

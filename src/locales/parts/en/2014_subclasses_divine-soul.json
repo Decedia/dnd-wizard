@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.divine-soul.flavorText": "Sorcerous Origin",
+  "2014_subclasses.divine-soul.description": "A divine soul has been touched by the grace of a divine being. The magic you wield is a gift from the gods, and you are a conduit for their power.",
+  "2014_subclasses.divine-soul.bonus-proficiency.description": "At 1st level, you gain proficiency in the Religion skill.",
+  "2014_subclasses.divine-soul.bonus-proficiency.summary": "At 1st level, you gain proficiency in the Religion skill.",
+  "2014_subclasses.divine-soul.favored-by-the-gods.description": "Starting at 1st level, divine power guards your destiny. If you fail a saving throw or miss with an attack roll, you can roll 2d4 and add it to the total, possibly changing the outcome. Once you use this feature, you can't use it again until you finish a short or long rest.",
+  "2014_subclasses.divine-soul.favored-by-the-gods.summary": "Can roll 2d4 and add it to the total, possibly changing the outcome. (action).",
+  "2014_subclasses.divine-soul.empowered-healing.description": "Starting at 6th level, the divine energy flowing through you can empower healing spells. Whenever you or an ally within 60 feet of you rolls dice to determine the number of hit points a spell restores, you can spend 1 sorcery point to reroll any number of those dice. You can use this feature only once per turn.",
+  "2014_subclasses.divine-soul.empowered-healing.summary": "Whenever you or an ally within 60 feet of you rolls dice to determine the number of hit points a spell restores, you can spend 1 sorcery point to reroll.",
+  "2014_subclasses.divine-soul.otherworldly-wings.description": "At 14th level, you can use a bonus action to manifest a pair of spectral wings from your back. While the wings are present, you have a flying speed of 30 feet. The wings last until you are incapacitated, you die, or you dismiss them as a bonus action. You can create the wings a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+  "2014_subclasses.divine-soul.otherworldly-wings.summary": "As a bonus action, manifest spectral wings. While present, you have a flying speed of 30 feet. The wings last until you are incapacitated or die.",
+  "2014_subclasses.divine-soul.unnerving-defense.description": "Starting at 18th level, you can channel divine power to protect yourself from harm. When you take damage, you can use your reaction to reduce the damage by an amount equal to your sorcerer level + your Charisma modifier. If the damage is reduced to 0, the attacker takes psychic damage equal to half the damage you would have taken.",
+  "2014_subclasses.divine-soul.unnerving-defense.summary": "The attacker takes psychic damage equal to half the damage you would have taken. (reaction)."
+}

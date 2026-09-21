@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.champion.flavorText": "Martial Archetype",
+  "2014_subclasses.champion.description": "The archetypal Champion focuses on the development of raw physical power honed to deadly perfection. Those who model themselves on this archetype combine rigorous training with physical excellence to deal devastating blows.",
+  "2014_subclasses.champion.improved-critical.description": "Beginning when you choose this archetype at 3rd level, your weapon attacks score a critical hit on a roll of 19 or 20.",
+  "2014_subclasses.champion.improved-critical.summary": "Beginning when you choose this archetype at 3rd level, your weapon attacks score a critical hit on a roll of 19 or 20. (action).",
+  "2014_subclasses.champion.remarkable-athlete.description": "Starting at 7th level, you can add half your proficiency bonus (round up) to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus. In addition, when you make a running long jump, the distance you can cover increases by a number of feet equal to your Strength modifier.",
+  "2014_subclasses.champion.remarkable-athlete.summary": "Starting at 7th level, you can add half your proficiency bonus (round up) to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus. (action).",
+  "2014_subclasses.champion.additional-fighting-style.description": "At 10th level, you can choose a second option from the Fighting Style class feature.",
+  "2014_subclasses.champion.additional-fighting-style.summary": "At 10th level, you can choose a second option from the Fighting Style class feature. (action).",
+  "2014_subclasses.champion.superior-critical.description": "Starting at 15th level, your weapon attacks score a critical hit on a roll of 18-20.",
+  "2014_subclasses.champion.superior-critical.summary": "Starting at 15th level, your weapon attacks score a critical hit on a roll of 18-20. (action).",
+  "2014_subclasses.champion.survivor.description": "At 18th level, you attain the pinnacle of resilience in battle. At the start of each of your turns, you regain hit points equal to 5 + your Constitution modifier if you have no more than half of your hit points left. You don't gain this benefit if you have 0 hit points.",
+  "2014_subclasses.champion.survivor.summary": "At the start of each of your turns, you regain hit points equal to 5 + your Constitution modifier if you have no more than half of your hit points."
+}

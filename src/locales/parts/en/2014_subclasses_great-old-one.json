@@ -1,0 +1,12 @@
+{
+  "2014_subclasses.great-old-one.flavorText": "Otherworldly Patron",
+  "2014_subclasses.great-old-one.description": "Your patron is a being from beyond the stars, an entity of immense power and alien intelligence. The Great Old One might be a sleeping god, an ancient aberration, or a being from another plane of existence entirely.\n\nThose who make pacts with such beings often find their minds expanded, gaining access to telepathic abilities and forbidden knowledge. However, the price of such power can be high, as the Great Old One's influence can slowly drive mortals to madness.",
+  "2014_subclasses.great-old-one.awakened-mind.description": "At 1st level, you can communicate telepathically.",
+  "2014_subclasses.great-old-one.awakened-mind.summary": "At 1st level, you can communicate telepathically with any creature within 30 feet of you, provided the creature understands at least one language.",
+  "2014_subclasses.great-old-one.entropic-ward.description": "At 6th level, you can impose disadvantage on an attack roll against you.",
+  "2014_subclasses.great-old-one.entropic-ward.summary": "At 6th level, you can impose disadvantage on an attack roll against you. (action).",
+  "2014_subclasses.great-old-one.thought-shield.description": "At 10th level, you have resistance to psychic damage.",
+  "2014_subclasses.great-old-one.thought-shield.summary": "At 10th level, you have resistance to psychic damage.",
+  "2014_subclasses.great-old-one.create-thrall.description": "At 14th level, you can charm a creature.",
+  "2014_subclasses.great-old-one.create-thrall.summary": "At 14th level, you can charm a creature within 30 feet of you. The creature must succeed on a Wisdom saving throw or be charmed by you for 1 minute. You can use this feature a number of times equal to your proficiency bonus, regaining all uses on a long rest."
+}

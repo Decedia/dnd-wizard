@@ -1,0 +1,15 @@
+{
+  "2014_subclasses.circle-of-spores.description": "Druids of the Circle of Spores find beauty in decay. They see within mold, fungi, and spores the ability to transform lifeless matter into abundant, albeit strange, life.",
+  "2014_subclasses.circle-of-spores.circle-spells.summary": "Learn Chill Touch and gain circle spells at levels 3, 5, 7, and 9.",
+  "2014_subclasses.circle-of-spores.circle-spells.description": "You gain the Chill Touch cantrip. At 3rd level, Blindness/Deafness, Gentle Repose; 5th: Animate Dead, Gaseous Form; 7th: Blight, Confusion; 9th: Cloudkill, Contagion.",
+  "2014_subclasses.circle-of-spores.halo-of-spores.summary": "Reaction deal 1d4 necrotic damage to a creature starting its turn or moving within 10 feet (scales to 1d8).",
+  "2014_subclasses.circle-of-spores.halo-of-spores.description": "You are surrounded by invisible, necrotic spores. When a creature you can see starts its turn within 10 feet of you or moves there, you can use your reaction to deal 1d4 necrotic damage to that creature unless it succeeds on a Constitution saving throw. The damage increases to 1d6 at 6th, 1d8 at 10th, and 1d10 at 14th level.",
+  "2014_subclasses.circle-of-spores.symbiotic-entity.summary": "Expending Wild Shape grants 4 temp HP per druid level, doubles Halo of Spores damage, and adds 1d6 necrotic to melee hits.",
+  "2014_subclasses.circle-of-spores.symbiotic-entity.description": "As an action, you can expend a use of your Wild Shape feature to awaken your spores. You gain 4 temporary hit points for each level you have in this class. While this feature is active, you roll your Halo of Spores damage die a second time, and your melee weapon attacks deal an extra 1d6 necrotic damage on a hit.",
+  "2014_subclasses.circle-of-spores.fungal-infestation.summary": "Animate a Small or Medium beast or humanoid that dies within 30 feet as a temporary zombie.",
+  "2014_subclasses.circle-of-spores.fungal-infestation.description": "Your spores gain the ability to infest a corpse and animate it. When a beast or a humanoid that is Small or Medium dies within 30 feet of you, you can use your reaction to animate that creature with 1 hit point as a zombie under your command for 1 hour.",
+  "2014_subclasses.circle-of-spores.spreading-spores.summary": "Throw a 10-foot cube of spores up to 30 feet that damages creatures inside with Halo of Spores.",
+  "2014_subclasses.circle-of-spores.spreading-spores.description": "As a bonus action while your Symbiotic Entity feature is active, you can hurl spores up to 30 feet away, where they swirl in a 10-foot cube for 1 minute. Any creature that moves into the cube or starts its turn there takes your Halo of Spores damage.",
+  "2014_subclasses.circle-of-spores.fungal-body.summary": "Gain immunity to being blinded, deafened, frightened, or poisoned, and critical hits against you become normal hits.",
+  "2014_subclasses.circle-of-spores.fungal-body.description": "The fungal spores in your body alter you: you can't be blinded, deafened, frightened, or poisoned, and any critical hit against you counts as a normal hit instead, unless you're incapacitated."
+}

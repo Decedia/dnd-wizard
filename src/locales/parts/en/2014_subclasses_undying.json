@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.undying.flavorText": "Otherworldly Patron",
+  "2014_subclasses.undying.description": "Your patron is a powerful undead being, such as a lich, vampire, or mummy lord. These beings have cheated death and gained immortality through dark magic, and they share some of their power with their warlock servants.\n\nThe Undying patron represents those who have transcended death, and its warlocks gain abilities that reflect this connection to undeath. They can resist disease, recover from wounds, and even cheat death itself.",
+  "2014_subclasses.undying.among-the-dead.description": "At 1st level, you have advantage on saving throws against being frightened.",
+  "2014_subclasses.undying.among-the-dead.summary": "At 1st level, you have advantage on saving throws against being frightened.",
+  "2014_subclasses.undying.undying-nature.description": "Also at 1st level, you have advantage on saving throws against disease.",
+  "2014_subclasses.undying.undying-nature.summary": "Also at 1st level, you have advantage on saving throws against disease.",
+  "2014_subclasses.undying.beyond-the-grave.description": "At 6th level, you can gain temporary hit points when you finish a short rest.",
+  "2014_subclasses.undying.beyond-the-grave.summary": "At 6th level, you can gain temporary hit points when you finish a short rest.",
+  "2014_subclasses.undying.indestructible-life.description": "At 10th level, you can regain hit points when you take damage.",
+  "2014_subclasses.undying.indestructible-life.summary": "At 10th level, you can regain hit points when you take damage.",
+  "2014_subclasses.undying.undying-nature-2.description": "At 14th level, you can't be killed by a single attack.",
+  "2014_subclasses.undying.undying-nature-2.summary": "At 14th level, you can't be killed by a single attack."
+}

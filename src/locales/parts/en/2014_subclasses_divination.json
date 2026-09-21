@@ -1,0 +1,14 @@
+{
+  "2014_subclasses.divination.flavorText": "Arcane Tradition",
+  "2014_subclasses.divination.description": "Diviners study the art of predicting the future. They can glimpse moments yet to come, gaining insight into the outcomes of actions and the intentions of others.\n\nThe study of divination requires keen intellect and intuition. Diviners learn to read the signs and portents that others miss, using their knowledge to guide their allies and outmaneuver their enemies.",
+  "2014_subclasses.divination.divination-savant.description": "At 2nd level, the gold and time you spend to copy a divination spell into your spellbook is halved.",
+  "2014_subclasses.divination.divination-savant.summary": "At 2nd level, the gold and time you spend to copy a divination spell into your spellbook is halved. (action).",
+  "2014_subclasses.divination.portent.description": "Also at 2nd level, you can replace any attack roll, ability check, or saving throw.",
+  "2014_subclasses.divination.portent.summary": "Also at 2nd level, you can replace any attack roll, ability check, or saving throw. (action).",
+  "2014_subclasses.divination.expert-divination.description": "At 6th level, you can regain spell slots when you cast divination spells.",
+  "2014_subclasses.divination.expert-divination.summary": "At 6th level, you can regain spell slots when you cast divination spells.",
+  "2014_subclasses.divination.third-eye.description": "At 10th level, you can gain darkvision, see invisible creatures, etc.",
+  "2014_subclasses.divination.third-eye.summary": "At 10th level, you can gain darkvision, see invisible creatures, etc.",
+  "2014_subclasses.divination.greater-portent.description": "At 14th level, you can cast the foresight spell once per long rest.",
+  "2014_subclasses.divination.greater-portent.summary": "At 14th level, you can cast the foresight spell once per long rest."
+}

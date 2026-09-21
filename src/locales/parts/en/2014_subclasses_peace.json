@@ -1,0 +1,17 @@
+{
+  "2014_subclasses.peace.description": "The balm of peace thrives at the heart of healthy communities. Clerics of the Peace Domain act as peacemakers, forging bonds between individuals and healing physical and emotional wounds.",
+  "2014_subclasses.peace.implement-of-peace.summary": "Gain proficiency in Insight, Performance, or Persuasion.",
+  "2014_subclasses.peace.implement-of-peace.description": "You gain proficiency in the Insight, Performance, or Persuasion skill (your choice).",
+  "2014_subclasses.peace.emboldening-bond.summary": "Forge a magical bond between allies, adding 1d4 to one attack, check, or saving throw each turn.",
+  "2014_subclasses.peace.emboldening-bond.description": "You can forge an empowering bond between allies. As an action, you choose a number of willing creatures within 30 feet of you (which can include yourself) equal to your proficiency bonus. For 10 minutes, while any bonded creature is within 30 feet of another, the creature can roll a 1d4 and add the number rolled to an attack roll, ability check, or saving throw it makes once per turn. You can use this feature a number of times equal to your proficiency bonus per long rest.",
+  "2014_subclasses.peace.peace-domain-spells.summary": "Gain domain spells at levels 1, 3, 5, 7, and 9.",
+  "2014_subclasses.peace.peace-domain-spells.description": "You gain domain spells at the cleric levels listed in the Peace Domain Spells table: 1st: Heroism, Sanctuary; 3rd: Aid, Warding Bond; 5th: Beacon of Hope, Sending; 7th: Aura of Purity, Otiluke's Resilient Sphere; 9th: Greater Restoration, Rary's Telepathic Bond.",
+  "2014_subclasses.peace.channel-divinity-balm-of-peace.summary": "Move up to your speed without provoking opportunity attacks and heal passed creatures 2d6 + Wis.",
+  "2014_subclasses.peace.channel-divinity-balm-of-peace.description": "As an action, you can use your Channel Divinity to move up to your walking speed, without provoking opportunity attacks. When you move within 5 feet of any other creature during this action, you can restore 2d6 + your Wisdom modifier hit points to that creature. A creature can receive this healing only once whenever you take this action.",
+  "2014_subclasses.peace.protective-bond.summary": "Bonded creatures within 30 feet can teleport to take damage in place of one another.",
+  "2014_subclasses.peace.protective-bond.description": "The bond you forge between people helps them protect each other. When a creature affected by your Emboldening Bond feature is about to take damage, a second bonded creature within 30 feet of the first can use its reaction to teleport to an unoccupied space within 5 feet of the first creature. The second creature then takes all the damage instead.",
+  "2014_subclasses.peace.potent-spellcasting.summary": "Add your Wisdom modifier to the damage you deal with any cleric cantrip.",
+  "2014_subclasses.peace.potent-spellcasting.description": "Starting at 8th level, you add your Wisdom modifier to the damage you deal with any cleric cantrip.",
+  "2014_subclasses.peace.expansive-bond.summary": "Protective Bond range increases to 60 feet, and the teleporting creature gains resistance to the damage.",
+  "2014_subclasses.peace.expansive-bond.description": "The benefits of your Emboldening Bond and Protective Bond features now apply when the creatures are within 60 feet of each other. Moreover, when a creature uses Protective Bond to take someone else's damage, that creature gains resistance to that damage."
+}
