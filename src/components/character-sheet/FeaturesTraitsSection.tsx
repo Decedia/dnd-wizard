@@ -21,12 +21,12 @@ interface FeaturesTraitsSectionProps {
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
-  const { t, tDesc } = useLanguage();
+  const { t, tDesc, language } = useLanguage();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [missingChoices, setMissingChoices] = useState<ReturnType<typeof getMissingFeatureChoices>>([]);
   const [currentChoiceIndex, setCurrentChoiceIndex] = useState(0);
-  const feats = useMemo(() => getStaticFeats([], character.ruleset), [character.ruleset]);
+  const feats = useMemo(() => getStaticFeats([], character.ruleset, language), [character.ruleset, language]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
   const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
     onChange({
@@ -123,7 +123,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         
         try {
           if (existing.source === "class" && character.class) {
-            const classData = getStaticClass(character.class, character.ruleset);
+            const classData = getStaticClass(character.class, character.ruleset, undefined, language);
             if (classData) {
               for (const level of classData.levels || []) {
                 srdFeature = (level.features || []).find((f: any) => f.name === feature.name);
@@ -142,14 +142,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               }
             }
           } else if (existing.source === "race" && character.race) {
-            const race = getStaticRace(character.race);
+            const race = getStaticRace(character.race, undefined, language);
             srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
             if (srdFeature) {
               derivedSource = { type: "race", name: character.race, level: null };
               book = srdFeature.book || race?.source || "PHB";
             }
           } else if (existing.source === "subclass" && character.class && character.subclass) {
-            const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
+            const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset, language);
             const sub = subclasses.find((s) => s.name === character.subclass);
             srdFeature = (sub?.features || []).find((f: any) => f.name === feature.name);
             if (srdFeature) {
@@ -254,7 +254,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 <div className="flex items-center gap-2">
                   <Crown className="h-4 w-4 text-[var(--color-text-muted)]" />
                   {(() => {
-                    const subclasses = character.class ? getStaticSubclasses(character.class, character.sources) : [];
+                     const subclasses = character.class ? getStaticSubclasses(character.class, character.sources, undefined, language) : [];
                     const sub = subclasses.find(s => s.name === character.subclass);
                     return sub?.source ? <span className="inline-flex items-center font-semibold" style={{ fontSize: "9px", padding: "1px 5px", borderRadius: "4px", backgroundColor: "var(--color-bg)", color: "var(--color-text-secondary)" }}>{sub.source}</span> : null;
                   })()}

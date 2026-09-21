@@ -511,7 +511,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const { language } = useLanguage();
   const dict = language === "id" ? idTranslations : enTranslations;
   const t = (key: string, fb?: string) => (dict as Record<string, string>)[key] || fb || key;
-  const classData = character.class ? getStaticClass(character.class, character.sources, character.ruleset) : undefined;
+  const classData = character.class ? getStaticClass(character.class, character.sources, character.ruleset, language) : undefined;
   const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
   const hitDie = classData?.hitDie || 10;
   const conMod = getModifier(character.con);
@@ -759,7 +759,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const handleFinish = () => {
     if (!classData) return;
     const subclassIndex = subclassSelection
-      ? getStaticSubclasses(character.class, character.sources, character.ruleset).find(s => s.name === subclassSelection)?.index
+      ? getStaticSubclasses(character.class, character.sources, character.ruleset, language).find(s => s.name === subclassSelection)?.index
       : undefined;
     let draft: Character = {
       ...character,

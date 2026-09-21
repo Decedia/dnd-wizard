@@ -19,11 +19,11 @@ interface SkillsSectionProps {
 
 export function SkillsSection({ character, onChange, editMode = true }: SkillsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const profBonus = getProficiencyBonus(character.level);
   const [infoSkill, setInfoSkill] = useState<string | null>(null);
 
-  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : null;
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
