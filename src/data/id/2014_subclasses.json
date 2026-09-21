@@ -26,7 +26,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Alchemist",
@@ -52,7 +51,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Alchemist",
@@ -78,7 +76,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Alchemist",
@@ -104,7 +101,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Alchemist",
@@ -130,7 +126,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Alchemist",
@@ -166,7 +161,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Armorer",
@@ -192,7 +186,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Armorer",
@@ -218,7 +211,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Armorer",
@@ -244,7 +236,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Armorer",
@@ -270,7 +261,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Armorer",
@@ -296,7 +286,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Armorer",
@@ -332,7 +321,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Artillerist",
@@ -358,7 +346,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Artillerist",
@@ -384,7 +371,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Artillerist",
@@ -410,7 +396,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Artillerist",
@@ -436,7 +421,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Artillerist",
@@ -472,7 +456,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Battle Smith",
@@ -498,7 +481,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Smith",
@@ -524,7 +506,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Smith",
@@ -550,7 +531,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Smith",
@@ -576,7 +556,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Smith",
@@ -602,7 +581,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Smith",
@@ -640,7 +618,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ancestral Guardian",
@@ -666,7 +643,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ancestral Guardian",
@@ -692,7 +668,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Ancestral Guardian",
@@ -718,7 +693,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ancestral Guardian",
@@ -756,7 +730,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Berserker",
@@ -782,7 +755,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Berserker",
@@ -808,7 +780,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Berserker",
@@ -834,7 +805,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Berserker",
@@ -1034,7 +1004,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Herald",
@@ -1060,7 +1029,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Herald",
@@ -1086,7 +1054,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Storm Herald",
@@ -1112,7 +1079,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Herald",
@@ -1150,7 +1116,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Totem Warrior",
@@ -1176,7 +1141,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Totem Warrior",
@@ -1202,7 +1166,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Totem Warrior",
@@ -1228,7 +1191,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Totem Warrior",
@@ -1254,7 +1216,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Totem Warrior",
@@ -1292,7 +1253,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Zealot",
@@ -1318,7 +1278,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Zealot",
@@ -1344,7 +1303,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Zealot",
@@ -1370,7 +1328,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Zealot",
@@ -1564,7 +1521,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Glamour",
@@ -1590,7 +1546,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Glamour",
@@ -1616,7 +1571,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Glamour",
@@ -1652,7 +1606,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Spirits",
@@ -1678,7 +1631,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Spirits",
@@ -1704,7 +1656,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Spirits",
@@ -1730,7 +1681,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Spirits",
@@ -1756,7 +1706,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Spirits",
@@ -1794,7 +1743,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "College of Swords",
@@ -1835,7 +1783,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Swords",
@@ -1861,7 +1808,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Swords",
@@ -1887,7 +1833,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Swords",
@@ -1913,7 +1858,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Swords",
@@ -1951,7 +1895,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Whispers",
@@ -1977,7 +1920,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Whispers",
@@ -2003,7 +1945,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "College of Whispers",
@@ -2041,7 +1982,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Lore",
@@ -2067,7 +2007,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Lore",
@@ -2103,7 +2042,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Lore",
@@ -2129,7 +2067,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Lore",
@@ -2167,7 +2104,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Valor",
@@ -2193,7 +2129,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Valor",
@@ -2219,7 +2154,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Valor",
@@ -2245,7 +2179,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Valor",
@@ -2472,7 +2405,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Forge Domain",
@@ -2498,7 +2430,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Forge Domain",
@@ -2524,7 +2455,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Forge Domain",
@@ -2550,7 +2480,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Forge Domain",
@@ -2576,7 +2505,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Forge Domain",
@@ -2602,7 +2530,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Forge Domain",
@@ -2640,7 +2567,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Grave Domain",
@@ -2666,7 +2592,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Grave Domain",
@@ -2692,7 +2617,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Grave Domain",
@@ -2718,7 +2642,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Grave Domain",
@@ -2744,7 +2667,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Grave Domain",
@@ -2770,7 +2692,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Grave Domain",
@@ -2796,7 +2717,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Grave Domain",
@@ -2834,7 +2754,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Knowledge",
@@ -2860,7 +2779,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Knowledge",
@@ -2886,7 +2804,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Knowledge",
@@ -2912,7 +2829,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Knowledge",
@@ -2938,7 +2854,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Knowledge",
@@ -2976,7 +2891,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Life",
@@ -3002,7 +2916,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Life",
@@ -3028,7 +2941,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Life",
@@ -3054,7 +2966,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Life",
@@ -3080,7 +2991,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Life",
@@ -3106,7 +3016,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Life",
@@ -3144,7 +3053,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Light",
@@ -3170,7 +3078,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Light",
@@ -3196,7 +3103,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Light",
@@ -3222,7 +3128,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Light",
@@ -3248,7 +3153,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Light",
@@ -3274,7 +3178,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Light",
@@ -3312,7 +3215,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Nature",
@@ -3338,7 +3240,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Nature",
@@ -3364,7 +3265,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Nature",
@@ -3390,7 +3290,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Nature",
@@ -3416,7 +3315,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Nature",
@@ -3442,7 +3340,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Nature",
@@ -3694,7 +3591,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Tempest",
@@ -3720,7 +3616,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Tempest",
@@ -3746,7 +3641,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Tempest",
@@ -3772,7 +3666,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Tempest",
@@ -3798,7 +3691,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Tempest",
@@ -3824,7 +3716,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Tempest",
@@ -3862,7 +3753,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Trickery",
@@ -3888,7 +3778,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Trickery",
@@ -3914,7 +3803,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Trickery",
@@ -3940,7 +3828,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Trickery",
@@ -3966,7 +3853,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Trickery",
@@ -3992,7 +3878,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Trickery",
@@ -4151,7 +4036,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "War",
@@ -4177,7 +4061,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War",
@@ -4203,7 +4086,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War",
@@ -4229,7 +4111,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War",
@@ -4255,7 +4136,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War",
@@ -4281,7 +4161,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "War",
@@ -4319,7 +4198,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of Dreams",
@@ -4345,7 +4223,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of Dreams",
@@ -4371,7 +4248,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of Dreams",
@@ -4397,7 +4273,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of Dreams",
@@ -4610,7 +4485,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of the Sea",
@@ -4636,7 +4510,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of the Sea",
@@ -4662,7 +4535,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of the Sea",
@@ -4688,7 +4560,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of the Sea",
@@ -4714,7 +4585,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of the Sea",
@@ -4752,7 +4622,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Circle of the Shepherd",
@@ -4778,7 +4647,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of the Shepherd",
@@ -4804,7 +4672,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Circle of the Shepherd",
@@ -4830,7 +4697,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Circle of the Shepherd",
@@ -4856,7 +4722,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Circle of the Shepherd",
@@ -4985,7 +4850,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Land",
@@ -5011,7 +4875,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Land",
@@ -5043,7 +4906,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Land",
@@ -5069,7 +4931,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Land",
@@ -5095,7 +4956,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Land",
@@ -5121,7 +4981,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Land",
@@ -5159,7 +5018,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Moon",
@@ -5185,7 +5043,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Moon",
@@ -5211,7 +5068,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Moon",
@@ -5237,7 +5093,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Moon",
@@ -5263,7 +5118,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Moon",
@@ -5301,7 +5155,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Arcane Archer",
@@ -5327,7 +5180,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Archer",
@@ -5392,7 +5244,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Archer",
@@ -5418,7 +5269,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Archer",
@@ -5444,7 +5294,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Archer",
@@ -5470,7 +5319,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Archer",
@@ -5595,7 +5443,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Master",
@@ -5783,7 +5630,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Battle Master",
@@ -5809,7 +5655,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Master",
@@ -5835,7 +5680,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Battle Master",
@@ -5861,7 +5705,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Battle Master",
@@ -5887,7 +5730,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Battle Master",
@@ -5952,7 +5794,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Cavalier",
@@ -5978,7 +5819,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Cavalier",
@@ -6004,7 +5844,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Cavalier",
@@ -6030,7 +5869,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Cavalier",
@@ -6056,7 +5894,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Cavalier",
@@ -6082,7 +5919,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Cavalier",
@@ -6108,7 +5944,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Cavalier",
@@ -6146,7 +5981,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Champion",
@@ -6172,7 +6006,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Champion",
@@ -6198,7 +6031,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Champion",
@@ -6224,7 +6056,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Champion",
@@ -6250,7 +6081,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Champion",
@@ -6286,7 +6116,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Echo Knight",
@@ -6312,7 +6141,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Echo Knight",
@@ -6338,7 +6166,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Echo Knight",
@@ -6364,7 +6191,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Echo Knight",
@@ -6390,7 +6216,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Echo Knight",
@@ -6416,7 +6241,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Echo Knight",
@@ -6578,7 +6402,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Eldritch Knight",
@@ -6604,7 +6427,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Eldritch Knight",
@@ -6630,7 +6452,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Eldritch Knight",
@@ -6656,7 +6477,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Eldritch Knight",
@@ -6682,7 +6502,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Eldritch Knight",
@@ -6708,7 +6527,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Eldritch Knight",
@@ -6968,7 +6786,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Samurai",
@@ -6994,7 +6811,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Samurai",
@@ -7020,7 +6836,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Samurai",
@@ -7046,7 +6861,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Samurai",
@@ -7072,7 +6886,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Samurai",
@@ -7098,7 +6911,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Samurai",
@@ -7134,7 +6946,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Ascendant Dragon",
@@ -7160,7 +6971,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ascendant Dragon",
@@ -7186,7 +6996,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ascendant Dragon",
@@ -7212,7 +7021,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ascendant Dragon",
@@ -7238,7 +7046,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ascendant Dragon",
@@ -7276,7 +7083,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Open Hand",
@@ -7302,7 +7108,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Open Hand",
@@ -7328,7 +7133,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Open Hand",
@@ -7354,7 +7158,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Open Hand",
@@ -7392,7 +7195,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow",
@@ -7418,7 +7220,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow",
@@ -7444,7 +7245,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow",
@@ -7470,7 +7270,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow",
@@ -7665,7 +7464,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Way of the Drunken Master",
@@ -7691,7 +7489,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Drunken Master",
@@ -7717,7 +7514,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Drunken Master",
@@ -7743,7 +7539,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Drunken Master",
@@ -7769,7 +7564,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Drunken Master",
@@ -7965,7 +7759,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Kensei",
@@ -7991,7 +7784,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Kensei",
@@ -8017,7 +7809,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Kensei",
@@ -8043,7 +7834,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Kensei",
@@ -8145,7 +7935,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Sun Soul",
@@ -8171,7 +7960,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Sun Soul",
@@ -8197,7 +7985,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Sun Soul",
@@ -8223,7 +8010,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Way of the Sun Soul",
@@ -8261,7 +8047,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Ancients",
@@ -8287,7 +8072,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ancients",
@@ -8313,7 +8097,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ancients",
@@ -8339,7 +8122,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Ancients",
@@ -8365,7 +8147,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ancients",
@@ -8391,7 +8172,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Ancients",
@@ -8429,7 +8209,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Devotion",
@@ -8455,7 +8234,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Devotion",
@@ -8481,7 +8259,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Devotion",
@@ -8507,7 +8284,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Devotion",
@@ -8533,7 +8309,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Devotion",
@@ -8559,7 +8334,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Devotion",
@@ -8595,7 +8369,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic Disciple",
@@ -8621,7 +8394,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic Disciple",
@@ -8647,7 +8419,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic Disciple",
@@ -8673,7 +8444,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Draconic Disciple",
@@ -8699,7 +8469,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic Disciple",
@@ -8737,7 +8506,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of Conquest",
@@ -8763,7 +8531,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Oath of Conquest",
@@ -8789,7 +8556,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of Conquest",
@@ -8815,7 +8581,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of Conquest",
@@ -8952,7 +8717,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of Redemption",
@@ -8978,7 +8742,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of Redemption",
@@ -9004,7 +8767,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of Redemption",
@@ -9030,7 +8792,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of Redemption",
@@ -9163,7 +8924,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of the Watchers",
@@ -9189,7 +8949,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Oath of the Watchers",
@@ -9215,7 +8974,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of the Watchers",
@@ -9241,7 +8999,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Oath of the Watchers",
@@ -9373,7 +9130,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Vengeance",
@@ -9399,7 +9155,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Vengeance",
@@ -9425,7 +9180,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Vengeance",
@@ -9451,7 +9205,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Vengeance",
@@ -9477,7 +9230,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Vengeance",
@@ -9503,7 +9255,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Vengeance",
@@ -9541,7 +9292,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Beast Master",
@@ -9567,7 +9317,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Beast Master",
@@ -9593,7 +9342,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Beast Master",
@@ -9619,7 +9367,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Beast Master",
@@ -9655,7 +9402,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Drake Warden",
@@ -9681,7 +9427,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Drake Warden",
@@ -9707,7 +9452,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Drake Warden",
@@ -9733,7 +9477,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Drake Warden",
@@ -9759,7 +9502,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Drake Warden",
@@ -9797,7 +9539,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Fey Wanderer",
@@ -9823,7 +9564,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Fey Wanderer",
@@ -9849,7 +9589,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Fey Wanderer",
@@ -9875,7 +9614,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Fey Wanderer",
@@ -9901,7 +9639,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Fey Wanderer",
@@ -9927,7 +9664,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Fey Wanderer",
@@ -10053,7 +9789,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Horizon Walker",
@@ -10079,7 +9814,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Horizon Walker",
@@ -10105,7 +9839,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Horizon Walker",
@@ -10131,7 +9864,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Horizon Walker",
@@ -10157,7 +9889,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Horizon Walker",
@@ -10195,7 +9926,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Hunter",
@@ -10221,7 +9951,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Hunter",
@@ -10247,7 +9976,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Hunter",
@@ -10273,7 +10001,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Hunter",
@@ -10311,7 +10038,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Monster Slayer",
@@ -10337,7 +10063,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Monster Slayer",
@@ -10363,7 +10088,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Monster Slayer",
@@ -10389,7 +10113,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Monster Slayer",
@@ -10415,7 +10138,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Monster Slayer",
@@ -10453,7 +10175,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Swarmkeeper",
@@ -10479,7 +10200,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swarmkeeper",
@@ -10505,7 +10225,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swarmkeeper",
@@ -10531,7 +10250,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swarmkeeper",
@@ -10557,7 +10275,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swarmkeeper",
@@ -10598,7 +10315,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Arcane Trickster",
@@ -10624,7 +10340,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Trickster",
@@ -10650,7 +10365,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Arcane Trickster",
@@ -10676,7 +10390,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Trickster",
@@ -10702,7 +10415,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Arcane Trickster",
@@ -10740,7 +10452,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Assassin",
@@ -10766,7 +10477,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Assassin",
@@ -10792,7 +10502,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Assassin",
@@ -10818,7 +10527,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Assassin",
@@ -10844,7 +10552,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Assassin",
@@ -10882,7 +10589,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Inquisitive",
@@ -10908,7 +10614,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Inquisitive",
@@ -10934,7 +10639,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Inquisitive",
@@ -10960,7 +10664,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Inquisitive",
@@ -10986,7 +10689,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Inquisitive",
@@ -11012,7 +10714,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Inquisitive",
@@ -11050,7 +10751,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Mastermind",
@@ -11076,7 +10776,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Mastermind",
@@ -11102,7 +10801,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Mastermind",
@@ -11128,7 +10826,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Mastermind",
@@ -11154,7 +10851,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Mastermind",
@@ -11272,7 +10968,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Scout",
@@ -11298,7 +10993,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Scout",
@@ -11324,7 +11018,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Scout",
@@ -11350,7 +11043,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Scout",
@@ -11376,7 +11068,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Scout",
@@ -11498,7 +11189,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swashbuckler",
@@ -11524,7 +11214,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swashbuckler",
@@ -11550,7 +11239,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swashbuckler",
@@ -11576,7 +11264,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swashbuckler",
@@ -11602,7 +11289,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Swashbuckler",
@@ -11640,7 +11326,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Thief",
@@ -11666,7 +11351,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Thief",
@@ -11692,7 +11376,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Thief",
@@ -11718,7 +11401,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Thief",
@@ -11744,7 +11426,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Thief",
@@ -11782,7 +11463,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Aberrant Mind",
@@ -11808,7 +11488,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Aberrant Mind",
@@ -11834,7 +11513,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Aberrant Mind",
@@ -11860,7 +11538,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Aberrant Mind",
@@ -11886,7 +11563,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Aberrant Mind",
@@ -12014,7 +11690,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Divine Soul",
@@ -12040,7 +11715,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Divine Soul",
@@ -12066,7 +11740,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Divine Soul",
@@ -12092,7 +11765,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Divine Soul",
@@ -12118,7 +11790,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Divine Soul",
@@ -12198,7 +11869,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic",
@@ -12224,7 +11894,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic",
@@ -12250,7 +11919,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic",
@@ -12276,7 +11944,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic",
@@ -12302,7 +11969,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Draconic",
@@ -12340,7 +12006,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow Magic",
@@ -12366,7 +12031,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow Magic",
@@ -12392,7 +12056,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow Magic",
@@ -12418,7 +12081,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow Magic",
@@ -12444,7 +12106,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Shadow Magic",
@@ -12482,7 +12143,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Sorcery",
@@ -12508,7 +12168,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Sorcery",
@@ -12534,7 +12193,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Storm Sorcery",
@@ -12560,7 +12218,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Sorcery",
@@ -12586,7 +12243,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Sorcery",
@@ -12612,7 +12268,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Storm Sorcery",
@@ -12650,7 +12305,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Wild Magic",
@@ -12676,7 +12330,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Wild Magic",
@@ -12702,7 +12355,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Wild Magic",
@@ -12728,7 +12380,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Wild Magic",
@@ -12754,7 +12405,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Wild Magic",
@@ -12790,7 +12440,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Archfey",
@@ -12816,7 +12465,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Archfey",
@@ -12842,7 +12490,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Archfey",
@@ -12868,7 +12515,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Archfey",
@@ -12906,7 +12552,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Fiend",
@@ -12932,7 +12577,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Fiend",
@@ -12958,7 +12602,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Fiend",
@@ -12984,7 +12627,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Fiend",
@@ -13022,7 +12664,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Great Old One",
@@ -13048,7 +12689,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Great Old One",
@@ -13074,7 +12714,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Great Old One",
@@ -13100,7 +12739,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Great Old One",
@@ -13136,7 +12774,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Hexblade",
@@ -13162,7 +12799,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Hexblade",
@@ -13188,7 +12824,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Hexblade",
@@ -13214,7 +12849,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Hexblade",
@@ -13240,7 +12874,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Hexblade",
@@ -13278,7 +12911,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Celestial",
@@ -13304,7 +12936,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Celestial",
@@ -13330,7 +12961,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Celestial",
@@ -13356,7 +12986,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Celestial",
@@ -13382,7 +13011,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Celestial",
@@ -13420,7 +13048,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "The Fathomless",
@@ -13446,7 +13073,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Fathomless",
@@ -13472,7 +13098,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "The Fathomless",
@@ -13498,7 +13123,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "The Fathomless",
@@ -13524,7 +13148,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Fathomless",
@@ -13550,7 +13173,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Fathomless",
@@ -13588,7 +13210,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "The Genie",
@@ -13614,7 +13235,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Genie",
@@ -13640,7 +13260,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "The Genie",
@@ -13666,7 +13285,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Genie",
@@ -13692,7 +13310,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "The Genie",
@@ -13728,7 +13345,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Undead",
@@ -13754,7 +13370,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "The Undead",
@@ -13780,7 +13395,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Undead",
@@ -13806,7 +13420,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "The Undead",
@@ -13844,7 +13457,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Undying",
@@ -13870,7 +13482,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Undying",
@@ -13896,7 +13507,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Undying",
@@ -13922,7 +13532,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Undying",
@@ -13948,7 +13557,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Undying",
@@ -13986,7 +13594,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Abjuration",
@@ -14012,7 +13619,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Abjuration",
@@ -14038,7 +13644,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Abjuration",
@@ -14064,7 +13669,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Abjuration",
@@ -14090,7 +13694,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Abjuration",
@@ -14128,7 +13731,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Bladesinging",
@@ -14154,7 +13756,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Bladesinging",
@@ -14180,7 +13781,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Bladesinging",
@@ -14206,7 +13806,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Bladesinging",
@@ -14232,7 +13831,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Bladesinging",
@@ -14258,7 +13856,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Bladesinging",
@@ -14296,7 +13893,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Chronurgy Magic",
@@ -14322,7 +13918,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Chronurgy Magic",
@@ -14348,7 +13943,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Chronurgy Magic",
@@ -14374,7 +13968,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Chronurgy Magic",
@@ -14400,7 +13993,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Chronurgy Magic",
@@ -14438,7 +14030,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Conjuration",
@@ -14464,7 +14055,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Conjuration",
@@ -14490,7 +14080,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Conjuration",
@@ -14516,7 +14105,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Conjuration",
@@ -14542,7 +14130,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Conjuration",
@@ -14580,7 +14167,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Divination",
@@ -14606,7 +14192,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Divination",
@@ -14632,7 +14217,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Divination",
@@ -14658,7 +14242,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Divination",
@@ -14684,7 +14267,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Divination",
@@ -14722,7 +14304,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Enchantment",
@@ -14748,7 +14329,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Enchantment",
@@ -14774,7 +14354,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Enchantment",
@@ -14800,7 +14379,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Enchantment",
@@ -14826,7 +14404,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Enchantment",
@@ -14864,7 +14441,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Evocation",
@@ -14890,7 +14466,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Evocation",
@@ -14916,7 +14491,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Evocation",
@@ -14942,7 +14516,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Evocation",
@@ -14968,7 +14541,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Evocation",
@@ -15006,7 +14578,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Graviturgy Magic",
@@ -15032,7 +14603,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Graviturgy Magic",
@@ -15058,7 +14628,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Graviturgy Magic",
@@ -15084,7 +14653,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Graviturgy Magic",
@@ -15122,7 +14690,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Illusion",
@@ -15148,7 +14715,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Illusion",
@@ -15174,7 +14740,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Illusion",
@@ -15200,7 +14765,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Illusion",
@@ -15226,7 +14790,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Illusion",
@@ -15264,7 +14827,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Necromancy",
@@ -15290,7 +14852,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Necromancy",
@@ -15316,7 +14877,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Necromancy",
@@ -15342,7 +14902,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Necromancy",
@@ -15368,7 +14927,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Necromancy",
@@ -15406,7 +14964,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Order of Scribes",
@@ -15432,7 +14989,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Order of Scribes",
@@ -15458,7 +15014,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Order of Scribes",
@@ -15484,7 +15039,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Order of Scribes",
@@ -15510,7 +15064,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Order of Scribes",
@@ -15548,7 +15101,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "Transmutation",
@@ -15574,7 +15126,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Transmutation",
@@ -15600,7 +15151,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Transmutation",
@@ -15626,7 +15176,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Transmutation",
@@ -15652,7 +15201,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "Transmutation",
@@ -15690,7 +15238,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War Magic",
@@ -15716,7 +15263,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War Magic",
@@ -15742,7 +15288,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War Magic",
@@ -15768,7 +15313,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "subclass",
             "name": "War Magic",
@@ -15794,7 +15338,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "subclass",
             "name": "War Magic",

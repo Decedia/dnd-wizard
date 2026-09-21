@@ -27,7 +27,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Bugbear",
@@ -52,7 +51,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Bugbear",
@@ -77,7 +75,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Bugbear",
@@ -102,7 +99,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Bugbear",
@@ -127,7 +123,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Bugbear",
@@ -173,7 +168,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Changeling",
@@ -198,7 +192,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Changeling",
@@ -246,7 +239,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
@@ -271,7 +263,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
@@ -296,7 +287,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
@@ -321,7 +311,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Deep Gnome (Svirfneblin)",
@@ -364,7 +353,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dhampir",
@@ -389,7 +377,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dhampir",
@@ -414,7 +401,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dhampir",
@@ -439,7 +425,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dhampir",
@@ -484,7 +469,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn",
@@ -509,7 +493,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn",
@@ -534,7 +517,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dragonborn",
@@ -577,7 +559,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Chromatic)",
@@ -602,7 +583,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Chromatic)",
@@ -627,7 +607,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dragonborn (Chromatic)",
@@ -652,7 +631,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Chromatic)",
@@ -698,7 +676,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Gem)",
@@ -723,7 +700,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Gem)",
@@ -748,7 +724,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dragonborn (Gem)",
@@ -773,7 +748,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dragonborn (Gem)",
@@ -798,7 +772,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Gem)",
@@ -844,7 +817,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Metallic)",
@@ -869,7 +841,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Metallic)",
@@ -894,7 +865,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dragonborn (Metallic)",
@@ -919,7 +889,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dragonborn (Metallic)",
@@ -966,7 +935,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dwarf",
@@ -991,7 +959,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Dwarf",
@@ -1016,7 +983,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dwarf",
@@ -1041,7 +1007,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dwarf",
@@ -1066,7 +1031,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Dwarf",
@@ -1111,7 +1075,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hill Dwarf",
@@ -1136,7 +1099,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Hill Dwarf",
@@ -1161,7 +1123,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hill Dwarf",
@@ -1186,7 +1147,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hill Dwarf",
@@ -1211,7 +1171,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hill Dwarf",
@@ -1236,7 +1195,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hill Dwarf",
@@ -1281,7 +1239,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Mountain Dwarf",
@@ -1306,7 +1263,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Mountain Dwarf",
@@ -1331,7 +1287,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Mountain Dwarf",
@@ -1356,7 +1311,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Mountain Dwarf",
@@ -1381,7 +1335,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Mountain Dwarf",
@@ -1406,7 +1359,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Mountain Dwarf",
@@ -1449,7 +1401,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Eladrin (Elf)",
@@ -1474,7 +1425,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Eladrin (Elf)",
@@ -1499,7 +1449,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Eladrin (Elf)",
@@ -1524,7 +1473,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Eladrin (Elf)",
@@ -1549,7 +1497,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Eladrin (Elf)",
@@ -1574,7 +1521,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Eladrin (Elf)",
@@ -1647,7 +1593,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Elf",
@@ -1672,7 +1617,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Elf",
@@ -1697,7 +1641,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Elf",
@@ -1722,7 +1665,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Elf",
@@ -1765,7 +1707,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Firbolg",
@@ -1790,7 +1731,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Firbolg",
@@ -1815,7 +1755,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Firbolg",
@@ -1840,7 +1779,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Firbolg",
@@ -1887,7 +1825,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Githyanki",
@@ -1912,7 +1849,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Githyanki",
@@ -1937,7 +1873,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Githyanki",
@@ -1997,7 +1932,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Githzerai",
@@ -2022,7 +1956,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Githzerai",
@@ -2047,7 +1980,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Githzerai",
@@ -2094,7 +2026,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Gnome",
@@ -2119,7 +2050,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Gnome",
@@ -2164,7 +2094,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Forest Gnome",
@@ -2189,7 +2118,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Forest Gnome",
@@ -2214,7 +2142,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Forest Gnome",
@@ -2239,7 +2166,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Forest Gnome",
@@ -2284,7 +2210,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Rock Gnome",
@@ -2309,7 +2234,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Rock Gnome",
@@ -2334,7 +2258,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Rock Gnome",
@@ -2359,7 +2282,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Rock Gnome",
@@ -2402,7 +2324,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Goblin",
@@ -2427,7 +2348,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Goblin",
@@ -2452,7 +2372,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Goblin",
@@ -2499,7 +2418,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf",
@@ -2524,7 +2442,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf",
@@ -2549,7 +2466,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf",
@@ -2593,7 +2509,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (High Elf)",
@@ -2618,7 +2533,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (High Elf)",
@@ -2643,7 +2557,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (High Elf)",
@@ -2668,7 +2581,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (High Elf)",
@@ -2721,7 +2633,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
@@ -2746,7 +2657,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
@@ -2771,7 +2681,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
@@ -2796,7 +2705,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Wood Elf)",
@@ -2840,7 +2748,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Drow)",
@@ -2865,7 +2772,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Drow)",
@@ -2890,7 +2796,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Drow)",
@@ -2915,7 +2820,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Drow)",
@@ -2959,7 +2863,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
@@ -2984,7 +2887,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
@@ -3009,7 +2911,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
@@ -3034,7 +2935,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Moon Elf)",
@@ -3078,7 +2978,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
@@ -3103,7 +3002,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
@@ -3128,7 +3026,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
@@ -3153,7 +3050,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sun Elf)",
@@ -3197,7 +3093,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
@@ -3222,7 +3117,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
@@ -3247,7 +3141,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
@@ -3272,7 +3165,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Sea Elf)",
@@ -3316,7 +3208,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
@@ -3341,7 +3232,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
@@ -3366,7 +3256,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
@@ -3391,7 +3280,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Shadar-kai)",
@@ -3435,7 +3323,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Eladrin)",
@@ -3460,7 +3347,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Eladrin)",
@@ -3485,7 +3371,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Elf (Eladrin)",
@@ -3510,7 +3395,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Elf (Eladrin)",
@@ -3555,7 +3439,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Orc",
@@ -3580,7 +3463,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Orc",
@@ -3605,7 +3487,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Half-Orc",
@@ -3630,7 +3511,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Half-Orc",
@@ -3672,7 +3552,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Halfling",
@@ -3697,7 +3576,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Halfling",
@@ -3725,7 +3603,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Halfling",
@@ -3768,7 +3645,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Lightfoot Halfling",
@@ -3793,7 +3669,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Lightfoot Halfling",
@@ -3821,7 +3696,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Lightfoot Halfling",
@@ -3846,7 +3720,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Lightfoot Halfling",
@@ -3889,7 +3762,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Stout Halfling",
@@ -3914,7 +3786,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Stout Halfling",
@@ -3942,7 +3813,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Stout Halfling",
@@ -3967,7 +3837,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Stout Halfling",
@@ -4010,7 +3879,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Ghostwise Halfling",
@@ -4035,7 +3903,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Ghostwise Halfling",
@@ -4063,7 +3930,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Ghostwise Halfling",
@@ -4088,7 +3954,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Ghostwise Halfling",
@@ -4131,7 +3996,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hexblood",
@@ -4156,7 +4020,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hexblood",
@@ -4181,7 +4044,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Hexblood",
@@ -4226,7 +4088,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hobgoblin",
@@ -4251,7 +4112,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Hobgoblin",
@@ -4276,7 +4136,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Hobgoblin",
@@ -4342,7 +4201,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Kenku",
@@ -4367,7 +4225,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Kenku",
@@ -4392,7 +4249,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Kenku",
@@ -4438,7 +4294,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Lizardfolk",
@@ -4463,7 +4318,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Lizardfolk",
@@ -4488,7 +4342,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Lizardfolk",
@@ -4513,7 +4366,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": true,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Lizardfolk",
@@ -4559,7 +4411,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Orc",
@@ -4584,7 +4435,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Orc",
@@ -4609,7 +4459,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Orc",
@@ -4634,7 +4483,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Orc",
@@ -4680,7 +4528,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Reborn",
@@ -4705,7 +4552,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Reborn",
@@ -4730,7 +4576,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Reborn",
@@ -4775,7 +4620,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Shifter",
@@ -4800,7 +4644,6 @@
           "grantsAttack": false,
           "grantsSkills": true,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Shifter",
@@ -4825,7 +4668,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Shifter",
@@ -4900,7 +4742,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tabaxi",
@@ -4925,7 +4766,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Tabaxi",
@@ -4950,7 +4790,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Tabaxi",
@@ -4975,7 +4814,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tabaxi",
@@ -5022,7 +4860,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling",
@@ -5047,7 +4884,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling",
@@ -5072,7 +4908,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling",
@@ -5117,7 +4952,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Asmodeus)",
@@ -5142,7 +4976,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Asmodeus)",
@@ -5167,7 +5000,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Asmodeus)",
@@ -5212,7 +5044,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Baalzebul)",
@@ -5237,7 +5068,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Baalzebul)",
@@ -5262,7 +5092,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Baalzebul)",
@@ -5307,7 +5136,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Zariel)",
@@ -5332,7 +5160,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Zariel)",
@@ -5357,7 +5184,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Zariel)",
@@ -5402,7 +5228,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Dispater)",
@@ -5427,7 +5252,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Dispater)",
@@ -5452,7 +5276,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Dispater)",
@@ -5497,7 +5320,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Fierna)",
@@ -5522,7 +5344,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Fierna)",
@@ -5547,7 +5368,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Fierna)",
@@ -5592,7 +5412,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Glasya)",
@@ -5617,7 +5436,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Glasya)",
@@ -5642,7 +5460,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Glasya)",
@@ -5687,7 +5504,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Levistus)",
@@ -5712,7 +5528,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Levistus)",
@@ -5737,7 +5552,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Levistus)",
@@ -5782,7 +5596,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Mammon)",
@@ -5807,7 +5620,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Mammon)",
@@ -5832,7 +5644,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Mammon)",
@@ -5877,7 +5688,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Mephistopheles)",
@@ -5902,7 +5712,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Mephistopheles)",
@@ -5927,7 +5736,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Tiefling (Mephistopheles)",
@@ -5971,7 +5779,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Triton",
@@ -5996,7 +5803,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Triton",
@@ -6021,7 +5827,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Triton",
@@ -6046,7 +5851,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Triton",
@@ -6092,7 +5896,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Aarakocra",
@@ -6117,7 +5920,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Aarakocra",
@@ -6142,7 +5944,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Aarakocra",
@@ -6188,7 +5989,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Yuan-ti Pureblood",
@@ -6213,7 +6013,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Yuan-ti Pureblood",
@@ -6238,7 +6037,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Yuan-ti Pureblood",
@@ -6285,7 +6083,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Kobold",
@@ -6310,7 +6107,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Kobold",
@@ -6335,7 +6131,6 @@
           "grantsAttack": true,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Kobold",
@@ -6381,7 +6176,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Goliath",
@@ -6406,7 +6200,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Goliath",
@@ -6452,7 +6245,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Autognome",
@@ -6477,7 +6269,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Autognome",
@@ -6523,7 +6314,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Plasmoid",
@@ -6548,7 +6338,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Plasmoid",
@@ -6594,7 +6383,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Thri-kreen",
@@ -6619,7 +6407,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Thri-kreen",
@@ -6665,7 +6452,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Aasimar",
@@ -6690,7 +6476,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Aasimar",
@@ -6715,7 +6500,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": true,
           "source": {
             "type": "race",
             "name": "Aasimar",
@@ -6740,7 +6524,6 @@
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
-          "showInSheet": false,
           "source": {
             "type": "race",
             "name": "Aasimar",
