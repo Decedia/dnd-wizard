@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface SectionCardProps {
   id: string;
-  title?: string;
+  title?: ReactNode;
   icon?: ReactNode;
   children: ReactNode;
 }

@@ -232,7 +232,22 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   };
 
   return (
-    <SectionCard id="features" title={t("section.featuresTraits")} icon={<Star className="h-5 w-5" />}>
+    <SectionCard
+      id="features"
+      title={
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Star className="h-5 w-5" />
+            <span>{t("section.featuresTraits")}</span>
+          </div>
+          {hiddenCount > 0 && !showDescriptions && (
+            <span className="text-gray-400 text-sm">
+              {hiddenCount} {t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}
+            </span>
+          )}
+        </div>
+      }
+    >
       <div className="space-y-2">
         {character.subclass && (
               <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
@@ -246,12 +261,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                   <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.subclass}</span>
                 </div>
               </div>
-        )}
-        {hiddenCount > 0 && !showDescriptions && (
-          <div className="flex items-center justify-between px-1">
-             <span className="text-xs text-[var(--color-text-secondary)]">{t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}</span>
-            <span className="text-xs text-[var(--color-text-muted)]">{t("description.show")}</span>
-          </div>
         )}
         {editMode && (
           <div className="px-1">
