@@ -235,13 +235,13 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     <SectionCard
       id="features"
       title={
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <Star className="h-5 w-5" />
             <span>{t("section.featuresTraits")}</span>
           </div>
           {hiddenCount > 0 && !showDescriptions && (
-            <span className="text-gray-400 text-sm">
+            <span className="text-sm text-gray-400">
               {hiddenCount} {t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}
             </span>
           )}
