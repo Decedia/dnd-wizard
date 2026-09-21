@@ -1,5 +1,6 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, type Character } from "./storage";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
+import { determineDefaultVisibility } from "./feature-filters";
 import type { CreationStep } from "./creation-types";
 
 const ARCANE_FOCUS_NAMES = ["crystal", "orb", "rod", "staff", "wand"];
@@ -706,7 +707,7 @@ function extractFeatureFields(f: any): Record<string, any> {
     grantsAttack: f.grantsAttack ?? false,
     grantsSkills: f.grantsSkills ?? false,
     grantsProficiency: f.grantsProficiency ?? false,
-    showInSheet: f.showInSheet ?? true,
+    showInSheet: f.showInSheet ?? determineDefaultVisibility(f),
   };
 }
 
@@ -801,7 +802,7 @@ export function syncBaseFeatures(character: Character): Character {
       grantsAttack: f.grantsAttack ?? false,
       grantsSkills: f.grantsSkills ?? false,
       grantsProficiency: f.grantsProficiency ?? false,
-      showInSheet: f.showInSheet ?? true,
+    showInSheet: f.showInSheet ?? determineDefaultVisibility(f),
     };
   });
 
@@ -866,8 +867,8 @@ export function applySubclassFeatures(character: Character): Character {
               description: normalizeDescription(opt.description),
               source: "subclass" as const,
               locked: true,
-              showInSheet: true,
               ...extractFeatureFields(feature),
+              showInSheet: true,
             });
           }
         }
@@ -1029,8 +1030,8 @@ export function resolveFeatureChoice(character: Character, choice: MissingFeatur
         description: normalizeDescription(option?.description || selectedOptionName),
         source: choice.source,
         locked: true,
-        showInSheet: true,
         ...extractFeatureFields(parentFeature),
+        showInSheet: true,
       });
     }
   }

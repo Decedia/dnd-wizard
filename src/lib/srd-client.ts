@@ -49,6 +49,8 @@ import races2024DataEn from "@/data/en/2024_phb.json";
 import races2024DataId from "@/data/id/2024_phb.json";
 const races2024DataMap = { en: races2024DataEn, id: races2024DataId } as const;
 
+import { determineDefaultVisibility } from "./feature-filters";
+
 export interface SRDRace {
   name: string;
   abilityScoreIncreases: Record<string, number>;
@@ -437,7 +439,7 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             grantsAttack: f.grantsAttack ?? false,
             grantsSkills: f.grantsSkills ?? false,
             grantsProficiency: f.grantsProficiency ?? false,
-            showInSheet: f.showInSheet ?? true,
+            showInSheet: f.showInSheet ?? determineDefaultVisibility(f),
             source: f.source ?? undefined,
             book: f.book ?? undefined,
           };

@@ -1,6 +1,7 @@
 import { getStaticClass, getStaticRace, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
+import { determineDefaultVisibility } from "@/lib/feature-filters";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter } from "@/lib/db";
 export interface Character {
   id: string;
@@ -606,7 +607,7 @@ function normalizeCharacter(c: Character): Character {
         grantsAttack: (feature as any).grantsAttack ?? false,
         grantsSkills: (feature as any).grantsSkills ?? false,
         grantsProficiency: (feature as any).grantsProficiency ?? false,
-        showInSheet: (feature as any).showInSheet ?? true,
+        showInSheet: (feature as any).showInSheet ?? determineDefaultVisibility(feature),
       };
     }),
   };
