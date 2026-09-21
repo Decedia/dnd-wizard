@@ -51,6 +51,7 @@ export const translations = {
   "character.stable": "Stable",
   "character.dead": "Dead",
   "status.dead": "Dead",
+  "status.stable": "Stable",
   "character.success": "Success",
   "character.failure": "Failure",
   "character.attacks": "Attacks",

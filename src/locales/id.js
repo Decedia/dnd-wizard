@@ -51,6 +51,7 @@ export const translations = {
   "character.stable": "Stabil",
   "character.dead": "Mati",
   "status.dead": "Mati",
+  "status.stable": "Stabil",
   "character.success": "Berhasil",
   "character.failure": "Gagal",
   "character.attacks": "Serangan",
