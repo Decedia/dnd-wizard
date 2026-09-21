@@ -93,72 +93,76 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
             {character.deathSaveSuccesses >= 3 ? t("status.stable") : t("status.dead")}
           </p>
         )}
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-3">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col items-center gap-2">
              <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("deathSaves.successes")}</span>
-            {editMode
-              ? [0, 1, 2].map((i) => (
-                  <label key={`ds-s-${i}`} className="flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={character.deathSaveSuccesses > i}
-                      onChange={(e) => onChange({ deathSaveSuccesses: e.target.checked ? i + 1 : i })}
-                      onBlur={onFieldBlur}
-                      className="checkbox"
-                    />
-                  </label>
-                ))
-              : [0, 1, 2].map((i) => (
-                  <span key={`ds-s-${i}`}>
-                    {character.deathSaveSuccesses > i
-                       ? <Check className="h-4 w-4" color="var(--color-success-500)" />
-                       : <Circle className="h-4 w-4" color="var(--color-border)" />}
-                  </span>
-                ))}
-            {editMode && (
-              <button
-                type="button"
-                onClick={removeSuccess}
-                disabled={(character.deathSaveSuccesses || 0) === 0}
-                className="btn-ghost ml-2 px-2 py-1"
-                title={t("button.removeSuccess")}
-              >
-                <X className="h-3 w-3" />
-              </button>
-            )}
+             <div className="flex items-center gap-2">
+               {editMode
+                 ? [0, 1, 2].map((i) => (
+                     <label key={`ds-s-${i}`} className="flex items-center cursor-pointer">
+                       <input
+                         type="checkbox"
+                         checked={character.deathSaveSuccesses > i}
+                         onChange={(e) => onChange({ deathSaveSuccesses: e.target.checked ? i + 1 : i })}
+                         onBlur={onFieldBlur}
+                         className="checkbox"
+                       />
+                     </label>
+                   ))
+                 : [0, 1, 2].map((i) => (
+                     <span key={`ds-s-${i}`}>
+                       {character.deathSaveSuccesses > i
+                          ? <Check className="h-4 w-4" color="var(--color-success-500)" />
+                          : <Circle className="h-4 w-4" color="var(--color-border)" />}
+                     </span>
+                   ))}
+               {editMode && (
+                 <button
+                   type="button"
+                   onClick={removeSuccess}
+                   disabled={(character.deathSaveSuccesses || 0) === 0}
+                   className="btn-ghost px-2 py-1"
+                   title={t("button.removeSuccess")}
+                 >
+                   <X className="h-3 w-3" />
+                 </button>
+               )}
+             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col items-center gap-2">
              <span className="text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("deathSaves.failures")}</span>
-            {editMode
-              ? [0, 1, 2].map((i) => (
-                  <label key={`ds-f-${i}`} className="flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={character.deathSaveFailures > i}
-                      onChange={(e) => onChange({ deathSaveFailures: e.target.checked ? i + 1 : i })}
-                      onBlur={onFieldBlur}
-                      className="checkbox"
-                    />
-                  </label>
-                ))
-              : [0, 1, 2].map((i) => (
-                  <span key={`ds-f-${i}`}>
-                    {character.deathSaveFailures > i
-                       ? <X className="h-4 w-4" color="var(--color-error-500)" />
-                       : <Circle className="h-4 w-4" color="var(--color-border)" />}
-                  </span>
-                ))}
-            {editMode && (
-              <button
-                type="button"
-                onClick={removeFailure}
-                disabled={(character.deathSaveFailures || 0) === 0}
-                className="btn-ghost ml-2 px-2 py-1"
-                title={t("button.removeFailure")}
-              >
-                <X className="h-3 w-3" />
-              </button>
-            )}
+             <div className="flex items-center gap-2">
+               {editMode
+                 ? [0, 1, 2].map((i) => (
+                     <label key={`ds-f-${i}`} className="flex items-center cursor-pointer">
+                       <input
+                         type="checkbox"
+                         checked={character.deathSaveFailures > i}
+                         onChange={(e) => onChange({ deathSaveFailures: e.target.checked ? i + 1 : i })}
+                         onBlur={onFieldBlur}
+                         className="checkbox"
+                       />
+                     </label>
+                   ))
+                 : [0, 1, 2].map((i) => (
+                     <span key={`ds-f-${i}`}>
+                       {character.deathSaveFailures > i
+                          ? <X className="h-4 w-4" color="var(--color-error-500)" />
+                          : <Circle className="h-4 w-4" color="var(--color-border)" />}
+                     </span>
+                   ))}
+               {editMode && (
+                 <button
+                   type="button"
+                   onClick={removeFailure}
+                   disabled={(character.deathSaveFailures || 0) === 0}
+                   className="btn-ghost px-2 py-1"
+                   title={t("button.removeFailure")}
+                 >
+                   <X className="h-3 w-3" />
+                 </button>
+               )}
+             </div>
           </div>
         </div>
         {editMode && (

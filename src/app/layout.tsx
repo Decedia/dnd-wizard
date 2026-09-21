@@ -44,11 +44,11 @@ export default function RootLayout({
                   {children}
                 </div>
                 <DebugButton />
+                <BottomNav />
               </DebugProvider>
             </LanguageProvider>
           </ThemeProvider>
         </SRDProvider>
-        <BottomNav />
       </body>
     </html>
   );
