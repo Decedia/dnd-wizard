@@ -280,6 +280,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <SpellMechanicsChips
                   mechanic={spell.mechanic}
                   effectSummary={spell.effectSummary}
+                  description={spell.description}
+                  showDescriptions={showDescriptions}
                   character={character}
                   ritual={spell.ritual}
                   actionType={spell.actionType}
@@ -364,11 +366,6 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   </button>
                 )}
               </div>
-              {showDescriptions && spell.description && (
-                <p className="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">
-                  {tDesc(`spell.desc.${spell.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, spell.description)}
-                </p>
-              )}
             </div>
           );
         })}

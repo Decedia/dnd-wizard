@@ -15,6 +15,8 @@ import { getSpellSchoolStyle } from "@/lib/spell-schools";
 interface SpellMechanicsSummaryProps {
   mechanic: SpellMechanicSummary | undefined;
   effectSummary?: string;
+  description?: string;
+  showDescriptions?: boolean;
   character?: Character;
   ritual?: boolean;
   actionType?: string | null;
@@ -146,6 +148,8 @@ function BlankCell({ style }: { style?: React.CSSProperties }) {
 export function SpellMechanicsChips({
   mechanic,
   effectSummary,
+  description,
+  showDescriptions = false,
   character,
   ritual = false,
   actionType,
@@ -165,6 +169,7 @@ export function SpellMechanicsChips({
   if (!mechanic) return null;
 
   const resolvedSummary = effectSummary ? resolveSpellMacros(effectSummary, character) : "";
+  const resolvedDescription = description || "";
 
   const damageEffect = mechanic.effects.find((e) => e.type === "damage");
   const healEffect = mechanic.effects.find((e) => e.type === "healing");
@@ -559,7 +564,15 @@ export function SpellMechanicsChips({
       }}
     >
       <div style={{ padding: "0 14px 10px", background: "transparent" }}>
-        <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>{resolvedSummary}</p>
+        {showDescriptions && resolvedDescription ? (
+          <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
+            {resolvedDescription}
+          </p>
+        ) : (
+          <p style={{ fontSize: "15px", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
+            {resolvedSummary || "—"}
+          </p>
+        )}
       </div>
       <div
         style={{
