@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "srd:extract": "node scripts/extract-srd-strings.mjs",
+    "srd:build": "node scripts/build-srd-locale.mjs"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.9.0",
