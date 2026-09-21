@@ -3,16 +3,13 @@ export function determineDefaultVisibility(feature: Record<string, unknown>): bo
 
   if (!name) return true;
 
-  const grantsSpells = (feature as any).grantsSpells === true;
-  const grantsAttack = (feature as any).grantsAttack === true;
-  const grantsSkills = (feature as any).grantsSkills === true;
-  const grantsProficiency = (feature as any).grantsProficiency === true;
+  const actionType = (feature as any).actionType as string | null | undefined;
 
-  if (name === "Ability Score Improvement" || name === "Ability Score Increase") {
-    return false;
+  if (actionType === "Action" || actionType === "Bonus Action" || actionType === "Reaction") {
+    return true;
   }
 
-  if (grantsSpells && !grantsAttack && !grantsSkills && !grantsProficiency) {
+  if (name === "Ability Score Improvement" || name === "Ability Score Increase") {
     return false;
   }
 
@@ -20,7 +17,35 @@ export function determineDefaultVisibility(feature: Record<string, unknown>): bo
     return false;
   }
 
-  if (grantsProficiency && !grantsSpells && !grantsAttack && !grantsSkills) {
+  const exactSpellGranters = [
+    "Oath Spells",
+    "Domain Spells",
+    "Circle Spells",
+    "Expanded Spell List",
+  ];
+
+  if (exactSpellGranters.includes(name)) {
+    return false;
+  }
+
+  const exactChoiceContainers = [
+    "Fighting Style",
+    "Pact Boon",
+    "Metamagic",
+    "Eldritch Invocations",
+    "Hunter's Prey",
+  ];
+
+  if (exactChoiceContainers.includes(name)) {
+    return false;
+  }
+
+  const exactProficiencyGranters = [
+    "Bonus Proficiencies",
+    "Tool Proficiency",
+  ];
+
+  if (exactProficiencyGranters.includes(name)) {
     return false;
   }
 
