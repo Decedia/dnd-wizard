@@ -1,0 +1,5 @@
+{
+  "2014_spells.cure-wounds.description": "Makhluk yang kamu sentuh meregenerasi jumlah hit points sama dengan 1d8 + spellcasting ability modifier-mu. Spell ini tidak berefek pada undead atau construct.",
+  "2014_spells.cure-wounds.effectSummary": "Makhluk yang kamu sentuh meregenerasi jumlah hit points sama dengan 1d8 + spellcasting ability modifier-mu",
+  "2014_spells.cure-wounds.fullDescription": "Menggunakan 1 action, makhluk yang kamu sentuh meregenerasi jumlah hit points sama dengan 1d8 + spellcasting ability modifier-mu. Spell ini tidak berefek pada undead atau construct; Ketika kamu men-cast spell ini menggunakan spell slot tingkat 2 atau lebih tinggi, pemulihan meningkat 1d8 untuk setiap slot level di atas 1st. Efek terjadi segera dan kemudian berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.chromatic-orb.description": "Kamu melempar bola energi berdiameter 4 inci ke makhluk yang bisa kamu lihat dalam range. Kamu memilih acid, cold, fire, lightning, poison, atau thunder untuk tipe orb yang kamu buat, lalu melakukan ranged spell attack terhadap target. Jika kena, target menerima 3d8 damage dari tipe yang kamu pilih.",
+  "2014_spells.chromatic-orb.effectSummary": "Buat area magis yang mempengaruhi makhluk di dalamnya",
+  "2014_spells.chromatic-orb.fullDescription": "Menggunakan 1 action, kamu memilih acid, cold, fire, lightning, poison, atau thunder untuk tipe orb yang kamu buat, lalu melakukan ranged spell attack terhadap target. Jika kena, target menerima 3d8 damage dari tipe yang kamu pilih; Kamu melempar bola energi berdiameter 4 inci ke makhluk yang bisa kamu lihat dalam range; Ketika kamu mencast spell ini menggunakan spell slot tingkat 2 atau lebih tinggi, damage meningkat 1d8 untuk setiap slot level di atas 1st. Efek terjadi segera dan kemudian berakhir."
+}

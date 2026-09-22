@@ -1,0 +1,5 @@
+{
+  "2014_spells.counterspell.description": "Kamu mencoba mengganggu makhluk yang sedang men-cast spell. Jika makhluk tersebut men-cast spell tingkat 3 atau lebih rendah, spellnya gagal dan tidak berefek. Jika ia men-cast spell tingkat 4 atau lebih tinggi, buat ability check menggunakan spellcasting ability-mu. DC sama dengan 10 + level spell. Pada keberhasilan, spell makhluk tersebut gagal dan tidak berefek.",
+  "2014_spells.counterspell.effectSummary": "Buat ability check menggunakan spellcasting ability-mu",
+  "2014_spells.counterspell.fullDescription": "Menggunakan 1 reaction, kamu mencoba mengganggu makhluk yang sedang men-cast spell. Jika ia men-cast spell tingkat 4 atau lebih tinggi, buat ability check menggunakan spellcasting ability-mu; Jika makhluk tersebut men-cast spell tingkat 3 atau lebih rendah, spellnya gagal dan tidak berefek; Ketika kamu men-cast spell ini menggunakan spell slot tingkat 4 atau lebih tinggi, spell yang diinterupsi tidak berefek jika levelnya kurang dari atau sama dengan level spell slot yang kamu gunakan. Efek terjadi segera dan kemudian berakhir."
+}

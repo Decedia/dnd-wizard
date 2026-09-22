@@ -1,0 +1,5 @@
+{
+  "2014_spells.circle-of-death.description": "Sebuah bola energi negatif merambat keluar dalam bola radius 60 kaki dari titik dalam range. Setiap makhluk di area tersebut harus membuat saving throw Constitution. Target menerima 8d6 necrotic damage pada save gagal, atau setengahnya pada save berhasil.",
+  "2014_spells.circle-of-death.effectSummary": "Berikan 8d6 necrotic damage ke target dalam 150 ft",
+  "2014_spells.circle-of-death.fullDescription": "Menggunakan 1 action, bola energi negatif merambat keluar dalam bola radius 60 kaki dari titik dalam range. Target menerima 8d6 necrotic damage pada save gagal, atau setengahnya pada save berhasil; Setiap makhluk di area tersebut harus membuat saving throw Constitution; roll d20, tambahkan CON modifier, dan bandingkan dengan spell save DC kamu; Ketika kamu mencast spell ini menggunakan spell slot tingkat 7 atau lebih tinggi, damage meningkat 2d6 untuk setiap slot level di atas 6th. Efek terjadi segera dan kemudian berakhir."
+}

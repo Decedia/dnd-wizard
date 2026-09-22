@@ -1,0 +1,5 @@
+{
+  "2014_spells.ceremony.description": "Kamu melakukan upacara keagamaan khusus yang diisi dengan sihir. Ketika kamu mencast spell, pilih salah satu dari upacara berikut: Atonement, Bless Water, Coming of Age, Dedication, Funeral Rite, Wedding. Target upacara mendapatkan manfaat spesifik sesuai yang dijelaskan dalam teks lengkap spell.",
+  "2014_spells.ceremony.effectSummary": "Ubah target: target upacara mendapatkan manfaat spesifik sesuai yang dijelaskan dalam teks lengkap spell",
+  "2014_spells.ceremony.fullDescription": "Menggunakan 1 action, kamu melakukan upacara keagamaan khusus yang diisi dengan sihir. Target upacara mendapatkan manfaat spesifik sesuai yang dijelaskan dalam teks lengkap spell. Efek terjadi segera dan kemudian berakhir; kamu bisa mencastnya sebagai ritual."
+}

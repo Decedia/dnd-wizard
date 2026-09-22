@@ -1,0 +1,5 @@
+{
+  "2014_spells.continual-flame.description": "Api, dengan kecerahan setara obor, muncul dari objek yang kamu sentuh. Efek terlihat seperti api biasa, tapi tidak menciptakan panas dan tidak menggunakan oksigen. Continual flame bisa ditutup atau disembunyikan tapi tidak bisa dipadamkan atau dihentikan.",
+  "2014_spells.continual-flame.effectSummary": "Buat efek magis di titik yang kamu pilih",
+  "2014_spells.continual-flame.fullDescription": "Menggunakan 1 action, api, dengan kecerahan setara obor, muncul dari objek yang kamu sentuh. Efek terlihat seperti api biasa, tapi tidak menciptakan panas dan tidak menggunakan oksigen; Continual flame bisa ditutup atau disembunyikan tapi tidak bisa dipadamkan atau dihentikan. Efek berlangsung sampai di-dispel."
+}

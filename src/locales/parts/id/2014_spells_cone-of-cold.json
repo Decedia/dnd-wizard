@@ -1,0 +1,5 @@
+{
+  "2014_spells.cone-of-cold.description": "Ledakan udara dingin meledak dari tanganmu. Setiap makhluk dalam kerucut 60 kaki harus membuat saving throw Constitution. Makhluk menerima 8d8 cold damage pada save gagal, atau setengahnya pada save berhasil. Makhluk yang terbunuh oleh spell ini menjadi patung beku sampai ia mencair.",
+  "2014_spells.cone-of-cold.effectSummary": "Berikan 8d8 cold damage ke target dalam Self",
+  "2014_spells.cone-of-cold.fullDescription": "Menggunakan 1 action, ledakan udara dingin meledak dari tanganmu. Makhluk menerima 8d8 cold damage pada save gagal, atau setengahnya pada save berhasil; Setiap makhluk dalam kerucut 60 kaki harus membuat saving throw Constitution; roll d20, tambahkan CON modifier, dan bandingkan dengan spell save DC kamu; Ketika kamu mencast spell ini menggunakan spell slot tingkat 6 atau lebih tinggi, damage meningkat 1d8 untuk setiap slot level di atas 5th. Makhluk yang terbunuh oleh spell ini menjadi patung beku sampai ia mencair."
+}

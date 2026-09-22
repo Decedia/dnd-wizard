@@ -1,0 +1,5 @@
+{
+  "2014_spells.create-or-destroy-water.description": "Kamu bisa membuat atau menghancurkan air.\n\n**Buat Air.** Kamu membuat hingga 10 galon air bersih dalam range di wadah terbuka. Atau, air turun sebagai hujan dalam kubus 30 kaki dalam range\n\n **Hancurkan Air.** Kamu menghancurkan hingga 10 galon air di wadah terbuka dalam range. Atau, kamu menghancurkan kabut dalam kubus 30 kaki dalam range.",
+  "2014_spells.create-or-destroy-water.effectSummary": "Buat atau hancurkan hingga 10 galon air",
+  "2014_spells.create-or-destroy-water.fullDescription": "Menggunakan 1 action, kamu bisa membuat atau menghancurkan air. Kamu membuat hingga 10 galon air bersih dalam range di wadah terbuka; Atau, air turun sebagai hujan dalam kubus 30 kaki dalam range Hancurkan Air; Ketika kamu men-cast spell ini menggunakan spell slot tingkat 2 atau lebih tinggi, kamu membuat atau menghancurkan 10 galon air tambahan, atau ukuran kubus meningkat 5 kaki, untuk setiap slot level di atas 1st. Efek terjadi segera dan kemudian berakhir."
+}

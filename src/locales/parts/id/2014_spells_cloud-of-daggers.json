@@ -1,0 +1,5 @@
+{
+  "2014_spells.cloud-of-daggers.description": "Kamu mengisi udara dengan belati berputar dalam kubus 5 kaki setiap sisi, berpusat pada titik yang kamu pilih dalam range. Makhluk menerima 4d4 slashing damage ketika memasuki area spell untuk pertama kali pada giliran atau memulai gilirannya di sana.",
+  "2014_spells.cloud-of-daggers.effectSummary": "Berikan 4d4 slashing damage ke target dalam 60 ft",
+  "2014_spells.cloud-of-daggers.fullDescription": "Menggunakan 1 action, kamu mengisi udara dengan belati berputar dalam kubus 5 kaki setiap sisi, berpusat pada titik yang kamu pilih dalam range. Makhluk menerima 4d4 slashing damage ketika memasuki area spell untuk pertama kali pada giliran atau memulai gilirannya di sana; Ketika kamu mencast spell ini menggunakan spell slot tingkat 3 atau lebih tinggi, damage meningkat 2d4 untuk setiap slot level di atas 2nd. Efek berlangsung untuk konsentrasi, hingga 1 menit."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.create-bonfire.description": "Kamu membuat api unggun di tanah yang bisa kamu lihat dalam range. Sampai spell berakhir, api unggun magis mengisi kubus 5 kaki. Setiap makhluk di ruang api unggun ketika kamu men-cast spell harus berhasil pada saving throw Dexterity atau menerima 1d8 fire damage. Makhluk juga harus membuat saving throw ini ketika bergerak ke ruang api unggun untuk pertama kali pada giliran atau mengakhiri gilirannya di sana.",
+  "2014_spells.create-bonfire.effectSummary": "Berikan 1d8 fire damage ke target dalam 60 ft",
+  "2014_spells.create-bonfire.fullDescription": "Menggunakan 1 action, kamu membuat api unggun di tanah yang bisa kamu lihat dalam range. Makhluk juga harus membuat saving throw ini ketika bergerak ke ruang api unggun untuk pertama kali pada giliran atau mengakhiri gilirannya di sana; Sampai spell berakhir, api unggun magis mengisi kubus 5 kaki; Damage spell meningkat 1d8 ketika kamu mencapai level 5 (2d8), level 11 (3d8), dan level 17 (4d8). Sampai spell berakhir, api unggun magis mengisi kubus 5 kaki; kamu harus konsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}
