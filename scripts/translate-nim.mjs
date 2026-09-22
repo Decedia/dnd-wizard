@@ -15,7 +15,8 @@ const openai = new OpenAI({
 });
 
 const MODEL = "nvidia/nemotron-3-super-120b-a12b";
-const BATCH_SIZE = 5;
+let BATCH_SIZE = 20;
+const MIN_BATCH = 2;
 const SOURCE_DIR = path.join(process.cwd(), "src/locales/parts/en");
 const TARGET_DIR = path.join(process.cwd(), "src/locales/parts/id");
 
@@ -112,13 +113,13 @@ async function translateBatch(batch, maxRetries = 3) {
         stream: false,
       });
 
-  const responseText = completion.choices[0].message.content;
-  if (!responseText) throw new Error("Empty response from NIM");
+      const responseText = completion.choices[0].message.content;
+      if (!responseText) throw new Error("Empty response from NIM");
 
-  const cleaned = stripMarkdown(responseText);
-  const extracted = extractJson(cleaned);
-  const repaired = repairJson(extracted);
-  return JSON.parse(repaired);
+      const cleaned = stripMarkdown(responseText);
+      const extracted = extractJson(cleaned);
+      const repaired = repairJson(extracted);
+      return JSON.parse(repaired);
     } catch (err) {
       const status = err.status || err.code;
       if (status === 429 || status === 503) {
@@ -126,6 +127,11 @@ async function translateBatch(batch, maxRetries = 3) {
         console.log(`  ⏳ Transient error ${status}. Retrying in ${wait}s (attempt ${attempt + 1}/${maxRetries})...`);
         await new Promise((r) => setTimeout(r, wait * 1000));
         continue;
+      }
+      if (status === 413 || (err.message && err.message.includes("too large"))) {
+        BATCH_SIZE = Math.max(MIN_BATCH, Math.floor(BATCH_SIZE / 2));
+        console.log(`  ⚠ Batch too large. Reducing batch size to ${BATCH_SIZE}.`);
+        throw err;
       }
       throw err;
     }
@@ -161,28 +167,25 @@ async function main() {
 
   console.log(`📄 ${filename}: ${sourceKeys.length} keys to translate`);
 
-  const batches = [];
-  for (let i = 0; i < sourceKeys.length; i += BATCH_SIZE) {
-    batches.push(sourceKeys.slice(i, i + BATCH_SIZE));
-  }
-
   let result = {};
-  for (let i = 0; i < batches.length; i++) {
-    const batchKeys = batches[i];
+  let processed = 0;
+  while (processed < sourceKeys.length) {
+    const batchKeys = sourceKeys.slice(processed, processed + BATCH_SIZE);
     const batch = {};
     for (const key of batchKeys) {
       batch[key] = sourceData[key];
     }
 
-    console.log(`\n🔁 Batch ${i + 1}/${batches.length} (${batchKeys.length} items)`);
+    console.log(`\n🔁 Batch ${Math.floor(processed / BATCH_SIZE) + 1} (${batchKeys.length} items, batch size=${BATCH_SIZE})`);
 
     try {
       const translated = await translateBatch(batch);
       result = { ...result, ...translated };
+      processed += batchKeys.length;
       fs.writeFileSync(dstPath, JSON.stringify(result, null, 2));
       console.log(`  ✅ Saved. Progress: ${Object.keys(result).length}/${sourceKeys.length}`);
     } catch (err) {
-      console.error(`  ❌ Batch ${i + 1} failed:`, err.message);
+      console.error(`  ❌ Batch failed:`, err.message);
       throw err;
     }
   }
