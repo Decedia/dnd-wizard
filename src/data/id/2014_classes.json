@@ -36,7 +36,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Di battle, kamu bertarung dengan primal ferocity. Di giliranmu, kamu bisa memasuki rage sebagai bonus action. \n \nSelagi raging, kamu mendapatkan manfaat berikut jika kamu tidak memakai heavy armor: \n \n* Kamu memiliki advantage pada Strength check dan Strength saving throw. \n* Saat kamu membuat melee weapon attack menggunakan Strength, kamu mendapatkan bonus ke damage roll yang meningkat saat kamu mendapatkan level sebagai barbarian, seperti yang ditunjukkan di kolom Rage Damage dari tabel Barbarian. \n* Kamu memiliki resistance terhadap bludgeoning, piercing, dan slashing damage. \n \nJika kamu bisa cast spells, kamu tidak bisa mencapinya atau concentrate pada mereka selagi raging. \n \nRagemu berlangsung selama 1 menit. Berakhir lebih awal jika kamu knocked unconscious atau jika giliranmu berakhir dan kamu belum menyerang makhluk hostile sejak giliranmu terakhir atau mengambil damage sejak saat itu. Kamu juga bisa mengakhiri ragemu di giliranmu sebagai bonus action. \n \nSetelah kamu rage jumlah yang ditunjukkan untuk level barbarianmu di kolom Rages dari tabel Barbarian, kamu harus menyelesaikan long rest sebelum bisa rage lagi. \n \n\n \nSelagi kamu tidak memakai armor, Armor Classmu adalah 10 + Dexterity modifiermu + Constitution modifiermu. Kamu bisa menggunakan shield dan tetap mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu bisa membuang semua kekhawatiran pertahanan untuk menyerang dengan desperation yang garang. Saat kamu membuat serangan pertama di giliranmu, kamu bisa memutuskan untuk menyerang recklessly. Melakukannya memberikanmu advantage pada melee weapon attack rolls menggunakan Strength selama giliran ini, tetapi attack rolls terhadapmu memiliki advantage sampai giliranmu berikutnya. \n \n\n \nDi level 2, kamu mendapatkan sense uncanny saat things nearby tidak seperti seharusnya, memberikanmu edge saat kamu menghindar dari bahaya. \n \nKamu memiliki advantage pada Dexterity saving throws terhadap effects yang bisa kamu lihat, seperti traps dan spells. Untuk mendapatkan manfaat ini, kamu tidak bisa di-blinded, deafened, atau incapacitated. \n \n\n \nDi level 3, kamu memilih path th...",
+          "description": "Explorer's Pack",
           "items": [
             {
               "name": "Explorer's Pack",
@@ -46,7 +46,7 @@
         },
         {
           "granted": true,
-          "description": "Di battle, kamu bertarung dengan primal ferocity. Di giliranmu, kamu bisa memasuki rage sebagai bonus action. \n \nSelagi raging, kamu mendapatkan manfaat berikut jika kamu tidak memakai heavy armor: \n \n* Kamu memiliki advantage pada Strength check dan Strength saving throw. \n* Saat kamu membuat melee weapon attack menggunakan Strength, kamu mendapatkan bonus ke damage roll yang meningkat saat kamu mendapatkan level sebagai barbarian, seperti yang ditunjukkan di kolom Rage Damage dari tabel Barbarian. \n* Kamu memiliki resistance terhadap bludgeoning, piercing, dan slashing damage. \n \nJika kamu bisa cast spells, kamu tidak bisa mencapinya atau concentrate pada mereka selagi raging. \n \nRagemu berlangsung selama 1 menit. Berakhir lebih awal jika kamu knocked unconscious atau jika giliranmu berakhir dan kamu belum menyerang makhluk hostile sejak giliranmu terakhir atau mengambil damage sejak saat itu. Kamu juga bisa mengakhiri ragemu di giliranmu sebagai bonus action. \n \nSetelah kamu rage jumlah yang ditunjukkan untuk level barbarianmu di kolom Rages dari tabel Barbarian, kamu harus menyelesaikan long rest sebelum bisa rage lagi. \n \n\n \nSelagi kamu tidak memakai armor, Armor Classmu adalah 10 + Dexterity modifiermu + Constitution modifiermu. Kamu bisa menggunakan shield dan tetap mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu bisa membuang semua kekhawatiran pertahanan untuk menyerang dengan desperation yang garang. Saat kamu membuat serangan pertama di giliranmu, kamu bisa memutuskan untuk menyerang recklessly. Melakukannya memberikanmu advantage pada melee weapon attack rolls menggunakan Strength selama giliran ini, tetapi attack rolls terhadapmu memiliki advantage sampai giliranmu berikutnya. \n \n\n \nDi level 2, kamu mendapatkan sense uncanny saat things nearby tidak seperti seharusnya, memberikanmu edge saat kamu menghindar dari bahaya. \n \nKamu memiliki advantage pada Dexterity saving throws terhadap effects yang bisa kamu lihat, seperti traps dan spells. Untuk mendapatkan manfaat ini, kamu tidak bisa di-blinded, deafened, atau incapacitated. \n \n\n \nDi level 3, kamu memilih path th...",
+          "description": "Javelin",
           "items": [
             {
               "name": "Javelin",
@@ -55,7 +55,7 @@
           ]
         },
         {
-          "description": "Di battle, kamu bertarung dengan primal ferocity. Di giliranmu, kamu bisa memasuki rage sebagai bonus action. \n \nSelagi raging, kamu mendapatkan manfaat berikut jika kamu tidak memakai heavy armor: \n \n* Kamu memiliki advantage pada Strength check dan Strength saving throw. \n* Saat kamu membuat melee weapon attack menggunakan Strength, kamu mendapatkan bonus ke damage roll yang meningkat saat kamu mendapatkan level sebagai barbarian, seperti yang ditunjukkan di kolom Rage Damage dari tabel Barbarian. \n* Kamu memiliki resistance terhadap bludgeoning, piercing, dan slashing damage. \n \nJika kamu bisa cast spells, kamu tidak bisa mencapinya atau concentrate pada mereka selagi raging. \n \nRagemu berlangsung selama 1 menit. Berakhir lebih awal jika kamu knocked unconscious atau jika giliranmu berakhir dan kamu belum menyerang makhluk hostile sejak giliranmu terakhir atau mengambil damage sejak saat itu. Kamu juga bisa mengakhiri ragemu di giliranmu sebagai bonus action. \n \nSetelah kamu rage jumlah yang ditunjukkan untuk level barbarianmu di kolom Rages dari tabel Barbarian, kamu harus menyelesaikan long rest sebelum bisa rage lagi. \n \n\n \nSelagi kamu tidak memakai armor, Armor Classmu adalah 10 + Dexterity modifiermu + Constitution modifiermu. Kamu bisa menggunakan shield dan tetap mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu bisa membuang semua kekhawatiran pertahanan untuk menyerang dengan desperation yang garang. Saat kamu membuat serangan pertama di giliranmu, kamu bisa memutuskan untuk menyerang recklessly. Melakukannya memberikanmu advantage pada melee weapon attack rolls menggunakan Strength selama giliran ini, tetapi attack rolls terhadapmu memiliki advantage sampai giliranmu berikutnya. \n \n\n \nDi level 2, kamu mendapatkan sense uncanny saat things nearby tidak seperti seharusnya, memberikanmu edge saat kamu menghindar dari bahaya. \n \nKamu memiliki advantage pada Dexterity saving throws terhadap effects yang bisa kamu lihat, seperti traps dan spells. Untuk mendapatkan manfaat ini, kamu tidak bisa di-blinded, deafened, atau incapacitated. \n \n\n \nDi level 3, kamu memilih path th...",
+          "description": "(a) a greataxe or (b) any martial melee weapon",
           "items": [
             {
               "name": "Greataxe",
@@ -65,7 +65,7 @@
           ]
         },
         {
-          "description": "Di battle, kamu bertarung dengan primal ferocity. Di giliranmu, kamu bisa memasuki rage sebagai bonus action. \n \nSelagi raging, kamu mendapatkan manfaat berikut jika kamu tidak memakai heavy armor: \n \n* Kamu memiliki advantage pada Strength check dan Strength saving throw. \n* Saat kamu membuat melee weapon attack menggunakan Strength, kamu mendapatkan bonus ke damage roll yang meningkat saat kamu mendapatkan level sebagai barbarian, seperti yang ditunjukkan di kolom Rage Damage dari tabel Barbarian. \n* Kamu memiliki resistance terhadap bludgeoning, piercing, dan slashing damage. \n \nJika kamu bisa cast spells, kamu tidak bisa mencapinya atau concentrate pada mereka selagi raging. \n \nRagemu berlangsung selama 1 menit. Berakhir lebih awal jika kamu knocked unconscious atau jika giliranmu berakhir dan kamu belum menyerang makhluk hostile sejak giliranmu terakhir atau mengambil damage sejak saat itu. Kamu juga bisa mengakhiri ragemu di giliranmu sebagai bonus action. \n \nSetelah kamu rage jumlah yang ditunjukkan untuk level barbarianmu di kolom Rages dari tabel Barbarian, kamu harus menyelesaikan long rest sebelum bisa rage lagi. \n \n\n \nSelagi kamu tidak memakai armor, Armor Classmu adalah 10 + Dexterity modifiermu + Constitution modifiermu. Kamu bisa menggunakan shield dan tetap mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu bisa membuang semua kekhawatiran pertahanan untuk menyerang dengan desperation yang garang. Saat kamu membuat serangan pertama di giliranmu, kamu bisa memutuskan untuk menyerang recklessly. Melakukannya memberikanmu advantage pada melee weapon attack rolls menggunakan Strength selama giliran ini, tetapi attack rolls terhadapmu memiliki advantage sampai giliranmu berikutnya. \n \n\n \nDi level 2, kamu mendapatkan sense uncanny saat things nearby tidak seperti seharusnya, memberikanmu edge saat kamu menghindar dari bahaya. \n \nKamu memiliki advantage pada Dexterity saving throws terhadap effects yang bisa kamu lihat, seperti traps dan spells. Untuk mendapatkan manfaat ini, kamu tidak bisa di-blinded, deafened, atau incapacitated. \n \n\n \nDi level 3, kamu memilih path th...",
+          "description": "(a) two handaxes or (b) any simple weapon",
           "items": [
             {
               "name": "Handaxe",
@@ -136,7 +136,7 @@
           "features": [
             {
               "name": "Rage",
-              "description": "Di battle, kamu bertarung dengan primal ferocity. Di giliranmu, kamu bisa memasuki rage sebagai bonus action. Selagi raging, kamu mendapatkan manfaat berikut jika kamu tidak memakai heavy armor:\n- Kamu memiliki advantage pada Strength check dan Strength saving throw.\n- Saat kamu membuat melee weapon Attack menggunakan Strength, kamu mendapatkan +2 bonus ke damage roll. Bonus ini meningkat saat kamu level.\n- Kamu memiliki Resistance terhadap bludgeoning, piercing, dan slashing damage.\nJika kamu bisa cast Spells, kamu tidak bisa mencapinya atau concentrate pada mereka selagi raging.\nRagemu berlangsung selama 1 menit. Berakhir lebih awal jika kamu knocked Unconscious atau jika Your Turn berakhir dan kamu belum menyerang makhluk hostile sejak giliranmu terakhir atau mengambil damage sejak saat itu. Kamu juga bisa mengakhiri ragemu di Your Turn sebagai Bonus Action.\nSetelah kamu rage jumlah maksimal untuk level barbarianmu, kamu harus menyelesaikan Long Rest sebelum bisa rage lagi. Kamu bisa rage 2 kali di level 1, 3 di level 3, 4 di level 6, 5 di level 12, dan 6 di level 17.",
+              "description": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor:\n\n- You have advantage on Strength checks and Strength saving throws.\n\n- When you make a melee weapon Attack using Strength, you gain a +2 bonus to the damage roll. This bonus increases as you level.\n\n- You have Resistance to bludgeoning, piercing, and slashing damage.\n\nIf you are able to cast Spells, you can't cast them or concentrate on them while raging.\n\nYour rage lasts for 1 minute. It ends early if you are knocked Unconscious or if Your Turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on Your Turn as a Bonus Action.\n\nOnce you have raged the maximum number of times for your barbarian level, you must finish a Long Rest before you can rage again. You may rage 2 times at 1st level, 3 at 3rd, 4 at 6th, 5 at 12th, and 6 at 17th.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -150,7 +150,7 @@
               "effect": null,
               "onUse": "Advantage on STR checks and saves, bonus damage on STR melee attacks, resistance to bludgeoning/piercing/slashing damage",
               "scaling": "Rage damage +2 at levels 1-8, +3 at levels 9-15, +4 at level 16+",
-              "summary": "Di battle, kamu bertarung dengan primal ferocity.",
+              "summary": "In battle, you fight with primal ferocity.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -164,7 +164,7 @@
             },
             {
               "name": "Unarmored Defense",
-              "description": "Mulai di level 1, selagi kamu tidak memakai armor dan tidak mengayun shield, ACmu adalah 10 + Dexterity modifiermu + Wisdom modifiermu.",
+              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -175,7 +175,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Selagi kamu tidak memakai armor dan tidak mengayun shield, ACmu adalah 10 + Dexterity modifiermu + Wisdom modifiermu.",
+              "summary": "While you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -998,7 +998,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Kamu telah mempelajari cara menguraikan dan membentuk kembali fabric of reality selaras dengan keinginan dan musikmu. \n \nSpellmu adalah bagian dari repertoire luasmu, magic yang bisa kamu tuning ke situasi berbeda. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari bard spell list. Kamu mempelajari bard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Bard. \n \n#### Spell Slots \n \nTabel Bard menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 cure wounds dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast cure wounds menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu empat spell level 1 sesuai pilihanmu dari bard spell list. \n \nKolom Spells Known dari tabel Bard menunjukkan saat kamu mempelajari lebih banyak bard spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots, seperti yang ditunjukkan pada tabel. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu bard spells yang kamu ketahui dan menggantinya dengan spell lain dari bard spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk bard spellsmu. Magicmu berasal dari hati dan jiwa yang kamu curahkan dalam performance musik atau orasimu. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk bard spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency",
+          "description": "Leather Armor",
           "items": [
             {
               "name": "Leather Armor",
@@ -1008,7 +1008,7 @@
         },
         {
           "granted": true,
-          "description": "Kamu telah mempelajari cara menguraikan dan membentuk kembali fabric of reality selaras dengan keinginan dan musikmu. \n \nSpellmu adalah bagian dari repertoire luasmu, magic yang bisa kamu tuning ke situasi berbeda. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari bard spell list. Kamu mempelajari bard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Bard. \n \n#### Spell Slots \n \nTabel Bard menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 cure wounds dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast cure wounds menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu empat spell level 1 sesuai pilihanmu dari bard spell list. \n \nKolom Spells Known dari tabel Bard menunjukkan saat kamu mempelajari lebih banyak bard spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots, seperti yang ditunjukkan pada tabel. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu bard spells yang kamu ketahui dan menggantinya dengan spell lain dari bard spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk bard spellsmu. Magicmu berasal dari hati dan jiwa yang kamu curahkan dalam performance musik atau orasimu. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk bard spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency",
+          "description": "Dagger",
           "items": [
             {
               "name": "Dagger",
@@ -1017,7 +1017,7 @@
           ]
         },
         {
-          "description": "Kamu telah mempelajari cara menguraikan dan membentuk kembali fabric of reality selaras dengan keinginan dan musikmu. \n \nSpellmu adalah bagian dari repertoire luasmu, magic yang bisa kamu tuning ke situasi berbeda. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari bard spell list. Kamu mempelajari bard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Bard. \n \n#### Spell Slots \n \nTabel Bard menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 cure wounds dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast cure wounds menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu empat spell level 1 sesuai pilihanmu dari bard spell list. \n \nKolom Spells Known dari tabel Bard menunjukkan saat kamu mempelajari lebih banyak bard spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots, seperti yang ditunjukkan pada tabel. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu bard spells yang kamu ketahui dan menggantinya dengan spell lain dari bard spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk bard spellsmu. Magicmu berasal dari hati dan jiwa yang kamu curahkan dalam performance musik atau orasimu. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk bard spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency",
+          "description": "(a) a rapier, (b) a longsword, or (c) any simple weapon",
           "items": [
             {
               "name": "Rapier",
@@ -1032,7 +1032,7 @@
           ]
         },
         {
-          "description": "Kamu telah mempelajari cara menguraikan dan membentuk kembali fabric of reality selaras dengan keinginan dan musikmu. \n \nSpellmu adalah bagian dari repertoire luasmu, magic yang bisa kamu tuning ke situasi berbeda. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari bard spell list. Kamu mempelajari bard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Bard. \n \n#### Spell Slots \n \nTabel Bard menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 cure wounds dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast cure wounds menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu empat spell level 1 sesuai pilihanmu dari bard spell list. \n \nKolom Spells Known dari tabel Bard menunjukkan saat kamu mempelajari lebih banyak bard spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots, seperti yang ditunjukkan pada tabel. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu bard spells yang kamu ketahui dan menggantinya dengan spell lain dari bard spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk bard spellsmu. Magicmu berasal dari hati dan jiwa yang kamu curahkan dalam performance musik atau orasimu. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk bard spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency",
+          "description": "(a) a diplomat’s pack or (b) an entertainer’s pack",
           "items": [
             {
               "name": "Diplomat's Pack",
@@ -1047,7 +1047,7 @@
           ]
         },
         {
-          "description": "Kamu telah mempelajari cara menguraikan dan membentuk kembali fabric of reality selaras dengan keinginan dan musikmu. \n \nSpellmu adalah bagian dari repertoire luasmu, magic yang bisa kamu tuning ke situasi berbeda. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari bard spell list. Kamu mempelajari bard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Bard. \n \n#### Spell Slots \n \nTabel Bard menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 cure wounds dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast cure wounds menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu empat spell level 1 sesuai pilihanmu dari bard spell list. \n \nKolom Spells Known dari tabel Bard menunjukkan saat kamu mempelajari lebih banyak bard spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots, seperti yang ditunjukkan pada tabel. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu bard spells yang kamu ketahui dan menggantinya dengan spell lain dari bard spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk bard spellsmu. Magicmu berasal dari hati dan jiwa yang kamu curahkan dalam performance musik atau orasimu. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk bard spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency",
+          "description": "(a) a lute or (b) any other musical instrument",
           "items": [
             {
               "name": "Lute",
@@ -1120,7 +1120,7 @@
           "features": [
             {
               "name": "Spellcasting: Bard",
-              "description": "Kamu telah mempelajari cara menguraikan dan membentuk kembali fabric of reality selaras dengan keinginan dan musikmu. Spellmu adalah bagian dari repertoire luasmu, magic yang bisa kamu tuning ke situasi berbeda.",
+              "description": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1131,7 +1131,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu telah mempelajari cara menguraikan dan membentuk kembali fabric of reality selaras dengan keinginan dan musikmu.",
+              "summary": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1145,7 +1145,7 @@
             },
             {
               "name": "Bardic Inspiration (d6)",
-              "description": "Kamu bisa menginspirasi orang lain melalui kata-kata yang menggelora atau musik. Untuk melakukannya, kamu menggunakan bonus action di giliranmu untuk memilih satu makhluk selain dirimu dalam jarak 60 kaki darimu yang bisa mendengarmu. Makhluk itu mendapatkan satu Bardic Inspiration die, yaitu d6. Sekali dalam 10 menit berikutnya, makhluk itu bisa menggulir die dan menambahkannya ke satu ability check, attack roll, atau saving throw yang ia buat. Makhluk bisa menunggu sampai setelah ia menggulir d20 sebelum memutuskan menggunakan Bardic Inspiration die, tetapi harus memutuskan sebelum GM mengatakan apakah roll berhasil atau gagal. Setelah Bardic Inspiration die digulir, itu hilang. Makhluk bisa memiliki hanya satu Bardic Inspiration die sekaligus.\nKamu bisa menggunakan fitur ini sebanyak Charisma modifiermu (minimal sekali). Kamu mendapatkan kembali penggunaan yang dihabiskan saat kamu menyelesaikan long rest.\nBardic Inspiration diemu berubah saat kamu mencapai level tertentu di kelas ini. Die menjadi d8 di level 5, d10 di level 10, dan d12 di level 15.",
+              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest. \n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -1156,7 +1156,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Menginspirasi orang lain melalui kata-kata yang menggelora atau musik.",
+              "summary": "Inspire others through stirring words or music.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2969,7 +2969,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Sebagai conduit untuk kuasa ilahi, kamu bisa cast cleric spells. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari cleric spell list. Kamu mempelajari cleric cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Cleric. \n \n#### Preparing and Casting Spells \n \nTabel Cleric menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar cleric spells yang tersedia untuk kamu cast, memilih dari cleric spell list. Saat kamu melakukannya, pilih jumlah cleric spells sebesar Wisdom modifiermu + cleric levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah cleric level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar cleric spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n#### Spellcasting Ability \n \nWisdom adalah spellcasting ability untuk cleric spellsmu. Kuasa spellmu berasal dari devotionmu kepada deitamu. Kamu menggunakan Wisdom setiap kali cleric spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Wisdom modifiermu saat menetapkan saving throw DC untuk cleric spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency bonusmu + Wisdom modifiermu \n \n**Spell attack modifier** = proficiency bonusmu + Wisdom modifiermu",
+          "description": "Shield",
           "items": [
             {
               "name": "Shield",
@@ -2978,7 +2978,7 @@
           ]
         },
         {
-          "description": "Sebagai conduit untuk kuasa ilahi, kamu bisa cast cleric spells. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari cleric spell list. Kamu mempelajari cleric cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Cleric. \n \n#### Preparing and Casting Spells \n \nTabel Cleric menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar cleric spells yang tersedia untuk kamu cast, memilih dari cleric spell list. Saat kamu melakukannya, pilih jumlah cleric spells sebesar Wisdom modifiermu + cleric levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah cleric level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar cleric spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n#### Spellcasting Ability \n \nWisdom adalah spellcasting ability untuk cleric spellsmu. Kuasa spellmu berasal dari devotionmu kepada deitamu. Kamu menggunakan Wisdom setiap kali cleric spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Wisdom modifiermu saat menetapkan saving throw DC untuk cleric spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency bonusmu + Wisdom modifiermu \n \n**Spell attack modifier** = proficiency bonusmu + Wisdom modifiermu",
+          "description": "(a) a mace or (b) a warhammer (if proficient)",
           "items": [
             {
               "name": "Mace",
@@ -2993,7 +2993,7 @@
           ]
         },
         {
-          "description": "Sebagai conduit untuk kuasa ilahi, kamu bisa cast cleric spells. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari cleric spell list. Kamu mempelajari cleric cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Cleric. \n \n#### Preparing and Casting Spells \n \nTabel Cleric menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar cleric spells yang tersedia untuk kamu cast, memilih dari cleric spell list. Saat kamu melakukannya, pilih jumlah cleric spells sebesar Wisdom modifiermu + cleric levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah cleric level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar cleric spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n#### Spellcasting Ability \n \nWisdom adalah spellcasting ability untuk cleric spellsmu. Kuasa spellmu berasal dari devotionmu kepada deitamu. Kamu menggunakan Wisdom setiap kali cleric spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Wisdom modifiermu saat menetapkan saving throw DC untuk cleric spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency bonusmu + Wisdom modifiermu \n \n**Spell attack modifier** = proficiency bonusmu + Wisdom modifiermu",
+          "description": "(a) scale mail, (b) leather armor, or (c) chain mail (if proficient)",
           "items": [
             {
               "name": "Scale Mail",
@@ -3013,7 +3013,7 @@
           ]
         },
         {
-          "description": "Sebagai conduit untuk kuasa ilahi, kamu bisa cast cleric spells. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari cleric spell list. Kamu mempelajari cleric cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Cleric. \n \n#### Preparing and Casting Spells \n \nTabel Cleric menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar cleric spells yang tersedia untuk kamu cast, memilih dari cleric spell list. Saat kamu melakukannya, pilih jumlah cleric spells sebesar Wisdom modifiermu + cleric levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah cleric level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar cleric spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n#### Spellcasting Ability \n \nWisdom adalah spellcasting ability untuk cleric spellsmu. Kuasa spellmu berasal dari devotionmu kepada deitamu. Kamu menggunakan Wisdom setiap kali cleric spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Wisdom modifiermu saat menetapkan saving throw DC untuk cleric spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency bonusmu + Wisdom modifiermu \n \n**Spell attack modifier** = proficiency bonusmu + Wisdom modifiermu",
+          "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
             {
               "name": "Crossbow, light",
@@ -3028,7 +3028,7 @@
           ]
         },
         {
-          "description": "Sebagai conduit untuk kuasa ilahi, kamu bisa cast cleric spells. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari cleric spell list. Kamu mempelajari cleric cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Cleric. \n \n#### Preparing and Casting Spells \n \nTabel Cleric menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu spell ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar cleric spells yang tersedia untuk kamu cast, memilih dari cleric spell list. Saat kamu melakukannya, pilih jumlah cleric spells sebesar Wisdom modifiermu + cleric levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah cleric level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar cleric spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n#### Spellcasting Ability \n \nWisdom adalah spellcasting ability untuk cleric spellsmu. Kuasa spellmu berasal dari devotionmu kepada deitamu. Kamu menggunakan Wisdom setiap kali cleric spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Wisdom modifiermu saat menetapkan saving throw DC untuk cleric spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save DC** = 8 + proficiency bonusmu + Wisdom modifiermu \n \n**Spell attack modifier** = proficiency bonusmu + Wisdom modifiermu",
+          "description": "(a) a priest’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Priest's Pack",
@@ -3126,7 +3126,7 @@
           "features": [
             {
               "name": "Spellcasting: Cleric",
-              "description": "Sebagai conduit untuk kuasa ilahi, kamu bisa cast cleric spells.",
+              "description": "As a conduit for divine power, you can cast cleric spells.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3137,7 +3137,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Sebagai conduit untuk kuasa ilahi, kamu bisa cast cleric spells.",
+              "summary": "As a conduit for divine power, you can cast cleric spells.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3151,7 +3151,7 @@
             },
             {
               "name": "Divine Domain",
-              "description": "Pilih satu domain yang terkait dengan deitamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War. Hanya domain Life yang didetailkan dalam OGL SRD. Domain tambahan dijelaskan dalam rulebooks resmi atau produk dari penerbit lain.\nDomainmu memberikanmu domain spells dan fitur lain saat kamu memilihnya di level 1. Juga memberikanmu cara tambahan untuk menggunakan Channel Divinity saat kamu mendapatkan fitur itu di level 2, dan manfaat tambahan di level 6, 8, dan 17.",
+              "description": "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Only the Life domain is detailed in the Open Game Licensed SRD. Additional Domains are described in the official rulebooks or products from other publishers.\n\nYour domain grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3162,7 +3162,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih satu domain yang terkait dengan deitamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.",
+              "summary": "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3176,7 +3176,7 @@
             },
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain. Setelah kamu mendapatkan domain spell, kamu selalu mempersiapkannya, dan tidak dihitung terhadap jumlah spell yang bisa kamu persiapkan setiap hari.\nJika kamu memiliki domain spell yang tidak muncul di cleric spell list, spell itu nonetheless adalah cleric spell untukmu.",
+              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3187,7 +3187,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain.",
+              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3294,7 +3294,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain. Setelah kamu mendapatkan domain spell, kamu selalu mempersiapkannya, dan tidak dihitung terhadap jumlah spell yang bisa kamu persiapkan setiap hari.\nJika kamu memiliki domain spell yang tidak muncul di cleric spell list, spell itu nonetheless adalah cleric spell untukmu.",
+              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3305,7 +3305,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain.",
+              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3364,7 +3364,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain. Setelah kamu mendapatkan domain spell, kamu selalu mempersiapkannya, dan tidak dihitung terhadap jumlah spell yang bisa kamu persiapkan setiap hari.\nJika kamu memiliki domain spell yang tidak muncul di cleric spell list, spell itu nonetheless adalah cleric spell untukmu.",
+              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3375,7 +3375,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain.",
+              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3486,7 +3486,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain. Setelah kamu mendapatkan domain spell, kamu selalu mempersiapkannya, dan tidak dihitung terhadap jumlah spell yang bisa kamu persiapkan setiap hari.\nJika kamu memiliki domain spell yang tidak muncul di cleric spell list, spell itu nonetheless adalah cleric spell untukmu.",
+              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3497,7 +3497,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain.",
+              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3610,7 +3610,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain. Setelah kamu mendapatkan domain spell, kamu selalu mempersiapkannya, dan tidak dihitung terhadap jumlah spell yang bisa kamu persiapkan setiap hari.\nJika kamu memiliki domain spell yang tidak muncul di cleric spell list, spell itu nonetheless adalah cleric spell untukmu.",
+              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3621,7 +3621,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Setiap domain memiliki daftar spell—domain spells—yang kamu dapatkan di level cleric yang dicantumkan dalam deskripsi domain.",
+              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4189,7 +4189,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Kamu tahu Druidic, bahasa rahasia druids. Kamu bisa berbicara bahasa itu dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang tahu bahasa ini otomatis menemukan pesan seperti itu. Orang lain menemukan keberadaan pesan dengan successful DC 15 Wisdom (Perception) check tetapi tidak bisa memecahkannya tanpa magic. \n \n\n \nMenggunakan divine essence dari alam itu sendiri, kamu bisa cast spell untuk membentuk essence itu sesuai keinginanmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu dua cantrips sesuai pilihanmu dari druid spell list. Kamu mempelajari druid cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Druid. \n \n#### Preparing and Casting Spells \n \nTabel Druid menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu druid spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar druid spells yang tersedia untuk kamu cast, memilih dari druid spell list. Saat kamu melakukannya, pilih jumlah druid spells sebesar Wisdom modifiermu + druid levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah druid level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu juga bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar druid spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n\n \nWisdom adalah spellcasting ability untuk druid spellsmu, karena magicmu draws upon yo...",
+          "description": "Leather Armor",
           "items": [
             {
               "name": "Leather Armor",
@@ -4199,7 +4199,7 @@
         },
         {
           "granted": true,
-          "description": "Kamu tahu Druidic, bahasa rahasia druids. Kamu bisa berbicara bahasa itu dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang tahu bahasa ini otomatis menemukan pesan seperti itu. Orang lain menemukan keberadaan pesan dengan successful DC 15 Wisdom (Perception) check tetapi tidak bisa memecahkannya tanpa magic. \n \n\n \nMenggunakan divine essence dari alam itu sendiri, kamu bisa cast spell untuk membentuk essence itu sesuai keinginanmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu dua cantrips sesuai pilihanmu dari druid spell list. Kamu mempelajari druid cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Druid. \n \n#### Preparing and Casting Spells \n \nTabel Druid menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu druid spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar druid spells yang tersedia untuk kamu cast, memilih dari druid spell list. Saat kamu melakukannya, pilih jumlah druid spells sebesar Wisdom modifiermu + druid levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah druid level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu juga bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar druid spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n\n \nWisdom adalah spellcasting ability untuk druid spellsmu, karena magicmu draws upon yo...",
+          "description": "Explorer's Pack",
           "items": [
             {
               "name": "Explorer's Pack",
@@ -4208,7 +4208,7 @@
           ]
         },
         {
-          "description": "Kamu tahu Druidic, bahasa rahasia druids. Kamu bisa berbicara bahasa itu dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang tahu bahasa ini otomatis menemukan pesan seperti itu. Orang lain menemukan keberadaan pesan dengan successful DC 15 Wisdom (Perception) check tetapi tidak bisa memecahkannya tanpa magic. \n \n\n \nMenggunakan divine essence dari alam itu sendiri, kamu bisa cast spell untuk membentuk essence itu sesuai keinginanmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu dua cantrips sesuai pilihanmu dari druid spell list. Kamu mempelajari druid cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Druid. \n \n#### Preparing and Casting Spells \n \nTabel Druid menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu druid spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar druid spells yang tersedia untuk kamu cast, memilih dari druid spell list. Saat kamu melakukannya, pilih jumlah druid spells sebesar Wisdom modifiermu + druid levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah druid level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu juga bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar druid spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n\n \nWisdom adalah spellcasting ability untuk druid spellsmu, karena magicmu draws upon yo...",
+          "description": "(a) a wooden shield or (b) any simple weapon",
           "items": [
             {
               "name": "Shield",
@@ -4218,7 +4218,7 @@
           ]
         },
         {
-          "description": "Kamu tahu Druidic, bahasa rahasia druids. Kamu bisa berbicara bahasa itu dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang tahu bahasa ini otomatis menemukan pesan seperti itu. Orang lain menemukan keberadaan pesan dengan successful DC 15 Wisdom (Perception) check tetapi tidak bisa memecahkannya tanpa magic. \n \n\n \nMenggunakan divine essence dari alam itu sendiri, kamu bisa cast spell untuk membentuk essence itu sesuai keinginanmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu dua cantrips sesuai pilihanmu dari druid spell list. Kamu mempelajari druid cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Druid. \n \n#### Preparing and Casting Spells \n \nTabel Druid menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu druid spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar druid spells yang tersedia untuk kamu cast, memilih dari druid spell list. Saat kamu melakukannya, pilih jumlah druid spells sebesar Wisdom modifiermu + druid levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah druid level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu juga bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar druid spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n\n \nWisdom adalah spellcasting ability untuk druid spellsmu, karena magicmu draws upon yo...",
+          "description": "(a) a scimitar or (b) any simple melee weapon",
           "items": [
             {
               "name": "Scimitar",
@@ -4286,7 +4286,7 @@
           "features": [
             {
               "name": "Spellcasting: Druid",
-              "description": "Menggunakan divine essence dari alam itu sendiri, kamu bisa cast spell untuk membentuk essence itu sesuai keinginanmu.",
+              "description": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4297,7 +4297,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Menggunakan divine essence dari alam itu sendiri, kamu bisa cast spell untuk membentuk essence itu sesuai keinginanmu.",
+              "summary": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4311,7 +4311,7 @@
             },
             {
               "name": "Druidic",
-              "description": "Kamu tahu Druidic, bahasa rahasia druids. Kamu bisa berbicara bahasa itu dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang tahu bahasa ini otomatis menemukan pesan seperti itu. Orang lain menemukan keberadaan pesan dengan successful DC 15 Wisdom (Perception) check tetapi tidak bisa memecahkannya tanpa magic.",
+              "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom (Perception) check but can't decipher it without magic.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -4322,7 +4322,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu tahu Druidic, bahasa rahasia druids.",
+              "summary": "You know Druidic, the secret language of druids.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5057,7 +5057,7 @@
       },
       "startingEquipment": [
         {
-          "description": "Kamu mengadopsi gaya bertarung tertentu sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Archery \n \nKamu mendapatkan +2 bonus ke attack rolls yang kamu buat dengan ranged weapons. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n#### Protection \n \nSaat makhluk yang bisa kamu lihat menyerang target selain kamu yang dalam jarak 5 kaki darimu, kamu bisa menggunakan reactionmu untuk impose disadvantage pada attack roll. Kamu harus mengayun shield. \n \n#### Two-Weapon Fighting \n \nSaat kamu engage dalam two-weapon fighting, kamu bisa menambahkan ability modifiermu ke damage dari serangan kedua. \n \n\n \nKamu memiliki well of stamina terbatas yang bisa kamu tarik untuk melindungi dirimu dari bahaya. Di giliranmu, kamu bisa menggunakan bonus action untuk regain hit points sebesar 1d10 + fighter levelmu. Setelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. \n \n\n \nMulai di level 2, kamu bisa mendorong diri melebihi batas normalmu untuk sesaat. Di giliranmu, kamu bisa mengambil satu action tambahan di atas action regulermu dan possible bonus action. \n \nSetelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. Mulai di level 17, kamu bisa menggunakannya dua kali sebelum rest, tetapi hanya sekali di giliran yang sama. \n \n\n \nDi level 3, kamu memilih archetype yang kamu usahakan untuk emulate in you...",
+          "description": "(a) chain mail or (b) leather armor, longbow, and 20 arrows",
           "items": [
             {
               "name": "Chain Mail",
@@ -5082,7 +5082,7 @@
           ]
         },
         {
-          "description": "Kamu mengadopsi gaya bertarung tertentu sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Archery \n \nKamu mendapatkan +2 bonus ke attack rolls yang kamu buat dengan ranged weapons. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n#### Protection \n \nSaat makhluk yang bisa kamu lihat menyerang target selain kamu yang dalam jarak 5 kaki darimu, kamu bisa menggunakan reactionmu untuk impose disadvantage pada attack roll. Kamu harus mengayun shield. \n \n#### Two-Weapon Fighting \n \nSaat kamu engage dalam two-weapon fighting, kamu bisa menambahkan ability modifiermu ke damage dari serangan kedua. \n \n\n \nKamu memiliki well of stamina terbatas yang bisa kamu tarik untuk melindungi dirimu dari bahaya. Di giliranmu, kamu bisa menggunakan bonus action untuk regain hit points sebesar 1d10 + fighter levelmu. Setelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. \n \n\n \nMulai di level 2, kamu bisa mendorong diri melebihi batas normalmu untuk sesaat. Di giliranmu, kamu bisa mengambil satu action tambahan di atas action regulermu dan possible bonus action. \n \nSetelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. Mulai di level 17, kamu bisa menggunakannya dua kali sebelum rest, tetapi hanya sekali di giliran yang sama. \n \n\n \nDi level 3, kamu memilih archetype yang kamu usahakan untuk emulate in you...",
+          "description": "(a) a martial weapon and a shield or (b) two martial weapons",
           "items": [
             {
               "name": "Shield",
@@ -5092,7 +5092,7 @@
           ]
         },
         {
-          "description": "Kamu mengadopsi gaya bertarung tertentu sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Archery \n \nKamu mendapatkan +2 bonus ke attack rolls yang kamu buat dengan ranged weapons. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n#### Protection \n \nSaat makhluk yang bisa kamu lihat menyerang target selain kamu yang dalam jarak 5 kaki darimu, kamu bisa menggunakan reactionmu untuk impose disadvantage pada attack roll. Kamu harus mengayun shield. \n \n#### Two-Weapon Fighting \n \nSaat kamu engage dalam two-weapon fighting, kamu bisa menambahkan ability modifiermu ke damage dari serangan kedua. \n \n\n \nKamu memiliki well of stamina terbatas yang bisa kamu tarik untuk melindungi dirimu dari bahaya. Di giliranmu, kamu bisa menggunakan bonus action untuk regain hit points sebesar 1d10 + fighter levelmu. Setelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. \n \n\n \nMulai di level 2, kamu bisa mendorong diri melebihi batas normalmu untuk sesaat. Di giliranmu, kamu bisa mengambil satu action tambahan di atas action regulermu dan possible bonus action. \n \nSetelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. Mulai di level 17, kamu bisa menggunakannya dua kali sebelum rest, tetapi hanya sekali di giliran yang sama. \n \n\n \nDi level 3, kamu memilih archetype yang kamu usahakan untuk emulate in you...",
+          "description": "(a) a light crossbow and 20 bolts or (b) two handaxes",
           "items": [
             {
               "name": "Crossbow, light",
@@ -5112,7 +5112,7 @@
           ]
         },
         {
-          "description": "Kamu mengadopsi gaya bertarung tertentu sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Archery \n \nKamu mendapatkan +2 bonus ke attack rolls yang kamu buat dengan ranged weapons. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n#### Protection \n \nSaat makhluk yang bisa kamu lihat menyerang target selain kamu yang dalam jarak 5 kaki darimu, kamu bisa menggunakan reactionmu untuk impose disadvantage pada attack roll. Kamu harus mengayun shield. \n \n#### Two-Weapon Fighting \n \nSaat kamu engage dalam two-weapon fighting, kamu bisa menambahkan ability modifiermu ke damage dari serangan kedua. \n \n\n \nKamu memiliki well of stamina terbatas yang bisa kamu tarik untuk melindungi dirimu dari bahaya. Di giliranmu, kamu bisa menggunakan bonus action untuk regain hit points sebesar 1d10 + fighter levelmu. Setelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. \n \n\n \nMulai di level 2, kamu bisa mendorong diri melebihi batas normalmu untuk sesaat. Di giliranmu, kamu bisa mengambil satu action tambahan di atas action regulermu dan possible bonus action. \n \nSetelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi. Mulai di level 17, kamu bisa menggunakannya dua kali sebelum rest, tetapi hanya sekali di giliran yang sama. \n \n\n \nDi level 3, kamu memilih archetype yang kamu usahakan untuk emulate in you...",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
@@ -5188,7 +5188,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "Di level 2, kamu mengadopsi gaya bertarung tertentu sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi.",
+              "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -5260,7 +5260,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu mengadopsi gaya bertarung tertentu sebagai spesialitasmu.",
+              "summary": "You adopt a particular style of fighting as your specialty.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5274,7 +5274,7 @@
             },
             {
               "name": "Second Wind",
-              "description": "Kamu memiliki well of stamina terbatas yang bisa kamu tarik untuk melindungi dirimu dari bahaya. Di giliranmu, kamu bisa menggunakan bonus action untuk regain hit points sebesar 1d10 + fighter levelmu. Setelah kamu menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya lagi.",
+              "description": "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -5288,7 +5288,7 @@
               "effect": null,
               "onUse": "Regain 1d10 + your Fighter level in HP",
               "scaling": null,
-              "summary": "Kamu memiliki well of stamina terbatas yang bisa kamu tarik untuk melindungi dirimu dari bahaya.",
+              "summary": "You have a limited well of stamina that you can draw on to protect yourself from harm.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6059,7 +6059,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Mulai di level 1, selagi kamu tidak memakai armor dan tidak mengayun shield, ACmu adalah 10 + Dexterity modifiermu + Wisdom modifiermu. \n \n\n \nDi level 1, latihan martial artsmu memberikanmu penguasaan gaya combat yang menggunakan unarmed strikes dan monk weapons, yaitu shortswords dan simple melee weapons apapun yang tidak memiliki property two-handed atau heavy. \n \nKamu mendapatkan manfaat berikut selagi kamu tidak bersenjata atau mengayun hanya monk weapons dan kamu tidak memakai armor atau mengayun shield: \n \n* Kamu bisa menggunakan Dexterity alih-alih Strength untuk attack dan damage rolls dari unarmed strikes dan monk weapons. \n* Kamu bisa menggulir d4 sebagai ganti damage normal dari unarmed strike atau monk weapon. Die ini berubah saat kamu mendapatkan monk levels, seperti yang ditunjukkan di kolom Martial Arts dari tabel Monk. \n* Saat kamu menggunakan Attack action dengan unarmed strike atau monk weapon di giliranmu, kamu bisa membuat satu unarmed strike sebagai bonus action. Misalnya, jika kamu mengambil Attack action dan menyerang dengan quarterstaff, kamu juga bisa membuat unarmed strike sebagai bonus action, asumsi kamu belum mengambil bonus action di giliran ini. \n \nCertain monasteries menggunakan specialized forms dari monk weapons. Misalnya, kamu bisa menggunakan club yang adalah dua panjang kayu terhubung dengan rantai pendek (disebut nunchaku) atau sickle dengan blade lebih pendek dan lebih lurus (disebut kama). Apapun nama yang kamu gunakan untuk monk weapon, kamu bisa menggunakan game statistics yang disediakan untuk senjata itu. \n \n\n \nMulai di level 2, trainingmu memungkinkanmu untuk meng-harness mystic energy of ki. Aksesmu ke energi ini diwakili oleh jumlah ki points. Level monkmu menentukan jumlah points yang kamu miliki, seperti yang ditunjukkan di kolom Ki Points dari tabel Monk. \n \nKamu bisa menghabiskan points ini untuk fuel various ki features. Kamu mulai knowing tiga features: Flurry of Blows, Patient Defense, dan Step of the Wind. Kamu mempelajari lebih banyak ki features saat you...",
+          "description": "Dart",
           "items": [
             {
               "name": "Dart",
@@ -6068,7 +6068,7 @@
           ]
         },
         {
-          "description": "Mulai di level 1, selagi kamu tidak memakai armor dan tidak mengayun shield, ACmu adalah 10 + Dexterity modifiermu + Wisdom modifiermu. \n \n\n \nDi level 1, latihan martial artsmu memberikanmu penguasaan gaya combat yang menggunakan unarmed strikes dan monk weapons, yaitu shortswords dan simple melee weapons apapun yang tidak memiliki property two-handed atau heavy. \n \nKamu mendapatkan manfaat berikut selagi kamu tidak bersenjata atau mengayun hanya monk weapons dan kamu tidak memakai armor atau mengayun shield: \n \n* Kamu bisa menggunakan Dexterity alih-alih Strength untuk attack dan damage rolls dari unarmed strikes dan monk weapons. \n* Kamu bisa menggulir d4 sebagai ganti damage normal dari unarmed strike atau monk weapon. Die ini berubah saat kamu mendapatkan monk levels, seperti yang ditunjukkan di kolom Martial Arts dari tabel Monk. \n* Saat kamu menggunakan Attack action dengan unarmed strike atau monk weapon di giliranmu, kamu bisa membuat satu unarmed strike sebagai bonus action. Misalnya, jika kamu mengambil Attack action dan menyerang dengan quarterstaff, kamu juga bisa membuat unarmed strike sebagai bonus action, asumsi kamu belum mengambil bonus action di giliran ini. \n \nCertain monasteries menggunakan specialized forms dari monk weapons. Misalnya, kamu bisa menggunakan club yang adalah dua panjang kayu terhubung dengan rantai pendek (disebut nunchaku) atau sickle dengan blade lebih pendek dan lebih lurus (disebut kama). Apapun nama yang kamu gunakan untuk monk weapon, kamu bisa menggunakan game statistics yang disediakan untuk senjata itu. \n \n\n \nMulai di level 2, trainingmu memungkinkanmu untuk meng-harness mystic energy of ki. Aksesmu ke energi ini diwakili oleh jumlah ki points. Level monkmu menentukan jumlah points yang kamu miliki, seperti yang ditunjukkan di kolom Ki Points dari tabel Monk. \n \nKamu bisa menghabiskan points ini untuk fuel various ki features. Kamu mulai knowing tiga features: Flurry of Blows, Patient Defense, dan Step of the Wind. Kamu mempelajari lebih banyak ki features saat you...",
+          "description": "(a) a shortsword or (b) any simple weapon",
           "items": [
             {
               "name": "Shortsword",
@@ -6078,7 +6078,7 @@
           ]
         },
         {
-          "description": "Mulai di level 1, selagi kamu tidak memakai armor dan tidak mengayun shield, ACmu adalah 10 + Dexterity modifiermu + Wisdom modifiermu. \n \n\n \nDi level 1, latihan martial artsmu memberikanmu penguasaan gaya combat yang menggunakan unarmed strikes dan monk weapons, yaitu shortswords dan simple melee weapons apapun yang tidak memiliki property two-handed atau heavy. \n \nKamu mendapatkan manfaat berikut selagi kamu tidak bersenjata atau mengayun hanya monk weapons dan kamu tidak memakai armor atau mengayun shield: \n \n* Kamu bisa menggunakan Dexterity alih-alih Strength untuk attack dan damage rolls dari unarmed strikes dan monk weapons. \n* Kamu bisa menggulir d4 sebagai ganti damage normal dari unarmed strike atau monk weapon. Die ini berubah saat kamu mendapatkan monk levels, seperti yang ditunjukkan di kolom Martial Arts dari tabel Monk. \n* Saat kamu menggunakan Attack action dengan unarmed strike atau monk weapon di giliranmu, kamu bisa membuat satu unarmed strike sebagai bonus action. Misalnya, jika kamu mengambil Attack action dan menyerang dengan quarterstaff, kamu juga bisa membuat unarmed strike sebagai bonus action, asumsi kamu belum mengambil bonus action di giliran ini. \n \nCertain monasteries menggunakan specialized forms dari monk weapons. Misalnya, kamu bisa menggunakan club yang adalah dua panjang kayu terhubung dengan rantai pendek (disebut nunchaku) atau sickle dengan blade lebih pendek dan lebih lurus (disebut kama). Apapun nama yang kamu gunakan untuk monk weapon, kamu bisa menggunakan game statistics yang disediakan untuk senjata itu. \n \n\n \nMulai di level 2, trainingmu memungkinkanmu untuk meng-harness mystic energy of ki. Aksesmu ke energi ini diwakili oleh jumlah ki points. Level monkmu menentukan jumlah points yang kamu miliki, seperti yang ditunjukkan di kolom Ki Points dari tabel Monk. \n \nKamu bisa menghabiskan points ini untuk fuel various ki features. Kamu mulai knowing tiga features: Flurry of Blows, Patient Defense, dan Step of the Wind. Kamu mempelajari lebih banyak ki features saat you...",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
@@ -6151,7 +6151,7 @@
           "features": [
             {
               "name": "Unarmored Defense",
-              "description": "Mulai di level 1, selagi kamu tidak memakai armor dan tidak mengayun shield, ACmu adalah 10 + Dexterity modifiermu + Wisdom modifiermu.",
+              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6162,7 +6162,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Selagi kamu tidak memakai armor dan tidak mengayun shield, ACmu adalah 10 + Dexterity modifiermu + Wisdom modifiermu.",
+              "summary": "While you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6176,7 +6176,7 @@
             },
             {
               "name": "Martial Arts",
-              "description": "Di level 1, latihan martial artsmu memberikanmu penguasaan gaya combat yang menggunakan unarmed strikes dan monk weapons, yaitu shortswords dan simple melee weapons apapun yang tidak memiliki property two-handed atau heavy.\nKamu mendapatkan manfaat berikut selagi kamu tidak bersenjata atau mengayun hanya monk weapons dan kamu tidak memakai armor atau mengayun shield:\n- Kamu bisa menggunakan Dexterity alih-alih Strength untuk attack dan damage rolls dari unarmed strikes dan monk weapons.\n- Kamu bisa menggulir d4 sebagai ganti damage normal dari unarmed strike atau monk weapon. Die ini berubah saat kamu mendapatkan monk levels, seperti yang ditunjukkan di kolom Martial Arts dari Table: The Monk.\n- Saat kamu menggunakan Attack action dengan unarmed strike atau monk weapon di giliranmu, kamu bisa membuat satu unarmed strike sebagai bonus action. Misalnya, jika kamu mengambil Attack action dan menyerang dengan quarterstaff, kamu juga bisa membuat unarmed strike sebagai bonus action, asumsi kamu belum mengambil bonus action di giliran ini.",
+              "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two- handed or heavy property.\n\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\n\n- You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.\n\n- You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of Table: The Monk.\n\n- When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn.\n\nCertain monasteries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called a nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics provided for the weapon.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -6187,7 +6187,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Latihan martial artsmu memberikanmu penguasaan gaya combat yang menggunakan unarmed strikes dan monk weapons, yaitu shortswords.",
+              "summary": "Your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -7181,7 +7181,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Kehadiran kejahatan kuat terdaftar di indramu seperti bau beracun, dan kebaikan kuat berbunyi seperti musik surgawi di telingamu. Sebagai action, kamu bisa membuka awarenessmu untuk mendeteksi kuasa seperti itu. Sampai akhir giliranmu berikutnya, kamu tahu lokasi celestial, fiend, atau undead manapun dalam jarak 60 kaki darimu yang tidak di belakang total cover. Kamu tahu tipe (celestial, fiend, atau undead) dari makhluk yang kamu rasakan hadirnya, tetapi tidak identitasnya (vampire Count Strahd von Zarovich, sebagai contoh). Dalam radius yang sama, kamu juga mendeteksi keberadaan tempat atau objek yang telah dikonsekrasikan atau didesekrasikan, seperti dengan spell hallow. \n \nKamu bisa menggunakan fitur ini sebanyak 1 + Charisma modifiermu. Saat kamu menyelesaikan long rest, kamu mendapatkan kembali semua penggunaan yang dihabiskan. \n \n\n \nSentuhan berkatmu bisa menyembuhkan luka. Kamu memiliki pool of healing power yang replenish saat kamu mengambil long rest. Dengan pool itu, kamu bisa restore total hit points sebesar paladin levelmu × 5. \n \nSebagai action, kamu bisa menyentuh makhluk dan menarik kuasa dari pool untuk restore sejumlah hit points ke makhluk itu, sampai maksimum yang tersisa di pool. \n \nAlternatifnya, kamu bisa menghabiskan 5 hit points dari pool of healingmu untuk menyembuhkan target dari satu disease atau menetralkan satu poison yang mempengaruhinya. Kamu bisa menyembuhkan banyak diseases dan menetralkan banyak poisons dengan satu penggunaan Lay on Hands, menghabiskan hit points terpisah untuk setiap satu. \n \nFitur ini tidak memiliki efek pada undead dan constructs. \n \n\n \nDi level 2, kamu mengadopsi gaya bertarung sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu juga bisa menggunakan bonus action untuk mendorong seorang makhluk yang kamu serang dengan melee weapon. \n \n\n \nDi level 3, kamu memilih oath yang memberikanmu fitur tambahan. \n \n\n \nMulai di level 5, kamu mendapatkan extra attack di giliranmu saat kamu mengambil Attack action. \n \n\n \nMulai di level 10, kamu mendapatkan aura yang memberikanmu dan sekutumu within 10 feet dari kamu manfaat tertentu. \n \n\n \nMulai di level 11, kamu bisa menyerang dengan melee weapon sebagai reaction saat makhluk hostile memprovoke opportunity attack darimu.",
+          "description": "Chain Mail",
           "items": [
             {
               "name": "Chain Mail",
@@ -7190,7 +7190,7 @@
           ]
         },
         {
-          "description": "Kehadiran kejahatan kuat terdaftar di indramu seperti bau beracun, dan kebaikan kuat berbunyi seperti musik surgawi di telingamu. Sebagai action, kamu bisa membuka awarenessmu untuk mendeteksi kuasa seperti itu. Sampai akhir giliranmu berikutnya, kamu tahu lokasi celestial, fiend, atau undead manapun dalam jarak 60 kaki darimu yang tidak di belakang total cover. Kamu tahu tipe (celestial, fiend, atau undead) dari makhluk yang kamu rasakan hadirnya, tetapi tidak identitasnya (vampire Count Strahd von Zarovich, sebagai contoh). Dalam radius yang sama, kamu juga mendeteksi keberadaan tempat atau objek yang telah dikonsekrasikan atau didesekrasikan, seperti dengan spell hallow. \n \nKamu bisa menggunakan fitur ini sebanyak 1 + Charisma modifiermu. Saat kamu menyelesaikan long rest, kamu mendapatkan kembali semua penggunaan yang dihabiskan. \n \n\n \nSentuhan berkatmu bisa menyembuhkan luka. Kamu memiliki pool of healing power yang replenish saat kamu mengambil long rest. Dengan pool itu, kamu bisa restore total hit points sebesar paladin levelmu × 5. \n \nSebagai action, kamu bisa menyentuh makhluk dan menarik kuasa dari pool untuk restore sejumlah hit points ke makhluk itu, sampai maksimum yang tersisa di pool. \n \nAlternatifnya, kamu bisa menghabiskan 5 hit points dari pool of healingmu untuk menyembuhkan target dari satu disease atau menetralkan satu poison yang mempengaruhinya. Kamu bisa menyembuhkan banyak diseases dan menetralkan banyak poisons dengan satu penggunaan Lay on Hands, menghabiskan hit points terpisah untuk setiap satu. \n \nFitur ini tidak memiliki efek pada undead dan constructs. \n \n\n \nDi level 2, kamu mengadopsi gaya bertarung sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu juga bisa menggunakan bonus action untuk mendorong seorang makhluk yang kamu serang dengan melee weapon. \n \n\n \nDi level 3, kamu memilih oath yang memberikanmu fitur tambahan. \n \n\n \nMulai di level 5, kamu mendapatkan extra attack di giliranmu saat kamu mengambil Attack action. \n \n\n \nMulai di level 10, kamu mendapatkan aura yang memberikanmu dan sekutumu within 10 feet dari kamu manfaat tertentu. \n \n\n \nMulai di level 11, kamu bisa menyerang dengan melee weapon sebagai reaction saat makhluk hostile memprovoke opportunity attack darimu.",
+          "description": "(a) a martial weapon and a shield or (b) two martial weapons",
           "items": [
             {
               "name": "Shield",
@@ -7200,7 +7200,7 @@
           ]
         },
         {
-          "description": "Kehadiran kejahatan kuat terdaftar di indramu seperti bau beracun, dan kebaikan kuat berbunyi seperti musik surgawi di telingamu. Sebagai action, kamu bisa membuka awarenessmu untuk mendeteksi kuasa seperti itu. Sampai akhir giliranmu berikutnya, kamu tahu lokasi celestial, fiend, atau undead manapun dalam jarak 60 kaki darimu yang tidak di belakang total cover. Kamu tahu tipe (celestial, fiend, atau undead) dari makhluk yang kamu rasakan hadirnya, tetapi tidak identitasnya (vampire Count Strahd von Zarovich, sebagai contoh). Dalam radius yang sama, kamu juga mendeteksi keberadaan tempat atau objek yang telah dikonsekrasikan atau didesekrasikan, seperti dengan spell hallow. \n \nKamu bisa menggunakan fitur ini sebanyak 1 + Charisma modifiermu. Saat kamu menyelesaikan long rest, kamu mendapatkan kembali semua penggunaan yang dihabiskan. \n \n\n \nSentuhan berkatmu bisa menyembuhkan luka. Kamu memiliki pool of healing power yang replenish saat kamu mengambil long rest. Dengan pool itu, kamu bisa restore total hit points sebesar paladin levelmu × 5. \n \nSebagai action, kamu bisa menyentuh makhluk dan menarik kuasa dari pool untuk restore sejumlah hit points ke makhluk itu, sampai maksimum yang tersisa di pool. \n \nAlternatifnya, kamu bisa menghabiskan 5 hit points dari pool of healingmu untuk menyembuhkan target dari satu disease atau menetralkan satu poison yang mempengaruhinya. Kamu bisa menyembuhkan banyak diseases dan menetralkan banyak poisons dengan satu penggunaan Lay on Hands, menghabiskan hit points terpisah untuk setiap satu. \n \nFitur ini tidak memiliki efek pada undead dan constructs. \n \n\n \nDi level 2, kamu mengadopsi gaya bertarung sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu juga bisa menggunakan bonus action untuk mendorong seorang makhluk yang kamu serang dengan melee weapon. \n \n\n \nDi level 3, kamu memilih oath yang memberikanmu fitur tambahan. \n \n\n \nMulai di level 5, kamu mendapatkan extra attack di giliranmu saat kamu mengambil Attack action. \n \n\n \nMulai di level 10, kamu mendapatkan aura yang memberikanmu dan sekutumu within 10 feet dari kamu manfaat tertentu. \n \n\n \nMulai di level 11, kamu bisa menyerang dengan melee weapon sebagai reaction saat makhluk hostile memprovoke opportunity attack darimu.",
+          "description": "(a) five javelins or (b) any simple melee weapon",
           "items": [
             {
               "name": "Javelin",
@@ -7210,7 +7210,7 @@
           ]
         },
         {
-          "description": "Kehadiran kejahatan kuat terdaftar di indramu seperti bau beracun, dan kebaikan kuat berbunyi seperti musik surgawi di telingamu. Sebagai action, kamu bisa membuka awarenessmu untuk mendeteksi kuasa seperti itu. Sampai akhir giliranmu berikutnya, kamu tahu lokasi celestial, fiend, atau undead manapun dalam jarak 60 kaki darimu yang tidak di belakang total cover. Kamu tahu tipe (celestial, fiend, atau undead) dari makhluk yang kamu rasakan hadirnya, tetapi tidak identitasnya (vampire Count Strahd von Zarovich, sebagai contoh). Dalam radius yang sama, kamu juga mendeteksi keberadaan tempat atau objek yang telah dikonsekrasikan atau didesekrasikan, seperti dengan spell hallow. \n \nKamu bisa menggunakan fitur ini sebanyak 1 + Charisma modifiermu. Saat kamu menyelesaikan long rest, kamu mendapatkan kembali semua penggunaan yang dihabiskan. \n \n\n \nSentuhan berkatmu bisa menyembuhkan luka. Kamu memiliki pool of healing power yang replenish saat kamu mengambil long rest. Dengan pool itu, kamu bisa restore total hit points sebesar paladin levelmu × 5. \n \nSebagai action, kamu bisa menyentuh makhluk dan menarik kuasa dari pool untuk restore sejumlah hit points ke makhluk itu, sampai maksimum yang tersisa di pool. \n \nAlternatifnya, kamu bisa menghabiskan 5 hit points dari pool of healingmu untuk menyembuhkan target dari satu disease atau menetralkan satu poison yang mempengaruhinya. Kamu bisa menyembuhkan banyak diseases dan menetralkan banyak poisons dengan satu penggunaan Lay on Hands, menghabiskan hit points terpisah untuk setiap satu. \n \nFitur ini tidak memiliki efek pada undead dan constructs. \n \n\n \nDi level 2, kamu mengadopsi gaya bertarung sebagai spesialitasmu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil Fighting Style option lebih dari sekali, bahkan jika kamu kemudian bisa memilih lagi. \n \n#### Defense \n \nSelagi kamu memakai armor, kamu mendapatkan +1 bonus ke AC. \n \n#### Dueling \n \nSaat kamu mengayun melee weapon di satu tangan dan tidak ada senjata lain, kamu mendapatkan +2 bonus ke damage rolls dengan senjata itu. \n \n#### Great Weapon Fighting \n \nSaat kamu menggulir 1 atau 2 di damage die untuk serangan yang kamu buat dengan melee weapon yang kamu ayun dengan dua tangan, kamu bisa menggulir ulang die dan harus menggunakan roll baru, bahkan jika roll baru adalah 1 atau 2. Senjata harus memiliki property two-handed atau versatile agar kamu mendapatkan manfaat ini. \n \n\n \nMulai di level 2, kamu juga bisa menggunakan bonus action untuk mendorong seorang makhluk yang kamu serang dengan melee weapon. \n \n\n \nDi level 3, kamu memilih oath yang memberikanmu fitur tambahan. \n \n\n \nMulai di level 5, kamu mendapatkan extra attack di giliranmu saat kamu mengambil Attack action. \n \n\n \nMulai di level 10, kamu mendapatkan aura yang memberikanmu dan sekutumu within 10 feet dari kamu manfaat tertentu. \n \n\n \nMulai di level 11, kamu bisa menyerang dengan melee weapon sebagai reaction saat makhluk hostile memprovoke opportunity attack darimu.",
+          "description": "(a) a priest’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Priest's Pack",
@@ -7283,7 +7283,7 @@
           "features": [
             {
               "name": "Divine Sense",
-              "description": "Kehadiran kejahatan kuat terdaftar di indramu seperti bau beracun, dan kebaikan kuat berbunyi seperti musik surgawi di telingamu. Sebagai action, kamu bisa membuka awarenessmu untuk mendeteksi kuasa seperti itu. Sampai akhir giliranmu berikutnya, kamu tahu lokasi celestial, fiend, atau undead manapun dalam jarak 60 kaki darimu yang tidak di belakang total cover. Kamu tahu tipe (celestial, fiend, atau undead) dari makhluk yang kamu rasakan hadirnya, tetapi tidak identitasnya. Dalam radius yang sama, kamu juga mendeteksi keberadaan tempat atau objek yang telah dikonsekrasikan atau didesekrasikan, seperti dengan spell hallow.\nKamu bisa menggunakan fitur ini sebanyak 1 + Charisma modifiermu. Saat kamu menyelesaikan long rest, kamu mendapatkan kembali semua penggunaan yang dihabiskan.",
+              "description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the hallow spell.\n\nYou can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -7294,7 +7294,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kehadiran kejahatan kuat terdaftar di indramu seperti bau beracun, dan kebaikan kuat berbunyi seperti musik surgawi di telingamu.",
+              "summary": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7308,7 +7308,7 @@
             },
             {
               "name": "Lay on Hands",
-              "description": "Sentuhan berkatmu bisa menyembuhkan luka. Kamu memiliki pool of healing power yang replenish saat kamu mengambil long rest. Dengan pool itu, kamu bisa restore total hit points sebesar paladin levelmu x 5.\nSebagai action, kamu bisa menyentuh makhluk dan menarik kuasa dari pool untuk restore sejumlah hit points ke makhluk itu, sampai maksimum yang tersisa di pool.\nAlternatifnya, kamu bisa menghabiskan 5 hit points dari pool of healingmu untuk menyembuhkan target dari satu disease atau menetralkan satu poison yang mempengaruhinya. Kamu bisa menyembuhkan banyak diseases dan menetralkan banyak poisons dengan satu penggunaan Lay on Hands, menghabiskan hit points terpisah untuk setiap satu.\nFitur ini tidak memiliki efek pada undead dan constructs.",
+              "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level x 5.\n\nAs an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.\n\nAlternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.\n\nThis feature has no effect on undead and constructs.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -7319,7 +7319,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Sentuhan berkatmu bisa menyembuhkan luka.",
+              "summary": "Your blessed touch can heal wounds.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8161,7 +8161,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Mulai di level 1, kamu memiliki pengalaman signifikan dalam mempelajari, melacak, berburu, dan bahkan berbicara dengan tipe musuh tertentu. \n \nPilih tipe favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, atau undead. Alternatifnya, kamu bisa memilih dua ras humanoid (seperti gnolls dan orcs) sebagai favored enemies. \n \nKamu memiliki advantage pada Wisdom (Survival) checks untuk melacak favored enemiesmu, serta pada Intelligence checks untuk mengingat informasi tentang mereka. \n \nSaat kamu mendapatkan fitur ini, kamu juga mempelajari satu bahasa sesuai pilihanmu yang diucapkan oleh favored enemiesmu, jika mereka berbicara satu sama sekali. \n \nKamu memilih satu favored enemy tambahan, serta bahasa terkait, di level 6 dan 14. Saat kamu mendapatkan level, pilihanmu harus mencerminkan jenis monsters yang telah kamu temui di petualanganmu. \n \n\n \nKamu sangat familiar dengan satu jenis lingkungan alami dan terampil dalam traveling dan bertahan di wilayah seperti itu. Pilih satu tipe favored terrain: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu membuat Intelligence atau Wisdom check yang terkait dengan favored terrainmu, proficiency bonusmu digandakan jika kamu menggunakan skill yang kamu proficient. \n \nSelagi traveling selama satu jam atau lebih di favored terrainmu, kamu mendapatkan manfaat berikut: \n* Difficult terrain tidak memperlambat travel kelompokmu. \n* Kelompokmu tidak bisa tersesat kecuali oleh means magis. \n* Bahkan saat kamu terlibat activity lain saat traveling (seperti foraging, navigating, atau tracking), kamu tetap waspada terhadap bahaya. \n* Jika kamu traveling sendiri, kamu bisa bergerak stealthily dengan kecepatan normal. \n* Saat kamu forage, kamu menemukan dua kali lebih banyak makanan daripada biasanya. \n* Selagi melacak makhluk lain, kamu juga mempelajari jumlah pasti mereka, ukuran mereka, dan berapa lama yang lalu mereka melewati area. \n \nKamu memilih favored...",
+          "description": "Longbow",
           "items": [
             {
               "name": "Longbow",
@@ -8171,7 +8171,7 @@
         },
         {
           "granted": true,
-          "description": "Mulai di level 1, kamu memiliki pengalaman signifikan dalam mempelajari, melacak, berburu, dan bahkan berbicara dengan tipe musuh tertentu. \n \nPilih tipe favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, atau undead. Alternatifnya, kamu bisa memilih dua ras humanoid (seperti gnolls dan orcs) sebagai favored enemies. \n \nKamu memiliki advantage pada Wisdom (Survival) checks untuk melacak favored enemiesmu, serta pada Intelligence checks untuk mengingat informasi tentang mereka. \n \nSaat kamu mendapatkan fitur ini, kamu juga mempelajari satu bahasa sesuai pilihanmu yang diucapkan oleh favored enemiesmu, jika mereka berbicara satu sama sekali. \n \nKamu memilih satu favored enemy tambahan, serta bahasa terkait, di level 6 dan 14. Saat kamu mendapatkan level, pilihanmu harus mencerminkan jenis monsters yang telah kamu temui di petualanganmu. \n \n\n \nKamu sangat familiar dengan satu jenis lingkungan alami dan terampil dalam traveling dan bertahan di wilayah seperti itu. Pilih satu tipe favored terrain: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu membuat Intelligence atau Wisdom check yang terkait dengan favored terrainmu, proficiency bonusmu digandakan jika kamu menggunakan skill yang kamu proficient. \n \nSelagi traveling selama satu jam atau lebih di favored terrainmu, kamu mendapatkan manfaat berikut: \n* Difficult terrain tidak memperlambat travel kelompokmu. \n* Kelompokmu tidak bisa tersesat kecuali oleh means magis. \n* Bahkan saat kamu terlibat activity lain saat traveling (seperti foraging, navigating, atau tracking), kamu tetap waspada terhadap bahaya. \n* Jika kamu traveling sendiri, kamu bisa bergerak stealthily dengan kecepatan normal. \n* Saat kamu forage, kamu menemukan dua kali lebih banyak makanan daripada biasanya. \n* Selagi melacak makhluk lain, kamu juga mempelajari jumlah pasti mereka, ukuran mereka, dan berapa lama yang lalu mereka melewati area. \n \nKamu memilih favored...",
+          "description": "Arrow",
           "items": [
             {
               "name": "Arrow",
@@ -8180,7 +8180,7 @@
           ]
         },
         {
-          "description": "Mulai di level 1, kamu memiliki pengalaman signifikan dalam mempelajari, melacak, berburu, dan bahkan berbicara dengan tipe musuh tertentu. \n \nPilih tipe favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, atau undead. Alternatifnya, kamu bisa memilih dua ras humanoid (seperti gnolls dan orcs) sebagai favored enemies. \n \nKamu memiliki advantage pada Wisdom (Survival) checks untuk melacak favored enemiesmu, serta pada Intelligence checks untuk mengingat informasi tentang mereka. \n \nSaat kamu mendapatkan fitur ini, kamu juga mempelajari satu bahasa sesuai pilihanmu yang diucapkan oleh favored enemiesmu, jika mereka berbicara satu sama sekali. \n \nKamu memilih satu favored enemy tambahan, serta bahasa terkait, di level 6 dan 14. Saat kamu mendapatkan level, pilihanmu harus mencerminkan jenis monsters yang telah kamu temui di petualanganmu. \n \n\n \nKamu sangat familiar dengan satu jenis lingkungan alami dan terampil dalam traveling dan bertahan di wilayah seperti itu. Pilih satu tipe favored terrain: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu membuat Intelligence atau Wisdom check yang terkait dengan favored terrainmu, proficiency bonusmu digandakan jika kamu menggunakan skill yang kamu proficient. \n \nSelagi traveling selama satu jam atau lebih di favored terrainmu, kamu mendapatkan manfaat berikut: \n* Difficult terrain tidak memperlambat travel kelompokmu. \n* Kelompokmu tidak bisa tersesat kecuali oleh means magis. \n* Bahkan saat kamu terlibat activity lain saat traveling (seperti foraging, navigating, atau tracking), kamu tetap waspada terhadap bahaya. \n* Jika kamu traveling sendiri, kamu bisa bergerak stealthily dengan kecepatan normal. \n* Saat kamu forage, kamu menemukan dua kali lebih banyak makanan daripada biasanya. \n* Selagi melacak makhluk lain, kamu juga mempelajari jumlah pasti mereka, ukuran mereka, dan berapa lama yang lalu mereka melewati area. \n \nKamu memilih favored...",
+          "description": "(a) scale mail or (b) leather armor",
           "items": [
             {
               "name": "Scale Mail",
@@ -8195,7 +8195,7 @@
           ]
         },
         {
-          "description": "Mulai di level 1, kamu memiliki pengalaman signifikan dalam mempelajari, melacak, berburu, dan bahkan berbicara dengan tipe musuh tertentu. \n \nPilih tipe favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, atau undead. Alternatifnya, kamu bisa memilih dua ras humanoid (seperti gnolls dan orcs) sebagai favored enemies. \n \nKamu memiliki advantage pada Wisdom (Survival) checks untuk melacak favored enemiesmu, serta pada Intelligence checks untuk mengingat informasi tentang mereka. \n \nSaat kamu mendapatkan fitur ini, kamu juga mempelajari satu bahasa sesuai pilihanmu yang diucapkan oleh favored enemiesmu, jika mereka berbicara satu sama sekali. \n \nKamu memilih satu favored enemy tambahan, serta bahasa terkait, di level 6 dan 14. Saat kamu mendapatkan level, pilihanmu harus mencerminkan jenis monsters yang telah kamu temui di petualanganmu. \n \n\n \nKamu sangat familiar dengan satu jenis lingkungan alami dan terampil dalam traveling dan bertahan di wilayah seperti itu. Pilih satu tipe favored terrain: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu membuat Intelligence atau Wisdom check yang terkait dengan favored terrainmu, proficiency bonusmu digandakan jika kamu menggunakan skill yang kamu proficient. \n \nSelagi traveling selama satu jam atau lebih di favored terrainmu, kamu mendapatkan manfaat berikut: \n* Difficult terrain tidak memperlambat travel kelompokmu. \n* Kelompokmu tidak bisa tersesat kecuali oleh means magis. \n* Bahkan saat kamu terlibat activity lain saat traveling (seperti foraging, navigating, atau tracking), kamu tetap waspada terhadap bahaya. \n* Jika kamu traveling sendiri, kamu bisa bergerak stealthily dengan kecepatan normal. \n* Saat kamu forage, kamu menemukan dua kali lebih banyak makanan daripada biasanya. \n* Selagi melacak makhluk lain, kamu juga mempelajari jumlah pasti mereka, ukuran mereka, dan berapa lama yang lalu mereka melewati area. \n \nKamu memilih favored...",
+          "description": "(a) two shortswords or (b) two simple melee weapons",
           "items": [
             {
               "name": "Shortsword",
@@ -8205,7 +8205,7 @@
           ]
         },
         {
-          "description": "Mulai di level 1, kamu memiliki pengalaman signifikan dalam mempelajari, melacak, berburu, dan bahkan berbicara dengan tipe musuh tertentu. \n \nPilih tipe favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, atau undead. Alternatifnya, kamu bisa memilih dua ras humanoid (seperti gnolls dan orcs) sebagai favored enemies. \n \nKamu memiliki advantage pada Wisdom (Survival) checks untuk melacak favored enemiesmu, serta pada Intelligence checks untuk mengingat informasi tentang mereka. \n \nSaat kamu mendapatkan fitur ini, kamu juga mempelajari satu bahasa sesuai pilihanmu yang diucapkan oleh favored enemiesmu, jika mereka berbicara satu sama sekali. \n \nKamu memilih satu favored enemy tambahan, serta bahasa terkait, di level 6 dan 14. Saat kamu mendapatkan level, pilihanmu harus mencerminkan jenis monsters yang telah kamu temui di petualanganmu. \n \n\n \nKamu sangat familiar dengan satu jenis lingkungan alami dan terampil dalam traveling dan bertahan di wilayah seperti itu. Pilih satu tipe favored terrain: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu membuat Intelligence atau Wisdom check yang terkait dengan favored terrainmu, proficiency bonusmu digandakan jika kamu menggunakan skill yang kamu proficient. \n \nSelagi traveling selama satu jam atau lebih di favored terrainmu, kamu mendapatkan manfaat berikut: \n* Difficult terrain tidak memperlambat travel kelompokmu. \n* Kelompokmu tidak bisa tersesat kecuali oleh means magis. \n* Bahkan saat kamu terlibat activity lain saat traveling (seperti foraging, navigating, atau tracking), kamu tetap waspada terhadap bahaya. \n* Jika kamu traveling sendiri, kamu bisa bergerak stealthily dengan kecepatan normal. \n* Saat kamu forage, kamu menemukan dua kali lebih banyak makanan daripada biasanya. \n* Selagi melacak makhluk lain, kamu juga mempelajari jumlah pasti mereka, ukuran mereka, dan berapa lama yang lalu mereka melewati area. \n \nKamu memilih favored...",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
@@ -8278,7 +8278,7 @@
           "features": [
             {
               "name": "Favored Enemy (1 type)",
-              "description": "Mulai di level 1, kamu memiliki pengalaman signifikan dalam mempelajari, melacak, berburu, dan bahkan berbicara dengan tipe musuh tertentu.\nPilih tipe favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, atau undead. Alternatifnya, kamu bisa memilih dua ras humanoid (seperti gnolls dan orcs) sebagai favored enemies.\nKamu memiliki advantage pada Wisdom (Survival) check untuk melacak favored enemiesmu, serta pada Intelligence check untuk mengingat informasi tentang mereka.\nSaat kamu mendapatkan fitur ini, kamu juga mempelajari satu bahasa sesuai pilihanmu yang diucapkan oleh favored enemiesmu, jika mereka berbicara satu sama sekali.\nKamu memilih satu favored enemy tambahan, serta bahasa terkait, di level 6 dan 14. Saat kamu mendapatkan level, pilihanmu harus mencerminkan jenis monsters yang telah kamu temui di petualanganmu.",
+              "description": "Beginning at 1st level, you have significant experience studying, tracking, hunting, and even talking to a certain type of enemy.\n\nChoose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, or undead. Alternatively, you can select two races of humanoid (such as gnolls and orcs) as favored enemies.\n\nYou have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence checks to recall information about them.\n\nWhen you gain this feature, you also learn one language of your choice that is spoken by your favored enemies, if they speak one at all.\n\nYou choose one additional favored enemy, as well as an associated language, at 6th and 14th level. As you gain levels, your choices should reflect the types of monsters you have encountered on your adventures.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -8309,7 +8309,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu memiliki pengalaman signifikan dalam mempelajari, melacak, berburu, dan bahkan berbicara dengan tipe musuh tertentu.",
+              "summary": "You have significant experience studying, tracking, hunting, and even talking to a certain type of enemy.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8323,7 +8323,7 @@
             },
             {
               "name": "Natural Explorer (1 terrain type)",
-              "description": "Kamu sangat familiar dengan satu jenis lingkungan alami dan terampil dalam traveling dan bertahan di wilayah seperti itu. Pilih satu tipe favored terrain: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu membuat Intelligence atau Wisdom check yang terkait dengan favored terrainmu, proficiency bonusmu digandakan jika kamu menggunakan skill yang kamu proficient.\nSelagi traveling selama satu jam atau lebih di favored terrainmu, kamu mendapatkan manfaat berikut:\n- Difficult terrain tidak memperlambat travel kelompokmu.\n- Kelompokmu tidak bisa tersesat kecuali oleh means magis.\n- Bahkan saat kamu terlibat activity lain saat traveling (seperti foraging, navigating, atau tracking), kamu tetap waspada terhadap bahaya.\n- Jika kamu traveling sendiri, kamu bisa bergerak stealthily dengan kecepatan normal.\n- Saat kamu forage, kamu menemukan dua kali lebih banyak makanan daripada biasanya.\n- Selagi melacak makhluk lain, kamu juga mempelajari jumlah pasti mereka, ukuran mereka, dan berapa lama yang lalu mereka melewati area.\nKamu memilih favored terrain types tambahan di level 6 dan 10.",
+              "description": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, or swamp. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.\n\nWhile traveling for an hour or more in your favored terrain, you gain the following benefits:\n\n- Difficult terrain doesn't slow your group's travel.\n\n- Your group can't become lost except by magical means.\n\n- Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.\n\n- If you are traveling alone, you can move stealthily at a normal pace.\n\n- When you forage, you find twice as much food as you normally would.\n\n- While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.\n\nYou choose additional favored terrain types at 6th and 10th level.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -8348,7 +8348,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu sangat familiar dengan satu jenis lingkungan alami dan terampil dalam traveling dan bertahan di wilayah seperti itu.",
+              "summary": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9346,7 +9346,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih. \n \nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini. \n \n\n \nMulai di level 1, kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh. Sekali per giliran, kamu bisa deal extra 1d6 damage ke satu makhluk yang kamu hit dengan serangan jika kamu memiliki advantage pada attack roll. Serangan harus menggunakan finesse atau ranged weapon. \n \nKamu tidak membutuhkan advantage pada attack roll jika musuh lain dari target berada dalam jarak 5 kaki darinya, musuh itu tidak incapacitated, dan kamu tidak memiliki disadvantage pada attack roll. \n \nJumlah extra damage meningkat saat kamu mendapatkan level di kelas ini, seperti yang ditunjukkan di kolom Sneak Attack dari Rogue table. \n \n\n \nSelama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan dalam percakapan yang tampak normal. Hanya makhluk lain yang tahu thieves' cant memahami pesan seperti itu. Diperlukan empat kali lebih lama untuk menyampaikan pesan seperti itu daripada mengucapkan ide yang sama secara jelas. \n \nSelain itu, kamu memahami satu set tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan pendek, sederhana, seperti apakah area berbahaya atau wilayah thieves' guild, apakah loot di sekitar, atau apakah orang di area adalah easy marks atau akan menyediakan safe house untuk thieves yang lari. \n \n\n \nMulai di level 2, quick thinking dan agilitymu memungkinkanmu bergerak dan bertindak cepat. Kamu bisa mengambil bonus action di setiap giliranmu di combat. Action ini hanya bisa digunakan untuk mengambil Dash, Disengage, atau Hide action. \n \n\n \nDi level 3, kamu memilih archetype yang kamu emulate in the exercise of rogue abilitiesmu: Thief, A...",
+          "description": "Leather Armor",
           "items": [
             {
               "name": "Leather Armor",
@@ -9356,7 +9356,7 @@
         },
         {
           "granted": true,
-          "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih. \n \nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini. \n \n\n \nMulai di level 1, kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh. Sekali per giliran, kamu bisa deal extra 1d6 damage ke satu makhluk yang kamu hit dengan serangan jika kamu memiliki advantage pada attack roll. Serangan harus menggunakan finesse atau ranged weapon. \n \nKamu tidak membutuhkan advantage pada attack roll jika musuh lain dari target berada dalam jarak 5 kaki darinya, musuh itu tidak incapacitated, dan kamu tidak memiliki disadvantage pada attack roll. \n \nJumlah extra damage meningkat saat kamu mendapatkan level di kelas ini, seperti yang ditunjukkan di kolom Sneak Attack dari Rogue table. \n \n\n \nSelama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan dalam percakapan yang tampak normal. Hanya makhluk lain yang tahu thieves' cant memahami pesan seperti itu. Diperlukan empat kali lebih lama untuk menyampaikan pesan seperti itu daripada mengucapkan ide yang sama secara jelas. \n \nSelain itu, kamu memahami satu set tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan pendek, sederhana, seperti apakah area berbahaya atau wilayah thieves' guild, apakah loot di sekitar, atau apakah orang di area adalah easy marks atau akan menyediakan safe house untuk thieves yang lari. \n \n\n \nMulai di level 2, quick thinking dan agilitymu memungkinkanmu bergerak dan bertindak cepat. Kamu bisa mengambil bonus action di setiap giliranmu di combat. Action ini hanya bisa digunakan untuk mengambil Dash, Disengage, atau Hide action. \n \n\n \nDi level 3, kamu memilih archetype yang kamu emulate in the exercise of rogue abilitiesmu: Thief, A...",
+          "description": "Dagger",
           "items": [
             {
               "name": "Dagger",
@@ -9366,7 +9366,7 @@
         },
         {
           "granted": true,
-          "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih. \n \nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini. \n \n\n \nMulai di level 1, kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh. Sekali per giliran, kamu bisa deal extra 1d6 damage ke satu makhluk yang kamu hit dengan serangan jika kamu memiliki advantage pada attack roll. Serangan harus menggunakan finesse atau ranged weapon. \n \nKamu tidak membutuhkan advantage pada attack roll jika musuh lain dari target berada dalam jarak 5 kaki darinya, musuh itu tidak incapacitated, dan kamu tidak memiliki disadvantage pada attack roll. \n \nJumlah extra damage meningkat saat kamu mendapatkan level di kelas ini, seperti yang ditunjukkan di kolom Sneak Attack dari Rogue table. \n \n\n \nSelama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan dalam percakapan yang tampak normal. Hanya makhluk lain yang tahu thieves' cant memahami pesan seperti itu. Diperlukan empat kali lebih lama untuk menyampaikan pesan seperti itu daripada mengucapkan ide yang sama secara jelas. \n \nSelain itu, kamu memahami satu set tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan pendek, sederhana, seperti apakah area berbahaya atau wilayah thieves' guild, apakah loot di sekitar, atau apakah orang di area adalah easy marks atau akan menyediakan safe house untuk thieves yang lari. \n \n\n \nMulai di level 2, quick thinking dan agilitymu memungkinkanmu bergerak dan bertindak cepat. Kamu bisa mengambil bonus action di setiap giliranmu di combat. Action ini hanya bisa digunakan untuk mengambil Dash, Disengage, atau Hide action. \n \n\n \nDi level 3, kamu memilih archetype yang kamu emulate in the exercise of rogue abilitiesmu: Thief, A...",
+          "description": "Thieves' Tools",
           "items": [
             {
               "name": "Thieves' Tools",
@@ -9375,7 +9375,7 @@
           ]
         },
         {
-          "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih. \n \nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini. \n \n\n \nMulai di level 1, kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh. Sekali per giliran, kamu bisa deal extra 1d6 damage ke satu makhluk yang kamu hit dengan serangan jika kamu memiliki advantage pada attack roll. Serangan harus menggunakan finesse atau ranged weapon. \n \nKamu tidak membutuhkan advantage pada attack roll jika musuh lain dari target berada dalam jarak 5 kaki darinya, musuh itu tidak incapacitated, dan kamu tidak memiliki disadvantage pada attack roll. \n \nJumlah extra damage meningkat saat kamu mendapatkan level di kelas ini, seperti yang ditunjukkan di kolom Sneak Attack dari Rogue table. \n \n\n \nSelama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan dalam percakapan yang tampak normal. Hanya makhluk lain yang tahu thieves' cant memahami pesan seperti itu. Diperlukan empat kali lebih lama untuk menyampaikan pesan seperti itu daripada mengucapkan ide yang sama secara jelas. \n \nSelain itu, kamu memahami satu set tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan pendek, sederhana, seperti apakah area berbahaya atau wilayah thieves' guild, apakah loot di sekitar, atau apakah orang di area adalah easy marks atau akan menyediakan safe house untuk thieves yang lari. \n \n\n \nMulai di level 2, quick thinking dan agilitymu memungkinkanmu bergerak dan bertindak cepat. Kamu bisa mengambil bonus action di setiap giliranmu di combat. Action ini hanya bisa digunakan untuk mengambil Dash, Disengage, atau Hide action. \n \n\n \nDi level 3, kamu memilih archetype yang kamu emulate in the exercise of rogue abilitiesmu: Thief, A...",
+          "description": "(a) a rapier or (b) a shortsword",
           "items": [
             {
               "name": "Rapier",
@@ -9390,7 +9390,7 @@
           ]
         },
         {
-          "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih. \n \nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini. \n \n\n \nMulai di level 1, kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh. Sekali per giliran, kamu bisa deal extra 1d6 damage ke satu makhluk yang kamu hit dengan serangan jika kamu memiliki advantage pada attack roll. Serangan harus menggunakan finesse atau ranged weapon. \n \nKamu tidak membutuhkan advantage pada attack roll jika musuh lain dari target berada dalam jarak 5 kaki darinya, musuh itu tidak incapacitated, dan kamu tidak memiliki disadvantage pada attack roll. \n \nJumlah extra damage meningkat saat kamu mendapatkan level di kelas ini, seperti yang ditunjukkan di kolom Sneak Attack dari Rogue table. \n \n\n \nSelama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan dalam percakapan yang tampak normal. Hanya makhluk lain yang tahu thieves' cant memahami pesan seperti itu. Diperlukan empat kali lebih lama untuk menyampaikan pesan seperti itu daripada mengucapkan ide yang sama secara jelas. \n \nSelain itu, kamu memahami satu set tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan pendek, sederhana, seperti apakah area berbahaya atau wilayah thieves' guild, apakah loot di sekitar, atau apakah orang di area adalah easy marks atau akan menyediakan safe house untuk thieves yang lari. \n \n\n \nMulai di level 2, quick thinking dan agilitymu memungkinkanmu bergerak dan bertindak cepat. Kamu bisa mengambil bonus action di setiap giliranmu di combat. Action ini hanya bisa digunakan untuk mengambil Dash, Disengage, atau Hide action. \n \n\n \nDi level 3, kamu memilih archetype yang kamu emulate in the exercise of rogue abilitiesmu: Thief, A...",
+          "description": "(a) a shortbow and quiver of 20 arrows or (b) a shortsword",
           "items": [
             {
               "name": "Shortbow",
@@ -9410,7 +9410,7 @@
           ]
         },
         {
-          "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih. \n \nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini. \n \n\n \nMulai di level 1, kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh. Sekali per giliran, kamu bisa deal extra 1d6 damage ke satu makhluk yang kamu hit dengan serangan jika kamu memiliki advantage pada attack roll. Serangan harus menggunakan finesse atau ranged weapon. \n \nKamu tidak membutuhkan advantage pada attack roll jika musuh lain dari target berada dalam jarak 5 kaki darinya, musuh itu tidak incapacitated, dan kamu tidak memiliki disadvantage pada attack roll. \n \nJumlah extra damage meningkat saat kamu mendapatkan level di kelas ini, seperti yang ditunjukkan di kolom Sneak Attack dari Rogue table. \n \n\n \nSelama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan dalam percakapan yang tampak normal. Hanya makhluk lain yang tahu thieves' cant memahami pesan seperti itu. Diperlukan empat kali lebih lama untuk menyampaikan pesan seperti itu daripada mengucapkan ide yang sama secara jelas. \n \nSelain itu, kamu memahami satu set tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan pendek, sederhana, seperti apakah area berbahaya atau wilayah thieves' guild, apakah loot di sekitar, atau apakah orang di area adalah easy marks atau akan menyediakan safe house untuk thieves yang lari. \n \n\n \nMulai di level 2, quick thinking dan agilitymu memungkinkanmu bergerak dan bertindak cepat. Kamu bisa mengambil bonus action di setiap giliranmu di combat. Action ini hanya bisa digunakan untuk mengambil Dash, Disengage, atau Hide action. \n \n\n \nDi level 3, kamu memilih archetype yang kamu emulate in the exercise of rogue abilitiesmu: Thief, A...",
+          "description": "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack",
           "items": [
             {
               "name": "Burglar's Pack",
@@ -9516,7 +9516,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih.\nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini.",
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -9546,7 +9546,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools.",
+              "summary": "Choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -9560,7 +9560,7 @@
             },
             {
               "name": "Sneak Attack",
-              "description": "Mulai di level 1, kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh. Sekali per giliran, kamu bisa deal extra 1d6 damage ke satu makhluk yang kamu hit dengan serangan jika kamu memiliki advantage pada attack roll. Serangan harus menggunakan finesse atau ranged weapon.\nKamu tidak membutuhkan advantage pada attack roll jika musuh lain dari target berada dalam jarak 5 kaki darinya, musuh itu tidak incapacitated, dan kamu tidak memiliki disadvantage pada attack roll.\nJumlah extra damage meningkat saat kamu mendapatkan level di kelas ini, seperti yang ditunjukkan di kolom Sneak Attack dari Rogue table.",
+              "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.\n\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\n\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -9574,7 +9574,7 @@
               "effect": null,
               "onUse": "Add Sneak Attack dice to one attack's damage this turn",
               "scaling": "1d6 at level 1, increases by 1d6 every two Rogue levels up to 10d6 at level 19",
-              "summary": "Kamu tahu cara menyerang subtly dan mengeksploitasi gangguan musuh.",
+              "summary": "You know how to strike subtly and exploit a foe's distraction.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -9588,7 +9588,7 @@
             },
             {
               "name": "Thieves' Cant",
-              "description": "Selama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan dalam percakapan yang tampak normal. Hanya makhluk lain yang tahu thieves' cant memahami pesan seperti itu. Diperlukan empat kali lebih lama untuk menyampaikan pesan seperti itu daripada mengucapkan ide yang sama secara jelas.\nSelain itu, kamu memahami satu set tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan pendek, sederhana, seperti apakah area berbahaya atau wilayah thieves' guild, apakah loot di sekitar, atau apakah orang di area adalah easy marks atau akan menyediakan safe house untuk thieves yang lari.",
+              "description": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly.\n\nIn addition, you understand a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves' guild, whether loot is nearby, or whether the people in an area are easy marks or will provide a safe house for thieves on the run.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -9599,7 +9599,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Selama pelatihan rogue kamu mempelajari thieves' cant, campuran rahasia dari dialect, jargon, dan code yang memungkinkan kamu menyembunyikan pesan.",
+              "summary": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9748,7 +9748,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "Di level 1, pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools. Proficiency bonusmu digandakan untuk ability check apapun yang kamu buat yang menggunakan salah satu dari proficiencies yang dipilih.\nDi level 6, kamu bisa memilih dua lagi proficienciesmu (dalam skills atau dengan thieves' tools) untuk mendapatkan manfaat ini.",
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -9778,7 +9778,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Pilih dua dari skill proficienciesmu, atau satu dari skill proficienciesmu dan proficiency dengan thieves' tools.",
+              "summary": "Choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -10460,7 +10460,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Event di masa lalu kamu, atau dalam kehidupan parent atau ancestor, meninggalkan indelible mark pada kamu, infusing kamu dengan arcane magic. Font of magic ini, whatever its origin, fuels spellsmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu empat cantrips sesuai pilihanmu dari sorcerer spell list. Kamu mempelajari sorcerer cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Sorcerer. \n \n#### Spell Slots \n \nTabel Sorcerer menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu sorcerer spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 burning hands dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast burning hands menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu dua spell level 1 sesuai pilihanmu dari sorcerer spell list. \n \nKolom Spells Known dari tabel Sorcerer menunjukkan saat kamu mempelajari lebih banyak sorcerer spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu sorcerer spells yang kamu ketahui dan menggantinya dengan spell lain dari sorcerer spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk sorcerer spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk sorcerer spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "Dagger",
           "items": [
             {
               "name": "Dagger",
@@ -10469,7 +10469,7 @@
           ]
         },
         {
-          "description": "Event di masa lalu kamu, atau dalam kehidupan parent atau ancestor, meninggalkan indelible mark pada kamu, infusing kamu dengan arcane magic. Font of magic ini, whatever its origin, fuels spellsmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu empat cantrips sesuai pilihanmu dari sorcerer spell list. Kamu mempelajari sorcerer cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Sorcerer. \n \n#### Spell Slots \n \nTabel Sorcerer menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu sorcerer spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 burning hands dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast burning hands menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu dua spell level 1 sesuai pilihanmu dari sorcerer spell list. \n \nKolom Spells Known dari tabel Sorcerer menunjukkan saat kamu mempelajari lebih banyak sorcerer spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu sorcerer spells yang kamu ketahui dan menggantinya dengan spell lain dari sorcerer spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk sorcerer spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk sorcerer spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
             {
               "name": "Crossbow, light",
@@ -10484,7 +10484,7 @@
           ]
         },
         {
-          "description": "Event di masa lalu kamu, atau dalam kehidupan parent atau ancestor, meninggalkan indelible mark pada kamu, infusing kamu dengan arcane magic. Font of magic ini, whatever its origin, fuels spellsmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu empat cantrips sesuai pilihanmu dari sorcerer spell list. Kamu mempelajari sorcerer cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Sorcerer. \n \n#### Spell Slots \n \nTabel Sorcerer menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu sorcerer spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 burning hands dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast burning hands menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu dua spell level 1 sesuai pilihanmu dari sorcerer spell list. \n \nKolom Spells Known dari tabel Sorcerer menunjukkan saat kamu mempelajari lebih banyak sorcerer spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu sorcerer spells yang kamu ketahui dan menggantinya dengan spell lain dari sorcerer spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk sorcerer spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk sorcerer spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "(a) a component pouch or (b) an arcane focus",
           "items": [
             {
               "name": "Component pouch",
@@ -10499,7 +10499,7 @@
           ]
         },
         {
-          "description": "Event di masa lalu kamu, atau dalam kehidupan parent atau ancestor, meninggalkan indelible mark pada kamu, infusing kamu dengan arcane magic. Font of magic ini, whatever its origin, fuels spellsmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu empat cantrips sesuai pilihanmu dari sorcerer spell list. Kamu mempelajari sorcerer cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Sorcerer. \n \n#### Spell Slots \n \nTabel Sorcerer menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu sorcerer spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nSebagai contoh, jika kamu tahu spell level 1 burning hands dan memiliki spell slot level 1 dan level 2 tersedia, kamu bisa cast burning hands menggunakan salah satu slot. \n \n#### Spells Known of 1st Level and Higher \n \nKamu tahu dua spell level 1 sesuai pilihanmu dari sorcerer spell list. \n \nKolom Spells Known dari tabel Sorcerer menunjukkan saat kamu mempelajari lebih banyak sorcerer spells sesuai pilihanmu. Setiap spell ini harus pada level yang kamu miliki spell slots. Misalnya, saat kamu mencapai level 3 di kelas ini, kamu bisa mempelajari satu spell baru level 1 atau 2. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu sorcerer spells yang kamu ketahui dan menggantinya dengan spell lain dari sorcerer spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk sorcerer spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk sorcerer spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Dungeoneer's Pack",
@@ -10572,7 +10572,7 @@
           "features": [
             {
               "name": "Spellcasting: Sorcerer",
-              "description": "Event di masa lalu kamu, atau dalam kehidupan parent atau ancestor, meninggalkan indelible mark pada kamu, infusing kamu dengan arcane magic. Font of magic ini, whatever its origin, fuels spellsmu.",
+              "description": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10583,7 +10583,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Event di masa lalu kamu, atau dalam kehidupan parent atau ancestor, meninggalkan indelible mark pada kamu, infusing kamu dengan arcane magic.",
+              "summary": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10597,7 +10597,7 @@
             },
             {
               "name": "Sorcerous Origin",
-              "description": "Pilih sorcerous origin, yang menjelaskan sumber innate magical powermu, seperti Draconic Bloodline.\nPilihanmu memberikanmu features saat kamu memilihnya di level 1 dan lagi di level 6, 14, dan 18.",
+              "description": "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.\n\nYour choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -10608,7 +10608,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih sorcerous origin, yang menjelaskan sumber innate magical powermu, seperti Draconic Bloodline.",
+              "summary": "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11548,7 +11548,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Di level 1, kamu telah struck bargain dengan otherworldly being sesuai pilihanmu: the Archfey, the Fiend, atau the Great Old One, masing-masing didetailed di akhir deskripsi kelas. Pilihanmu memberikanmu features di level 1 dan lagi di level 6, 10, dan 14. \n \n\n \nArcane researchmu dan magic yang bestowed on you by patronmu telah memberikanmu facility dengan spells. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari warlock spell list. Kamu mempelajari warlock cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Warlock. \n \n#### Spell Slots \n \nTabel Warlock menunjukkan berapa spell slots yang kamu miliki. Tabel juga menunjukkan level dari slots itu; semua spell slotsmu adalah level yang sama. Untuk cast salah satu warlock spells level 1 atau lebih tinggi, kamu harus menghabiskan spell slot. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan short rest atau long rest. \n \nSebagai contoh, saat kamu level 5, kamu memiliki dua spell slot level 3. Untuk cast spell level 1 thunderwave, kamu harus menghabiskan salah satu slot itu, dan kamu mencapinya sebagai spell level 3. \n \n#### Spells Known of 1st Level and Higher \n \nDi level 1, kamu tahu dua spell level 1 sesuai pilihanmu dari warlock spell list. \n \nKolom Spells Known dari tabel Warlock menunjukkan saat kamu mempelajari lebih banyak warlock spells sesuai pilihanmu level 1 dan lebih tinggi. Spell yang kamu pilih harus pada level tidak lebih tinggi dari yang ditunjukkan di kolom Slot Level tabel untuk levelmu. Saat kamu mencapai level 6, misalnya, kamu mempelajari warlock spell baru, yang bisa level 1, 2, atau 3. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu warlock spells yang kamu ketahui dan menggantinya dengan spell lain dari warlock spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk warlock spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk warlock spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "Dagger",
           "items": [
             {
               "name": "Dagger",
@@ -11558,7 +11558,7 @@
         },
         {
           "granted": true,
-          "description": "Di level 1, kamu telah struck bargain dengan otherworldly being sesuai pilihanmu: the Archfey, the Fiend, atau the Great Old One, masing-masing didetailed di akhir deskripsi kelas. Pilihanmu memberikanmu features di level 1 dan lagi di level 6, 10, dan 14. \n \n\n \nArcane researchmu dan magic yang bestowed on you by patronmu telah memberikanmu facility dengan spells. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari warlock spell list. Kamu mempelajari warlock cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Warlock. \n \n#### Spell Slots \n \nTabel Warlock menunjukkan berapa spell slots yang kamu miliki. Tabel juga menunjukkan level dari slots itu; semua spell slotsmu adalah level yang sama. Untuk cast salah satu warlock spells level 1 atau lebih tinggi, kamu harus menghabiskan spell slot. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan short rest atau long rest. \n \nSebagai contoh, saat kamu level 5, kamu memiliki dua spell slot level 3. Untuk cast spell level 1 thunderwave, kamu harus menghabiskan salah satu slot itu, dan kamu mencapinya sebagai spell level 3. \n \n#### Spells Known of 1st Level and Higher \n \nDi level 1, kamu tahu dua spell level 1 sesuai pilihanmu dari warlock spell list. \n \nKolom Spells Known dari tabel Warlock menunjukkan saat kamu mempelajari lebih banyak warlock spells sesuai pilihanmu level 1 dan lebih tinggi. Spell yang kamu pilih harus pada level tidak lebih tinggi dari yang ditunjukkan di kolom Slot Level tabel untuk levelmu. Saat kamu mencapai level 6, misalnya, kamu mempelajari warlock spell baru, yang bisa level 1, 2, atau 3. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu warlock spells yang kamu ketahui dan menggantinya dengan spell lain dari warlock spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk warlock spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk warlock spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "Leather Armor",
           "items": [
             {
               "name": "Leather Armor",
@@ -11567,7 +11567,7 @@
           ]
         },
         {
-          "description": "Di level 1, kamu telah struck bargain dengan otherworldly being sesuai pilihanmu: the Archfey, the Fiend, atau the Great Old One, masing-masing didetailed di akhir deskripsi kelas. Pilihanmu memberikanmu features di level 1 dan lagi di level 6, 10, dan 14. \n \n\n \nArcane researchmu dan magic yang bestowed on you by patronmu telah memberikanmu facility dengan spells. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari warlock spell list. Kamu mempelajari warlock cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Warlock. \n \n#### Spell Slots \n \nTabel Warlock menunjukkan berapa spell slots yang kamu miliki. Tabel juga menunjukkan level dari slots itu; semua spell slotsmu adalah level yang sama. Untuk cast salah satu warlock spells level 1 atau lebih tinggi, kamu harus menghabiskan spell slot. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan short rest atau long rest. \n \nSebagai contoh, saat kamu level 5, kamu memiliki dua spell slot level 3. Untuk cast spell level 1 thunderwave, kamu harus menghabiskan salah satu slot itu, dan kamu mencapinya sebagai spell level 3. \n \n#### Spells Known of 1st Level and Higher \n \nDi level 1, kamu tahu dua spell level 1 sesuai pilihanmu dari warlock spell list. \n \nKolom Spells Known dari tabel Warlock menunjukkan saat kamu mempelajari lebih banyak warlock spells sesuai pilihanmu level 1 dan lebih tinggi. Spell yang kamu pilih harus pada level tidak lebih tinggi dari yang ditunjukkan di kolom Slot Level tabel untuk levelmu. Saat kamu mencapai level 6, misalnya, kamu mempelajari warlock spell baru, yang bisa level 1, 2, atau 3. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu warlock spells yang kamu ketahui dan menggantinya dengan spell lain dari warlock spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk warlock spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk warlock spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
           "items": [
             {
               "name": "Crossbow, light",
@@ -11582,7 +11582,7 @@
           ]
         },
         {
-          "description": "Di level 1, kamu telah struck bargain dengan otherworldly being sesuai pilihanmu: the Archfey, the Fiend, atau the Great Old One, masing-masing didetailed di akhir deskripsi kelas. Pilihanmu memberikanmu features di level 1 dan lagi di level 6, 10, dan 14. \n \n\n \nArcane researchmu dan magic yang bestowed on you by patronmu telah memberikanmu facility dengan spells. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari warlock spell list. Kamu mempelajari warlock cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Warlock. \n \n#### Spell Slots \n \nTabel Warlock menunjukkan berapa spell slots yang kamu miliki. Tabel juga menunjukkan level dari slots itu; semua spell slotsmu adalah level yang sama. Untuk cast salah satu warlock spells level 1 atau lebih tinggi, kamu harus menghabiskan spell slot. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan short rest atau long rest. \n \nSebagai contoh, saat kamu level 5, kamu memiliki dua spell slot level 3. Untuk cast spell level 1 thunderwave, kamu harus menghabiskan salah satu slot itu, dan kamu mencapinya sebagai spell level 3. \n \n#### Spells Known of 1st Level and Higher \n \nDi level 1, kamu tahu dua spell level 1 sesuai pilihanmu dari warlock spell list. \n \nKolom Spells Known dari tabel Warlock menunjukkan saat kamu mempelajari lebih banyak warlock spells sesuai pilihanmu level 1 dan lebih tinggi. Spell yang kamu pilih harus pada level tidak lebih tinggi dari yang ditunjukkan di kolom Slot Level tabel untuk levelmu. Saat kamu mencapai level 6, misalnya, kamu mempelajari warlock spell baru, yang bisa level 1, 2, atau 3. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu warlock spells yang kamu ketahui dan menggantinya dengan spell lain dari warlock spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk warlock spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk warlock spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "(a) a component pouch or (b) an arcane focus",
           "items": [
             {
               "name": "Component pouch",
@@ -11597,7 +11597,7 @@
           ]
         },
         {
-          "description": "Di level 1, kamu telah struck bargain dengan otherworldly being sesuai pilihanmu: the Archfey, the Fiend, atau the Great Old One, masing-masing didetailed di akhir deskripsi kelas. Pilihanmu memberikanmu features di level 1 dan lagi di level 6, 10, dan 14. \n \n\n \nArcane researchmu dan magic yang bestowed on you by patronmu telah memberikanmu facility dengan spells. \n \n#### Cantrips \n \nKamu tahu dua cantrips sesuai pilihanmu dari warlock spell list. Kamu mempelajari warlock cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Warlock. \n \n#### Spell Slots \n \nTabel Warlock menunjukkan berapa spell slots yang kamu miliki. Tabel juga menunjukkan level dari slots itu; semua spell slotsmu adalah level yang sama. Untuk cast salah satu warlock spells level 1 atau lebih tinggi, kamu harus menghabiskan spell slot. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan short rest atau long rest. \n \nSebagai contoh, saat kamu level 5, kamu memiliki dua spell slot level 3. Untuk cast spell level 1 thunderwave, kamu harus menghabiskan salah satu slot itu, dan kamu mencapinya sebagai spell level 3. \n \n#### Spells Known of 1st Level and Higher \n \nDi level 1, kamu tahu dua spell level 1 sesuai pilihanmu dari warlock spell list. \n \nKolom Spells Known dari tabel Warlock menunjukkan saat kamu mempelajari lebih banyak warlock spells sesuai pilihanmu level 1 dan lebih tinggi. Spell yang kamu pilih harus pada level tidak lebih tinggi dari yang ditunjukkan di kolom Slot Level tabel untuk levelmu. Saat kamu mencapai level 6, misalnya, kamu mempelajari warlock spell baru, yang bisa level 1, 2, atau 3. \n \nSelain itu, saat kamu mendapatkan level di kelas ini, kamu bisa memilih salah satu warlock spells yang kamu ketahui dan menggantinya dengan spell lain dari warlock spell list, yang juga harus pada level yang kamu miliki spell slots. \n \n#### Spellcasting Ability \n \nCharisma adalah spellcasting ability untuk warlock spellsmu, since the power of your magic relies on your ability to project your will into the world. Kamu menggunakan Charisma setiap kali spell mengacu pada spellcasting abilitymu. Selain itu, kamu menggunakan Charisma modifiermu saat menetapkan saving throw DC untuk warlock spell yang kamu cast dan saat membuat attack roll dengan itu. \n \n**Spell save D...",
+          "description": "(a) a scholar’s pack or (b) a dungeoneer’s pack",
           "items": [
             {
               "name": "Scholar's Pack",
@@ -11670,7 +11670,7 @@
           "features": [
             {
               "name": "Otherworldly Patron",
-              "description": "Di level 1, kamu telah struck bargain dengan otherworldly being sesuai pilihanmu, seperti the Fiend. Pilihanmu memberikanmu features di level 1 dan lagi di level 6, 10, dan 14.",
+              "description": "At 1st level, you have struck a bargain with an otherworldly being of your choice, such as the Fiend. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11681,7 +11681,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu telah struck bargain dengan otherworldly being sesuai pilihanmu, seperti the Fiend.",
+              "summary": "You have struck a bargain with an otherworldly being of your choice, such as the Fiend.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11695,7 +11695,7 @@
             },
             {
               "name": "Pact Magic",
-              "description": "Arcane researchmu dan magic yang bestowed on you by patronmu telah memberikanmu facility dengan spells.",
+              "description": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11706,7 +11706,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Arcane researchmu dan magic yang bestowed on you by patronmu telah memberikanmu facility dengan spells.",
+              "summary": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13156,7 +13156,7 @@
       "startingEquipment": [
         {
           "granted": true,
-          "description": "Sebagai student of arcane magic, kamu memiliki spellbook containing spells yang show first glimmerings dari true powermu. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari wizard spell list. Kamu mempelajari wizard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Wizard. \n \n#### Spellbook \n \nDi level 1, kamu memiliki spellbook containing six 1st-level wizard spells sesuai pilihanmu. Spellbookmu adalah repository dari wizard spells yang kamu ketahui, except cantripsmu, yang fixed in mind. \n \n> ### Your Spellbook \n> \n> Spells yang kamu tambahkan ke spellbookmu saat kamu mendapatkan levels reflect arcane research yang kamu conduct on your own, serta intellectual breakthroughs yang kamu have tentang nature of the multiverse. Kamu mungkin find other spells selama adventuresmu. Kamu bisa discover spell recorded on scroll dalam evil wizard's chest, sebagai contoh, atau dalam dusty tome dalam ancient library. \n> \n> **_Copying a Spell into the Book._** Saat kamu menemukan wizard spell level 1 atau lebih tinggi, kamu bisa menambahkannya ke spellbookmu jika itu pada spell level yang bisa kamu prepare dan jika kamu bisa spare the time untuk decipher dan copy it. \n> \n> Copying spell itu ke spellbookmu involves reproducing basic form dari spell, kemudian deciphering unique system of notation yang digunakan oleh wizard yang menuliskannya. Kamu harus practice spell sampai kamu memahami sounds atau gestures yang diperlukan, kemudian transcribing ke spellbookmu menggunakan notationmu sendiri. \n> \n> Untuk setiap level dari spell, process mengambil 2 hours dan costs 50 gp. Cost tersebut represents material components yang kamu expend saat kamu experiment dengan spell untuk master it, serta fine inks yang kamu butuhkan untuk record it. Setelah kamu menghabiskan waktu dan money ini, kamu bisa prepare spell seperti spells lainnya. \n> \n> **_Replacing the Book._** Kamu bisa copy spell dari spellbookmu sendiri ke another spellbook, asalkan spell tersebut ada di spellbookmu. Proses ini mengambil 2 hours dan costs 50 gp per level dari spell. \n \n\n \nDi level 1, kamu memulai dengan spellbook yang berisi enam 1st-level wizard spells sesuai pilihanmu. \n \n\n \nSaat kamu mencapai level yang memberikan Ability Score Improvement, kamu bisa mengganti salah satu wizard spells yang kamu ketahui dengan spell lain dari wizard spell list. \n \n\n \nMulai di level 2, kamu bisa regain beberapa magical energymu dengan studying spellbookmu. Once per day saat kamu menyelesaikan short rest, kamu bisa memilih expended spell slots untuk recover. Spell slots bisa memiliki combined level yang sama dengan atau kurang dari setengah wizard levelmu (rounded up), dan none dari slots bisa level 6 atau lebih tinggi.",
+          "description": "Spellbook",
           "items": [
             {
               "name": "Spellbook",
@@ -13165,7 +13165,7 @@
           ]
         },
         {
-          "description": "Sebagai student of arcane magic, kamu memiliki spellbook containing spells yang show first glimmerings dari true powermu. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari wizard spell list. Kamu mempelajari wizard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Wizard. \n \n#### Spellbook \n \nDi level 1, kamu memiliki spellbook containing six 1st-level wizard spells sesuai pilihanmu. Spellbookmu adalah repository dari wizard spells yang kamu ketahui, except cantripsmu, yang fixed in mind. \n \n> ### Your Spellbook \n> \n> Spells yang kamu tambahkan ke spellbookmu saat kamu mendapatkan levels reflect arcane research yang kamu conduct on your own, serta intellectual breakthroughs yang kamu have tentang nature of the multiverse. Kamu mungkin find other spells selama adventuresmu. Kamu bisa discover spell recorded on scroll dalam evil wizard's chest, sebagai contoh, atau dalam dusty tome dalam ancient library. \n> \n> **_Copying a Spell into the Book._** Saat kamu menemukan wizard spell level 1 atau lebih tinggi, kamu bisa menambahkannya ke spellbookmu jika itu pada spell level yang bisa kamu prepare dan jika kamu bisa spare the time untuk decipher dan copy it. \n> \n> Copying spell itu ke spellbookmu involves reproducing basic form dari spell, kemudian deciphering unique system of notation yang digunakan oleh wizard yang menuliskannya. Kamu harus practice spell sampai kamu memahami sounds atau gestures yang diperlukan, kemudian transcribing ke spellbookmu menggunakan notationmu sendiri. \n> \n> Untuk setiap level dari spell, process mengambil 2 hours dan costs 50 gp. Cost tersebut represents material components yang kamu expend saat kamu experiment dengan spell untuk master it, serta fine inks yang kamu butuhkan untuk record it. Setelah kamu menghabiskan waktu dan money ini, kamu bisa prepare spell seperti spells lainnya. \n> \n> **_Replacing the Book._** Kamu bisa copy spell dari spellbookmu sendiri ke another spellbook, asalkan spell tersebut ada di spellbookmu. Proses ini mengambil 2 hours dan costs 50 gp per level dari spell. \n \n\n \nDi level 1, kamu memulai dengan spellbook yang berisi enam 1st-level wizard spells sesuai pilihanmu. \n \n\n \nSaat kamu mencapai level yang memberikan Ability Score Improvement, kamu bisa mengganti salah satu wizard spells yang kamu ketahui dengan spell lain dari wizard spell list. \n \n\n \nMulai di level 2, kamu bisa regain beberapa magical energymu dengan studying spellbookmu. Once per day saat kamu menyelesaikan short rest, kamu bisa memilih expended spell slots untuk recover. Spell slots bisa memiliki combined level yang sama dengan atau kurang dari setengah wizard levelmu (rounded up), dan none dari slots bisa level 6 atau lebih tinggi.",
+          "description": "(a) a quarterstaff or (b) a dagger",
           "items": [
             {
               "name": "Quarterstaff",
@@ -13180,7 +13180,7 @@
           ]
         },
         {
-          "description": "Sebagai student of arcane magic, kamu memiliki spellbook containing spells yang show first glimmerings dari true powermu. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari wizard spell list. Kamu mempelajari wizard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Wizard. \n \n#### Spellbook \n \nDi level 1, kamu memiliki spellbook containing six 1st-level wizard spells sesuai pilihanmu. Spellbookmu adalah repository dari wizard spells yang kamu ketahui, except cantripsmu, yang fixed in mind. \n \n> ### Your Spellbook \n> \n> Spells yang kamu tambahkan ke spellbookmu saat kamu mendapatkan levels reflect arcane research yang kamu conduct on your own, serta intellectual breakthroughs yang kamu have tentang nature of the multiverse. Kamu mungkin find other spells selama adventuresmu. Kamu bisa discover spell recorded on scroll dalam evil wizard's chest, sebagai contoh, atau dalam dusty tome dalam ancient library. \n> \n> **_Copying a Spell into the Book._** Saat kamu menemukan wizard spell level 1 atau lebih tinggi, kamu bisa menambahkannya ke spellbookmu jika itu pada spell level yang bisa kamu prepare dan jika kamu bisa spare the time untuk decipher dan copy it. \n> \n> Copying spell itu ke spellbookmu involves reproducing basic form dari spell, kemudian deciphering unique system of notation yang digunakan oleh wizard yang menuliskannya. Kamu harus practice spell sampai kamu memahami sounds atau gestures yang diperlukan, kemudian transcribing ke spellbookmu menggunakan notationmu sendiri. \n> \n> Untuk setiap level dari spell, process mengambil 2 hours dan costs 50 gp. Cost tersebut represents material components yang kamu expend saat kamu experiment dengan spell untuk master it, serta fine inks yang kamu butuhkan untuk record it. Setelah kamu menghabiskan waktu dan money ini, kamu bisa prepare spell seperti spells lainnya. \n> \n> **_Replacing the Book._** Kamu bisa copy spell dari spellbookmu sendiri ke another spellbook, asalkan spell tersebut ada di spellbookmu. Proses ini mengambil 2 hours dan costs 50 gp per level dari spell. \n \n\n \nDi level 1, kamu memulai dengan spellbook yang berisi enam 1st-level wizard spells sesuai pilihanmu. \n \n\n \nSaat kamu mencapai level yang memberikan Ability Score Improvement, kamu bisa mengganti salah satu wizard spells yang kamu ketahui dengan spell lain dari wizard spell list. \n \n\n \nMulai di level 2, kamu bisa regain beberapa magical energymu dengan studying spellbookmu. Once per day saat kamu menyelesaikan short rest, kamu bisa memilih expended spell slots untuk recover. Spell slots bisa memiliki combined level yang sama dengan atau kurang dari setengah wizard levelmu (rounded up), dan none dari slots bisa level 6 atau lebih tinggi.",
+          "description": "(a) a component pouch or (b) an arcane focus",
           "items": [
             {
               "name": "Component pouch",
@@ -13195,7 +13195,7 @@
           ]
         },
         {
-          "description": "Sebagai student of arcane magic, kamu memiliki spellbook containing spells yang show first glimmerings dari true powermu. \n \n#### Cantrips \n \nDi level 1, kamu tahu tiga cantrips sesuai pilihanmu dari wizard spell list. Kamu mempelajari wizard cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Wizard. \n \n#### Spellbook \n \nDi level 1, kamu memiliki spellbook containing six 1st-level wizard spells sesuai pilihanmu. Spellbookmu adalah repository dari wizard spells yang kamu ketahui, except cantripsmu, yang fixed in mind. \n \n> ### Your Spellbook \n> \n> Spells yang kamu tambahkan ke spellbookmu saat kamu mendapatkan levels reflect arcane research yang kamu conduct on your own, serta intellectual breakthroughs yang kamu have tentang nature of the multiverse. Kamu mungkin find other spells selama adventuresmu. Kamu bisa discover spell recorded on scroll dalam evil wizard's chest, sebagai contoh, atau dalam dusty tome dalam ancient library. \n> \n> **_Copying a Spell into the Book._** Saat kamu menemukan wizard spell level 1 atau lebih tinggi, kamu bisa menambahkannya ke spellbookmu jika itu pada spell level yang bisa kamu prepare dan jika kamu bisa spare the time untuk decipher dan copy it. \n> \n> Copying spell itu ke spellbookmu involves reproducing basic form dari spell, kemudian deciphering unique system of notation yang digunakan oleh wizard yang menuliskannya. Kamu harus practice spell sampai kamu memahami sounds atau gestures yang diperlukan, kemudian transcribing ke spellbookmu menggunakan notationmu sendiri. \n> \n> Untuk setiap level dari spell, process mengambil 2 hours dan costs 50 gp. Cost tersebut represents material components yang kamu expend saat kamu experiment dengan spell untuk master it, serta fine inks yang kamu butuhkan untuk record it. Setelah kamu menghabiskan waktu dan money ini, kamu bisa prepare spell seperti spells lainnya. \n> \n> **_Replacing the Book._** Kamu bisa copy spell dari spellbookmu sendiri ke another spellbook, asalkan spell tersebut ada di spellbookmu. Proses ini mengambil 2 hours dan costs 50 gp per level dari spell. \n \n\n \nDi level 1, kamu memulai dengan spellbook yang berisi enam 1st-level wizard spells sesuai pilihanmu. \n \n\n \nSaat kamu mencapai level yang memberikan Ability Score Improvement, kamu bisa mengganti salah satu wizard spells yang kamu ketahui dengan spell lain dari wizard spell list. \n \n\n \nMulai di level 2, kamu bisa regain beberapa magical energymu dengan studying spellbookmu. Once per day saat kamu menyelesaikan short rest, kamu bisa memilih expended spell slots untuk recover. Spell slots bisa memiliki combined level yang sama dengan atau kurang dari setengah wizard levelmu (rounded up), dan none dari slots bisa level 6 atau lebih tinggi.",
+          "description": "(a) a scholar’s pack or (b) an explorer’s pack",
           "items": [
             {
               "name": "Scholar's Pack",
@@ -13271,7 +13271,7 @@
           "features": [
             {
               "name": "Spellcasting: Wizard",
-              "description": "Sebagai student of arcane magic, kamu memiliki spellbook containing spells yang show first glimmerings dari true powermu.",
+              "description": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13282,7 +13282,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Sebagai student of arcane magic, kamu memiliki spellbook containing spells yang show first glimmerings dari true powermu.",
+              "summary": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13296,7 +13296,7 @@
             },
             {
               "name": "Arcane Recovery",
-              "description": "Kamu telah mempelajari cara regain beberapa magical energymu dengan studying spellbookmu. Once per day saat kamu menyelesaikan short rest, kamu bisa memilih expended spell slots untuk recover. Spell slots bisa memiliki combined level yang sama dengan atau kurang dari setengah wizard levelmu (rounded up), dan none dari slots bisa level 6 atau lebih tinggi.\nSebagai contoh, jika kamu wizard level 4, kamu bisa recover sampai dua levels worth of spell slots. Kamu bisa recover either 2nd-level spell slot atau dua 1st-level spell slots.",
+              "description": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\n\nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Special",
@@ -13310,7 +13310,7 @@
               "effect": null,
               "onUse": "Recover expended spell slots with combined level up to half your Wizard level rounded up",
               "scaling": "Recovery pool grows as your Wizard level increases",
-              "summary": "Kamu telah mempelajari cara regain beberapa magical energymu dengan studying spellbookmu.",
+              "summary": "You have learned to regain some of your magical energy by studying your spellbook.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,

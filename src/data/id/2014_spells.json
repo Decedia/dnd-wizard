@@ -4914,12 +4914,12 @@
       ],
       "url": "/api/2014/spells/healing-word",
       "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+      "description": "",
       "higherLevel": "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st.",
       "castingTime": "1 bonus action",
       "source": "PHB",
-      "effectSummary": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier",
-      "fullDescription": "Using 1 bonus action, a creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs; When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st. The effect happens immediately and then ends.",
+      "effectSummary": "",
+      "fullDescription": "",
       "actionType": "Bonus Action",
       "onHit": null,
       "saveType": null,
@@ -11818,7 +11818,7 @@
       "castingTime": "1 Action",
       "range": "30 feet",
       "duration": "1 hour",
-      "description": "Untuk durasi, kamu atau satu makhluk bersedia yang dapat kamu lihat dalam jangkauan memiliki resistance terhadap psychic damage, dan memiliki Advantage pada Intelligence, Wisdom, dan Charisma saving throws.",
+      "description": "Untuk durasi, kamu atau satu makhluk bersedia yang dapat kamu lihat dalam jangkauan memiliki resistance terhadap psychic damage, serta Advantage pada Intelligence, Wisdom, dan Charisma saving throws.",
       "higherLevel": "",
       "components": {
         "verbal": true,
@@ -11837,7 +11837,7 @@
       ],
       "source": "TCE",
       "effectSummary": "Dapatkan resistance terhadap psychic untuk durasi",
-      "fullDescription": "Menggunakan 1 Action, untuk durasi, kamu atau satu makhluk bersedia yang dapat kamu lihat dalam jangkauan memiliki resistance terhadap psychic damage, dan memiliki Advantage pada Intelligence, Wisdom, dan Charisma saving throws. Untuk durasi, kamu atau satu makhluk bersedia yang dapat kamu lihat dalam jangkauan memiliki resistance terhadap psychic damage, dan memiliki Advantage pada Intelligence, Wisdom, dan Charisma saving throws; Saat kamu casting sihir ini menggunakan spell slot level 4 atau lebih tinggi, kamu dapat menargetkan satu makhluk tambahan untuk setiap slot level di atas 3rd; Makhluk harus dalam 30 kaki satu sama lain saat kamu menargetkan mereka. Efek berlangsung selama konsentrasi, hingga 1 jam.",
+      "fullDescription": "Menggunakan 1 Action, untuk durasi, kamu atau satu makhluk bersedia yang dapat kamu lihat dalam jangkauan memiliki resistance terhadap psychic damage, serta Advantage pada Intelligence, Wisdom, dan Charisma saving throws. Untuk durasi, kamu atau satu makhluk bersedia yang dapat kamu lihat dalam jangkauan memiliki resistance terhadap psychic damage, serta Advantage pada Intelligence, Wisdom, dan Charisma saving throws. Efek berlangsung selama 1 jam; kamu harus berkonsentrasi, dan efeknya berakhir jika konsentrasimu berakhir.",
       "actionType": "Action",
       "onHit": null,
       "saveType": null,
@@ -13059,7 +13059,7 @@
       "castingTime": "1 Bonus Action",
       "range": "Self",
       "duration": "Up to 1 minute",
-      "description": "Kamu memanggil roh-roh orang mati, yang terbang mengelilingimu untuk durasi. Roh-roh tersebut tidak berwujud dan tidak terluka. Sampai sihir berakhir, serangan apapun yang kamu buat memberikan extra damage dari jenis yang kamu pilih antara cold, necrotic, atau radiant.",
+      "description": "Kamu memanggil roh-roh orang mati, yang terbang mengelilingimu untuk durasi. Sihir ini tidak memiliki efek pada Undead. Sampai sihir berakhir, serangan apapun yang kamu buat memberikan 1d8 extra damage ketika kamu mengenai makhluk dalam jarak 10 kaki dari kamu. Damage ekstra ini adalah dari jenis yang ditentukan oleh jenis roh yang kamu panggil: radiant, necrotic, atau cold (pilihan kamu). Jika serangan tersebut mengenai makhluk Large atau lebih kecil, ia juga harus berhasil melakukan Wisdom saving throw atau menjadi frightened terhadap kamu sampai akhir giliran kamu berikutnya. Sebagai Bonus Action di giliran kamu, kamu dapat meningkatkan radius area spirit shroud sebesar 10 kaki. Radius maksimum adalah 30 kaki.",
       "higherLevel": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for every two slot levels above 3rd.",
       "components": {
         "verbal": true,
@@ -13076,8 +13076,8 @@
         "Wizard"
       ],
       "source": "TCE",
-      "effectSummary": "Sampai sihir berakhir, serangan apapun yang kamu buat memberikan extra damage dari jenis yang kamu pilih antara cold, necrotic, atau radiant",
-      "fullDescription": "Menggunakan 1 Bonus Action, sampai sihir berakhir, serangan apapun yang kamu buat memberikan extra damage dari jenis yang kamu pilih antara cold, necrotic, atau radiant. Kamu memanggil roh-roh orang mati, yang terbang mengelilingimu untuk durasi; Roh-roh tersebut tidak berwujud dan tidak terluka; Ketika kamu menyalakan sihir ini menggunakan spell slot level 4 atau lebih tinggi, damage meningkat sebesar 1d8 untuk setiap slot level di atas 3rd. Sampai sihir berakhir, serangan apapun yang kamu buat memberikan extra damage dari jenis yang kamu pilih antara cold, necrotic, atau radiant; kamu harus concentrate, dan efek berakhir jika concentrate kamu berakhir.",
+      "effectSummary": "Buat target frightened sampai dia menyelamatkan diri atau sihir berakhir",
+      "fullDescription": "Menggunakan 1 Bonus Action, jika serangan tersebut mengenai makhluk Large atau lebih kecil, ia juga harus berhasil melakukan Wisdom saving throw atau menjadi frightened terhadap kamu sampai akhir giliran kamu berikutnya. Sampai sihir berakhir, serangan apapun yang kamu buat memberikan 1d8 extra damage ketika kamu mengenai makhluk dalam jarak 10 kaki dari kamu; Sebagai Bonus Action di giliran kamu, kamu dapat meningkatkan radius area spirit shroud sebesar 10 kaki; Ketika kamu menyalakan sihir ini menggunakan spell slot level 4 atau lebih tinggi, damage meningkat sebesar 1d8 untuk setiap dua slot level di atas 3rd. Sampai sihir berakhir, serangan apapun yang kamu buat memberikan 1d8 extra damage ketika kamu mengenai makhluk dalam jarak 10 kaki dari kamu; kamu harus concentrate, dan efek berakhir jika concentrate kamu berakhir.",
       "actionType": "Bonus Action",
       "onHit": "Deal 1d8 extra damage",
       "saveType": null,
@@ -14899,7 +14899,7 @@
       "castingTime": "1 Action",
       "range": "90 feet",
       "duration": "Concentration, up to 1 minute",
-      "description": "Pilih satu makhluk yang kamu lihat dalam jangkauan, dan pilih salah satu tipe kerusakan berikut: acid, cold, fire, lightning, atau thunder. Target harus berhasil dalam saving throw Constitution atau terpengaruh sihir. Pertama kali setiap giliran target terpengaruh menerima kerusakan dari tipe yang dipilih, target menerima 1d6 kerusakan ekstra dari tipe itu.",
+      "description": "Choose one creature you can see within range, and choose one of the following damage types: acid, cold, fire, lightning, or thunder. The target must succeed on a Constitution saving throw or be affected by the spell. The first time each turn the affected target takes damage of the chosen type, the target takes an extra 1d6 damage of that type.",
       "higherLevel": "When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th.",
       "components": {
         "verbal": true,
@@ -14915,8 +14915,8 @@
         "Wizard"
       ],
       "source": "PHB",
-      "effectSummary": "Pertama kali setiap giliran target terpengaruh menerima kerusakan dari tipe yang dipilih, target menerima 1d6 kerusakan ekstra dari tipe itu",
-      "fullDescription": "Menggunakan 1 aksi, pilih satu makhluk yang kamu lihat dalam jangkauan, dan pilih salah satu tipe kerusakan berikut: acid, cold, fire, lightning, atau thunder. Pertama kali setiap giliran target terpengaruh menerima kerusakan dari tipe yang dipilih, target menerima 1d6 kerusakan ekstra dari tipe itu; Target harus berhasil dalam saving throw Constitution; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC-mu atau terpengaruh sihir; Ketika kamu menyalurkan sihir ini menggunakan spell slot tingkat 5 atau lebih tinggi, kamu bisa menarget satu makhluk tambahan untuk setiap tingkat slot di atas 4. Pertama kali setiap giliran target terpengaruh menerima kerusakan dari tipe yang dipilih, target menerima 1d6 kerusakan ekstra dari tipe itu; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir.",
+      "effectSummary": "The first time each turn the affected target takes damage of the chosen type, the target takes an extra 1d6 damage of that type",
+      "fullDescription": "Using 1 action, choose one creature you can see within range, and choose one of the following damage types: acid, cold, fire, lightning, or thunder. The first time each turn the affected target takes damage of the chosen type, the target takes an extra 1d6 damage of that type; The target must succeed on a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC or be affected by the spell; When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th. The first time each turn the affected target takes damage of the chosen type, the target takes an extra 1d6 damage of that type; you must concentrate, and the effect ends if your concentration ends.",
       "actionType": "Action",
       "onHit": null,
       "saveType": "constitution",
@@ -16054,12 +16054,7 @@
       "duration": "Up to 10 minutes",
       "concentration": true,
       "ritual": false,
-      "description": [
-        "Dim, greenish light spreads within a 30-foot-radius sphere centered on a point you choose within range. The light spreads around corners, and it lasts for the duration.",
-        "When a creature moves into the spell's area for the first time on a turn or ends its turn there, that creature must make a Constitution saving throw. On a failed save, it takes 4d10 radiant damage, and it becomes poisoned until the end of your next turn. On a successful save, the creature takes half as much damage and isn't poisoned.",
-        "A creature that ends its turn in the area also emits dim, greenish light in a 5-foot radius until the end of your next turn. While illuminated in this way, the creature sheds dim light in a 5-foot radius and has disadvantage on attack rolls and ability checks.",
-        "When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d10 for each slot level above 4th."
-      ],
+      "description": "",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -18689,10 +18684,7 @@
       "duration": "Up to 1 hour",
       "concentration": true,
       "ritual": false,
-      "description": [
-        "Your magic deepens a creature's understanding of its own talent. You touch one willing creature and give it expertise in one skill of its choice; until the spell ends, the creature doubles its proficiency bonus for any ability check it makes with that skill.",
-        "You must choose a creature with at least one skill proficiency. If the creature doesn't have any skill proficiencies, the spell fails."
-      ],
+      "description": "",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -21174,9 +21166,7 @@
       "duration": "Instantaneous",
       "concentration": false,
       "ritual": false,
-      "description": [
-        "The air quivers around up to five creatures of your choice that you can see within range. An unwilling creature must succeed on a Wisdom saving throw to resist this effect. You teleport each affected target to an unoccupied space that you can see within 120 feet of you. The destination you choose must be on the ground or on a floor, and it must be unoccupied."
-      ],
+      "description": "",
       "components": {
         "verbal": true,
         "somatic": false,
@@ -21212,14 +21202,7 @@
       "duration": "8 hours",
       "concentration": false,
       "ritual": false,
-      "description": [
-        "This spell snatches the soul of a humanoid as it dies and traps it inside the tiny cage you use for the material component. A stolen soul remains inside the cage until the spell ends or until you destroy the cage, which ends the spell. While you have a soul inside the cage, you can exploit it in any of the following ways:",
-        "• You can ask the soul a question. The soul answers in a language it knew in life, but can't lie or withhold information. It answers as concisely as possible and can't be compelled to answer at all if it doesn't want to.",
-        "• You can touch a creature and steal its life force. Make a melee spell attack against the target. On a hit, the target takes 8d8 necrotic damage, and you regain a number of hit points equal to half the damage dealt.",
-        "• You can touch a creature and drain its life force. Make a melee spell attack against the target. On a hit, the target takes 8d8 necrotic damage, and you can regain a number of hit points equal to half the damage dealt. The target dies if this damage reduces it to 0 hit points and it is a humanoid.",
-        "• You can use the soul to cast a spell of 6th level or lower that has a casting time of 1 action. The spell uses the soul as its material component, and the soul is consumed.",
-        "You can use no more than one of these effects per turn, and you can't use the same effect twice in a row."
-      ],
+      "description": "",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -22538,7 +22521,7 @@
       "castingTime": "1 Action",
       "range": "60 feet",
       "duration": "Instantaneous",
-      "description": "Kamu berbicara kata kekuatan yang menyebabkan gelombang sakit hewan menimpa satu makhluk yang bisa kamu lihat dalam range. Jika target memiliki 100 hit points atau kurang, ia mengalami sakit yang lumpuhkan. Jika tidak, spell ini tidak memiliki efek. Selama target terkena sakit yang lumpuhkan, speed apapun yang dimiliki tidak bisa lebih tinggi dari 10 feet. Target juga mendapat Disadvantage pada semua attack rolls, saving throws, dan ability checks, selain saving throw Constitution. Terakhir, jika target mencoba meng-cast spell, ia harus terlebih dahulu membuat saving throw Constitution terhadap spell save DC-mu, atau casting gagal dan spell terbuang. Target membuat saving throw Constitution pada akhir setiap turn-nya, mengakhiri efek pada keberhasilan.",
+      "description": "Kamu berbicara kata kekuatan yang menyebabkan gelombang sakit hewan menimpa satu makhluk yang bisa kamu lihat dalam range. Jika target memiliki 100 hit points atau kurang, ia mengalami sakit yang lumpuhkan. Jika tidak, spell ini tidak memiliki efek padanya.",
       "components": {
         "verbal": true,
         "somatic": false,
@@ -22553,8 +22536,8 @@
         "Wizard"
       ],
       "source": "PHB",
-      "effectSummary": "Beri makhluk keuntungan pada saving throws selama durasi",
-      "fullDescription": "Menggunakan 1 Action, kamu berbicara kata kekuatan yang menyebabkan gelombang sakit hewan menimpa satu makhluk yang bisa kamu lihat dalam range. Selama target terkena sakit yang lumpuhkan, speed apapun yang dimiliki tidak bisa lebih tinggi dari 10 feet; Target membuat saving throw Constitution; roll a d20, tambahkan modifier CON, dan bandingkan dengan spell save DC-mu pada akhir setiap turn-nya, mengakhiri efek pada keberhasilan. Efek terjadi segera dan kemudian berakhir.",
+      "effectSummary": "Ubah target: ia mengalami sakit yang lumpuhkan",
+      "fullDescription": "Menggunakan 1 Action, kamu berbicara kata kekuatan yang menyebabkan gelombang sakit hewan menimpa satu makhluk yang bisa kamu lihat dalam range. Jika target memiliki 100 hit points atau kurang, ia mengalami sakit yang lumpuhkan; Jika tidak, spell ini tidak memiliki efek padanya. Efek terjadi segera dan kemudian berakhir.",
       "actionType": "Action",
       "onHit": null,
       "saveType": null,
@@ -24719,7 +24702,7 @@
       "castingTime": "1 Action",
       "range": "90 feet",
       "duration": "Instantaneous",
-      "description": "Kamu melepaskan rahasia terburuk hingga sepuluh makhluk pilihanmu. Hanya makhluk yang memahami bahasa yang terpengaruh. Setiap target harus membuat saving throw Intelligence. Pada save yang gagal, target menerima 14d6 psychic damage dan menjadi Stunned.",
+      "description": "Kamu melepaskan kekuatan pikiranmu untuk meledak intelektual hingga sepuluh makhluk pilihanmu yang bisa kamu lihat dalam range. Makhluk yang memiliki Intelligence score 2 atau lebih rendah tidak terpengaruh. Setiap target harus membuat saving throw Intelligence. Pada save yang gagal, target menerima 14d6 psychic damage dan menjadi Stunned. Pada save yang berhasil, target menerima setengah damage dan tidak Stunned. Jika target dibunuh oleh damage ini, kepalanya meledak, asalkan ia punya kepala. Target yang Stunned bisa membuat saving throw Intelligence pada akhir setiap turn-nya, mengakhiri efek pada dirinya sendiri pada keberhasilan.",
       "higherLevel": "",
       "components": {
         "verbal": false,
@@ -24737,7 +24720,7 @@
       ],
       "source": "TCE",
       "effectSummary": "Berikan 14d6 psychic damage ke target dalam 90 ft",
-      "fullDescription": "Menggunakan 1 Action, kamu melepaskan rahasia terburuk hingga sepuluh makhluk pilihanmu. Pada save yang gagal, target menerima 14d6 psychic damage dan menjadi Stunned; Setiap target harus membuat saving throw Intelligence. Efek terjadi segera dan kemudian berakhir.",
+      "fullDescription": "Menggunakan 1 Action, target yang Stunned bisa membuat saving throw Intelligence pada akhir setiap turn-nya, mengakhiri efek pada dirinya sendiri pada keberhasilan. Pada save yang gagal, target menerima 14d6 psychic damage dan menjadi Stunned; Setiap target harus membuat saving throw Intelligence. Efek terjadi segera dan kemudian berakhir.",
       "actionType": "Action",
       "onHit": "Deal 14d6 psychic damage",
       "saveType": null,
@@ -25502,7 +25485,7 @@
       "updated_at": "2026-04-01T20:35:39.217Z",
       "url": "/api/2014/spells/protection-from-energy",
       "effectSummary": "Dapatkan resistance ke acid, cold, fire, lightning, thunder selama durasi",
-      "fullDescription": "Menggunakan 1 Action, selama durasi, makhluk willing yang kamu sentuh memiliki resistance ke satu tipe damage pilihanmu: acid, cold, fire, lightning, atau thunder. Selama durasi, makhluk willing yang kamu sentuh memiliki resistance ke satu tipe damage pilihanmu: acid, cold, fire, lightning, atau thunder. Efek berlangsung hingga 1 hour; kamu harus concentrate, dan efek berakhir jika concentration-mu berakhir.",
+      "fullDescription": "Menggunakan 1 Action, selama durasi, makhluk willing yang kamu sentuh memiliki resistance ke satu tipe damage pilihanmu: acid, cold, fire, lightning, atau thunder. Selama durasi, makhluk willing yang kamu sentuh memiliki resistance ke satu tipe damage pilihanmu: acid, cold, fire, lightning, atau thunder. Efek berlangsung concentrate, hingga 1 hour.",
       "actionType": "Action",
       "onHit": null,
       "saveType": null,

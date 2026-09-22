@@ -920,7 +920,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -930,7 +930,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1060,7 +1060,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1070,7 +1070,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1224,7 +1224,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1234,7 +1234,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1538,7 +1538,7 @@
         {
           "id": "season",
           "name": "Eladrin Season",
-          "description": "Pilih musammu. Ini menentukan efek kemampuan Fey Stepmu.",
+          "description": "Choose your season. This determines the effect of your Fey Step ability.",
           "type": "single",
           "options": [
             {
@@ -1578,7 +1578,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1588,7 +1588,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2011,7 +2011,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2021,7 +2021,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2079,7 +2079,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2089,7 +2089,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2195,7 +2195,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2205,7 +2205,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2403,7 +2403,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2413,7 +2413,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2494,7 +2494,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2504,7 +2504,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2618,7 +2618,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2628,7 +2628,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2733,7 +2733,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2743,7 +2743,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2848,7 +2848,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2858,7 +2858,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2963,7 +2963,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2973,7 +2973,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3078,7 +3078,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3088,7 +3088,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3193,7 +3193,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3203,7 +3203,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3308,7 +3308,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3318,7 +3318,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3424,7 +3424,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3434,7 +3434,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4845,7 +4845,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4855,7 +4855,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4937,7 +4937,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4947,7 +4947,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5029,7 +5029,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5039,7 +5039,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5121,7 +5121,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5131,7 +5131,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5213,7 +5213,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5223,7 +5223,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5305,7 +5305,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5315,7 +5315,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5397,7 +5397,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5407,7 +5407,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5489,7 +5489,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5499,7 +5499,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5581,7 +5581,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5591,7 +5591,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5673,7 +5673,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki visi superior dalam kondisi gelap dan cahaya redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa melihat warna dalam kegelapan, hanya nuansa abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5683,7 +5683,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bisa melihat dalam cahaya redup dalam jarak 60 kaki seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,

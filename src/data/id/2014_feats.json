@@ -191,7 +191,7 @@
     },
     {
       "name": "Bountiful Luck",
-      "description": "Saat sekutu yang bisa kamu lihat dalam jarak 30 kaki darimu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggunakan reactionmu untuk membiarkan sekutu itu menggulir ulang dadu. Sekutu itu harus menggunakan roll baru. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Orang-orangmu memiliki keberuntungan luar biasa yang telah kamu pelajari untuk berbagi dengan kawanmu, memberikanmu manfaat berikut:\n- Saat sekutu yang bisa kamu lihat dalam jarak 30 kaki darimu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggunakan reactionmu untuk membiarkan sekutu itu menggulir ulang dadu. Sekutu itu harus menggunakan roll baru.",
       "prerequisites": "Halfling",
       "source": "TCE",
       "featureType": null,
@@ -212,7 +212,7 @@
     },
     {
       "name": "Bountiful Luck",
-      "description": "Saat sekutu yang bisa kamu lihat dalam jarak 30 kaki darimu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggunakan reactionmu untuk membiarkan sekutu itu menggulir ulang dadu. Sekutu itu harus menggunakan roll baru. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Orang-orangmu memiliki keberuntungan luar biasa yang telah kamu pelajari untuk berbagi dengan kawanmu, memberikanmu manfaat berikut:\n- Saat sekutu yang bisa kamu lihat dalam jarak 30 kaki darimu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggunakan reactionmu untuk membiarkan sekutu itu menggulir ulang dadu. Sekutu itu harus menggunakan roll baru.",
       "prerequisites": "Halfling",
       "source": "MTF",
       "featureType": null,
@@ -233,7 +233,7 @@
     },
     {
       "name": "Bountiful Luck",
-      "description": "Saat sekutu yang bisa kamu lihat dalam jarak 30 kaki darimu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggunakan reactionmu untuk membiarkan sekutu itu menggulir ulang dadu. Sekutu itu harus menggunakan roll baru. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Orang-orangmu memiliki keberuntungan luar biasa yang telah kamu pelajari untuk berbagi dengan kawanmu, memberikanmu manfaat berikut:\n- Saat sekutu yang bisa kamu lihat dalam jarak 30 kaki darimu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggunakan reactionmu untuk membiarkan sekutu itu menggulir ulang dadu. Sekutu itu harus menggunakan roll baru.",
       "prerequisites": "Halfling",
       "source": "EGW",
       "featureType": null,
@@ -308,7 +308,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "+1 Wisdom (maks 20). Pelajari cantrip druidcraft. Cast speak with animals kapan saja tanpa menghabiskan spell slot.",
+      "summary": "Kamu memiliki companion hewan kecil",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -359,7 +359,7 @@
     },
     {
       "name": "Crusher",
-      "description": "Kamu terlatih dalam seni menghancurkan musuhmu, memberikanmu manfaat berikut: • Tingkatkan Strength atau Constitutionmu sebesar 1, maksimal 20. • Sekali per giliran, saat kamu memukul makhluk dengan serangan yang deals bludgeoning damage, kamu bisa memindahkannya 5 kaki ke ruang tak terisi, asalkan target tidak lebih besar dari satu ukuran darimu. • Saat kamu mendapatkan critical hit yang deals bludgeoning damage ke makhluk, attack roll terhadap target itu memiliki advantage sampai awal giliranmu berikutnya.",
+      "description": "Kamu terlatih dalam seni menghancurkan musuhmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitutionmu sebesar 1, maksimal 20.\n- Sekali per giliran, saat kamu memukul makhluk dengan serangan yang deals bludgeoning damage, kamu bisa memindahkannya 5 kaki ke ruang tak terisi, asalkan target tidak lebih besar dari satu ukuran darimu.\n- Saat kamu mendapatkan critical hit dengan serangan yang deals bludgeoning damage, speed target dipotong setengah sampai awal giliranmu berikutnya.",
       "prerequisites": null,
       "source": "TCE",
       "featureType": null,
@@ -380,7 +380,7 @@
     },
     {
       "name": "Crusher",
-      "description": "Kamu terlatih dalam seni menghancurkan musuhmu, memberikanmu manfaat berikut: • Tingkatkan Strength atau Constitutionmu sebesar 1, maksimal 20. • Sekali per giliran, saat kamu memukul makhluk dengan serangan yang deals bludgeoning damage, kamu bisa memindahkannya 5 kaki ke ruang tak terisi, asalkan target tidak lebih besar dari satu ukuran darimu. • Saat kamu mendapatkan critical hit yang deals bludgeoning damage ke makhluk, attack roll terhadap target itu memiliki advantage sampai awal giliranmu berikutnya.",
+      "description": "Kamu terlatih dalam seni menghancurkan musuhmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitutionmu sebesar 1, maksimal 20.\n- Sekali per giliran, saat kamu memukul makhluk dengan serangan yang deals bludgeoning damage, kamu bisa memindahkannya 5 kaki ke ruang tak terisi, asalkan target tidak lebih besar dari satu ukuran darimu.\n- Saat kamu mendapatkan critical hit dengan serangan yang deals bludgeoning damage, speed target dipotong setengah sampai awal giliranmu berikutnya.",
       "prerequisites": null,
       "source": "VRGR",
       "featureType": null,
@@ -527,7 +527,7 @@
     },
     {
       "name": "Dragon Fear",
-      "description": "Saat kamu membuat melee attack berhasil terhadap makhluk, kamu bisa mengganti damage dengan breath weapon. Saat kamu melakukannya, setiap makhluk sesuai pilihanmu dalam cone 30 kaki harus melakukan Wisdom saving throw (DC 8 + proficiency bonusmu + Charisma modifiermu). Jika gagal, makhluk itu takut kepadamu selama 1 menit. Jika berhasil, makhluk itu tidak takut. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Saat kamu melepaskan warisan naga, musuhmu gemetar ketakutan, memberikanmu manfaat berikut:\n- Tingkatkan Strength, Constitution, atau Charismamu sebesar 1, maksimal 20.\n- Alih-alih menghembuskan energi destruktif, kamu bisa menaikkan dan menghabiskan penggunaan Breath Weapon untuk memaksa setiap makhluk sesuai pilihanmu dalam jarak 30 kaki darimu melakukan Wisdom saving throw (DC 8 + proficiency bonusmu + Charisma modifiermu). Makhluk yang gagal takut kepadamu sampai akhir giliranmu berikutnya. Makhluk yang berhasil imun terhadap efek ini selama 24 jam.",
       "prerequisites": "Dragonborn",
       "source": "TCE",
       "featureType": null,
@@ -569,7 +569,7 @@
     },
     {
       "name": "Dragon Hide",
-      "description": "Kamu memunculkan sisik dan cakar yang mirip dengan leluhur naga. Selagi kamu tidak memakai armor, ACmu adalah 13 + Dexterity modifiermu. Kamu bisa menggunakan shield dan tetap mendapatkan manfaat ini. Selain itu, sisikmu memberikanmu resistance terhadap jenis damage yang terkait dengan draconic ancestrymu.",
+      "description": "Kamu memunculkan sisik dan cakar yang mirip dengan naga. Kamu mendapatkan manfaat berikut:\n- Tingkatkan Strength, Constitution, atau Charismamu sebesar 1, maksimal 20.\n- Sisikmu mengeras. Selagi kamu tidak memakai armor, ACmu adalah 13 + Dexterity modifiermu. Kamu bisa menggunakan shield dan tetap mendapatkan manfaat ini.\n- Kamu menumbuhkan cakar retraktabel dari ujung jari. Memperpanjang atau menarik cakar tidak memerlukan action. Cakar adalah senjata alami, yang bisa kamu gunakan untuk melakukan unarmed strike. Jika kamu memukul dengan mereka, kamu deal slashing damage sebesar 1d4 + Strength modifiermu, bukan bludgeoning damage normal untuk unarmed strike.",
       "prerequisites": "Dragonborn or Half-Dragon",
       "source": "TCE",
       "featureType": null,
@@ -611,7 +611,7 @@
     },
     {
       "name": "Drow High Magic",
-      "description": "Kamu mempelajari spell detect magic dan bisa mencapinya kapan saja, tanpa menghabiskan spell slot. Kamu juga mempelajari spell levitate dan dispel magic, yang masing-masing bisa kamu cast sekali tanpa menghabiskan spell slot. Kamu mendapatkan kembali kemampuan untuk cast kedua spell itu dengan cara ini saat kamu menyelesaikan long rest. Charisma adalah spellcasting ability untuk ketiga spell itu.",
+      "description": "Kamu mempelajari lebih banyak magic khas dark elf, memberikanmu manfaat berikut:\n- Kamu mempelajari spell detect magic dan bisa mencapinya kapan saja, tanpa menghabiskan spell slot.\n- Kamu mempelajari spell dispel magic dan levitate, yang masing-masing bisa kamu cast sekali tanpa menghabiskan spell slot. Kamu mendapatkan kembali kemampuan untuk cast spell-spell ini dengan cara ini saat kamu menyelesaikan long rest.\n- Charisma adalah spellcasting ability untuk spell-spell ini.",
       "prerequisites": "Elf (Drow)",
       "source": "TCE",
       "featureType": null,
@@ -632,7 +632,7 @@
     },
     {
       "name": "Drow High Magic",
-      "description": "Kamu mempelajari spell detect magic dan bisa mencapinya kapan saja, tanpa menghabiskan spell slot. Kamu juga mempelajari spell levitate dan dispel magic, yang masing-masing bisa kamu cast sekali tanpa menghabiskan spell slot. Kamu mendapatkan kembali kemampuan untuk cast kedua spell itu dengan cara ini saat kamu menyelesaikan long rest. Charisma adalah spellcasting ability untuk ketiga spell itu.",
+      "description": "Kamu mempelajari lebih banyak magic khas dark elf, memberikanmu manfaat berikut:\n- Kamu mempelajari spell detect magic dan bisa mencapinya kapan saja, tanpa menghabiskan spell slot.\n- Kamu mempelajari spell dispel magic dan levitate, yang masing-masing bisa kamu cast sekali tanpa menghabiskan spell slot. Kamu mendapatkan kembali kemampuan untuk cast spell-spell ini dengan cara ini saat kamu menyelesaikan long rest.\n- Charisma adalah spellcasting ability untuk spell-spell ini.",
       "prerequisites": "Elf (Drow)",
       "source": "MTF",
       "featureType": null,
@@ -653,7 +653,7 @@
     },
     {
       "name": "Drow High Magic",
-      "description": "Kamu mempelajari spell detect magic dan bisa mencapinya kapan saja, tanpa menghabiskan spell slot. Kamu juga mempelajari spell levitate dan dispel magic, yang masing-masing bisa kamu cast sekali tanpa menghabiskan spell slot. Kamu mendapatkan kembali kemampuan untuk cast kedua spell itu dengan cara ini saat kamu menyelesaikan long rest. Charisma adalah spellcasting ability untuk ketiga spell itu.",
+      "description": "Kamu mempelajari lebih banyak magic khas dark elf, memberikanmu manfaat berikut:\n- Kamu mempelajari spell detect magic dan bisa mencapinya kapan saja, tanpa menghabiskan spell slot.\n- Kamu mempelajari spell dispel magic dan levitate, yang masing-masing bisa kamu cast sekali tanpa menghabiskan spell slot. Kamu mendapatkan kembali kemampuan untuk cast spell-spell ini dengan cara ini saat kamu menyelesaikan long rest.\n- Charisma adalah spellcasting ability untuk spell-spell ini.",
       "prerequisites": "Elf (Drow)",
       "source": "EGW",
       "featureType": null,
@@ -758,7 +758,7 @@
     },
     {
       "name": "Dwarven Fortitude",
-      "description": "Saat kamu mengambil Dodge action di combat, kamu bisa menghabiskan satu Hit Die untuk menyembuhkan dirimu. Gulir dadunya, tambahkan Constitution modifiermu, dan regain sejumlah hit points sebesar totalnya (minimal 1).",
+      "description": "Darah leluhur dwarvmu mengalir kuat di dalam dirimu, memberikanmu manfaat berikut:\n- Tingkatkan Constitution scoremu sebesar 1, maksimal 20.\n- Saat kamu mengambil Dodge action di combat, kamu bisa menghabiskan satu Hit Die untuk menyembuhkan dirimu. Gulir dadunya, tambahkan Constitution modifiermu, dan regain sejumlah hit points sebesar totalnya (minimal 1).",
       "prerequisites": "Dwarf",
       "source": "TCE",
       "featureType": null,
@@ -779,7 +779,7 @@
     },
     {
       "name": "Dwarven Fortitude",
-      "description": "Saat kamu mengambil Dodge action di combat, kamu bisa menghabiskan satu Hit Die untuk menyembuhkan dirimu. Gulir dadunya, tambahkan Constitution modifiermu, dan regain sejumlah hit points sebesar totalnya (minimal 1).",
+      "description": "Darah leluhur dwarvmu mengalir kuat di dalam dirimu, memberikanmu manfaat berikut:\n- Tingkatkan Constitution scoremu sebesar 1, maksimal 20.\n- Saat kamu mengambil Dodge action di combat, kamu bisa menghabiskan satu Hit Die untuk menyembuhkan dirimu. Gulir dadunya, tambahkan Constitution modifiermu, dan regain sejumlah hit points sebesar totalnya (minimal 1).",
       "prerequisites": "Dwarf",
       "source": "MTF",
       "featureType": null,
@@ -800,7 +800,7 @@
     },
     {
       "name": "Dwarven Fortitude",
-      "description": "Saat kamu mengambil Dodge action di combat, kamu bisa menghabiskan satu Hit Die untuk menyembuhkan dirimu. Gulir dadunya, tambahkan Constitution modifiermu, dan regain sejumlah hit points sebesar totalnya (minimal 1).",
+      "description": "Darah leluhur dwarvmu mengalir kuat di dalam dirimu, memberikanmu manfaat berikut:\n- Tingkatkan Constitution scoremu sebesar 1, maksimal 20.\n- Saat kamu mengambil Dodge action di combat, kamu bisa menghabiskan satu Hit Die untuk menyembuhkan dirimu. Gulir dadunya, tambahkan Constitution modifiermu, dan regain sejumlah hit points sebesar totalnya (minimal 1).",
       "prerequisites": "Dwarf",
       "source": "EGW",
       "featureType": null,
@@ -854,7 +854,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "Pelajari satu Eldritch Invocation sesuai pilihanmu dari warlock class. Jika invocation memiliki prerequisite, kamu harus warlock yang memenuhinya.",
+      "summary": "Pelajari satu Eldritch Invocation",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -905,7 +905,7 @@
     },
     {
       "name": "Elven Accuracy",
-      "description": "Ketepatan elf adalah legendaris. Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
+      "description": "Ketepatan elf adalah legendaris, terutama dengan busur. Kamu memiliki aim uncanny dengan seranganmu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Intelligence, Wisdom, atau Charismamu sebesar 1, maksimal 20.\n- Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
       "prerequisites": "Elf or Half-Elf",
       "source": "TCE",
       "featureType": null,
@@ -926,7 +926,7 @@
     },
     {
       "name": "Elven Accuracy",
-      "description": "Ketepatan elf adalah legendaris. Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
+      "description": "Ketepatan elf adalah legendaris, terutama dengan busur. Kamu memiliki aim uncanny dengan seranganmu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Intelligence, Wisdom, atau Charismamu sebesar 1, maksimal 20.\n- Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
       "prerequisites": "Elf or Half-Elf",
       "source": "MTF",
       "featureType": null,
@@ -947,7 +947,7 @@
     },
     {
       "name": "Elven Accuracy",
-      "description": "Ketepatan elf adalah legendaris. Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
+      "description": "Ketepatan elf adalah legendaris, terutama dengan busur. Kamu memiliki aim uncanny dengan seranganmu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Intelligence, Wisdom, atau Charismamu sebesar 1, maksimal 20.\n- Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
       "prerequisites": "Elf or Half-Elf",
       "source": "EGW",
       "featureType": null,
@@ -1010,7 +1010,7 @@
     },
     {
       "name": "Fade Away",
-      "description": "Orang-orangmu cerdas, dengan bakat untuk magic ilusi. Kamu telah mempelajari trik ajaib untuk menghilang saat kamu menerima damage. Segera setelah menerima damage, kamu bisa menggunakan reactionmu untuk menjadi magically invisible sampai akhir giliranmu berikutnya atau sampai kamu menyerang, dealing damage, atau memaksa seseorang untuk melakukan saving throw. Setelah kamu menggunakan feat ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest atau long rest.",
+      "description": "Orang-orangmu memiliki bakat untuk menghilang, anugerah warisan yang melindungimu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity atau Intelligence sebesar 1, maksimal 20.\n- Segera setelah kamu menerima damage, kamu bisa menggunakan reactionmu untuk menjadi magically invisible dan teleport hingga 10 kaki ke ruang tak terisi yang bisa kamu lihat. Kamu tetap invisible sampai awal giliranmu berikutnya atau sampai kamu menyerang, dealing damage, atau memaksa seseorang untuk melakukan saving throw. Setelah kamu menggunakan feat ini, kamu tidak bisa melakukannya lagi sampai kamu menyelesaikan short rest atau long rest.",
       "prerequisites": "Gnome",
       "source": "TCE",
       "featureType": null,
@@ -1031,7 +1031,7 @@
     },
     {
       "name": "Fade Away",
-      "description": "Orang-orangmu cerdas, dengan bakat untuk magic ilusi. Kamu telah mempelajari trik ajaib untuk menghilang saat kamu menerima damage. Segera setelah menerima damage, kamu bisa menggunakan reactionmu untuk menjadi magically invisible sampai akhir giliranmu berikutnya atau sampai kamu menyerang, dealing damage, atau memaksa seseorang untuk melakukan saving throw. Setelah kamu menggunakan feat ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest atau long rest.",
+      "description": "Orang-orangmu memiliki bakat untuk menghilang, anugerah warisan yang melindungimu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity atau Intelligence sebesar 1, maksimal 20.\n- Segera setelah kamu menerima damage, kamu bisa menggunakan reactionmu untuk menjadi magically invisible dan teleport hingga 10 kaki ke ruang tak terisi yang bisa kamu lihat. Kamu tetap invisible sampai awal giliranmu berikutnya atau sampai kamu menyerang, dealing damage, atau memaksa seseorang untuk melakukan saving throw. Setelah kamu menggunakan feat ini, kamu tidak bisa melakukannya lagi sampai kamu menyelesaikan short rest atau long rest.",
       "prerequisites": "Gnome",
       "source": "MTF",
       "featureType": null,
@@ -1052,7 +1052,7 @@
     },
     {
       "name": "Fade Away",
-      "description": "Orang-orangmu cerdas, dengan bakat untuk magic ilusi. Kamu telah mempelajari trik ajaib untuk menghilang saat kamu menerima damage. Segera setelah menerima damage, kamu bisa menggunakan reactionmu untuk menjadi magically invisible sampai akhir giliranmu berikutnya atau sampai kamu menyerang, dealing damage, atau memaksa seseorang untuk melakukan saving throw. Setelah kamu menggunakan feat ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest atau long rest.",
+      "description": "Orang-orangmu memiliki bakat untuk menghilang, anugerah warisan yang melindungimu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity atau Intelligence sebesar 1, maksimal 20.\n- Segera setelah kamu menerima damage, kamu bisa menggunakan reactionmu untuk menjadi magically invisible dan teleport hingga 10 kaki ke ruang tak terisi yang bisa kamu lihat. Kamu tetap invisible sampai awal giliranmu berikutnya atau sampai kamu menyerang, dealing damage, atau memaksa seseorang untuk melakukan saving throw. Setelah kamu menggunakan feat ini, kamu tidak bisa melakukannya lagi sampai kamu menyelesaikan short rest atau long rest.",
       "prerequisites": "Gnome",
       "source": "EGW",
       "featureType": null,
@@ -1136,7 +1136,7 @@
     },
     {
       "name": "Fey Teleportation",
-      "description": "Studimu tentang lore high elf telah membuka kuasa fey yang sedikit elf lain miliki, kecuali kerabatmu di eladrin. Menggunakan fey ancestrymu, kamu bisa cast spell misty step kapan saja, tanpa menghabiskan spell slot atau material components. Kamu juga mempelajari salah satu bahasa berikut sesuai pilihanmu: Sylvan, Elvish, atau keduanya. Saat kamu menggunakan feat ini untuk cast misty step, kamu juga bisa berbicara password untuk teleport ke lokasi yang pernah kamu kunjungi sebelumnya. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Studimu tentang magic Feywild telah memungkinkanmu belajar cara teleport, memberikanmu manfaat berikut:\n- Tingkatkan Intelligence atau Charisma sebesar 1, maksimal 20.\n- Kamu mempelajari untuk berbicara, membaca, dan menulis Sylvan.\n- Kamu mempelajari spell misty step dan bisa mencapinya sekali tanpa spell slot. Kamu mendapatkan kembali kemampuan untuk mencapinya dengan cara ini saat kamu menyelesaikan short rest atau long rest. Intelligence adalah spellcasting ability untuk spell ini.",
       "prerequisites": "Elf",
       "source": "TCE",
       "featureType": null,
@@ -1157,7 +1157,7 @@
     },
     {
       "name": "Fey Teleportation",
-      "description": "Studimu tentang lore high elf telah membuka kuasa fey yang sedikit elf lain miliki, kecuali kerabatmu di eladrin. Menggunakan fey ancestrymu, kamu bisa cast spell misty step kapan saja, tanpa menghabiskan spell slot atau material components. Kamu juga mempelajari salah satu bahasa berikut sesuai pilihanmu: Sylvan, Elvish, atau keduanya. Saat kamu menggunakan feat ini untuk cast misty step, kamu juga bisa berbicara password untuk teleport ke lokasi yang pernah kamu kunjungi sebelumnya. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Studimu tentang magic Feywild telah memungkinkanmu belajar cara teleport, memberikanmu manfaat berikut:\n- Tingkatkan Intelligence atau Charisma sebesar 1, maksimal 20.\n- Kamu mempelajari untuk berbicara, membaca, dan menulis Sylvan.\n- Kamu mempelajari spell misty step dan bisa mencapinya sekali tanpa spell slot. Kamu mendapatkan kembali kemampuan untuk mencapinya dengan cara ini saat kamu menyelesaikan short rest atau long rest. Intelligence adalah spellcasting ability untuk spell ini.",
       "prerequisites": "Elf",
       "source": "MTF",
       "featureType": null,
@@ -1178,7 +1178,7 @@
     },
     {
       "name": "Fey Teleportation",
-      "description": "Studimu tentang lore high elf telah membuka kuasa fey yang sedikit elf lain miliki, kecuali kerabatmu di eladrin. Menggunakan fey ancestrymu, kamu bisa cast spell misty step kapan saja, tanpa menghabiskan spell slot atau material components. Kamu juga mempelajari salah satu bahasa berikut sesuai pilihanmu: Sylvan, Elvish, atau keduanya. Saat kamu menggunakan feat ini untuk cast misty step, kamu juga bisa berbicara password untuk teleport ke lokasi yang pernah kamu kunjungi sebelumnya. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Studimu tentang magic Feywild telah memungkinkanmu belajar cara teleport, memberikanmu manfaat berikut:\n- Tingkatkan Intelligence atau Charisma sebesar 1, maksimal 20.\n- Kamu mempelajari untuk berbicara, membaca, dan menulis Sylvan.\n- Kamu mempelajari spell misty step dan bisa mencapinya sekali tanpa spell slot. Kamu mendapatkan kembali kemampuan untuk mencapinya dengan cara ini saat kamu menyelesaikan short rest atau long rest. Intelligence adalah spellcasting ability untuk spell ini.",
       "prerequisites": "Elf",
       "source": "EGW",
       "featureType": null,
@@ -1283,7 +1283,7 @@
     },
     {
       "name": "Flames of Phlegethos",
-      "description": "Kamu mempelajari cara memanggil api dari Phlegethos. Saat kamu menggulir fire damage untuk spell yang kamu cast, kamu bisa menggulir ulang roll 1 apa saja di fire damage dice. Kamu harus menggunakan roll baru, bahkan jika itu juga 1. Selain itu, saat kamu cast spell yang deals fire damage, kamu bisa membuat api menyelimutimu sampai akhir giliranmu berikutnya. Api tidak menyakitimu atau milikmu, dan mereka menyinarkan cahaya terang dalam radius 30 kaki dan cahaya redup untuk tambahan 30 kaki. Selama api aktif, makhluk manapun dalam jarak 5 kaki darimu yang memukulmu dengan melee attack menerima 1d4 fire damage.",
+      "description": "Kamu mempelajari cara memanggil esensi api dari Lower Planes untuk meningkatkan spellmu, memberikanmu manfaat berikut:\n- Tingkatkan Intelligence atau Charisma sebesar 1, maksimal 20.\n- Saat kamu menggulir fire damage untuk spell yang kamu cast, kamu bisa menggulir ulang roll 1 apa saja di fire damage dice, tapi kamu harus menggunakan roll baru, bahkan jika itu juga 1.\n- Saat kamu cast spell yang deals fire damage, kamu bisa membuat api menyelimutimu sampai akhir giliranmu berikutnya. Api tidak menyakitimu atau milikmu, dan mereka menyinarkan cahaya terang dalam radius 30 kaki dan cahaya redup untuk tambahan 30 kaki. Selama api ada, makhluk manapun dalam jarak 5 kaki darimu yang memukulmu dengan melee attack menerima 1d4 fire damage.",
       "prerequisites": "Tiefling",
       "source": "TCE",
       "featureType": null,
@@ -1304,7 +1304,7 @@
     },
     {
       "name": "Flames of Phlegethos",
-      "description": "Kamu mempelajari cara memanggil api dari Phlegethos. Saat kamu menggulir fire damage untuk spell yang kamu cast, kamu bisa menggulir ulang roll 1 apa saja di fire damage dice. Kamu harus menggunakan roll baru, bahkan jika itu juga 1. Selain itu, saat kamu cast spell yang deals fire damage, kamu bisa membuat api menyelimutimu sampai akhir giliranmu berikutnya. Api tidak menyakitimu atau milikmu, dan mereka menyinarkan cahaya terang dalam radius 30 kaki dan cahaya redup untuk tambahan 30 kaki. Selama api aktif, makhluk manapun dalam jarak 5 kaki darimu yang memukulmu dengan melee attack menerima 1d4 fire damage.",
+      "description": "Kamu mempelajari cara memanggil esensi api dari Lower Planes untuk meningkatkan spellmu, memberikanmu manfaat berikut:\n- Tingkatkan Intelligence atau Charisma sebesar 1, maksimal 20.\n- Saat kamu menggulir fire damage untuk spell yang kamu cast, kamu bisa menggulir ulang roll 1 apa saja di fire damage dice, tapi kamu harus menggunakan roll baru, bahkan jika itu juga 1.\n- Saat kamu cast spell yang deals fire damage, kamu bisa membuat api menyelimutimu sampai akhir giliranmu berikutnya. Api tidak menyakitimu atau milikmu, dan mereka menyinarkan cahaya terang dalam radius 30 kaki dan cahaya redup untuk tambahan 30 kaki. Selama api ada, makhluk manapun dalam jarak 5 kaki darimu yang memukulmu dengan melee attack menerima 1d4 fire damage.",
       "prerequisites": "Tiefling",
       "source": "MTF",
       "featureType": null,
@@ -1325,7 +1325,7 @@
     },
     {
       "name": "Flames of Phlegethos",
-      "description": "Kamu mempelajari cara memanggil api dari Phlegethos. Saat kamu menggulir fire damage untuk spell yang kamu cast, kamu bisa menggulir ulang roll 1 apa saja di fire damage dice. Kamu harus menggunakan roll baru, bahkan jika itu juga 1. Selain itu, saat kamu cast spell yang deals fire damage, kamu bisa membuat api menyelimutimu sampai akhir giliranmu berikutnya. Api tidak menyakitimu atau milikmu, dan mereka menyinarkan cahaya terang dalam radius 30 kaki dan cahaya redup untuk tambahan 30 kaki. Selama api aktif, makhluk manapun dalam jarak 5 kaki darimu yang memukulmu dengan melee attack menerima 1d4 fire damage.",
+      "description": "Kamu mempelajari cara memanggil esensi api dari Lower Planes untuk meningkatkan spellmu, memberikanmu manfaat berikut:\n- Tingkatkan Intelligence atau Charisma sebesar 1, maksimal 20.\n- Saat kamu menggulir fire damage untuk spell yang kamu cast, kamu bisa menggulir ulang roll 1 apa saja di fire damage dice, tapi kamu harus menggunakan roll baru, bahkan jika itu juga 1.\n- Saat kamu cast spell yang deals fire damage, kamu bisa membuat api menyelimutimu sampai akhir giliranmu berikutnya. Api tidak menyakitimu atau milikmu, dan mereka menyinarkan cahaya terang dalam radius 30 kaki dan cahaya redup untuk tambahan 30 kaki. Selama api ada, makhluk manapun dalam jarak 5 kaki darimu yang memukulmu dengan melee attack menerima 1d4 fire damage.",
       "prerequisites": "Tiefling",
       "source": "EGW",
       "featureType": null,
@@ -1367,7 +1367,7 @@
     },
     {
       "name": "Gift of the Chromatic Dragon",
-      "description": "Kamu telah memunculkan gift kromatik dari naga, mendapatkan manfaat berikut:\n- Tingkatkan Strength, Constitution, atau Dexterity scoremu sebesar 1, maksimal 20.\n- Saat kamu dealing damage ke makhluk dengan spell yang deals acid, cold, fire, lightning, atau poison damage, kamu bisa menambahkan proficiency bonusmu ke roll damage itu.\n- Kamu mendapatkan resistance terhadap salah satu dari jenis damage berikut sesuai pilihanmu: acid, cold, fire, lightning, atau poison.",
+      "description": "Kamu telah memunculkan gift kromatik dari naga, mendapatkan manfaat berikut:\n- Tingkatkan Strength, Constitution, atau Dexterity sebesar 1, maksimal 20.\n- Saat kamu dealing damage ke makhluk dengan spell yang deals acid, cold, fire, lightning, atau poison damage, kamu bisa menambahkan proficiency bonusmu ke roll damage itu.\n- Kamu mendapatkan resistance terhadap salah satu dari jenis damage berikut sesuai pilihanmu: acid, cold, fire, lightning, atau poison.",
       "prerequisites": null,
       "source": "FTD",
       "featureType": null,
@@ -1409,7 +1409,7 @@
     },
     {
       "name": "Gift of the Dragon Champion",
-      "description": "Kamu telah memunculkan gift dari naga, mendapatkan manfaat berikut:\n- Tingkatkan Strength, Constitution, atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan bite attack yang deals 1d6 piercing damage plus Strength modifiermu. Kamu proficient dengan serangan ini.\n- Kamu mendapatkan resistance terhadap salah satu dari jenis damage berikut sesuai pilihanmu: acid, cold, fire, lightning, atau poison.\n- Kamu bisa menggunakan actionmu untuk menghembuskan energi destruktif dalam cone 15 kaki. Setiap makhluk di area itu harus melakukan Dexterity saving throw (DC 8 + proficiency bonusmu + Constitution modifiermu), menerima 2d6 damage jenis yang dipilih jika gagal, atau setengahnya jika berhasil. Damage meningkat menjadi 3d6 di level 6, 4d6 di level 11, dan 5d6 di level 16.",
+      "description": "Kamu telah memunculkan gift dari naga, mendapatkan manfaat berikut:\n- Tingkatkan Strength, Constitution, atau Dexterity sebesar 1, maksimal 20.\n- Kamu mendapatkan bite attack yang deals 1d6 piercing damage plus Strength modifiermu. Kamu proficient dengan serangan ini.\n- Kamu mendapatkan resistance terhadap salah satu dari jenis damage berikut sesuai pilihanmu: acid, cold, fire, lightning, atau poison.\n- Kamu bisa menggunakan actionmu untuk menghembuskan energi destruktif dalam cone 15 kaki. Setiap makhluk di area itu harus melakukan Dexterity saving throw (DC 8 + proficiency bonusmu + Constitution modifiermu), menerima 2d6 damage jenis yang dipilih jika gagal, atau setengahnya jika berhasil. Damage meningkat menjadi 3d6 di level 6, 4d6 di level 11, dan 5d6 di level 16.",
       "prerequisites": null,
       "source": "FTD",
       "featureType": null,
@@ -1421,7 +1421,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "+1 Strength, Constitution, atau Dexterity (maks 20). Dapatkan bite attack (1d6 + STR modifier). Dapatkan resistance terhadap satu jenis damage sesuai pilihan: acid, cold, fire, lightning, atau poison.",
+      "summary": "Dapatkan draconic ancestry dan breath weapon",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -1451,7 +1451,7 @@
     },
     {
       "name": "Gift of the Metallic Dragon",
-      "description": "Kamu telah memunculkan gift dari naga, mendapatkan manfaat berikut:\n- Tingkatkan Charisma, Intelligence, atau Wisdom scoremu sebesar 1, maksimal 20.\n- Kamu mempelajari spell healing word dan bisa mencapinya di level terendahnya tanpa menghabiskan spell slot. Setelah kamu mencapinya dengan cara ini, kamu tidak bisa melakukannya lagi sampai kamu menyelesaikan long rest.\n- Kamu bisa menggunakan actionmu untuk membuat cone energi penyembuh sejauh 15 kaki. Setiap makhluk di area itu sesuai pilihanmu regain hit points sebesar 1d6 + Constitution modifiermu. Penyembuhan meningkat menjadi 2d6 di level 6, 3d6 di level 11, dan 4d6 di level 16.",
+      "description": "Kamu telah memunculkan gift dari naga, mendapatkan manfaat berikut:\n- Tingkatkan Charisma, Intelligence, atau Wisdom sebesar 1, maksimal 20.\n- Kamu mempelajari spell healing word dan bisa mencapinya di level terendahnya tanpa menghabiskan spell slot. Setelah kamu mencapinya dengan cara ini, kamu tidak bisa melakukannya lagi sampai kamu menyelesaikan long rest.\n- Kamu bisa menggunakan actionmu untuk membuat cone energi penyembuh sejauh 15 kaki. Setiap makhluk di area itu sesuai pilihanmu regain hit points sebesar 1d6 + Constitution modifiermu. Penyembuhan meningkat menjadi 2d6 di level 6, 3d6 di level 11, dan 4d6 di level 16.",
       "prerequisites": null,
       "source": "FTD",
       "featureType": null,
@@ -1568,7 +1568,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "+1 Strength (maks 20). Dapatkan proficiency dengan heavy armor.",
+      "summary": "Proficiency dengan heavy armor; +1 AC",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -1589,7 +1589,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "+1 Strength (maks 20). Dapatkan proficiency dengan heavy armor.",
+      "summary": "Proficiency dengan heavy armor; +1 AC",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -1640,7 +1640,7 @@
     },
     {
       "name": "Infernal Constitution",
-      "description": "Darah fiend mengalir kuat di dalam dirimu, membuka ketahanan yang mirip dengan yang dimiliki beberapa fiends. Kamu mendapatkan manfaat berikut: • Kamu memiliki resistance terhadap cold dan poison damage. • Kamu memiliki advantage pada saving throw terhadap being poisoned. • Kamu tidak bisa diracun.",
+      "description": "Api Lower Planes telah menempatkan ketahananmu, memberikanmu manfaat berikut:\n- Tingkatkan Constitution sebesar 1, maksimal 20.\n- Kamu memiliki resistance terhadap cold dan poison damage.\n- Kamu memiliki advantage pada saving throw terhadap being poisoned.",
       "prerequisites": "Tiefling",
       "source": "TCE",
       "featureType": null,
@@ -1661,7 +1661,7 @@
     },
     {
       "name": "Infernal Constitution",
-      "description": "Darah fiend mengalir kuat di dalam dirimu, membuka ketahanan yang mirip dengan yang dimiliki beberapa fiends. Kamu mendapatkan manfaat berikut: • Kamu memiliki resistance terhadap cold dan poison damage. • Kamu memiliki advantage pada saving throw terhadap being poisoned. • Kamu tidak bisa diracun.",
+      "description": "Api Lower Planes telah menempatkan ketahananmu, memberikanmu manfaat berikut:\n- Tingkatkan Constitution sebesar 1, maksimal 20.\n- Kamu memiliki resistance terhadap cold dan poison damage.\n- Kamu memiliki advantage pada saving throw terhadap being poisoned.",
       "prerequisites": "Tiefling",
       "source": "MTF",
       "featureType": null,
@@ -1682,7 +1682,7 @@
     },
     {
       "name": "Infernal Constitution",
-      "description": "Darah fiend mengalir kuat di dalam dirimu, membuka ketahanan yang mirip dengan yang dimiliki beberapa fiends. Kamu mendapatkan manfaat berikut: • Kamu memiliki resistance terhadap cold dan poison damage. • Kamu memiliki advantage pada saving throw terhadap being poisoned. • Kamu tidak bisa diracun.",
+      "description": "Api Lower Planes telah menempatkan ketahananmu, memberikanmu manfaat berikut:\n- Tingkatkan Constitution sebesar 1, maksimal 20.\n- Kamu memiliki resistance terhadap cold dan poison damage.\n- Kamu memiliki advantage pada saving throw terhadap being poisoned.",
       "prerequisites": "Tiefling",
       "source": "EGW",
       "featureType": null,
@@ -1766,7 +1766,7 @@
     },
     {
       "name": "Lightly Armored",
-      "description": "Kamu telah dilatih untuk menguasai penggunaan light armor, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan light armor.",
+      "description": "Kamu telah dilatih untuk mempertahankan dirimu tanpa armor, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan light armor.",
       "prerequisites": null,
       "source": "TCE",
       "featureType": null,
@@ -1778,7 +1778,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "+1 Strength atau Dexterity (maks 20). Dapatkan proficiency dengan light armor.",
+      "summary": "Proficiency dengan light armor",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -1787,7 +1787,7 @@
     },
     {
       "name": "Lightly Armored",
-      "description": "Kamu telah dilatih untuk menguasai penggunaan light armor, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan light armor.",
+      "description": "Kamu telah dilatih untuk mempertahankan dirimu tanpa armor, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan light armor.",
       "prerequisites": null,
       "source": "VRGR",
       "featureType": null,
@@ -1799,7 +1799,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "+1 Strength atau Dexterity (maks 20). Dapatkan proficiency dengan light armor.",
+      "summary": "Proficiency dengan light armor",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -1938,7 +1938,7 @@
     },
     {
       "name": "Medium Armor Master",
-      "description": "Kamu telah berlatih bergerak dalam medium armor untuk mendapatkan manfaat berikut:\n- Memakai medium armor tidak mengenakan disadvantage pada Dexterity (Stealth) checkmu.\n- Saat kamu memakai medium armor, kamu bisa menambahkan 3, bukan 2, ke ACmu dari Dexterity modifiermu.",
+      "description": "Kamu telah berlatih bergerak dalam medium armor untuk mendapatkan manfaat penuh dari perlindungannya, mendapatkan manfaat berikut:\n- Memakai medium armor tidak mengenakan disadvantage pada Dexterity (Stealth) checkmu.\n- Saat kamu memakai medium armor, kamu bisa menambahkan 3, bukan 2, ke Armor Class jika Dexteritymu 16 atau lebih tinggi.",
       "prerequisites": "Proficiency with medium armor",
       "source": "TCE",
       "featureType": null,
@@ -1950,7 +1950,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "Memakai medium armor tidak lagi mengenakan disadvantage pada Dexterity (Stealth) check. Saat memakai medium armor, tambahkan 3 (bukan 2) ke ACmu dari Dexterity modifiermu.",
+      "summary": "Tidak ada disadvantage pada stealth dalam medium armor",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -1959,7 +1959,7 @@
     },
     {
       "name": "Medium Armor Master",
-      "description": "Kamu telah berlatih bergerak dalam medium armor untuk mendapatkan manfaat berikut:\n- Memakai medium armor tidak mengenakan disadvantage pada Dexterity (Stealth) checkmu.\n- Saat kamu memakai medium armor, kamu bisa menambahkan 3, bukan 2, ke ACmu dari Dexterity modifiermu.",
+      "description": "Kamu telah berlatih bergerak dalam medium armor untuk mendapatkan manfaat penuh dari perlindungannya, mendapatkan manfaat berikut:\n- Memakai medium armor tidak mengenakan disadvantage pada Dexterity (Stealth) checkmu.\n- Saat kamu memakai medium armor, kamu bisa menambahkan 3, bukan 2, ke Armor Class jika Dexteritymu 16 atau lebih tinggi.",
       "prerequisites": "Proficiency with medium armor",
       "source": "VRGR",
       "featureType": null,
@@ -1971,7 +1971,7 @@
       "effect": null,
       "onUse": null,
       "scaling": null,
-      "summary": "Memakai medium armor tidak lagi mengenakan disadvantage pada Dexterity (Stealth) check. Saat memakai medium armor, tambahkan 3 (bukan 2) ke ACmu dari Dexterity modifiermu.",
+      "summary": "Tidak ada disadvantage pada stealth dalam medium armor",
       "grantsSpells": false,
       "grantsAttack": false,
       "grantsSkills": false,
@@ -2064,7 +2064,7 @@
     },
     {
       "name": "Moderately Armored",
-      "description": "Kamu telah dilatih untuk menguasai penggunaan medium armor dan shields, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan medium armor dan shields.",
+      "description": "Kamu telah dilatih untuk menguasai penggunaan medium armor dan shields, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan medium armor dan shields.",
       "prerequisites": "Proficiency with light armor",
       "source": "TCE",
       "featureType": null,
@@ -2085,7 +2085,7 @@
     },
     {
       "name": "Moderately Armored",
-      "description": "Kamu telah dilatih untuk menguasai penggunaan medium armor dan shields, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan medium armor dan shields.",
+      "description": "Kamu telah dilatih untuk menguasai penggunaan medium armor dan shields, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan medium armor dan shields.",
       "prerequisites": "Proficiency with light armor",
       "source": "VRGR",
       "featureType": null,
@@ -2169,7 +2169,7 @@
     },
     {
       "name": "Orcish Fury",
-      "description": "Kemarahanmu membakar tanpa lelah. Kamu mendapatkan manfaat berikut: • Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest atau long rest. • Saat kamu mendapatkan critical hit dengan melee weapon, kamu bisa memperlakukan 1 atau 2 di damage die sebagai angka tertinggi di dadu itu.",
+      "description": "Kemarahanmu membakar tanpa lelah, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitution sebesar 1, maksimal 20.\n- Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu memulai short rest atau long rest.\n- Saat kamu menggunakan trait Relentless Endurance, kamu juga bisa membuat melee attack sebagai reaction.",
       "prerequisites": "Half-Orc or Orc",
       "source": "TCE",
       "featureType": null,
@@ -2190,7 +2190,7 @@
     },
     {
       "name": "Orcish Fury",
-      "description": "Kemarahanmu membakar tanpa lelah. Kamu mendapatkan manfaat berikut: • Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest atau long rest. • Saat kamu mendapatkan critical hit dengan melee weapon, kamu bisa memperlakukan 1 atau 2 di damage die sebagai angka tertinggi di dadu itu.",
+      "description": "Kemarahanmu membakar tanpa lelah, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitution sebesar 1, maksimal 20.\n- Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu memulai short rest atau long rest.\n- Saat kamu menggunakan trait Relentless Endurance, kamu juga bisa membuat melee attack sebagai reaction.",
       "prerequisites": "Half-Orc or Orc",
       "source": "MTF",
       "featureType": null,
@@ -2211,7 +2211,7 @@
     },
     {
       "name": "Orcish Fury",
-      "description": "Kemarahanmu membakar tanpa lelah. Kamu mendapatkan manfaat berikut: • Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest atau long rest. • Saat kamu mendapatkan critical hit dengan melee weapon, kamu bisa memperlakukan 1 atau 2 di damage die sebagai angka tertinggi di dadu itu.",
+      "description": "Kemarahanmu membakar tanpa lelah, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitution sebesar 1, maksimal 20.\n- Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu memulai short rest atau long rest.\n- Saat kamu menggunakan trait Relentless Endurance, kamu juga bisa membuat melee attack sebagai reaction.",
       "prerequisites": "Half-Orc or Orc",
       "source": "EGW",
       "featureType": null,
@@ -2316,7 +2316,7 @@
     },
     {
       "name": "Prodigy",
-      "description": "Kamu memiliki bakat untuk mempelajari hal baru. Kamu mendapatkan manfaat berikut: • Kamu mendapatkan satu skill proficiency sesuai pilihanmu, satu tool proficiency sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu. • Pilih satu skill yang kamu miliki proficiency. Kamu mendapatkan expertise dengan skill itu, yang berarti proficiency bonusmu digandakan untuk ability check apapun yang kamu lakukan dengannya. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus untuk itu.",
+      "description": "Kamu memiliki bakat untuk mempelajari hal baru, memberikanmu manfaat berikut:\n- Kamu mendapatkan proficiency dengan satu skill sesuai pilihanmu, satu tool sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu.\n- Kamu mendapatkan expertise dengan satu skill sesuai pilihanmu yang sudah kamu proficient. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus.",
       "prerequisites": "Half-Elf or Human",
       "source": "TCE",
       "featureType": null,
@@ -2337,7 +2337,7 @@
     },
     {
       "name": "Prodigy",
-      "description": "Kamu memiliki bakat untuk mempelajari hal baru. Kamu mendapatkan manfaat berikut: • Kamu mendapatkan satu skill proficiency sesuai pilihanmu, satu tool proficiency sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu. • Pilih satu skill yang kamu miliki proficiency. Kamu mendapatkan expertise dengan skill itu, yang berarti proficiency bonusmu digandakan untuk ability check apapun yang kamu lakukan dengannya. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus untuk itu.",
+      "description": "Kamu memiliki bakat untuk mempelajari hal baru, memberikanmu manfaat berikut:\n- Kamu mendapatkan proficiency dengan satu skill sesuai pilihanmu, satu tool sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu.\n- Kamu mendapatkan expertise dengan satu skill sesuai pilihanmu yang sudah kamu proficient. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus.",
       "prerequisites": "Half-Elf or Human",
       "source": "MTF",
       "featureType": null,
@@ -2358,7 +2358,7 @@
     },
     {
       "name": "Prodigy",
-      "description": "Kamu memiliki bakat untuk mempelajari hal baru. Kamu mendapatkan manfaat berikut: • Kamu mendapatkan satu skill proficiency sesuai pilihanmu, satu tool proficiency sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu. • Pilih satu skill yang kamu miliki proficiency. Kamu mendapatkan expertise dengan skill itu, yang berarti proficiency bonusmu digandakan untuk ability check apapun yang kamu lakukan dengannya. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus untuk itu.",
+      "description": "Kamu memiliki bakat untuk mempelajari hal baru, memberikanmu manfaat berikut:\n- Kamu mendapatkan proficiency dengan satu skill sesuai pilihanmu, satu tool sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu.\n- Kamu mendapatkan expertise dengan satu skill sesuai pilihanmu yang sudah kamu proficient. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus.",
       "prerequisites": "Half-Elf or Human",
       "source": "EGW",
       "featureType": null,
@@ -2463,7 +2463,7 @@
     },
     {
       "name": "Second Chance",
-      "description": "Fortuna berpihak padamu saat kamu tidak mengantisipasinya. Saat kamu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggulir ulang dadu. Kamu harus menggunakan roll baru, bahkan jika itu juga 1. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Fortuna berpihak padamu saat kamu bertarung, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Constitution, atau Charisma sebesar 1, maksimal 20.\n- Saat makhluk yang bisa kamu lihat memukulmu dengan attack roll, kamu bisa menggunakan reactionmu untuk memaksa makhluk itu menggulir ulang. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu roll initiative di awal combat atau sampai kamu menyelesaikan short rest atau long rest.",
       "prerequisites": "Halfling",
       "source": "TCE",
       "featureType": null,
@@ -2484,7 +2484,7 @@
     },
     {
       "name": "Second Chance",
-      "description": "Fortuna berpihak padamu saat kamu tidak mengantisipasinya. Saat kamu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggulir ulang dadu. Kamu harus menggunakan roll baru, bahkan jika itu juga 1. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Fortuna berpihak padamu saat kamu bertarung, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Constitution, atau Charisma sebesar 1, maksimal 20.\n- Saat makhluk yang bisa kamu lihat memukulmu dengan attack roll, kamu bisa menggunakan reactionmu untuk memaksa makhluk itu menggulir ulang. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu roll initiative di awal combat atau sampai kamu menyelesaikan short rest atau long rest.",
       "prerequisites": "Halfling",
       "source": "MTF",
       "featureType": null,
@@ -2505,7 +2505,7 @@
     },
     {
       "name": "Second Chance",
-      "description": "Fortuna berpihak padamu saat kamu tidak mengantisipasinya. Saat kamu menggulir 1 di d20 untuk attack roll, ability check, atau saving throw, kamu bisa menggulir ulang dadu. Kamu harus menggunakan roll baru, bahkan jika itu juga 1. Kamu bisa menggunakan fitur ini sebanyak proficiency bonusmu, dan kamu mendapatkan kembali semua penggunaan saat kamu menyelesaikan long rest.",
+      "description": "Fortuna berpihak padamu saat kamu bertarung, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Constitution, atau Charisma sebesar 1, maksimal 20.\n- Saat makhluk yang bisa kamu lihat memukulmu dengan attack roll, kamu bisa menggunakan reactionmu untuk memaksa makhluk itu menggulir ulang. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu roll initiative di awal combat atau sampai kamu menyelesaikan short rest atau long rest.",
       "prerequisites": "Halfling",
       "source": "EGW",
       "featureType": null,
@@ -2610,7 +2610,7 @@
     },
     {
       "name": "Shield Master",
-      "description": "Kamu menggunakan shields tidak hanya untuk perlindungan, tetapi juga untuk ofensif. Kamu mendapatkan manfaat berikut:\n- Jika kamu mengambil Attack action di giliranmu, kamu bisa menggunakan bonus action untuk mencoba shove makhluk dalam jarak 5 kaki darimu dengan shieldmu.\n- Jika kamu tidak incapacitated, kamu bisa menambahkan shield's AC bonus ke Dexterity saving throw apapun yang kamu buat terhadap spell atau efek berbahaya lain yang hanya menargetkan kamu.\n- Jika kamu diekspos ke efek yang memungkinkanmu membuat Dexterity saving throw untuk mengambil hanya setengah damage, kamu bisa menggunakan reactionmu untuk tidak menerima damage jika kamu berhasil pada saving throw, menempatkan shield antara dirimu dan sumber efek.",
+      "description": "Kamu menggunakan shields tidak hanya untuk perlindungan tetapi juga untuk ofensif. Kamu mendapatkan manfaat berikut selagi kamu mengayun shield:\n- Jika kamu mengambil Attack action di giliranmu, kamu bisa menggunakan bonus action untuk mencoba shove makhluk dalam jarak 5 kaki darimu dengan shieldmu.\n- Jika kamu tidak incapacitated, kamu bisa menambahkan shield's AC bonus ke Dexterity saving throw apapun yang kamu buat terhadap spell atau efek berbahaya lain yang hanya menargetkan kamu.\n- Jika kamu diekspos ke efek yang memungkinkanmu membuat Dexterity saving throw untuk mengambil hanya setengah damage, kamu bisa menggunakan reactionmu untuk tidak menerima damage jika kamu berhasil pada saving throw, menempatkan shield antara dirimu dan sumber efek.",
       "prerequisites": null,
       "source": "TCE",
       "featureType": null,
@@ -2631,7 +2631,7 @@
     },
     {
       "name": "Shield Master",
-      "description": "Kamu menggunakan shields tidak hanya untuk perlindungan, tetapi juga untuk ofensif. Kamu mendapatkan manfaat berikut:\n- Jika kamu mengambil Attack action di giliranmu, kamu bisa menggunakan bonus action untuk mencoba shove makhluk dalam jarak 5 kaki darimu dengan shieldmu.\n- Jika kamu tidak incapacitated, kamu bisa menambahkan shield's AC bonus ke Dexterity saving throw apapun yang kamu buat terhadap spell atau efek berbahaya lain yang hanya menargetkan kamu.\n- Jika kamu diekspos ke efek yang memungkinkanmu membuat Dexterity saving throw untuk mengambil hanya setengah damage, kamu bisa menggunakan reactionmu untuk tidak menerima damage jika kamu berhasil pada saving throw, menempatkan shield antara dirimu dan sumber efek.",
+      "description": "Kamu menggunakan shields tidak hanya untuk perlindungan tetapi juga untuk ofensif. Kamu mendapatkan manfaat berikut selagi kamu mengayun shield:\n- Jika kamu mengambil Attack action di giliranmu, kamu bisa menggunakan bonus action untuk mencoba shove makhluk dalam jarak 5 kaki darimu dengan shieldmu.\n- Jika kamu tidak incapacitated, kamu bisa menambahkan shield's AC bonus ke Dexterity saving throw apapun yang kamu buat terhadap spell atau efek berbahaya lain yang hanya menargetkan kamu.\n- Jika kamu diekspos ke efek yang memungkinkanmu membuat Dexterity saving throw untuk mengambil hanya setengah damage, kamu bisa menggunakan reactionmu untuk tidak menerima damage jika kamu berhasil pada saving throw, menempatkan shield antara dirimu dan sumber efek.",
       "prerequisites": null,
       "source": "VRGR",
       "featureType": null,
@@ -2820,7 +2820,7 @@
     },
     {
       "name": "Squat Nimbleness",
-      "description": "Kamu sangat gesit untuk rasmu. Kamu mendapatkan manfaat berikut: • Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20. • Tingkatkan walking speedmu sebesar 5 kaki. • Kamu memiliki advantage pada ability check apapun yang kamu lakukan untuk escape dari grapple atau restrained.",
+      "description": "Kamu sangat gesit untuk orang-orangmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Speedmu meningkat sebesar 5 kaki.\n- Kamu mendapatkan proficiency dalam skill Acrobatics atau Athletics (pilihanmu).\n- Kamu memiliki advantage pada check apapun yang kamu lakukan untuk escape grapple.",
       "prerequisites": "Dwarf or Small race",
       "source": "TCE",
       "featureType": null,
@@ -2841,7 +2841,7 @@
     },
     {
       "name": "Squat Nimbleness",
-      "description": "Kamu sangat gesit untuk rasmu. Kamu mendapatkan manfaat berikut: • Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20. • Tingkatkan walking speedmu sebesar 5 kaki. • Kamu memiliki advantage pada ability check apapun yang kamu lakukan untuk escape dari grapple atau restrained.",
+      "description": "Kamu sangat gesit untuk orang-orangmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Speedmu meningkat sebesar 5 kaki.\n- Kamu mendapatkan proficiency dalam skill Acrobatics atau Athletics (pilihanmu).\n- Kamu memiliki advantage pada check apapun yang kamu lakukan untuk escape grapple.",
       "prerequisites": "Dwarf or Small race",
       "source": "MTF",
       "featureType": null,
@@ -2862,7 +2862,7 @@
     },
     {
       "name": "Squat Nimbleness",
-      "description": "Kamu sangat gesit untuk rasmu. Kamu mendapatkan manfaat berikut: • Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20. • Tingkatkan walking speedmu sebesar 5 kaki. • Kamu memiliki advantage pada ability check apapun yang kamu lakukan untuk escape dari grapple atau restrained.",
+      "description": "Kamu sangat gesit untuk orang-orangmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Speedmu meningkat sebesar 5 kaki.\n- Kamu mendapatkan proficiency dalam skill Acrobatics atau Athletics (pilihanmu).\n- Kamu memiliki advantage pada check apapun yang kamu lakukan untuk escape grapple.",
       "prerequisites": "Dwarf or Small race",
       "source": "EGW",
       "featureType": null,
@@ -2988,7 +2988,7 @@
     },
     {
       "name": "Weapon Master",
-      "description": "Kamu telah berlatih ekstensif dengan berbagai senjata, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan empat simple atau martial weapons sesuai pilihanmu.",
+      "description": "Kamu telah berlatih ekstensif dengan berbagai senjata, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan empat simple atau martial weapons sesuai pilihanmu. Setiap senjata yang dipilih harus memiliki kategori proficiency yang berbeda (simple atau martial) dari yang lain, kecuali kamu sudah memiliki proficiency dengan semua simple dan martial weapons.",
       "prerequisites": null,
       "source": "TCE",
       "featureType": null,
@@ -3009,7 +3009,7 @@
     },
     {
       "name": "Weapon Master",
-      "description": "Kamu telah berlatih ekstensif dengan berbagai senjata, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan empat simple atau martial weapons sesuai pilihanmu.",
+      "description": "Kamu telah berlatih ekstensif dengan berbagai senjata, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan empat simple atau martial weapons sesuai pilihanmu. Setiap senjata yang dipilih harus memiliki kategori proficiency yang berbeda (simple atau martial) dari yang lain, kecuali kamu sudah memiliki proficiency dengan semua simple dan martial weapons.",
       "prerequisites": null,
       "source": "VRGR",
       "featureType": null,

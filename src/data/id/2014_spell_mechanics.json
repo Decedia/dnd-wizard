@@ -11813,7 +11813,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 3.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap dua tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -13497,7 +13497,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 4.",
+        "description": "When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th.",
         "appliesTo": "targets",
         "startsAtLevel": 6
       },
