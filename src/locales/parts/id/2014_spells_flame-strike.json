@@ -1,0 +1,5 @@
+{
+  "2014_spells.flame-strike.description": "Kolom vertikal api ilahi meraung dari langit ke lokasi yang kamu tentukan. Setiap makhluk dalam cylinder radius 10 kaki, tinggi 40 kaki yang berpusat di titik dalam jangkauan harus melewati dexterity saving throw. Makhluk menerima 4d6 fire damage dan 4d6 radiant damage pada kegagalan save, atau setengahnya pada keberhasilan.",
+  "2014_spells.flame-strike.effectSummary": "Berikan 4d6 fire damage ke target dalam 60 ft",
+  "2014_spells.flame-strike.fullDescription": "Menggunakan 1 action, setiap makhluk dalam cylinder radius 10 kaki, tinggi 40 kaki yang berpusat di titik dalam jangkauan harus melewati dexterity saving throw. Makhluk menerima 4d6 fire damage dan 4d6 radiant damage pada kegagalan save, atau setengahnya pada keberhasilan; Kolom vertikal api ilahi meraung dari langit ke lokasi yang kamu tentukan; Ketika kamu mencast spell ini menggunakan spell slot level 6th atau lebih tinggi, fire damage atau radiant damage (pilihanmu) bertambah 1d6 untuk setiap slot level di atas 5th. Efek terjadi langsung lalu berakhir."
+}

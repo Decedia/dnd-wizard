@@ -1,0 +1,5 @@
+{
+  "2014_spells.goodberry.description": "Sampai sepuluh berry muncul di tanganmu dan diinfusi magic selama durasi. Makhluk bisa menggunakan action-nya untuk memakan satu berry. Memakan berry memulihkan 1 hit point, dan berry memberikan cukup nutrisi untuk menyokong makhluk selama satu hari. Berry kehilangan potency-nya jika belum dikonsumsi dalam 24 jam setelah casting spell ini.",
+  "2014_spells.goodberry.effectSummary": "Ubah target: berry kehilangan potency-nya jika belum dikonsumsi dalam 24 jam setelah casting spell ini",
+  "2014_spells.goodberry.fullDescription": "Menggunakan 1 action, memakan berry memulihkan 1 hit point, dan berry memberikan cukup nutrisi untuk menyokong makhluk selama satu hari. Berry kehilangan potency-nya jika belum dikonsumsi dalam 24 jam setelah casting spell ini; Sampai sepuluh berry muncul di tanganmu dan diinfusi magic selama durasi. Efek terjadi langsung lalu berakhir."
+}

@@ -1,0 +1,4 @@
+{
+  "2014_spells.erupting-earth.effectSummary": "Deal 3d12 bludgeoning damage to a target within 120 ft",
+  "2014_spells.erupting-earth.fullDescription": "Using 1 action, choose a point you can see on the ground within range. A creature takes 3d12 bludgeoning damage on a failed save, or half as much damage on a successful one; Each creature in that area must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC. The ground in that area becomes difficult terrain until cleared."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.message.description": "Kamu menunjuk jarimu ke arah makhluk dalam jangkauan dan berbisik pesan. Target (dan hanya target) mendengar pesan dan bisa membalas dengan berbisik yang hanya kamu bisa dengar. Kamu bisa menyalurkan sihir ini melalui benda padat jika kamu kenal target dan tahu itu di balik penghalang. Keheningan magis, 1 foot batu, 1 inch logam biasa, lembaran tipis timah, atau 3 feet kayu memblokir sihir. Sihir tidak harus mengikuti garis lurus dan bisa bebas berjalan di sekitar sudut atau melalui lubang.",
+  "2014_spells.message.effectSummary": "Kirim pesan pribadi ke makhluk dalam jangkauan",
+  "2014_spells.message.fullDescription": "Menggunakan 1 action, kamu menunjuk jarimu ke arah makhluk dalam jangkauan dan berbisik pesan. Keheningan magis, 1 foot batu, 1 inch logam biasa, lembaran tipis timah, atau 3 feet kayu memblokir sihir; Target (dan hanya target) mendengar pesan dan bisa membalas dengan berbisik yang hanya kamu bisa dengar. Efek bertahan untuk 1 round."
+}

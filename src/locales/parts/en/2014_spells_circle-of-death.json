@@ -1,0 +1,5 @@
+{
+  "2014_spells.circle-of-death.description": "A sphere of negative energy ripples out in a 60-foot-radius sphere from a point within range. Each creature in that area must make a constitution saving throw. A target takes 8d6 necrotic damage on a failed save, or half as much damage on a successful one.",
+  "2014_spells.circle-of-death.effectSummary": "Deal 8d6 necrotic damage to a target within 150 ft",
+  "2014_spells.circle-of-death.fullDescription": "Using 1 action, a sphere of negative energy ripples out in a 60-foot-radius sphere from a point within range. A target takes 8d6 necrotic damage on a failed save, or half as much damage on a successful one; Each creature in that area must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 7th level or higher, the damage increases by 2d6 for each slot level above 6th. The effect happens immediately and then ends."
+}

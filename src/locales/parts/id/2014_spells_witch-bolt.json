@@ -1,0 +1,5 @@
+{
+  "2014_spells.witch-bolt.description": "Sinar energi biru yang berkeroncongan melompat ke makhluk dalam jarak, membentuk busur petir yang berkelanjutan antara Anda dan target. Buat a ranged spell attack terhadapnya. On a hit, target mengambil 1d12 lightning damage, dan pada setiap giliran Anda untuk durasinya, Anda dapat menggunakan Action Anda untuk memberikan 1d12 lightning damage secara otomatis.",
+  "2014_spells.witch-bolt.effectSummary": "Berikan 1d12 lightning damage ke target dalam 30 ft",
+  "2014_spells.witch-bolt.fullDescription": "Menggunakan 1 Action, on a hit, target mengambil 1d12 lightning damage, dan pada setiap giliran Anda untuk durasinya, Anda dapat menggunakan Action Anda untuk memberikan 1d12 lightning damage secara otomatis. Buat a ranged spell attack terhadapnya; Sinar energi biru yang berkeroncongan melompat ke makhluk dalam jarak, membentuk busur petir yang berkelanjutan antara Anda dan target; Ketika Anda mencast sihir ini menggunakan spell slot 2nd level atau lebih tinggi, damage awal meningkat 1d12 untuk setiap slot level di atas 1st. Efek berlangsung konsentrasi, sampai 1 menit."
+}

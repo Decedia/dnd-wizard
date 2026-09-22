@@ -1,0 +1,5 @@
+{
+  "2014_spells.finger-of-death.description": "Kamu mengirim energi negatif menembus makhluk yang bisa kamu lihat dalam jangkauan, menyebabkan rasa sakit yang membakar. Target harus melewati Constitution saving throw. Itu menerima 7d8 + 30 necrotic damage pada kegagalan save, atau setengahnya pada keberhasilan. Manusiaoid yang terbunuh oleh spell ini bangun di awal turnmu berikutnya sebagai zombie yang selamanya di bawah perintahmu, mengikuti perintah verbalmu sebaik mungkin.",
+  "2014_spells.finger-of-death.effectSummary": "Berikan 7d8+30 necrotic damage ke target dalam 60 ft",
+  "2014_spells.finger-of-death.fullDescription": "Menggunakan 1 action, kamu mengirim energi negatif menembus makhluk yang bisa kamu lihat dalam jangkauan, menyebabkan rasa sakit yang membakar. Itu menerima 7d8 + 30 necrotic damage pada kegagalan save, atau setengahnya pada keberhasilan; Target harus melewati Constitution saving throw; lempar d20, tambahkan CON modifier, dan bandingkan dengan spell save DC-ammu. Efek terjadi langsung lalu berakhir."
+}

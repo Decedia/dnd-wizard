@@ -1,0 +1,5 @@
+{
+  "2014_spells.gate-seal.description": "You fortify the fabric of the planes within a 30-foot cube centered on a point within range. Within that area, portals close and can't be opened by any means.",
+  "2014_spells.gate-seal.effectSummary": "Change a target: fortify the fabric of the planes within a 30-foot cube centered on a point within range",
+  "2014_spells.gate-seal.fullDescription": "Using 1 minute, you fortify the fabric of the planes within a 30-foot cube centered on a point within range. Within that area, portals close and can't be opened by any means. The effect lasts for 24 hours."
+}

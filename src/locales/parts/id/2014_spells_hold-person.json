@@ -1,0 +1,5 @@
+{
+  "2014_spells.hold-person.description": "Pilih humanoid yang dapat kamu lihat dalam jangkauan. Target harus berhasil melakukan Wisdom saving throw atau menjadi Paralyzed untuk durasi. Pada akhir setiap gilirannya, target dapat melakukan Wisdom saving throw lain. Saat berhasil, sihir berakhir pada target.",
+  "2014_spells.hold-person.effectSummary": "Buat target menjadi Paralyzed sampai dia menyelamatkan diri atau sihir berakhir",
+  "2014_spells.hold-person.fullDescription": "Menggunakan 1 Action, pilih humanoid yang dapat kamu lihat dalam jangkauan. Target harus berhasil melakukan Wisdom saving throw; roll d20, tambahkan modifier WIS, dan bandingkan dengan spell save DC sihir atau menjadi Paralyzed untuk durasi; Pada akhir setiap gilirannya, target dapat melakukan Wisdom saving throw lain; Saat kamu casting sihir ini menggunakan spell slot level 3 atau lebih tinggi, kamu dapat menargetkan satu humanoid tambahan untuk setiap slot level di atas 2nd; Humanoid harus dalam 30 kaki satu sama lain saat kamu menargetkan mereka. Saat berhasil, sihir berakhir pada target; kamu harus berkonsentrasi, dan efeknya berakhir jika konsentrasimu berakhir."
+}

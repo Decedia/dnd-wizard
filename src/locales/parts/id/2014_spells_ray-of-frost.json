@@ -1,0 +1,5 @@
+{
+  "2014_spells.ray-of-frost.description": "Sinar biru-putih yang membeku terbang menuju makhluk dalam jangkauan. Buat ranged spell attack terhadap target. Jika kena, target menerima 1d8 cold damage, dan speed-nya berkurang 10 feet hingga awal giliran kamu berikutnya.",
+  "2014_spells.ray-of-frost.effectSummary": "Berikan 1d8 cold damage ke target dalam 60 ft",
+  "2014_spells.ray-of-frost.fullDescription": "Menggunakan 1 Action, jika kena, target menerima 1d8 cold damage, dan speed-nya berkurang 10 feet hingga awal giliran kamu berikutnya. Buat ranged spell attack terhadap target; Sinar biru-putih yang membeku terbang menuju makhluk dalam jangkauan; Damage mantra ini meningkat 1d8 ketika kamu mencapai level 5 (2d8), level 11 (3d8), dan level 17 (4d8). Jika kena, target menerima 1d8 cold damage, dan speed-nya berkurang 10 feet hingga awal giliran kamu berikutnya."
+}

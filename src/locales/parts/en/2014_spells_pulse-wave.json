@@ -1,0 +1,5 @@
+{
+  "2014_spells.pulse-wave.description": "You release a wave of concussive energy in a 30-foot cone. Each creature in that area must make a Constitution saving throw. On a failed save, a creature takes 6d6 force damage and is pushed up to 15 feet away from you and knocked prone. On a successful save, a creature takes half as much damage and isn't pushed or knocked prone. Unsecured objects that are not worn or caught are pushed up to 15 feet away from you. The spell's area is not blocked by total cover, but it is blocked by total opaque cover.",
+  "2014_spells.pulse-wave.effectSummary": "Deal 6d6 force damage to a target within Self (30-foot cone)",
+  "2014_spells.pulse-wave.fullDescription": "Using 1 action, you release a wave of concussive energy in a 30-foot cone. On a failed save, a creature takes 6d6 force damage and is pushed up to 15 feet away from you and knocked prone; Unsecured objects that are not worn or caught are pushed up to 15 feet away from you; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd. The effect happens immediately and then ends."
+}

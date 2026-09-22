@@ -1,0 +1,5 @@
+{
+  "2014_spells.summon-undead-egw.description": "Kamu memanggil roh undead. Ia muncul di ruang kosong yang kamu lihat dalam jangkauan. Bentuk corporeal ini menggunakan Undead Spirit stat block. Ketika kamu menyalakan sihir, pilih roh ghostly, putrid, atau skeletal. Makhluk itu menyerupai undead dari jenis tersebut, yang menentukan trait tertentu di stat block makhluk.",
+  "2014_spells.summon-undead-egw.effectSummary": "Ciptakan efek magis di titik yang kamu pilih",
+  "2014_spells.summon-undead-egw.fullDescription": "Menggunakan 1 Action, ketika kamu menyalakan sihir, pilih roh ghostly, putrid, atau skeletal. Ia muncul di ruang kosong yang kamu lihat dalam jangkauan; Kamu memanggil roh undead; Ketika kamu menyalakan sihir ini menggunakan spell slot level 4 atau lebih tinggi, statistik makhluk berubah seperti yang dijelaskan dalam deskripsi sihir. Efek berlangsung hingga 1 jam; kamu harus concentrate, dan efek berakhir jika concentrate kamu berakhir."
+}

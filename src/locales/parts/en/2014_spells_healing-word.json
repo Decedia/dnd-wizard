@@ -1,0 +1,5 @@
+{
+  "2014_spells.healing-word.description": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+  "2014_spells.healing-word.effectSummary": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier",
+  "2014_spells.healing-word.fullDescription": "Using 1 bonus action, a creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs; When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st. The effect happens immediately and then ends."
+}

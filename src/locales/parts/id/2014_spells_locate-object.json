@@ -1,0 +1,5 @@
+{
+  "2014_spells.locate-object.description": "Jelaskan atau namai benda yang kamu kenal. Kamu merasa arah ke lokasi benda, selama benda itu dalam 1,000 feet darimu. Jika benda bergerak, kamu tahu arah pergerakannya. Sihir bisa menemukan benda spesifik yang kamu kenal, selama kamu pernah melihatnya dari dekat-dalam 30 feet-setidaknya sekali. Atau, sihir bisa menemukan benda terdekat dari jenis tertentu, seperti jenis tertentu pakaian, perhiasan, furnitur, alat, atau senjata. Sihir ini tidak bisa menemukan benda jika ketebalan timah, bahkan lembaran tipis, memblokir jalur langsung antara kamu dan benda.",
+  "2014_spells.locate-object.effectSummary": "Ungkap informasi magis atau tersembunyi dalam jangkauan",
+  "2014_spells.locate-object.fullDescription": "Menggunakan 1 action, jelaskan atau namai benda yang kamu kenal. Sihir bisa menemukan benda spesifik yang kamu kenal, selama kamu pernah melihatnya dari dekat-dalam 30 feet-setidaknya sekali; Kamu merasa arah ke lokasi benda, selama benda itu dalam 1,000 feet darimu. Efek bertahan hingga 10 menit; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

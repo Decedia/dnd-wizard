@@ -1,0 +1,5 @@
+{
+  "2014_spells.mass-heal.description": "Banjir energi penyembuhan mengalir dari kamu ke makhluk terluka di sekitarmu. Kamu memulihkan hingga 700 hit points, dibagi sesuai pilihanmu di antara jumlah makhluk manapun yang bisa kamu lihat dalam jangkauan. Makhluk yang disembuhkan sihir ini juga disembuhkan dari semua penyakit dan efek apa pun yang membuat mereka blinded atau deafened. Sihir ini tidak berpengaruh pada undead atau construct.",
+  "2014_spells.mass-heal.effectSummary": "Buat target blinded sampai dia menyelamatkan atau sihir berakhir",
+  "2014_spells.mass-heal.fullDescription": "Menggunakan 1 action, kamu memulihkan hingga 700 hit points, dibagi sesuai pilihanmu di antara jumlah makhluk manapun yang bisa kamu lihat dalam jangkauan. Banjir energi penyembuhan mengalir dari kamu ke makhluk terluka di sekitarmu; Makhluk yang disembuhkan sihir ini juga disembuhkan dari semua penyakit dan efek apa pun yang membuat mereka blinded atau deafened. Efek terjadi langsung lalu berakhir."
+}

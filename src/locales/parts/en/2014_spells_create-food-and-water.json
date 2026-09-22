@@ -1,0 +1,5 @@
+{
+  "2014_spells.create-food-and-water.description": "You create 45 pounds of food and 30 gallons of water on the ground or in containers within range, enough to sustain up to fifteen humanoids or five steeds for 24 hours. The food is bland but nourishing, and spoils if uneaten after 24 hours. The water is clean and doesn't go bad.",
+  "2014_spells.create-food-and-water.effectSummary": "Create or destroy up to 10 gallons of water",
+  "2014_spells.create-food-and-water.fullDescription": "Using 1 action, you create 45 pounds of food and 30 gallons of water on the ground or in containers within range, enough to sustain up to fifteen humanoids or five steeds for 24 hours. The food is bland but nourishing, and spoils if uneaten after 24 hours; The water is clean and doesn't go bad. The effect happens immediately and then ends."
+}

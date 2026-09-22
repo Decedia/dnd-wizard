@@ -1,0 +1,4 @@
+{
+  "2014_spells.storm-sphere.effectSummary": "Deal 2d6 bludgeoning damage to a target within 150 ft",
+  "2014_spells.storm-sphere.fullDescription": "Using 1 action, each creature in the sphere when it appears or that ends its turn there must make a Strength saving throw. A creature takes 2d6 bludgeoning damage on a failed save, or half as much damage on a successful one; On a hit, the target takes 4d6 lightning damage. Each creature in the sphere when it appears or that ends its turn there must make a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC; you must concentrate, and the effect ends if your concentration ends."
+}

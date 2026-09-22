@@ -1,0 +1,5 @@
+{
+  "2014_spells.vortex-warp.description": "You magically twist the space around another creature you can see within range. The target must succeed on a Constitution saving throw (the target can choose to fail) or the target is teleported to an unoccupied space of your choice that you can see within range. The space must be on the ground or on a floor.",
+  "2014_spells.vortex-warp.effectSummary": "Teleport up to 90 ft to a space you can see",
+  "2014_spells.vortex-warp.fullDescription": "Using 1 action, the target must succeed on a Constitution saving throw (the target can choose to fail) or the target is teleported to an unoccupied space of your choice that you can see within range. You magically twist the space around another creature you can see within range; The space must be on the ground or on a floor. The effect happens immediately and then ends."
+}

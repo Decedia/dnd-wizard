@@ -1,0 +1,4 @@
+{
+  "2014_spells.storm-sphere.effectSummary": "Berikan 2d6 bludgeoning damage ke target dalam 150 ft",
+  "2014_spells.storm-sphere.fullDescription": "Menggunakan 1 Action, setiap makhluk dalam bola ketika muncul atau yang mengakhiri gilirannya di sana harus melakukan Strength saving throw. Makhluk menerima 2d6 bludgeoning damage pada save yang gagal, atau setengah dari jumlah damage pada save yang berhasil; Jika kena, target menerima 4d6 lightning damage. Setiap makhluk dalam bola ketika muncul atau yang mengakhiri gilirannya di sana harus melakukan Strength saving throw; roll d20, tambahkan modifier STR, dan bandingkan dengan spell save DC kamu; kamu harus concentrate, dan efek berakhir jika concentrate kamu berakhir."
+}

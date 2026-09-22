@@ -1,0 +1,5 @@
+{
+  "2014_spells.heal.description": "Pilih makhluk yang dapat kamu lihat dalam jangkauan. Surga energi positif mencuci melalui makhluk, menyebabkan ia kembali mendapatkan 70 hit points. Sihir ini juga mengakhiri kebutaan, tuli, dan penyakit apapun yang mempengaruhi target. Sihir ini tidak memiliki efek pada konstruk atau undead.",
+  "2014_spells.heal.effectSummary": "Surga energi positif mencuci melalui makhluk, menyebabkan ia kembali mendapatkan 70 hit points",
+  "2014_spells.heal.fullDescription": "Menggunakan 1 Action, pilih makhluk yang dapat kamu lihat dalam jangkauan. Surga energi positif mencuci melalui makhluk, menyebabkan ia kembali mendapatkan 70 hit points; Sihir ini juga mengakhiri kebutaan, tuli, dan penyakit apapun yang mempengaruhi target; Saat kamu casting sihir ini menggunakan spell slot level 7 atau lebih tinggi, jumlah pemulihan meningkat sebesar 10 untuk setiap slot level di atas 6th. Sihir ini juga mengakhiri kebutaan, tuli, dan penyakit apapun yang mempengaruhi target."
+}

@@ -1,0 +1,4 @@
+{
+  "2014_spells.dragon-s-breath.effectSummary": "Each creature in that area must make a Dexterity saving throw, taking 3d6 damage of the chosen type on a failed save, or half as much damage on a successful",
+  "2014_spells.dragon-s-breath.fullDescription": "Using 1 bonus action, you touch one willing creature and imbue it with the power to spew magical energy from its mouth, provided it has a mouth. Each creature in that area must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC, taking 3d6 damage of the chosen type on a failed save, or half as much damage on a successful one; Choose acid, cold, fire, lightning, or poison. Until the spell ends, the creature can use an action to exhale energy of the chosen type in a 15-foot cone; you must concentrate, and the effect ends if your concentration ends."
+}

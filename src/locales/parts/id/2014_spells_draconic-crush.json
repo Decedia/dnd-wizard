@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-crush.description": "Kamu melemparkan bola energi draconic ke makhluk dalam jangkauan. Lakukan ranged spell attack terhadap target. Pada hit, target menerima 2d8 force damage dan harus berhasil dalam saving throw Strength atau ter knocked prone.",
+  "2014_spells.draconic-crush.effectSummary": "Berikan 2d8 force damage ke target dalam 60 ft",
+  "2014_spells.draconic-crush.fullDescription": "Menggunakan 1 aksi, kamu melemparkan bola energi draconic ke makhluk dalam jangkauan. Pada hit, target menerima 2d8 force damage dan harus berhasil dalam saving throw Strength; roll d20, tambahkan modifier STR, dan bandingkan dengan spell save DC-mu atau ter knocked prone; Lakukan ranged spell attack terhadap target; Ketika kamu menyalurkan sihir ini menggunakan spell slot tingkat 2 atau lebih tinggi, kerusakan meningkat sebesar 1d8 untuk setiap tingkat slot di atas 1. Efek terjadi segera lalu berakhir."
+}

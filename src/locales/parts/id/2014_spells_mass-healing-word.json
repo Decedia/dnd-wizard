@@ -1,0 +1,5 @@
+{
+  "2014_spells.mass-healing-word.description": "Saat kamu memanggil kata-kata pemulihan, hingga enam makhluk pilihanmu yang bisa kamu lihat dalam jangkauan mendapatkan kembali hit points sama dengan 1d4 + spellcasting ability modifiermu. Sihir ini tidak berpengaruh pada undead atau construct.",
+  "2014_spells.mass-healing-word.effectSummary": "hingga enam makhluk pilihanmu yang bisa kamu lihat dalam jangkauan mendapatkan kembali hit points sama dengan 1d4 + spellcasting ability modifiermu",
+  "2014_spells.mass-healing-word.fullDescription": "Menggunakan 1 bonus action, saat kamu memanggil kata-kata pemulihan, hingga enam makhluk pilihanmu yang bisa kamu lihat dalam jangkauan mendapatkan kembali hit points sama dengan 1d4 + spellcasting ability modifiermu. Sihir ini tidak berpengaruh pada undead atau construct; Saat kamu menyalurkan sihir ini menggunakan spell slot 4th level atau lebih tinggi, penyembuhan bertambah 1d4 untuk setiap slot level di atas 3rd. Efek terjadi langsung lalu berakhir."
+}

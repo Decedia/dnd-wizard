@@ -1,0 +1,5 @@
+{
+  "2014_spells.mind-sliver.description": "Kamu memasukkan paku bingung energi psychic ke dalam pikiran satu makhluk yang bisa kamu lihat dalam jangkauan. Target harus berhasil pada Intelligence saving throw atau menerima 1d6 psychic damage dan mengurangi 1d4 dari saving throw berikutnya yang dia buat sebelum akhir giliranmu berikutnya.",
+  "2014_spells.mind-sliver.effectSummary": "Berikan 1d6 psychic damage ke target dalam 60 ft",
+  "2014_spells.mind-sliver.fullDescription": "Menggunakan 1 action, target harus berhasil pada Intelligence saving throw atau menerima 1d6 psychic damage dan mengurangi 1d4 dari saving throw berikutnya yang dia buat sebelum akhir giliranmu berikutnya. Kamu memasukkan paku bingung energi psychic ke dalam pikiran satu makhluk yang bisa kamu lihat dalam jangkauan; Damage bertambah 1d6 saat kamu mencapai 5th level (2d6), 11th level (3d6), dan 17th level (4d6). Efek bertahan untuk 1 round."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.mass-polymorph.description": "Kamu mengubah hingga sepuluh makhluk pilihanmu yang bisa kamu lihat dalam jangkauan. Target tidak bersedia harus berhasil pada Wisdom saving throw untuk menahan efek. Automaton berhasil secara otomatis.",
+  "2014_spells.mass-polymorph.effectSummary": "Ubah makhluk atau benda menjadi bentuk baru",
+  "2014_spells.mass-polymorph.fullDescription": "Menggunakan 1 action, kamu mengubah hingga sepuluh makhluk pilihanmu yang bisa kamu lihat dalam jangkauan. Target tidak bersedia harus berhasil pada Wisdom saving throw; roll a d20, tambahkan WIS modifier, dan bandingkan dengan spell save DC untuk menahan efek; Automaton berhasil secara otomatis. Efek bertahan untuk konsentrasi, hingga 1 jam."
+}

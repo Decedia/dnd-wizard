@@ -1,0 +1,5 @@
+{
+  "2014_spells.warding-wind.description": "A strong wind (20 miles per hour) blows around you in a 10-foot radius and moves with you, remaining centered on you. The wind lasts for the spell's duration. The wind has the following effects: It deafens you and other creatures in its area. It extinguishes all unprotected flames in its area that are not larger than a bonfire. It is difficult terrain for creatures in its area.",
+  "2014_spells.warding-wind.effectSummary": "Turn an area into difficult terrain for the duration",
+  "2014_spells.warding-wind.fullDescription": "Using 1 action, a strong wind (20 miles per hour) blows around you in a 10-foot radius and moves with you, remaining centered on you. It extinguishes all unprotected flames in its area that are not larger than a bonfire; It is difficult terrain for creatures in its area. The wind lasts for the spell's duration; you must concentrate, and the effect ends if your concentration ends."
+}

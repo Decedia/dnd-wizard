@@ -1,0 +1,5 @@
+{
+  "2014_spells.friends.description": "Selama durasi, kamu memiliki advantage pada semua Charisma checks yang diarahkan ke satu makhluk pilihanmu yang tidak hostile terhadap kamu. Ketika spell berakhir, makhluk itu menyadari kamu menggunakan magic untuk memengaruhi suasana hatinya dan menjadi hostile terhadap kamu. Makhluk yang cenderung ke kekerasan mungkin menyerangmu. Makhluk lain mungkin mencari pembalasan darimu dengan cara lain (sesuai ketentuan DM).",
+  "2014_spells.friends.effectSummary": "Buat target Prone sampai dia berhasil save atau spell berakhir",
+  "2014_spells.friends.fullDescription": "Menggunakan 1 action, selama durasi, kamu memiliki advantage pada semua Charisma checks yang diarahkan ke satu makhluk pilihanmu yang tidak hostile terhadap kamu. Makhluk lain mungkin mencari pembalasan darimu dengan cara lain (sesuai ketentuan DM); Makhluk yang cenderung ke kekerasan mungkin menyerangmu. Ketika spell berakhir, makhluk itu menyadari kamu menggunakan magic untuk memengaruhi suasana hatinya dan menjadi hostile terhadap kamu; kamu harus concentrate, dan efeknya berakhir jika concentration-mu berakhir."
+}

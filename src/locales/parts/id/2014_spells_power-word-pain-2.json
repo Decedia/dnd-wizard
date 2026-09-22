@@ -1,0 +1,5 @@
+{
+  "2014_spells.power-word-pain-2.description": "Kamu berbicara kata kekuatan yang menyebabkan gelombang sakit hewan menimpa satu makhluk yang bisa kamu lihat dalam range. Jika target memiliki 100 hit points atau kurang, ia mengalami sakit yang lumpuhkan. Jika tidak, spell ini tidak memiliki efek padanya.",
+  "2014_spells.power-word-pain-2.effectSummary": "Ubah target: ia mengalami sakit yang lumpuhkan",
+  "2014_spells.power-word-pain-2.fullDescription": "Menggunakan 1 Action, kamu berbicara kata kekuatan yang menyebabkan gelombang sakit hewan menimpa satu makhluk yang bisa kamu lihat dalam range. Jika target memiliki 100 hit points atau kurang, ia mengalami sakit yang lumpuhkan; Jika tidak, spell ini tidak memiliki efek padanya. Efek terjadi segera dan kemudian berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.lesser-restoration.description": "You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned.",
+  "2014_spells.lesser-restoration.effectSummary": "Make a target blinded until it saves or the spell ends",
+  "2014_spells.lesser-restoration.fullDescription": "Using 1 action, you touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned. The effect happens immediately and then ends."
+}

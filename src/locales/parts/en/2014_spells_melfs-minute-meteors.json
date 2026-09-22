@@ -1,0 +1,5 @@
+{
+  "2014_spells.melfs-minute-meteors.description": "You create six tiny meteors in your space. They float in the air and orbit you for the spell's duration. When you cast the spell and as a bonus action on each of your turns thereafter, you can expend one or two of the meteors, sending them streaking toward a point or points you choose within 120 feet of you.",
+  "2014_spells.melfs-minute-meteors.effectSummary": "Create a magical effect at a point you choose",
+  "2014_spells.melfs-minute-meteors.fullDescription": "Using 1 action, you create six tiny meteors in your space. They float in the air and orbit you for the spell's duration; When you cast this spell using a spell slot of 4th level or higher, the number of meteors created increases by two for each slot level above 3rd. The effect lasts for concentration, up to 10 minutes."
+}

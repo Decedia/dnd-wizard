@@ -1,0 +1,5 @@
+{
+  "2014_spells.magic-missile.description": "Kamu membuat tiga panah bercahaya kekuatan magis. Setiap panah menyerang makhluk pilihanmu yang bisa kamu lihat dalam jangkauan. Panah memberikan 1d4 + 1 force damage ke targetnya. Semua panah menyerang secara bersamaan, dan kamu bisa mengarahkannya untuk menyerang satu makhluk atau beberapa.",
+  "2014_spells.magic-missile.effectSummary": "Berikan 1d4+1 force damage ke target dalam 120 ft",
+  "2014_spells.magic-missile.fullDescription": "Menggunakan 1 action, kamu membuat tiga panah bercahaya kekuatan magis. Panah memberikan 1d4 + 1 force damage ke targetnya; Setiap panah menyerang makhluk pilihanmu yang bisa kamu lihat dalam jangkauan; Saat kamu menyalurkan sihir ini menggunakan spell slot 2nd level atau lebih tinggi, sihir membuat satu panah lagi untuk setiap slot level di atas 1st. Efek terjadi langsung lalu berakhir."
+}

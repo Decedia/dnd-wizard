@@ -1,0 +1,5 @@
+{
+  "2014_spells.sapping-sting.description": "You sap the vitality of one creature you can see within range. The target must succeed on a Constitution saving throw or take 1d4 necrotic damage and have disadvantage on the next attack roll it makes before the end of its next turn. This spell's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).",
+  "2014_spells.sapping-sting.effectSummary": "Deal 1d4 necrotic damage to a target within 30 ft",
+  "2014_spells.sapping-sting.fullDescription": "Using 1 action, the target must succeed on a Constitution saving throw or take 1d4 necrotic damage and have disadvantage on the next attack roll it makes before the end of its next turn. This spell's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4); You sap the vitality of one creature you can see within range; This spell's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4). The effect happens immediately and then ends."
+}

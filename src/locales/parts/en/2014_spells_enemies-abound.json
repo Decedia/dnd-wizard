@@ -1,0 +1,5 @@
+{
+  "2014_spells.enemies-abound.description": "You reach into the mind of one creature you can see and force it to make an Intelligence saving throw. A creature automatically succeeds if it's immune to being charmed. On a failed save, the target can't take reactions and must use its action each turn to make a melee attack against a creature other than itself that you mentally choose.",
+  "2014_spells.enemies-abound.effectSummary": "Make a target charmed until it saves or the spell ends",
+  "2014_spells.enemies-abound.fullDescription": "Using 1 action, you reach into the mind of one creature you can see and force it to make an Intelligence saving throw. On a failed save, the target can't take reactions and must use its action each turn to make a melee attack against a creature other than itself that you mentally choose; A creature automatically succeeds if it's immune to being charmed. The effect lasts for concentration, up to 1 minute."
+}

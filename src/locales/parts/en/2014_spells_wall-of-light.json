@@ -1,0 +1,4 @@
+{
+  "2014_spells.wall-of-light.effectSummary": "Deal 4d8 radiant damage to a target within 120 ft",
+  "2014_spells.wall-of-light.fullDescription": "Using 1 action, a shimmering wall of bright light appears at a point you choose within range. On a failed save, a creature takes 4d8 radiant damage, and it becomes blinded until the end of your next turn; On a hit, the target takes 4d8 radiant damage. The wall lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
+}

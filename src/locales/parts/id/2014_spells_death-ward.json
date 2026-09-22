@@ -1,0 +1,5 @@
+{
+  "2014_spells.death-ward.description": "Kamu menyentuh makhluk dan memberinya perlindungan dari kematian. Pertama kali target akan turun ke 0 hit points akibat menerima kerusakan, target malah turun ke 1 hit point, dan sihir berakhir. Jika sihir masih aktif ketika target terkena efek yang akan membunuhnya secara instan tanpa dealing damage, efek itu malah dibatalkan terhadap target, dan sihir berakhir.",
+  "2014_spells.death-ward.effectSummary": "Ubah target: efek itu malah dibatalkan terhadap target, dan sihir berakhir",
+  "2014_spells.death-ward.fullDescription": "Menggunakan 1 aksi, kamu menyentuh makhluk dan memberinya perlindungan dari kematian. Jika sihir masih aktif ketika target terkena efek yang akan membunuhnya secara instan tanpa dealing damage, efek itu malah dibatalkan terhadap target, dan sihir berakhir; Pertama kali target akan turun ke 0 hit points akibat menerima kerusakan, target malah turun ke 1 hit point, dan sihir berakhir. Pertama kali target akan turun ke 0 hit points akibat menerima kerusakan, target malah turun ke 1 hit point, dan sihir berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.antimagic-field.description": "Sihir ini menciptakan bidang anti-magi seukuran 10-foot-radius sphere di sekitar kamu. Di dalam bidang tersebut, semua sihir ditekan. Makhluk dan objek di dalam bidang tidak bisa dipengaruhi oleh sihir.",
+  "2014_spells.antimagic-field.effectSummary": "Buat bidang anti-magi yang menekan semua sihir di dalamnya",
+  "2014_spells.antimagic-field.fullDescription": "Menggunakan 1 Action, sihir ini menciptakan bidang anti-magi seukuran 10-foot-radius sphere di sekitar kamu. Di dalam bidang tersebut, semua sihir ditekan. Makhluk dan objek di dalam bidang tidak bisa dipengaruhi oleh sihir; Bidang ini juga menolak spell effect seperti summoning atau conjuration; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 8 atau lebih tinggi, radius bidang meningkat 10 foot untuk setiap slot level di atas 7th; you must concentrate, and the effect ends if your concentration ends."
+}

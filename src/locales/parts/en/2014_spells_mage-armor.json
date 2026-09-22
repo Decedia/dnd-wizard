@@ -1,0 +1,5 @@
+{
+  "2014_spells.mage-armor.description": "You touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends. The target's base AC becomes 13 + its Dexterity modifier. The spell ends if the target dons armor or if you dismiss the spell as an action.",
+  "2014_spells.mage-armor.effectSummary": "Change a target: touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends",
+  "2014_spells.mage-armor.fullDescription": "Using 1 action, you touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends. The target's base AC becomes 13 + its Dexterity modifier; The spell ends if the target dons armor or if you dismiss the spell as an action. You touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends."
+}

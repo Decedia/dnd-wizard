@@ -1,0 +1,5 @@
+{
+  "2014_spells.friends.description": "For the duration, you have advantage on all Charisma checks directed at one creature of your choice that isn't hostile toward you. When the spell ends, the creature realizes that you used magic to influence its mood and becomes hostile toward you. A creature prone to violence might attack you. Another creature might seek retribution from you in other ways (at the DM's discretion).",
+  "2014_spells.friends.effectSummary": "Make a target prone until it saves or the spell ends",
+  "2014_spells.friends.fullDescription": "Using 1 action, for the duration, you have advantage on all Charisma checks directed at one creature of your choice that isn't hostile toward you. Another creature might seek retribution from you in other ways (at the DM's discretion); A creature prone to violence might attack you. When the spell ends, the creature realizes that you used magic to influence its mood and becomes hostile toward you; you must concentrate, and the effect ends if your concentration ends."
+}

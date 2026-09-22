@@ -1,0 +1,5 @@
+{
+  "2014_spells.nathair-nuisance.description": "You create a minor magical effect to distract a creature. The target must succeed on a Wisdom saving throw or have disadvantage on the next attack roll it makes before the end of its next turn.",
+  "2014_spells.nathair-nuisance.effectSummary": "Create a magical effect at a point you choose",
+  "2014_spells.nathair-nuisance.fullDescription": "Using 1 action, you create a minor magical effect to distract a creature. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or have disadvantage on the next attack roll it makes before the end of its next turn. The effect lasts for 1 minute."
+}

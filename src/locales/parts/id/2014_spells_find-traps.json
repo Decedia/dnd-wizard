@@ -1,0 +1,5 @@
+{
+  "2014_spells.find-traps.description": "Kamu merasakan kehadiran trap apapun dalam jangkauan yang dalam line of sight. Sebuah trap, untuk tujuan spell ini, termasuk apapun yang akan memberikan efek mendadak atau tidak terduga yang kamu anggap berbahaya atau tidak diinginkan, yang secara khusus dimaksudkan sebagai demikian oleh pembuatnya. Jadi, spell ini akan merasakan area yang terkena alarm spell, glyph of warding, atau mechanical pit trap, tapi tidak akan mengungkap kelemahan alami di lantai, langit-langit tidak stabil, atau sinkhole tersembunyi. Spell ini hanya mengungkap bahwa trap ada. Kamu tidak belajar lokasi setiap trap, tapi kamu belajar sifat umum bahaya yang ditimbulkan oleh trap yang kamu rasakan.",
+  "2014_spells.find-traps.effectSummary": "Ungkap informasi magis atau tersembunyi dalam jangkauan",
+  "2014_spells.find-traps.fullDescription": "Menggunakan 1 action, kamu merasakan kehadiran trap apapun dalam jangkauan yang dalam line of sight. Spell ini hanya mengungkap bahwa trap ada; Kamu tidak belajar lokasi setiap trap, tapi kamu belajar sifat umum bahaya yang ditimbulkan oleh trap yang kamu rasakan. Efek terjadi langsung lalu berakhir."
+}

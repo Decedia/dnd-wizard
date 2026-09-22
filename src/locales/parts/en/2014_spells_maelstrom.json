@@ -1,0 +1,4 @@
+{
+  "2014_spells.maelstrom.effectSummary": "Deal 6d6 bludgeoning damage to a target within 120 ft",
+  "2014_spells.maelstrom.fullDescription": "Using 1 action, a mass of 5-foot-deep water appears and swirls in a 30-foot radius centered on a point you can see within range. On a failed save, the creature takes 6d6 bludgeoning damage and is knocked prone; In addition, if a creature fails the saving throw, it is also pulled as close to the center of the maelstrom as possible. Until the spell ends, that area is difficult terrain, and any creature that starts its turn there or enters it for the first time on a turn must make a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC; you must concentrate, and the effect ends if your concentration ends."
+}

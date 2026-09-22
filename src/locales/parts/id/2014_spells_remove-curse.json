@@ -1,0 +1,5 @@
+{
+  "2014_spells.remove-curse.description": "Dengan sentuhanmu, semua kutukan yang mempengaruhi satu makhluk atau benda berakhir. Jika benda tersebut adalah cursed magic item, kutukannya tetap ada, tetapi mantra ini memutuskan attunement pemiliknya ke benda tersebut sehingga dapat dilepas atau dibuang.",
+  "2014_spells.remove-curse.effectSummary": "Pindahkan makhluk atau benda sejauh pendek",
+  "2014_spells.remove-curse.fullDescription": "Menggunakan 1 Action, dengan sentuhanmu, semua kutukan yang mempengaruhi satu makhluk atau benda berakhir. Jika benda tersebut adalah cursed magic item, kutukannya tetap ada, tetapi mantra ini memutuskan attunement pemiliknya ke benda tersebut sehingga dapat dilepas atau dibuang. Efek terjadi langsung lalu berakhir."
+}

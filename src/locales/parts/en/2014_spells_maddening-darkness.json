@@ -1,0 +1,5 @@
+{
+  "2014_spells.maddening-darkness.description": "Magical darkness spreads from a point you choose within range to fill a 60-foot-radius sphere until the spell ends. The darkness spreads around corners. Nonmagical light can't illuminate the area, and creatures fully within the sphere are blinded.",
+  "2014_spells.maddening-darkness.effectSummary": "Make a target blinded until it saves or the spell ends",
+  "2014_spells.maddening-darkness.fullDescription": "Using 1 action, magical darkness spreads from a point you choose within range to fill a 60-foot-radius sphere until the spell ends. Nonmagical light can't illuminate the area, and creatures fully within the sphere are blinded; The darkness spreads around corners; When you cast this spell using a spell slot of 9th level or higher, the damage increases by 3d8. Magical darkness spreads from a point you choose within range to fill a 60-foot-radius sphere until the spell ends; you must concentrate, and the effect ends if your concentration ends."
+}

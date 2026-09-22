@@ -1,0 +1,5 @@
+{
+  "2014_spells.summon-aberration-egw.description": "Kamu memanggil roh aberrasi. Ia muncul di ruang kosong yang kamu lihat dalam jangkauan. Bentuk corporeal ini menggunakan Aberration Spirit stat block. Ketika kamu menyalakan sihir, pilih jenis watcher, slicer, atau slime. Makhluk itu menyerupai aberrasi dari jenis tersebut, yang menentukan trait tertentu di stat block makhluk.",
+  "2014_spells.summon-aberration-egw.effectSummary": "Ciptakan efek magis di titik yang kamu pilih",
+  "2014_spells.summon-aberration-egw.fullDescription": "Menggunakan 1 Action, ketika kamu menyalakan sihir, pilih jenis watcher, slicer, atau slime. Ia muncul di ruang kosong yang kamu lihat dalam jangkauan; Kamu memanggil roh aberrasi; Ketika kamu menyalakan sihir ini menggunakan spell slot level 5 atau lebih tinggi, statistik makhluk berubah seperti yang dijelaskan dalam deskripsi sihir. Efek berlangsung hingga 1 jam; kamu harus concentrate, dan efek berakhir jika concentrate kamu berakhir."
+}

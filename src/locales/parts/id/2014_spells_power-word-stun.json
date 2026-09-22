@@ -1,0 +1,5 @@
+{
+  "2014_spells.power-word-stun.description": "Kamu berbicara kata kekuatan yang bisa melumpuhkan pikiran satu makhluk yang bisa kamu lihat dalam range, membuatnya bingung. Jika target memiliki 150 hit points atau kurang, ia menjadi Stunned. Jika tidak, spell ini tidak memiliki efek. Target yang Stunned harus membuat saving throw Constitution pada akhir setiap turn-nya. Pada save yang berhasil, efek stun ini berakhir.",
+  "2014_spells.power-word-stun.effectSummary": "Buat target menjadi Stunned sampai ia berhasil save atau spell berakhir",
+  "2014_spells.power-word-stun.fullDescription": "Menggunakan 1 Action, kamu berbicara kata kekuatan yang bisa melumpuhkan pikiran satu makhluk yang bisa kamu lihat dalam range, membuatnya bingung. Jika target memiliki 150 hit points atau kurang, ia menjadi Stunned; Target yang Stunned harus membuat saving throw Constitution; roll a d20, tambahkan modifier CON, dan bandingkan dengan spell save DC-mu pada akhir setiap turn-nya. Pada save yang berhasil, efek stun ini berakhir."
+}

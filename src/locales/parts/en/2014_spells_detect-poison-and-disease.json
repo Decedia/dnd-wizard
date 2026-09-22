@@ -1,0 +1,5 @@
+{
+  "2014_spells.detect-poison-and-disease.description": "For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+  "2014_spells.detect-poison-and-disease.effectSummary": "Reveal magical or hidden information within range",
+  "2014_spells.detect-poison-and-disease.fullDescription": "Using 1 action, for the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt; You also identify the kind of poison, poisonous creature, or disease in each case. The effect lasts for up to 10 minutes; you must concentrate, and the effect ends if your concentration ends; you can cast it as a ritual."
+}

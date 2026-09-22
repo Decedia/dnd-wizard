@@ -1,0 +1,4 @@
+{
+  "2014_spells.transmute-rock.effectSummary": "Make a target restrained until it saves or the spell ends",
+  "2014_spells.transmute-rock.fullDescription": "Using 1 action, you choose an area of stone or mud that you can see within range and that fits within a 40-foot cube. On each of its turns, a restrained creature sinks 5 feet deeper into the mud; Each creature in the mud must make a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC. The effect happens immediately and then ends."
+}

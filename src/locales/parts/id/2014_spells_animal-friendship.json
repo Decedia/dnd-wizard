@@ -1,0 +1,5 @@
+{
+  "2014_spells.animal-friendship.description": "Kamu mencoba membujuk makhluk liar untuk tidak menyerangmu. Pilih satu beast yang kamu lihat dalam jangkauan. Jika save WIS-nya gagal, beast tersebut tercharmed olehmu selama durasi.",
+  "2014_spells.animal-friendship.effectSummary": "Buat beast menjadi charmed selama durasi",
+  "2014_spells.animal-friendship.fullDescription": "Menggunakan 1 Action, kamu mencoba membujuk makhluk liar untuk tidak menyerangmu. Pilih satu beast yang kamu lihat dalam jangkauan. Beast tersebut harus melakukan saving throw WIS; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or become charmed olehmu; Jika target adalah undead atau construct, sihir ini tidak berpengaruh."
+}

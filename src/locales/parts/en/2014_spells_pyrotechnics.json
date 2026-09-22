@@ -1,0 +1,5 @@
+{
+  "2014_spells.pyrotechnics.description": "Choose an area of nonmagical flame that you can see within range and that fits within a 5-foot cube. You can create smoke or a dazzling light. The smoke heavily obscures an area of a 10-foot cube for 1 minute, or you can create a burst of light that blinds creatures in a 10-foot cube for 1 round.",
+  "2014_spells.pyrotechnics.effectSummary": "Create a magical area that affects creatures inside it",
+  "2014_spells.pyrotechnics.fullDescription": "Using 1 action, choose an area of nonmagical flame that you can see within range and that fits within a 5-foot cube. You can create smoke or a dazzling light; The smoke heavily obscures an area of a 10-foot cube for 1 minute, or you can create a burst of light that blinds creatures in a 10-foot cube for 1 round. The effect happens immediately and then ends."
+}

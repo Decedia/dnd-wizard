@@ -1,0 +1,4 @@
+{
+  "2014_spells.abi-dalzim-s-horrid-wilting.effectSummary": "Deal 12d8 necrotic damage to a target within 150 ft",
+  "2014_spells.abi-dalzim-s-horrid-wilting.fullDescription": "Using 1 action, you draw the moisture from every creature in a 30-foot cube centered on a point you choose within range. A creature takes 12d8 necrotic damage on a failed save, or half as much damage on a successful one; Each creature in that area must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. Nonmagical plants in the area that aren't creatures, such as trees and crops, are instantly withered and destroyed."
+}

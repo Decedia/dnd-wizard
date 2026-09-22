@@ -1,0 +1,5 @@
+{
+  "2014_spells.regenerate.description": "Kamu menyentuh makhluk dan merangsang kemampuan penyembuhan alaminya. Target kembali mendapatkan 4d8 + 15 hit points. Selama durasi mantra, target kembali mendapatkan 1 hit point di awal setiap gilirannya (10 hit points per menit). Bagian tubuh target yang terputus (jari, kaki, ekor, dst), jika ada, dipulihkan setelah 2 menit. Jika kamu memiliki bagian tubuh terputus dan memegangnya ke atas stump, mantra ini secara instan menyatukan anggota tubuh ke stump.",
+  "2014_spells.regenerate.effectSummary": "Pulihkan 4d8+15 HP ke makhluk yang kamu sentuh",
+  "2014_spells.regenerate.fullDescription": "Menggunakan 1 menit, kamu menyentuh makhluk dan merangsang kemampuan penyembuhan alaminya. Target kembali mendapatkan 4d8 + 15 hit points; Bagian tubuh target yang terputus (jari, kaki, ekor, dst), jika ada, dipulihkan setelah 2 menit. Efek berlangsung selama 1 jam."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.thorn-whip.description": "Kamu menciptakan cambuk panjang seperti anggur yang berduri yang menyerang atas perintahmu ke arah makhluk dalam jangkauan. Lakukan melee spell attack terhadap target. Jika kena, makhluk tersebut menerima 1d6 piercing damage, dan jika makhluk tersebut Large atau lebih kecil, kamu menarik makhluk tersebut hingga 10 kaki lebih dekat ke arahmu.",
+  "2014_spells.thorn-whip.effectSummary": "Berikan 1d6 piercing damage ke target dalam 30 ft",
+  "2014_spells.thorn-whip.fullDescription": "Menggunakan 1 Action, kamu menciptakan cambuk panjang seperti anggur yang berduri yang menyerang atas perintahmu ke arah makhluk dalam jangkauan. Jika kena, makhluk tersebut menerima 1d6 piercing damage, dan jika makhluk tersebut Large atau lebih kecil, kamu menarik makhluk tersebut hingga 10 kaki lebih dekat ke arahmu; Lakukan melee spell attack terhadap target. Efek terjadi segera lalu berakhir."
+}

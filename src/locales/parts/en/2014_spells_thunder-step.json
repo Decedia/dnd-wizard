@@ -1,0 +1,5 @@
+{
+  "2014_spells.thunder-step.description": "You teleport to an unoccupied space you can see within range. Immediately after you disappear, a thunderous boom sounds, and each creature within 10 feet of the space you left must make a Constitution saving throw, taking 3d10 thunder damage on a failed save, or half as much damage on a successful one.",
+  "2014_spells.thunder-step.effectSummary": "Deal 3d10 thunder damage to a target within 90 ft",
+  "2014_spells.thunder-step.fullDescription": "Using 1 action, you teleport to an unoccupied space you can see within range. Immediately after you disappear, a thunderous boom sounds, and each creature within 10 feet of the space you left must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC, taking 3d10 thunder damage on a failed save, or half as much damage on a successful one; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d10 for each slot level above 3rd. The effect happens immediately and then ends."
+}

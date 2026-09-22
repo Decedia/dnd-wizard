@@ -1,0 +1,5 @@
+{
+  "2014_spells.wristpocket.description": "You flick your wrist, causing one object in your hand to vanish. The object, which only you can designate, is transported to an extradimensional space and remains there until you use this spell again to bring it back. The object must weigh no more than 5 pounds and be no longer than 6 inches in any dimension. While stored, you can use your action to summon the object back to your hand.",
+  "2014_spells.wristpocket.effectSummary": "Summon a creature to fight for you for the duration",
+  "2014_spells.wristpocket.fullDescription": "Using 1 action, you flick your wrist, causing one object in your hand to vanish. The object, which only you can designate, is transported to an extradimensional space and remains there until you use this spell again to bring it back; While stored, you can use your action to summon the object back to your hand. The object, which only you can designate, is transported to an extradimensional space and remains there until you use this spell again to bring it back; you must concentrate, and the effect ends if your concentration ends; you can cast it as a ritual."
+}

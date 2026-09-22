@@ -1,0 +1,4 @@
+{
+  "2014_spells.abi-dalzim-s-horrid-wilting.effectSummary": "Lukai makhluk hidup di area besar dengan energi nekrotik yang mengerikan",
+  "2014_spells.abi-dalzim-s-horrid-wilting.fullDescription": "Menggunakan 1 Action, monster mayat yang dihancurkan oleh Suster Abi-Dalzim menutupi medan dengan debu dan mayat yang hancur. Makhluk di dalam area tersebut perlu membuat saving throw CON. Jika gagal, makhluk tersebut menerima 20d8 necrotic damage dan menjadi Incapacitated; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. Makhluk yang masih hidup di dalam area tersebut harus membuat saving throw CON setiap gilirannya; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. Setiap makhluk yang membuat saving throw dan tidak berada di ketinggian tertinggi saat akhir gilirannya akan jatuh; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC."
+}

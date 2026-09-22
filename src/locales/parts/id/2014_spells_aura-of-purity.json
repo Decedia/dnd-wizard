@@ -1,0 +1,5 @@
+{
+  "2014_spells.aura-of-purity.description": "Energi penyucian memancar darimu dalam aura dengan radius 30 foot. Sampai spell berakhir, aura bergerak bersamamu, berpusat padamu. Setiap nonhostile creature dalam aura (termasuk kamu) tidak bisa menjadi diseased, memiliki resistance terhadap poison damage, dan memiliki Advantage pada saving throws terhadap efek yang menyebabkan blindness, deafness, paralysis, poison, atau stunned.",
+  "2014_spells.aura-of-purity.effectSummary": "Beri resistance poison dan Advantage saving throw untuk durasi",
+  "2014_spells.aura-of-purity.fullDescription": "Menggunakan 1 Action, energi penyucian memancar darimu dalam aura dengan radius 30 foot. Sampai spell berakhir, aura bergerak bersamamu, berpusat padamu. Setiap nonhostile creature dalam aura (termasuk kamu) tidak bisa menjadi diseased, memiliki resistance terhadap poison damage, dan memiliki Advantage pada saving throws terhadap efek yang menyebabkan blindness, deafness, paralysis, poison, atau stunned; Energi penyucian memancar darimu dalam aura dengan radius 30 foot; you must concentrate, and the effect ends if your concentration ends."
+}

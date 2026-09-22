@@ -1,0 +1,5 @@
+{
+  "2014_spells.heroism.description": "Makhluk bersedia yang kamu sentuh dilimpahkan keberanian. Sampai sihir berakhir, makhluk itu kebal terhadap menjadi takut (Frightened) dan mendapatkan temporary hit points sebanyak modifier spellcasting ability kamu pada awal setiap gilirannya. Ketika sihir berakhir, target kehilangan sisa temporary hit points dari sihir ini.",
+  "2014_spells.heroism.effectSummary": "Buat target menjadi takut (Frightened) sampai dia menyelamatkan diri atau sihir berakhir",
+  "2014_spells.heroism.fullDescription": "Menggunakan 1 Action, makhluk bersedia yang kamu sentuh dilimpahkan keberanian. Sampai sihir berakhir, makhluk itu kebal terhadap menjadi takut (Frightened) dan mendapatkan temporary hit points sebanyak modifier spellcasting ability kamu pada awal setiap gilirannya; Ketika sihir berakhir, target kehilangan sisa temporary hit points dari sihir ini. Sampai sihir berakhir, makhluk itu kebal terhadap menjadi takut (Frightened) dan mendapatkan temporary hit points sebanyak modifier spellcasting ability kamu pada awal setiap gilirannya; kamu harus berkonsentrasi, dan efeknya berakhir jika konsentrasimu berakhir."
+}

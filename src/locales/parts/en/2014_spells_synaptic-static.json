@@ -1,0 +1,5 @@
+{
+  "2014_spells.synaptic-static.description": "You choose a point within range and cause psychic energy to explode there. Each creature in a 20-foot-radius sphere centered on that point must make an Intelligence saving throw. A creature can't make this saving throw if it's a construct or if it has an Intelligence score of 2 or lower.",
+  "2014_spells.synaptic-static.effectSummary": "Each creature in a 20-foot-radius sphere centered on that point must make an Intelligence saving throw",
+  "2014_spells.synaptic-static.fullDescription": "Using 1 action, you choose a point within range and cause psychic energy to explode there. Each creature in a 20-foot-radius sphere centered on that point must make an Intelligence saving throw; A creature can't make this saving throw if it's a construct or if it has an Intelligence score of 2 or lower; When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d6 for each slot level above 5th. The effect happens immediately and then ends."
+}

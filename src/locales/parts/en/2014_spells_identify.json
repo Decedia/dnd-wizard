@@ -1,0 +1,5 @@
+{
+  "2014_spells.identify.description": "You choose one object that you must touch throughout the casting of the spell. If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. You learn whether any spells are affecting the item and what they are. If the item was created by a spell, you learn which spell created it. If you instead touch a creature throughout the casting, you learn what spells, if any, are currently affecting it.",
+  "2014_spells.identify.effectSummary": "Reveal magical or hidden information within range",
+  "2014_spells.identify.fullDescription": "Using 1 minute, you choose one object that you must touch throughout the casting of the spell. If the item was created by a spell, you learn which spell created it; If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. The effect happens immediately and then ends; you can cast it as a ritual."
+}

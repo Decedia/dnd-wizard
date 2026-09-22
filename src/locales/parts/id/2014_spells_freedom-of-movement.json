@@ -1,0 +1,5 @@
+{
+  "2014_spells.freedom-of-movement.description": "Kamu menyentuh makhluk bersedia. Selama durasi, movement target tidak terpengaruh oleh difficult terrain, dan spell serta efek magis lain tidak bisa mengurangi speed target atau menyebabkan target menjadi Paralyzed atau Restrained. Target juga bisa menghabiskan 5 kaki gerakan untuk secara otomatis melarikan diri dari restraint nonmagis, seperti bel kaki atau makhluk yang telah memegangnya. Akhirnya, berada di bawah air tidak menimbulkan penalty pada movement atau attack target.",
+  "2014_spells.freedom-of-movement.effectSummary": "Buat target Grappled sampai dia berhasil save atau spell berakhir",
+  "2014_spells.freedom-of-movement.fullDescription": "Menggunakan 1 action, kamu menyentuh makhluk bersedia. Target bisa juga menghabiskan 5 kaki gerakan untuk secara otomatis melarikan diri dari restraint nonmagis, seperti bel kaki atau makhluk yang telah memegangnya; Selama durasi, movement target tidak terpengaruh oleh difficult terrain, dan spell serta efek magis lain tidak bisa mengurangi speed target atau menyebabkan target menjadi Paralyzed atau Restrained. Efek berlangsung selama 1 jam."
+}

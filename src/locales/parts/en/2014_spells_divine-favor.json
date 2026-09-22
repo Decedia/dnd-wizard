@@ -1,0 +1,5 @@
+{
+  "2014_spells.divine-favor.description": "Your prayer empowers you with divine radiance. Until the spell ends, your weapon attacks deal an extra 1d4 radiant damage on a hit.",
+  "2014_spells.divine-favor.effectSummary": "Deal 1d4 radiant damage to a target within Self",
+  "2014_spells.divine-favor.fullDescription": "Using 1 bonus action, your prayer empowers you with divine radiance. Until the spell ends, your weapon attacks deal an extra 1d4 radiant damage on a hit. Until the spell ends, your weapon attacks deal an extra 1d4 radiant damage on a hit; you must concentrate, and the effect ends if your concentration ends."
+}

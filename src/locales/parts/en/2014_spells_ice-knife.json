@@ -1,0 +1,5 @@
+{
+  "2014_spells.ice-knife.description": "You create a shard of ice and fling it at one creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 piercing damage. Hit or miss, the shard then explodes. The target and each creature within 5 feet of the point where the shard explodes must succeed on a Dexterity saving throw or take 2d6 cold damage.",
+  "2014_spells.ice-knife.effectSummary": "Deal 1d10 piercing damage to a target within 60 ft",
+  "2014_spells.ice-knife.fullDescription": "Using 1 action, you create a shard of ice and fling it at one creature within range. On a hit, the target takes 1d10 piercing damage; The target and each creature within 5 feet of the point where the shard explodes must succeed on a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or take 2d6 cold damage; When you cast this spell using a spell slot of 2nd level or higher, the cold damage increases by 1d6 for each slot level above 1st. The effect happens immediately and then ends."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.flame-arrows.description": "You touch a quiver containing arrows or bolts. When a target is hit by a ranged weapon attack using a piece of ammunition drawn from the quiver, the target takes an extra 1d6 fire damage.",
+  "2014_spells.flame-arrows.effectSummary": "Deal 1d6 fire damage to a target within Touch",
+  "2014_spells.flame-arrows.fullDescription": "Using 1 action, you touch a quiver containing arrows or bolts. When a target is hit by a ranged weapon attack using a piece of ammunition drawn from the quiver, the target takes an extra 1d6 fire damage; When you cast this spell using a spell slot of 4th level or higher, the number of pieces of ammunition you can affect increases by two for each slot level above 3rd. The effect lasts for concentration, up to 1 hour."
+}

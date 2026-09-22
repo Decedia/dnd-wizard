@@ -1,0 +1,5 @@
+{
+  "2014_spells.bless.description": "Kamu memberkati hingga tiga creatures pilihanmu dalam jangkauan. Setiap kali target membuat attack roll atau saving throw sebelum spell berakhir, target bisa melempar d4 dan menambahkan angka yang keluar ke attack roll atau saving throw.",
+  "2014_spells.bless.effectSummary": "Tambah d4 ke attack roll atau saving throw target",
+  "2014_spells.bless.fullDescription": "Menggunakan 1 Action, kamu memberkati hingga tiga creatures pilihanmu dalam jangkauan. Setiap kali target membuat attack roll atau saving throw sebelum spell berakhir, target bisa melempar d4 dan menambahkan angka yang keluar ke attack roll atau saving throw; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 2 atau lebih tinggi, kamu bisa menargetkan satu creature tambahan untuk setiap slot level di atas 1st; you must concentrate, and the effect ends if your concentration ends."
+}

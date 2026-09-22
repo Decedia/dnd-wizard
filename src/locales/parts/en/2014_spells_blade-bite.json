@@ -1,0 +1,5 @@
+{
+  "2014_spells.blade-bite.description": "You engulf your weapon in destructive energy. As part of the action used to cast this spell, you must make a melee attack against one creature within the spell's range, otherwise the spell fails. On a hit, the target suffers the attack's normal effects, and it takes 1d6 necrotic damage as the spell's energy rips into it. This spell's necrotic damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
+  "2014_spells.blade-bite.effectSummary": "Deal 1d6 necrotic damage to a target within Self",
+  "2014_spells.blade-bite.fullDescription": "Using 1 action, as part of the action used to cast this spell, you must make a melee attack against one creature within the spell's range, otherwise the spell fails. On a hit, the target suffers the attack's normal effects, and it takes 1d6 necrotic damage as the spell's energy rips into it; This spell's necrotic damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6); This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6). The effect lasts for 1 round."
+}

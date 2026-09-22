@@ -1,0 +1,5 @@
+{
+  "2014_spells.summon-aberration-egw.description": "You call forth an aberration spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Aberration Spirit stat block. When you cast the spell, choose a type of watcher, slicer, or slime. The creature resembles an aberration of that type, which determines certain traits in the creature's stat block.",
+  "2014_spells.summon-aberration-egw.effectSummary": "Create a magical effect at a point you choose",
+  "2014_spells.summon-aberration-egw.fullDescription": "Using 1 action, when you cast the spell, choose a type of watcher, slicer, or slime. It manifests in an unoccupied space that you can see within range; You call forth an aberration spirit; When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description. The effect lasts for up to 1 hour; you must concentrate, and the effect ends if your concentration ends."
+}

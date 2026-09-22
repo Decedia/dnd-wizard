@@ -1,0 +1,5 @@
+{
+  "2014_spells.invisibility.description": "Makhluk yang kamu sentuh menjadi invisible sampai sihir berakhir. Apa pun yang dipakai atau dibawa target menjadi invisible selama ada di atas orang target. Sihir berakhir untuk target yang menyerang atau casting sihir.",
+  "2014_spells.invisibility.effectSummary": "Buat makhluk invisible sampai dia menyerang atau sihir berakhir",
+  "2014_spells.invisibility.fullDescription": "Menggunakan 1 Action, makhluk yang kamu sentuh menjadi invisible sampai sihir berakhir. Apa pun yang dipakai atau dibawa target menjadi invisible selama ada di atas orang target; Sihir berakhir untuk target yang menyerang atau casting sihir; Saat kamu casting sihir ini menggunakan spell slot level 3 atau lebih tinggi, kamu dapat menargetkan satu makhluk tambahan untuk setiap slot level di atas 2nd. Makhluk yang kamu sentuh menjadi invisible sampai sihir berakhir; kamu harus berkonsentrasi, dan efeknya berakhir jika konsentrasimu berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.inflict-wounds.description": "Make a melee spell attack against a creature you can reach. On a hit, the target takes 3d10 necrotic damage.",
+  "2014_spells.inflict-wounds.effectSummary": "Deal 3d10 necrotic damage to a target within Touch",
+  "2014_spells.inflict-wounds.fullDescription": "Using 1 action, make a melee spell attack against a creature you can reach. On a hit, the target takes 3d10 necrotic damage; When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st. The effect happens immediately and then ends."
+}

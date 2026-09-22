@@ -1,0 +1,4 @@
+{
+  "2014_spells.tsunami.effectSummary": "Deal 6d10 bludgeoning damage to a target within Sight",
+  "2014_spells.tsunami.fullDescription": "Using 1 minute, a wall of water springs into existence at a point you choose within range. At the end of each of your turns, the wall's height is reduced by 50 feet, and the damage creatures take from the wall on subsequent turns is reduced by 1d10; On a failed save, a creature takes 6d10 bludgeoning damage, and it is knocked prone. The wall lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
+}

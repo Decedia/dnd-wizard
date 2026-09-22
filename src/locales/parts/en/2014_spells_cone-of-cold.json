@@ -1,0 +1,5 @@
+{
+  "2014_spells.cone-of-cold.description": "A blast of cold air erupts from your hands. Each creature in a 60-foot cone must make a constitution saving throw. A creature takes 8d8 cold damage on a failed save, or half as much damage on a successful one. A creature killed by this spell becomes a frozen statue until it thaws.",
+  "2014_spells.cone-of-cold.effectSummary": "Deal 8d8 cold damage to a target within Self",
+  "2014_spells.cone-of-cold.fullDescription": "Using 1 action, a blast of cold air erupts from your hands. A creature takes 8d8 cold damage on a failed save, or half as much damage on a successful one; Each creature in a 60-foot cone must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th. A creature killed by this spell becomes a frozen statue until it thaws."
+}

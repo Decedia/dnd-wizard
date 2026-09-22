@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-word.description": "You respond to a creature's attack with a word of draconic power. The creature must succeed on a Constitution saving throw or the attack deals an additional 2d6 force damage to it, and the creature can't take reactions until the start of its next turn.",
+  "2014_spells.draconic-word.effectSummary": "Deal 2d6 force damage to a target within 60 ft",
+  "2014_spells.draconic-word.fullDescription": "Using 1 reaction, the creature must succeed on a Constitution saving throw or the attack deals an additional 2d6 force damage to it, and the creature can't take reactions until the start of its next turn. You respond to a creature's attack with a word of draconic power; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd. The creature must succeed on a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC or the attack deals an additional 2d6 force damage to it, and the creature can't take reactions until the start of its next turn."
+}

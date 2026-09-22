@@ -1,0 +1,5 @@
+{
+  "2014_spells.black-tentacles.description": "Tentakel-tentakel hitam yang bergeliat mengisi area 20-foot square di tanah yang kamu lihat dalam jangkauan. Area tersebut menjadi difficult terrain. Ketika creature memasuki area ini untuk pertama kali pada turn tersebut atau mulai turn di dalamnya, creature tersebut harus saving throw DEX atau terkena 3d6 bludgeoning damage dan restrained oleh tentakel.",
+  "2014_spells.black-tentacles.effectSummary": "Deal 3d6 bludgeoning damage ke target di dalam 90 ft",
+  "2014_spells.black-tentacles.fullDescription": "Menggunakan 1 Action, tentakel-tentakel hitam yang bergeliat mengisi area 20-foot square di tanah yang kamu lihat dalam jangkauan. Area tersebut menjadi difficult terrain. Ketika creature memasuki area ini untuk pertama kali pada turn tersebut atau mulai turn di dalamnya, creature tersebut harus saving throw DEX; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or take 3d6 bludgeoning damage dan restrained oleh tentakel sampai spell berakhir; you must concentrate, and the effect ends if your concentration ends."
+}

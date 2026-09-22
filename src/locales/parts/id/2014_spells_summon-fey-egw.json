@@ -1,0 +1,5 @@
+{
+  "2014_spells.summon-fey-egw.description": "Kamu memanggil roh fey. Ia muncul di ruang kosong yang kamu lihat dalam jangkauan. Bentuk corporeal ini menggunakan Fey Spirit stat block. Ketika kamu menyalakan sihir, pilih roh tegas, lembut, atau phantasmal. Makhluk itu menyerupai fey dari jenis tersebut, yang menentukan trait tertentu di stat block makhluk.",
+  "2014_spells.summon-fey-egw.effectSummary": "Ciptakan efek magis di titik yang kamu pilih",
+  "2014_spells.summon-fey-egw.fullDescription": "Menggunakan 1 Action, ketika kamu menyalakan sihir, pilih roh tegas, lembut, atau phantasmal. Ia muncul di ruang kosong yang kamu lihat dalam jangkauan; Kamu memanggil roh fey; Ketika kamu menyalakan sihir ini menggunakan spell slot level 4 atau lebih tinggi, statistik makhluk berubah seperti yang dijelaskan dalam deskripsi sihir. Efek berlangsung hingga 1 jam; kamu harus concentrate, dan efek berakhir jika concentrate kamu berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.chromatic-orb.description": "You hurl a 4-inch-diameter sphere of energy at a creature that you can see within range. You choose acid, cold, fire, lightning, poison, or thunder for the type of orb you create, and then make a ranged spell attack against the target. If the hit, the target takes 3d8 damage of the type you chose.",
+  "2014_spells.chromatic-orb.effectSummary": "Create a magical area that affects creatures inside it",
+  "2014_spells.chromatic-orb.fullDescription": "Using 1 action, you choose acid, cold, fire, lightning, poison, or thunder for the type of orb you create, and then make a ranged spell attack against the target. If the hit, the target takes 3d8 damage of the type you chose; You hurl a 4-inch-diameter sphere of energy at a creature that you can see within range; When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st. The effect happens immediately and then ends."
+}

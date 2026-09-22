@@ -196,7 +196,7 @@
       ],
       "scaling": {
         "type": "cantrip",
-        "description": "At 5th level, the melee attack deals an extra 1d8 thunder damage on a hit, and the damage the target takes for moving increases to 2d8. At 11th level, the extra damage increases to 2d8 and the moving damage increases to 3d8. At 17th level, the extra damage increases to 3d8 and the moving damage increases to 4d8.",
+        "description": "Di tingkat 5, serangan melee memberikan 1d8 thunder damage tambahan saat kena, dan damage yang diterima target saat bergerak meningkat menjadi 2d8. Di tingkat 11, damage tambahan meningkat menjadi 2d8 dan damage gerak meningkat menjadi 3d8. Di tingkat 17, damage tambahan meningkat menjadi 3d8 dan damage gerak meningkat menjadi 4d8.",
         "appliesTo": "damage"
       },
       "source": "PHB",
@@ -724,7 +724,7 @@
       ],
       "scaling": {
         "type": "cantrip",
-        "description": "At 5th level, you can pull the target up to 15 feet. At 11th level, you can pull the target up to 20 feet. At 17th level, you can pull the target up to 25 feet.",
+        "description": "Di tingkat 5, Anda dapat menarik target hingga 15 feet. Di tingkat 11, Anda dapat menarik target hingga 20 feet. Di tingkat 17, Anda dapat menarik target hingga 25 feet.",
         "appliesTo": "damage"
       },
       "source": "TCE",
@@ -770,7 +770,7 @@
       ],
       "scaling": {
         "type": "cantrip",
-        "description": "At 5th level, you can pull the target up to 15 feet. At 11th level, you can pull the target up to 20 feet. At 17th level, you can pull the target up to 25 feet.",
+        "description": "Di tingkat 5, Anda dapat menarik target hingga 15 feet. Di tingkat 11, Anda dapat menarik target hingga 20 feet. Di tingkat 17, Anda dapat menarik target hingga 25 feet.",
         "appliesTo": "damage"
       },
       "source": "EGW",
@@ -811,7 +811,7 @@
       ],
       "scaling": {
         "type": "cantrip",
-        "description": "At 5th level, the melee attack deals an extra 1d8 fire damage on a hit, and the fire damage increases to 1d8 + your spellcasting ability modifier. At 11th level, the extra damage increases to 2d8 and the fire damage increases to 2d8 + your spellcasting ability modifier. At 17th level, the extra damage increases to 3d8 and the fire damage increases to 3d8 + your spellcasting ability modifier.",
+        "description": "Di tingkat 5, serangan melee memberikan 1d8 fire damage tambahan saat kena, dan fire damage meningkat menjadi 1d8 + spellcasting ability modifier Anda. Di tingkat 11, damage tambahan meningkat menjadi 2d8 dan fire damage meningkat menjadi 2d8 + spellcasting ability modifier Anda. Di tingkat 17, damage tambahan meningkat menjadi 3d8 dan fire damage meningkat menjadi 3d8 + spellcasting ability modifier Anda.",
         "appliesTo": "damage"
       },
       "source": "PHB",
@@ -2132,7 +2132,7 @@
       ],
       "scaling": {
         "type": "cantrip",
-        "description": "At 5th level, the creature can move up to 15 feet. At 11th level, the creature can move up to 20 feet. At 17th level, the creature can move up to 25 feet.",
+        "description": "Di tingkat 5, creature dapat bergerak hingga 15 feet. Di tingkat 11, creature dapat bergerak hingga 20 feet. Di tingkat 17, creature dapat bergerak hingga 25 feet.",
         "appliesTo": "damage"
       },
       "source": "TCE",
@@ -2540,7 +2540,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage tambahan meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -2636,7 +2636,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda dapat mempengaruhi satu beast tambahan untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -2679,7 +2679,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, both the temporary hit points and the cold damage increase by 5 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, baik temporary hit points maupun cold damage meningkat 5 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -2727,7 +2727,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -2770,7 +2770,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "targets",
         "startsAtLevel": 3
       },
@@ -2856,7 +2856,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "targets",
         "startsAtLevel": 3
       },
@@ -2910,7 +2910,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -2962,7 +2962,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the maximum weight of objects that you can target with this spell increases by 5 pounds, and the damage increases by 1d8, for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, berat maksimum benda yang dapat Anda targetkan dengan sihir ini meningkat 5 pounds, dan damage meningkat 1d8, untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -3011,7 +3011,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 1. Makhluk-makhluk harus berada dalam jarak 30 feet satu sama lain saat Anda menargetkannya.",
         "appliesTo": "targets",
         "startsAtLevel": 3
       },
@@ -3091,7 +3091,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, each target takes 1d6 extra damage of the type rolled for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, setiap target menerima 1d6 damage tambahan dari tipe yang didapat untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -3137,7 +3137,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 1. Makhluk-makhluk harus berada dalam jarak 30 feet satu sama lain saat Anda menargetkannya.",
         "appliesTo": "targets",
         "startsAtLevel": 3
       },
@@ -3187,7 +3187,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -3234,7 +3234,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d10 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, roll 2d10 tambahan untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -3282,7 +3282,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda dapat mempengaruhi satu creature tambahan untuk setiap tingkat slot di atas tingkat 1. Makhluk-makhluk harus berada dalam jarak 30 feet satu sama lain saat Anda menargetkannya.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -3410,7 +3410,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you create or destroy 10 additional gallons of water, or the size of the cube increases by 5 feet, for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda membuat atau menghancurkan 10 galon air tambahan, atau ukuran kubus meningkat 5 feet, untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -3454,7 +3454,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, healing meningkat 1d8 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "healing",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -3682,7 +3682,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -3764,7 +3764,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -3866,7 +3866,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -3930,7 +3930,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "If you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "Jika Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -4103,7 +4103,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda mendapatkan 5 temporary hit points tambahan untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -4270,7 +4270,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the radius of the fog increases by 20 feet for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, radius kabut meningkat 20 feet untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -4325,7 +4325,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -4455,7 +4455,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -4505,7 +4505,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "If you cast this spell using a spell slot of 2nd level or higher, the piercing damage increases by 1d10 for each slot level above 1st (to a maximum of 6d10).",
+        "description": "Jika Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, piercing damage meningkat 1d10 untuk setiap tingkat slot di atas tingkat 1 (maksimal 6d10).",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 3
@@ -4546,7 +4546,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, healing meningkat 1d4 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "healing",
         "increment": "1d4",
         "startsAtLevel": 3
@@ -4605,7 +4605,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d10 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 3
@@ -4729,7 +4729,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd or 4th level, you can maintain your concentration on the spell for up to 8 hours. When you use a spell slot of 5th level or higher, you can maintain your concentration on the spell for up to 24 hours.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau 4, Anda dapat mempertahankan concentration pada sihir hingga 8 jam. Saat Anda menggunakan slot sihir tingkat 5 atau lebih tinggi, Anda dapat mempertahankan concentration pada sihir hingga 24 jam.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -4773,7 +4773,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the cold damage increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, cold damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -4899,7 +4899,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d10 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 3
@@ -4986,7 +4986,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each spell slot above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap spell slot di atas tingkat 1.",
         "appliesTo": "targets",
         "startsAtLevel": 3
       },
@@ -5076,7 +5076,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the spell creates one more dart for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, sihir membuat satu dart lagi untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -5239,7 +5239,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -5328,7 +5328,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the initial extra damage dealt by the attack increases by 1d6 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage tambahan awal yang diberikan serangan meningkat 1d6 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -5543,7 +5543,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d8 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, roll 2d8 tambahan untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -5678,7 +5678,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 2d4 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "2d4",
         "startsAtLevel": 3
@@ -5759,7 +5759,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the spell creates one additional disk for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, sihir membuat satu disk tambahan untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -5849,7 +5849,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -5941,7 +5941,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 2nd level or higher, the initial damage increases by 1d12 for each slot level above 1st.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 2 atau lebih tinggi, initial damage meningkat 1d12 untuk setiap tingkat slot di atas tingkat 1.",
         "appliesTo": "damage",
         "increment": "1d12",
         "startsAtLevel": 3
@@ -6071,7 +6071,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage (baik awal maupun kemudian) meningkat 1d4 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -6123,7 +6123,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -6167,7 +6167,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, Hit Points target meningkat 5 tambahan untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -6287,7 +6287,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "If you cast this spell using a spell slot of 3nd level or higher, the duration of the spell increases by 48 hours for each slot level above 2nd.",
+        "description": "Jika Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, durasi sihir meningkat 48 jam untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "duration",
         "startsAtLevel": 4
       },
@@ -6485,7 +6485,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "targets",
         "startsAtLevel": 4
       },
@@ -6578,7 +6578,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the extra damage increases by 1d6 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage tambahan meningkat 1d6 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 4
@@ -6666,7 +6666,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 2d4 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 2d4 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "2d4",
         "startsAtLevel": 4
@@ -6758,7 +6758,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the amount of ammunition affected increases by two for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, jumlah ammunition yang terpengaruh meningkat dua untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -7105,7 +7105,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -7196,7 +7196,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "targets",
         "startsAtLevel": 4
       },
@@ -7240,7 +7240,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "targets",
         "startsAtLevel": 4
       },
@@ -7444,7 +7444,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for every two slot levels above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d6 untuk setiap dua tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 5
@@ -7503,7 +7503,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 4
@@ -7643,7 +7643,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -7696,7 +7696,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, Anda dapat menargetkan satu humanoid tambahan untuk setiap tingkat slot di atas tingkat 2. Humanoid harus berada dalam jarak 30 feet satu sama lain saat Anda menargetkannya.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -7788,7 +7788,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "targets",
         "startsAtLevel": 4
       },
@@ -8116,7 +8116,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the bonus increases to +2. When you use a spell slot of 6th level or higher, the bonus increases to +3.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, bonus meningkat menjadi +2. Saat Anda menggunakan slot sihir tingkat 6 atau lebih tinggi, bonus meningkat menjadi +3.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -8208,7 +8208,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage (baik awal maupun kemudian) meningkat 1d4 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -8255,7 +8255,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -8389,7 +8389,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1dl0 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 1dl0 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -8553,7 +8553,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the healing increases by 1d8 for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, healing meningkat 1d8 untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "healing",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -8781,7 +8781,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, Anda membuat satu ray tambahan untuk setiap tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -8867,7 +8867,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a 3rd- or 4th-level spell slot, the damage increases to 3d8. When you cast it using a 5th- or 6th-level spell slot, the damage increases to 4d8. When you cast it using a spell slot of 7th level or higher, the damage increases to 5d8.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau 4, damage meningkat menjadi 3d8. Saat Anda menyalurkannya menggunakan slot sihir tingkat 5 atau 6, damage meningkat menjadi 4d8. Saat Anda menyalurkannya menggunakan slot sihir tingkat 7 atau lebih tinggi, damage meningkat menjadi 5d8.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -9132,7 +9132,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for every two slot levels above the 2nd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, damage meningkat 1d8 untuk setiap dua tingkat slot di atas tingkat 2.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -9226,7 +9226,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 3rd level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 3 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -9505,7 +9505,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, you animate or reassert control over two additional undead creatures for each slot level above 3rd. Each of the creatures must come from a different corpse or pile of bones.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, Anda menganimasi atau menegaskan kembali kendali atas dua undead creature tambahan untuk setiap tingkat slot di atas tingkat 3. Setiap makhluk harus berasal dari jenazah atau tumpukan tulang yang berbeda.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -9595,7 +9595,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "If you cast this spell using a spell slot of 4th level or higher, the duration is concentration, up to 10 minutes. If you use a spell slot of 5th level or higher, the duration is 8 hours. If you use a spell slot of 7th level or higher, the duration is 24 hours. If you use a 9th level spell slot, the spell lasts until it is dispelled. Using a spell slot of 5th level or higher grants a duration that doesn't require concentration.",
+        "description": "Jika Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, durasinya adalah concentration, hingga 10 menit. Jika Anda menggunakan slot sihir tingkat 5 atau lebih tinggi, durasinya adalah 8 jam. Jika Anda menggunakan slot sihir tingkat 7 atau lebih tinggi, durasinya adalah 24 jam. Jika Anda menggunakan slot sihir tingkat 9, sihir berlangsung sampai di-dispel. Menggunakan slot sihir tingkat 5 atau lebih tinggi memberikan durasi yang tidak memerlukan concentration.",
         "appliesTo": "duration",
         "startsAtLevel": 5
       },
@@ -9732,7 +9732,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, you can target one additional willing creature for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, Anda dapat menargetkan satu willing creature tambahan untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -9857,7 +9857,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, sihir yang terinterupsi tidak memiliki efek jika levelnya kurang dari atau sama dengan tingkat slot sihir yang Anda gunakan.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -9985,7 +9985,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, you automatically end the effects of a spell on the target if the spell's level is equal to or less than the level of the spell slot you used.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, Anda secara otomatis mengakhiri efek sihir pada target jika level sihir tersebut sama dengan atau kurang dari tingkat slot sihir yang Anda gunakan.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10080,7 +10080,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 5
@@ -10277,7 +10277,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 5
@@ -10323,7 +10323,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the number of pieces of ammunition you can affect increases by two for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, jumlah ammunition yang dapat Anda pengaruhi meningkat dua untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10369,7 +10369,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, you can target one additional creature for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "targets",
         "startsAtLevel": 5
       },
@@ -10467,7 +10467,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage of an explosive runes glyph increases by 1d8 for each slot level above 3rd. If you create a spell glyph, you can store any spell of up to the same level as the slot you use for the glyph of warding.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage glyph explosive runes meningkat 1d8 untuk setiap tingkat slot di atas tingkat 3. Jika Anda membuat glyph spell, Anda dapat menyimpan sembarang sihir dengan level hingga sama dengan slot yang Anda gunakan untuk glyph of warding.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10638,7 +10638,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, you can target one additional creature for each slot level above 3rd. The creatures must be within 30 feet of each other when you target them.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 3. Makhluk-makhluk harus berada dalam jarak 30 feet satu sama lain saat Anda menargetkannya.",
         "appliesTo": "targets",
         "startsAtLevel": 5
       },
@@ -10858,7 +10858,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -10918,7 +10918,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 5
@@ -10967,7 +10967,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the duration increases by 1 hour for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, durasi meningkat 1 jam untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "duration",
         "startsAtLevel": 5
       },
@@ -11017,7 +11017,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the spell lasts until dispelled, without requiring your concentration.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, sihir berlangsung sampai di-dispel, tanpa memerlukan concentration Anda.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -11062,7 +11062,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the healing increases by 1d4 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, healing meningkat 1d4 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "healing",
         "increment": "1d4",
         "startsAtLevel": 5
@@ -11150,7 +11150,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the number of meteors created increases by two for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, jumlah meteor yang dibuat meningkat dua untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -11359,7 +11359,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 5
@@ -11719,7 +11719,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -11762,7 +11762,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -11813,7 +11813,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for every two slot levels above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -11858,7 +11858,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for every two slot levels above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap dua tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -11903,7 +11903,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for every two slot levels above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap dua tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -12005,7 +12005,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12050,7 +12050,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12095,7 +12095,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12140,7 +12140,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12182,7 +12182,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12224,7 +12224,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12266,7 +12266,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12308,7 +12308,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12350,7 +12350,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12403,7 +12403,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d10 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d10 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 5
@@ -12460,7 +12460,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -12545,7 +12545,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, you can touch and animate one additional Tiny object for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, Anda dapat menyentuh dan menganimasi satu Tiny object tambahan untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -12633,7 +12633,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 4 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 3.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 5
@@ -12933,7 +12933,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 4.",
         "appliesTo": "targets",
         "startsAtLevel": 6
       },
@@ -13138,7 +13138,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the radius of the sphere increases by 5 feet for each slot level above 4th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, radius sphere meningkat 5 feet untuk setiap tingkat slot di atas tingkat 4.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -13497,7 +13497,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 4.",
         "appliesTo": "targets",
         "startsAtLevel": 6
       },
@@ -14018,7 +14018,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the bludgeoning damage increases by 1d8 for each slot level above 4th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, bludgeoning damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 4.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 6
@@ -14268,7 +14268,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d10 for each slot level above 4th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, damage meningkat 1d10 untuk setiap tingkat slot di atas tingkat 4.",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 6
@@ -14372,7 +14372,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, you can increase the size of the cube by 100 feet for each slot level beyond 4th. Thus you could protect a cube that can be up to 200 feet on one side by using a spell slot of 5th level.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, Anda dapat meningkatkan ukuran kubus 100 feet untuk setiap tingkat slot di atas tingkat 4. Dengan demikian Anda dapat melindungi kubus hingga 200 feet di satu sisi dengan menggunakan slot sihir tingkat 5.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -14651,7 +14651,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -14693,7 +14693,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -14735,7 +14735,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -14777,7 +14777,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -14820,7 +14820,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -14875,7 +14875,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 4.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 6
@@ -14958,7 +14958,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "If you cast this spell using a spell slot of 6th level or higher, you can animate two additional objects for each slot level above 5th.",
+        "description": "Jika Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, Anda dapat menganimasi dua benda tambahan untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -15038,7 +15038,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the damage from the clenched fist option increases by 2d8 and the damage from the grasping hand increases by 2d6 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, damage dari opsi clenched fist meningkat 2d8 dan damage dari grasping hand meningkat 2d6 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -15137,7 +15137,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 7
@@ -15268,7 +15268,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 7
@@ -15316,7 +15316,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, challenge rating meningkat 1 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -15436,7 +15436,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the cube increases by 5 feet for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, kubus meningkat 5 feet untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -15596,7 +15596,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a 6th-level spell slot, the duration is concentration, up to 10 minutes. When you use a 7th-level spell slot, the duration is concentration, up to 1 hour. When you use a spell slot of 8th level or higher, the duration is concentration, up to 8 hours.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6, durasinya adalah concentration, hingga 10 menit. Saat Anda menggunakan slot sihir tingkat 7, durasinya adalah concentration, hingga 1 jam. Saat Anda menggunakan slot sihir tingkat 8 atau lebih tinggi, durasinya adalah concentration, hingga 8 jam.",
         "appliesTo": "duration",
         "startsAtLevel": 9
       },
@@ -15807,7 +15807,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the fire damage or the radiant damage (your choice) increases by 1d6 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, fire damage atau radiant damage (pilihan Anda) meningkat 1d6 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -16151,7 +16151,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d10 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, damage meningkat 1d10 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 7
@@ -16273,7 +16273,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, healing meningkat 1d8 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "healing",
         "increment": "1d8",
         "startsAtLevel": 7
@@ -16373,7 +16373,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "If you cast this spell using a spell slot of 6th level or higher, you can alter the target's memories of an event that took place up to 7 days ago (6th level), 30 days ago (7th level), 1 year ago (8th level), or any time in the creature's past (9th level).",
+        "description": "Jika Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, Anda dapat mengubah ingatan target tentang peristiwa yang terjadi hingga 7 hari yang lalu (tingkat 6), 30 hari yang lalu (tingkat 7), 1 tahun yang lalu (tingkat 8), atau kapan saja di masa lalu makhluk tersebut (tingkat 9).",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -16700,7 +16700,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, you can target one additional creature for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "targets",
         "startsAtLevel": 7
       },
@@ -16742,7 +16742,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -16786,7 +16786,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d6 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 7
@@ -17028,7 +17028,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 6th level or higher, the initial damage increases by 2d4 for each slot level above 5th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 6 atau lebih tinggi, initial damage meningkat 2d4 untuk setiap tingkat slot di atas tingkat 5.",
         "appliesTo": "damage",
         "increment": "2d4",
         "startsAtLevel": 7
@@ -17238,7 +17238,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, you can create two additional pillars for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, Anda dapat membuat dua pillars tambahan untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -17288,7 +17288,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, one additional bolt leaps from the first target to another target for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, satu bolt tambahan melompat dari target pertama ke target lain untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -17341,7 +17341,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the damage increases by 2d6 for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, damage meningkat 2d6 untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "increment": "2d6",
         "startsAtLevel": 8
@@ -17384,7 +17384,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the challenge rating increases by 1 for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, challenge rating meningkat 1 untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -17551,7 +17551,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the damage increases by 3d6 for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, damage meningkat 3d6 untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "increment": "3d6",
         "startsAtLevel": 8
@@ -17819,7 +17819,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the damage increases by 1d6 for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 8
@@ -17864,7 +17864,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the barrier blocks spells of one level higher for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, barrier memblokir sihir satu level lebih tinggi untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -17914,7 +17914,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the damage increases by 1d8 for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 8
@@ -18073,7 +18073,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the amount of healing increases by 10 for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, jumlah healing meningkat 10 untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "healing",
         "startsAtLevel": 8
       },
@@ -18893,7 +18893,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the creature's statistics change as described in the spell's description.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, statistics creature berubah sesuai yang dijelaskan dalam deskripsi sihir.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -19110,7 +19110,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, the damage the wall deals when it appears increases by 2d6, and the damage from passing through the sheet of frigid air increases by 1d6, for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, damage yang diberikan dinding saat muncul meningkat 2d6, dan damage dari melewati sheet of frigid air meningkat 1d6, untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -19162,7 +19162,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 7th level or higher, both types of damage increase by 1d8 for each slot level above 6th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 7 atau lebih tinggi, kedua jenis damage meningkat 1d8 untuk setiap tingkat slot di atas tingkat 6.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -19440,7 +19440,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 8th level or higher, the base damage increases by 1d6 for each slot level above 7th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 8 atau lebih tinggi, base damage meningkat 1d6 untuk setiap tingkat slot di atas tingkat 7.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 9
@@ -19601,7 +19601,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 8th level or higher, you can target up to three willing creatures (including you) for each slot level above 7th. The creatures must be within 10 feet of you when you cast the spell.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 8 atau lebih tinggi, Anda dapat menargetkan hingga tiga willing creatures (termasuk Anda) untuk setiap tingkat slot di atas tingkat 7. Makhluk-makhluk harus berada dalam jarak 10 feet dari Anda saat Anda menyalurkannya.",
         "appliesTo": "damage",
         "startsAtLevel": 9
       },
@@ -20877,7 +20877,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 9th level or higher, the damage increases by 3d8.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 9 atau lebih tinggi, damage meningkat 3d8.",
         "appliesTo": "damage",
         "increment": "3d8",
         "startsAtLevel": 10

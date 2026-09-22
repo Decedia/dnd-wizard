@@ -1,0 +1,5 @@
+{
+  "2014_spells.foresight.description": "You touch a willing creature and bestow a limited ability to see into the immediate future. For the duration, the target can't be surprised and has advantage on attack rolls, ability checks, and saving throws. Additionally, other creatures have disadvantage on attack rolls against the target for the duration. This spell immediately ends if you cast it again before its duration ends.",
+  "2014_spells.foresight.effectSummary": "Give a creature advantage on saving throws for the duration",
+  "2014_spells.foresight.fullDescription": "Using 1 minute, you touch a willing creature and bestow a limited ability to see into the immediate future. Additionally, other creatures have disadvantage on attack rolls against the target for the duration; For the duration, the target can't be surprised and has advantage on attack rolls, ability checks, and saving throws. This spell immediately ends if you cast it again before its duration ends."
+}

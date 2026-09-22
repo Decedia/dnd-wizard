@@ -1,0 +1,5 @@
+{
+  "2014_spells.detect-magic.description": "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+  "2014_spells.detect-magic.effectSummary": "Reveal magical or hidden information within range",
+  "2014_spells.detect-magic.fullDescription": "Using 1 action, for the duration, you sense the presence of magic within 30 feet of you. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt; If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any. The effect lasts for up to 10 minutes; you must concentrate, and the effect ends if your concentration ends; you can cast it as a ritual."
+}

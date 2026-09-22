@@ -1,0 +1,5 @@
+{
+  "2014_spells.guild-banner.description": "You conjure a swarm of whispering voices that emanate from a point you choose within range. Each creature in a 20-foot-radius sphere centered on that point must make a Wisdom saving throw. On a failed save, a creature takes 4d8 psychic damage and is deafened for the duration.",
+  "2014_spells.guild-banner.effectSummary": "Deal 4d8 psychic damage to a target within 30 ft",
+  "2014_spells.guild-banner.fullDescription": "Using 1 action, you conjure a swarm of whispering voices that emanate from a point you choose within range. On a failed save, a creature takes 4d8 psychic damage and is deafened for the duration; Each creature in a 20-foot-radius sphere centered on that point must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC. The effect lasts for concentration, up to 1 minute."
+}

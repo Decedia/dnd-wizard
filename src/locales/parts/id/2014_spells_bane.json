@@ -1,0 +1,5 @@
+{
+  "2014_spells.bane.description": "Hingga tiga creatures pilihanmu dalam jangkauan harus melakukan saving throw CHA. Setiap kali target yang gagal membuat attack roll atau saving throw sebelum spell berakhir, target harus melempar d4 dan mengurangi angka yang keluar dari attack roll atau saving throw.",
+  "2014_spells.bane.effectSummary": "Target mengurangi attack roll dan saving throw dengan d4",
+  "2014_spells.bane.fullDescription": "Menggunakan 1 Action, hingga tiga creatures pilihanmu dalam jangkauan harus melakukan saving throw CHA. Setiap kali target yang gagal membuat attack roll atau saving throw sebelum spell berakhir, target harus melempar d4 dan mengurangi angka yang keluar dari attack roll atau saving throw; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 2 atau lebih tinggi, kamu bisa menargetkan satu creature tambahan untuk setiap slot level di atas 1st; you must concentrate, and the effect ends if your concentration ends."
+}

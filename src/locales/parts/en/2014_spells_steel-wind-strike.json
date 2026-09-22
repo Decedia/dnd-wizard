@@ -1,0 +1,5 @@
+{
+  "2014_spells.steel-wind-strike.description": "You vanish to strike like the wind. Choose up to five creatures you can see within range. Make a melee spell attack against each target. On a hit, a target takes 6d10 force damage.",
+  "2014_spells.steel-wind-strike.effectSummary": "Deal 6d10 force damage to a target within 30 ft",
+  "2014_spells.steel-wind-strike.fullDescription": "Using 1 action, choose up to five creatures you can see within range. On a hit, a target takes 6d10 force damage; Make a melee spell attack against each target; When you cast this spell using a spell slot of 6th level or higher, you can target one additional creature for each slot level above 5th. The effect happens immediately and then ends."
+}

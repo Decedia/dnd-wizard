@@ -1,0 +1,5 @@
+{
+  "2014_spells.aura-of-vitality.description": "Healing energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. You can use a bonus action to cause one creature in the aura (including you) to regain 2d6 hit points.",
+  "2014_spells.aura-of-vitality.effectSummary": "Restore 2d6 HP to a creature you touch",
+  "2014_spells.aura-of-vitality.fullDescription": "Using 1 bonus action, you can use a bonus action to cause one creature in the aura (including you) to regain 2d6 hit points. Healing energy radiates from you in an aura with a radius of 30 feet; Until the spell ends, the aura moves with you, centered on you. Until the spell ends, the aura moves with you, centered on you; you must concentrate, and the effect ends if your concentration ends."
+}

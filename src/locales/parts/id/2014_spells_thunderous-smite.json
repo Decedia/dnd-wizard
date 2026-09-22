@@ -1,0 +1,5 @@
+{
+  "2014_spells.thunderous-smite.description": "Kedatangan berikutnya kamu mengenai makhluk dengan melee weapon attack selama durasi sihir, senjatamu berbunyi dengan guntur yang bisa terdengar dalam 300 kaki dari kamu, dan serangan tersebut memberikan extra 2d6 thunder damage ke target. Selain itu, jika target adalah makhluk, ia harus berhasil melakukan Strength saving throw atau didorong 10 kaki menjauh darimu dan knocked prone.",
+  "2014_spells.thunderous-smite.effectSummary": "Berikan 2d6 thunder damage ke target dalam Self",
+  "2014_spells.thunderous-smite.fullDescription": "Menggunakan 1 Bonus Action, kedatangan berikutnya kamu mengenai makhluk dengan melee weapon attack selama durasi sihir, senjatamu berbunyi dengan guntur yang bisa terdengar dalam 300 kaki dari kamu, dan serangan tersebut memberikan extra 2d6 thunder damage ke target. Selain itu, jika target adalah makhluk, ia harus berhasil melakukan Strength saving throw; roll d20, tambahkan modifier STR, dan bandingkan dengan spell save DC kamu atau didorong 10 kaki menjauh darimu dan knocked prone. Efek berlangsung untuk concentrate, hingga 1 menit."
+}

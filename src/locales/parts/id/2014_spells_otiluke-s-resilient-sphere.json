@@ -1,0 +1,4 @@
+{
+  "2014_spells.otiluke-s-resilient-sphere.effectSummary": "Pindah makhluk atau objek sejauh singkat",
+  "2014_spells.otiluke-s-resilient-sphere.fullDescription": "Menggunakan 1 Action, sebuah sphere shimmering force menyelutupi makhluk atau objek berukuran Large atau lebih kecil dalam range. Makhluk yang tidak willing harus membuat saving throw Dexterity; roll a d20, tambahkan modifier DEX, dan bandingkan dengan spell save DC-mu; Makhluk yang terkurung bisa menggunakan Action-nya untuk mendorong dinding sphere dan dengan demikian menggelindingkan sphere hingga setengah speed makhluk tersebut. Efek berlangsung hingga 1 minute; kamu harus concentrate, dan efek berakhir jika concentration-mu berakhir."
+}

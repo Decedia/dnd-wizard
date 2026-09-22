@@ -1,0 +1,5 @@
+{
+  "2014_spells.synaptic-static.description": "Kamu memilih titik dalam jangkauan dan menyebabkan energi psychic meledak di sana. Setiap makhluk dalam bola radius 20 kaki berpusat pada titik tersebut harus melakukan Intelligence saving throw. Makhluk tidak bisa melakukan saving throw ini jika ia adalah construct atau jika memiliki Intelligence score 2 atau lebih rendah.",
+  "2014_spells.synaptic-static.effectSummary": "Setiap makhluk dalam bola radius 20 kaki berpusat pada titik tersebut harus melakukan Intelligence saving throw",
+  "2014_spells.synaptic-static.fullDescription": "Menggunakan 1 Action, kamu memilih titik dalam jangkauan dan menyebabkan energi psychic meledak di sana. Setiap makhluk dalam bola radius 20 kaki berpusat pada titik tersebut harus melakukan Intelligence saving throw; Makhluk tidak bisa melakukan saving throw ini jika ia adalah construct atau jika memiliki Intelligence score 2 atau lebih rendah; Ketika kamu menyalakan sihir ini menggunakan spell slot level 6 atau lebih tinggi, damage meningkat sebesar 1d6 untuk setiap slot level di atas 5th. Efek terjadi segera lalu berakhir."
+}

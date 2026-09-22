@@ -1,0 +1,4 @@
+{
+  "2014_spells.maelstrom.effectSummary": "Berikan 6d6 bludgeoning damage ke target dalam 120 ft",
+  "2014_spells.maelstrom.fullDescription": "Menggunakan 1 action, massa air 5-foot-deep muncul dan berputar dalam radius 30-foot berpusat pada titik yang bisa kamu lihat dalam jangkauan. Pada save gagal, makhluk menerima 6d6 bludgeoning damage dan knocked prone; Selain itu, jika makhluk gagal saving throw, itu juga ditarik sedekat mungkin ke pusat maelstrom. Sampai sihir berakhir, area itu adalah difficult terrain, dan setiap makhluk yang memulai gilirannya di sana atau masuk untuk pertama kalinya di giliran harus melakukan Strength saving throw; roll a d20, tambahkan STR modifier, dan bandingkan dengan spell save DC; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

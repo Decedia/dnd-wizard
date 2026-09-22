@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-strike.description": "Kamu menyalurkan energi draconic ke senjatamu. Sebagai bagian dari aksi yang digunakan untuk menyalurkan sihir ini, kamu harus melakukan melee attack terhadap satu makhluk dalam jangkauan sihir, jika tidak sihir gagal. Pada hit, target menderita efek normal serangan, dan menerima 1d6 force damage. Kerusakan force sihir ini meningkat sebesar 1d6 ketika kamu mencapai tingkat 5 (2d6), tingkat 11 (3d6), dan tingkat 17 (4d6).",
+  "2014_spells.draconic-strike.effectSummary": "Berikan 1d6 force damage ke target dalam Self",
+  "2014_spells.draconic-strike.fullDescription": "Menggunakan 1 aksi, sebagai bagian dari aksi yang digunakan untuk menyalurkan sihir ini, kamu harus melakukan melee attack terhadap satu makhluk dalam jangkauan sihir, jika tidak sihir gagal. Pada hit, target menderita efek normal serangan, dan menerima 1d6 force damage; Kerusakan force sihir ini meningkat sebesar 1d6 ketika kamu mencapai tingkat 5 (2d6), tingkat 11 (3d6), dan tingkat 17 (4d6); Kerusakan sihir ini meningkat sebesar 1d6 ketika kamu mencapai tingkat 5 (2d6), tingkat 11 (3d6), dan tingkat 17 (4d6). Efek terjadi segera lalu berakhir."
+}

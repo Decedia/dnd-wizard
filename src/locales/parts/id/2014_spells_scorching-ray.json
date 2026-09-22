@@ -1,0 +1,5 @@
+{
+  "2014_spells.scorching-ray.description": "Kamu menciptakan tiga sinar api dan melemparkannya ke target dalam jangkauan. Kamu dapat melemparkannya ke satu target atau beberapa. Buat ranged spell attack untuk setiap sinar. Jika kena, target menerima 2d6 fire damage.",
+  "2014_spells.scorching-ray.effectSummary": "Berikan 2d6 fire damage ke target dalam 120 ft",
+  "2014_spells.scorching-ray.fullDescription": "Menggunakan 1 Action, kamu menciptakan tiga sinar api dan melemparkannya ke target dalam jangkauan. Jika kena, target menerima 2d6 fire damage; Buat ranged spell attack untuk setiap sinar; Ketika kamu memakai mantra ini menggunakan spell slot level 3 atau lebih tinggi, kamu menciptakan satu sinar tambahan untuk setiap slot level di atas 2nd. Efek terjadi langsung lalu berakhir."
+}

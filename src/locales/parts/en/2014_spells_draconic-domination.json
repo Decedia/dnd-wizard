@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-domination.description": "You attempt to assert your will over a creature within range. The target must succeed on a Wisdom saving throw or be charmed by you for the duration. While charmed, the target is under your control and can take only the actions you command. You can use your action to command the target to move, take an action, or take a bonus action. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+  "2014_spells.draconic-domination.effectSummary": "Make a target charmed until it saves or the spell ends",
+  "2014_spells.draconic-domination.fullDescription": "Using 1 action, the target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be charmed by you for the duration; You can use your action to command the target to move, take an action, or take a bonus action. The effect lasts for up to 1 minute; you must concentrate, and the effect ends if your concentration ends."
+}

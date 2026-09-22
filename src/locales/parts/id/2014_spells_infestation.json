@@ -1,0 +1,5 @@
+{
+  "2014_spells.infestation.description": "Kamu menyebabkan awan tungau, kutu, dan parasit lain muncul untuk sesaat pada satu makhluk yang dapat kamu lihat dalam jangkauan. Target harus berhasil melakukan Constitution saving throw, atau ia menerima 1d6 poison damage dan bergerak 5 kaki ke arah acak jika ia dapat bergerak dan speednya setidaknya 5 kaki.",
+  "2014_spells.infestation.effectSummary": "Berikan 1d6 poison damage ke target dalam 30 ft",
+  "2014_spells.infestation.fullDescription": "Menggunakan 1 Action, kamu menyebabkan awan tungau, kutu, dan parasit lain muncul untuk sesaat pada satu makhluk yang dapat kamu lihat dalam jangkauan. Target harus berhasil melakukan Constitution saving throw; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC sihir, atau ia menerima 1d6 poison damage dan bergerak 5 kaki ke arah acak jika ia dapat bergerak dan speednya setidaknya 5 kaki; Damage meningkat sebesar 1d6 ketika kamu mencapai level 5 (2d6), level 11 (3d6), dan level 17 (4d6). Efek terjadi segera lalu berakhir."
+}

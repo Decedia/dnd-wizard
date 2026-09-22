@@ -1,0 +1,5 @@
+{
+  "2014_spells.blindness-deafness.description": "You can blind or deafen a foe. Choose one creature that you can see within range to make a constitution saving throw. If it fails, the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, the target can make a constitution saving throw. On a success, the spell ends.",
+  "2014_spells.blindness-deafness.effectSummary": "Make a target blinded until it saves or the spell ends",
+  "2014_spells.blindness-deafness.fullDescription": "Using 1 action, choose one creature that you can see within range to make a constitution saving throw. At the end of each of its turns, the target can make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC; If it fails, the target is either blinded or deafened (your choice) for the duration; When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd. On a success, the spell ends."
+}

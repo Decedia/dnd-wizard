@@ -1,0 +1,5 @@
+{
+  "2014_spells.tiny-servant.description": "You touch one Tiny object that isn't a weapon or worn or held, and the object animates. The object sprouts little arms and legs and becomes a Tiny servant.",
+  "2014_spells.tiny-servant.effectSummary": "Change a target: touch one Tiny object that isn't a weapon or worn or held, and the object animates",
+  "2014_spells.tiny-servant.fullDescription": "Using 1 minute, you touch one Tiny object that isn't a weapon or worn or held, and the object animates. The object sprouts little arms and legs and becomes a Tiny servant; When you cast this spell using a spell slot of 4th level or higher, you can touch and animate one additional Tiny object for each slot level above 3rd. The effect lasts for 8 hours."
+}

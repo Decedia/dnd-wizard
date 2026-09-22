@@ -1,0 +1,5 @@
+{
+  "2014_spells.scatter.description": "",
+  "2014_spells.scatter.effectSummary": "Teleport sejauh 30 ft ke ruang yang dapat kamu lihat",
+  "2014_spells.scatter.fullDescription": "Menggunakan 1 Action, tujuan yang kamu pilih harus di tanah atau lantai, dan harus tidak ditempati. Kamu teleport setiap target yang terpengaruh ke ruang yang tidak ditempati yang dapat kamu lihat dalam 120 feet darimu; Makhluk yang tidak mau harus berhasil pada Wisdom saving throw; roll d20, tambahkan modifier WIS, dan bandingkan dengan spell save DC kamu untuk menolak efek ini. Efek terjadi langsung lalu berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.power-word-stun.description": "You speak a word of power that can overwhelm the mind of one creature you can see within range, leaving it dumbfounded. If the target has 150 hit points or fewer, it is stunned. Otherwise, the spell has no effect. The stunned target must make a constitution saving throw at the end of each of its turns. On a successful save, this stunning effect ends.",
+  "2014_spells.power-word-stun.effectSummary": "Make a target stunned until it saves or the spell ends",
+  "2014_spells.power-word-stun.fullDescription": "Using 1 action, you speak a word of power that can overwhelm the mind of one creature you can see within range, leaving it dumbfounded. If the target has 150 hit points or fewer, it is stunned; The stunned target must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC at the end of each of its turns. On a successful save, this stunning effect ends."
+}

@@ -1,0 +1,4 @@
+{
+  "2014_spells.tasha-s-hideous-laughter.effectSummary": "Make a target incapacitated until it saves or the spell ends",
+  "2014_spells.tasha-s-hideous-laughter.fullDescription": "Using 1 action, at the end of each of its turns, and each time it takes damage, the target can make another Wisdom saving throw. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or fall prone, becoming incapacitated and unable to stand up for the duration; The target has advantage on the saving throw if it's triggered by damage. At the end of each of its turns, and each time it takes damage, the target can make another Wisdom saving throw; you must concentrate, and the effect ends if your concentration ends."
+}

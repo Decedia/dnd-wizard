@@ -1,0 +1,5 @@
+{
+  "2014_spells.toll-the-dead.description": "Anda menunjuk satu makhluk yang dapat Anda lihat dalam jarak, dan suara bell yang sedingin mengisi udara di sekitarnya untuk sejenak. Target harus berhasil pada a Wisdom saving throw atau mengambil 1d8 necrotic damage. Jika target kehilangan sebagian hit point-nya, sebaliknya ia mengambil 1d12 necrotic damage.",
+  "2014_spells.toll-the-dead.effectSummary": "Berikan 1d8 necrotic damage ke target dalam 60 ft",
+  "2014_spells.toll-the-dead.fullDescription": "Menggunakan 1 Action, Anda menunjuk satu makhluk yang dapat Anda lihat dalam jarak, dan suara bell yang sedingin mengisi udara di sekitarnya untuk sejenak. Target harus berhasil pada a Wisdom saving throw; roll a d20, tambahkan modifier WIS, dan bandingkan dengan spell save DC Anda atau mengambil 1d8 necrotic damage; Jika target kehilangan sebagian hit point-nya, sebaliknya ia mengambil 1d12 necrotic damage; Damage meningkat satu die ketika Anda mencapai level 5 (2d8 atau 2d12), level 11 (3d8 atau 3d12), dan level 17 (4d8 atau 4d12). Efek terjadi segera lalu berakhir."
+}

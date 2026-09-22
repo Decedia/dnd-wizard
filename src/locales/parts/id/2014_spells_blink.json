@@ -1,0 +1,5 @@
+{
+  "2014_spells.blink.description": "Lempar d20 di akhir setiap giliranmu selama durasi sihir. Jika hasil 11 atau lebih tinggi, kamu menghilang dari plane yang sekarang dan muncul di Ethereal Plane. Di awal giliranmu berikutnya, kamu kembali ke ruang tak terisi yang kamu lihat dalam jarak 10 foot dari tempat kamu menghilang.",
+  "2014_spells.blink.effectSummary": "Pindah ke Ethereal dan kembali secara acak",
+  "2014_spells.blink.fullDescription": "Menggunakan 1 Action, lempar d20 di akhir setiap giliranmu selama durasi sihir. Jika hasil 11 atau lebih tinggi, kamu menghilang dari plane yang sekarang dan muncul di Ethereal Plane; Di awal giliranmu berikutnya, dan ketika spell berakhir jika kamu berada di Ethereal Plane, kamu kembali ke ruang tak terisi yang kamu lihat dalam jarak 10 foot dari tempat kamu menghilang. Kamu bisa menutup spell ini sebagai action; Kamu bisa menutup spell ini sebagai action."
+}

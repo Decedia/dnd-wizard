@@ -1,0 +1,5 @@
+{
+  "2014_spells.gravity-fissure.description": "You manifest a ravine of gravitational energy in a line originating from you that is 100 feet long and 5 feet wide. Each creature in that line must make a Constitution saving throw, taking 8d8 force damage on a failed save, or half as much damage on a successful one.",
+  "2014_spells.gravity-fissure.effectSummary": "Deal 8d8 force damage to a target within Self (100-foot line)",
+  "2014_spells.gravity-fissure.fullDescription": "Using 1 action, you manifest a ravine of gravitational energy in a line originating from you that is 100 feet long and 5 feet wide. Each creature in that line must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC, taking 8d8 force damage on a failed save, or half as much damage on a successful one; When you cast this spell using a spell slot of 7th level or higher, the damage increases by 1d8 for each slot level above 6th. The effect happens immediately and then ends."
+}

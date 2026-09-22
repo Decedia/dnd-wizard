@@ -1,0 +1,5 @@
+{
+  "2014_spells.arcane-hand.description": "Kamu menciptakan tangan besar yang berkilauan dari kekuatan magis. Tangan tersebut bisa melakukan serangan, mendorong, atau menggiring target untukmu.",
+  "2014_spells.arcane-hand.effectSummary": "Deal 4d8 force damage ke target di dalam 120 ft",
+  "2014_spells.arcane-hand.fullDescription": "Menggunakan 1 Action, kamu menciptakan tangan besar yang berkilauan dari kekuatan magis. Tangan tersebut bisa melakukan serangan, mendorong, atau menggiring target untukmu. Pada hit, target menerima 4d8 force damage; Tangan bisa bergerak sejauh 60 foot dan melakukan salah satu dari empat efek: Clenched Fist, Forceful Hand, Grasping Hand, atau Interposing Hand; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 6 atau lebih tinggi, damage dari Clenched Fist meningkat 2d8 dan damage dari Grasping Hand meningkat 2d6 untuk setiap slot level di atas 5th; you must concentrate, and the effect ends if your concentration ends."
+}

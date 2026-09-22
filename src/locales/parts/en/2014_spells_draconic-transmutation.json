@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-transmutation.description": "You touch a willing creature and imbue it with draconic power. Until the spell ends, the target gains the following benefits: The target's AC can't be less than 13, regardless of what kind of armor it's wearing. The target has resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison.",
+  "2014_spells.draconic-transmutation.effectSummary": "Gain resistance to acid, cold, fire, lightning, poison for the duration",
+  "2014_spells.draconic-transmutation.fullDescription": "Using 1 action, you touch a willing creature and imbue it with draconic power. Until the spell ends, the target gains the following benefits: The target's AC can't be less than 13, regardless of what kind of armor it's wearing; The target has resistance to one of the following damage types of your choice: acid, cold, fire, lightning, or poison. Until the spell ends, the target gains the following benefits: The target's AC can't be less than 13, regardless of what kind of armor it's wearing; you must concentrate, and the effect ends if your concentration ends."
+}

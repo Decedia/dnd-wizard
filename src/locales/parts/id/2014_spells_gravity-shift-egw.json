@@ -1,0 +1,5 @@
+{
+  "2014_spells.gravity-shift-egw.description": "Kamu mengubah gravitasi sekitar makhluk dalam jangkauan. Target harus berhasil melewati Strength saving throw atau ditarik sampai 10 kaki ke arah pilihanmu. Spell ini berakhir jika target menyentuh tanah atau permukaan padat. Di level 5th, kamu bisa menarik target sampai 15 kaki. Di level 11th, kamu bisa menarik target sampai 20 kaki. Di level 17th, kamu bisa menarik target sampai 25 kaki.",
+  "2014_spells.gravity-shift-egw.effectSummary": "Pindahkan makhluk atau objek sejauh pendek",
+  "2014_spells.gravity-shift-egw.fullDescription": "Menggunakan 1 action, spell ini berakhir jika target menyentuh tanah atau permukaan padat. Target harus berhasil melewati Strength saving throw; lempar d20, tambahkan STR modifier, dan bandingkan dengan spell save DC-ammu atau ditarik sampai 10 kaki ke arah pilihanmu; Di level 5th, kamu bisa menarik target sampai 15 kaki; Di level 5th, kamu bisa menarik target sampai 15 kaki; Di level 11th, kamu bisa menarik target sampai 20 kaki; Di level 17th, kamu bisa menarik target sampai 25 kaki. Spell ini berakhir jika target menyentuh tanah atau permukaan padat."
+}

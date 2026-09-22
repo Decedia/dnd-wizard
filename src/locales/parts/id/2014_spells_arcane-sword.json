@@ -1,0 +1,5 @@
+{
+  "2014_spells.arcane-sword.description": "Kamu menciptakan pedang berbentuk bidang force yang mengambang dalam jangkauan. Pedang ini bisa menyerang target hingga sejauh 60 foot dari tempatmu.",
+  "2014_spells.arcane-sword.effectSummary": "Deal 3d10 force damage ke target di dalam 60 ft",
+  "2014_spells.arcane-sword.fullDescription": "Menggunakan 1 Action, kamu menciptakan pedang berbentuk bidang force yang mengambang dalam jangkauan. Pedang ini bisa menyerang target hingga sejauh 60 foot dari tempatmu. Pada hit, target menerima 3d10 force damage; Setiap turn sebagai bonus action, kamu bisa memindahkan pedang sejauh 20 foot dan mengulangi serangan; you must concentrate, and the effect ends if your concentration ends."
+}

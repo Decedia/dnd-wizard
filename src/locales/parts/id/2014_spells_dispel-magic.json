@@ -1,0 +1,5 @@
+{
+  "2014_spells.dispel-magic.description": "Pilih satu makhluk, objek, atau efek magis dalam jangkauan. Sihir apapun tingkat 3 atau lebih rendah pada target berakhir. Untuk setiap sihir tingkat 4 atau lebih tinggi pada target, lakukan ability check menggunakan kemampuan spellcasting-mu. DC sama dengan 10 + tingkat sihir. Pada check yang berhasil, sihir berakhir.",
+  "2014_spells.dispel-magic.effectSummary": "Lakukan ability check menggunakan kemampuan spellcasting-mu",
+  "2014_spells.dispel-magic.fullDescription": "Menggunakan 1 aksi, pilih satu makhluk, objek, atau efek magis dalam jangkauan. Untuk setiap sihir tingkat 4 atau lebih tinggi pada target, lakukan ability check menggunakan kemampuan spellcasting-mu; Sihir apapun tingkat 3 atau lebih rendah pada target berakhir; Ketika kamu menyalurkan sihir ini menggunakan spell slot tingkat 4 atau lebih tinggi, kamu secara otomatis mengakhiri efek sihir pada target jika tingkat sihir sama dengan atau kurang dari tingkat spell slot yang kamu gunakan. Sihir apapun tingkat 3 atau lebih rendah pada target berakhir."
+}

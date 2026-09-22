@@ -1,0 +1,5 @@
+{
+  "2014_spells.hold-monster.description": "Choose a creature you can see within range. The target must make a saving throw of Wisdom or be paralyzed for the duration of the spell. This spell has no effect against the undead. At the end of each round, the target can make a new saving throw of Wisdom. If successful, the spell ends for the creature.",
+  "2014_spells.hold-monster.effectSummary": "Make a target paralyzed until it saves or the spell ends",
+  "2014_spells.hold-monster.fullDescription": "Using 1 action, choose a creature you can see within range. At the end of each round, the target can make a new saving throw of Wisdom; The target must make a saving throw of Wisdom or be paralyzed for the duration of the spell; When you cast this spell using a level 6 or higher location, you can target an additional creature for each level of location beyond the fifth; The creatures must be within 30 feet o f each other when you target them. If successful, the spell ends for the creature; you must concentrate, and the effect ends if your concentration ends."
+}

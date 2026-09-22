@@ -1,0 +1,5 @@
+{
+  "2014_spells.frostbite.description": "You cause numbing frost to assail one creature you can see within range. The target must make a Constitution saving throw. On a failed save, the target takes 1d6 cold damage, and it has disadvantage on the next weapon attack roll it makes before the end of its next turn.",
+  "2014_spells.frostbite.effectSummary": "Deal 1d6 cold damage to a target within 60 ft",
+  "2014_spells.frostbite.fullDescription": "Using 1 action, on a failed save, the target takes 1d6 cold damage, and it has disadvantage on the next weapon attack roll it makes before the end of its next turn. The target must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC; You cause numbing frost to assail one creature you can see within range; The spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6). The effect happens immediately and then ends."
+}

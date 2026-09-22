@@ -1,0 +1,5 @@
+{
+  "2014_spells.revivify.description": "Kamu menyentuh makhluk yang meninggal dalam semenit terakhir. Makhluk tersebut kembali hidup dengan 1 hit point. Mantra ini tidak bisa menghidupkan makhluk yang meninggal karena usia tua, dan tidak bisa memulihkan bagian tubuh yang hilang.",
+  "2014_spells.revivify.effectSummary": "Ubah target: makhluk tersebut kembali hidup dengan 1 hit point",
+  "2014_spells.revivify.fullDescription": "Menggunakan 1 Action, kamu menyentuh makhluk yang meninggal dalam semenit terakhir. Makhluk tersebut kembali hidup dengan 1 hit point; Mantra ini tidak bisa menghidupkan makhluk yang meninggal karena usia tua, dan tidak bisa memulihkan bagian tubuh yang hilang. Efek terjadi langsung lalu berakhir."
+}

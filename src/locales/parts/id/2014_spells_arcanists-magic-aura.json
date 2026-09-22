@@ -1,0 +1,5 @@
+{
+  "2014_spells.arcanists-magic-aura.description": "Kamu menempatkan ilusi pada makhluk atau objek yang kamu sentuh sehingga spell divination yang mendeteksi aura magis mendapatkan informasi palsu tentang target.",
+  "2014_spells.arcanists-magic-aura.effectSummary": "Ubah aura magis target agar terlihat berbeda oleh deteksi magis",
+  "2014_spells.arcanists-magic-aura.fullDescription": "Menggunakan 1 Action, kamu menempatkan ilusi pada makhluk atau objek yang kamu sentuh sehingga spell divination yang mendeteksi aura magis mendapatkan informasi palsu tentang target. Kamu bisa membuat objek nonmagis terlihat magis, objek magis terlihat nonmagis, atau mengubah aura magisnya agar terlihat berasal dari sekolah magis tertentu yang kamu pilih; Kamu juga bisa mengubah tipe makhluk yang terlihat oleh spell yang mendeteksi tipe makhluk; Efek ini berlangsung selama durasi. Jika kamu menyalurkan sihir ini pada makhluk atau objek yang sama setiap hari selama 30 hari dengan efek yang sama, ilusi ini bertahan sampai di-dispel."
+}

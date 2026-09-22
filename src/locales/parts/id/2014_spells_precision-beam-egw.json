@@ -1,0 +1,5 @@
+{
+  "2014_spells.precision-beam-egw.description": "Kamu menembakkan sinar energi ke makhluk dalam range. Buat ranged spell attack terhadap target. On a hit, target menerima 1d8 radiant damage. Damage spell ini meningkat 1d8 ketika kamu mencapai level 5th (2d8), level 11th (3d8), dan level 17th (4d8).",
+  "2014_spells.precision-beam-egw.effectSummary": "Berikan 1d8 radiant damage ke target dalam 120 ft",
+  "2014_spells.precision-beam-egw.fullDescription": "Menggunakan 1 Action, damage spell ini meningkat 1d8 ketika kamu mencapai level 5th (2d8), level 11th (3d8), dan level 17th (4d8). On a hit, target menerima 1d8 radiant damage; Buat ranged spell attack terhadap target; Damage spell ini meningkat 1d8 ketika kamu mencapai level 5th (2d8), level 11th (3d8), dan level 17th (4d8). Efek terjadi segera dan kemudian berakhir."
+}

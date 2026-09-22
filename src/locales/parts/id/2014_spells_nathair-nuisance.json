@@ -1,0 +1,5 @@
+{
+  "2014_spells.nathair-nuisance.description": "Kamu menciptakan efek magis kecil untuk mengalihkan perhatian makhluk. Target harus berhasil membuat saving throw Wisdom atau mendapat Disadvantage pada attack roll berikutnya yang ia buat sebelum akhir turn-nya.",
+  "2014_spells.nathair-nuisance.effectSummary": "Ciptakan efek magis di titik yang kamu pilih",
+  "2014_spells.nathair-nuisance.fullDescription": "Menggunakan 1 Action, kamu menciptakan efek magis kecil untuk mengalihkan perhatian makhluk. Target harus berhasil membuat saving throw Wisdom; roll a d20, tambahkan modifier WIS, dan bandingkan dengan spell save DC-mu atau mendapat Disadvantage pada attack roll berikutnya yang ia buat sebelum akhir turn-nya. Efek berlangsung selama 1 minute."
+}

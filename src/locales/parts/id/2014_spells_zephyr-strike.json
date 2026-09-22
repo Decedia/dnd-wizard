@@ -1,0 +1,5 @@
+{
+  "2014_spells.zephyr-strike.description": "Anda bergerak seperti angin. Sampai sihir berakhir, pergerakan Anda tidak memicu opportunity attacks. Selain itu, pertama kali Anda hit dengan weapon attack pada giliran Anda sebelum sihir ini berakhir, target mengambil extra 1d8 force damage, dan Anda dapat menggunakan Reaction Anda untuk memberikan Advantage pada attack roll itu.",
+  "2014_spells.zephyr-strike.effectSummary": "Berikan 1d8 force damage ke target dalam Self",
+  "2014_spells.zephyr-strike.fullDescription": "Menggunakan 1 Bonus Action, selain itu, pertama kali Anda hit dengan weapon attack pada giliran Anda sebelum sihir ini berakhir, target mengambil extra 1d8 force damage, dan Anda dapat menggunakan Reaction Anda untuk memberikan Advantage pada attack roll itu. Anda bergerak seperti angin; Sampai sihir berakhir, pergerakan Anda tidak memicu opportunity attacks. Sampai sihir berakhir, pergerakan Anda tidak memicu opportunity attacks; Anda harus konsentrasi, dan efek berakhir jika konsentrasi Anda berakhir."
+}

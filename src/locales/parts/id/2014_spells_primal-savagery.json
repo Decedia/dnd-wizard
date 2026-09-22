@@ -1,0 +1,5 @@
+{
+  "2014_spells.primal-savagery.description": "Kamu menyalurkan sihir primitif untuk membuat gigimu atau kuku jari kamu menjadi lebih tajam, siap memberikan serangan korosif. Buat melee spell attack terhadap satu makhluk dalam 5 feet darimu. On a hit, target menerima 1d10 acid damage. Setelah kamu membuat attack, gigimu atau kuku jari kamu kembali ke normal.",
+  "2014_spells.primal-savagery.effectSummary": "Berikan 1d10 acid damage ke target dalam Self",
+  "2014_spells.primal-savagery.fullDescription": "Menggunakan 1 Action, setelah kamu membuat attack, gigimu atau kuku jari kamu kembali ke normal. On a hit, target menerima 1d10 acid damage; Buat melee spell attack terhadap satu makhluk dalam 5 feet darimu; Damage spell ini meningkat 1d10 ketika kamu mencapai level 5th (2d10), level 11th (3d10), dan level 17th (4d10). Efek terjadi segera dan kemudian berakhir."
+}

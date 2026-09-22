@@ -1,0 +1,5 @@
+{
+  "2014_spells.gravity-fissure.description": "Kamu memanifestkan lembah energi gravitasi dalam garis yang berasal darimu sepanjang 100 kaki dan lebar 5 kaki. Setiap makhluk di garis itu harus melewati Constitution saving throw, menerima 8d8 force damage pada kegagalan save, atau setengahnya pada keberhasilan.",
+  "2014_spells.gravity-fissure.effectSummary": "Berikan 8d8 force damage ke target dalam Self (garis 100 kaki)",
+  "2014_spells.gravity-fissure.fullDescription": "Menggunakan 1 action, kamu memanifestkan lembah energi gravitasi dalam garis yang berasal darimu sepanjang 100 kaki dan lebar 5 kaki. Setiap makhluk di garis itu harus melewati Constitution saving throw; lempar d20, tambahkan CON modifier, dan bandingkan dengan spell save DC-ammu, menerima 8d8 force damage pada kegagalan save, atau setengahnya pada keberhasilan; Ketika kamu mencast spell ini menggunakan spell slot level 7th atau lebih tinggi, damage bertambah 1d8 untuk setiap slot level di atas 6th. Efek terjadi langsung lalu berakhir."
+}

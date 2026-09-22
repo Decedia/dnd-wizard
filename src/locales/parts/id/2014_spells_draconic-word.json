@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-word.description": "Kamu menanggapi serangan makhluk dengan kata kekuatan draconic. Makhluk harus berhasil dalam saving throw Constitution atau serangan memberikan 2d6 force damage ekstra, dan makhluk tidak bisa mengambil reaksi sampai awal gilirannya berikutnya.",
+  "2014_spells.draconic-word.effectSummary": "Berikan 2d6 force damage ke target dalam 60 ft",
+  "2014_spells.draconic-word.fullDescription": "Menggunakan 1 reaction, makhluk harus berhasil dalam saving throw Constitution atau serangan memberikan 2d6 force damage ekstra, dan makhluk tidak bisa mengambil reaksi sampai awal gilirannya berikutnya. Kamu menanggapi serangan makhluk dengan kata kekuatan draconic; Ketika kamu menyalurkan sihir ini menggunakan spell slot tingkat 4 atau lebih tinggi, kerusakan meningkat sebesar 1d6 untuk setiap tingkat slot di atas 3. Makhluk harus berhasil dalam saving throw Constitution; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC-mu atau serangan memberikan 2d6 force damage ekstra, dan makhluk tidak bisa mengambil reaksi sampai awal gilirannya berikutnya."
+}

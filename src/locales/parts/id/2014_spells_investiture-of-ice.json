@@ -1,0 +1,4 @@
+{
+  "2014_spells.investiture-of-ice.effectSummary": "Berikan 1d6 cold damage ke target dalam Self",
+  "2014_spells.investiture-of-ice.fullDescription": "Menggunakan 1 Action, setiap makhluk yang bergerak ke dalam area untuk pertama kalinya pada giliran atau mengakhiri gilirannya di sana menerima 1d6 cold damage. Makhluk menerima 4d6 cold damage saat gagal menyelamatkan, atau setengah damage saat berhasil; Setiap makhluk di dalam cone harus melakukan Constitution saving throw; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC sihir. Sampai sihir berakhir, es mengkristal di tubuhmu, dan kamu mendapatkan manfaat berikut: • Kamu kebal terhadap cold damage dan memiliki resistance terhadap fire damage; kamu harus berkonsentrasi, dan efeknya berakhir jika konsentrasimu berakhir."
+}

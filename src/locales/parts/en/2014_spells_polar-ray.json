@@ -1,0 +1,5 @@
+{
+  "2014_spells.polar-ray.description": "A blue-white ray of freezing ice streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 9d8 cold damage, and its speed is halved until the start of your next turn.",
+  "2014_spells.polar-ray.effectSummary": "Deal 9d8 cold damage to a target within 120 ft",
+  "2014_spells.polar-ray.fullDescription": "Using 1 action, on a hit, it takes 9d8 cold damage, and its speed is halved until the start of your next turn. Make a ranged spell attack against the target; A blue-white ray of freezing ice streaks toward a creature within range. On a hit, it takes 9d8 cold damage, and its speed is halved until the start of your next turn."
+}

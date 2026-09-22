@@ -1,0 +1,5 @@
+{
+  "2014_spells.mass-cure-wounds.description": "Gelombang energi penyembuhan keluar dari titik pilihanmu dalam jangkauan. Pilih hingga enam makhluk dalam 30-foot-radius sphere berpusat pada titik itu. Setiap target mendapatkan kembali hit points sama dengan 3d8 + spellcasting ability modifiermu. Sihir ini tidak berpengaruh pada undead atau construct.",
+  "2014_spells.mass-cure-wounds.effectSummary": "Setiap target mendapatkan kembali hit points sama dengan 3d8 + spellcasting ability modifiermu",
+  "2014_spells.mass-cure-wounds.fullDescription": "Menggunakan 1 action, gelombang energi penyembuhan keluar dari titik pilihanmu dalam jangkauan. Setiap target mendapatkan kembali hit points sama dengan 3d8 + spellcasting ability modifiermu; Pilih hingga enam makhluk dalam 30-foot-radius sphere berpusat pada titik itu; Saat kamu menyalurkan sihir ini menggunakan spell slot 6th level atau lebih tinggi, penyembuhan bertambah 1d8 untuk setiap slot level di atas 5th. Efek terjadi langsung lalu berakhir."
+}

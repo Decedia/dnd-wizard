@@ -1,0 +1,5 @@
+{
+  "2014_spells.magic-weapon.description": "Kamu menyentuh senjata non-magis. Sampai sihir berakhir, senjata itu menjadi senjata magis dengan bonus +1 ke attack rolls dan damage rolls.",
+  "2014_spells.magic-weapon.effectSummary": "Sampai sihir berakhir, senjata itu menjadi senjata magis dengan bonus +1 ke attack rolls dan damage rolls",
+  "2014_spells.magic-weapon.fullDescription": "Menggunakan 1 bonus action, kamu menyentuh senjata non-magis. Sampai sihir berakhir, senjata itu menjadi senjata magis dengan bonus +1 ke attack rolls dan damage rolls; Saat kamu menyalurkan sihir ini menggunakan spell slot 4th level atau lebih tinggi, bonus meningkat menjadi +2; Saat kamu menggunakan spell slot 6th level atau lebih tinggi, bonus meningkat menjadi +3. Sampai sihir berakhir, senjata itu menjadi senjata magis dengan bonus +1 ke attack rolls dan damage rolls; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

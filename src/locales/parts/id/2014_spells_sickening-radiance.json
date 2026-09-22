@@ -1,0 +1,5 @@
+{
+  "2014_spells.sickening-radiance.description": "",
+  "2014_spells.sickening-radiance.effectSummary": "Berikan 4d10 radiant damage ke target dalam 120 ft",
+  "2014_spells.sickening-radiance.fullDescription": "Menggunakan 1 Action, cahaya hijau pudar menyebar dalam sphere radius 30 kaki berpusat pada titik yang kamu pilih dalam jangkauan. Jika gagal, target menerima 4d10 radiant damage, dan menjadi Poisoned hingga akhir giliran kamu berikutnya; Ketika makhluk masuk ke area mantra untuk pertama kalinya pada giliran atau mengakhiri gilirannya di sana, makhluk tersebut harus melakukan Constitution saving throw; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC kamu. Cahaya menyebar di sudut, dan bertahan selama durasi; kamu harus concentrate, dan efek berakhir jika concentration kamu berakhir."
+}

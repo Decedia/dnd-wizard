@@ -1,0 +1,5 @@
+{
+  "2014_spells.aura-of-vitality.description": "Energi penyembuhan memancar darimu dalam aura dengan radius 30 foot. Sampai spell berakhir, aura bergerak bersamamu, berpusat padamu. Kamu bisa menggunakan bonus action untuk membuat satu creature dalam aura (termasuk kamu) regain 2d6 hit points.",
+  "2014_spells.aura-of-vitality.effectSummary": "Restore 2d6 HP ke creature yang kamu sentuh",
+  "2014_spells.aura-of-vitality.fullDescription": "Menggunakan 1 Bonus Action, energi penyembuhan memancar darimu dalam aura dengan radius 30 foot. Sampai spell berakhir, aura bergerak bersamamu, berpusat padamu. Kamu bisa menggunakan bonus action untuk membuat satu creature dalam aura (termasuk kamu) regain 2d6 hit points; Energi penyembuhan memancar darimu dalam aura dengan radius 30 foot; you must concentrate, and the effect ends if your concentration ends."
+}

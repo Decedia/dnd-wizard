@@ -1,0 +1,5 @@
+{
+  "2014_spells.lightning-bolt.description": "Sambatan petir membentuk garis 100 feet panjang dan 5 feet lebar menabrak dari kamu ke arah yang kamu pilih. Setiap makhluk di garis harus melakukan Dexterity saving throw. Makhluk menerima 8d6 lightning damage pada save gagal, atau setengahnya pada save berhasil. Petir menyulut benda mudah terbakar di area yang tidak dipakai atau dibawa.",
+  "2014_spells.lightning-bolt.effectSummary": "Berikan 8d6 lightning damage ke target dalam Self",
+  "2014_spells.lightning-bolt.fullDescription": "Menggunakan 1 action, sambatan petir membentuk garis 100 feet panjang dan 5 feet lebar menabrak dari kamu ke arah yang kamu pilih. Makhluk menerima 8d6 lightning damage pada save gagal, atau setengahnya pada save berhasil; Setiap makhluk di garis harus melakukan Dexterity saving throw; roll a d20, tambahkan DEX modifier, dan bandingkan dengan spell save DC; Saat kamu menyalurkan sihir ini menggunakan spell slot 4th level atau lebih tinggi, damage bertambah 1d6 untuk setiap slot level di atas 3rd. Sambatan petir membentuk garis 100 feet panjang dan 5 feet lebar menabrak dari kamu ke arah yang kamu pilih."
+}

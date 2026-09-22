@@ -1,0 +1,5 @@
+{
+  "2014_spells.elemental-weapon.description": "Senjata nonmagis yang kamu sentuh menjadi magic weapon. Pilih salah satu tipe kerusakan berikut: acid, cold, fire, lightning, atau thunder. Selama durasi, senjata memiliki bonus +1 untuk attack roll dan memberikan 1d4 kerusakan ekstra dari tipe yang dipilih.",
+  "2014_spells.elemental-weapon.effectSummary": "senjata memiliki bonus +1 untuk attack roll dan memberikan 1d4 kerusakan ekstra dari tipe yang dipilih",
+  "2014_spells.elemental-weapon.fullDescription": "Menggunakan 1 aksi, senjata nonmagis yang kamu sentuh menjadi magic weapon. Selama durasi, senjata memiliki bonus +1 untuk attack roll dan memberikan 1d4 kerusakan ekstra dari tipe yang dipilih; Pilih salah satu tipe kerusakan berikut: acid, cold, fire, lightning, atau thunder. Efek berlangsung selama konsentrasi hingga 1 jam."
+}

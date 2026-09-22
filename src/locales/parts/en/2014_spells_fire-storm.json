@@ -1,0 +1,5 @@
+{
+  "2014_spells.fire-storm.description": "A storm made up of sheets of roaring flame appears in a location you choose within range. The area of the storm consists of up to ten 10-foot cubes, which you can arrange as you wish. Each cube must have at least one face adjacent to the face of another cube. Each creature in the area must make a dexterity saving throw. It takes 7d10 fire damage on a failed save, or half as much damage on a successful one. The fire damages objects in the area and ignites flammable objects that aren't being worn or carried. If you choose, plant life in the area is unaffected by this spell.",
+  "2014_spells.fire-storm.effectSummary": "Deal 7d10 fire damage to a target within 150 ft",
+  "2014_spells.fire-storm.fullDescription": "Using 1 action, a storm made up of sheets of roaring flame appears in a location you choose within range. It takes 7d10 fire damage on a failed save, or half as much damage on a successful one; Each creature in the area must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC. The effect happens immediately and then ends."
+}

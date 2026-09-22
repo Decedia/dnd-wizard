@@ -1,0 +1,5 @@
+{
+  "2014_spells.malicious-smite.description": "Saat berikutnya kamu hit makhluk dengan melee weapon attack selama durasi sihir, attack-mu memberikan 4d6 necrotic damage tambahan. Selain itu, target harus berhasil pada Constitution saving throw atau blinded sampai sihir berakhir.",
+  "2014_spells.malicious-smite.effectSummary": "Berikan 4d6 necrotic damage ke target dalam Self",
+  "2014_spells.malicious-smite.fullDescription": "Menggunakan 1 bonus action, saat berikutnya kamu hit makhluk dengan melee weapon attack selama durasi sihir, attack-mu memberikan 4d6 necrotic damage tambahan. Selain itu, target harus berhasil pada Constitution saving throw; roll a d20, tambahkan CON modifier, dan bandingkan dengan spell save DC atau blinded sampai sihir berakhir. Selain itu, target harus berhasil pada Constitution saving throw; roll a d20, tambahkan CON modifier, dan bandingkan dengan spell save DC atau blinded sampai sihir berakhir; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

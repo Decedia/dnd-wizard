@@ -1,0 +1,5 @@
+{
+  "2014_spells.guild-banner.description": "Kamu menciptakan kawanan suara berbisik yang keluar dari titik yang kamu pilih dalam jangkauan. Setiap makhluk di 20-foot-radius sphere berpusat pada titik itu harus melakukan Wisdom saving throw. Saat gagal menyelamatkan, makhluk menerima 4d8 psychic damage dan menjadi Deafened untuk durasi.",
+  "2014_spells.guild-banner.effectSummary": "Berikan 4d8 psychic damage ke target dalam 30 ft",
+  "2014_spells.guild-banner.fullDescription": "Menggunakan 1 Action, kamu menciptakan kawanan suara berbisik yang keluar dari titik yang kamu pilih dalam jangkauan. Saat gagal menyelamatkan, makhluk menerima 4d8 psychic damage dan menjadi Deafened untuk durasi; Setiap makhluk di 20-foot-radius sphere berpusat pada titik itu harus melakukan Wisdom saving throw; roll d20, tambahkan modifier WIS, dan bandingkan dengan spell save DC sihir. Efek berlangsung selama konsentrasi, hingga 1 menit."
+}

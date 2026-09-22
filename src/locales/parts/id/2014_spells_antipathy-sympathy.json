@@ -1,0 +1,5 @@
+{
+  "2014_spells.antipathy-sympathy.description": "Kamu menciptakan aura yang mempengaruhi perasaan makhluk terhadap target. Makhluk yang melihat atau mendekati target harus melakukan saving throw WIS atau menjadi frightened atau tergila-gila.",
+  "2014_spells.antipathy-sympathy.effectSummary": "Buat target menjadi frightening atau menarik perhatian makhluk",
+  "2014_spells.antipathy-sympathy.fullDescription": "Menggunakan 1 Hour, kamu menciptakan aura yang mempengaruhi perasaan makhluk terhadap target. Makhluk yang melihat atau mendekati target harus melakukan saving throw WIS; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or become frightened; Ketika makhluk tersebut bisa melihat target atau datang dalam jarak 60 foot darinya, makhluk tersebut harus melakukan saving throw WIS; roll a d20, add the WIS modifier, and compare it dengan your spell save spell save DC."
+}

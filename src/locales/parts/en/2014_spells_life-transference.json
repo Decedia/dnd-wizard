@@ -1,0 +1,5 @@
+{
+  "2014_spells.life-transference.description": "You sacrifice your own vitality to heal another creature. You take 4d8 necrotic damage, and one creature of your choice that you can see within range regains a number of hit points equal to twice the necrotic damage you take.",
+  "2014_spells.life-transference.effectSummary": "Deal 4d8 necrotic damage to a target within 30 ft",
+  "2014_spells.life-transference.fullDescription": "Using 1 action, you take 4d8 necrotic damage, and one creature of your choice that you can see within range regains a number of hit points equal to twice the necrotic damage you take. You sacrifice your own vitality to heal another creature; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd. The effect happens immediately and then ends."
+}

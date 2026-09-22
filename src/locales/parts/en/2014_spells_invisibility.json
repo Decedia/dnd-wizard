@@ -1,0 +1,5 @@
+{
+  "2014_spells.invisibility.description": "A creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person. The spell ends for a target that attacks or casts a spell.",
+  "2014_spells.invisibility.effectSummary": "Make a creature invisible until it attacks or the spell ends",
+  "2014_spells.invisibility.fullDescription": "Using 1 action, a creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person; The spell ends for a target that attacks or casts a spell; When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd. A creature you touch becomes invisible until the spell ends; you must concentrate, and the effect ends if your concentration ends."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.frostbite.description": "Kamu menyebabkan beku membeku untuk menyerang satu makhluk yang bisa kamu lihat dalam jangkauan. Target harus melewati Constitution saving throw. Pada kegagalan save, target menerima 1d6 cold damage, dan itu memiliki disadvantage pada next weapon attack roll yang dibuat sebelum akhir turn berikutnya.",
+  "2014_spells.frostbite.effectSummary": "Berikan 1d6 cold damage ke target dalam 60 ft",
+  "2014_spells.frostbite.fullDescription": "Menggunakan 1 action, pada kegagalan save, target menerima 1d6 cold damage, dan itu memiliki disadvantage pada next weapon attack roll yang dibuat sebelum akhir turn berikutnya. Target harus melewati Constitution saving throw; lempar d20, tambahkan CON modifier, dan bandingkan dengan spell save DC-ammu; Kamu menyebabkan beku membeku untuk menyerang satu makhluk yang bisa kamu lihat dalam jangkauan; Damage spell ini bertambah 1d6 saat kamu mencapai level 5th (2d6), 11th level (3d6), dan 17th level (4d6). Efek terjadi langsung lalu berakhir."
+}

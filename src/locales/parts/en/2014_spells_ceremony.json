@@ -1,0 +1,5 @@
+{
+  "2014_spells.ceremony.description": "You perform a special religious ceremony that is infused with magic. When you cast the spell, choose one of the following rites: Atonement, Bless Water, Coming of Age, Dedication, Funeral Rite, Wedding. The target of the rite gains a specific benefit as described in the spell's full text.",
+  "2014_spells.ceremony.effectSummary": "Change a target: the target of the rite gains a specific benefit as described in the spell's full text",
+  "2014_spells.ceremony.fullDescription": "Using 1 action, you perform a special religious ceremony that is infused with magic. The target of the rite gains a specific benefit as described in the spell's full text. The effect happens immediately and then ends; you can cast it as a ritual."
+}

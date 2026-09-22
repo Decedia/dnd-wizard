@@ -1,0 +1,5 @@
+{
+  "2014_spells.maddening-darkness.description": "Kegelapan magis menyebar dari titik yang kamu pilih dalam jangkauan untuk mengisi 60-foot-radius sphere sampai sihir berakhir. Kegelapan menyebar di sekitar sudut. Cahaya non-magis tidak bisa menerangi area, dan makhluk sepenuhnya di dalam sphere adalah Blinded.",
+  "2014_spells.maddening-darkness.effectSummary": "Buat target Blinded sampai dia menyelamatkan atau sihir berakhir",
+  "2014_spells.maddening-darkness.fullDescription": "Menggunakan 1 action, kegelapan magis menyebar dari titik yang kamu pilih dalam jangkauan untuk mengisi 60-foot-radius sphere sampai sihir berakhir. Cahaya non-magis tidak bisa menerangi area, dan makhluk sepenuhnya di dalam sphere adalah Blinded; Kegelapan menyebar di sekitar sudut; Saat kamu menyalurkan sihir ini menggunakan spell slot 9th level atau lebih tinggi, damage bertambah 3d8. Kegelapan magis menyebar dari titik yang kamu pilih dalam jangkauan untuk mengisi 60-foot-radius sphere sampai sihir berakhir; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

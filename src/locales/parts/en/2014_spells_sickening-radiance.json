@@ -1,0 +1,4 @@
+{
+  "2014_spells.sickening-radiance.effectSummary": "Deal 4d10 radiant damage to a target within 120 ft",
+  "2014_spells.sickening-radiance.fullDescription": "Using 1 action, dim, greenish light spreads within a 30-foot-radius sphere centered on a point you choose within range. On a failed save, it takes 4d10 radiant damage, and it becomes poisoned until the end of your next turn; When a creature moves into the spell's area for the first time on a turn or ends its turn there, that creature must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. The light spreads around corners, and it lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
+}

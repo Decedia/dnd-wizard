@@ -1,0 +1,5 @@
+{
+  "2014_spells.revivify.description": "You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can't return to life a creature that has died of old age, nor can it restore any missing body parts.",
+  "2014_spells.revivify.effectSummary": "Change a target: that creature returns to life with 1 hit point",
+  "2014_spells.revivify.fullDescription": "Using 1 action, you touch a creature that has died within the last minute. That creature returns to life with 1 hit point; This spell can't return to life a creature that has died of old age, nor can it restore any missing body parts. The effect happens immediately and then ends."
+}

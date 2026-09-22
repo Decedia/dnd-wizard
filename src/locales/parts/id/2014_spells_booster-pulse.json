@@ -1,0 +1,5 @@
+{
+  "2014_spells.booster-pulse.description": "Kamu menyalurkan energi tambahan ke creature yang kamu sentuh. Jika creature tersebut mengambil Attack action pada gilirannya berikutnya, itu bisa melakukan satu weapon attack tambahan sebagai bagian dari action tersebut.",
+  "2014_spells.booster-pulse.effectSummary": "Deal 1d4 force damage ke target dalam Touch",
+  "2014_spells.booster-pulse.fullDescription": "Menggunakan 1 Action, kamu menyalurkan energi tambahan ke creature yang kamu sentuh. Jika creature tersebut mengambil Attack action pada gilirannya berikutnya, itu bisa melakukan satu weapon attack tambahan sebagai bagian dari action tersebut; Jika creature tersebut memegang senjata yang deals piercing damage, itu juga bisa mendorong target attack sejauh 10 foot pada hit; Damage tambahan ini meningkat 1d4 saat kamu mencapai level 5 (2d4), level 11 (3d4), dan level 17 (4d4). Efek ini berlangsung selama 1 round."
+}

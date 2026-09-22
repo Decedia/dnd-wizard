@@ -1,0 +1,5 @@
+{
+  "2014_spells.thorn-whip.description": "You create a long, vine-like whip of thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. If the hit, the creature takes 1d6 piercing damage, and if the creature is Large or smaller, you pull the creature up to 10 feet closer to you.",
+  "2014_spells.thorn-whip.effectSummary": "Deal 1d6 piercing damage to a target within 30 ft",
+  "2014_spells.thorn-whip.fullDescription": "Using 1 action, you create a long, vine-like whip of thorns that lashes out at your command toward a creature in range. If the hit, the creature takes 1d6 piercing damage, and if the creature is Large or smaller, you pull the creature up to 10 feet closer to you; Make a melee spell attack against the target. The effect happens immediately and then ends."
+}

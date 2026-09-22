@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-fear.description": "Kamu memproyeksikan rupa draconic yang menakutkan. Setiap makhluk di area harus berhasil dalam saving throw Wisdom atau menjadi frightened olehmu selama 1 menit. Makhluk frightened bisa mengulang saving throw di akhir setiap gilirannya, mengakhiri efek pada dirinya saat berhasil.",
+  "2014_spells.draconic-fear.effectSummary": "Buat target frightened sampai save atau sihir berakhir",
+  "2014_spells.draconic-fear.fullDescription": "Menggunakan 1 aksi, makhluk frightened bisa mengulang saving throw di akhir setiap gilirannya, mengakhiri efek pada dirinya saat berhasil. Setiap makhluk di area harus berhasil dalam saving throw Wisdom; roll d20, tambahkan modifier WIS, dan bandingkan dengan spell save DC-mu atau menjadi frightened olehmu selama 1 menit; Kamu memproyeksikan rupa draconic yang menakutkan. Efek terjadi segera lalu berakhir."
+}

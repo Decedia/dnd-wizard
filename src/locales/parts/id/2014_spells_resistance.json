@@ -1,0 +1,5 @@
+{
+  "2014_spells.resistance.description": "Kamu menyentuh satu makhluk yang mau. Sebelum mantra berakhir, target dapat menggulung d4 dan menambahkan angka yang keluar ke satu saving throw pilihan mereka. Mereka dapat menggulungkan dadu sebelum atau sesudah melakukan saving throw. Mantra ini kemudian berakhir.",
+  "2014_spells.resistance.effectSummary": "Mereka dapat menggulungkan dadu sebelum atau sesudah melakukan saving throw",
+  "2014_spells.resistance.fullDescription": "Menggunakan 1 Action, kamu menyentuh satu makhluk yang mau. Mereka dapat menggulungkan dadu sebelum atau sesudah melakukan saving throw; Sebelum mantra berakhir, target dapat menggulung d4 dan menambahkan angka yang keluar ke satu saving throw pilihan mereka. Sebelum mantra berakhir, target dapat menggulung d4 dan menambahkan angka yang keluar ke satu saving throw pilihan mereka; kamu harus concentrate, dan efek berakhir jika concentration kamu berakhir."
+}

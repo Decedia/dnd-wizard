@@ -1,0 +1,5 @@
+{
+  "2014_spells.melfs-acid-arrow.description": "Panah hijau berkilauan terbang menuju target dalam jangkauan dan meledak di semprotan asam. Buat ranged spell attack terhadap target. Pada hit, target menerima 4d4 acid damage langsung dan 2d4 acid damage di akhir gilirannya berikutnya. Pada miss, panah menyemprot target dengan asam untuk setengahnya damage awal dan tidak ada damage di akhir gilirannya berikutnya.",
+  "2014_spells.melfs-acid-arrow.effectSummary": "Berikan 4d4 acid damage ke target dalam 90 ft",
+  "2014_spells.melfs-acid-arrow.fullDescription": "Menggunakan 1 action, panah hijau berkilauan terbang menuju target dalam jangkauan dan meledak di semprotan asam. Pada hit, target menerima 4d4 acid damage langsung dan 2d4 acid damage di akhir gilirannya berikutnya; Pada miss, panah menyemprot target dengan asam untuk setengahnya damage awal dan tidak ada damage di akhir gilirannya berikutnya; Saat kamu menyalurkan sihir ini menggunakan spell slot 3rd level atau lebih tinggi, damage (keduanya awal dan kemudian) bertambah 1d4 untuk setiap slot level di atas 2nd. Efek terjadi langsung lalu berakhir."
+}

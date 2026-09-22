@@ -1,0 +1,5 @@
+{
+  "2014_spells.malicious-smite.description": "The next time you hit a creature with a melee weapon attack during the spell's duration, your attack deals an extra 4d6 necrotic damage. Additionally, the target must succeed on a Constitution saving throw or be blinded until the spell ends.",
+  "2014_spells.malicious-smite.effectSummary": "Deal 4d6 necrotic damage to a target within Self",
+  "2014_spells.malicious-smite.fullDescription": "Using 1 bonus action, the next time you hit a creature with a melee weapon attack during the spell's duration, your attack deals an extra 4d6 necrotic damage. Additionally, the target must succeed on a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC or be blinded until the spell ends. Additionally, the target must succeed on a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC or be blinded until the spell ends; you must concentrate, and the effect ends if your concentration ends."
+}

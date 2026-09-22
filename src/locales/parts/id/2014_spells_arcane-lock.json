@@ -1,0 +1,5 @@
+{
+  "2014_spells.arcane-lock.description": "Kamu menyentuh pintu, jendela, gerbang, peti, atau pintu masuk lainnya dan menguncinya selama durasi. Kamu dan makhluk yang kamu tentukan bisa membukanya secara normal.",
+  "2014_spells.arcane-lock.effectSummary": "Kunci objek sehingga sulit dibuka atau dipaksa",
+  "2014_spells.arcane-lock.fullDescription": "Menggunakan 1 Action, kamu menyentuh pintu, jendela, gerbang, peti, atau pintu masuk lainnya dan menguncinya selama durasi. Kamu dan makhluk yang kamu tentukan bisa membukanya secara normal. Kamu juga bisa menetapkan password yang, ketika diucapkan dalam jarak 5 foot dari objek, menekan sihir ini selama 1 minute; Otherwise, objek ini tidak bisa dilewati sampai dihancurkan atau spell di-dispel atau ditekan; Casting knock pada objek ini menekan arcane lock selama 10 minutes."
+}

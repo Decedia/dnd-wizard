@@ -1,0 +1,5 @@
+{
+  "2014_spells.thunder-step.description": "Kamu teleport ke ruang kosong yang bisa kamu lihat dalam jangkauan. Segera setelah kamu menghilang, gemuruh keras terdengar, dan setiap makhluk dalam 10 kaki dari ruang yang kamu tinggalkan harus melakukan Constitution saving throw, menerima 3d10 thunder damage pada save yang gagal, atau setengah dari jumlah damage pada save yang berhasil.",
+  "2014_spells.thunder-step.effectSummary": "Berikan 3d10 thunder damage ke target dalam 90 ft",
+  "2014_spells.thunder-step.fullDescription": "Menggunakan 1 Action, kamu teleport ke ruang kosong yang bisa kamu lihat dalam jangkauan. Segera setelah kamu menghilang, gemuruh keras terdengar, dan setiap makhluk dalam 10 kaki dari ruang yang kamu tinggalkan harus melakukan Constitution saving throw; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC kamu, menerima 3d10 thunder damage pada save yang gagal, atau setengah dari jumlah damage pada save yang berhasil; Ketika kamu menyalakan sihir ini menggunakan spell slot level 4 atau lebih tinggi, damage meningkat sebesar 1d10 untuk setiap slot level di atas 3rd. Efek terjadi segera lalu berakhir."
+}

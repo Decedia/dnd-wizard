@@ -1,0 +1,4 @@
+{
+  "2014_spells.holy-weapon.effectSummary": "Deal 2d8 radiant damage to a target within Touch",
+  "2014_spells.holy-weapon.fullDescription": "Using 1 bonus action, you imbue a weapon you touch with holy power. In addition, weapon attacks made with it deal an extra 2d8 radiant damage on a hit; On a failed save, a creature takes 4d8 radiant damage, and it is blinded until the end of your next turn. Until the spell ends, the weapon emits bright light in a 30-foot radius and dim light for an additional 30 feet; you must concentrate, and the effect ends if your concentration ends."
+}

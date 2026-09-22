@@ -1,0 +1,5 @@
+{
+  "2014_spells.aura-of-life.description": "Life-preserving energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) has resistance to necrotic damage, and its hit point maximum can't be reduced.",
+  "2014_spells.aura-of-life.effectSummary": "Gain resistance to necrotic for the duration",
+  "2014_spells.aura-of-life.fullDescription": "Using 1 action, each nonhostile creature in the aura (including you) has resistance to necrotic damage, and its hit point maximum can't be reduced. Life-preserving energy radiates from you in an aura with a radius of 30 feet; Until the spell ends, the aura moves with you, centered on you. Until the spell ends, the aura moves with you, centered on you; you must concentrate, and the effect ends if your concentration ends."
+}

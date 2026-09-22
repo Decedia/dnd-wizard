@@ -1,0 +1,4 @@
+{
+  "2014_spells.dragon-s-breath.effectSummary": "Setiap makhluk di area itu harus melakukan saving throw Dexterity, menerima 3d6 kerusakan dari tipe yang dipilih pada saving throw yang gagal, atau setengahnya kerusakan pada yang berhasil",
+  "2014_spells.dragon-s-breath.fullDescription": "Menggunakan 1 bonus action, kamu menyentuh satu makhluk yang bersedia dan memberinya kekuatan untuk menyemburkan energi magis dari mulutnya, asalkan punya mulut. Setiap makhluk di area itu harus melakukan saving throw Dexterity; roll d20, tambahkan modifier DEX, dan bandingkan dengan spell save DC-mu, menerima 3d6 kerusakan dari tipe yang dipilih pada saving throw yang gagal, atau setengahnya kerusakan pada yang berhasil; Pilih acid, cold, fire, lightning, atau poison. Sampai sihir berakhir, makhluk bisa menggunakan aksi untuk menghembuskan energi dari tipe yang dipilih dalam kerucut 15 kaki; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

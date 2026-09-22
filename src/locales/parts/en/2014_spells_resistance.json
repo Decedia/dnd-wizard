@@ -1,0 +1,5 @@
+{
+  "2014_spells.resistance.description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one saving throw of its choice. It can roll the die before or after making the saving throw. The spell then ends.",
+  "2014_spells.resistance.effectSummary": "It can roll the die before or after making the saving throw",
+  "2014_spells.resistance.fullDescription": "Using 1 action, you touch one willing creature. It can roll the die before or after making the saving throw; Once before the spell ends, the target can roll a d4 and add the number rolled to one saving throw of its choice. Once before the spell ends, the target can roll a d4 and add the number rolled to one saving throw of its choice; you must concentrate, and the effect ends if your concentration ends."
+}

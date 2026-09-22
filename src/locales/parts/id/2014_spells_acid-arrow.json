@@ -1,0 +1,5 @@
+{
+  "2014_spells.acid-arrow.description": "Sebuah panah asam meluncur cepat menuju target. Makhluk harus melakukan saving throw DEX. Jika gagal, target menerima 4d4 acid damage saat ini dan 2d4 acid damage pada akhir gilirannya berikutnya. Jika berhasil, target hanya menerima setengahnya.",
+  "2014_spells.acid-arrow.effectSummary": "Deal 4d4 acid damage ke target di luar 90 ft",
+  "2014_spells.acid-arrow.fullDescription": "Menggunakan 1 Action, seekor ular asam menembak target. Sebuah panah asam meluncur cepat menuju target. Makhluk harus melakukan saving throw DEX; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC. Jika gagal, target menerima 4d4 acid damage saat ini dan 2d4 acid damage pada akhir gilirannya berikutnya. Jika berhasil, target hanya menerima setengahnya; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 3 atau lebih tinggi, damage awal meningkat 1d4 untuk setiap slot level di atas 2nd."
+}

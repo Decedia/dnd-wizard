@@ -1,0 +1,5 @@
+{
+  "2014_spells.true-strike.description": "You extend your hand and point a finger at a target in range. Your magic grants you a brief insight into the target's defenses. On your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn't ended.",
+  "2014_spells.true-strike.effectSummary": "Change a target: on your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn't ended",
+  "2014_spells.true-strike.fullDescription": "Using 1 action, you extend your hand and point a finger at a target in range. On your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn't ended; Your magic grants you a brief insight into the target's defenses. The effect lasts for up to 1 round; you must concentrate, and the effect ends if your concentration ends."
+}

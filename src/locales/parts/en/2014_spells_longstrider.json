@@ -1,0 +1,5 @@
+{
+  "2014_spells.longstrider.description": "You touch a creature. The target's speed increases by 10 feet until the spell ends.",
+  "2014_spells.longstrider.effectSummary": "Change a target: the target's speed increases by 10 feet until the spell ends",
+  "2014_spells.longstrider.fullDescription": "Using 1 action, you touch a creature. The target's speed increases by 10 feet until the spell ends; When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each spell slot above 1st. The target's speed increases by 10 feet until the spell ends."
+}

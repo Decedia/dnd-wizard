@@ -1,0 +1,5 @@
+{
+  "2014_spells.fast-friends.description": "You call on the magic of the realm to make a creature more amenable to your presence. Choose one creature within range that can see or hear you. The creature must make a Wisdom saving throw. On a failed save, it becomes charmed by you until the spell ends.",
+  "2014_spells.fast-friends.effectSummary": "Make a target charmed until it saves or the spell ends",
+  "2014_spells.fast-friends.fullDescription": "Using 1 action, choose one creature within range that can see or hear you. The creature must make a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC; You call on the magic of the realm to make a creature more amenable to your presence. On a failed save, it becomes charmed by you until the spell ends; you must concentrate, and the effect ends if your concentration ends."
+}

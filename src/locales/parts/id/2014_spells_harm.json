@@ -1,0 +1,5 @@
+{
+  "2014_spells.harm.description": "Kamu melepaskan penyakit virulen pada makhluk yang dapat kamu lihat dalam jangkauan. Target harus melakukan Constitution saving throw. Saat gagal menyelamatkan, ia menerima 14d6 necrotic damage, atau setengah damage saat berhasil menyelamatkan. Damage tidak dapat mengurangi hit points target di bawah 1. Jika target gagal saving throw, hit point maksimumnya berkurang selama 1 jam sebanyak damage necrotic yang diterimanya. Setiap efek yang menghilangkan penyakit memungkinkan hit point maksimum makhluk kembali normal sebelum waktu itu berlalu.",
+  "2014_spells.harm.effectSummary": "Berikan 14d6 necrotic damage ke target dalam 60 ft",
+  "2014_spells.harm.fullDescription": "Menggunakan 1 Action, damage tidak dapat mengurangi hit points target di bawah 1. Saat gagal menyelamatkan, ia menerima 14d6 necrotic damage, atau setengah damage saat berhasil menyelamatkan; Target harus melakukan Constitution saving throw; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC sihir. Efek terjadi segera lalu berakhir."
+}

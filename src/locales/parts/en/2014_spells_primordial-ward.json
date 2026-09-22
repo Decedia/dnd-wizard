@@ -1,0 +1,4 @@
+{
+  "2014_spells.primordial-ward.effectSummary": "Gain resistance to acid, cold, fire, lightning, thunder for the duration",
+  "2014_spells.primordial-ward.fullDescription": "Using 1 action, if you do so, the resistances end, and you have immunity to the chosen type until the end of your next turn, at which point the spell ends. If you take damage of one of those types, you can use your reaction to gain immunity to that type of damage, including against the triggering instance of damage; You have resistance to acid, cold, fire, lightning, and thunder damage. If you do so, the resistances end, and you have immunity to the chosen type until the end of your next turn, at which point the spell ends; you must concentrate, and the effect ends if your concentration ends."
+}

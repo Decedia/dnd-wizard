@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-fear.description": "You project a fearsome draconic visage. Each creature in the area must succeed on a Wisdom saving throw or become frightened of you for 1 minute. A frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+  "2014_spells.draconic-fear.effectSummary": "Make a target frightened until it saves or the spell ends",
+  "2014_spells.draconic-fear.fullDescription": "Using 1 action, a frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Each creature in the area must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or become frightened of you for 1 minute; You project a fearsome draconic visage. The effect happens immediately and then ends."
+}

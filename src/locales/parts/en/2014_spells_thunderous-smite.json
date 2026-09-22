@@ -1,0 +1,5 @@
+{
+  "2014_spells.thunderous-smite.description": "The next time you hit a creature with a melee weapon attack during the spell's duration, your weapon rings with thunder that is audible within 300 feet of you, and the attack deals an extra 2d6 thunder damage to the target. Additionally, if the target is a creature, it must succeed on a Strength saving throw or be pushed 10 feet away from you and knocked prone.",
+  "2014_spells.thunderous-smite.effectSummary": "Deal 2d6 thunder damage to a target within Self",
+  "2014_spells.thunderous-smite.fullDescription": "Using 1 bonus action, the next time you hit a creature with a melee weapon attack during the spell's duration, your weapon rings with thunder that is audible within 300 feet of you, and the attack deals an extra 2d6 thunder damage to the target. Additionally, if the target is a creature, it must succeed on a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC or be pushed 10 feet away from you and knocked prone. The effect lasts for concentration, up to 1 minute."
+}

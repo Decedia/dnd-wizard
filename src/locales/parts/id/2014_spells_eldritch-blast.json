@@ -1,0 +1,5 @@
+{
+  "2014_spells.eldritch-blast.description": "Sinar energi berkerikil memburu makhluk dalam jangkauan. Lakukan ranged spell attack terhadap target. Pada hit, target menerima 1d10 force damage. Sihir menciptakan lebih dari satu sinar ketika kamu mencapai tingkat lebih tinggi: dua sinar di tingkat 5, tiga sinar di tingkat 11, dan empat sinar di tingkat 17. Kamu bisa mengarahkan sinar ke target yang sama atau yang berbeda. Lakukan attack roll terpisah untuk setiap sinar.",
+  "2014_spells.eldritch-blast.effectSummary": "Berikan 1d10 force damage ke target dalam 120 ft",
+  "2014_spells.eldritch-blast.fullDescription": "Menggunakan 1 aksi, sihir menciptakan lebih dari satu sinar ketika kamu mencapai tingkat lebih tinggi: dua sinar di tingkat 5, tiga sinar di tingkat 11, dan empat sinar di tingkat 17. Pada hit, target menerima 1d10 force damage; Lakukan attack roll terpisah untuk setiap sinar. Efek terjadi segera lalu berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.finger-of-death.description": "You send negative energy coursing through a creature that you can see within range, causing it searing pain. The target must make a constitution saving throw. It takes 7d8 + 30 necrotic damage on a failed save, or half as much damage on a successful one. A humanoid killed by this spell rises at the start of your next turn as a zombie that is permanently under your command, following your verbal orders to the best of its ability.",
+  "2014_spells.finger-of-death.effectSummary": "Deal 7d8+30 necrotic damage to a target within 60 ft",
+  "2014_spells.finger-of-death.fullDescription": "Using 1 action, you send negative energy coursing through a creature that you can see within range, causing it searing pain. It takes 7d8 + 30 necrotic damage on a failed save, or half as much damage on a successful one; The target must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. The effect happens immediately and then ends."
+}

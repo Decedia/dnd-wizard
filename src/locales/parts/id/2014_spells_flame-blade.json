@@ -1,0 +1,5 @@
+{
+  "2014_spells.flame-blade.description": "Kamu memanggil blade api di tangan kosongmu. Blade itu mirip ukuran dan bentuk scimitar, dan bertahan selama durasi. Jika kamu melepaskan blade, itu menghilang, tapi kamu bisa memanggil blade lagi sebagai bonus action. Kamu bisa menggunakan action untuk melakukan melee spell attack dengan blade api. Saat hit, target menerima 3d6 fire damage. Blade api memancarkan cahaya terang dalam radius 10 kaki dan cahaya redup untuk tambahan 10 kaki.",
+  "2014_spells.flame-blade.effectSummary": "Berikan 3d6 fire damage ke target dalam Self",
+  "2014_spells.flame-blade.fullDescription": "Menggunakan 1 bonus action, kamu memanggil blade api di tangan kosongmu. Saat hit, target menerima 3d6 fire damage; Blade api memancarkan cahaya terang dalam radius 10 kaki dan cahaya redup untuk tambahan 10 kaki; Ketika kamu mencast spell ini menggunakan spell slot level 4th atau lebih tinggi, damage bertambah 1d6 untuk setiap dua slot level di atas 2nd. Blade itu mirip ukuran dan bentuk scimitar, dan bertahan selama durasi; kamu harus concentrate, dan efeknya berakhir jika concentration-mu berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.enemies-abound.description": "Kamu menjangkau pikiran satu makhluk yang kamu lihat dan memaksa ia melakukan saving throw Intelligence. Makhluk otomatis berhasil jika imun terhadap terCharmed. Pada saving throw yang gagal, target tidak bisa mengambil reaksi dan harus menggunakan aksinya setiap giliran untuk melakukan melee attack terhadap makhluk selain dirinya yang kamu pilih secara mental.",
+  "2014_spells.enemies-abound.effectSummary": "Buat target terCharmed sampai save atau sihir berakhir",
+  "2014_spells.enemies-abound.fullDescription": "Menggunakan 1 aksi, kamu menjangkau pikiran satu makhluk yang kamu lihat dan memaksa ia melakukan saving throw Intelligence. Pada saving throw yang gagal, target tidak bisa mengambil reaksi dan harus menggunakan aksinya setiap giliran untuk melakukan melee attack terhadap makhluk selain dirinya yang kamu pilih secara mental; Makhluk otomatis berhasil jika imun terhadap terCharmed. Efek berlangsung selama konsentrasi hingga 1 menit."
+}

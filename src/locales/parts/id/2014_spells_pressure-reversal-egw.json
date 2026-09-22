@@ -1,0 +1,5 @@
+{
+  "2014_spells.pressure-reversal-egw.description": "Kamu membalik gravitasi di sekitarmu. Setiap makhluk dalam 5 feet darimu harus berhasil membuat saving throw Dexterity atau didorong 10 feet menjauh darimu dan menerima 1d6 force damage. Damage spell ini meningkat 1d6 ketika kamu mencapai level 5th (2d6), level 11th (3d6), dan level 17th (4d6).",
+  "2014_spells.pressure-reversal-egw.effectSummary": "Berikan 1d6 force damage ke target dalam Self (5-foot radius)",
+  "2014_spells.pressure-reversal-egw.fullDescription": "Menggunakan 1 Action, damage spell ini meningkat 1d6 ketika kamu mencapai level 5th (2d6), level 11th (3d6), dan level 17th (4d6). Setiap makhluk dalam 5 feet darimu harus berhasil membuat saving throw Dexterity; roll a d20, tambahkan modifier DEX, dan bandingkan dengan spell save DC-mu atau didorong 10 feet menjauh darimu dan menerima 1d6 force damage; Kamu membalik gravitasi di sekitarmu; Damage spell ini meningkat 1d6 ketika kamu mencapai level 5th (2d6), level 11th (3d6), dan level 17th (4d6). Efek terjadi segera dan kemudian berakhir."
+}

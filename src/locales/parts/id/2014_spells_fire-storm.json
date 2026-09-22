@@ -1,0 +1,5 @@
+{
+  "2014_spells.fire-storm.description": "Badai yang terdiri dari lembaran api meraung muncul di lokasi pilihanmu dalam jangkauan. Area badai terdiri dari sampai sepuluh kubus 10 kaki, yang bisa kamu atur sesuai keinginan. Setiap kubus harus memiliki minimal satu face bersebelahan dengan face kubus lain. Setiap makhluk di area harus melewati dexterity saving throw. Itu menerima 7d10 fire damage pada kegagalan save, atau setengahnya pada keberhasilan. Api merusak objek di area dan menyalakan objek mudah terbakar yang tidak dipakai atau dibawa. Jika kamu memilih, tanaman di area tidak terkena efek spell ini.",
+  "2014_spells.fire-storm.effectSummary": "Berikan 7d10 fire damage ke target dalam 150 ft",
+  "2014_spells.fire-storm.fullDescription": "Menggunakan 1 action, badai yang terdiri dari lembaran api meraung muncul di lokasi pilihanmu dalam jangkauan. Itu menerima 7d10 fire damage pada kegagalan save, atau setengahnya pada keberhasilan; Setiap makhluk di area harus melewati Dexterity saving throw; lempar d20, tambahkan DEX modifier, dan bandingkan dengan spell save DC-ammu. Efek terjadi langsung lalu berakhir."
+}

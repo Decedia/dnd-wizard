@@ -1,0 +1,4 @@
+{
+  "2014_spells.tsunami.effectSummary": "Berikan 6d10 bludgeoning damage ke target dalam Sight",
+  "2014_spells.tsunami.fullDescription": "Menggunakan 1 menit, dinding air muncul di titik yang Anda pilih dalam jarak. Pada akhir setiap giliran Anda, tinggi dinding berkurang 50 kaki, dan damage yang diterima makhluk dari dinding pada giliran berikutnya berkurang 1d10; Pada save yang gagal, makhluk mengambil 6d10 bludgeoning damage, dan ia knocked prone. Dinding berlangsung selama durasi; Anda harus konsentrasi, dan efek berakhir jika konsentrasi Anda berakhir."
+}

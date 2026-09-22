@@ -1,0 +1,5 @@
+{
+  "2014_spells.tidal-wave.description": "Kamu menciptakan gelombang air yang menghantam area dalam jangkauan. Area tersebut dapat hingga 30 kaki panjang, hingga 10 kaki lebar, dan hingga 10 kaki tinggi. Setiap makhluk di area tersebut harus melakukan Dexterity saving throw. Pada save yang gagal, makhluk tersebut menerima 4d8 bludgeoning damage dan knocked prone.",
+  "2014_spells.tidal-wave.effectSummary": "Berikan 4d8 bludgeoning damage ke target dalam 120 ft",
+  "2014_spells.tidal-wave.fullDescription": "Menggunakan 1 Action, kamu menciptakan gelombang air yang menghantam area dalam jangkauan. Pada save yang gagal, makhluk tersebut menerima 4d8 bludgeoning damage dan knocked prone; Setiap makhluk di area tersebut harus melakukan Dexterity saving throw; roll d20, tambahkan modifier DEX, dan bandingkan dengan spell save DC kamu; Ketika kamu menyalakan sihir ini menggunakan spell slot level 4 atau lebih tinggi, damage meningkat sebesar 1d8 untuk setiap slot level di atas 3rd. Efek terjadi segera lalu berakhir."
+}

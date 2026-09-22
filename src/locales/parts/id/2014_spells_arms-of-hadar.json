@@ -1,0 +1,5 @@
+{
+  "2014_spells.arms-of-hadar.description": "Kamu memanggil kekuatan Hadar, the Dark Hunger. Tentakel-tentakel energi gelap meluncur dari dirimu dan menghantam semua makhluk dalam jarak 10 foot darimu. Setiap makhluk di area tersebut harus melakukan saving throw STR.",
+  "2014_spells.arms-of-hadar.effectSummary": "Deal 2d6 necrotic damage ke target di dalam Self (10-foot radius)",
+  "2014_spells.arms-of-hadar.fullDescription": "Menggunakan 1 Action, kamu memanggil kekuatan Hadar, the Dark Hunger. Tentakel-tentakel energi gelap meluncur dari dirimu dan menghantam semua makhluk dalam jarak 10 foot darimu. Setiap makhluk di area tersebut harus melakukan saving throw STR; roll a d20, add the STR modifier, and compare it with your spell save spell save DC. Jika gagal, target menerima 2d6 necrotic damage dan tidak bisa mengambil reactions sampai giliran berikutnya; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 2 atau lebih tinggi, damage meningkat 1d6 untuk setiap slot level di atas 1st."
+}

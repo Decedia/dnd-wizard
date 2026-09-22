@@ -1,0 +1,5 @@
+{
+  "2014_spells.zephyr-strike.description": "You move like the wind. Until the spell ends, your movement doesn't provoke opportunity attacks. In addition, the first time you hit with a weapon attack on your turn before this spell ends, the target takes an extra 1d8 force damage, and you can use your reaction to give yourself advantage on the attack roll.",
+  "2014_spells.zephyr-strike.effectSummary": "Deal 1d8 force damage to a target within Self",
+  "2014_spells.zephyr-strike.fullDescription": "Using 1 bonus action, in addition, the first time you hit with a weapon attack on your turn before this spell ends, the target takes an extra 1d8 force damage, and you can use your reaction to give yourself advantage on the attack roll. You move like the wind; Until the spell ends, your movement doesn't provoke opportunity attacks. Until the spell ends, your movement doesn't provoke opportunity attacks; you must concentrate, and the effect ends if your concentration ends."
+}

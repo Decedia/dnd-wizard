@@ -1,0 +1,5 @@
+{
+  "2014_spells.sending.description": "Kamu mengirim pesan singkat maksimal dua puluh lima kata ke makhluk yang kamu kenal. Makhluk tersebut mendengar pesan dalam pikirannya, mengenalimu sebagai pengirim jika ia mengenalmu, dan dapat menjawab dengan cara yang sama segera. Mantra ini memungkinkan makhluk dengan Intelligence score minimal 1 untuk memahami makna pesanmu. Kamu dapat mengirim pesan melintasi jarak apa pun bahkan ke bidang eksistensi lain, tetapi jika target berada di bidang berbeda darimu, ada peluang 5 persen bahwa pesan tidak sampai.",
+  "2014_spells.sending.effectSummary": "Kirim pesan pribadi ke makhluk dalam jangkauan",
+  "2014_spells.sending.fullDescription": "Menggunakan 1 Action, kamu mengirim pesan singkat maksimal dua puluh lima kata ke makhluk yang kamu kenal. Kamu dapat mengirim pesan melintasi jarak apa pun bahkan ke bidang eksistensi lain, tetapi jika target berada di bidang berbeda darimu, ada peluang 5 persen bahwa pesan tidak sampai; Makhluk tersebut mendengar pesan dalam pikirannya, mengenalimu sebagai pengirim jika ia mengenalmu, dan dapat menjawab dengan cara yang sama segera. Efek berlangsung selama 1 ronde."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.blade-of-disaster.description": "You create a blade-shaped planar rift about 3 feet long in a space you can see within range. The blade lasts for the duration. When you cast this spell, and as a bonus action on subsequent turns, you can move the blade up to 30 feet to a space you can see and make up to two melee spell attacks with it.",
+  "2014_spells.blade-of-disaster.effectSummary": "Move a creature or object a short distance",
+  "2014_spells.blade-of-disaster.fullDescription": "Using 1 bonus action, you create a blade-shaped planar rift about 3 feet long in a space you can see within range. The blade lasts for the duration; When you cast this spell using a spell slot of 9th level, you can make three attacks with the blade instead of two. The blade lasts for the duration; you must concentrate, and the effect ends if your concentration ends."
+}

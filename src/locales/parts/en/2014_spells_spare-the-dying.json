@@ -1,0 +1,5 @@
+{
+  "2014_spells.spare-the-dying.description": "You touch a living creature that has 0 hit points. The creature becomes stable. This spell has no effect on undead or constructs.",
+  "2014_spells.spare-the-dying.effectSummary": "touch a living creature that has 0 hit points",
+  "2014_spells.spare-the-dying.fullDescription": "Using 1 action, you touch a living creature that has 0 hit points. This spell has no effect on undead or constructs; The creature becomes stable. The effect happens immediately and then ends."
+}

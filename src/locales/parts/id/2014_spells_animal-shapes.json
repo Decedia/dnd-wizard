@@ -1,0 +1,5 @@
+{
+  "2014_spells.animal-shapes.description": "Kamu mengubah bentuk makhluk liar menjadi bentuk lain yang lebih menakutkan. Pilih sebanyak delapan beast dalam jangkauan. Setiap beast harus melakukan saving throw WIS atau menjadi tercharmed.",
+  "2014_spells.animal-shapes.effectSummary": "Ubah bentuk beast menjadi lebih menakutkan",
+  "2014_spells.animal-shapes.fullDescription": "Menggunakan 1 Action, kamu mengubah bentuk makhluk liar menjadi bentuk lain yang lebih menakutkan. Pilih sebanyak delapan beast dalam jangkauan. Setiap beast harus melakukan saving throw WIS; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or become tercharmed. Kamu bisa memaksa beast untuk bergerak seperti yang kamu inginkan; you must concentrate, and the effect ends if your concentration ends."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.comprehend-languages.description": "For the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text. This spell doesn't decode secret messages in a text or a glyph, such as an arcane sigil, that isn't part of a written language.",
+  "2014_spells.comprehend-languages.effectSummary": "Send a private message to a creature within range",
+  "2014_spells.comprehend-languages.fullDescription": "Using 1 action, you also understand any written language that you see, but you must be touching the surface on which the words are written. For the duration, you understand the literal meaning of any spoken language that you hear; It takes about 1 minute to read one page of text. The effect lasts for 1 hour; you can cast it as a ritual."
+}

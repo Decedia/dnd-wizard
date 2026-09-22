@@ -1,0 +1,5 @@
+{
+  "2014_spells.lightning-lure.description": "Kamu membuat cambukan energi petir yang menyerang satu makhluk pilihanmu yang bisa kamu lihat dalam 15 feet darimu. Target harus berhasil pada Strength saving throw atau ditarik hingga 10 feet dalam garis lurus ke arahmu lalu menerima 1d8 lightning damage jika dia dalam 5 feet darimu.",
+  "2014_spells.lightning-lure.effectSummary": "Berikan 1d8 lightning damage ke target dalam Self (15-foot radius)",
+  "2014_spells.lightning-lure.fullDescription": "Menggunakan 1 action, kamu membuat cambukan energi petir yang menyerang satu makhluk pilihanmu yang bisa kamu lihat dalam 15 feet darimu. Target harus berhasil pada Strength saving throw; roll a d20, tambahkan STR modifier, dan bandingkan dengan spell save DC atau ditarik hingga 10 feet dalam garis lurus ke arahmu lalu menerima 1d8 lightning damage jika dia dalam 5 feet darimu; Damage bertambah 1d8 saat kamu mencapai 5th level (2d8), 11th level (3d8), dan 17th level (4d8). Efek terjadi langsung lalu berakhir."
+}

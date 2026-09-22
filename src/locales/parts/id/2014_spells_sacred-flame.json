@@ -1,0 +1,5 @@
+{
+  "2014_spells.sacred-flame.description": "Radianse seperti api turun pada makhluk yang dapat kamu lihat dalam jangkauan. Target harus berhasil pada Dexterity saving throw atau menerima 1d8 radiant damage. Target tidak mendapatkan manfaat dari cover untuk saving throw ini.",
+  "2014_spells.sacred-flame.effectSummary": "Berikan 1d8 radiant damage ke target dalam 60 ft",
+  "2014_spells.sacred-flame.fullDescription": "Menggunakan 1 Action, radianse seperti api turun pada makhluk yang dapat kamu lihat dalam jangkauan. Target harus berhasil pada Dexterity saving throw; roll d20, tambahkan modifier DEX, dan bandingkan dengan spell save DC kamu atau menerima 1d8 radiant damage; Target tidak mendapatkan manfaat dari cover untuk saving throw ini; Damage mantra ini meningkat 1d8 ketika kamu mencapai level 5 (2d8), level 11 (3d8), dan level 17 (4d8). Radianse seperti api turun pada makhluk yang dapat kamu lihat dalam jangkauan."
+}

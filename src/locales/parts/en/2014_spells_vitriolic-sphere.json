@@ -1,0 +1,5 @@
+{
+  "2014_spells.vitriolic-sphere.description": "You point at a location within range, and a glowing, 1-foot-diameter ball of emerald acid streaks there in a straight line, exploding in a 20-foot-radius sphere. Each creature in that area must make a Dexterity saving throw. On a failed save, a creature takes 10d4 acid damage and 5d4 acid damage at the end of its next turn.",
+  "2014_spells.vitriolic-sphere.effectSummary": "Deal 10d4 acid damage to a target within 150 ft",
+  "2014_spells.vitriolic-sphere.fullDescription": "Using 1 action, you point at a location within range, and a glowing, 1-foot-diameter ball of emerald acid streaks there in a straight line, exploding in a 20-foot-radius sphere. On a failed save, a creature takes 10d4 acid damage and 5d4 acid damage at the end of its next turn; Each creature in that area must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 6th level or higher, the initial damage increases by 2d4 for each slot level above 5th. The effect happens immediately and then ends."
+}

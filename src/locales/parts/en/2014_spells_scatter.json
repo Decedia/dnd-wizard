@@ -1,0 +1,4 @@
+{
+  "2014_spells.scatter.effectSummary": "Teleport up to 30 ft to a space you can see",
+  "2014_spells.scatter.fullDescription": "Using 1 action, the destination you choose must be on the ground or on a floor, and it must be unoccupied. You teleport each affected target to an unoccupied space that you can see within 120 feet of you; An unwilling creature must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC to resist this effect. The effect happens immediately and then ends."
+}

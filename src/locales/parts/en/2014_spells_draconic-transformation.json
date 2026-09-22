@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-transformation.description": "With a roar, you draw on the magic of dragons to transform yourself, gaining the following benefits for the duration: You have a flying speed of 60 feet. You have blindsight with a range of 30 feet. You gain a breath weapon (15-foot cone, 6d6 damage, Dexterity saving throw). Once you use your breath weapon, you can't use it again until you use a bonus action to do so. You gain resistance to the damage type of your breath weapon.",
+  "2014_spells.draconic-transformation.effectSummary": "Give a creature a 60 ft speed for the duration",
+  "2014_spells.draconic-transformation.fullDescription": "Using 1 bonus action, with a roar, you draw on the magic of dragons to transform yourself, gaining the following benefits for the duration: You have a flying speed of 60 feet. You gain a breath weapon (15-foot cone, 6d6 damage, Dexterity saving throw); You have blindsight with a range of 30 feet. Once you use your breath weapon, you can't use it again until you use a bonus action to do so; you must concentrate, and the effect ends if your concentration ends."
+}

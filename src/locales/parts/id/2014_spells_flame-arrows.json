@@ -1,0 +1,5 @@
+{
+  "2014_spells.flame-arrows.description": "Kamu menyentuh quiver yang berisi panah atau bolt. Ketika target terkena ranged weapon attack menggunakan ammunition yang ditarik dari quiver, target menerima tambahan 1d6 fire damage.",
+  "2014_spells.flame-arrows.effectSummary": "Berikan 1d6 fire damage ke target dalam Touch",
+  "2014_spells.flame-arrows.fullDescription": "Menggunakan 1 action, kamu menyentuh quiver yang berisi panah atau bolt. Ketika target terkena ranged weapon attack menggunakan ammunition yang ditarik dari quiver, target menerima tambahan 1d6 fire damage; Ketika kamu mencast spell ini menggunakan spell slot level 4th atau lebih tinggi, jumlah ammunition yang bisa kamu pengaruhi bertambah dua untuk setiap slot level di atas 3rd. Efek berlangsung concentrate, sampai 1 jam."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.vicious-mockery.description": "Anda melepaskan rangkaian cercaan yang dilengkapi sihir halus pada makhluk yang dapat Anda lihat dalam jarak. Jika target dapat mendengar Anda (meskipun tidak perlu memahaminya), ia harus berhasil pada a Wisdom saving throw atau mengambil 1d4 psychic damage dan memiliki Disadvantage pada attack roll berikutnya yang dilakukan sebelum akhir giliran berikutnya.",
+  "2014_spells.vicious-mockery.effectSummary": "Berikan 1d4 psychic damage ke target dalam 60 ft",
+  "2014_spells.vicious-mockery.fullDescription": "Menggunakan 1 Action, Anda melepaskan rangkaian cercaan yang dilengkapi sihir halus pada makhluk yang dapat Anda lihat dalam jarak. Jika target dapat mendengar Anda (meskipun tidak perlu memahaminya), ia harus berhasil pada a Wisdom saving throw; roll a d20, tambahkan modifier WIS, dan bandingkan dengan spell save DC Anda atau mengambil 1d4 psychic damage dan memiliki Disadvantage pada attack roll berikutnya yang dilakukan sebelum akhir giliran berikutnya; Damage sihir ini meningkat 1d4 ketika Anda mencapai level 5 (2d4), level 11 (3d4), dan level 17 (4d4). Efek terjadi segera lalu berakhir."
+}

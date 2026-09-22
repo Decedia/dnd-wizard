@@ -1,0 +1,5 @@
+{
+  "2014_spells.banishment.description": "Kamu mencoba mengirim satu creature yang kamu lihat dalam jangkauan ke plane lain. Target harus berhasil saving throw CHA atau di-banish. Jika target adalah native dari plane yang kamu tempati, target di-banish ke demiplane yang tidak berbahaya.",
+  "2014_spells.banishment.effectSummary": "Kirim creature ke plane lain selama durasi",
+  "2014_spells.banishment.fullDescription": "Menggunakan 1 Action, kamu mencoba mengirim satu creature yang kamu lihat dalam jangkauan ke plane lain. Target harus berhasil saving throw CHA; roll a d20, add the CHA modifier, and compare it with your spell save spell save DC or be banished. Jika target adalah native dari plane yang kamu tempati, target di-banish ke demiplane yang tidak berbahaya. Sementara di sana, target menjadi Incapacitated; Target tetap di sana sampai spell berakhir; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 5 atau lebih tinggi, kamu bisa menargetkan satu creature tambahan untuk setiap slot level di atas 4th; you must concentrate, and the effect ends if your concentration ends."
+}

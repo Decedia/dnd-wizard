@@ -1,0 +1,5 @@
+{
+  "2014_spells.mage-armor.description": "Kamu menyentuh makhluk bersedia yang tidak memakai armor, dan force magis pelindung mengelilinginya sampai sihir berakhir. Base AC target menjadi 13 + Dexterity modifier-nya. Sihir berakhir jika target memakai armor atau jika kamu menutup sihir sebagai action.",
+  "2014_spells.mage-armor.effectSummary": "Ubah target: menyentuh makhluk bersedia yang tidak memakai armor, dan force magis pelindung mengelilinginya sampai sihir berakhir",
+  "2014_spells.mage-armor.fullDescription": "Menggunakan 1 action, kamu menyentuh makhluk bersedia yang tidak memakai armor, dan force magis pelindung mengelilinginya sampai sihir berakhir. Base AC target menjadi 13 + Dexterity modifier-nya; Sihir berakhir jika target memakai armor atau jika kamu menutup sihir sebagai action. Kamu menyentuh makhluk bersedia yang tidak memakai armor, dan force magis pelindung mengelilinginya sampai sihir berakhir."
+}

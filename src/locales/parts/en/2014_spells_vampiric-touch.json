@@ -1,0 +1,5 @@
+{
+  "2014_spells.vampiric-touch.description": "The touch of your shadow-wreathed hand can siphon life force from others to heal your wounds. Make a melee spell attack against a creature within your reach. On a hit, the target takes 3d6 necrotic damage, and you regain hit points equal to half the amount of necrotic damage dealt. Until the spell ends, you can make the attack again on each of your turns as an action.",
+  "2014_spells.vampiric-touch.effectSummary": "Deal 3d6 necrotic damage to a target within Self",
+  "2014_spells.vampiric-touch.fullDescription": "Using 1 action, the touch of your shadow-wreathed hand can siphon life force from others to heal your wounds. On a hit, the target takes 3d6 necrotic damage, and you regain hit points equal to half the amount of necrotic damage dealt; Make a melee spell attack against a creature within your reach; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd. Until the spell ends, you can make the attack again on each of your turns as an action; you must concentrate, and the effect ends if your concentration ends."
+}

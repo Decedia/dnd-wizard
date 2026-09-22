@@ -1,0 +1,5 @@
+{
+  "2014_spells.aid.description": "Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration.",
+  "2014_spells.aid.effectSummary": "Each target's hit point maximum and current hit points increase by 5 for the duration",
+  "2014_spells.aid.fullDescription": "Using 1 action, choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration; Your spell bolsters your allies with toughness and resolve; When you cast this spell using a spell slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd. The effect lasts for 8 hours."
+}

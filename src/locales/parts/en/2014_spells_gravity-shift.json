@@ -1,0 +1,5 @@
+{
+  "2014_spells.gravity-shift.description": "You alter gravity around a creature within range. The target must succeed on a Strength saving throw or be pulled up to 10 feet in a direction of your choice. This spell ends if the target touches the ground or a solid surface. At 5th level, you can pull the target up to 15 feet. At 11th level, you can pull the target up to 20 feet. At 17th level, you can pull the target up to 25 feet.",
+  "2014_spells.gravity-shift.effectSummary": "Move a creature or object a short distance",
+  "2014_spells.gravity-shift.fullDescription": "Using 1 action, this spell ends if the target touches the ground or a solid surface. The target must succeed on a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC or be pulled up to 10 feet in a direction of your choice; At 5th level, you can pull the target up to 15 feet; At 5th level, you can pull the target up to 15 feet; At 11th level, you can pull the target up to 20 feet; At 17th level, you can pull the target up to 25 feet. This spell ends if the target touches the ground or a solid surface."
+}

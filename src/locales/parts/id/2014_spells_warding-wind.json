@@ -1,0 +1,5 @@
+{
+  "2014_spells.warding-wind.description": "Angin kencang (20 mil per jam) bertiup di sekitar Anda dalam radius 10 kaki dan bergerak bersama Anda, tetap berpusat pada Anda. Angin bertahan selama durasi sihir. Angin memiliki efek berikut: Ia membuat Anda dan makhluk lain di area-nya tuli. Ia mematikan semua api yang tidak dilindungi di area-nya yang tidak lebih besar dari api unggun. Ia adalah difficult terrain untuk makhluk di area-nya.",
+  "2014_spells.warding-wind.effectSummary": "Jadikan area menjadi difficult terrain selama durasi",
+  "2014_spells.warding-wind.fullDescription": "Menggunakan 1 Action, angin kencang (20 mil per jam) bertiup di sekitar Anda dalam radius 10 kaki dan bergerak bersama Anda, tetap berpusat pada Anda. Ia mematikan semua api yang tidak dilindungi di area-nya yang tidak lebih besar dari api unggun; Ia adalah difficult terrain untuk makhluk di area-nya. Angin bertahan selama durasi sihir; Anda harus konsentrasi, dan efek berakhir jika konsentrasi Anda berakhir."
+}

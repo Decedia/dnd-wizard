@@ -1,0 +1,5 @@
+{
+  "2014_spells.poison-spray.description": "Kamu mengulurkan tanganmu ke arah makhluk yang bisa kamu lihat dalam range dan memproyeksikan gumpalan gas beracun dari telapak tanganmu. Makhluk tersebut harus berhasil membuat saving throw Constitution atau menerima 1d12 poison damage.",
+  "2014_spells.poison-spray.effectSummary": "Berikan 1d12 poison damage ke target dalam 10 ft",
+  "2014_spells.poison-spray.fullDescription": "Menggunakan 1 Action, kamu mengulurkan tanganmu ke arah makhluk yang bisa kamu lihat dalam range dan memproyeksikan gumpalan gas beracun dari telapak tanganmu. Makhluk tersebut harus berhasil membuat saving throw Constitution; roll a d20, tambahkan modifier CON, dan bandingkan dengan spell save DC-mu atau menerima 1d12 poison damage; Damage spell ini meningkat 1d12 ketika kamu mencapai level 5th (2d12), level 11th (3d12), dan level 17th (4d12). Efek terjadi segera dan kemudian berakhir."
+}

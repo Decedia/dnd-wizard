@@ -1,0 +1,4 @@
+{
+  "2014_spells.primordial-ward.effectSummary": "Dapatkan resistance ke acid, cold, fire, lightning, thunder selama durasi",
+  "2014_spells.primordial-ward.fullDescription": "Menggunakan 1 Action, jika kamu melakukan itu, resistances berakhir, dan kamu mendapatkan immunity ke tipe yang dipilih sampai akhir turn-mu berikutnya, pada titik mana spell berakhir. Jika kamu menerima damage dari salah satu tipe tersebut, kamu bisa menggunakan reaction-mu untuk mendapatkan immunity ke tipe damage tersebut, termasuk terhadap instance damage yang memicu; Kamu memiliki resistance ke acid, cold, fire, lightning, dan thunder damage. Jika kamu melakukan itu, resistances berakhir, dan kamu mendapatkan immunity ke tipe yang dipilih sampai akhir turn-mu berikutnya, pada titik mana spell berakhir; kamu harus concentrate, dan efek berakhir jika concentration-mu berakhir."
+}

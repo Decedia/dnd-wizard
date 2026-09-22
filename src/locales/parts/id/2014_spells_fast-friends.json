@@ -1,0 +1,5 @@
+{
+  "2014_spells.fast-friends.description": "Kamu memanggil magic alam untuk membuat makhluk lebih condong terhadap kehadiranmu. Pilih satu makhluk dalam jangkauan yang bisa melihat atau mendengarmu. Makhluk itu harus melewati Wisdom saving throw. Pada kegagalan save, itu menjadi Charmed oleh kamu sampai spell berakhir.",
+  "2014_spells.fast-friends.effectSummary": "Buat target Charmed sampai dia berhasil save atau spell berakhir",
+  "2014_spells.fast-friends.fullDescription": "Menggunakan 1 action, pilih satu makhluk dalam jangkauan yang bisa melihat atau mendengarmu. Makhluk itu harus melewati Wisdom saving throw; lempar d20, tambahkan WIS modifier, dan bandingkan dengan spell save DC-ammu; Kamu memanggil magic alam untuk membuat makhluk lebih condong terhadap kehadiranmu. Pada kegagalan save, itu menjadi Charmed oleh kamu sampai spell berakhir; kamu harus concentrate, dan efeknya berakhir jika concentration-mu berakhir."
+}

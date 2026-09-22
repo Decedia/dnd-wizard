@@ -1,0 +1,5 @@
+{
+  "2014_spells.animate-objects.description": "Objek-objek di sekitar kamu tiba-tiba hidup. Kamu bisa menghidupkan hingga 10 objek nonmagis yang tidak dipegang atau dipakai. Objek tersebut bisa bergerak dan bertarung untukmu.",
+  "2014_spells.animate-objects.effectSummary": "Hidupkan objek nonmagis untuk bertarung atau membantu",
+  "2014_spells.animate-objects.fullDescription": "Menggunakan 1 Action, objek-objek di sekitar kamu tiba-tiba hidup. Kamu bisa menghidupkan hingga 10 objek nonmagis yang tidak dipegang atau dipakai. Objek tersebut bisa bergerak dan bertarung untukmu; Setiap objek memiliki statistik AC, hit points, dan damage sesuai ukurannya; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 6 atau lebih tinggi, kamu bisa menghidupkan dua objek tambahan untuk setiap slot level di atas 5th; you must concentrate, and the effect ends if your concentration ends."
+}

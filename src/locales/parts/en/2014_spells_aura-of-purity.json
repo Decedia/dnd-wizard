@@ -1,0 +1,5 @@
+{
+  "2014_spells.aura-of-purity.description": "Purifying energy radiates from you in an aura with a radius of 30 feet. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) can't become diseased, has resistance to poison damage, and has advantage on saving throws against effects that cause blindness, deafness, paralysis, poison, or stunned.",
+  "2014_spells.aura-of-purity.effectSummary": "Make a target stunned until it saves or the spell ends",
+  "2014_spells.aura-of-purity.fullDescription": "Using 1 action, purifying energy radiates from you in an aura with a radius of 30 feet. Each nonhostile creature in the aura (including you) can't become diseased, has resistance to poison damage, and has advantage on saving throws against effects that cause blindness, deafness, paralysis, poison, or stunned; Until the spell ends, the aura moves with you, centered on you. Until the spell ends, the aura moves with you, centered on you; you must concentrate, and the effect ends if your concentration ends."
+}

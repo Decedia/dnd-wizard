@@ -1,0 +1,5 @@
+{
+  "2014_spells.hold-person.description": "Choose a humanoid that you can see within range. The target must succeed on a wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another wisdom saving throw. On a success, the spell ends on the target.",
+  "2014_spells.hold-person.effectSummary": "Make a target paralyzed until it saves or the spell ends",
+  "2014_spells.hold-person.fullDescription": "Using 1 action, choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be paralyzed for the duration; At the end of each of its turns, the target can make another wisdom saving throw; When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd; The humanoids must be within 30 feet of each other when you target them. On a success, the spell ends on the target; you must concentrate, and the effect ends if your concentration ends."
+}

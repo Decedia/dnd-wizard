@@ -1,0 +1,5 @@
+{
+  "2014_spells.booster-pulse.description": "You boost the energy of a creature you touch. If that creature takes the Attack action on its next turn, it can make one additional weapon attack or attack roll as part of that action. If the creature is wielding a weapon that deals piercing damage, it can also push the target of that attack up to 10 feet away from it on a hit. If the additional attack hits, the target takes an extra 1d4 force damage. The spell's extra damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).",
+  "2014_spells.booster-pulse.effectSummary": "Deal 1d4 force damage to a target within Touch",
+  "2014_spells.booster-pulse.fullDescription": "Using 1 action, you boost the energy of a creature you touch. If the creature is wielding a weapon that deals piercing damage, it can also push the target of that attack up to 10 feet away from it on a hit; If the additional attack hits, the target takes an extra 1d4 force damage; The spell's extra damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4). The effect lasts for 1 round."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.speak-with-animals.description": "You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at a minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the DM's discretion.",
+  "2014_spells.speak-with-animals.effectSummary": "Send a private message to a creature within range",
+  "2014_spells.speak-with-animals.fullDescription": "Using 1 action, you might be able to persuade a beast to perform a small favor for you, at the DM's discretion. You gain the ability to comprehend and verbally communicate with beasts for the duration; The knowledge and awareness of many beasts is limited by their intelligence, but at a minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. The effect lasts for 10 minutes; you can cast it as a ritual."
+}

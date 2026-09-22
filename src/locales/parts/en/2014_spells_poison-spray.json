@@ -1,0 +1,5 @@
+{
+  "2014_spells.poison-spray.description": "You extend your hand toward a creature you can see within range and project a puff of noxious gas from your palm. The creature must succeed on a Constitution saving throw or take 1d12 poison damage.",
+  "2014_spells.poison-spray.effectSummary": "Deal 1d12 poison damage to a target within 10 ft",
+  "2014_spells.poison-spray.fullDescription": "Using 1 action, you extend your hand toward a creature you can see within range and project a puff of noxious gas from your palm. The creature must succeed on a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC or take 1d12 poison damage; This spell's damage increases by 1d12 when you reach 5th level (2d12), 11th level (3d12), and 17th level (4d12). The effect happens immediately and then ends."
+}

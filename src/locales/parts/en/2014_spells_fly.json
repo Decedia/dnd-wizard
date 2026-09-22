@@ -1,0 +1,5 @@
+{
+  "2014_spells.fly.description": "You touch a willing creature. The target gains a flying speed of 60 feet for the duration. When the spell ends, the target falls if it is still aloft, unless it can stop the fall.",
+  "2014_spells.fly.effectSummary": "Give a creature a 60 ft speed for the duration",
+  "2014_spells.fly.fullDescription": "Using 1 action, you touch a willing creature. The target gains a flying speed of 60 feet for the duration; When the spell ends, the target falls if it is still aloft, unless it can stop the fall; When you cast this spell using a spell slot of 4th level or higher, you can target one additional creature for each slot level above 3rd. When the spell ends, the target falls if it is still aloft, unless it can stop the fall; you must concentrate, and the effect ends if your concentration ends."
+}

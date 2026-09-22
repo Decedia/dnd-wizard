@@ -1,0 +1,5 @@
+{
+  "2014_spells.magic-stone.description": "Kamu menyentuh satu sampai tiga kerikil dan mengisi mereka dengan magic. Kamu atau orang lain bisa melakukan ranged spell attack dengan salah satu kerikil dengan melemparnya atau menghunyamnya dengan sling. Jika dilempar, jangkauannya 60 feet. Jika orang lain menyerang dengan kerikil, penyerang menambahkan spellcasting ability modifiermu, bukan milik penyerang, ke attack roll. Pada hit, target menerima bludgeoning damage sama dengan 1d6 + spellcasting ability modifiermu. Hit atau miss, sihir kemudian berakhir di batu.",
+  "2014_spells.magic-stone.effectSummary": "Pada hit, target menerima bludgeoning damage sama dengan 1d6 + spellcasting ability modifiermu",
+  "2014_spells.magic-stone.fullDescription": "Menggunakan 1 bonus action, kamu menyentuh satu sampai tiga kerikil dan mengisi mereka dengan magic. Pada hit, target menerima bludgeoning damage sama dengan 1d6 + spellcasting ability modifiermu; Jika dilempar, jangkauannya 60 feet; Damage bertambah 1d6 saat kamu mencapai 5th level (2d6), 11th level (3d6), dan 17th level (4d6). Hit atau miss, sihir kemudian berakhir di batu."
+}

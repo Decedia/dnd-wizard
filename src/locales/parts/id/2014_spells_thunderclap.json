@@ -1,0 +1,5 @@
+{
+  "2014_spells.thunderclap.description": "Kamu menciptakan ledakan suara yang gemuruh yang bisa terdengar hingga 100 kaki jauhnya. Setiap makhluk selain kamu dalam jangkauan harus melakukan Constitution saving throw. Pada save yang gagal, makhluk tersebut menerima 1d6 thunder damage.",
+  "2014_spells.thunderclap.effectSummary": "Berikan 1d6 thunder damage ke target dalam Self (radius 5 kaki)",
+  "2014_spells.thunderclap.fullDescription": "Menggunakan 1 Action, kamu menciptakan ledakan suara yang gemuruh yang bisa terdengar hingga 100 kaki jauhnya. Pada save yang gagal, makhluk tersebut menerima 1d6 thunder damage; Setiap makhluk selain kamu dalam jangkauan harus melakukan Constitution saving throw; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC kamu; Damage sihir meningkat sebesar 1d6 ketika kamu mencapai level 5 (2d6), level 11 (3d6), dan level 17 (4d6). Efek terjadi segera lalu berakhir."
+}

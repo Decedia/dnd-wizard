@@ -1,0 +1,5 @@
+{
+  "2014_spells.draconic-transmutation.description": "Kamu menyentuh makhluk yang bersedia dan memberinya kekuatan draconic. Sampai sihir berakhir, target mendapatkan manfaat berikut: AC target tidak bisa kurang dari 13, terlepas dari jenis armor yang dipakainya. Target memiliki resistance terhadap salah satu tipe kerusakan berikut pilihanmu: acid, cold, fire, lightning, atau poison.",
+  "2014_spells.draconic-transmutation.effectSummary": "Dapatkan resistance terhadap acid, cold, fire, lightning, poison selama durasi",
+  "2014_spells.draconic-transmutation.fullDescription": "Menggunakan 1 aksi, kamu menyentuh makhluk yang bersedia dan memberinya kekuatan draconic. Sampai sihir berakhir, target mendapatkan manfaat berikut: AC target tidak bisa kurang dari 13, terlepas dari jenis armor yang dipakainya; Target memiliki resistance terhadap salah satu tipe kerusakan berikut pilihanmu: acid, cold, fire, lightning, atau poison. Sampai sihir berakhir, target mendapatkan manfaat berikut: AC target tidak bisa kurang dari 13, terlepas dari jenis armor yang dipakainya; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

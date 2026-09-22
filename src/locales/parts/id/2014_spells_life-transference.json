@@ -1,0 +1,5 @@
+{
+  "2014_spells.life-transference.description": "Kamu mengorbankan vitalitasmu sendiri untuk menyembuhkan makhluk lain. Kamu menerima 4d8 necrotic damage, dan satu makhluk pilihanmu yang bisa kamu lihat dalam jangkauan mendapatkan jumlah hit points sama dengan dua kali necrotic damage yang kamu terima.",
+  "2014_spells.life-transference.effectSummary": "Berikan 4d8 necrotic damage ke target dalam 30 ft",
+  "2014_spells.life-transference.fullDescription": "Menggunakan 1 action, kamu menerima 4d8 necrotic damage, dan satu makhluk pilihanmu yang bisa kamu lihat dalam jangkauan mendapatkan jumlah hit points sama dengan dua kali necrotic damage yang kamu terima. Kamu mengorbankan vitalitasmu sendiri untuk menyembuhkan makhluk lain; Saat kamu menyalurkan sihir ini menggunakan spell slot 4th level atau lebih tinggi, damage bertambah 1d8 untuk setiap slot level di atas 3rd. Efek terjadi langsung lalu berakhir."
+}

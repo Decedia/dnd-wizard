@@ -1,0 +1,5 @@
+{
+  "2014_spells.blade-barrier.description": "Kamu menciptakan dinding vertikal dari bilah-bilah berputar yang sangat tajam dari energi magis. Dinding ini memberikan three-quarters cover dan menjadi difficult terrain. Ketika creature memasuki area dinding, creature tersebut harus saving throw DEX atau terkena 6d10 slashing damage.",
+  "2014_spells.blade-barrier.effectSummary": "Deal 6d10 slashing damage ke target di dalam 90 ft",
+  "2014_spells.blade-barrier.fullDescription": "Menggunakan 1 Action, kamu menciptakan dinding vertikal dari bilah-bilah berputar yang sangat tajam dari energi magis. Dinding ini memberikan three-quarters cover dan menjadi difficult terrain. Kamu bisa membuat dinding lurus sepanjang 100 foot, 20 foot tinggi, 5 foot tebal, atau dinding berbentuk cincin sebesar 60 foot diameter; Ketika creature memasuki area dinding atau mulai turn di dalamnya, creature tersebut harus saving throw DEX; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC. Jika gagal, creature menerima 6d10 slashing damage, atau setengahnya jika berhasil; you must concentrate, and the effect ends if your concentration ends."
+}

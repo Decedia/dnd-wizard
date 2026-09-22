@@ -1,0 +1,5 @@
+{
+  "2014_spells.earthbind.description": "Pilih satu makhluk yang kamu lihat dalam jangkauan. Strip kuning energi magis membelokkan makhluk. Target harus berhasil dalam saving throw Strength atau flying speed-nya (jika ada) berkurang menjadi 0 kaki selama durasi. Makhluk terbang yang terpengaruh sihir ini turun dengan aman 60 kaki per ronde sampai mencapai tanah atau sihir berakhir.",
+  "2014_spells.earthbind.effectSummary": "Berikan makhluk flying speed selama durasi",
+  "2014_spells.earthbind.fullDescription": "Menggunakan 1 aksi, pilih satu makhluk yang kamu lihat dalam jangkauan. Target harus berhasil dalam saving throw Strength; roll d20, tambahkan modifier STR, dan bandingkan dengan spell save DC-mu atau flying speed-nya (jika ada) berkurang menjadi 0 kaki selama durasi; Makhluk terbang yang terpengaruh sihir ini turun dengan aman 60 kaki per ronde sampai mencapai tanah atau sihir berakhir. Makhluk terbang yang terpengaruh sihir ini turun dengan aman 60 kaki per ronde sampai mencapai tanah atau sihir berakhir; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

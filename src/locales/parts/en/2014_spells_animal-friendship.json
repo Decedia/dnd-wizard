@@ -1,0 +1,5 @@
+{
+  "2014_spells.animal-friendship.description": "This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spells ends.",
+  "2014_spells.animal-friendship.effectSummary": "Make a target charmed until it saves or the spell ends",
+  "2014_spells.animal-friendship.fullDescription": "Using 1 action, choose a beast that you can see within range. It must see and hear you; Otherwise, the beast must succeed on a Wisdom saving throw; roll a d20, add the WIS modifier, and compare it with your spell save spell save DC or be charmed by you for the spell's duration; When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above 1st. If you or one of your companions harms the target, the spells ends."
+}

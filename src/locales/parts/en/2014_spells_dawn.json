@@ -1,0 +1,4 @@
+{
+  "2014_spells.dawn.effectSummary": "Deal 4d10 radiant damage to a target within 60 ft",
+  "2014_spells.dawn.fullDescription": "Using 1 action, until the spell ends, a 30-foot-radius, 40-foot-high cylinder of bright light shines in a location you choose. When the cylinder appears, each creature in it must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC, taking 4d10 radiant damage on a failed save, or half as much damage on a successful one; A creature also makes this saving throw when it enters the spell's area for the first time on a turn or ends its turn there. Until the spell ends, a 30-foot-radius, 40-foot-high cylinder of bright light shines in a location you choose; you must concentrate, and the effect ends if your concentration ends."
+}

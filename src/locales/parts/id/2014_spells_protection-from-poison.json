@@ -1,0 +1,5 @@
+{
+  "2014_spells.protection-from-poison.description": "Kamu menyentuh makhluk. Jika ia di-Poisoned, kamu menetralkan racunnya. Jika lebih dari satu racun mempengaruhi target, kamu menetralkan satu racun yang kamu tahu ada, atau kamu menetralkan satu secara acak. Selama durasi, target mendapat Advantage pada saving throws terhadap di-Poisoned, dan ia memiliki resistance ke poison damage.",
+  "2014_spells.protection-from-poison.effectSummary": "Buat target menjadi Poisoned sampai ia berhasil save atau spell berakhir",
+  "2014_spells.protection-from-poison.fullDescription": "Menggunakan 1 Action, kamu menyentuh makhluk. Selama durasi, target mendapat Advantage pada saving throws terhadap di-Poisoned, dan ia memiliki resistance ke poison damage; Jika ia di-Poisoned, kamu menetralkan racunnya. Efek berlangsung selama 1 hour."
+}

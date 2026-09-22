@@ -1,0 +1,5 @@
+{
+  "2014_spells.frost-fingers.description": "Freezing cold blasts from your fingertips in a 15-foot cone. Each creature in that area must make a Constitution saving throw, taking 2d8 cold damage on a failed save, or half as much damage on a successful one. The cold freezes any nonmagical liquids in the area that aren't being worn or carried.",
+  "2014_spells.frost-fingers.effectSummary": "Deal 2d8 cold damage to a target within Self (15-foot cone)",
+  "2014_spells.frost-fingers.fullDescription": "Using 1 action, freezing cold blasts from your fingertips in a 15-foot cone. Each creature in that area must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC, taking 2d8 cold damage on a failed save, or half as much damage on a successful one; The cold freezes any nonmagical liquids in the area that aren't being worn or carried; When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st. Freezing cold blasts from your fingertips in a 15-foot cone."
+}

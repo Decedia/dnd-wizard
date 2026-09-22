@@ -1,0 +1,5 @@
+{
+  "2014_spells.spirit-shroud.description": "You call out to the spirits of the dead, who flit around you for the duration. The spirits are intangible and invulnerable. Until the spell ends, any attack you make deals extra damage of the type you choose from cold, necrotic, or radiant.",
+  "2014_spells.spirit-shroud.effectSummary": "Until the spell ends, any attack you make deals extra damage of the type you choose from cold, necrotic, or radiant",
+  "2014_spells.spirit-shroud.fullDescription": "Using 1 bonus action, until the spell ends, any attack you make deals extra damage of the type you choose from cold, necrotic, or radiant. You call out to the spirits of the dead, who flit around you for the duration; The spirits are intangible and invulnerable; When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd. Until the spell ends, any attack you make deals extra damage of the type you choose from cold, necrotic, or radiant; you must concentrate, and the effect ends if your concentration ends."
+}

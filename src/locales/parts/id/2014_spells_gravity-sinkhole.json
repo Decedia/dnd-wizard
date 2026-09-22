@@ -1,0 +1,4 @@
+{
+  "2014_spells.gravity-sinkhole.effectSummary": "Berikan 5d8 force damage ke target dalam 120 ft",
+  "2014_spells.gravity-sinkhole.fullDescription": "Menggunakan 1 action, sphere radius 10 kaki dari crushing gravitational force muncul di titik yang bisa kamu lihat dalam jangkauan. Pada kegagalan save, makhluk menerima 5d8 force damage, dan makhluk itu ditarik se Dekat mungkin ke pusat sphere; Setiap makhluk di area itu harus melewati Constitution saving throw; lempar d20, tambahkan CON modifier, dan bandingkan dengan spell save DC-ammu. Efek terjadi langsung lalu berakhir."
+}

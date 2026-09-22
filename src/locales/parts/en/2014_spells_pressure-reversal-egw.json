@@ -1,0 +1,5 @@
+{
+  "2014_spells.pressure-reversal-egw.description": "You reverse gravity around you. Each creature within 5 feet of you must succeed on a Dexterity saving throw or be pushed 10 feet away from you and take 1d6 force damage. This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
+  "2014_spells.pressure-reversal-egw.effectSummary": "Deal 1d6 force damage to a target within Self (5-foot radius)",
+  "2014_spells.pressure-reversal-egw.fullDescription": "Using 1 action, this spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6). Each creature within 5 feet of you must succeed on a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or be pushed 10 feet away from you and take 1d6 force damage; You reverse gravity around you; This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6). The effect happens immediately and then ends."
+}

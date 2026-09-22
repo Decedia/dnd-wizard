@@ -1,0 +1,5 @@
+{
+  "2014_spells.earth-tremor.description": "Kamu menimbulkan gempa di tanah dalam radius 10 kaki. Setiap makhluk selain kamu di area itu harus melakukan saving throw Dexterity. Pada saving throw yang gagal, target menerima 1d6 bludgeoning damage dan ter knocked prone. Jika tanah di area itu adalah tanah longsor atau batu, itu menjadi difficult terrain sampai dibersihkan.",
+  "2014_spells.earth-tremor.effectSummary": "Berikan 1d6 bludgeoning damage ke target dalam Self (10-foot radius)",
+  "2014_spells.earth-tremor.fullDescription": "Menggunakan 1 aksi, kamu menimbulkan gempa di tanah dalam radius 10 kaki. Pada saving throw yang gagal, target menerima 1d6 bludgeoning damage dan ter knocked prone; Setiap makhluk selain kamu di area itu harus melakukan saving throw Dexterity; roll d20, tambahkan modifier DEX, dan bandingkan dengan spell save DC-mu; Ketika kamu menyalurkan sihir ini menggunakan spell slot tingkat 2 atau lebih tinggi, kerusakan meningkat sebesar 1d6 untuk setiap tingkat slot di atas 1. Jika tanah di area itu adalah tanah longsor atau batu, itu menjadi difficult terrain sampai dibersihkan."
+}

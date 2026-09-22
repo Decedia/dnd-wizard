@@ -1,0 +1,5 @@
+{
+  "2014_spells.eldritch-blast.description": "A beam of crackling energy streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 force damage. The spell creates more than one beam when you reach higher levels: two beams at 5th level, three beams at 11th level, and four beams at 17th level. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+  "2014_spells.eldritch-blast.effectSummary": "Deal 1d10 force damage to a target within 120 ft",
+  "2014_spells.eldritch-blast.fullDescription": "Using 1 action, the spell creates more than one beam when you reach higher levels: two beams at 5th level, three beams at 11th level, and four beams at 17th level. On a hit, the target takes 1d10 force damage; Make a separate attack roll for each beam. The effect happens immediately and then ends."
+}

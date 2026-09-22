@@ -1,0 +1,5 @@
+{
+  "2014_spells.earth-tremor.description": "You cause a tremor in the ground in a 10-foot radius. Each creature other than you in that area must make a Dexterity saving throw. On a failed save, a target takes 1d6 bludgeoning damage and is knocked prone. If the ground in that area is loose earth or stone, it becomes difficult terrain until cleared.",
+  "2014_spells.earth-tremor.effectSummary": "Deal 1d6 bludgeoning damage to a target within Self (10-foot radius)",
+  "2014_spells.earth-tremor.fullDescription": "Using 1 action, you cause a tremor in the ground in a 10-foot radius. On a failed save, a target takes 1d6 bludgeoning damage and is knocked prone; Each creature other than you in that area must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st. If the ground in that area is loose earth or stone, it becomes difficult terrain until cleared."
+}

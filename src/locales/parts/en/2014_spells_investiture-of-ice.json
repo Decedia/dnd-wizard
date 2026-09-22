@@ -1,0 +1,4 @@
+{
+  "2014_spells.investiture-of-ice.effectSummary": "Deal 1d6 cold damage to a target within Self",
+  "2014_spells.investiture-of-ice.fullDescription": "Using 1 action, any creature that moves into the area for the first time on a turn or ends its turn there takes 1d6 cold damage. A creature takes 4d6 cold damage on a failed save, or half as much damage on a successful one; Each creature in the cone must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. Until the spell ends, ice rimes your body, and you gain the following benefits: • You are immune to cold damage and have resistance to fire damage; you must concentrate, and the effect ends if your concentration ends."
+}

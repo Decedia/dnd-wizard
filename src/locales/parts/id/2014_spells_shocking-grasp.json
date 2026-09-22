@@ -1,0 +1,5 @@
+{
+  "2014_spells.shocking-grasp.description": "Petir melompat dari tanganmu untuk memberikan sengatan ke makhluk yang kamu coba sentuh. Buat melee spell attack terhadap target. Kamu memiliki Advantage pada attack roll jika target memakai armor yang terbuat dari logam. Jika kena, target menerima 1d8 lightning damage, dan ia tidak dapat mengambil reactions hingga awal gilirannya berikutnya.",
+  "2014_spells.shocking-grasp.effectSummary": "Berikan 1d8 lightning damage ke target dalam Touch",
+  "2014_spells.shocking-grasp.fullDescription": "Menggunakan 1 Action, petir melompat dari tanganmu untuk memberikan sengatan ke makhluk yang kamu coba sentuh. Jika kena, target menerima 1d8 lightning damage, dan ia tidak dapat mengambil reactions hingga awal gilirannya berikutnya; Kamu memiliki Advantage pada attack roll jika target memakai armor yang terbuat dari logam; Damage mantra ini meningkat 1d8 ketika kamu mencapai level 5 (2d8), level 11 (3d8), dan level 17 (4d8). Jika kena, target menerima 1d8 lightning damage, dan ia tidak dapat mengambil reactions hingga awal gilirannya berikutnya."
+}

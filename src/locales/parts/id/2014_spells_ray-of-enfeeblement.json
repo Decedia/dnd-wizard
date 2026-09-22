@@ -1,0 +1,5 @@
+{
+  "2014_spells.ray-of-enfeeblement.description": "Sinar hitam energi melemah keluar dari jari kamu ke arah makhluk dalam jangkauan. Buat ranged spell attack terhadap target. Jika kena, target hanya memberikan setengah damage dengan serangan senjata yang menggunakan Strength hingga mantra berakhir. Di akhir setiap giliran target, ia dapat melakukan constitution saving throw terhadap mantra ini. Jika berhasil, mantra berakhir.",
+  "2014_spells.ray-of-enfeeblement.effectSummary": "Jika kena, target hanya memberikan setengah damage dengan serangan senjata yang menggunakan Strength hingga mantra berakhir",
+  "2014_spells.ray-of-enfeeblement.fullDescription": "Menggunakan 1 Action, di akhir setiap giliran target, ia dapat melakukan constitution saving throw terhadap mantra ini. Jika kena, target hanya memberikan setengah damage dengan serangan senjata yang menggunakan Strength hingga mantra berakhir; Buat ranged spell attack terhadap target. Jika kena, target hanya memberikan setengah damage dengan serangan senjata yang menggunakan Strength hingga mantra berakhir; kamu harus concentrate, dan efek berakhir jika concentration kamu berakhir."
+}

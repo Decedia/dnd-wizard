@@ -1,0 +1,5 @@
+{
+  "2014_spells.spare-the-dying.description": "Kamu menyentuh makhluk hidup yang memiliki 0 hit points. Makhluk tersebut menjadi stabil. Mantra ini tidak memiliki efek pada Undead atau Construct.",
+  "2014_spells.spare-the-dying.effectSummary": "menyentuh makhluk hidup yang memiliki 0 hit points",
+  "2014_spells.spare-the-dying.fullDescription": "Menggunakan 1 Action, kamu menyentuh makhluk hidup yang memiliki 0 hit points. Mantra ini tidak memiliki efek pada Undead atau Construct; Makhluk tersebut menjadi stabil. Efek terjadi langsung lalu berakhir."
+}

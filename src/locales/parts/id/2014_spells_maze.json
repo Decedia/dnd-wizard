@@ -1,0 +1,5 @@
+{
+  "2014_spells.maze.description": "Kamu mengusir makhluk yang bisa kamu lihat dalam jangkauan ke demiplane labirin. Target tetap di sana untuk durasi atau sampai ia melarikan diri dari labirin. Target bisa menggunakan action-nya untuk mencoba melarikan diri. Saat melakukannya, ia melakukan DC 20 Intelligence check. Jika berhasil, ia melarikan diri, dan sihir berakhir (minotaur atau goristro demon berhasil secara otomatis). Ketika sihir berakhir, target muncul kembali di ruang yang ditinggalkannya atau, jika ruang itu ditempati, di ruang tidak ditempati terdekat.",
+  "2014_spells.maze.effectSummary": "Ubah target: ia melakukan DC 20 Intelligence check",
+  "2014_spells.maze.fullDescription": "Menggunakan 1 action, kamu mengusir makhluk yang bisa kamu lihat dalam jangkauan ke demiplane labirin. Saat melakukannya, ia melakukan spell save DC 20 Intelligence check; Target tetap di sana untuk durasi atau sampai ia melarikan diri dari labirin. Target tetap di sana untuk durasi atau sampai ia melarikan diri dari labirin; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

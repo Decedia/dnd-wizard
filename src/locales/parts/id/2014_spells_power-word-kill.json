@@ -1,0 +1,5 @@
+{
+  "2014_spells.power-word-kill.description": "Kamu mengucapkan kata kekuatan yang bisa memaksa satu makhluk yang bisa kamu lihat dalam range untuk mati secara instan. Jika makhluk yang kamu pilih memiliki 100 hit points atau kurang, ia mati. Jika tidak, spell ini tidak memiliki efek.",
+  "2014_spells.power-word-kill.effectSummary": "Ubah target: ia mati",
+  "2014_spells.power-word-kill.fullDescription": "Menggunakan 1 Action, jika makhluk yang kamu pilih memiliki 100 hit points atau kurang, ia mati. Kamu mengucapkan kata kekuatan yang bisa memaksa satu makhluk yang bisa kamu lihat dalam range untuk mati secara instan; Jika tidak, spell ini tidak memiliki efek. Efek terjadi segera dan kemudian berakhir."
+}

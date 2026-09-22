@@ -1,0 +1,5 @@
+{
+  "2014_spells.prayer-of-healing.description": "Hingga enam makhluk pilihanmu yang bisa kamu lihat dalam range masing-masing mendapatkan kembali hit points sejumlah 2d8 + modifier ability spellcasting-mu. Spell ini tidak memiliki efek pada undead atau constructs.",
+  "2014_spells.prayer-of-healing.effectSummary": "Hingga enam makhluk pilihanmu yang bisa kamu lihat dalam range masing-masing mendapatkan kembali hit points sejumlah 2d8 + modifier ability spellcasting-mu",
+  "2014_spells.prayer-of-healing.fullDescription": "Menggunakan 10 menit, hingga enam makhluk pilihanmu yang bisa kamu lihat dalam range masing-masing mendapatkan kembali hit points sejumlah 2d8 + modifier ability spellcasting-mu. Spell ini tidak memiliki efek pada undead atau constructs; Ketika kamu meng-cast spell ini menggunakan spell slot level 3rd atau lebih tinggi, healing meningkat 1d8 untuk setiap slot level di atas 2nd. Efek terjadi segera dan kemudian berakhir."
+}

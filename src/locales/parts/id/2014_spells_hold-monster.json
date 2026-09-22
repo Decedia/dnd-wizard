@@ -1,0 +1,5 @@
+{
+  "2014_spells.hold-monster.description": "Pilih makhluk yang dapat kamu lihat dalam jangkauan. Target harus melakukan saving throw Wisdom atau menjadi Paralyzed untuk durasi sihir. Sihir ini tidak memiliki efek terhadap undead. Pada akhir setiap round, target dapat melakukan saving throw Wisdom baru. Jika berhasil, sihir berakhir untuk makhluk itu.",
+  "2014_spells.hold-monster.effectSummary": "Buat target menjadi Paralyzed sampai dia menyelamatkan diri atau sihir berakhir",
+  "2014_spells.hold-monster.fullDescription": "Menggunakan 1 Action, pilih makhluk yang dapat kamu lihat dalam jangkauan. Pada akhir setiap round, target dapat melakukan saving throw Wisdom baru; Target harus melakukan saving throw Wisdom atau menjadi Paralyzed untuk durasi sihir; Saat kamu casting sihir ini menggunakan spell slot level 6 atau lebih tinggi, kamu dapat menargetkan satu makhluk tambahan untuk setiap slot level di atas level 5; Makhluk harus dalam 30 kaki satu sama lain saat kamu menargetkan mereka. Jika berhasil, sihir berakhir untuk makhluk itu; kamu harus berkonsentrasi, dan efeknya berakhir jika konsentrasimu berakhir."
+}

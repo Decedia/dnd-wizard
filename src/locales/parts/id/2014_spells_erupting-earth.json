@@ -1,0 +1,4 @@
+{
+  "2014_spells.erupting-earth.effectSummary": "Berikan 3d12 bludgeoning damage ke target dalam 120 ft",
+  "2014_spells.erupting-earth.fullDescription": "Menggunakan 1 action, pilih sebuah titik yang bisa kamu lihat di tanah dalam jangkauan. Makhluk di area itu melewati Dexterity saving throw. Kegagalan means mengambil 3d12 bludgeoning damage, atau setengahnya jika berhasil; Setiap makhluk di area itu harus melewati Dexterity saving throw; lempar d20, tambahkan DEX modifier, dan bandingkan dengan spell save DC-ammu. Tanah di area itu menjadi difficult terrain sampai dibersihkan."
+}

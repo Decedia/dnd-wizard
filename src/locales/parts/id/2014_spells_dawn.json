@@ -1,0 +1,4 @@
+{
+  "2014_spells.dawn.effectSummary": "Berikan 4d10 radiant damage ke target dalam 60 ft",
+  "2014_spells.dawn.fullDescription": "Menggunakan 1 aksi, sampai sihir berakhir, silinder dengan radius 30 kaki dan tinggi 40 kaki cahaya terang bersinar di lokasi yang kamu pilih. Ketika silinder muncul, setiap makhluk di dalamnya harus melakukan saving throw Constitution; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC-mu, menerima 4d10 radiant damage pada saving throw yang gagal, atau setengahnya kerusakan pada yang berhasil; Makhluk juga melakukan saving throw ini ketika memasuki area sihir untuk pertama kalinya pada gilirannya atau mengakhiri gilirannya di sana. Sampai sihir berakhir, silinder dengan radius 30 kaki dan tinggi 40 kaki cahaya terang bersinar di lokasi yang kamu pilih; kamu harus berkonsentrasi, dan efek berakhir jika konsentrasimu berakhir."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.earthbind.description": "Choose one creature you can see within range. Yellow strips of magical energy loop around the creature. The target must succeed on a Strength saving throw or its flying speed (if any) is reduced to 0 feet for the duration. An airborne creature affected by this spell safely descends at 60 feet per round until it reaches the ground or the spell ends.",
+  "2014_spells.earthbind.effectSummary": "Give a creature a flying speed for the duration",
+  "2014_spells.earthbind.fullDescription": "Using 1 action, choose one creature you can see within range. The target must succeed on a Strength saving throw; roll a d20, add the STR modifier, and compare it with your spell save spell save DC or its flying speed (if any) is reduced to 0 feet for the duration; An airborne creature affected by this spell safely descends at 60 feet per round until it reaches the ground or the spell ends. An airborne creature affected by this spell safely descends at 60 feet per round until it reaches the ground or the spell ends; you must concentrate, and the effect ends if your concentration ends."
+}

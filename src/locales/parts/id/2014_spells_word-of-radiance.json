@@ -1,0 +1,5 @@
+{
+  "2014_spells.word-of-radiance.description": "Anda mengucapkan kata ilahi, dan radiance terbakar muncul dari Anda. Setiap makhluk pilihan Anda yang dapat Anda lihat dalam jarak harus melakukan a Constitution saving throw atau mengambil 1d6 radiant damage.",
+  "2014_spells.word-of-radiance.effectSummary": "Berikan 1d6 radiant damage ke target dalam 5 ft",
+  "2014_spells.word-of-radiance.fullDescription": "Menggunakan 1 Action, Anda mengucapkan kata ilahi, dan radiance terbakar muncul dari Anda. Setiap makhluk pilihan Anda yang dapat Anda lihat dalam jarak harus melakukan a Constitution saving throw; roll a d20, tambahkan modifier CON, dan bandingkan dengan spell save DC Anda atau mengambil 1d6 radiant damage; Damage sihir ini meningkat 1d6 ketika Anda mencapai level 5 (2d6), level 11 (3d6), dan level 17 (4d6). Efek terjadi segera lalu berakhir."
+}

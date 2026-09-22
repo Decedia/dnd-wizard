@@ -1,0 +1,5 @@
+{
+  "2014_spells.tashas-caustic-brew.description": "A stream of acid emanates from you in a line 30 feet long and 5 feet wide in a direction you choose. Each creature in the line must make a Dexterity saving throw, taking 2d4 acid damage on a failed save, or half as much damage on a successful one.",
+  "2014_spells.tashas-caustic-brew.effectSummary": "Deal 2d4 acid damage to a target within Self (30-foot line)",
+  "2014_spells.tashas-caustic-brew.fullDescription": "Using 1 action, a stream of acid emanates from you in a line 30 feet long and 5 feet wide in a direction you choose. Each creature in the line must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC, taking 2d4 acid damage on a failed save, or half as much damage on a successful one; When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot level above 1st. The effect lasts for concentration, up to 1 minute."
+}

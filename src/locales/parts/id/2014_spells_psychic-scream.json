@@ -1,0 +1,5 @@
+{
+  "2014_spells.psychic-scream.description": "Kamu melepaskan rahasia terburuk hingga sepuluh makhluk pilihanmu. Hanya makhluk yang memahami bahasa yang terpengaruh. Setiap target harus membuat saving throw Intelligence. Pada save yang gagal, target menerima 14d6 psychic damage dan menjadi Stunned.",
+  "2014_spells.psychic-scream.effectSummary": "Berikan 14d6 psychic damage ke target dalam 90 ft",
+  "2014_spells.psychic-scream.fullDescription": "Menggunakan 1 Action, kamu melepaskan rahasia terburuk hingga sepuluh makhluk pilihanmu. Pada save yang gagal, target menerima 14d6 psychic damage dan menjadi Stunned; Setiap target harus membuat saving throw Intelligence. Efek terjadi segera dan kemudian berakhir."
+}

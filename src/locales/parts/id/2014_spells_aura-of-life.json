@@ -1,0 +1,5 @@
+{
+  "2014_spells.aura-of-life.description": "Energi penyelamat hidup memancar darimu dalam aura dengan radius 30 foot. Sampai spell berakhir, aura bergerak bersamamu, berpusat padamu. Setiap nonhostile creature dalam aura (termasuk kamu) memiliki resistance terhadap necrotic damage, dan hit point maximum-nya tidak bisa berkurang.",
+  "2014_spells.aura-of-life.effectSummary": "Gain resistance terhadap necrotic selama durasi",
+  "2014_spells.aura-of-life.fullDescription": "Menggunakan 1 Action, energi penyelamat hidup memancar darimu dalam aura dengan radius 30 foot. Sampai spell berakhir, aura bergerak bersamamu, berpusat padamu. Setiap nonhostile creature dalam aura (termasuk kamu) memiliki resistance terhadap necrotic damage, dan hit point maximum-nya tidak bisa berkurang; Energi penyelamat hidup memancar darimu dalam aura dengan radius 30 foot; you must concentrate, and the effect ends if your concentration ends."
+}

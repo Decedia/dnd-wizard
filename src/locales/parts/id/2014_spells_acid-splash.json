@@ -1,0 +1,5 @@
+{
+  "2014_spells.acid-splash.description": "Kamu melontarkan gelembung asam ke satu makhluk atau dua makhluk di dekatnya. Target harus melakukan saving throw DEX atau terkena 1d6 acid damage.",
+  "2014_spells.acid-splash.effectSummary": "Deal 1d6 acid damage ke target di dalam 60 ft",
+  "2014_spells.acid-splash.fullDescription": "Menggunakan 1 Action, kamu melontarkan gelembung asam ke satu makhluk atau dua makhluk di dekatnya. Target harus melakukan saving throw DEX; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC or take 1d6 acid damage. Efek ini terjadi segera dan kemudian berakhir."
+}

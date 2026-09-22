@@ -1,0 +1,5 @@
+{
+  "2014_spells.hellish-rebuke.description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.",
+  "2014_spells.hellish-rebuke.effectSummary": "Deal 2d10 fire damage to a target within 60 ft",
+  "2014_spells.hellish-rebuke.fullDescription": "Using 1 reaction, you point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one; The creature must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC; When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st. The effect happens immediately and then ends."
+}

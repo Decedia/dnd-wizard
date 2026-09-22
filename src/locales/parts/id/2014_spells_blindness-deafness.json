@@ -1,0 +1,5 @@
+{
+  "2014_spells.blindness-deafness.description": "Kamu bisa membuat musuhmu buta atau tuli. Pilih satu creature yang kamu lihat dalam jangkauan untuk membuat saving throw CON. Jika gagal, target menjadi blinded atau deafened (pilihanmu) selama durasi. Pada akhir setiap gilirannya, target bisa membuat saving throw CON untuk mengakhiri spell.",
+  "2014_spells.blindness-deafness.effectSummary": "Buat target blinded atau deafened selama durasi",
+  "2014_spells.blindness-deafness.fullDescription": "Menggunakan 1 Action, pilih satu creature yang kamu lihat dalam jangkauan untuk membuat saving throw CON. Jika gagal, target menjadi blinded atau deafened (pilihanmu) selama durasi. Pada akhir setiap gilirannya, target bisa membuat saving throw CON; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. Jika berhasil, spell berakhir; Ketika kamu menyalurkan sihir ini menggunakan spell slot level 3 atau lebih tinggi, kamu bisa menargetkan satu creature tambahan untuk setiap slot level di atas 2nd."
+}

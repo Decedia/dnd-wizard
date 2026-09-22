@@ -1,0 +1,5 @@
+{
+  "2014_spells.aganazzarss-scorcher.description": "A line of roaring flame 30 feet long and 5 feet wide emanates from you in a direction you choose. Each creature in the line must make a Dexterity saving throw, taking 3d8 fire damage on a failed save, or half as much damage on a successful one.",
+  "2014_spells.aganazzarss-scorcher.effectSummary": "Deal 3d8 fire damage to a target within 30 ft",
+  "2014_spells.aganazzarss-scorcher.fullDescription": "Using 1 action, a line of roaring flame 30 feet long and 5 feet wide emanates from you in a direction you choose. Each creature in the line must make a Dexterity saving throw; roll a d20, add the DEX modifier, and compare it with your spell save spell save DC, taking 3d8 fire damage on a failed save, or half as much damage on a successful one; When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd. The effect happens immediately and then ends."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.fire-bolt.description": "Kamu melemparkan api kecil ke makhluk atau objek dalam jangkauan. Lakukan ranged spell attack terhadap target. Saat hit, target menerima 1d10 fire damage. Objek mudah terbakar yang terkena spell ini menyala jika tidak dipakai atau dibawa.",
+  "2014_spells.fire-bolt.effectSummary": "Berikan 1d10 fire damage ke target dalam 120 ft",
+  "2014_spells.fire-bolt.fullDescription": "Menggunakan 1 action, kamu melemparkan api kecil ke makhluk atau objek dalam jangkauan. Saat hit, target menerima 1d10 fire damage; Lakukan ranged spell attack terhadap target; Damage spell ini bertambah 1d10 saat kamu mencapai level 5th (2d10), 11th level (3d10), dan 17th level (4d10). Efek terjadi langsung lalu berakhir."
+}

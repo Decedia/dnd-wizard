@@ -1,0 +1,5 @@
+{
+  "2014_spells.harm.description": "You unleash a virulent disease on a creature that you can see within range. The target must make a constitution saving throw. On a failed save, it takes 14d6 necrotic damage, or half as much damage on a successful save. The damage can't reduce the target's hit points below 1. If the target fails the saving throw, its hit point maximum is reduced for 1 hour by an amount equal to the necrotic damage it took. Any effect that removes a disease allows a creature's hit point maximum to return to normal before that time passes.",
+  "2014_spells.harm.effectSummary": "Deal 14d6 necrotic damage to a target within 60 ft",
+  "2014_spells.harm.fullDescription": "Using 1 action, the damage can't reduce the target's hit points below 1. On a failed save, it takes 14d6 necrotic damage, or half as much damage on a successful save; The target must make a Constitution saving throw; roll a d20, add the CON modifier, and compare it with your spell save spell save DC. The effect happens immediately and then ends."
+}

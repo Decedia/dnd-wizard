@@ -1,0 +1,5 @@
+{
+  "2014_spells.fire-shield.description": "Api tipis dan beruap mengelilingi tubuhmu selama durasi spell, memancarkan cahaya terang dalam radius 10 kaki dan cahaya redup untuk tambahan 10 kaki. Kamu bisa mengakhiri spell menggunakan action untuk membuatnya menghilang. Api adalah sekitar kamu sebagai heat shield atau cold, pilihanmu. Heat shield memberimu cold damage resistance dan cold resistance terhadap fire damage. Selain itu, setiap kali makhluk dalam 5 kaki darimu memukulmu dengan melee attack, api melonjak dari perisai. Penyerang kemudian menerima 2d8 points fire damage atau cold, tergantung model.",
+  "2014_spells.fire-shield.effectSummary": "Dapatkan resistance ke cold, fire selama durasi",
+  "2014_spells.fire-shield.fullDescription": "Menggunakan 1 action, kamu bisa mengakhiri spell menggunakan action untuk membuatnya menghilang. Penyerang kemudian menerima 2d8 points fire damage atau cold, tergantung model; Selain itu, setiap kali makhluk dalam 5 kaki darimu memukulmu dengan melee attack, api melonjak dari perisai. Efek berlangsung selama 10 menit."
+}

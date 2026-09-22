@@ -1,0 +1,5 @@
+{
+  "2014_spells.continual-flame.description": "A flame, equivalent in brightness to a torch, springs forth from an object that you touch. The effect looks like a regular flame, but it creates no heat and doesn't use oxygen. A continual flame can be covered or hidden but not smothered or quenched.",
+  "2014_spells.continual-flame.effectSummary": "Create a magical effect at a point you choose",
+  "2014_spells.continual-flame.fullDescription": "Using 1 action, a flame, equivalent in brightness to a torch, springs forth from an object that you touch. The effect looks like a regular flame, but it creates no heat and doesn't use oxygen; A continual flame can be covered or hidden but not smothered or quenched. The effect lasts for until dispelled."
+}

@@ -1,0 +1,5 @@
+{
+  "2014_spells.blade-bite-egw.description": "Kamu melingkupi senjatamu dengan energi destruktif. Sebagai bagian dari action untuk menyalurkan sihir ini, kamu harus melakukan melee attack terhadap satu creature dalam jangkauan sihir. Jika hit, target menerima efek normal serangan dan 1d6 necrotic damage.",
+  "2014_spells.blade-bite-egw.effectSummary": "Deal 1d6 necrotic damage ke target dalam Touch",
+  "2014_spells.blade-bite-egw.fullDescription": "Menggunakan 1 Action, kamu melingkupi senjatamu dengan energi destruktif. Sebagai bagian dari action untuk menyalurkan sihir ini, kamu harus melakukan melee attack terhadap satu creature dalam jangkauan sihir. Jika hit, target menerima efek normal serangan dan 1d6 necrotic damage; Damage necrotic ini meningkat 1d6 saat kamu mencapai level 5 (2d6), level 11 (3d6), dan level 17 (4d6). Efek ini berlangsung selama 1 round."
+}

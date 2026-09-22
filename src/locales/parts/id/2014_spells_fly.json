@@ -1,0 +1,5 @@
+{
+  "2014_spells.fly.description": "Kamu menyentuh makhluk bersedia. Target mendapatkan flying speed 60 kaki selama durasi. Ketika spell berakhir, target jatuh jika masih di udara, kecuali bisa menghentikan jatuhnya.",
+  "2014_spells.fly.effectSummary": "Beri makhluk 60 ft speed selama durasi",
+  "2014_spells.fly.fullDescription": "Menggunakan 1 action, kamu menyentuh makhluk bersedia. Target mendapatkan flying speed 60 kaki selama durasi; Ketika spell berakhir, target jatuh jika masih di udara, kecuali bisa menghentikan jatuhnya; Ketika kamu mencast spell ini menggunakan spell slot level 4th atau lebih tinggi, kamu bisa menargetkan satu makhluk tambahan untuk setiap slot level di atas 3rd. Ketika spell berakhir, target jatuh jika masih di udara, kecuali bisa menghentikan jatuhnya; kamu harus concentrate, dan efeknya berakhir jika concentration-mu berakhir."
+}
