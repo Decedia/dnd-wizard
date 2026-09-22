@@ -14,13 +14,50 @@ const openai = new OpenAI({
   baseURL: "https://integrate.api.nvidia.com/v1",
 });
 
-const MODEL = "nvidia/nemotron-3-ultra-550b-a55b";
-const BATCH_SIZE = 20;
+const MODEL = "nvidia/nemotron-3-super-120b-a12b";
+const BATCH_SIZE = 5;
 const SOURCE_DIR = path.join(process.cwd(), "src/locales/parts/en");
 const TARGET_DIR = path.join(process.cwd(), "src/locales/parts/id");
 
 function stripMarkdown(text) {
   return text.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
+}
+
+function extractJson(text) {
+  const start = text.indexOf("{");
+  if (start === -1) return text;
+  let depth = 0;
+  let inStr = false;
+  let strChar = "";
+  let esc = false;
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+    if (esc) {
+      esc = false;
+      continue;
+    }
+    if (ch === "\\" && inStr) {
+      esc = true;
+      continue;
+    }
+    if (inStr) {
+      if (ch === strChar) inStr = false;
+      continue;
+    }
+    if (ch === '"' || ch === "'") {
+      inStr = true;
+      strChar = ch;
+      continue;
+    }
+    if (ch === "{") depth++;
+    else if (ch === "}") {
+      depth--;
+      if (depth === 0) {
+        return text.slice(start, i + 1);
+      }
+    }
+  }
+  return text.slice(start);
 }
 
 function repairJson(text) {
@@ -55,30 +92,46 @@ function repairJson(text) {
   return repaired;
 }
 
-async function translateBatch(batch) {
-  const completion = await openai.chat.completions.create({
-    model: MODEL,
-    messages: [
-      {
-        role: "system",
-        content:
-          "You are an expert localization agent. Translate the values of the provided JSON object to Bahasa Indonesia. Translate both descriptions and summaries. CRITICAL D&D RULE: You MUST keep all official D&D 5e mechanical terms in English (e.g., Action, Bonus Action, Reaction, saving throw, ability check, AC, Hit Points, Advantage, Disadvantage). Return ONLY valid JSON.",
-      },
-      { role: "user", content: JSON.stringify(batch) },
-    ],
-    temperature: 0.2,
-    top_p: 0.95,
-    max_tokens: 16384,
-    chat_template_kwargs: { enable_thinking: false },
-    stream: false,
-  });
+async function translateBatch(batch, maxRetries = 3) {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const completion = await openai.chat.completions.create({
+        model: MODEL,
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a translation engine. Output ONLY a JSON object. No reasoning, no explanations, no markdown. Start your response with { and end with }. Translate every value to Bahasa Indonesia. Keep D&D 5e mechanical terms in English exactly as written: Action, Bonus Action, Reaction, Free Action, saving throw, ability check, AC, Armor Class, Hit Points, HP, Advantage, Disadvantage, critical hit, Initiative, Concentration, spell slot, cantrip, Proficiency, proficiency bonus, DC, Difficulty Class, short rest, long rest, Darkvision, dim light, bright light, level, etc.",
+          },
+          { role: "user", content: JSON.stringify(batch) },
+        ],
+        temperature: 0.2,
+        top_p: 0.95,
+        max_tokens: 16384,
+        chat_template_kwargs: { enable_thinking: false },
+        stream: false,
+      });
 
   const responseText = completion.choices[0].message.content;
   if (!responseText) throw new Error("Empty response from NIM");
 
   const cleaned = stripMarkdown(responseText);
-  const repaired = repairJson(cleaned);
+  const extracted = extractJson(cleaned);
+  const repaired = repairJson(extracted);
   return JSON.parse(repaired);
+    } catch (err) {
+      const status = err.status || err.code;
+      if (status === 429 || status === 503) {
+        const wait = Math.min(2 ** attempt * 5, 60);
+        console.log(`  ⏳ Transient error ${status}. Retrying in ${wait}s (attempt ${attempt + 1}/${maxRetries})...`);
+        await new Promise((r) => setTimeout(r, wait * 1000));
+        continue;
+      }
+      throw err;
+    }
+  }
+
+  throw new Error(`NIM: max retries (${maxRetries}) exceeded for batch`);
 }
 
 async function main() {
