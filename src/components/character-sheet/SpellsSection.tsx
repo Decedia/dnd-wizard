@@ -74,7 +74,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const unifiedSpells: UnifiedSpell[] = useMemo(() => {
     return (character.spells || []).map(s => {
       const srdSpell = s.srdSpellName ? srdSpells.find(sp => sp.name === s.srdSpellName) : undefined;
-      const desc = s.description || srdSpell?.description;
+      const desc = srdSpell?.description || s.description;
       const description = typeof desc === "string" ? desc : (Array.isArray(desc) ? desc.join("\n") : "");
       const damageDice = s.damageDice || srdSpell?.damage?.damageDice || "";
       const damageType = s.damageType || srdSpell?.damage?.damageType || "";
