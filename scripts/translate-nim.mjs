@@ -10,16 +10,14 @@ import OpenAI from "openai";
 import fs from "fs";
 
 const openai = new OpenAI({
-  baseURL: "https://integrate.api.nvidia.com/v1",
   apiKey: process.env.NIM_API_KEY,
+  baseURL: "https://integrate.api.nvidia.com/v1",
 });
 
 const MODEL = "nvidia/nemotron-3-ultra-550b-a55b";
 const BATCH_SIZE = 20;
 const SOURCE_DIR = path.join(process.cwd(), "src/locales/parts/en");
 const TARGET_DIR = path.join(process.cwd(), "src/locales/parts/id");
-const SYSTEM_PROMPT =
-  "You are a localization expert. Translate the values of this JSON object to Bahasa Indonesia. Translate both descriptions and summaries. CRITICAL D&D RULE: You MUST keep all official D&D 5e mechanical terms in English (e.g., Action, Bonus Action, Reaction, saving throw, ability check, AC, Hit Points, Advantage, Disadvantage). Return ONLY raw, valid JSON without any markdown formatting.";
 
 function stripMarkdown(text) {
   return text.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
@@ -58,20 +56,27 @@ function repairJson(text) {
 }
 
 async function translateBatch(batch) {
-  const userContent = `Translate EVERY value in this JSON object to Bahasa Indonesia. Keep all D&D 5e mechanical terms (Action, Bonus Action, Reaction, saving throw, ability check, AC, Hit Points, Advantage, Disadvantage, etc.) in English. Return ONLY the translated JSON object, no markdown, no explanation:\n\n${JSON.stringify(batch, null, 2)}`;
-  const response = await openai.chat.completions.create({
+  const completion = await openai.chat.completions.create({
     model: MODEL,
     messages: [
-      { role: "system", content: SYSTEM_PROMPT },
-      { role: "user", content: userContent },
+      {
+        role: "system",
+        content:
+          "You are an expert localization agent. Translate the values of the provided JSON object to Bahasa Indonesia. Translate both descriptions and summaries. CRITICAL D&D RULE: You MUST keep all official D&D 5e mechanical terms in English (e.g., Action, Bonus Action, Reaction, saving throw, ability check, AC, Hit Points, Advantage, Disadvantage). Return ONLY valid JSON.",
+      },
+      { role: "user", content: JSON.stringify(batch) },
     ],
     temperature: 0.2,
+    top_p: 0.95,
+    max_tokens: 16384,
+    chat_template_kwargs: { enable_thinking: false },
+    stream: false,
   });
 
-  const raw = response.choices?.[0]?.message?.content?.trim();
-  if (!raw) throw new Error("Empty response from NIM");
+  const responseText = completion.choices[0].message.content;
+  if (!responseText) throw new Error("Empty response from NIM");
 
-  const cleaned = stripMarkdown(raw);
+  const cleaned = stripMarkdown(responseText);
   const repaired = repairJson(cleaned);
   return JSON.parse(repaired);
 }
