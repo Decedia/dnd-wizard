@@ -645,7 +645,7 @@ export function getItemNames(sources?: string[], locale: string = "en"): string[
 }
 
 export function normalizeSpell(s: any): any {
-  const desc = Array.isArray(s.desc) ? s.desc.join("\n") : (s.desc || s.description || "");
+  const desc = s.description || (Array.isArray(s.desc) ? s.desc.join("\n") : (s.desc || ""));
   const damage = s.damage || {};
   const damageType = damage.damage_type?.name || "";
   const damageAtLevel = damage.damage_at_character_level || {};
