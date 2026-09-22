@@ -1,16 +1,13 @@
+import 'dotenv/config';
+import path from "path";
+import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, "../.env.local") });
+
 import OpenAI from "openai";
 import fs from "fs";
-import path from "path";
-
-const envPath = path.join(process.cwd(), ".env.local");
-if (fs.existsSync(envPath)) {
-  for (const line of fs.readFileSync(envPath, "utf8").split("\n")) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const [key, ...rest] = trimmed.split("=");
-    if (key && rest.length) process.env[key] = rest.join("=");
-  }
-}
 
 const openai = new OpenAI({
   baseURL: "https://integrate.api.nvidia.com/v1",
