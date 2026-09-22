@@ -130,7 +130,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       const id = `spell-${idCounter.current++}`;
       const spell = cantrips.find((s) => s.name === spellName);
       onChange({
-        spells: [...selectedSpells, { id, name: spellName, level: 0, source: "srd" as const, description: Array.isArray(spell?.description) ? spell.description.join("\n") : (spell?.description || "") }],
+        spells: [...selectedSpells, { id, name: spellName, level: 0, source: "srd" as const, srdSpellName: spellName, description: Array.isArray(spell?.description) ? spell.description.join("\n") : (spell?.description || "") }],
         cantrips: [...(data.cantrips || []), { id, name: spellName }],
       });
     }
@@ -149,7 +149,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       const id = `spell-${idCounter.current++}`;
       const spell = levelSpells.find((s) => s.name === spellName);
       onChange({
-        spells: [...selectedSpells, { id, name: spellName, level, source: "srd" as const, description: Array.isArray(spell?.description) ? spell.description.join("\n") : (spell?.description || "") }],
+        spells: [...selectedSpells, { id, name: spellName, level, source: "srd" as const, srdSpellName: spellName, description: Array.isArray(spell?.description) ? spell.description.join("\n") : (spell?.description || "") }],
         preparedSpells: prepCaster ? [...(data.preparedSpells || []), id] : data.preparedSpells,
       });
     }

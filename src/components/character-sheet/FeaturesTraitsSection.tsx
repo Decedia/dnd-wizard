@@ -204,6 +204,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
 
         return {
           ...feature,
+          description: srdFeature?.description ?? existing.description ?? "",
           summary: srdFeature?.summary ?? existing.summary ?? (fallbackSummary || null),
           featureType: srdFeature?.featureType ?? existing.featureType ?? null,
           actionType: srdFeature?.actionType ?? existing.actionType ?? null,
@@ -289,27 +290,27 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 </div>
                 <div className="mt-1">
                  <FeatureMechanicsChips
-                  summary={showDescriptions ? "" : summaryText}
-                  description={tDesc(`feature.desc.${feature.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, (feature as any).description || "")}
-                  featureType={(feature as any).featureType}
-                  actionType={(feature as any).actionType}
-                  uses={(feature as any).uses}
-                  requirement={(feature as any).requirement}
-                  duration={(feature as any).duration}
-                  endsIf={(feature as any).endsIf}
-                  effect={(feature as any).effect}
-                  onUse={(feature as any).onUse}
-                  scaling={(feature as any).scaling}
-                  source={typeof (feature as any).source === "object" ? (feature as any).source : (feature as any).source ? { type: (feature as any).source, name: (feature as any).source === "class" ? character.class : (feature as any).source === "race" ? character.race : (feature as any).source === "subclass" ? character.subclass : "Custom", level: null } : null}
-                  book={bookTag}
-                  onUseClick={() => {
-                    if ((feature as any).onUse) {
-                      updateItem(feature.id, { onUse: (feature as any).onUse });
-                    }
-                  }}
-                  showInSheet={showDescriptions || (feature as any).showInSheet !== false}
-                  showFullDescription={showDescriptions}
-                />
+                   summary={showDescriptions ? "" : summaryText}
+                   description={feature.description || ""}
+                   featureType={(feature as any).featureType}
+                   actionType={(feature as any).actionType}
+                   uses={(feature as any).uses}
+                   requirement={(feature as any).requirement}
+                   duration={(feature as any).duration}
+                   endsIf={(feature as any).endsIf}
+                   effect={(feature as any).effect}
+                   onUse={(feature as any).onUse}
+                   scaling={(feature as any).scaling}
+                   source={typeof (feature as any).source === "object" ? (feature as any).source : (feature as any).source ? { type: (feature as any).source, name: (feature as any).source === "class" ? character.class : (feature as any).source === "race" ? character.race : (feature as any).source === "subclass" ? character.subclass : "Custom", level: null } : null}
+                   book={bookTag}
+                   onUseClick={() => {
+                     if ((feature as any).onUse) {
+                       updateItem(feature.id, { onUse: (feature as any).onUse });
+                     }
+                   }}
+                   showInSheet={showDescriptions || (feature as any).showInSheet !== false}
+                   showFullDescription={showDescriptions}
+                 />
                 </div>
               </div>
             );
