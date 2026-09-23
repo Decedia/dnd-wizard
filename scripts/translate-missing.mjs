@@ -15,8 +15,7 @@ const openai = new OpenAI({
 });
 
 const MODEL = "nvidia/nemotron-3-super-120b-a12b";
-let BATCH_SIZE = 10;
-const MIN_BATCH = 2;
+const BATCH_SIZE = 5;
 const SOURCE_DIR = path.join(process.cwd(), "src/locales/parts/en");
 const TARGET_DIR = path.join(process.cwd(), "src/locales/parts/id");
 
@@ -128,10 +127,11 @@ async function translateBatch(batch, maxRetries = 3) {
         await new Promise((r) => setTimeout(r, wait * 1000));
         continue;
       }
-      if (status === 413 || (err.message && err.message.includes("too large"))) {
-        BATCH_SIZE = Math.max(MIN_BATCH, Math.floor(BATCH_SIZE / 2));
-        console.log(`  ⚠ Batch too large. Reducing batch size to ${BATCH_SIZE}.`);
-        throw err;
+      if (err instanceof SyntaxError) {
+        const wait = Math.min(2 ** attempt * 3, 30);
+        console.log(`  ⚠ JSON parse error. Retrying in ${wait}s (attempt ${attempt + 1}/${maxRetries})...`);
+        await new Promise((r) => setTimeout(r, wait * 1000));
+        continue;
       }
       throw err;
     }
@@ -155,68 +155,42 @@ async function main() {
     process.exit(1);
   }
 
-  fs.mkdirSync(path.dirname(dstPath), { recursive: true });
-
   const sourceData = JSON.parse(fs.readFileSync(srcPath, "utf8"));
-  const sourceKeys = Object.keys(sourceData);
+  const existing = fs.existsSync(dstPath) ? JSON.parse(fs.readFileSync(dstPath, "utf8")) : {};
+  const missingKeys = Object.keys(sourceData).filter(k => !existing[k]);
 
-  if (sourceKeys.length === 0) {
-    console.log("Source file is empty. Nothing to translate.");
+  if (missingKeys.length === 0) {
+    console.log(`✅ All keys already translated.`);
     return;
   }
 
-  const checkpointPath = dstPath.replace(/\.json$/, ".checkpoint.json");
-  let result = {};
+  console.log(`📄 ${filename}: ${missingKeys.length} missing keys to translate`);
+
+  let result = { ...existing };
   let processed = 0;
-
-  if (fs.existsSync(checkpointPath)) {
-    try {
-      const checkpoint = JSON.parse(fs.readFileSync(checkpointPath, "utf8"));
-      processed = checkpoint.processed || 0;
-      result = checkpoint.result || {};
-      console.log(`📦 Resumed from checkpoint: ${processed}/${sourceKeys.length} keys already done`);
-    } catch {
-      processed = 0;
-      result = {};
-    }
-  }
-
-  if (processed >= sourceKeys.length) {
-    console.log(`✅ All ${sourceKeys.length} keys already translated.`);
-    return;
-  }
-
-  console.log(`📄 ${filename}: ${sourceKeys.length} keys to translate (resuming from ${processed})`);
-
-  while (processed < sourceKeys.length) {
-    const batchKeys = sourceKeys.slice(processed, processed + BATCH_SIZE);
+  while (processed < missingKeys.length) {
+    const batchKeys = missingKeys.slice(processed, processed + BATCH_SIZE);
     const batch = {};
     for (const key of batchKeys) {
       batch[key] = sourceData[key];
     }
 
     const batchNum = Math.floor(processed / BATCH_SIZE) + 1;
-    console.log(`\n🔁 Batch ${batchNum} (${batchKeys.length} items, batch size=${BATCH_SIZE})`);
+    console.log(`\n🔁 Batch ${batchNum} (${batchKeys.length} items)`);
 
     try {
       const translated = await translateBatch(batch);
       result = { ...result, ...translated };
       processed += batchKeys.length;
       fs.writeFileSync(dstPath, JSON.stringify(result, null, 2));
-      fs.writeFileSync(checkpointPath, JSON.stringify({ processed, result }, null, 2));
-      console.log(`  ✅ Saved. Progress: ${Object.keys(result).length}/${sourceKeys.length}`);
+      console.log(`  ✅ Saved. Progress: ${Object.keys(result).length}/${Object.keys(sourceData).length}`);
     } catch (err) {
-      console.error(`  ⚠ Batch ${batchNum} failed after retries:`, err.message);
-      console.error(`  ⏭ Skipping ${batchKeys.length} keys and continuing...`);
+      console.error(`  ⚠ Batch ${batchNum} failed:`, err.message);
       processed += batchKeys.length;
     }
   }
 
-  if (fs.existsSync(checkpointPath)) {
-    fs.unlinkSync(checkpointPath);
-  }
-
-  console.log(`\n🎉 Done! ${filename}: ${Object.keys(result).length}/${sourceKeys.length} keys translated.`);
+  console.log(`\n🎉 Done! ${filename}: ${Object.keys(result).length}/${Object.keys(sourceData).length} keys translated.`);
 }
 
 main().catch((err) => {
