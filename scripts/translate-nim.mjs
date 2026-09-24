@@ -10,11 +10,11 @@ import OpenAI from "openai";
 import fs from "fs";
 
 const openai = new OpenAI({
-  apiKey: process.env.NIM_API_KEY || "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",
+  apiKey: process.env.NIM_API_KEY || "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",
   baseURL: "https://integrate.api.nvidia.com/v1",
 });
 
-const MODEL = "z-ai/glm-5.3";
+const MODEL = "nvidia/nemotron-3-super-120b-a12b";
 let BATCH_SIZE = 10;
 const MIN_BATCH = 2;
 const SOURCE_DIR = path.join(process.cwd(), "src/locales/parts/en");
@@ -127,8 +127,8 @@ async function translateBatch(batch, maxRetries = 3) {
             content:
 `You are an expert RPG Game Designer and Localization Lead. Your job is to process raw D&D 5e JSON data. For every entry you process, you must do TWO things:
 1. Rewrite the confusing English summary/description into a clear, concise format.
-2. Translate that clear version into natural Bahasa Indonesia.
-CRITICAL D&D RULE: You MUST keep all official D&D 5e mechanical terms in English (e.g., Action, Bonus Action, Reaction, Free Action, saving throw, ability check, AC, Armor Class, Hit Points, HP, Advantage, Disadvantage, critical hit, Initiative, Concentration, spell slot, cantrip, Proficiency, proficiency bonus, DC, Difficulty Class, short rest, long rest, Darkvision, dim light, bright light, level, etc.). Do NOT touch the __TAG0__ style placeholders. Return ONLY valid JSON with the SAME KEYS as input. Do not add new keys.`
+2. TRANSLATE that clear version into natural Bahasa Indonesia (Indonesian language).
+CRITICAL D&D RULE: You MUST keep all official D&D 5e mechanical terms in English (e.g., Action, Bonus Action, Reaction, Free Action, saving throw, ability check, AC, Armor Class, Hit Points, HP, Advantage, Disadvantage, critical hit, Initiative, Concentration, spell slot, cantrip, Proficiency, proficiency bonus, DC, Difficulty Class, short rest, long rest, Darkvision, dim light, bright light, level, etc.). Do NOT touch the __TAG0__ style placeholders. Return ONLY valid JSON with the SAME KEYS as input. Do not add new keys. OUTPUT MUST BE IN BAHASA INDONESIA.`
           },
           { role: "user", content: JSON.stringify(shieldedBatch) },
         ],
