@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { StepCard } from "./StepCard";
-import { getStaticClasses, getStaticSubclasses, type SRDClass } from "@/lib/srd-client";
+import { getStaticClasses, type SRDClass } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
+import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 
 interface StepClassProps {
   data: Character;
@@ -13,11 +14,12 @@ interface StepClassProps {
 
 export function StepClass({ data, onChange }: StepClassProps) {
   const { t } = useLanguage();
-  const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset);
+  const [classModalOpen, setClassModalOpen] = useState(false);
 
-  const handleSelect = useCallback(
-    (className: string) => {
-      onChange({ class: className, subclass: undefined });
+  const handleClassSelect = useCallback(
+    (payload: any) => {
+      onChange({ class: payload.name, subclass: undefined });
+      setClassModalOpen(false);
     },
     [onChange]
   );
@@ -25,41 +27,46 @@ export function StepClass({ data, onChange }: StepClassProps) {
   const translateClass = (name: string) => t(`class.${name}`, name);
 
   return (
-    <StepCard title={t("form.class", "Class")} hint={t("creator.classHint", "Choose your character's class. This determines your core abilities, hit points, and when you'll pick a subclass.")}>
-      <div className="space-y-3">
-        {classes.map((cls) => {
-          const isSelected = data.class === cls.name;
-          const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
-          const subclassLevel = cls.subclassLevel;
-
-          return (
+    <>
+      <StepCard title={t("form.class", "Class")} hint={t("creator.classHint", "Choose your character's class. This determines your core abilities, hit points, and when you'll pick a subclass.")}>
+        <div className="space-y-3">
           <button
-            key={cls.name}
             type="button"
-            onClick={() => handleSelect(cls.name)}
+            onClick={() => setClassModalOpen(true)}
             className={`w-full p-4 text-left rounded-[var(--radius-md)] transition-all ${
-              isSelected
+              data.class
                 ? "bg-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
                 : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
             }`}
           >
-              <div className="flex items-center justify-between">
-                <span className="text-card-title">{translateClass(cls.name)}</span>
-                <div className="flex items-center gap-2">
-                  {hasSubclasses && (() => {
-                     const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
-                    return (
-                      <span className="badge text-[var(--color-text-primary)] bg-[var(--color-bg)]">
-                        {filteredCount} subclasses at Lv {subclassLevel}
-                      </span>
-                    );
-                  })()}
-                </div>
+            <div className="flex items-center justify-between">
+              <span className="text-card-title">
+                {data.class ? translateClass(data.class) : t("creator.selectClass", "Select Class…")}
+              </span>
+            </div>
+            {data.class && (
+              <div className="mt-2 space-y-1">
+                <p className="text-sm text-[var(--color-text-secondary)]">
+                  {t("creator.classSelected", "Class selected")}: {translateClass(data.class)}
+                </p>
+                <p className="text-[10px] text-[var(--color-text-muted)]">
+                  {t("creator.tapToChange", "Tap to change")}
+                </p>
               </div>
-            </button>
-          );
-        })}
-      </div>
-    </StepCard>
+            )}
+          </button>
+        </div>
+      </StepCard>
+
+      {classModalOpen && (
+        <ClassSelectionModal
+          isOpen={true}
+          onClose={() => setClassModalOpen(false)}
+          onConfirm={handleClassSelect}
+          characterSources={data.sources}
+          currentCharacter={data}
+        />
+      )}
+    </>
   );
 }
