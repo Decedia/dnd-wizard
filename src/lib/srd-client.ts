@@ -486,6 +486,14 @@ export function getStaticSubclassDetails(className: string, subclassName: string
   };
 }
 
+export function getStaticRaceDetails(raceName: string, sources?: string[], ruleset?: string, locale: string = "en"): SRDRace | undefined {
+  return getStaticRace(raceName, ruleset, locale);
+}
+
+export function getStaticClassDetails(className: string, sources?: string[], ruleset?: string, locale: string = "en"): SRDClass | undefined {
+  return getStaticClass(className, sources, ruleset, locale);
+}
+
 export function getStaticSpells(sources?: string[], ruleset?: string, locale: string = "en"): SRDSpell[] {
   const spellsData = pickLocaleData(spellsDataMap, locale) as any;
   const raw = Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
