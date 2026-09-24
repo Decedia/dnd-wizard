@@ -10,11 +10,11 @@ import OpenAI from "openai";
 import fs from "fs";
 
 const openai = new OpenAI({
-  apiKey: process.env.NIM_API_KEY,
+  apiKey: process.env.NIM_API_KEY || "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",
   baseURL: "https://integrate.api.nvidia.com/v1",
 });
 
-const MODEL = "nvidia/nemotron-3-super-120b-a12b";
+const MODEL = "z-ai/glm-5.3";
 let BATCH_SIZE = 10;
 const MIN_BATCH = 2;
 const SOURCE_DIR = path.join(process.cwd(), "src/locales/parts/en");
