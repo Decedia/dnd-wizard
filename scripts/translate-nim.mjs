@@ -20,6 +20,53 @@ const MIN_BATCH = 2;
 const SOURCE_DIR = path.join(process.cwd(), "src/locales/parts/en");
 const TARGET_DIR = path.join(process.cwd(), "src/locales/parts/id");
 
+const TAG_PATTERN = /\[(?:Active|Passive)(?:\s*\([^)]+\))?\]|\[(?:Action|Bonus Action|Reaction|Free Action)\]|\((?:Action|Bonus Action|Reaction|Free Action)\)/g;
+
+function shieldTags(text) {
+  const tags = [];
+  let shielded = text.replace(TAG_PATTERN, (match) => {
+    const placeholder = `__TAG${tags.length}__`;
+    tags.push(match);
+    return placeholder;
+  });
+  return { shielded, tags };
+}
+
+function restoreTags(shielded, tags) {
+  let restored = shielded;
+  for (let i = 0; i < tags.length; i++) {
+    restored = restored.replace(`__TAG${i}__`, tags[i]);
+  }
+  return restored;
+}
+
+function shieldBatch(batch) {
+  const shieldedBatch = {};
+  const tagMap = {};
+  for (const [key, value] of Object.entries(batch)) {
+    if (typeof value === "string") {
+      const { shielded, tags } = shieldTags(value);
+      shieldedBatch[key] = shielded;
+      if (tags.length > 0) tagMap[key] = tags;
+    } else {
+      shieldedBatch[key] = value;
+    }
+  }
+  return { shieldedBatch, tagMap };
+}
+
+function restoreBatch(batch, tagMap) {
+  const restored = {};
+  for (const [key, value] of Object.entries(batch)) {
+    if (typeof value === "string" && tagMap[key]) {
+      restored[key] = restoreTags(value, tagMap[key]);
+    } else {
+      restored[key] = value;
+    }
+  }
+  return restored;
+}
+
 function stripMarkdown(text) {
   return text.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
 }
@@ -33,30 +80,12 @@ function extractJson(text) {
   let esc = false;
   for (let i = start; i < text.length; i++) {
     const ch = text[i];
-    if (esc) {
-      esc = false;
-      continue;
-    }
-    if (ch === "\\" && inStr) {
-      esc = true;
-      continue;
-    }
-    if (inStr) {
-      if (ch === strChar) inStr = false;
-      continue;
-    }
-    if (ch === '"' || ch === "'") {
-      inStr = true;
-      strChar = ch;
-      continue;
-    }
+    if (esc) { esc = false; continue; }
+    if (ch === "\\" && inStr) { esc = true; continue; }
+    if (inStr) { if (ch === strChar) inStr = false; continue; }
+    if (ch === '"' || ch === "'") { inStr = true; strChar = ch; continue; }
     if (ch === "{") depth++;
-    else if (ch === "}") {
-      depth--;
-      if (depth === 0) {
-        return text.slice(start, i + 1);
-      }
-    }
+    else if (ch === "}") { depth--; if (depth === 0) return text.slice(start, i + 1); }
   }
   return text.slice(start);
 }
@@ -65,12 +94,9 @@ function repairJson(text) {
   let repaired = text;
   let safety = 0;
   while (safety++ < 100) {
-    try {
-      JSON.parse(repaired);
-      return repaired;
-    } catch (e) {
-      const msg = e.message;
-      const posMatch = msg.match(/position (\d+)/);
+    try { JSON.parse(repaired); return repaired; }
+    catch (e) {
+      const posMatch = e.message.match(/position (\d+)/);
       if (!posMatch) return repaired;
       const pos = parseInt(posMatch[1], 10);
       const before = repaired.slice(0, pos);
@@ -78,22 +104,19 @@ function repairJson(text) {
       if (at === '"' || at === "'") {
         const rest = repaired.slice(pos + 1);
         const closeIdx = rest.indexOf(at);
-        if (closeIdx === -1) {
-          repaired = before + at + rest.replace(/\n/g, "\\n").replace(/\r/g, "\\r") + at + repaired.slice(pos + 1 + rest.length);
-        } else {
-          repaired = before + at + rest.slice(0, closeIdx).replace(/\n/g, "\\n").replace(/\r/g, "\\r") + at + rest.slice(closeIdx);
-        }
-      } else if (at === "\n" || at === "\r") {
-        repaired = before + "\\n" + repaired.slice(pos + 1);
-      } else {
-        repaired = before + '"' + repaired.slice(pos);
-      }
+        if (closeIdx === -1) repaired = before + at + rest.replace(/\n/g, "\\n").replace(/\r/g, "\\r") + at + repaired.slice(pos + 1 + rest.length);
+        else repaired = before + at + rest.slice(0, closeIdx).replace(/\n/g, "\\n").replace(/\r/g, "\\r") + at + rest.slice(closeIdx);
+      } else if (at === "\n" || at === "\r") repaired = before + "\\n" + repaired.slice(pos + 1);
+      else repaired = before + '"' + repaired.slice(pos);
     }
   }
   return repaired;
 }
 
 async function translateBatch(batch, maxRetries = 3) {
+  const { shieldedBatch, tagMap } = shieldBatch(batch);
+  const originalKeys = Object.keys(shieldedBatch);
+
   for (let attempt = 0; attempt < maxRetries; attempt++) {
     try {
       const completion = await openai.chat.completions.create({
@@ -102,9 +125,12 @@ async function translateBatch(batch, maxRetries = 3) {
           {
             role: "system",
             content:
-              "You are a translation engine. Output ONLY a JSON object. No reasoning, no explanations, no markdown. Start your response with { and end with }. Translate every value to Bahasa Indonesia. Keep D&D 5e mechanical terms in English exactly as written: Action, Bonus Action, Reaction, Free Action, saving throw, ability check, AC, Armor Class, Hit Points, HP, Advantage, Disadvantage, critical hit, Initiative, Concentration, spell slot, cantrip, Proficiency, proficiency bonus, DC, Difficulty Class, short rest, long rest, Darkvision, dim light, bright light, level, etc.",
+`You are an expert RPG Game Designer and Localization Lead. Your job is to process raw D&D 5e JSON data. For every entry you process, you must do TWO things:
+1. Rewrite the confusing English summary/description into a clear, concise format.
+2. Translate that clear version into natural Bahasa Indonesia.
+CRITICAL D&D RULE: You MUST keep all official D&D 5e mechanical terms in English (e.g., Action, Bonus Action, Reaction, Free Action, saving throw, ability check, AC, Armor Class, Hit Points, HP, Advantage, Disadvantage, critical hit, Initiative, Concentration, spell slot, cantrip, Proficiency, proficiency bonus, DC, Difficulty Class, short rest, long rest, Darkvision, dim light, bright light, level, etc.). Do NOT touch the __TAG0__ style placeholders. Return ONLY valid JSON with the SAME KEYS as input. Do not add new keys.`
           },
-          { role: "user", content: JSON.stringify(batch) },
+          { role: "user", content: JSON.stringify(shieldedBatch) },
         ],
         temperature: 0.2,
         top_p: 0.95,
@@ -119,7 +145,17 @@ async function translateBatch(batch, maxRetries = 3) {
       const cleaned = stripMarkdown(responseText);
       const extracted = extractJson(cleaned);
       const repaired = repairJson(extracted);
-      return JSON.parse(repaired);
+      const parsed = JSON.parse(repaired);
+      
+      // Filter to only original keys (LLM sometimes adds _id duplicates)
+      const filtered = {};
+      for (const key of originalKeys) {
+        if (parsed[key] !== undefined) {
+          filtered[key] = parsed[key];
+        }
+      }
+      
+      return restoreBatch(filtered, tagMap);
     } catch (err) {
       const status = err.status || err.code;
       if (status === 429 || status === 503) {
@@ -136,7 +172,6 @@ async function translateBatch(batch, maxRetries = 3) {
       throw err;
     }
   }
-
   throw new Error(`NIM: max retries (${maxRetries}) exceeded for batch`);
 }
 
