@@ -26,8 +26,8 @@ export function TerrainModal({
   selectedTerrain,
   onTerrainChange,
 }: TerrainModalProps) {
-  const { t } = useLanguage();
-  const srdSpells = getStaticSpells(character.sources);
+  const { t, language } = useLanguage();
+  const srdSpells = getStaticSpells(character.sources, undefined, language);
 
   return (
     <BasePopup

@@ -65,7 +65,7 @@ export function SpellSelectionModal({
   allKnownSpells = [],
   disabledSpells = [],
 }: SpellSelectionModalProps) {
-  const { tDesc } = useLanguage();
+  const { tDesc, language } = useLanguage();
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
   const [searchQuery, setSearchQuery] = useState("");
@@ -89,7 +89,7 @@ export function SpellSelectionModal({
     : [];
   const allSpells = classSpells.length > 0
     ? deduplicateSpells(classSpells.filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
-    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
+    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset, language).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
 
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
@@ -170,7 +170,7 @@ export function SpellSelectionModal({
           const currentSpells = (character.spells || []).filter(s => s.level > 0).length;
           if (currentSpells >= maxSpellsKnown) return;
         }
-        const srdSpell = getStaticSpells(character.sources).find(s => s.name === name);
+        const srdSpell = getStaticSpells(character.sources, undefined, language).find(s => s.name === name);
         const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
         onChange({
           spells: [...(character.spells || []), { id, name, level, source: "srd" as const, srdSpellName: name, description: Array.isArray(srdSpell?.description) ? srdSpell.description.join("\n") : (srdSpell?.description || "") }],

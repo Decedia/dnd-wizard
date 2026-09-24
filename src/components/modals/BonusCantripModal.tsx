@@ -4,6 +4,7 @@ import { getStaticSpells } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface BonusCantripModalProps {
   isOpen: boolean;
@@ -18,6 +19,8 @@ export function BonusCantripModal({
   selectedCantrip,
   onCantripChange,
 }: BonusCantripModalProps) {
+  const { language } = useLanguage();
+  const cantrips = getStaticSpells(undefined, undefined, language).filter((s) => s.level === 0 && s.classes?.includes("Druid"));
   return (
     <BasePopup
       isOpen={isOpen}
@@ -31,9 +34,7 @@ export function BonusCantripModal({
         Choose one additional druid cantrip. This cantrip does not count against your cantrip limit.
       </p>
       <div className="space-y-2">
-        {getStaticSpells()
-          .filter((s) => s.level === 0 && s.classes?.includes("Druid"))
-          .map((sp) => {
+        {cantrips.map((sp) => {
             const isSelected = selectedCantrip === sp.name;
             const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
             return (
