@@ -711,8 +711,8 @@ function extractFeatureFields(f: any): Record<string, any> {
   };
 }
 
-function getClassFeaturesAtLevel(character: Character): any[] {
-  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
+function getClassFeaturesAtLevel(character: Character, language: string): any[] {
+  const classData = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : null;
 
   const features: any[] = [];
   classData?.levels.forEach((level, index) => {
@@ -728,8 +728,8 @@ function getClassFeaturesAtLevel(character: Character): any[] {
   return features;
 }
 
-function getRaceTraits(character: Character): any[] {
-  const race = character.race ? getStaticRace(character.race) : null;
+function getRaceTraits(character: Character, language: string): any[] {
+  const race = character.race ? getStaticRace(character.race, undefined, language) : null;
   if (!race) return [];
   const traits = (race.traits || []).map((t: any) => ({
     name: t.name,
@@ -765,12 +765,12 @@ function getRaceTraits(character: Character): any[] {
  * Subclass and custom features are preserved; class/race features are
  * regenerated from the SRD data for the character's current level.
  */
-export function syncBaseFeatures(character: Character): Character {
-  const classFeatures = getClassFeaturesAtLevel(character).map((f) => ({ ...f, source: "class" as const }));
-  const raceFeatures = getRaceTraits(character).map((f) => ({ ...f, source: "race" as const }));
+export function syncBaseFeatures(character: Character, language = "en"): Character {
+  const classFeatures = getClassFeaturesAtLevel(character, language).map((f) => ({ ...f, source: "class" as const }));
+  const raceFeatures = getRaceTraits(character, language).map((f) => ({ ...f, source: "race" as const }));
   const base = [...classFeatures, ...raceFeatures];
 
-  const unlockLevel = getStaticClass(character.class, character.ruleset)?.subclassLevel ?? 3;
+  const unlockLevel = getStaticClass(character.class, character.ruleset, undefined, language)?.subclassLevel ?? 3;
   const subclassStillValid = !!character.subclass && character.level >= unlockLevel;
 
   const kept = character.features.filter(
@@ -830,13 +830,13 @@ function getEarnedSubclassFeatures(
  * (marked locked/default) when the subclass step is confirmed. For features
  * with choices, only the selected option(s) are added.
  */
-export function applySubclassFeatures(character: Character): Character {
+export function applySubclassFeatures(character: Character, language = "en"): Character {
   if (!character.subclass) return character;
-  const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : null;
   const unlockLevel = classData?.subclassLevel ?? 3;
   if (character.level < unlockLevel) return character;
 
-  const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
+  const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset, language);
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return character;
 

@@ -72,14 +72,14 @@ function getSpellCountForClass(className: string, level: number, abilityMod: num
 }
 
 export function StepSpells({ data, onChange }: StepSpellsProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const idCounter = useRef(0);
-  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
+  const classData = data.class ? getStaticClass(data.class, data.ruleset, undefined, language) : null;
   const spellcastingAbility = classData?.spellcastingAbility || "int";
   const abilityKey = spellcastingAbility === "intelligence" ? "int" : spellcastingAbility === "wisdom" ? "wis" : spellcastingAbility === "charisma" ? "cha" : spellcastingAbility === "strength" ? "str" : spellcastingAbility === "dexterity" ? "dex" : spellcastingAbility === "constitution" ? "con" : "int";
   const abilityMod = getModifier(data[abilityKey as keyof Character] as number || 10);
 
-  const allSpells = deduplicateSpells(getStaticSpells(data.sources, data.ruleset).filter((s) => s.classes?.includes(data.class)));
+  const allSpells = deduplicateSpells(getStaticSpells(data.sources, data.ruleset, language).filter((s) => s.classes?.includes(data.class)));
   const maxSpellLevel = getMaxSpellLevel(data.class, data.level, data.ruleset);
 
   const { cantrips: maxCantrips, spells: maxSpells } = getSpellCountForClass(data.class, data.level, abilityMod, data.ruleset);
@@ -169,7 +169,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
       const newSpells: Character["spells"] = [];
       const newPreparedIds: string[] = [];
       for (const name of missingDomainSpells) {
-        const spell = getStaticSpells(data.sources, data.ruleset).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+            const spell = getStaticSpells(data.sources, data.ruleset, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
         if (spell) {
           const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
           newSpells.push({
@@ -216,7 +216,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
 
       for (const name of newCircleSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells(data.sources, data.ruleset).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(data.sources, data.ruleset, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spellsToAdd.push({

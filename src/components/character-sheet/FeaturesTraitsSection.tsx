@@ -226,7 +226,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     } catch {
       return visibleFeatures;
     }
-  }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats]);
+  }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats, language]);
 
   const getBookTag = (feature: any): string | null => {
     return feature.book || null;
