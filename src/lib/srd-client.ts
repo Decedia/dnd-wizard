@@ -358,7 +358,22 @@ export function getStaticRaces(sources?: string[], ruleset?: string, locale: str
   const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
   const races2014 = racesData.races as SRDRace[];
   const races2024 = (races2024Data as any).races as SRDRace[];
-  const allRaces = [...races2014, ...races2024];
+  const merged = [...races2014, ...races2024];
+  const seen = new Map<string, SRDRace>();
+  for (const race of merged) {
+    const key = race.name;
+    const existing = seen.get(key);
+    if (!existing) {
+      seen.set(key, race);
+    } else {
+      const existingLen = (existing.traits || []).length;
+      const raceLen = (race.traits || []).length;
+      if (raceLen > existingLen) {
+        seen.set(key, race);
+      }
+    }
+  }
+  const allRaces = Array.from(seen.values());
   let filtered = allRaces;
   if (ruleset) {
     filtered = filtered.filter((r) => (r as any).ruleset === ruleset || (!(r as any).ruleset && ruleset === "2014"));
@@ -379,7 +394,22 @@ export function getStaticClasses(sources?: string[], ruleset?: string, locale: s
   const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
   const classes2014 = classesData.classes as unknown as SRDClass[];
   const classes2024 = (races2024Data as any).classes as unknown as SRDClass[];
-  const allClasses = [...classes2014, ...classes2024];
+  const merged = [...classes2014, ...classes2024];
+  const seen = new Map<string, SRDClass>();
+  for (const cls of merged) {
+    const key = cls.name;
+    const existing = seen.get(key);
+    if (!existing) {
+      seen.set(key, cls);
+    } else {
+      const existingLen = (existing.levels || []).length;
+      const clsLen = (cls.levels || []).length;
+      if (clsLen > existingLen) {
+        seen.set(key, cls);
+      }
+    }
+  }
+  const allClasses = Array.from(seen.values());
   let filtered = allClasses;
   if (ruleset) {
     filtered = filtered.filter((c) => (c as any).ruleset === ruleset || (!(c as any).ruleset && ruleset === "2014"));
