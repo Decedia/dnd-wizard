@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { XIcon as X } from "@/components/icons";
-import { BasePopup } from "@/components/BasePopup";
+import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
 import { DAMAGE_TYPES, type DamageType } from "@/lib/damage-types";
@@ -75,18 +75,33 @@ export function CustomItemModal({ character, onAdd, onClose, editingItem }: Cust
 
   const isValid = name.trim() && (itemType !== "armor" || !isArmor || (baseAC && armorType));
 
+  const stickyFooter = (
+    <div className="sticky bottom-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+      <button
+        type="button"
+        onClick={onClose}
+        className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        onClick={handleSubmit}
+        disabled={!isValid}
+        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
+          isValid
+            ? "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
+            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
+        }`}
+      >
+        {editingItem ? "Save" : "Add"}
+      </button>
+    </div>
+  );
+
   return (
-    <BasePopup
-      isOpen={true}
-      onClose={onClose}
-      title={editingItem ? t("modal.editCustomItem", "Edit Custom Item") : t("modal.addCustomItem", "Add Custom Item")}
-      confirmLabel={editingItem ? "Save" : "Add"}
-      cancelLabel="Cancel"
-      onConfirm={handleSubmit}
-      confirmDisabled={!isValid}
-      showFooter={true}
-    >
-      <div className="space-y-3 px-4 py-3">
+    <BottomSheet isOpen={true} onClose={onClose} title={editingItem ? t("modal.editCustomItem", "Edit Custom Item") : t("modal.addCustomItem", "Add Custom Item")} footer={stickyFooter} showHeader={false}>
+      <div className="px-4 pt-4 pb-6 space-y-3">
         <div>
           <label className="block text-[10px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-1">
             Item Type
@@ -261,6 +276,6 @@ export function CustomItemModal({ character, onAdd, onClose, editingItem }: Cust
           />
         </div>
       </div>
-    </BasePopup>
+    </BottomSheet>
   );
 }

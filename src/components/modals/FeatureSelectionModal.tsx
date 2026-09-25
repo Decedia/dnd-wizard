@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { getStaticSpells, getWizardSpellsByLevel } from "@/lib/srd-client";
-import { CheckIcon as Check, XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, ShieldCheckIcon as ShieldCheck, DaggerIcon as Dagger, BattleAxeIcon as BattleAxe, BowArrowIcon as BowArrow, CrownIcon as Crown, SkullIcon as Skull, FlameIcon as Flame, LightningBoltIcon as LightningBolt, SparklesIcon as Sparkles, InfoIcon } from "@/components/icons";
-import { BasePopup } from "@/components/BasePopup";
+import { XIcon as X } from "@/components/icons";
+import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 
 interface FeatureSelectionModalProps {
@@ -62,19 +62,39 @@ export function FeatureSelectionModal({
     }
   };
 
+  const handleCancel = () => {
+    setFeatureSelections([]);
+    onClose();
+  };
+
+  const stickyFooter = isMultiSelect ? (
+    <div className="sticky bottom-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+      <button
+        type="button"
+        onClick={handleCancel}
+        className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        onClick={handleConfirm}
+        disabled={featureSelections.length !== count}
+        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
+          featureSelections.length === count
+            ? "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
+            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
+        }`}
+      >
+        Confirm Selection ({featureSelections.length}/{count})
+      </button>
+    </div>
+  ) : undefined;
+
   return (
-    <BasePopup
-      isOpen={isOpen}
-      onClose={() => { setFeatureSelections([]); onClose(); }}
-      title={name}
-      description={description}
-      confirmLabel={isMultiSelect ? `Confirm Selection (${featureSelections.length}/${count})` : undefined}
-      cancelLabel="Cancel"
-      onConfirm={isMultiSelect ? handleConfirm : undefined}
-      confirmDisabled={isMultiSelect ? featureSelections.length !== count : false}
-      showFooter={isMultiSelect}
-    >
-      <div className="space-y-2">
+    <BottomSheet isOpen={isOpen} onClose={handleCancel} title={name} footer={stickyFooter} showHeader={false}>
+      <div className="px-4 pt-4 pb-2 space-y-3">
+        {description && <p className="text-xs text-[var(--color-text-secondary)] mb-3">{description}</p>}
         {options.map((opt, idx) => {
           const isSelected = isMultiSelect ? featureSelections.includes(opt.name) : false;
           const isMaxed = isMultiSelect && !isSelected && featureSelections.length >= count;
@@ -86,11 +106,10 @@ export function FeatureSelectionModal({
               key={idx}
               title={opt.name}
               subtitle={opt.description}
-              icon={icon ? <span className="text-[22px] leading-none">{icon}</span> : <InfoIcon className="h-5 w-5 text-[var(--color-text-muted)]" />}
+              icon={icon ? <span className="text-[22px] leading-none">{icon}</span> : undefined}
               badges={[]}
               isSelected={isSelected}
               onSelect={() => !isDisabled && handleOptionClick(opt.name)}
-              onInfoToggle={() => {}}
               infoType="modal"
               modalContent={
                 <div>
@@ -104,7 +123,7 @@ export function FeatureSelectionModal({
           );
         })}
       </div>
-    </BasePopup>
+    </BottomSheet>
   );
 }
 

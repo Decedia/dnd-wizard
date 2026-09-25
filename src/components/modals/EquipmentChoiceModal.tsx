@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { XIcon as X, CheckIcon as Check, InfoIcon } from "@/components/icons";
+import { BottomSheet } from "@/components/modals/BottomSheet";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import type { ChoiceGroup, EquipmentOption } from "@/lib/character-creation";
 
 interface WeaponOption {
@@ -80,193 +82,224 @@ export function EquipmentChoiceModal({
   const hasConcrete = concreteOptions.length > 0;
   const hasWeaponChoices = weaponChoiceOptions.length > 0;
 
-  return createPortal(
-    <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50" onClick={onClose}>
-      <div
-        className="mx-auto w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
-        onClick={(e) => e.stopPropagation()}
+  const stickyFooter = (
+    <div className="sticky bottom-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3">
+      <button
+        type="button"
+        onClick={onConfirm}
+        disabled={confirmDisabled}
+        className={`w-full py-3 rounded-full font-bold text-sm transition-colors ${
+          !confirmDisabled
+            ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:opacity-90"
+            : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
+        }`}
       >
-        <div className="flex items-center justify-center pt-3">
-          <div className="w-[36px] h-1 rounded bg-[var(--color-border)]" />
-        </div>
+        Confirm selection
+      </button>
+    </div>
+  );
 
-        <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
-          <div className="pr-8">
-            <div className="text-[16px] font-medium text-[var(--color-text-primary)]">{title}</div>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute top-3 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--color-bg)] transition-colors"
-          >
-            <X className="h-5 w-5 text-[var(--color-text-muted)]" />
-          </button>
-        </div>
-
-        <div className="flex-1 overflow-y-auto px-4 py-3">
-          {hasConcrete && (
-            <div className="space-y-2 mb-2">
-              {concreteOptions.map((opt) => {
-                const globalIdx = group.options.indexOf(opt);
-                const isSelected = selectedConcreteIndex === globalIdx;
-                const itemNames = (opt.items || [])
-                  .map((i) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
-                  .join(", ");
-                const itemIcons = (opt.items || []).map((i) => {
-                  const info = getItemInfo?.(i.name);
-                  return info?.icon || "📦";
-                });
-                const itemDescriptions = (opt.items || [])
-                  .map((i) => getItemInfo?.(i.name)?.description)
-                  .filter(Boolean) as string[];
-                const infoDescription = itemDescriptions.join("\n\n") || itemNames;
-
-                return (
-                  <button
-                    key={globalIdx}
-                    type="button"
-                    onClick={() => onConcreteSelect(globalIdx)}
-                    className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
-                      isSelected
-                        ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                        : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      {itemIcons.map((icon, i) => (
-                        <div
-                          key={i}
-                          className="w-10 h-10 rounded-[10px] flex items-center justify-center"
-                          style={{ backgroundColor: "var(--color-bg)" }}
-                        >
-                          <span className="text-[20px] leading-none">{icon}</span>
-                        </div>
-                      ))}
+  return createPortal(
+    <BottomSheet isOpen={isOpen} onClose={onClose} title={title} footer={stickyFooter} showHeader={false}>
+      <div className="px-4 pt-4 pb-2 space-y-4">
+        {hasConcrete && (
+          <div className="space-y-2">
+            <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
+              Choose equipment package
+            </div>
+            {concreteOptions.map((opt, idx) => {
+              const globalIdx = group.options.indexOf(opt);
+              const isSelected = selectedConcreteIndex === globalIdx;
+              const itemNames = (opt.items || [])
+                .map((i) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
+                .join(", ");
+              const itemIcons = (opt.items || []).map((i) => {
+                const info = getItemInfo?.(i.name);
+                return info?.icon || "📦";
+              });
+              const itemDescriptions = (opt.items || [])
+                .map((i) => getItemInfo?.(i.name)?.description)
+                .filter(Boolean) as string[];
+              const infoDescription = itemDescriptions.join("\n\n") || itemNames;
+              const iconNode = itemIcons.length > 0 ? (
+                <div className="flex -space-x-1">
+                  {itemIcons.slice(0, 4).map((icon, i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-8 rounded-[8px] flex items-center justify-center border-2 border-[var(--color-surface)]"
+                      style={{ backgroundColor: "var(--color-bg)" }}
+                    >
+                      <span className="text-[16px] leading-none">{icon}</span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                        {opt.description}
+                  ))}
+                </div>
+              ) : undefined;
+              return (
+                <div key={globalIdx}>
+                  <SplitSelectionCard
+                    title={opt.description || `Option ${idx + 1}`}
+                    subtitle={itemNames}
+                    icon={iconNode}
+                    isSelected={isSelected}
+                    onSelect={() => onConcreteSelect(globalIdx)}
+                    infoType="modal"
+                    modalContent={<p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{infoDescription || ""}</p>}
+                  />
+                  {infoIndex === globalIdx && (
+                    <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
+                      <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{opt.description || `Option ${idx + 1}`}</h3>
+                          <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                            <X className="h-4 w-4" />
+                          </button>
+                        </div>
+                        <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{infoDescription || ""}</p>
+                        <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
                       </div>
-                      {itemNames && (
-                        <div className="text-[12px] text-[var(--color-text-secondary)] truncate mt-0.5">
-                          {itemNames}
-                        </div>
-                      )}
                     </div>
-                    <div className="shrink-0">
-                      {isSelected ? (
-                        <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={(e) => { e.stopPropagation(); setInfoIndex(globalIdx); }}
-                          className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-                          aria-label={`Info: ${opt.description}`}
-                        >
-                          <InfoIcon className="h-4 w-4" />
-                        </button>
-                      )}
-                      {infoIndex === globalIdx && (
-                        <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
-                          <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
-                            <div className="flex items-center justify-between mb-2">
-                              <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{opt.description}</h3>
-                              <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-                                <X className="h-4 w-4" />
-                              </button>
-                            </div>
-                            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{infoDescription || ""}</p>
-                            <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {hasWeaponChoices && hasConcrete && (
+          <div className="border-t border-[var(--color-border)] pt-3">
+            <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider mb-2">
+              Or choose weapons
             </div>
-          )}
+          </div>
+        )}
 
-          {hasConcrete && hasWeaponChoices && (
-            <div className="flex items-center gap-3 py-1">
-              <div className="flex-1 h-px bg-[var(--color-border)]" />
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">or</span>
-              <div className="flex-1 h-px bg-[var(--color-border)]" />
-            </div>
-          )}
-
-          {hasWeaponChoices && (
-            <div className="space-y-4">
-              {weaponChoiceOptions.map((wc, idx) => {
-                const isSelected = selectedWeaponChoiceIndex === idx;
-                const selectionCount = wc.selectionCount || 1;
-                const selectedNames = wc.selectedWeaponNames || [];
-
-                return (
-                  <div
-                    key={wc.id}
-                    className={`rounded-lg border-2 p-3 transition-all ${
-                      isSelected
-                        ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                        : "border-[var(--color-border)]"
-                    }`}
-                  >
-                    <div className="text-[14px] font-medium text-[var(--color-text-primary)] mb-2">
-                      {wc.label}
-                      {selectionCount > 1 && (
-                        <span className="text-[12px] text-[var(--color-text-secondary)] ml-2">
-                          ({selectedNames.length}/{selectionCount} selected)
-                        </span>
-                      )}
-                    </div>
-
-                    {wc.bonusItems && wc.bonusItems.length > 0 && (
-                      <div className="mb-3 space-y-2">
-                        {wc.bonusItems.map((item, i) => {
-                          const itemInfo = getItemInfo?.(item.name);
-                          const icon = itemInfo?.icon || "📦";
-
-                          return (
-                            <div
-                              key={i}
-                              className="flex items-center gap-3 p-3 rounded-lg border-2 border-dashed border-[var(--color-border)] opacity-60"
-                            >
+        {hasWeaponChoices &&
+          weaponChoiceOptions.map((wc, wcIdx) => {
+            const isWeaponChoiceSelected = selectedWeaponChoiceIndex === wcIdx;
+            return (
+              <div key={wc.id} className="space-y-2">
+                <SplitSelectionCard
+                  title={wc.label}
+                  subtitle={`Choose ${wc.selectionCount} weapon${wc.selectionCount > 1 ? "s" : ""}`}
+                  isSelected={isWeaponChoiceSelected}
+                  onSelect={() => onWeaponChoiceSelect(wcIdx)}
+                  infoType="expand"
+                  isExpanded={isWeaponChoiceSelected}
+                  expandedContent={
+                    <div className="space-y-2">
+                      {wc.bonusItems && wc.bonusItems.length > 0 && (
+                        <div className="space-y-2">
+                          {wc.bonusItems.map((item, i) => {
+                            const itemInfo = getItemInfo?.(item.name);
+                            const icon = itemInfo?.icon || "📦";
+                            return (
                               <div
-                                className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                                style={{ backgroundColor: "var(--color-bg)" }}
+                                key={i}
+                                className="flex items-center gap-3 p-3 rounded-lg border-2 border-dashed border-[var(--color-border)] opacity-60"
                               >
-                                <span className="text-[22px] leading-none">{icon}</span>
+                                <div
+                                  className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                                  style={{ backgroundColor: "var(--color-bg)" }}
+                                >
+                                  <span className="text-[22px] leading-none">{icon}</span>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-[14px] font-medium text-[var(--color-text-muted)] truncate">
+                                    {item.name}
+                                  </div>
+                                  <div className="text-[12px] text-[var(--color-text-muted)]">
+                                    Included
+                                  </div>
+                                </div>
+                                {itemInfo?.description && (
+                                  <div className="shrink-0">
+                                    <button
+                                      type="button"
+                                      onClick={(e) => { e.stopPropagation(); setInfoIndex(i); }}
+                                      className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                                      aria-label={`Info: ${item.name}`}
+                                    >
+                                      <InfoIcon className="h-4 w-4" />
+                                    </button>
+                                  </div>
+                                )}
+                                {infoIndex === i && (
+                                  <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
+                                    <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                                      <div className="flex items-center justify-between mb-2">
+                                        <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{item.name}</h3>
+                                        <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                                          <X className="h-4 w-4" />
+                                        </button>
+                                      </div>
+                                      <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo?.description || ""}</p>
+                                      <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="text-[14px] font-medium text-[var(--color-text-muted)] truncate">
-                                  {item.name}
+                            );
+                          })}
+                        </div>
+                      )}
+                      <div className="max-h-[40vh] overflow-y-auto space-y-1.5">
+                        {wc.weaponOptions.map((weapon, wIdx) => {
+                          const isWeaponSelected = wc.selectedWeaponNames.includes(weapon.name);
+                          const weaponInfo = getItemInfo?.(weapon.name);
+                          return (
+                            <div key={wIdx} className="flex gap-1.5">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  wc.onWeaponSelect(weapon.name);
+                                }}
+                                className={`flex-1 text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                                  isWeaponSelected
+                                    ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
+                                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                                }`}
+                              >
+                                <div
+                                  className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
+                                  style={{ backgroundColor: "var(--color-bg)" }}
+                                >
+                                  <span className="text-[22px] leading-none">{weapon.icon || "📦"}</span>
                                 </div>
-                                <div className="text-[12px] text-[var(--color-text-muted)]">
-                                  Included
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
+                                    {weapon.name}
+                                  </div>
+                                  {weapon.description && (
+                                    <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
+                                      {weapon.description}
+                                    </div>
+                                  )}
                                 </div>
-                              </div>
-                              {itemInfo?.description && (
-                                <div className="shrink-0">
-                                  <button
-                                    type="button"
-                                    onClick={(e) => { e.stopPropagation(); setInfoIndex(i); }}
-                                    className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-                                    aria-label={`Info: ${item.name}`}
-                                  >
-                                    <InfoIcon className="h-4 w-4" />
-                                  </button>
-                                </div>
-                              )}
-                              {infoIndex === i && (
+                                {isWeaponSelected ? (
+                                  <Check className="h-4 w-4 text-[var(--color-text-primary)] shrink-0" />
+                                ) : (
+                                  weaponInfo?.description ? (
+                                    <button
+                                      type="button"
+                                      onClick={(e) => { e.stopPropagation(); setInfoIndex(wIdx); }}
+                                      className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                                      aria-label={`Info: ${weapon.name}`}
+                                    >
+                                      <InfoIcon className="h-4 w-4" />
+                                    </button>
+                                  ) : null
+                                )}
+                              </button>
+                              {infoIndex === wIdx && (
                                 <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
                                   <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
                                     <div className="flex items-center justify-between mb-2">
-                                      <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{item.name}</h3>
+                                      <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{weapon.name}</h3>
                                       <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
                                         <X className="h-4 w-4" />
                                       </button>
                                     </div>
-                                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo?.description || ""}</p>
+                                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{weaponInfo?.description || ""}</p>
                                     <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
                                   </div>
                                 </div>
@@ -275,97 +308,14 @@ export function EquipmentChoiceModal({
                           );
                         })}
                       </div>
-                    )}
-
-                    <div className="max-h-[40vh] overflow-y-auto space-y-1.5">
-                      {wc.weaponOptions.map((weapon, wIdx) => {
-                        const isWeaponSelected = selectedNames.includes(weapon.name);
-                        const weaponInfo = getItemInfo?.(weapon.name);
-
-                        return (
-                          <button
-                            key={wIdx}
-                            type="button"
-                            onClick={() => {
-                              wc.onWeaponSelect(weapon.name);
-                            }}
-                            className={`w-full text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
-                              isWeaponSelected
-                                ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                                : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                            }`}
-                          >
-                            <div
-                              className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                              style={{ backgroundColor: "var(--color-bg)" }}
-                            >
-                              <span className="text-[22px] leading-none">{weapon.icon || "📦"}</span>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                                {weapon.name}
-                              </div>
-                              {weapon.description && (
-                                <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
-                                  {weapon.description}
-                                </div>
-                              )}
-                            </div>
-                            {isWeaponSelected ? (
-                              <Check className="h-4 w-4 text-[var(--color-text-primary)] shrink-0" />
-                            ) : (
-                              weaponInfo?.description ? (
-                                <button
-                                  type="button"
-                                  onClick={(e) => { e.stopPropagation(); setInfoIndex(wIdx); }}
-                                  className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-                                  aria-label={`Info: ${weapon.name}`}
-                                >
-                                  <InfoIcon className="h-4 w-4" />
-                                </button>
-                              ) : null
-                            )}
-                            {infoIndex === wIdx && (
-                              <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
-                                <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
-                                  <div className="flex items-center justify-between mb-2">
-                                    <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{weapon.name}</h3>
-                                    <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-                                      <X className="h-4 w-4" />
-                                    </button>
-                                  </div>
-                                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{weaponInfo?.description || ""}</p>
-                                  <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
-                                </div>
-                              </div>
-                            )}
-                          </button>
-                        );
-                      })}
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-
-        <div className="border-t border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3">
-          <button
-            type="button"
-            onClick={onConfirm}
-            disabled={confirmDisabled}
-            className={`w-full py-3 rounded-full font-bold text-sm transition-colors ${
-              !confirmDisabled
-                ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:opacity-90"
-                : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
-            }`}
-          >
-            Confirm selection
-          </button>
-        </div>
+                  }
+                />
+              </div>
+            );
+          })}
       </div>
-    </div>,
+    </BottomSheet>,
     document.body
   );
 }

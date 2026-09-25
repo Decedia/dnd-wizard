@@ -3,10 +3,11 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack } from "@/components/icons";
-import { DamageBadge } from "../character-sheet/DamageBadge";
+import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack, CheckIcon as Check } from "@/components/icons";
+import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import { SourceBadge } from "@/components/SourceBadge";
-import { BasePopup } from "@/components/BasePopup";
+import { BottomSheet } from "@/components/modals/BottomSheet";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 
 interface ItemSelectionModalProps {
   character: Character;
@@ -19,6 +20,7 @@ type ItemCategory = "weapons" | "armor" | "items";
 export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionModalProps) {
   const [activeCategory, setActiveCategory] = useState<ItemCategory>("weapons");
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const idCounter = useRef(0);
 
   const generateId = useCallback(() => {
@@ -81,6 +83,12 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
   }, [character.sources]);
 
   const currentItems = activeCategory === "weapons" ? weapons : activeCategory === "armor" ? armors : items;
+
+  const filteredItems = currentItems.filter((item: any) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    return item.name.toLowerCase().includes(q) || (item.description || "").toLowerCase().includes(q);
+  });
 
   const handleAdd = () => {
     if (!selectedItem) return;
@@ -160,23 +168,48 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
     }
   };
 
+  const getItemSubtitle = (item: any) => {
+    const parts: string[] = [];
+    if (item.damage?.damage_dice) parts.push(item.damage.damage_dice);
+    if (item.armor_class?.base) parts.push(`AC ${item.armor_class.base}`);
+    if (item.weapon_category) parts.push(item.weapon_category);
+    if (item.armor_category) parts.push(item.armor_category);
+    if (item.equipment_category) parts.push(item.equipment_category);
+    return parts.join(" • ") || undefined;
+  };
+
+  const stickyFooter = (
+    <div className="sticky bottom-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+      <button
+        type="button"
+        onClick={onClose}
+        className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
+      >
+        Done
+      </button>
+      <button
+        type="button"
+        onClick={handleAdd}
+        disabled={!selectedItem}
+        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
+          selectedItem
+            ? "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
+            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
+        }`}
+      >
+        Add Item
+      </button>
+    </div>
+  );
+
   return (
-    <BasePopup
-      isOpen={true}
-      onClose={onClose}
-      title="Add Item"
-      confirmLabel="Add Item"
-      cancelLabel="Done"
-      onConfirm={handleAdd}
-      confirmDisabled={!selectedItem}
-      showFooter={true}
-    >
+    <BottomSheet isOpen={true} onClose={onClose} title="Add Item" footer={stickyFooter} showHeader={false}>
       <div className="flex-shrink-0 flex border-b border-[var(--color-border)]">
         {(["weapons", "armor", "items"] as ItemCategory[]).map((cat) => (
           <button
             key={cat}
             type="button"
-            onClick={() => { setActiveCategory(cat); setSelectedItem(null); }}
+            onClick={() => { setActiveCategory(cat); setSelectedItem(null); setSearchQuery(""); }}
             className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
               activeCategory === cat
                 ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
@@ -189,80 +222,68 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
         ))}
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-3">
-        <div className="space-y-1.5">
-          {currentItems.map((item: any) => {
-            const isSelected = selectedItem === item.name;
-            const damageType = item.damage?.damage_type?.name;
-            const damageDice = item.damage?.damage_dice;
-            const baseAC = item.armor_class?.base;
-            const armorType = item.armor_category;
-            const weaponCategory = item.weapon_category;
-            return (
-              <div key={item.name} className="w-full px-3 py-2 text-left rounded-lg border transition-all">
-                <button
-                  type="button"
-                  onClick={() => setSelectedItem(item.name)}
-                  className={`w-full text-left rounded-lg border transition-all ${
-                    isSelected
-                      ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--color-border-active)]"
-                      : "bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                  }`}
-                  style={{ padding: "8px 12px" }}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className={`text-xs font-bold ${isSelected ? "" : "text-[var(--color-text-primary)]"}`}>{item.name}</span>
-                      <SourceBadge source={(item as any).source || "PHB"} size="sm" />
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      {damageDice && (
-                        <span
-                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-damage-slashing)", backgroundColor: "var(--color-damage-slashing-bg)" }}
-                        >
-                          {damageDice}
-                        </span>
-                      )}
-                      {damageType && (
-                        <DamageBadge type={damageType} size="sm" showLabel={false} />
-                      )}
-                      {baseAC && !isNaN(Number(baseAC)) && Number(baseAC) > 0 && (
-                        <span
-                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-                          style={isSelected ? { color: "var(--color-surface)", backgroundColor: "var(--color-surface)" + "20" } : { color: "var(--color-info-600)", backgroundColor: "var(--color-info-50)" }}
-                        >
-                          AC {baseAC}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 mt-1 ml-0">
-                    {weaponCategory && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">{weaponCategory}</span>
-                    )}
-                    {armorType && (
-                      <span className="text-[10px] text-[var(--color-text-muted)]">{armorType}</span>
-                    )}
-                  </div>
-                </button>
-                {item.properties && item.properties.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-1 ml-0">
-                    {item.properties.map((prop: any) => {
-                      const propName = prop.name || prop.index || prop;
-                      return (
-                        <span key={propName} className="text-[10px] font-medium text-[var(--color-text-primary)] capitalize">
-                          {propName}
-                        </span>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+      <div className="px-4 pt-4 pb-2 space-y-3">
+        <div className="relative mb-3">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span className="text-[var(--color-text-muted)]">🔍</span>
+          </div>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search items..."
+            className="w-full pl-9 pr-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
+          />
         </div>
+        {filteredItems.length === 0 && (
+          <p className="text-sm text-[var(--color-text-muted)] text-center py-6">No items match your search.</p>
+        )}
+        {filteredItems.map((item: any) => {
+          const isSelected = selectedItem === item.name;
+          const damageType = item.damage?.damage_type?.name;
+          const damageDice = item.damage?.damage_dice;
+          const baseAC = item.armor_class?.base;
+          const weaponCategory = item.weapon_category;
+          const armorType = item.armor_category;
+          const source = (item as any).source || "PHB";
+          const subtitle = getItemSubtitle(item);
+          const badges: string[] = [];
+          if (source && source !== "PHB") badges.push(source);
+          if (damageDice) badges.push(damageDice);
+          if (baseAC) badges.push(`AC ${baseAC}`);
+          return (
+            <SplitSelectionCard
+              key={item.name}
+              title={item.name}
+              subtitle={subtitle}
+              badges={badges.length > 0 ? badges : undefined}
+              isSelected={isSelected}
+              onSelect={() => setSelectedItem(item.name)}
+              infoType="expand"
+              isExpanded={isSelected}
+              expandedContent={
+                <div className="space-y-1">
+                  {item.properties && item.properties.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {item.properties.map((prop: any) => {
+                        const propName = prop.name || prop.index || prop;
+                        return (
+                          <span key={propName} className="text-[10px] font-medium text-[var(--color-text-primary)] capitalize">
+                            {propName}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  )}
+                  {damageType && <DamageBadge type={damageType} size="sm" showLabel={true} />}
+                  {weaponCategory && <span className="text-[10px] text-[var(--color-text-muted)]">{weaponCategory}</span>}
+                  {armorType && <span className="text-[10px] text-[var(--color-text-muted)]">{armorType}</span>}
+                </div>
+              }
+            />
+          );
+        })}
       </div>
-    </BasePopup>
+    </BottomSheet>
   );
 }
