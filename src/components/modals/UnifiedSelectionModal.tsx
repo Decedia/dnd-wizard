@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses, getStaticClassDetails } from "@/lib/srd-client";
 import { getStaticRaces, getStaticRaceDetails } from "@/lib/srd-client";
 import { SourceBadge, SOURCE_OPTIONS } from "@/components/SourceBadge";
-import { BasePopup } from "@/components/BasePopup";
-import { InfoButton } from "@/components/InfoButton";
+import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RACE_ICONS } from "@/components/race-icons";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  CheckIcon as Check,
+  CaretRightIcon as ChevronRight,
+  WarningCircleIcon as AlertCircle,
+  MagnifyingGlassIcon as MagnifyingGlass,
+} from "@/components/icons";
 
 export type SelectionType = "class" | "race";
 export type SelectionStep = "list" | "config";
@@ -71,16 +76,18 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   const [selectedItem, setSelectedItem] = useState<SelectionOption | null>(null);
   const [configChoice, setConfigChoice] = useState<ConfigChoice | null>(null);
   const [previewItem, setPreviewItem] = useState<SelectionOption | null>(null);
-  const [detailsView, setDetailsView] = useState<string | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      // Reset modal state when opening - standard modal pattern
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStep("list");
       setSelectedItem(null);
       setConfigChoice(null);
       setPreviewItem(null);
-      setDetailsView(null);
+      setSearchQuery("");
+      setSourceFilter("ALL");
     }
     return () => {
       document.body.style.overflow = "";
@@ -137,10 +144,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   const handleItemClick = useCallback(
     (option: SelectionOption) => {
       setPreviewItem(option);
-      setDetailsView(null);
       if (option.hasChoice) {
         setSelectedItem(option);
         setStep("config");
+        setConfigChoice(null);
       }
     },
     []
@@ -204,60 +211,83 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       ? "Confirm Selection"
       : "Select an Option";
 
-  return (
-    <BasePopup
-      isOpen={true}
-      onClose={onClose}
-      title={title}
-      confirmLabel={confirmLabel}
-      cancelLabel={step === "config" ? "Back" : "Cancel"}
-      onConfirm={handleConfirm}
-      onCancel={handleCancel}
-      confirmDisabled={
-        step === "config"
-          ? !configChoice
-          : !previewItem || (previewItem.hasChoice && !configChoice)
-      }
-      showFooter={true}
-    >
-      <div className="px-4 py-3 border-b border-[var(--color-border)] -mx-4 -mt-3 mb-3">
-        <div className="space-y-2">
-          <div className="relative">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={`Search ${selectionType}s...`}
-              className="input w-full pl-10 text-sm"
-            />
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]">
-              🔍
-            </span>
-          </div>
-          <div className="relative">
-            <select
-              value={sourceFilter}
-              onChange={(e) => setSourceFilter(e.target.value)}
-              className="input w-full pr-8 text-sm appearance-none"
-            >
-              <option value="ALL">All Sources</option>
-              {availableSources.map((src) => (
-                <option key={src} value={src}>
-                  {src}
-                </option>
-              ))}
-            </select>
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]">
-              ▼
-            </span>
-          </div>
+  const isConfirmDisabled =
+    step === "config"
+      ? !configChoice
+      : !previewItem || (previewItem.hasChoice && !configChoice);
+
+  const stickyHeader = (
+    <div className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 px-4 py-3 space-y-2">
+      <div className="relative">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <MagnifyingGlass className="h-4 w-4 text-slate-400" />
+        </div>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder={`Search ${selectionType}s...`}
+          className="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+        />
+      </div>
+      <div className="relative">
+        <select
+          value={sourceFilter}
+          onChange={(e) => setSourceFilter(e.target.value)}
+          className="w-full px-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+        >
+          <option value="ALL">All Sources</option>
+          {availableSources.map((src) => (
+            <option key={src} value={src}>
+              {src}
+            </option>
+          ))}
+        </select>
+        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+          <ChevronRight className="h-4 w-4 text-slate-400 rotate-90" />
         </div>
       </div>
+    </div>
+  );
+
+  const stickyFooter = (
+    <div className="sticky bottom-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 px-4 py-3 flex gap-2">
+      <button
+        type="button"
+        onClick={handleCancel}
+        className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+      >
+        {step === "config" ? "Back" : "Cancel"}
+      </button>
+      <button
+        type="button"
+        onClick={handleConfirm}
+        disabled={isConfirmDisabled}
+        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
+          isConfirmDisabled
+            ? "bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
+            : "bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800"
+        }`}
+      >
+        {confirmLabel}
+      </button>
+    </div>
+  );
+
+  return (
+    <BottomSheet
+      isOpen={isOpen}
+      onClose={onClose}
+      title={title}
+      footer={stickyFooter}
+      showHeader={false}
+    >
+      {stickyHeader}
 
       {step === "list" && (
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+        <div className="p-4 space-y-3">
           {filteredOptions.length === 0 && (
-            <p className="text-sm text-[var(--color-text-muted)] text-center py-8">
+            <p className="text-sm text-slate-500 dark:text-slate-400 text-center py-8">
               No {selectionType}s found.
             </p>
           )}
@@ -282,8 +312,12 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           characterSources={characterSources}
         />
       )}
-    </BasePopup>
+    </BottomSheet>
   );
+}
+
+function FallbackIcon({ className }: { className?: string }) {
+  return <span className={className}>❓</span>;
 }
 
 interface SelectionCardProps {
@@ -299,54 +333,56 @@ function SelectionCard({
   onClick,
   selectionType,
 }: SelectionCardProps) {
-  const Icon = option.icon || (() => <span className="h-6 w-6">❓</span>);
+  const Icon = option.icon || FallbackIcon;
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all flex items-center gap-3 ${
+      className={`w-full p-3 text-left rounded-xl border transition-all flex items-center gap-3 ${
         isSelected
-          ? "border-indigo-500 bg-indigo-500/10 dark:bg-indigo-900/20"
-          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+          ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
+          : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:border-slate-300 dark:hover:border-slate-600"
       }`}
     >
-      <div className="flex-shrink-0">
-        <Icon className="h-8 w-8 text-[var(--color-text-primary)]" />
+      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700">
+        <Icon className="h-7 w-7 text-slate-700 dark:text-slate-300" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-[var(--color-text-primary)] truncate">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate">
             {option.name}
           </span>
           <SourceBadge source={option.source} size="sm" />
+          {isSelected && (
+            <span className="flex-shrink-0">
+              <Check className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+            </span>
+          )}
         </div>
-        <p className="text-xs text-[var(--color-text-secondary)] mt-0.5 line-clamp-2">
+        <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mb-1">
           {option.description}
         </p>
         {selectionType === "race" && option.basicStats && (
-          <p className="text-xs text-[var(--color-text-muted)] mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-500">
             {option.basicStats}
           </p>
         )}
-        {selectionType === "class" && option.subclassCount && (
-          <p className="text-xs text-[var(--color-text-muted)] mt-1">
+        {selectionType === "class" && option.subclassCount !== undefined && (
+          <p className="text-xs text-slate-500 dark:text-slate-500">
             {option.subclassCount} Subclasses available at Level {option.subclassLevel}
           </p>
         )}
         {option.hasChoice && (
-          <span
-            className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300"
-          >
-            ⚠️ {option.choiceType === "subclass" ? "Subclass Required at Level 1" : "Choice Pending"}
+          <span className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300">
+            <AlertCircle className="h-3 w-3" />
+            {option.choiceType === "subclass" ? "Subclass Required at Level 1" : "Choice Pending"}
           </span>
         )}
       </div>
-      {isSelected && (
-        <div className="flex-shrink-0">
-          <svg className="h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
+      {option.hasChoice && (
+        <div className="flex-shrink-0 text-slate-400">
+          <ChevronRight className="h-5 w-5" />
         </div>
       )}
     </button>
@@ -368,8 +404,6 @@ function ConfigDrawer({
   selectionType,
   characterSources,
 }: ConfigDrawerProps) {
-  const { tDesc } = useLanguage();
-
   const configChoices = useMemo(() => {
     if (selectionType === "class") {
       const classDetails = getStaticClassDetails(parentOption.name, characterSources);
@@ -405,7 +439,7 @@ function ConfigDrawer({
   if (configChoices.length === 0) {
     return (
       <div className="flex-1 flex items-center justify-center px-4 py-8">
-        <p className="text-sm text-[var(--color-text-muted)] text-center">
+        <p className="text-sm text-slate-500 dark:text-slate-400 text-center">
           No configuration options available.
         </p>
       </div>
@@ -413,24 +447,24 @@ function ConfigDrawer({
   }
 
   return (
-    <div className="flex flex-col flex-1 overflow-hidden">
-      <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+    <div className="flex flex-col">
+      <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider">
+          <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
             {selectionType === "class" ? "Divine Domain" : "Choose"}
           </span>
-          <span className="text-sm font-bold text-[var(--color-text-primary)]">
+          <span className="text-sm font-bold text-slate-900 dark:text-slate-100">
             {parentOption.name}
           </span>
         </div>
-        <p className="text-xs text-[var(--color-text-secondary)]">
+        <p className="text-xs text-slate-600 dark:text-slate-400">
           {parentOption.choiceType === "subclass"
             ? "Select your subclass — defines your class features at levels 1, 2, 3, 6, 10, and 14"
             : `Select your ${parentOption.choiceType}`}
         </p>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+      <div className="p-4 space-y-2">
         {configChoices.map((choice) => (
           <ConfigChoiceCard
             key={choice.id}
@@ -455,29 +489,29 @@ function ConfigChoiceCard({ choice, isSelected, onClick }: ConfigChoiceCardProps
     <button
       type="button"
       onClick={onClick}
-      className={`w-full p-4 text-left rounded-[var(--radius-sm)] border transition-all ${
+      className={`w-full p-4 text-left rounded-xl border transition-all ${
         isSelected
-          ? "border-indigo-500 bg-indigo-500/10 dark:bg-indigo-900/20"
-          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
+          ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
+          : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:border-slate-300 dark:hover:border-slate-600"
       }`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-sm font-semibold text-[var(--color-text-primary)]">
+            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
               {choice.name}
             </span>
             {isSelected && (
-              <svg className="h-4 w-4 text-indigo-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+              <span className="flex-shrink-0">
+                <Check className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+              </span>
             )}
           </div>
-          <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2 mb-2">
+          <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mb-2">
             {choice.description}
           </p>
           {choice.effect && (
-            <p className="text-[10px] text-[var(--color-text-muted)] font-mono">
+            <p className="text-[10px] text-slate-500 dark:text-slate-500 font-mono">
               {choice.effect}
             </p>
           )}
