@@ -3,15 +3,14 @@
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses } from "@/lib/srd-client";
 import { getStaticRaces, getStaticRaceDetails } from "@/lib/srd-client";
-import { SourceBadge, SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RACE_ICONS } from "@/components/race-icons";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components/modals/HumanVariantConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   CheckIcon as Check,
   CaretRightIcon as ChevronRight,
-  WarningCircleIcon as AlertCircle,
   MagnifyingGlassIcon as MagnifyingGlass,
   StarIcon as Star,
   BarbarianIcon,
@@ -402,62 +401,25 @@ function SelectionCard({
 }: SelectionCardProps) {
   const Icon = option.icon || FallbackIcon;
 
+  const badges: string[] = [];
+  if (option.source) badges.push(option.source);
+  if (selectionType === "class" && option.subclassCount !== undefined) {
+    badges.push(`${option.subclassCount} Subclasses`);
+  }
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`relative w-full p-3 text-left rounded-xl border transition-all flex items-center gap-3 overflow-visible ${
-        isSelected
-          ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
-          : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-      }`}
-    >
-      {option.isRecommended && (
-        <span className="absolute -top-3 -left-3 w-6 h-6 text-amber-400 drop-shadow-md z-10">
-          <Star className="h-8 w-8 fill-amber-400" />
-        </span>
-      )}
-      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--color-bg)]">
-        <Icon className="h-7 w-7 text-[var(--color-text-primary)]" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-sm font-semibold text-[var(--color-text-primary)] truncate">
-            {option.name}
-          </span>
-          <SourceBadge source={option.source} size="sm" />
-          {isSelected && (
-            <span className="flex-shrink-0">
-              <Check className="h-4 w-4 text-[var(--color-accent-indigo-600)]" />
-            </span>
-          )}
-        </div>
-        <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2 mb-1">
-          {option.description}
-        </p>
-        {selectionType === "race" && option.basicStats && (
-          <p className="text-xs text-[var(--color-text-muted)]">
-            {option.basicStats}
-          </p>
-        )}
-        {selectionType === "class" && option.subclassCount !== undefined && (
-          <p className="text-xs text-[var(--color-text-muted)]">
-            {option.subclassCount} Subclasses available at Level {option.subclassLevel}
-          </p>
-        )}
-        {option.hasChoice && (
-          <span className="inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full text-xs font-medium bg-[var(--color-warning-100)] text-[var(--color-warning-700)]">
-            <AlertCircle className="h-3 w-3" />
-            {option.choiceType === "subclass" ? "Subclass Required at Level 1" : "Choice Pending"}
-          </span>
-        )}
-      </div>
-      {option.hasChoice && (
-        <div className="flex-shrink-0 text-[var(--color-text-muted)]">
-          <ChevronRight className="h-5 w-5" />
-        </div>
-      )}
-    </button>
+    <SplitSelectionCard
+      title={option.name}
+      subtitle={option.description}
+      icon={<Icon className="h-6 w-6 text-[var(--color-text-primary)]" />}
+      badges={badges}
+      isRecommended={option.isRecommended}
+      onSelect={onClick}
+      onInfoToggle={() => {}}
+      infoType="modal"
+      isExpanded={false}
+      expandedContent={null}
+    />
   );
 }
 
