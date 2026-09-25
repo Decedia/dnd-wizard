@@ -467,7 +467,7 @@ function ConfigDrawer({
     }
   }, [isHumanVariant, useVariant, onRequirementChange]);
 
-  if (configChoices.length === 0) {
+  if (configChoices.length === 0 && !isHumanVariant) {
     return (
       <div className="flex-1 flex items-center justify-center px-4 py-8">
         <p className="text-sm text-[var(--color-text-muted)] text-center">
