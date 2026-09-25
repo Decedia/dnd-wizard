@@ -4,12 +4,11 @@ import { useState, useEffect, useMemo } from "react";
 import { getStaticSpells, getClassSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
-import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
+import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass, InfoIcon } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
 import { BasePopup } from "@/components/BasePopup";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
-import { InfoButton } from "@/components/InfoButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
@@ -69,6 +68,7 @@ export function SpellSelectionModal({
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
   const [searchQuery, setSearchQuery] = useState("");
+  const [infoSpell, setInfoSpell] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedSpells(spells);
@@ -247,15 +247,36 @@ export function SpellSelectionModal({
                {sp.name}
              </span>
              {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500 shrink-0" />}
-<InfoButton
-                title={sp.name}
-                description={(() => {
-                  const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
-                  const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, rawDesc);
-                  const s = (sp as any).effectSummary || (sp as any).summary || "";
-                  return s ? `${s}\n\n${translatedDesc}` : translatedDesc;
-                })()}
-              />
+<button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setInfoSpell(sp.name);
+                }}
+                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                aria-label={`Info: ${sp.name}`}
+              >
+                <InfoIcon className="h-4 w-4" />
+              </button>
+              {infoSpell === sp.name && (
+                <BasePopup
+                  isOpen={true}
+                  onClose={() => setInfoSpell(null)}
+                  title={sp.name}
+                  confirmLabel="Got it"
+                  onConfirm={() => setInfoSpell(null)}
+                  showFooter={true}
+                >
+                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
+                    {(() => {
+                      const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                      const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, rawDesc);
+                      const s = (sp as any).effectSummary || (sp as any).summary || "";
+                      return s ? `${s}\n\n${translatedDesc}` : translatedDesc;
+                    })()}
+                  </p>
+                </BasePopup>
+              )}
              <div className="w-3 shrink-0">
                {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
                {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}

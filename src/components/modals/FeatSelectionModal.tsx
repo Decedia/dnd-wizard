@@ -76,6 +76,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources }:
               subtitle={feat.prerequisites ? `Prerequisite: ${feat.prerequisites}` : undefined}
               badges={sourceLabel && sourceLabel !== "PHB" ? [sourceLabel] : []}
               isRecommended={isRecommended("feat", feat.name)}
+              isSelected={isSelected}
               onSelect={() => setPendingSelection(feat.name)}
               infoType="modal"
               modalContent={

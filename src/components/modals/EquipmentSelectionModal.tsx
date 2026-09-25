@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { XIcon as X, CheckIcon as Check } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
+import { XIcon as X, CheckIcon as Check, InfoIcon } from "@/components/icons";
+import { BasePopup } from "@/components/BasePopup";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface EquipmentSelectionModalProps {
@@ -44,6 +44,7 @@ export function EquipmentSelectionModal({
 }: EquipmentSelectionModalProps) {
   const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
+  const [infoIndex, setInfoIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -136,9 +137,32 @@ export function EquipmentSelectionModal({
                   {(() => {
                     if (renderRightContent) return renderRightContent(option, isSelected);
                     if (isSelected) return <Check className="h-4 w-4 text-[var(--color-text-primary)]" />;
-                    return <InfoButton title={name} description={description} descKey={option.descKey} />;
+                    return (
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); setInfoIndex(index); }}
+                        className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                        aria-label={`Info: ${name}`}
+                      >
+                        <InfoIcon className="h-4 w-4" />
+                      </button>
+                    );
                   })()}
                 </div>
+                {infoIndex === index && (
+                  <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
+                    <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{name}</h3>
+                        <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{description}</p>
+                      <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                    </div>
+                  </div>
+                )}
               </div>
               );
           })}

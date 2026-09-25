@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { XIcon as X, CheckIcon as Check } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
+import { XIcon as X, CheckIcon as Check, InfoIcon } from "@/components/icons";
 import type { ChoiceGroup, EquipmentOption } from "@/lib/character-creation";
 
 interface WeaponOption {
@@ -58,6 +57,7 @@ export function EquipmentChoiceModal({
   getItemInfo,
 }: EquipmentChoiceModalProps) {
   const [mounted, setMounted] = useState(false);
+  const [infoIndex, setInfoIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -157,7 +157,28 @@ export function EquipmentChoiceModal({
                       {isSelected ? (
                         <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
                       ) : (
-                        <InfoButton title={opt.description} description={infoDescription} />
+                        <button
+                          type="button"
+                          onClick={(e) => { e.stopPropagation(); setInfoIndex(globalIdx); }}
+                          className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                          aria-label={`Info: ${opt.description}`}
+                        >
+                          <InfoIcon className="h-4 w-4" />
+                        </button>
+                      )}
+                      {infoIndex === globalIdx && (
+                        <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
+                          <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{opt.description}</h3>
+                              <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                                <X className="h-4 w-4" />
+                              </button>
+                            </div>
+                            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{infoDescription || ""}</p>
+                            <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </button>
@@ -226,7 +247,28 @@ export function EquipmentChoiceModal({
                               </div>
                               {itemInfo?.description && (
                                 <div className="shrink-0">
-                                  <InfoButton title={item.name} description={itemInfo.description} />
+                                  <button
+                                    type="button"
+                                    onClick={(e) => { e.stopPropagation(); setInfoIndex(i); }}
+                                    className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                                    aria-label={`Info: ${item.name}`}
+                                  >
+                                    <InfoIcon className="h-4 w-4" />
+                                  </button>
+                                </div>
+                              )}
+                              {infoIndex === i && (
+                                <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
+                                  <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                                    <div className="flex items-center justify-between mb-2">
+                                      <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{item.name}</h3>
+                                      <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                                        <X className="h-4 w-4" />
+                                      </button>
+                                    </div>
+                                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo?.description || ""}</p>
+                                    <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                  </div>
                                 </div>
                               )}
                             </div>
@@ -272,11 +314,30 @@ export function EquipmentChoiceModal({
                             {isWeaponSelected ? (
                               <Check className="h-4 w-4 text-[var(--color-text-primary)] shrink-0" />
                             ) : (
-                              weaponInfo?.description && (
-                                <div className="shrink-0">
-                                  <InfoButton title={weapon.name} description={weaponInfo.description} />
+                              weaponInfo?.description ? (
+                                <button
+                                  type="button"
+                                  onClick={(e) => { e.stopPropagation(); setInfoIndex(wIdx); }}
+                                  className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                                  aria-label={`Info: ${weapon.name}`}
+                                >
+                                  <InfoIcon className="h-4 w-4" />
+                                </button>
+                              ) : null
+                            )}
+                            {infoIndex === wIdx && (
+                              <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
+                                <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{weapon.name}</h3>
+                                    <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                                      <X className="h-4 w-4" />
+                                    </button>
+                                  </div>
+                                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{weaponInfo?.description || ""}</p>
+                                  <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
                                 </div>
-                              )
+                              </div>
                             )}
                           </button>
                         );

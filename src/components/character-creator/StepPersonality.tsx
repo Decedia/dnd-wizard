@@ -5,8 +5,7 @@ import { StepCard } from "./StepCard";
 import { backgroundsData, alignmentOptions, getBackgroundData } from "@/data/backgrounds";
 import { languages as languageList } from "@/data/srd";
 import type { Character } from "@/lib/storage";
-import { CaretDownIcon as CaretDown, XIcon as X } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
+import { CaretDownIcon as CaretDown, XIcon as X, InfoIcon } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -107,6 +106,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
   };
 
   const [pendingValue, setPendingValue] = useState<string>("");
+  const [infoState, setInfoState] = useState<{title: string; description: string} | null>(null);
 
   const handleOpenPopup = (type: "personality" | "ideal" | "bond" | "flaw") => {
     setPopupType(type);
@@ -221,7 +221,14 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
           {selectedBackground && (
              <div className="mt-2 p-3 bg-[var(--color-bg)] rounded-[var(--radius-md)] border border-[var(--color-border)]">
                <div className="text-xs font-bold text-[var(--color-text-primary)] flex items-center gap-2">{selectedBackground.feature.name}
-                 <InfoButton title={selectedBackground.feature.name} description={selectedBackground.feature.description} />
+                 <button
+                   type="button"
+                   onClick={() => setInfoState({ title: selectedBackground.feature.name, description: selectedBackground.feature.description })}
+                   className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                   aria-label={`Info: ${selectedBackground.feature.name}`}
+                 >
+                   <InfoIcon className="h-4 w-4" />
+                 </button>
                </div>
               <div className="mt-2 flex flex-wrap gap-2">
               <div>

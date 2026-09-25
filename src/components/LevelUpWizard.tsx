@@ -43,8 +43,9 @@ import {
   SwapIcon as Swap,
   MagnifyingGlassIcon as MagnifyingGlass,
   TargetIcon as Target,
+  XIcon as XIcon,
 } from "@/components/icons";
-import { InfoButton } from "@/components/InfoButton";
+import { InfoIcon } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 import { useSRD } from "@/contexts/SRDContext";
 import { isRecommended } from "@/lib/recommendations";
@@ -508,9 +509,10 @@ function buildLevelInfos(
 }
 
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
-  const { language } = useLanguage();
+  const { language, tDesc } = useLanguage();
   const dict = language === "id" ? idTranslations : enTranslations;
   const t = (key: string, fb?: string) => (dict as Record<string, string>)[key] || fb || key;
+  const [infoState, setInfoState] = useState<{title: string; description: string; descKey?: string} | null>(null);
   const classData = character.class ? getStaticClass(character.class, character.sources, character.ruleset, language) : undefined;
   const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
   const hitDie = classData?.hitDie || 10;
@@ -1430,9 +1432,10 @@ function LevelCard({
   allInvocationSelections,
   sectionRefs,
 }: LevelCardProps) {
-    const { language } = useLanguage();
+    const { language, tDesc } = useLanguage();
     const dict = language === "id" ? idTranslations : enTranslations;
     const t = (key: string, fb?: string) => (dict as Record<string, string>)[key] || fb || key;
+    const [infoState, setInfoState] = useState<{title: string; description: string; descKey?: string} | null>(null);
 
     const [showSpellSelection, setShowSpellSelection] = useState(false);
     const [showSubclassDetails, setShowSubclassDetails] = useState<string | null>(null);
@@ -1661,7 +1664,28 @@ function LevelCard({
                            {f.source && f.source !== "PHB" && <SourceBadge source={f.source} />}
                            <span className="font-semibold">{f.name}</span>
 {f.description && (
-                              <InfoButton title={f.name} description={f.description} descKey={`feature.desc.${slugify(f.name)}`} />
+                              <button
+                                type="button"
+                                onClick={() => setInfoState({ title: f.name, description: f.description, descKey: `feature.desc.${slugify(f.name)}` })}
+                                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                                aria-label={`Info: ${f.name}`}
+                              >
+                                <InfoIcon className="h-4 w-4" />
+                              </button>
+                            )}
+                            {infoState?.title === f.name && (
+                              <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
+                                <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{f.name}</h3>
+                                    <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                                      <XIcon className="h-4 w-4" />
+                                    </button>
+                                  </div>
+                                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(f.description) ? f.description.join("\n") : f.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
+                                  <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                </div>
+                              </div>
                             )}
                          </div>
                       </div>
@@ -1898,7 +1922,28 @@ function LevelCard({
                        <Crown className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                        <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
 {fc.description && (
-                          <InfoButton title={fc.name} description={fc.description} descKey={`feature.desc.${slugify(fc.name)}`} />
+                          <button
+                            type="button"
+                            onClick={() => setInfoState({ title: fc.name, description: fc.description, descKey: `feature.desc.${slugify(fc.name)}` })}
+                            className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                            aria-label={`Info: ${fc.name}`}
+                          >
+                            <InfoIcon className="h-4 w-4" />
+                          </button>
+                        )}
+                        {infoState?.title === fc.name && (
+                          <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
+                            <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                              <div className="flex items-center justify-between mb-2">
+                                <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{fc.name}</h3>
+                                <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                                  <XIcon className="h-4 w-4" />
+                                </button>
+                              </div>
+                              <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(fc.description) ? fc.description.join("\n") : fc.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
+                              <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                            </div>
+                          </div>
                         )}
                      </div>
                     <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
@@ -1934,7 +1979,28 @@ function LevelCard({
                            <Sword className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
                            <span className="text-sm font-bold text-[var(--color-text-primary)]">{fc.name}</span>
 {fc.description && (
-                              <InfoButton title={fc.name} description={fc.description} descKey={`feature.desc.${slugify(fc.name)}`} />
+                              <button
+                                type="button"
+                                onClick={() => setInfoState({ title: fc.name, description: fc.description, descKey: `feature.desc.${slugify(fc.name)}` })}
+                                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                                aria-label={`Info: ${fc.name}`}
+                              >
+                                <InfoIcon className="h-4 w-4" />
+                              </button>
+                            )}
+                            {infoState?.title === fc.name && (
+                              <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
+                                <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{fc.name}</h3>
+                                    <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                                      <XIcon className="h-4 w-4" />
+                                    </button>
+                                  </div>
+                                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(fc.description) ? fc.description.join("\n") : fc.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
+                                  <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                </div>
+                              </div>
                             )}
                          </div>
                         <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>

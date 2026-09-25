@@ -6,10 +6,9 @@ import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData, ge
 import { getModifier, getProficiencyBonus, generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
-import { InfoButton } from "@/components/InfoButton";
-import { BasePopup } from "@/components/BasePopup";
+import { InfoIcon } from "@/components/icons";
 import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
-import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, CheckIcon as Check } from "@/components/icons";
+import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, CheckIcon as Check, XIcon as XIcon } from "@/components/icons";
 import { SourceBadge } from "@/components/SourceBadge";
 import { ItemSlot, ItemDetailPanel, InventoryGrid, type ItemSlotData } from "@/components/character-sheet/InventoryGrid";
 import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
@@ -118,6 +117,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
   const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
+  const [infoState, setInfoState] = useState<{title: string; description: string} | null>(null);
 
   useEffect(() => {
     debug.log('tempWeaponSelectionsMap CHANGED', { tempWeaponSelectionsMap, modalGroupId: modalGroup?.group.id });
@@ -676,7 +676,30 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
         <span>
           AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}
           {itemInfo.armorType && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">({itemInfo.armorType})</span>}
-          {!compact && itemInfo.description && <InfoButton title="Armor Details" description={itemInfo.description} />}
+          {!compact && itemInfo.description && (
+            <button
+              type="button"
+              onClick={() => setInfoState({ title: "Armor Details", description: itemInfo.description })}
+              className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+              aria-label="Info: Armor Details"
+            >
+              <InfoIcon className="h-4 w-4" />
+            </button>
+          )}
+          {infoState?.title === "Armor Details" && itemInfo.description && (
+            <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
+              <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">Armor Details</h3>
+                  <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                    <XIcon className="h-4 w-4" />
+                  </button>
+                </div>
+                <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo.description}</p>
+                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+              </div>
+            </div>
+          )}
         </span>
       );
     }
@@ -688,7 +711,30 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     if (itemInfo.type === "item") {
       return (
         <span>
-          {itemInfo.description && <InfoButton title="Item Details" description={itemInfo.description} />}
+          {itemInfo.description && (
+            <button
+              type="button"
+              onClick={() => setInfoState({ title: "Item Details", description: itemInfo.description })}
+              className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+              aria-label="Info: Item Details"
+            >
+              <InfoIcon className="h-4 w-4" />
+            </button>
+          )}
+          {infoState?.title === "Item Details" && itemInfo.description && (
+            <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
+              <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">Item Details</h3>
+                  <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                    <XIcon className="h-4 w-4" />
+                  </button>
+                </div>
+                <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo.description}</p>
+                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+              </div>
+            </div>
+          )}
           {itemInfo.contents && (
             <span className="ml-2 text-[var(--color-text-secondary)] font-medium">Contains: {itemInfo.contents}</span>
           )}
@@ -697,7 +743,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     }
 
     return null;
-  }, []);
+  }, [infoState]);
 
   const getItemDescription = useCallback((itemInfo: any): string => {
     if (!itemInfo) return "";

@@ -6,7 +6,7 @@ import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSpells } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
-import { InfoButton } from "@/components/InfoButton";
+import { InfoIcon, XIcon as XIcon } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FeatureSelection {
@@ -41,6 +41,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
     });
     return initial;
   });
+  const [infoState, setInfoState] = useState<{title: string; description: string} | null>(null);
 
   const getOptionIcon = (optName: string) => {
     const lower = optName.toLowerCase();
@@ -112,7 +113,28 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                  <h3 className="text-card-title text-[var(--color-text-primary)] flex items-center gap-2">
                    {selection.featureName}
                    {selection.description && (
-                     <InfoButton title={selection.featureName} description={selection.description} />
+                     <button
+                       type="button"
+                       onClick={() => setInfoState({ title: selection.featureName, description: selection.description })}
+                       className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                       aria-label={`Info: ${selection.featureName}`}
+                     >
+                       <InfoIcon className="h-4 w-4" />
+                     </button>
+                   )}
+                   {infoState?.title === selection.featureName && (
+                     <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
+                       <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                         <div className="flex items-center justify-between mb-2">
+                           <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{selection.featureName}</h3>
+                           <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                             <XIcon className="h-4 w-4" />
+                           </button>
+                         </div>
+                         <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{selection.description}</p>
+                         <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                       </div>
+                     </div>
                    )}
                  </h3>
                </div>

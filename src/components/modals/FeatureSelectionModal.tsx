@@ -4,7 +4,7 @@ import { useState } from "react";
 import { getStaticSpells, getWizardSpellsByLevel } from "@/lib/srd-client";
 import { CheckIcon as Check, XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, ShieldCheckIcon as ShieldCheck, DaggerIcon as Dagger, BattleAxeIcon as BattleAxe, BowArrowIcon as BowArrow, CrownIcon as Crown, SkullIcon as Skull, FlameIcon as Flame, LightningBoltIcon as LightningBolt, SparklesIcon as Sparkles, InfoIcon } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
-import { InfoButton } from "@/components/InfoButton";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 
 interface FeatureSelectionModalProps {
   isOpen: boolean;
@@ -82,64 +82,25 @@ export function FeatureSelectionModal({
           const isDisabled = isMaxed || isUnavailable;
           const icon = opt.icon || getOptionIcon(opt.name);
           return (
-            <div
+            <SplitSelectionCard
               key={idx}
-              className={`rounded-[var(--radius-sm)] border-2 transition-all ${
-                isSelected
-                  ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                  : isUnavailable
-                    ? "border-[var(--color-border)] opacity-60"
-                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-              }`}
-            >
-              <button
-                type="button"
-                onClick={() => !isDisabled && handleOptionClick(opt.name)}
-                disabled={isDisabled}
-                className={`w-full flex items-center gap-3 p-3 text-left ${
-                  isSelected ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-primary)]"
-                } ${isDisabled ? "cursor-not-allowed" : ""}`}
-              >
-                <div
-                  className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: "var(--color-bg)" }}
-                >
-                  {icon ? (
-                    <span className="text-[22px] leading-none">{icon}</span>
-                  ) : (
-                    <InfoIcon className="h-5 w-5 text-[var(--color-text-muted)]" />
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                    {opt.name}
-                  </div>
-                  {opt.description && (
-                    <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
-                      {opt.description}
-                    </div>
-                  )}
+              title={opt.name}
+              subtitle={opt.description}
+              icon={icon ? <span className="text-[22px] leading-none">{icon}</span> : <InfoIcon className="h-5 w-5 text-[var(--color-text-muted)]" />}
+              badges={[]}
+              isSelected={isSelected}
+              onSelect={() => !isDisabled && handleOptionClick(opt.name)}
+              onInfoToggle={() => {}}
+              infoType="modal"
+              modalContent={
+                <div>
+                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line mb-2">{opt.description}</p>
                   {isUnavailable && opt.unavailableReason && (
-                    <div className="text-[11px] text-[var(--color-error-600)] truncate">
-                      {opt.unavailableReason}
-                    </div>
+                    <p className="text-[11px] text-[var(--color-error-600)]">{opt.unavailableReason}</p>
                   )}
                 </div>
-                <div className="shrink-0">
-                  {isSelected ? (
-                    <Check className="h-4 w-4 text-[var(--color-text-primary)]" />
-                  ) : isUnavailable ? (
-                    <span className="text-[10px] text-[var(--color-text-muted)]">Locked</span>
-                  ) : (
-                    <InfoButton
-                      title={opt.name}
-                      description={opt.description}
-                      descKey={`feature.choice.desc.${slugify(opt.name)}`}
-                    />
-                  )}
-                </div>
-              </button>
-            </div>
+              }
+            />
           );
         })}
       </div>
