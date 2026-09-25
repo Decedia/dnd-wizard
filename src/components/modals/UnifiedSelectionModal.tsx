@@ -414,6 +414,7 @@ function SelectionCard({
       icon={<Icon className="h-6 w-6 text-[var(--color-text-primary)]" />}
       badges={badges}
       isRecommended={option.isRecommended}
+      isSelected={isSelected}
       onSelect={onClick}
       onInfoToggle={() => {}}
       infoType="modal"

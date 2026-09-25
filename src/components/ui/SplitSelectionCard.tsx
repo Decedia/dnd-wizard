@@ -18,6 +18,7 @@ export interface SplitSelectionCardProps {
   infoType: "modal" | "expand";
   isExpanded?: boolean;
   expandedContent?: ReactNode;
+  isSelected?: boolean;
 }
 
 export function SplitSelectionCard({
@@ -31,6 +32,7 @@ export function SplitSelectionCard({
   infoType,
   isExpanded = false,
   expandedContent,
+  isSelected = false,
 }: SplitSelectionCardProps) {
   return (
     <div className="relative overflow-visible">
@@ -40,7 +42,13 @@ export function SplitSelectionCard({
         </span>
       )}
 
-      <div className="flex flex-row bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl overflow-hidden">
+      <div
+        className={`flex flex-row rounded-2xl overflow-hidden ${
+          isSelected
+            ? "border border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
+            : "border border-[var(--color-border)] bg-[var(--color-surface)]"
+        }`}
+      >
         <button
           type="button"
           onClick={onSelect}
