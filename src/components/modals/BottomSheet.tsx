@@ -31,18 +31,18 @@ export function BottomSheet({
         onClick={onClose}
       />
       <div
-        className={`relative w-full max-w-md max-h-[85vh] flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl ${className}`}
+        className={`relative w-full max-w-md max-h-[85vh] flex flex-col bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         {showHeader && title && (
-          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
-            <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100 truncate">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)] flex-shrink-0">
+            <h2 className="text-base font-semibold text-[var(--color-text-primary)] truncate">
               {title}
             </h2>
             <button
               type="button"
               onClick={onClose}
-              className="h-8 w-8 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors flex-shrink-0"
+              className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors flex-shrink-0"
             >
               <X className="h-4 w-4" />
             </button>
@@ -51,7 +51,7 @@ export function BottomSheet({
 
         <div className="flex-1 overflow-y-auto overscroll-contain">{children}</div>
 
-        {footer && <div className="border-t border-slate-200 dark:border-slate-700 flex-shrink-0">{footer}</div>}
+        {footer && <div className="border-t border-[var(--color-border)] flex-shrink-0">{footer}</div>}
       </div>
     </div>
   );
