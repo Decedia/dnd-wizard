@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
-import { getStaticClasses, getStaticClassDetails } from "@/lib/srd-client";
+import { getStaticClasses } from "@/lib/srd-client";
 import { getStaticRaces, getStaticRaceDetails } from "@/lib/srd-client";
 import { SourceBadge, SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BottomSheet } from "@/components/modals/BottomSheet";
@@ -48,6 +48,7 @@ export interface ConfigChoice {
   description: string;
   effect?: string;
   featureData?: any;
+  parentChoiceId?: string;
 }
 
 export interface SelectionModalProps<T extends SelectionType> {
@@ -135,7 +136,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         source: cls.source || "PHB",
         description: cls.flavorText || "",
         icon: CLASS_ICONS[cls.name] || FallbackIcon,
-        hasChoice: cls.subclassLevel === 1,
+        hasChoice: false,
         choiceType: "subclass",
         subclassCount: cls.subclasses?.length || 0,
         subclassLevel: cls.subclassLevel || 3,
@@ -342,7 +343,6 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           parentOption={selectedItem}
           onChoice={handleConfigChoice}
           selectedChoice={configChoice}
-          selectionType={selectionType}
           characterSources={characterSources}
           language={language}
         />
@@ -424,7 +424,6 @@ interface ConfigDrawerProps {
   parentOption: SelectionOption;
   onChoice: (choice: ConfigChoice) => void;
   selectedChoice: ConfigChoice | null;
-  selectionType: SelectionType;
   characterSources: string[];
   language: string;
 }
@@ -433,41 +432,23 @@ function ConfigDrawer({
   parentOption,
   onChoice,
   selectedChoice,
-  selectionType,
   characterSources,
   language,
 }: ConfigDrawerProps) {
   const configChoices = useMemo(() => {
-    if (selectionType === "class") {
-      const classDetails = getStaticClassDetails(parentOption.name, characterSources, undefined, language);
-      if (!classDetails) return [];
-      return classDetails.subclasses
-        .filter((sub) => sub.name && sub.features?.length > 0)
-        .map((sub) => ({
-          id: slugify(sub.name),
-          name: sub.name,
-          description: sub.description,
-          effect: sub.features
-            .filter((f) => f.level === 1 || f.level === parentOption.subclassLevel)
-            .slice(0, 3)
-            .map((f) => `${f.name} (Lv ${f.level || "?"})`)
-            .join(", "),
-          featureData: sub,
-        }));
-    } else {
-      const raceDetails = getStaticRaceDetails(parentOption.name, characterSources, undefined, language);
-      if (!raceDetails || !raceDetails.choices) return [];
-      return raceDetails.choices.flatMap((choice) =>
-        (choice.options || []).map((opt) => ({
-          id: opt.id || slugify(opt.name),
-          name: opt.name,
-          description: opt.description || "",
-          effect: choice.type,
-          featureData: { ...opt, choiceType: choice.type },
-        }))
-      );
-    }
-  }, [parentOption, selectionType, characterSources, language]);
+    const raceDetails = getStaticRaceDetails(parentOption.name, characterSources, undefined, language);
+    if (!raceDetails || !raceDetails.choices) return [];
+    return raceDetails.choices.flatMap((choice) =>
+      (choice.options || []).map((opt) => ({
+        id: opt.id || slugify(opt.name),
+        name: opt.name,
+        description: opt.description || "",
+        effect: choice.type,
+        featureData: { ...opt, choiceType: choice.type },
+        parentChoiceId: choice.id,
+      }))
+    );
+  }, [parentOption, characterSources, language]);
 
   if (configChoices.length === 0) {
     return (
@@ -484,15 +465,15 @@ function ConfigDrawer({
       <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider">
-            {selectionType === "class" ? "Divine Domain" : "Choose"}
+            {parentOption.choiceType === "variant" ? "Variant" : "Choose"}
           </span>
           <span className="text-sm font-bold text-[var(--color-text-primary)]">
             {parentOption.name}
           </span>
         </div>
         <p className="text-xs text-[var(--color-text-secondary)]">
-          {parentOption.choiceType === "subclass"
-            ? "Select your subclass — defines your class features at levels 1, 2, 3, 6, 10, and 14"
+          {parentOption.choiceType === "variant"
+            ? "Select the variant human traits for your character."
             : `Select your ${parentOption.choiceType}`}
         </p>
       </div>

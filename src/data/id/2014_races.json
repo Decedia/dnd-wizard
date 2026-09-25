@@ -530,7 +530,67 @@
         "Draconic"
       ],
       "languageDesc": "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.",
-      "source": "PHB"
+      "source": "PHB",
+      "choices": [
+        {
+          "id": "draconic-ancestry",
+          "name": "Draconic Ancestry",
+          "description": "Pilih satu jenis naga dari tabel Draconic Ancestry. Breath weapon dan damage resistancemu ditentukan oleh jenis naga.",
+          "type": "single",
+          "options": [
+            {
+              "id": "black",
+              "name": "Black",
+              "description": "Acid damage breath weapon"
+            },
+            {
+              "id": "blue",
+              "name": "Blue",
+              "description": "Lightning damage breath weapon"
+            },
+            {
+              "id": "brass",
+              "name": "Brass",
+              "description": "Fire damage breath weapon"
+            },
+            {
+              "id": "bronze",
+              "name": "Bronze",
+              "description": "Lightning damage breath weapon"
+            },
+            {
+              "id": "copper",
+              "name": "Copper",
+              "description": "Acid damage breath weapon"
+            },
+            {
+              "id": "gold",
+              "name": "Gold",
+              "description": "Fire damage breath weapon"
+            },
+            {
+              "id": "green",
+              "name": "Green",
+              "description": "Poison damage breath weapon"
+            },
+            {
+              "id": "red",
+              "name": "Red",
+              "description": "Fire damage breath weapon"
+            },
+            {
+              "id": "silver",
+              "name": "Silver",
+              "description": "Cold damage breath weapon"
+            },
+            {
+              "id": "white",
+              "name": "White",
+              "description": "Cold damage breath weapon"
+            }
+          ]
+        }
+      ]
     },
     {
       "index": "dragonborn-chromatic",
@@ -4172,7 +4232,22 @@
         "Common"
       ],
       "languageDesc": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.",
-      "source": "PHB"
+      "source": "PHB",
+      "choices": [
+        {
+          "id": "human-variant",
+          "name": "Variant Human",
+          "description": "Alih-alih trait manusia standar, kamu mendapatkan trait Variant Human: +1 ke dua ability score pilihanmu, satu skill proficiency, dan satu feat pilihanmu.",
+          "type": "variant",
+          "options": [
+            {
+              "id": "variant",
+              "name": "Variant Human",
+              "description": "Dapatkan +1 ke dua abilities, satu skill, dan satu feat"
+            }
+          ]
+        }
+      ]
     },
     {
       "index": "kenku",

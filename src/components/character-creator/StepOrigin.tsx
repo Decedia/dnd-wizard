@@ -215,22 +215,26 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
     (payload: any) => {
       const raceName = payload.name;
       const isVariant = payload.configChoice?.name === "Variant Human" || payload.configChoice?.featureData?.choiceType === "variant";
+      const nextRaceChoices = { ...data.raceChoices };
+      if (payload.configChoice?.parentChoiceId && payload.configChoice?.featureData?.id) {
+        nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
+      }
       
       if (raceName !== data.race || isVariant !== (data.raceVariant === "variant")) {
         onChange({
           race: raceName,
           raceVariant: isVariant ? "variant" : undefined,
+          raceChoices: nextRaceChoices,
           ...(isVariant ? {} : { 
             variantHumanAbilities: undefined, 
             variantHumanSkill: undefined, 
             featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
           }),
-          ...(raceName !== data.race ? { raceChoices: undefined } : {}),
         });
       }
       setRaceModalOpen(false);
     },
-    [data.race, data.raceVariant, data.featureSelections, onChange]
+    [data.race, data.raceVariant, data.featureSelections, data.raceChoices, onChange]
   );
 
   const handleVariantToggle = useCallback(() => {

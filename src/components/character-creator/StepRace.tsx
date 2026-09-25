@@ -26,14 +26,18 @@ export function StepRace({ data, onChange }: StepRaceProps) {
 
   const handleRaceSelect = useCallback(
     (payload: any) => {
+      const nextRaceChoices = { ...data.raceChoices };
+      if (payload.configChoice?.parentChoiceId && payload.configChoice?.featureData?.id) {
+        nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
+      }
       onChange({ 
         race: payload.name, 
         raceVariant: undefined, 
-        raceChoices: undefined 
+        raceChoices: nextRaceChoices 
       });
       setRaceModalOpen(false);
     },
-    [onChange]
+    [data.raceChoices, onChange]
   );
 
   const handleVariantToggle = useCallback(() => {
