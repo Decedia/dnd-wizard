@@ -333,21 +333,24 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       {stickyHeader}
 
       {step === "list" && (
-        <div className="p-4 space-y-3">
+        <div className="px-4 pt-4 pb-2 space-y-3">
           {filteredOptions.length === 0 && (
             <p className="text-sm text-[var(--color-text-muted)] text-center py-8">
               No {selectionType}s found.
             </p>
           )}
-          {filteredOptions.map((opt) => (
-            <SelectionCard
-              key={opt.name}
-              option={opt}
-              isSelected={previewItem?.name === opt.name}
-              onClick={() => handleItemClick(opt)}
-              selectionType={selectionType}
-            />
-          ))}
+          {filteredOptions
+            .slice()
+            .sort((a, b) => (b.isRecommended === true ? 1 : 0) - (a.isRecommended === true ? 1 : 0) || a.name.localeCompare(b.name))
+            .map((opt) => (
+              <SelectionCard
+                key={opt.name}
+                option={opt}
+                isSelected={previewItem?.name === opt.name}
+                onClick={() => handleItemClick(opt)}
+                selectionType={selectionType}
+              />
+            ))}
         </div>
       )}
 
