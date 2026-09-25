@@ -366,10 +366,18 @@ export function getStaticRaces(sources?: string[], ruleset?: string, locale: str
     if (!existing) {
       seen.set(key, race);
     } else {
-      const existingLen = (existing.traits || []).length;
-      const raceLen = (race.traits || []).length;
-      if (raceLen > existingLen) {
+      const existingHasChoices = !!(existing as any).choices;
+      const raceHasChoices = !!(race as any).choices;
+      if (raceHasChoices && !existingHasChoices) {
         seen.set(key, race);
+      } else if (!raceHasChoices && existingHasChoices) {
+        continue;
+      } else {
+        const existingLen = (existing.traits || []).length;
+        const raceLen = (race.traits || []).length;
+        if (raceLen > existingLen) {
+          seen.set(key, race);
+        }
       }
     }
   }
