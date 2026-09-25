@@ -97,14 +97,14 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources }:
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
-                       <button
-                         type="button"
-                         onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
-                         className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
-                       >
-                         {feat.source && feat.source !== "PHB" && <SourceBadge source={feat.source} size="sm" />}
-                         {feat.name}
-                       </button>
+                        <button
+                          type="button"
+                          onClick={() => setExpandedFeat(isExpanded ? null : feat.name)}
+                          className="text-sm font-bold text-[var(--color-text-primary)] hover:underline text-left"
+                        >
+                          {feat.source && feat.source !== "PHB" && <SourceBadge source={typeof feat.source === "string" ? feat.source : (feat.source as any)?.name} size="sm" />}
+                          {feat.name}
+                        </button>
                     </div>
                   </div>
                   {feat.prerequisites && (
