@@ -3,12 +3,9 @@
 import { useCallback, useState, useMemo } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticRaces, type SRDRace } from "@/lib/srd-client";
-import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { CheckIcon as Check } from "@/components/icons";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
 
 interface StepRaceProps {
@@ -19,10 +16,7 @@ interface StepRaceProps {
 export function StepRace({ data, onChange }: StepRaceProps) {
   const { t } = useLanguage();
   const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset);
-  const [featModalOpen, setFeatModalOpen] = useState(false);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
-
-  const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";
 
   const handleRaceSelect = useCallback(
     (payload: any) => {
@@ -40,26 +34,6 @@ export function StepRace({ data, onChange }: StepRaceProps) {
     [data.raceChoices, onChange]
   );
 
-  const handleVariantToggle = useCallback(() => {
-    if (isVariantHuman) {
-      onChange({ raceVariant: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } });
-    } else {
-      onChange({ raceVariant: "variant" });
-    }
-  }, [isVariantHuman, data.featureSelections, onChange]);
-
-  const handleFeatSelect = useCallback(
-    (feat: SRDFeat) => {
-      onChange({
-        featureSelections: {
-          ...data.featureSelections,
-          "variant-human-feat": [feat.name],
-        },
-      });
-    },
-    [data.featureSelections, onChange]
-  );
-
   const handleRaceChoiceChange = useCallback(
     (choiceId: string, value: string) => {
       onChange({
@@ -71,8 +45,6 @@ export function StepRace({ data, onChange }: StepRaceProps) {
     },
     [data.raceChoices, onChange]
   );
-
-  const selectedFeat = data.featureSelections?.["variant-human-feat"]?.[0];
 
   const selectedRace = useMemo(() => races.find(r => r.name === data.race), [races, data.race]);
 
@@ -181,58 +153,6 @@ export function StepRace({ data, onChange }: StepRaceProps) {
         </StepCard>
       )}
 
-      {data.race === "Human" && (
-        <StepCard title={t("creator.variantHuman", "Variant Human")}>
-          <div className="ml-4 space-y-2">
-            <button
-              type="button"
-              onClick={handleVariantToggle}
-              className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                isVariantHuman
-                  ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                  : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
-                    isVariantHuman
-                      ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
-                      : "border-[var(--color-border)]"
-                  }`}
-                >
-                   {isVariantHuman && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-[var(--color-text-primary)]">Variant Human</div>
-                  <div className="text-[10px] text-[var(--color-text-secondary)]">
-                    +1 to two abilities, one skill proficiency, and one feat
-                  </div>
-                </div>
-              </div>
-            </button>
-
-            {isVariantHuman && (
-              <div className="space-y-2">
-                {selectedFeat && (
-                  <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                    <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{t("creator.selectedFeat", "Selected Feat")}</div>
-                    <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
-                  </div>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setFeatModalOpen(true)}
-                  className="btn btn-secondary w-full text-sm"
-                >
-                  {selectedFeat ? t("creator.changeFeat", "Change Feat") : t("creator.chooseFeat", "Choose Feat")}
-                </button>
-              </div>
-            )}
-          </div>
-        </StepCard>
-      )}
-
       {raceModalOpen && (
         <RaceSelectionModal
           isOpen={true}
@@ -240,17 +160,6 @@ export function StepRace({ data, onChange }: StepRaceProps) {
           onConfirm={handleRaceSelect}
           characterSources={data.sources}
           currentCharacter={data}
-        />
-      )}
-
-      {featModalOpen && (
-        <FeatSelectionModal
-          selectedFeat={selectedFeat}
-          sources={data.sources}
-          onSelect={(feat: SRDFeat) => {
-            handleFeatSelect(feat);
-          }}
-          onClose={() => setFeatModalOpen(false)}
         />
       )}
     </>

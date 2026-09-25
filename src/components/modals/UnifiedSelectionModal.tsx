@@ -110,6 +110,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   const [selectedItem, setSelectedItem] = useState<SelectionOption | null>(null);
   const [configChoice, setConfigChoice] = useState<ConfigChoice | null>(null);
   const [previewItem, setPreviewItem] = useState<SelectionOption | null>(null);
+  const [requireChoice, setRequireChoice] = useState(true);
 
   useLayoutEffect(() => {
     if (isOpen) {
@@ -122,6 +123,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       setPreviewItem(null);
       setSearchQuery("");
       setSourceFilter("ALL");
+      setRequireChoice(true);
     }
     return () => {
       document.body.style.overflow = "";
@@ -199,10 +201,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         type: selectionType,
         name: selectedItem.name,
         source: selectedItem.source,
-        configChoice: configChoice || undefined,
+        ...(configChoice && requireChoice ? { configChoice } : {}),
         features: {
           core: selectedItem,
-          children: configChoice ? [configChoice.featureData] : [],
+          children: configChoice && requireChoice ? [configChoice.featureData] : [],
         },
       };
       onConfirm(payload);
@@ -220,7 +222,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       onConfirm(payload);
       onClose();
     }
-  }, [step, selectedItem, configChoice, previewItem, selectionType, onConfirm, onClose]);
+  }, [step, selectedItem, configChoice, requireChoice, previewItem, selectionType, onConfirm, onClose]);
 
   const handleBack = useCallback(() => {
     setStep("list");
@@ -248,8 +250,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
   const isConfirmDisabled =
     step === "config"
-      ? !configChoice
-      : !previewItem || (previewItem.hasChoice && !configChoice);
+      ? requireChoice && !configChoice
+      : !previewItem || (previewItem.hasChoice && !configChoice && requireChoice);
 
   const stickyHeader = (
     <div className="sticky top-0 z-10 bg-[var(--color-surface)] border-b border-[var(--color-border)] px-4 py-3 space-y-2">
@@ -345,6 +347,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           selectedChoice={configChoice}
           characterSources={characterSources}
           language={language}
+          requireChoice={requireChoice}
+          onRequirementChange={setRequireChoice}
         />
       )}
     </BottomSheet>
@@ -426,6 +430,8 @@ interface ConfigDrawerProps {
   selectedChoice: ConfigChoice | null;
   characterSources: string[];
   language: string;
+  requireChoice?: boolean;
+  onRequirementChange?: (required: boolean) => void;
 }
 
 function ConfigDrawer({
@@ -434,8 +440,13 @@ function ConfigDrawer({
   selectedChoice,
   characterSources,
   language,
+  requireChoice = true,
+  onRequirementChange,
 }: ConfigDrawerProps) {
+  const [useVariant, setUseVariant] = useState(false);
+  const isHumanVariant = parentOption.name === "Human" && parentOption.choiceType === "variant";
   const configChoices = useMemo(() => {
+    if (isHumanVariant && !useVariant) return [];
     const raceDetails = getStaticRaceDetails(parentOption.name, characterSources, undefined, language);
     if (!raceDetails || !raceDetails.choices) return [];
     return raceDetails.choices.flatMap((choice) =>
@@ -448,9 +459,15 @@ function ConfigDrawer({
         parentChoiceId: choice.id,
       }))
     );
-  }, [parentOption, characterSources, language]);
+  }, [parentOption, characterSources, language, useVariant, isHumanVariant]);
 
-  if (configChoices.length === 0) {
+  useEffect(() => {
+    if (isHumanVariant && onRequirementChange) {
+      onRequirementChange(useVariant);
+    }
+  }, [isHumanVariant, useVariant, onRequirementChange]);
+
+  if (configChoices.length === 0 && !isHumanVariant) {
     return (
       <div className="flex-1 flex items-center justify-center px-4 py-8">
         <p className="text-sm text-[var(--color-text-muted)] text-center">
@@ -462,32 +479,55 @@ function ConfigDrawer({
 
   return (
     <div className="flex flex-col">
-      <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider">
-            {parentOption.choiceType === "variant" ? "Variant" : "Choose"}
-          </span>
-          <span className="text-sm font-bold text-[var(--color-text-primary)]">
-            {parentOption.name}
-          </span>
+      {isHumanVariant && (
+        <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={useVariant}
+              onChange={(e) => setUseVariant(e.target.checked)}
+              className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent-indigo-600)] focus:ring-[var(--color-accent-indigo-500)]"
+            />
+            <span className="text-sm font-medium text-[var(--color-text-primary)]">
+              Enable Variant Human
+            </span>
+          </label>
+          <p className="text-xs text-[var(--color-text-secondary)] mt-1">
+            When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.
+          </p>
         </div>
-        <p className="text-xs text-[var(--color-text-secondary)]">
-          {parentOption.choiceType === "variant"
-            ? "Select the variant human traits for your character."
-            : `Select your ${parentOption.choiceType}`}
-        </p>
-      </div>
+      )}
+      
+      {useVariant && configChoices.length > 0 && (
+        <>
+          <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider">
+                {parentOption.choiceType === "variant" ? "Variant" : "Choose"}
+              </span>
+              <span className="text-sm font-bold text-[var(--color-text-primary)]">
+                {parentOption.name}
+              </span>
+            </div>
+            <p className="text-xs text-[var(--color-text-secondary)]">
+              {parentOption.choiceType === "variant"
+                ? "Select the variant human traits for your character."
+                : `Select your ${parentOption.choiceType}`}
+            </p>
+          </div>
 
-      <div className="p-4 space-y-2">
-        {configChoices.map((choice) => (
-          <ConfigChoiceCard
-            key={choice.id}
-            choice={choice}
-            isSelected={selectedChoice?.id === choice.id}
-            onClick={() => onChoice(choice)}
-          />
-        ))}
-      </div>
+          <div className="p-4 space-y-2">
+            {configChoices.map((choice) => (
+              <ConfigChoiceCard
+                key={choice.id}
+                choice={choice}
+                isSelected={selectedChoice?.id === choice.id}
+                onClick={() => onChoice(choice)}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -1948,16 +1948,205 @@
       "source": "MTF",
       "choices": [
         {
-          "id": "language",
+          "id": "githyanki-language",
           "name": "Decadent Mastery: Language",
-          "description": "Learn one language of your choice.",
-          "type": "language"
+          "description": "You learn one language of your choice.",
+          "type": "language",
+          "options": [
+            {
+              "id": "common",
+              "name": "Common",
+              "description": "The common tongue"
+            },
+            {
+              "id": "dwarvish",
+              "name": "Dwarvish",
+              "description": "The dwarven language"
+            },
+            {
+              "id": "elvish",
+              "name": "Elvish",
+              "description": "The elven language"
+            },
+            {
+              "id": "giant",
+              "name": "Giant",
+              "description": "The giant language"
+            },
+            {
+              "id": "gnomish",
+              "name": "Gnomish",
+              "description": "The gnomish language"
+            },
+            {
+              "id": "goblin",
+              "name": "Goblin",
+              "description": "The goblin language"
+            },
+            {
+              "id": "halfling",
+              "name": "Halfling",
+              "description": "The halfling language"
+            },
+            {
+              "id": "orc",
+              "name": "Orc",
+              "description": "The orc language"
+            },
+            {
+              "id": "abyssal",
+              "name": "Abyssal",
+              "description": "The abyssal language"
+            },
+            {
+              "id": "celestial",
+              "name": "Celestial",
+              "description": "The celestial language"
+            },
+            {
+              "id": "draconic",
+              "name": "Draconic",
+              "description": "The draconic language"
+            },
+            {
+              "id": "deep-speech",
+              "name": "Deep Speech",
+              "description": "The deep speech language"
+            },
+            {
+              "id": "infernal",
+              "name": "Infernal",
+              "description": "The infernal language"
+            },
+            {
+              "id": "primordial",
+              "name": "Primordial",
+              "description": "The primordial language"
+            },
+            {
+              "id": "sylvan",
+              "name": "Sylvan",
+              "description": "The sylvan language"
+            },
+            {
+              "id": "undercommon",
+              "name": "Undercommon",
+              "description": "The undercommon language"
+            }
+          ]
         },
         {
-          "id": "proficiency",
+          "id": "githyanki-proficiency",
           "name": "Decadent Mastery: Skill or Tool",
-          "description": "Gain proficiency with one skill or tool of your choice.",
-          "type": "proficiency"
+          "description": "You gain proficiency in one skill or tool of your choice.",
+          "type": "proficiency",
+          "options": [
+            {
+              "id": "acrobatics",
+              "name": "Acrobatics",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "animal-handling",
+              "name": "Animal Handling",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "arcana",
+              "name": "Arcana",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "athletics",
+              "name": "Athletics",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "deception",
+              "name": "Deception",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "history",
+              "name": "History",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "insight",
+              "name": "Insight",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "intimidation",
+              "name": "Intimidation",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "investigation",
+              "name": "Investigation",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "medicine",
+              "name": "Medicine",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "nature",
+              "name": "Nature",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "perception",
+              "name": "Perception",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "performance",
+              "name": "Performance",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "persuasion",
+              "name": "Persuasion",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "religion",
+              "name": "Religion",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "sleight-of-hand",
+              "name": "Sleight of Hand",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "stealth",
+              "name": "Stealth",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "survival",
+              "name": "Survival",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "smiths-tools",
+              "name": "Smith's Tools",
+              "description": "Tool proficiency"
+            },
+            {
+              "id": "brewers-tools",
+              "name": "Brewer's Tools",
+              "description": "Tool proficiency"
+            },
+            {
+              "id": "masons-tools",
+              "name": "Mason's Tools",
+              "description": "Tool proficiency"
+            }
+          ]
         }
       ],
       "abilityScoreIncreases": {
@@ -2659,9 +2848,40 @@
         {
           "id": "high-elf-cantrip",
           "name": "High Elf Cantrip",
-          "description": "Choose a cantrip from the wizard spell list.",
-          "type": "spells",
-          "options": []
+          "description": "You know one cantrip of your choice from the wizard spell list.",
+          "type": "cantrip",
+          "options": [
+            {
+              "id": "fire-bolt",
+              "name": "Fire Bolt",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "ray-of-frost",
+              "name": "Ray of Frost",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "light",
+              "name": "Light",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "mage-hand",
+              "name": "Mage Hand",
+              "description": "Conjuration cantrip"
+            },
+            {
+              "id": "prestidigitation",
+              "name": "Prestidigitation",
+              "description": "Transmutation cantrip"
+            },
+            {
+              "id": "minor-illusion",
+              "name": "Minor Illusion",
+              "description": "Illusion cantrip"
+            }
+          ]
         }
       ]
     },

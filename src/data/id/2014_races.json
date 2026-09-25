@@ -1948,16 +1948,205 @@
       "source": "MTF",
       "choices": [
         {
-          "id": "language",
+          "id": "githyanki-language",
           "name": "Decadent Mastery: Language",
-          "description": "Mempelajari satu bahasa sesuai pilihanmu.",
-          "type": "language"
+          "description": "Kamu mempelajari satu bahasa pilihanmu.",
+          "type": "language",
+          "options": [
+            {
+              "id": "common",
+              "name": "Common",
+              "description": "Bahasa umum"
+            },
+            {
+              "id": "dwarvish",
+              "name": "Dwarvish",
+              "description": "Bahasa dwarf"
+            },
+            {
+              "id": "elvish",
+              "name": "Elvish",
+              "description": "Bahasa elf"
+            },
+            {
+              "id": "giant",
+              "name": "Giant",
+              "description": "Bahasa giant"
+            },
+            {
+              "id": "gnomish",
+              "name": "Gnomish",
+              "description": "Bahasa gnome"
+            },
+            {
+              "id": "goblin",
+              "name": "Goblin",
+              "description": "Bahasa goblin"
+            },
+            {
+              "id": "halfling",
+              "name": "Halfling",
+              "description": "Bahasa halfling"
+            },
+            {
+              "id": "orc",
+              "name": "Orc",
+              "description": "Bahasa orc"
+            },
+            {
+              "id": "abyssal",
+              "name": "Abyssal",
+              "description": "Bahasa abyssal"
+            },
+            {
+              "id": "celestial",
+              "name": "Celestial",
+              "description": "Bahasa celestial"
+            },
+            {
+              "id": "draconic",
+              "name": "Draconic",
+              "description": "Bahasa draconic"
+            },
+            {
+              "id": "deep-speech",
+              "name": "Deep Speech",
+              "description": "Bahasa deep speech"
+            },
+            {
+              "id": "infernal",
+              "name": "Infernal",
+              "description": "Bahasa infernal"
+            },
+            {
+              "id": "primordial",
+              "name": "Primordial",
+              "description": "Bahasa primordial"
+            },
+            {
+              "id": "sylvan",
+              "name": "Sylvan",
+              "description": "Bahasa sylvan"
+            },
+            {
+              "id": "undercommon",
+              "name": "Undercommon",
+              "description": "Bahasa undercommon"
+            }
+          ]
         },
         {
-          "id": "proficiency",
+          "id": "githyanki-proficiency",
           "name": "Decadent Mastery: Skill or Tool",
-          "description": "Mendapatkan proficiency dengan satu skill atau tool sesuai pilihanmu.",
-          "type": "proficiency"
+          "description": "Kamu mendapatkan proficiency dalam satu skill atau tool pilihanmu.",
+          "type": "proficiency",
+          "options": [
+            {
+              "id": "acrobatics",
+              "name": "Acrobatics",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "animal-handling",
+              "name": "Animal Handling",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "arcana",
+              "name": "Arcana",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "athletics",
+              "name": "Athletics",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "deception",
+              "name": "Deception",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "history",
+              "name": "History",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "insight",
+              "name": "Insight",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "intimidation",
+              "name": "Intimidation",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "investigation",
+              "name": "Investigation",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "medicine",
+              "name": "Medicine",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "nature",
+              "name": "Nature",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "perception",
+              "name": "Perception",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "performance",
+              "name": "Performance",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "persuasion",
+              "name": "Persuasion",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "religion",
+              "name": "Religion",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "sleight-of-hand",
+              "name": "Sleight of Hand",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "stealth",
+              "name": "Stealth",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "survival",
+              "name": "Survival",
+              "description": "Skill proficiency"
+            },
+            {
+              "id": "smiths-tools",
+              "name": "Smith's Tools",
+              "description": "Tool proficiency"
+            },
+            {
+              "id": "brewers-tools",
+              "name": "Brewer's Tools",
+              "description": "Tool proficiency"
+            },
+            {
+              "id": "masons-tools",
+              "name": "Mason's Tools",
+              "description": "Tool proficiency"
+            }
+          ]
         }
       ],
       "abilityScoreIncreases": {
@@ -2659,9 +2848,40 @@
         {
           "id": "high-elf-cantrip",
           "name": "High Elf Cantrip",
-          "description": "Pilih satu cantrip dari wizard spell list.",
-          "type": "spells",
-          "options": []
+          "description": "Kamu mengetahui satu cantrip pilihanmu dari wizard spell list.",
+          "type": "cantrip",
+          "options": [
+            {
+              "id": "fire-bolt",
+              "name": "Fire Bolt",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "ray-of-frost",
+              "name": "Ray of Frost",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "light",
+              "name": "Light",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "mage-hand",
+              "name": "Mage Hand",
+              "description": "Conjuration cantrip"
+            },
+            {
+              "id": "prestidigitation",
+              "name": "Prestidigitation",
+              "description": "Transmutation cantrip"
+            },
+            {
+              "id": "minor-illusion",
+              "name": "Minor Illusion",
+              "description": "Illusion cantrip"
+            }
+          ]
         }
       ]
     },

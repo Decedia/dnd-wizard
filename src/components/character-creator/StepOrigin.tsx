@@ -1,17 +1,15 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { UsersIcon as Users, CheckIcon as Check, StarIcon as Star, PersonIcon, BarbarianIcon, MusicNotesIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, SparkleIcon, WarlockIcon, WizardStaffIcon, GearGiIcon as ArtificerIcon, SwordIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, GoblinIcon, DevilMaskIcon, KenkuIcon, LizardfolkIcon } from "@/components/icons";
+import { UsersIcon as Users, StarIcon as Star, PersonIcon, BarbarianIcon, MusicNotesIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, SparkleIcon, WarlockIcon, WizardStaffIcon, GearGiIcon as ArtificerIcon, SwordIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, GoblinIcon, DevilMaskIcon, KenkuIcon, LizardfolkIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
-import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
-import type { SRDFeat } from "@/lib/srd-client";
 import { BasePopup } from "@/components/BasePopup";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
@@ -167,14 +165,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const { t } = useLanguage();
   const [classModalOpen, setClassModalOpen] = useState(false);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
-  const [featModalOpen, setFeatModalOpen] = useState(false);
-  const [variantModalOpen, setVariantModalOpen] = useState(false);
-  const [pendingVariant, setPendingVariant] = useState<boolean>(data.raceVariant === "variant");
   const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset);
   const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset);
-
-  const isVariantHuman = data.race === "Human" && data.raceVariant === "variant";
-  const selectedFeat = data.featureSelections?.["variant-human-feat"]?.[0];
 
   const handleRaceChoiceChange = useCallback(
     (choiceId: string, value: string) => {
@@ -236,58 +228,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
     },
     [data.race, data.raceVariant, data.featureSelections, data.raceChoices, onChange]
   );
-
-  const handleVariantToggle = useCallback(() => {
-    if (isVariantHuman) {
-      onChange({
-        raceVariant: undefined,
-        featureSelections: { ...data.featureSelections, "variant-human-feat": [] },
-        variantHumanAbilities: undefined,
-        variantHumanSkill: undefined,
-      });
-    } else {
-      onChange({ raceVariant: "variant" });
-    }
-  }, [isVariantHuman, data.featureSelections, onChange]);
-
-  const handleFeatSelect = useCallback(
-    (feat: SRDFeat) => {
-      onChange({
-        featureSelections: {
-          ...data.featureSelections,
-          "variant-human-feat": [feat.name],
-        },
-      });
-    },
-    [data.featureSelections, onChange]
-  );
-
-  const handleVariantAbilityToggle = useCallback(
-    (ability: string) => {
-      const current = data.variantHumanAbilities || [];
-      let next: string[];
-      if (current.includes(ability)) {
-        next = current.filter((a) => a !== ability);
-      } else if (current.length < 2) {
-        next = [...current, ability];
-      } else {
-        next = [current[1], ability];
-      }
-      onChange({ variantHumanAbilities: next });
-    },
-    [data.variantHumanAbilities, onChange]
-  );
-
-  const handleVariantSkillSelect = useCallback(
-    (skill: string) => {
-      onChange({ variantHumanSkill: data.variantHumanSkill === skill ? undefined : skill });
-    },
-    [data.variantHumanSkill, onChange]
-  );
-
-  const variantAbilities = data.variantHumanAbilities || [];
-  const variantSkill = data.variantHumanSkill;
-  const abilityOptions = ["str", "dex", "con", "int", "wis", "cha"];
 
   return (
     <StepCard title={t("origin.title")} hint={t("origin.hint")}>
@@ -387,126 +327,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           onConfirm={handleRaceSelect}
           characterSources={data.sources}
           currentCharacter={data}
-        />
-      )}
-
-      {variantModalOpen && (
-        <BasePopup
-          isOpen={true}
-          onClose={() => setVariantModalOpen(false)}
-           title={t("origin.variantHuman")}
-           confirmLabel={t("wizard.confirm")}
-          cancelLabel={t("button.cancel", "Cancel")}
-          onConfirm={() => setVariantModalOpen(false)}
-          showFooter={true}
-        >
-          <div className="space-y-3">
-            <button
-              type="button"
-              onClick={() => setPendingVariant((prev) => !prev)}
-              className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                pendingVariant
-                  ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                  : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
-                    pendingVariant
-                      ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)]"
-                      : "border-[var(--color-border)]"
-                  }`}
-                >
-                  {pendingVariant && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-                </div>
-                <div>
-                   <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("origin.variantHuman")}</div>
-                  <div className="text-[10px] text-[var(--color-text-secondary)]">
-                    {t("origin.variantHumanBonus")}
-                  </div>
-                </div>
-              </div>
-            </button>
-
-            {pendingVariant && (
-              <>
-                <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                  <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">{t("origin.plusOneToTwoAbilities")}</div>
-                  <div className="grid grid-cols-3 gap-1.5">
-                    {abilityOptions.map((ability) => {
-                      const isSelected = variantAbilities.includes(ability);
-                      return (
-                        <button
-                          key={ability}
-                          type="button"
-                          onClick={() => handleVariantAbilityToggle(ability)}
-                          className={`p-2 text-center rounded-[var(--radius-sm)] border text-xs font-bold uppercase transition-all ${
-                            isSelected
-                              ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                              : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                          }`}
-                        >
-                          {ability}
-                        </button>
-                      );
-                    })}
-                  </div>
-                   <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
-                     {t("origin.selectedCount", { count: variantAbilities.length })}
-                   </div>
-                </div>
-
-                 <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                   <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider mb-2">{t("origin.skillProficiency")}</div>
-                  <div className="grid grid-cols-2 gap-1">
-                    {SKILLS.map((skill) => {
-                      const isSelected = variantSkill === skill.name;
-                      return (
-                        <button
-                          key={skill.name}
-                          type="button"
-                          onClick={() => handleVariantSkillSelect(skill.name)}
-                          className={`p-1.5 text-left rounded-[var(--radius-sm)] border text-[10px] font-semibold transition-all ${
-                            isSelected
-                              ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                              : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                          }`}
-                        >
-                          {skill.name}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {selectedFeat && (
-                  <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-                      <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{t("origin.selectedFeat")}</div>
-                      <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
-                    </div>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setFeatModalOpen(true)}
-                  className="btn btn-secondary w-full text-sm"
-                >
-                  {selectedFeat ? t("origin.changeFeat") : t("origin.chooseFeat")}
-                </button>
-              </>
-            )}
-          </div>
-        </BasePopup>
-      )}
-
-      {featModalOpen && (
-        <FeatSelectionModal
-          selectedFeat={selectedFeat}
-          sources={data.sources}
-          onSelect={(feat: SRDFeat) => {
-            handleFeatSelect(feat);
-          }}
-          onClose={() => setFeatModalOpen(false)}
         />
       )}
     </StepCard>
