@@ -467,7 +467,7 @@ function ConfigDrawer({
     }
   }, [isHumanVariant, useVariant, onRequirementChange]);
 
-  if (configChoices.length === 0 && !isHumanVariant) {
+  if (configChoices.length === 0) {
     return (
       <div className="flex-1 flex items-center justify-center px-4 py-8">
         <p className="text-sm text-[var(--color-text-muted)] text-center">
@@ -498,7 +498,7 @@ function ConfigDrawer({
         </div>
       )}
       
-      {useVariant && configChoices.length > 0 && (
+      {(!isHumanVariant || useVariant) && configChoices.length > 0 && (
         <>
           <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
             <div className="flex items-center gap-2 mb-1">
