@@ -25,7 +25,7 @@ export function BottomSheet({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100000] flex items-center justify-center">
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center">
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}

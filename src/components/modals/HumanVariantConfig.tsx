@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { CheckIcon as Check, CaretRightIcon as ChevronRight } from "@/components/icons";
 import { FeatSelectionModal } from "@/components/modals/FeatSelectionModal";
 import { getStaticFeats } from "@/lib/srd-client";
@@ -46,6 +46,10 @@ export function HumanVariantConfig({
   const [featModalOpen, setFeatModalOpen] = useState(false);
   const feats = useMemo(() => getStaticFeats([], undefined, "en"), []);
 
+  useEffect(() => {
+    onChange({ enabled, abilities, skill, feat });
+  }, [enabled, abilities, skill, feat, onChange]);
+
   const toggleAbility = (abilityId: string) => {
     setAbilities((prev) => {
       let next: string[];
@@ -56,32 +60,28 @@ export function HumanVariantConfig({
       } else {
         next = [prev[1], abilityId];
       }
-      onChange({ enabled, abilities: next, skill, feat });
       return next;
     });
   };
 
   const selectSkill = (skillName: string) => {
-    const next = skill === skillName ? undefined : skillName;
-    setSkill(next);
-    onChange({ enabled, abilities, skill: next, feat });
+    setSkill((prev) => (prev === skillName ? undefined : skillName));
   };
 
   const selectFeat = (featName: string) => {
-    const next = feat === featName ? undefined : featName;
-    setFeat(next);
-    onChange({ enabled, abilities, skill, feat: next });
+    setFeat((prev) => (prev === featName ? undefined : featName));
   };
 
   const toggleEnabled = () => {
-    const nextEnabled = !enabled;
-    setEnabled(nextEnabled);
-    if (!nextEnabled) {
-      setAbilities([]);
-      setSkill(undefined);
-      setFeat(undefined);
-    }
-    onChange({ enabled: nextEnabled, abilities: nextEnabled ? abilities : [], skill: nextEnabled ? skill : undefined, feat: nextEnabled ? feat : undefined });
+    setEnabled((prev) => {
+      const next = !prev;
+      if (!next) {
+        setAbilities([]);
+        setSkill(undefined);
+        setFeat(undefined);
+      }
+      return next;
+    });
   };
 
   if (!enabled) {
