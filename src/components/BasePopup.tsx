@@ -39,7 +39,7 @@ export function BasePopup({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[var(--color-overlay)] p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-[var(--color-overlay)] p-4" onClick={onClose}>
       <div className="w-full max-w-md max-h-[80vh] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-3">
           <div className="flex items-center gap-2">

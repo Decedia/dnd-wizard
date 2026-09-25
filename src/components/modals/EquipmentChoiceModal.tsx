@@ -81,7 +81,7 @@ export function EquipmentChoiceModal({
   const hasWeaponChoices = weaponChoiceOptions.length > 0;
 
   return createPortal(
-    <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/50" onClick={onClose}>
+    <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50" onClick={onClose}>
       <div
         className="mx-auto w-full max-w-lg bg-[var(--color-surface)] rounded-t-[20px] max-h-[85vh] flex flex-col shadow-xl"
         onClick={(e) => e.stopPropagation()}
