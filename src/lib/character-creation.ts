@@ -736,6 +736,21 @@ function getRaceTraits(character: Character, language: string): any[] {
     description: normalizeDescription(t.description),
     ...extractFeatureFields(t),
   }));
+  if (race.choices && character.raceChoices) {
+    for (const choice of race.choices) {
+      const selectedId = character.raceChoices[choice.id];
+      if (!selectedId) continue;
+      const selectedOption = choice.options?.find((o: any) => o.id === selectedId);
+      if (selectedOption) {
+        traits.push({
+          name: selectedOption.name,
+          description: normalizeDescription(selectedOption.description || choice.description || ""),
+          ...extractFeatureFields({}),
+          summary: selectedOption.description || null,
+        } as any);
+      }
+    }
+  }
   if (character.race === "Human" && character.raceVariant === "variant") {
     traits.push({
       name: "Variant Human",
