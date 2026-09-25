@@ -413,7 +413,7 @@ function SelectionCard({
       }`}
     >
       {option.isRecommended && (
-        <span className="absolute -top-4 -left-4 w-8 h-8 text-amber-400 drop-shadow-md z-10">
+        <span className="absolute -top-2 -left-2 w-6 h-6 text-amber-400 drop-shadow-md z-10">
           <Star className="h-8 w-8 fill-amber-400" />
         </span>
       )}

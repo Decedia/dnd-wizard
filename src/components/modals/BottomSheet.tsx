@@ -25,13 +25,13 @@ export function BottomSheet({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center">
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
       <div
-        className={`relative w-full max-w-sm max-h-[calc(100vh-120px)] mb-24 flex flex-col bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl ${className}`}
+        className={`relative w-full max-w-sm max-h-[calc(100vh-140px)] mb-24 flex flex-col bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         {showHeader && title && (
