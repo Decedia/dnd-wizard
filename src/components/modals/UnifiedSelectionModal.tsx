@@ -265,7 +265,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       : !previewItem || (previewItem.hasChoice && !configChoice && requireChoice);
 
   const stickyHeader = (
-    <div className="sticky top-0 z-10 bg-[var(--color-surface)] border-b border-[var(--color-border)] px-4 py-3 space-y-2">
+    <div className="sticky top-0 z-20 bg-[var(--color-surface)] border-b border-[var(--color-border)] px-4 py-3 space-y-2">
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <MagnifyingGlass className="h-4 w-4 text-[var(--color-text-muted)]" />
@@ -413,7 +413,7 @@ function SelectionCard({
       }`}
     >
       {option.isRecommended && (
-        <span className="absolute -top-2 -left-2 w-6 h-6 text-amber-400 drop-shadow-md z-10">
+        <span className="absolute -top-3 -left-3 w-6 h-6 text-amber-400 drop-shadow-md z-10">
           <Star className="h-8 w-8 fill-amber-400" />
         </span>
       )}
