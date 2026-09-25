@@ -92,7 +92,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                   <div className="flex flex-col min-w-0">
                       <span className="text-xs font-medium text-ink truncate flex items-center gap-1">
                         {name}
-                        {isRecommended("skill", name) && <Star className="h-3 w-3 text-amber-500" />}
+                        {isRecommended("skill", name) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
                         {isBgSkill && <span className="text-[9px] font-bold text-[var(--color-success-600)] bg-[var(--color-success-100)] px-1 rounded">{t("skills.backgroundBadge")}</span>}
                       </span>
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
@@ -119,7 +119,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                           <span className="inline-block h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: isExpert ? "var(--color-accent-purple-600)" : isBgSkill ? "var(--color-success-500)" : "var(--color-ink)" }} />
                         )}
                         {name}
-                        {isRecommended("skill", name) && <Star className="h-3 w-3 text-amber-500" />}
+                        {isRecommended("skill", name) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
                       </span>
                      <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>

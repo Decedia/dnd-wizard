@@ -312,7 +312,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                          </span>
                       </div>
                         <div className="flex items-center gap-1">
-                          {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                          {isRecommended("spell", spell.name) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
                           {spell.school && (() => {
                           const schoolStyle = getSpellSchoolStyle(spell.school);
                           if (!schoolStyle) return <span className="text-xs text-[var(--color-text-muted)] font-medium">{spell.school}</span>;
@@ -431,7 +431,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
                                    </span>
                                  );
                                })()}
-                               {isRecommended("spell", spell.name) && <Star className="h-3.5 w-3.5 text-amber-500" />}
+                               {isRecommended("spell", spell.name) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
                              </div>
                           </div>
 <div className="flex items-center gap-2 mt-1">
